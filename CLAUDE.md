@@ -14,6 +14,7 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 - **Icons:** use @phosphor-icons/react for my app icons
 - **Data fetching, caching and Mutations:** use tanstack-query 
 - **Toasts:** use react-hot-toast for all notifications
+- **State Management:** use zustand for global state management
 
 ## User Flow
 

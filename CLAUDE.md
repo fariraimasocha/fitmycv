@@ -12,6 +12,8 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 - **APIs:** Exa.ai (job page scraping), OpenAI (CV tailoring + cover letter), Groq (PDF text extraction)
 - **PDF:** unpdf (extract text), TBD (generate downloadable PDFs)
 - **Icons:** use @phosphor-icons/react for my app icons
+- **Data fetching, caching and Mutations:** use tanstack-query 
+- **Toasts:** use react-hot-toast for all notifications
 
 ## User Flow
 

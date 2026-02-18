@@ -4,6 +4,7 @@ import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -13,7 +14,7 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user, trigger }) {
       // On initial sign in or session update, fetch user from DB and cache in token
-      if (trigger === "signIn" || trigger === "update" || (user && !token.id)) {
+      if (trigger === "signIn" || trigger === "update" || !token.id) {
         try {
           await connectDB();
           const dbUser = await User.findOne({ email: token.email });

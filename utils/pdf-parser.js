@@ -6,7 +6,8 @@ import { extractText } from "unpdf";
 export async function extractPdfText(arrayBuffer) {
   const { text } = await extractText(new Uint8Array(arrayBuffer));
 
-  return sanitizeText(text);
+  const rawText = Array.isArray(text) ? text.join("\n") : (text || "");
+  return sanitizeText(rawText);
 }
 
 function sanitizeText(text) {

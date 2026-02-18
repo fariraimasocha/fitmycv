@@ -3,14 +3,20 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import { ArrowCounterClockwiseIcon } from "@phosphor-icons/react";
+import {
+  ArrowCounterClockwiseIcon,
+  EyeIcon,
+  PencilSimpleIcon,
+} from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import ResumeUpload from "@/components/ResumeUpload";
 import ResumeForm from "@/components/ResumeForm";
+import ResumePreview from "@/components/ResumePreview";
 import Loader from "@/components/Loader";
 
 export default function MyResumePage() {
   const [parsedData, setParsedData] = useState(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const {
     data: savedCV,
@@ -27,18 +33,27 @@ export default function MyResumePage() {
 
   const handleParsed = (data) => {
     setParsedData(data);
+    setShowPreview(false);
   };
 
   const handleReUpload = () => {
     setParsedData(null);
+    setShowPreview(false);
   };
 
   if (isLoading) {
     return <Loader />;
   }
 
-  // Show form with parsed data (just uploaded)
+  // Show form/preview with parsed data (just uploaded)
   if (parsedData) {
+    const resumeData = {
+      basics: parsedData.basics,
+      work: parsedData.work,
+      education: parsedData.education,
+      skills: parsedData.skills,
+    };
+
     return (
       <motion.div
         className="mx-auto max-w-3xl space-y-6 py-6"
@@ -53,28 +68,55 @@ export default function MyResumePage() {
               Review and edit the parsed information, then save.
             </p>
           </div>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button variant="outline" className="rounded-full" onClick={handleReUpload}>
-              <ArrowCounterClockwiseIcon size={16} />
-              Re-upload
-            </Button>
-          </motion.div>
+          <div className="flex items-center gap-2">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                variant="outline"
+                className="rounded-full"
+                onClick={() => setShowPreview(!showPreview)}
+              >
+                {showPreview ? (
+                  <>
+                    <PencilSimpleIcon size={16} />
+                    Edit
+                  </>
+                ) : (
+                  <>
+                    <EyeIcon size={16} />
+                    Preview
+                  </>
+                )}
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button variant="outline" className="rounded-full" onClick={handleReUpload}>
+                <ArrowCounterClockwiseIcon size={16} />
+                Re-upload
+              </Button>
+            </motion.div>
+          </div>
         </div>
-        <ResumeForm
-          initialData={{
-            basics: parsedData.basics,
-            work: parsedData.work,
-            education: parsedData.education,
-            skills: parsedData.skills,
-          }}
-          rawText={parsedData.rawText}
-        />
+        {showPreview ? (
+          <ResumePreview data={resumeData} />
+        ) : (
+          <ResumeForm
+            initialData={resumeData}
+            rawText={parsedData.rawText}
+          />
+        )}
       </motion.div>
     );
   }
 
-  // Show form with saved data
+  // Show form/preview with saved data
   if (savedCV) {
+    const resumeData = {
+      basics: savedCV.basics,
+      work: savedCV.work,
+      education: savedCV.education,
+      skills: savedCV.skills,
+    };
+
     return (
       <motion.div
         className="mx-auto max-w-3xl space-y-6 py-6"
@@ -89,22 +131,42 @@ export default function MyResumePage() {
               Edit your resume information or upload a new one.
             </p>
           </div>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button variant="outline" className="rounded-full" onClick={handleReUpload}>
-              <ArrowCounterClockwiseIcon size={16} />
-              Upload New
-            </Button>
-          </motion.div>
+          <div className="flex items-center gap-2">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                variant="outline"
+                className="rounded-full"
+                onClick={() => setShowPreview(!showPreview)}
+              >
+                {showPreview ? (
+                  <>
+                    <PencilSimpleIcon size={16} />
+                    Edit
+                  </>
+                ) : (
+                  <>
+                    <EyeIcon size={16} />
+                    Preview
+                  </>
+                )}
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button variant="outline" className="rounded-full" onClick={handleReUpload}>
+                <ArrowCounterClockwiseIcon size={16} />
+                Upload New
+              </Button>
+            </motion.div>
+          </div>
         </div>
-        <ResumeForm
-          initialData={{
-            basics: savedCV.basics,
-            work: savedCV.work,
-            education: savedCV.education,
-            skills: savedCV.skills,
-          }}
-          rawText={savedCV.rawText}
-        />
+        {showPreview ? (
+          <ResumePreview data={resumeData} />
+        ) : (
+          <ResumeForm
+            initialData={resumeData}
+            rawText={savedCV.rawText}
+          />
+        )}
       </motion.div>
     );
   }

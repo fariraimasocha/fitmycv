@@ -1,25 +1,35 @@
-"use client"
+"use client";
 
-import { House } from "@phosphor-icons/react"
+import { HouseIcon, ReadCvLogoIcon, PenIcon } from "@phosphor-icons/react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const navItems = [
   {
     title: "Home",
     url: "/dashboard",
-    icon: House,
+    icon: HouseIcon,
   },
-]
+  {
+    title: "My Resume",
+    url: "/dashboard/resume",
+    icon: ReadCvLogoIcon,
+  },
+  {
+    title: "Tailor Resume",
+    url: "/dashboard/tailor",
+    icon: PenIcon,
+  },
+];
 
 export function AppSidebar({ ...props }) {
   return (

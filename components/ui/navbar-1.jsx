@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ReadCvLogoIcon, List, X } from "@phosphor-icons/react";
+import { ReadCvLogoIcon, ListIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 
 const Navbar1 = () => {
@@ -68,7 +68,7 @@ const Navbar1 = () => {
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
         >
-          <List size={24} className="text-gray-900" />
+          <ListIcon size={24} className="text-gray-900" />
         </motion.button>
       </div>
 
@@ -90,7 +90,7 @@ const Navbar1 = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <X size={24} className="text-gray-900" />
+              <XIcon size={24} className="text-gray-900" />
             </motion.button>
             <div className="flex flex-col space-y-6">
               {["Home"].map((item, i) => (

@@ -19,6 +19,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
 import ResumePreview from "@/components/ResumePreview";
 import CoverLetterCard from "@/components/CoverLetterCard";
+import TemplateSelect from "@/components/TemplateSelect";
 
 export default function TailorPage() {
   const queryClient = useQueryClient();
@@ -26,6 +27,7 @@ export default function TailorPage() {
   const [jobData, setJobData] = useState(null);
   const [tailorResult, setTailorResult] = useState(null);
   const [activeTab, setActiveTab] = useState("cv");
+  const [selectedTemplate, setSelectedTemplate] = useState("classic");
 
   const extractMutation = useMutation({
     mutationFn: async (jobUrl) => {
@@ -130,7 +132,7 @@ export default function TailorPage() {
     const { generateCVPdf, generateCoverLetterPdf, buildPdfFilename } =
       await import("@/utils/pdf-generator");
     if (tab === "cv") {
-      const doc = generateCVPdf(tailorResult.tailoredCV);
+      const doc = generateCVPdf(tailorResult.tailoredCV, selectedTemplate);
       doc.save(
         buildPdfFilename(
           tailorResult.tailoredCV.basics?.name,
@@ -283,6 +285,12 @@ export default function TailorPage() {
                 Cover Letter
               </Button>
             </div>
+            {activeTab === "cv" && (
+              <TemplateSelect
+                value={selectedTemplate}
+                onChange={setSelectedTemplate}
+              />
+            )}
             <Button
               variant="outline"
               className="rounded-full"
@@ -294,7 +302,7 @@ export default function TailorPage() {
           </div>
 
           {activeTab === "cv" && (
-            <ResumePreview data={tailorResult.tailoredCV} />
+            <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
           )}
           {activeTab === "letter" && (
             <CoverLetterCard content={tailorResult.coverLetter} />

@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import ResumePreview from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
+import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
 
 export default function TailoredCVDetailPage() {
@@ -27,6 +28,7 @@ export default function TailoredCVDetailPage() {
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("cv");
   const [showPreview, setShowPreview] = useState(true);
+  const [selectedTemplate, setSelectedTemplate] = useState("classic");
 
   const { data: cv, isLoading } = useQuery({
     queryKey: ["tailored-cv", id],
@@ -93,7 +95,7 @@ export default function TailoredCVDetailPage() {
     const { generateCVPdf, generateCoverLetterPdf, buildPdfFilename } =
       await import("@/utils/pdf-generator");
     if (tab === "cv") {
-      const doc = generateCVPdf(resumeData);
+      const doc = generateCVPdf(resumeData, selectedTemplate);
       doc.save(buildPdfFilename(cv.basics?.name, cv.jobTitle, "cv"));
     } else {
       const doc = generateCoverLetterPdf(cv.coverLetter || "", {
@@ -172,23 +174,29 @@ export default function TailoredCVDetailPage() {
 
           <div className="flex items-center gap-2">
             {activeTab === "cv" && (
-              <Button
-                variant="outline"
-                className="rounded-full"
-                onClick={() => setShowPreview(!showPreview)}
-              >
-                {showPreview ? (
-                  <>
-                    <PencilSimpleIcon size={16} />
-                    Edit
-                  </>
-                ) : (
-                  <>
-                    <EyeIcon size={16} />
-                    Preview
-                  </>
-                )}
-              </Button>
+              <>
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  onClick={() => setShowPreview(!showPreview)}
+                >
+                  {showPreview ? (
+                    <>
+                      <PencilSimpleIcon size={16} />
+                      Edit
+                    </>
+                  ) : (
+                    <>
+                      <EyeIcon size={16} />
+                      Preview
+                    </>
+                  )}
+                </Button>
+                <TemplateSelect
+                  value={selectedTemplate}
+                  onChange={setSelectedTemplate}
+                />
+              </>
             )}
             <Button
               variant="outline"
@@ -203,7 +211,7 @@ export default function TailoredCVDetailPage() {
 
         {activeTab === "cv" && (
           showPreview ? (
-            <ResumePreview data={resumeData} />
+            <ResumePreview data={resumeData} template={selectedTemplate} />
           ) : (
             <ResumeForm
               initialData={resumeData}

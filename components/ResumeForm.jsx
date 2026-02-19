@@ -17,12 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const resumeSchema = z.object({
   basics: z.object({
@@ -37,7 +32,7 @@ const resumeSchema = z.object({
         z.object({
           network: z.string().optional().default(""),
           url: z.string().optional().default(""),
-        })
+        }),
       )
       .optional()
       .default([]),
@@ -51,7 +46,7 @@ const resumeSchema = z.object({
         startDate: z.string().optional().default(""),
         endDate: z.string().optional().default(""),
         description: z.string().optional().default(""),
-      })
+      }),
     )
     .optional()
     .default([]),
@@ -63,7 +58,7 @@ const resumeSchema = z.object({
         fieldOfStudy: z.string().optional().default(""),
         startDate: z.string().optional().default(""),
         endDate: z.string().optional().default(""),
-      })
+      }),
     )
     .optional()
     .default([]),
@@ -72,7 +67,7 @@ const resumeSchema = z.object({
       z.object({
         category: z.string().optional().default(""),
         skills: z.array(z.string()).optional().default([]),
-      })
+      }),
     )
     .optional()
     .default([]),
@@ -154,7 +149,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0 }}
       >
-        <Card className="rounded-2xl border-0 shadow-lg">
+        <Card className="rounded-2xl border shadow-lg">
           <CardHeader>
             <CardTitle>Personal Information</CardTitle>
           </CardHeader>
@@ -191,11 +186,7 @@ export default function ResumeForm({
             </div>
             <div className="sm:col-span-2 space-y-2">
               <Label htmlFor="summary">Professional Summary</Label>
-              <Textarea
-                id="summary"
-                rows={4}
-                {...register("basics.summary")}
-              />
+              <Textarea id="summary" rows={4} {...register("basics.summary")} />
             </div>
           </CardContent>
         </Card>
@@ -207,7 +198,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="rounded-2xl border-0 shadow-lg">
+        <Card className="rounded-2xl border shadow-lg">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle>Online Profiles</CardTitle>
             <Button
@@ -223,9 +214,7 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="space-y-4">
             {profilesFields.fields.length === 0 && (
-              <p className="text-sm text-gray-500">
-                No profiles added yet.
-              </p>
+              <p className="text-sm text-gray-500">No profiles added yet.</p>
             )}
             {profilesFields.fields.map((field, index) => (
               <div key={field.id} className="flex gap-3 items-end">
@@ -264,7 +253,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-        <Card className="rounded-2xl border-0 shadow-lg">
+        <Card className="rounded-2xl border shadow-lg">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle>Work Experience</CardTitle>
             <Button
@@ -299,7 +288,9 @@ export default function ResumeForm({
                 className="space-y-4 rounded-xl bg-gray-50 p-5"
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-900">Position {index + 1}</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    Position {index + 1}
+                  </p>
                   <Button
                     type="button"
                     variant="ghost"
@@ -359,7 +350,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
       >
-        <Card className="rounded-2xl border-0 shadow-lg">
+        <Card className="rounded-2xl border shadow-lg">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle>Education</CardTitle>
             <Button
@@ -383,9 +374,7 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="space-y-6">
             {educationFields.fields.length === 0 && (
-              <p className="text-sm text-gray-500">
-                No education added yet.
-              </p>
+              <p className="text-sm text-gray-500">No education added yet.</p>
             )}
             {educationFields.fields.map((field, index) => (
               <div
@@ -393,7 +382,9 @@ export default function ResumeForm({
                 className="space-y-4 rounded-xl bg-gray-50 p-5"
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-900">Education {index + 1}</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    Education {index + 1}
+                  </p>
                   <Button
                     type="button"
                     variant="ghost"
@@ -449,7 +440,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Card className="rounded-2xl border-0 shadow-lg">
+        <Card className="rounded-2xl border shadow-lg">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle>Skills</CardTitle>
             <Button
@@ -457,9 +448,7 @@ export default function ResumeForm({
               variant="outline"
               size="sm"
               className="rounded-full"
-              onClick={() =>
-                skillsFields.append({ category: "", skills: [] })
-              }
+              onClick={() => skillsFields.append({ category: "", skills: [] })}
             >
               <PlusIcon size={14} />
               Add Category
@@ -467,9 +456,7 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="space-y-6">
             {skillsFields.fields.length === 0 && (
-              <p className="text-sm text-gray-500">
-                No skills added yet.
-              </p>
+              <p className="text-sm text-gray-500">No skills added yet.</p>
             )}
             {skillsFields.fields.map((field, index) => (
               <div

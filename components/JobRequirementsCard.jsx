@@ -10,12 +10,7 @@ import {
   ClipboardTextIcon,
   GraduationCapIcon,
 } from "@phosphor-icons/react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function JobRequirementsCard({ data }) {
   return (
@@ -24,10 +19,12 @@ export default function JobRequirementsCard({ data }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="rounded-2xl border-0 shadow-lg">
+      <Card className="rounded-2xl border shadow-lg">
         <CardHeader>
           <div className="space-y-1">
-            <CardTitle className="text-xl">{data.title || "Job Listing"}</CardTitle>
+            <CardTitle className="text-xl">
+              {data.title || "Job Listing"}
+            </CardTitle>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
               {data.company && (
                 <span className="flex items-center gap-1">

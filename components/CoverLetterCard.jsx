@@ -10,14 +10,14 @@ import {
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function CoverLetterCard({ content, editable, onSave, isSaving }) {
+export default function CoverLetterCard({
+  content,
+  editable,
+  onSave,
+  isSaving,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
 
@@ -32,7 +32,7 @@ export default function CoverLetterCard({ content, editable, onSave, isSaving })
   };
 
   return (
-    <Card className="rounded-2xl border-0 shadow-lg">
+    <Card className="rounded-2xl shadow-lg border">
       <CardHeader className="flex-row items-center justify-between">
         <CardTitle className="flex items-center gap-2">
           <EnvelopeSimpleIcon size={18} />

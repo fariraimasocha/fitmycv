@@ -135,8 +135,8 @@ export default function TailorPage() {
         buildPdfFilename(
           tailorResult.tailoredCV.basics?.name,
           jobData?.title,
-          "cv"
-        )
+          "cv",
+        ),
       );
     } else {
       const doc = generateCoverLetterPdf(tailorResult.coverLetter || "", {
@@ -148,8 +148,8 @@ export default function TailorPage() {
         buildPdfFilename(
           tailorResult.tailoredCV.basics?.name,
           jobData?.title,
-          "cover-letter"
-        )
+          "cover-letter",
+        ),
       );
     }
     toast.success("PDF downloaded!");
@@ -182,7 +182,7 @@ export default function TailorPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="rounded-2xl border-0 shadow-lg">
+        <Card className="rounded-2xl border shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <LinkIcon size={18} />

@@ -20,7 +20,7 @@ export function NavMain({ items }) {
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
-            <SidebarMenuButton tooltip={item.title} isActive={pathname === item.url} asChild>
+            <SidebarMenuButton tooltip={item.title} isActive={item.url === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(item.url)} asChild>
               <Link href={item.url}>
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>

@@ -78,7 +78,14 @@ const resumeSchema = z.object({
     .default([]),
 });
 
-export default function ResumeForm({ initialData, rawText }) {
+export default function ResumeForm({
+  initialData,
+  rawText,
+  saveEndpoint = "/api/resume",
+  saveMethod = "PUT",
+  queryKey = ["resume"],
+  saveButtonLabel = "Save Resume",
+}) {
   const queryClient = useQueryClient();
 
   const form = useForm({
@@ -113,8 +120,8 @@ export default function ResumeForm({ initialData, rawText }) {
 
   const saveMutation = useMutation({
     mutationFn: async (data) => {
-      const res = await fetch("/api/resume", {
-        method: "PUT",
+      const res = await fetch(saveEndpoint, {
+        method: saveMethod,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, rawText }),
       });
@@ -128,7 +135,7 @@ export default function ResumeForm({ initialData, rawText }) {
     },
     onSuccess: () => {
       toast.success("Resume saved!");
-      queryClient.invalidateQueries({ queryKey: ["resume"] });
+      queryClient.invalidateQueries({ queryKey });
     },
     onError: (error) => {
       toast.error(error.message);
@@ -520,7 +527,7 @@ export default function ResumeForm({ initialData, rawText }) {
             ) : (
               <>
                 <FloppyDiskIcon size={16} />
-                Save Resume
+                {saveButtonLabel}
               </>
             )}
           </Button>

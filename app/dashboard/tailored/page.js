@@ -46,7 +46,7 @@ export default function TailoredCVsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.05 }}
         >
-          <Card className="rounded-2xl border-0 shadow-lg">
+          <Card className="rounded-2xl border shadow-lg">
             <CardContent className="flex flex-col items-center justify-center py-16 text-center">
               <FileTextIcon size={48} className="text-gray-300" />
               <h3 className="mt-4 text-lg font-medium text-gray-900">
@@ -75,7 +75,7 @@ export default function TailoredCVsPage() {
               transition={{ duration: 0.3, delay: 0.05 * (index + 1) }}
             >
               <Link href={`/dashboard/tailored/${cv._id}`}>
-                <Card className="rounded-2xl border-0 shadow-lg transition-shadow hover:shadow-xl cursor-pointer">
+                <Card className="rounded-2xl border shadow-lg transition-shadow hover:shadow-xl cursor-pointer">
                   <CardContent className="flex items-center gap-4 p-5">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-100">
                       <FileTextIcon size={20} className="text-gray-600" />

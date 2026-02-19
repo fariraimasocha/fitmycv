@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
@@ -28,6 +28,7 @@ export default function TailorPage() {
   const [tailorResult, setTailorResult] = useState(null);
   const [activeTab, setActiveTab] = useState("cv");
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const tailorRef = useRef(null);
 
   const extractMutation = useMutation({
     mutationFn: async (jobUrl) => {
@@ -48,6 +49,9 @@ export default function TailorPage() {
       setJobData(result.data);
       setTailorResult(null);
       toast.success("Job requirements extracted!");
+      setTimeout(() => {
+        tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -187,7 +191,7 @@ export default function TailorPage() {
         <Card className="rounded-2xl border shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <LinkIcon size={18} />
+              <LinkIcon size={18} aria-hidden="true" />
               Job Link
             </CardTitle>
           </CardHeader>
@@ -195,9 +199,12 @@ export default function TailorPage() {
             <form onSubmit={handleExtract} className="flex gap-3">
               <Input
                 type="url"
-                placeholder="https://example.com/jobs/..."
+                placeholder="https://example.com/jobs/…"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                aria-label="Job listing URL"
+                autoComplete="url"
+                spellCheck={false}
                 className="flex-1"
               />
               <Button
@@ -208,7 +215,7 @@ export default function TailorPage() {
                 {extractMutation.isPending ? (
                   <>
                     <SpinnerGapIcon size={16} className="animate-spin" />
-                    Extracting...
+                    Extracting…
                   </>
                 ) : (
                   <>
@@ -234,6 +241,7 @@ export default function TailorPage() {
 
       {jobData && !tailorResult && (
         <motion.div
+          ref={tailorRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
@@ -247,7 +255,7 @@ export default function TailorPage() {
             {tailorMutation.isPending ? (
               <>
                 <SpinnerGapIcon size={16} className="animate-spin" />
-                Tailoring...
+                Tailoring…
               </>
             ) : (
               <>

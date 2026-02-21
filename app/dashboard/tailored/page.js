@@ -34,7 +34,7 @@ export default function TailoredCVsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-2xl font-bold">Tailored CVs</h1>
+        <h1 className="text-2xl font-bold font-outfit">Tailored CVs</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           View all your previously tailored resumes and cover letters.
         </p>

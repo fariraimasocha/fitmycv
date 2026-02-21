@@ -2,6 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react"
 import { SignOut, User, CaretUpDown } from "@phosphor-icons/react"
+import Link from "next/link"
 
 import {
   Avatar,
@@ -82,9 +83,11 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <User className="mr-2 size-4" />
-                Profile
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/profile">
+                  <User className="mr-2 size-4" />
+                  Profile
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

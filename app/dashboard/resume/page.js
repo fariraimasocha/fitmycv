@@ -63,7 +63,7 @@ export default function MyResumePage() {
       >
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-semibold text-gray-900">Review Your Resume</h1>
+            <h1 className="text-xl font-semibold font-outfit text-foreground">Review Your Resume</h1>
             <p className="text-sm text-gray-500">
               Review and edit the parsed information, then save.
             </p>
@@ -126,7 +126,7 @@ export default function MyResumePage() {
       >
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-semibold text-gray-900">My Resume</h1>
+            <h1 className="text-xl font-semibold font-outfit text-foreground">My Resume</h1>
             <p className="text-sm text-gray-500">
               Edit your resume information or upload a new one.
             </p>
@@ -180,7 +180,7 @@ export default function MyResumePage() {
       transition={{ duration: 0.3 }}
     >
       <div className="text-center">
-        <h1 className="text-xl font-semibold text-gray-900">Upload Your Resume</h1>
+        <h1 className="text-xl font-semibold font-outfit text-foreground">Upload Your Resume</h1>
         <p className="mt-2 text-sm text-gray-500">
           Upload a PDF of your resume. We&apos;ll extract and structure the
           information so you can review and edit it.

@@ -1,19 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
-import { CheckCircleIcon } from "@phosphor-icons/react";
+import { Check } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 const features = [
   "AI-powered CV tailoring",
@@ -38,63 +28,177 @@ export default function Pricing() {
   };
 
   return (
-    <section className="py-20 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+    <section
+      id="pricing"
+      className="bg-[#F8FAFC] flex flex-col items-center"
+      style={{ padding: "100px 140px", gap: 32 }}
+    >
+      {/* Header */}
+      <div className="flex flex-col items-center" style={{ gap: 20 }}>
+        {/* Badge — no background */}
+        <span
+          className="inline-flex items-center justify-center"
+          style={{
+            borderRadius: 9999,
+            border: "1px solid #E2E8F0",
+            padding: "8px 20px",
+            fontFamily: "var(--font-sn-pro)",
+            fontWeight: 500,
+            fontSize: 14,
+            color: "#64748B",
+          }}
+        >
           Pricing
+        </span>
+        <h2
+          className="text-[#0F172A] text-center"
+          style={{
+            fontFamily: "var(--font-outfit)",
+            fontWeight: 800,
+            fontSize: 44,
+            letterSpacing: "-1.8px",
+          }}
+        >
+          Simple, transparent pricing
         </h2>
-        <p className="mt-2 text-gray-500">
-          Simple pricing for smarter applications.
+        <p
+          className="text-[#64748B] text-center"
+          style={{
+            fontFamily: "var(--font-sn-pro)",
+            fontSize: 18,
+            fontWeight: 400,
+          }}
+        >
+          Everything you need to land your next role.
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.15 }}
-        className="flex justify-center"
+      {/* Card */}
+      <div
+        className="flex flex-col bg-white"
+        style={{
+          width: 480,
+          borderRadius: 20,
+          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+          border: "1px solid #E5E7EB",
+          gap: 28,
+          padding: 40,
+        }}
       >
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle className="text-lg">Premium</CardTitle>
-            <CardDescription>
-              Everything you need to land your next role.
-            </CardDescription>
-          </CardHeader>
+        {/* Card top */}
+        <div className="flex flex-col" style={{ gap: 8 }}>
+          <span
+            className="text-[#0F172A]"
+            style={{
+              fontFamily: "var(--font-outfit)",
+              fontWeight: 700,
+              fontSize: 26,
+            }}
+          >
+            Premium
+          </span>
+          <span
+            className="text-[#94A3B8]"
+            style={{
+              fontFamily: "var(--font-sn-pro)",
+              fontSize: 15,
+              fontWeight: 400,
+            }}
+          >
+            Try free for 3 days. Cancel anytime.
+          </span>
+        </div>
 
-          <CardContent className="space-y-6">
-            <div className="flex items-baseline gap-1">
-              <span className="text-4xl font-bold tracking-tight">$4.99</span>
-              <span className="text-sm text-muted-foreground">/month</span>
+        {/* Price row */}
+        <div className="flex flex-row items-end" style={{ gap: 4 }}>
+          <span
+            className="text-[#0F172A]"
+            style={{
+              fontFamily: "var(--font-outfit)",
+              fontWeight: 800,
+              fontSize: 48,
+              letterSpacing: "-2px",
+              lineHeight: 1,
+            }}
+          >
+            $4.99
+          </span>
+          <span
+            className="text-[#94A3B8]"
+            style={{
+              fontFamily: "var(--font-sn-pro)",
+              fontSize: 16,
+              fontWeight: 400,
+              paddingBottom: 4,
+            }}
+          >
+            /month
+          </span>
+        </div>
+
+        {/* Features list */}
+        <div className="flex flex-col" style={{ gap: 20 }}>
+          {features.map((feature) => (
+            <div
+              key={feature}
+              className="flex flex-row items-center"
+              style={{ gap: 14 }}
+            >
+              <div
+                className="flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: "#0F172A",
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                }}
+              >
+                <Check size={12} color="white" strokeWidth={3} />
+              </div>
+              <span
+                className="text-[#0F172A]"
+                style={{
+                  fontFamily: "var(--font-sn-pro)",
+                  fontSize: 16,
+                  fontWeight: 500,
+                }}
+              >
+                {feature}
+              </span>
             </div>
+          ))}
+        </div>
 
-            <ul className="space-y-3">
-              {features.map((feature) => (
-                <li key={feature} className="flex items-center gap-2 text-sm">
-                  <CheckCircleIcon
-                    weight="fill"
-                    className="size-5 text-primary shrink-0"
-                  />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
+        {/* CTA Button */}
+        <button
+          onClick={handleGetStarted}
+          className="w-full transition-all hover:opacity-90 active:scale-[0.98]"
+          style={{
+            background: "#0F172A",
+            borderRadius: 12,
+            padding: "16px 32px",
+            fontFamily: "var(--font-outfit)",
+            fontWeight: 600,
+            fontSize: 16,
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Start 3-Day Free Trial
+        </button>
 
-          <CardFooter>
-            <Button onClick={handleGetStarted} className="w-full" size="lg">
-              Get Started
-            </Button>
-          </CardFooter>
-        </Card>
-      </motion.div>
+        {/* Note */}
+        <p
+          className="text-[#94A3B8] text-center"
+          style={{
+            fontFamily: "var(--font-sn-pro)",
+            fontSize: 13,
+            fontWeight: 400,
+          }}
+        >
+          No credit card required. Cancel anytime.
+        </p>
+      </div>
     </section>
   );
 }

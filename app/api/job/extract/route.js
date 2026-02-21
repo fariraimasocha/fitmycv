@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { parseJobFromResponse } from "@/utils/job-parser";
 import Groq from "groq-sdk";
 
@@ -35,7 +34,7 @@ IMPORTANT — Extraction Strategy:
 - Do NOT return empty arrays if there is any text describing the role — infer from context.`;
 
 export async function POST(request) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }

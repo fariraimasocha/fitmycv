@@ -22,6 +22,35 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    polarCustomerId: {
+      type: String,
+      default: null,
+    },
+    premiumActivatedAt: {
+      type: Date,
+      default: null,
+    },
+    polarSubscriptionId: {
+      type: String,
+      default: null,
+    },
+    polarSubscriptionStatus: {
+      type: String,
+      enum: [null, "incomplete", "incomplete_expired", "trialing", "active", "past_due", "canceled", "unpaid"],
+      default: null,
+    },
+    subscriptionCurrentPeriodEnd: {
+      type: Date,
+      default: null,
+    },
+    subscriptionCanceledAt: {
+      type: Date,
+      default: null,
+    },
+    premiumRevokedAt: {
+      type: Date,
+      default: null,
+    },
   },
   { timestamps: true }
 );

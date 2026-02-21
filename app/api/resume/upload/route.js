@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/lib/auth";
 import { extractPdfText } from "@/utils/pdf-parser";
 import { parseResumeFromResponse } from "@/utils/resume-parser";
 import Groq from "groq-sdk";
@@ -53,7 +52,7 @@ Rules:
 - Return ONLY the JSON object, no markdown, no explanation`;
 
 export async function POST(request) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }

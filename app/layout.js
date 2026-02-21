@@ -26,10 +26,10 @@ export default function RootLayout({ children }) {
         className={`${dmSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-          {/* <AuthProvider>*/}
-          {children}
-          <ToastProvider />
-          {/* </AuthProvider>*/}
+          <AuthProvider>
+            {children}
+            <ToastProvider />
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>

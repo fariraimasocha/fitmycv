@@ -3,8 +3,19 @@
 import { motion } from "motion/react";
 import { signIn } from "next-auth/react";
 import { GoogleLogoIcon, ReadCvLogoIcon } from "@phosphor-icons/react";
+import { useCheckoutStore } from "@/stores/checkout-store";
 
 export default function AuthPage() {
+  const getPendingCheckout = useCheckoutStore((s) => s.getPendingCheckout);
+  const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
+
+  const handleSignIn = () => {
+    const callbackUrl = getPendingCheckout()
+      ? "/dashboard?checkout=pending"
+      : "/dashboard";
+    signIn("google", { callbackUrl });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <motion.div
@@ -35,7 +46,7 @@ export default function AuthPage() {
 
         {/* Google sign-in button */}
         <motion.button
-          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          onClick={handleSignIn}
           className="inline-flex items-center justify-center gap-3 w-full px-5 py-3 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}

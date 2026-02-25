@@ -59,6 +59,16 @@ export async function POST(request) {
       }
     }
 
+    // Normalize any Indeed URL to canonical viewjob?jk=VALUE form
+    if (url.includes("indeed.com")) {
+      // jk= appears in viewjob URLs; vjk= appears in search result URLs — both are the same job key
+      const jkMatch = url.match(/[?&]jk=([a-zA-Z0-9]+)/) || url.match(/[?&]vjk=([a-zA-Z0-9]+)/);
+      if (jkMatch) {
+        url = `https://www.indeed.com/viewjob?jk=${jkMatch[1]}`;
+        console.log("[job-extract] Normalized Indeed URL to:", url);
+      }
+    }
+
     // Step 1: Scrape page content via Exa.ai
     const exaRes = await fetch("https://api.exa.ai/contents", {
       method: "POST",
@@ -100,18 +110,51 @@ export async function POST(request) {
       /sign\s*in|log\s*in/i.test(pageText) &&
       !/requirements|responsibilities|qualifications|experience/i.test(pageText);
 
-    if (isLoginWall) {
-      return Response.json(
-        { error: "This page requires authentication. Try pasting the direct job URL (linkedin.com/jobs/view/...)." },
-        { status: 422 }
-      );
+    let finalText = pageText;
+
+    // Fallback: try Exa.ai neural search if direct crawl was blocked or empty
+    if (isLoginWall || !pageText || pageText.length < 50) {
+      console.log("[job-extract] Direct crawl failed, trying Exa.ai search fallback...");
+      try {
+        const searchRes = await fetch("https://api.exa.ai/search", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.EXA_API_KEY}`,
+          },
+          body: JSON.stringify({
+            query: url,
+            numResults: 1,
+            contents: {
+              text: { maxCharacters: 15000, includeHtmlTags: false },
+            },
+          }),
+        });
+
+        if (searchRes.ok) {
+          const searchData = await searchRes.json();
+          const searchText = searchData.results?.[0]?.text;
+          if (searchText && searchText.length >= 50) {
+            console.log(`[job-extract] Search fallback returned ${searchText.length} chars`);
+            finalText = searchText;
+          }
+        }
+      } catch (err) {
+        console.error("[job-extract] Search fallback error:", err);
+      }
     }
 
-    if (!pageText || pageText.length < 50) {
-      return Response.json(
-        { error: "Could not extract enough content from the page." },
-        { status: 422 }
-      );
+    // If still no usable content, return actionable 422
+    if (!finalText || finalText.length < 50) {
+      const isLinkedIn = url.includes("linkedin.com");
+      const isIndeed = url.includes("indeed.com");
+      let errorMsg = "Could not extract enough content from the page. Try a direct job listing URL.";
+      if (isLinkedIn) {
+        errorMsg = "LinkedIn blocks job page access. Try the company's own careers page URL instead.";
+      } else if (isIndeed) {
+        errorMsg = "Could not extract the Indeed job listing. Try opening the job directly and copying its URL from the address bar.";
+      }
+      return Response.json({ error: errorMsg }, { status: 422 });
     }
 
     // Step 2: Parse with Groq
@@ -119,7 +162,7 @@ export async function POST(request) {
       model: "llama-3.3-70b-versatile",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: pageText },
+        { role: "user", content: finalText },
       ],
       temperature: 0.1,
       max_tokens: 4096,

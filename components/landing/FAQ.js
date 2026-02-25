@@ -96,22 +96,21 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-white flex flex-col items-center"
-      style={{ padding: "100px 140px", gap: 48 }}
+      className="bg-white flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-[100px]"
+      style={{ gap: 48 }}
     >
       <h2
-        className="text-[#0F172A] text-center"
+        className="text-[#0F172A] text-center text-[32px] sm:text-[40px]"
         style={{
           fontFamily: "var(--font-outfit)",
           fontWeight: 700,
-          fontSize: 40,
           letterSpacing: "-1.6px",
         }}
       >
         Frequently asked questions
       </h2>
 
-      <div style={{ width: 680 }}>
+      <div className="w-full max-w-2xl">
         {faqs.map((faq, i) => (
           <FAQItem
             key={i}

@@ -30,12 +30,12 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="bg-[#F8FAFC] flex flex-col items-center"
-      style={{ padding: "100px 140px", gap: 32 }}
+      className="bg-[#F8FAFC] flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-[100px]"
+      style={{ gap: 32 }}
     >
       {/* Header */}
       <div className="flex flex-col items-center" style={{ gap: 20 }}>
-        {/* Badge — no background */}
+        {/* Badge */}
         <span
           className="inline-flex items-center justify-center"
           style={{
@@ -51,11 +51,10 @@ export default function Pricing() {
           Pricing
         </span>
         <h2
-          className="text-[#0F172A] text-center"
+          className="text-[#0F172A] text-center text-[32px] sm:text-[44px]"
           style={{
             fontFamily: "var(--font-outfit)",
             fontWeight: 800,
-            fontSize: 44,
             letterSpacing: "-1.8px",
           }}
         >
@@ -75,9 +74,8 @@ export default function Pricing() {
 
       {/* Card */}
       <div
-        className="flex flex-col bg-white"
+        className="flex flex-col bg-white w-full max-w-[480px]"
         style={{
-          width: 480,
           borderRadius: 20,
           boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
           border: "1px solid #E5E7EB",

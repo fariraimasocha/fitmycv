@@ -36,18 +36,14 @@ export default function Features() {
   const [activeTheme, setActiveTheme] = useState("Minimal");
 
   return (
-    <section
-      className="bg-white flex flex-col items-center"
-      style={{ padding: "100px 140px", gap: 48 }}
-    >
+    <section className="bg-white flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-[100px]" style={{ gap: 48 }}>
       {/* Header */}
       <div className="flex flex-col items-center" style={{ gap: 16 }}>
         <h2
-          className="text-[#0F172A] text-center"
+          className="text-[#0F172A] text-center text-[32px] sm:text-[40px]"
           style={{
             fontFamily: "var(--font-outfit)",
             fontWeight: 700,
-            fontSize: 40,
             letterSpacing: "-1.6px",
             lineHeight: 1.15,
           }}
@@ -72,7 +68,7 @@ export default function Features() {
       {/* Grid */}
       <div className="flex flex-col w-full" style={{ gap: 20 }}>
         {/* Row 1 */}
-        <div className="flex flex-row w-full" style={{ gap: 20 }}>
+        <div className="flex flex-col sm:flex-row w-full" style={{ gap: 20 }}>
           {features.slice(0, 2).map((feature) => (
             <div
               key={feature.title}
@@ -123,7 +119,7 @@ export default function Features() {
         </div>
 
         {/* Row 2 */}
-        <div className="flex flex-row w-full" style={{ gap: 20 }}>
+        <div className="flex flex-col sm:flex-row w-full" style={{ gap: 20 }}>
           {features.slice(2, 4).map((feature) => (
             <div
               key={feature.title}

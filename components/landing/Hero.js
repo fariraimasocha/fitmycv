@@ -7,18 +7,14 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="bg-white">
-      <div
-        className="mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-12"
-        style={{ padding: "100px 140px" }}
-      >
+      <div className="mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-12 px-5 py-16 sm:px-10 md:px-16 lg:px-[140px] lg:py-[100px]">
         {/* Left column */}
-        <div className="flex-1 flex flex-col gap-8" style={{ maxWidth: 560 }}>
+        <div className="flex-1 flex flex-col gap-8 w-full" style={{ maxWidth: 560 }}>
           <h1
-            className="text-[#0F172A] leading-[1.1]"
+            className="text-[#0F172A] leading-[1.1] text-[36px] sm:text-[44px] lg:text-[56px]"
             style={{
               fontFamily: "var(--font-outfit)",
               fontWeight: 800,
-              fontSize: 56,
               letterSpacing: "-2.24px",
             }}
           >
@@ -42,7 +38,7 @@ export default function Hero() {
           </p>
 
           {/* CTA Row */}
-          <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <Link
               href="/auth"
               className="inline-flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.98]"
@@ -78,8 +74,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right column */}
-        <div className="flex-1 relative" style={{ height: 480 }}>
+        {/* Right column — hidden on small screens */}
+        <div className="hidden md:flex flex-1 relative" style={{ height: 480 }}>
           {/* Hero image */}
           <Image
             src="/hero-img.png"

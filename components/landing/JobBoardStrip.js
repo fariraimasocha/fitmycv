@@ -13,10 +13,7 @@ const boards = [
 
 export default function JobBoardStrip() {
   return (
-    <section
-      className="bg-[#F8FAFC] border-t border-b border-[#E2E8F0]"
-      style={{ padding: "32px 140px" }}
-    >
+    <section className="bg-[#F8FAFC] border-t border-b border-[#E2E8F0] px-5 py-8 sm:px-10 lg:px-[140px]">
       <div className="flex flex-col items-center gap-6">
         <p
           className="text-[#94A3B8] text-center"
@@ -30,7 +27,7 @@ export default function JobBoardStrip() {
         >
           WORKS WITH JOB BOARDS YOU ALREADY USE
         </p>
-        <div className="flex flex-wrap items-center justify-center" style={{ gap: 48 }}>
+        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12">
           {boards.map((board) => (
             <span
               key={board}

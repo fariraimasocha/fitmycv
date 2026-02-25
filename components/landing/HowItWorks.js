@@ -6,9 +6,7 @@ import {
   ChevronDown,
   Timer,
   ArrowRight,
-  Check,
   Sparkles,
-  Target,
   Download,
   FilePlus,
   FileText,
@@ -87,9 +85,7 @@ function Connector() {
       className="w-full flex flex-col items-center justify-center"
       style={{ height: 64 }}
     >
-      <div
-        style={{ background: "#E2E8F0", height: 32, width: 2 }}
-      />
+      <div style={{ background: "#E2E8F0", height: 32, width: 2 }} />
       <ChevronDown size={20} color="#94A3B8" />
     </div>
   );
@@ -99,8 +95,8 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="bg-[#F8FAFC] flex flex-col"
-      style={{ padding: "100px 100px", gap: 64 }}
+      className="bg-[#F8FAFC] flex flex-col px-5 py-16 sm:px-10 lg:px-[100px] lg:py-[100px]"
+      style={{ gap: 64 }}
     >
       {/* Header */}
       <div className="flex flex-col items-center" style={{ gap: 16 }}>
@@ -136,11 +132,10 @@ export default function HowItWorks() {
           </span>
         </div>
         <h2
-          className="text-[#0F172A] text-center"
+          className="text-[#0F172A] text-center text-[32px] sm:text-[40px]"
           style={{
             fontFamily: "var(--font-outfit)",
             fontWeight: 700,
-            fontSize: 40,
             letterSpacing: "-1.6px",
           }}
         >
@@ -161,11 +156,10 @@ export default function HowItWorks() {
       {/* Steps */}
       <div className="flex flex-col w-full">
         {/* Step 1 — content left, visual right */}
-        <div className="flex flex-row w-full">
+        <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
           {/* Content */}
           <div
-            className="flex-1 flex flex-col"
-            style={{ gap: 20, padding: "40px 48px 40px 0" }}
+            className="flex-1 flex flex-col gap-5 lg:py-10 lg:pr-12"
           >
             <StepNumber number="01" label="PASTE" />
             <h3
@@ -206,7 +200,7 @@ export default function HowItWorks() {
               background: "#F3F4F6",
               borderRadius: 20,
               gap: 16,
-              height: 320,
+              minHeight: 280,
               padding: 32,
               border: "1px solid #D1D5DB",
             }}
@@ -246,6 +240,7 @@ export default function HowItWorks() {
                   fontFamily: "var(--font-sn-pro)",
                   fontSize: 13,
                   color: "#0F172A",
+                  minWidth: 0,
                 }}
               />
               <div
@@ -272,7 +267,7 @@ export default function HowItWorks() {
               </div>
             </div>
             {/* Source chips */}
-            <div className="flex flex-row" style={{ gap: 8 }}>
+            <div className="flex flex-row flex-wrap" style={{ gap: 8 }}>
               {[
                 { label: "LinkedIn", dot: "#0A66C2" },
                 { label: "Indeed", dot: "#2164F3" },
@@ -317,15 +312,15 @@ export default function HowItWorks() {
         <Connector />
 
         {/* Step 2 — visual left, content right */}
-        <div className="flex flex-row w-full">
-          {/* Visual */}
+        <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
+          {/* Visual — shown second on mobile, first on lg */}
           <div
-            className="flex-1 flex flex-col justify-center"
+            className="flex-1 flex flex-col justify-center order-2 lg:order-1"
             style={{
               background: "#F3F4F6",
               borderRadius: 20,
               gap: 16,
-              height: 320,
+              minHeight: 280,
               padding: 32,
               border: "1px solid #D1D5DB",
             }}
@@ -390,10 +385,9 @@ export default function HowItWorks() {
             </span>
           </div>
 
-          {/* Content */}
+          {/* Content — shown first on mobile, second on lg */}
           <div
-            className="flex-1 flex flex-col"
-            style={{ gap: 20, padding: "40px 0 40px 48px" }}
+            className="flex-1 flex flex-col gap-5 order-1 lg:order-2 lg:py-10 lg:pl-12"
           >
             <StepNumber number="02" label="TAILOR" />
             <h3
@@ -431,11 +425,10 @@ export default function HowItWorks() {
         <Connector />
 
         {/* Step 3 — content left, visual right */}
-        <div className="flex flex-row w-full">
+        <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
           {/* Content */}
           <div
-            className="flex-1 flex flex-col"
-            style={{ gap: 20, padding: "40px 48px 40px 0" }}
+            className="flex-1 flex flex-col gap-5 lg:py-10 lg:pr-12"
           >
             <StepNumber number="03" label="APPLY" />
             <h3
@@ -475,7 +468,7 @@ export default function HowItWorks() {
               background: "#F3F4F6",
               borderRadius: 20,
               gap: 16,
-              height: 320,
+              minHeight: 280,
               padding: 32,
               border: "1px solid #D1D5DB",
             }}
@@ -517,7 +510,7 @@ export default function HowItWorks() {
               </span>
             </div>
             {/* Export buttons */}
-            <div className="flex flex-row" style={{ gap: 10 }}>
+            <div className="flex flex-row flex-wrap justify-center" style={{ gap: 10 }}>
               <div
                 className="inline-flex flex-row items-center"
                 style={{
@@ -568,14 +561,11 @@ export default function HowItWorks() {
         </div>
       </div>
 
-      {/* Bottom CTA — stacked vertically */}
-      <div
-        className="flex flex-col items-center"
-        style={{ gap: 20, paddingTop: 48 }}
-      >
+      {/* Bottom CTA */}
+      <div className="flex flex-col items-center" style={{ gap: 20, paddingTop: 48 }}>
         {/* Time badge */}
         <div
-          className="inline-flex flex-row items-center"
+          className="inline-flex flex-row items-center text-center"
           style={{
             background: "white",
             borderRadius: 16,

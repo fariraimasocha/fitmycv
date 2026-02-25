@@ -5,14 +5,8 @@ import { Star } from "lucide-react";
 
 export default function Testimonial() {
   return (
-    <section
-      className="bg-[#EEF2F6] flex flex-col items-center"
-      style={{ padding: "80px 140px" }}
-    >
-      <div
-        className="flex flex-col items-center"
-        style={{ width: 800, gap: 40 }}
-      >
+    <section className="bg-[#EEF2F6] flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-20">
+      <div className="flex flex-col items-center w-full max-w-3xl" style={{ gap: 40 }}>
         {/* Stars */}
         <div className="flex flex-row items-center" style={{ gap: 8 }}>
           {Array.from({ length: 5 }).map((_, i) => (
@@ -21,28 +15,27 @@ export default function Testimonial() {
         </div>
 
         {/* Quote with highlight */}
-        <div className="relative w-full" style={{ minHeight: 76 }}>
-          {/* Yellow highlight rect */}
+        <div className="relative w-full">
+          {/* Yellow highlight rect — hidden on small screens */}
           <div
-            className="absolute"
+            className="hidden sm:block absolute"
             style={{
               background: "#FEF9C3",
               borderRadius: 4,
               height: 30,
-              width: 370,
+              width: "45%",
               right: 0,
               top: 3,
             }}
           />
           {/* Quote text */}
           <p
-            className="relative text-[#4B5563] text-center"
+            className="relative text-[#4B5563] text-center w-full"
             style={{
               fontFamily: "var(--font-sn-pro)",
               fontSize: 22,
               fontWeight: 400,
               lineHeight: 1.65,
-              width: 800,
               zIndex: 1,
             }}
           >

@@ -17,21 +17,12 @@ const otherApps = [
 
 export default function Footer() {
   return (
-    <footer
-      className="bg-[#F8FAFC] border-t border-[#E2E8F0]"
-      style={{ padding: "48px 140px" }}
-    >
+    <footer className="bg-[#F8FAFC] border-t border-[#E2E8F0] px-5 py-12 sm:px-10 lg:px-[140px]">
       <div className="flex flex-col" style={{ gap: 48 }}>
         {/* Top row */}
-        <div
-          className="flex flex-row justify-between w-full"
-          style={{ gap: 48 }}
-        >
+        <div className="flex flex-col sm:flex-row sm:justify-between w-full gap-10">
           {/* Brand col */}
-          <div
-            className="flex flex-col"
-            style={{ width: 280, gap: 16 }}
-          >
+          <div className="flex flex-col" style={{ maxWidth: 280, gap: 16 }}>
             <div className="flex flex-row items-center" style={{ gap: 10 }}>
               {/* Logo mark */}
               <div
@@ -71,76 +62,76 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links col */}
-          <div className="flex flex-col" style={{ gap: 16 }}>
-            <h4
-              className="text-[#0F172A]"
-              style={{
-                fontFamily: "var(--font-outfit)",
-                fontWeight: 600,
-                fontSize: 13,
-              }}
-            >
-              Links
-            </h4>
-            <ul className="flex flex-col" style={{ gap: 12 }}>
-              {footerLinks.map(({ label, href }) => (
-                <li key={label}>
-                  <Link
-                    href={href}
-                    className="text-[#64748B] hover:text-[#0F172A] transition-colors"
-                    style={{
-                      fontFamily: "var(--font-sn-pro)",
-                      fontSize: 14,
-                      fontWeight: 400,
-                    }}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Links + Other Apps */}
+          <div className="flex flex-row gap-12 sm:gap-16">
+            {/* Links col */}
+            <div className="flex flex-col" style={{ gap: 16 }}>
+              <h4
+                className="text-[#0F172A]"
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  fontWeight: 600,
+                  fontSize: 13,
+                }}
+              >
+                Links
+              </h4>
+              <ul className="flex flex-col" style={{ gap: 12 }}>
+                {footerLinks.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="text-[#64748B] hover:text-[#0F172A] transition-colors"
+                      style={{
+                        fontFamily: "var(--font-sn-pro)",
+                        fontSize: 14,
+                        fontWeight: 400,
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Other Apps col */}
-          <div className="flex flex-col" style={{ gap: 16 }}>
-            <h4
-              className="text-[#0F172A]"
-              style={{
-                fontFamily: "var(--font-outfit)",
-                fontWeight: 600,
-                fontSize: 13,
-              }}
-            >
-              Other Apps
-            </h4>
-            <ul className="flex flex-col" style={{ gap: 12 }}>
-              {otherApps.map(({ label, href }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#64748B] hover:text-[#0F172A] transition-colors"
-                    style={{
-                      fontFamily: "var(--font-sn-pro)",
-                      fontSize: 14,
-                      fontWeight: 400,
-                    }}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {/* Other Apps col */}
+            <div className="flex flex-col" style={{ gap: 16 }}>
+              <h4
+                className="text-[#0F172A]"
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  fontWeight: 600,
+                  fontSize: 13,
+                }}
+              >
+                Other Apps
+              </h4>
+              <ul className="flex flex-col" style={{ gap: 12 }}>
+                {otherApps.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#64748B] hover:text-[#0F172A] transition-colors"
+                      style={{
+                        fontFamily: "var(--font-sn-pro)",
+                        fontSize: 14,
+                        fontWeight: 400,
+                      }}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Bottom row */}
-        <div
-          className="flex flex-row justify-between items-center w-full border-t border-[#E2E8F0]"
-          style={{ paddingTop: 24 }}
-        >
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full border-t border-[#E2E8F0] gap-4" style={{ paddingTop: 24 }}>
           <p
             className="text-[#94A3B8]"
             style={{
@@ -151,7 +142,7 @@ export default function Footer() {
           >
             2025 FitMyCv. All rights reserved.
           </p>
-          <div className="flex flex-row" style={{ gap: 24 }}>
+          <div className="flex flex-row flex-wrap" style={{ gap: 16 }}>
             {otherApps.map(({ label, href }) => (
               <a
                 key={label}

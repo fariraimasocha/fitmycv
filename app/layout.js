@@ -3,6 +3,7 @@ import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
             <ToastProvider />
           </AuthProvider>
         </QueryProvider>
+        <Analytics />
       </body>
     </html>
   );

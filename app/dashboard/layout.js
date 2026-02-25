@@ -93,7 +93,7 @@ export default function DashboardLayout({ children }) {
               <Separator orientation="vertical" className="mr-2 h-4" />
               <DashboardBreadcrumb />
             </header>
-            <main className="flex-1 p-4 pt-0">
+            <main className="flex-1 p-2 sm:p-4 pt-0">
               {children}
             </main>
           </SidebarInset>

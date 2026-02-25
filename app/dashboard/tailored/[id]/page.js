@@ -70,7 +70,7 @@ export default function TailoredCVDetailPage() {
 
   if (!cv) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center py-20">
         <p className="text-gray-500">Tailored CV not found.</p>
         <Button
           variant="outline"
@@ -111,7 +111,7 @@ export default function TailoredCVDetailPage() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-6">
+    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -152,12 +152,13 @@ export default function TailoredCVDetailPage() {
         transition={{ duration: 0.3, delay: 0.05 }}
         className="space-y-4"
       >
-        <div className="flex items-center justify-between">
-          <div className="flex gap-2">
+        <div className="flex flex-col gap-3">
+          {/* Tabs */}
+          <div className="flex gap-2 overflow-x-auto pb-1">
             <Button
               variant={activeTab === "cv" ? "default" : "outline"}
               onClick={() => setActiveTab("cv")}
-              className="gap-2"
+              className="gap-2 shrink-0"
             >
               <FileTextIcon size={16} />
               Tailored CV
@@ -165,14 +166,15 @@ export default function TailoredCVDetailPage() {
             <Button
               variant={activeTab === "letter" ? "default" : "outline"}
               onClick={() => setActiveTab("letter")}
-              className="gap-2"
+              className="gap-2 shrink-0"
             >
               <EnvelopeSimpleIcon size={16} />
               Cover Letter
             </Button>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Actions row */}
+          <div className="flex items-center gap-2 flex-wrap">
             {activeTab === "cv" && (
               <>
                 <Button

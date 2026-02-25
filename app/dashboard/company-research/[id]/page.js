@@ -34,7 +34,7 @@ export default function CompanyResearchDetailPage() {
 
   if (!brief) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center py-20">
         <p className="text-gray-500">Company research brief not found.</p>
         <Button
           variant="outline"
@@ -49,7 +49,7 @@ export default function CompanyResearchDetailPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-6">
+    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

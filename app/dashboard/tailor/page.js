@@ -219,7 +219,7 @@ export default function TailorPage() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-6">
+    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -322,12 +322,13 @@ export default function TailorPage() {
           transition={{ duration: 0.3 }}
           className="space-y-4"
         >
-          <div className="flex items-center justify-between">
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-3">
+            {/* Tabs — horizontally scrollable on mobile */}
+            <div className="flex gap-2 overflow-x-auto pb-1">
               <Button
                 variant={activeTab === "cv" ? "default" : "outline"}
                 onClick={() => setActiveTab("cv")}
-                className="gap-2"
+                className="gap-2 shrink-0"
               >
                 <FileTextIcon size={16} />
                 Tailored CV
@@ -335,7 +336,7 @@ export default function TailorPage() {
               <Button
                 variant={activeTab === "letter" ? "default" : "outline"}
                 onClick={() => setActiveTab("letter")}
-                className="gap-2"
+                className="gap-2 shrink-0"
               >
                 <EnvelopeSimpleIcon size={16} />
                 Cover Letter
@@ -343,7 +344,7 @@ export default function TailorPage() {
               <Button
                 variant={activeTab === "ats" ? "default" : "outline"}
                 onClick={() => setActiveTab("ats")}
-                className="gap-2"
+                className="gap-2 shrink-0"
               >
                 <ChartBarIcon size={16} />
                 ATS Score
@@ -351,27 +352,30 @@ export default function TailorPage() {
               <Button
                 variant={activeTab === "research" ? "default" : "outline"}
                 onClick={() => setActiveTab("research")}
-                className="gap-2"
+                className="gap-2 shrink-0"
               >
                 <BinocularsIcon size={16} />
                 Company Research
               </Button>
             </div>
-            {activeTab === "cv" && (
-              <TemplateSelect
-                value={selectedTemplate}
-                onChange={setSelectedTemplate}
-              />
-            )}
+            {/* Actions row — only shown for downloadable tabs */}
             {activeTab !== "ats" && activeTab !== "research" && (
-              <Button
-                variant="outline"
-                className="rounded-full"
-                onClick={() => handleDownload(activeTab)}
-              >
-                <DownloadSimpleIcon size={16} />
-                Download PDF
-              </Button>
+              <div className="flex items-center gap-2 flex-wrap">
+                {activeTab === "cv" && (
+                  <TemplateSelect
+                    value={selectedTemplate}
+                    onChange={setSelectedTemplate}
+                  />
+                )}
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  onClick={() => handleDownload(activeTab)}
+                >
+                  <DownloadSimpleIcon size={16} />
+                  Download PDF
+                </Button>
+              </div>
             )}
           </div>
 

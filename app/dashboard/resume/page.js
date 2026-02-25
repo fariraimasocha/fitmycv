@@ -56,19 +56,19 @@ export default function MyResumePage() {
 
     return (
       <motion.div
-        className="mx-auto max-w-3xl space-y-6 py-6"
+        className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-xl font-semibold font-outfit text-foreground">Review Your Resume</h1>
             <p className="text-sm text-gray-500">
               Review and edit the parsed information, then save.
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
@@ -119,19 +119,19 @@ export default function MyResumePage() {
 
     return (
       <motion.div
-        className="mx-auto max-w-3xl space-y-6 py-6"
+        className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-xl font-semibold font-outfit text-foreground">My Resume</h1>
             <p className="text-sm text-gray-500">
               Edit your resume information or upload a new one.
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
@@ -174,7 +174,7 @@ export default function MyResumePage() {
   // No CV — show upload
   return (
     <motion.div
-      className="mx-auto max-w-lg space-y-6 py-20"
+      className="mx-auto max-w-lg space-y-6 p-4 sm:p-6 pt-10 sm:pt-20"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}

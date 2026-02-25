@@ -12,6 +12,7 @@ import {
   FileTextIcon,
   EnvelopeSimpleIcon,
   DownloadSimpleIcon,
+  ChartBarIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,6 +21,7 @@ import JobRequirementsCard from "@/components/JobRequirementsCard";
 import ResumePreview from "@/components/ResumePreview";
 import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
+import ATSScoreCard from "@/components/ATSScoreCard";
 
 export default function TailorPage() {
   const queryClient = useQueryClient();
@@ -28,6 +30,8 @@ export default function TailorPage() {
   const [tailorResult, setTailorResult] = useState(null);
   const [activeTab, setActiveTab] = useState("cv");
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const [atsScore, setAtsScore] = useState(null);
+  const [atsLoading, setAtsLoading] = useState(false);
   const tailorRef = useRef(null);
 
   const extractMutation = useMutation({
@@ -48,6 +52,7 @@ export default function TailorPage() {
     onSuccess: (result) => {
       setJobData(result.data);
       setTailorResult(null);
+      setAtsScore(null);
       toast.success("Job requirements extracted!");
       setTimeout(() => {
         tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -113,6 +118,23 @@ export default function TailorPage() {
       setTailorResult(result.data);
       setActiveTab("cv");
       toast.success("Resume tailored successfully!");
+
+      // Trigger ATS analysis automatically
+      setAtsLoading(true);
+      fetch("/api/ats-score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tailoredCV: result.data.tailoredCV,
+          jobData,
+        }),
+      })
+        .then((res) => res.json())
+        .then((ats) => {
+          if (ats.data) setAtsScore(ats.data);
+        })
+        .catch(() => {})
+        .finally(() => setAtsLoading(false));
 
       // Auto-save to database
       saveMutation.mutate({
@@ -292,6 +314,14 @@ export default function TailorPage() {
                 <EnvelopeSimpleIcon size={16} />
                 Cover Letter
               </Button>
+              <Button
+                variant={activeTab === "ats" ? "default" : "outline"}
+                onClick={() => setActiveTab("ats")}
+                className="gap-2"
+              >
+                <ChartBarIcon size={16} />
+                ATS Score
+              </Button>
             </div>
             {activeTab === "cv" && (
               <TemplateSelect
@@ -299,14 +329,16 @@ export default function TailorPage() {
                 onChange={setSelectedTemplate}
               />
             )}
-            <Button
-              variant="outline"
-              className="rounded-full"
-              onClick={() => handleDownload(activeTab)}
-            >
-              <DownloadSimpleIcon size={16} />
-              Download PDF
-            </Button>
+            {activeTab !== "ats" && (
+              <Button
+                variant="outline"
+                className="rounded-full"
+                onClick={() => handleDownload(activeTab)}
+              >
+                <DownloadSimpleIcon size={16} />
+                Download PDF
+              </Button>
+            )}
           </div>
 
           {activeTab === "cv" && (
@@ -314,6 +346,9 @@ export default function TailorPage() {
           )}
           {activeTab === "letter" && (
             <CoverLetterCard content={tailorResult.coverLetter} />
+          )}
+          {activeTab === "ats" && (
+            <ATSScoreCard atsData={atsScore} isLoading={atsLoading} />
           )}
         </motion.div>
       )}

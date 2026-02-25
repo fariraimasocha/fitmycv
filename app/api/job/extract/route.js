@@ -69,6 +69,52 @@ export async function POST(request) {
       }
     }
 
+    // Glassdoor: keep only the jl= (job listing ID) param, strip all tracking noise
+    if (url.includes("glassdoor.com")) {
+      try {
+        const urlObj = new URL(url);
+        const jl = urlObj.searchParams.get("jl");
+        urlObj.search = jl ? `?jl=${jl}` : "";
+        url = urlObj.toString();
+        console.log("[job-extract] Normalized Glassdoor URL to:", url);
+      } catch {}
+    }
+
+    // Lever: strip /apply suffix and lever-* tracking params
+    if (url.includes("jobs.lever.co")) {
+      url = url.replace(/\/apply(\?.*)?$/, "");
+      try {
+        const urlObj = new URL(url);
+        for (const key of [...urlObj.searchParams.keys()]) {
+          if (key.startsWith("lever-")) urlObj.searchParams.delete(key);
+        }
+        url = urlObj.toString().replace(/\?$/, "");
+        console.log("[job-extract] Normalized Lever URL to:", url);
+      } catch {}
+    }
+
+    // Greenhouse: job-boards.greenhouse.io → boards.greenhouse.io (canonical domain)
+    if (url.includes("greenhouse.io")) {
+      url = url.replace("job-boards.greenhouse.io", "boards.greenhouse.io");
+      console.log("[job-extract] Normalized Greenhouse URL to:", url);
+    }
+
+    // Workday: strip source= tracking param
+    if (url.includes("myworkdayjobs.com")) {
+      try {
+        const urlObj = new URL(url);
+        urlObj.searchParams.delete("source");
+        url = urlObj.toString().replace(/\?$/, "");
+        console.log("[job-extract] Normalized Workday URL to:", url);
+      } catch {}
+    }
+
+    // AngelList → Wellfound (rebranded domain)
+    if (url.includes("angel.co/")) {
+      url = url.replace("angel.co/", "wellfound.com/");
+      console.log("[job-extract] Normalized AngelList URL to Wellfound:", url);
+    }
+
     // Step 1: Scrape page content via Exa.ai
     const exaRes = await fetch("https://api.exa.ai/contents", {
       method: "POST",
@@ -146,13 +192,17 @@ export async function POST(request) {
 
     // If still no usable content, return actionable 422
     if (!finalText || finalText.length < 50) {
-      const isLinkedIn = url.includes("linkedin.com");
-      const isIndeed = url.includes("indeed.com");
       let errorMsg = "Could not extract enough content from the page. Try a direct job listing URL.";
-      if (isLinkedIn) {
+      if (url.includes("linkedin.com")) {
         errorMsg = "LinkedIn blocks job page access. Try the company's own careers page URL instead.";
-      } else if (isIndeed) {
+      } else if (url.includes("indeed.com")) {
         errorMsg = "Could not extract the Indeed job listing. Try opening the job directly and copying its URL from the address bar.";
+      } else if (url.includes("glassdoor.com")) {
+        errorMsg = "Glassdoor blocks direct access. Try the company's own careers page URL instead.";
+      } else if (url.includes("myworkdayjobs.com")) {
+        errorMsg = "Workday job pages are JavaScript-rendered and difficult to scrape. Try the company's direct careers page URL instead.";
+      } else if (url.includes("wellfound.com") || url.includes("angel.co")) {
+        errorMsg = "Wellfound job pages require a login to view. Try the company's own careers page URL instead.";
       }
       return Response.json({ error: errorMsg }, { status: 422 });
     }

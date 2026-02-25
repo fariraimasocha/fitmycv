@@ -4,6 +4,17 @@ export const authConfig = {
     signIn: "/auth",
   },
   callbacks: {
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+        session.user.isPremium = token.isPremium || false;
+        session.user.subscriptionStatus = token.subscriptionStatus || null;
+        session.user.subscriptionCurrentPeriodEnd =
+          token.subscriptionCurrentPeriodEnd || null;
+      }
+      return session;
+    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isPremium = !!auth?.user?.isPremium;
@@ -14,7 +25,7 @@ export const authConfig = {
 
       const PREMIUM_PATHS = ["/dashboard/tailor", "/dashboard/tailored"];
       const isOnPremiumPage = PREMIUM_PATHS.some(
-        (p) => pathname === p || pathname.startsWith(p + "/")
+        (p) => pathname === p || pathname.startsWith(p + "/"),
       );
 
       if (isOnDashboard && !isLoggedIn) return false;

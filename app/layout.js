@@ -1,4 +1,4 @@
-import { Geist_Mono, DM_Sans } from "next/font/google";
+import { Geist_Mono, DM_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
@@ -7,6 +7,12 @@ import ToastProvider from "@/components/providers/ToastProvider";
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
   subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -23,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
           <AuthProvider>

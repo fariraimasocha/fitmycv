@@ -177,7 +177,7 @@ export default function TailorPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-2xl font-bold">Tailor Resume</h1>
+        <h1 className="text-2xl font-bold font-outfit">Tailor Resume</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Paste a job listing URL to extract requirements and tailor your CV.
         </p>

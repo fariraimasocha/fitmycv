@@ -22,8 +22,54 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "FitMyCV",
-  description: "Tailor your CV and cover letter for any job posting",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || "https://fitmycv.link"
+  ),
+  title: {
+    default: "FitMyCV — AI-Powered CV Tailoring",
+    template: "%s | FitMyCV",
+  },
+  description:
+    "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
+  keywords: [
+    "CV tailoring",
+    "resume tailoring",
+    "AI resume",
+    "cover letter generator",
+    "ATS optimization",
+    "job application",
+    "tailored resume",
+  ],
+  authors: [{ name: "FitMyCV" }],
+  creator: "FitMyCV",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "FitMyCV",
+    title: "FitMyCV — AI-Powered CV Tailoring",
+    description:
+      "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
+    images: [
+      {
+        url: "/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "FitMyCV — Land more interviews with a CV that fits",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FitMyCV — AI-Powered CV Tailoring",
+    description:
+      "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
+    images: ["/hero.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {

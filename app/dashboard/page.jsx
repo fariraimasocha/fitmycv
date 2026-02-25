@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
@@ -59,16 +59,19 @@ function getFormattedDate() {
   });
 }
 
-export default function DashboardPage() {
+function CheckoutRedirect() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { data: session } = useSession();
-
   useEffect(() => {
     if (searchParams.get("checkout") === "pending") {
       router.replace("/api/polar/checkout");
     }
   }, [searchParams, router]);
+  return null;
+}
+
+export default function DashboardPage() {
+  const { data: session } = useSession();
 
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
 
@@ -119,6 +122,9 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6 p-6">
+      <Suspense fallback={null}>
+        <CheckoutRedirect />
+      </Suspense>
       {/* A. Greeting */}
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-semibold font-outfit">

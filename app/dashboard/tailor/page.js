@@ -244,7 +244,7 @@ export default function TailorPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleExtract} className="flex gap-3">
+            <form onSubmit={handleExtract} className="flex flex-col gap-3 sm:flex-row">
               <Input
                 type="url"
                 placeholder="https://example.com/jobs/…"
@@ -258,7 +258,7 @@ export default function TailorPage() {
               <Button
                 type="submit"
                 disabled={extractMutation.isPending}
-                className="rounded-full bg-black px-6 text-white hover:bg-gray-800"
+                className="rounded-full bg-black px-6 text-white hover:bg-gray-800 sm:w-auto w-full"
               >
                 {extractMutation.isPending ? (
                   <>

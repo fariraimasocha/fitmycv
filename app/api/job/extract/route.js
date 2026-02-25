@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { requirePremium } from "@/lib/paywall";
 import { parseJobFromResponse } from "@/utils/job-parser";
 import Groq from "groq-sdk";
 
@@ -38,6 +39,9 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const paywallResponse = requirePremium(session);
+  if (paywallResponse) return paywallResponse;
 
   try {
     let { url } = await request.json();

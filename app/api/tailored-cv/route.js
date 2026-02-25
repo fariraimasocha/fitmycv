@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { requirePremium } from "@/lib/paywall";
 import { connectDB } from "@/utils/connect";
 import TailoredCV from "@/models/TailoredCV";
 
@@ -7,6 +8,9 @@ export async function GET() {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const paywallResponse = requirePremium(session);
+  if (paywallResponse) return paywallResponse;
 
   await connectDB();
   const cvs = await TailoredCV.find({ userId: session.user.id })
@@ -22,6 +26,9 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const paywallResponse = requirePremium(session);
+  if (paywallResponse) return paywallResponse;
 
   try {
     const body = await request.json();

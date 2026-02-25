@@ -21,6 +21,7 @@ const PATH_LABELS = {
   "/dashboard/tailor": "Tailor Resume",
   "/dashboard/tailored": "Tailored CVs",
   "/dashboard/profile": "Profile",
+  "/dashboard/upgrade": "Upgrade to Pro",
 };
 
 function DashboardBreadcrumb() {

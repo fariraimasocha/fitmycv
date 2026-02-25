@@ -1,6 +1,6 @@
 "use client";
 
-import { HouseIcon, ReadCvLogoIcon, PenIcon, StackIcon } from "@phosphor-icons/react";
+import { HouseIcon, ReadCvLogoIcon, PenIcon, StackIcon, BinocularsIcon } from "@phosphor-icons/react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -33,6 +33,11 @@ const navItems = [
     title: "Tailored CVs",
     url: "/dashboard/tailored",
     icon: StackIcon,
+  },
+  {
+    title: "Company Research",
+    url: "/dashboard/company-research",
+    icon: BinocularsIcon,
   },
 ];
 

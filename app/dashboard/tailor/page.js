@@ -13,6 +13,7 @@ import {
   EnvelopeSimpleIcon,
   DownloadSimpleIcon,
   ChartBarIcon,
+  BinocularsIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +23,7 @@ import ResumePreview from "@/components/ResumePreview";
 import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
 import ATSScoreCard from "@/components/ATSScoreCard";
+import CompanyResearchCard from "@/components/CompanyResearchCard";
 
 export default function TailorPage() {
   const queryClient = useQueryClient();
@@ -32,6 +34,8 @@ export default function TailorPage() {
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
   const [atsScore, setAtsScore] = useState(null);
   const [atsLoading, setAtsLoading] = useState(false);
+  const [companyBrief, setCompanyBrief] = useState(null);
+  const [companyBriefLoading, setCompanyBriefLoading] = useState(false);
   const tailorRef = useRef(null);
 
   const extractMutation = useMutation({
@@ -53,6 +57,28 @@ export default function TailorPage() {
       setJobData(result.data);
       setTailorResult(null);
       setAtsScore(null);
+      setCompanyBrief(null);
+
+      // Auto-trigger company research in background
+      if (result.data?.company && result.data.company.length > 2) {
+        setCompanyBriefLoading(true);
+        fetch("/api/company-research", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            companyName: result.data.company,
+            jobTitle: result.data.title || "",
+            jobUrl: url.trim(),
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.data) setCompanyBrief(res.data);
+          })
+          .catch(() => {})
+          .finally(() => setCompanyBriefLoading(false));
+      }
+
       toast.success("Job requirements extracted!");
       setTimeout(() => {
         tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -322,6 +348,14 @@ export default function TailorPage() {
                 <ChartBarIcon size={16} />
                 ATS Score
               </Button>
+              <Button
+                variant={activeTab === "research" ? "default" : "outline"}
+                onClick={() => setActiveTab("research")}
+                className="gap-2"
+              >
+                <BinocularsIcon size={16} />
+                Company Research
+              </Button>
             </div>
             {activeTab === "cv" && (
               <TemplateSelect
@@ -329,7 +363,7 @@ export default function TailorPage() {
                 onChange={setSelectedTemplate}
               />
             )}
-            {activeTab !== "ats" && (
+            {activeTab !== "ats" && activeTab !== "research" && (
               <Button
                 variant="outline"
                 className="rounded-full"
@@ -349,6 +383,9 @@ export default function TailorPage() {
           )}
           {activeTab === "ats" && (
             <ATSScoreCard atsData={atsScore} isLoading={atsLoading} />
+          )}
+          {activeTab === "research" && (
+            <CompanyResearchCard brief={companyBrief} isLoading={companyBriefLoading} />
           )}
         </motion.div>
       )}

@@ -22,6 +22,7 @@ const PATH_LABELS = {
   "/dashboard/tailored": "Tailored CVs",
   "/dashboard/profile": "Profile",
   "/dashboard/upgrade": "Upgrade to Pro",
+  "/dashboard/company-research": "Company Research",
 };
 
 function DashboardBreadcrumb() {
@@ -41,6 +42,26 @@ function DashboardBreadcrumb() {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage>Detail</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
+  }
+
+  const isCompanyResearchDetail =
+    pathname.startsWith("/dashboard/company-research/") &&
+    pathname !== "/dashboard/company-research";
+
+  if (isCompanyResearchDetail) {
+    return (
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard/company-research">Company Research</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Brief Detail</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

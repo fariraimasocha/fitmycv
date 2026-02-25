@@ -157,7 +157,7 @@ export default function Hero() {
             }}
           >
             <div
-              className="flex items-center justify-centers shrink-0"
+              className="flex items-center justify-center shrink-0"
               style={{
                 background: "#F3F4F6",
                 width: 36,

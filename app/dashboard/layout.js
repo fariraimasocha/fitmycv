@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +15,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { AppSidebar } from "@/components/app-sidebar";
 import AuthProvider from "@/components/providers/auth-provider";
+import FeedbackModal from "@/components/FeedbackModal";
+import { ChatCircleDotsIcon } from "@phosphor-icons/react";
 
 const PATH_LABELS = {
   "/dashboard": "Home",
@@ -82,6 +85,8 @@ function DashboardBreadcrumb() {
 }
 
 export default function DashboardLayout({ children }) {
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
   return (
     <AuthProvider>
       <TooltipProvider>
@@ -92,6 +97,15 @@ export default function DashboardLayout({ children }) {
               <SidebarTrigger className="-ml-1" />
               <Separator orientation="vertical" className="mr-2 h-4" />
               <DashboardBreadcrumb />
+              <div className="ml-auto">
+                <button
+                  onClick={() => setFeedbackOpen(true)}
+                  className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <ChatCircleDotsIcon size={16} />
+                  Feedback
+                </button>
+              </div>
             </header>
             <main className="flex-1 p-2 sm:p-4 pt-0">
               {children}
@@ -99,6 +113,7 @@ export default function DashboardLayout({ children }) {
           </SidebarInset>
         </SidebarProvider>
       </TooltipProvider>
+      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
     </AuthProvider>
   );
 }

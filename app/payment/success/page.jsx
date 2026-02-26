@@ -1,28 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 
 export default function PaymentSuccessPage() {
-  const { data: session, update } = useSession();
+  const { update } = useSession();
   const router = useRouter();
-  const [isRefreshing, setIsRefreshing] = useState(true);
+
+  const { data } = useQuery({
+    queryKey: ["premium-status"],
+    queryFn: async () => {
+      const res = await fetch("/api/user/premium-status");
+      if (!res.ok) throw new Error("Failed to check premium status");
+      return res.json();
+    },
+    refetchInterval: (query) => {
+      if (query.state.data?.isPremium) return false;
+      if ((query.state.dataUpdateCount ?? 0) >= 10) return false;
+      return 2000;
+    },
+    refetchIntervalInBackground: false,
+    staleTime: 0,
+  });
+
+  const isPremiumConfirmed = !!data?.isPremium;
 
   useEffect(() => {
-    const refreshSession = async () => {
-      try {
-        await update();
-      } catch (error) {
-        console.error("Failed to refresh session:", error);
-      } finally {
-        setIsRefreshing(false);
-      }
-    };
-
-    refreshSession();
-  }, [update]);
+    if (isPremiumConfirmed) update();
+  }, [isPremiumConfirmed, update]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
@@ -56,22 +64,27 @@ export default function PaymentSuccessPage() {
           features.
         </p>
 
-        {isRefreshing ? (
-          <p className="text-sm text-gray-500 mb-4">
-            Activating premium features...
-          </p>
-        ) : (
-          <Button
-            onClick={() => router.push("/dashboard")}
-            className="w-full"
-          >
+        {isPremiumConfirmed ? (
+          <Button onClick={() => router.push("/dashboard")} className="w-full">
             Go to Dashboard
           </Button>
+        ) : (
+          <div>
+            <p className="text-sm text-gray-500 mb-4">
+              Activating premium features...
+            </p>
+            <button
+              onClick={() => router.push("/dashboard")}
+              className="text-xs text-gray-400 underline"
+            >
+              Taking too long? Skip to dashboard
+            </button>
+          </div>
         )}
 
-        {session?.user?.isPremium && (
+        {isPremiumConfirmed && (
           <p className="text-sm text-green-600 mt-4">
-            Premium status confirmed
+            Premium status confirmed ✓
           </p>
         )}
       </div>

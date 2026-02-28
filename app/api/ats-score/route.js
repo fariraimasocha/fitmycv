@@ -1,9 +1,9 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { parseAtsResponse } from "@/utils/ats-parser";
-import Groq from "groq-sdk";
+import OpenAI from "openai";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an ATS (Applicant Tracking System) expert. Analyze how well a CV matches a job description.
 Score each dimension 0-100. Extract keywords from job requirements/responsibilities/qualifications.
@@ -56,8 +56,8 @@ ${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}
 
 Analyze how well this tailored CV matches the job description and return the ATS score JSON.`;
 
-    const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userMessage },

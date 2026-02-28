@@ -1,9 +1,9 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { parseJobFromResponse } from "@/utils/job-parser";
-import Groq from "groq-sdk";
+import OpenAI from "openai";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an expert job listing parser. Given the raw text content scraped from a job posting page, extract the structured job information. Return ONLY valid JSON with no additional text.
 
@@ -207,9 +207,9 @@ export async function POST(request) {
       return Response.json({ error: errorMsg }, { status: 422 });
     }
 
-    // Step 2: Parse with Groq
-    const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+    // Step 2: Parse with OpenAI
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: finalText },

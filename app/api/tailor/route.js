@@ -1,9 +1,9 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { parseTailorResponse } from "@/utils/tailor-parser";
-import Groq from "groq-sdk";
+import OpenAI from "openai";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an expert CV tailoring assistant. Given a reference CV (JSON) and job requirements, you will:
 
@@ -103,8 +103,8 @@ ${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}
 
 Please tailor the CV for this specific role and generate a cover letter.`;
 
-    const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userMessage },

@@ -1,9 +1,9 @@
 import { auth } from "@/lib/auth";
 import { extractPdfText } from "@/utils/pdf-parser";
 import { parseResumeFromResponse } from "@/utils/resume-parser";
-import Groq from "groq-sdk";
+import OpenAI from "openai";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const MAX_FILE_SIZE = 8 * 1024 * 1024; // 8MB
 const MIN_TEXT_LENGTH = 100;
@@ -84,9 +84,9 @@ export async function POST(request) {
       );
     }
 
-    // Parse with Groq
-    const completion = await groq.chat.completions.create({
-      model: "llama-3.1-8b-instant",
+    // Parse with OpenAI
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: rawText },

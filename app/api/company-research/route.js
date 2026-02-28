@@ -3,9 +3,9 @@ import { requirePremium } from "@/lib/paywall";
 import { parseCompanyResearchResponse } from "@/utils/company-research-parser";
 import CompanyResearch from "@/models/CompanyResearch";
 import { connectDB } from "@/utils/connect";
-import Groq from "groq-sdk";
+import OpenAI from "openai";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are a company research analyst. Given web content about a company, extract and synthesize a structured research brief for a job seeker preparing for an interview. Return ONLY valid JSON with no additional text.
 
@@ -129,9 +129,9 @@ export async function POST(request) {
 
     console.log(`[company-research] Context length: ${combinedContext.length} chars`);
 
-    // Groq synthesis
-    const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+    // OpenAI synthesis
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: combinedContext },

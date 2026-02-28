@@ -1,18 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
+import toast from "react-hot-toast";
 import {
   BriefcaseIcon,
   BuildingsIcon,
   CalendarIcon,
   FileTextIcon,
+  TrashIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
 
 export default function TailoredCVsPage() {
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const queryClient = useQueryClient();
+
   const { data: cvs, isLoading } = useQuery({
     queryKey: ["tailored-cvs"],
     queryFn: async () => {
@@ -22,6 +29,35 @@ export default function TailoredCVsPage() {
       return json.data;
     },
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id) => {
+      const res = await fetch(`/api/tailored-cv/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const json = await res.json();
+        throw new Error(json.error || "Failed to delete CV");
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
+      toast.success("CV deleted");
+      setConfirmDeleteId(null);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+      setConfirmDeleteId(null);
+    },
+  });
+
+  const handleTrashClick = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (confirmDeleteId === id) {
+      deleteMutation.mutate(id);
+    } else {
+      setConfirmDeleteId(id);
+    }
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -97,6 +133,19 @@ export default function TailoredCVsPage() {
                         </span>
                       </div>
                     </div>
+                    <Button
+                      variant={confirmDeleteId === cv._id ? "destructive" : "ghost"}
+                      size="sm"
+                      className="shrink-0 rounded-full"
+                      disabled={deleteMutation.isPending}
+                      onClick={(e) => handleTrashClick(e, cv._id)}
+                    >
+                      {confirmDeleteId === cv._id ? (
+                        "Delete?"
+                      ) : (
+                        <TrashIcon size={16} />
+                      )}
+                    </Button>
                   </CardContent>
                 </Card>
               </Link>

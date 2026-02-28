@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import {
   ArrowCounterClockwiseIcon,
+  ArrowLeftIcon,
   EyeIcon,
   PencilSimpleIcon,
 } from "@phosphor-icons/react";
@@ -17,6 +18,7 @@ import Loader from "@/components/Loader";
 export default function MyResumePage() {
   const [parsedData, setParsedData] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
+  const [showUploadForm, setShowUploadForm] = useState(false);
 
   const {
     data: savedCV,
@@ -34,11 +36,13 @@ export default function MyResumePage() {
   const handleParsed = (data) => {
     setParsedData(data);
     setShowPreview(false);
+    setShowUploadForm(false);
   };
 
   const handleReUpload = () => {
     setParsedData(null);
     setShowPreview(false);
+    setShowUploadForm(true);
   };
 
   if (isLoading) {
@@ -104,6 +108,37 @@ export default function MyResumePage() {
             rawText={parsedData.rawText}
           />
         )}
+      </motion.div>
+    );
+  }
+
+  // Show upload form when user clicked "Upload New"
+  if (showUploadForm) {
+    return (
+      <motion.div
+        className="mx-auto max-w-lg space-y-6 p-4 sm:p-6 pt-10 sm:pt-20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="rounded-full"
+            onClick={() => setShowUploadForm(false)}
+          >
+            <ArrowLeftIcon size={16} />
+            Back
+          </Button>
+        </div>
+        <div className="text-center">
+          <h1 className="text-xl font-semibold font-outfit text-foreground">Upload New Resume</h1>
+          <p className="mt-2 text-sm text-gray-500">
+            Upload a PDF of your resume to replace the current one.
+          </p>
+        </div>
+        <ResumeUpload onParsed={handleParsed} />
       </motion.div>
     );
   }

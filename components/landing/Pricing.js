@@ -103,7 +103,7 @@ export default function Pricing() {
               fontWeight: 400,
             }}
           >
-            Try free for 3 days. Cancel anytime.
+            Cancel anytime.
           </span>
         </div>
 
@@ -182,7 +182,7 @@ export default function Pricing() {
             cursor: "pointer",
           }}
         >
-          Start 3-Day Free Trial
+          Get Started
         </button>
 
         {/* Note */}
@@ -194,7 +194,7 @@ export default function Pricing() {
             fontWeight: 400,
           }}
         >
-          No credit card required. Cancel anytime.
+          Cancel anytime.
         </p>
       </div>
     </section>

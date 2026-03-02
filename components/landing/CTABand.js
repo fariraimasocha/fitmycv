@@ -48,7 +48,7 @@ export default function CTABand() {
               color: "#ffffff",
             }}
           >
-            Start Free Trial
+            Get Started
             <ArrowRight size={16} color="#ffffff" />
           </Link>
           <Link

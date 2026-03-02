@@ -16,9 +16,7 @@ export async function GET(request) {
     }
 
     if (session.user.isPremium) {
-      return NextResponse.redirect(
-        new URL("/dashboard?error=already_premium", request.url),
-      );
+      return NextResponse.redirect(new URL("/api/polar/portal", request.url));
     }
 
     const checkout = await polar.checkouts.create({

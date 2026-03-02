@@ -36,7 +36,7 @@ export const POST = Webhooks({
     if (!user) return;
 
     user.isPremium = true;
-    user.polarCustomerId = order.customer?.id || null;
+    user.polarCustomerId = order.customer?.id || user.polarCustomerId || null;
     user.premiumActivatedAt = new Date();
     user.premiumRevokedAt = null;
     await user.save();
@@ -76,6 +76,7 @@ export const POST = Webhooks({
     if (!user) return;
 
     user.isPremium = true;
+    user.polarCustomerId = subscription.customerId || user.polarCustomerId || null;
     user.polarSubscriptionId = subscription.id;
     user.polarSubscriptionStatus = "active";
     user.subscriptionCurrentPeriodEnd = subscription.currentPeriodEnd
@@ -115,6 +116,7 @@ export const POST = Webhooks({
     const user = await resolveUser(subscription);
     if (!user) return;
 
+    user.polarCustomerId = subscription.customerId || user.polarCustomerId || null;
     user.polarSubscriptionStatus = "active";
     user.subscriptionCanceledAt = null;
     await user.save();

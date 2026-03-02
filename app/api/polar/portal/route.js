@@ -21,6 +21,13 @@ export async function GET(request) {
     const user = await User.findOne({ email: session.user.email });
 
     if (!user?.polarCustomerId) {
+      // Premium user missing customer ID → data inconsistency, avoid redirect loop
+      if (session.user.isPremium) {
+        return NextResponse.redirect(
+          new URL("/dashboard/profile?error=portal_failed", request.url)
+        );
+      }
+      // Non-premium user → send to checkout
       return NextResponse.redirect(new URL("/api/polar/checkout", request.url));
     }
 

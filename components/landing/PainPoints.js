@@ -4,16 +4,15 @@ import { FileX, Clock4, ShieldX, MailX, Target, BatteryLow, X } from "lucide-rea
 
 export default function PainPoints() {
   return (
-    <section className="bg-white" style={{ padding: "100px 100px" }}>
+    <section className="bg-white px-5 sm:px-8 md:px-16 lg:px-[100px] py-16 md:py-20 lg:py-[100px]">
       <div className="flex flex-col gap-12">
         {/* Header */}
-        <div style={{ width: 600, display: "flex", flexDirection: "column", gap: 16 }}>
+        <div className="w-full max-w-[600px] flex flex-col gap-4">
           <h2
-            className="text-[#0F172A]"
+            className="text-[#0F172A] text-[28px] md:text-[34px] lg:text-[40px]"
             style={{
               fontFamily: "var(--font-outfit)",
               fontWeight: 700,
-              fontSize: 40,
               letterSpacing: "-1.6px",
               lineHeight: 1.15,
             }}
@@ -23,13 +22,11 @@ export default function PainPoints() {
             to every job?
           </h2>
           <p
-            className="text-[#64748B]"
+            className="text-[#64748B] text-[15px] md:text-[17px] w-full max-w-[560px]"
             style={{
               fontFamily: "var(--font-sn-pro)",
-              fontSize: 17,
               fontWeight: 400,
               lineHeight: 1.7,
-              width: 560,
             }}
           >
             Most candidates blast out identical applications and wonder why they
@@ -38,9 +35,9 @@ export default function PainPoints() {
         </div>
 
         {/* Bento Grid */}
-        <div className="flex flex-col w-full" style={{ gap: 16 }}>
+        <div className="flex flex-col w-full gap-4">
           {/* Row 1 */}
-          <div className="flex flex-row w-full" style={{ gap: 16, minHeight: 280 }}>
+          <div className="flex flex-col md:flex-row w-full gap-4" style={{ minHeight: 280 }}>
             {/* Card 1 — dark, CV stack visual */}
             <div
               className="flex-1 relative overflow-hidden"
@@ -48,8 +45,8 @@ export default function PainPoints() {
             >
               {/* Content */}
               <div
-                className="absolute flex flex-col"
-                style={{ left: 36, top: 36, width: 340, gap: 14 }}
+                className="flex flex-col p-6 md:p-8"
+                style={{ gap: 14 }}
               >
                 <div
                   className="flex items-center justify-center"
@@ -78,13 +75,12 @@ export default function PainPoints() {
                   get ignored
                 </h3>
                 <p
-                  className="text-[#9CA3AF]"
+                  className="text-[#9CA3AF] max-w-[320px]"
                   style={{
                     fontFamily: "var(--font-sn-pro)",
                     fontSize: 15,
                     fontWeight: 400,
                     lineHeight: 1.6,
-                    width: 320,
                   }}
                 >
                   Recruiters scan for keyword matches. A one-size-fits-all CV
@@ -95,7 +91,7 @@ export default function PainPoints() {
 
               {/* CV Stack Visual */}
               <div
-                className="absolute"
+                className="hidden md:block absolute"
                 style={{ right: 0, top: 40, width: 380, height: 240, position: "absolute" }}
               >
                 <div
@@ -243,7 +239,7 @@ export default function PainPoints() {
           </div>
 
           {/* Row 2 */}
-          <div className="flex flex-row w-full" style={{ gap: 16, minHeight: 240 }}>
+          <div className="flex flex-col md:flex-row w-full gap-4" style={{ minHeight: 240 }}>
             {/* Card 3 — ATS progress bar */}
             <div
               className="flex-1 flex flex-col"
@@ -344,8 +340,8 @@ export default function PainPoints() {
             >
               {/* Content */}
               <div
-                className="absolute flex flex-col"
-                style={{ left: 36, top: 32, width: 320, gap: 14 }}
+                className="flex flex-col p-6 md:p-8"
+                style={{ gap: 14 }}
               >
                 <div
                   className="flex items-center justify-center"
@@ -374,13 +370,12 @@ export default function PainPoints() {
                   no replies
                 </h3>
                 <p
-                  className="text-[#64748B]"
+                  className="text-[#64748B] max-w-[300px]"
                   style={{
                     fontFamily: "var(--font-sn-pro)",
                     fontSize: 14,
                     fontWeight: 400,
                     lineHeight: 1.6,
-                    width: 300,
                   }}
                 >
                   You apply and hear nothing. Was it your CV? Your experience?
@@ -390,7 +385,7 @@ export default function PainPoints() {
 
               {/* Inbox Visual */}
               <div
-                className="absolute flex flex-col"
+                className="hidden md:flex absolute flex-col"
                 style={{ left: 400, top: 24, width: 340, gap: 10 }}
               >
                 {[
@@ -450,7 +445,7 @@ export default function PainPoints() {
           </div>
 
           {/* Row 3 */}
-          <div className="flex flex-row w-full" style={{ gap: 16, minHeight: 220 }}>
+          <div className="flex flex-col md:flex-row w-full gap-4" style={{ minHeight: 220 }}>
             {/* Card 5 — keyword tags */}
             <div
               className="flex-1 flex flex-col"

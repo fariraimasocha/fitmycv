@@ -99,8 +99,7 @@ export default function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="bg-[#F8FAFC] flex flex-col"
-      style={{ padding: "100px 100px", gap: 64 }}
+      className="bg-[#F8FAFC] flex flex-col gap-10 md:gap-12 lg:gap-16 px-5 sm:px-8 md:px-16 lg:px-[100px] py-16 md:py-20 lg:py-[100px]"
     >
       {/* Header */}
       <div className="flex flex-col items-center" style={{ gap: 16 }}>
@@ -136,21 +135,19 @@ export default function HowItWorks() {
           </span>
         </div>
         <h2
-          className="text-[#0F172A] text-center"
+          className="text-[#0F172A] text-center text-[28px] md:text-[34px] lg:text-[40px]"
           style={{
             fontFamily: "var(--font-outfit)",
             fontWeight: 700,
-            fontSize: 40,
             letterSpacing: "-1.6px",
           }}
         >
           How It Works
         </h2>
         <p
-          className="text-[#64748B] text-center"
+          className="text-[#64748B] text-center text-[15px] md:text-[17px]"
           style={{
             fontFamily: "var(--font-sn-pro)",
-            fontSize: 17,
             fontWeight: 400,
           }}
         >
@@ -161,19 +158,18 @@ export default function HowItWorks() {
       {/* Steps */}
       <div className="flex flex-col w-full">
         {/* Step 1 — content left, visual right */}
-        <div className="flex flex-row w-full">
+        <div className="flex flex-col md:flex-row w-full">
           {/* Content */}
           <div
-            className="flex-1 flex flex-col"
-            style={{ gap: 20, padding: "40px 48px 40px 0" }}
+            className="flex-1 flex flex-col pb-6 md:pb-0 md:pr-8 lg:pr-12"
+            style={{ gap: 20 }}
           >
             <StepNumber number="01" label="PASTE" />
             <h3
-              className="text-[#0F172A]"
+              className="text-[#0F172A] text-xl md:text-2xl lg:text-[28px]"
               style={{
                 fontFamily: "var(--font-outfit)",
                 fontWeight: 700,
-                fontSize: 28,
                 letterSpacing: "-0.5px",
               }}
             >
@@ -201,12 +197,11 @@ export default function HowItWorks() {
 
           {/* Visual */}
           <div
-            className="flex-1 flex flex-col justify-center"
+            className="flex-1 flex flex-col justify-center min-h-[240px] md:min-h-[280px] lg:min-h-[320px]"
             style={{
               background: "#F3F4F6",
               borderRadius: 20,
               gap: 16,
-              height: 320,
               padding: 32,
               border: "1px solid #D1D5DB",
             }}
@@ -317,15 +312,14 @@ export default function HowItWorks() {
         <Connector />
 
         {/* Step 2 — visual left, content right */}
-        <div className="flex flex-row w-full">
+        <div className="flex flex-col md:flex-row w-full">
           {/* Visual */}
           <div
-            className="flex-1 flex flex-col justify-center"
+            className="flex-1 flex flex-col justify-center order-2 md:order-1 min-h-[240px] md:min-h-[280px] lg:min-h-[320px]"
             style={{
               background: "#F3F4F6",
               borderRadius: 20,
               gap: 16,
-              height: 320,
               padding: 32,
               border: "1px solid #D1D5DB",
             }}
@@ -392,16 +386,15 @@ export default function HowItWorks() {
 
           {/* Content */}
           <div
-            className="flex-1 flex flex-col"
-            style={{ gap: 20, padding: "40px 0 40px 48px" }}
+            className="flex-1 flex flex-col order-1 md:order-2 pb-6 md:pb-0 md:pl-8 lg:pl-12"
+            style={{ gap: 20 }}
           >
             <StepNumber number="02" label="TAILOR" />
             <h3
-              className="text-[#0F172A]"
+              className="text-[#0F172A] text-xl md:text-2xl lg:text-[28px]"
               style={{
                 fontFamily: "var(--font-outfit)",
                 fontWeight: 700,
-                fontSize: 28,
                 letterSpacing: "-0.5px",
               }}
             >
@@ -431,19 +424,18 @@ export default function HowItWorks() {
         <Connector />
 
         {/* Step 3 — content left, visual right */}
-        <div className="flex flex-row w-full">
+        <div className="flex flex-col md:flex-row w-full">
           {/* Content */}
           <div
-            className="flex-1 flex flex-col"
-            style={{ gap: 20, padding: "40px 48px 40px 0" }}
+            className="flex-1 flex flex-col pb-6 md:pb-0 md:pr-8 lg:pr-12"
+            style={{ gap: 20 }}
           >
             <StepNumber number="03" label="APPLY" />
             <h3
-              className="text-[#0F172A]"
+              className="text-[#0F172A] text-xl md:text-2xl lg:text-[28px]"
               style={{
                 fontFamily: "var(--font-outfit)",
                 fontWeight: 700,
-                fontSize: 28,
                 letterSpacing: "-0.5px",
               }}
             >
@@ -470,12 +462,11 @@ export default function HowItWorks() {
 
           {/* Visual */}
           <div
-            className="flex-1 flex flex-col items-center justify-center"
+            className="flex-1 flex flex-col items-center justify-center min-h-[240px] md:min-h-[280px] lg:min-h-[320px]"
             style={{
               background: "#F3F4F6",
               borderRadius: 20,
               gap: 16,
-              height: 320,
               padding: 32,
               border: "1px solid #D1D5DB",
             }}

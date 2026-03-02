@@ -8,17 +8,15 @@ export default function Hero() {
   return (
     <section className="bg-white">
       <div
-        className="mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-12"
-        style={{ padding: "100px 140px" }}
+        className="mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-12 px-5 sm:px-8 md:px-16 lg:px-[100px] xl:px-[140px] py-16 md:py-20 lg:py-[100px]"
       >
         {/* Left column */}
-        <div className="flex-1 flex flex-col gap-8" style={{ maxWidth: 560 }}>
+        <div className="flex-1 flex flex-col gap-8 max-w-full lg:max-w-[560px]">
           <h1
-            className="text-[#0F172A] leading-[1.1]"
+            className="text-[#0F172A] leading-[1.1] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px]"
             style={{
               fontFamily: "var(--font-outfit)",
               fontWeight: 800,
-              fontSize: 56,
               letterSpacing: "-2.24px",
             }}
           >
@@ -28,13 +26,11 @@ export default function Hero() {
           </h1>
 
           <p
-            className="text-[#64748B]"
+            className="text-[#64748B] text-[15px] md:text-[17px] max-w-full md:max-w-[480px]"
             style={{
               fontFamily: "var(--font-sn-pro)",
-              fontSize: 17,
               fontWeight: 400,
               lineHeight: 1.7,
-              maxWidth: 480,
             }}
           >
             FitMyCv uses AI to tailor your resume and cover letter to every job
@@ -42,10 +38,10 @@ export default function Hero() {
           </p>
 
           {/* CTA Row */}
-          <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center gap-3">
             <Link
               href="/auth"
-              className="inline-flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.98] w-full sm:w-auto"
               style={{
                 background: "#111827",
                 borderRadius: 10,
@@ -61,7 +57,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#how-it-works"
-              className="inline-flex items-center justify-center transition-all hover:bg-[#F8FAFC]"
+              className="inline-flex items-center justify-center transition-all hover:bg-[#F8FAFC] w-full sm:w-auto"
               style={{
                 borderRadius: 10,
                 border: "1px solid #E2E8F0",
@@ -79,7 +75,7 @@ export default function Hero() {
         </div>
 
         {/* Right column */}
-        <div className="flex-1 relative" style={{ height: 480 }}>
+        <div className="hidden lg:block flex-1 relative" style={{ height: 480 }}>
           {/* Hero image */}
           <Image
             src="/hero-img.png"

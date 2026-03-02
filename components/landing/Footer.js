@@ -18,19 +18,16 @@ const otherApps = [
 export default function Footer() {
   return (
     <footer
-      className="bg-[#F8FAFC] border-t border-[#E2E8F0]"
-      style={{ padding: "48px 140px" }}
+      className="bg-[#F8FAFC] border-t border-[#E2E8F0] px-5 sm:px-8 md:px-16 lg:px-[100px] xl:px-[140px] py-10 md:py-12"
     >
-      <div className="flex flex-col" style={{ gap: 48 }}>
+      <div className="flex flex-col gap-10 md:gap-12">
         {/* Top row */}
         <div
-          className="flex flex-row justify-between w-full"
-          style={{ gap: 48 }}
+          className="flex flex-col md:flex-row justify-between w-full gap-8 md:gap-12"
         >
           {/* Brand col */}
           <div
-            className="flex flex-col"
-            style={{ width: 280, gap: 16 }}
+            className="flex flex-col w-full md:w-[280px] gap-4"
           >
             <div className="flex flex-row items-center" style={{ gap: 10 }}>
               {/* Logo mark */}
@@ -138,8 +135,7 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div
-          className="flex flex-row justify-between items-center w-full border-t border-[#E2E8F0]"
-          style={{ paddingTop: 24 }}
+          className="flex flex-col sm:flex-row justify-between items-center w-full border-t border-[#E2E8F0] gap-4 pt-6"
         >
           <p
             className="text-[#94A3B8]"
@@ -151,7 +147,7 @@ export default function Footer() {
           >
             2025 FitMyCv. All rights reserved.
           </p>
-          <div className="flex flex-row" style={{ gap: 24 }}>
+          <div className="hidden sm:flex flex-row flex-wrap justify-center gap-4 md:gap-6">
             {otherApps.map(({ label, href }) => (
               <a
                 key={label}

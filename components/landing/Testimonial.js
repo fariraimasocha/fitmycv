@@ -6,12 +6,10 @@ import { Star } from "lucide-react";
 export default function Testimonial() {
   return (
     <section
-      className="bg-[#EEF2F6] flex flex-col items-center"
-      style={{ padding: "80px 140px" }}
+      className="bg-[#EEF2F6] flex flex-col items-center px-5 sm:px-8 md:px-16 lg:px-[100px] xl:px-[140px] py-16 md:py-20"
     >
       <div
-        className="flex flex-col items-center"
-        style={{ width: 800, gap: 40 }}
+        className="flex flex-col items-center w-full max-w-[800px] gap-8 md:gap-10"
       >
         {/* Stars */}
         <div className="flex flex-row items-center" style={{ gap: 8 }}>
@@ -24,7 +22,7 @@ export default function Testimonial() {
         <div className="relative w-full" style={{ minHeight: 76 }}>
           {/* Yellow highlight rect */}
           <div
-            className="absolute"
+            className="absolute hidden sm:block"
             style={{
               background: "#FEF9C3",
               borderRadius: 4,
@@ -36,13 +34,11 @@ export default function Testimonial() {
           />
           {/* Quote text */}
           <p
-            className="relative text-[#4B5563] text-center"
+            className="relative text-[#4B5563] text-center w-full text-base sm:text-lg md:text-xl lg:text-[22px]"
             style={{
               fontFamily: "var(--font-sn-pro)",
-              fontSize: 22,
               fontWeight: 400,
               lineHeight: 1.65,
-              width: 800,
               zIndex: 1,
             }}
           >

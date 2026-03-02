@@ -37,17 +37,15 @@ export default function Features() {
 
   return (
     <section
-      className="bg-white flex flex-col items-center"
-      style={{ padding: "100px 140px", gap: 48 }}
+      className="bg-white flex flex-col items-center gap-8 md:gap-10 lg:gap-12 px-5 sm:px-8 md:px-16 lg:px-[100px] xl:px-[140px] py-16 md:py-20 lg:py-[100px]"
     >
       {/* Header */}
       <div className="flex flex-col items-center" style={{ gap: 16 }}>
         <h2
-          className="text-[#0F172A] text-center"
+          className="text-[#0F172A] text-center text-[28px] md:text-[34px] lg:text-[40px]"
           style={{
             fontFamily: "var(--font-outfit)",
             fontWeight: 700,
-            fontSize: 40,
             letterSpacing: "-1.6px",
             lineHeight: 1.15,
           }}
@@ -57,10 +55,9 @@ export default function Features() {
           stand out
         </h2>
         <p
-          className="text-[#64748B] text-center"
+          className="text-[#64748B] text-center text-[15px] md:text-[17px]"
           style={{
             fontFamily: "var(--font-sn-pro)",
-            fontSize: 17,
             fontWeight: 400,
           }}
         >
@@ -70,9 +67,9 @@ export default function Features() {
       </div>
 
       {/* Grid */}
-      <div className="flex flex-col w-full" style={{ gap: 20 }}>
+      <div className="flex flex-col w-full gap-4 md:gap-5">
         {/* Row 1 */}
-        <div className="flex flex-row w-full" style={{ gap: 20 }}>
+        <div className="flex flex-col sm:flex-row w-full gap-4 md:gap-5">
           {features.slice(0, 2).map((feature) => (
             <div
               key={feature.title}
@@ -123,7 +120,7 @@ export default function Features() {
         </div>
 
         {/* Row 2 */}
-        <div className="flex flex-row w-full" style={{ gap: 20 }}>
+        <div className="flex flex-col sm:flex-row w-full gap-4 md:gap-5">
           {features.slice(2, 4).map((feature) => (
             <div
               key={feature.title}

@@ -75,6 +75,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          data-website-id="dfid_cdiVXmqmHhypbU5Znt1vC"
+          data-domain="fitmycv.link"
+          src="https://datafa.st/js/script.js"
+        />
+      </head>
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} antialiased`}
       >

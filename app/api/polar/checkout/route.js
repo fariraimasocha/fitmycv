@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { Polar } from "@polar-sh/sdk";
+import { connectDB } from "@/utils/connect";
+import User from "@/models/User";
 
 const polar = new Polar({
   accessToken: process.env.POLAR_ACCESS_TOKEN,
@@ -15,7 +17,15 @@ export async function GET(request) {
       return NextResponse.redirect(new URL("/auth", request.url));
     }
 
+    // JWT-based fast path
     if (session.user.isPremium) {
+      return NextResponse.redirect(new URL("/api/polar/portal", request.url));
+    }
+
+    // DB-first safety check — catches stale JWT (webhook fired but session not refreshed)
+    await connectDB();
+    const dbUser = await User.findOne({ _id: session.user.id }).select("isPremium");
+    if (dbUser?.isPremium) {
       return NextResponse.redirect(new URL("/api/polar/portal", request.url));
     }
 

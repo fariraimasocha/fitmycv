@@ -1,10 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { CrownIcon, CheckCircleIcon, ArrowRightIcon, ArrowLeftIcon } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Loader from "@/components/Loader";
 
 const PRO_FEATURES = [
   "Unlimited CV tailoring",
@@ -15,6 +19,29 @@ const PRO_FEATURES = [
 ];
 
 export default function UpgradePage() {
+  const { update } = useSession();
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    async function checkPremiumStatus() {
+      try {
+        const res = await fetch("/api/user/premium-status");
+        const data = await res.json();
+        if (data.isPremium) {
+          // DB says premium but JWT was stale — refresh session and redirect
+          await update();
+          router.replace("/dashboard");
+          return;
+        }
+      } catch (_) {}
+      setChecking(false);
+    }
+    checkPremiumStatus();
+  }, [update, router]);
+
+  if (checking) return <Loader />;
+
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-4 sm:p-6">
       <div>

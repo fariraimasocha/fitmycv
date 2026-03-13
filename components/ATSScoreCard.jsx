@@ -29,7 +29,14 @@ function ScoreGauge({ score }) {
 
   return (
     <div className="flex flex-col items-center justify-center gap-1">
-      <svg width="96" height="96" viewBox="0 0 96 96" className="-rotate-90">
+      <svg
+        width="96"
+        height="96"
+        viewBox="0 0 96 96"
+        className="-rotate-90"
+        role="img"
+        aria-label={`ATS Score: ${score} out of 100 — ${label}`}
+      >
         <circle
           cx="48"
           cy="48"
@@ -52,7 +59,7 @@ function ScoreGauge({ score }) {
           style={{ transition: "stroke-dashoffset 0.6s ease" }}
         />
       </svg>
-      <div className="absolute flex flex-col items-center">
+      <div className="absolute flex flex-col items-center" aria-hidden="true">
         <span className="text-2xl font-bold leading-none">{score}</span>
         <span className="text-xs text-muted-foreground">{label}</span>
       </div>
@@ -168,7 +175,7 @@ export default function ATSScoreCard({ atsData, isLoading }) {
         {keywordsMatched.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium text-green-700 dark:text-green-400">
-              <CheckCircleIcon size={16} weight="fill" />
+              <CheckCircleIcon size={16} weight="fill" aria-hidden="true" />
               Keywords Found ({keywordsMatched.length})
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -183,7 +190,7 @@ export default function ATSScoreCard({ atsData, isLoading }) {
         {keywordsMissing.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium text-red-700 dark:text-red-400">
-              <XCircleIcon size={16} weight="fill" />
+              <XCircleIcon size={16} weight="fill" aria-hidden="true" />
               Missing Keywords ({keywordsMissing.length})
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -198,7 +205,7 @@ export default function ATSScoreCard({ atsData, isLoading }) {
         {recommendations.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium">
-              <LightbulbIcon size={16} weight="fill" className="text-amber-500" />
+              <LightbulbIcon size={16} weight="fill" className="text-amber-500" aria-hidden="true" />
               Recommendations
             </div>
             <ul className="space-y-1.5">
@@ -216,7 +223,7 @@ export default function ATSScoreCard({ atsData, isLoading }) {
         {formattingNotes.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium text-orange-700 dark:text-orange-400">
-              <WarningIcon size={16} weight="fill" />
+              <WarningIcon size={16} weight="fill" aria-hidden="true" />
               Formatting Notes
             </div>
             <ul className="space-y-1.5">

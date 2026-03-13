@@ -108,23 +108,25 @@ export default function ResumeUpload({ onParsed }) {
             : "border-gray-300 hover:border-gray-400"
         }`}
       >
-        <UploadSimpleIcon size={40} className="mb-3 text-gray-400" />
+        <UploadSimpleIcon size={40} className="mb-3 text-gray-400" aria-hidden="true" />
         <p className="text-sm font-medium text-gray-900">
           Drag and drop your resume PDF here
         </p>
         <p className="mt-1 text-xs text-gray-400">or</p>
-        <label className="mt-3 cursor-pointer">
+        <label htmlFor="resume-file-input" className="mt-3 cursor-pointer">
           <span className="text-sm font-medium text-gray-900 hover:underline">
             Browse files
           </span>
           <input
+            id="resume-file-input"
             type="file"
             accept=".pdf"
             onChange={handleFileChange}
-            className="hidden"
+            className="sr-only"
+            aria-describedby="resume-file-hint"
           />
         </label>
-        <p className="mt-3 text-xs text-gray-400">
+        <p id="resume-file-hint" className="mt-3 text-xs text-gray-400">
           PDF only, max 8MB
         </p>
       </div>
@@ -145,8 +147,9 @@ export default function ResumeUpload({ onParsed }) {
               size="icon-xs"
               onClick={removeFile}
               disabled={uploadMutation.isPending}
+              aria-label="Remove file"
             >
-              <XIcon size={14} />
+              <XIcon size={14} aria-hidden="true" />
             </Button>
           </CardContent>
         </Card>
@@ -157,16 +160,17 @@ export default function ResumeUpload({ onParsed }) {
         <Button
           onClick={handleUpload}
           disabled={!file || uploadMutation.isPending}
-          className="w-full rounded-full bg-black text-white hover:bg-gray-800"
+          aria-busy={uploadMutation.isPending}
+          className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
         >
           {uploadMutation.isPending ? (
             <>
-              <SpinnerGapIcon size={16} className="animate-spin" />
+              <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
               Parsing resume...
             </>
           ) : (
             <>
-              <UploadSimpleIcon size={16} />
+              <UploadSimpleIcon size={16} aria-hidden="true" />
               Upload & Parse
             </>
           )}

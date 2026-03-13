@@ -147,7 +147,7 @@ const Navbar1 = () => {
           ) : (
             <Link
               href="/auth"
-              className="inline-flex items-center justify-center px-5 py-2 text-sm text-white bg-black rounded-full hover:bg-gray-800 transition-colors font-medium"
+              className="inline-flex items-center justify-center px-5 py-2 text-sm text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors font-medium"
             >
               Get Started
             </Link>
@@ -237,7 +237,7 @@ const Navbar1 = () => {
                   <div className="flex flex-col space-y-3">
                     <Link
                       href="/dashboard"
-                      className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+                      className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors"
                       onClick={toggleMenu}
                     >
                       <LayoutDashboard className="mr-2 h-4 w-4" />
@@ -254,7 +254,7 @@ const Navbar1 = () => {
                 ) : (
                   <Link
                     href="/auth"
-                    className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-white bg-black rounded-full hover:bg-gray-800 transition-colors"
+                    className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors"
                     onClick={toggleMenu}
                   >
                     Get Started

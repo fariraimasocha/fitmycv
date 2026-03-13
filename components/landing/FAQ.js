@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Plus, Minus } from "lucide-react";
+import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
 
 const faqs = [
   {
@@ -34,32 +34,19 @@ const faqs = [
 
 function FAQItem({ faq, isOpen, onToggle }) {
   return (
-    <div
-      style={{
-        borderBottom: "1px solid #E2E8F0",
-        padding: "24px 0",
-      }}
-      className="last:border-0"
-    >
+    <div className="border-b border-border last:border-0 py-6">
       <button
         onClick={onToggle}
-        className="flex items-center justify-between w-full text-left"
-        style={{ gap: 12 }}
+        className="flex items-center justify-between w-full text-left gap-3"
+        aria-expanded={isOpen}
       >
-        <span
-          className="text-[#0F172A]"
-          style={{
-            fontFamily: "var(--font-outfit)",
-            fontWeight: 600,
-            fontSize: 16,
-          }}
-        >
+        <span className="font-outfit font-semibold text-base text-foreground">
           {faq.question}
         </span>
         {isOpen ? (
-          <Minus size={18} color="#94A3B8" style={{ flexShrink: 0 }} />
+          <MinusIcon size={18} className="text-muted-foreground shrink-0" aria-hidden="true" />
         ) : (
-          <Plus size={18} color="#94A3B8" style={{ flexShrink: 0 }} />
+          <PlusIcon size={18} className="text-muted-foreground shrink-0" aria-hidden="true" />
         )}
       </button>
       <AnimatePresence>
@@ -71,16 +58,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
-            <p
-              className="text-[#64748B] w-full"
-              style={{
-                fontFamily: "var(--font-sn-pro)",
-                fontSize: 15,
-                fontWeight: 400,
-                lineHeight: 1.7,
-                paddingTop: 12,
-              }}
-            >
+            <p className="font-sans text-muted-foreground text-[15px] leading-[1.7] pt-3">
               {faq.answer}
             </p>
           </motion.div>
@@ -96,17 +74,9 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-white flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-[100px]"
-      style={{ gap: 48 }}
+      className="bg-background flex flex-col items-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-24 gap-12"
     >
-      <h2
-        className="text-[#0F172A] text-center text-[32px] sm:text-[40px]"
-        style={{
-          fontFamily: "var(--font-outfit)",
-          fontWeight: 700,
-          letterSpacing: "-1.6px",
-        }}
-      >
+      <h2 className="font-outfit font-bold text-foreground text-center text-[32px] sm:text-[40px] tracking-tight">
         Frequently asked questions
       </h2>
 

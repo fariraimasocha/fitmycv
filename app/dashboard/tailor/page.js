@@ -258,16 +258,17 @@ export default function TailorPage() {
               <Button
                 type="submit"
                 disabled={extractMutation.isPending}
-                className="rounded-full bg-black px-6 text-white hover:bg-gray-800 sm:w-auto w-full"
+                aria-busy={extractMutation.isPending}
+                className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90 sm:w-auto w-full"
               >
                 {extractMutation.isPending ? (
                   <>
-                    <SpinnerGapIcon size={16} className="animate-spin" />
+                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
                     Extracting…
                   </>
                 ) : (
                   <>
-                    <MagnifyingGlassIcon size={16} />
+                    <MagnifyingGlassIcon size={16} aria-hidden="true" />
                     Extract
                   </>
                 )}
@@ -298,16 +299,17 @@ export default function TailorPage() {
           <Button
             onClick={() => tailorMutation.mutate()}
             disabled={tailorMutation.isPending}
-            className="rounded-full bg-black px-8 text-white hover:bg-gray-800"
+            aria-busy={tailorMutation.isPending}
+            className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
           >
             {tailorMutation.isPending ? (
               <>
-                <SpinnerGapIcon size={16} className="animate-spin" />
+                <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
                 Tailoring…
               </>
             ) : (
               <>
-                <SparkleIcon size={16} />
+                <SparkleIcon size={16} aria-hidden="true" />
                 Tailor Resume
               </>
             )}
@@ -324,37 +326,49 @@ export default function TailorPage() {
         >
           <div className="flex flex-col gap-3">
             {/* Tabs — horizontally scrollable on mobile */}
-            <div className="flex gap-2 overflow-x-auto pb-1">
+            <div
+              role="tablist"
+              aria-label="Resume output sections"
+              className="relative flex gap-2 overflow-x-auto pb-1 [mask-image:linear-gradient(to_right,black_85%,transparent_100%)]"
+            >
               <Button
+                role="tab"
+                aria-selected={activeTab === "cv"}
                 variant={activeTab === "cv" ? "default" : "outline"}
                 onClick={() => setActiveTab("cv")}
                 className="gap-2 shrink-0"
               >
-                <FileTextIcon size={16} />
+                <FileTextIcon size={16} aria-hidden="true" />
                 Tailored CV
               </Button>
               <Button
+                role="tab"
+                aria-selected={activeTab === "letter"}
                 variant={activeTab === "letter" ? "default" : "outline"}
                 onClick={() => setActiveTab("letter")}
                 className="gap-2 shrink-0"
               >
-                <EnvelopeSimpleIcon size={16} />
+                <EnvelopeSimpleIcon size={16} aria-hidden="true" />
                 Cover Letter
               </Button>
               <Button
+                role="tab"
+                aria-selected={activeTab === "ats"}
                 variant={activeTab === "ats" ? "default" : "outline"}
                 onClick={() => setActiveTab("ats")}
                 className="gap-2 shrink-0"
               >
-                <ChartBarIcon size={16} />
+                <ChartBarIcon size={16} aria-hidden="true" />
                 ATS Score
               </Button>
               <Button
+                role="tab"
+                aria-selected={activeTab === "research"}
                 variant={activeTab === "research" ? "default" : "outline"}
                 onClick={() => setActiveTab("research")}
-                className="gap-2 shrink-0"
+                className="gap-2 shrink-0 mr-8"
               >
-                <BinocularsIcon size={16} />
+                <BinocularsIcon size={16} aria-hidden="true" />
                 Company Research
               </Button>
             </div>

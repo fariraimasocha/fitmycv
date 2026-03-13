@@ -1,16 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { Star } from "lucide-react";
+import { StarIcon } from "@phosphor-icons/react";
 
 export default function Testimonial() {
   return (
-    <section className="bg-[#EEF2F6] flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-20">
-      <div className="flex flex-col items-center w-full max-w-3xl" style={{ gap: 40 }}>
+    <section className="bg-muted flex flex-col items-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-20">
+      <div className="flex flex-col items-center w-full max-w-3xl gap-10">
         {/* Stars */}
-        <div className="flex flex-row items-center" style={{ gap: 8 }}>
+        <div className="flex flex-row items-center gap-2" aria-label="5 out of 5 stars">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} size={32} color="#F59E0B" fill="#F59E0B" />
+            <StarIcon key={i} size={32} weight="fill" className="text-amber-400" aria-hidden="true" />
           ))}
         </div>
 
@@ -18,36 +18,17 @@ export default function Testimonial() {
         <div className="relative w-full">
           {/* Yellow highlight rect — hidden on small screens */}
           <div
-            className="hidden sm:block absolute"
-            style={{
-              background: "#FEF9C3",
-              borderRadius: 4,
-              height: 30,
-              width: "45%",
-              right: 0,
-              top: 3,
-            }}
+            className="hidden sm:block absolute bg-amber-100 rounded h-[30px] w-[45%] right-0 top-[3px]"
+            aria-hidden="true"
           />
-          {/* Quote text */}
-          <p
-            className="relative text-[#4B5563] text-center w-full"
-            style={{
-              fontFamily: "var(--font-sn-pro)",
-              fontSize: 22,
-              fontWeight: 400,
-              lineHeight: 1.65,
-              zIndex: 1,
-            }}
-          >
-            Not having to rewrite my CV manually is saving me tons of
-            application work. Now I just paste a job link and FitMyCv handles
-            everything itself
+          <p className="relative font-sans text-foreground/80 text-center w-full text-[22px] leading-[1.65] z-10">
+            Not having to rewrite my CV manually is saving me tons of application work. Now I
+            just paste a job link and FitMyCv handles everything itself
           </p>
         </div>
 
         {/* Author */}
-        <div className="flex flex-row items-center" style={{ gap: 16 }}>
-          {/* Avatar */}
+        <div className="flex flex-row items-center gap-4">
           <Image
             src="/farai.jpeg"
             alt="Farai Matsika"
@@ -55,28 +36,9 @@ export default function Testimonial() {
             height={60}
             className="rounded-full object-cover"
           />
-          {/* Text */}
-          <div className="flex flex-col" style={{ gap: 4 }}>
-            <span
-              className="text-[#0F172A]"
-              style={{
-                fontFamily: "var(--font-outfit)",
-                fontWeight: 700,
-                fontSize: 18,
-              }}
-            >
-              Farai Matsika
-            </span>
-            <span
-              className="text-[#6B7280]"
-              style={{
-                fontFamily: "var(--font-sn-pro)",
-                fontSize: 15,
-                fontWeight: 400,
-              }}
-            >
-              Software Developer
-            </span>
+          <div className="flex flex-col gap-1">
+            <span className="font-outfit font-bold text-lg text-foreground">Farai Matsika</span>
+            <span className="font-sans text-[15px] text-muted-foreground">Software Developer</span>
           </div>
         </div>
       </div>

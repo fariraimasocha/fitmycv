@@ -28,25 +28,25 @@ export default function JobRequirementsCard({ data }) {
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
               {data.company && (
                 <span className="flex items-center gap-1">
-                  <BuildingsIcon size={14} />
+                  <BuildingsIcon size={14} aria-hidden="true" />
                   {data.company}
                 </span>
               )}
               {data.location && (
                 <span className="flex items-center gap-1">
-                  <MapPinIcon size={14} />
+                  <MapPinIcon size={14} aria-hidden="true" />
                   {data.location}
                 </span>
               )}
               {data.type && (
                 <span className="flex items-center gap-1">
-                  <BriefcaseIcon size={14} />
+                  <BriefcaseIcon size={14} aria-hidden="true" />
                   {data.type}
                 </span>
               )}
               {data.salary && (
                 <span className="flex items-center gap-1">
-                  <CurrencyDollarIcon size={14} />
+                  <CurrencyDollarIcon size={14} aria-hidden="true" />
                   {data.salary}
                 </span>
               )}
@@ -54,23 +54,23 @@ export default function JobRequirementsCard({ data }) {
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          {data.requirements.length > 0 && (
+          {data.requirements?.length > 0 && (
             <Section
-              icon={<ListChecksIcon size={16} />}
+              icon={<ListChecksIcon size={16} aria-hidden="true" />}
               title="Requirements"
               items={data.requirements}
             />
           )}
-          {data.responsibilities.length > 0 && (
+          {data.responsibilities?.length > 0 && (
             <Section
-              icon={<ClipboardTextIcon size={16} />}
+              icon={<ClipboardTextIcon size={16} aria-hidden="true" />}
               title="Responsibilities"
               items={data.responsibilities}
             />
           )}
-          {data.qualifications.length > 0 && (
+          {data.qualifications?.length > 0 && (
             <Section
-              icon={<GraduationCapIcon size={16} />}
+              icon={<GraduationCapIcon size={16} aria-hidden="true" />}
               title="Qualifications"
               items={data.qualifications}
             />
@@ -84,11 +84,11 @@ export default function JobRequirementsCard({ data }) {
 function Section({ icon, title, items }) {
   return (
     <div className="space-y-2">
-      <h3 className="flex items-center gap-2 text-sm font-semibold text-gray-900">
+      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
         {icon}
         {title}
       </h3>
-      <ul className="space-y-1 pl-6 text-sm text-gray-700 list-disc">
+      <ul className="space-y-1 pl-6 text-sm text-muted-foreground list-disc">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}

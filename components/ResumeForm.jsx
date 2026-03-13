@@ -504,7 +504,7 @@ export default function ResumeForm({
             type="submit"
             disabled={saveMutation.isPending}
             size="lg"
-            className="rounded-full bg-black px-8 text-white hover:bg-gray-800"
+            className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
           >
             {saveMutation.isPending ? (
               <>

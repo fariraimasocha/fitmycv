@@ -63,7 +63,11 @@ export default function AuthPage() {
 
         {/* WebView warning banner */}
         {inWebView && (
-          <div className="w-full rounded-xl bg-amber-50 border border-amber-200 p-4 flex flex-col gap-3">
+          <div
+            role="alert"
+            aria-live="polite"
+            className="w-full rounded-xl bg-amber-50 border border-amber-200 p-4 flex flex-col gap-3"
+          >
             <div className="flex items-start gap-2">
               <WarningIcon size={18} className="text-amber-600 mt-0.5 shrink-0" weight="fill" />
               <p className="text-sm text-amber-800">

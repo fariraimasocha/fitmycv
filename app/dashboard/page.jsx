@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, Suspense } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
@@ -11,6 +11,8 @@ import {
   StackIcon,
   ArrowRightIcon,
   CalendarIcon,
+  CheckCircleIcon,
+  CircleIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "motion/react";
@@ -72,6 +74,11 @@ function CheckoutRedirect() {
 
 export default function DashboardPage() {
   const { data: session } = useSession();
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    setFormattedDate(getFormattedDate());
+  }, []);
 
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
 
@@ -120,20 +127,134 @@ export default function DashboardPage() {
     },
   ];
 
+  // Determine onboarding state
+  const step1Done = hasReferenceCV;
+  const step2Done = tailoredCount > 0;
+  const onboardingComplete = step1Done && step2Done;
+
+  // Next CTA for the banner
+  const nextStep = !step1Done
+    ? { label: "Upload your CV", href: "/dashboard/resume" }
+    : !step2Done
+    ? { label: "Tailor your first resume", href: "/dashboard/tailor" }
+    : null;
+
+  const onboardingSteps = [
+    {
+      label: "Upload your CV",
+      description: "Add your base resume so we can tailor it",
+      done: step1Done,
+      href: "/dashboard/resume",
+    },
+    {
+      label: "Tailor to a job",
+      description: "Paste a job URL and generate a custom resume",
+      done: step2Done,
+      href: step1Done ? "/dashboard/tailor" : null,
+    },
+    {
+      label: "Download your documents",
+      description: "Get your tailored CV and cover letter as PDFs",
+      done: false,
+      href: null,
+      locked: !step2Done,
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-6 p-4 sm:p-6">
       <Suspense fallback={null}>
         <CheckoutRedirect />
       </Suspense>
+
       {/* A. Greeting */}
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-semibold font-outfit">
-          Good {getTimeOfDay()}, {firstName} 👋
+          Good {getTimeOfDay()}, {firstName} <span aria-hidden="true">👋</span>
         </h1>
-        <p className="text-sm text-muted-foreground" suppressHydrationWarning>{getFormattedDate()}</p>
+        {formattedDate && (
+          <p className="text-sm text-muted-foreground">{formattedDate}</p>
+        )}
       </div>
 
-      {/* B. Stats Row */}
+      {/* B. Getting Started Banner — shown until first CV is tailored */}
+      {!onboardingComplete && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Card className="rounded-xl border-border overflow-hidden">
+            <CardContent className="p-0">
+              <div className="flex flex-col sm:flex-row">
+                {/* Left: steps */}
+                <div className="flex-1 p-5 sm:p-6">
+                  <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                    Getting started · {step1Done ? (step2Done ? "3" : "2") : "1"} of 3
+                  </p>
+                  <ol className="flex flex-col gap-3">
+                    {onboardingSteps.map((s, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        {s.done ? (
+                          <CheckCircleIcon
+                            size={20}
+                            weight="fill"
+                            className="text-foreground shrink-0 mt-0.5"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <CircleIcon
+                            size={20}
+                            className={`shrink-0 mt-0.5 ${s.locked ? "text-border" : "text-muted-foreground"}`}
+                            aria-hidden="true"
+                          />
+                        )}
+                        <div className="flex flex-col gap-0.5">
+                          <span
+                            className={`text-sm font-medium leading-tight ${
+                              s.done
+                                ? "line-through text-muted-foreground"
+                                : s.locked
+                                ? "text-muted-foreground/50"
+                                : "text-foreground"
+                            }`}
+                          >
+                            {s.label}
+                          </span>
+                          {!s.done && !s.locked && (
+                            <span className="text-xs text-muted-foreground">
+                              {s.description}
+                            </span>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                {/* Right: CTA */}
+                {nextStep && (
+                  <div className="flex items-center justify-start sm:justify-center sm:border-l border-t sm:border-t-0 border-border px-5 py-4 sm:px-6 sm:min-w-[200px]">
+                    <Link
+                      href={nextStep.href}
+                      className="group inline-flex items-center gap-2 font-outfit font-semibold text-sm bg-foreground text-background rounded-[10px] px-5 py-2.5 transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+                    >
+                      {nextStep.label}
+                      <ArrowRightIcon
+                        size={14}
+                        aria-hidden="true"
+                        className="transition-transform duration-200 group-hover:translate-x-0.5"
+                      />
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
+
+      {/* C. Stats Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Card 1 — Total Tailored CVs */}
         <motion.div
@@ -266,7 +387,7 @@ export default function DashboardPage() {
         </motion.div>
       </div>
 
-      {/* C. Quick Actions */}
+      {/* D. Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {quickActions.map((action) => (
           <Link key={action.href} href={action.href} className="group">
@@ -292,57 +413,6 @@ export default function DashboardPage() {
           </Link>
         ))}
       </div>
-
-      {/* D. Getting Started Checklist (only if no reference CV) */}
-      {!hasReferenceCV && (
-        <Card className="rounded-xl border-border bg-muted/50">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold font-outfit">
-              Getting Started
-            </CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Follow these steps to generate your first tailored CV.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <ol className="flex flex-col gap-3">
-              {[
-                {
-                  step: 1,
-                  text: "Upload your reference CV",
-                  href: "/dashboard/resume",
-                },
-                {
-                  step: 2,
-                  text: "Paste a job listing URL",
-                  href: "/dashboard/tailor",
-                },
-                {
-                  step: 3,
-                  text: "Download your tailored CV and cover letter",
-                  href: null,
-                },
-              ].map(({ step, text, href }) => (
-                <li key={step} className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-foreground text-xs font-medium text-background">
-                    {step}
-                  </span>
-                  {href ? (
-                    <Link
-                      href={href}
-                      className="text-sm underline underline-offset-2 hover:text-foreground text-muted-foreground transition-colors"
-                    >
-                      {text}
-                    </Link>
-                  ) : (
-                    <span className="text-sm text-muted-foreground">{text}</span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }

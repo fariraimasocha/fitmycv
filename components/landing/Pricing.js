@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
@@ -30,139 +30,45 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="bg-[#F8FAFC] flex flex-col items-center px-5 py-16 sm:px-10 lg:px-[140px] lg:py-[100px]"
-      style={{ gap: 32 }}
+      className="bg-muted flex flex-col items-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-24 gap-8"
     >
       {/* Header */}
-      <div className="flex flex-col items-center" style={{ gap: 20 }}>
-        {/* Badge */}
-        <span
-          className="inline-flex items-center justify-center"
-          style={{
-            borderRadius: 9999,
-            border: "1px solid #E2E8F0",
-            padding: "8px 20px",
-            fontFamily: "var(--font-sn-pro)",
-            fontWeight: 500,
-            fontSize: 14,
-            color: "#64748B",
-          }}
-        >
+      <div className="flex flex-col items-center gap-5">
+        <span className="font-sans font-medium text-sm text-muted-foreground border border-border rounded-full px-5 py-2">
           Pricing
         </span>
-        <h2
-          className="text-[#0F172A] text-center text-[32px] sm:text-[44px]"
-          style={{
-            fontFamily: "var(--font-outfit)",
-            fontWeight: 800,
-            letterSpacing: "-1.8px",
-          }}
-        >
+        <h2 className="font-outfit font-extrabold text-foreground text-center text-[32px] sm:text-[44px] tracking-tight">
           Simple, transparent pricing
         </h2>
-        <p
-          className="text-[#64748B] text-center"
-          style={{
-            fontFamily: "var(--font-sn-pro)",
-            fontSize: 18,
-            fontWeight: 400,
-          }}
-        >
+        <p className="font-sans text-muted-foreground text-center text-lg">
           Everything you need to land your next role.
         </p>
       </div>
 
       {/* Card */}
-      <div
-        className="flex flex-col bg-white w-full max-w-[480px]"
-        style={{
-          borderRadius: 20,
-          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
-          border: "1px solid #E5E7EB",
-          gap: 28,
-          padding: 40,
-        }}
-      >
+      <div className="flex flex-col bg-background w-full max-w-[480px] rounded-2xl border border-border shadow-md gap-7 p-10">
         {/* Card top */}
-        <div className="flex flex-col" style={{ gap: 8 }}>
-          <span
-            className="text-[#0F172A]"
-            style={{
-              fontFamily: "var(--font-outfit)",
-              fontWeight: 700,
-              fontSize: 26,
-            }}
-          >
-            Premium
-          </span>
-          <span
-            className="text-[#94A3B8]"
-            style={{
-              fontFamily: "var(--font-sn-pro)",
-              fontSize: 15,
-              fontWeight: 400,
-            }}
-          >
-            Cancel anytime.
-          </span>
+        <div className="flex flex-col gap-2">
+          <span className="font-outfit font-bold text-foreground text-[26px]">Premium</span>
+          <span className="font-sans text-muted-foreground text-sm">Cancel anytime. No contracts.</span>
         </div>
 
         {/* Price row */}
-        <div className="flex flex-row items-end" style={{ gap: 4 }}>
-          <span
-            className="text-[#0F172A]"
-            style={{
-              fontFamily: "var(--font-outfit)",
-              fontWeight: 800,
-              fontSize: 48,
-              letterSpacing: "-2px",
-              lineHeight: 1,
-            }}
-          >
+        <div className="flex flex-row items-end gap-1">
+          <span className="font-outfit font-extrabold text-foreground text-[48px] leading-none tracking-tight">
             $4.99
           </span>
-          <span
-            className="text-[#94A3B8]"
-            style={{
-              fontFamily: "var(--font-sn-pro)",
-              fontSize: 16,
-              fontWeight: 400,
-              paddingBottom: 4,
-            }}
-          >
-            /month
-          </span>
+          <span className="font-sans text-muted-foreground text-base pb-1">/month</span>
         </div>
 
         {/* Features list */}
-        <div className="flex flex-col" style={{ gap: 20 }}>
+        <div className="flex flex-col gap-5">
           {features.map((feature) => (
-            <div
-              key={feature}
-              className="flex flex-row items-center"
-              style={{ gap: 14 }}
-            >
-              <div
-                className="flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: "#0F172A",
-                  width: 24,
-                  height: 24,
-                  borderRadius: "50%",
-                }}
-              >
-                <Check size={12} color="white" strokeWidth={3} />
+            <div key={feature} className="flex flex-row items-center gap-3.5">
+              <div className="flex items-center justify-center flex-shrink-0 bg-foreground w-6 h-6 rounded-full">
+                <CheckIcon size={12} weight="bold" className="text-background" aria-hidden="true" />
               </div>
-              <span
-                className="text-[#0F172A]"
-                style={{
-                  fontFamily: "var(--font-sn-pro)",
-                  fontSize: 16,
-                  fontWeight: 500,
-                }}
-              >
-                {feature}
-              </span>
+              <span className="font-sans font-medium text-foreground text-base">{feature}</span>
             </div>
           ))}
         </div>
@@ -170,32 +76,10 @@ export default function Pricing() {
         {/* CTA Button */}
         <button
           onClick={handleGetStarted}
-          className="w-full transition-all hover:opacity-90 active:scale-[0.98]"
-          style={{
-            background: "#0F172A",
-            borderRadius: 12,
-            padding: "16px 32px",
-            fontFamily: "var(--font-outfit)",
-            fontWeight: 600,
-            fontSize: 16,
-            color: "white",
-            cursor: "pointer",
-          }}
+          className="w-full bg-foreground text-background font-outfit font-semibold text-base rounded-xl py-4 transition-all hover:opacity-90 active:scale-[0.98] cursor-pointer"
         >
           Get Started
         </button>
-
-        {/* Note */}
-        <p
-          className="text-[#94A3B8] text-center"
-          style={{
-            fontFamily: "var(--font-sn-pro)",
-            fontSize: 13,
-            fontWeight: 400,
-          }}
-        >
-          Cancel anytime.
-        </p>
       </div>
     </section>
   );

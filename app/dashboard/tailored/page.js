@@ -11,6 +11,8 @@ import {
   CalendarIcon,
   FileTextIcon,
   TrashIcon,
+  ArrowRightIcon,
+  ReadCvLogoIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -29,6 +31,13 @@ export default function TailoredCVsPage() {
       return json.data;
     },
   });
+
+  const { data: referenceCV } = useQuery({
+    queryKey: ["reference-cv"],
+    queryFn: () => fetch("/api/reference-cv").then((r) => r.json()),
+  });
+
+  const hasReferenceCV = !!referenceCV?.data;
 
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
@@ -83,21 +92,36 @@ export default function TailoredCVsPage() {
           transition={{ duration: 0.3, delay: 0.05 }}
         >
           <Card className="rounded-2xl border shadow-lg">
-            <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-              <FileTextIcon size={48} className="text-gray-300" />
-              <h3 className="mt-4 text-lg font-medium text-gray-900">
-                No tailored CVs yet
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                Go to{" "}
-                <Link
-                  href="/dashboard/tailor"
-                  className="font-medium text-black underline"
-                >
-                  Tailor Resume
-                </Link>{" "}
-                to create your first tailored CV.
-              </p>
+            <CardContent className="flex flex-col items-center justify-center py-16 text-center gap-4">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
+                <FileTextIcon size={28} className="text-muted-foreground/60" aria-hidden="true" />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <h3 className="text-lg font-semibold font-outfit text-foreground">
+                  No tailored CVs yet
+                </h3>
+                <p className="text-sm text-muted-foreground max-w-[320px]">
+                  {hasReferenceCV
+                    ? "Paste a job listing URL and we'll tailor your resume to match the role."
+                    : "Upload your base resume first, then paste any job URL to generate a tailored version."}
+                </p>
+              </div>
+              <Link
+                href={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
+                className="group inline-flex items-center gap-2 font-outfit font-semibold text-sm bg-foreground text-background rounded-[10px] px-5 py-2.5 transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+              >
+                {hasReferenceCV ? (
+                  <>
+                    Tailor your first resume
+                    <ArrowRightIcon size={14} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </>
+                ) : (
+                  <>
+                    <ReadCvLogoIcon size={14} aria-hidden="true" />
+                    Upload your CV
+                  </>
+                )}
+              </Link>
             </CardContent>
           </Card>
         </motion.div>
@@ -113,14 +137,14 @@ export default function TailoredCVsPage() {
               <Link href={`/dashboard/tailored/${cv._id}`}>
                 <Card className="rounded-2xl border shadow-lg transition-shadow hover:shadow-xl cursor-pointer">
                   <CardContent className="flex items-center gap-4 p-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-100">
-                      <FileTextIcon size={20} className="text-gray-600" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted">
+                      <FileTextIcon size={20} className="text-muted-foreground" aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-medium text-gray-900">
+                      <p className="truncate font-medium text-foreground">
                         {cv.jobTitle || "Untitled Position"}
                       </p>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
+                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
                         {cv.jobCompany && (
                           <span className="flex items-center gap-1">
                             <BuildingsIcon size={14} />
@@ -139,11 +163,16 @@ export default function TailoredCVsPage() {
                       className="shrink-0 rounded-full"
                       disabled={deleteMutation.isPending}
                       onClick={(e) => handleTrashClick(e, cv._id)}
+                      aria-label={
+                        confirmDeleteId === cv._id
+                          ? `Confirm delete ${cv.jobTitle || "CV"}`
+                          : `Delete ${cv.jobTitle || "CV"}`
+                      }
                     >
                       {confirmDeleteId === cv._id ? (
                         "Delete?"
                       ) : (
-                        <TrashIcon size={16} />
+                        <TrashIcon size={16} aria-hidden="true" />
                       )}
                     </Button>
                   </CardContent>

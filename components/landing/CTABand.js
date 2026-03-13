@@ -1,69 +1,30 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 
 export default function CTABand() {
   return (
-    <section
-      className="border-t border-b border-[#E2E8F0] px-5 py-16 sm:px-10 lg:px-[140px] lg:py-20"
-      style={{
-        background: "linear-gradient(135deg, #F0FDF7 0%, #FFFFFF 100%)",
-      }}
-    >
+    <section className="bg-muted border-t border-b border-border px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-20">
       <div className="flex flex-col items-center gap-8">
-        <h2
-          className="text-[#0F172A] text-center text-[28px] sm:text-[40px]"
-          style={{
-            fontFamily: "var(--font-outfit)",
-            fontWeight: 700,
-            letterSpacing: "-1.6px",
-          }}
-        >
+        <h2 className="font-outfit font-bold text-foreground text-center text-[28px] sm:text-[40px] tracking-tight">
           Ready to stop being ignored?
         </h2>
-        <p
-          className="text-[#64748B] text-center"
-          style={{
-            fontFamily: "var(--font-sn-pro)",
-            fontSize: 17,
-            fontWeight: 400,
-            maxWidth: 560,
-          }}
-        >
+        <p className="font-sans text-muted-foreground text-center text-[17px] max-w-[560px]">
           Join thousands of job seekers who are landing interviews faster with
           AI-tailored applications.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href="/auth"
-            className="inline-flex items-center justify-center gap-2 transition-all hover:opacity-90 active:scale-[0.98]"
-            style={{
-              background: "#111827",
-              borderRadius: 10,
-              padding: "13px 28px",
-              fontFamily: "var(--font-outfit)",
-              fontWeight: 600,
-              fontSize: 16,
-              color: "#ffffff",
-            }}
+            className="inline-flex items-center justify-center gap-2 font-outfit font-semibold text-base bg-foreground text-background rounded-[10px] px-7 py-3.5 transition-all hover:opacity-90 active:scale-[0.98]"
           >
             Get Started
-            <ArrowRight size={16} color="#ffffff" />
+            <ArrowRightIcon size={16} aria-hidden="true" />
           </Link>
           <Link
             href="#pricing"
-            className="inline-flex items-center justify-center transition-all hover:bg-[#F8FAFC]"
-            style={{
-              borderRadius: 10,
-              border: "1px solid #E2E8F0",
-              padding: "13px 28px",
-              fontFamily: "var(--font-outfit)",
-              fontWeight: 600,
-              fontSize: 16,
-              color: "#64748B",
-              background: "transparent",
-            }}
+            className="inline-flex items-center justify-center font-outfit font-semibold text-base text-muted-foreground border border-border bg-transparent rounded-[10px] px-7 py-3.5 transition-all hover:bg-background"
           >
             View Pricing
           </Link>

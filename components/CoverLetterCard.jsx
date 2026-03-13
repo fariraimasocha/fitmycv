@@ -35,7 +35,7 @@ export default function CoverLetterCard({
     <Card className="rounded-2xl shadow-lg border">
       <CardHeader className="flex-row items-center justify-between">
         <CardTitle className="flex items-center gap-2">
-          <EnvelopeSimpleIcon size={18} />
+          <EnvelopeSimpleIcon size={18} aria-hidden="true" />
           Cover Letter
         </CardTitle>
         {editable && (
@@ -43,6 +43,7 @@ export default function CoverLetterCard({
             variant="outline"
             size="sm"
             className="rounded-full"
+            aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
             onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
           >
             {isEditing ? (
@@ -72,7 +73,7 @@ export default function CoverLetterCard({
               <Button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="rounded-full bg-black px-6 text-white hover:bg-gray-800"
+                className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90"
               >
                 {isSaving ? (
                   <>
@@ -88,9 +89,13 @@ export default function CoverLetterCard({
               </Button>
             </div>
           </div>
-        ) : (
-          <p className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+        ) : content ? (
+          <p className="text-sm leading-relaxed text-foreground whitespace-pre-line">
             {content}
+          </p>
+        ) : (
+          <p className="text-sm text-muted-foreground italic">
+            No cover letter generated yet.
           </p>
         )}
       </CardContent>

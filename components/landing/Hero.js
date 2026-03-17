@@ -24,7 +24,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <Link
               href="/auth"
-              className="group inline-flex items-center justify-center gap-2 font-outfit font-semibold text-base bg-foreground text-background rounded-xl px-7 py-3.5 transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+              className="group inline-flex items-center justify-center gap-2 font-outfit font-semibold text-base bg-foreground text-background rounded-xl px-7 py-3.5 transition duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
             >
               Get Started
               <ArrowRightIcon
@@ -35,7 +35,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#how-it-works"
-              className="inline-flex items-center justify-center font-outfit font-semibold text-base text-muted-foreground border border-border rounded-xl px-7 py-3.5 transition-all duration-200 hover:bg-muted hover:text-foreground active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center font-outfit font-semibold text-base text-muted-foreground border border-border rounded-xl px-7 py-3.5 transition duration-200 hover:bg-muted hover:text-foreground active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
             >
               See How It Works
             </Link>
@@ -51,7 +51,7 @@ export default function Hero() {
             width={520}
             height={440}
             sizes="(max-width: 768px) 0px, (max-width: 1280px) 50vw, 520px"
-            className="absolute left-5 top-5 rounded-2xl object-cover border border-border shadow-[0_24px_64px_-12px_rgba(15,23,42,0.10)] bg-muted"
+            className="absolute left-5 top-5 rounded-2xl object-cover border border-border shadow-[0_24px_64px_-12px_rgba(15,23,42,0.10)] bg-muted outline outline-1 outline-black/5"
             priority
           />
 

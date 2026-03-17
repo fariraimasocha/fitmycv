@@ -233,7 +233,7 @@ export default function HowItWorks() {
         </div>
         <Link
           href="/auth"
-          className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-base bg-foreground text-background rounded-xl px-8 py-4 shadow-md transition-all hover:opacity-90 active:scale-[0.98]"
+          className="inline-flex items-center justify-center gap-2 font-sans font-semibold text-base bg-foreground text-background rounded-xl px-8 py-4 shadow-md transition hover:opacity-90 active:scale-[0.96]"
         >
           Try It Free Now
           <ArrowRightIcon size={18} aria-hidden="true" />

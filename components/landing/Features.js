@@ -101,7 +101,7 @@ export default function Features() {
               <button
                 key={theme}
                 onClick={() => setActiveTheme(theme)}
-                className={`font-sans font-medium text-sm rounded-full px-4 py-2 border transition-all cursor-pointer ${
+                className={`font-sans font-medium text-sm rounded-full px-4 py-2 border transition cursor-pointer active:scale-[0.96] ${
                   activeTheme === theme
                     ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground/40"

@@ -60,7 +60,7 @@ function ScoreGauge({ score }) {
         />
       </svg>
       <div className="absolute flex flex-col items-center" aria-hidden="true">
-        <span className="text-2xl font-bold leading-none">{score}</span>
+        <span className="text-2xl font-bold leading-none tabular-nums">{score}</span>
         <span className="text-xs text-muted-foreground">{label}</span>
       </div>
     </div>
@@ -79,7 +79,7 @@ function BreakdownBar({ label, value }) {
     <div className="space-y-1">
       <div className="flex justify-between text-sm">
         <span className="text-muted-foreground">{label}</span>
-        <span className="font-medium">{value}%</span>
+        <span className="font-medium tabular-nums">{value}%</span>
       </div>
       <div className="h-2 w-full rounded-full bg-muted/30">
         <div

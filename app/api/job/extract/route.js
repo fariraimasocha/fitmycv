@@ -146,8 +146,10 @@ export async function POST(request) {
     const pageText = exaData.results?.[0]?.text;
 
     console.log(
-      `[job-extract] Scraped ${pageText?.length ?? 0} chars from ${url}`,
-      pageText ? `| Preview: ${pageText.substring(0, 500)}` : "| No text"
+      "[job-extract] Scraped %d chars from %s | %s",
+      pageText?.length ?? 0,
+      url,
+      pageText ? `Preview: ${pageText.substring(0, 500)}` : "No text"
     );
 
     // Detect LinkedIn login wall — short content with sign-in text but no job keywords

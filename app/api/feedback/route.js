@@ -3,6 +3,15 @@ import { connectDB } from "@/utils/connect";
 import Feedback from "@/models/Feedback";
 import { Resend } from "resend";
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
 export async function POST(request) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -27,9 +36,9 @@ export async function POST(request) {
       to: "fariraimasocha@gmail.com",
       subject: `[FitMyCV Feedback] ${type} from ${name}`,
       html: `
-        <p><strong>Type:</strong> ${type}</p>
-        <p><strong>From:</strong> ${name} (${email})</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Type:</strong> ${escapeHtml(type)}</p>
+        <p><strong>From:</strong> ${escapeHtml(name)} (${escapeHtml(email)})</p>
+        <p><strong>Message:</strong> ${escapeHtml(message)}</p>
       `,
     });
 

@@ -15,4 +15,4 @@ export const CV_TEMPLATES = {
 };
 
 export const TEMPLATE_LIST = Object.values(CV_TEMPLATES);
-export const DEFAULT_TEMPLATE = "classic";
+export { DEFAULT_TEMPLATE } from "./metadata";

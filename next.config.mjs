@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: false,
+  serverExternalPackages: ["jspdf"],
   experimental: {
     optimizePackageImports: [
       "@phosphor-icons/react",

@@ -18,7 +18,9 @@ function StepNumber({ number, label }) {
   return (
     <div className="flex flex-row items-center gap-4">
       <div className="flex items-center justify-center bg-foreground w-14 h-14 rounded-2xl shrink-0">
-        <span className="font-outfit font-bold text-xl text-background">{number}</span>
+        <span className="font-outfit font-bold text-xl text-background">
+          {number}
+        </span>
       </div>
       <div className="bg-foreground h-0.5 w-10 rounded-sm" />
       <span className="font-sans font-semibold text-xs text-foreground tracking-[2px]">
@@ -31,8 +33,14 @@ function StepNumber({ number, label }) {
 function FeatureItem({ text }) {
   return (
     <div className="flex flex-row items-center gap-2.5">
-      <CheckCircleIcon size={18} className="text-foreground shrink-0" aria-hidden="true" />
-      <span className="font-sans font-medium text-muted-foreground text-sm">{text}</span>
+      <CheckCircleIcon
+        size={18}
+        className="text-foreground shrink-0"
+        aria-hidden="true"
+      />
+      <span className="font-sans font-medium text-muted-foreground text-sm">
+        {text}
+      </span>
     </div>
   );
 }
@@ -41,7 +49,11 @@ function Connector() {
   return (
     <div className="w-full flex flex-col items-center justify-center h-16">
       <div className="bg-border w-0.5 h-8" />
-      <CaretDownIcon size={20} className="text-muted-foreground" aria-hidden="true" />
+      <CaretDownIcon
+        size={20}
+        className="text-muted-foreground"
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -79,8 +91,9 @@ export default function HowItWorks() {
               Paste the Job Listing
             </h3>
             <p className="font-sans text-muted-foreground text-base leading-[1.7]">
-              Copy any job description from LinkedIn, Indeed, or anywhere else and paste it in.
-              Our system instantly parses the requirements, skills, and keywords.
+              Copy any job description from LinkedIn, Indeed, or anywhere else
+              and paste it in. Our system instantly parses the requirements,
+              skills, and keywords.
             </p>
             <div className="flex flex-col gap-3">
               <FeatureItem text="Works with LinkedIn, Indeed, Glassdoor & more" />
@@ -90,13 +103,17 @@ export default function HowItWorks() {
           </div>
 
           {/* Visual */}
-          <div className="flex-1 flex flex-col justify-center bg-background rounded-[20px] gap-4 min-h-[280px] p-8 border border-border">
+          <div className="flex-1 flex flex-col justify-center bg-background rounded-4xl gap-4 min-h-70 p-8 border border-border">
             <span className="font-sans font-medium text-xs text-muted-foreground">
               Job listing URL
             </span>
             {/* Input row */}
             <div className="flex flex-row items-center gap-2.5 bg-muted border border-border rounded-[10px] px-3.5 py-3">
-              <LinkIcon size={16} className="text-muted-foreground shrink-0" aria-hidden="true" />
+              <LinkIcon
+                size={16}
+                className="text-muted-foreground shrink-0"
+                aria-hidden="true"
+              />
               <input
                 readOnly
                 tabIndex={-1}
@@ -106,8 +123,14 @@ export default function HowItWorks() {
                 className="flex-1 bg-transparent border-none outline-none font-sans text-[13px] text-foreground placeholder:text-muted-foreground min-w-0"
               />
               <div className="inline-flex flex-row items-center gap-1.5 bg-foreground rounded-full px-2.5 py-1 shrink-0">
-                <ClipboardTextIcon size={12} className="text-background" aria-hidden="true" />
-                <span className="font-sans font-semibold text-[11px] text-background">Paste</span>
+                <ClipboardTextIcon
+                  size={12}
+                  className="text-background"
+                  aria-hidden="true"
+                />
+                <span className="font-sans font-semibold text-[11px] text-background">
+                  Paste
+                </span>
               </div>
             </div>
             {/* Source chips */}
@@ -121,8 +144,13 @@ export default function HowItWorks() {
                   key={label}
                   className="inline-flex flex-row items-center gap-1.5 bg-muted border border-border rounded-full px-3 py-1"
                 >
-                  <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`} aria-hidden="true" />
-                  <span className="font-sans font-medium text-[11px] text-muted-foreground">{label}</span>
+                  <div
+                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`}
+                    aria-hidden="true"
+                  />
+                  <span className="font-sans font-medium text-[11px] text-muted-foreground">
+                    {label}
+                  </span>
                 </div>
               ))}
             </div>
@@ -149,7 +177,9 @@ export default function HowItWorks() {
               aria-hidden="true"
             >
               <SparkleIcon size={15} className="text-background" />
-              <span className="font-sans font-semibold text-sm text-background">Tailor My CV</span>
+              <span className="font-sans font-semibold text-sm text-background">
+                Tailor My CV
+              </span>
             </div>
             <span className="font-sans text-xs text-muted-foreground text-center">
               Generates in ~30 seconds
@@ -163,8 +193,9 @@ export default function HowItWorks() {
               AI Tailors Your CV
             </h3>
             <p className="font-sans text-muted-foreground text-base leading-[1.7]">
-              Our AI restructures your resume, rewrites bullet points, and optimizes for ATS
-              keywords. Every detail is aligned to make you the perfect candidate.
+              Our AI restructures your resume, rewrites bullet points, and
+              optimizes for ATS keywords. Every detail is aligned to make you
+              the perfect candidate.
             </p>
             <div className="flex flex-col gap-3">
               <FeatureItem text="Rewrites bullet points with impact verbs" />
@@ -185,8 +216,8 @@ export default function HowItWorks() {
               Download &amp; Apply
             </h3>
             <p className="font-sans text-muted-foreground text-base leading-[1.7]">
-              Get your polished CV and a custom cover letter. Export as PDF and apply with
-              confidence. Stand out from the crowd.
+              Get your polished CV and a custom cover letter. Export as PDF and
+              apply with confidence. Stand out from the crowd.
             </p>
             <div className="flex flex-col gap-3">
               <FeatureItem text="One-click PDF export, beautifully formatted" />
@@ -206,17 +237,26 @@ export default function HowItWorks() {
               <span className="font-sans font-medium text-[13px] text-foreground">
                 resume_tailored.pdf
               </span>
-              <span className="font-sans text-[11px] text-muted-foreground">Ready to download</span>
+              <span className="font-sans text-[11px] text-muted-foreground">
+                Ready to download
+              </span>
             </div>
             {/* Export buttons (decorative) */}
-            <div className="flex flex-row flex-wrap justify-center gap-2.5" aria-hidden="true">
+            <div
+              className="flex flex-row flex-wrap justify-center gap-2.5"
+              aria-hidden="true"
+            >
               <div className="inline-flex flex-row items-center gap-2 bg-foreground rounded-full px-5 py-2.5">
                 <DownloadSimpleIcon size={14} className="text-background" />
-                <span className="font-sans font-semibold text-xs text-background">Download PDF</span>
+                <span className="font-sans font-semibold text-xs text-background">
+                  Download PDF
+                </span>
               </div>
               <div className="inline-flex flex-row items-center gap-2 bg-background border border-border rounded-full px-5 py-2.5">
                 <FilePlusIcon size={14} className="text-muted-foreground" />
-                <span className="font-sans font-semibold text-xs text-muted-foreground">Cover Letter</span>
+                <span className="font-sans font-semibold text-xs text-muted-foreground">
+                  Cover Letter
+                </span>
               </div>
             </div>
           </div>

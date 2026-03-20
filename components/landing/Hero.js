@@ -103,7 +103,7 @@ function TypewriterCard() {
         <span className="font-sans text-[11px] text-muted-foreground">
           Tailored for:
         </span>
-        <span className="font-sans font-semibold text-[12px] text-foreground">
+        <span className="font-sans font-semibold text-xs text-foreground">
           Senior Software Engineer at Stripe
         </span>
       </div>
@@ -184,7 +184,7 @@ export default function Hero() {
           </p>
 
           {/* Feature dots */}
-          <p className="font-sans text-[14px] text-muted-foreground">
+          <p className="font-sans text-sm text-muted-foreground">
             Upload your CV · Paste a job link · Get a tailored resume in seconds
           </p>
 

@@ -30,6 +30,7 @@ function TypewriterCard() {
   const [isComplete, setIsComplete] = useState(false);
   const indexRef = useRef(0);
   const timerRef = useRef(null);
+  const startTypingRef = useRef(null);
 
   const reducedMotion =
     typeof window !== "undefined"
@@ -53,10 +54,11 @@ function TypewriterCard() {
       if (indexRef.current >= COVER_LETTER.length) {
         clearInterval(timerRef.current);
         setIsComplete(true);
-        timerRef.current = setTimeout(() => startTyping(), RESTART_DELAY);
+        timerRef.current = setTimeout(() => startTypingRef.current?.(), RESTART_DELAY);
       }
     }, SPEED);
   }, [reducedMotion]);
+  startTypingRef.current = startTyping;
 
   useEffect(() => {
     startTyping();
@@ -107,7 +109,7 @@ function TypewriterCard() {
       </div>
 
       {/* Typewriter body */}
-      <div className="bg-background px-5 py-5 min-h-[300px] max-h-[340px] overflow-hidden">
+      <div className="bg-background px-5 py-5 min-h-75 max-h-85 overflow-hidden">
         <p
           className="font-sans text-[13px] leading-[1.85] text-foreground whitespace-pre-wrap"
           aria-live="polite"
@@ -156,7 +158,7 @@ export default function Hero() {
       {/* Ghost watermark */}
       <span
         aria-hidden="true"
-        className="pointer-events-none select-none absolute right-0 top-0 font-extrabold leading-none tracking-tighter font-outfit text-foreground/[0.04]"
+        className="pointer-events-none select-none absolute right-0 top-0 font-extrabold leading-none tracking-tighter font-outfit text-foreground/4"
         style={{ fontSize: "clamp(160px, 25vw, 320px)", lineHeight: 1 }}
       >
         CV

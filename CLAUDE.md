@@ -7,6 +7,7 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 ## Tech Stack
 
 - **Framework:** Next.js 16, React 19, Tailwind CSS v4
+- **Tailwind CSS:** use Tailwind v4 native utility values (e.g. `min-h-75`, `p-4`, `gap-6`) instead of arbitrary bracket syntax (e.g. `min-h-[300px]`, `p-[16px]`, `gap-[24px]`). Tailwind v4's spacing scale is `1 unit = 4px` (so `75 = 300px`).
 - **Auth:** NextAuth (Google OAuth)
 - **DB/ORM:** mongoose/MongoDB
 - **APIs:** Exa.ai (job page scraping), OpenAI (CV tailoring + cover letter), Groq (PDF text extraction)

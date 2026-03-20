@@ -59,9 +59,9 @@ const Navbar1 = () => {
   };
 
   return (
-    <div className="flex justify-center w-full py-6 px-4 fixed top-0 left-0 right-0 z-50">
+    <div className="fixed top-0 left-0 right-0 z-50 w-full">
       <motion.div
-        className="flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur-xl rounded-full shadow-lg shadow-black/[0.03] border border-gray-200/60 w-full max-w-3xl"
+        className="flex items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-24 py-4 backdrop-blur-xl w-full"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -76,7 +76,7 @@ const Navbar1 = () => {
           >
             <ReadCvLogoIcon size={32} />
           </motion.div>
-          <span className="text-lg font-semibold text-gray-900">fitmycv</span>
+          <span className="text-lg font-semibold text-foreground">fitmycv</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -92,7 +92,7 @@ const Navbar1 = () => {
               <a
                 href={item.href}
                 onClick={(e) => handleSmoothScroll(e, item.href)}
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 {item.label}
               </a>
@@ -113,7 +113,10 @@ const Navbar1 = () => {
               <DropdownMenuTrigger asChild>
                 <button className="focus:outline-none">
                   <Avatar className="w-9 h-9 cursor-pointer">
-                    <AvatarImage src={session.user?.image} alt={session.user?.name} />
+                    <AvatarImage
+                      src={session.user?.image}
+                      alt={session.user?.name}
+                    />
                     <AvatarFallback className="bg-black text-white text-sm font-medium">
                       {getInitials(session.user?.name)}
                     </AvatarFallback>
@@ -123,13 +126,20 @@ const Navbar1 = () => {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{session.user?.name}</p>
-                    <p className="text-xs leading-none text-muted-foreground">{session.user?.email}</p>
+                    <p className="text-sm font-medium leading-none">
+                      {session.user?.name}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {session.user?.email}
+                    </p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link href="/dashboard" className="flex items-center cursor-pointer">
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center cursor-pointer"
+                  >
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     Dashboard
                   </Link>
@@ -147,7 +157,7 @@ const Navbar1 = () => {
           ) : (
             <Link
               href="/auth"
-              className="inline-flex items-center justify-center px-5 py-2 text-sm text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors font-medium"
+              className="inline-flex items-center justify-center px-5 py-2 text-sm text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors font-medium"
             >
               Get Started
             </Link>
@@ -160,7 +170,7 @@ const Navbar1 = () => {
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
         >
-          <ListIcon size={24} className="text-gray-900" />
+          <ListIcon size={24} className="text-foreground" />
         </motion.button>
       </motion.div>
 
@@ -168,7 +178,7 @@ const Navbar1 = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-white z-50 pt-24 px-6 md:hidden"
+            className="fixed inset-0 bg-background z-50 pt-24 px-6 md:hidden"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
@@ -182,7 +192,7 @@ const Navbar1 = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <XIcon size={24} className="text-gray-900" />
+              <XIcon size={24} className="text-foreground" />
             </motion.button>
 
             <div className="flex flex-col space-y-6">
@@ -193,17 +203,24 @@ const Navbar1 = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
                   exit={{ opacity: 0, x: 20 }}
-                  className="flex items-center space-x-3 pb-2 border-b border-gray-100"
+                  className="flex items-center space-x-3 pb-2 border-b border-border"
                 >
                   <Avatar className="w-10 h-10">
-                    <AvatarImage src={session.user?.image} alt={session.user?.name} />
+                    <AvatarImage
+                      src={session.user?.image}
+                      alt={session.user?.name}
+                    />
                     <AvatarFallback className="bg-black text-white text-sm font-medium">
                       {getInitials(session.user?.name)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-900">{session.user?.name}</span>
-                    <span className="text-xs text-gray-500">{session.user?.email}</span>
+                    <span className="text-sm font-medium text-foreground">
+                      {session.user?.name}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {session.user?.email}
+                    </span>
                   </div>
                 </motion.div>
               )}
@@ -218,7 +235,7 @@ const Navbar1 = () => {
                 >
                   <a
                     href={item.href}
-                    className="text-base text-gray-900 font-medium"
+                    className="text-base text-foreground font-medium"
                     onClick={(e) => handleSmoothScroll(e, item.href)}
                   >
                     {item.label}
@@ -237,14 +254,17 @@ const Navbar1 = () => {
                   <div className="flex flex-col space-y-3">
                     <Link
                       href="/dashboard"
-                      className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors"
+                      className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors"
                       onClick={toggleMenu}
                     >
                       <LayoutDashboard className="mr-2 h-4 w-4" />
                       Dashboard
                     </Link>
                     <button
-                      onClick={() => { toggleMenu(); handleLogout(); }}
+                      onClick={() => {
+                        toggleMenu();
+                        handleLogout();
+                      }}
                       className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-red-600 font-medium hover:text-red-700 transition-colors"
                     >
                       <LogOut className="mr-2 h-4 w-4" />
@@ -254,7 +274,7 @@ const Navbar1 = () => {
                 ) : (
                   <Link
                     href="/auth"
-                    className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors"
+                    className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors"
                     onClick={toggleMenu}
                   >
                     Get Started

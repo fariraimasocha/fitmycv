@@ -71,11 +71,8 @@ function CheckoutRedirect() {
 
 export default function DashboardPage() {
   const { data: session } = useSession();
-  const [formattedDate, setFormattedDate] = useState("");
-
-  useEffect(() => {
-    setFormattedDate(getFormattedDate());
-  }, []);
+  const [formattedDate] = useState(() => getFormattedDate());
+  const [now] = useState(() => Date.now());
 
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
 
@@ -105,14 +102,14 @@ export default function DashboardPage() {
     : 0;
 
   const { thisWeekCount, coverLetterCount, chartData } = useMemo(() => {
-    const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const oneWeekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
     const cvs = tailoredCVs ?? [];
     return {
       thisWeekCount: cvs.filter((cv) => new Date(cv.createdAt) >= oneWeekAgo).length,
       coverLetterCount: cvs.filter((cv) => cv.coverLetter && cv.coverLetter.trim().length > 0).length,
       chartData: buildChartData(cvs),
     };
-  }, [tailoredCVs]);
+  }, [tailoredCVs, now]);
 
   const statCards = [
     {

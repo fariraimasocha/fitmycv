@@ -13,7 +13,7 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 - **APIs:** Exa.ai (job page scraping), OpenAI (CV tailoring + cover letter), Groq (PDF text extraction)
 - **PDF:** unpdf (extract text), TBD (generate downloadable PDFs)
 - **Icons:** use @phosphor-icons/react — always use the `Icon` suffix (e.g. `HouseIcon`, `XIcon`, `ListIcon`). Bare names like `X`, `List` are deprecated.
-- **Data fetching, caching and Mutations:** use tanstack-query 
+- **Data fetching, caching and Mutations:** use tanstack-query
 - **Toasts:** use react-hot-toast for all notifications
 - **State Management:** use zustand for global state management
 - **Loading:** use `<Loader />` from `@/components/Loader` — default full-page loader for all pages
@@ -55,3 +55,8 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 5. Generate tailored CV — verify content is adjusted for the job
 6. Generate cover letter — verify it references the job and user's experience
 7. Download PDF — verify CV and cover letter render as proper PDFs
+
+## React Hooks Rules
+
+- **Always include all referenced variables in dependency arrays.** Every variable used inside `useEffect`, `useMemo`, or `useCallback` must appear in its dependency array. Missing deps cause stale closure bugs and lint errors.
+- **Never call impure functions during render.** Functions like `Date.now()`, `Math.random()`, or `new Date()` must not be called directly in the render body or inside `useMemo`/`useCallback`. Capture them in a `useState` lazy initializer (`useState(() => Date.now())`) so they run once on mount, then reference the state value in hooks.

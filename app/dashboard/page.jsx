@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, useMemo, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
@@ -103,15 +103,16 @@ export default function DashboardPage() {
   const researchCount = Array.isArray(companyResearches)
     ? companyResearches.length
     : 0;
-  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-  const thisWeekCount =
-    tailoredCVs?.filter((cv) => new Date(cv.createdAt) >= oneWeekAgo).length ??
-    0;
-  const coverLetterCount =
-    tailoredCVs?.filter(
-      (cv) => cv.coverLetter && cv.coverLetter.trim().length > 0,
-    ).length ?? 0;
-  const chartData = buildChartData(tailoredCVs ?? []);
+
+  const { thisWeekCount, coverLetterCount, chartData } = useMemo(() => {
+    const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const cvs = tailoredCVs ?? [];
+    return {
+      thisWeekCount: cvs.filter((cv) => new Date(cv.createdAt) >= oneWeekAgo).length,
+      coverLetterCount: cvs.filter((cv) => cv.coverLetter && cv.coverLetter.trim().length > 0).length,
+      chartData: buildChartData(cvs),
+    };
+  }, [tailoredCVs]);
 
   const statCards = [
     {

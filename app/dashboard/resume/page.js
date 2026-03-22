@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import {
   ArrowCounterClockwiseIcon,
   ArrowLeftIcon,
+  DownloadSimpleIcon,
   EyeIcon,
   PencilSimpleIcon,
 } from "@phosphor-icons/react";
@@ -13,12 +14,16 @@ import { Button } from "@/components/ui/button";
 import ResumeUpload from "@/components/ResumeUpload";
 import ResumeForm from "@/components/ResumeForm";
 import ResumePreview from "@/components/ResumePreview";
+import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
+import toast from "react-hot-toast";
 
 export default function MyResumePage() {
   const [parsedData, setParsedData] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const [downloading, setDownloading] = useState(false);
 
   const {
     data: savedCV,
@@ -43,6 +48,20 @@ export default function MyResumePage() {
     setParsedData(null);
     setShowPreview(false);
     setShowUploadForm(true);
+  };
+
+  const handleDownload = async (resumeData) => {
+    setDownloading(true);
+    try {
+      const { generateCVPdf, buildPdfFilename } = await import("@/utils/pdf-generator");
+      const doc = generateCVPdf(resumeData, selectedTemplate);
+      const filename = buildPdfFilename(resumeData.basics?.name, null, "cv");
+      doc.save(filename);
+    } catch {
+      toast.error("Failed to generate PDF. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
   };
 
   if (isLoading) {
@@ -73,6 +92,22 @@ export default function MyResumePage() {
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
+            {showPreview && (
+              <>
+                <TemplateSelect value={selectedTemplate} onChange={setSelectedTemplate} />
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => handleDownload(resumeData)}
+                    disabled={downloading}
+                  >
+                    <DownloadSimpleIcon size={16} />
+                    {downloading ? "Generating..." : "Download PDF"}
+                  </Button>
+                </motion.div>
+              </>
+            )}
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
@@ -101,7 +136,7 @@ export default function MyResumePage() {
           </div>
         </div>
         {showPreview ? (
-          <ResumePreview data={resumeData} />
+          <ResumePreview data={resumeData} template={selectedTemplate} />
         ) : (
           <ResumeForm
             initialData={resumeData}
@@ -167,6 +202,22 @@ export default function MyResumePage() {
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
+            {showPreview && (
+              <>
+                <TemplateSelect value={selectedTemplate} onChange={setSelectedTemplate} />
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => handleDownload(resumeData)}
+                    disabled={downloading}
+                  >
+                    <DownloadSimpleIcon size={16} />
+                    {downloading ? "Generating..." : "Download PDF"}
+                  </Button>
+                </motion.div>
+              </>
+            )}
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
                 variant="outline"
@@ -195,7 +246,7 @@ export default function MyResumePage() {
           </div>
         </div>
         {showPreview ? (
-          <ResumePreview data={resumeData} />
+          <ResumePreview data={resumeData} template={selectedTemplate} />
         ) : (
           <ResumeForm
             initialData={resumeData}

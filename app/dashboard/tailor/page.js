@@ -14,16 +14,21 @@ import {
   DownloadSimpleIcon,
   ChartBarIcon,
   BinocularsIcon,
+  ChatTeardropDotsIcon,
+  LinkedinLogoIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
+import JobMatchScoreCard from "@/components/JobMatchScoreCard";
 import ResumePreview from "@/components/ResumePreview";
 import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
 import ATSScoreCard from "@/components/ATSScoreCard";
 import CompanyResearchCard from "@/components/CompanyResearchCard";
+import InterviewPrepCard from "@/components/InterviewPrepCard";
+import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 
 export default function TailorPage() {
   const queryClient = useQueryClient();
@@ -34,8 +39,15 @@ export default function TailorPage() {
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
   const [atsScore, setAtsScore] = useState(null);
   const [atsLoading, setAtsLoading] = useState(false);
+  const [preAtsScore, setPreAtsScore] = useState(null);
   const [companyBrief, setCompanyBrief] = useState(null);
   const [companyBriefLoading, setCompanyBriefLoading] = useState(false);
+  const [matchScore, setMatchScore] = useState(null);
+  const [matchScoreLoading, setMatchScoreLoading] = useState(false);
+  const [cachedReferenceCV, setCachedReferenceCV] = useState(null);
+  const [interviewPrep, setInterviewPrep] = useState(null);
+  const [interviewPrepLoading, setInterviewPrepLoading] = useState(false);
+  const [linkedInModalOpen, setLinkedInModalOpen] = useState(false);
   const tailorRef = useRef(null);
 
   const extractMutation = useMutation({
@@ -58,6 +70,51 @@ export default function TailorPage() {
       setTailorResult(null);
       setAtsScore(null);
       setCompanyBrief(null);
+      setMatchScore(null);
+      setPreAtsScore(null);
+
+      // Auto-trigger job match scoring + pre-ATS score in background
+      setMatchScoreLoading(true);
+      fetch("/api/resume")
+        .then((res) => res.json())
+        .then((cvData) => {
+          if (!cvData.data) {
+            setMatchScoreLoading(false);
+            return;
+          }
+          const referenceCV = {
+            basics: cvData.data.basics,
+            work: cvData.data.work,
+            education: cvData.data.education,
+            skills: cvData.data.skills,
+          };
+          setCachedReferenceCV(referenceCV);
+
+          // Fire match score and pre-ATS score in parallel
+          const scorePromise = fetch("/api/job/score", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ referenceCV, jobData: result.data }),
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              if (res?.data) setMatchScore(res.data);
+            });
+
+          const preAtsPromise = fetch("/api/ats-score", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tailoredCV: referenceCV, jobData: result.data }),
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              if (res?.data) setPreAtsScore(res.data);
+            });
+
+          return Promise.all([scorePromise, preAtsPromise]);
+        })
+        .catch(() => {})
+        .finally(() => setMatchScoreLoading(false));
 
       // Auto-trigger company research in background
       if (result.data?.company && result.data.company.length > 2) {
@@ -162,7 +219,7 @@ export default function TailorPage() {
         .catch(() => {})
         .finally(() => setAtsLoading(false));
 
-      // Auto-save to database
+      // Auto-save to database (includes auto-creating application)
       saveMutation.mutate({
         jobTitle: jobData?.title || "",
         jobCompany: jobData?.company || "",
@@ -172,6 +229,8 @@ export default function TailorPage() {
         education: result.data.tailoredCV.education,
         skills: result.data.tailoredCV.skills,
         coverLetter: result.data.coverLetter,
+        matchScore: matchScore?.globalScore,
+        matchGrade: matchScore?.globalGrade,
       });
     },
     onError: (error) => {
@@ -284,7 +343,17 @@ export default function TailorPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <JobRequirementsCard data={jobData} />
+          <JobRequirementsCard data={jobData} referenceCV={cachedReferenceCV} />
+        </motion.div>
+      )}
+
+      {jobData && (matchScoreLoading || matchScore) && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <JobMatchScoreCard scoreData={matchScore} isLoading={matchScoreLoading} />
         </motion.div>
       )}
 
@@ -366,14 +435,44 @@ export default function TailorPage() {
                 aria-selected={activeTab === "research"}
                 variant={activeTab === "research" ? "default" : "outline"}
                 onClick={() => setActiveTab("research")}
-                className="gap-2 shrink-0 mr-8"
+                className="gap-2 shrink-0"
               >
                 <BinocularsIcon size={16} aria-hidden="true" />
                 Company Research
               </Button>
+              <Button
+                role="tab"
+                aria-selected={activeTab === "interview"}
+                variant={activeTab === "interview" ? "default" : "outline"}
+                onClick={() => {
+                  setActiveTab("interview");
+                  if (!interviewPrep && !interviewPrepLoading && tailorResult) {
+                    setInterviewPrepLoading(true);
+                    fetch("/api/interview-prep", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        tailoredCV: tailorResult.tailoredCV,
+                        jobData,
+                        companyBrief: companyBrief || null,
+                      }),
+                    })
+                      .then((res) => res.json())
+                      .then((res) => {
+                        if (res.data) setInterviewPrep(res.data);
+                      })
+                      .catch(() => {})
+                      .finally(() => setInterviewPrepLoading(false));
+                  }
+                }}
+                className="gap-2 shrink-0 mr-8"
+              >
+                <ChatTeardropDotsIcon size={16} aria-hidden="true" />
+                Interview Prep
+              </Button>
             </div>
             {/* Actions row — only shown for downloadable tabs */}
-            {activeTab !== "ats" && activeTab !== "research" && (
+            {activeTab !== "ats" && activeTab !== "research" && activeTab !== "interview" && (
               <div className="flex items-center gap-2 flex-wrap">
                 {activeTab === "cv" && (
                   <TemplateSelect
@@ -389,24 +488,70 @@ export default function TailorPage() {
                   <DownloadSimpleIcon size={16} />
                   Download PDF
                 </Button>
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  onClick={() => setLinkedInModalOpen(true)}
+                >
+                  <LinkedinLogoIcon size={16} />
+                  LinkedIn Message
+                </Button>
               </div>
             )}
           </div>
 
           {activeTab === "cv" && (
-            <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
+            <>
+              <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
+              {tailorResult.keywordsInjected?.length > 0 && (
+                <Card className="rounded-2xl border shadow-sm">
+                  <CardContent className="py-3 px-4">
+                    <p className="text-xs font-medium text-muted-foreground mb-2">
+                      Keywords injected ({tailorResult.keywordsInjected.length})
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {tailorResult.keywordsInjected.map((k, i) => (
+                        <span
+                          key={i}
+                          title={k.location}
+                          className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 cursor-help"
+                        >
+                          {k.keyword}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </>
           )}
           {activeTab === "letter" && (
             <CoverLetterCard content={tailorResult.coverLetter} />
           )}
           {activeTab === "ats" && (
-            <ATSScoreCard atsData={atsScore} isLoading={atsLoading} />
+            <ATSScoreCard atsData={atsScore} isLoading={atsLoading} preScore={preAtsScore?.score} />
           )}
           {activeTab === "research" && (
             <CompanyResearchCard brief={companyBrief} isLoading={companyBriefLoading} />
           )}
+          {activeTab === "interview" && (
+            <InterviewPrepCard
+              prepData={interviewPrep}
+              isLoading={interviewPrepLoading}
+              jobTitle={jobData?.title}
+              jobCompany={jobData?.company}
+            />
+          )}
         </motion.div>
       )}
+
+      <LinkedInOutreachModal
+        open={linkedInModalOpen}
+        onClose={() => setLinkedInModalOpen(false)}
+        tailoredCV={tailorResult?.tailoredCV}
+        jobData={jobData}
+        companyBrief={companyBrief}
+      />
     </div>
   );
 }

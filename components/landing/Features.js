@@ -40,12 +40,12 @@ const themes = ["Minimal", "Executive", "Creative", "Tech", "Classic", "Bold"];
 
 function FeatureCard({ feature }) {
   return (
-    <div className="flex-1 flex flex-col gap-4 bg-muted rounded-xl p-8 border border-border">
+    <div className="flex-1 flex flex-col gap-4 bg-muted rounded-xl p-5 sm:p-6 lg:p-8 border border-border">
       <div className="flex items-center justify-center bg-background w-11 h-11 rounded-[10px] shrink-0 border border-border">
         <feature.icon size={22} className="text-foreground" aria-hidden="true" />
       </div>
       <h3 className="font-outfit font-bold text-foreground text-lg">{feature.title}</h3>
-      <p className="font-sans text-muted-foreground text-[15px] leading-relaxed">{feature.description}</p>
+      <p className="font-sans text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
     </div>
   );
 }
@@ -60,12 +60,12 @@ export default function Features() {
     >
       {/* Header */}
       <div className="flex flex-col items-center gap-4">
-        <h2 className="font-outfit font-bold text-foreground text-center text-[32px] sm:text-[40px] tracking-tight leading-[1.15]">
+        <h2 className="font-outfit font-bold text-foreground text-center text-3xl sm:text-4xl tracking-tight leading-tight">
           Everything you need to
           <br />
           stand out
         </h2>
-        <p className="font-sans text-muted-foreground text-center text-[17px]">
+        <p className="font-sans text-muted-foreground text-center text-base">
           Powerful features designed to give you an unfair advantage in the job market.
         </p>
       </div>
@@ -87,12 +87,12 @@ export default function Features() {
         </div>
 
         {/* Wide card — Multiple Themes */}
-        <div className="w-full flex flex-col gap-5 bg-muted rounded-xl p-8 border border-border">
+        <div className="w-full flex flex-col gap-5 bg-muted rounded-xl p-5 sm:p-6 lg:p-8 border border-border">
           <div className="flex items-center justify-center bg-background w-11 h-11 rounded-[10px] shrink-0 border border-border">
             <PaletteIcon size={22} className="text-foreground" aria-hidden="true" />
           </div>
           <h3 className="font-outfit font-bold text-foreground text-lg">Multiple Themes</h3>
-          <p className="font-sans text-muted-foreground text-[15px] leading-relaxed max-w-[600px]">
+          <p className="font-sans text-muted-foreground text-sm leading-relaxed max-w-[600px]">
             Choose from six professionally designed CV themes that suit your industry and personality.
           </p>
           {/* Theme chips */}

@@ -71,7 +71,11 @@ function CheckoutRedirect() {
 
 export default function DashboardPage() {
   const { data: session } = useSession();
-  const [formattedDate] = useState(() => getFormattedDate());
+  const [formattedDate, setFormattedDate] = useState("");
+
+  useEffect(() => {
+    setFormattedDate(getFormattedDate());
+  }, []);
   const [now] = useState(() => Date.now());
 
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
@@ -162,7 +166,7 @@ export default function DashboardPage() {
       </div>
 
       {/* 4 Stat Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {statCards.map((card) => (
           <motion.div
             key={card.label}
@@ -208,7 +212,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent className="pb-4">
             <p className="text-xs text-muted-foreground mb-4">Last 30 days</p>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={220} className="sm:!h-[300px]">
               <BarChart
                 data={chartData}
                 margin={{ top: 2, right: 4, left: -28, bottom: 0 }}

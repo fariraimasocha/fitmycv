@@ -26,6 +26,9 @@ const PATH_LABELS = {
   "/dashboard/profile": "Profile",
   "/dashboard/upgrade": "Upgrade to Pro",
   "/dashboard/company-research": "Company Research",
+  "/dashboard/applications": "Applications",
+  "/dashboard/story-bank": "Story Bank",
+  "/dashboard/compare": "Compare Offers",
 };
 
 function DashboardBreadcrumb() {
@@ -41,6 +44,26 @@ function DashboardBreadcrumb() {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink href="/dashboard/tailored">Tailored CVs</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Detail</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
+  }
+
+  const isApplicationDetail =
+    pathname.startsWith("/dashboard/applications/") &&
+    pathname !== "/dashboard/applications";
+
+  if (isApplicationDetail) {
+    return (
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/dashboard/applications">Applications</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

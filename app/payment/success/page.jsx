@@ -34,7 +34,7 @@ export default function PaymentSuccessPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-sm border border-gray-200 p-5 sm:p-8 text-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg
             className="w-8 h-8 text-green-600"

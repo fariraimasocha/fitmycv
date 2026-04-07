@@ -78,7 +78,7 @@ function TypewriterCard() {
             <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
             <div className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
           </div>
-          <span className="font-sans text-[11px] text-muted-foreground font-medium">
+          <span className="font-sans text-xs text-muted-foreground font-medium">
             cover_letter.pdf
           </span>
         </div>
@@ -87,7 +87,7 @@ function TypewriterCard() {
             className={`w-1.5 h-1.5 rounded-full bg-green-500 ${!isComplete ? "animate-pulse" : ""}`}
             aria-hidden="true"
           />
-          <span className="font-sans text-[11px] text-muted-foreground font-medium">
+          <span className="font-sans text-xs text-muted-foreground font-medium">
             {isComplete ? "Complete" : "Generating…"}
           </span>
         </div>
@@ -100,7 +100,7 @@ function TypewriterCard() {
           className="text-muted-foreground shrink-0"
           aria-hidden="true"
         />
-        <span className="font-sans text-[11px] text-muted-foreground">
+        <span className="font-sans text-xs text-muted-foreground">
           Tailored for:
         </span>
         <span className="font-sans font-semibold text-xs text-foreground">
@@ -111,7 +111,7 @@ function TypewriterCard() {
       {/* Typewriter body */}
       <div className="bg-background px-5 py-5 min-h-75 max-h-85 overflow-hidden">
         <p
-          className="font-sans text-[13px] leading-[1.85] text-foreground whitespace-pre-wrap"
+          className="font-sans text-sm leading-relaxed text-foreground whitespace-pre-wrap"
           aria-live="polite"
         >
           {displayed}
@@ -132,7 +132,7 @@ function TypewriterCard() {
             className={`transition-colors duration-300 ${isComplete ? "text-green-500" : "text-muted-foreground"}`}
             aria-hidden="true"
           />
-          <span className="font-sans text-[11px] text-muted-foreground">
+          <span className="font-sans text-xs text-muted-foreground">
             ATS Score:{" "}
             <span className="font-semibold text-foreground">94%</span>
           </span>
@@ -143,7 +143,7 @@ function TypewriterCard() {
             className="text-muted-foreground"
             aria-hidden="true"
           />
-          <span className="font-sans text-[11px] text-muted-foreground">
+          <span className="font-sans text-xs text-muted-foreground">
             Ready in <span className="font-semibold text-foreground">8s</span>
           </span>
         </div>
@@ -178,7 +178,7 @@ export default function Hero() {
           </h1>
 
           {/* Subheading */}
-          <p className="font-sans text-muted-foreground text-[17px] leading-[1.75]">
+          <p className="font-sans text-muted-foreground text-base leading-relaxed">
             Stop sending the same CV everywhere. FitMyCV tailors your resume and
             cover letter to every job, so you show up as the perfect fit.
           </p>

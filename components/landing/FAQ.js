@@ -58,7 +58,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
-            <p className="font-sans text-muted-foreground text-[15px] leading-[1.7] pt-3">
+            <p className="font-sans text-muted-foreground text-sm leading-relaxed pt-3">
               {faq.answer}
             </p>
           </motion.div>
@@ -76,7 +76,7 @@ export default function FAQ() {
       id="faq"
       className="bg-background flex flex-col items-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-24 gap-12"
     >
-      <h2 className="font-outfit font-bold text-foreground text-center text-[32px] sm:text-[40px] tracking-tight">
+      <h2 className="font-outfit font-bold text-foreground text-center text-3xl sm:text-4xl tracking-tight">
         Frequently asked questions
       </h2>
 

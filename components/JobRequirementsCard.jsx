@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import {
   BriefcaseIcon,
@@ -9,10 +10,21 @@ import {
   ListChecksIcon,
   ClipboardTextIcon,
   GraduationCapIcon,
+  TagIcon,
+  CaretDownIcon,
+  CaretUpIcon,
+  CheckCircleIcon,
+  XCircleIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function JobRequirementsCard({ data }) {
+function matchesKeyword(keyword, cvText) {
+  const kw = keyword.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`\\b${kw}\\b`, "i");
+  return pattern.test(cvText);
+}
+
+export default function JobRequirementsCard({ data, referenceCV }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -75,6 +87,9 @@ export default function JobRequirementsCard({ data }) {
               items={data.qualifications}
             />
           )}
+          {data.keywords?.length > 0 && (
+            <KeywordsSection keywords={data.keywords} referenceCV={referenceCV} />
+          )}
         </CardContent>
       </Card>
     </motion.div>
@@ -93,6 +108,80 @@ function Section({ icon, title, items }) {
           <li key={i}>{item}</li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function KeywordsSection({ keywords, referenceCV }) {
+  const [expanded, setExpanded] = useState(false);
+
+  // Build a text blob from the CV to match keywords against
+  let cvText = "";
+  if (referenceCV) {
+    const parts = [
+      referenceCV.basics?.summary || "",
+      referenceCV.basics?.label || "",
+      ...(referenceCV.work || []).map((w) => `${w.position || ""} ${w.description || ""}`),
+      ...(referenceCV.skills || []).map((s) => (s.skills || []).join(" ")),
+      ...(referenceCV.education || []).map((e) => `${e.degree || ""} ${e.fieldOfStudy || ""}`),
+    ];
+    cvText = parts.join(" ");
+  }
+
+  const matched = referenceCV ? keywords.filter((kw) => matchesKeyword(kw, cvText)) : [];
+  const missing = referenceCV ? keywords.filter((kw) => !matchesKeyword(kw, cvText)) : [];
+  const hasCV = Boolean(referenceCV);
+
+  return (
+    <div className="space-y-2">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex w-full items-center gap-2 text-sm font-semibold text-foreground hover:text-foreground/80 transition-colors"
+      >
+        <TagIcon size={16} aria-hidden="true" />
+        Key Terms ({keywords.length})
+        {hasCV && (
+          <span className="ml-auto text-xs font-normal text-muted-foreground">
+            {matched.length}/{keywords.length} in your CV
+          </span>
+        )}
+        {expanded ? <CaretUpIcon size={14} /> : <CaretDownIcon size={14} />}
+      </button>
+      {expanded && (
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {hasCV ? (
+            <>
+              {matched.map((kw) => (
+                <span
+                  key={kw}
+                  className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                >
+                  <CheckCircleIcon size={12} weight="fill" />
+                  {kw}
+                </span>
+              ))}
+              {missing.map((kw) => (
+                <span
+                  key={kw}
+                  className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"
+                >
+                  <XCircleIcon size={12} weight="fill" />
+                  {kw}
+                </span>
+              ))}
+            </>
+          ) : (
+            keywords.map((kw) => (
+              <span
+                key={kw}
+                className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+              >
+                {kw}
+              </span>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 }

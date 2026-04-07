@@ -217,7 +217,7 @@ export default function ResumeForm({
               <p className="text-sm text-gray-500">No profiles added yet.</p>
             )}
             {profilesFields.fields.map((field, index) => (
-              <div key={field.id} className="flex gap-3 items-end">
+              <div key={field.id} className="flex flex-col sm:flex-row gap-3 items-end">
                 <div className="flex-1 space-y-2">
                   <Label>Network</Label>
                   <Input
@@ -314,7 +314,7 @@ export default function ResumeForm({
                     <Label>Location</Label>
                     <Input {...register(`work.${index}.location`)} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-2">
                       <Label>Start Date</Label>
                       <Input
@@ -411,7 +411,7 @@ export default function ResumeForm({
                     <Label>Field of Study</Label>
                     <Input {...register(`education.${index}.fieldOfStudy`)} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-2">
                       <Label>Start Date</Label>
                       <Input

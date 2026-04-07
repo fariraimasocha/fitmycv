@@ -47,7 +47,7 @@ export default function CompanyResearchPage() {
           transition={{ duration: 0.3, delay: 0.05 }}
         >
           <Card className="rounded-2xl border shadow-lg">
-            <CardContent className="flex flex-col items-center justify-center py-16 text-center">
+            <CardContent className="flex flex-col items-center justify-center py-10 sm:py-16 text-center">
               <BinocularsIcon size={48} className="text-gray-300" />
               <h3 className="mt-4 text-lg font-medium text-gray-900">
                 No company briefs yet

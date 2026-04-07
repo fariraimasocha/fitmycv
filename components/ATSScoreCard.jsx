@@ -125,7 +125,7 @@ function LoadingSkeleton() {
   );
 }
 
-export default function ATSScoreCard({ atsData, isLoading }) {
+export default function ATSScoreCard({ atsData, isLoading, preScore }) {
   if (isLoading) {
     return (
       <Card className="rounded-2xl border shadow-lg">
@@ -158,8 +158,18 @@ export default function ATSScoreCard({ atsData, isLoading }) {
         <CardTitle className="text-base">ATS Compatibility Score</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Score + Breakdown */}
-        <div className="flex items-start gap-6">
+        {/* Score + Delta + Breakdown */}
+        {typeof preScore === "number" && score > preScore && (
+          <div className="flex items-center gap-2 rounded-lg bg-green-50 dark:bg-green-900/20 px-3 py-2 text-sm">
+            <span className="font-medium text-green-700 dark:text-green-400">
+              Score improved {preScore} &rarr; {score}
+            </span>
+            <span className="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/40 px-2 py-0.5 text-xs font-bold text-green-800 dark:text-green-300">
+              +{score - preScore}
+            </span>
+          </div>
+        )}
+        <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
           <div className="relative flex shrink-0 items-center justify-center">
             <ScoreGauge score={score} />
           </div>

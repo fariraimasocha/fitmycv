@@ -12,7 +12,7 @@ import { TEMPLATE_METADATA } from "@/utils/cv-templates/metadata";
 export default function TemplateSelect({ value, onChange }) {
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="w-[160px]">
+      <SelectTrigger className="w-full sm:w-[160px]">
         <SelectValue placeholder="Template" />
       </SelectTrigger>
       <SelectContent>

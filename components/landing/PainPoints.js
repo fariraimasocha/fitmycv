@@ -16,12 +16,12 @@ export default function PainPoints() {
       <div className="flex flex-col gap-12">
         {/* Header */}
         <div className="w-full max-w-2xl flex flex-col gap-4">
-          <h2 className="font-outfit font-bold text-foreground text-[32px] sm:text-[40px] tracking-tight leading-[1.15]">
+          <h2 className="font-outfit font-bold text-foreground text-3xl sm:text-4xl tracking-tight leading-tight">
             Sending the same CV
             <br />
             to every job?
           </h2>
-          <p className="font-sans text-muted-foreground text-[17px] leading-[1.7]">
+          <p className="font-sans text-muted-foreground text-base leading-relaxed">
             Most candidates blast out identical applications and wonder why they never hear
             back. Here&apos;s what&apos;s going wrong.
           </p>
@@ -37,12 +37,12 @@ export default function PainPoints() {
                 <div className="flex items-center justify-center bg-foreground/70 w-11 h-11 rounded-xl shrink-0">
                   <FileXIcon size={22} className="text-foreground/50" aria-hidden="true" />
                 </div>
-                <h3 className="font-outfit font-bold text-background text-[28px] leading-[1.2] tracking-tight">
+                <h3 className="font-outfit font-bold text-background text-2xl leading-tight tracking-tight">
                   Generic CVs
                   <br />
                   get ignored
                 </h3>
-                <p className="font-sans text-background/60 text-[15px] leading-relaxed max-w-[320px]">
+                <p className="font-sans text-background/60 text-sm leading-relaxed max-w-[320px]">
                   Recruiters scan for keyword matches. A one-size-fits-all CV rarely hits the
                   mark — it gets 6 seconds of attention before the next candidate.
                 </p>
@@ -50,8 +50,8 @@ export default function PainPoints() {
 
               {/* CV Stack Visual — hidden on small screens */}
               <div
-                className="hidden sm:block absolute"
-                style={{ right: 0, top: 40, width: 380, height: 240 }}
+                className="hidden sm:block absolute max-w-full"
+                style={{ right: 0, top: 40, width: 380, height: 240, maxWidth: "60%" }}
                 aria-hidden="true"
               >
                 {[
@@ -68,7 +68,7 @@ export default function PainPoints() {
                 {/* Rejected badge */}
                 <div className="absolute flex flex-row items-center gap-1.5 bg-destructive rounded-full px-3.5 py-1.5" style={{ right: 0, bottom: 10 }}>
                   <XIcon size={12} className="text-white" aria-hidden="true" />
-                  <span className="font-sans font-semibold text-[11px] text-white">Rejected</span>
+                  <span className="font-sans font-semibold text-xs text-white">Rejected</span>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function PainPoints() {
                 <div className="flex items-center justify-center bg-border w-11 h-11 rounded-xl shrink-0">
                   <ClockIcon size={22} className="text-foreground" aria-hidden="true" />
                 </div>
-                <h3 className="font-outfit font-bold text-foreground text-[22px] leading-[1.2] tracking-tight">
+                <h3 className="font-outfit font-bold text-foreground text-xl leading-tight tracking-tight">
                   Hours wasted
                   <br />
                   per application
@@ -89,10 +89,10 @@ export default function PainPoints() {
                 </p>
               </div>
               <div className="flex items-end gap-2">
-                <span className="font-outfit font-bold text-foreground text-[40px] leading-none tracking-tight">
+                <span className="font-outfit font-bold text-foreground text-4xl leading-none tracking-tight">
                   3.5h
                 </span>
-                <span className="font-sans font-medium text-[13px] text-muted-foreground pb-1">
+                <span className="font-sans font-medium text-sm text-muted-foreground pb-1">
                   avg. per application
                 </span>
               </div>
@@ -106,7 +106,7 @@ export default function PainPoints() {
               <div className="flex items-center justify-center bg-border w-11 h-11 rounded-xl shrink-0">
                 <ShieldWarningIcon size={22} className="text-foreground" aria-hidden="true" />
               </div>
-              <h3 className="font-outfit font-bold text-foreground text-[22px] leading-[1.2] tracking-tight">
+              <h3 className="font-outfit font-bold text-foreground text-xl leading-tight tracking-tight">
                 ATS filters
                 <br />
                 you out
@@ -134,7 +134,7 @@ export default function PainPoints() {
                 <div className="flex items-center justify-center bg-border w-11 h-11 rounded-xl shrink-0">
                   <EnvelopeSimpleIcon size={22} className="text-foreground" aria-hidden="true" />
                 </div>
-                <h3 className="font-outfit font-bold text-foreground text-[22px] leading-[1.2] tracking-tight">
+                <h3 className="font-outfit font-bold text-foreground text-xl leading-tight tracking-tight">
                   No feedback,
                   <br />
                   no replies
@@ -181,7 +181,7 @@ export default function PainPoints() {
                 <div className="flex items-center justify-center bg-border w-11 h-11 rounded-xl shrink-0">
                   <CrosshairIcon size={22} className="text-foreground" aria-hidden="true" />
                 </div>
-                <h3 className="font-outfit font-bold text-foreground text-[22px] leading-[1.2] tracking-tight">
+                <h3 className="font-outfit font-bold text-foreground text-xl leading-tight tracking-tight">
                   Wrong keywords, wrong role
                 </h3>
                 <p className="font-sans text-muted-foreground text-sm leading-relaxed">
@@ -216,7 +216,7 @@ export default function PainPoints() {
                 <div className="flex items-center justify-center bg-foreground/70 w-11 h-11 rounded-xl shrink-0">
                   <BatteryLowIcon size={22} className="text-background/50" aria-hidden="true" />
                 </div>
-                <h3 className="font-outfit font-bold text-background text-[22px] leading-[1.2] tracking-tight">
+                <h3 className="font-outfit font-bold text-background text-xl leading-tight tracking-tight">
                   Application burnout
                   <br />
                   is real
@@ -226,10 +226,10 @@ export default function PainPoints() {
                 </p>
               </div>
               <div className="flex items-end gap-2">
-                <span className="font-outfit font-bold text-background text-[36px] leading-none tracking-tight">
+                <span className="font-outfit font-bold text-background text-4xl leading-none tracking-tight">
                   50+
                 </span>
-                <span className="font-sans font-medium text-[13px] text-background/50 pb-1">
+                <span className="font-sans font-medium text-sm text-background/50 pb-1">
                   applications before burnout
                 </span>
               </div>

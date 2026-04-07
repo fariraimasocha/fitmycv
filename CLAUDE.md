@@ -60,3 +60,30 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 
 - **Always include all referenced variables in dependency arrays.** Every variable used inside `useEffect`, `useMemo`, or `useCallback` must appear in its dependency array. Missing deps cause stale closure bugs and lint errors.
 - **Never call impure functions during render.** Functions like `Date.now()`, `Math.random()`, or `new Date()` must not be called directly in the render body or inside `useMemo`/`useCallback`. Capture them in a `useState` lazy initializer (`useState(() => Date.now())`) so they run once on mount, then reference the state value in hooks.
+
+# CLAUDE.md
+
+Instructions for AI coding agents working with this codebase.
+
+<!-- opensrc:start -->
+
+## Source Code Reference
+
+Source code for dependencies is available in `opensrc/` for deeper understanding of implementation details.
+
+See `opensrc/sources.json` for the list of available packages and their versions.
+
+Use this source code when you need to understand how a package works internally, not just its types/interface.
+
+### Fetching Additional Source Code
+
+To fetch source code for a package or repository you need to understand, run:
+
+```bash
+npx opensrc <package>           # npm package (e.g., npx opensrc zod)
+npx opensrc pypi:<package>      # Python package (e.g., npx opensrc pypi:requests)
+npx opensrc crates:<package>    # Rust crate (e.g., npx opensrc crates:serde)
+npx opensrc <owner>/<repo>      # GitHub repo (e.g., npx opensrc vercel/ai)
+```
+
+<!-- opensrc:end -->

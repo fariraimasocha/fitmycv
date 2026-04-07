@@ -15,6 +15,7 @@ export function parseJobFromResponse(responseText) {
     responsibilities: ensureArray(raw.responsibilities),
     qualifications: ensureArray(raw.qualifications),
     salary: raw.salary || "",
+    keywords: ensureArray(raw.keywords),
   };
 }
 

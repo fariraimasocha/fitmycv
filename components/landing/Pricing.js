@@ -37,7 +37,7 @@ export default function Pricing() {
         <span className="font-sans font-medium text-sm text-muted-foreground border border-border rounded-full px-5 py-2">
           Pricing
         </span>
-        <h2 className="font-outfit font-extrabold text-foreground text-center text-[32px] sm:text-[44px] tracking-tight">
+        <h2 className="font-outfit font-extrabold text-foreground text-center text-3xl sm:text-4xl lg:text-5xl tracking-tight">
           Simple, transparent pricing
         </h2>
         <p className="font-sans text-muted-foreground text-center text-lg">
@@ -46,16 +46,16 @@ export default function Pricing() {
       </div>
 
       {/* Card */}
-      <div className="flex flex-col bg-background w-full max-w-[480px] rounded-2xl border border-border shadow-md gap-7 p-10">
+      <div className="flex flex-col bg-background w-full max-w-[480px] rounded-2xl border border-border shadow-md gap-7 p-6 sm:p-8 lg:p-10">
         {/* Card top */}
         <div className="flex flex-col gap-2">
-          <span className="font-outfit font-bold text-foreground text-[26px]">Premium</span>
+          <span className="font-outfit font-bold text-foreground text-2xl">Premium</span>
           <span className="font-sans text-muted-foreground text-sm">Cancel anytime. No contracts.</span>
         </div>
 
         {/* Price row */}
         <div className="flex flex-row items-end gap-1">
-          <span className="font-outfit font-extrabold text-foreground text-[48px] leading-none tracking-tight">
+          <span className="font-outfit font-extrabold text-foreground text-5xl leading-none tracking-tight">
             $4.99
           </span>
           <span className="font-sans text-muted-foreground text-base pb-1">/month</span>

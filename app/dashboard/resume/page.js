@@ -151,7 +151,7 @@ export default function MyResumePage() {
   if (showUploadForm) {
     return (
       <motion.div
-        className="mx-auto max-w-lg space-y-6 p-4 sm:p-6 pt-10 sm:pt-20"
+        className="mx-auto max-w-lg space-y-6 p-4 sm:p-6 pt-8 sm:pt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}

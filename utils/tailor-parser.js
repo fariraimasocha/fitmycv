@@ -14,6 +14,12 @@ export function parseTailorResponse(responseText) {
       skills: mapSkills(raw.cv || raw),
     },
     coverLetter: raw.coverLetter || raw.cover_letter || "",
+    keywordsInjected: Array.isArray(raw.keywordsInjected)
+      ? raw.keywordsInjected.map((k) => ({
+          keyword: k.keyword || "",
+          location: k.location || "",
+        }))
+      : [],
   };
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { HouseIcon, ReadCvLogoIcon, PenIcon, StackIcon, BinocularsIcon } from "@phosphor-icons/react";
+import { HouseIcon, ReadCvLogoIcon, PenIcon, StackIcon, BinocularsIcon, KanbanIcon, BookOpenIcon, ScalesIcon } from "@phosphor-icons/react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -35,9 +35,24 @@ const navItems = [
     icon: StackIcon,
   },
   {
+    title: "Applications",
+    url: "/dashboard/applications",
+    icon: KanbanIcon,
+  },
+  {
     title: "Company Research",
     url: "/dashboard/company-research",
     icon: BinocularsIcon,
+  },
+  {
+    title: "Story Bank",
+    url: "/dashboard/story-bank",
+    icon: BookOpenIcon,
+  },
+  {
+    title: "Compare Offers",
+    url: "/dashboard/compare",
+    icon: ScalesIcon,
   },
 ];
 

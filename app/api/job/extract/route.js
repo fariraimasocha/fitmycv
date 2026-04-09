@@ -16,7 +16,8 @@ Use this exact schema:
   "requirements": ["Required skill 1", "Required skill 2"],
   "responsibilities": ["Responsibility 1", "Responsibility 2"],
   "qualifications": ["Qualification 1", "Qualification 2"],
-  "salary": "Salary range if listed, or empty string"
+  "salary": "Salary range if listed, or empty string",
+  "keywords": ["keyword1", "keyword2", "keyword3"]
 }
 
 Rules:
@@ -24,6 +25,7 @@ Rules:
 - "requirements" should list key technical and soft skills required
 - "responsibilities" should list main duties and tasks
 - "qualifications" should list education, certifications, years of experience
+- "keywords" should list 15-20 key technical skills, tools, frameworks, and domain terms that the job emphasizes most. Extract specific technologies (e.g. "React", "AWS", "Python") and domain concepts (e.g. "CI/CD", "microservices", "agile"). These are the terms an ATS would scan for.
 - If a field is not found, use an empty string or empty array
 - Return ONLY the JSON object, no markdown, no explanation
 

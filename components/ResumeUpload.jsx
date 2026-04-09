@@ -102,7 +102,7 @@ export default function ResumeUpload({ onParsed }) {
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
-        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-10 transition-colors ${
+        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 sm:p-10 transition-colors ${
           dragActive
             ? "border-gray-900 bg-gray-50"
             : "border-gray-300 hover:border-gray-400"

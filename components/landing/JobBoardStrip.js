@@ -15,7 +15,7 @@ export default function JobBoardStrip() {
   return (
     <section className="bg-muted border-t border-b border-border px-5 py-8 sm:px-10 lg:px-16 xl:px-24">
       <div className="flex flex-col items-center gap-6">
-        <p className="font-sans font-semibold text-[11px] text-muted-foreground/70 text-center tracking-[1.5px] uppercase">
+        <p className="font-sans font-semibold text-xs text-muted-foreground/70 text-center tracking-widest uppercase">
           Works with job boards you already use
         </p>
         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12">

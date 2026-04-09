@@ -22,6 +22,15 @@ export function parseCompanyResearchResponse(responseText) {
           snippet: item.snippet || "",
         }))
       : [],
+    techStrategy: typeof raw.techStrategy === "string" ? raw.techStrategy.trim() : "",
+    challenges: Array.isArray(raw.challenges) ? raw.challenges.filter(Boolean) : [],
+    competitors: Array.isArray(raw.competitors)
+      ? raw.competitors.map((c) => ({
+          name: c.name || "",
+          differentiation: c.differentiation || "",
+        }))
+      : [],
+    positioningTips: Array.isArray(raw.positioningTips) ? raw.positioningTips.filter(Boolean) : [],
   };
 }
 

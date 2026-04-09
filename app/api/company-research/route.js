@@ -7,7 +7,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-const SYSTEM_PROMPT = `You are a company research analyst. Given web content about a company, extract and synthesize a structured research brief for a job seeker preparing for an interview. Return ONLY valid JSON with no additional text.
+const SYSTEM_PROMPT = `You are a company research analyst. Given web content about a company, extract and synthesize a structured 6-axis research brief for a job seeker preparing for an interview. Return ONLY valid JSON with no additional text.
 
 Use this exact schema:
 {
@@ -23,7 +23,13 @@ Use this exact schema:
       "publishedAt": "2026-01-15",
       "snippet": "One or two sentence summary of what this article covers"
     }
-  ]
+  ],
+  "techStrategy": "2-3 sentences on the company's technology direction, key technical bets, and engineering approach — inferred from blog posts, tech talks, job listings, or press",
+  "challenges": ["Key business or technical challenge the company faces", "Another challenge"],
+  "competitors": [
+    { "name": "Competitor Name", "differentiation": "How this company differs from the competitor" }
+  ],
+  "positioningTips": ["Actionable tip for the candidate, e.g. 'Mention your experience with distributed systems — they are scaling to handle 10M users'"]
 }
 
 Rules:
@@ -31,6 +37,10 @@ Rules:
 - "cultureSignals" should be 3-6 short phrases inferred from the content, e.g. "remote-first", "fast-paced startup", "strong engineering culture", "equity compensation", "unlimited PTO"
 - "recentNews" should only include genuinely recent items; use an empty array if none are found in the provided content
 - "teamSize" and "fundingStage" should say "Unknown" if not determinable from the content
+- "techStrategy" should describe the company's tech stack, architecture direction, or engineering philosophy if inferable from content. Use empty string if unknown.
+- "challenges" should list 2-4 business or technical challenges the company likely faces based on their industry, stage, and recent news. Be specific.
+- "competitors" should list 2-4 key competitors with a brief differentiation note. Use empty array if not determinable.
+- "positioningTips" should give 3-5 actionable, specific suggestions for how a candidate should frame their experience during an interview. Reference specific company challenges or initiatives.
 - Return ONLY the JSON object, no markdown, no explanation`;
 
 export async function GET() {
@@ -74,8 +84,8 @@ export async function POST(request) {
 
     const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
 
-    // Dual Exa.ai calls in parallel
-    const [newsRes, aboutRes] = await Promise.all([
+    // Triple Exa.ai calls in parallel — news, about, and competitive intel
+    const [newsRes, aboutRes, competitiveRes] = await Promise.all([
       fetch("https://api.exa.ai/search", {
         method: "POST",
         headers: {
@@ -107,11 +117,27 @@ export async function POST(request) {
           },
         }),
       }),
+      fetch("https://api.exa.ai/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.EXA_API_KEY}`,
+        },
+        body: JSON.stringify({
+          query: `${companyName} competitors technology stack engineering blog`,
+          numResults: 3,
+          livecrawl: "always",
+          contents: {
+            text: { maxCharacters: 3000, includeHtmlTags: false },
+          },
+        }),
+      }),
     ]);
 
-    const [newsData, aboutData] = await Promise.all([
+    const [newsData, aboutData, competitiveData] = await Promise.all([
       newsRes.json(),
       aboutRes.json(),
+      competitiveRes.json(),
     ]);
 
     const newsBlock = (newsData.results || [])
@@ -125,7 +151,11 @@ export async function POST(request) {
       .map((r, i) => `[About ${i + 1}]\nSource: ${r.url || ""}\n${r.text || ""}`)
       .join("\n\n---\n\n");
 
-    const combinedContext = `COMPANY: ${companyName}\n\n== RECENT NEWS ==\n${newsBlock || "No recent news found."}\n\n== ABOUT / CULTURE / TEAM ==\n${aboutBlock || "No about information found."}`;
+    const competitiveBlock = (competitiveData.results || [])
+      .map((r, i) => `[Competitive ${i + 1}]\nSource: ${r.url || ""}\n${r.text || ""}`)
+      .join("\n\n---\n\n");
+
+    const combinedContext = `COMPANY: ${companyName}\n\n== RECENT NEWS ==\n${newsBlock || "No recent news found."}\n\n== ABOUT / CULTURE / TEAM ==\n${aboutBlock || "No about information found."}\n\n== COMPETITIVE / TECHNOLOGY ==\n${competitiveBlock || "No competitive information found."}`;
 
     console.log(`[company-research] Context length: ${combinedContext.length} chars`);
 
@@ -137,7 +167,7 @@ export async function POST(request) {
         { role: "user", content: combinedContext },
       ],
       temperature: 0.2,
-      max_tokens: 2048,
+      max_tokens: 3072,
     });
 
     const responseText = completion.choices[0]?.message?.content;

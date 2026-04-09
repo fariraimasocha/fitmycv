@@ -9,6 +9,10 @@ import {
   TargetIcon,
   ArticleIcon,
   ArrowSquareOutIcon,
+  LightningIcon,
+  WarningIcon,
+  SwordIcon,
+  LightbulbIcon,
 } from "@phosphor-icons/react";
 
 function InfoBadge({ children }) {
@@ -127,6 +131,75 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                 <CultureChip key={i} signal={signal} />
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Tech Strategy */}
+        {brief.techStrategy && (
+          <div className="space-y-2">
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <LightningIcon size={15} />
+              Tech Strategy
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {brief.techStrategy}
+            </p>
+          </div>
+        )}
+
+        {/* Challenges */}
+        {brief.challenges?.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <WarningIcon size={15} />
+              Key Challenges
+            </h3>
+            <ul className="space-y-1.5">
+              {brief.challenges.map((challenge, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="mt-0.5 shrink-0 text-amber-500">*</span>
+                  {challenge}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Competitors */}
+        {brief.competitors?.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
+              <SwordIcon size={15} />
+              Competitive Landscape
+            </h3>
+            <ul className="space-y-2">
+              {brief.competitors.map((comp, i) => (
+                <li key={i} className="text-sm">
+                  <span className="font-medium text-foreground">{comp.name}</span>
+                  {comp.differentiation && (
+                    <span className="text-muted-foreground"> — {comp.differentiation}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Positioning Tips */}
+        {brief.positioningTips?.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="flex items-center gap-2 text-sm font-semibold text-green-700 dark:text-green-400">
+              <LightbulbIcon size={15} weight="fill" />
+              Interview Positioning Tips
+            </h3>
+            <ul className="space-y-1.5">
+              {brief.positioningTips.map((tip, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="mt-0.5 shrink-0 text-green-500">*</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

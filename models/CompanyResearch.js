@@ -44,6 +44,18 @@ const companyResearchSchema = new mongoose.Schema(
         snippet: { type: String },
       },
     ],
+    techStrategy: {
+      type: String,
+      default: "",
+    },
+    challenges: [{ type: String }],
+    competitors: [
+      {
+        name: { type: String },
+        differentiation: { type: String },
+      },
+    ],
+    positioningTips: [{ type: String }],
   },
   { timestamps: true }
 );

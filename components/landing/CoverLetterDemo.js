@@ -61,16 +61,16 @@ export default function CoverLetterDemo() {
       <div className="flex flex-col items-center gap-4 text-center">
         <div className="inline-flex flex-row items-center gap-2 bg-muted border border-border rounded-full px-4 py-1.5">
           <SparkleIcon size={14} className="text-foreground" aria-hidden="true" />
-          <span className="font-sans font-medium text-[13px] text-foreground">
+          <span className="font-sans font-medium text-sm text-foreground">
             AI Writing Live
           </span>
         </div>
-        <h2 className="font-outfit font-bold text-foreground text-[32px] sm:text-[40px] tracking-tight leading-[1.15]">
+        <h2 className="font-outfit font-bold text-foreground text-3xl sm:text-4xl tracking-tight leading-tight">
           Watch your cover letter
           <br />
           write itself
         </h2>
-        <p className="font-sans text-muted-foreground text-[17px] max-w-xl">
+        <p className="font-sans text-muted-foreground text-base max-w-xl">
           FitMyCV reads the job description and writes a tailored, professional
           cover letter in seconds — in your voice.
         </p>
@@ -86,13 +86,13 @@ export default function CoverLetterDemo() {
               <div className="w-3 h-3 rounded-full bg-yellow-400/70" />
               <div className="w-3 h-3 rounded-full bg-green-400/70" />
             </div>
-            <span className="font-sans text-[12px] text-muted-foreground font-medium">
+            <span className="font-sans text-xs text-muted-foreground font-medium">
               cover_letter.pdf
             </span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
-            <span className="font-sans text-[11px] text-muted-foreground font-medium">
+            <span className="font-sans text-xs text-muted-foreground font-medium">
               {isComplete ? "Complete" : "Generating…"}
             </span>
           </div>
@@ -100,20 +100,20 @@ export default function CoverLetterDemo() {
 
         {/* Job context strip */}
         <div className="flex flex-row items-center gap-3 bg-background border-b border-border px-5 py-3">
-          <span className="font-sans text-[12px] text-muted-foreground">Tailored for:</span>
+          <span className="font-sans text-xs text-muted-foreground">Tailored for:</span>
           <div className="flex items-center gap-2">
-            <span className="font-sans font-semibold text-[13px] text-foreground">
+            <span className="font-sans font-semibold text-sm text-foreground">
               Senior Software Engineer
             </span>
-            <span className="font-sans text-[12px] text-muted-foreground">at</span>
-            <span className="font-sans font-semibold text-[13px] text-foreground">Stripe</span>
+            <span className="font-sans text-xs text-muted-foreground">at</span>
+            <span className="font-sans font-semibold text-sm text-foreground">Stripe</span>
           </div>
         </div>
 
         {/* Typewriter area */}
-        <div className="bg-background px-7 py-7 min-h-[380px]">
+        <div className="bg-background px-4 py-5 sm:px-7 sm:py-7 min-h-[380px]">
           <p
-            className="font-sans text-[14px] leading-[1.85] text-foreground whitespace-pre-wrap"
+            className="font-sans text-sm leading-relaxed text-foreground whitespace-pre-wrap"
             aria-live="polite"
             aria-label="Cover letter being generated"
           >
@@ -128,13 +128,13 @@ export default function CoverLetterDemo() {
         </div>
 
         {/* Card footer */}
-        <div className="flex flex-row items-center justify-between bg-muted border-t border-border px-5 py-3.5">
-          <span className="font-sans text-[12px] text-muted-foreground">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 bg-muted border-t border-border px-5 py-3.5">
+          <span className="font-sans text-xs text-muted-foreground">
             {displayed.length} / {COVER_LETTER.length} characters
           </span>
           <Link
             href="/auth"
-            className="inline-flex items-center gap-1.5 font-sans font-semibold text-[12px] text-foreground hover:opacity-70 transition"
+            className="inline-flex items-center gap-1.5 font-sans font-semibold text-xs text-foreground hover:opacity-70 transition"
           >
             Generate mine
             <ArrowRightIcon size={12} aria-hidden="true" />
@@ -143,7 +143,7 @@ export default function CoverLetterDemo() {
       </div>
 
       {/* Bottom note */}
-      <p className="font-sans text-[14px] text-muted-foreground text-center">
+      <p className="font-sans text-sm text-muted-foreground text-center">
         Every letter is unique — written to match the exact job, company, and your background.
       </p>
 

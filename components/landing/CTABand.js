@@ -7,10 +7,10 @@ export default function CTABand() {
   return (
     <section className="bg-muted border-t border-b border-border px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-20">
       <div className="flex flex-col items-center gap-8">
-        <h2 className="font-outfit font-bold text-foreground text-center text-[28px] sm:text-[40px] tracking-tight">
+        <h2 className="font-outfit font-bold text-foreground text-center text-2xl sm:text-3xl lg:text-4xl tracking-tight">
           Ready to stop being ignored?
         </h2>
-        <p className="font-sans text-muted-foreground text-center text-[17px] max-w-[560px]">
+        <p className="font-sans text-muted-foreground text-center text-base max-w-[560px]">
           Join thousands of job seekers who are landing interviews faster with
           AI-tailored applications.
         </p>

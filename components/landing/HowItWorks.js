@@ -23,7 +23,7 @@ function StepNumber({ number, label }) {
         </span>
       </div>
       <div className="bg-foreground h-0.5 w-10 rounded-sm" />
-      <span className="font-sans font-semibold text-xs text-foreground tracking-[2px]">
+      <span className="font-sans font-semibold text-xs text-foreground tracking-widest">
         {label}
       </span>
     </div>
@@ -68,14 +68,14 @@ export default function HowItWorks() {
       <div className="flex flex-col items-center gap-4">
         <div className="inline-flex flex-row items-center gap-2 bg-background border border-border rounded-full px-4 py-1.5">
           <div className="bg-foreground w-2 h-2 rounded-full shrink-0" />
-          <span className="font-sans font-medium text-[13px] text-foreground">
+          <span className="font-sans font-medium text-sm text-foreground">
             Simple 3-Step Process
           </span>
         </div>
-        <h2 className="font-outfit font-bold text-foreground text-center text-[32px] sm:text-[40px] tracking-tight">
+        <h2 className="font-outfit font-bold text-foreground text-center text-3xl sm:text-4xl tracking-tight">
           How It Works
         </h2>
-        <p className="font-sans text-muted-foreground text-center text-[17px]">
+        <p className="font-sans text-muted-foreground text-center text-base">
           From job listing to tailored application in under a minute.
         </p>
       </div>
@@ -87,10 +87,10 @@ export default function HowItWorks() {
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5 lg:py-10 lg:pr-12">
             <StepNumber number="01" label="PASTE" />
-            <h3 className="font-outfit font-bold text-foreground text-[28px] tracking-tight">
+            <h3 className="font-outfit font-bold text-foreground text-2xl tracking-tight">
               Paste the Job Listing
             </h3>
-            <p className="font-sans text-muted-foreground text-base leading-[1.7]">
+            <p className="font-sans text-muted-foreground text-base leading-relaxed">
               Copy any job description from LinkedIn, Indeed, or anywhere else
               and paste it in. Our system instantly parses the requirements,
               skills, and keywords.
@@ -120,7 +120,7 @@ export default function HowItWorks() {
                 aria-hidden="true"
                 value=""
                 placeholder="https://linkedin.com/jobs/view/..."
-                className="flex-1 bg-transparent border-none outline-none font-sans text-[13px] text-foreground placeholder:text-muted-foreground min-w-0"
+                className="flex-1 bg-transparent border-none outline-none font-sans text-sm text-foreground placeholder:text-muted-foreground min-w-0"
               />
               <div className="inline-flex flex-row items-center gap-1.5 bg-foreground rounded-full px-2.5 py-1 shrink-0">
                 <ClipboardTextIcon
@@ -128,7 +128,7 @@ export default function HowItWorks() {
                   className="text-background"
                   aria-hidden="true"
                 />
-                <span className="font-sans font-semibold text-[11px] text-background">
+                <span className="font-sans font-semibold text-xs text-background">
                   Paste
                 </span>
               </div>
@@ -148,7 +148,7 @@ export default function HowItWorks() {
                     className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`}
                     aria-hidden="true"
                   />
-                  <span className="font-sans font-medium text-[11px] text-muted-foreground">
+                  <span className="font-sans font-medium text-xs text-muted-foreground">
                     {label}
                   </span>
                 </div>
@@ -189,10 +189,10 @@ export default function HowItWorks() {
           {/* Content — shown first on mobile, second on lg */}
           <div className="flex-1 flex flex-col gap-5 order-1 lg:order-2 lg:py-10 lg:pl-12">
             <StepNumber number="02" label="TAILOR" />
-            <h3 className="font-outfit font-bold text-foreground text-[28px] tracking-tight">
+            <h3 className="font-outfit font-bold text-foreground text-2xl tracking-tight">
               AI Tailors Your CV
             </h3>
-            <p className="font-sans text-muted-foreground text-base leading-[1.7]">
+            <p className="font-sans text-muted-foreground text-base leading-relaxed">
               Our AI restructures your resume, rewrites bullet points, and
               optimizes for ATS keywords. Every detail is aligned to make you
               the perfect candidate.
@@ -212,10 +212,10 @@ export default function HowItWorks() {
           {/* Content */}
           <div className="flex-1 flex flex-col gap-5 lg:py-10 lg:pr-12">
             <StepNumber number="03" label="APPLY" />
-            <h3 className="font-outfit font-bold text-foreground text-[28px] tracking-tight">
+            <h3 className="font-outfit font-bold text-foreground text-2xl tracking-tight">
               Download &amp; Apply
             </h3>
-            <p className="font-sans text-muted-foreground text-base leading-[1.7]">
+            <p className="font-sans text-muted-foreground text-base leading-relaxed">
               Get your polished CV and a custom cover letter. Export as PDF and
               apply with confidence. Stand out from the crowd.
             </p>
@@ -234,10 +234,10 @@ export default function HowItWorks() {
               aria-hidden="true"
             >
               <FileTextIcon size={36} className="text-foreground" />
-              <span className="font-sans font-medium text-[13px] text-foreground">
+              <span className="font-sans font-medium text-sm text-foreground">
                 resume_tailored.pdf
               </span>
-              <span className="font-sans text-[11px] text-muted-foreground">
+              <span className="font-sans text-xs text-muted-foreground">
                 Ready to download
               </span>
             </div>

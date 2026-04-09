@@ -37,10 +37,10 @@ export default function Footer() {
           </div>
 
           {/* Links + Other Apps */}
-          <div className="flex flex-row gap-12 sm:gap-16">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-16">
             {/* Links col */}
             <div className="flex flex-col gap-4">
-              <h4 className="font-outfit font-semibold text-[13px] text-foreground">Links</h4>
+              <h4 className="font-outfit font-semibold text-sm text-foreground">Links</h4>
               <ul className="flex flex-col gap-3">
                 {footerLinks.map(({ label, href }) => (
                   <li key={label}>
@@ -57,7 +57,7 @@ export default function Footer() {
 
             {/* Other Apps col */}
             <div className="flex flex-col gap-4">
-              <h4 className="font-outfit font-semibold text-[13px] text-foreground">Other Apps</h4>
+              <h4 className="font-outfit font-semibold text-sm text-foreground">Other Apps</h4>
               <ul className="flex flex-col gap-3">
                 {otherApps.map(({ label, href }) => (
                   <li key={label}>
@@ -78,7 +78,7 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full border-t border-border gap-4 pt-6">
-          <p className="font-sans text-[13px] text-muted-foreground">
+          <p className="font-sans text-sm text-muted-foreground">
             2025 FitMyCv. All rights reserved.
           </p>
           <div className="flex flex-row flex-wrap gap-4">
@@ -88,7 +88,7 @@ export default function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-[13px] text-muted-foreground hover:text-foreground transition-colors"
+                className="font-sans text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {href.replace("https://", "")}
               </a>

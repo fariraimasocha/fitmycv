@@ -21,7 +21,7 @@ export default function Testimonial() {
             className="hidden sm:block absolute bg-amber-100 rounded h-[30px] w-[45%] right-0 top-[3px]"
             aria-hidden="true"
           />
-          <p className="relative font-sans text-foreground/80 text-center w-full text-[22px] leading-[1.65] z-10">
+          <p className="relative font-sans text-foreground/80 text-center w-full text-xl leading-relaxed z-10">
             Not having to rewrite my CV manually is saving me tons of application work. Now I
             just paste a job link and FitMyCv handles everything itself
           </p>
@@ -38,7 +38,7 @@ export default function Testimonial() {
           />
           <div className="flex flex-col gap-1">
             <span className="font-outfit font-bold text-lg text-foreground">Farai Matsika</span>
-            <span className="font-sans text-[15px] text-muted-foreground">Software Developer</span>
+            <span className="font-sans text-sm text-muted-foreground">Software Developer</span>
           </div>
         </div>
       </div>

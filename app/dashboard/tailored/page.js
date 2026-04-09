@@ -92,7 +92,7 @@ export default function TailoredCVsPage() {
           transition={{ duration: 0.3, delay: 0.05 }}
         >
           <Card className="rounded-2xl border shadow-lg">
-            <CardContent className="flex flex-col items-center justify-center py-16 text-center gap-4">
+            <CardContent className="flex flex-col items-center justify-center py-10 sm:py-16 text-center gap-4">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
                 <FileTextIcon size={28} className="text-muted-foreground/60" aria-hidden="true" />
               </div>

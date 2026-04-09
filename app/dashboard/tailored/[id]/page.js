@@ -154,7 +154,7 @@ export default function TailoredCVDetailPage() {
       >
         <div className="flex flex-col gap-3">
           {/* Tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-1">
+          <div className="flex gap-2 overflow-x-auto pb-1 [mask-image:linear-gradient(to_right,transparent_0,black_8px,black_calc(100%-8px),transparent_100%)]">
             <Button
               variant={activeTab === "cv" ? "default" : "outline"}
               onClick={() => setActiveTab("cv")}

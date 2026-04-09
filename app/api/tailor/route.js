@@ -45,17 +45,23 @@ Return ONLY valid JSON with this exact structure:
       { "name": "Category", "keywords": ["skill1", "skill2"] }
     ]
   },
-  "coverLetter": "Full cover letter text with paragraphs separated by newlines..."
+  "coverLetter": "Full cover letter text with paragraphs separated by newlines...",
+  "keywordsInjected": [
+    { "keyword": "React", "location": "Summary" },
+    { "keyword": "CI/CD", "location": "Work entry 1, highlight 2" }
+  ]
 }
 
 CV Tailoring Rules:
-- Rewrite the professional summary to directly address the target role
+- First, extract 15-20 key terms from the job description (technologies, skills, domain concepts)
+- Rewrite the professional summary to directly address the target role, embedding top 5 keywords naturally
 - Adjust work experience descriptions to highlight relevant achievements and skills
+- For each keyword, identify where it can be naturally woven into existing experience bullets — reformulate using job terminology but NEVER fabricate
 - Reorder skills to prioritize those matching the job requirements
-- Use keywords from the job listing naturally throughout
 - NEVER fabricate experience, companies, roles, or skills that aren't in the original CV
 - NEVER change dates, company names, or educational institutions
 - Keep the same structure but optimize the language and emphasis
+- Track every keyword you injected in the "keywordsInjected" array with the keyword and where it was placed
 
 Cover Letter Rules:
 - Address the specific company and role by name
@@ -122,9 +128,9 @@ Please tailor the CV for this specific role and generate a cover letter.`;
       );
     }
 
-    const { tailoredCV, coverLetter } = parseTailorResponse(responseText);
+    const { tailoredCV, coverLetter, keywordsInjected } = parseTailorResponse(responseText);
 
-    return Response.json({ data: { tailoredCV, coverLetter } });
+    return Response.json({ data: { tailoredCV, coverLetter, keywordsInjected } });
   } catch (error) {
     console.error("Tailor error:", error);
     return Response.json(

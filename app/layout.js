@@ -4,6 +4,7 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -76,11 +77,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <script
-          defer
+        <Script
+          src="https://datafa.st/js/script.js"
           data-website-id="dfid_cdiVXmqmHhypbU5Znt1vC"
           data-domain="fitmycv.link"
-          src="https://datafa.st/js/script.js"
+          strategy="afterInteractive"
         />
       </head>
       <body

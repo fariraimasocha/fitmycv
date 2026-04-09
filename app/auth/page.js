@@ -36,7 +36,7 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <motion.div
-        className="bg-white rounded-2xl shadow-lg border p-8 w-full max-w-sm flex flex-col items-center gap-6"
+        className="bg-white rounded-2xl shadow-lg border p-5 sm:p-8 w-full max-w-sm flex flex-col items-center gap-6"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}

@@ -92,7 +92,7 @@ export default function ProfilePage() {
       >
         <Card className="rounded-xl border-border overflow-hidden">
           {/* Banner strip */}
-          <div className="bg-foreground/5 px-6 py-5 flex items-center gap-4">
+          <div className="bg-foreground/5 px-4 sm:px-6 py-5 flex items-center gap-4">
             <Avatar className="h-16 w-16 ring-2 ring-border">
               <AvatarImage src={user.image} alt={user.name} />
               <AvatarFallback className="text-xl font-semibold">{initials}</AvatarFallback>

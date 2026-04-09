@@ -603,15 +603,15 @@ const PREVIEWS = {
 
 const PADDING = {
   modern: "p-4",
-  minimal: "p-10",
-  creative: "p-8",
+  minimal: "p-6 sm:p-10",
+  creative: "p-5 sm:p-8",
   technical: "p-4",
 };
 
 export default function ResumePreview({ data, template = "classic" }) {
   const { basics, work, education, skills } = data;
   const Preview = PREVIEWS[template] || ClassicPreview;
-  const padding = PADDING[template] || "p-8";
+  const padding = PADDING[template] || "p-5 sm:p-8";
 
   return (
     <Card className="rounded-2xl border shadow-lg">

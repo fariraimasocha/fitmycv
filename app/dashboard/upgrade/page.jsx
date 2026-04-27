@@ -19,6 +19,8 @@ const PRO_FEATURES = [
   "Priority support",
 ];
 
+const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
+
 export default function UpgradePage() {
   const { update } = useSession();
   const router = useRouter();
@@ -27,7 +29,9 @@ export default function UpgradePage() {
   useEffect(() => {
     async function checkPremiumStatus() {
       try {
-        const res = await fetch("/api/user/premium-status");
+        const res = await fetch(PREMIUM_STATUS_ENDPOINT, {
+          credentials: "same-origin",
+        });
         const data = await res.json();
         if (data.isPremium) {
           // DB says premium but JWT was stale — refresh session and redirect

@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 
+const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
+
 export default function PaymentSuccessPage() {
   const { update } = useSession();
   const router = useRouter();
@@ -13,7 +15,9 @@ export default function PaymentSuccessPage() {
   const { data } = useQuery({
     queryKey: ["premium-status"],
     queryFn: async () => {
-      const res = await fetch("/api/user/premium-status");
+      const res = await fetch(PREMIUM_STATUS_ENDPOINT, {
+        credentials: "same-origin",
+      });
       if (!res.ok) throw new Error("Failed to check premium status");
       return res.json();
     },

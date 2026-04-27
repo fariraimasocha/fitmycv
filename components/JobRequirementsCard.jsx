@@ -19,9 +19,19 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function matchesKeyword(keyword, cvText) {
-  const kw = keyword.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pattern = new RegExp(`\\b${kw}\\b`, "i");
-  return pattern.test(cvText);
+  const normalizedKeyword = normalizeSearchText(keyword);
+  if (!normalizedKeyword) return false;
+
+  const normalizedCvText = ` ${normalizeSearchText(cvText)} `;
+  return normalizedCvText.includes(` ${normalizedKeyword} `);
+}
+
+function normalizeSearchText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFKC")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
 }
 
 export default function JobRequirementsCard({ data, referenceCV }) {

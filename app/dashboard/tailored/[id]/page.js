@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
@@ -14,6 +15,7 @@ import {
   EyeIcon,
   PencilSimpleIcon,
   DownloadSimpleIcon,
+  CrownIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import ResumePreview from "@/components/ResumePreview";
@@ -21,14 +23,17 @@ import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
+import UpgradePromptModal from "@/components/UpgradePromptModal";
 
 export default function TailoredCVDetailPage() {
   const { id } = useParams();
   const router = useRouter();
+  const { data: session } = useSession();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("cv");
   const [showPreview, setShowPreview] = useState(true);
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const { data: cv, isLoading } = useQuery({
     queryKey: ["tailored-cv", id],
@@ -92,6 +97,10 @@ export default function TailoredCVDetailPage() {
   };
 
   const handleDownload = async (tab) => {
+    if (!session?.user?.isPremium) {
+      setShowUpgradeModal(true);
+      return;
+    }
     const { generateCVPdf, generateCoverLetterPdf, buildPdfFilename } =
       await import("@/utils/pdf-generator");
     if (tab === "cv") {
@@ -205,7 +214,11 @@ export default function TailoredCVDetailPage() {
               className="rounded-full"
               onClick={() => handleDownload(activeTab)}
             >
-              <DownloadSimpleIcon size={16} />
+              {session?.user?.isPremium ? (
+                <DownloadSimpleIcon size={16} />
+              ) : (
+                <CrownIcon size={16} className="text-amber-500" />
+              )}
               Download PDF
             </Button>
           </div>
@@ -234,6 +247,11 @@ export default function TailoredCVDetailPage() {
           />
         )}
       </motion.div>
+
+      <UpgradePromptModal
+        open={showUpgradeModal}
+        onClose={() => setShowUpgradeModal(false)}
+      />
     </div>
   );
 }

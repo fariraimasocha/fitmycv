@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
@@ -16,6 +17,7 @@ import {
   BinocularsIcon,
   ChatTeardropDotsIcon,
   LinkedinLogoIcon,
+  CrownIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,8 +31,10 @@ import ATSScoreCard from "@/components/ATSScoreCard";
 import CompanyResearchCard from "@/components/CompanyResearchCard";
 import InterviewPrepCard from "@/components/InterviewPrepCard";
 import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
+import UpgradePromptModal from "@/components/UpgradePromptModal";
 
 export default function TailorPage() {
+  const { data: session } = useSession();
   const queryClient = useQueryClient();
   const [url, setUrl] = useState("");
   const [jobData, setJobData] = useState(null);
@@ -48,6 +52,7 @@ export default function TailorPage() {
   const [interviewPrep, setInterviewPrep] = useState(null);
   const [interviewPrepLoading, setInterviewPrepLoading] = useState(false);
   const [linkedInModalOpen, setLinkedInModalOpen] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const tailorRef = useRef(null);
 
   const extractMutation = useMutation({
@@ -240,6 +245,10 @@ export default function TailorPage() {
 
   const handleDownload = async (tab) => {
     if (!tailorResult) return;
+    if (!session?.user?.isPremium) {
+      setShowUpgradeModal(true);
+      return;
+    }
     const { generateCVPdf, generateCoverLetterPdf, buildPdfFilename } =
       await import("@/utils/pdf-generator");
     if (tab === "cv") {
@@ -485,7 +494,11 @@ export default function TailorPage() {
                   className="rounded-full"
                   onClick={() => handleDownload(activeTab)}
                 >
-                  <DownloadSimpleIcon size={16} />
+                  {session?.user?.isPremium ? (
+                    <DownloadSimpleIcon size={16} />
+                  ) : (
+                    <CrownIcon size={16} className="text-amber-500" />
+                  )}
                   Download PDF
                 </Button>
                 <Button
@@ -551,6 +564,10 @@ export default function TailorPage() {
         tailoredCV={tailorResult?.tailoredCV}
         jobData={jobData}
         companyBrief={companyBrief}
+      />
+      <UpgradePromptModal
+        open={showUpgradeModal}
+        onClose={() => setShowUpgradeModal(false)}
       />
     </div>
   );

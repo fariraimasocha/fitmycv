@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
 
 const PRO_FEATURES = [
+  "Download tailored CVs and cover letters as PDFs",
   "Unlimited CV tailoring",
   "AI cover letter generation",
   "Job requirements extraction",

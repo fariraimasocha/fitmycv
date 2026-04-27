@@ -59,7 +59,7 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 ## React Hooks Rules
 
 - **Always include all referenced variables in dependency arrays.** Every variable used inside `useEffect`, `useMemo`, or `useCallback` must appear in its dependency array. Missing deps cause stale closure bugs and lint errors.
-- **Never call impure functions during render.** Functions like `Date.now()`, `Math.random()`, or `new Date()` must not be called directly in the render body or inside `useMemo`/`useCallback`. Capture them in a `useState` lazy initializer (`useState(() => Date.now())`) so they run once on mount, then reference the state value in hooks.
+- **Never call impure functions during render.** Functions like `Date.now()`, random value generation, or `new Date()` must not be called directly in the render body or inside `useMemo`/`useCallback`. Capture values that should run once in a `useState` lazy initializer (`useState(() => Date.now())`), then reference the state value in hooks. Use Web Crypto APIs for security-sensitive randomness.
 
 # CLAUDE.md
 

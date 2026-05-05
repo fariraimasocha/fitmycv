@@ -6,6 +6,7 @@ import {
   TimerIcon,
   ArrowRightIcon,
   SparkleIcon,
+  CheckFatIcon,
   DownloadSimpleIcon,
   FilePlusIcon,
   FileTextIcon,
@@ -21,9 +22,14 @@ function StepNumber({ number, label }) {
           {number}
         </span>
       </div>
-      <span className="rounded-full bg-[var(--landing-primary-soft)] px-4 py-2 font-sans text-xs font-extrabold tracking-[0.16em] text-[var(--landing-primary-dark)] shadow-[inset_0_0_0_1px_oklch(0.47_0.125_177_/_0.14)]">
-        {label}
-      </span>
+      <div className="flex flex-col gap-1">
+        <span className="font-sans text-[10px] font-extrabold uppercase tracking-[0.22em] text-[var(--landing-primary)]">
+          Step
+        </span>
+        <span className="font-sans text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--landing-primary-dark)]">
+          {label}
+        </span>
+      </div>
     </div>
   );
 }
@@ -43,13 +49,16 @@ function FeatureItem({ text }) {
   );
 }
 
-function Connector() {
+function Connector({ label }) {
   return (
     <div className="flex h-16 w-full items-center justify-center" aria-hidden="true">
-      <div className="flex items-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.47_0.125_177_/_0.28)]" />
-        <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.47_0.125_177_/_0.45)]" />
-        <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.47_0.125_177_/_0.28)]" />
+      <div className="inline-flex items-center gap-2 rounded-full bg-[oklch(0.997_0.006_84_/_0.76)] px-4 py-2 shadow-[inset_0_0_0_1px_var(--landing-line),0_8px_18px_oklch(0.205_0.035_244_/_0.05)]">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+          <CheckFatIcon size={11} weight="fill" />
+        </span>
+        <span className="font-sans text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+          {label}
+        </span>
       </div>
     </div>
   );
@@ -152,7 +161,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <Connector />
+        <Connector label="Requirements captured" />
 
         {/* Step 2 — visual left, content right */}
         <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
@@ -200,7 +209,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        <Connector />
+        <Connector label="Application package ready" />
 
         {/* Step 3 — content left, visual right */}
         <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">

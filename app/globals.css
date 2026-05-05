@@ -91,6 +91,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --landing-paper: oklch(0.985 0.012 84);
+  --landing-paper-strong: oklch(0.955 0.021 83);
+  --landing-paper-soft: oklch(0.997 0.006 84);
+  --landing-ink: oklch(0.205 0.035 244);
+  --landing-ink-soft: oklch(0.42 0.04 244);
+  --landing-line: oklch(0.885 0.025 83);
+  --landing-primary: oklch(0.47 0.125 177);
+  --landing-primary-dark: oklch(0.31 0.09 178);
+  --landing-primary-soft: oklch(0.92 0.06 174);
+  --landing-accent: oklch(0.73 0.135 68);
+  --landing-coral: oklch(0.62 0.19 24);
+  --landing-success: oklch(0.56 0.13 150);
+  --landing-shadow: 0 18px 45px oklch(0.205 0.035 244 / 0.12), 0 4px 12px oklch(0.205 0.035 244 / 0.08);
+  --landing-shadow-sm: 0 10px 24px oklch(0.205 0.035 244 / 0.08), 0 2px 8px oklch(0.205 0.035 244 / 0.06);
 }
 
 .dark {
@@ -142,6 +157,125 @@
   }
   p {
     text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .landing-root {
+    background:
+      radial-gradient(circle at 8% 0%, oklch(0.92 0.06 174 / 0.65), transparent 26rem),
+      linear-gradient(180deg, var(--landing-paper-soft), var(--landing-paper));
+    color: var(--landing-ink);
+  }
+
+  .landing-section {
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 6rem);
+  }
+
+  .landing-section-tight {
+    padding: clamp(2.75rem, 6vw, 5rem) clamp(1.25rem, 4vw, 6rem);
+  }
+
+  .landing-container {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+  }
+
+  .landing-muted-band {
+    background:
+      linear-gradient(180deg, oklch(0.96 0.023 84), oklch(0.975 0.018 84));
+    border-block: 1px solid var(--landing-line);
+  }
+
+  .landing-eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid oklch(0.47 0.125 177 / 0.2);
+    background: oklch(0.92 0.06 174 / 0.62);
+    color: var(--landing-primary-dark);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .landing-heading {
+    color: var(--landing-ink);
+    letter-spacing: 0;
+    line-height: 1.06;
+  }
+
+  .landing-copy {
+    color: var(--landing-ink-soft);
+    line-height: 1.72;
+    max-width: 34em;
+  }
+
+  .landing-primary-btn,
+  .landing-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    border-radius: 0.8rem;
+    padding: 0.85rem 1.35rem;
+    font-weight: 800;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  .landing-primary-btn {
+    background: var(--landing-primary-dark);
+    color: oklch(0.99 0.006 84);
+    box-shadow: 0 12px 22px oklch(0.31 0.09 178 / 0.22), inset 0 1px 0 oklch(1 0 0 / 0.18);
+  }
+
+  .landing-primary-btn:hover {
+    background: var(--landing-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 28px oklch(0.31 0.09 178 / 0.24), inset 0 1px 0 oklch(1 0 0 / 0.18);
+  }
+
+  .landing-primary-btn:active,
+  .landing-secondary-btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .landing-secondary-btn {
+    border: 1px solid var(--landing-line);
+    background: oklch(0.997 0.006 84 / 0.78);
+    color: var(--landing-ink);
+  }
+
+  .landing-secondary-btn:hover {
+    border-color: oklch(0.47 0.125 177 / 0.35);
+    background: var(--landing-primary-soft);
+  }
+
+  .landing-card {
+    border: 1px solid var(--landing-line);
+    background: oklch(0.997 0.006 84 / 0.86);
+    box-shadow: var(--landing-shadow-sm);
+  }
+
+  .landing-card-strong {
+    background:
+      linear-gradient(145deg, var(--landing-ink), oklch(0.275 0.075 236));
+    color: oklch(0.985 0.012 84);
+    box-shadow: var(--landing-shadow);
+  }
+
+  .landing-icon {
+    background: var(--landing-primary-soft);
+    color: var(--landing-primary-dark);
+    box-shadow: inset 0 0 0 1px oklch(0.47 0.125 177 / 0.12);
+  }
+
+  .landing-inset-edge {
+    box-shadow: inset 0 0 0 1px oklch(0.205 0.035 244 / 0.14);
   }
 }
 

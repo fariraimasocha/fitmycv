@@ -40,12 +40,12 @@ const themes = ["Minimal", "Executive", "Creative", "Tech", "Classic", "Bold"];
 
 function FeatureCard({ feature }) {
   return (
-    <div className="flex-1 flex flex-col gap-4 bg-muted rounded-xl p-5 sm:p-6 lg:p-8 border border-border">
-      <div className="flex items-center justify-center bg-background w-11 h-11 rounded-[10px] shrink-0 border border-border">
-        <feature.icon size={22} className="text-foreground" aria-hidden="true" />
+    <div className="landing-card flex-1 flex flex-col gap-4 overflow-hidden rounded-2xl p-5 sm:p-6 lg:p-8">
+      <div className="landing-icon flex items-center justify-center w-11 h-11 rounded-[10px] shrink-0">
+        <feature.icon size={22} aria-hidden="true" />
       </div>
-      <h3 className="font-outfit font-bold text-foreground text-lg">{feature.title}</h3>
-      <p className="font-sans text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+      <h3 className="font-outfit font-extrabold text-[var(--landing-ink)] text-lg">{feature.title}</h3>
+      <p className="font-sans text-[var(--landing-ink-soft)] text-sm leading-relaxed">{feature.description}</p>
     </div>
   );
 }
@@ -56,22 +56,23 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="bg-background flex flex-col items-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-24 gap-12"
+      className="landing-section flex flex-col items-center gap-12"
     >
       {/* Header */}
-      <div className="flex flex-col items-center gap-4">
-        <h2 className="font-outfit font-bold text-foreground text-center text-3xl sm:text-4xl tracking-tight leading-tight">
+      <div className="landing-container flex flex-col items-center gap-4">
+        <span className="landing-eyebrow">Application advantage</span>
+        <h2 className="landing-heading font-outfit font-extrabold text-center text-3xl sm:text-4xl">
           Everything you need to
           <br />
           stand out
         </h2>
-        <p className="font-sans text-muted-foreground text-center text-base">
+        <p className="landing-copy font-sans text-center text-base">
           Powerful features designed to give you an unfair advantage in the job market.
         </p>
       </div>
 
       {/* Grid */}
-      <div className="flex flex-col w-full gap-5">
+      <div className="landing-container flex flex-col w-full gap-5">
         {/* Row 1 */}
         <div className="flex flex-col sm:flex-row w-full gap-5">
           {features.slice(0, 2).map((f) => (
@@ -87,12 +88,12 @@ export default function Features() {
         </div>
 
         {/* Wide card — Multiple Themes */}
-        <div className="w-full flex flex-col gap-5 bg-muted rounded-xl p-5 sm:p-6 lg:p-8 border border-border">
-          <div className="flex items-center justify-center bg-background w-11 h-11 rounded-[10px] shrink-0 border border-border">
-            <PaletteIcon size={22} className="text-foreground" aria-hidden="true" />
+        <div className="landing-card w-full flex flex-col gap-5 overflow-hidden rounded-2xl p-5 sm:p-6 lg:p-8">
+          <div className="landing-icon flex items-center justify-center w-11 h-11 rounded-[10px] shrink-0">
+            <PaletteIcon size={22} aria-hidden="true" />
           </div>
-          <h3 className="font-outfit font-bold text-foreground text-lg">Multiple Themes</h3>
-          <p className="font-sans text-muted-foreground text-sm leading-relaxed max-w-[600px]">
+          <h3 className="font-outfit font-extrabold text-[var(--landing-ink)] text-lg">Multiple Themes</h3>
+          <p className="font-sans text-[var(--landing-ink-soft)] text-sm leading-relaxed max-w-[600px]">
             Choose from six professionally designed CV themes that suit your industry and personality.
           </p>
           {/* Theme chips */}
@@ -103,8 +104,8 @@ export default function Features() {
                 onClick={() => setActiveTheme(theme)}
                 className={`font-sans font-medium text-sm rounded-full px-4 py-2 border transition cursor-pointer active:scale-[0.96] ${
                   activeTheme === theme
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-muted-foreground border-border hover:border-foreground/40"
+                    ? "bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)] border-[var(--landing-primary-dark)] shadow-[0_8px_16px_oklch(0.31_0.09_178_/_0.16)]"
+                    : "bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)] border-[var(--landing-line)] hover:border-[oklch(0.47_0.125_177_/_0.35)] hover:text-[var(--landing-ink)]"
                 }`}
               >
                 {theme}

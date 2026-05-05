@@ -34,19 +34,19 @@ const faqs = [
 
 function FAQItem({ faq, isOpen, onToggle }) {
   return (
-    <div className="border-b border-border last:border-0 py-6">
+    <div className="border-b border-[var(--landing-line)] last:border-0 py-6">
       <button
         onClick={onToggle}
         className="flex items-center justify-between w-full text-left gap-3"
         aria-expanded={isOpen}
       >
-        <span className="font-outfit font-semibold text-base text-foreground">
+        <span className="font-outfit font-bold text-base text-[var(--landing-ink)]">
           {faq.question}
         </span>
         {isOpen ? (
-          <MinusIcon size={18} className="text-muted-foreground shrink-0" aria-hidden="true" />
+          <MinusIcon size={18} className="text-[var(--landing-primary-dark)] shrink-0" aria-hidden="true" />
         ) : (
-          <PlusIcon size={18} className="text-muted-foreground shrink-0" aria-hidden="true" />
+          <PlusIcon size={18} className="text-[var(--landing-ink-soft)] shrink-0" aria-hidden="true" />
         )}
       </button>
       <AnimatePresence>
@@ -58,7 +58,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="overflow-hidden"
           >
-            <p className="font-sans text-muted-foreground text-sm leading-relaxed pt-3">
+            <p className="font-sans text-[var(--landing-ink-soft)] text-sm leading-relaxed pt-3">
               {faq.answer}
             </p>
           </motion.div>
@@ -74,13 +74,13 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-background flex flex-col items-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24 lg:py-24 gap-12"
+      className="landing-section flex flex-col items-center gap-12"
     >
-      <h2 className="font-outfit font-bold text-foreground text-center text-3xl sm:text-4xl tracking-tight">
+      <h2 className="landing-heading font-outfit font-extrabold text-center text-3xl sm:text-4xl">
         Frequently asked questions
       </h2>
 
-      <div className="w-full max-w-2xl">
+      <div className="landing-card w-full max-w-2xl rounded-2xl px-6 sm:px-8">
         {faqs.map((faq, i) => (
           <FAQItem
             key={i}

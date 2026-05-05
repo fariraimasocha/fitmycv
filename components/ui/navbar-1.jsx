@@ -61,26 +61,26 @@ const Navbar1 = () => {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full">
       <motion.div
-        className="flex items-center justify-between px-6 sm:px-10 lg:px-16 xl:px-24 py-4 backdrop-blur-xl w-full"
+        className="mx-auto mt-3 flex w-[calc(100%-1.5rem)] max-w-6xl items-center justify-between rounded-2xl border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84_/_0.84)] px-4 py-3 shadow-[0_12px_32px_oklch(0.205_0.035_244_/_0.08)] backdrop-blur-xl sm:px-6"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <Link href="/" className="flex items-center">
           <motion.div
-            className="w-8 h-8 mr-2"
+            className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)] shadow-[inset_0_1px_0_oklch(1_0_0_/_0.18)]"
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             whileHover={{ rotate: 10 }}
             transition={{ duration: 0.3 }}
           >
-            <ReadCvLogoIcon size={32} />
+            <ReadCvLogoIcon size={21} weight="bold" />
           </motion.div>
-          <span className="text-lg font-semibold text-foreground">fitmycv</span>
+          <span className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">fitmycv</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-7">
           {navLinks.map((item, i) => (
             <motion.div
               key={item.label}
@@ -92,7 +92,7 @@ const Navbar1 = () => {
               <a
                 href={item.href}
                 onClick={(e) => handleSmoothScroll(e, item.href)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+                className="text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
               >
                 {item.label}
               </a>
@@ -117,7 +117,7 @@ const Navbar1 = () => {
                       src={session.user?.image}
                       alt={session.user?.name}
                     />
-                    <AvatarFallback className="bg-black text-white text-sm font-medium">
+                    <AvatarFallback className="bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)] text-sm font-semibold">
                       {getInitials(session.user?.name)}
                     </AvatarFallback>
                   </Avatar>
@@ -129,7 +129,7 @@ const Navbar1 = () => {
                     <p className="text-sm font-medium leading-none">
                       {session.user?.name}
                     </p>
-                    <p className="text-xs leading-none text-muted-foreground">
+                    <p className="text-xs leading-none text-[var(--landing-ink-soft)]">
                       {session.user?.email}
                     </p>
                   </div>
@@ -147,7 +147,7 @@ const Navbar1 = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={handleLogout}
-                  className="text-red-600 focus:text-red-600 cursor-pointer"
+                  className="cursor-pointer text-red-600 focus:text-red-600"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Logout
@@ -157,7 +157,7 @@ const Navbar1 = () => {
           ) : (
             <Link
               href="/auth"
-              className="inline-flex items-center justify-center px-5 py-2 text-sm text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors font-medium"
+              className="landing-primary-btn min-h-0 px-5 py-2 text-sm"
             >
               Get Started
             </Link>
@@ -166,11 +166,11 @@ const Navbar1 = () => {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="md:hidden flex items-center"
+          className="flex items-center rounded-lg p-2 text-[var(--landing-ink)] md:hidden"
           onClick={toggleMenu}
           whileTap={{ scale: 0.9 }}
         >
-          <ListIcon size={24} className="text-foreground" />
+          <ListIcon size={24} />
         </motion.button>
       </motion.div>
 
@@ -178,21 +178,21 @@ const Navbar1 = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-background z-50 pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-50 bg-[var(--landing-paper-soft)] px-6 pt-24 md:hidden"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
           >
             <motion.button
-              className="absolute top-6 right-6 p-2"
+              className="absolute top-6 right-6 rounded-lg p-2 text-[var(--landing-ink)]"
               onClick={toggleMenu}
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <XIcon size={24} className="text-foreground" />
+              <XIcon size={24} />
             </motion.button>
 
             <div className="flex flex-col space-y-6">
@@ -203,22 +203,22 @@ const Navbar1 = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
                   exit={{ opacity: 0, x: 20 }}
-                  className="flex items-center space-x-3 pb-2 border-b border-border"
+                  className="flex items-center space-x-3 border-b border-[var(--landing-line)] pb-4"
                 >
                   <Avatar className="w-10 h-10">
                     <AvatarImage
                       src={session.user?.image}
                       alt={session.user?.name}
                     />
-                    <AvatarFallback className="bg-black text-white text-sm font-medium">
+                    <AvatarFallback className="bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)] text-sm font-semibold">
                       {getInitials(session.user?.name)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-foreground">
+                    <span className="text-sm font-semibold text-[var(--landing-ink)]">
                       {session.user?.name}
                     </span>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-xs text-[var(--landing-ink-soft)]">
                       {session.user?.email}
                     </span>
                   </div>
@@ -235,7 +235,7 @@ const Navbar1 = () => {
                 >
                   <a
                     href={item.href}
-                    className="text-base text-foreground font-medium"
+                    className="text-base font-semibold text-[var(--landing-ink)]"
                     onClick={(e) => handleSmoothScroll(e, item.href)}
                   >
                     {item.label}
@@ -254,7 +254,7 @@ const Navbar1 = () => {
                   <div className="flex flex-col space-y-3">
                     <Link
                       href="/dashboard"
-                      className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors"
+                      className="landing-primary-btn w-full text-base"
                       onClick={toggleMenu}
                     >
                       <LayoutDashboard className="mr-2 h-4 w-4" />
@@ -265,7 +265,7 @@ const Navbar1 = () => {
                         toggleMenu();
                         handleLogout();
                       }}
-                      className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-red-600 font-medium hover:text-red-700 transition-colors"
+                      className="inline-flex w-full items-center justify-center px-5 py-3 text-base font-semibold text-red-600 transition-colors hover:text-red-700"
                     >
                       <LogOut className="mr-2 h-4 w-4" />
                       Logout
@@ -274,7 +274,7 @@ const Navbar1 = () => {
                 ) : (
                   <Link
                     href="/auth"
-                    className="inline-flex items-center justify-center w-full px-5 py-3 text-base text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors"
+                    className="landing-primary-btn w-full text-base"
                     onClick={toggleMenu}
                   >
                     Get Started

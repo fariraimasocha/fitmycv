@@ -12,9 +12,9 @@ import Footer from "@/components/landing/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="landing-root min-h-screen">
       <Header />
-      <main className="pt-20">
+      <main>
         <Hero />
         <JobBoardStrip />
         <PainPoints />

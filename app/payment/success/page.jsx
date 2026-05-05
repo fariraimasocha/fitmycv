@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
@@ -31,10 +30,13 @@ export default function PaymentSuccessPage() {
   });
 
   const isPremiumConfirmed = !!data?.isPremium;
+  const [sessionUpdating, setSessionUpdating] = useState(false);
 
   useEffect(() => {
-    if (isPremiumConfirmed) update();
-  }, [isPremiumConfirmed, update]);
+    if (!isPremiumConfirmed) return;
+    setSessionUpdating(true);
+    update().then(() => router.push("/dashboard"));
+  }, [isPremiumConfirmed, update, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
@@ -69,9 +71,9 @@ export default function PaymentSuccessPage() {
         </p>
 
         {isPremiumConfirmed ? (
-          <Button onClick={() => router.push("/dashboard")} className="w-full">
-            Go to Dashboard
-          </Button>
+          <p className="text-sm text-gray-500">
+            {sessionUpdating ? "Updating session..." : "Redirecting to dashboard..."}
+          </p>
         ) : (
           <div>
             <p className="text-sm text-gray-500 mb-4">

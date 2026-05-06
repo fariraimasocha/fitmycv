@@ -63,7 +63,8 @@ function CheckoutRedirect() {
   const searchParams = useSearchParams();
   useEffect(() => {
     if (searchParams.get("checkout") === "pending") {
-      router.replace("/api/polar/checkout");
+      const plan = searchParams.get("plan") ?? "month";
+      router.replace(`/api/polar/checkout?plan=${plan}`);
     }
   }, [searchParams, router]);
   return null;

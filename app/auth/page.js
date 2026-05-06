@@ -15,6 +15,7 @@ function isWebView() {
 
 export default function AuthPage() {
   const getPendingCheckout = useCheckoutStore((s) => s.getPendingCheckout);
+  const getPendingCheckoutPlan = useCheckoutStore((s) => s.getPendingCheckoutPlan);
   const [inWebView, setInWebView] = useState(false);
 
   useEffect(() => {
@@ -22,8 +23,10 @@ export default function AuthPage() {
   }, []);
 
   const handleSignIn = () => {
-    const callbackUrl = getPendingCheckout()
-      ? "/dashboard?checkout=pending"
+    const hasPending = getPendingCheckout();
+    const pendingPlan = getPendingCheckoutPlan() ?? "month";
+    const callbackUrl = hasPending
+      ? `/dashboard?checkout=pending&plan=${pendingPlan}`
       : "/dashboard";
     signIn("google", { callbackUrl });
   };

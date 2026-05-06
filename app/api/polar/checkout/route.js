@@ -29,8 +29,15 @@ export async function GET(request) {
       return NextResponse.redirect(new URL("/api/polar/portal", request.url));
     }
 
+    const { searchParams } = new URL(request.url);
+    const plan = searchParams.get("plan") === "year" ? "year" : "month";
+    const productId =
+      plan === "year"
+        ? process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_YEAR
+        : process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_MONTH;
+
     const checkout = await polar.checkouts.create({
-      products: [process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID],
+      products: [productId],
       successUrl: process.env.POLAR_SUCCESS_URL,
       customerEmail: session.user.email,
       metadata: {

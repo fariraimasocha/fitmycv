@@ -82,12 +82,8 @@ export default function Pricing() {
       <div className="landing-card flex w-full max-w-[480px] flex-col overflow-hidden rounded-2xl gap-7 p-6 sm:p-8 lg:p-10">
         {/* Card top */}
         <div className="flex flex-col gap-2">
-          <span className="font-outfit font-extrabold text-[var(--landing-ink)] text-2xl">
-            Premium
-          </span>
-          <span className="font-sans font-semibold text-[var(--landing-ink-soft)] text-sm">
-            Cancel anytime. No contracts.
-          </span>
+          <span className="font-outfit font-extrabold text-[var(--landing-ink)] text-2xl">Premium</span>
+          <span className="font-sans font-semibold text-[var(--landing-ink-soft)] text-sm">Cancel anytime. No contracts.</span>
         </div>
 
         {/* Price row */}
@@ -114,9 +110,7 @@ export default function Pricing() {
               <div className="flex items-center justify-center flex-shrink-0 bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)] w-6 h-6 rounded-full">
                 <CheckIcon size={12} weight="bold" aria-hidden="true" />
               </div>
-              <span className="font-sans font-semibold text-[var(--landing-ink)] text-base">
-                {feature}
-              </span>
+              <span className="font-sans font-semibold text-[var(--landing-ink)] text-base">{feature}</span>
             </div>
           ))}
         </div>

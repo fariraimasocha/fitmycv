@@ -159,7 +159,7 @@ const Navbar1 = () => {
               href="/auth"
               className="landing-primary-btn min-h-0 px-5 py-2 text-sm"
             >
-              Get Started
+              Login
             </Link>
           )}
         </motion.div>
@@ -277,7 +277,7 @@ const Navbar1 = () => {
                     className="landing-primary-btn w-full text-base"
                     onClick={toggleMenu}
                   >
-                    Get Started
+                    Login
                   </Link>
                 )}
               </motion.div>

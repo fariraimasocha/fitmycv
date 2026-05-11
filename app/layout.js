@@ -53,7 +53,7 @@ export const metadata = {
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
       {
-        url: "/hero.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "FitMyCV — Land more interviews with a CV that fits",
@@ -65,7 +65,7 @@ export const metadata = {
     title: "FitMyCV — AI-Powered CV Tailoring",
     description:
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
-    images: ["/hero.png"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,

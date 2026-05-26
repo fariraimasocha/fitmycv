@@ -1,234 +1,296 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import {
-  ArrowRightIcon,
-  CheckCircleIcon,
-  LightningIcon,
-  SparkleIcon,
-} from "@phosphor-icons/react";
 import Link from "next/link";
-import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  BriefcaseBusiness,
+  CheckCircle2,
+  ClipboardList,
+  FileText,
+  SearchCheck,
+  Sparkles,
+} from "lucide-react";
 
-const COVER_LETTER = `Dear Hiring Manager,
+const artifactMotion = {
+  hidden: { opacity: 0, y: 18, rotate: 0 },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.12 + index * 0.08,
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
 
-I am excited to apply for the Senior Software Engineer position at Stripe. With over 5 years of experience building scalable payment infrastructure and distributed systems, I am confident I can make an immediate impact on your team.
+const artifactHover = {
+  y: -5,
+  transition: { duration: 0.18, ease: "easeOut" },
+};
 
-At my current role at Acme Corp, I led the redesign of our checkout pipeline — reducing latency by 40% and increasing payment success rates from 91% to 97%.
-
-Stripe's mission to build the economic infrastructure of the internet deeply resonates with me. I would love the opportunity to bring my experience in TypeScript, Go, and distributed systems to help Stripe continue raising the bar.
-
-Thank you for your consideration.
-
-Sincerely,
-Farirai Masocha`;
-
-const SPEED = 20;
-const RESTART_DELAY = 2800;
-
-function TypewriterCard() {
-  const reducedMotion =
-    typeof window !== "undefined"
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
-  const [displayed, setDisplayed] = useState(() =>
-    reducedMotion ? COVER_LETTER : ""
-  );
-  const [isComplete, setIsComplete] = useState(reducedMotion);
-  const indexRef = useRef(0);
-  const timerRef = useRef(null);
-  const restartTimerRef = useRef(null);
-
-  useEffect(() => {
-    if (reducedMotion || isComplete) return;
-
-    timerRef.current = setInterval(() => {
-      indexRef.current += 1;
-      setDisplayed(COVER_LETTER.slice(0, indexRef.current));
-      if (indexRef.current >= COVER_LETTER.length) {
-        clearInterval(timerRef.current);
-        setIsComplete(true);
-      }
-    }, SPEED);
-
-    return () => {
-      clearInterval(timerRef.current);
-      clearTimeout(restartTimerRef.current);
-    };
-  }, [isComplete, reducedMotion]);
-
-  useEffect(() => {
-    if (!isComplete || reducedMotion) return;
-
-    restartTimerRef.current = setTimeout(() => {
-      indexRef.current = 0;
-      setDisplayed("");
-      setIsComplete(false);
-    }, RESTART_DELAY);
-    return () => clearTimeout(restartTimerRef.current);
-  }, [isComplete, reducedMotion]);
+function ArtifactShell({ children, className = "", index = 0 }) {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div className="landing-card w-full flex flex-col overflow-hidden rounded-2xl">
-      {/* Window chrome */}
-      <div className="flex flex-row items-center justify-between border-b border-[var(--landing-line)] bg-[var(--landing-paper-strong)] px-4 py-3">
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
-            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
-            <div className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
-          </div>
-          <span className="font-sans text-xs text-[var(--landing-ink-soft)] font-semibold">
-            cover_letter.pdf
-          </span>
+    <motion.div
+      custom={index}
+      variants={artifactMotion}
+      initial="hidden"
+      animate="visible"
+      whileHover={reduceMotion ? undefined : artifactHover}
+      className={`border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84)] shadow-[0_20px_42px_oklch(0.205_0.035_244_/_0.10),0_4px_12px_oklch(0.205_0.035_244_/_0.06)] ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function ResumeSheet() {
+  return (
+    <ArtifactShell
+      index={0}
+      className="relative z-20 w-full rounded-[18px] p-5 sm:p-6 md:absolute md:left-[9%] md:top-10 md:w-[42%] md:-rotate-2"
+    >
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div>
+          <p className="font-outfit text-xl font-extrabold leading-none text-[var(--landing-ink)]">
+            Farirai M.
+          </p>
+          <p className="mt-1 text-xs font-semibold text-[var(--landing-ink-soft)]">
+            Product Engineer
+          </p>
         </div>
-        <div className="flex items-center gap-1.5">
-          <div
-            className={`w-1.5 h-1.5 rounded-full bg-[var(--landing-success)] ${!isComplete ? "animate-pulse" : ""}`}
-            aria-hidden="true"
-          />
-          <span className="font-sans text-xs text-[var(--landing-ink-soft)] font-semibold">
-            {isComplete ? "Complete" : "Generating…"}
-          </span>
+        <div className="rounded-full bg-[var(--landing-primary-soft)] px-3 py-1 text-xs font-extrabold text-[var(--landing-primary-dark)]">
+          CV
         </div>
       </div>
 
-      {/* Job context */}
-      <div className="flex flex-row items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-2.5">
-        <SparkleIcon
-          size={12}
-          className="text-[var(--landing-primary-dark)] shrink-0"
-          aria-hidden="true"
-        />
-        <span className="font-sans text-xs text-[var(--landing-ink-soft)]">
-          Tailored for:
-        </span>
-        <span className="font-sans font-bold text-xs text-[var(--landing-ink)]">
-          Senior Software Engineer at Stripe
-        </span>
+      <div className="space-y-3">
+        <div className="h-2.5 w-10/12 rounded-full bg-[oklch(0.33_0.04_244_/_0.16)]" />
+        <div className="h-2.5 w-8/12 rounded-full bg-[oklch(0.33_0.04_244_/_0.12)]" />
+        <div className="h-2.5 w-11/12 rounded-full bg-[oklch(0.33_0.04_244_/_0.12)]" />
       </div>
 
-      {/* Typewriter body */}
-      <div className="min-h-[300px] max-h-[340px] overflow-hidden bg-[var(--landing-paper-soft)] px-5 py-5">
-        <p
-          className="font-sans text-sm leading-relaxed text-[var(--landing-ink)] whitespace-pre-wrap"
-          aria-live="polite"
-        >
-          {displayed}
-          {!isComplete && (
-            <span
+      <div className="mt-6 rounded-xl border border-[oklch(0.47_0.125_177_/_0.18)] bg-[oklch(0.92_0.06_174_/_0.55)] p-4">
+        <div className="mb-3 flex items-center gap-2 text-sm font-extrabold text-[var(--landing-primary-dark)]">
+          <Sparkles size={16} aria-hidden="true" />
+          Tailored highlights
+        </div>
+        <ul className="space-y-2 text-sm font-semibold text-[var(--landing-ink)]">
+          <li className="flex items-center gap-2">
+            <CheckCircle2
+              size={15}
+              className="text-[var(--landing-success)]"
               aria-hidden="true"
-              className="inline-block w-[1.5px] h-[1em] bg-[var(--landing-primary-dark)] ml-0.5 align-middle motion-safe:[animation:blink_0.9s_step-end_infinite]"
             />
-          )}
+            Payment systems experience first
+          </li>
+          <li className="flex items-center gap-2">
+            <CheckCircle2
+              size={15}
+              className="text-[var(--landing-success)]"
+              aria-hidden="true"
+            />
+            Matched to Stripe job language
+          </li>
+        </ul>
+      </div>
+    </ArtifactShell>
+  );
+}
+
+function JobBrief() {
+  return (
+    <ArtifactShell
+      index={1}
+      className="z-10 rounded-[18px] p-5 md:absolute md:right-[8%] md:top-3 md:w-[38%] md:rotate-2"
+    >
+      <div className="flex items-start gap-3">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-ink)] text-[oklch(0.99_0.006_84)]">
+          <BriefcaseBusiness size={19} aria-hidden="true" />
+        </div>
+        <div>
+          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[var(--landing-ink-soft)]">
+            Job link
+          </p>
+          <h2 className="mt-1 font-outfit text-lg font-extrabold leading-tight text-[var(--landing-ink)]">
+            Senior Software Engineer
+          </h2>
+        </div>
+      </div>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {["TypeScript", "Payments", "APIs", "Reliability"].map((skill) => (
+          <span
+            key={skill}
+            className="rounded-full border border-[var(--landing-line)] bg-[oklch(0.985_0.012_84)] px-3 py-1 text-xs font-bold text-[var(--landing-ink-soft)]"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-5 border-t border-[var(--landing-line)] pt-4">
+        <div className="flex items-center justify-between text-xs font-bold text-[var(--landing-ink-soft)]">
+          <span>Keyword coverage</span>
+          <span className="text-[var(--landing-primary-dark)]">18/21</span>
+        </div>
+        <div className="mt-2 h-2 overflow-hidden rounded-full bg-[oklch(0.885_0.025_83)]">
+          <div className="h-full w-[86%] rounded-full bg-[var(--landing-primary-dark)]" />
+        </div>
+      </div>
+    </ArtifactShell>
+  );
+}
+
+function MatchStamp() {
+  return (
+    <ArtifactShell
+      index={2}
+      className="z-30 flex items-center gap-4 rounded-[999px] px-5 py-4 md:absolute md:left-[36%] md:top-[41%] md:-rotate-6"
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)]">
+        <BadgeCheck size={24} aria-hidden="true" />
+      </div>
+      <div>
+        <p className="font-outfit text-3xl font-extrabold leading-none text-[var(--landing-ink)]">
+          94%
+        </p>
+        <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.16em] text-[var(--landing-ink-soft)]">
+          ATS match
         </p>
       </div>
+    </ArtifactShell>
+  );
+}
 
-      {/* Footer */}
-      <div className="flex flex-row items-center justify-between border-t border-[var(--landing-line)] bg-[var(--landing-paper-strong)] px-4 py-2.5">
-        <div className="flex items-center gap-1.5">
-          <CheckCircleIcon
-            size={13}
-            className={`transition-colors duration-300 ${isComplete ? "text-[var(--landing-success)]" : "text-[var(--landing-ink-soft)]"}`}
-            aria-hidden="true"
-          />
-          <span className="font-sans text-xs text-[var(--landing-ink-soft)]">
-            ATS Score:{" "}
-            <span className="font-bold text-[var(--landing-ink)]">94%</span>
-          </span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <LightningIcon
-            size={13}
-            className="text-[var(--landing-ink-soft)]"
-            aria-hidden="true"
-          />
-          <span className="font-sans text-xs text-[var(--landing-ink-soft)]">
-            Ready in <span className="font-bold text-[var(--landing-ink)]">8s</span>
-          </span>
-        </div>
+function CoverLetterNote() {
+  return (
+    <ArtifactShell
+      index={3}
+      className="z-20 rounded-[18px] bg-[oklch(0.96_0.048_88)] p-5 md:absolute md:bottom-8 md:left-[13%] md:w-[34%] md:rotate-3"
+    >
+      <div className="mb-4 flex items-center gap-2 text-sm font-extrabold text-[var(--landing-ink)]">
+        <FileText size={17} aria-hidden="true" />
+        Cover letter
       </div>
+      <p className="text-sm font-semibold leading-6 text-[var(--landing-ink-soft)]">
+        &quot;Your work on reliable payments maps directly to Stripe&apos;s
+        infrastructure team.&quot;
+      </p>
+    </ArtifactShell>
+  );
+}
+
+function InterviewPrepCard() {
+  return (
+    <ArtifactShell
+      index={4}
+      className="z-20 rounded-[18px] p-5 md:absolute md:bottom-12 md:right-[10%] md:w-[35%] md:-rotate-2"
+    >
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-sm font-extrabold text-[var(--landing-ink)]">
+          <ClipboardList size={17} aria-hidden="true" />
+          Interview prep
+        </div>
+        <SearchCheck
+          size={18}
+          className="text-[var(--landing-primary-dark)]"
+          aria-hidden="true"
+        />
+      </div>
+      <div className="space-y-2 text-sm font-semibold text-[var(--landing-ink-soft)]">
+        <p>3 likely questions</p>
+        <p>2 company talking points</p>
+        <p>1 salary angle to prepare</p>
+      </div>
+    </ArtifactShell>
+  );
+}
+
+function ApplicationDesk() {
+  return (
+    <div className="relative mx-auto mt-12 grid w-full max-w-5xl gap-4 md:mt-16 md:h-[520px] md:block">
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-1/2 hidden h-[420px] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-[oklch(0.205_0.035_244_/_0.12)] md:block"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-3 left-[6%] hidden h-24 w-[88%] rounded-[50%] bg-[oklch(0.205_0.035_244_/_0.06)] blur-2xl md:block"
+      />
+      <ResumeSheet />
+      <JobBrief />
+      <MatchStamp />
+      <CoverLetterNote />
+      <InterviewPrepCard />
     </div>
   );
 }
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
+    <section className="relative isolate flex min-h-screen overflow-hidden px-5 pb-16 pt-32 sm:px-10 lg:px-16 xl:px-24">
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-24 hidden h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[oklch(0.73_0.135_68_/_0.18)] blur-3xl lg:block"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.985_0.012_84)_72%,oklch(0.965_0.02_84)_100%)]"
       />
-
-      <div className="landing-container relative grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-        {/* Left column */}
-        <div className="min-w-0 flex w-full flex-col gap-7 lg:justify-center">
-          {/* Headline */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.92_0.06_174_/_0.72),transparent_34rem)]"
+      />
+      <div className="landing-container relative flex flex-col items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center text-center"
+        >
           <h1
-            className="landing-heading font-outfit font-extrabold break-words"
-            style={{ fontSize: "clamp(42px, 6vw, 76px)" }}
+            className="max-w-6xl font-outfit font-extrabold leading-[0.95] tracking-normal text-[var(--landing-ink)]"
+            style={{ fontSize: "clamp(48px, 8.4vw, 126px)" }}
           >
-            Land more interviews
+            Tailor your CV
             <br />
-            with a CV that fits.
+            <span className="relative inline-block px-2 text-[var(--landing-ink)]">
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.87_0.071_313_/_0.72)]"
+              />
+              to every job in minutes.
+            </span>
           </h1>
 
-          {/* Subheading */}
-          <p className="landing-copy font-sans text-lg">
-            Stop sending the same CV everywhere. FitMyCV tailors your resume and
-            cover letter to every job, so you show up as the perfect fit.
+          <p className="mt-8 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
+            Paste a job link, upload your CV, and FitMyCV rewrites your resume,
+            cover letter, and interview prep to match the role.
           </p>
 
-          {/* Feature dots */}
-          <div className="flex flex-wrap gap-2">
-            {["Upload your CV", "Paste a job link", "Apply with a better match"].map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84_/_0.72)] px-3 py-1.5 text-sm font-semibold text-[var(--landing-ink-soft)]"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/auth"
-              className="landing-primary-btn group font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+              className="landing-primary-btn group min-w-[210px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              Get Started Free
-              <ArrowRightIcon
-                size={16}
+              Tailor my CV
+              <ArrowRight
+                size={17}
                 aria-hidden="true"
-                className="group-hover:translate-x-0.5 transition-transform duration-200"
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
               />
             </Link>
             <Link
               href="#how-it-works"
-              className="landing-secondary-btn font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+              className="landing-secondary-btn min-w-[190px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              See How It Works
+              See how it works
             </Link>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right column — live typewriter demo */}
-        <div className="relative w-full lg:flex lg:items-center">
-          <div className="absolute -right-8 -top-10 hidden w-64 rotate-3 overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] shadow-[var(--landing-shadow-sm)] lg:block">
-            <Image
-              src="/hero-img.png"
-              alt=""
-              width={420}
-              height={398}
-              className="h-auto w-full opacity-90"
-              priority
-            />
-          </div>
-          <div className="relative z-10">
-            <TypewriterCard />
-          </div>
-        </div>
+        <ApplicationDesk />
       </div>
     </section>
   );

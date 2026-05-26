@@ -95,13 +95,13 @@ export default function HowItWorks() {
               Paste the Job Listing
             </h3>
             <p className="landing-copy font-sans text-base">
-              Copy any job description from LinkedIn, Indeed, or anywhere else
-              and paste it in. Our system instantly parses the requirements,
-              skills, and keywords.
+              Copy a job link from LinkedIn, Indeed, or anywhere else and paste
+              it in. Our system instantly parses the requirements, skills, and
+              keywords.
             </p>
             <div className="flex flex-col gap-3">
               <FeatureItem text="Works with LinkedIn, Indeed, Glassdoor & more" />
-              <FeatureItem text="Paste URL or copy-paste the full description" />
+              <FeatureItem text="Paste a job URL from any major job board" />
               <FeatureItem text="Auto-detects key requirements & skills" />
             </div>
           </div>

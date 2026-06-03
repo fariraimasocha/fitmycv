@@ -55,7 +55,7 @@ export async function GET(request) {
         from: "FitMyCV <onboarding@resend.dev>",
         to: user.email,
         subject: `Your daily job matches — ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}`,
-        html: buildJobDigestEmail({ userName: user.name, jobs }),
+        html: buildJobDigestEmail({ userName: user.name, jobs, queries }),
       });
 
       processed++;

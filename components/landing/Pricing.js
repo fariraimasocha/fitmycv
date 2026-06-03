@@ -8,6 +8,7 @@ import { useCheckoutStore } from "@/stores/checkout-store";
 
 const features = [
   "AI-powered CV tailoring",
+  "Daily job matches by email",
   "Smart cover letter generation",
   "Job requirement analysis",
   "PDF export & download",

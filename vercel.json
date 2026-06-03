@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/job-digest",
-      "schedule": "8 9 * * *"
+      "schedule": "0 8 * * *"
     }
   ]
 }

@@ -260,7 +260,7 @@ export default function Hero() {
                 aria-hidden="true"
                 className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.87_0.071_313_/_0.72)]"
               />
-              to every job in minutes.
+              from any job link.
             </span>
           </h1>
 

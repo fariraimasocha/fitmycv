@@ -24,22 +24,27 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL || "https://fitmycv.link"
+    process.env.NEXT_PUBLIC_APP_URL || "https://fitmycv.link",
   ),
   title: {
-    default: "FitMyCV — AI-Powered CV Tailoring",
+    default: "Tailor Your CV From a Job Link in Seconds | FitMyCV",
     template: "%s | FitMyCV",
   },
   description:
     "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
   keywords: [
-    "CV tailoring",
-    "resume tailoring",
-    "AI resume",
-    "cover letter generator",
-    "ATS optimization",
-    "job application",
+    "tailor cv from job link",
+    "tailor resume from job url",
+    "paste job link to tailor resume",
+    "tailored cv from job posting url",
+    "ai resume from job link",
+    "tailor cv to job description",
+    "tailor cv to job description in seconds",
+    "ai cv tailoring",
+    "ats optimization",
+    "ai cover letter from job link",
     "tailored resume",
+    "resume tailoring",
   ],
   authors: [{ name: "FitMyCV" }],
   creator: "FitMyCV",
@@ -48,7 +53,7 @@ export const metadata = {
     locale: "en_US",
     url: "/",
     siteName: "FitMyCV",
-    title: "FitMyCV — AI-Powered CV Tailoring",
+    title: "Tailor Your CV From a Job Link in Seconds | FitMyCV",
     description:
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
@@ -62,7 +67,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FitMyCV — AI-Powered CV Tailoring",
+    title: "Tailor Your CV From a Job Link in Seconds | FitMyCV",
     description:
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
@@ -90,6 +95,15 @@ export default function RootLayout({ children }) {
           data-domain="fitmycv.link"
           strategy="afterInteractive"
         />
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "x2ocj2is1a");
+          `}
+        </Script>
       </head>
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} antialiased`}

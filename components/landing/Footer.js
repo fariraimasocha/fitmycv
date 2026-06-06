@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FileTextIcon } from "@phosphor-icons/react";
 
 const footerLinks = [
+  { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link" },
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },

@@ -4,7 +4,7 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
+import ClarityAnalytics from "@/components/ClarityAnalytics";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -88,23 +88,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          src="https://datafa.st/js/script.js"
-          data-website-id="dfid_cdiVXmqmHhypbU5Znt1vC"
-          data-domain="fitmycv.link"
-          strategy="afterInteractive"
-        />
-        <Script id="microsoft-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "x2ocj2is1a");
-          `}
-        </Script>
-      </head>
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} antialiased`}
       >
@@ -115,6 +98,7 @@ export default function RootLayout({ children }) {
           </AuthProvider>
         </QueryProvider>
         <Analytics />
+        <ClarityAnalytics />
       </body>
     </html>
   );

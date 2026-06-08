@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
-    "@microsoft/clarity": "^1.0.2",
     "@phosphor-icons/react": "^2.1.10",
     "@polar-sh/nextjs": "^0.9.5",
     "@polar-sh/sdk": "^0.46.4",
@@ -26,6 +25,7 @@
     "next": "16.2.4",
     "next-auth": "5.0.0-beta.30",
     "openai": "^6.25.0",
+    "posthog-js": "^1.382.0",
     "radix-ui": "^1.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",

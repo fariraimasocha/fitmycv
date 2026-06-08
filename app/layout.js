@@ -4,7 +4,8 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
-import ClarityAnalytics from "@/components/ClarityAnalytics";
+import PostHogProvider from "@/components/providers/PostHogProvider";
+import PostHogIdentify from "@/components/providers/PostHogIdentify";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -91,14 +92,16 @@ export default function RootLayout({ children }) {
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} antialiased`}
       >
-        <QueryProvider>
-          <AuthProvider>
-            {children}
-            <ToastProvider />
-          </AuthProvider>
-        </QueryProvider>
+        <PostHogProvider>
+          <QueryProvider>
+            <AuthProvider>
+              <PostHogIdentify />
+              {children}
+              <ToastProvider />
+            </AuthProvider>
+          </QueryProvider>
+        </PostHogProvider>
         <Analytics />
-        <ClarityAnalytics />
       </body>
     </html>
   );

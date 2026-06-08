@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
+import posthog from "posthog-js";
 import {
   MagnifyingGlassIcon,
   SpinnerGapIcon,
@@ -207,6 +208,14 @@ export default function TailorPage() {
       setActiveTab("cv");
       toast.success("Resume tailored successfully!");
 
+      posthog.capture("tailored_cv_generated", {
+        job_title: jobData?.title || null,
+        job_company: jobData?.company || null,
+        keywords_injected: result.data.keywordsInjected?.length ?? 0,
+        has_cover_letter: !!result.data.coverLetter,
+        match_score: matchScore?.globalScore ?? null,
+      });
+
       // Trigger ATS analysis automatically
       setAtsLoading(true);
       fetch("/api/ats-score", {
@@ -245,7 +254,18 @@ export default function TailorPage() {
 
   const handleDownload = async (tab) => {
     if (!tailorResult) return;
-    if (!session?.user?.isPremium) {
+    const documentType = tab === "cv" ? "cv" : "cover_letter";
+    const isPremium = !!session?.user?.isPremium;
+    posthog.capture("pdf_download_initiated", {
+      document_type: documentType,
+      is_premium: isPremium,
+      template: tab === "cv" ? selectedTemplate : null,
+    });
+    if (!isPremium) {
+      posthog.capture("upgrade_prompt_shown", {
+        document_type: documentType,
+        trigger: "pdf_download",
+      });
       setShowUpgradeModal(true);
       return;
     }

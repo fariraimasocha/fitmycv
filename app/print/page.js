@@ -28,7 +28,6 @@ const PRINT_CSS = `
   html, body { margin: 0 !important; background: #fff !important; }
   .no-print { display: none !important; }
   [data-resume-template] { padding: 14mm !important; }
-  [data-resume-template="creative"] { padding: 2rem !important; }
 }
 `;
 

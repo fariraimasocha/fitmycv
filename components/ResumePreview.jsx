@@ -53,7 +53,7 @@ function ClassicPreview({ basics, work, education, skills }) {
           <ClassicSectionHeading>Experience</ClassicSectionHeading>
           <div className="space-y-3">
             {work.map((job, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   {job.position && <p className="text-xs font-bold">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
@@ -80,7 +80,7 @@ function ClassicPreview({ basics, work, education, skills }) {
           <ClassicSectionHeading>Education</ClassicSectionHeading>
           <div className="space-y-2">
             {education.map((edu, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   <p className="text-xs font-bold">{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
                   {(edu.startDate || edu.endDate) && (
@@ -152,7 +152,7 @@ function ModernPreview({ basics, work, education, skills }) {
           <ModernSectionHeading>Experience</ModernSectionHeading>
           <div className="space-y-2">
             {work.map((job, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 {/* Company-first (Jake's signature) */}
                 <div className="flex items-start justify-between">
                   {job.company && <p className="text-xs font-bold">{job.company}</p>}
@@ -180,7 +180,7 @@ function ModernPreview({ basics, work, education, skills }) {
           <ModernSectionHeading>Education</ModernSectionHeading>
           <div className="space-y-1">
             {education.map((edu, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   {edu.institution && <p className="text-xs font-bold">{edu.institution}</p>}
                   {(edu.startDate || edu.endDate) && (
@@ -252,7 +252,7 @@ function CleanPreview({ basics, work, education, skills }) {
           <CleanSectionHeading>Experience</CleanSectionHeading>
           <div className="space-y-3">
             {work.map((job, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   {job.position && <p className="text-xs font-bold">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
@@ -279,7 +279,7 @@ function CleanPreview({ basics, work, education, skills }) {
           <CleanSectionHeading>Education</CleanSectionHeading>
           <div className="space-y-2">
             {education.map((edu, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   <p className="text-xs font-bold">{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
                   {(edu.startDate || edu.endDate) && (
@@ -342,7 +342,7 @@ function MinimalPreview({ basics, work, education, skills }) {
           <h2 className="mb-2 text-xs font-normal text-black">Experience</h2>
           <div className="space-y-4">
             {work.map((job, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   {job.position && <p className="text-xs font-bold">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
@@ -366,7 +366,7 @@ function MinimalPreview({ basics, work, education, skills }) {
           <h2 className="mb-2 text-xs font-normal text-black">Education</h2>
           <div className="space-y-3">
             {education.map((edu, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   <p className="text-xs font-bold">{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
                   {(edu.startDate || edu.endDate) && (
@@ -440,7 +440,7 @@ function CreativePreview({ basics, work, education, skills }) {
           <CreativeSectionHeading>Experience</CreativeSectionHeading>
           <div className="space-y-3">
             {work.map((job, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   {job.position && <p className="text-xs font-bold text-black">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
@@ -476,7 +476,7 @@ function CreativePreview({ basics, work, education, skills }) {
           <CreativeSectionHeading>Education</CreativeSectionHeading>
           <div className="space-y-2">
             {education.map((edu, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <div className="flex items-start justify-between">
                   <p className="text-xs font-bold">{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
                   {(edu.startDate || edu.endDate) && (
@@ -535,7 +535,7 @@ function TechnicalPreview({ basics, work, education, skills }) {
           <h2 className="mb-1 text-[10px] font-bold uppercase border-b border-black pb-0.5">Skills</h2>
           <div className="space-y-1">
             {skills.map((group, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 {group.category && <p className="font-bold">[{group.category}]</p>}
                 {(group.skills || []).map((skill, j) => (
                   <p key={j} className="pl-2">- {skill}</p>
@@ -558,13 +558,13 @@ function TechnicalPreview({ basics, work, education, skills }) {
           <h2 className="mb-1 text-[10px] font-bold uppercase border-b border-black pb-0.5">Experience</h2>
           <div className="space-y-2">
             {work.map((job, i) => (
-              <div key={i}>
+              <div key={i} className="break-inside-avoid">
                 <p>
                   <span className="font-bold">{job.company}</span>
                   {job.position && ` | ${job.position}`}
                   {(job.startDate || job.endDate) && ` | ${[job.startDate, job.endDate].filter(Boolean).join("-")}`}
                 </p>
-                {job.location && <p className="text-gray-500">// {job.location}</p>}
+                {job.location && <p className="text-gray-500">{"// "}{job.location}</p>}
                 <DashList description={job.description} />
               </div>
             ))}
@@ -607,6 +607,23 @@ const PADDING = {
   creative: "p-5 sm:p-8",
   technical: "p-4",
 };
+
+// Bare template (no Card chrome) — shared by the on-screen preview and the
+// /print route so the downloaded PDF matches the preview exactly.
+export function ResumeTemplate({ data, template = "classic" }) {
+  const { basics, work, education, skills } = data;
+  const Preview = PREVIEWS[template] || ClassicPreview;
+  const padding = PADDING[template] || "p-5 sm:p-8";
+
+  return (
+    <div
+      data-resume-template={template}
+      className={`${padding} ${template === "creative" ? "overflow-hidden" : ""}`}
+    >
+      <Preview basics={basics} work={work} education={education} skills={skills} />
+    </div>
+  );
+}
 
 export default function ResumePreview({ data, template = "classic" }) {
   const { basics, work, education, skills } = data;

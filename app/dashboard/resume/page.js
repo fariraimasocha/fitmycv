@@ -16,14 +16,14 @@ import ResumeForm from "@/components/ResumeForm";
 import ResumePreview from "@/components/ResumePreview";
 import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
-import toast from "react-hot-toast";
+import { printDocument } from "@/utils/print-document";
+import { buildPdfFilename } from "@/utils/pdf-filename";
 
 export default function MyResumePage() {
   const [parsedData, setParsedData] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
-  const [downloading, setDownloading] = useState(false);
 
   const {
     data: savedCV,
@@ -50,18 +50,13 @@ export default function MyResumePage() {
     setShowUploadForm(true);
   };
 
-  const handleDownload = async (resumeData) => {
-    setDownloading(true);
-    try {
-      const { generateCVPdf, buildPdfFilename } = await import("@/utils/pdf-generator");
-      const doc = generateCVPdf(resumeData, selectedTemplate);
-      const filename = buildPdfFilename(resumeData.basics?.name, null, "cv");
-      doc.save(filename);
-    } catch {
-      toast.error("Failed to generate PDF. Please try again.");
-    } finally {
-      setDownloading(false);
-    }
+  const handleDownload = (resumeData) => {
+    printDocument({
+      kind: "cv",
+      data: resumeData,
+      template: selectedTemplate,
+      filename: buildPdfFilename(resumeData.basics?.name, null, "cv"),
+    });
   };
 
   if (isLoading) {
@@ -100,10 +95,9 @@ export default function MyResumePage() {
                     variant="outline"
                     className="rounded-full"
                     onClick={() => handleDownload(resumeData)}
-                    disabled={downloading}
                   >
                     <DownloadSimpleIcon size={16} />
-                    {downloading ? "Generating..." : "Download PDF"}
+                    Download PDF
                   </Button>
                 </motion.div>
               </>
@@ -210,10 +204,9 @@ export default function MyResumePage() {
                     variant="outline"
                     className="rounded-full"
                     onClick={() => handleDownload(resumeData)}
-                    disabled={downloading}
                   >
                     <DownloadSimpleIcon size={16} />
-                    {downloading ? "Generating..." : "Download PDF"}
+                    Download PDF
                   </Button>
                 </motion.div>
               </>

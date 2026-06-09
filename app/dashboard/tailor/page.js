@@ -33,6 +33,8 @@ import CompanyResearchCard from "@/components/CompanyResearchCard";
 import InterviewPrepCard from "@/components/InterviewPrepCard";
 import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
+import { printDocument } from "@/utils/print-document";
+import { buildPdfFilename } from "@/utils/pdf-filename";
 
 export default function TailorPage() {
   const { data: session } = useSession();
@@ -252,7 +254,7 @@ export default function TailorPage() {
     },
   });
 
-  const handleDownload = async (tab) => {
+  const handleDownload = (tab) => {
     if (!tailorResult) return;
     const documentType = tab === "cv" ? "cv" : "cover_letter";
     const isPremium = !!session?.user?.isPremium;
@@ -269,32 +271,33 @@ export default function TailorPage() {
       setShowUpgradeModal(true);
       return;
     }
-    const { generateCVPdf, generateCoverLetterPdf, buildPdfFilename } =
-      await import("@/utils/pdf-generator");
     if (tab === "cv") {
-      const doc = generateCVPdf(tailorResult.tailoredCV, selectedTemplate);
-      doc.save(
-        buildPdfFilename(
+      printDocument({
+        kind: "cv",
+        data: tailorResult.tailoredCV,
+        template: selectedTemplate,
+        filename: buildPdfFilename(
           tailorResult.tailoredCV.basics?.name,
           jobData?.title,
           "cv",
         ),
-      );
-    } else {
-      const doc = generateCoverLetterPdf(tailorResult.coverLetter || "", {
-        name: tailorResult.tailoredCV.basics?.name,
-        jobTitle: jobData?.title,
-        jobCompany: jobData?.company,
       });
-      doc.save(
-        buildPdfFilename(
+    } else {
+      printDocument({
+        kind: "cover-letter",
+        content: tailorResult.coverLetter || "",
+        meta: {
+          name: tailorResult.tailoredCV.basics?.name,
+          jobTitle: jobData?.title,
+          jobCompany: jobData?.company,
+        },
+        filename: buildPdfFilename(
           tailorResult.tailoredCV.basics?.name,
           jobData?.title,
           "cover-letter",
         ),
-      );
+      });
     }
-    toast.success("PDF downloaded!");
   };
 
   const handleExtract = (e) => {

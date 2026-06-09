@@ -24,6 +24,8 @@ import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
+import { printDocument } from "@/utils/print-document";
+import { buildPdfFilename } from "@/utils/pdf-filename";
 
 export default function TailoredCVDetailPage() {
   const { id } = useParams();
@@ -96,27 +98,30 @@ export default function TailoredCVDetailPage() {
     skills: cv.skills,
   };
 
-  const handleDownload = async (tab) => {
+  const handleDownload = (tab) => {
     if (!session?.user?.isPremium) {
       setShowUpgradeModal(true);
       return;
     }
-    const { generateCVPdf, generateCoverLetterPdf, buildPdfFilename } =
-      await import("@/utils/pdf-generator");
     if (tab === "cv") {
-      const doc = generateCVPdf(resumeData, selectedTemplate);
-      doc.save(buildPdfFilename(cv.basics?.name, cv.jobTitle, "cv"));
-    } else {
-      const doc = generateCoverLetterPdf(cv.coverLetter || "", {
-        name: cv.basics?.name,
-        jobTitle: cv.jobTitle,
-        jobCompany: cv.jobCompany,
+      printDocument({
+        kind: "cv",
+        data: resumeData,
+        template: selectedTemplate,
+        filename: buildPdfFilename(cv.basics?.name, cv.jobTitle, "cv"),
       });
-      doc.save(
-        buildPdfFilename(cv.basics?.name, cv.jobTitle, "cover-letter")
-      );
+    } else {
+      printDocument({
+        kind: "cover-letter",
+        content: cv.coverLetter || "",
+        meta: {
+          name: cv.basics?.name,
+          jobTitle: cv.jobTitle,
+          jobCompany: cv.jobCompany,
+        },
+        filename: buildPdfFilename(cv.basics?.name, cv.jobTitle, "cover-letter"),
+      });
     }
-    toast.success("PDF downloaded!");
   };
 
   return (

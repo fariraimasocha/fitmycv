@@ -8,12 +8,12 @@ import { useCheckoutStore } from "@/stores/checkout-store";
 import posthog from "posthog-js";
 
 const features = [
-  "AI-powered CV tailoring",
+  "Paste any job link, we read the requirements",
+  "Tailor and download unlimited applications as PDF",
+  "Match score and ATS score on every CV",
+  "AI cover letters, downloadable as PDF",
+  "Interview prep, company research and outreach",
   "Daily job matches by email",
-  "Smart cover letter generation",
-  "Job requirement analysis",
-  "PDF export & download",
-  "Unlimited generations",
 ];
 
 export default function Pricing() {

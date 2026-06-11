@@ -58,7 +58,7 @@ export default function CompanyResearchPage() {
                   href="/dashboard/tailor"
                   className="font-medium text-black underline"
                 >
-                  Tailor Resume
+                  Tailor CV
                 </Link>{" "}
                 to auto-generate your first company brief.
               </p>

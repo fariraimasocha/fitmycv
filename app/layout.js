@@ -1,4 +1,4 @@
-import { Geist_Mono, DM_Sans, Outfit } from "next/font/google";
+import { Geist_Mono, DM_Sans, Outfit, Caveat } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
@@ -21,6 +21,12 @@ const outfit = Outfit({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 export const metadata = {
@@ -90,7 +96,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${caveat.variable} antialiased`}
       >
         <PostHogProvider>
           <QueryProvider>

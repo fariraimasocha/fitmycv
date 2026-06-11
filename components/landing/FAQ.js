@@ -16,14 +16,19 @@ const faqs = [
       "Absolutely. FitMyCv enhances your existing content — it doesn't replace it. Your voice, experience, and achievements remain front and center. We just make sure they're presented in the best possible way for each role.",
   },
   {
+    question: "What do I get for free, and what needs Premium?",
+    answer:
+      "Free, you can upload and store your CV and track every application in one place. Premium unlocks the full tailoring suite: paste any job link, get a match score and ATS score, then tailor and download your CV and cover letter as polished PDFs. Premium also includes interview prep, company research, outreach messages, and daily job matches by email.",
+  },
+  {
     question: "What file formats can I export?",
     answer:
-      "You can export your tailored CV and cover letter as PDF, DOCX, or plain text. PDF is recommended for most applications as it preserves formatting perfectly.",
+      "You can download your tailored CV and cover letter as PDF, ready to attach and send. PDF is the format recruiters and ATS systems handle best, so it keeps your formatting perfect on every application.",
   },
   {
     question: "Can I cancel my subscription anytime?",
     answer:
-      "Yes, you can cancel your Pro subscription at any time. You'll continue to have access until the end of your billing period. No questions asked, no hidden fees.",
+      "Yes, you can cancel your Premium subscription at any time. You'll continue to have access until the end of your billing period. No questions asked, no hidden fees.",
   },
   {
     question: "Is my data safe?",

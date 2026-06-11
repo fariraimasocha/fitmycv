@@ -81,7 +81,7 @@ export default function MyResumePage() {
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-xl font-semibold font-outfit text-foreground">Review Your Resume</h1>
+            <h1 className="text-xl font-semibold font-outfit text-foreground">Review Your CV</h1>
             <p className="text-sm text-gray-500">
               Review and edit the parsed information, then save.
             </p>
@@ -162,9 +162,9 @@ export default function MyResumePage() {
           </Button>
         </div>
         <div className="text-center">
-          <h1 className="text-xl font-semibold font-outfit text-foreground">Upload New Resume</h1>
+          <h1 className="text-xl font-semibold font-outfit text-foreground">Upload New CV</h1>
           <p className="mt-2 text-sm text-gray-500">
-            Upload a PDF of your resume to replace the current one.
+            Upload a PDF of your CV to replace the current one.
           </p>
         </div>
         <ResumeUpload onParsed={handleParsed} />
@@ -190,9 +190,9 @@ export default function MyResumePage() {
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-xl font-semibold font-outfit text-foreground">My Resume</h1>
+            <h1 className="text-xl font-semibold font-outfit text-foreground">My CV</h1>
             <p className="text-sm text-gray-500">
-              Edit your resume information or upload a new one.
+              Edit your CV information or upload a new one.
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -259,9 +259,9 @@ export default function MyResumePage() {
       transition={{ duration: 0.3 }}
     >
       <div className="text-center">
-        <h1 className="text-xl font-semibold font-outfit text-foreground">Upload Your Resume</h1>
+        <h1 className="text-xl font-semibold font-outfit text-foreground">Upload Your CV</h1>
         <p className="mt-2 text-sm text-gray-500">
-          Upload a PDF of your resume. We&apos;ll extract and structure the
+          Upload a PDF of your CV. We&apos;ll extract and structure the
           information so you can review and edit it.
         </p>
       </div>

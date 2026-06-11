@@ -197,7 +197,7 @@ export default function HowItWorks() {
               AI Tailors Your CV
             </h3>
             <p className="landing-copy font-sans text-base">
-              Our AI restructures your resume, rewrites bullet points, and
+              Our AI restructures your CV, rewrites bullet points, and
               optimizes for ATS keywords. Every detail is aligned to make you
               the perfect candidate.
             </p>
@@ -279,7 +279,7 @@ export default function HowItWorks() {
           href="/auth"
           className="landing-primary-btn font-sans text-base"
         >
-          Try It Free Now
+          Start Tailoring Today
           <ArrowRightIcon size={18} aria-hidden="true" />
         </Link>
       </div>

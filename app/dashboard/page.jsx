@@ -72,11 +72,7 @@ function CheckoutRedirect() {
 
 export default function DashboardPage() {
   const { data: session } = useSession();
-  const [formattedDate, setFormattedDate] = useState("");
-
-  useEffect(() => {
-    setFormattedDate(getFormattedDate());
-  }, []);
+  const [formattedDate] = useState(() => getFormattedDate());
   const [now] = useState(() => Date.now());
 
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
@@ -125,6 +121,7 @@ export default function DashboardPage() {
           ? `+${thisWeekCount} this week`
           : "No new CVs this week",
       icon: StackIcon,
+      positive: thisWeekCount > 0,
       delay: 0,
     },
     {
@@ -158,11 +155,16 @@ export default function DashboardPage() {
 
       {/* Greeting */}
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold font-outfit">
+        <h1 className="font-outfit text-2xl font-extrabold text-foreground sm:text-3xl">
           Good {getTimeOfDay()}, {firstName} <span aria-hidden="true">👋</span>
         </h1>
         {formattedDate && (
-          <p className="text-sm text-muted-foreground">{formattedDate}</p>
+          <p
+            suppressHydrationWarning
+            className="text-sm font-medium text-muted-foreground"
+          >
+            {formattedDate}
+          </p>
         )}
       </div>
 
@@ -175,23 +177,33 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: card.delay }}
           >
-            <Card className="rounded-xl border-border h-full">
+            <Card className="h-full rounded-2xl border-border transition-shadow hover:shadow-[var(--landing-shadow-sm)]">
               <CardHeader className="flex flex-row items-center justify-between px-4 pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
+                <CardTitle className="text-sm font-semibold text-muted-foreground">
                   {card.label}
                 </CardTitle>
-                <card.icon size={18} className="text-muted-foreground" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+                  <card.icon size={18} aria-hidden="true" />
+                </span>
               </CardHeader>
               <CardContent className="px-4 pt-0">
                 <motion.p
-                  className="text-2xl font-semibold"
+                  className="font-outfit text-3xl font-extrabold text-foreground"
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
                   transition={{ duration: 0.4, delay: card.delay + 0.1 }}
                 >
                   {card.value}
                 </motion.p>
-                <p className="text-xs text-muted-foreground">{card.subtitle}</p>
+                <p
+                  className={`mt-1 text-xs font-medium ${
+                    card.positive
+                      ? "text-[var(--landing-success)]"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {card.subtitle}
+                </p>
               </CardContent>
             </Card>
           </motion.div>
@@ -204,12 +216,14 @@ export default function DashboardPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Card className="rounded-xl border-border">
+        <Card className="rounded-2xl border-border">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-sm font-semibold text-muted-foreground">
               Activity
             </CardTitle>
-            <TrendUpIcon size={18} className="text-muted-foreground" />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+              <TrendUpIcon size={18} aria-hidden="true" />
+            </span>
           </CardHeader>
           <CardContent className="pb-4">
             <p className="text-xs text-muted-foreground mb-4">Last 30 days</p>
@@ -226,31 +240,31 @@ export default function DashboardPage() {
                 />
                 <XAxis
                   dataKey="date"
-                  tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{ fontSize: 11, fill: "oklch(0.45 0.038 244)" }}
                   tickLine={false}
                   axisLine={false}
                   interval={6}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "hsl(var(--background))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "0.5rem",
-                    boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                    backgroundColor: "var(--card)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "12px",
+                    boxShadow: "var(--landing-shadow-sm)",
                     fontSize: "12px",
                   }}
                   labelStyle={{
-                    color: "hsl(var(--foreground))",
-                    fontWeight: 500,
+                    color: "var(--foreground)",
+                    fontWeight: 600,
                   }}
-                  itemStyle={{ color: "hsl(var(--muted-foreground))" }}
+                  itemStyle={{ color: "var(--muted-foreground)" }}
                   formatter={(value) => [value, "CVs"]}
-                  cursor={{ fill: "hsl(var(--muted))", opacity: 0.4 }}
+                  cursor={{ fill: "oklch(0.92 0.06 174)", opacity: 0.45 }}
                 />
                 <Bar
                   dataKey="count"
-                  fill="hsl(var(--foreground))"
-                  radius={[3, 3, 0, 0]}
+                  fill="oklch(0.47 0.125 177)"
+                  radius={[4, 4, 0, 0]}
                   maxBarSize={32}
                   isAnimationActive={true}
                   animationEasing="ease-in-out"

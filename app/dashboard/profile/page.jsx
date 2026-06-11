@@ -44,9 +44,9 @@ function SubscriptionBadge({ isPremium, status }) {
 }
 
 const PRO_FEATURES = [
-  "Unlimited CV tailoring",
-  "AI cover letter generation",
-  "Priority support",
+  "Tailor and download unlimited CVs as PDF",
+  "AI cover letters you can download as PDF",
+  "Daily job matches by email",
 ];
 
 export default function ProfilePage() {

@@ -102,8 +102,8 @@ export default function TailoredCVsPage() {
                 </h3>
                 <p className="text-sm text-muted-foreground max-w-[320px]">
                   {hasReferenceCV
-                    ? "Paste a job listing URL and we'll tailor your resume to match the role."
-                    : "Upload your base resume first, then paste any job URL to generate a tailored version."}
+                    ? "Paste a job listing URL and we'll tailor your CV to match the role."
+                    : "Upload your base CV first, then paste any job URL to generate a tailored version."}
                 </p>
               </div>
               <Link

@@ -143,7 +143,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
     return (
       <Card className="rounded-2xl border shadow-lg">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
-          ATS score will appear here after tailoring your resume.
+          ATS score will appear here after tailoring your CV.
         </CardContent>
       </Card>
     );

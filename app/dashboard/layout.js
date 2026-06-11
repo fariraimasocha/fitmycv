@@ -20,8 +20,8 @@ import { ChatCircleDotsIcon } from "@phosphor-icons/react";
 
 const PATH_LABELS = {
   "/dashboard": "Home",
-  "/dashboard/resume": "My Resume",
-  "/dashboard/tailor": "Tailor Resume",
+  "/dashboard/resume": "My CV",
+  "/dashboard/tailor": "Tailor CV",
   "/dashboard/tailored": "Tailored CVs",
   "/dashboard/profile": "Profile",
   "/dashboard/upgrade": "Upgrade to Pro",
@@ -116,16 +116,16 @@ export default function DashboardLayout({ children }) {
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border px-4">
+            <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center gap-2 border-b border-border bg-background/85 px-4 backdrop-blur-md">
               <SidebarTrigger className="-ml-1" />
               <Separator orientation="vertical" className="mr-2 h-4" />
               <DashboardBreadcrumb />
               <div className="ml-auto">
                 <button
                   onClick={() => setFeedbackOpen(true)}
-                  className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--landing-primary)] hover:text-foreground"
                 >
-                  <ChatCircleDotsIcon size={16} />
+                  <ChatCircleDotsIcon size={16} aria-hidden="true" />
                   Feedback
                 </button>
               </div>

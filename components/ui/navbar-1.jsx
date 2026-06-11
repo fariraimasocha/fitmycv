@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { ArrowRight, LayoutDashboard, LogOut } from "lucide-react";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -61,22 +61,22 @@ const Navbar1 = () => {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full">
       <motion.div
-        className="mx-auto mt-3 flex w-[calc(100%-1.5rem)] max-w-6xl items-center justify-between rounded-2xl border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84_/_0.84)] px-4 py-3 shadow-[0_12px_32px_oklch(0.205_0.035_244_/_0.08)] backdrop-blur-xl sm:px-6"
+        className="mx-auto mt-4 flex w-[calc(100%-1.5rem)] items-center justify-between gap-3 rounded-full border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84_/_0.85)] py-2 pl-5 pr-2 shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.10)] backdrop-blur-xl md:w-fit md:justify-start md:gap-8"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        <Link href="/" className="flex items-center">
-          <motion.div
-            className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)] shadow-[inset_0_1px_0_oklch(1_0_0_/_0.18)]"
+        <Link href="/" className="flex items-center gap-2">
+          <motion.span
+            className="flex items-center text-[var(--landing-primary)]"
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             whileHover={{ rotate: 10 }}
             transition={{ duration: 0.3 }}
           >
-            <ReadCvLogoIcon size={21} weight="bold" />
-          </motion.div>
-          <span className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">fitmycv</span>
+            <ReadCvLogoIcon size={22} weight="bold" />
+          </motion.span>
+          <span className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">FitMyCv</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -157,9 +157,14 @@ const Navbar1 = () => {
           ) : (
             <Link
               href="/auth"
-              className="landing-primary-btn min-h-0 px-5 py-2 text-sm"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-primary-dark)] px-5 py-2.5 font-outfit text-sm font-extrabold text-[oklch(0.99_0.006_84)] transition-colors hover:bg-[var(--landing-primary)]"
             >
               Login
+              <ArrowRight
+                size={15}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
             </Link>
           )}
         </motion.div>
@@ -278,6 +283,7 @@ const Navbar1 = () => {
                     onClick={toggleMenu}
                   >
                     Login
+                    <ArrowRight size={16} aria-hidden="true" />
                   </Link>
                 )}
               </motion.div>

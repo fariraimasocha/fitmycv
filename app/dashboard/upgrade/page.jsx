@@ -11,12 +11,12 @@ import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
 
 const PRO_FEATURES = [
-  "Download tailored CVs and cover letters as PDFs",
-  "Unlimited CV tailoring",
-  "AI cover letter generation",
-  "Job requirements extraction",
-  "Access to all tailored CVs",
-  "Priority support",
+  "Paste any job link to extract the requirements",
+  "Tailor and download unlimited CVs as PDF",
+  "AI cover letters you can download as PDF",
+  "Match score and ATS score on every application",
+  "Interview prep, company research and outreach",
+  "Daily job matches by email",
 ];
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";

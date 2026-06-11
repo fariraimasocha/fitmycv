@@ -100,7 +100,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
     return (
       <Card className="rounded-2xl border shadow-lg">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
-          Interview prep will appear here after tailoring your resume.
+          Interview prep will appear here after tailoring your CV.
         </CardContent>
       </Card>
     );

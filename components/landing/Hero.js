@@ -1,17 +1,109 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   BadgeCheck,
   BriefcaseBusiness,
   CheckCircle2,
+  ChevronsUpDown,
   ClipboardList,
   FileText,
   SearchCheck,
   Sparkles,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const ROLES = [
+  "Senior Product Designer",
+  "Software Engineer",
+  "Marketing Manager",
+  "Data Analyst",
+  "Product Manager",
+];
+
+function RoleSlot() {
+  const reduceMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % ROLES.length);
+    }, 2400);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="mt-7 flex items-center gap-2.5">
+      <span className="text-sm font-semibold text-[var(--landing-ink-soft)]">
+        Now tailoring for
+      </span>
+      <span className="inline-flex h-9 items-center gap-2 rounded-[10px] border border-[oklch(0.47_0.125_177_/_0.22)] bg-[var(--landing-primary-soft)] px-3">
+        <span className="relative block h-5 w-52 overflow-hidden">
+          <AnimatePresence initial={false} mode="popLayout">
+            <motion.span
+              key={ROLES[index]}
+              initial={reduceMotion ? false : { y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={reduceMotion ? { opacity: 0 } : { y: -20, opacity: 0 }}
+              transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 flex items-center whitespace-nowrap font-outfit text-sm font-extrabold text-[var(--landing-primary-dark)]"
+            >
+              {ROLES[index]}
+            </motion.span>
+          </AnimatePresence>
+        </span>
+        <ChevronsUpDown
+          size={14}
+          className="text-[var(--landing-primary-dark)]"
+          aria-hidden="true"
+        />
+      </span>
+    </div>
+  );
+}
+
+function MatchAnnotation() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div className="pointer-events-none absolute left-[19%] top-[24%] z-40 hidden md:block">
+      <span className="inline-block -rotate-6 font-caveat text-2xl font-bold text-[var(--landing-primary-dark)]">
+        matched in ~30s
+      </span>
+      <svg
+        width="96"
+        height="64"
+        viewBox="0 0 96 64"
+        fill="none"
+        className="ml-12 mt-1"
+        aria-hidden="true"
+      >
+        <motion.path
+          d="M4 6 C 34 2, 52 30, 40 42 C 32 50, 68 52, 90 44"
+          stroke="var(--landing-primary-dark)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          initial={reduceMotion ? false : { pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 0.9, delay: 0.9, ease: "easeInOut" }}
+        />
+        <motion.path
+          d="M80 36 L92 44 L78 50"
+          stroke="var(--landing-primary-dark)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2, delay: 1.7 }}
+        />
+      </svg>
+    </div>
+  );
+}
 
 const artifactMotion = {
   hidden: { opacity: 0, y: 18, rotate: 0 },
@@ -41,7 +133,10 @@ function ArtifactShell({ children, className = "", index = 0 }) {
       initial="hidden"
       animate="visible"
       whileHover={reduceMotion ? undefined : artifactHover}
-      className={`border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84)] shadow-[0_20px_42px_oklch(0.205_0.035_244_/_0.10),0_4px_12px_oklch(0.205_0.035_244_/_0.06)] ${className}`}
+      className={cn(
+        "border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84)] shadow-[0_20px_42px_oklch(0.205_0.035_244_/_0.10),0_4px_12px_oklch(0.205_0.035_244_/_0.06)]",
+        className,
+      )}
     >
       {children}
     </motion.div>
@@ -171,7 +266,7 @@ function CoverLetterNote() {
   return (
     <ArtifactShell
       index={3}
-      className="z-20 rounded-[18px] bg-[oklch(0.96_0.048_88)] p-5 md:absolute md:bottom-8 md:left-[13%] md:w-[34%] md:rotate-3"
+      className="z-20 rounded-[18px] border-[oklch(0.73_0.135_68_/_0.28)] bg-[oklch(0.925_0.05_85)] p-5 md:absolute md:bottom-8 md:left-[13%] md:w-[34%] md:rotate-3"
     >
       <div className="mb-4 flex items-center gap-2 text-sm font-extrabold text-[var(--landing-ink)]">
         <FileText size={17} aria-hidden="true" />
@@ -225,6 +320,7 @@ function ApplicationDesk() {
       <ResumeSheet />
       <JobBrief />
       <MatchStamp />
+      <MatchAnnotation />
       <CoverLetterNote />
       <InterviewPrepCard />
     </div>
@@ -260,12 +356,12 @@ export default function Hero() {
                 aria-hidden="true"
                 className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.87_0.071_313_/_0.72)]"
               />
-              from any job link.
+              to match the job.
             </span>
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-            Paste a job link, upload your CV, and FitMyCV rewrites your resume,
+            Paste a job link, upload your CV, and FitMyCV rewrites your CV,
             cover letter, and interview prep to match the role.
           </p>
 
@@ -288,6 +384,8 @@ export default function Hero() {
               See how it works
             </Link>
           </div>
+
+          <RoleSlot />
         </motion.div>
 
         <ApplicationDesk />

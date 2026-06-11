@@ -110,7 +110,7 @@ export default function ResumeUpload({ onParsed }) {
       >
         <UploadSimpleIcon size={40} className="mb-3 text-gray-400" aria-hidden="true" />
         <p className="text-sm font-medium text-gray-900">
-          Drag and drop your resume PDF here
+          Drag and drop your CV PDF here
         </p>
         <p className="mt-1 text-xs text-gray-400">or</p>
         <label htmlFor="resume-file-input" className="mt-3 cursor-pointer">

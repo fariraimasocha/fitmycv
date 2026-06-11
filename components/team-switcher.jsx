@@ -20,8 +20,8 @@ export function TeamSwitcher() {
             <ReadCvLogoIcon className="size-4" weight="bold" />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold font-outfit">FitMyCV</span>
-            <span className="truncate text-xs">Tailor your CV</span>
+            <span className="truncate font-extrabold font-outfit">FitMyCV</span>
+            <span className="truncate text-xs text-muted-foreground">Tailor your CV</span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>

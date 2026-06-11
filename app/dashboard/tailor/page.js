@@ -181,7 +181,7 @@ export default function TailorPage() {
       const cvData = await cvRes.json();
 
       if (!cvData.data) {
-        throw new Error("Please upload your resume first");
+        throw new Error("Please upload your CV first");
       }
 
       const referenceCV = {
@@ -200,7 +200,7 @@ export default function TailorPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to tailor resume");
+        throw new Error(err.error || "Failed to tailor CV");
       }
 
       return res.json();
@@ -316,7 +316,7 @@ export default function TailorPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <h1 className="text-2xl font-bold font-outfit">Tailor Resume</h1>
+        <h1 className="text-2xl font-bold font-outfit">Tailor CV</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Paste a job listing URL to extract requirements and tailor your CV.
         </p>
@@ -411,7 +411,7 @@ export default function TailorPage() {
             ) : (
               <>
                 <SparkleIcon size={16} aria-hidden="true" />
-                Tailor Resume
+                Tailor CV
               </>
             )}
           </Button>

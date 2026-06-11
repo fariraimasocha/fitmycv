@@ -20,12 +20,12 @@ const navItems = [
     icon: HouseIcon,
   },
   {
-    title: "My Resume",
+    title: "My CV",
     url: "/dashboard/resume",
     icon: ReadCvLogoIcon,
   },
   {
-    title: "Tailor Resume",
+    title: "Tailor CV",
     url: "/dashboard/tailor",
     icon: PenIcon,
   },

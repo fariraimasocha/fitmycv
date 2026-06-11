@@ -68,7 +68,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
     return (
       <Card className="rounded-2xl border shadow-lg">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
-          Company research will appear here after tailoring your resume.
+          Company research will appear here after tailoring your CV.
         </CardContent>
       </Card>
     );

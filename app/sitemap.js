@@ -1,25 +1,18 @@
-export default function sitemap() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL || "https://fitmycv.link";
+import { SITE_URL } from "@/lib/site";
 
+export default function sitemap() {
   return [
     {
-      url: baseUrl,
+      url: SITE_URL,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/tailor-cv-from-job-link`,
+      url: `${SITE_URL}/tailor-cv-from-job-link`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/auth`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
     },
   ];
 }

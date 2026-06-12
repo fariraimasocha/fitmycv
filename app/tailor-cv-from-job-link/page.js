@@ -14,7 +14,7 @@ import Footer from "@/components/landing/Footer";
 export const metadata = {
   title: "Tailor Your CV From a Job Link",
   description:
-    "Paste any job link and FitMyCV tailors your CV and cover letter to the role in seconds. AI scrapes the listing, matches ATS keywords, and exports to PDF — works with LinkedIn, Indeed, Glassdoor and more.",
+    "Paste any job link — LinkedIn, Indeed, Glassdoor — and FitMyCV tailors your CV and cover letter to the role in seconds, with ATS keywords and PDF export.",
   keywords: [
     "tailor cv from job link",
     "tailor resume from job url",

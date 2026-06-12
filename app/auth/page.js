@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { signIn } from "next-auth/react";
 import { GoogleLogoIcon, ReadCvLogoIcon, WarningIcon, CopyIcon } from "@phosphor-icons/react";
@@ -51,7 +52,7 @@ export default function AuthPage() {
         transition={{ duration: 0.3 }}
       >
         {/* Logo + brand — same as navbar */}
-        <div className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <motion.div
             className="w-8 h-8"
             initial={{ scale: 0.8 }}
@@ -62,7 +63,7 @@ export default function AuthPage() {
             <ReadCvLogoIcon size={32} />
           </motion.div>
           <span className="text-lg text-gray-900">fitmycv</span>
-        </div>
+        </Link>
 
         {/* Heading */}
         <div className="text-center">

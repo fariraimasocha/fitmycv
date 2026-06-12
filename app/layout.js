@@ -6,6 +6,7 @@ import ToastProvider from "@/components/providers/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
 import PostHogProvider from "@/components/providers/PostHogProvider";
 import PostHogIdentify from "@/components/providers/PostHogIdentify";
+import { SITE_URL } from "@/lib/site";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -30,9 +31,7 @@ const caveat = Caveat({
 });
 
 export const metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL || "https://fitmycv.link",
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Tailor Your CV From a Job Link in Seconds | FitMyCV",
     template: "%s | FitMyCV",

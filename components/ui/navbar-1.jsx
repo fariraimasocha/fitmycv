@@ -169,14 +169,65 @@ const Navbar1 = () => {
           )}
         </motion.div>
 
-        {/* Mobile Menu Button */}
-        <motion.button
-          className="flex items-center rounded-lg p-2 text-[var(--landing-ink)] md:hidden"
-          onClick={toggleMenu}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ListIcon size={24} />
-        </motion.button>
+        {/* Mobile right side — avatar (when logged in) + menu button */}
+        <div className="flex items-center gap-1 md:hidden">
+          {session && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="focus:outline-none">
+                  <Avatar className="w-8 h-8 cursor-pointer">
+                    <AvatarImage
+                      src={session.user?.image}
+                      alt={session.user?.name}
+                    />
+                    <AvatarFallback className="bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)] text-xs font-semibold">
+                      {getInitials(session.user?.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {session.user?.name}
+                    </p>
+                    <p className="text-xs leading-none text-[var(--landing-ink-soft)]">
+                      {session.user?.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center cursor-pointer"
+                  >
+                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    Dashboard
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="cursor-pointer text-red-600 focus:text-red-600"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="flex items-center rounded-lg p-2 text-[var(--landing-ink)]"
+            onClick={toggleMenu}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ListIcon size={24} />
+          </motion.button>
+        </div>
       </motion.div>
 
       {/* Mobile Menu Overlay */}

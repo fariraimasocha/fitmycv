@@ -10,6 +10,10 @@ import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <div className="landing-root min-h-screen">

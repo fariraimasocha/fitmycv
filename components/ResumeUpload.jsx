@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
@@ -22,6 +22,11 @@ function formatFileSize(bytes) {
 export default function ResumeUpload({ onParsed }) {
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
+  const inputRef = useRef(null);
+
+  const openFilePicker = useCallback(() => {
+    inputRef.current?.click();
+  }, []);
 
   const uploadMutation = useMutation({
     mutationFn: async (pdfFile) => {
@@ -98,11 +103,20 @@ export default function ResumeUpload({ onParsed }) {
     >
       {/* Drop zone */}
       <div
+        role="button"
+        tabIndex={0}
+        onClick={openFilePicker}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openFilePicker();
+          }
+        }}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
-        className={`relative flex flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 sm:p-10 transition-colors ${
+        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 sm:p-10 transition-colors ${
           dragActive
             ? "border-gray-900 bg-gray-50"
             : "border-gray-300 hover:border-gray-400"
@@ -113,19 +127,18 @@ export default function ResumeUpload({ onParsed }) {
           Drag and drop your CV PDF here
         </p>
         <p className="mt-1 text-xs text-gray-400">or</p>
-        <label htmlFor="resume-file-input" className="mt-3 cursor-pointer">
-          <span className="text-sm font-medium text-gray-900 hover:underline">
-            Browse files
-          </span>
-          <input
-            id="resume-file-input"
-            type="file"
-            accept=".pdf"
-            onChange={handleFileChange}
-            className="sr-only"
-            aria-describedby="resume-file-hint"
-          />
-        </label>
+        <span className="mt-3 text-sm font-medium text-gray-900 hover:underline">
+          Browse files
+        </span>
+        <input
+          ref={inputRef}
+          id="resume-file-input"
+          type="file"
+          accept=".pdf"
+          onChange={handleFileChange}
+          className="sr-only"
+          aria-describedby="resume-file-hint"
+        />
         <p id="resume-file-hint" className="mt-3 text-xs text-gray-400">
           PDF only, max 8MB
         </p>

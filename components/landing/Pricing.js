@@ -6,15 +6,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import posthog from "posthog-js";
-
-const features = [
-  "Paste any job link, we read the requirements",
-  "Tailor and download unlimited applications as PDF",
-  "Match score and ATS score on every CV",
-  "AI cover letters, downloadable as PDF",
-  "Interview prep, company research and outreach",
-  "Daily job matches by email",
-];
+import { PRO_FEATURES as features } from "@/lib/pro-features";
 
 export default function Pricing() {
   const { data: session } = useSession();

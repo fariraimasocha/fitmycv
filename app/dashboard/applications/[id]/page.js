@@ -17,6 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Loader from "@/components/Loader";
+import FormattedDate from "@/components/FormattedDate";
 
 const STATUS_CONFIG = {
   evaluated: { label: "Evaluated", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
@@ -106,7 +107,7 @@ export default function ApplicationDetailPage() {
               </span>
               <span className="flex items-center gap-1 text-sm text-muted-foreground">
                 <CalendarIcon size={14} />
-                {new Date(app.createdAt).toLocaleDateString()}
+                <FormattedDate date={app.createdAt} />
               </span>
               {app.jobUrl && (
                 <a
@@ -181,13 +182,15 @@ export default function ApplicationDetailPage() {
                           <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${config.color}`}>
                             {config.label}
                           </span>
-                          <span className="text-xs text-muted-foreground">
-                            {new Date(entry.date).toLocaleDateString(undefined, {
+                          <FormattedDate
+                            date={entry.date}
+                            className="text-xs text-muted-foreground"
+                            options={{
                               month: "short",
                               day: "numeric",
                               year: "numeric",
-                            })}
-                          </span>
+                            }}
+                          />
                         </div>
                         {entry.note && (
                           <p className="text-xs text-muted-foreground mt-0.5">{entry.note}</p>

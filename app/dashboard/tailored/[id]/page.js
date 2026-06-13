@@ -23,6 +23,7 @@ import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
+import FormattedDate from "@/components/FormattedDate";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
@@ -154,7 +155,7 @@ export default function TailoredCVDetailPage() {
             )}
             <span className="flex items-center gap-1">
               <CalendarIcon size={14} />
-              {new Date(cv.createdAt).toLocaleDateString()}
+              <FormattedDate date={cv.createdAt} />
             </span>
           </div>
         </div>

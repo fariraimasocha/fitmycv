@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import CompanyResearchCard from "@/components/CompanyResearchCard";
 import Loader from "@/components/Loader";
+import FormattedDate from "@/components/FormattedDate";
 
 export default function CompanyResearchDetailPage() {
   const { id } = useParams();
@@ -79,7 +80,7 @@ export default function CompanyResearchDetailPage() {
             )}
             <span className="flex items-center gap-1">
               <CalendarIcon size={14} />
-              {new Date(brief.createdAt).toLocaleDateString()}
+              <FormattedDate date={brief.createdAt} />
             </span>
             {brief.jobUrl && (
               <a

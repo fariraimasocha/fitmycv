@@ -14,6 +14,7 @@ import {
   SwordIcon,
   LightbulbIcon,
 } from "@phosphor-icons/react";
+import FormattedDate from "@/components/FormattedDate";
 
 function InfoBadge({ children }) {
   return (
@@ -227,13 +228,15 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                     <p className="text-sm font-medium">{item.title}</p>
                   )}
                   {item.publishedAt && (
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(item.publishedAt).toLocaleDateString(undefined, {
+                    <FormattedDate
+                      date={item.publishedAt}
+                      className="block text-xs text-muted-foreground"
+                      options={{
                         month: "short",
                         day: "numeric",
                         year: "numeric",
-                      })}
-                    </p>
+                      }}
+                    />
                   )}
                   {item.snippet && (
                     <p className="text-sm text-muted-foreground">{item.snippet}</p>

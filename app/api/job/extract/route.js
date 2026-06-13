@@ -1,5 +1,4 @@
 import { auth } from "@/lib/auth";
-import { requirePremium } from "@/lib/paywall";
 import { parseJobFromResponse } from "@/utils/job-parser";
 import OpenAI from "openai";
 
@@ -41,9 +40,6 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const paywallResponse = requirePremium(session);
-  if (paywallResponse) return paywallResponse;
 
   try {
     let { url } = await request.json();

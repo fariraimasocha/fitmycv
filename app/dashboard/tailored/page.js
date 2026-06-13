@@ -17,6 +17,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
+import FormattedDate from "@/components/FormattedDate";
 
 export default function TailoredCVsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
@@ -153,7 +154,7 @@ export default function TailoredCVsPage() {
                         )}
                         <span className="flex items-center gap-1">
                           <CalendarIcon size={14} />
-                          {new Date(cv.createdAt).toLocaleDateString()}
+                          <FormattedDate date={cv.createdAt} />
                         </span>
                       </div>
                     </div>

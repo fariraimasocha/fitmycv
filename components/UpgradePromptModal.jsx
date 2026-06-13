@@ -10,13 +10,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-
-const DOWNLOAD_FEATURES = [
-  "Download tailored CVs as PDF",
-  "Download cover letters as PDF",
-  "Access all your tailored CVs",
-  "Unlimited CV tailoring",
-];
+import { PRO_FEATURES } from "@/lib/pro-features";
 
 export default function UpgradePromptModal({ open, onClose }) {
   return (
@@ -33,7 +27,7 @@ export default function UpgradePromptModal({ open, onClose }) {
         </DialogHeader>
 
         <ul className="space-y-2 my-2">
-          {DOWNLOAD_FEATURES.map((feature) => (
+          {PRO_FEATURES.map((feature) => (
             <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
               <CheckCircleIcon className="size-4 text-green-600 shrink-0" />
               {feature}

@@ -11,6 +11,7 @@ import {
 } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
 import Loader from "@/components/Loader";
+import FormattedDate from "@/components/FormattedDate";
 
 export default function CompanyResearchPage() {
   const { data: briefs, isLoading } = useQuery({
@@ -93,7 +94,7 @@ export default function CompanyResearchPage() {
                         )}
                         <span className="flex items-center gap-1">
                           <CalendarIcon size={14} />
-                          {new Date(brief.createdAt).toLocaleDateString()}
+                          <FormattedDate date={brief.createdAt} />
                         </span>
                       </div>
                       {brief.summary && (

@@ -73,6 +73,7 @@ function CheckoutRedirect() {
 export default function DashboardPage() {
   const { data: session } = useSession();
   const [formattedDate] = useState(() => getFormattedDate());
+  const [greeting] = useState(() => getTimeOfDay());
   const [now] = useState(() => Date.now());
 
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
@@ -155,8 +156,11 @@ export default function DashboardPage() {
 
       {/* Greeting */}
       <div className="flex flex-col gap-1">
-        <h1 className="font-outfit text-2xl font-extrabold text-foreground sm:text-3xl">
-          Good {getTimeOfDay()}, {firstName} <span aria-hidden="true">👋</span>
+        <h1
+          suppressHydrationWarning
+          className="font-outfit text-2xl font-extrabold text-foreground sm:text-3xl"
+        >
+          Good {greeting}, {firstName} <span aria-hidden="true">👋</span>
         </h1>
         {formattedDate && (
           <p

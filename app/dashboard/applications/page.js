@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Loader from "@/components/Loader";
+import FormattedDate from "@/components/FormattedDate";
 
 const STATUS_CONFIG = {
   evaluated: { label: "Evaluated", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
@@ -215,10 +216,10 @@ export default function ApplicationsPage() {
                         </span>
                         <span className="flex items-center gap-1 text-xs text-muted-foreground">
                           <CalendarIcon size={12} />
-                          {new Date(app.createdAt).toLocaleDateString(undefined, {
-                            month: "short",
-                            day: "numeric",
-                          })}
+                          <FormattedDate
+                            date={app.createdAt}
+                            options={{ month: "short", day: "numeric" }}
+                          />
                         </span>
                         {app.matchGrade && (
                           <span className="text-xs font-medium text-muted-foreground">

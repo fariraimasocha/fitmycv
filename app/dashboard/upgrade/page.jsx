@@ -9,15 +9,7 @@ import { CrownIcon, CheckCircleIcon, ArrowRightIcon, ArrowLeftIcon } from "@phos
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
-
-const PRO_FEATURES = [
-  "Paste any job link to extract the requirements",
-  "Tailor and download unlimited CVs as PDF",
-  "AI cover letters you can download as PDF",
-  "Match score and ATS score on every application",
-  "Interview prep, company research and outreach",
-  "Daily job matches by email",
-];
+import { PRO_FEATURES } from "@/lib/pro-features";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 

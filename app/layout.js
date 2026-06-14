@@ -7,6 +7,12 @@ import { Analytics } from "@vercel/analytics/next";
 import PostHogProvider from "@/components/providers/PostHogProvider";
 import PostHogIdentify from "@/components/providers/PostHogIdentify";
 import { SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import {
+  organizationSchema,
+  websiteSchema,
+  softwareApplicationSchema,
+} from "@/lib/structured-data";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -97,6 +103,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${caveat.variable} antialiased`}
       >
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
+        <JsonLd data={softwareApplicationSchema} />
         <PostHogProvider>
           <QueryProvider>
             <AuthProvider>

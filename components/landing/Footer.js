@@ -7,8 +7,14 @@ const footerLinks = [
   { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link" },
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "#faq" },
+];
+
+const companyLinks = [
+  { label: "Support", href: "/support" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
 ];
 
 const otherApps = [
@@ -44,6 +50,23 @@ export default function Footer() {
               <h4 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Links</h4>
               <ul className="flex flex-col gap-3">
                 {footerLinks.map(({ label, href }) => (
+                  <li key={label}>
+                    <Link
+                      href={href}
+                      className="font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company col */}
+            <div className="flex flex-col gap-4">
+              <h4 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Company</h4>
+              <ul className="flex flex-col gap-3">
+                {companyLinks.map(({ label, href }) => (
                   <li key={label}>
                     <Link
                       href={href}

@@ -51,6 +51,14 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    // Drives the daily job digest. Defaults are opt-in; an existing user with
+    // no jobPreferences is treated as emailDigest:true / remoteOnly:true.
+    jobPreferences: {
+      titles: { type: [String], default: [] }, // overrides CV-derived queries
+      country: { type: String, default: "us" }, // ISO-2; JSearch market to search
+      remoteOnly: { type: Boolean, default: true },
+      emailDigest: { type: Boolean, default: true }, // the real unsubscribe toggle
+    },
   },
   { timestamps: true }
 );

@@ -1,329 +1,49 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import {
-  ArrowRight,
-  BadgeCheck,
-  BriefcaseBusiness,
-  CheckCircle2,
-  ChevronsUpDown,
-  ClipboardList,
-  FileText,
-  SearchCheck,
-  Sparkles,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowRight, Play } from "lucide-react";
 
-const ROLES = [
-  "Senior Product Designer",
-  "Software Engineer",
-  "Marketing Manager",
-  "Data Analyst",
-  "Product Manager",
-];
-
-function RoleSlot() {
-  const reduceMotion = useReducedMotion();
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % ROLES.length);
-    }, 2400);
-    return () => clearInterval(id);
-  }, []);
-
-  return (
-    <div className="mt-7 flex items-center gap-2.5">
-      <span className="text-sm font-semibold text-[var(--landing-ink-soft)]">
-        Now tailoring for
-      </span>
-      <span className="inline-flex h-9 items-center gap-2 rounded-[10px] border border-[oklch(0.47_0.125_177_/_0.22)] bg-[var(--landing-primary-soft)] px-3">
-        <span className="relative block h-5 w-52 overflow-hidden">
-          <AnimatePresence initial={false} mode="popLayout">
-            <motion.span
-              key={ROLES[index]}
-              initial={reduceMotion ? false : { y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={reduceMotion ? { opacity: 0 } : { y: -20, opacity: 0 }}
-              transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0 flex items-center whitespace-nowrap font-outfit text-sm font-extrabold text-[var(--landing-primary-dark)]"
-            >
-              {ROLES[index]}
-            </motion.span>
-          </AnimatePresence>
-        </span>
-        <ChevronsUpDown
-          size={14}
-          className="text-[var(--landing-primary-dark)]"
-          aria-hidden="true"
-        />
-      </span>
-    </div>
-  );
-}
-
-function MatchAnnotation() {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div className="pointer-events-none absolute left-[19%] top-[24%] z-40 hidden md:block">
-      <span className="inline-block -rotate-6 font-caveat text-2xl font-bold text-[var(--landing-primary-dark)]">
-        matched in ~30s
-      </span>
-      <svg
-        width="96"
-        height="64"
-        viewBox="0 0 96 64"
-        fill="none"
-        className="ml-12 mt-1"
-        aria-hidden="true"
-      >
-        <motion.path
-          d="M4 6 C 34 2, 52 30, 40 42 C 32 50, 68 52, 90 44"
-          stroke="var(--landing-primary-dark)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          initial={reduceMotion ? false : { pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 0.9, delay: 0.9, ease: "easeInOut" }}
-        />
-        <motion.path
-          d="M80 36 L92 44 L78 50"
-          stroke="var(--landing-primary-dark)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, delay: 1.7 }}
-        />
-      </svg>
-    </div>
-  );
-}
-
-const artifactMotion = {
-  hidden: { opacity: 0, y: 18, rotate: 0 },
-  visible: (index) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.12 + index * 0.08,
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
-const artifactHover = {
-  y: -5,
-  transition: { duration: 0.18, ease: "easeOut" },
-};
-
-function ArtifactShell({ children, className = "", index = 0 }) {
+function DemoPreview() {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
-      custom={index}
-      variants={artifactMotion}
-      initial="hidden"
-      animate="visible"
-      whileHover={reduceMotion ? undefined : artifactHover}
-      className={cn(
-        "border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84)] shadow-[0_20px_42px_oklch(0.205_0.035_244_/_0.10),0_4px_12px_oklch(0.205_0.035_244_/_0.06)]",
-        className,
-      )}
+      initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      className="mx-auto mt-14 w-full max-w-5xl px-2 md:mt-16"
     >
-      {children}
-    </motion.div>
-  );
-}
-
-function ResumeSheet() {
-  return (
-    <ArtifactShell
-      index={0}
-      className="relative z-20 w-full rounded-[18px] p-5 sm:p-6 md:absolute md:left-[9%] md:top-10 md:w-[42%] md:-rotate-2"
-    >
-      <div className="mb-5 flex items-start justify-between gap-4">
-        <div>
-          <p className="font-outfit text-xl font-extrabold leading-none text-[var(--landing-ink)]">
-            Farirai M.
-          </p>
-          <p className="mt-1 text-xs font-semibold text-[var(--landing-ink-soft)]">
-            Product Engineer
-          </p>
-        </div>
-        <div className="rounded-full bg-[var(--landing-primary-soft)] px-3 py-1 text-xs font-extrabold text-[var(--landing-primary-dark)]">
-          CV
-        </div>
-      </div>
-
-      <div className="space-y-3">
-        <div className="h-2.5 w-10/12 rounded-full bg-[oklch(0.33_0.04_244_/_0.16)]" />
-        <div className="h-2.5 w-8/12 rounded-full bg-[oklch(0.33_0.04_244_/_0.12)]" />
-        <div className="h-2.5 w-11/12 rounded-full bg-[oklch(0.33_0.04_244_/_0.12)]" />
-      </div>
-
-      <div className="mt-6 rounded-xl border border-[oklch(0.47_0.125_177_/_0.18)] bg-[oklch(0.92_0.06_174_/_0.55)] p-4">
-        <div className="mb-3 flex items-center gap-2 text-sm font-extrabold text-[var(--landing-primary-dark)]">
-          <Sparkles size={16} aria-hidden="true" />
-          Tailored highlights
-        </div>
-        <ul className="space-y-2 text-sm font-semibold text-[var(--landing-ink)]">
-          <li className="flex items-center gap-2">
-            <CheckCircle2
-              size={15}
-              className="text-[var(--landing-success)]"
-              aria-hidden="true"
-            />
-            Payment systems experience first
-          </li>
-          <li className="flex items-center gap-2">
-            <CheckCircle2
-              size={15}
-              className="text-[var(--landing-success)]"
-              aria-hidden="true"
-            />
-            Matched to Stripe job language
-          </li>
-        </ul>
-      </div>
-    </ArtifactShell>
-  );
-}
-
-function JobBrief() {
-  return (
-    <ArtifactShell
-      index={1}
-      className="z-10 rounded-[18px] p-5 md:absolute md:right-[8%] md:top-3 md:w-[38%] md:rotate-2"
-    >
-      <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-ink)] text-[oklch(0.99_0.006_84)]">
-          <BriefcaseBusiness size={19} aria-hidden="true" />
-        </div>
-        <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[var(--landing-ink-soft)]">
-            Job link
-          </p>
-          <h2 className="mt-1 font-outfit text-lg font-extrabold leading-tight text-[var(--landing-ink)]">
-            Senior Software Engineer
-          </h2>
-        </div>
-      </div>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {["TypeScript", "Payments", "APIs", "Reliability"].map((skill) => (
-          <span
-            key={skill}
-            className="rounded-full border border-[var(--landing-line)] bg-[oklch(0.985_0.012_84)] px-3 py-1 text-xs font-bold text-[var(--landing-ink-soft)]"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-
-      <div className="mt-5 border-t border-[var(--landing-line)] pt-4">
-        <div className="flex items-center justify-between text-xs font-bold text-[var(--landing-ink-soft)]">
-          <span>Keyword coverage</span>
-          <span className="text-[var(--landing-primary-dark)]">18/21</span>
-        </div>
-        <div className="mt-2 h-2 overflow-hidden rounded-full bg-[oklch(0.885_0.025_83)]">
-          <div className="h-full w-[86%] rounded-full bg-[var(--landing-primary-dark)]" />
-        </div>
-      </div>
-    </ArtifactShell>
-  );
-}
-
-function MatchStamp() {
-  return (
-    <ArtifactShell
-      index={2}
-      className="z-30 flex items-center gap-4 rounded-[999px] px-5 py-4 md:absolute md:left-[36%] md:top-[41%] md:-rotate-6"
-    >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)]">
-        <BadgeCheck size={24} aria-hidden="true" />
-      </div>
-      <div>
-        <p className="font-outfit text-3xl font-extrabold leading-none text-[var(--landing-ink)]">
-          94%
-        </p>
-        <p className="mt-1 text-xs font-extrabold uppercase tracking-[0.16em] text-[var(--landing-ink-soft)]">
-          ATS match
-        </p>
-      </div>
-    </ArtifactShell>
-  );
-}
-
-function CoverLetterNote() {
-  return (
-    <ArtifactShell
-      index={3}
-      className="z-20 rounded-[18px] border-[oklch(0.73_0.135_68_/_0.28)] bg-[oklch(0.925_0.05_85)] p-5 md:absolute md:bottom-8 md:left-[13%] md:w-[34%] md:rotate-3"
-    >
-      <div className="mb-4 flex items-center gap-2 text-sm font-extrabold text-[var(--landing-ink)]">
-        <FileText size={17} aria-hidden="true" />
-        Cover letter
-      </div>
-      <p className="text-sm font-semibold leading-6 text-[var(--landing-ink-soft)]">
-        &quot;Your work on reliable payments maps directly to Stripe&apos;s
-        infrastructure team.&quot;
-      </p>
-    </ArtifactShell>
-  );
-}
-
-function InterviewPrepCard() {
-  return (
-    <ArtifactShell
-      index={4}
-      className="z-20 rounded-[18px] p-5 md:absolute md:bottom-12 md:right-[10%] md:w-[35%] md:-rotate-2"
-    >
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 text-sm font-extrabold text-[var(--landing-ink)]">
-          <ClipboardList size={17} aria-hidden="true" />
-          Interview prep
-        </div>
-        <SearchCheck
-          size={18}
-          className="text-[var(--landing-primary-dark)]"
-          aria-hidden="true"
+      <a
+        href="https://cleanshot.com/share/vPgrrSpQ"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Watch how FitMyCV works"
+        className="group relative block overflow-hidden rounded-2xl border border-[var(--landing-line)] shadow-[0_30px_70px_oklch(0.205_0.035_244_/_0.18)] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-4"
+      >
+        <img
+          src="/hero.jpg"
+          alt="Watch how FitMyCV works"
+          width={2116}
+          height={1248}
+          className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
         />
-      </div>
-      <div className="space-y-2 text-sm font-semibold text-[var(--landing-ink-soft)]">
-        <p>3 likely questions</p>
-        <p>2 company talking points</p>
-        <p>1 salary angle to prepare</p>
-      </div>
-    </ArtifactShell>
-  );
-}
-
-function ApplicationDesk() {
-  return (
-    <div className="relative mx-auto mt-12 grid w-full max-w-5xl gap-4 md:mt-16 md:h-[520px] md:block">
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-1/2 hidden h-[420px] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-[oklch(0.205_0.035_244_/_0.12)] md:block"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-3 left-[6%] hidden h-24 w-[88%] rounded-[50%] bg-[oklch(0.205_0.035_244_/_0.06)] blur-2xl md:block"
-      />
-      <ResumeSheet />
-      <JobBrief />
-      <MatchStamp />
-      <MatchAnnotation />
-      <CoverLetterNote />
-      <InterviewPrepCard />
-    </div>
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20"
+        />
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.4)] ring-4 ring-white/30 transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
+            <Play
+              size={28}
+              fill="currentColor"
+              className="ml-0.5 text-[oklch(0.99_0.006_84)] sm:size-9"
+              aria-hidden="true"
+            />
+          </span>
+        </span>
+      </a>
+    </motion.div>
   );
 }
 
@@ -384,11 +104,9 @@ export default function Hero() {
               See how it works
             </Link>
           </div>
-
-          <RoleSlot />
         </motion.div>
 
-        <ApplicationDesk />
+        <DemoPreview />
       </div>
     </section>
   );

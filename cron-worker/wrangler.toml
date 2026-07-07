@@ -1,0 +1,10 @@
+name = "fitmycv-cron"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[triggers]
+crons = ["0 8 * * *"]
+
+[vars]
+APP_URL = "https://fitmycv.link"
+# CRON_SECRET is a secret: npx wrangler secret put CRON_SECRET

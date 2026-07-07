@@ -61,7 +61,7 @@ const Navbar1 = () => {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full">
       <motion.div
-        className="mx-auto mt-4 flex w-[calc(100%-1.5rem)] items-center justify-between gap-3 rounded-full border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84_/_0.85)] py-2 pl-5 pr-2 shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.10)] backdrop-blur-xl md:w-fit md:justify-start md:gap-8"
+        className="mx-auto mt-4 flex w-[calc(100%-3rem)] items-center justify-between gap-3 rounded-full border border-[var(--landing-line)] bg-[oklch(0.997_0.006_84_/_0.85)] py-2 pl-5 pr-2 shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.10)] backdrop-blur-xl md:w-[calc(100%-6rem)] md:max-w-[66rem] md:justify-between md:gap-8"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}

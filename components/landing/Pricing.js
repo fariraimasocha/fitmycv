@@ -37,7 +37,7 @@ export default function Pricing() {
       <div className="landing-container flex flex-col items-center gap-5">
         <span className="landing-eyebrow">Pricing</span>
         <h2 className="landing-heading font-outfit font-extrabold text-center text-3xl sm:text-4xl lg:text-5xl">
-          Simple, transparent pricing
+          Simple, transparent <span className="landing-accent-tail">pricing</span>
         </h2>
         <p className="landing-copy font-sans text-center text-lg">
           Everything you need to land your next role.

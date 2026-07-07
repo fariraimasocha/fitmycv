@@ -299,6 +299,43 @@
   .landing-inset-edge {
     box-shadow: inset 0 0 0 1px oklch(0.205 0.035 244 / 0.14);
   }
+
+  /* peeklens-style faint graph-paper grid */
+  .landing-grid {
+    background-image:
+      linear-gradient(to right, oklch(0.205 0.035 244 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.205 0.035 244 / 0.045) 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+  }
+
+  /* accent tail on section/hero headings: <h2>Muted part <span class="landing-accent-tail">accent phrase</span></h2> */
+  .landing-accent-tail {
+    color: var(--landing-primary);
+  }
+
+  /* peeklens browser-chrome window around product screenshots */
+  .landing-browser {
+    border-radius: 1rem;
+    border: 1px solid var(--landing-line);
+    background: var(--landing-paper-soft);
+    box-shadow: var(--landing-shadow);
+    overflow: hidden;
+  }
+
+  .landing-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--landing-line);
+    background: var(--landing-paper-strong);
+  }
+
+  .landing-browser-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

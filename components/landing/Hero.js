@@ -12,37 +12,51 @@ function DemoPreview() {
       initial={reduceMotion ? false : { opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto mt-14 w-full max-w-5xl px-2 md:mt-16"
+      className="relative mx-auto mt-16 w-full max-w-6xl px-2 md:mt-20"
     >
-      <a
-        href="https://cleanshot.com/share/vPgrrSpQ"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Watch how FitMyCV works"
-        className="group relative block overflow-hidden rounded-2xl border border-[var(--landing-line)] shadow-[0_30px_70px_oklch(0.205_0.035_244_/_0.18)] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-4"
-      >
-        <img
-          src="/hero.jpg"
-          alt="Watch how FitMyCV works"
-          width={2116}
-          height={1248}
-          className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
-        />
-        <span
-          aria-hidden="true"
-          className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20"
-        />
-        <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.4)] ring-4 ring-white/30 transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
-            <Play
-              size={28}
-              fill="currentColor"
-              className="ml-0.5 text-[oklch(0.99_0.006_84)] sm:size-9"
-              aria-hidden="true"
+      {/* gradient panel the browser window sits on (peeklens-style) */}
+      <div className="rounded-t-[1.75rem] bg-[linear-gradient(140deg,oklch(0.92_0.06_174_/_0.85),oklch(0.73_0.135_68_/_0.35)_55%,oklch(0.997_0.006_84_/_0)_100%)] px-4 pt-8 sm:px-10 sm:pt-12">
+        <a
+          href="https://cleanshot.com/share/vPgrrSpQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Watch how FitMyCV works"
+          className="landing-browser group relative block transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-4"
+        >
+          {/* browser chrome bar */}
+          <div className="landing-browser-bar">
+            <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
+            <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
+            <span className="landing-browser-dot bg-[oklch(0.56_0.13_150)]" aria-hidden="true" />
+            <span className="ml-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-semibold text-[var(--landing-ink-soft)]">
+              app.fitmycv.com
+            </span>
+          </div>
+          <div className="relative overflow-hidden">
+            <img
+              src="/hero.jpg"
+              alt="Watch how FitMyCV works"
+              width={2116}
+              height={1248}
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
             />
-          </span>
-        </span>
-      </a>
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20"
+            />
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.4)] ring-4 ring-white/30 transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
+                <Play
+                  size={28}
+                  fill="currentColor"
+                  className="ml-0.5 text-[oklch(0.99_0.006_84)] sm:size-9"
+                  aria-hidden="true"
+                />
+              </span>
+            </span>
+          </div>
+        </a>
+      </div>
     </motion.div>
   );
 }
@@ -56,6 +70,10 @@ export default function Hero() {
       />
       <div
         aria-hidden="true"
+        className="landing-grid absolute inset-0 -z-10 [mask-image:radial-gradient(circle_at_50%_20%,black,transparent_75%)]"
+      />
+      <div
+        aria-hidden="true"
         className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.92_0.06_174_/_0.72),transparent_34rem)]"
       />
       <div className="landing-container relative flex flex-col items-center">
@@ -65,9 +83,13 @@ export default function Hero() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center text-center"
         >
+          <span className="landing-eyebrow mb-7">
+            <span className="h-2 w-2 rounded-full bg-[var(--landing-primary)]" aria-hidden="true" />
+            The AI CV tailoring platform
+          </span>
           <h1
-            className="max-w-6xl font-outfit font-extrabold leading-[0.95] tracking-normal text-[var(--landing-ink)]"
-            style={{ fontSize: "clamp(48px, 8.4vw, 126px)" }}
+            className="max-w-4xl font-outfit font-extrabold leading-[0.98] tracking-tight text-[var(--landing-ink)]"
+            style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
           >
             Tailor your CV
             <br />

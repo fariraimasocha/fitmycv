@@ -5,7 +5,6 @@ import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
-import posthog from "posthog-js";
 import { PRO_FEATURES as features } from "@/lib/pro-features";
 
 export default function Pricing() {
@@ -15,11 +14,6 @@ export default function Pricing() {
   const [plan, setPlan] = useState("month");
 
   const handleGetStarted = () => {
-    posthog.capture("checkout_initiated", {
-      plan,
-      authenticated: !!session?.user,
-      destination: session?.user ? "checkout" : "auth",
-    });
     if (session?.user) {
       router.push(`/api/polar/checkout?plan=${plan}`);
     } else {

@@ -3,24 +3,6 @@ const nextConfig = {
   trailingSlash: false,
   skipTrailingSlashRedirect: true,
   serverExternalPackages: ["jspdf"],
-  async rewrites() {
-    return [
-      // PostHog reverse proxy — keeps analytics same-origin so it satisfies our
-      // CSP `'self'` and isn't blocked by ad blockers.
-      {
-        source: "/ingest/static/:path*",
-        destination: "https://us-assets.i.posthog.com/static/:path*",
-      },
-      {
-        source: "/ingest/:path*",
-        destination: "https://us.i.posthog.com/:path*",
-      },
-      {
-        source: "/ingest/decide",
-        destination: "https://us.i.posthog.com/decide",
-      },
-    ];
-  },
   experimental: {
     optimizePackageImports: [
       "@phosphor-icons/react",

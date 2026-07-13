@@ -4,7 +4,7 @@ import ReferenceCV from "@/models/ReferenceCV";
 import JobDigestItem from "@/models/JobDigestItem";
 import { searchJobs, buildQueries, scoreJob } from "@/lib/jsearch";
 import { buildJobDigestEmail } from "@/lib/job-digest-email";
-import { Resend } from "resend";
+import { sendEmail } from "@/lib/email";
 
 export const maxDuration = 300;
 
@@ -26,7 +26,6 @@ export async function GET(request) {
     .select("email name jobPreferences")
     .lean();
 
-  const resend = new Resend(process.env.RESEND_API_KEY);
   let processed = 0;
   let skipped = 0;
   const errors = [];
@@ -77,8 +76,7 @@ export async function GET(request) {
         continue;
       }
 
-      await resend.emails.send({
-        from: "FitMyCV <onboarding@resend.dev>",
+      await sendEmail({
         to: user.email,
         subject: `Your daily job matches — ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}`,
         html: buildJobDigestEmail({

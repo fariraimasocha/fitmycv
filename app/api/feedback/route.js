@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import Feedback from "@/models/Feedback";
-import { Resend } from "resend";
+import { sendEmail } from "@/lib/email";
 
 function escapeHtml(str) {
   return String(str)
@@ -30,9 +30,7 @@ export async function POST(request) {
       message,
     });
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: "FitMyCV <onboarding@resend.dev>",
+    await sendEmail({
       to: "fariraimasocha@gmail.com",
       subject: `[FitMyCV Feedback] ${type} from ${name}`,
       html: `

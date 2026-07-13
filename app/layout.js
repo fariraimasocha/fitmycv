@@ -4,8 +4,6 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
-import PostHogProvider from "@/components/providers/PostHogProvider";
-import PostHogIdentify from "@/components/providers/PostHogIdentify";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 import {
@@ -106,15 +104,12 @@ export default function RootLayout({ children }) {
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <JsonLd data={softwareApplicationSchema} />
-        <PostHogProvider>
-          <QueryProvider>
-            <AuthProvider>
-              <PostHogIdentify />
-              {children}
-              <ToastProvider />
-            </AuthProvider>
-          </QueryProvider>
-        </PostHogProvider>
+        <QueryProvider>
+          <AuthProvider>
+            {children}
+            <ToastProvider />
+          </AuthProvider>
+        </QueryProvider>
         <Analytics />
       </body>
     </html>

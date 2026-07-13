@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
                 </Bullet>
                 <Bullet>
                   <strong>Usage data.</strong> Basic analytics about how you use
-                  the app, collected via PostHog and Vercel Analytics, to help us
+                  the app, collected via Vercel Analytics, to help us
                   improve the product.
                 </Bullet>
               </ul>
@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
                 <Bullet>OpenAI, Groq, and Exa.ai (AI processing and scraping).</Bullet>
                 <Bullet>Polar (payments and subscriptions).</Bullet>
                 <Bullet>MongoDB (database hosting) and Vercel (app hosting).</Bullet>
-                <Bullet>PostHog and Vercel Analytics (product analytics).</Bullet>
+                <Bullet>Vercel Analytics (product analytics).</Bullet>
               </ul>
             </Section>
 

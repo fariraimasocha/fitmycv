@@ -7,7 +7,6 @@ import { signIn } from "next-auth/react";
 import { GoogleLogoIcon, ReadCvLogoIcon, WarningIcon, CopyIcon } from "@phosphor-icons/react";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import toast from "react-hot-toast";
-import posthog from "posthog-js";
 
 function isWebView() {
   if (typeof navigator === "undefined") return false;
@@ -27,11 +26,6 @@ export default function AuthPage() {
   const handleSignIn = () => {
     const hasPending = getPendingCheckout();
     const pendingPlan = getPendingCheckoutPlan() ?? "month";
-    posthog.capture("sign_in_started", {
-      auth_provider: "google",
-      has_pending_checkout: hasPending,
-      plan: hasPending ? pendingPlan : null,
-    });
     const callbackUrl = hasPending
       ? `/dashboard?checkout=pending&plan=${pendingPlan}`
       : "/dashboard";

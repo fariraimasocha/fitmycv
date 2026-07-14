@@ -84,9 +84,9 @@ function mapWork(raw) {
   const work = raw.work || [];
   return work.map((w) => {
     const highlights = Array.isArray(w.highlights) ? w.highlights : [];
-    if (highlights.length > 0 && highlights.length < 4) {
+    if (highlights.length > 0 && highlights.length < 2) {
       console.warn(
-        `Tailored work entry "${w.position || w.title || "unknown"}" has ${highlights.length} highlights (expected 4)`,
+        `Tailored work entry "${w.position || w.title || "unknown"}" has only ${highlights.length} highlight(s)`,
       );
     }
 

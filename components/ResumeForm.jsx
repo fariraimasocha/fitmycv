@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ItemReorderControls from "@/components/ItemReorderControls";
 
 const resumeSchema = z.object({
   basics: z.object({
@@ -108,10 +109,30 @@ export default function ResumeForm({
     formState: { errors },
   } = form;
 
-  const workFields = useFieldArray({ control, name: "work" });
-  const educationFields = useFieldArray({ control, name: "education" });
-  const skillsFields = useFieldArray({ control, name: "skills" });
-  const profilesFields = useFieldArray({ control, name: "basics.profiles" });
+  const {
+    fields: workFieldsList,
+    append: appendWork,
+    remove: removeWork,
+    move: moveWork,
+  } = useFieldArray({ control, name: "work" });
+  const {
+    fields: educationFieldsList,
+    append: appendEducation,
+    remove: removeEducation,
+    move: moveEducation,
+  } = useFieldArray({ control, name: "education" });
+  const {
+    fields: skillsFieldsList,
+    append: appendSkill,
+    remove: removeSkill,
+    move: moveSkill,
+  } = useFieldArray({ control, name: "skills" });
+  const {
+    fields: profilesFieldsList,
+    append: appendProfile,
+    remove: removeProfile,
+    move: moveProfile,
+  } = useFieldArray({ control, name: "basics.profiles" });
 
   const saveMutation = useMutation({
     mutationFn: async (data) => {
@@ -206,17 +227,17 @@ export default function ResumeForm({
               variant="outline"
               size="sm"
               className="rounded-full"
-              onClick={() => profilesFields.append({ network: "", url: "" })}
+              onClick={() => appendProfile({ network: "", url: "" })}
             >
               <PlusIcon size={14} />
               Add Profile
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
-            {profilesFields.fields.length === 0 && (
+            {profilesFieldsList.length === 0 && (
               <p className="text-sm text-gray-500">No profiles added yet.</p>
             )}
-            {profilesFields.fields.map((field, index) => (
+            {profilesFieldsList.map((field, index) => (
               <div key={field.id} className="flex flex-col sm:flex-row gap-3 items-end">
                 <div className="flex-1 space-y-2">
                   <Label>Network</Label>
@@ -232,15 +253,23 @@ export default function ResumeForm({
                     {...register(`basics.profiles.${index}.url`)}
                   />
                 </div>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="text-destructive shrink-0"
-                  onClick={() => profilesFields.remove(index)}
-                >
-                  <TrashIcon size={16} />
-                </Button>
+                <div className="flex items-center gap-1 shrink-0">
+                  <ItemReorderControls
+                    index={index}
+                    totalCount={profilesFieldsList.length}
+                    onMoveUp={() => moveProfile(index, index - 1)}
+                    onMoveDown={() => moveProfile(index, index + 1)}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="text-destructive"
+                    onClick={() => removeProfile(index)}
+                  >
+                    <TrashIcon size={16} />
+                  </Button>
+                </div>
               </div>
             ))}
           </CardContent>
@@ -262,7 +291,7 @@ export default function ResumeForm({
               size="sm"
               className="rounded-full"
               onClick={() =>
-                workFields.append({
+                appendWork({
                   company: "",
                   position: "",
                   location: "",
@@ -277,12 +306,12 @@ export default function ResumeForm({
             </Button>
           </CardHeader>
           <CardContent className="space-y-6">
-            {workFields.fields.length === 0 && (
+            {workFieldsList.length === 0 && (
               <p className="text-sm text-gray-500">
                 No work experience added yet.
               </p>
             )}
-            {workFields.fields.map((field, index) => (
+            {workFieldsList.map((field, index) => (
               <div
                 key={field.id}
                 className="space-y-4 rounded-xl bg-gray-50 p-5"
@@ -291,15 +320,23 @@ export default function ResumeForm({
                   <p className="text-sm font-medium text-gray-900">
                     Position {index + 1}
                   </p>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon-xs"
-                    className="text-destructive"
-                    onClick={() => workFields.remove(index)}
-                  >
-                    <TrashIcon size={14} />
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <ItemReorderControls
+                      index={index}
+                      totalCount={workFieldsList.length}
+                      onMoveUp={() => moveWork(index, index - 1)}
+                      onMoveDown={() => moveWork(index, index + 1)}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      className="text-destructive"
+                      onClick={() => removeWork(index)}
+                    >
+                      <TrashIcon size={14} />
+                    </Button>
+                  </div>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
@@ -359,7 +396,7 @@ export default function ResumeForm({
               size="sm"
               className="rounded-full"
               onClick={() =>
-                educationFields.append({
+                appendEducation({
                   institution: "",
                   degree: "",
                   fieldOfStudy: "",
@@ -373,10 +410,10 @@ export default function ResumeForm({
             </Button>
           </CardHeader>
           <CardContent className="space-y-6">
-            {educationFields.fields.length === 0 && (
+            {educationFieldsList.length === 0 && (
               <p className="text-sm text-gray-500">No education added yet.</p>
             )}
-            {educationFields.fields.map((field, index) => (
+            {educationFieldsList.map((field, index) => (
               <div
                 key={field.id}
                 className="space-y-4 rounded-xl bg-gray-50 p-5"
@@ -385,15 +422,23 @@ export default function ResumeForm({
                   <p className="text-sm font-medium text-gray-900">
                     Education {index + 1}
                   </p>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon-xs"
-                    className="text-destructive"
-                    onClick={() => educationFields.remove(index)}
-                  >
-                    <TrashIcon size={14} />
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <ItemReorderControls
+                      index={index}
+                      totalCount={educationFieldsList.length}
+                      onMoveUp={() => moveEducation(index, index - 1)}
+                      onMoveDown={() => moveEducation(index, index + 1)}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      className="text-destructive"
+                      onClick={() => removeEducation(index)}
+                    >
+                      <TrashIcon size={14} />
+                    </Button>
+                  </div>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
@@ -448,17 +493,17 @@ export default function ResumeForm({
               variant="outline"
               size="sm"
               className="rounded-full"
-              onClick={() => skillsFields.append({ category: "", skills: [] })}
+              onClick={() => appendSkill({ category: "", skills: [] })}
             >
               <PlusIcon size={14} />
               Add Category
             </Button>
           </CardHeader>
           <CardContent className="space-y-6">
-            {skillsFields.fields.length === 0 && (
+            {skillsFieldsList.length === 0 && (
               <p className="text-sm text-gray-500">No skills added yet.</p>
             )}
-            {skillsFields.fields.map((field, index) => (
+            {skillsFieldsList.map((field, index) => (
               <div
                 key={field.id}
                 className="space-y-4 rounded-xl bg-gray-50 p-5"
@@ -467,15 +512,23 @@ export default function ResumeForm({
                   <p className="text-sm font-medium text-gray-900">
                     Category {index + 1}
                   </p>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon-xs"
-                    className="text-destructive"
-                    onClick={() => skillsFields.remove(index)}
-                  >
-                    <TrashIcon size={14} />
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <ItemReorderControls
+                      index={index}
+                      totalCount={skillsFieldsList.length}
+                      onMoveUp={() => moveSkill(index, index - 1)}
+                      onMoveDown={() => moveSkill(index, index + 1)}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      className="text-destructive"
+                      onClick={() => removeSkill(index)}
+                    >
+                      <TrashIcon size={14} />
+                    </Button>
+                  </div>
                 </div>
                 <div className="space-y-4">
                   <div className="space-y-2">
@@ -525,7 +578,7 @@ export default function ResumeForm({
 }
 
 function SkillsList({ control, register, nestIndex }) {
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: `skills.${nestIndex}.skills`,
   });
@@ -539,6 +592,12 @@ function SkillsList({ control, register, nestIndex }) {
             <Input
               className="h-8 w-36"
               {...register(`skills.${nestIndex}.skills.${k}`)}
+            />
+            <ItemReorderControls
+              index={k}
+              totalCount={fields.length}
+              onMoveUp={() => move(k, k - 1)}
+              onMoveDown={() => move(k, k + 1)}
             />
             <Button
               type="button"

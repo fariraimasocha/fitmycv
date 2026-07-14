@@ -82,16 +82,25 @@ function extractBasics(raw) {
 
 function mapWork(raw) {
   const work = raw.work || [];
-  return work.map((w) => ({
-    company: w.company || w.name || "",
-    position: w.position || w.title || "",
-    location: w.location || "",
-    startDate: w.startDate || "",
-    endDate: w.endDate || "",
-    description: Array.isArray(w.highlights)
-      ? w.highlights.join("\n")
-      : w.summary || w.description || "",
-  }));
+  return work.map((w) => {
+    const highlights = Array.isArray(w.highlights) ? w.highlights : [];
+    if (highlights.length > 0 && highlights.length < 4) {
+      console.warn(
+        `Tailored work entry "${w.position || w.title || "unknown"}" has ${highlights.length} highlights (expected 4)`,
+      );
+    }
+
+    return {
+      company: w.company || w.name || "",
+      position: w.position || w.title || "",
+      location: w.location || "",
+      startDate: w.startDate || "",
+      endDate: w.endDate || "",
+      description: highlights.length > 0
+        ? highlights.join("\n")
+        : w.summary || w.description || "",
+    };
+  });
 }
 
 function mapEducation(raw) {

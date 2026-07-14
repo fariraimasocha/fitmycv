@@ -28,7 +28,12 @@ Return ONLY valid JSON with this exact structure:
         "location": "...",
         "startDate": "...",
         "endDate": "...",
-        "highlights": ["Achievement rewritten to emphasize relevance to target role"]
+        "highlights": [
+          "First achievement rewritten for the target role",
+          "Second achievement rewritten for the target role",
+          "Third achievement rewritten for the target role",
+          "Fourth achievement rewritten for the target role"
+        ]
       }
     ],
     "education": [
@@ -54,8 +59,11 @@ Return ONLY valid JSON with this exact structure:
 CV Tailoring Rules:
 - First, extract 15-20 key terms from the job description (technologies, skills, domain concepts)
 - Rewrite the professional summary to directly address the target role, embedding top 5 keywords naturally
-- Adjust work experience descriptions to highlight relevant achievements and skills
-- For each keyword, identify where it can be naturally woven into existing experience bullets — reformulate using job terminology but NEVER fabricate
+- For EVERY work entry, the "highlights" array MUST contain exactly 4 items
+- Each highlight is a single achievement or responsibility sentence (plain text, no leading bullets or dashes)
+- Draw from the reference CV's existing bullets/description — expand and rephrase into 4 distinct, non-redundant highlights; NEVER invent new experience
+- Weave job keywords naturally across all 4 highlights per role, not just the first two
+- Include ALL work entries from the reference CV — do not drop roles
 - Reorder skills to prioritize those matching the job requirements
 - NEVER fabricate experience, companies, roles, or skills that aren't in the original CV
 - NEVER change dates, company names, or educational institutions
@@ -63,11 +71,15 @@ CV Tailoring Rules:
 - Track every keyword you injected in the "keywordsInjected" array with the keyword and where it was placed
 
 Cover Letter Rules:
-- Address the specific company and role by name
-- Highlight 2-3 of the strongest matching qualifications
-- Write 3-4 paragraphs: intro, relevant experience, why this company, closing
+- Write the cover letter specifically for the exact job title and company provided — it must be obvious which role the candidate is applying for
+- Open with the role title and company name in the first sentence (e.g. "I am writing to apply for the [Job Title] position at [Company]")
+- Reference 3-4 specific requirements or responsibilities from the job posting and explain how the candidate's experience maps to each
+- Use the job's own terminology (skills, tools, domain language) — mirror phrasing from the requirements and responsibilities sections
+- Highlight 2-3 of the strongest matching qualifications with concrete examples from the CV (company names, outcomes, metrics where available)
+- Write 3-4 paragraphs: role-specific intro, relevant experience mapped to job duties, why this company/role, closing with call to action
 - Professional but personable tone
-- Do NOT repeat the CV verbatim — complement it with narrative`;
+- Do NOT write a generic cover letter that could apply to any job — every paragraph must tie back to this specific role
+- Do NOT repeat the CV verbatim — complement it with narrative that shows fit for this role`;
 
 export async function POST(request) {
   const session = await auth();
@@ -103,7 +115,7 @@ ${(jobData.responsibilities || []).map((r) => `- ${r}`).join("\n")}
 Qualifications:
 ${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}
 
-Please tailor the CV for this specific role and generate a cover letter.`;
+Please tailor the CV for this specific role and generate a cover letter that clearly addresses the ${jobData.title} position at ${jobData.company}.`;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",

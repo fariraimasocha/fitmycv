@@ -81,6 +81,7 @@ export default function ResumeForm({
   saveMethod = "PUT",
   queryKey = ["resume"],
   saveButtonLabel = "Save Resume",
+  onSaved,
 }) {
   const queryClient = useQueryClient();
 
@@ -149,9 +150,10 @@ export default function ResumeForm({
 
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (_result, data) => {
       toast.success("Resume saved!");
       queryClient.invalidateQueries({ queryKey });
+      onSaved?.(data);
     },
     onError: (error) => {
       toast.error(error.message);
@@ -220,7 +222,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row items-center justify-between">
+          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
             <CardTitle>Online Profiles</CardTitle>
             <Button
               type="button"
@@ -283,7 +285,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.1 }}
       >
         <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row items-center justify-between">
+          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
             <CardTitle>Work Experience</CardTitle>
             <Button
               type="button"
@@ -388,7 +390,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.15 }}
       >
         <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row items-center justify-between">
+          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
             <CardTitle>Education</CardTitle>
             <Button
               type="button"
@@ -486,7 +488,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.2 }}
       >
         <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row items-center justify-between">
+          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
             <CardTitle>Skills</CardTitle>
             <Button
               type="button"

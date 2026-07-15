@@ -184,11 +184,32 @@ export default function ApplicationsPage() {
       {/* Application List */}
       {filtered.length === 0 ? (
         <Card className="rounded-2xl border shadow-lg">
-          <CardContent className="py-10 text-center text-muted-foreground text-sm">
-            {applications.length === 0
-              ? "No applications yet. Tailor a resume to create your first application."
-              : "No applications match this filter."}
-          </CardContent>
+          {applications.length === 0 ? (
+            <CardContent className="flex flex-col items-center justify-center py-10 sm:py-16 text-center gap-4">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
+                <KanbanIcon size={28} className="text-muted-foreground/60" aria-hidden="true" />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <h3 className="text-lg font-semibold font-outfit text-foreground">
+                  No applications yet
+                </h3>
+                <p className="text-sm text-muted-foreground max-w-[320px]">
+                  Every CV you tailor is tracked here automatically. Tailor your first
+                  resume to start your application pipeline.
+                </p>
+              </div>
+              <Link
+                href="/dashboard/tailor"
+                className="inline-flex items-center gap-2 font-outfit font-semibold text-sm bg-foreground text-background rounded-[10px] px-5 py-2.5 transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+              >
+                Tailor your first resume
+              </Link>
+            </CardContent>
+          ) : (
+            <CardContent className="py-10 text-center text-muted-foreground text-sm">
+              No applications match this filter.
+            </CardContent>
+          )}
         </Card>
       ) : (
         <div className="space-y-3">

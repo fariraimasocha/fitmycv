@@ -33,7 +33,7 @@ export default function CoverLetterCard({
 
   return (
     <Card className="rounded-2xl shadow-lg border">
-      <CardHeader className="flex-row items-center justify-between">
+      <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
         <CardTitle className="flex items-center gap-2">
           <EnvelopeSimpleIcon size={18} aria-hidden="true" />
           Cover Letter

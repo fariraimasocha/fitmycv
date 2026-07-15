@@ -18,6 +18,8 @@ import {
   ChatTeardropDotsIcon,
   LinkedinLogoIcon,
   CrownIcon,
+  PencilSimpleIcon,
+  EyeIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,6 +27,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
 import JobMatchScoreCard from "@/components/JobMatchScoreCard";
 import ResumePreview from "@/components/ResumePreview";
+import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
 import TemplateSelect from "@/components/TemplateSelect";
 import ATSScoreCard from "@/components/ATSScoreCard";
@@ -41,6 +44,8 @@ export default function TailorPage() {
   const [url, setUrl] = useState("");
   const [jobData, setJobData] = useState(null);
   const [tailorResult, setTailorResult] = useState(null);
+  const [savedId, setSavedId] = useState(null);
+  const [showPreview, setShowPreview] = useState(true);
   const [activeTab, setActiveTab] = useState("cv");
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
   const [atsScore, setAtsScore] = useState(null);
@@ -75,6 +80,8 @@ export default function TailorPage() {
     onSuccess: (result) => {
       setJobData(result.data);
       setTailorResult(null);
+      setSavedId(null);
+      setShowPreview(true);
       setAtsScore(null);
       setCompanyBrief(null);
       setMatchScore(null);
@@ -168,7 +175,8 @@ export default function TailorPage() {
 
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
+      setSavedId(result?.data?._id ?? null);
       queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
     },
   });
@@ -206,6 +214,8 @@ export default function TailorPage() {
     },
     onSuccess: (result) => {
       setTailorResult(result.data);
+      setSavedId(null);
+      setShowPreview(true);
       setActiveTab("cv");
       toast.success("Resume tailored successfully!");
 
@@ -488,6 +498,25 @@ export default function TailorPage() {
             {/* Actions row — only shown for downloadable tabs */}
             {activeTab !== "ats" && activeTab !== "research" && activeTab !== "interview" && (
               <div className="flex items-center gap-2 flex-wrap">
+                {activeTab === "cv" && savedId && (
+                  <Button
+                    variant="outline"
+                    className="rounded-full"
+                    onClick={() => setShowPreview(!showPreview)}
+                  >
+                    {showPreview ? (
+                      <>
+                        <PencilSimpleIcon size={16} />
+                        Edit
+                      </>
+                    ) : (
+                      <>
+                        <EyeIcon size={16} />
+                        Preview
+                      </>
+                    )}
+                  </Button>
+                )}
                 {activeTab === "cv" && (
                   <TemplateSelect
                     value={selectedTemplate}
@@ -518,7 +547,20 @@ export default function TailorPage() {
             )}
           </div>
 
-          {activeTab === "cv" && (
+          {activeTab === "cv" && savedId && !showPreview && (
+            <ResumeForm
+              initialData={tailorResult.tailoredCV}
+              saveEndpoint={`/api/tailored-cv/${savedId}`}
+              saveMethod="PUT"
+              queryKey={["tailored-cv", savedId]}
+              saveButtonLabel="Save Tailored CV"
+              onSaved={(data) => {
+                setTailorResult((r) => ({ ...r, tailoredCV: data }));
+                setShowPreview(true);
+              }}
+            />
+          )}
+          {activeTab === "cv" && (!savedId || showPreview) && (
             <>
               <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
               {tailorResult.keywordsInjected?.length > 0 && (

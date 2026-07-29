@@ -4,6 +4,8 @@ import {
   LinkIcon,
   CreditCardIcon,
   ArrowRightIcon,
+  MagnifyingGlassIcon,
+  BookOpenIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
@@ -49,6 +51,20 @@ const HELP_LINKS = [
     href: "/pricing",
     cta: "View pricing",
   },
+  {
+    icon: MagnifyingGlassIcon,
+    title: "Free ATS resume checker",
+    body: "Score your CV against a job description and see which required terms are missing.",
+    href: "/ats-resume-checker",
+    cta: "Check my CV",
+  },
+  {
+    icon: BookOpenIcon,
+    title: "Guides and resume examples",
+    body: "How ATS parsing works, how to tailor a CV, and worked examples for ten roles.",
+    href: "/blog",
+    cta: "Read the guides",
+  },
 ];
 
 export default function SupportPage() {
@@ -60,7 +76,7 @@ export default function SupportPage() {
         <section className="relative isolate overflow-hidden px-5 pb-12 pt-32 sm:px-10 lg:px-16 xl:px-24">
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.985_0.012_84)_72%,oklch(0.965_0.02_84)_100%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
           />
           <div
             aria-hidden="true"

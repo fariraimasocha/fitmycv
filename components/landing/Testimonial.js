@@ -5,7 +5,10 @@ import { StarIcon } from "@phosphor-icons/react";
 
 export default function Testimonial() {
   return (
-    <section className="landing-section-tight landing-muted-band flex flex-col items-center">
+    <section
+      id="testimonials"
+      className="landing-section-tight landing-muted-band flex scroll-mt-24 flex-col items-center"
+    >
       <div className="landing-container flex flex-col items-center w-full max-w-3xl gap-10">
         {/* Stars */}
         <div className="flex flex-row items-center gap-2" aria-label="5 out of 5 stars">

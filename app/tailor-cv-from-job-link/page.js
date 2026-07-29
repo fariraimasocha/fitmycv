@@ -4,102 +4,60 @@ import {
   LinkIcon,
   SealCheckIcon,
   LightningIcon,
-  PlusIcon,
 } from "@phosphor-icons/react/dist/ssr";
+
 import Header from "@/components/Header";
 import HowItWorks from "@/components/landing/HowItWorks";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
+import TrustSignals from "@/components/landing/TrustSignals";
+import Blocks from "@/components/content/Blocks";
+import FaqSection from "@/components/content/FaqSection";
+import JsonLd from "@/components/JsonLd";
+import { BLOCKS, FAQS, HOW_TO } from "@/content/pages/tailor-cv-from-job-link";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  howToSchema,
+  pageMetadata,
+} from "@/lib/seo";
+import { softwareApplicationSchema } from "@/lib/structured-data";
 
-export const metadata = {
-  title: "Tailor Your CV From a Job Link",
+export const metadata = pageMetadata({
+  absoluteTitle: "Tailor Your CV From a Job Link (2026) | FitMyCV",
   description:
-    "Paste any job link — LinkedIn, Indeed, Glassdoor — and FitMyCV tailors your CV and cover letter to the role in seconds, with ATS keywords and PDF export.",
+    "Paste any job link — LinkedIn, Indeed, Glassdoor, or a company careers page — and FitMyCV tailors your CV and cover letter to that role in seconds, with ATS keywords and PDF export.",
+  path: "/tailor-cv-from-job-link",
   keywords: [
     "tailor cv from job link",
     "tailor resume from job url",
     "paste job link to tailor resume",
     "tailored cv from job posting url",
     "ai resume from job link",
+    "job specific resume",
+    "tailor resume from linkedin job link",
+    "indeed resume matcher",
   ],
-  alternates: {
-    canonical: "/tailor-cv-from-job-link",
-  },
-  openGraph: {
-    type: "website",
-    url: "/tailor-cv-from-job-link",
-    siteName: "FitMyCV",
-    title: "Tailor Your CV From a Job Link in Seconds | FitMyCV",
-    description:
-      "Paste any job link and get a tailored CV and cover letter in seconds — AI keyword matching, ATS optimization, and one-click PDF export.",
-    images: [
-      {
-        url: "/hero.png",
-        width: 3024,
-        height: 1714,
-        alt: "Tailor your CV from any job link with FitMyCV",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tailor Your CV From a Job Link in Seconds | FitMyCV",
-    description:
-      "Paste any job link and get a tailored CV and cover letter in seconds — AI keyword matching, ATS optimization, and one-click PDF export.",
-    images: ["/hero.png"],
-  },
-};
+  image: "/hero.jpg",
+});
 
 const BENEFITS = [
   {
     icon: LinkIcon,
     title: "Paste a link, not a wall of text",
-    body: "Drop in a job URL from LinkedIn, Indeed, Glassdoor, or any board. FitMyCV scrapes the role and pulls out the requirements, skills, and keywords for you.",
+    body: "Drop in a job URL from LinkedIn, Indeed, Glassdoor, or any board. FitMyCV reads the role and pulls out the requirements, skills, and keywords — including the sections hidden behind a 'see more' toggle.",
   },
   {
     icon: SealCheckIcon,
     title: "Built to pass ATS filters",
-    body: "Your CV is rewritten to mirror the exact language in the listing, so applicant tracking systems match you to the role instead of filtering you out.",
+    body: "Your CV is rewritten to mirror the exact language in the listing, then exported as a single-column, text-based PDF that applicant tracking systems parse the way you wrote it.",
   },
   {
     icon: LightningIcon,
     title: "CV + cover letter in seconds",
-    body: "Get a tailored resume and a matching cover letter in one pass, then export both to clean, recruiter-ready PDFs with a single click.",
+    body: "Both documents come from the same parse of the same posting, so they reinforce each other. Edit either inline, then export to recruiter-ready PDFs with one click.",
   },
 ];
-
-const FAQS = [
-  {
-    q: "How do I tailor my CV from a job link?",
-    a: "Sign in, upload your reference CV once, then paste the job link you want to apply for. FitMyCV scrapes the listing, matches it against your experience, and rewrites your CV and cover letter to fit the role — usually in under a minute.",
-  },
-  {
-    q: "Which job boards work with a pasted link?",
-    a: "FitMyCV works with links from LinkedIn, Indeed, Glassdoor, and most major job boards and company career pages. Paste the URL of the posting and the requirements are detected automatically.",
-  },
-  {
-    q: "Will tailoring my CV from the job link help me pass ATS?",
-    a: "Yes. The tailored CV mirrors the keywords and phrasing from the job posting, which is exactly what applicant tracking systems scan for. That keyword match is one of the biggest factors in getting past the first automated screen.",
-  },
-  {
-    q: "Do I get a cover letter as well?",
-    a: "Every tailored CV comes with a matching cover letter generated from the same job link and your experience, so your whole application is aligned to the role. Both export to PDF.",
-  },
-  {
-    q: "How long does it take?",
-    a: "From pasting the job link to a polished, downloadable CV takes roughly 30 to 60 seconds.",
-  },
-];
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-};
 
 const SUPPORTED_BOARDS = ["LinkedIn", "Indeed", "Glassdoor", "Company sites"];
 
@@ -112,7 +70,7 @@ export default function TailorCvFromJobLinkPage() {
         <section className="relative isolate overflow-hidden px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.985_0.012_84)_72%,oklch(0.965_0.02_84)_100%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
           />
           <div
             aria-hidden="true"
@@ -126,15 +84,15 @@ export default function TailorCvFromJobLinkPage() {
 
             <h1
               className="mt-6 max-w-5xl font-outfit font-extrabold leading-[0.98] tracking-normal text-[var(--landing-ink)]"
-              style={{ fontSize: "clamp(40px, 6.6vw, 84px)" }}
+              style={{ fontSize: "clamp(38px, 6vw, 78px)" }}
             >
-              Tailor your CV{" "}
+              Paste a job URL,{" "}
               <span className="relative inline-block px-2">
                 <span
                   aria-hidden="true"
                   className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.87_0.071_313_/_0.72)]"
                 />
-                from any job link.
+                tailor your CV to it.
               </span>
             </h1>
 
@@ -157,10 +115,10 @@ export default function TailorCvFromJobLinkPage() {
                 />
               </Link>
               <Link
-                href="#how-it-works"
+                href="/ats-resume-checker"
                 className="landing-secondary-btn min-w-[190px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
               >
-                See how it works
+                Score my CV first
               </Link>
             </div>
 
@@ -212,46 +170,36 @@ export default function TailorCvFromJobLinkPage() {
 
         <HowItWorks />
 
-        {/* FAQ */}
-        <section className="landing-section landing-muted-band">
-          <div className="landing-container flex flex-col items-center gap-4">
-            <h2 className="landing-heading text-center font-outfit text-3xl font-extrabold sm:text-4xl">
-              Tailoring your CV from a job link — FAQ
-            </h2>
-            <p className="landing-copy text-center text-base">
-              Everything you need to know about turning a job link into a
-              tailored application.
-            </p>
-          </div>
-
-          <div className="landing-container mx-auto mt-10 flex w-full max-w-3xl flex-col gap-3">
-            {FAQS.map(({ q, a }) => (
-              <details
-                key={q}
-                className="landing-card group rounded-2xl px-6 py-5 [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                  {q}
-                  <PlusIcon
-                    size={18}
-                    aria-hidden="true"
-                    className="shrink-0 text-[var(--landing-primary-dark)] transition-transform duration-200 group-open:rotate-45"
-                  />
-                </summary>
-                <p className="landing-copy mt-3 text-sm leading-7">{a}</p>
-              </details>
-            ))}
+        {/* Long-form body */}
+        <section className="px-5 pb-10 pt-6 sm:px-10 lg:px-16 xl:px-24">
+          <div className="mx-auto w-full max-w-3xl">
+            <Blocks blocks={BLOCKS} />
           </div>
         </section>
+
+        <TrustSignals />
+
+        <FaqSection
+          faqs={FAQS}
+          heading="Tailoring your CV from a job link — FAQ"
+          intro="Everything about turning a job link into a tailored application."
+        />
 
         <CTABand />
       </main>
       <Footer />
 
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      <JsonLd data={faqSchema(FAQS)} />
+      <JsonLd data={howToSchema(HOW_TO)} />
+      <JsonLd data={softwareApplicationSchema} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          {
+            name: "Tailor CV from a job link",
+            path: "/tailor-cv-from-job-link",
+          },
+        ])}
       />
     </div>
   );

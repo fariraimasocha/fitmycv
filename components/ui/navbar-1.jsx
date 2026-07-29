@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ReadCvLogoIcon, ListIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -17,29 +17,38 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ArrowRight, LayoutDashboard, LogOut } from "lucide-react";
 
+// Root-relative hrefs so the nav works from every page, not just the homepage —
+// bare "#features" links resolve to nothing on /blog or /ats-resume-checker,
+// while "/#features" navigates home and lands on the section.
 const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Features", href: "/#features" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleSmoothScroll = (e, href) => {
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const el = document.querySelector(href);
+    // Only intercept in-page anchors while we're actually on that page;
+    // otherwise let the browser navigate and land on the hash.
+    const hash = href.startsWith("/#") ? href.slice(1) : href;
+    if (hash.startsWith("#") && (pathname === "/" || href.startsWith("#"))) {
+      const el = document.querySelector(hash);
       if (el) {
+        e.preventDefault();
         el.scrollIntoView({ behavior: "smooth" });
       }
-      if (isOpen) setIsOpen(false);
     }
+    if (isOpen) setIsOpen(false);
   };
 
   const getInitials = (name) => {
@@ -89,13 +98,13 @@ const Navbar1 = () => {
               transition={{ duration: 0.3, delay: i * 0.05 }}
               whileHover={{ scale: 1.05 }}
             >
-              <a
+              <Link
                 href={item.href}
                 onClick={(e) => handleSmoothScroll(e, item.href)}
                 className="text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
               >
                 {item.label}
-              </a>
+              </Link>
             </motion.div>
           ))}
         </nav>
@@ -289,13 +298,13 @@ const Navbar1 = () => {
                   transition={{ delay: i * 0.1 + 0.1 }}
                   exit={{ opacity: 0, x: 20 }}
                 >
-                  <a
+                  <Link
                     href={item.href}
                     className="text-base font-semibold text-[var(--landing-ink)]"
                     onClick={(e) => handleSmoothScroll(e, item.href)}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </motion.div>
               ))}
 

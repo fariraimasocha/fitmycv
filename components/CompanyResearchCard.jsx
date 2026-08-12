@@ -51,7 +51,7 @@ function LoadingSkeleton() {
 export default function CompanyResearchCard({ brief, isLoading }) {
   if (isLoading) {
     return (
-      <Card className="rounded-2xl border shadow-lg">
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <BuildingsIcon size={16} />
@@ -67,7 +67,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
 
   if (!brief) {
     return (
-      <Card className="rounded-2xl border shadow-lg">
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
           Company research will appear here after tailoring your CV.
         </CardContent>
@@ -76,7 +76,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
   }
 
   return (
-    <Card className="rounded-2xl border shadow-lg">
+    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
       <CardHeader>
         <CardTitle className="flex items-start justify-between gap-3">
           <span className="flex items-center gap-2 text-base">

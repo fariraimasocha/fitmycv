@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { AppSidebar } from "@/components/app-sidebar";
 import AuthProvider from "@/components/providers/auth-provider";
+import OnboardingGuard from "@/components/OnboardingGuard";
 import FeedbackModal from "@/components/FeedbackModal";
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
 
@@ -99,8 +100,8 @@ function DashboardBreadcrumb() {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbPage>{label}</BreadcrumbPage>
+        <BreadcrumbItem className="min-w-0">
+          <BreadcrumbPage className="truncate">{label}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
@@ -109,34 +110,48 @@ function DashboardBreadcrumb() {
 
 export default function DashboardLayout({ children }) {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const pathname = usePathname();
+  const isOnboarding = pathname === "/dashboard/onboarding";
+
+  if (isOnboarding) {
+    return (
+      <AuthProvider>
+        <OnboardingGuard>{children}</OnboardingGuard>
+      </AuthProvider>
+    );
+  }
 
   return (
     <AuthProvider>
+      <OnboardingGuard>
       <TooltipProvider>
         <SidebarProvider>
           <AppSidebar />
-          <SidebarInset>
-            <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center gap-2 border-b border-border bg-background/85 px-4 backdrop-blur-md">
-              <SidebarTrigger className="-ml-1" />
-              <Separator orientation="vertical" className="mr-2 h-4" />
-              <DashboardBreadcrumb />
-              <div className="ml-auto">
+          <SidebarInset className="min-w-0 overflow-x-clip">
+            <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/90 px-3 backdrop-blur-md sm:h-16 sm:px-4">
+              <SidebarTrigger className="-ml-1 shrink-0 rounded-lg hover:bg-[var(--landing-primary-soft)]" />
+              <Separator orientation="vertical" className="mr-1 h-4 shrink-0 bg-[var(--landing-line)] sm:mr-2" />
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <DashboardBreadcrumb />
+              </div>
+              <div className="ml-auto flex items-center gap-2">
                 <button
                   onClick={() => setFeedbackOpen(true)}
-                  className="flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-[var(--landing-primary)] hover:text-foreground"
+                  className="flex items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground sm:text-sm"
                 >
                   <ChatCircleDotsIcon size={16} aria-hidden="true" />
-                  Feedback
+                  <span className="hidden sm:inline">Feedback</span>
                 </button>
               </div>
             </header>
-            <main className="flex-1 p-2 sm:p-4 pt-0">
+            <main className="min-w-0 flex-1 overflow-x-clip bg-[var(--landing-bg)]">
               {children}
             </main>
           </SidebarInset>
         </SidebarProvider>
       </TooltipProvider>
       <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
+      </OnboardingGuard>
     </AuthProvider>
   );
 }

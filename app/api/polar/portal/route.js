@@ -18,7 +18,9 @@ export async function GET(request) {
     }
 
     await dbConnect();
-    const user = await User.findOne({ email: session.user.email });
+    const user = await User.findOne({ email: session.user.email }).select(
+      "polarCustomerId isPremium"
+    );
 
     if (!user?.polarCustomerId) {
       // Premium user missing customer ID → data inconsistency, avoid redirect loop

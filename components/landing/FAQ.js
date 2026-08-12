@@ -45,7 +45,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
         className="flex items-center justify-between w-full text-left gap-3"
         aria-expanded={isOpen}
       >
-        <span className="font-outfit font-bold text-base text-[var(--landing-ink)]">
+        <span className="font-medium text-[var(--landing-ink)]">
           {faq.question}
         </span>
         {isOpen ? (
@@ -81,7 +81,7 @@ export default function FAQ() {
       id="faq"
       className="landing-section flex flex-col items-center gap-12"
     >
-      <h2 className="landing-heading font-outfit font-extrabold text-center text-3xl sm:text-4xl">
+      <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
         Frequently asked questions
       </h2>
 

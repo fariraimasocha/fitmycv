@@ -19,6 +19,10 @@ import {
 } from "@/components/ui/select";
 import { COUNTRIES } from "@/lib/countries";
 import Loader from "@/components/Loader";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+} from "@/components/dashboard";
 
 function Toggle({ id, checked, onChange, label, description }) {
   return (
@@ -110,7 +114,7 @@ export default function PreferencesPage() {
               </p>
             </div>
             <Button asChild>
-              <Link href="/api/polar/checkout">
+              <Link href="/api/polar/checkout?plan=lifetime">
                 Upgrade to Pro
                 <ArrowRightIcon className="ml-2 size-4" />
               </Link>
@@ -124,18 +128,18 @@ export default function PreferencesPage() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6 p-4 sm:p-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Job Preferences</h1>
-        <p className="text-sm text-muted-foreground mt-1">Control your daily job-match email.</p>
-      </div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        title="Job Preferences"
+        description="Control your daily job-match email."
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
       >
-        <Card className="rounded-xl border-border">
+        <Card className="dashboard-card rounded-2xl border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-base">Target roles</CardTitle>
           </CardHeader>
@@ -239,6 +243,6 @@ export default function PreferencesPage() {
           {mutation.isPending ? "Saving…" : "Save preferences"}
         </Button>
       </div>
-    </div>
+    </DashboardPageShell>
   );
 }

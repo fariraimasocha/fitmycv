@@ -10,9 +10,18 @@ import {
   BriefcaseIcon,
   EnvelopeIcon,
   TrendUpIcon,
+  PenIcon,
+  KanbanIcon,
+  ArrowRightIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "motion/react";
+import Link from "next/link";
+import {
+  DashboardPageShell,
+  DashboardStatCard,
+  DashboardStatGrid,
+} from "@/components/dashboard";
 import {
   BarChart,
   Bar,
@@ -63,7 +72,7 @@ function CheckoutRedirect() {
   const searchParams = useSearchParams();
   useEffect(() => {
     if (searchParams.get("checkout") === "pending") {
-      const plan = searchParams.get("plan") ?? "month";
+      const plan = searchParams.get("plan") ?? "lifetime";
       router.replace(`/api/polar/checkout?plan=${plan}`);
     }
   }, [searchParams, router]);
@@ -149,16 +158,16 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 p-4 sm:p-6">
+    <DashboardPageShell width="wide">
       <Suspense fallback={null}>
         <CheckoutRedirect />
       </Suspense>
 
-      {/* Greeting */}
       <div className="flex flex-col gap-1">
+        <span className="landing-meta-line">Dashboard</span>
         <h1
           suppressHydrationWarning
-          className="font-outfit text-2xl font-extrabold text-foreground sm:text-3xl"
+          className="font-outfit text-xl font-extrabold text-foreground sm:text-2xl md:text-3xl"
         >
           Good {greeting}, {firstName} <span aria-hidden="true">👋</span>
         </h1>
@@ -172,65 +181,69 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {/* 4 Stat Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <DashboardStatGrid>
         {statCards.map((card) => (
-          <motion.div
-            key={card.label}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: card.delay }}
-          >
-            <Card className="h-full rounded-2xl border-border transition-shadow hover:shadow-[var(--landing-shadow-sm)]">
-              <CardHeader className="flex flex-row items-center justify-between px-4 pb-2">
-                <CardTitle className="text-sm font-semibold text-muted-foreground">
-                  {card.label}
-                </CardTitle>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                  <card.icon size={18} aria-hidden="true" />
-                </span>
-              </CardHeader>
-              <CardContent className="px-4 pt-0">
-                <motion.p
-                  className="font-outfit text-3xl font-extrabold text-foreground"
-                  animate={{ opacity: 1 }}
-                  initial={{ opacity: 0 }}
-                  transition={{ duration: 0.4, delay: card.delay + 0.1 }}
-                >
-                  {card.value}
-                </motion.p>
-                <p
-                  className={`mt-1 text-xs font-medium ${
-                    card.positive
-                      ? "text-[var(--landing-success)]"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {card.subtitle}
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <DashboardStatCard key={card.label} {...card} />
         ))}
+      </DashboardStatGrid>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Link
+          href="/dashboard/tailor"
+          className="dashboard-list-row group flex items-center justify-between gap-3 px-4 py-3.5"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+              <PenIcon size={18} aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-foreground">Tailor a CV</p>
+              <p className="text-xs text-muted-foreground">Paste a job URL to get started</p>
+            </div>
+          </div>
+          <ArrowRightIcon
+            size={16}
+            className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
+        </Link>
+        <Link
+          href="/dashboard/applications"
+          className="dashboard-list-row group flex items-center justify-between gap-3 px-4 py-3.5"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+              <KanbanIcon size={18} aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-foreground">View applications</p>
+              <p className="text-xs text-muted-foreground">Track your job pipeline</p>
+            </div>
+          </div>
+          <ArrowRightIcon
+            size={16}
+            className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
+        </Link>
       </div>
 
-      {/* Activity Graph */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Card className="rounded-2xl border-border">
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="flex flex-row items-center justify-between px-4 py-3 pb-0 sm:px-6 sm:py-4">
             <CardTitle className="text-sm font-semibold text-muted-foreground">
               Activity
             </CardTitle>
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-              <TrendUpIcon size={18} aria-hidden="true" />
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+              <TrendUpIcon size={16} aria-hidden="true" />
             </span>
           </CardHeader>
-          <CardContent className="pb-4">
-            <p className="text-xs text-muted-foreground mb-4">Last 30 days</p>
+          <CardContent className="px-4 pb-4 sm:px-6">
+            <p className="mb-4 text-xs text-muted-foreground">Last 30 days</p>
             <ResponsiveContainer width="100%" height={220} className="sm:!h-[300px]">
               <BarChart
                 data={chartData}
@@ -267,7 +280,7 @@ export default function DashboardPage() {
                 />
                 <Bar
                   dataKey="count"
-                  fill="oklch(0.47 0.125 177)"
+                  fill="var(--landing-accent)"
                   radius={[4, 4, 0, 0]}
                   maxBarSize={32}
                   isAnimationActive={true}
@@ -279,6 +292,6 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </motion.div>
-    </div>
+    </DashboardPageShell>
   );
 }

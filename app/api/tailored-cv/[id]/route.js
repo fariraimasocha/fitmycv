@@ -55,10 +55,24 @@ export async function PUT(request, { params }) {
   try {
     const body = await request.json();
 
+    const update = {};
+    if (body.basics !== undefined) update.basics = body.basics;
+    if (body.work !== undefined) update.work = body.work;
+    if (body.education !== undefined) update.education = body.education;
+    if (body.skills !== undefined) update.skills = body.skills;
+    if (body.coverLetter !== undefined) update.coverLetter = body.coverLetter;
+    if (body.jobTitle !== undefined) update.jobTitle = body.jobTitle;
+    if (body.jobCompany !== undefined) update.jobCompany = body.jobCompany;
+    if (body.jobUrl !== undefined) update.jobUrl = body.jobUrl;
+
+    if (Object.keys(update).length === 0) {
+      return Response.json({ error: "No valid fields to update" }, { status: 400 });
+    }
+
     await connectDB();
     const cv = await TailoredCV.findOneAndUpdate(
       { _id: id, userId: session.user.id },
-      { $set: body },
+      { $set: update },
       { new: true, runValidators: true }
     ).lean();
 

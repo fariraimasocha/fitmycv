@@ -13,11 +13,17 @@ import {
   TrashIcon,
   ArrowRightIcon,
   ReadCvLogoIcon,
+  PlusIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  DashboardEmptyState,
+} from "@/components/dashboard";
 
 export default function TailoredCVsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
@@ -69,99 +75,76 @@ export default function TailoredCVsPage() {
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  if (isLoading) return <Loader />;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <h1 className="text-2xl font-bold font-outfit">Tailored CVs</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          View all your previously tailored resumes and cover letters.
-        </p>
-      </motion.div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        title="Tailored CVs"
+        description="View all your previously tailored resumes and cover letters."
+        action={
+          cvs?.length > 0 ? (
+            <Button
+              asChild
+              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            >
+              <Link href="/dashboard/tailor">
+                <PlusIcon size={16} />
+                Tailor new
+              </Link>
+            </Button>
+          ) : null
+        }
+      />
 
       {!cvs || cvs.length === 0 ? (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.05 }}
-        >
-          <Card className="rounded-2xl border shadow-lg">
-            <CardContent className="flex flex-col items-center justify-center py-10 sm:py-16 text-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
-                <FileTextIcon size={28} className="text-muted-foreground/60" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold font-outfit text-foreground">
-                  No tailored CVs yet
-                </h3>
-                <p className="text-sm text-muted-foreground max-w-[320px]">
-                  {hasReferenceCV
-                    ? "Paste a job listing URL and we'll tailor your CV to match the role."
-                    : "Upload your base CV first, then paste any job URL to generate a tailored version."}
-                </p>
-              </div>
-              <Link
-                href={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
-                className="group inline-flex items-center gap-2 font-outfit font-semibold text-sm bg-foreground text-background rounded-[10px] px-5 py-2.5 transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
-              >
-                {hasReferenceCV ? (
-                  <>
-                    Tailor your first resume
-                    <ArrowRightIcon size={14} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </>
-                ) : (
-                  <>
-                    <ReadCvLogoIcon size={14} aria-hidden="true" />
-                    Upload your CV
-                  </>
-                )}
-              </Link>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <DashboardEmptyState
+          icon={FileTextIcon}
+          title="No tailored CVs yet"
+          description={
+            hasReferenceCV
+              ? "Paste a job listing URL and we'll tailor your CV to match the role."
+              : "Upload your base CV first, then paste any job URL to generate a tailored version."
+          }
+          actionLabel={hasReferenceCV ? "Tailor your first resume" : "Upload your CV"}
+          actionHref={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
+        />
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-2">
           {cvs.map((cv, index) => (
             <motion.div
               key={cv._id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.05 * (index + 1) }}
+              transition={{ duration: 0.2, delay: index * 0.03 }}
             >
               <Link href={`/dashboard/tailored/${cv._id}`}>
-                <Card className="rounded-2xl border shadow-lg transition-shadow hover:shadow-xl cursor-pointer">
-                  <CardContent className="flex items-center gap-4 p-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted">
-                      <FileTextIcon size={20} className="text-muted-foreground" aria-hidden="true" />
+                <Card className="dashboard-list-row group cursor-pointer rounded-2xl border-border py-0 gap-0">
+                  <CardContent className="flex items-center gap-3 px-3 py-2.5 sm:px-4 sm:py-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+                      <FileTextIcon size={18} aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate font-medium text-foreground">
+                      <p className="truncate text-sm font-semibold text-foreground group-hover:underline">
                         {cv.jobTitle || "Untitled Position"}
                       </p>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                      <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
                         {cv.jobCompany && (
-                          <span className="flex items-center gap-1">
-                            <BuildingsIcon size={14} />
+                          <span className="inline-flex items-center gap-1">
+                            <BuildingsIcon size={12} aria-hidden="true" />
                             {cv.jobCompany}
                           </span>
                         )}
-                        <span className="flex items-center gap-1">
-                          <CalendarIcon size={14} />
+                        <span className="inline-flex items-center gap-1">
+                          <CalendarIcon size={12} aria-hidden="true" />
                           <FormattedDate date={cv.createdAt} />
                         </span>
                       </div>
                     </div>
                     <Button
                       variant={confirmDeleteId === cv._id ? "destructive" : "ghost"}
-                      size="sm"
-                      className="shrink-0 rounded-full"
+                      size="icon-sm"
+                      className="shrink-0 text-muted-foreground hover:bg-red-50 hover:text-red-600"
                       disabled={deleteMutation.isPending}
                       onClick={(e) => handleTrashClick(e, cv._id)}
                       aria-label={
@@ -171,11 +154,16 @@ export default function TailoredCVsPage() {
                       }
                     >
                       {confirmDeleteId === cv._id ? (
-                        "Delete?"
+                        "?"
                       ) : (
                         <TrashIcon size={16} aria-hidden="true" />
                       )}
                     </Button>
+                    <ArrowRightIcon
+                      size={14}
+                      className="hidden shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground sm:block"
+                      aria-hidden="true"
+                    />
                   </CardContent>
                 </Card>
               </Link>
@@ -183,6 +171,6 @@ export default function TailoredCVsPage() {
           ))}
         </div>
       )}
-    </div>
+    </DashboardPageShell>
   );
 }

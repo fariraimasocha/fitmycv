@@ -47,8 +47,8 @@ export default function Footer() {
           {/* Brand col */}
           <div className="flex flex-col gap-4 max-w-[280px]">
             <div className="flex flex-row items-center gap-2.5">
-              <div className="flex items-center justify-center bg-[var(--landing-primary-dark)] w-6 h-6 rounded-[5px] shrink-0">
-                <FileTextIcon size={12} className="text-[oklch(0.99_0.006_84)]" aria-hidden="true" />
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] bg-[var(--landing-primary)]">
+                <FileTextIcon size={12} className="text-[var(--landing-bg)]" aria-hidden="true" />
               </div>
               <span className="font-outfit font-extrabold text-lg text-[var(--landing-ink)]">FitMyCv</span>
             </div>

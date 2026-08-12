@@ -5,11 +5,16 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { CrownIcon, CheckCircleIcon, ArrowRightIcon, ArrowLeftIcon } from "@phosphor-icons/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+} from "@/components/dashboard";
+import PricingCards from "@/components/pricing/PricingCards";
 import { PRO_FEATURES } from "@/lib/pro-features";
+import { CheckIcon } from "@phosphor-icons/react";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
@@ -26,7 +31,6 @@ export default function UpgradePage() {
         });
         const data = await res.json();
         if (data.isPremium) {
-          // DB says premium but JWT was stale — refresh session and redirect
           await update();
           router.replace("/dashboard");
           return;
@@ -40,55 +44,48 @@ export default function UpgradePage() {
   if (checking) return <Loader />;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6 p-4 sm:p-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Upgrade to Pro</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Unlock all features to tailor your CV and generate cover letters.
-        </p>
-      </div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        title="Upgrade to Premium"
+        description="Unlock PDF downloads, interview prep, and the full job search toolkit."
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
+        className="space-y-6"
       >
-        <Card className="rounded-xl border-border">
-          <CardHeader className="flex flex-row items-center gap-2 pb-3">
-            <CrownIcon className="size-5 text-amber-500" />
-            <CardTitle className="text-base">Pro Plan</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-5">
-            <p className="text-sm text-muted-foreground">
-              Get full access to FitMyCV and start landing more interviews with tailored applications.
-            </p>
+        <PricingCards />
 
-            <ul className="space-y-2">
-              {PRO_FEATURES.map((feature) => (
-                <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircleIcon className="size-4 text-green-600 shrink-0" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
+        <div className="dashboard-card rounded-2xl border border-border bg-card p-6">
+          <h2 className="mb-4 font-outfit text-sm font-extrabold text-foreground">
+            Everything included
+          </h2>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {PRO_FEATURES.map((feature) => (
+              <li
+                key={feature}
+                className="flex items-start gap-2 text-sm text-muted-foreground"
+              >
+                <CheckIcon
+                  size={14}
+                  weight="bold"
+                  className="mt-0.5 shrink-0 text-[var(--landing-success)]"
+                />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild>
-                <Link href="/api/polar/checkout">
-                  Upgrade to Pro
-                  <ArrowRightIcon className="ml-2 size-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="ghost">
-                <Link href="/dashboard">
-                  <ArrowLeftIcon className="mr-2 size-4" />
-                  Go back
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <Button asChild variant="ghost">
+          <Link href="/dashboard">
+            <ArrowLeftIcon className="mr-2 size-4" />
+            Go back
+          </Link>
+        </Button>
       </motion.div>
-    </div>
+    </DashboardPageShell>
   );
 }

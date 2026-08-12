@@ -10,7 +10,7 @@ export const useCheckoutStore = create(
       pendingCheckoutTimestamp: null,
       pendingCheckoutPlan: null,
 
-      setPendingCheckout: (value, plan = "month") =>
+      setPendingCheckout: (value, plan = "lifetime") =>
         set({
           pendingCheckout: value,
           pendingCheckoutTimestamp: value ? Date.now() : null,
@@ -34,7 +34,7 @@ export const useCheckoutStore = create(
           set({ pendingCheckout: false, pendingCheckoutTimestamp: null, pendingCheckoutPlan: null });
           return null;
         }
-        return pendingCheckoutPlan ?? "month";
+        return pendingCheckoutPlan ?? "lifetime";
       },
     }),
     {

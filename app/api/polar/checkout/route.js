@@ -30,11 +30,19 @@ export async function GET(request) {
     }
 
     const { searchParams } = new URL(request.url);
-    const plan = searchParams.get("plan") === "year" ? "year" : "month";
+    const planParam = searchParams.get("plan");
+    const plan =
+      planParam === "month"
+        ? "month"
+        : planParam === "year"
+          ? "year"
+          : "lifetime";
     const productId =
-      plan === "year"
-        ? process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_YEAR
-        : process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_MONTH;
+      plan === "lifetime"
+        ? process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_LIFE
+        : plan === "year"
+          ? process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_YEAR
+          : process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_MONTH;
 
     const checkout = await polar.checkouts.create({
       products: [productId],

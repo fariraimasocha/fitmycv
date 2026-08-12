@@ -2,60 +2,36 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
 
 function DemoPreview() {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto mt-16 w-full max-w-6xl px-2 md:mt-20"
+      transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      className="relative mx-auto mt-16 w-full max-w-5xl md:mt-20"
     >
-      {/* gradient panel the browser window sits on (peeklens-style) */}
-      <div className="rounded-t-[1.75rem] bg-[linear-gradient(140deg,oklch(0.92_0.06_174_/_0.85),oklch(0.73_0.135_68_/_0.35)_55%,oklch(0.997_0.006_84_/_0)_100%)] px-4 pt-8 sm:px-10 sm:pt-12">
-        <a
-          href="https://cleanshot.com/share/vPgrrSpQ"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Watch how FitMyCV works"
-          className="landing-browser group relative block transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-4"
-        >
-          {/* browser chrome bar */}
-          <div className="landing-browser-bar">
-            <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
-            <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
-            <span className="landing-browser-dot bg-[oklch(0.56_0.13_150)]" aria-hidden="true" />
-            <span className="ml-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-semibold text-[var(--landing-ink-soft)]">
-              app.fitmycv.com
-            </span>
-          </div>
-          <div className="relative overflow-hidden">
-            <img
-              src="/hero.jpg"
-              alt="Watch how FitMyCV works"
-              width={2116}
-              height={1248}
-              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.01]"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 bg-black/10 transition-colors duration-300 group-hover:bg-black/20"
-            />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] shadow-[0_14px_34px_oklch(0.205_0.035_244_/_0.4)] ring-4 ring-white/30 transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
-                <Play
-                  size={28}
-                  fill="currentColor"
-                  className="ml-0.5 text-[oklch(0.99_0.006_84)] sm:size-9"
-                  aria-hidden="true"
-                />
-              </span>
-            </span>
-          </div>
-        </a>
+      <div className="overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-white shadow-[0_24px_60px_oklch(0.18_0.02_260_/_0.08)]">
+        <div className="landing-browser-bar">
+          <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
+          <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
+          <span className="landing-browser-dot bg-[oklch(0.56_0.13_150)]" aria-hidden="true" />
+          <span className="ml-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-medium text-[var(--landing-ink-soft)]">
+            app.fitmycv.com
+          </span>
+        </div>
+        <div className="relative overflow-hidden">
+          <img
+            src="/hero.jpg"
+            alt="FitMyCV dashboard preview"
+            width={2116}
+            height={1248}
+            className="h-auto w-full"
+          />
+        </div>
       </div>
     </motion.div>
   );
@@ -63,71 +39,65 @@ function DemoPreview() {
 
 export default function Hero() {
   return (
-    <section className="relative isolate flex min-h-screen overflow-hidden px-5 pb-16 pt-32 sm:px-10 lg:px-16 xl:px-24">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="landing-grid absolute inset-0 -z-10 [mask-image:radial-gradient(circle_at_50%_20%,black,transparent_75%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.92_0.06_174_/_0.72),transparent_34rem)]"
-      />
+    <section className="relative px-5 pb-20 pt-10 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container relative flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-center"
+          className="flex max-w-4xl flex-col items-center text-center"
         >
-          <span className="landing-eyebrow mb-7">
-            <span className="h-2 w-2 rounded-full bg-[var(--landing-primary)]" aria-hidden="true" />
-            The AI CV tailoring platform
+          <span className="landing-eyebrow mb-8 gap-2.5">
+            <span className="landing-eyebrow-new">New</span>
+            Tailor your CV from any job link
           </span>
+
           <h1
-            className="max-w-4xl font-outfit font-extrabold leading-[0.98] tracking-tight text-[var(--landing-ink)]"
-            style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
+            className="font-serif-display max-w-4xl font-normal leading-[1.02] tracking-tight text-[var(--landing-ink)]"
+            style={{ fontSize: "clamp(2.75rem, 5.5vw, 4.75rem)" }}
           >
-            {/* Trailing space + <br> so the H1 reads "Tailor your CV to match
-                the job." when crawlers flatten the markup to text. */}
-            Tailor your CV{" "}
-            <br />
-            <span className="relative inline-block px-2 text-[var(--landing-ink)]">
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.87_0.071_313_/_0.72)]"
-              />
-              to match the job.
-            </span>
+            Your AI{" "}
+            <em className="text-[var(--landing-accent)]">CV tailoring</em>
+            {" "}&amp; cover letter team in one paste
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-            Paste a job link, upload your CV, and FitMyCV rewrites your CV,
-            cover letter, and interview prep to match the role.
+          <p className="mt-7 max-w-2xl text-base leading-8 text-[var(--landing-ink-soft)] sm:text-lg">
+            FitMyCV drops in{" "}
+            <strong className="font-semibold text-[var(--landing-ink)]">
+              job-link parsing
+            </strong>
+            ,{" "}
+            <strong className="font-semibold text-[var(--landing-ink)]">
+              ATS keyword matching
+            </strong>{" "}
+            and{" "}
+            <strong className="font-semibold text-[var(--landing-ink)]">
+              one-click PDF export
+            </strong>
+            . Upload your CV once, paste a listing, and get a hire-ready application in under a minute.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/auth"
-              className="landing-primary-btn group min-w-[210px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Tailor my CV
-              <ArrowRight
-                size={17}
+            <Link href="/auth" className="landing-primary-btn group min-w-[210px] text-sm">
+              Get FitMyCV
+              <ArrowUpRight
+                size={16}
                 aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </Link>
             <Link
               href="#how-it-works"
-              className="landing-secondary-btn min-w-[190px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+              className="landing-secondary-btn min-w-[210px] text-sm"
             >
+              <Play size={15} aria-hidden="true" />
               See how it works
             </Link>
           </div>
+
+          <p className="landing-meta-line mt-6">
+            [ Google sign-in · Lifetime from $14.99 · Cancel anytime on monthly ]
+          </p>
         </motion.div>
 
         <DemoPreview />

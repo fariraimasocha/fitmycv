@@ -32,9 +32,9 @@ export default function CoverLetterCard({
   };
 
   return (
-    <Card className="rounded-2xl shadow-lg border">
-      <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
-        <CardTitle className="flex items-center gap-2">
+    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+        <CardTitle className="flex items-center gap-2 text-base font-semibold">
           <EnvelopeSimpleIcon size={18} aria-hidden="true" />
           Cover Letter
         </CardTitle>
@@ -42,7 +42,7 @@ export default function CoverLetterCard({
           <Button
             variant="outline"
             size="sm"
-            className="rounded-full"
+            className="rounded-[10px] border-border"
             aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
             onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
           >
@@ -60,7 +60,7 @@ export default function CoverLetterCard({
           </Button>
         )}
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 py-4 sm:px-6 sm:py-5">
         {editable && isEditing ? (
           <div className="space-y-4">
             <Textarea

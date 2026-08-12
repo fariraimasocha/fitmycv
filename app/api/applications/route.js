@@ -1,6 +1,8 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import Application from "@/models/Application";
+import TailoredCV from "@/models/TailoredCV";
+import CompanyResearch from "@/models/CompanyResearch";
 import { connectDB } from "@/utils/connect";
 
 export async function GET(request) {
@@ -50,6 +52,26 @@ export async function POST(request) {
     await connectDB();
 
     const body = await request.json();
+
+    if (body.tailoredCVId) {
+      const ownedCv = await TailoredCV.findOne({
+        _id: body.tailoredCVId,
+        userId: session.user.id,
+      }).select("_id");
+      if (!ownedCv) {
+        return Response.json({ error: "Forbidden" }, { status: 403 });
+      }
+    }
+
+    if (body.companyResearchId) {
+      const ownedBrief = await CompanyResearch.findOne({
+        _id: body.companyResearchId,
+        userId: session.user.id,
+      }).select("_id");
+      if (!ownedBrief) {
+        return Response.json({ error: "Forbidden" }, { status: 403 });
+      }
+    }
 
     const application = await Application.create({
       userId: session.user.id,

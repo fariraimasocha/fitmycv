@@ -19,7 +19,13 @@ export async function POST(request) {
   }
 
   try {
-    const { type, name, email, message } = await request.json();
+    const { type, message } = await request.json();
+    const name = session.user.name || "Unknown";
+    const email = session.user.email;
+
+    if (!type || !message) {
+      return Response.json({ error: "type and message are required" }, { status: 400 });
+    }
 
     await connectDB();
     await Feedback.create({

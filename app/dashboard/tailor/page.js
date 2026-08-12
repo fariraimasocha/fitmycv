@@ -37,6 +37,11 @@ import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  DashboardTabBar,
+} from "@/components/dashboard";
 
 export default function TailorPage() {
   const { data: session } = useSession();
@@ -292,6 +297,60 @@ export default function TailorPage() {
     }
   };
 
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    if (
+      tabId === "interview" &&
+      !interviewPrep &&
+      !interviewPrepLoading &&
+      tailorResult
+    ) {
+      setInterviewPrepLoading(true);
+      fetch("/api/interview-prep", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tailoredCV: tailorResult.tailoredCV,
+          jobData,
+          companyBrief: companyBrief || null,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.data) setInterviewPrep(res.data);
+        })
+        .catch(() => {})
+        .finally(() => setInterviewPrepLoading(false));
+    }
+  };
+
+  const tailorTabs = [
+    {
+      id: "cv",
+      label: "Tailored CV",
+      icon: <FileTextIcon size={14} aria-hidden="true" />,
+    },
+    {
+      id: "letter",
+      label: "Cover Letter",
+      icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" />,
+    },
+    {
+      id: "ats",
+      label: "ATS Score",
+      icon: <ChartBarIcon size={14} aria-hidden="true" />,
+    },
+    {
+      id: "research",
+      label: "Research",
+      icon: <BinocularsIcon size={14} aria-hidden="true" />,
+    },
+    {
+      id: "interview",
+      label: "Interview",
+      icon: <ChatTeardropDotsIcon size={14} aria-hidden="true" />,
+    },
+  ];
   const handleExtract = (e) => {
     e.preventDefault();
     if (!url.trim()) {
@@ -302,57 +361,59 @@ export default function TailorPage() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <h1 className="text-2xl font-bold font-outfit">Tailor CV</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Paste a job listing URL to extract requirements and tailor your CV.
-        </p>
-      </motion.div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        eyebrow="CV Toolkit"
+        title="Tailor CV"
+        description="Paste a job listing URL — we'll extract requirements and rewrite your CV to match."
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <LinkIcon size={18} aria-hidden="true" />
-              Job Link
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6 sm:py-5">
+            <CardTitle className="flex items-center gap-2 text-base font-semibold">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+                <LinkIcon size={18} aria-hidden="true" />
+              </span>
+              <div>
+                <span className="block">Job listing URL</span>
+                <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
+                  Works with LinkedIn, Indeed, Greenhouse, and most job boards
+                </span>
+              </div>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleExtract} className="flex flex-col gap-3 sm:flex-row">
+          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+            <form onSubmit={handleExtract} className="flex flex-col gap-3">
               <Input
                 type="url"
-                placeholder="https://example.com/jobs/…"
+                placeholder="https://www.linkedin.com/jobs/view/…"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 aria-label="Job listing URL"
                 autoComplete="url"
                 spellCheck={false}
-                className="flex-1"
+                className="h-11 rounded-xl border-border bg-[var(--landing-paper-soft)] text-base"
               />
               <Button
                 type="submit"
-                disabled={extractMutation.isPending}
+                disabled={extractMutation.isPending || !url.trim()}
                 aria-busy={extractMutation.isPending}
-                className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90 sm:w-auto w-full"
+                className="h-11 w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto sm:self-start"
               >
                 {extractMutation.isPending ? (
                   <>
                     <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                    Extracting…
+                    Extracting requirements…
                   </>
                 ) : (
                   <>
                     <MagnifyingGlassIcon size={16} aria-hidden="true" />
-                    Extract
+                    Extract job requirements
                   </>
                 )}
               </Button>
@@ -360,6 +421,44 @@ export default function TailorPage() {
           </CardContent>
         </Card>
       </motion.div>
+
+      {!jobData && !extractMutation.isPending && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="grid gap-3 sm:grid-cols-3"
+        >
+          {[
+            {
+              step: "01",
+              title: "Paste the job link",
+              copy: "Drop any listing URL from LinkedIn, Indeed, or a company careers page.",
+            },
+            {
+              step: "02",
+              title: "Review requirements",
+              copy: "We extract skills, qualifications, and keywords from the posting.",
+            },
+            {
+              step: "03",
+              title: "Tailor & apply",
+              copy: "Get a matched CV, cover letter, and interview prep in one flow.",
+            },
+          ].map((item) => (
+            <div
+              key={item.step}
+              className="dashboard-list-row rounded-2xl px-4 py-4"
+            >
+              <span className="font-serif-display text-2xl text-[var(--landing-accent)]">
+                {item.step}
+              </span>
+              <p className="mt-2 text-sm font-semibold text-foreground">{item.title}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.copy}</p>
+            </div>
+          ))}
+        </motion.div>
+      )}
 
       {jobData && (
         <motion.div
@@ -387,14 +486,17 @@ export default function TailorPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="flex justify-center"
         >
-          <Button
-            onClick={() => tailorMutation.mutate()}
-            disabled={tailorMutation.isPending}
-            aria-busy={tailorMutation.isPending}
-            className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
-          >
+          <div className="dashboard-card rounded-2xl px-4 py-5 text-center sm:px-6">
+            <p className="text-sm text-muted-foreground">
+              Requirements extracted — ready to rewrite your CV for this role.
+            </p>
+            <Button
+              onClick={() => tailorMutation.mutate()}
+              disabled={tailorMutation.isPending}
+              aria-busy={tailorMutation.isPending}
+              className="mt-4 h-12 w-full rounded-[10px] bg-foreground px-8 font-outfit text-base font-semibold text-background shadow-[var(--landing-shadow-sm)] hover:opacity-90 sm:mx-auto sm:w-auto"
+            >
             {tailorMutation.isPending ? (
               <>
                 <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
@@ -407,6 +509,7 @@ export default function TailorPage() {
               </>
             )}
           </Button>
+          </div>
         </motion.div>
       )}
 
@@ -418,90 +521,19 @@ export default function TailorPage() {
           className="space-y-4"
         >
           <div className="flex flex-col gap-3">
-            {/* Tabs — horizontally scrollable on mobile */}
-            <div
-              role="tablist"
-              aria-label="Resume output sections"
-              className="relative flex gap-2 overflow-x-auto pb-1 [mask-image:linear-gradient(to_right,black_85%,transparent_100%)]"
-            >
-              <Button
-                role="tab"
-                aria-selected={activeTab === "cv"}
-                variant={activeTab === "cv" ? "default" : "outline"}
-                onClick={() => setActiveTab("cv")}
-                className="gap-2 shrink-0"
-              >
-                <FileTextIcon size={16} aria-hidden="true" />
-                Tailored CV
-              </Button>
-              <Button
-                role="tab"
-                aria-selected={activeTab === "letter"}
-                variant={activeTab === "letter" ? "default" : "outline"}
-                onClick={() => setActiveTab("letter")}
-                className="gap-2 shrink-0"
-              >
-                <EnvelopeSimpleIcon size={16} aria-hidden="true" />
-                Cover Letter
-              </Button>
-              <Button
-                role="tab"
-                aria-selected={activeTab === "ats"}
-                variant={activeTab === "ats" ? "default" : "outline"}
-                onClick={() => setActiveTab("ats")}
-                className="gap-2 shrink-0"
-              >
-                <ChartBarIcon size={16} aria-hidden="true" />
-                ATS Score
-              </Button>
-              <Button
-                role="tab"
-                aria-selected={activeTab === "research"}
-                variant={activeTab === "research" ? "default" : "outline"}
-                onClick={() => setActiveTab("research")}
-                className="gap-2 shrink-0"
-              >
-                <BinocularsIcon size={16} aria-hidden="true" />
-                Company Research
-              </Button>
-              <Button
-                role="tab"
-                aria-selected={activeTab === "interview"}
-                variant={activeTab === "interview" ? "default" : "outline"}
-                onClick={() => {
-                  setActiveTab("interview");
-                  if (!interviewPrep && !interviewPrepLoading && tailorResult) {
-                    setInterviewPrepLoading(true);
-                    fetch("/api/interview-prep", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        tailoredCV: tailorResult.tailoredCV,
-                        jobData,
-                        companyBrief: companyBrief || null,
-                      }),
-                    })
-                      .then((res) => res.json())
-                      .then((res) => {
-                        if (res.data) setInterviewPrep(res.data);
-                      })
-                      .catch(() => {})
-                      .finally(() => setInterviewPrepLoading(false));
-                  }
-                }}
-                className="gap-2 shrink-0 mr-8"
-              >
-                <ChatTeardropDotsIcon size={16} aria-hidden="true" />
-                Interview Prep
-              </Button>
-            </div>
+            <DashboardTabBar
+              tabs={tailorTabs}
+              activeTab={activeTab}
+              onTabChange={handleTabChange}
+              ariaLabel="Resume output sections"
+            />
             {/* Actions row — only shown for downloadable tabs */}
             {activeTab !== "ats" && activeTab !== "research" && activeTab !== "interview" && (
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:items-center">
                 {activeTab === "cv" && savedId && (
                   <Button
                     variant="outline"
-                    className="rounded-full"
+                    className="w-full rounded-[10px] border-border sm:w-auto"
                     onClick={() => setShowPreview(!showPreview)}
                   >
                     {showPreview ? (
@@ -518,14 +550,16 @@ export default function TailorPage() {
                   </Button>
                 )}
                 {activeTab === "cv" && (
-                  <TemplateSelect
-                    value={selectedTemplate}
-                    onChange={setSelectedTemplate}
-                  />
+                  <div className="w-full sm:w-auto">
+                    <TemplateSelect
+                      value={selectedTemplate}
+                      onChange={setSelectedTemplate}
+                    />
+                  </div>
                 )}
                 <Button
                   variant="outline"
-                  className="rounded-full"
+                  className="w-full rounded-[10px] border-border sm:w-auto"
                   onClick={() => handleDownload(activeTab)}
                 >
                   {session?.user?.isPremium ? (
@@ -537,7 +571,7 @@ export default function TailorPage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="rounded-full"
+                  className="w-full rounded-[10px] border-border sm:w-auto"
                   onClick={() => setLinkedInModalOpen(true)}
                 >
                   <LinkedinLogoIcon size={16} />
@@ -562,11 +596,13 @@ export default function TailorPage() {
           )}
           {activeTab === "cv" && (!savedId || showPreview) && (
             <>
-              <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
+              <div className="dashboard-card overflow-hidden rounded-2xl border-border">
+                <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
+              </div>
               {tailorResult.keywordsInjected?.length > 0 && (
-                <Card className="rounded-2xl border shadow-sm">
-                  <CardContent className="py-3 px-4">
-                    <p className="text-xs font-medium text-muted-foreground mb-2">
+                <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+                  <CardContent className="px-4 py-4 sm:px-6">
+                    <p className="mb-2 text-xs font-medium text-muted-foreground">
                       Keywords injected ({tailorResult.keywordsInjected.length})
                     </p>
                     <div className="flex flex-wrap gap-1.5">
@@ -574,7 +610,7 @@ export default function TailorPage() {
                         <span
                           key={i}
                           title={k.location}
-                          className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 cursor-help"
+                          className="inline-flex cursor-help items-center rounded-full border border-[#c8e6d4] bg-[#eef8f1] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
                         >
                           {k.keyword}
                         </span>
@@ -616,6 +652,6 @@ export default function TailorPage() {
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
       />
-    </div>
+    </DashboardPageShell>
   );
 }

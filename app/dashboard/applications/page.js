@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -11,8 +12,20 @@ import {
   CalendarIcon,
   ArrowSquareOutIcon,
   TrashIcon,
-  FunnelIcon,
+  BriefcaseIcon,
+  ChatCircleIcon,
+  TrophyIcon,
+  PlusIcon,
+  CaretRightIcon,
 } from "@phosphor-icons/react";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  DashboardStatCard,
+  DashboardStatGrid,
+  DashboardEmptyState,
+  DashboardFilterPills,
+} from "@/components/dashboard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,14 +37,33 @@ import {
 } from "@/components/ui/select";
 import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
+import { cn } from "@/lib/utils";
 
 const STATUS_CONFIG = {
-  evaluated: { label: "Evaluated", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
-  applied: { label: "Applied", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
-  interviewing: { label: "Interviewing", color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
-  offer: { label: "Offer", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300" },
-  rejected: { label: "Rejected", color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
-  withdrawn: { label: "Withdrawn", color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+  evaluated: {
+    label: "Evaluated",
+    color: "bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]",
+  },
+  applied: {
+    label: "Applied",
+    color: "bg-blue-50 text-blue-800",
+  },
+  interviewing: {
+    label: "Interviewing",
+    color: "bg-purple-50 text-purple-800",
+  },
+  offer: {
+    label: "Offer",
+    color: "bg-emerald-50 text-emerald-800",
+  },
+  rejected: {
+    label: "Rejected",
+    color: "bg-red-50 text-red-700",
+  },
+  withdrawn: {
+    label: "Withdrawn",
+    color: "bg-amber-50 text-amber-800",
+  },
 };
 
 const FILTER_TABS = [
@@ -41,22 +73,58 @@ const FILTER_TABS = [
   { key: "closed", label: "Closed" },
 ];
 
-function StatusBadge({ status }) {
-  const config = STATUS_CONFIG[status] || STATUS_CONFIG.evaluated;
-  return (
-    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${config.color}`}>
-      {config.label}
-    </span>
-  );
+function gradeColor(grade) {
+  if (!grade || grade === "N/A") {
+    return "bg-muted text-muted-foreground";
+  }
+  const letter = grade.charAt(0);
+  if (letter === "A") return "bg-emerald-50 text-emerald-800";
+  if (letter === "B") return "bg-blue-50 text-blue-800";
+  if (letter === "C") return "bg-amber-50 text-amber-800";
+  return "bg-red-50 text-red-700";
+}
+
+function filterApplications(applications, filter) {
+  if (filter === "all") return applications;
+  if (filter === "active") {
+    return applications.filter((a) =>
+      ["evaluated", "applied", "interviewing"].includes(a.status)
+    );
+  }
+  if (filter === "interviewing") {
+    return applications.filter((a) => a.status === "interviewing");
+  }
+  if (filter === "closed") {
+    return applications.filter((a) =>
+      ["offer", "rejected", "withdrawn"].includes(a.status)
+    );
+  }
+  return applications;
+}
+
+function countForFilter(applications, filter) {
+  return filterApplications(applications, filter).length;
 }
 
 function StatusSelect({ currentStatus, onStatusChange, disabled }) {
+  const config = STATUS_CONFIG[currentStatus] || STATUS_CONFIG.evaluated;
+
   return (
-    <Select value={currentStatus} onValueChange={onStatusChange} disabled={disabled}>
-      <SelectTrigger className="h-7 w-full sm:w-[130px] text-xs">
+    <Select
+      value={currentStatus}
+      onValueChange={onStatusChange}
+      disabled={disabled}
+    >
+      <SelectTrigger
+        className={cn(
+          "h-8 w-full min-w-0 rounded-full border-0 px-2.5 text-xs font-semibold shadow-none focus:ring-2 focus:ring-ring/40 sm:h-7 sm:w-auto sm:min-w-[108px]",
+          config.color
+        )}
+        onClick={(e) => e.stopPropagation()}
+      >
         <SelectValue />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent align="end">
         {Object.entries(STATUS_CONFIG).map(([key, { label }]) => (
           <SelectItem key={key} value={key} className="text-xs">
             {label}
@@ -67,12 +135,127 @@ function StatusSelect({ currentStatus, onStatusChange, disabled }) {
   );
 }
 
-function filterApplications(applications, filter) {
-  if (filter === "all") return applications;
-  if (filter === "active") return applications.filter((a) => ["evaluated", "applied", "interviewing"].includes(a.status));
-  if (filter === "interviewing") return applications.filter((a) => a.status === "interviewing");
-  if (filter === "closed") return applications.filter((a) => ["offer", "rejected", "withdrawn"].includes(a.status));
-  return applications;
+function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending }) {
+  const router = useRouter();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, delay: index * 0.03 }}
+    >
+      <Card
+        role="button"
+        tabIndex={0}
+        onClick={() => router.push(`/dashboard/applications/${app._id}`)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            router.push(`/dashboard/applications/${app._id}`);
+          }
+        }}
+        className="group cursor-pointer rounded-2xl border-border py-0 gap-0 transition-all hover:border-[var(--landing-line)] hover:shadow-[var(--landing-shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+      >
+        <CardContent className="flex flex-col gap-3 px-3 py-3 sm:flex-row sm:items-center sm:gap-3 sm:px-4 sm:py-3">
+          <div className="flex min-w-0 flex-1 items-start gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
+              {(app.jobCompany?.[0] ?? "?").toUpperCase()}
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <div className="flex items-start gap-2">
+                <p className="line-clamp-2 text-sm font-semibold leading-snug text-foreground group-hover:underline sm:truncate sm:line-clamp-1">
+                  {app.jobTitle || "Untitled"}
+                </p>
+                {app.matchGrade && (
+                  <span
+                    className={cn(
+                      "hidden shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold sm:inline-flex",
+                      gradeColor(app.matchGrade)
+                    )}
+                  >
+                    {app.matchGrade}
+                  </span>
+                )}
+              </div>
+              <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
+                <span className="inline-flex min-w-0 items-center gap-1">
+                  <BuildingsIcon size={12} className="shrink-0" aria-hidden="true" />
+                  <span className="truncate">{app.jobCompany || "Unknown"}</span>
+                </span>
+                <span className="hidden text-border sm:inline" aria-hidden="true">
+                  ·
+                </span>
+                <span className="inline-flex shrink-0 items-center gap-1">
+                  <CalendarIcon size={12} className="shrink-0" aria-hidden="true" />
+                  <FormattedDate
+                    date={app.createdAt}
+                    options={{ month: "short", day: "numeric" }}
+                  />
+                </span>
+                {app.matchGrade && (
+                  <span
+                    className={cn(
+                      "inline-flex rounded-full px-1.5 py-0.5 text-[10px] font-bold sm:hidden",
+                      gradeColor(app.matchGrade)
+                    )}
+                  >
+                    {app.matchGrade}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="flex w-full items-center gap-1.5 border-t border-border/60 pt-3 sm:w-auto sm:shrink-0 sm:border-0 sm:pt-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="min-w-0 flex-1 sm:flex-none">
+              <StatusSelect
+                currentStatus={app.status}
+                onStatusChange={(next) => onStatusChange(app._id, next)}
+                disabled={statusPending}
+              />
+            </div>
+            {app.jobUrl && (
+              <Button
+                asChild
+                variant="ghost"
+                size="icon-sm"
+                className="shrink-0 text-muted-foreground hover:text-foreground"
+              >
+                <a
+                  href={app.jobUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open job listing"
+                  aria-label="Open job listing"
+                >
+                  <ArrowSquareOutIcon size={16} />
+                </a>
+              </Button>
+            )}
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="shrink-0 text-muted-foreground hover:bg-red-50 hover:text-red-600"
+              title="Delete application"
+              aria-label="Delete application"
+              onClick={() => onDelete(app._id)}
+            >
+              <TrashIcon size={16} />
+            </Button>
+            <CaretRightIcon
+              size={14}
+              className="ml-auto hidden shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground sm:ml-0 sm:block"
+              aria-hidden="true"
+            />
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
 }
 
 export default function ApplicationsPage() {
@@ -119,175 +302,144 @@ export default function ApplicationsPage() {
     onError: () => toast.error("Failed to delete"),
   });
 
+  const applications = data || [];
+
+  const stats = useMemo(() => {
+    const total = applications.length;
+    const active = applications.filter((a) =>
+      ["evaluated", "applied", "interviewing"].includes(a.status)
+    ).length;
+    const interviews = applications.filter((a) => a.status === "interviewing").length;
+    const offers = applications.filter((a) => a.status === "offer").length;
+    return { total, active, interviews, offers };
+  }, [applications]);
+
+  const filtered = useMemo(
+    () => filterApplications(applications, activeFilter),
+    [applications, activeFilter]
+  );
+
+  const filterCounts = useMemo(
+    () =>
+      FILTER_TABS.reduce((acc, tab) => {
+        acc[tab.key] = countForFilter(applications, tab.key);
+        return acc;
+      }, {}),
+    [applications]
+  );
+
+  const handleDelete = (id) => {
+    if (confirm("Remove this application?")) {
+      deleteMutation.mutate(id);
+    }
+  };
+
   if (isLoading) return <Loader />;
 
-  const applications = data || [];
-  const filtered = filterApplications(applications, activeFilter);
-
-  // Stats
-  const total = applications.length;
-  const active = applications.filter((a) => ["evaluated", "applied", "interviewing"].includes(a.status)).length;
-  const interviews = applications.filter((a) => a.status === "interviewing").length;
-  const offers = applications.filter((a) => a.status === "offer").length;
+  const statCards = [
+    {
+      label: "Total",
+      value: stats.total,
+      icon: KanbanIcon,
+      delay: 0,
+    },
+    {
+      label: "Active",
+      value: stats.active,
+      icon: BriefcaseIcon,
+      delay: 0.05,
+    },
+    {
+      label: "Interviewing",
+      value: stats.interviews,
+      icon: ChatCircleIcon,
+      delay: 0.1,
+    },
+    {
+      label: "Offers",
+      value: stats.offers,
+      icon: TrophyIcon,
+      delay: 0.15,
+    },
+  ];
 
   return (
-    <div className="mx-auto max-w-5xl space-y-6 p-4 sm:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <h1 className="text-2xl font-bold font-outfit">Applications</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Track your job applications from evaluation to offer.
+    <DashboardPageShell width="wide">
+      <DashboardPageHeader
+        title="Applications"
+        description="Track every tailored CV from evaluation through to offer."
+        action={
+          applications.length > 0 ? (
+            <Button
+              asChild
+              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            >
+              <Link href="/dashboard/tailor">
+                <PlusIcon size={16} />
+                Tailor new CV
+              </Link>
+            </Button>
+          ) : null
+        }
+      />
+
+      <DashboardStatGrid>
+        {statCards.map((card) => (
+          <DashboardStatCard key={card.label} {...card} />
+        ))}
+      </DashboardStatGrid>
+
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <DashboardFilterPills
+          tabs={FILTER_TABS.map((tab) => ({
+            ...tab,
+            count: filterCounts[tab.key],
+          }))}
+          activeKey={activeFilter}
+          onChange={setActiveFilter}
+        />
+        <p className="text-xs text-muted-foreground">
+          {filtered.length} {filtered.length === 1 ? "application" : "applications"}
         </p>
-      </motion.div>
-
-      {/* Stats Row */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.05 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3"
-      >
-        {[
-          { label: "Total", value: total },
-          { label: "Active", value: active },
-          { label: "Interviewing", value: interviews },
-          { label: "Offers", value: offers },
-        ].map((stat) => (
-          <Card key={stat.label} className="rounded-xl">
-            <CardContent className="px-4 py-2 flex items-center justify-between">
-              <p className="text-xs text-muted-foreground">{stat.label}</p>
-              <p className="text-xl font-bold tabular-nums">{stat.value}</p>
-            </CardContent>
-          </Card>
-        ))}
-      </motion.div>
-
-      {/* Filter Tabs */}
-      <div className="flex items-center gap-2 flex-wrap">
-        <FunnelIcon size={14} className="text-muted-foreground" />
-        {FILTER_TABS.map((tab) => (
-          <Button
-            key={tab.key}
-            variant={activeFilter === tab.key ? "default" : "ghost"}
-            size="sm"
-            onClick={() => setActiveFilter(tab.key)}
-            className="text-xs"
-          >
-            {tab.label}
-          </Button>
-        ))}
       </div>
 
-      {/* Application List */}
       {filtered.length === 0 ? (
-        <Card className="rounded-2xl border shadow-lg">
-          {applications.length === 0 ? (
-            <CardContent className="flex flex-col items-center justify-center py-10 sm:py-16 text-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted">
-                <KanbanIcon size={28} className="text-muted-foreground/60" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-semibold font-outfit text-foreground">
-                  No applications yet
-                </h3>
-                <p className="text-sm text-muted-foreground max-w-[320px]">
-                  Every CV you tailor is tracked here automatically. Tailor your first
-                  resume to start your application pipeline.
-                </p>
-              </div>
-              <Link
-                href="/dashboard/tailor"
-                className="inline-flex items-center gap-2 font-outfit font-semibold text-sm bg-foreground text-background rounded-[10px] px-5 py-2.5 transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+        applications.length === 0 ? (
+          <DashboardEmptyState
+            icon={KanbanIcon}
+            title="No applications yet"
+            description="Every CV you tailor is tracked here automatically. Tailor your first resume to start your pipeline."
+            actionLabel="Tailor your first resume"
+            actionHref="/dashboard/tailor"
+          />
+        ) : (
+          <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+            <CardContent className="py-10 text-center text-sm text-muted-foreground">
+              No applications match this filter.{" "}
+              <button
+                type="button"
+                onClick={() => setActiveFilter("all")}
+                className="font-semibold text-foreground underline-offset-2 hover:underline"
               >
-                Tailor your first resume
-              </Link>
+                Show all
+              </button>
             </CardContent>
-          ) : (
-            <CardContent className="py-10 text-center text-muted-foreground text-sm">
-              No applications match this filter.
-            </CardContent>
-          )}
-        </Card>
+          </Card>
+        )
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-2">
           {filtered.map((app, i) => (
-            <motion.div
+            <ApplicationRow
               key={app._id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: i * 0.03 }}
-            >
-              <Card className="rounded-xl border shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0 flex-1">
-                      <Link
-                        href={`/dashboard/applications/${app._id}`}
-                        className="text-sm font-semibold hover:underline line-clamp-1"
-                      >
-                        {app.jobTitle || "Untitled"}
-                      </Link>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <BuildingsIcon size={12} />
-                          {app.jobCompany || "Unknown"}
-                        </span>
-                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <CalendarIcon size={12} />
-                          <FormattedDate
-                            date={app.createdAt}
-                            options={{ month: "short", day: "numeric" }}
-                          />
-                        </span>
-                        {app.matchGrade && (
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {app.matchGrade}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <StatusSelect
-                        currentStatus={app.status}
-                        onStatusChange={(status) =>
-                          updateMutation.mutate({ id: app._id, status })
-                        }
-                        disabled={updateMutation.isPending}
-                      />
-                      {app.jobUrl && (
-                        <a
-                          href={app.jobUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                          title="Open job listing"
-                        >
-                          <ArrowSquareOutIcon size={16} />
-                        </a>
-                      )}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (confirm("Remove this application?")) {
-                            deleteMutation.mutate(app._id);
-                          }
-                        }}
-                        className="text-muted-foreground hover:text-red-500 transition-colors"
-                        title="Delete application"
-                      >
-                        <TrashIcon size={16} />
-                      </button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+              app={app}
+              index={i}
+              statusPending={updateMutation.isPending}
+              onStatusChange={(id, status) => updateMutation.mutate({ id, status })}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
       )}
-    </div>
+    </DashboardPageShell>
   );
 }

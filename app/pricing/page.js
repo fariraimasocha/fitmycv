@@ -8,7 +8,7 @@ import JsonLd from "@/components/JsonLd";
 export const metadata = {
   title: "Pricing",
   description:
-    "FitMyCV Premium is $6.99/month or $69.90/year. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export. Cancel anytime.",
+    "FitMyCV Premium is $14.99 lifetime or $6.99/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.",
   keywords: [
     "fitmycv pricing",
     "cv tailoring tool price",
@@ -25,7 +25,7 @@ export const metadata = {
     siteName: "FitMyCV",
     title: "Pricing — Tailored CVs From Any Job Link | FitMyCV",
     description:
-      "Simple, transparent pricing. Premium is $6.99/month or $69.90/year for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel anytime.",
+      "Simple, transparent pricing. Lifetime access for $14.99 or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.",
     images: [
       {
         url: "/hero.png",
@@ -47,7 +47,7 @@ export const metadata = {
 const FAQS = [
   {
     q: "How much does FitMyCV cost?",
-    a: "FitMyCV Premium is $6.99 per month, or $69.90 per year — which works out to $5.83 a month when billed annually and saves you $13.98 over paying monthly.",
+    a: "FitMyCV Premium is $14.99 for lifetime access (pay once, keep it forever) or $6.99 per month with no contracts.",
   },
   {
     q: "What do I get with Premium?",
@@ -55,7 +55,7 @@ const FAQS = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. There are no contracts — you can cancel your Premium subscription at any time and keep access until the end of your current billing period.",
+    a: "Monthly subscriptions can be canceled anytime — you keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable.",
   },
   {
     q: "Which payment methods do you accept?",

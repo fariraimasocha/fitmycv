@@ -1,4 +1,4 @@
-import { Geist_Mono, DM_Sans, Outfit, Caveat } from "next/font/google";
+import { Geist_Mono, DM_Sans, Outfit, Caveat, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
@@ -32,6 +32,13 @@ const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
   weight: ["500", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export const metadata = {
@@ -99,7 +106,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${caveat.variable} antialiased`}
+        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${caveat.variable} ${instrumentSerif.variable} antialiased`}
       >
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />

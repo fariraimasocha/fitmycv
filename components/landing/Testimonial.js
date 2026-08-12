@@ -23,7 +23,7 @@ export default function Testimonial() {
             className="hidden sm:block absolute bg-[oklch(0.9_0.075_68)] rounded h-[30px] w-[45%] right-0 top-[3px]"
             aria-hidden="true"
           />
-          <p className="relative z-10 w-full text-center font-sans text-xl leading-relaxed text-[var(--landing-ink)] sm:text-2xl">
+          <p className="relative z-10 w-full text-center font-serif-display text-xl leading-relaxed text-[var(--landing-ink)] sm:text-2xl">
             Not having to rewrite my CV manually is saving me tons of application work. Now I
             just paste a job link and FitMyCv handles everything itself
           </p>

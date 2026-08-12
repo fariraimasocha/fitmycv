@@ -52,7 +52,7 @@ export default function TrustSignals() {
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container">
         <div className="flex flex-col items-center gap-3 text-center">
-          <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+          <h2 className="landing-section-title text-2xl sm:text-3xl">
             What you are handing over, and what happens to it
           </h2>
           <p className="landing-copy text-center text-base">
@@ -64,10 +64,10 @@ export default function TrustSignals() {
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SIGNALS.map(({ icon: Icon, title, body }) => (
             <li key={title} className="landing-card flex flex-col gap-3 rounded-2xl p-6">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
                 <Icon size={19} weight="bold" aria-hidden="true" />
               </span>
-              <span className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
+              <span className="font-medium text-base text-[var(--landing-ink)]">
                 {title}
               </span>
               <span className="text-sm leading-6 text-[var(--landing-ink-soft)]">

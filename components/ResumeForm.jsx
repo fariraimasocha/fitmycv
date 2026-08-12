@@ -172,11 +172,11 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+            <CardTitle className="text-base font-semibold">Personal Information</CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-4 sm:grid-cols-2">
+          <CardContent className="grid gap-4 px-4 py-4 sm:grid-cols-2 sm:px-6 sm:py-5">
             <div className="space-y-2">
               <Label htmlFor="name">Full Name *</Label>
               <Input id="name" {...register("basics.name")} />
@@ -221,26 +221,26 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
-            <CardTitle>Online Profiles</CardTitle>
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+            <CardTitle className="text-base font-semibold">Online Profiles</CardTitle>
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-full"
+              className="rounded-[10px] border-border"
               onClick={() => appendProfile({ network: "", url: "" })}
             >
               <PlusIcon size={14} />
               Add Profile
             </Button>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
             {profilesFieldsList.length === 0 && (
-              <p className="text-sm text-gray-500">No profiles added yet.</p>
+              <p className="text-sm text-muted-foreground">No profiles added yet.</p>
             )}
             {profilesFieldsList.map((field, index) => (
-              <div key={field.id} className="flex flex-col sm:flex-row gap-3 items-end">
+              <div key={field.id} className="flex flex-col gap-3 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-end">
                 <div className="flex-1 space-y-2">
                   <Label>Network</Label>
                   <Input
@@ -266,7 +266,7 @@ export default function ResumeForm({
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="text-destructive"
+                    className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
                     onClick={() => removeProfile(index)}
                   >
                     <TrashIcon size={16} />
@@ -284,14 +284,14 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
-            <CardTitle>Work Experience</CardTitle>
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+            <CardTitle className="text-base font-semibold">Work Experience</CardTitle>
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-full"
+              className="rounded-[10px] border-border"
               onClick={() =>
                 appendWork({
                   company: "",
@@ -307,19 +307,19 @@ export default function ResumeForm({
               Add Position
             </Button>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
             {workFieldsList.length === 0 && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 No work experience added yet.
               </p>
             )}
             {workFieldsList.map((field, index) => (
               <div
                 key={field.id}
-                className="space-y-4 rounded-xl bg-gray-50 p-5"
+                className="space-y-4 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:p-5"
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-semibold text-foreground">
                     Position {index + 1}
                   </p>
                   <div className="flex items-center gap-1">
@@ -333,7 +333,7 @@ export default function ResumeForm({
                       type="button"
                       variant="ghost"
                       size="icon-xs"
-                      className="text-destructive"
+                      className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
                       onClick={() => removeWork(index)}
                     >
                       <TrashIcon size={14} />
@@ -389,14 +389,14 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
-            <CardTitle>Education</CardTitle>
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+            <CardTitle className="text-base font-semibold">Education</CardTitle>
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-full"
+              className="rounded-[10px] border-border"
               onClick={() =>
                 appendEducation({
                   institution: "",
@@ -411,17 +411,17 @@ export default function ResumeForm({
               Add Education
             </Button>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
             {educationFieldsList.length === 0 && (
-              <p className="text-sm text-gray-500">No education added yet.</p>
+              <p className="text-sm text-muted-foreground">No education added yet.</p>
             )}
             {educationFieldsList.map((field, index) => (
               <div
                 key={field.id}
-                className="space-y-4 rounded-xl bg-gray-50 p-5"
+                className="space-y-4 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:p-5"
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-semibold text-foreground">
                     Education {index + 1}
                   </p>
                   <div className="flex items-center gap-1">
@@ -435,7 +435,7 @@ export default function ResumeForm({
                       type="button"
                       variant="ghost"
                       size="icon-xs"
-                      className="text-destructive"
+                      className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
                       onClick={() => removeEducation(index)}
                     >
                       <TrashIcon size={14} />
@@ -487,31 +487,31 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader className="flex-row flex-wrap items-center justify-between gap-2">
-            <CardTitle>Skills</CardTitle>
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+            <CardTitle className="text-base font-semibold">Skills</CardTitle>
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-full"
+              className="rounded-[10px] border-border"
               onClick={() => appendSkill({ category: "", skills: [] })}
             >
               <PlusIcon size={14} />
               Add Category
             </Button>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
             {skillsFieldsList.length === 0 && (
-              <p className="text-sm text-gray-500">No skills added yet.</p>
+              <p className="text-sm text-muted-foreground">No skills added yet.</p>
             )}
             {skillsFieldsList.map((field, index) => (
               <div
                 key={field.id}
-                className="space-y-4 rounded-xl bg-gray-50 p-5"
+                className="space-y-4 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:p-5"
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-semibold text-foreground">
                     Category {index + 1}
                   </p>
                   <div className="flex items-center gap-1">
@@ -525,7 +525,7 @@ export default function ResumeForm({
                       type="button"
                       variant="ghost"
                       size="icon-xs"
-                      className="text-destructive"
+                      className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
                       onClick={() => removeSkill(index)}
                     >
                       <TrashIcon size={14} />
@@ -552,28 +552,24 @@ export default function ResumeForm({
         </Card>
       </motion.div>
 
-      {/* Save Button */}
-      <div className="flex justify-end">
-        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Button
-            type="submit"
-            disabled={saveMutation.isPending}
-            size="lg"
-            className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90"
-          >
-            {saveMutation.isPending ? (
-              <>
-                <SpinnerGapIcon size={16} className="animate-spin" />
-                Saving...
-              </>
-            ) : (
-              <>
-                <FloppyDiskIcon size={16} />
-                {saveButtonLabel}
-              </>
-            )}
-          </Button>
-        </motion.div>
+      <div className="sticky bottom-3 z-10 flex justify-end pt-2 sm:bottom-4">
+        <Button
+          type="submit"
+          disabled={saveMutation.isPending}
+          className="w-full rounded-[10px] bg-foreground px-8 font-outfit font-semibold text-background shadow-[var(--landing-shadow-sm)] hover:opacity-90 sm:w-auto"
+        >
+          {saveMutation.isPending ? (
+            <>
+              <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+              Saving...
+            </>
+          ) : (
+            <>
+              <FloppyDiskIcon size={16} aria-hidden="true" />
+              {saveButtonLabel}
+            </>
+          )}
+        </Button>
       </div>
     </form>
   );

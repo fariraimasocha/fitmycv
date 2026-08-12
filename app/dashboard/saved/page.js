@@ -17,6 +17,11 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  DashboardEmptyState,
+} from "@/components/dashboard";
 
 function locationLabel(job) {
   if (job.isRemote) return "Remote";
@@ -27,25 +32,28 @@ function locationLabel(job) {
 function SavedJobCard({ item, onRemove, removing }) {
   const job = item.job ?? {};
   return (
-    <Card className="rounded-xl border shadow-sm">
-      <CardContent className="flex items-start gap-3 p-4">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted text-sm font-bold">
-          {job.logo ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={job.logo} alt={job.company ?? ""} className="h-full w-full object-contain" />
-          ) : (
-            (job.company?.[0] ?? "?").toUpperCase()
-          )}
+    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <CardContent className="flex flex-col gap-3 p-3 sm:p-4">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
+            {job.logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={job.logo} alt={job.company ?? ""} className="h-full w-full object-contain" />
+            ) : (
+              (job.company?.[0] ?? "?").toUpperCase()
+            )}
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="line-clamp-2 text-sm font-semibold leading-snug sm:line-clamp-1">{job.title}</p>
+            <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground sm:line-clamp-1">
+              {[job.company, locationLabel(job)].filter(Boolean).join(" · ")}
+            </p>
+            {job.salary && <p className="mt-0.5 text-xs text-muted-foreground">{job.salary}</p>}
+          </div>
         </div>
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold line-clamp-1">{job.title}</p>
-          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
-            {[job.company, locationLabel(job)].filter(Boolean).join(" · ")}
-          </p>
-          {job.salary && <p className="text-xs text-muted-foreground mt-0.5">{job.salary}</p>}
-          <div className="flex items-center gap-2 mt-2">
+        <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
             {job.applyLink && (
-              <Button asChild size="sm" variant="outline">
+              <Button asChild size="sm" variant="outline" className="w-full sm:w-auto">
                 <a href={job.applyLink} target="_blank" rel="noreferrer">
                   Apply
                   <ArrowSquareOutIcon className="ml-1.5 size-3.5" />
@@ -63,7 +71,6 @@ function SavedJobCard({ item, onRemove, removing }) {
               <TrashIcon className="size-4" />
             </Button>
           </div>
-        </div>
       </CardContent>
     </Card>
   );
@@ -71,25 +78,28 @@ function SavedJobCard({ item, onRemove, removing }) {
 
 function UpgradeGate() {
   return (
-    <div className="mx-auto max-w-2xl p-4 sm:p-6">
-      <Card className="rounded-xl border-border text-center">
-        <CardContent className="py-12 space-y-4">
-          <CrownIcon className="size-8 text-amber-500 mx-auto" />
+    <DashboardPageShell width="narrow">
+      <Card className="dashboard-card rounded-2xl border-border text-center py-0 gap-0">
+        <CardContent className="space-y-4 py-12">
+          <CrownIcon className="mx-auto size-8 text-[var(--landing-accent)]" />
           <div className="space-y-1">
-            <p className="text-lg font-semibold">Saved jobs are a Pro feature</p>
+            <p className="font-outfit text-lg font-semibold">Saved jobs are a Pro feature</p>
             <p className="text-sm text-muted-foreground">
               Upgrade to receive daily job matches and save the ones you like.
             </p>
           </div>
-          <Button asChild>
-            <Link href="/api/polar/checkout">
+          <Button
+            asChild
+            className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+          >
+            <Link href="/api/polar/checkout?plan=lifetime">
               Upgrade to Pro
               <ArrowRightIcon className="ml-2 size-4" />
             </Link>
           </Button>
         </CardContent>
       </Card>
-    </div>
+    </DashboardPageShell>
   );
 }
 
@@ -132,30 +142,24 @@ function SavedJobs() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Saved Jobs</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Jobs you saved from your daily match emails.
-        </p>
-      </div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        title="Saved Jobs"
+        description="Jobs you saved from your daily match emails."
+      />
 
       {!items || items.length === 0 ? (
-        <Card className="rounded-xl border-dashed">
-          <CardContent className="py-12 text-center space-y-2">
-            <BookmarkSimpleIcon className="size-8 text-muted-foreground mx-auto" />
-            <p className="text-sm font-medium">No saved jobs yet</p>
-            <p className="text-sm text-muted-foreground">
-              Hit “☆ Save” on any role in your daily job-match email and it&apos;ll show up here.
-            </p>
-          </CardContent>
-        </Card>
+        <DashboardEmptyState
+          icon={BookmarkSimpleIcon}
+          title="No saved jobs yet"
+          description={'Hit "Save" on any role in your daily job-match email and it\'ll show up here.'}
+        />
       ) : (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="space-y-3"
+          className="space-y-2"
         >
           {items.map((item) => (
             <SavedJobCard
@@ -167,7 +171,7 @@ function SavedJobs() {
           ))}
         </motion.div>
       )}
-    </div>
+    </DashboardPageShell>
   );
 }
 

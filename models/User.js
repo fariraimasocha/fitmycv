@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    // false for new sign-ups; undefined on legacy users skips onboarding
+    onboardingCompleted: {
+      type: Boolean,
+      default: false,
+    },
     polarCustomerId: {
       type: String,
       default: null,

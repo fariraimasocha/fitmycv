@@ -9,6 +9,7 @@ export const authConfig = {
         session.user.id = token.id;
         session.user.role = token.role;
         session.user.isPremium = token.isPremium || false;
+        session.user.onboardingCompleted = token.onboardingCompleted !== false;
         session.user.subscriptionStatus = token.subscriptionStatus || null;
         session.user.subscriptionCurrentPeriodEnd =
           token.subscriptionCurrentPeriodEnd || null;

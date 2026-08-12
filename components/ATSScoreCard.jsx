@@ -128,7 +128,7 @@ function LoadingSkeleton() {
 export default function ATSScoreCard({ atsData, isLoading, preScore }) {
   if (isLoading) {
     return (
-      <Card className="rounded-2xl border shadow-lg">
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
         <CardHeader>
           <CardTitle className="text-base">Analyzing ATS Compatibility…</CardTitle>
         </CardHeader>
@@ -141,7 +141,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
 
   if (!atsData) {
     return (
-      <Card className="rounded-2xl border shadow-lg">
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
           ATS score will appear here after tailoring your CV.
         </CardContent>
@@ -153,7 +153,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
     atsData;
 
   return (
-    <Card className="rounded-2xl border shadow-lg">
+    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
       <CardHeader>
         <CardTitle className="text-base">ATS Compatibility Score</CardTitle>
       </CardHeader>

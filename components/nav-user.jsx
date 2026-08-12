@@ -1,7 +1,7 @@
 "use client"
 
 import { useSession, signOut } from "next-auth/react"
-import { SignOut, User, CaretUpDown } from "@phosphor-icons/react"
+import { SignOutIcon, UserIcon, CaretUpDownIcon } from "@phosphor-icons/react"
 import Link from "next/link"
 
 import {
@@ -60,7 +60,7 @@ export function NavUser() {
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
-              <CaretUpDown className="ml-auto size-4" />
+              <CaretUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -85,14 +85,14 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/profile">
-                  <User className="mr-2 size-4" />
+                  <UserIcon className="mr-2 size-4" />
                   Profile
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
-              <SignOut className="mr-2 size-4" />
+              <SignOutIcon className="mr-2 size-4" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

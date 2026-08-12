@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { motion } from "motion/react";
@@ -9,6 +9,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+} from "@/components/dashboard";
 
 function formatDate(dateStr) {
   if (!dateStr) return null;
@@ -51,13 +55,16 @@ const PRO_FEATURES = [
 
 export default function ProfilePage() {
   const { data: session, status, update } = useSession();
+  const hasRefreshed = useRef(false);
 
-  // Force-refresh JWT from DB on mount — fixes stale isPremium after Polar webhook
+  // Refresh JWT from DB once — avoids stale isPremium after Polar webhook
   useEffect(() => {
-    update();
-  }, []);
+    if (hasRefreshed.current || status !== "authenticated") return;
+    hasRefreshed.current = true;
+    void update();
+  }, [status, update]);
 
-  if (status === "loading") return <Loader />;
+  if (status === "loading" && !session) return <Loader />;
 
   const user = session?.user ?? {};
   const initials = user.name
@@ -75,24 +82,20 @@ export default function ProfilePage() {
     : null;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6 p-4 sm:p-6">
-      {/* Page header */}
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Profile</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Manage your account and subscription
-        </p>
-      </div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        title="Profile"
+        description="Manage your account and subscription."
+      />
 
-      {/* Account card */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut", delay: 0 }}
       >
-        <Card className="rounded-xl border-border overflow-hidden">
+        <Card className="dashboard-card overflow-hidden rounded-2xl border-border py-0 gap-0">
           {/* Banner strip */}
-          <div className="bg-foreground/5 px-4 sm:px-6 py-5 flex items-center gap-4">
+          <div className="bg-foreground/5 flex flex-col items-start gap-4 px-4 py-5 sm:flex-row sm:items-center sm:px-6">
             <Avatar className="h-16 w-16 ring-2 ring-border">
               <AvatarImage src={user.image} alt={user.name} />
               <AvatarFallback className="text-xl font-semibold">{initials}</AvatarFallback>
@@ -117,8 +120,8 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut", delay: 0.05 }}
       >
-        <Card className="rounded-xl border-border">
-          <CardHeader className="flex flex-row items-center justify-between gap-2 pb-3">
+        <Card className="dashboard-card rounded-2xl border-border">
+          <CardHeader className="flex flex-col gap-2 pb-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
               <CrownIcon
                 className={`size-4 ${isPremium ? "text-amber-500" : "text-muted-foreground"}`}
@@ -175,7 +178,7 @@ export default function ProfilePage() {
                 </ul>
 
                 <Button asChild className="w-full sm:w-auto">
-                  <Link href="/api/polar/checkout">
+                  <Link href="/api/polar/checkout?plan=lifetime">
                     Upgrade to Pro
                     <ArrowRightIcon className="ml-2 size-4" />
                   </Link>
@@ -185,6 +188,6 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       </motion.div>
-    </div>
+    </DashboardPageShell>
   );
 }

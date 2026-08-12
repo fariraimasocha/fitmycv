@@ -13,9 +13,13 @@ import {
   LightbulbIcon,
   ArrowsLeftRightIcon,
 } from "@phosphor-icons/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+} from "@/components/dashboard";
 
 const DIMENSION_LABELS = {
   roleFit: "Role Fit",
@@ -90,27 +94,20 @@ export default function ComparePage() {
   const apps = applications || [];
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-4 sm:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <h1 className="text-2xl font-bold font-outfit">Compare Offers</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Select 2-4 applications to compare side by side.
-        </p>
-      </motion.div>
+    <DashboardPageShell width="wide">
+      <DashboardPageHeader
+        title="Compare Offers"
+        description="Select 2–4 applications to compare side by side."
+      />
 
-      {/* Selection */}
-      <Card className="rounded-2xl border shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-base flex items-center gap-2">
-            <ScalesIcon size={16} />
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <CardHeader className="border-b border-border/60 px-4 pb-3 pt-5 sm:px-6 sm:pt-6">
+          <CardTitle className="flex items-center gap-2 text-base">
+            <ScalesIcon size={16} aria-hidden="true" />
             Select Applications ({selectedIds.length}/4)
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
+        <CardContent className="space-y-2 px-4 py-4 sm:px-6">
           {apps.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               No applications yet. Tailor some resumes first.
@@ -124,23 +121,23 @@ export default function ComparePage() {
                   key={app._id}
                   onClick={() => !disabled && toggleSelect(app._id)}
                   disabled={disabled}
-                  className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left transition-colors ${
+                  className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
                     isSelected
                       ? "border-blue-300 bg-blue-50/50 dark:border-blue-800 dark:bg-blue-900/10"
-                      : "hover:bg-muted/30"
-                  } ${disabled ? "opacity-40 cursor-not-allowed" : ""}`}
+                      : "border-border/60 hover:bg-muted/30"
+                  } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
                 >
                   {isSelected ? (
-                    <CheckSquareIcon size={18} className="text-blue-600 shrink-0" weight="fill" />
+                    <CheckSquareIcon size={18} className="shrink-0 text-blue-600" weight="fill" />
                   ) : (
-                    <SquareIcon size={18} className="text-muted-foreground shrink-0" />
+                    <SquareIcon size={18} className="shrink-0 text-muted-foreground" />
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium line-clamp-1">{app.jobTitle}</p>
+                    <p className="line-clamp-1 text-sm font-medium">{app.jobTitle}</p>
                     <p className="text-xs text-muted-foreground">{app.jobCompany}</p>
                   </div>
                   {app.matchGrade && (
-                    <span className="text-xs font-medium text-muted-foreground shrink-0">
+                    <span className="shrink-0 text-xs font-medium text-muted-foreground">
                       {app.matchGrade}
                     </span>
                   )}
@@ -148,10 +145,12 @@ export default function ComparePage() {
               );
             })
           )}
+        </CardContent>
+        <CardFooter className="flex w-full flex-col items-stretch border-t border-border/60 px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
           <Button
             onClick={() => compareMutation.mutate()}
             disabled={selectedIds.length < 2 || compareMutation.isPending}
-            className="mt-3 w-full rounded-full"
+            className="w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           >
             {compareMutation.isPending ? (
               <>
@@ -165,7 +164,7 @@ export default function ComparePage() {
               </>
             )}
           </Button>
-        </CardContent>
+        </CardFooter>
       </Card>
 
       {/* Results */}
@@ -177,7 +176,7 @@ export default function ComparePage() {
           className="space-y-4"
         >
           {/* Comparison Table */}
-          <Card className="rounded-2xl border shadow-lg overflow-hidden">
+          <Card className="dashboard-card overflow-hidden rounded-2xl border-border">
             <CardHeader>
               <CardTitle className="text-base">Comparison Matrix</CardTitle>
             </CardHeader>
@@ -241,7 +240,7 @@ export default function ComparePage() {
 
           {/* Recommendation */}
           {comparisonResult.recommendation && (
-            <Card className="rounded-2xl border shadow-lg border-green-200 dark:border-green-900/50">
+            <Card className="dashboard-card rounded-2xl border-border border-emerald-200">
               <CardContent className="p-4">
                 <h3 className="flex items-center gap-2 text-sm font-semibold text-green-700 dark:text-green-400 mb-2">
                   <LightbulbIcon size={16} weight="fill" />
@@ -256,7 +255,7 @@ export default function ComparePage() {
 
           {/* Tradeoffs */}
           {comparisonResult.tradeoffs?.length > 0 && (
-            <Card className="rounded-2xl border shadow-lg">
+            <Card className="dashboard-card rounded-2xl border-border">
               <CardContent className="p-4">
                 <h3 className="flex items-center gap-2 text-sm font-semibold mb-2">
                   <ArrowsLeftRightIcon size={16} />
@@ -275,6 +274,6 @@ export default function ComparePage() {
           )}
         </motion.div>
       )}
-    </div>
+    </DashboardPageShell>
   );
 }

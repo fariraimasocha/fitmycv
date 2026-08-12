@@ -2,22 +2,30 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { motion } from "motion/react";
-import {
-  ArrowCounterClockwiseIcon,
-  ArrowLeftIcon,
-  DownloadSimpleIcon,
-  EyeIcon,
-  PencilSimpleIcon,
-} from "@phosphor-icons/react";
+import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import ResumeUpload from "@/components/ResumeUpload";
 import ResumeForm from "@/components/ResumeForm";
 import ResumePreview from "@/components/ResumePreview";
 import TemplateSelect from "@/components/TemplateSelect";
 import Loader from "@/components/Loader";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  CvEditorToolbar,
+  CvPreviewActions,
+} from "@/components/dashboard";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
+
+function buildResumeData(source) {
+  return {
+    basics: source.basics,
+    work: source.work,
+    education: source.education,
+    skills: source.skills,
+  };
+}
 
 export default function MyResumePage() {
   const [parsedData, setParsedData] = useState(null);
@@ -25,10 +33,7 @@ export default function MyResumePage() {
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState("classic");
 
-  const {
-    data: savedCV,
-    isLoading,
-  } = useQuery({
+  const { data: savedCV, isLoading } = useQuery({
     queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
@@ -59,213 +64,102 @@ export default function MyResumePage() {
     });
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  // Show form/preview with parsed data (just uploaded)
-  if (parsedData) {
-    const resumeData = {
-      basics: parsedData.basics,
-      work: parsedData.work,
-      education: parsedData.education,
-      skills: parsedData.skills,
-    };
-
-    return (
-      <motion.div
-        className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <h1 className="text-xl font-semibold font-outfit text-foreground">Review Your CV</h1>
-            <p className="text-sm text-gray-500">
-              Review and edit the parsed information, then save.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            {showPreview && (
-              <>
-                <TemplateSelect value={selectedTemplate} onChange={setSelectedTemplate} />
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button
-                    variant="outline"
-                    className="rounded-full"
-                    onClick={() => handleDownload(resumeData)}
-                  >
-                    <DownloadSimpleIcon size={16} />
-                    Download PDF
-                  </Button>
-                </motion.div>
-              </>
-            )}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button
-                variant="outline"
-                className="rounded-full"
-                onClick={() => setShowPreview(!showPreview)}
-              >
-                {showPreview ? (
-                  <>
-                    <PencilSimpleIcon size={16} />
-                    Edit
-                  </>
-                ) : (
-                  <>
-                    <EyeIcon size={16} />
-                    Preview
-                  </>
-                )}
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="outline" className="rounded-full" onClick={handleReUpload}>
-                <ArrowCounterClockwiseIcon size={16} />
-                Re-upload
-              </Button>
-            </motion.div>
+  const renderEditor = (resumeData, rawText, saveProps = {}) => (
+    <>
+      {showPreview ? (
+        <div className="space-y-3">
+          <CvPreviewActions
+            templateSelect={
+              <TemplateSelect value={selectedTemplate} onChange={setSelectedTemplate} />
+            }
+            onDownload={() => handleDownload(resumeData)}
+          />
+          <div className="dashboard-card overflow-hidden rounded-2xl border-border">
+            <ResumePreview data={resumeData} template={selectedTemplate} />
           </div>
         </div>
-        {showPreview ? (
-          <ResumePreview data={resumeData} template={selectedTemplate} />
-        ) : (
-          <ResumeForm
-            initialData={resumeData}
-            rawText={parsedData.rawText}
-          />
-        )}
-      </motion.div>
+      ) : (
+        <ResumeForm initialData={resumeData} rawText={rawText} {...saveProps} />
+      )}
+    </>
+  );
+
+  if (isLoading) return <Loader />;
+
+  if (parsedData) {
+    const resumeData = buildResumeData(parsedData);
+    return (
+      <DashboardPageShell width="narrow">
+        <DashboardPageHeader
+          eyebrow="CV Toolkit"
+          title="Review your CV"
+          description="Check the parsed details below, then save to your profile."
+          action={
+            <CvEditorToolbar
+              showPreview={showPreview}
+              onTogglePreview={() => setShowPreview((v) => !v)}
+              onUploadNew={handleReUpload}
+              uploadLabel="Re-upload"
+            />
+          }
+        />
+        {renderEditor(resumeData, parsedData.rawText)}
+      </DashboardPageShell>
     );
   }
 
-  // Show upload form when user clicked "Upload New"
   if (showUploadForm) {
     return (
-      <motion.div
-        className="mx-auto max-w-lg space-y-6 p-4 sm:p-6 pt-8 sm:pt-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="rounded-full"
-            onClick={() => setShowUploadForm(false)}
-          >
-            <ArrowLeftIcon size={16} />
-            Back
-          </Button>
-        </div>
-        <div className="text-center">
-          <h1 className="text-xl font-semibold font-outfit text-foreground">Upload New CV</h1>
-          <p className="mt-2 text-sm text-gray-500">
-            Upload a PDF of your CV to replace the current one.
-          </p>
-        </div>
+      <DashboardPageShell width="narrow">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="mb-1 w-fit rounded-full"
+          onClick={() => setShowUploadForm(false)}
+        >
+          <ArrowLeftIcon size={16} aria-hidden="true" />
+          Back
+        </Button>
+        <DashboardPageHeader
+          eyebrow="CV Toolkit"
+          title="Upload new CV"
+          description="Replace your current CV with a new PDF. We'll extract and structure it automatically."
+        />
         <ResumeUpload onParsed={handleParsed} />
-      </motion.div>
+      </DashboardPageShell>
     );
   }
 
-  // Show form/preview with saved data
   if (savedCV) {
-    const resumeData = {
-      basics: savedCV.basics,
-      work: savedCV.work,
-      education: savedCV.education,
-      skills: savedCV.skills,
-    };
-
+    const resumeData = buildResumeData(savedCV);
     return (
-      <motion.div
-        className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <h1 className="text-xl font-semibold font-outfit text-foreground">My CV</h1>
-            <p className="text-sm text-gray-500">
-              Edit your CV information or upload a new one.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            {showPreview && (
-              <>
-                <TemplateSelect value={selectedTemplate} onChange={setSelectedTemplate} />
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button
-                    variant="outline"
-                    className="rounded-full"
-                    onClick={() => handleDownload(resumeData)}
-                  >
-                    <DownloadSimpleIcon size={16} />
-                    Download PDF
-                  </Button>
-                </motion.div>
-              </>
-            )}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button
-                variant="outline"
-                className="rounded-full"
-                onClick={() => setShowPreview(!showPreview)}
-              >
-                {showPreview ? (
-                  <>
-                    <PencilSimpleIcon size={16} />
-                    Edit
-                  </>
-                ) : (
-                  <>
-                    <EyeIcon size={16} />
-                    Preview
-                  </>
-                )}
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button variant="outline" className="rounded-full" onClick={handleReUpload}>
-                <ArrowCounterClockwiseIcon size={16} />
-                Upload New
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-        {showPreview ? (
-          <ResumePreview data={resumeData} template={selectedTemplate} />
-        ) : (
-          <ResumeForm
-            initialData={resumeData}
-            rawText={savedCV.rawText}
-          />
-        )}
-      </motion.div>
+      <DashboardPageShell width="narrow">
+        <DashboardPageHeader
+          eyebrow="CV Toolkit"
+          title="My CV"
+          description="Your reference CV powers every tailored application. Keep it up to date."
+          action={
+            <CvEditorToolbar
+              showPreview={showPreview}
+              onTogglePreview={() => setShowPreview((v) => !v)}
+              onUploadNew={handleReUpload}
+            />
+          }
+        />
+        {renderEditor(resumeData, savedCV.rawText)}
+      </DashboardPageShell>
     );
   }
 
-  // No CV — show upload
   return (
-    <motion.div
-      className="mx-auto max-w-lg space-y-6 p-4 sm:p-6 pt-10 sm:pt-20"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="text-center">
-        <h1 className="text-xl font-semibold font-outfit text-foreground">Upload Your CV</h1>
-        <p className="mt-2 text-sm text-gray-500">
-          Upload a PDF of your CV. We&apos;ll extract and structure the
-          information so you can review and edit it.
-        </p>
-      </div>
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader
+        eyebrow="CV Toolkit"
+        title="Upload your CV"
+        description="Upload a PDF and we'll extract your experience, education, and skills into an editable profile."
+      />
       <ResumeUpload onParsed={handleParsed} />
-    </motion.div>
+    </DashboardPageShell>
   );
 }

@@ -18,6 +18,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+} from "@/components/dashboard";
 
 const STATUS_CONFIG = {
   evaluated: { label: "Evaluated", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
@@ -74,58 +78,56 @@ export default function ApplicationDetailPage() {
   if (isLoading) return <Loader />;
   if (!app) {
     return (
-      <div className="mx-auto max-w-3xl p-4 sm:p-6 text-center text-muted-foreground">
-        Application not found.
-      </div>
+      <DashboardPageShell width="narrow">
+        <p className="text-center text-sm text-muted-foreground">Application not found.</p>
+      </DashboardPageShell>
     );
   }
 
   const statusConfig = STATUS_CONFIG[app.status] || STATUS_CONFIG.evaluated;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+    <DashboardPageShell width="narrow">
+      <button
+        type="button"
+        onClick={() => router.push("/dashboard/applications")}
+        className="mb-2 flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
-        <button
-          onClick={() => router.push("/dashboard/applications")}
-          className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
-        >
-          <ArrowLeftIcon size={14} />
-          Back to Applications
-        </button>
+        <ArrowLeftIcon size={14} />
+        Back to Applications
+      </button>
 
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h1 className="text-2xl font-bold font-outfit">{app.jobTitle}</h1>
-            <div className="flex items-center gap-3 mt-1 flex-wrap">
-              <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                <BuildingsIcon size={14} />
-                {app.jobCompany}
-              </span>
-              <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                <CalendarIcon size={14} />
-                <FormattedDate date={app.createdAt} />
-              </span>
-              {app.jobUrl && (
-                <a
-                  href={app.jobUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400"
-                >
-                  View listing <ArrowSquareOutIcon size={12} />
-                </a>
-              )}
-            </div>
-          </div>
-          <span className={`rounded-full px-3 py-1 text-sm font-medium ${statusConfig.color}`}>
+      <DashboardPageHeader
+        title={app.jobTitle}
+        description={
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1">
+              <BuildingsIcon size={14} />
+              {app.jobCompany}
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <CalendarIcon size={14} />
+              <FormattedDate date={app.createdAt} />
+            </span>
+            {app.jobUrl && (
+              <a
+                href={app.jobUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[var(--landing-accent)] hover:underline"
+              >
+                View listing
+                <ArrowSquareOutIcon size={12} />
+              </a>
+            )}
+          </span>
+        }
+        action={
+          <span className={`inline-flex rounded-full px-3 py-1 text-sm font-medium ${statusConfig.color}`}>
             {statusConfig.label}
           </span>
-        </div>
-      </motion.div>
+        }
+      />
 
       {/* Status Update */}
       <motion.div
@@ -133,12 +135,12 @@ export default function ApplicationDetailPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader>
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="px-4 py-4 sm:px-6">
             <CardTitle className="text-base">Update Status</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
+          <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
               {Object.entries(STATUS_CONFIG).map(([key, { label, color }]) => (
                 <Button
                   key={key}
@@ -280,6 +282,6 @@ export default function ApplicationDetailPage() {
           </Card>
         </motion.div>
       )}
-    </div>
+    </DashboardPageShell>
   );
 }

@@ -1,17 +1,16 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
 import {
   UploadSimpleIcon,
   FileTextIcon,
   XIcon,
-  SpinnerGapIcon,
+  CheckCircleIcon,
 } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import UploadProgress from "@/components/UploadProgress";
+import { uploadResumeWithProgress } from "@/utils/upload-resume";
 
 function formatFileSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -22,76 +21,85 @@ function formatFileSize(bytes) {
 export default function ResumeUpload({ onParsed }) {
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const [progressState, setProgressState] = useState({
+    progress: 0,
+    stage: "preparing",
+    label: "Preparing your file",
+  });
   const inputRef = useRef(null);
 
   const openFilePicker = useCallback(() => {
-    inputRef.current?.click();
-  }, []);
-
-  const uploadMutation = useMutation({
-    mutationFn: async (pdfFile) => {
-      const formData = new FormData();
-      formData.append("file", pdfFile);
-
-      const res = await fetch("/api/resume/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Upload failed");
-      }
-
-      return res.json();
-    },
-    onSuccess: (result) => {
-      toast.success("Resume parsed successfully!");
-      onParsed({ ...result.data, rawText: result.rawText });
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+    if (!isUploading) inputRef.current?.click();
+  }, [isUploading]);
 
   const handleDrag = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isUploading) return;
     if (e.type === "dragenter" || e.type === "dragover") {
       setDragActive(true);
     } else if (e.type === "dragleave") {
       setDragActive(false);
     }
-  }, []);
+  }, [isUploading]);
 
   const handleDrop = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    if (isUploading) return;
 
     const droppedFile = e.dataTransfer.files?.[0];
     if (droppedFile?.type === "application/pdf") {
       setFile(droppedFile);
+      setIsComplete(false);
     } else {
       toast.error("Please drop a PDF file");
     }
-  }, []);
+  }, [isUploading]);
 
   const handleFileChange = (e) => {
     const selected = e.target.files?.[0];
     if (selected) {
       setFile(selected);
+      setIsComplete(false);
     }
   };
 
-  const handleUpload = () => {
-    if (file) {
-      uploadMutation.mutate(file);
+  const handleUpload = async () => {
+    if (!file || isUploading) return;
+
+    setIsUploading(true);
+    setIsComplete(false);
+    setProgressState({
+      progress: 0,
+      stage: "preparing",
+      label: "Preparing your file",
+    });
+
+    try {
+      const result = await uploadResumeWithProgress(file, setProgressState);
+      setIsComplete(true);
+      toast.success("Resume parsed successfully!");
+      onParsed({ ...result.data, rawText: result.rawText });
+    } catch (error) {
+      toast.error(error.message || "Upload failed");
+      setProgressState({
+        progress: 0,
+        stage: "preparing",
+        label: "Preparing your file",
+      });
+    } finally {
+      setIsUploading(false);
     }
   };
 
   const removeFile = () => {
+    if (isUploading) return;
     setFile(null);
+    setIsComplete(false);
   };
 
   return (
@@ -101,94 +109,107 @@ export default function ResumeUpload({ onParsed }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Drop zone */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={openFilePicker}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            openFilePicker();
-          }
-        }}
-        onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
-        onDragOver={handleDrag}
-        onDrop={handleDrop}
-        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 sm:p-10 transition-colors ${
-          dragActive
-            ? "border-gray-900 bg-gray-50"
-            : "border-gray-300 hover:border-gray-400"
-        }`}
-      >
-        <UploadSimpleIcon size={40} className="mb-3 text-gray-400" aria-hidden="true" />
-        <p className="text-sm font-medium text-gray-900">
-          Drag and drop your CV PDF here
-        </p>
-        <p className="mt-1 text-xs text-gray-400">or</p>
-        <span className="mt-3 text-sm font-medium text-gray-900 hover:underline">
-          Browse files
-        </span>
-        <input
-          ref={inputRef}
-          id="resume-file-input"
-          type="file"
-          accept=".pdf"
-          onChange={handleFileChange}
-          className="sr-only"
-          aria-describedby="resume-file-hint"
-        />
-        <p id="resume-file-hint" className="mt-3 text-xs text-gray-400">
-          PDF only, max 8MB
-        </p>
-      </div>
-
-      {/* File preview */}
-      {file && (
-        <Card className="rounded-2xl border-0 shadow-lg">
-          <CardContent className="flex items-center gap-3">
-            <FileTextIcon size={24} className="text-primary shrink-0" />
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium">{file.name}</p>
-              <p className="text-xs text-gray-500">
-                {formatFileSize(file.size)}
-              </p>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon-xs"
-              onClick={removeFile}
-              disabled={uploadMutation.isPending}
-              aria-label="Remove file"
-            >
-              <XIcon size={14} aria-hidden="true" />
-            </Button>
-          </CardContent>
-        </Card>
+      {!isUploading && !isComplete && (
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={openFilePicker}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openFilePicker();
+            }
+          }}
+          onDragEnter={handleDrag}
+          onDragLeave={handleDrag}
+          onDragOver={handleDrag}
+          onDrop={handleDrop}
+          className={`relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 transition-colors sm:p-10 ${
+            dragActive
+              ? "border-[var(--landing-accent)] bg-[var(--landing-primary-soft)]"
+              : "border-[var(--landing-line)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]"
+          }`}
+        >
+          <UploadSimpleIcon
+            size={40}
+            className="mb-3 text-[var(--landing-ink-soft)]"
+            aria-hidden="true"
+          />
+          <p className="text-sm font-medium text-[var(--landing-ink)]">
+            Drag and drop your CV PDF here
+          </p>
+          <p className="mt-1 text-xs text-[var(--landing-ink-soft)]">or</p>
+          <span className="mt-3 text-sm font-medium text-[var(--landing-ink)] underline-offset-2 hover:underline">
+            Browse files
+          </span>
+          <input
+            ref={inputRef}
+            id="resume-file-input"
+            type="file"
+            accept=".pdf"
+            onChange={handleFileChange}
+            className="sr-only"
+            aria-describedby="resume-file-hint"
+          />
+          <p id="resume-file-hint" className="mt-3 text-xs text-[var(--landing-ink-soft)]">
+            PDF only, max 8MB
+          </p>
+        </div>
       )}
 
-      {/* Upload button */}
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-        <Button
-          onClick={handleUpload}
-          disabled={!file || uploadMutation.isPending}
-          aria-busy={uploadMutation.isPending}
-          className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-        >
-          {uploadMutation.isPending ? (
-            <>
-              <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-              Parsing resume...
-            </>
-          ) : (
-            <>
-              <UploadSimpleIcon size={16} aria-hidden="true" />
-              Upload & Parse
-            </>
-          )}
-        </Button>
-      </motion.div>
+      {file && !isUploading && !isComplete && (
+        <div className="flex items-center gap-3 rounded-2xl border border-[var(--landing-line)] bg-white p-4 shadow-[var(--landing-shadow-sm)]">
+          <FileTextIcon size={24} className="shrink-0 text-[var(--landing-accent)]" />
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-medium text-[var(--landing-ink)]">
+              {file.name}
+            </p>
+            <p className="text-xs text-[var(--landing-ink-soft)]">
+              {formatFileSize(file.size)}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={removeFile}
+            className="rounded-lg p-1.5 text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
+            aria-label="Remove file"
+          >
+            <XIcon size={16} aria-hidden="true" />
+          </button>
+        </div>
+      )}
+
+      {isUploading && (
+        <UploadProgress
+          progress={progressState.progress}
+          stage={progressState.stage}
+          label={progressState.label}
+        />
+      )}
+
+      {isComplete && (
+        <div className="flex items-center gap-3 rounded-2xl border border-[#c8e6d0] bg-[#eef8f1] p-4 text-[#2d5a3d]">
+          <CheckCircleIcon size={22} weight="fill" aria-hidden="true" />
+          <div>
+            <p className="text-sm font-semibold">CV uploaded and parsed</p>
+            <p className="text-xs opacity-80">Your reference CV is ready to use.</p>
+          </div>
+        </div>
+      )}
+
+      {!isUploading && !isComplete && (
+        <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+          <button
+            type="button"
+            onClick={handleUpload}
+            disabled={!file}
+            className="landing-primary-btn w-full cursor-pointer text-sm disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <UploadSimpleIcon size={16} aria-hidden="true" />
+            Upload &amp; Parse
+          </button>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

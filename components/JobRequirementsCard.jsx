@@ -41,13 +41,13 @@ export default function JobRequirementsCard({ data, referenceCV }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="rounded-2xl border shadow-lg">
-        <CardHeader>
-          <div className="space-y-1">
-            <CardTitle className="text-xl">
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6 sm:py-5">
+          <div className="space-y-2">
+            <CardTitle className="font-serif-display text-xl font-normal tracking-tight">
               {data.title || "Job Listing"}
             </CardTitle>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
               {data.company && (
                 <span className="flex items-center gap-1">
                   <BuildingsIcon size={14} aria-hidden="true" />
@@ -75,7 +75,7 @@ export default function JobRequirementsCard({ data, referenceCV }) {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 px-4 py-4 sm:px-6 sm:py-5">
           {data.requirements?.length > 0 && (
             <Section
               icon={<ListChecksIcon size={16} aria-hidden="true" />}
@@ -164,7 +164,7 @@ function KeywordsSection({ keywords, referenceCV }) {
               {matched.map((kw) => (
                 <span
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                  className="inline-flex items-center gap-1 rounded-full border border-[#c8e6d4] bg-[#eef8f1] px-2.5 py-0.5 text-xs font-medium text-[var(--landing-success)]"
                 >
                   <CheckCircleIcon size={12} weight="fill" />
                   {kw}
@@ -173,7 +173,7 @@ function KeywordsSection({ keywords, referenceCV }) {
               {missing.map((kw) => (
                 <span
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"
+                  className="inline-flex items-center gap-1 rounded-full border border-[#f0d4cc] bg-[#fdf3ef] px-2.5 py-0.5 text-xs font-medium text-[var(--landing-accent)]"
                 >
                   <XCircleIcon size={12} weight="fill" />
                   {kw}
@@ -184,7 +184,7 @@ function KeywordsSection({ keywords, referenceCV }) {
             keywords.map((kw) => (
               <span
                 key={kw}
-                className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                className="inline-flex items-center rounded-full border border-border bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
               >
                 {kw}
               </span>

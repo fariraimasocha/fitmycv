@@ -276,7 +276,7 @@ export default function Features() {
       {/* Header */}
       <div className="landing-container flex flex-col items-center gap-4">
         <span className="landing-eyebrow">Application advantage</span>
-        <h2 className="landing-heading font-outfit font-extrabold text-center text-3xl sm:text-4xl">
+        <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
           Everything you need to
           <br />
           <span className="landing-accent-tail">stand out</span>

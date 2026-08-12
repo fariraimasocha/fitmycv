@@ -13,12 +13,14 @@ import {
 } from "@phosphor-icons/react";
 
 const gradeColor = (grade) => {
-  if (!grade || grade === "N/A") return "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300";
+  if (!grade || grade === "N/A") {
+    return "border border-border bg-[var(--landing-paper-soft)] text-muted-foreground";
+  }
   const letter = grade.charAt(0);
-  if (letter === "A") return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300";
-  if (letter === "B") return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300";
-  if (letter === "C") return "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300";
-  return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
+  if (letter === "A") return "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]";
+  if (letter === "B") return "border border-[#cfe0f5] bg-[#edf4fc] text-[#2f5f9e]";
+  if (letter === "C") return "border border-[#f0dfc4] bg-[#fdf6ea] text-[#9a6b2e]";
+  return "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
 };
 
 const globalScoreColor = (score) => {
@@ -132,11 +134,11 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
 
   if (isLoading) {
     return (
-      <Card className="rounded-2xl border shadow-lg border shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-base">Scoring job match...</CardTitle>
+      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6">
+          <CardTitle className="text-base font-semibold">Scoring job match…</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4 py-4 sm:px-6 sm:py-5">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -148,9 +150,9 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
   const { globalScore, globalGrade, recommendation, dimensions } = scoreData;
 
   return (
-    <Card className="rounded-2xl border shadow-lg border shadow-lg">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-base flex items-center justify-between">
+    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6 pb-3">
+        <CardTitle className="flex items-center justify-between text-base font-semibold">
           <span>Job Match Score</span>
           <span
             className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-bold ${gradeColor(globalGrade)}`}
@@ -159,7 +161,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
           </span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <ScoreRing score={globalScore} />
           <div className="flex-1 space-y-1">

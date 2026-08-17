@@ -12,10 +12,15 @@ export async function GET() {
   await connectDB();
   const cvs = await TailoredCV.find({ userId: session.user.id })
     .sort({ createdAt: -1 })
-    .select("jobTitle jobCompany jobUrl createdAt")
+    .select("jobTitle jobCompany jobUrl createdAt coverLetter")
     .lean();
 
-  return Response.json({ data: cvs });
+  return Response.json({
+    data: cvs.map(({ coverLetter, ...cv }) => ({
+      ...cv,
+      hasCoverLetter: Boolean(coverLetter && String(coverLetter).trim()),
+    })),
+  });
 }
 
 export async function POST(request) {

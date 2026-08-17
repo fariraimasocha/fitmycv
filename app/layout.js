@@ -4,6 +4,7 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 import {
@@ -118,6 +119,11 @@ export default function RootLayout({ children }) {
           </AuthProvider>
         </QueryProvider>
         <Analytics />
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="a238c633-7560-473f-b36e-9b3eadb168f6"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

@@ -13,6 +13,7 @@ import {
   KanbanIcon,
   ArrowRightIcon,
   FileTextIcon,
+  WarningCircleIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion, useReducedMotion } from "motion/react";
@@ -27,6 +28,7 @@ import {
   buildWeeklyCounts,
   buildHeatmapCells,
 } from "@/lib/activity-series";
+import Loader from "@/components/Loader";
 
 function getTimeOfDay() {
   const hour = new Date().getHours();
@@ -69,6 +71,7 @@ export default function DashboardPage() {
     data: tailoredCVs,
     isLoading: tailoredCVsLoading,
     isError: tailoredCVsError,
+    refetch: refetchTailoredCVs,
   } = useQuery({
     queryKey: ["tailored-cvs"],
     queryFn: async () => {
@@ -130,6 +133,10 @@ export default function DashboardPage() {
       .slice(0, 4);
   }, [tailoredCVs]);
 
+  if (tailoredCVsLoading) {
+    return <Loader />;
+  }
+
   return (
     <DashboardPageShell width="full">
       <Suspense fallback={null}>
@@ -154,7 +161,17 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {isFirstUse ? (
+      {tailoredCVsError ? (
+        <DashboardEmptyState
+          icon={WarningCircleIcon}
+          title="Couldn't load your dashboard"
+          description="We couldn't load your tailored CVs. Try again in a moment."
+          actionLabel="Try again"
+          onAction={() => refetchTailoredCVs()}
+          delay={0.05}
+          className="min-h-75"
+        />
+      ) : isFirstUse ? (
         <DashboardEmptyState
           icon={PenIcon}
           title="Tailor your first CV"
@@ -166,154 +183,154 @@ export default function DashboardPage() {
         />
       ) : (
         <div className="flex flex-col gap-3 sm:gap-4">
-      <div className="grid items-start gap-3 sm:gap-4 lg:grid-cols-12">
-        <div className="min-w-0 lg:col-span-7">
-          <DashboardStatCard
-            label="Tailored CVs"
-            value={tailoredCount}
-            subtitle={
-              thisWeekCount > 0
-                ? `+${thisWeekCount} this week`
-                : "No new CVs this week"
-            }
-            icon={StackIcon}
-            positive={thisWeekCount > 0}
-            sparkline={cvWeekly}
-            variant="featured"
-          >
-            {recentCVs.length > 0 ? (
-              <div className="flex flex-col gap-1">
-                <ul className="flex flex-col gap-0.5">
-                  {recentCVs.map((cv) => (
-                    <li key={cv._id}>
-                      <Link
-                        href={`/dashboard/tailored/${cv._id}`}
-                        className="flex items-center gap-2.5 rounded-xl px-2 py-1.5 transition-colors hover:bg-background/70"
-                      >
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                          <FileTextIcon size={15} aria-hidden="true" />
-                        </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-sm font-medium text-foreground">
-                            {cv.jobTitle || "Untitled position"}
-                          </span>
-                          {cv.jobCompany && (
-                            <span className="block truncate text-xs text-muted-foreground">
-                              {cv.jobCompany}
+          <div className="grid items-start gap-3 sm:gap-4 lg:grid-cols-12">
+            <div className="min-w-0 lg:col-span-7">
+              <DashboardStatCard
+                label="Tailored CVs"
+                value={tailoredCount}
+                subtitle={
+                  thisWeekCount > 0
+                    ? `+${thisWeekCount} this week`
+                    : "No new CVs this week"
+                }
+                icon={StackIcon}
+                positive={thisWeekCount > 0}
+                sparkline={cvWeekly}
+                variant="featured"
+              >
+                {recentCVs.length > 0 ? (
+                  <div className="flex flex-col gap-1">
+                    <ul className="flex flex-col gap-0.5">
+                      {recentCVs.map((cv) => (
+                        <li key={cv._id}>
+                          <Link
+                            href={`/dashboard/tailored/${cv._id}`}
+                            className="flex items-center gap-2.5 rounded-xl px-2 py-1.5 transition-colors hover:bg-background/70"
+                          >
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+                              <FileTextIcon size={15} aria-hidden="true" />
                             </span>
-                          )}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/dashboard/tailored"
-                  className="mt-1 px-2 text-xs font-medium text-muted-foreground hover:text-foreground"
-                >
-                  View all tailored CVs
-                </Link>
-              </div>
-            ) : (
-              <p className="text-sm text-muted-foreground">
-                Tailor a CV to see it here.
-              </p>
-            )}
-          </DashboardStatCard>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
-          <DashboardStatCard
-            label="Researches"
-            value={researchCount}
-            icon={BuildingsIcon}
-            delay={0.05}
-            sparkline={researchWeekly}
-          />
-          <DashboardStatCard
-            label="This week"
-            value={thisWeekCount}
-            icon={BriefcaseIcon}
-            delay={0.1}
-            sparkline={jobsWeekly}
-          />
-          <DashboardStatCard
-            label="Cover letters"
-            value={coverLetterCount}
-            icon={EnvelopeIcon}
-            delay={0.15}
-            sparkline={letterWeekly}
-          />
-        </div>
-      </div>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-        >
-          <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-            <CardHeader className="flex flex-row items-end justify-between px-5 pb-0 pt-5 sm:px-6 sm:pt-6">
-              <div>
-                <CardTitle className="text-sm font-semibold text-foreground">
-                  Activity
-                </CardTitle>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Tailored CVs over the last 20 weeks
-                </p>
-              </div>
-            </CardHeader>
-            <CardContent className="px-5 pb-5 pt-4 sm:px-6">
-              <ActivityHeatmap cells={heatmapCells} />
-            </CardContent>
-          </Card>
-        </motion.div>
-
-      <div className="grid items-stretch gap-3 sm:gap-4 lg:grid-cols-12">
-        <Link
-          href="/dashboard/tailor"
-          className="group flex min-w-0 items-center justify-between gap-3 rounded-2xl bg-foreground px-4 py-4 text-background sm:px-5 lg:col-span-7"
-        >
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
-              <PenIcon size={18} aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-sm font-semibold">Tailor a CV</p>
-              <p className="text-xs text-background/70">
-                Paste a job URL to get started
-              </p>
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-sm font-medium text-foreground">
+                                {cv.jobTitle || "Untitled position"}
+                              </span>
+                              {cv.jobCompany && (
+                                <span className="block truncate text-xs text-muted-foreground">
+                                  {cv.jobCompany}
+                                </span>
+                              )}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href="/dashboard/tailored"
+                      className="mt-1 px-2 text-xs font-medium text-muted-foreground hover:text-foreground"
+                    >
+                      View all tailored CVs
+                    </Link>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Tailor a CV to see it here.
+                  </p>
+                )}
+              </DashboardStatCard>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+              <DashboardStatCard
+                label="Researches"
+                value={researchCount}
+                icon={BuildingsIcon}
+                delay={0.05}
+                sparkline={researchWeekly}
+              />
+              <DashboardStatCard
+                label="This week"
+                value={thisWeekCount}
+                icon={BriefcaseIcon}
+                delay={0.1}
+                sparkline={jobsWeekly}
+              />
+              <DashboardStatCard
+                label="Cover letters"
+                value={coverLetterCount}
+                icon={EnvelopeIcon}
+                delay={0.15}
+                sparkline={letterWeekly}
+              />
             </div>
           </div>
-          <ArrowRightIcon
-            size={16}
-            className="transition-transform group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </Link>
-        <Link
-          href="/dashboard/applications"
-          className="dashboard-list-row group flex min-w-0 items-center justify-between gap-3 px-4 py-4 sm:px-5 lg:col-span-5"
-        >
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-              <KanbanIcon size={18} aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-foreground">
-                View applications
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Track your job pipeline
-              </p>
-            </div>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
+          >
+            <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+              <CardHeader className="flex flex-row items-end justify-between px-5 pb-0 pt-5 sm:px-6 sm:pt-6">
+                <div>
+                  <CardTitle className="text-sm font-semibold text-foreground">
+                    Activity
+                  </CardTitle>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Tailored CVs over the last 20 weeks
+                  </p>
+                </div>
+              </CardHeader>
+              <CardContent className="px-5 pb-5 pt-4 sm:px-6">
+                <ActivityHeatmap cells={heatmapCells} />
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <div className="grid items-stretch gap-3 sm:gap-4 lg:grid-cols-12">
+            <Link
+              href="/dashboard/tailor"
+              className="group flex min-w-0 items-center justify-between gap-3 rounded-2xl bg-foreground px-4 py-4 text-background sm:px-5 lg:col-span-7"
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
+                  <PenIcon size={18} aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold">Tailor a CV</p>
+                  <p className="text-xs text-background/70">
+                    Paste a job URL to get started
+                  </p>
+                </div>
+              </div>
+              <ArrowRightIcon
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+            <Link
+              href="/dashboard/applications"
+              className="dashboard-list-row group flex min-w-0 items-center justify-between gap-3 px-4 py-4 sm:px-5 lg:col-span-5"
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+                  <KanbanIcon size={18} aria-hidden="true" />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">
+                    View applications
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Track your job pipeline
+                  </p>
+                </div>
+              </div>
+              <ArrowRightIcon
+                size={16}
+                className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
           </div>
-          <ArrowRightIcon
-            size={16}
-            className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </Link>
-      </div>
         </div>
       )}
     </DashboardPageShell>

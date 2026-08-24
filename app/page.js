@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
 import JobBoardStrip from "@/components/landing/JobBoardStrip";
+import TemplatesPromo from "@/components/landing/TemplatesPromo";
 import PainPoints from "@/components/landing/PainPoints";
 import HowItWorks from "@/components/landing/HowItWorks";
 import Features from "@/components/landing/Features";
@@ -37,6 +38,7 @@ export default function Home() {
       <main>
         <Hero />
         <JobBoardStrip />
+        <TemplatesPromo />
         <PainPoints />
         <HowItWorks />
         <Features />

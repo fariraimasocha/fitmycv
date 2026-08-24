@@ -44,3 +44,4 @@ next-env.d.ts
 opensrc/
 .aidesigner/*
 !.aidesigner/.gitkeep
+.cursor/debug-c551b4.log

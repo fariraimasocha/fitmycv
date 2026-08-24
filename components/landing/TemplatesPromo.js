@@ -34,15 +34,15 @@ export default function TemplatesPromo() {
           </div>
         </div>
 
-        <ul className="grid gap-3 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
+        <ul className="grid grid-cols-3 gap-2 sm:gap-3">
           {FEATURED_TEMPLATES.map((template) => (
             <li
               key={template.id}
-              className="rounded-2xl border border-[var(--landing-line)] bg-white p-4"
+              className="min-w-0 rounded-2xl border border-[var(--landing-line)] bg-white p-2 sm:p-3"
             >
               <div
                 aria-hidden="true"
-                className="mb-4 flex aspect-[3/4] flex-col gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-3"
+                className="mb-3 flex h-24 flex-col gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-2 sm:h-28 sm:p-3"
               >
                 <span className="h-2 w-2/3 rounded-full bg-[var(--landing-ink)]" />
                 <span className="h-1 w-1/2 rounded-full bg-[var(--landing-line)]" />
@@ -53,7 +53,7 @@ export default function TemplatesPromo() {
                 <span className="h-1 w-full rounded-full bg-[var(--landing-line)]" />
                 <span className="h-1 w-4/5 rounded-full bg-[var(--landing-line)]" />
               </div>
-              <p className="flex items-center gap-2 font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+              <p className="flex min-w-0 flex-col items-start gap-1 font-outfit text-xs font-extrabold text-[var(--landing-ink)] sm:text-sm lg:flex-row lg:items-center lg:gap-2">
                 <CheckCircleIcon
                   size={15}
                   weight="fill"

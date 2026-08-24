@@ -9,6 +9,16 @@ import verbsMarketing from "./cv-action-verbs-marketing";
 import verbsFinance from "./cv-action-verbs-finance";
 import verbsHealthcare from "./cv-action-verbs-healthcare";
 import verbsSales from "./cv-action-verbs-sales";
+import whyNotGettingInterviews from "./why-am-i-not-getting-interviews";
+import howManyJobsToApply from "./how-many-jobs-should-i-apply-to";
+import howToFollowUp from "./how-to-follow-up-on-a-job-application";
+import coverLetterNoExperience from "./cover-letter-with-no-experience";
+import cvNoExperience from "./cv-with-no-experience";
+import employmentGap from "./how-to-explain-employment-gap-on-cv";
+import careerChangeCv from "./career-change-cv";
+import howLongShouldCvBe from "./how-long-should-a-cv-be";
+import howToGetRemoteJob from "./how-to-get-a-remote-job";
+import cvProfessionalSummary from "./cv-professional-summary-examples";
 
 export const POSTS = [
   atsResumeGuide,
@@ -19,6 +29,16 @@ export const POSTS = [
   verbsFinance,
   verbsHealthcare,
   verbsSales,
+  whyNotGettingInterviews,
+  howManyJobsToApply,
+  howToFollowUp,
+  coverLetterNoExperience,
+  cvNoExperience,
+  employmentGap,
+  careerChangeCv,
+  howLongShouldCvBe,
+  howToGetRemoteJob,
+  cvProfessionalSummary,
 ];
 
 export const POSTS_BY_SLUG = Object.fromEntries(

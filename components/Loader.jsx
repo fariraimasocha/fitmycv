@@ -1,9 +1,14 @@
 import { SpinnerGapIcon } from "@phosphor-icons/react";
+import { cn } from "@/lib/utils";
 
-export default function Loader({ className = "" }) {
+export default function Loader({ className, fullPage = true }) {
   return (
     <div
-      className={`flex items-center justify-center min-h-screen ${className}`}
+      className={cn(
+        "flex items-center justify-center",
+        fullPage && "min-h-screen",
+        className,
+      )}
     >
       <SpinnerGapIcon
         size={32}

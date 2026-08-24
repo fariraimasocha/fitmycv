@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,21 +13,31 @@ export function DashboardEmptyState({
   actionLabel,
   actionHref,
   onAction,
+  actionDisabled = false,
   className,
   delay = 0.05,
 }) {
+  const reduceMotion = useReducedMotion();
   const action = actionLabel && (actionHref || onAction) && (
     actionHref ? (
       <Button
         asChild
         className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
       >
-        <Link href={actionHref}>{actionLabel}</Link>
+        <Link
+          href={actionHref}
+          aria-disabled={actionDisabled}
+          tabIndex={actionDisabled ? -1 : undefined}
+          onClick={actionDisabled ? (event) => event.preventDefault() : undefined}
+        >
+          {actionLabel}
+        </Link>
       </Button>
     ) : (
       <Button
         type="button"
         onClick={onAction}
+        disabled={actionDisabled}
         className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
       >
         {actionLabel}
@@ -37,7 +47,7 @@ export function DashboardEmptyState({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay }}
     >

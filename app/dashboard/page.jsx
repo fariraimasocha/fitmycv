@@ -71,6 +71,7 @@ export default function DashboardPage() {
     data: tailoredCVs,
     isLoading: tailoredCVsLoading,
     isError: tailoredCVsError,
+    isFetching: tailoredCVsFetching,
     refetch: refetchTailoredCVs,
   } = useQuery({
     queryKey: ["tailored-cvs"],
@@ -78,11 +79,18 @@ export default function DashboardPage() {
       const res = await fetch("/api/tailored-cv");
       if (!res.ok) throw new Error("Failed to fetch");
       const json = await res.json();
+      if (!Array.isArray(json.data)) {
+        throw new Error("Tailored CV response did not contain a list");
+      }
       return json.data;
     },
   });
 
-  const { data: companyResearches } = useQuery({
+  const {
+    data: companyResearches,
+    isLoading: companyResearchesLoading,
+    isError: companyResearchesError,
+  } = useQuery({
     queryKey: ["company-research"],
     queryFn: async () => {
       const res = await fetch("/api/company-research");
@@ -98,9 +106,13 @@ export default function DashboardPage() {
     !tailoredCVsError &&
     Array.isArray(tailoredCVs) &&
     tailoredCVs.length === 0;
-  const researchCount = Array.isArray(companyResearches)
+  const companyResearchesKnown =
+    !companyResearchesLoading &&
+    !companyResearchesError &&
+    Array.isArray(companyResearches);
+  const researchCount = companyResearchesKnown
     ? companyResearches.length
-    : 0;
+    : "—";
 
   const {
     thisWeekCount,
@@ -133,10 +145,6 @@ export default function DashboardPage() {
       .slice(0, 4);
   }, [tailoredCVs]);
 
-  if (tailoredCVsLoading) {
-    return <Loader />;
-  }
-
   return (
     <DashboardPageShell width="full">
       <Suspense fallback={null}>
@@ -161,13 +169,16 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {tailoredCVsError ? (
+      {tailoredCVsLoading ? (
+        <Loader fullPage={false} className="min-h-75" />
+      ) : tailoredCVsError ? (
         <DashboardEmptyState
           icon={WarningCircleIcon}
           title="Couldn't load your dashboard"
           description="We couldn't load your tailored CVs. Try again in a moment."
-          actionLabel="Try again"
+          actionLabel={tailoredCVsFetching ? "Retrying…" : "Try again"}
           onAction={() => refetchTailoredCVs()}
+          actionDisabled={tailoredCVsFetching}
           delay={0.05}
           className="min-h-75"
         />
@@ -244,7 +255,9 @@ export default function DashboardPage() {
                 value={researchCount}
                 icon={BuildingsIcon}
                 delay={0.05}
-                sparkline={researchWeekly}
+                sparkline={
+                  companyResearchesKnown ? researchWeekly : undefined
+                }
               />
               <DashboardStatCard
                 label="This week"

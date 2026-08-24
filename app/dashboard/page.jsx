@@ -20,6 +20,7 @@ import Link from "next/link";
 import {
   DashboardPageShell,
   DashboardStatCard,
+  DashboardEmptyState,
 } from "@/components/dashboard";
 import { ActivityHeatmap } from "@/components/charts/ActivityHeatmap";
 import {
@@ -64,7 +65,11 @@ export default function DashboardPage() {
   const reduceMotion = useReducedMotion();
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
 
-  const { data: tailoredCVs } = useQuery({
+  const {
+    data: tailoredCVs,
+    isLoading: tailoredCVsLoading,
+    isError: tailoredCVsError,
+  } = useQuery({
     queryKey: ["tailored-cvs"],
     queryFn: async () => {
       const res = await fetch("/api/tailored-cv");
@@ -85,6 +90,11 @@ export default function DashboardPage() {
   });
 
   const tailoredCount = tailoredCVs?.length ?? 0;
+  const isFirstUse =
+    !tailoredCVsLoading &&
+    !tailoredCVsError &&
+    Array.isArray(tailoredCVs) &&
+    tailoredCVs.length === 0;
   const researchCount = Array.isArray(companyResearches)
     ? companyResearches.length
     : 0;
@@ -144,7 +154,18 @@ export default function DashboardPage() {
         )}
       </div>
 
-      <div className="flex flex-col gap-3 sm:gap-4">
+      {isFirstUse ? (
+        <DashboardEmptyState
+          icon={PenIcon}
+          title="Tailor your first CV"
+          description="Paste a job URL and we will rewrite your CV for the role, create a matching cover letter, and show your ATS match."
+          actionLabel="Tailor your first CV"
+          actionHref="/dashboard/tailor"
+          delay={0.05}
+          className="min-h-75"
+        />
+      ) : (
+        <div className="flex flex-col gap-3 sm:gap-4">
       <div className="grid items-start gap-3 sm:gap-4 lg:grid-cols-12">
         <div className="min-w-0 lg:col-span-7">
           <DashboardStatCard
@@ -293,7 +314,8 @@ export default function DashboardPage() {
           />
         </Link>
       </div>
-      </div>
+        </div>
+      )}
     </DashboardPageShell>
   );
 }

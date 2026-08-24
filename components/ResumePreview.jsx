@@ -1134,10 +1134,325 @@ function ProfessionalPreview({ basics, work, education, skills }) {
   );
 }
 
+// ── Hybrid — Skills-led + chronological timeline ─────────
+
+function HybridSectionHeading({ children }) {
+  return (
+    <h2 className="mb-2 mt-4 border-b-2 border-gray-800 pb-1 text-sm font-bold uppercase tracking-wide text-black">
+      {children}
+    </h2>
+  );
+}
+
+function HybridPreview({ basics, work, education, skills }) {
+  const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
+  const profileParts = (basics.profiles || [])
+    .filter((p) => p.url || p.network)
+    .map((p) => (p.url || p.network).replace(/^https?:\/\//, ""));
+
+  return (
+    <div className="text-black">
+      {/* Header: left-aligned */}
+      <div>
+        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.label && <p className="text-sm text-gray-700">{basics.label}</p>}
+        {(contactParts.length > 0 || profileParts.length > 0) && (
+          <p className="mt-1 text-xs text-gray-600">
+            {[...contactParts, ...profileParts].join("  |  ")}
+          </p>
+        )}
+      </div>
+
+      {basics.summary && (
+        <div>
+          <HybridSectionHeading>Summary</HybridSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {/* Core Skills directly under the summary — hybrid signature */}
+      {skills?.length > 0 && (
+        <div>
+          <HybridSectionHeading>Core Skills</HybridSectionHeading>
+          <div className="space-y-1">
+            {skills.map((group, i) => (
+              <div key={i} className="text-xs">
+                {group.category && <span className="font-bold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <HybridSectionHeading>Experience</HybridSectionHeading>
+          <div className="space-y-3">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {job.position && <p className="text-xs font-bold">{job.position}</p>}
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 text-xs font-semibold text-gray-700">
+                      {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
+                    </p>
+                  )}
+                </div>
+                {(job.company || job.location) && (
+                  <p className="text-xs text-gray-600">
+                    {[job.company, job.location].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+                <div className="text-xs leading-relaxed">
+                  <BulletList description={job.description} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <HybridSectionHeading>Education</HybridSectionHeading>
+          <div className="space-y-2">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  <p className="text-xs font-bold">
+                    {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
+                  </p>
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 text-xs font-semibold text-gray-700">
+                      {[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}
+                    </p>
+                  )}
+                </div>
+                {edu.institution && <p className="text-xs text-gray-600">{edu.institution}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Accent — Single column, deep blue accent ─────────────
+
+function AccentSectionHeading({ children }) {
+  return (
+    <div className="mb-2 mt-4">
+      <h2 className="text-sm font-bold uppercase tracking-wide text-blue-800">{children}</h2>
+      <div className="mt-0.5 h-0.5 w-10 bg-blue-800" />
+    </div>
+  );
+}
+
+function AccentPreview({ basics, work, education, skills }) {
+  return (
+    <div className="text-gray-800">
+      {/* Header: left-aligned, accent name */}
+      <div className="border-b border-gray-300 pb-3">
+        {basics.name && <h1 className="text-3xl font-bold text-blue-800">{basics.name}</h1>}
+        {basics.label && <p className="mt-0.5 text-sm text-gray-700">{basics.label}</p>}
+        <ContactWithIcons
+          basics={basics}
+          className="mt-1.5 text-xs text-gray-600"
+          accentClass="text-blue-800"
+        />
+      </div>
+
+      {basics.summary && (
+        <div>
+          <AccentSectionHeading>Profile</AccentSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <AccentSectionHeading>Experience</AccentSectionHeading>
+          <div className="space-y-3">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-baseline justify-between gap-4">
+                  {job.position && <p className="text-xs font-bold text-black">{job.position}</p>}
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 text-xs font-semibold text-blue-800">
+                      {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
+                    </p>
+                  )}
+                </div>
+                {(job.company || job.location) && (
+                  <p className="text-xs italic text-gray-600">
+                    {[job.company, job.location].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+                <div className="text-xs leading-relaxed">
+                  <BulletList description={job.description} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <AccentSectionHeading>Education</AccentSectionHeading>
+          <div className="space-y-2">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-xs font-bold text-black">
+                    {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
+                  </p>
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 text-xs font-semibold text-blue-800">
+                      {[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}
+                    </p>
+                  )}
+                </div>
+                {edu.institution && <p className="text-xs italic text-gray-600">{edu.institution}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <AccentSectionHeading>Skills</AccentSectionHeading>
+          <div className="space-y-1">
+            {skills.map((group, i) => (
+              <div key={i} className="text-xs">
+                {group.category && <span className="font-bold text-black">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Graduate — Education-first for entry level ───────────
+
+function GraduateSectionHeading({ children }) {
+  return (
+    <h2 className="mb-2 mt-4 border-b border-black pb-1 text-xs font-bold uppercase tracking-widest text-black">
+      {children}
+    </h2>
+  );
+}
+
+function GraduatePreview({ basics, work, education, skills }) {
+  const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
+  const profileParts = (basics.profiles || [])
+    .filter((p) => p.url || p.network)
+    .map((p) => (p.url || p.network).replace(/^https?:\/\//, ""));
+
+  return (
+    <div className="text-black">
+      {/* Compact centered header */}
+      <div className="text-center">
+        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.label && <p className="text-sm text-gray-700">{basics.label}</p>}
+        {(contactParts.length > 0 || profileParts.length > 0) && (
+          <p className="mt-1 text-xs text-gray-600">
+            {[...contactParts, ...profileParts].join("  •  ")}
+          </p>
+        )}
+      </div>
+
+      {basics.summary && (
+        <div>
+          <GraduateSectionHeading>Objective</GraduateSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {/* Education FIRST — graduate signature */}
+      {education?.length > 0 && (
+        <div>
+          <GraduateSectionHeading>Education</GraduateSectionHeading>
+          <div className="space-y-2">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {edu.institution && <p className="text-xs font-bold">{edu.institution}</p>}
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 text-xs text-gray-600">
+                      {[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}
+                    </p>
+                  )}
+                </div>
+                {(edu.degree || edu.fieldOfStudy) && (
+                  <p className="text-xs italic text-gray-700">
+                    {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <GraduateSectionHeading>Skills</GraduateSectionHeading>
+          <div className="space-y-1">
+            {skills.map((group, i) => (
+              <div key={i} className="text-xs">
+                {group.category && <span className="font-bold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <GraduateSectionHeading>Experience</GraduateSectionHeading>
+          <div className="space-y-3">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {job.position && <p className="text-xs font-bold">{job.position}</p>}
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 text-xs text-gray-600">
+                      {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
+                    </p>
+                  )}
+                </div>
+                {(job.company || job.location) && (
+                  <p className="text-xs italic text-gray-700">
+                    {[job.company, job.location].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+                <div className="text-xs leading-relaxed">
+                  <BulletList description={job.description} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Router ───────────────────────────────────────────────
 
 const PREVIEWS = {
   classic: ClassicPreview,
+  hybrid: HybridPreview,
+  accent: AccentPreview,
+  graduate: GraduatePreview,
   modern: ModernPreview,
   clean: CleanPreview,
   minimal: MinimalPreview,
@@ -1151,6 +1466,9 @@ const PREVIEWS = {
 };
 
 const PADDING = {
+  hybrid: "p-8 sm:p-10",
+  accent: "p-8 sm:p-10",
+  graduate: "px-8 py-6 sm:px-10",
   modern: "px-8 py-6 sm:px-10",
   minimal: "p-6 sm:p-10",
   technical: "p-4",

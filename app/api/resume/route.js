@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import ReferenceCV from "@/models/ReferenceCV";
+import { TEMPLATE_IDS } from "@/utils/cv-templates/metadata";
 
 export async function GET() {
   const session = await auth();
@@ -39,5 +40,31 @@ export async function PUT(request) {
   } catch (error) {
     console.error("Resume save error:", error);
     return Response.json({ error: "Failed to save resume" }, { status: 500 });
+  }
+}
+
+export async function PATCH(request) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const { template } = await request.json();
+    if (!TEMPLATE_IDS.includes(template)) {
+      return Response.json({ error: "Unknown template" }, { status: 400 });
+    }
+
+    await connectDB();
+    const cv = await ReferenceCV.findOneAndUpdate(
+      { userId: session.user.id },
+      { template },
+      { new: true }
+    ).lean();
+
+    return Response.json({ data: cv });
+  } catch (error) {
+    console.error("Template save error:", error);
+    return Response.json({ error: "Failed to save template" }, { status: 500 });
   }
 }

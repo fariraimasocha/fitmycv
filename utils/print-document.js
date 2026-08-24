@@ -14,7 +14,8 @@ export const PRINT_KEY_PREFIX = "fitmycv:print:";
  * @param {"cv"|"cover-letter"} payload.kind
  * @param {string} payload.filename     Suggested file name (including ".pdf").
  * @param {object} [payload.data]       Resume data { basics, work, ... } (kind "cv").
- * @param {string} [payload.template]   Template id (kind "cv").
+ * @param {string} [payload.template]   Template id (kind "cv"; for kind
+ *                                       "cover-letter" it sets the matching font).
  * @param {string} [payload.content]    Letter body (kind "cover-letter").
  * @param {object} [payload.meta]       { name, jobTitle, jobCompany } (cover letter).
  */

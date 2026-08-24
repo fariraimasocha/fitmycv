@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ResumeTemplate } from "@/components/ResumePreview";
 import { PRINT_KEY_PREFIX } from "@/utils/print-document";
+import { getTemplateFontClass } from "@/utils/cv-templates/metadata";
 
 const PRINT_CSS = `
 .print-root { background: #fff; color: #000; }
@@ -31,10 +32,11 @@ const PRINT_CSS = `
 }
 `;
 
-function CoverLetterPrint({ content, meta = {} }) {
+function CoverLetterPrint({ content, meta = {}, template }) {
   const subtitle = [meta.jobTitle, meta.jobCompany].filter(Boolean).join(" at ");
+  const fontClass = getTemplateFontClass(template);
   return (
-    <div data-resume-template="cover-letter" className="p-5 text-black sm:p-8">
+    <div data-resume-template="cover-letter" className={`p-5 text-black sm:p-8 ${fontClass}`}>
       {meta.name && <h1 className="text-center text-xl font-bold">{meta.name}</h1>}
       {subtitle && <p className="mt-1 text-center text-sm text-gray-600">{subtitle}</p>}
       {(meta.name || subtitle) && <hr className="my-4 border-black" />}
@@ -141,7 +143,11 @@ export default function PrintPage() {
       </div>
       <div className="print-page">
         {payload.kind === "cover-letter" ? (
-          <CoverLetterPrint content={payload.content} meta={payload.meta} />
+          <CoverLetterPrint
+            content={payload.content}
+            meta={payload.meta}
+            template={payload.template}
+          />
         ) : (
           <ResumeTemplate data={payload.data} template={payload.template} />
         )}

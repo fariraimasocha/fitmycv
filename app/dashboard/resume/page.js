@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import ResumeUpload from "@/components/ResumeUpload";
 import ResumeForm from "@/components/ResumeForm";
 import ResumePreview from "@/components/ResumePreview";
-import TemplateSelect from "@/components/TemplateSelect";
+import TemplatePicker from "@/components/TemplatePicker";
 import Loader from "@/components/Loader";
 import {
   DashboardPageShell,
@@ -17,6 +17,7 @@ import {
 } from "@/components/dashboard";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
+import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
 
 function buildResumeData(source) {
   return {
@@ -28,10 +29,11 @@ function buildResumeData(source) {
 }
 
 export default function MyResumePage() {
+  const queryClient = useQueryClient();
   const [parsedData, setParsedData] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const [templateOverride, setTemplateOverride] = useState(null);
 
   const { data: savedCV, isLoading } = useQuery({
     queryKey: ["resume"],
@@ -42,6 +44,28 @@ export default function MyResumePage() {
       return json.data;
     },
   });
+
+  const selectedTemplate = templateOverride ?? savedCV?.template ?? DEFAULT_TEMPLATE;
+
+  const templateMutation = useMutation({
+    mutationFn: async (template) => {
+      const res = await fetch("/api/resume", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ template }),
+      });
+      if (!res.ok) throw new Error("Failed to save template");
+      return res.json();
+    },
+    onSuccess: (json) => {
+      if (json.data) queryClient.setQueryData(["resume"], json.data);
+    },
+  });
+
+  const handleTemplateChange = (template) => {
+    setTemplateOverride(template);
+    templateMutation.mutate(template);
+  };
 
   const handleParsed = (data) => {
     setParsedData(data);
@@ -70,7 +94,11 @@ export default function MyResumePage() {
         <div className="space-y-3">
           <CvPreviewActions
             templateSelect={
-              <TemplateSelect value={selectedTemplate} onChange={setSelectedTemplate} />
+              <TemplatePicker
+                value={selectedTemplate}
+                onChange={handleTemplateChange}
+                data={resumeData}
+              />
             }
             onDownload={() => handleDownload(resumeData)}
           />

@@ -21,12 +21,13 @@ import { Button } from "@/components/ui/button";
 import ResumePreview from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
-import TemplateSelect from "@/components/TemplateSelect";
+import TemplatePicker from "@/components/TemplatePicker";
 import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
+import { DEFAULT_TEMPLATE, getTemplateFontClass } from "@/utils/cv-templates/metadata";
 
 export default function TailoredCVDetailPage() {
   const { id } = useParams();
@@ -35,7 +36,7 @@ export default function TailoredCVDetailPage() {
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("cv");
   const [showPreview, setShowPreview] = useState(true);
-  const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const [templateOverride, setTemplateOverride] = useState(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const { data: cv, isLoading } = useQuery({
@@ -47,6 +48,38 @@ export default function TailoredCVDetailPage() {
       return json.data;
     },
   });
+
+  const { data: referenceCV } = useQuery({
+    queryKey: ["resume"],
+    queryFn: async () => {
+      const res = await fetch("/api/resume");
+      if (!res.ok) throw new Error("Failed to fetch resume");
+      const json = await res.json();
+      return json.data;
+    },
+  });
+
+  const selectedTemplate = templateOverride ?? referenceCV?.template ?? DEFAULT_TEMPLATE;
+
+  const templateMutation = useMutation({
+    mutationFn: async (template) => {
+      const res = await fetch("/api/resume", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ template }),
+      });
+      if (!res.ok) throw new Error("Failed to save template");
+      return res.json();
+    },
+    onSuccess: (json) => {
+      if (json.data) queryClient.setQueryData(["resume"], json.data);
+    },
+  });
+
+  const handleTemplateChange = (template) => {
+    setTemplateOverride(template);
+    templateMutation.mutate(template);
+  };
 
   const coverLetterMutation = useMutation({
     mutationFn: async (coverLetter) => {
@@ -115,6 +148,7 @@ export default function TailoredCVDetailPage() {
       printDocument({
         kind: "cover-letter",
         content: cv.coverLetter || "",
+        template: selectedTemplate,
         meta: {
           name: cv.basics?.name,
           jobTitle: cv.jobTitle,
@@ -209,10 +243,13 @@ export default function TailoredCVDetailPage() {
                     </>
                   )}
                 </Button>
-                <TemplateSelect
-                  value={selectedTemplate}
-                  onChange={setSelectedTemplate}
-                />
+                <div className="w-full sm:w-56">
+                  <TemplatePicker
+                    value={selectedTemplate}
+                    onChange={handleTemplateChange}
+                    data={resumeData}
+                  />
+                </div>
               </>
             )}
             <Button
@@ -248,6 +285,7 @@ export default function TailoredCVDetailPage() {
           <CoverLetterCard
             content={cv.coverLetter || ""}
             editable
+            fontClass={getTemplateFontClass(selectedTemplate)}
             onSave={(content) => coverLetterMutation.mutate(content)}
             isSaving={coverLetterMutation.isPending}
           />

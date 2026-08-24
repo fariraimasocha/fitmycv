@@ -48,6 +48,7 @@ const referenceCVSchema = new mongoose.Schema(
       },
     ],
     rawText: String,
+    template: { type: String, default: "classic" },
   },
   { timestamps: true }
 );

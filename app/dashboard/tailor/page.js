@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useSession } from "next-auth/react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
 import {
@@ -29,7 +29,7 @@ import JobMatchScoreCard from "@/components/JobMatchScoreCard";
 import ResumePreview from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
-import TemplateSelect from "@/components/TemplateSelect";
+import TemplatePicker from "@/components/TemplatePicker";
 import ATSScoreCard from "@/components/ATSScoreCard";
 import CompanyResearchCard from "@/components/CompanyResearchCard";
 import InterviewPrepCard from "@/components/InterviewPrepCard";
@@ -37,6 +37,7 @@ import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
+import { DEFAULT_TEMPLATE, getTemplateFontClass } from "@/utils/cv-templates/metadata";
 import {
   DashboardPageShell,
   DashboardPageHeader,
@@ -52,7 +53,7 @@ export default function TailorPage() {
   const [savedId, setSavedId] = useState(null);
   const [showPreview, setShowPreview] = useState(true);
   const [activeTab, setActiveTab] = useState("cv");
-  const [selectedTemplate, setSelectedTemplate] = useState("classic");
+  const [templateOverride, setTemplateOverride] = useState(null);
   const [atsScore, setAtsScore] = useState(null);
   const [atsLoading, setAtsLoading] = useState(false);
   const [preAtsScore, setPreAtsScore] = useState(null);
@@ -66,6 +67,38 @@ export default function TailorPage() {
   const [linkedInModalOpen, setLinkedInModalOpen] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const tailorRef = useRef(null);
+
+  const { data: referenceCVRecord } = useQuery({
+    queryKey: ["resume"],
+    queryFn: async () => {
+      const res = await fetch("/api/resume");
+      if (!res.ok) throw new Error("Failed to fetch resume");
+      const json = await res.json();
+      return json.data;
+    },
+  });
+
+  const selectedTemplate = templateOverride ?? referenceCVRecord?.template ?? DEFAULT_TEMPLATE;
+
+  const templateMutation = useMutation({
+    mutationFn: async (template) => {
+      const res = await fetch("/api/resume", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ template }),
+      });
+      if (!res.ok) throw new Error("Failed to save template");
+      return res.json();
+    },
+    onSuccess: (json) => {
+      if (json.data) queryClient.setQueryData(["resume"], json.data);
+    },
+  });
+
+  const handleTemplateChange = (template) => {
+    setTemplateOverride(template);
+    templateMutation.mutate(template);
+  };
 
   const extractMutation = useMutation({
     mutationFn: async (jobUrl) => {
@@ -283,6 +316,7 @@ export default function TailorPage() {
       printDocument({
         kind: "cover-letter",
         content: tailorResult.coverLetter || "",
+        template: selectedTemplate,
         meta: {
           name: tailorResult.tailoredCV.basics?.name,
           jobTitle: jobData?.title,
@@ -550,10 +584,11 @@ export default function TailorPage() {
                   </Button>
                 )}
                 {activeTab === "cv" && (
-                  <div className="w-full sm:w-auto">
-                    <TemplateSelect
+                  <div className="w-full sm:w-56">
+                    <TemplatePicker
                       value={selectedTemplate}
-                      onChange={setSelectedTemplate}
+                      onChange={handleTemplateChange}
+                      data={tailorResult.tailoredCV}
                     />
                   </div>
                 )}
@@ -622,7 +657,10 @@ export default function TailorPage() {
             </>
           )}
           {activeTab === "letter" && (
-            <CoverLetterCard content={tailorResult.coverLetter} />
+            <CoverLetterCard
+              content={tailorResult.coverLetter}
+              fontClass={getTemplateFontClass(selectedTemplate)}
+            />
           )}
           {activeTab === "ats" && (
             <ATSScoreCard atsData={atsScore} isLoading={atsLoading} preScore={preAtsScore?.score} />

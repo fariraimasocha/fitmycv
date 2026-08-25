@@ -52,13 +52,13 @@ export default function CompanyResearchCard({ brief, isLoading }) {
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader>
+        <CardHeader className="px-4 py-4 sm:px-6">
           <CardTitle className="text-base flex items-center gap-2">
             <BuildingsIcon size={16} />
             Researching company…
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4 pb-5 sm:px-6">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -77,7 +77,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader>
+      <CardHeader className="px-4 py-4 sm:px-6">
         <CardTitle className="flex items-start justify-between gap-3">
           <span className="flex items-center gap-2 text-base">
             <BuildingsIcon size={18} />
@@ -93,7 +93,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 px-4 pb-5 sm:px-6">
         {/* Mission */}
         {brief.mission && (
           <div className="space-y-2">

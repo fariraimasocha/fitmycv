@@ -86,10 +86,10 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader>
+        <CardHeader className="px-4 py-4 sm:px-6">
           <CardTitle className="text-base">Generating interview prep...</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-4 pb-5 sm:px-6">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -135,10 +135,10 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader>
+      <CardHeader className="px-4 py-4 sm:px-6">
         <CardTitle className="text-base">Interview Preparation</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 px-4 pb-5 sm:px-6">
         {/* STAR Stories */}
         {stories?.length > 0 && (
           <div className="space-y-2">

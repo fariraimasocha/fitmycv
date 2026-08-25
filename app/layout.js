@@ -76,9 +76,9 @@ export const metadata = {
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
       {
-        url: "/hero.jpg",
-        width: 2116,
-        height: 1248,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "FitMyCV — Land more interviews with a CV that fits",
       },
     ],
@@ -90,9 +90,9 @@ export const metadata = {
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
       {
-        url: "/hero.jpg",
-        width: 2116,
-        height: 1248,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "FitMyCV — Land more interviews with a CV that fits",
       },
     ],

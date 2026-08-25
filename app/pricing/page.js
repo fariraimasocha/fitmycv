@@ -28,9 +28,9 @@ export const metadata = {
       "Simple, transparent pricing. Lifetime access for $14.99 or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.",
     images: [
       {
-        url: "/hero.png",
-        width: 3024,
-        height: 1714,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "FitMyCV pricing — tailor your CV from any job link",
       },
     ],
@@ -40,7 +40,7 @@ export const metadata = {
     title: "Pricing — Tailored CVs From Any Job Link | FitMyCV",
     description:
       "Premium is $6.99/month or $69.90/year for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel anytime.",
-    images: ["/hero.png"],
+    images: ["/og-image.jpg"],
   },
 };
 

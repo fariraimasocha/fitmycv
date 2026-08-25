@@ -22,11 +22,23 @@ export const metadata = {
   description:
     "FitMyCV tailors your CV and cover letter to any job link in seconds — AI keyword matching, a free ATS resume checker, 11 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
+  // Page-level openGraph/twitter replace the layout objects wholesale (no
+  // deep merge), so images and card type must be re-declared here.
   openGraph: {
     title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "FitMyCV — Land more interviews with a CV that fits",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
+    images: ["/og-image.jpg"],
   },
 };
 

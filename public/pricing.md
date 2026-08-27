@@ -8,10 +8,10 @@ Tailor your CV and cover letter to every job link you paste, download them as cl
 
 Cancel anytime. No contracts.
 
-| Plan | Price | Effective monthly |
+| Plan | Price | Notes |
 | --- | --- | --- |
-| Monthly | **$6.99**/month | $6.99 |
-| Yearly | **$69.90**/year | $5.83/mo (save $13.98) |
+| Monthly | **$6.99**/month | Cancel anytime |
+| Lifetime | **$16.99** once | Pay once, keep it forever |
 
 ### What's included
 
@@ -28,7 +28,7 @@ Cancel anytime. No contracts.
 
 ### How much does FitMyCV cost?
 
-FitMyCV Premium is $6.99 per month, or $69.90 per year — which works out to $5.83 a month when billed annually and saves you $13.98 over paying monthly.
+FitMyCV Premium is $6.99 per month, or $16.99 for lifetime access — pay once and keep it forever, for less than the cost of 3 months of monthly.
 
 ### What do I get with Premium?
 

@@ -96,7 +96,7 @@ export default function Hero() {
           </div>
 
           <p className="landing-meta-line mt-6">
-            [ Google sign-in · Lifetime from $14.99 · Cancel anytime on monthly ]
+            [ Google sign-in · Lifetime from $16.99 · Cancel anytime on monthly ]
           </p>
         </motion.div>
 

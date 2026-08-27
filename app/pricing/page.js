@@ -8,7 +8,7 @@ import JsonLd from "@/components/JsonLd";
 export const metadata = {
   title: "Pricing",
   description:
-    "FitMyCV Premium is $14.99 lifetime or $6.99/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.",
+    "FitMyCV Premium is $16.99 lifetime or $6.99/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.",
   keywords: [
     "fitmycv pricing",
     "cv tailoring tool price",
@@ -25,7 +25,7 @@ export const metadata = {
     siteName: "FitMyCV",
     title: "Pricing — Tailored CVs From Any Job Link | FitMyCV",
     description:
-      "Simple, transparent pricing. Lifetime access for $14.99 or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.",
+      "Simple, transparent pricing. Lifetime access for $16.99 or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.",
     images: [
       {
         url: "/og-image.jpg",
@@ -39,7 +39,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Pricing — Tailored CVs From Any Job Link | FitMyCV",
     description:
-      "Premium is $6.99/month or $69.90/year for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel anytime.",
+      "Premium is $16.99 lifetime or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel monthly anytime.",
     images: ["/og-image.jpg"],
   },
 };
@@ -47,7 +47,7 @@ export const metadata = {
 const FAQS = [
   {
     q: "How much does FitMyCV cost?",
-    a: "FitMyCV Premium is $14.99 for lifetime access (pay once, keep it forever) or $6.99 per month with no contracts.",
+    a: "FitMyCV Premium is $16.99 for lifetime access (pay once, keep it forever) or $6.99 per month with no contracts.",
   },
   {
     q: "What do I get with Premium?",

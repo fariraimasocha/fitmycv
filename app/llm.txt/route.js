@@ -29,7 +29,7 @@ export function GET() {
 
 > FitMyCV tailors your CV and cover letter to any job in seconds. Paste a job link, and it reads the requirements, rewrites your CV to match with AI-powered keyword matching and ATS optimization, generates a matching cover letter, and exports everything as clean PDFs. Every tailored CV includes a match score and an ATS score.
 
-FitMyCV Premium costs $6.99/month or $69.90/year ($5.83/month billed annually) and includes unlimited tailored CVs and cover letters, match and ATS scores, interview prep with company research and outreach, daily job matches by email, and PDF export. Cancel anytime; payments are processed by Polar.
+FitMyCV Premium costs $6.99/month or $16.99 for lifetime access (pay once, keep it forever) and includes unlimited tailored CVs and cover letters, match and ATS scores, interview prep with company research and outreach, daily job matches by email, and PDF export. Cancel monthly anytime; payments are processed by Polar.
 
 ## Key pages
 

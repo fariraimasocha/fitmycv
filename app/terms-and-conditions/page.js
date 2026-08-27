@@ -73,8 +73,8 @@ export default function TermsAndConditionsPage() {
             <Section title="3. Subscriptions and billing">
               <ul className="flex list-disc flex-col gap-2 pl-5">
                 <Bullet>
-                  FitMyCV Premium is offered at $6.99 per month or $69.90 per
-                  year, billed through our payment provider, Polar.
+                  FitMyCV Premium is offered at $6.99 per month or $16.99 for
+                  lifetime access, billed through our payment provider, Polar.
                 </Bullet>
                 <Bullet>
                   Subscriptions renew automatically at the end of each billing

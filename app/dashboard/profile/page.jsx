@@ -2,7 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 import { motion } from "motion/react";
 import { UserIcon, CrownIcon, ArrowRightIcon, CheckCircleIcon } from "@phosphor-icons/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -55,6 +57,7 @@ const PRO_FEATURES = [
 
 export default function ProfilePage() {
   const { data: session, status, update } = useSession();
+  const router = useRouter();
   const hasRefreshed = useRef(false);
 
   // Refresh JWT from DB once — avoids stale isPremium after Polar webhook
@@ -63,6 +66,17 @@ export default function ProfilePage() {
     hasRefreshed.current = true;
     void update();
   }, [status, update]);
+
+  // Surface billing redirect errors, then clean the query string
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("error") === "portal_failed") {
+      toast.error(
+        "We couldn't open the billing portal. Contact support if this keeps happening.",
+      );
+      router.replace("/dashboard/profile", { scroll: false });
+    }
+  }, [router]);
 
   if (status === "loading" && !session) return <Loader />;
 
@@ -178,7 +192,7 @@ export default function ProfilePage() {
                 </ul>
 
                 <Button asChild className="w-full sm:w-auto">
-                  <Link href="/api/polar/checkout?plan=lifetime">
+                  <Link href="/dashboard/upgrade">
                     Upgrade to Pro
                     <ArrowRightIcon className="ml-2 size-4" />
                   </Link>

@@ -114,7 +114,7 @@ export default function PreferencesPage() {
               </p>
             </div>
             <Button asChild>
-              <Link href="/api/polar/checkout?plan=lifetime">
+              <Link href="/dashboard/upgrade">
                 Upgrade to Pro
                 <ArrowRightIcon className="ml-2 size-4" />
               </Link>

@@ -1,7 +1,12 @@
 "use client"
 
 import { useSession, signOut } from "next-auth/react"
-import { SignOutIcon, UserIcon, CaretUpDownIcon } from "@phosphor-icons/react"
+import {
+  SignOutIcon,
+  UserIcon,
+  CaretUpDownIcon,
+  CrownIcon,
+} from "@phosphor-icons/react"
 import Link from "next/link"
 
 import {
@@ -45,6 +50,20 @@ export function NavUser() {
 
   return (
     <SidebarMenu>
+      {!user.isPremium && (
+        <SidebarMenuItem>
+          <SidebarMenuButton
+            asChild
+            tooltip="Upgrade to Pro"
+            className="bg-[var(--landing-accent)] font-semibold text-white hover:bg-[var(--landing-accent)]/90 hover:text-white"
+          >
+            <Link href="/dashboard/upgrade">
+              <CrownIcon weight="fill" />
+              <span>Upgrade to Pro</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      )}
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

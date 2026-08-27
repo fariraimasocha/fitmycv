@@ -3,30 +3,37 @@ import { auth } from "@/lib/auth";
 import { Polar } from "@polar-sh/sdk";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
+import { appUrl } from "@/lib/site";
 
 const polar = new Polar({
   accessToken: process.env.POLAR_ACCESS_TOKEN,
   server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
 });
 
+function localAppUrl(path, request) {
+  return process.env.NODE_ENV === "production"
+    ? appUrl(path)
+    : new URL(path, request.url);
+}
+
 export async function GET(request) {
   try {
     const session = await auth();
 
     if (!session?.user?.email) {
-      return NextResponse.redirect(new URL("/auth", request.url));
+      return NextResponse.redirect(localAppUrl("/auth", request));
     }
 
     // JWT-based fast path
     if (session.user.isPremium) {
-      return NextResponse.redirect(new URL("/api/polar/portal", request.url));
+      return NextResponse.redirect(localAppUrl("/api/polar/portal", request));
     }
 
     // DB-first safety check — catches stale JWT (webhook fired but session not refreshed)
     await connectDB();
     const dbUser = await User.findOne({ _id: session.user.id }).select("isPremium");
     if (dbUser?.isPremium) {
-      return NextResponse.redirect(new URL("/api/polar/portal", request.url));
+      return NextResponse.redirect(localAppUrl("/api/polar/portal", request));
     }
 
     const { searchParams } = new URL(request.url);
@@ -46,7 +53,14 @@ export async function GET(request) {
 
     const checkout = await polar.checkouts.create({
       products: [productId],
-      successUrl: process.env.POLAR_SUCCESS_URL,
+      successUrl:
+        process.env.NODE_ENV === "production"
+          ? appUrl("/payment/success").toString()
+          : process.env.POLAR_SUCCESS_URL ||
+            localAppUrl("/payment/success", request).toString(),
+      returnUrl: localAppUrl("/dashboard/upgrade", request).toString(),
+      externalCustomerId: String(session.user.id),
+      customerName: session.user.name || undefined,
       customerEmail: session.user.email,
       metadata: {
         userId: String(session.user.id),
@@ -57,7 +71,7 @@ export async function GET(request) {
   } catch (error) {
     console.error("Polar checkout error:", error);
     return NextResponse.redirect(
-      new URL("/dashboard?error=checkout_failed", request.url),
+      localAppUrl("/dashboard/upgrade?error=checkout_failed", request),
     );
   }
 }

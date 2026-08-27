@@ -92,7 +92,7 @@ function UpgradeGate() {
             asChild
             className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           >
-            <Link href="/api/polar/checkout?plan=lifetime">
+            <Link href="/dashboard/upgrade">
               Upgrade to Pro
               <ArrowRightIcon className="ml-2 size-4" />
             </Link>

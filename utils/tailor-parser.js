@@ -1,3 +1,5 @@
+import { sanitizeAIObject } from "@/utils/sanitize-ai-text";
+
 /**
  * Parse the Groq LLM response into structured tailored CV + cover letter data.
  * Handles markdown code blocks, JSON quirks, and missing fields.
@@ -6,7 +8,7 @@ export function parseTailorResponse(responseText) {
   const jsonStr = extractJsonString(responseText);
   const raw = JSON.parse(jsonStr);
 
-  return {
+  return sanitizeAIObject({
     tailoredCV: {
       basics: extractBasics(raw.cv || raw),
       work: mapWork(raw.cv || raw),
@@ -20,7 +22,7 @@ export function parseTailorResponse(responseText) {
           location: k.location || "",
         }))
       : [],
-  };
+  });
 }
 
 function extractJsonString(text) {

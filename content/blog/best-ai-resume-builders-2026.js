@@ -1,9 +1,9 @@
 export const meta = {
   slug: "best-ai-resume-builders-2026",
   title: "Best AI Resume Builders in 2026: Tested and Compared",
-  seoTitle: "Best AI Resume Builders in 2026 (Tested & Compared)",
+  seoTitle: "Best AI Resume Builders in 2026, Compared",
   description:
-    "An honest comparison of the best AI resume builders in 2026 — FitMyCV, Teal, Kickresume, Jobscan, and Resume Worded. What each one is genuinely good at, what it costs, and which to pick for your situation.",
+    "An honest comparison of the best AI resume builders in 2026 — FitMyCV, Teal, Kickresume, Jobscan and Resume Worded. What each costs, and which to pick.",
   excerpt:
     "Five AI resume tools, five different jobs. A straight comparison of what each one is actually built for — including where ours is the wrong choice.",
   date: "2026-07-29",

@@ -3,7 +3,7 @@ export const meta = {
   title: "30 CV Action Verbs for Tech and Engineering Roles",
   seoTitle: "30 CV Action Verbs for Tech & Engineering Roles",
   description:
-    "Thirty strong action verbs for software engineering, data, and IT CVs — grouped by what they prove, with before/after bullet rewrites and the weak verbs to stop using.",
+    "Thirty action verbs for software engineering, data, and IT CVs — grouped by what they prove, with before/after rewrites and the weak verbs to drop.",
   excerpt:
     "\"Responsible for the backend\" tells a recruiter nothing. Thirty verbs that do, grouped by the thing each one proves.",
   date: "2026-07-28",

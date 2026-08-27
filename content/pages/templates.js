@@ -6,7 +6,7 @@ export const cvTemplates = {
   slug: "cv-templates",
   seoTitle: "Free ATS-Friendly CV Templates (11 Layouts)",
   description:
-    "Eleven ATS-friendly CV templates built to parse cleanly — single column, standard headings, no graphics. Pick a layout, drop your content in, and export a recruiter-ready PDF.",
+    "Eleven ATS-friendly CV templates that parse cleanly — single column, standard headings, no graphics. Drop your content in and export a recruiter-ready PDF.",
   keywords: [
     "cv template",
     "free cv template",
@@ -136,7 +136,7 @@ export const resumeTemplates = {
   slug: "resume-templates",
   seoTitle: "Free ATS Resume Templates That Parse Cleanly",
   description:
-    "Eleven free ATS resume templates — single column, standard headings, no graphics. Built for US resume conventions and tested against the formatting rules parsers actually enforce.",
+    "Eleven free ATS resume templates — single column, standard headings, no graphics. Built for US conventions and the rules parsers actually enforce.",
   keywords: [
     "resume template",
     "free resume template",
@@ -252,9 +252,9 @@ export const resumeTemplates = {
 
 export const googleDocsCvTemplate = {
   slug: "google-docs-cv-template",
-  seoTitle: "ATS-Friendly Google Docs CV Template (Build It in 10 Minutes)",
+  seoTitle: "ATS-Friendly Google Docs CV Template",
   description:
-    "How to build an ATS-friendly CV in Google Docs: the exact structure to use, which built-in templates to avoid, the correct export settings, and where Google Docs runs out of road.",
+    "How to build an ATS-friendly CV in Google Docs: the structure to use, which built-in templates to avoid, and the correct export settings.",
   keywords: [
     "google docs cv template",
     "google docs resume template",

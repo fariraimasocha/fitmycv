@@ -4,7 +4,7 @@ export const meta = {
   // Kept under ~60 chars so it survives the SERP truncation.
   seoTitle: "ATS-Friendly Resume in 2026: The Complete Guide",
   description:
-    "A practical guide to writing an ATS-friendly resume in 2026: formatting rules that parse cleanly, how to place keywords, which file type to use, and the mistakes that get CVs rejected before a human reads them.",
+    "How to write an ATS-friendly resume in 2026: formatting that parses cleanly, where to place keywords, and the mistakes that get CVs rejected.",
   excerpt:
     "Most rejections happen before a human opens your CV. Here is exactly how applicant tracking systems read a resume in 2026 — and how to write one that survives the parse.",
   date: "2026-07-29",

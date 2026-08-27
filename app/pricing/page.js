@@ -6,7 +6,7 @@ import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata = {
-  title: "Pricing",
+  title: "Pricing — Lifetime Access for $16.99",
   description:
     "FitMyCV Premium is $16.99 lifetime or $6.99/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.",
   keywords: [

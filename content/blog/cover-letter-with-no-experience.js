@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Write a Cover Letter With No Experience (Examples)",
   seoTitle: "Cover Letter With No Experience (Examples)",
   description:
-    "A step-by-step guide to writing a cover letter when you have no work experience, with a full structure, a real example, and the exact phrases to avoid so you never apologise for being new.",
+    "How to write a cover letter with no work experience: a full structure, a real example, and the phrases to avoid so you never apologise for being new.",
   excerpt:
     "No experience does not mean no evidence. Coursework, projects, volunteering, and part-time work all count. Here is how to turn them into a cover letter that gets read.",
   date: "2026-08-21",

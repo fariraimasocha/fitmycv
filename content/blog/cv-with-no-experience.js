@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Write a CV With No Experience (Template and Example)",
   seoTitle: "How to Write a CV With No Experience",
   description:
-    "How to write a strong CV when you have no work experience: which sections to use, how to order them, and how to turn projects, coursework, and volunteering into quantified bullets that get interviews.",
+    "How to write a CV with no work experience: which sections to use, how to order them, and how to turn projects and coursework into quantified bullets.",
   excerpt:
     "A first CV is not an empty CV. Reorder the page around what you actually have, prove it with numbers, and it reads like someone worth meeting.",
   date: "2026-08-20",

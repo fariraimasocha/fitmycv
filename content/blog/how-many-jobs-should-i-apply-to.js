@@ -3,7 +3,7 @@ export const meta = {
   title: "How Many Jobs Should I Apply To? An Honest Answer",
   seoTitle: "How Many Jobs Should I Apply To Per Day?",
   description:
-    "How many jobs you should apply to per day and per week, why the per application return collapses as volume climbs, and the number that actually fits a sustainable, tailored search.",
+    "How many jobs to apply to per day and per week, why returns collapse as volume climbs, and the number that fits a sustainable, tailored search.",
   excerpt:
     "The honest answer is not a number, it is a method. Apply to as many roles as you can genuinely tailor, and measure your response rate before you scale.",
   date: "2026-08-23",

@@ -3,7 +3,7 @@ export const meta = {
   title: "Why Am I Not Getting Interviews? A Job Search Diagnostic",
   seoTitle: "Why Am I Not Getting Interviews? (Diagnostic)",
   description:
-    "If you are applying and hearing nothing back, the problem is almost always one of four things. Here is how to find which stage of your job search is leaking, and the exact fix for each.",
+    "Applying and hearing nothing back? It is almost always one of four things. How to find which stage of your job search is leaking, and the fix for each.",
   excerpt:
     "Silence is data. If the same kind of application keeps vanishing, do not send fifty more copies. Find the stage that is failing, then fix only that.",
   date: "2026-08-24",

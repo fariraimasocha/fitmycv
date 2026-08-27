@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Follow Up on a Job Application (With Email Templates)",
   seoTitle: "How to Follow Up on a Job Application",
   description:
-    "When to follow up after applying for a job, who to send it to, and exactly what to write. Includes copy-and-paste follow up email templates for after applying and after an interview.",
+    "When to follow up after applying for a job, who to send it to, and what to write. Includes copy-and-paste email templates for each stage.",
   excerpt:
     "One short, specific follow up sent at the right moment keeps your name in front of a real person. Here is the timing, the wording, and the templates.",
   date: "2026-08-22",

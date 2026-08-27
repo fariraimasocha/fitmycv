@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Play } from "lucide-react";
 
@@ -20,15 +21,17 @@ function DemoPreview() {
           <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
           <span className="landing-browser-dot bg-[oklch(0.56_0.13_150)]" aria-hidden="true" />
           <span className="ml-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-medium text-[var(--landing-ink-soft)]">
-            app.fitmycv.com
+            www.fitmycv.link
           </span>
         </div>
         <div className="relative overflow-hidden">
-          <img
+          <Image
             src="/hero.jpg"
             alt="FitMyCV dashboard preview"
             width={2116}
             height={1248}
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            priority
             className="h-auto w-full"
           />
         </div>

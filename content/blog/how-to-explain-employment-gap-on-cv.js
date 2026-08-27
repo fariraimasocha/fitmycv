@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Explain an Employment Gap on Your CV",
   seoTitle: "How to Explain an Employment Gap on a CV",
   description:
-    "How to explain a gap in employment on your CV and in interviews: how to present time off honestly, when to use a brief reason, and how to keep the focus on what you did and what you can do now.",
+    "How to explain an employment gap on your CV and in interviews: present time off honestly, and keep the focus on what you can do now.",
   excerpt:
     "A career gap is common and rarely a dealbreaker. What matters is that you account for it briefly, honestly, and without letting it dominate the page.",
   date: "2026-08-19",

@@ -17,10 +17,10 @@ import Footer from "@/components/landing/Footer";
 // carries the brand-led title and the feature page keeps the long-tail one.
 export const metadata = {
   title: {
-    absolute: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
+    absolute: "Tailor Your CV to Any Job Link | FitMyCV",
   },
   description:
-    "FitMyCV tailors your CV and cover letter to any job link in seconds — AI keyword matching, a free ATS resume checker, 11 ATS-safe templates, and one-click PDF export.",
+    "Tailor your CV and cover letter to any job link in seconds — AI keyword matching, a free ATS resume checker, 11 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
   // Page-level openGraph/twitter replace the layout objects wholesale (no
   // deep merge), so images and card type must be re-declared here.

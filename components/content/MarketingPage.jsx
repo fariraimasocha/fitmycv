@@ -179,7 +179,7 @@ export default function MarketingPage({ page, children }) {
 
       {faqs.length ? <JsonLd data={faqSchema(faqs)} /> : null}
       {howTo ? <JsonLd data={howToSchema(howTo)} /> : null}
-      <JsonLd data={softwareApplicationSchema} />
+      {/* softwareApplicationSchema is already emitted sitewide from app/layout.js */}
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },

@@ -26,7 +26,7 @@ import { softwareApplicationSchema } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   absoluteTitle: "Tailor Your CV From a Job Link (2026) | FitMyCV",
   description:
-    "Paste any job link — LinkedIn, Indeed, Glassdoor, or a company careers page — and FitMyCV tailors your CV and cover letter to that role in seconds, with ATS keywords and PDF export.",
+    "Paste any job link — LinkedIn, Indeed, Glassdoor or a careers page — and FitMyCV tailors your CV and cover letter to that role in seconds, with ATS keywords.",
   path: "/tailor-cv-from-job-link",
   keywords: [
     "tailor cv from job link",

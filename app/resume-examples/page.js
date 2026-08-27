@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   absoluteTitle: "Resume Examples for 10 Jobs (2026) | FitMyCV",
   description:
-    "Resume examples for ten common roles, each with a worked professional summary, before-and-after bullets, a skills section, and the keywords those postings actually use.",
+    "Resume examples for ten common roles, each with a worked professional summary, before-and-after bullets, a skills section, and the right keywords.",
   path: "/resume-examples",
   keywords: [
     "resume examples",

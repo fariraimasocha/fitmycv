@@ -11,7 +11,7 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "CV & Resume Blog",
+  title: "CV & Resume Blog — ATS Guides and Tips",
   description:
     "Practical guides on ATS-friendly resumes, tailoring your CV to a job description, and the action verbs that make bullets land — from the team behind FitMyCV.",
   path: "/blog",
@@ -95,6 +95,8 @@ export default function BlogIndexPage() {
                 <img
                   src={featured.meta.image}
                   alt={featured.meta.imageAlt}
+                  width={1536}
+                  height={1024}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-105"
                 />
               </div>

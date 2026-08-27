@@ -3,9 +3,9 @@
 
 export const resumeTips = {
   slug: "resume-tips",
-  seoTitle: "27 Resume Tips That Actually Change Your Response Rate",
+  seoTitle: "27 Resume Tips That Lift Your Response Rate",
   description:
-    "Twenty-seven resume tips grouped by the problem they solve — parsing, keywords, bullets, structure, and the final check. Practical, specific, and ordered by impact.",
+    "Twenty-seven resume tips grouped by the problem they solve — parsing, keywords, bullets, structure, and the final check. Ordered by impact.",
   keywords: [
     "resume tips",
     "cv tips",
@@ -157,7 +157,7 @@ export const howToWriteAResume = {
   slug: "how-to-write-a-resume",
   seoTitle: "How to Write a Resume in 2026 (Step-by-Step)",
   description:
-    "A step-by-step guide to writing a resume from scratch in 2026: what to include, section order, how to write bullets that land, length, and the checks to run before you send it.",
+    "How to write a resume from scratch in 2026: what to include, section order, bullets that land, the right length, and the checks to run before you send.",
   keywords: [
     "how to write a resume",
     "how to write a cv",

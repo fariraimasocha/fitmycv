@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Write a CV Professional Summary (With Examples)",
   seoTitle: "CV Professional Summary Examples",
   description:
-    "How to write a professional summary for your CV, with a simple formula and real before and after examples by career stage. Learn what to put in the top three lines that a recruiter actually reads.",
+    "How to write a CV professional summary, with a simple formula and real before-and-after examples by career stage — the three lines recruiters read.",
   excerpt:
     "The summary is the most-read and most-wasted part of a CV. A good one names the role, your level, and one proof with a number in three lines.",
   date: "2026-08-15",

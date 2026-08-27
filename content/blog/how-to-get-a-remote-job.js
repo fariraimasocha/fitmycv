@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Get a Remote Job in 2026 (A Practical Guide)",
   seoTitle: "How to Get a Remote Job in 2026",
   description:
-    "A practical guide to getting a remote job: where to actually find remote roles, how to position a CV for remote work, how to prove you can work independently, and how to compete in a global applicant pool.",
+    "How to get a remote job: where to find real remote roles, how to position your CV for remote work, and how to compete in a global applicant pool.",
   excerpt:
     "Remote roles draw a global crowd, so getting one is less about luck and more about positioning. Here is where to look and how to stand out in a huge pool.",
   date: "2026-08-16",

@@ -12,7 +12,7 @@ import Footer from "@/components/landing/Footer";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
 export const metadata = {
-  title: "Support",
+  title: "Support — Help With CV Tailoring & Billing",
   description:
     "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account — or email our support team directly.",
   alternates: {

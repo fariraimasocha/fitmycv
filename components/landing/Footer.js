@@ -35,7 +35,6 @@ const otherApps = [
   { label: "LinkGenie", href: "https://linkgenie.one" },
   { label: "WaitFast", href: "https://waitfast.one" },
   { label: "LaunchMe", href: "https://launchme.site" },
-  { label: "LearnHowToPrompt", href: "https://learnhowtoprompt.one" },
 ];
 
 export default function Footer() {
@@ -61,7 +60,7 @@ export default function Footer() {
           <div className="flex flex-col flex-wrap gap-8 sm:flex-row sm:gap-12 lg:gap-14">
             {/* Product col */}
             <div className="flex flex-col gap-4">
-              <h4 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Product</h4>
+              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Product</h3>
               <ul className="flex flex-col gap-3">
                 {productLinks.map(({ label, href }) => (
                   <li key={label}>
@@ -78,7 +77,7 @@ export default function Footer() {
 
             {/* Resources col */}
             <div className="flex flex-col gap-4">
-              <h4 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Resources</h4>
+              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Resources</h3>
               <ul className="flex flex-col gap-3">
                 {resourceLinks.map(({ label, href }) => (
                   <li key={label}>
@@ -95,7 +94,7 @@ export default function Footer() {
 
             {/* Company col */}
             <div className="flex flex-col gap-4">
-              <h4 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Company</h4>
+              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Company</h3>
               <ul className="flex flex-col gap-3">
                 {companyLinks.map(({ label, href }) => (
                   <li key={label}>
@@ -112,7 +111,7 @@ export default function Footer() {
 
             {/* Other Apps col */}
             <div className="flex flex-col gap-4">
-              <h4 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Other Apps</h4>
+              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Other Apps</h3>
               <ul className="flex flex-col gap-3">
                 {otherApps.map(({ label, href }) => (
                   <li key={label}>
@@ -136,19 +135,6 @@ export default function Footer() {
           <p className="font-sans text-sm text-[var(--landing-ink-soft)]">
             2026 FitMyCv. All rights reserved.
           </p>
-          <div className="flex flex-row flex-wrap gap-4">
-            {otherApps.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors"
-              >
-                {href.replace("https://", "")}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

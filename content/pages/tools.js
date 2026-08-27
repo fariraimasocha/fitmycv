@@ -2,9 +2,9 @@
 
 export const atsResumeChecker = {
   slug: "ats-resume-checker",
-  seoTitle: "Free ATS Resume Checker — Score Your CV Against Any Job",
+  seoTitle: "Free ATS Resume Checker — Score Your CV",
   description:
-    "Free ATS resume checker. Paste a job description and your CV to see your keyword match score and exactly which required terms are missing. Runs in your browser — nothing is uploaded.",
+    "Free ATS resume checker. Paste a job description and your CV to see your keyword match score and which required terms are missing. Nothing is uploaded.",
   keywords: [
     "ats resume checker",
     "free ats resume checker",
@@ -141,7 +141,7 @@ export const atsResumeChecker = {
 
 export const freeAtsKeywordChecker = {
   slug: "free-ats-keyword-checker",
-  seoTitle: "Free ATS Keyword Checker — Extract the Terms That Matter",
+  seoTitle: "Free ATS Keyword Checker for Job Postings",
   description:
     "Paste a job description and get the ranked list of keywords an applicant tracking system will index it by. Free, no sign-up, runs entirely in your browser.",
   keywords: [
@@ -243,7 +243,7 @@ export const resumeOptimizer = {
   slug: "resume-optimizer",
   seoTitle: "AI Resume Optimizer — Rewrite Your CV for Any Job",
   description:
-    "An AI resume optimizer that rewrites your existing CV against a specific job posting: keyword coverage, stronger bullets, reordered sections, and an ATS-safe PDF export.",
+    "An AI resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
   keywords: [
     "resume optimizer",
     "resume optimizer tool",

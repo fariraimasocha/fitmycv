@@ -42,9 +42,16 @@ export async function generateMetadata({ params }) {
   const example = getResumeExample(slug);
   if (!example) return {};
 
+  // Role names vary from "Nurse" to "Customer Service Representative", so the
+  // brand suffix only fits on some. Append it when the title stays under 60.
+  const baseTitle = `${example.role} Resume Example (2026)`;
+
   return pageMetadata({
-    absoluteTitle: `${example.role} Resume Example (2026) | FitMyCV`,
-    description: `A ${example.role.toLowerCase()} resume example with a worked summary, before-and-after bullets, a skills section, and the keywords these postings actually use.`,
+    absoluteTitle:
+      baseTitle.length + " | FitMyCV".length <= 60
+        ? `${baseTitle} | FitMyCV`
+        : baseTitle,
+    description: `A ${example.role.toLowerCase()} resume example with a worked summary, before-and-after bullets, a skills section, and the keywords that matter.`,
     path: `/resume-examples/${example.slug}`,
     keywords: [
       `${example.role.toLowerCase()} resume example`,

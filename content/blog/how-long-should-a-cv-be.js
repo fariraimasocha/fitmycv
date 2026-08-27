@@ -3,7 +3,7 @@ export const meta = {
   title: "How Long Should a CV Be? The Honest Answer by Experience",
   seoTitle: "How Long Should a CV Be?",
   description:
-    "How long a CV should be in 2026 by experience level, why density matters more than page count, and how to cut a CV to the right length without losing the detail that wins interviews.",
+    "How long a CV should be in 2026 by experience level, why density beats page count, and how to cut yours without losing the detail that wins interviews.",
   excerpt:
     "One page or two is the wrong debate. The real target is density: every line should carry a keyword, a number, or a named tool. Length follows from that.",
   date: "2026-08-17",

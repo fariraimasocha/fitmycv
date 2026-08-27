@@ -6,7 +6,7 @@ export const aiCoverLetterGenerator = {
   slug: "ai-cover-letter-generator",
   seoTitle: "AI Cover Letter Generator | Free | FitMyCV",
   description:
-    "Generate a cover letter from any job link in seconds. FitMyCV reads the posting, pulls the requirements, and writes a letter grounded in your real experience — then exports it as a PDF.",
+    "Generate a cover letter from any job link in seconds. FitMyCV reads the posting and writes a letter grounded in your real experience, then exports a PDF.",
   keywords: [
     "ai cover letter generator",
     "free ai cover letter generator",
@@ -182,7 +182,7 @@ export const aiCoverLetterGenerator = {
 
 export const coverLetterBuilder = {
   slug: "cover-letter-builder",
-  seoTitle: "AI Cover Letter Builder — Build a Letter That Gets Read",
+  seoTitle: "AI Cover Letter Builder That Gets Read",
   description:
     "A cover letter builder that starts from the job posting, not a blank page. Paragraph-by-paragraph structure, worked examples, and AI drafting from any job link.",
   keywords: [

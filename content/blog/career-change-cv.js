@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Write a Career Change CV (With Example)",
   seoTitle: "How to Write a Career Change CV",
   description:
-    "How to write a CV when you are changing careers: how to lead with transferable outcomes, reorder the page around relevance, translate your experience into the new field's language, and bridge the gap honestly.",
+    "How to write a CV when you are changing careers: lead with transferable outcomes, reorder around relevance, and bridge the gap honestly.",
   excerpt:
     "A career change CV is not about hiding your past. It is about translating it. Lead with the outcome, reorder for relevance, and speak the new field's language.",
   date: "2026-08-18",

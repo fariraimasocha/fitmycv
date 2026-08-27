@@ -3,7 +3,7 @@ import Footer from "@/components/landing/Footer";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
 export const metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Policy — How We Handle Your CV Data",
   description:
     "How FitMyCV collects, uses, and protects your data — including your CV content, Google account details, and payment information.",
   alternates: {

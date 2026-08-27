@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Tailor Your CV to a Job Description (Step-by-Step)",
   seoTitle: "How to Tailor Your CV to a Job Description",
   description:
-    "A step-by-step method for tailoring your CV to a job description: how to decode the posting, rank requirements, rewrite your summary and bullets, and check the match — with a full before/after example.",
+    "A step-by-step method for tailoring your CV to a job description: decode the posting, rank requirements, rewrite your bullets — with a worked example.",
   excerpt:
     "Tailoring is not rewriting your CV from scratch. It is a repeatable, forty-minute edit — and this is the exact sequence, with a real before and after.",
   date: "2026-07-29",

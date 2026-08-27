@@ -3,7 +3,7 @@ export const meta = {
   title: "27 CV Action Verbs for Healthcare and Nursing Roles",
   seoTitle: "27 CV Action Verbs for Healthcare & Nursing",
   description:
-    "Twenty-seven action verbs for healthcare, nursing, and allied health CVs — grouped by clinical, coordination, and quality work, with before/after bullet rewrites.",
+    "Twenty-seven action verbs for healthcare, nursing, and allied health CVs — grouped by clinical, coordination and quality work, with rewrites.",
   excerpt:
     "Clinical CVs undersell constantly. Twenty-seven verbs that show caseload, judgement, and outcomes without overclaiming.",
   date: "2026-07-28",

@@ -2,9 +2,9 @@ import ExamplesHub from "@/components/content/ExamplesHub";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  absoluteTitle: "CV Examples for 10 Jobs (UK, 2026) | FitMyCV",
+  absoluteTitle: "CV Examples for 14 Jobs (UK, 2026) | FitMyCV",
   description:
-    "CV examples for ten roles with UK conventions: two-page length, no photo, personal statement structure, and the keywords UK job adverts actually use.",
+    "CV examples for fourteen roles with UK conventions: two-page length, no photo, personal statement structure, and the keywords UK job adverts actually use.",
   path: "/cv-examples",
   keywords: [
     "cv examples",
@@ -19,7 +19,7 @@ const hub = {
   slug: "cv-examples",
   breadcrumbName: "CV examples",
   eyebrow: "Examples",
-  h1: "CV examples for ten jobs",
+  h1: "CV examples for fourteen jobs",
   lede:
     "Worked CV examples with UK conventions built in: personal statement, two-page length, no photo, and the vocabulary British job adverts actually use.",
   blocks: [

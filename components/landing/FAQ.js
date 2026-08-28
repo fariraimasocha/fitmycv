@@ -3,39 +3,9 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
+import { HOME_FAQS } from "@/content/pages/home";
 
-const faqs = [
-  {
-    question: "How does FitMyCv tailor my CV?",
-    answer:
-      "Our AI reads the job description, identifies key requirements and keywords, then restructures your CV to highlight matching experience and skills. The result passes ATS filters and reads naturally to recruiters.",
-  },
-  {
-    question: "Will my CV still sound like me?",
-    answer:
-      "Absolutely. FitMyCv enhances your existing content. It doesn't replace it. Your voice, experience, and achievements remain front and center. We just make sure they're presented in the best possible way for each role.",
-  },
-  {
-    question: "What do I get for free, and what needs Premium?",
-    answer:
-      "Free, you can upload and store your CV and track every application in one place. Premium adds the full tailoring suite: paste any job link, get a match score and ATS score, then tailor and download your CV and cover letter as polished PDFs. Premium also includes interview prep, company research, outreach messages, and daily job matches by email.",
-  },
-  {
-    question: "What file formats can I export?",
-    answer:
-      "You can download your tailored CV and cover letter as PDF, ready to attach and send. PDF is the format recruiters and ATS systems handle best, so it keeps your formatting perfect on every application.",
-  },
-  {
-    question: "Can I cancel my subscription anytime?",
-    answer:
-      "Yes, you can cancel your Premium subscription at any time. You'll continue to have access until the end of your billing period. No questions asked, no hidden fees.",
-  },
-  {
-    question: "Is my data safe?",
-    answer:
-      "Your privacy is our top priority. All data is encrypted, we never share your information, and you can delete your account and all associated data at any time.",
-  },
-];
+const faqs = HOME_FAQS.map(({ q, a }) => ({ question: q, answer: a }));
 
 function FAQItem({ faq, isOpen, onToggle }) {
   return (

@@ -21,7 +21,7 @@ const RESOURCES = [
     body: "Formatting, keywords, and the mistakes that get CVs filtered out before a human reads them.",
   },
   {
-    label: "Resume examples for ten jobs",
+    label: "Resume examples for fourteen jobs",
     href: "/resume-examples",
     body: "Worked summaries, before-and-after bullets, and the keywords those postings use.",
   },

@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "Tailoring is not rewriting your CV from scratch. It is a repeatable, forty-minute edit, and this is the exact sequence, with a real before and after.",
   date: "2026-07-29",
-  updated: "2026-07-29",
+  updated: "2026-08-28",
   readingTime: 10,
   category: "Tailoring",
   tags: ["tailoring", "job description", "keywords", "resume"],
@@ -174,7 +174,7 @@ export const blocks = [
     p: "The method above works. The problem is arithmetic: forty minutes per role, ten roles a week, and tailoring is now six hours of your week. Almost everyone abandons it around application twelve and goes back to the generic CV.",
   },
   {
-    p: "FitMyCV compresses steps 1 through 4 into a paste. You give it the job link from LinkedIn, Indeed, Glassdoor, or a company careers page, and it reads the posting, extracts the requirements and the exact vocabulary, then rewrites your summary, reorders and rewrites your bullets, and produces a matching cover letter. You review and adjust rather than starting from a blank page.",
+    p: "FitMyCV compresses steps 1 through 4 into a paste. You give it the job link from LinkedIn, Indeed, Glassdoor, or a company careers page, and it reads the posting, extracts the requirements and the exact vocabulary, then rewrites your summary, reorders and rewrites your bullets, and produces a matching cover letter. You review and adjust rather than starting from a blank page. If you would rather stay in ChatGPT, the [copy-paste prompts](/blog/chatgpt-prompts-to-tailor-resume) are the constrained version of the same method.",
   },
   {
     table: {

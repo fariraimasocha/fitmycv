@@ -4,6 +4,11 @@
 import atsResumeGuide from "./ats-resume-guide";
 import bestAiResumeBuilders from "./best-ai-resume-builders-2026";
 import howToTailorCv from "./how-to-tailor-cv-to-job-description";
+import chatgptPrompts from "./chatgpt-prompts-to-tailor-resume";
+import bestFreeAtsCheckers from "./best-free-ats-resume-checkers-2026";
+import coverLetterFromJd from "./cover-letter-from-job-description";
+import fitmycvVsChatgpt from "./fitmycv-vs-chatgpt-resume-tailoring";
+import bestAiTailoringTools from "./best-ai-resume-tailoring-tools-2026";
 import verbsTech from "./cv-action-verbs-tech";
 import verbsMarketing from "./cv-action-verbs-marketing";
 import verbsFinance from "./cv-action-verbs-finance";
@@ -23,6 +28,11 @@ import cvProfessionalSummary from "./cv-professional-summary-examples";
 export const POSTS = [
   atsResumeGuide,
   howToTailorCv,
+  chatgptPrompts,
+  bestFreeAtsCheckers,
+  coverLetterFromJd,
+  fitmycvVsChatgpt,
+  bestAiTailoringTools,
   bestAiResumeBuilders,
   verbsTech,
   verbsMarketing,

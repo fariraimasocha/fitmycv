@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "No experience does not mean no evidence. Coursework, projects, volunteering, and part-time work all count. Here is how to turn them into a cover letter that gets read.",
   date: "2026-08-21",
-  updated: "2026-08-21",
+  updated: "2026-08-28",
   readingTime: 8,
   category: "Cover Letters",
   series: "cover-letters",
@@ -17,6 +17,7 @@ export const meta = {
     "Flat illustration of a first-time job seeker assembling a cover letter from projects, coursework, and volunteering",
   keywords: [
     "cover letter with no experience",
+    "cover letter no experience but willing to learn",
     "how to write a cover letter with no experience",
     "entry level cover letter",
     "cover letter for first job",
@@ -76,6 +77,11 @@ export const blocks = [
   },
   {
     p: "Treat each of these the way you would a job: what did you do, and what happened as a result? Quantify wherever you can. A number instantly makes a project sound real.",
+  },
+
+  { h2: "Cover letter no experience but willing to learn" },
+  {
+    p: "Do not write the phrase “willing to learn” as your pitch. Everyone is. Show the learning you have already done: a project, a course, volunteering, or a part-time result that maps to one line in the posting. “Willing to learn” is a close. Evidence is the body. If you need a sentence that carries the idea without the cliché: name the skill, name where you practised it, and name what you are ready to do next in this role.",
   },
 
   { h2: "The structure that works" },
@@ -155,7 +161,7 @@ export const blocks = [
     p: "The hardest part of an entry level letter is knowing which of your projects and skills to lead with, and in whose words. That decision comes straight from the posting: the requirements it repeats are the evidence you should surface first.",
   },
   {
-    p: "FitMyCV builds the letter from that posting. You paste the job link, and it reads the role, identifies the skills that matter most, and drafts a cover letter that maps your background to them in the employer's own language, matched to the CV it tailors alongside it. You then add the one company-specific sentence a tool cannot know. See our companion guide on writing a CV with no experience to get the CV right too.",
+    p: "FitMyCV builds the letter from that posting. You paste the job link, and it reads the role, identifies the skills that matter most, and drafts a cover letter that maps your background to them in the employer's own language, matched to the CV it tailors alongside it. You then add the one company-specific sentence a tool cannot know. The [cover letter from a job description](/blog/cover-letter-from-job-description) walkthrough is the same method with a full worked letter. See our companion guide on writing a CV with no experience to get the CV right too.",
   },
   {
     cta: {

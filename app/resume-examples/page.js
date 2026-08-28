@@ -2,9 +2,9 @@ import ExamplesHub from "@/components/content/ExamplesHub";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  absoluteTitle: "Resume Examples for 10 Jobs (2026) | FitMyCV",
+  absoluteTitle: "Resume Examples for 14 Jobs (2026) | FitMyCV",
   description:
-    "Resume examples for ten common roles, each with a worked professional summary, before-and-after bullets, a skills section, and the right keywords.",
+    "Resume examples for fourteen common roles, each with a worked professional summary, before-and-after bullets, a skills section, and the right keywords.",
   path: "/resume-examples",
   keywords: [
     "resume examples",
@@ -19,7 +19,7 @@ const hub = {
   slug: "resume-examples",
   breadcrumbName: "Resume examples",
   eyebrow: "Examples",
-  h1: "Resume examples for ten jobs",
+  h1: "Resume examples for fourteen jobs",
   lede:
     "Not template galleries, but worked examples. Each one shows the summary, the bullets rewritten from a weak version to a strong one, the skills block, and the vocabulary those postings actually search for.",
   blocks: [

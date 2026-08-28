@@ -140,7 +140,7 @@ export const blocks = [
     ],
   },
   {
-    p: "For the full formatting rules, see our ATS-friendly resume guide. For the sections and wording of a first professional CV, our how to write a resume guide walks through each block.",
+    p: "For the full formatting rules, see our ATS-friendly resume guide. For a worked first-job example with rewritten bullets, use the [first job resume example](/resume-examples/first-job). For the sections and wording of a first professional CV, our how to write a resume guide walks through each block.",
   },
 
   { h2: "Tailor the first CV to each role" },

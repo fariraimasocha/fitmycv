@@ -15,6 +15,14 @@ import {
 } from "@/lib/seo";
 import { softwareApplicationSchema } from "@/lib/structured-data";
 
+const PRODUCT_SLUGS = new Set([
+  "ats-resume-checker",
+  "free-ats-keyword-checker",
+  "resume-optimizer",
+  "ai-cover-letter-generator",
+  "cover-letter-builder",
+]);
+
 /**
  * Shared shell for the data-driven marketing pages in `content/pages`.
  * Every page gets the same hero, prose column, FAQ block, internal-link rail,
@@ -179,7 +187,9 @@ export default function MarketingPage({ page, children }) {
 
       {faqs.length ? <JsonLd data={faqSchema(faqs)} /> : null}
       {howTo ? <JsonLd data={howToSchema(howTo)} /> : null}
-      {/* softwareApplicationSchema is already emitted sitewide from app/layout.js */}
+      {PRODUCT_SLUGS.has(slug) ? (
+        <JsonLd data={softwareApplicationSchema} />
+      ) : null}
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },

@@ -2,12 +2,14 @@
 
 export const atsResumeChecker = {
   slug: "ats-resume-checker",
-  seoTitle: "Free ATS Resume Checker: Score Your CV",
+  seoTitle: "Free ATS Resume Checker: No Sign-Up",
   description:
-    "Free ATS resume checker. Paste a job description and your CV to see your keyword match score and which required terms are missing. Nothing is uploaded.",
+    "Free ATS resume checker with job description, no login. Paste a posting and your CV for a keyword match score. Nothing is uploaded. Unlimited checks.",
   keywords: [
     "ats resume checker",
     "free ats resume checker",
+    "ats resume checker free online without login",
+    "ats resume checker with job description free",
     "ats resume",
     "resume checker",
     "ats scanner",
@@ -18,7 +20,7 @@ export const atsResumeChecker = {
   breadcrumbName: "ATS resume checker",
   h1: "Free ATS resume checker",
   lede:
-    "Paste a job description and your CV. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds, without signing up.",
+    "Free ATS resume checker, no sign-up and nothing uploaded. Paste a job description and your CV. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds.",
   ctas: [
     { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link" },
     { label: "Read the ATS guide", href: "/blog/ats-resume-guide", variant: "secondary" },
@@ -97,6 +99,28 @@ export const atsResumeChecker = {
         "**Put keywords inside bullets, not just in a skills list.** A skills list is a claim; a bullet with a number is proof.",
         "**Then re-run the check.** Two or three passes usually moves a 40% into the 70s without inventing anything.",
       ],
+    },
+
+    { h2: "No login, no upload, unlimited checks" },
+    {
+      p: "The whole check runs in your browser using JavaScript on the page. There is no account wall, no email gate, and no file sent to a server. Close the tab and the text is gone. That is the difference between this page and checkers that ask you to sign up for two free scans.",
+    },
+
+    { h2: "Checker vs Jobscan vs a full rewrite" },
+    {
+      table: {
+        head: ["", "This checker", "Jobscan", "Tailoring from a job link"],
+        rows: [
+          ["Needs an account", "No", "Yes", "Yes"],
+          ["Uploads your file", "No", "Yes", "Yes, to your account"],
+          ["Job-description matching", "Yes", "Yes", "Yes"],
+          ["Rewrites the CV", "No", "No", "Yes"],
+          ["Free limit", "Unlimited", "A few scans / month", "Paid generations"],
+        ],
+      },
+    },
+    {
+      p: "Jobscan is the benchmark match rate. This page is the no-login diagnostic. If you want the rewrite as well, that is [tailoring from a job link](/tailor-cv-from-job-link). A longer comparison of free checkers is in [best free ATS resume checkers 2026](/blog/best-free-ats-resume-checkers-2026).",
     },
 
     { h2: "Checker, or tailoring?" },

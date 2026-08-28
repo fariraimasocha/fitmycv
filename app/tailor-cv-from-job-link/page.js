@@ -26,12 +26,14 @@ import { softwareApplicationSchema } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   absoluteTitle: "Tailor Your CV From a Job Link (2026) | FitMyCV",
   description:
-    "Paste any job link from LinkedIn, Indeed, Glassdoor or a careers page, and FitMyCV tailors your CV and cover letter to that role in seconds, with ATS keywords.",
+    "Tailor your resume to a job description with free AI: paste any job link from LinkedIn, Indeed, Glassdoor or a careers page, or paste the JD text, and get a tailored CV and cover letter.",
   path: "/tailor-cv-from-job-link",
   keywords: [
     "tailor cv from job link",
-    "tailor resume from job url",
     "paste job link to tailor resume",
+    "tailor resume to job description ai free",
+    "ai resume builder based on job description",
+    "tailor resume from job url",
     "tailored cv from job posting url",
     "ai resume from job link",
     "job specific resume",
@@ -97,9 +99,10 @@ export default function TailorCvFromJobLinkPage() {
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-              Paste a job link from LinkedIn, Indeed, or any board and FitMyCV
-              rewrites your resume and cover letter to match the role, keyword
-              for keyword, ready in seconds.
+              Tailor your resume to a job description with AI: paste a job
+              link from LinkedIn, Indeed, or any board — or paste the posting
+              text — and FitMyCV rewrites your CV and cover letter to match
+              the role, keyword for keyword.
             </p>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">

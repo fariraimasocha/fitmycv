@@ -61,7 +61,7 @@ const HELP_LINKS = [
   {
     icon: BookOpenIcon,
     title: "Guides and resume examples",
-    body: "How ATS parsing works, how to tailor a CV, and worked examples for ten roles.",
+    body: "How ATS parsing works, how to tailor a CV, and worked examples for fourteen roles.",
     href: "/blog",
     cta: "Read the guides",
   },

@@ -7,11 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
-import {
-  organizationSchema,
-  websiteSchema,
-  softwareApplicationSchema,
-} from "@/lib/structured-data";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -119,7 +115,6 @@ export default function RootLayout({ children }) {
       >
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
-        <JsonLd data={softwareApplicationSchema} />
         <QueryProvider>
           <AuthProvider>
             {children}

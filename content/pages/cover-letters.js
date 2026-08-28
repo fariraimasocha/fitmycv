@@ -13,6 +13,8 @@ export const aiCoverLetterGenerator = {
     "cover letter generator",
     "ai cover letter writer",
     "generate cover letter from job description",
+    "ai cover letter generator from resume and job description",
+    "ai cover letter generator from job description free",
     "cover letter from job link",
   ],
   eyebrow: "AI cover letter generator",
@@ -112,6 +114,22 @@ export const aiCoverLetterGenerator = {
       },
     },
 
+    { h2: "A cover letter from your resume and the job description" },
+    {
+      p: "The useful input pair is your real CV plus the full posting, not a tone slider and a job title. FitMyCV reads both: the letter names the role, answers the posting's top requirement with a number already on your CV, and leaves unsupported claims out. That is the difference between a generator and a template with the company name swapped in.",
+    },
+    {
+      compare: {
+        title: "Opening, before and after",
+        context:
+          "Target: Customer Success Manager at a B2B SaaS company. The posting stresses reducing churn and onboarding enterprise accounts.",
+        before:
+          "I am writing to apply for the Customer Success Manager position at your company. I am a passionate professional who thrives in fast-paced environments and would be a great fit for your team.",
+        after:
+          "I am applying for the Customer Success Manager role because I have spent four years onboarding enterprise accounts and cutting logo churn — most recently taking a 40-account book from 11% annual churn to 6% without adding headcount.",
+      },
+    },
+
     { h2: "The structure it produces" },
     {
       steps: [
@@ -173,9 +191,9 @@ export const aiCoverLetterGenerator = {
       body: "The matching CV, generated from the same posting.",
     },
     {
-      label: "ATS resume checker",
-      href: "/ats-resume-checker",
-      body: "Check the CV your letter is attached to before you send both.",
+      label: "Cover letter from a job description",
+      href: "/blog/cover-letter-from-job-description",
+      body: "Worked letter: each paragraph mapped to a line in the posting.",
     },
   ],
 };

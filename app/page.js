@@ -11,6 +11,10 @@ import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
+import JsonLd from "@/components/JsonLd";
+import { faqSchema } from "@/lib/seo";
+import { softwareApplicationSchema } from "@/lib/structured-data";
+import { HOME_FAQS } from "@/content/pages/home";
 
 // The homepage previously shared its title tag with /tailor-cv-from-job-link,
 // which put the two pages in competition for the same query. The homepage now
@@ -60,6 +64,8 @@ export default function Home() {
         <CTABand />
       </main>
       <Footer />
+      <JsonLd data={faqSchema(HOME_FAQS)} />
+      <JsonLd data={softwareApplicationSchema} />
     </div>
   );
 }

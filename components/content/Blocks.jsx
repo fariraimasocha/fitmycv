@@ -188,7 +188,7 @@ function Block({ block }) {
           <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
             {block.callout.title}
           </p>
-          <p className="mt-2 text-sm leading-7 text-[var(--landing-ink-soft)]">
+          <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-[var(--landing-ink-soft)]">
             {inline(block.callout.body, "callout")}
           </p>
         </div>

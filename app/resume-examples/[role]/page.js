@@ -8,7 +8,12 @@ import CTABand from "@/components/landing/CTABand";
 import FaqSection from "@/components/content/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import { RESUME_EXAMPLES, getResumeExample } from "@/content/resume-examples";
-import { breadcrumbSchema, faqSchema, pageMetadata } from "@/lib/seo";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+  pageMetadata,
+} from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -44,16 +49,19 @@ export async function generateMetadata({ params }) {
 
   // Role names vary from "Nurse" to "Customer Service Representative", so the
   // brand suffix only fits on some. Append it when the title stays under 60.
-  const baseTitle = `${example.role} Resume Example (2026)`;
+  const baseTitle =
+    example.seoTitle || `${example.role} Resume Example (2026)`;
 
   return pageMetadata({
     absoluteTitle:
       baseTitle.length + " | FitMyCV".length <= 60
         ? `${baseTitle} | FitMyCV`
         : baseTitle,
-    description: `A ${example.role.toLowerCase()} resume example with a worked summary, before-and-after bullets, a skills section, and the keywords that matter.`,
+    description:
+      example.seoDescription ||
+      `A ${example.role.toLowerCase()} resume example with a worked summary, before-and-after bullets, a skills section, and the keywords that matter.`,
     path: `/resume-examples/${example.slug}`,
-    keywords: [
+    keywords: example.seoKeywords || [
       `${example.role.toLowerCase()} resume example`,
       `${example.role.toLowerCase()} cv example`,
       `${example.role.toLowerCase()} resume`,
@@ -68,7 +76,7 @@ export default async function ResumeExamplePage({ params }) {
   const example = getResumeExample(slug);
   if (!example) notFound();
 
-  const faqs = faqsFor(example);
+  const faqs = [...(example.faqs || []), ...faqsFor(example)];
   const others = RESUME_EXAMPLES.filter((item) => item.slug !== slug).slice(0, 3);
 
   return (
@@ -295,6 +303,17 @@ export default async function ResumeExamplePage({ params }) {
       </main>
       <Footer />
 
+      <JsonLd
+        data={articleSchema({
+          headline: `${example.role} resume example`,
+          description:
+            example.seoDescription ||
+            `A ${example.role.toLowerCase()} resume example with a worked summary, before-and-after bullets, a skills section, and the keywords that matter.`,
+          path: `/resume-examples/${example.slug}`,
+          datePublished: example.date || "2026-07-29",
+          dateModified: example.updated || example.date || "2026-08-28",
+        })}
+      />
       <JsonLd data={faqSchema(faqs)} />
       <JsonLd
         data={breadcrumbSchema([

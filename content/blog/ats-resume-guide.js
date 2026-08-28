@@ -8,7 +8,7 @@ export const meta = {
   excerpt:
     "Most rejections happen before a human opens your CV. Here is exactly how applicant tracking systems read a resume in 2026, and how to write one that survives the parse.",
   date: "2026-07-29",
-  updated: "2026-07-29",
+  updated: "2026-08-28",
   readingTime: 12,
   category: "ATS",
   tags: ["ats", "resume", "keywords", "formatting"],
@@ -22,6 +22,8 @@ export const meta = {
     "ats resume",
     "applicant tracking system resume",
     "ats resume format 2026",
+    "how to optimize resume for ats",
+    "how to optimize resume for workday",
     "does my resume pass ats",
   ],
 };
@@ -228,6 +230,23 @@ export const blocks = [
       "**Sending the file as an image or a scan.** Nothing to extract, nothing to rank.",
       "**Burying the most relevant role.** If the role that matches is third down the page, most readers never reach it. Lead with relevance.",
     ],
+  },
+
+  { h2: "How to optimize a resume for ATS (including Workday)" },
+  {
+    p: "Optimising for an applicant tracking system is not a hack. It is parse-safe formatting plus the posting's vocabulary in places a recruiter will also read. That holds for Workday, Greenhouse, Lever, Taleo, and iCIMS. None of them need a vendor-specific template. They need selectable text, standard headings, and keywords you can evidence.",
+  },
+  {
+    ul: [
+      "**File:** text-based PDF unless the form demands .docx. Workday parses both when the text layer exists.",
+      "**Layout:** one column. Multi-column resumes are the usual Workday scramble.",
+      "**Headings:** Experience, Education, Skills — not “Where I have made an impact”.",
+      "**Keywords:** copy the posting's must-have tools and the exact job title into bullets that already describe that work.",
+      "**Do not** stuff a white-text block or a keyword footer. Recruiters see it, and it does not help ranking the way people think it does.",
+    ],
+  },
+  {
+    p: "If you want a score against one posting before you send, use the [free ATS resume checker](/ats-resume-checker). It will not simulate Workday's private ranking. It will tell you which required terms are missing.",
   },
 
   { h2: "How to check your resume before you send it" },

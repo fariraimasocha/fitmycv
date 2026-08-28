@@ -437,6 +437,247 @@ export const RESUME_EXAMPLES = [
     ],
     tip: "Include one thing you killed. Deciding not to build something, with the reasoning and the reallocation, is the strongest product signal on a CV.",
   },
+  {
+    slug: "first-job",
+    role: "First job",
+    seniority: "Student / fresher",
+    date: "2026-08-28",
+    updated: "2026-08-28",
+    seoTitle: "First Job Resume Example (2026)",
+    seoDescription:
+      "Resume examples for a first job, students, and freshers: a worked summary, four rewritten bullets from projects and part-time work, skills, and keywords.",
+    seoKeywords: [
+      "resume examples for first job",
+      "resume examples for students",
+      "resume examples for freshers",
+      "first job resume example",
+      "student resume example",
+      "entry level resume example",
+    ],
+    blurb:
+      "Students and freshers: how to write a first-job resume from projects, coursework, and part-time work instead of apologising for a blank history.",
+    intro:
+      "A first-job resume fails when it spends the opening line explaining what you have not done. Recruiters for entry roles already know you are new. They are looking for evidence you can finish something, work with other people, and learn a process. Coursework, a campus project, a weekend job, and volunteering all count if you write them the same way you would write a job: verb, specific action, a number.",
+    summary:
+      "Recent graduate applying for a first analyst role. Built a 12-week course project that tracked 800 survey responses and cut the team's reporting time from a day to two hours. Combines part-time retail, a student society treasurer role, and coursework in Excel and SQL.",
+    bullets: [
+      {
+        before: "Completed a university project as part of my degree.",
+        after:
+          "Built a survey dashboard in Excel and SQL for a 12-week research module, cleaning 800 responses and cutting the group's weekly reporting from one day to two hours.",
+      },
+      {
+        before: "Worked part-time in retail while studying.",
+        after:
+          "Handled the Saturday close for a 6-person shop, reconciling the till and restocking; cash variances stayed under £5 across a 9-month stretch.",
+      },
+      {
+        before: "Was treasurer of a student society.",
+        after:
+          "Kept the books for a 140-member society, moved expenses onto a shared sheet, and recovered £420 in unclaimed event deposits that had sat unmatched for a term.",
+      },
+      {
+        before: "Volunteered and helped out at events.",
+        after:
+          "Ran check-in for a 90-person campus careers evening, built the attendee list in advance, and cut queue time at the door from 20 minutes to under 6.",
+      },
+    ],
+    skills: [
+      "Tools: Excel, Google Sheets, SQL (coursework), Canva, Slack",
+      "Practice: research, scheduling, cash handling, event ops, written reports",
+      "Evidence: course project, part-time retail, society treasurer, volunteering",
+    ],
+    keywords: [
+      "first job",
+      "entry level",
+      "graduate",
+      "fresher",
+      "student",
+      "Excel",
+      "SQL",
+      "communication",
+      "organisation",
+      "teamwork",
+    ],
+    tip: "Lead with the project that most resembles the job, not with your degree title. The posting already knows you are a student. It does not know you shipped something.",
+    faqs: [
+      {
+        q: "What should a resume for a first job include if I have no work history?",
+        a: "A three-line summary naming the target title and one project result, then experience built from coursework, internships, part-time work, societies, and volunteering. Use the same bullet shape as a job: verb, specific action, a number. Leave the apology off the page.",
+      },
+      {
+        q: "Are student and fresher resume examples different from a first-job resume?",
+        a: "No. The structure is the same. The difference is which evidence you lead with: a dissertation or capstone for a graduate role, a weekend job for retail or hospitality, a society or volunteer role when the posting stresses coordination.",
+      },
+    ],
+  },
+  {
+    slug: "administrative-assistant",
+    role: "Administrative Assistant",
+    seniority: "Entry to mid",
+    date: "2026-08-28",
+    updated: "2026-08-28",
+    seoTitle: "Administrative Assistant Resume Example",
+    seoDescription:
+      "Administrative assistant resume example with rewritten bullets, calendar and inbox keywords, and the phrases those job postings actually search for.",
+    seoKeywords: [
+      "resume keywords for administrative assistant",
+      "administrative assistant resume example",
+      "admin assistant resume",
+      "administrative assistant cv example",
+    ],
+    blurb:
+      "Admin roles: calendar, inbox, and travel made specific, plus the keywords those postings actually search.",
+    intro:
+      "Administrative assistant CVs list software and say 'supported the team'. That is what the job title already says. Hiring managers search for calendar management, travel booking, expense reports, and inbox triage, and they want proof you kept those moving without being chased. The example below puts the volume and the reliability in the bullet, and parks the tools in a grouped skills block.",
+    summary:
+      "Administrative Assistant, 3 years supporting a 12-person operations team. Owned the shared calendar, travel, and expenses; cut unbooked meeting conflicts from weekly to rare and returned expense packs in two days. Comfortable as the person people ask when they need the file, the slot, or the booking.",
+    bullets: [
+      {
+        before: "Managed calendars and scheduled meetings for the team.",
+        after:
+          "Ran the shared calendar for 12 people, blocking focus time and resolving clashes the same day; unbooked conflicts dropped from several a week to one or two a month.",
+      },
+      {
+        before: "Booked travel and processed expenses.",
+        after:
+          "Booked 40+ domestic and 8 international trips in a year and closed expense reports within two working days, with no late-reimbursement complaints in the last two quarters.",
+      },
+      {
+        before: "Handled emails and answered the phone.",
+        after:
+          "Triaged a shared inbox of about 80 messages a day, routing vendor and candidate mail within an hour and drafting replies the manager only had to approve.",
+      },
+    ],
+    skills: [
+      "Practice: calendar management, travel booking, expense reports, inbox triage, meeting minutes, visitor coordination",
+      "Tools: Google Workspace, Microsoft Office, Slack, Expensify, Calendly",
+      "Strengths: confidentiality, follow-through, stakeholder coordination",
+    ],
+    keywords: [
+      "calendar management",
+      "travel booking",
+      "expense reports",
+      "Microsoft Office",
+      "Google Workspace",
+      "inbox management",
+      "meeting minutes",
+      "scheduling",
+      "administrative support",
+    ],
+    tip: "Put the search terms — calendar management, travel booking, expense reports — inside a bullet that shows volume or turnaround. A skills list of those words without evidence is what every other admin CV already has.",
+  },
+  {
+    slug: "business-analyst",
+    role: "Business Analyst",
+    seniority: "Mid",
+    date: "2026-08-28",
+    updated: "2026-08-28",
+    seoTitle: "Business Analyst Resume Example (2026)",
+    seoDescription:
+      "Business analyst resume example with a worked summary, before-and-after bullets, requirements and UAT keywords, and a grouped skills block.",
+    seoKeywords: [
+      "business analyst resume example",
+      "business analyst cv example",
+      "business analyst resume",
+      "business analyst resume keywords",
+    ],
+    blurb:
+      "Business analysis: requirements, process maps, and UAT written as decisions and outcomes, not as a list of artefacts.",
+    intro:
+      "Business analyst CVs inventory artefacts — BRDs, user stories, process maps — and skip the decision those artefacts were for. A hiring manager already assumes you can open Jira. They want to know whether a requirement you wrote shipped, whether UAT you ran caught something, and whether a process you mapped actually changed. The example below leads with that.",
+    summary:
+      "Business Analyst, 5 years in operations and SaaS delivery. Translated messy stakeholder requests into 40+ shipped user stories last year and cut a claims-handoff cycle from 9 days to 4. Works in SQL, Jira, and Miro; comfortable running UAT with people who did not ask for the change.",
+    bullets: [
+      {
+        before: "Gathered requirements and wrote user stories for the team.",
+        after:
+          "Ran discovery with 11 stakeholders and wrote 40+ user stories that shipped in two quarters, cutting rework tickets on that squad from 18 a sprint to 6.",
+      },
+      {
+        before: "Mapped processes and identified improvements.",
+        after:
+          "Mapped the claims handoff across ops and finance, removed two approval steps, and cut cycle time from 9 days to 4 without adding headcount.",
+      },
+      {
+        before: "Supported UAT and helped testers.",
+        after:
+          "Designed and ran UAT for a billing change with 14 testers, logged 27 issues before go-live, and blocked a release that would have double-charged 300 accounts.",
+      },
+    ],
+    skills: [
+      "Practice: requirements gathering, process mapping, user stories, UAT, stakeholder workshops, gap analysis",
+      "Tools: Jira, Confluence, SQL, Miro, Excel, Looker",
+      "Domains: operations, billing, internal tools",
+    ],
+    keywords: [
+      "business analyst",
+      "requirements gathering",
+      "user stories",
+      "process mapping",
+      "UAT",
+      "stakeholder management",
+      "SQL",
+      "Jira",
+      "gap analysis",
+    ],
+    tip: "Name one thing that did not ship because of you. Catching a bad requirement is a stronger BA signal than listing every document you produced.",
+  },
+  {
+    slug: "ux-designer",
+    role: "UX Designer",
+    seniority: "Mid",
+    date: "2026-08-28",
+    updated: "2026-08-28",
+    seoTitle: "UX Designer Resume Example (2026)",
+    seoDescription:
+      "UX designer resume example with rewritten bullets, research and Figma keywords, and a summary that leads with a shipped outcome rather than a tool list.",
+    seoKeywords: [
+      "ux designer resume example",
+      "ux designer cv example",
+      "ux resume example",
+      "ux designer resume keywords",
+    ],
+    blurb:
+      "UX roles: research, wireframes, and usability tests written as shipped outcomes, not a gallery of tools.",
+    intro:
+      "UX CVs fail as portfolios in text form: Figma, FigJam, 'user-centred', a list of methods, and no evidence a design reached production or changed a metric. Hiring managers for product design already assume you can open Figma. They want to know what you learned from users, what you changed, and what happened after release. The example below treats research and UI as the method, not the achievement.",
+    summary:
+      "UX Designer, 4 years on B2B product teams. Redesigned an onboarding flow after 16 usability tests and lifted activation from 44% to 61%. Works in Figma and a shared design system; partners with research, PM, and engineering through to release, not just to handoff.",
+    bullets: [
+      {
+        before: "Redesigned the onboarding experience in Figma.",
+        after:
+          "Redesigned onboarding after 16 usability tests, cutting the first-run flow from 9 steps to 5; activation rose from 44% to 61% in the six weeks after release.",
+      },
+      {
+        before: "Created wireframes and a design system.",
+        after:
+          "Extended the design system with 18 components used across 4 squads, cutting design-to-dev questions on those screens by about half over a quarter.",
+      },
+      {
+        before: "Ran user research and presented findings.",
+        after:
+          "Interviewed 22 customers on a search complaint, found the empty-state copy was the blocker, and shipped a rewrite that cut 'no results' support tickets by 31%.",
+      },
+    ],
+    skills: [
+      "Practice: user research, usability testing, wireframes, interaction design, accessibility, design systems",
+      "Tools: Figma, FigJam, Maze, HTML/CSS basics",
+      "Domains: B2B SaaS, onboarding, search and empty states",
+    ],
+    keywords: [
+      "ux designer",
+      "user research",
+      "wireframes",
+      "Figma",
+      "usability testing",
+      "design system",
+      "accessibility",
+      "interaction design",
+    ],
+    tip: "Put the metric next to the method. '16 usability tests' without what changed is a process note. 'Activation 44% to 61%' is the reason someone calls you.",
+  },
 ];
 
 export const EXAMPLES_BY_SLUG = Object.fromEntries(

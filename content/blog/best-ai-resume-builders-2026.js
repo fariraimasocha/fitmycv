@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "Five AI resume tools, five different jobs. A straight comparison of what each one is actually built for, including where ours is the wrong choice.",
   date: "2026-07-29",
-  updated: "2026-07-29",
+  updated: "2026-08-28",
   readingTime: 11,
   category: "Comparisons",
   tags: ["comparison", "tools", "ats", "resume"],
@@ -230,7 +230,7 @@ export const blocks = [
     ],
   },
   {
-    p: "Whichever you pick, the fundamentals do not change: single column, standard headings, the posting's vocabulary, and a number in every bullet. The [ATS-friendly resume guide](/blog/ats-resume-guide) covers those in full, and the [tailoring walkthrough](/blog/how-to-tailor-cv-to-job-description) covers the manual method if you would rather not pay for anything at all.",
+    p: "Whichever you pick, the fundamentals do not change: single column, standard headings, the posting's vocabulary, and a number in every bullet. The [ATS-friendly resume guide](/blog/ats-resume-guide) covers those in full, the [free ATS checker comparison](/blog/best-free-ats-resume-checkers-2026) sorts diagnostic tools, the [AI tailoring tools comparison](/blog/best-ai-resume-tailoring-tools-2026) is the sibling for job-link rewrites, and the [tailoring walkthrough](/blog/how-to-tailor-cv-to-job-description) covers the manual method if you would rather not pay for anything at all.",
   },
   {
     cta: {

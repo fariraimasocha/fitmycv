@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "Silence is data. If the same kind of application keeps vanishing, do not send fifty more copies. Find the stage that is failing, then fix only that.",
   date: "2026-08-24",
-  updated: "2026-08-24",
+  updated: "2026-08-28",
   readingTime: 9,
   category: "Job Search",
   series: "job-search-funnel",
@@ -17,6 +17,7 @@ export const meta = {
     "Flat illustration of a job application funnel with most applications falling away before reaching an interview stage",
   keywords: [
     "why am i not getting interviews",
+    "why am i not getting interviews for jobs i'm qualified for",
     "not getting interviews after applying",
     "no interview callbacks",
     "why is no one calling me back for jobs",
@@ -59,6 +60,11 @@ export const blocks = [
       title: "The short version",
       body: "You are not getting interviews because of one of four things: you are aiming at roles you cannot clear on paper, your CV does not prove relevance fast enough, you are only using crowded job boards, or you have not sent enough matched applications to read a rate yet. Find the failing stage first, fix that one thing, then send a small test batch before changing anything else.",
     },
+  },
+
+  { h2: "Why am I not getting interviews for jobs I'm qualified for?" },
+  {
+    p: "Being qualified is not the same as looking relevant in six seconds. Most people who hear nothing back on roles they can actually do are losing at an invisible stage: the CV does not use the posting's words, so it ranks low in the recruiter's search, or a hidden filter (location, work authorisation, a required certification) removes them before a person reads a line. The rest of this page is how to tell which stage is failing.",
   },
 
   { h2: "First, treat silence as data" },

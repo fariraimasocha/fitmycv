@@ -1,13 +1,13 @@
 export const meta = {
   slug: "how-to-explain-employment-gap-on-cv",
   title: "How to Explain an Employment Gap on Your CV",
-  seoTitle: "How to Explain an Employment Gap on a CV",
+  seoTitle: "How to Explain an Employment Gap on a Resume or CV",
   description:
-    "How to explain an employment gap on your CV and in interviews: present time off honestly, and keep the focus on what you can do now.",
+    "How to explain an employment gap on a resume or CV and in interviews: present time off honestly, and keep the focus on what you can do now.",
   excerpt:
     "A career gap is common and rarely a dealbreaker. What matters is that you account for it briefly, honestly, and without letting it dominate the page.",
   date: "2026-08-19",
-  updated: "2026-08-19",
+  updated: "2026-08-28",
   readingTime: 7,
   category: "CV Tips",
   series: "cv-foundations",
@@ -16,6 +16,7 @@ export const meta = {
   imageAlt:
     "Flat illustration of a CV timeline with a clearly labelled gap that is handled calmly rather than hidden",
   keywords: [
+    "how to explain employment gap on resume",
     "how to explain employment gap on cv",
     "gap in employment on cv",
     "career break on cv",
@@ -59,6 +60,11 @@ export const blocks = [
       title: "The short version",
       body: "Account for a gap briefly and honestly, never hide it. A short dated entry with a neutral reason closes the timeline. Keep the framing forward-looking: what you kept sharp during the break and why you are ready now. In interviews, answer in a sentence or two and pivot straight to the role.",
     },
+  },
+
+  { h2: "How to explain an employment gap on a resume" },
+  {
+    p: "US applications say resume; the method is the same as on a CV. Put a short dated line in the experience section that names the period and a neutral reason, then move on. Do not hide the dates, and do not write a paragraph. One line that closes the timeline is enough for the document. Save the longer story for the interview, and keep that to two sentences plus a pivot to the role.",
   },
 
   { h2: "Do not hide it, account for it" },

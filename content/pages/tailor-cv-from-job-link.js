@@ -65,6 +65,16 @@ export const HOW_TO = {
 };
 
 export const BLOCKS = [
+  { h2: "What is job-link CV tailoring?" },
+  {
+    p: "Job-link CV tailoring is using a job posting URL — from LinkedIn, Indeed, Glassdoor, or a careers page — as the source of truth for a rewrite. The page is read, the required skills and vocabulary are extracted, and your existing CV is reordered and reworded to match that posting. You can also paste the job description text if the link will not load. It is the same work as tailoring by hand, without the forty-minute copy-paste loop.",
+  },
+
+  { h2: "Tailor a resume to a job description with free AI" },
+  {
+    p: "Uploading your reference CV and scoring it against a posting is free. Generating the tailored CV and cover letter is the paid step, because that is the model pass. If you only want the diagnosis first, use the [free ATS resume checker](/ats-resume-checker) — no login, nothing uploaded. When you are ready for the rewrite, paste the job link here.",
+  },
+
   { h2: "Why a link beats a copy-paste" },
   {
     p: "Every tailoring tool needs the job description. Most make you find it, select it, copy it, and paste it, and that is exactly where the process quietly breaks. People paste half the posting, miss the requirements section that was behind a *show more* toggle, or lose the responsibilities list entirely because it sat in a separate accordion.",

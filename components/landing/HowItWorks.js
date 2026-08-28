@@ -93,7 +93,7 @@ const STEPS = [
   {
     num: "02",
     title: "AI tailors your CV",
-    copy: "We rewrite bullet points with impact, mirror the role's keywords, and keep your voice — ATS-ready in ~30 seconds.",
+    copy: "We rewrite bullet points with impact, mirror the role's keywords, and keep your voice, ATS-ready in ~30 seconds.",
   },
   {
     num: "03",
@@ -113,7 +113,7 @@ export default function HowItWorks() {
             <em className="text-[var(--landing-accent)]">No guesswork</em>.
           </h2>
           <p className="max-w-2xl text-base leading-relaxed text-[var(--landing-ink-soft)]">
-            Live in under a minute — from job link to a hire-ready application.
+            Live in under a minute, from job link to a hire-ready application.
           </p>
         </div>
 

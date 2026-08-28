@@ -24,15 +24,15 @@ function faqsFor({ role }) {
     },
     {
       q: `How long should a ${role.toLowerCase()} CV be?`,
-      a: "One page under roughly eight years of experience and two beyond that. Relevance matters more than length — a second page of unrelated history is worse than a single page that is entirely on target.",
+      a: "One page under roughly eight years of experience and two beyond that. Relevance matters more than length. A second page of unrelated history is worse than a single page that is entirely on target.",
     },
     {
       q: `What keywords do ${role.toLowerCase()} job postings use?`,
-      a: "Take them from the specific posting rather than from a generic list — recruiters search literal strings and different employers use different vocabulary for the same work. The keywords listed on this page are a starting point, not a substitute for reading the advert.",
+      a: "Take them from the specific posting rather than from a generic list. Recruiters search literal strings and different employers use different vocabulary for the same work. The keywords listed on this page are a starting point, not a substitute for reading the advert.",
     },
     {
       q: "Can I copy this resume example directly?",
-      a: "Use the structure, not the sentences. A CV that is a copied example describes someone else's career, and interviews expose that immediately. Copy the shape of the bullets — verb, specific action, measurable result — and fill them with your own work.",
+      a: "Use the structure, not the sentences. A CV that is a copied example describes someone else's career, and interviews expose that immediately. Copy the shape of the bullets (verb, specific action, measurable result) and fill them with your own work.",
     },
   ];
 }
@@ -211,7 +211,7 @@ export default async function ResumeExamplePage({ params }) {
               </h2>
               <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
                 A starting point, not a substitute for reading the advert. Take
-                the exact vocabulary from the posting in front of you — the{" "}
+                the exact vocabulary from the posting in front of you. The{" "}
                 <Link
                   href="/free-ats-keyword-checker"
                   className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
@@ -249,7 +249,7 @@ export default async function ResumeExamplePage({ params }) {
                 </p>
                 <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
                   Paste the posting URL and FitMyCV rewrites your own CV against
-                  it — your experience, that role&apos;s vocabulary.
+                  it: your experience, that role&apos;s vocabulary.
                 </p>
               </div>
               <Link
@@ -264,7 +264,7 @@ export default async function ResumeExamplePage({ params }) {
 
         <FaqSection
           faqs={faqs}
-          heading={`${example.role} CV — FAQ`}
+          heading={`${example.role} CV FAQ`}
         />
 
         <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">

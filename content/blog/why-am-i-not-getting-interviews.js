@@ -69,7 +69,7 @@ export const blocks = [
     p: "If almost everything sits in the first two piles, your problem is at the top of the funnel: targeting, CV positioning, or channel. That is where most people are stuck, and it is also the cheapest to fix. Do not start by polishing your interview answers when no one is offering you an interview.",
   },
 
-  { h2: "Stage 1 — Are you aiming at the right roles?" },
+  { h2: "Stage 1: Are you aiming at the right roles?" },
   {
     p: "The first leak is targeting. If you are applying to roles that are a stretch on paper, stale postings that already have 600 applicants, or vague titles that do not match your actual level, silence is the expected outcome, not a surprise.",
   },
@@ -83,7 +83,7 @@ export const blocks = [
     },
   },
 
-  { h2: "Stage 2 — Does your CV prove relevance in six seconds?" },
+  { h2: "Stage 2: Does your CV prove relevance in six seconds?" },
   {
     p: "The second leak is positioning. Two things read your CV: software that turns it into a searchable record, and a recruiter who scans the top third for about six seconds. If the top of your CV does not name the target title and show one clear proof of impact, you rank low and get skimmed past.",
   },
@@ -125,7 +125,7 @@ export const blocks = [
     ],
   },
 
-  { h2: "Stage 3 — Are you stuck in one crowded channel?" },
+  { h2: "Stage 3: Are you stuck in one crowded channel?" },
   {
     p: "The third leak is channel. Job boards put every applicant into the same queue, and a fully remote or popular role can pull hundreds of applicants within a day. You can be perfectly qualified and still invisible simply because of where you applied.",
   },
@@ -133,7 +133,7 @@ export const blocks = [
     p: "Boards are useful for finding roles. They are weak as your only route in. Add at least one higher-context channel: apply on the company's own careers page, sort listings by most recent so you are early rather than 400th, and send a short, specific note to the hiring manager or a recruiter when you can find one. Applying within the first day or two of a posting is one of the simplest edges available.",
   },
 
-  { h2: "Stage 4 — Have you sent enough to read a rate?" },
+  { h2: "Stage 4: Have you sent enough to read a rate?" },
   {
     p: "The fourth stage is volume, and it matters last, not first. Zero interviews from five applications tells you nothing. Zero from thirty well-matched applications tells you a lot. You need enough comparable applications to read a real response rate before you can conclude anything.",
   },

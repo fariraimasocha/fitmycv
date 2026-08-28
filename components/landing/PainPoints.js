@@ -11,7 +11,7 @@ const PAINS = [
   },
   {
     title: "ATS filters you out",
-    body: "Automated systems reject most CVs before a human ever reads them — wrong keywords, wrong format.",
+    body: "Automated systems reject most CVs before a human ever reads them: wrong keywords, wrong format.",
   },
   {
     title: "No feedback, no replies",
@@ -46,7 +46,7 @@ export default function PainPoints() {
             <em className="text-[var(--landing-accent)]">alone</em>.
           </h2>
           <p className="max-w-2xl text-base leading-relaxed text-[var(--landing-ink-soft)]">
-            Pasting the same CV everywhere feels fast — until the silence adds up.
+            Pasting the same CV everywhere feels fast until the silence adds up.
             Here&apos;s what&apos;s actually going wrong.
           </p>
         </div>

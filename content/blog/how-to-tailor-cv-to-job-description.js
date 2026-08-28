@@ -3,9 +3,9 @@ export const meta = {
   title: "How to Tailor Your CV to a Job Description (Step-by-Step)",
   seoTitle: "How to Tailor Your CV to a Job Description",
   description:
-    "A step-by-step method for tailoring your CV to a job description: decode the posting, rank requirements, rewrite your bullets — with a worked example.",
+    "A step-by-step method for tailoring your CV to a job description: decode the posting, rank requirements, rewrite your bullets, with a worked example.",
   excerpt:
-    "Tailoring is not rewriting your CV from scratch. It is a repeatable, forty-minute edit — and this is the exact sequence, with a real before and after.",
+    "Tailoring is not rewriting your CV from scratch. It is a repeatable, forty-minute edit, and this is the exact sequence, with a real before and after.",
   date: "2026-07-29",
   updated: "2026-07-29",
   readingTime: 10,
@@ -31,7 +31,7 @@ export const faqs = [
   },
   {
     q: "What exactly should I change when tailoring a CV?",
-    a: "Four things, in this order: the professional summary, the order of your bullets and roles, the vocabulary used in those bullets, and the skills section. Your employers, dates, and actual achievements never change — you are re-emphasising, not inventing.",
+    a: "Four things, in this order: the professional summary, the order of your bullets and roles, the vocabulary used in those bullets, and the skills section. Your employers, dates, and actual achievements never change. You are re-emphasising, not inventing.",
   },
   {
     q: "Is tailoring your CV the same as lying on it?",
@@ -39,7 +39,7 @@ export const faqs = [
   },
   {
     q: "Should I tailor my cover letter as well?",
-    a: "Yes, and it is higher leverage than most people expect, because a cover letter can address the specific gap or pivot your CV cannot explain on its own. It should reference the actual role, the company, and one concrete reason you fit — not a template with the company name swapped in.",
+    a: "Yes, and it is higher leverage than most people expect, because a cover letter can address the specific gap or pivot your CV cannot explain on its own. It should reference the actual role, the company, and one concrete reason you fit, not a template with the company name swapped in.",
   },
   {
     q: "How do I tailor a CV when I am changing industries?",
@@ -64,10 +64,10 @@ export const blocks = [
     p: "Two things happen to your CV. A parser turns it into a searchable record and a recruiter scans the top third for about six seconds. Tailoring targets both: it puts the posting's exact vocabulary into your record so you surface in searches, and it moves the most relevant evidence into the part of the page that actually gets read.",
   },
   {
-    p: "What it does not do is change your history. You are re-ranking and re-describing true things. That distinction matters, because it is what keeps tailoring honest and what makes it fast — you are editing, not authoring.",
+    p: "What it does not do is change your history. You are re-ranking and re-describing true things. That distinction matters, because it is what keeps tailoring honest and what makes it fast. You are editing, not authoring.",
   },
 
-  { h2: "Step 1 — Decode the job description" },
+  { h2: "Step 1: Decode the job description" },
   {
     p: "Before touching your CV, read the posting twice with a highlighter. You are extracting four categories:",
   },
@@ -75,7 +75,7 @@ export const blocks = [
     ul: [
       "**The exact job title.** This is the string recruiters search. Copy it verbatim, including seniority.",
       "**Must-have requirements.** Anything phrased as *required*, *essential*, *you will need*, or repeated more than once.",
-      "**Named tools, methods, and certifications.** Salesforce, dbt, Figma, IFRS, PRINCE2, Kubernetes — proper nouns are searched literally.",
+      "**Named tools, methods, and certifications.** Salesforce, dbt, Figma, IFRS, PRINCE2, Kubernetes. Proper nouns are searched literally.",
       "**Outcome language.** Phrases like *reduce churn*, *shorten cycle time*, *own the roadmap*. These tell you what the team is actually being measured on.",
     ],
   },
@@ -90,7 +90,7 @@ export const blocks = [
     p: "Split what you extracted into three buckets: things you can evidence strongly, things you can evidence weakly, and things you cannot evidence at all. The strong list drives your rewrite. The weak list gets one honest mention each. The third list is either a genuine gap to acknowledge in the cover letter, or a signal that this role is not a fit.",
   },
 
-  { h2: "Step 2 — Rewrite the professional summary" },
+  { h2: "Step 2: Rewrite the professional summary" },
   {
     p: "Your summary is the highest-value real estate on the page and the fastest thing to change. It should do three jobs in three lines: state the target title, state your level and domain, and name two or three of the posting's top requirements with evidence attached.",
   },
@@ -98,7 +98,7 @@ export const blocks = [
     compare: {
       title: "Summary, before and after",
       context:
-        "Target role: Senior Product Manager, B2B SaaS — posting emphasises pricing, cross-functional leadership, and usage-based billing.",
+        "Target role: Senior Product Manager, B2B SaaS. Posting emphasises pricing, cross-functional leadership, and usage-based billing.",
       before:
         "Experienced product professional with a track record of delivering great products in fast-paced environments. Passionate about user-centric design and collaborating with cross-functional teams.",
       after:
@@ -109,7 +109,7 @@ export const blocks = [
     p: "The second version is not more impressive because of better adjectives. It names the title, the domain, the posting's core theme, and a number.",
   },
 
-  { h2: "Step 3 — Reorder before you rewrite" },
+  { h2: "Step 3: Reorder before you rewrite" },
   {
     p: "Reordering is free and it is the edit people skip. Two moves:",
   },
@@ -123,7 +123,7 @@ export const blocks = [
     p: "Only cut a role entirely if it creates a confusing gap; otherwise compress it to a single line rather than deleting it.",
   },
 
-  { h2: "Step 4 — Rewrite bullets in the posting's language" },
+  { h2: "Step 4: Rewrite bullets in the posting's language" },
   {
     p: "Now rewrite the top three to five bullets so they use the posting's vocabulary while describing the same true events. Keep the structure consistent: **verb → specific action → measurable outcome.**",
   },
@@ -144,10 +144,10 @@ export const blocks = [
   },
   { h3: "Update the skills section last" },
   {
-    p: "Reorder your skills so the posting's must-haves appear first, and delete anything irrelevant to this role. A tight, relevant list of twelve beats an exhaustive list of forty. Anything important enough to list should also appear inside a bullet as evidence — see the [ATS-friendly resume guide](/blog/ats-resume-guide) for why claims without evidence do so little.",
+    p: "Reorder your skills so the posting's must-haves appear first, and delete anything irrelevant to this role. A tight, relevant list of twelve beats an exhaustive list of forty. Anything important enough to list should also appear inside a bullet as evidence. See the [ATS-friendly resume guide](/blog/ats-resume-guide) for why claims without evidence do so little.",
   },
 
-  { h2: "Step 5 — Check the match before you send" },
+  { h2: "Step 5: Check the match before you send" },
   {
     steps: [
       {
@@ -174,7 +174,7 @@ export const blocks = [
     p: "The method above works. The problem is arithmetic: forty minutes per role, ten roles a week, and tailoring is now six hours of your week. Almost everyone abandons it around application twelve and goes back to the generic CV.",
   },
   {
-    p: "FitMyCV compresses steps 1 through 4 into a paste. You give it the job link — LinkedIn, Indeed, Glassdoor, or a company careers page — and it reads the posting, extracts the requirements and the exact vocabulary, then rewrites your summary, reorders and rewrites your bullets, and produces a matching cover letter. You review and adjust rather than starting from a blank page.",
+    p: "FitMyCV compresses steps 1 through 4 into a paste. You give it the job link from LinkedIn, Indeed, Glassdoor, or a company careers page, and it reads the posting, extracts the requirements and the exact vocabulary, then rewrites your summary, reorders and rewrites your bullets, and produces a matching cover letter. You review and adjust rather than starting from a blank page.",
   },
   {
     table: {
@@ -189,7 +189,7 @@ export const blocks = [
     },
   },
   {
-    p: "It is still your CV — your employers, your achievements, your numbers. What changes is which of them lead, and in whose words.",
+    p: "It is still your CV: your employers, your achievements, your numbers. What changes is which of them lead, and in whose words.",
   },
   {
     cta: {

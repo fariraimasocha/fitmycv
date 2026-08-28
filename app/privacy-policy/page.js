@@ -3,9 +3,9 @@ import Footer from "@/components/landing/Footer";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
 export const metadata = {
-  title: "Privacy Policy — How We Handle Your CV Data",
+  title: "Privacy Policy: How We Handle Your CV Data",
   description:
-    "How FitMyCV collects, uses, and protects your data — including your CV content, Google account details, and payment information.",
+    "How FitMyCV collects, uses, and protects your data, including your CV content, Google account details, and payment information.",
   alternates: {
     canonical: "/privacy-policy",
   },
@@ -15,14 +15,14 @@ export const metadata = {
     siteName: "FitMyCV",
     title: "Privacy Policy | FitMyCV",
     description:
-      "How FitMyCV collects, uses, and protects your data — including your CV content, Google account details, and payment information.",
+      "How FitMyCV collects, uses, and protects your data, including your CV content, Google account details, and payment information.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "FitMyCV" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy | FitMyCV",
     description:
-      "How FitMyCV collects, uses, and protects your data — including your CV content, Google account details, and payment information.",
+      "How FitMyCV collects, uses, and protects your data, including your CV content, Google account details, and payment information.",
     images: ["/og-image.jpg"],
   },
 };
@@ -113,8 +113,8 @@ export default function PrivacyPolicyPage() {
 
             <Section title="AI processing">
               <p className="landing-copy text-base leading-7">
-                To generate your documents, we send the relevant text — such as
-                your CV content and the scraped job requirements — to third-party
+                To generate your documents, we send the relevant text (such as
+                your CV content and the scraped job requirements) to third-party
                 AI providers including OpenAI, Groq, and Exa.ai. These providers
                 process the text on our behalf to extract requirements and
                 produce your tailored CV and cover letter. We do not sell your

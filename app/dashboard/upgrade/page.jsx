@@ -56,7 +56,8 @@ export default function UpgradePage() {
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="space-y-6"
       >
-        <PricingCards />
+        {/* compact: the "Everything included" list below already covers PRO_FEATURES */}
+        <PricingCards compact />
 
         <div className="dashboard-card rounded-2xl border border-border bg-card p-6">
           <h2 className="mb-4 font-outfit text-sm font-extrabold text-foreground">

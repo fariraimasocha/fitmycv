@@ -3,7 +3,7 @@ export const meta = {
   title: "28 CV Action Verbs for Marketing Roles",
   seoTitle: "28 CV Action Verbs for Marketing Roles",
   description:
-    "Twenty-eight action verbs for marketing CVs — brand, growth, content, and demand generation — grouped by what they prove, with before/after bullet rewrites.",
+    "Twenty-eight action verbs for marketing CVs across brand, growth, content and demand generation, grouped by what they prove, with before/after bullet rewrites.",
   excerpt:
     "Marketing CVs drown in \"managed\" and \"created\". Twenty-eight verbs that show ownership and a number, grouped by discipline.",
   date: "2026-07-28",
@@ -30,7 +30,7 @@ export const faqs = [
   },
   {
     q: "How do I quantify marketing work that has no revenue attached?",
-    a: "Use the metric your team was actually judged on — reach, engagement rate, cost per lead, pipeline sourced, share of voice, organic sessions, or time-to-publish. Brand and content roles have numbers; they are just not always revenue.",
+    a: "Use the metric your team was actually judged on: reach, engagement rate, cost per lead, pipeline sourced, share of voice, organic sessions, or time-to-publish. Brand and content roles have numbers; they are just not always revenue.",
   },
   {
     q: "Should a marketing CV mention specific tools?",
@@ -77,18 +77,18 @@ export const blocks = [
   {
     callout: {
       title: "Every verb here wants a metric",
-      body: "That is the point of choosing them. If you write \"scaled\" and cannot finish the sentence with a number, the bullet is not ready — either find the number or pick a more honest verb.",
+      body: "That is the point of choosing them. If you write \"scaled\" and cannot finish the sentence with a number, the bullet is not ready. Either find the number or pick a more honest verb.",
     },
   },
 
   { h2: "Verbs to stop using" },
   {
     ul: [
-      "**Managed** — the default marketing verb, and it says nothing about outcome. Use it only for people and budgets.",
-      "**Created** — everything is created. Say what it did.",
-      "**Assisted with** — hides your ownership entirely.",
-      "**Handled** — vague and slightly defensive.",
-      "**Responsible for** — restates your job title.",
+      "**Managed:** the default marketing verb, and it says nothing about outcome. Use it only for people and budgets.",
+      "**Created:** everything is created. Say what it did.",
+      "**Assisted with:** hides your ownership entirely.",
+      "**Handled:** vague and slightly defensive.",
+      "**Responsible for:** restates your job title.",
     ],
   },
 

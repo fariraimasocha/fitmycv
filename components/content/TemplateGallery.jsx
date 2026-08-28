@@ -9,7 +9,7 @@ const NOTES = {
   classic: "The safe default. Clear headings, generous spacing, works everywhere.",
   modern: "Slightly warmer type and a lighter rule between sections.",
   clean: "Maximum whitespace. Good when your content is short and strong.",
-  minimal: "The tightest styling — nothing on the page but your words.",
+  minimal: "The tightest styling: nothing on the page but your words.",
   technical: "Foregrounds a structured skills and tooling block.",
   sidebar: "A distinct header block, still single-column in reading order.",
   spotlight: "Emphasises the summary at the top of page one.",

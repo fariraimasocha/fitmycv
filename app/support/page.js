@@ -12,9 +12,9 @@ import Footer from "@/components/landing/Footer";
 import { SUPPORT_EMAIL } from "@/lib/site";
 
 export const metadata = {
-  title: "Support — Help With CV Tailoring & Billing",
+  title: "Support: Help With CV Tailoring & Billing",
   description:
-    "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account — or email our support team directly.",
+    "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account, or email our support team directly.",
   alternates: {
     canonical: "/support",
   },
@@ -24,14 +24,14 @@ export const metadata = {
     siteName: "FitMyCV",
     title: "Support | FitMyCV",
     description:
-      "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account — or email our support team directly.",
+      "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account, or email our support team directly.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "FitMyCV" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Support | FitMyCV",
     description:
-      "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account — or email our support team directly.",
+      "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account, or email our support team directly.",
     images: ["/og-image.jpg"],
   },
 };
@@ -94,7 +94,7 @@ export default function SupportPage() {
               How can we help?
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-              Browse common topics below, or reach our team directly — we usually
+              Browse common topics below, or reach our team directly. We usually
               reply within one business day.
             </p>
           </div>

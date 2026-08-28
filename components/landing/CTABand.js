@@ -10,7 +10,7 @@ export default function CTABand() {
         </h2>
         <p className="max-w-[560px] text-center text-base leading-relaxed text-[var(--landing-ink-soft)]">
           Join job seekers landing interviews faster with AI-tailored
-          applications — lifetime access from $16.99.
+          applications. Lifetime access from $16.99.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href="/auth" className="landing-primary-btn text-sm">

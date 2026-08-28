@@ -17,7 +17,7 @@ export default function Pricing() {
           <span className="landing-accent-tail">Yours for good.</span>
         </h2>
         <p className="landing-copy text-center text-lg">
-          One payment for lifetime access, or go monthly — cancel anytime.
+          One payment for lifetime access, or go monthly, cancel anytime.
         </p>
       </div>
 

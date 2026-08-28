@@ -6,7 +6,7 @@ export const meta = {
   description:
     "How to write an ATS-friendly resume in 2026: formatting that parses cleanly, where to place keywords, and the mistakes that get CVs rejected.",
   excerpt:
-    "Most rejections happen before a human opens your CV. Here is exactly how applicant tracking systems read a resume in 2026 — and how to write one that survives the parse.",
+    "Most rejections happen before a human opens your CV. Here is exactly how applicant tracking systems read a resume in 2026, and how to write one that survives the parse.",
   date: "2026-07-29",
   updated: "2026-07-29",
   readingTime: 12,
@@ -33,7 +33,7 @@ export const faqs = [
   },
   {
     q: "Do applicant tracking systems really reject resumes automatically?",
-    a: "Most modern systems do not auto-reject on a score alone. What they do is rank and filter: recruiters search and sort by keyword, title, and skill, and a CV that parses badly or misses the role's core terms simply never appears in the result set. The practical outcome is the same — nobody reads it.",
+    a: "Most modern systems do not auto-reject on a score alone. What they do is rank and filter: recruiters search and sort by keyword, title, and skill, and a CV that parses badly or misses the role's core terms simply never appears in the result set. The practical outcome is the same. Nobody reads it.",
   },
   {
     q: "Should I use a PDF or a Word document?",
@@ -63,10 +63,10 @@ export const faqs = [
 
 export const blocks = [
   {
-    p: "You applied to forty roles and heard back from two. It is tempting to read that as a verdict on your experience, but far more often it is a verdict on **parsing and keyword coverage** — the CV never made it into the pile a human actually reads.",
+    p: "You applied to forty roles and heard back from two. It is tempting to read that as a verdict on your experience, but far more often it is a verdict on **parsing and keyword coverage**. The CV never made it into the pile a human actually reads.",
   },
   {
-    p: "Almost every mid-size and enterprise employer now runs applications through an applicant tracking system. The ATS ingests your file, extracts the text, tries to slot that text into structured fields — name, employer, title, dates, skills — and stores the result as a searchable record. Recruiters then search that database. If the extraction went badly, or your record does not contain the words they search for, you are not rejected so much as **invisible**.",
+    p: "Almost every mid-size and enterprise employer now runs applications through an applicant tracking system. The ATS ingests your file, extracts the text, tries to slot that text into structured fields (name, employer, title, dates, skills) and stores the result as a searchable record. Recruiters then search that database. If the extraction went badly, or your record does not contain the words they search for, you are not rejected so much as **invisible**.",
   },
   {
     p: "This guide covers what actually breaks in that pipeline, in the order it breaks: the file, the layout, the section structure, the keywords, and the evidence. Work through it once on your master CV and you will not have to think about it again.",
@@ -80,7 +80,7 @@ export const blocks = [
   {
     ol: [
       "**Ingestion.** Your file is uploaded and the system attempts to extract a text layer from it. A scanned or image-based file dies here with nothing to show.",
-      "**Parsing.** The extracted text is split into blocks and mapped onto fields the system understands — contact details, work history entries, education, skills. This is where multi-column layouts, tables, and unusual headings cause the most damage.",
+      "**Parsing.** The extracted text is split into blocks and mapped onto fields the system understands: contact details, work history entries, education, skills. This is where multi-column layouts, tables, and unusual headings cause the most damage.",
       "**Structuring.** Each work history entry is broken into employer, title, start date, and end date. Inconsistent date formats and job titles buried inside a paragraph reduce the quality of this step.",
       "**Search and ranking.** A recruiter searches for a title, a skill, a location, or a boolean string. Some systems also score your record against the requisition automatically. Either way, you surface only if the terms are present in your record.",
       "**Human review.** A recruiter opens the shortlist and spends a matter of seconds per CV deciding whether to read properly.",
@@ -107,11 +107,11 @@ export const blocks = [
   },
   { h3: "Avoid tables, text boxes, and columns for layout" },
   {
-    p: "Tables are read inconsistently — some parsers go cell by cell and destroy the reading order, some drop nested tables entirely. Use ordinary paragraphs and bullet lists. If you want two things side by side, such as a job title and dates, put them on one line separated by a pipe or an en dash.",
+    p: "Tables are read inconsistently. Some parsers go cell by cell and destroy the reading order, some drop nested tables entirely. Use ordinary paragraphs and bullet lists. If you want two things side by side, such as a job title and dates, put them on one line separated by a pipe or an en dash.",
   },
   { h3: "Drop the graphics" },
   {
-    p: "Photos, logos, icons, donut charts, and skill-rating dots contain no text. A parser sees nothing. A recruiter sees a claim with no evidence — a four-out-of-five rating for Python means nothing next to a bullet that says you shipped a Python service handling a specific load.",
+    p: "Photos, logos, icons, donut charts, and skill-rating dots contain no text. A parser sees nothing. A recruiter sees a claim with no evidence. A four-out-of-five rating for Python means nothing next to a bullet that says you shipped a Python service handling a specific load.",
   },
   { h3: "Use standard, boring fonts" },
   {
@@ -119,7 +119,7 @@ export const blocks = [
   },
   { h3: "Send a text-based PDF" },
   {
-    p: "Unless the form asks for .docx, export a PDF directly from your editor — never print-to-image or scan. To verify, open the PDF and try to select a line of text with your cursor. If you cannot select it, no parser can read it.",
+    p: "Unless the form asks for .docx, export a PDF directly from your editor, never print-to-image or scan. To verify, open the PDF and try to select a line of text with your cursor. If you cannot select it, no parser can read it.",
   },
   {
     compare: {
@@ -129,7 +129,7 @@ export const blocks = [
       before:
         "Jane Okafor  Skills  Senior Data Analyst  SQL, Python  Acme Corp 2022–Present  dbt, Looker  Built reporting pipeline...",
       after:
-        "Jane Okafor\nSenior Data Analyst | London | jane@email.com\n\nEXPERIENCE\nAcme Corp — Senior Data Analyst (2022–Present)\n• Built reporting pipeline...\n\nSKILLS\nSQL, Python, dbt, Looker",
+        "Jane Okafor\nSenior Data Analyst | London | jane@email.com\n\nEXPERIENCE\nAcme Corp - Senior Data Analyst (2022–Present)\n• Built reporting pipeline...\n\nSKILLS\nSQL, Python, dbt, Looker",
     },
   },
 
@@ -155,12 +155,12 @@ export const blocks = [
   },
   { h3: "Write dates and titles consistently" },
   {
-    p: "Use one date format throughout — `Mar 2022 – Present` or `03/2022 – Present`, not both. Put the job title on its own line next to the employer rather than inside a sentence. Spell out the title the way the industry writes it: if the market says **Product Manager**, do not submit **Product Ninja**.",
+    p: "Use one date format throughout: `Mar 2022 – Present` or `03/2022 – Present`, not both. Put the job title on its own line next to the employer rather than inside a sentence. Spell out the title the way the industry writes it: if the market says **Product Manager**, do not submit **Product Ninja**.",
   },
 
   { h2: "Get the keywords right without stuffing" },
   {
-    p: "Keywords are how you get found in step 4. The job description is not a wish list to be admired — it is the literal vocabulary the recruiter will search with.",
+    p: "Keywords are how you get found in step 4. The job description is not a wish list to be admired. It is the literal vocabulary the recruiter will search with.",
   },
   { h3: "Take the terms from the posting, not from your imagination" },
   {
@@ -185,7 +185,7 @@ export const blocks = [
   },
   { h3: "Never fake it" },
   {
-    p: "White text, tiny fonts, and hidden keyword blocks are trivially caught — the text is visible the moment anyone copies the document, and some systems flag it outright. It converts a maybe into a definite no.",
+    p: "White text, tiny fonts, and hidden keyword blocks are trivially caught. The text is visible the moment anyone copies the document, and some systems flag it outright. It converts a maybe into a definite no.",
   },
   {
     callout: {
@@ -200,7 +200,7 @@ export const blocks = [
   },
   {
     ul: [
-      "Lead with the verb, not with \"Responsible for\" — see the [CV action verbs by industry series](/blog/cv-action-verbs-tech) for lists you can lift from.",
+      "Lead with the verb, not with \"Responsible for\". See the [CV action verbs by industry series](/blog/cv-action-verbs-tech) for lists you can lift from.",
       "Attach a number wherever one honestly exists: percentage, volume, time saved, revenue, headcount, error rate.",
       "Name the scope: team size, budget, region, user count. Scope is what separates two people with identical titles.",
       "Cut the duties everyone in your role performs and keep the things you specifically changed.",
@@ -254,10 +254,10 @@ export const blocks = [
 
   { h2: "Doing this for every application, without losing your evening" },
   {
-    p: "Everything above is correct and everything above is slow. Tailoring one CV properly — rereading the posting, remapping bullets, adjusting the summary, matching the vocabulary — takes most people 20 to 40 minutes. Applying to fifteen roles a week is then a part-time job, so people quietly revert to the generic CV and the response rate collapses.",
+    p: "Everything above is correct and everything above is slow. Tailoring one CV properly, which means rereading the posting, remapping bullets, adjusting the summary and matching the vocabulary, takes most people 20 to 40 minutes. Applying to fifteen roles a week is then a part-time job, so people quietly revert to the generic CV and the response rate collapses.",
   },
   {
-    p: "That is the specific problem FitMyCV solves. You paste the job link, and it reads the posting, extracts the requirements and the exact vocabulary, then rewrites your CV and cover letter against them — keeping your real experience and your voice, and putting the posting's terminology where it carries evidence. The output is a single-column, parse-safe PDF.",
+    p: "That is the specific problem FitMyCV solves. You paste the job link, and it reads the posting, extracts the requirements and the exact vocabulary, then rewrites your CV and cover letter against them, keeping your real experience and your voice, and putting the posting's terminology where it carries evidence. The output is a single-column, parse-safe PDF.",
   },
   {
     cta: {

@@ -33,7 +33,7 @@ const SIGNALS = [
   {
     icon: LinkIcon,
     title: "Works with the major boards",
-    body: "Paste a link from LinkedIn, Indeed, Glassdoor, or a company careers page — no copy-pasting job text.",
+    body: "Paste a link from LinkedIn, Indeed, Glassdoor, or a company careers page, with no copy-pasting job text.",
   },
   {
     icon: FilePdfIcon,

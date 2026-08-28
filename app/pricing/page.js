@@ -6,7 +6,7 @@ import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata = {
-  title: "Pricing — Lifetime Access for $16.99",
+  title: "Pricing: Lifetime Access for $16.99",
   description:
     "FitMyCV Premium is $16.99 lifetime or $6.99/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.",
   keywords: [
@@ -23,7 +23,7 @@ export const metadata = {
     type: "website",
     url: "/pricing",
     siteName: "FitMyCV",
-    title: "Pricing — Tailored CVs From Any Job Link | FitMyCV",
+    title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
     description:
       "Simple, transparent pricing. Lifetime access for $16.99 or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.",
     images: [
@@ -31,13 +31,13 @@ export const metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "FitMyCV pricing — tailor your CV from any job link",
+        alt: "FitMyCV pricing: tailor your CV from any job link",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pricing — Tailored CVs From Any Job Link | FitMyCV",
+    title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
     description:
       "Premium is $16.99 lifetime or $6.99/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel monthly anytime.",
     images: ["/og-image.jpg"],
@@ -51,11 +51,11 @@ const FAQS = [
   },
   {
     q: "What do I get with Premium?",
-    a: "Premium unlocks unlimited tailored CVs and cover letters from any job link, a match score and ATS score on every CV, interview prep with company research and outreach, daily job matches by email, and PDF export on everything.",
+    a: "Premium includes unlimited tailored CVs and cover letters from any job link, a match score and ATS score on every CV, interview prep with company research and outreach, daily job matches by email, and PDF export on everything.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Monthly subscriptions can be canceled anytime — you keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable.",
+    a: "Monthly subscriptions can be canceled anytime. You keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable.",
   },
   {
     q: "Which payment methods do you accept?",
@@ -101,7 +101,7 @@ export default function PricingPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
               Tailor your CV and cover letter to every job link you paste,
-              download them as clean PDFs, and track your match and ATS scores —
+              download them as clean PDFs, and track your match and ATS scores,
               all for one simple price.
             </p>
           </div>

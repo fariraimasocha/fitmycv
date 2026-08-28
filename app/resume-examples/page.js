@@ -21,7 +21,7 @@ const hub = {
   eyebrow: "Examples",
   h1: "Resume examples for ten jobs",
   lede:
-    "Not template galleries — worked examples. Each one shows the summary, the bullets rewritten from a weak version to a strong one, the skills block, and the vocabulary those postings actually search for.",
+    "Not template galleries, but worked examples. Each one shows the summary, the bullets rewritten from a weak version to a strong one, the skills block, and the vocabulary those postings actually search for.",
   blocks: [
     { h2: "How to use these examples" },
     {
@@ -38,14 +38,14 @@ const hub = {
     {
       callout: {
         title: "The numbers are the hard part",
-        body: "Most people can write the verb and the action from memory and stall on the result. Old dashboards, performance reviews, and handover documents are where those numbers live — spend twenty minutes there before you start writing.",
+        body: "Most people can write the verb and the action from memory and stall on the result. Old dashboards, performance reviews, and handover documents are where those numbers live. Spend twenty minutes there before you start writing.",
       },
     },
 
     { h2: "What every example has in common" },
     {
       ul: [
-        "A summary that names the target title, the level, and one result — never a list of adjectives.",
+        "A summary that names the target title, the level, and one result, never a list of adjectives.",
         "Bullets that end in a number, or in scope where no number honestly exists.",
         "A grouped skills section where every entry also appears as evidence in a bullet.",
         "Single-column, standard headings, nothing that scrambles when the file is parsed.",
@@ -57,7 +57,7 @@ const hub = {
 
     { h2: "From example to application" },
     {
-      p: "An example gets you a solid master CV. What earns responses is the next step: reordering and rewording it for each posting so the matching evidence leads and the vocabulary matches. That takes twenty to forty minutes per role by hand — the [tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass in about a minute.",
+      p: "An example gets you a solid master CV. What earns responses is the next step: reordering and rewording it for each posting so the matching evidence leads and the vocabulary matches. That takes twenty to forty minutes per role by hand. The [tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass in about a minute.",
     },
     {
       cta: {
@@ -75,11 +75,11 @@ const hub = {
     },
     {
       q: "Should I copy a resume example word for word?",
-      a: "No. Copied bullets describe achievements you cannot defend, and interviewers probe exactly the numbers that look strongest. Copy the pattern — verb, specific action, measurable result — and fill it with your own work.",
+      a: "No. Copied bullets describe achievements you cannot defend, and interviewers probe exactly the numbers that look strongest. Copy the pattern (verb, specific action, measurable result) and fill it with your own work.",
     },
     {
       q: "What is the difference between a resume example and a resume template?",
-      a: "A template is the layout — margins, headings, typography. An example is the content: what to actually write in each section and how to phrase it. You need both, and the [templates page](/resume-templates) covers the layout side.",
+      a: "A template is the layout: margins, headings, typography. An example is the content: what to actually write in each section and how to phrase it. You need both, and the [templates page](/resume-templates) covers the layout side.",
     },
     {
       q: "Which resume example should I use if my job is not listed?",
@@ -87,7 +87,7 @@ const hub = {
     },
     {
       q: "Do these examples work outside the US?",
-      a: "The bullet structure is universal. Conventions around length, photos, and personal details are not — the [CV examples page](/cv-examples) covers UK and European conventions, and the [resume templates page](/resume-templates) covers US ones.",
+      a: "The bullet structure is universal. Conventions around length, photos, and personal details are not. The [CV examples page](/cv-examples) covers UK and European conventions, and the [resume templates page](/resume-templates) covers US ones.",
     },
   ],
 };

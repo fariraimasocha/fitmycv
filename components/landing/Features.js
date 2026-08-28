@@ -293,7 +293,7 @@ export default function Features() {
           pill="Match insights"
           icon={GaugeIcon}
           title="Know your odds before you hit apply"
-          copy="See exactly how well your CV fits — score, gaps, and what to fix, at a glance."
+          copy="See exactly how well your CV fits: score, gaps, and what to fix, at a glance."
           className="sm:col-span-2"
         >
           <ScoreVisual />

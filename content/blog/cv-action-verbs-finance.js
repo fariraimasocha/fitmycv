@@ -3,7 +3,7 @@ export const meta = {
   title: "26 CV Action Verbs for Finance and Accounting Roles",
   seoTitle: "26 CV Action Verbs for Finance & Accounting",
   description:
-    "Twenty-six action verbs for finance, accounting, and FP&A CVs — grouped by what they prove, with before/after bullet rewrites and the weak verbs to drop.",
+    "Twenty-six action verbs for finance, accounting, and FP&A CVs, grouped by what they prove, with before/after bullet rewrites and the weak verbs to drop.",
   excerpt:
     "Finance CVs are precise about numbers and vague about impact. Twenty-six verbs that fix the second half.",
   date: "2026-07-28",
@@ -35,7 +35,7 @@ export const faqs = [
   },
   {
     q: "Should I list accounting standards and systems on my CV?",
-    a: "Yes, and name them explicitly — IFRS, US GAAP, SOX, NetSuite, SAP, Oracle, Workday. Recruiters search these as literal strings, so a bullet that says \"under IFRS 16\" does double duty as evidence and as a keyword.",
+    a: "Yes, and name them explicitly: IFRS, US GAAP, SOX, NetSuite, SAP, Oracle, Workday. Recruiters search these as literal strings, so a bullet that says \"under IFRS 16\" does double duty as evidence and as a keyword.",
   },
 ];
 
@@ -44,7 +44,7 @@ export const blocks = [
     p: "Finance CVs are unusual: they are full of numbers and still fail to show impact. *Prepared monthly management accounts* is precise about the task and silent about whether anything got better because you were there.",
   },
   {
-    p: "The verbs below push toward judgement — the decisions you made, the risk you removed, the time you gave back.",
+    p: "The verbs below push toward judgement: the decisions you made, the risk you removed, the time you gave back.",
   },
 
   { h2: "26 verbs, grouped by what they prove" },
@@ -78,18 +78,18 @@ export const blocks = [
   {
     callout: {
       title: "Numbers you already have",
-      body: "Close days, variance percentage, audit adjustments, DSO, headcount supported, entity count, transaction value, hours saved per month. Finance roles have more available metrics than almost any other function — use them.",
+      body: "Close days, variance percentage, audit adjustments, DSO, headcount supported, entity count, transaction value, hours saved per month. Finance roles have more available metrics than almost any other function, so use them.",
     },
   },
 
   { h2: "Verbs to stop using" },
   {
     ul: [
-      "**Prepared** — the default finance verb. Fine occasionally, but it describes production, not judgement.",
-      "**Assisted with** — hides ownership on exactly the work you want credit for.",
-      "**Responsible for** — restates the job title.",
-      "**Involved in** — proximity is not contribution.",
-      "**Handled** — vague where finance should be precise.",
+      "**Prepared:** the default finance verb. Fine occasionally, but it describes production, not judgement.",
+      "**Assisted with:** hides ownership on exactly the work you want credit for.",
+      "**Responsible for:** restates the job title.",
+      "**Involved in:** proximity is not contribution.",
+      "**Handled:** vague where finance should be precise.",
     ],
   },
 

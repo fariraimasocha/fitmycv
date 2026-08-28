@@ -13,12 +13,12 @@ const faqs = [
   {
     question: "Will my CV still sound like me?",
     answer:
-      "Absolutely. FitMyCv enhances your existing content — it doesn't replace it. Your voice, experience, and achievements remain front and center. We just make sure they're presented in the best possible way for each role.",
+      "Absolutely. FitMyCv enhances your existing content. It doesn't replace it. Your voice, experience, and achievements remain front and center. We just make sure they're presented in the best possible way for each role.",
   },
   {
     question: "What do I get for free, and what needs Premium?",
     answer:
-      "Free, you can upload and store your CV and track every application in one place. Premium unlocks the full tailoring suite: paste any job link, get a match score and ATS score, then tailor and download your CV and cover letter as polished PDFs. Premium also includes interview prep, company research, outreach messages, and daily job matches by email.",
+      "Free, you can upload and store your CV and track every application in one place. Premium adds the full tailoring suite: paste any job link, get a match score and ATS score, then tailor and download your CV and cover letter as polished PDFs. Premium also includes interview prep, company research, outreach messages, and daily job matches by email.",
   },
   {
     question: "What file formats can I export?",

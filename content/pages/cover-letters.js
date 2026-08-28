@@ -19,7 +19,7 @@ export const aiCoverLetterGenerator = {
   breadcrumbName: "AI cover letter generator",
   h1: "AI cover letter generator",
   lede:
-    "Paste the job link. FitMyCV reads the posting, matches it against your CV, and writes a cover letter that references the actual role and your actual evidence — not a template with the company name swapped in.",
+    "Paste the job link. FitMyCV reads the posting, matches it against your CV, and writes a cover letter that references the actual role and your actual evidence, not a template with the company name swapped in.",
   ctas: [
     { label: "Generate my cover letter", href: "/tailor-cv-from-job-link" },
     { label: "See the builder", href: "/cover-letter-builder", variant: "secondary" },
@@ -54,15 +54,15 @@ export const aiCoverLetterGenerator = {
     },
     {
       q: "Will recruiters be able to tell my cover letter was AI-generated?",
-      a: "They will spot a generic one — no company specifics, no numbers, three adjectives per sentence. A letter that names the actual role, references something specific about the posting, and cites a real result from your CV does not read that way. Always edit before sending.",
+      a: "They will spot a generic one: no company specifics, no numbers, three adjectives per sentence. A letter that names the actual role, references something specific about the posting, and cites a real result from your CV does not read that way. Always edit before sending.",
     },
     {
       q: "How long should a cover letter be?",
-      a: "Three to four short paragraphs, comfortably under one page — roughly 250 to 350 words. Its job is to connect two or three things on your CV to the specific role, and to say the one thing your CV cannot say for itself.",
+      a: "Three to four short paragraphs, comfortably under one page, roughly 250 to 350 words. Its job is to connect two or three things on your CV to the specific role, and to say the one thing your CV cannot say for itself.",
     },
     {
       q: "Do I still need a cover letter in 2026?",
-      a: "When the application asks for one, yes, and it is read more often than people assume for shortlisted candidates. It matters most when you are changing industries, explaining a gap, or applying somewhere your CV alone would not obviously fit — exactly the cases a CV cannot argue on its own.",
+      a: "When the application asks for one, yes, and it is read more often than people assume for shortlisted candidates. It matters most when you are changing industries, explaining a gap, or applying somewhere your CV alone would not obviously fit. Those are exactly the cases a CV cannot argue on its own.",
     },
     {
       q: "Can I edit the generated cover letter?",
@@ -108,7 +108,7 @@ export const aiCoverLetterGenerator = {
     {
       callout: {
         title: "It will not invent achievements",
-        body: "If your CV does not contain evidence for a requirement, the letter does not claim it. That constraint is what keeps the output defensible in an interview — and it is why the letter is only as good as the CV you upload.",
+        body: "If your CV does not contain evidence for a requirement, the letter does not claim it. That constraint is what keeps the output defensible in an interview, and it is why the letter is only as good as the CV you upload.",
       },
     },
 
@@ -116,19 +116,19 @@ export const aiCoverLetterGenerator = {
     {
       steps: [
         {
-          title: "Opening — the specific role, and why you",
+          title: "Opening: the specific role, and why you",
           body: "Names the role and the employer, and states in one sentence the strongest reason you fit. No \"I am writing to apply for\".",
         },
         {
-          title: "Body one — your closest evidence",
+          title: "Body one: your closest evidence",
           body: "Takes the posting's highest-weighted requirement and answers it with the achievement from your CV that most directly addresses it, number included.",
         },
         {
-          title: "Body two — the second angle, or the gap",
+          title: "Body two: the second angle, or the gap",
           body: "Either a second requirement with matching evidence, or an honest handling of the obvious objection: a pivot, a gap, or a domain change.",
         },
         {
-          title: "Close — a plain next step",
+          title: "Close: a plain next step",
           body: "One short paragraph. No restating the CV, no thanking them for their time twice.",
         },
       ],
@@ -139,7 +139,7 @@ export const aiCoverLetterGenerator = {
       ol: [
         "**Cut the first sentence if it restates the job title.** It almost always can go.",
         "**Check every number is one you can defend** in an interview, in the context it is used.",
-        "**Add the one thing only you know** — why this company, this team, this problem. A model cannot know it and its absence is what makes letters feel interchangeable.",
+        "**Add the one thing only you know:** why this company, this team, this problem. A model cannot know it and its absence is what makes letters feel interchangeable.",
         "**Read it aloud.** Anything you would not say out loud to a person, delete.",
         "**Keep it under a page.** If it needs a second page, the CV is doing the wrong job.",
       ],
@@ -147,7 +147,7 @@ export const aiCoverLetterGenerator = {
 
     { h2: "Cover letter and CV, from the same posting" },
     {
-      p: "Generating the two documents separately is how they end up contradicting each other — the CV leads with one achievement and the letter argues for a different one. FitMyCV parses the posting once and produces both from that parse, so the letter reinforces whatever the tailored CV puts first.",
+      p: "Generating the two documents separately is how they end up contradicting each other. The CV leads with one achievement and the letter argues for a different one. FitMyCV parses the posting once and produces both from that parse, so the letter reinforces whatever the tailored CV puts first.",
     },
     {
       p: "If you want to see how the CV side of that works, the [tailoring page](/tailor-cv-from-job-link) covers it, and the [cover letter builder](/cover-letter-builder) walks through building a letter from scratch when you do not have a posting URL to hand.",
@@ -209,7 +209,7 @@ export const coverLetterBuilder = {
     },
     {
       q: "How do I start a cover letter without saying 'I am writing to apply for'?",
-      a: "Open with the reason you fit, then name the role. For example: \"I moved a 40-person support org onto a self-serve model that cut ticket volume by a third — which is the problem your Support Operations Lead posting describes.\" It says the same thing and earns the second sentence.",
+      a: "Open with the reason you fit, then name the role. For example: \"I moved a 40-person support org onto a self-serve model that cut ticket volume by a third, which is the problem your Support Operations Lead posting describes.\" It says the same thing and earns the second sentence.",
     },
     {
       q: "Should I use the same cover letter for multiple jobs?",
@@ -217,15 +217,15 @@ export const coverLetterBuilder = {
     },
     {
       q: "Do I need a cover letter if the application says it is optional?",
-      a: "Include one when you have something the CV cannot say — a career change, a gap, a non-obvious fit, or genuine specific knowledge of the company. If you have none of those and your CV is well tailored, an optional letter adds little.",
+      a: "Include one when you have something the CV cannot say: a career change, a gap, a non-obvious fit, or genuine specific knowledge of the company. If you have none of those and your CV is well tailored, an optional letter adds little.",
     },
     {
       q: "How do I address a cover letter when I do not know the hiring manager?",
-      a: "\"Dear Hiring Team\" or \"Dear [Team name] Team\" is fine and reads better than \"To Whom It May Concern\". Do not spend twenty minutes hunting for a name — spend it on the evidence paragraphs instead.",
+      a: "\"Dear Hiring Team\" or \"Dear [Team name] Team\" is fine and reads better than \"To Whom It May Concern\". Do not spend twenty minutes hunting for a name. Spend it on the evidence paragraphs instead.",
     },
     {
       q: "Can I build a cover letter without writing anything myself?",
-      a: "You can have the first draft built from the job link and your CV, which handles the structure and the requirement mapping. You still need to add the one or two things only you know about why this employer — that is the part that makes it yours.",
+      a: "You can have the first draft built from the job link and your CV, which handles the structure and the requirement mapping. You still need to add the one or two things only you know about why this employer. That is the part that makes it yours.",
     },
   ],
   blocks: [
@@ -245,7 +245,7 @@ export const coverLetterBuilder = {
       },
     },
 
-    { h2: "Paragraph one — the opening" },
+    { h2: "Paragraph one: the opening" },
     {
       p: "Lead with the reason, not the ritual. The reader already knows you are applying; the envelope said so.",
     },
@@ -259,18 +259,18 @@ export const coverLetterBuilder = {
       },
     },
 
-    { h2: "Paragraph two — the evidence" },
+    { h2: "Paragraph two: the evidence" },
     {
       p: "Take the requirement the posting weights most heavily and answer it directly. One example, told properly, beats three mentioned in passing. Name the situation, what you did, and the number.",
     },
     {
       callout: {
         title: "Do not summarise your CV here",
-        body: "The recruiter has the CV attached. This paragraph should go deeper on one thing than the CV bullet does — the constraint you worked under, the decision you made, why it was not obvious.",
+        body: "The recruiter has the CV attached. This paragraph should go deeper on one thing than the CV bullet does: the constraint you worked under, the decision you made, why it was not obvious.",
       },
     },
 
-    { h2: "Paragraph three — the angle, or the objection" },
+    { h2: "Paragraph three: the angle, or the objection" },
     {
       p: "If your fit is obvious, use this paragraph for a second requirement. If it is not obvious, use it to say the thing the reader is already thinking:",
     },
@@ -283,14 +283,14 @@ export const coverLetterBuilder = {
       ],
     },
 
-    { h2: "Paragraph four — the close" },
+    { h2: "Paragraph four: the close" },
     {
       p: "One or two sentences. Say you would welcome a conversation and stop. Do not restate the CV, do not thank them twice, do not promise to follow up on Tuesday.",
     },
 
     { h2: "Building it from the posting instead of a blank page" },
     {
-      p: "The hard part of this structure is not the writing — it is deciding which requirement to lead with and which of your achievements answers it. That is a mapping problem, and it is the part that takes twenty minutes per application.",
+      p: "The hard part of this structure is not the writing. It is deciding which requirement to lead with and which of your achievements answers it. That is a mapping problem, and it is the part that takes twenty minutes per application.",
     },
     {
       p: "FitMyCV does that mapping from the job link: it ranks the posting's requirements, finds the evidence in your CV that answers each one, and drafts the four paragraphs against them. You then add the thing only you know. The [AI cover letter generator](/ai-cover-letter-generator) page covers exactly what it uses as input and what it refuses to invent.",

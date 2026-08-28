@@ -8,9 +8,9 @@ const COVER_LETTER = `Dear Hiring Manager,
 
 I am excited to apply for the Senior Software Engineer position at Stripe. With over 5 years of experience building scalable payment infrastructure and distributed systems, I am confident I can make an immediate impact on your team.
 
-At my current role at Acme Corp, I led the redesign of our checkout pipeline — reducing latency by 40% and increasing payment success rates from 91% to 97%. I worked closely with product and design teams to ship features used by over 2 million customers monthly.
+At my current role at Acme Corp, I led the redesign of our checkout pipeline, reducing latency by 40% and increasing payment success rates from 91% to 97%. I worked closely with product and design teams to ship features used by over 2 million customers monthly.
 
-Stripe's commitment to building the economic infrastructure of the internet deeply resonates with me. I am particularly drawn to your focus on developer experience and reliability — values I have championed throughout my career.
+Stripe's commitment to building the economic infrastructure of the internet deeply resonates with me. I am particularly drawn to your focus on developer experience and reliability, values I have championed throughout my career.
 
 I would love the opportunity to bring my experience in TypeScript, Go, and distributed systems to help Stripe continue to raise the bar for financial technology.
 
@@ -72,7 +72,7 @@ export default function CoverLetterDemo() {
         </h2>
         <p className="font-sans text-muted-foreground text-base max-w-xl">
           FitMyCV reads the job description and writes a tailored, professional
-          cover letter in seconds — in your voice.
+          cover letter in seconds, in your voice.
         </p>
       </div>
 
@@ -144,7 +144,7 @@ export default function CoverLetterDemo() {
 
       {/* Bottom note */}
       <p className="font-sans text-sm text-muted-foreground text-center">
-        Every letter is unique — written to match the exact job, company, and your background.
+        Every letter is unique, written to match the exact job, company, and your background.
       </p>
 
       <style jsx global>{`

@@ -11,9 +11,9 @@ import { pageMetadata, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "CV & Resume Blog — ATS Guides and Tips",
+  title: "CV & Resume Blog: ATS Guides and Tips",
   description:
-    "Practical guides on ATS-friendly resumes, tailoring your CV to a job description, and the action verbs that make bullets land — from the team behind FitMyCV.",
+    "Practical guides on ATS-friendly resumes, tailoring your CV to a job description, and the action verbs that make bullets land, from the team behind FitMyCV.",
   path: "/blog",
   keywords: [
     "cv blog",

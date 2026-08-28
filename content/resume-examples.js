@@ -8,11 +8,11 @@ export const RESUME_EXAMPLES = [
     role: "Software Engineer",
     seniority: "Mid to senior",
     blurb:
-      "Backend, frontend, and full-stack engineers — how to show system ownership rather than a list of technologies.",
+      "Backend, frontend, and full-stack engineers, and how to show system ownership rather than a list of technologies.",
     intro:
       "Software engineering CVs fail in a predictable way: the stack is exhaustively documented and the impact is missing. A recruiter can see you have used Kubernetes; they cannot see whether you kept a cluster alive under load or attended a talk about it. The example below leads with ownership and consequence, and lets the technology sit inside the evidence rather than in a wall of logos.",
     summary:
-      "Senior Backend Engineer, 7 years building payment and billing systems in Go and Python. Led the migration of a monolith's billing path to three services handling 4k req/s at p95 210ms. Comfortable owning a service end to end — design, on-call, and the postmortem.",
+      "Senior Backend Engineer, 7 years building payment and billing systems in Go and Python. Led the migration of a monolith's billing path to three services handling 4k req/s at p95 210ms. Comfortable owning a service end to end: design, on-call, and the postmortem.",
     bullets: [
       {
         before: "Worked on improving the performance of our main API.",
@@ -51,9 +51,9 @@ export const RESUME_EXAMPLES = [
     role: "Marketing Manager",
     seniority: "Mid to senior",
     blurb:
-      "Brand, growth, and demand generation — replacing \"managed\" with a decision and a metric.",
+      "Brand, growth, and demand generation, replacing \"managed\" with a decision and a metric.",
     intro:
-      "Marketing CVs drown in *managed* and *created*, and almost none of them attach a number. The fix is not more adjectives — it is naming the decision you made and the metric that moved because of it. Even brand and content roles have numbers; they are simply not always revenue.",
+      "Marketing CVs drown in *managed* and *created*, and almost none of them attach a number. The fix is not more adjectives. It is naming the decision you made and the metric that moved because of it. Even brand and content roles have numbers; they are simply not always revenue.",
     summary:
       "Marketing Manager, 6 years in B2B SaaS, focused on organic acquisition and lifecycle. Took content from 4k to 61k monthly organic sessions in 18 months and sourced 22% of pipeline from it. Runs a team of four across content, SEO, and email.",
     bullets: [
@@ -94,9 +94,9 @@ export const RESUME_EXAMPLES = [
     role: "Nurse",
     seniority: "Registered / band 5–6",
     blurb:
-      "Ward, community, and specialist nursing — showing caseload and judgement without breaching confidentiality.",
+      "Ward, community, and specialist nursing, showing caseload and judgement without breaching confidentiality.",
     intro:
-      "Clinical CVs undersell more than any other category, because clinicians are trained to describe work collectively and modestly. *Provided high-quality patient care* is true of everyone on the rota. Caseload, acuity, escalation, and audit numbers describe your scope entirely at the service level — no patient detail is ever needed.",
+      "Clinical CVs undersell more than any other category, because clinicians are trained to describe work collectively and modestly. *Provided high-quality patient care* is true of everyone on the rota. Caseload, acuity, escalation, and audit numbers describe your scope entirely at the service level. No patient detail is ever needed.",
     summary:
       "Registered Nurse (NMC PIN active), 5 years across acute surgical and post-operative care on a 28-bed ward. Manages a caseload of 8–10 patients per shift, precepts newly qualified staff, and led a discharge-planning audit that cut average delay by 2.1 hours.",
     bullets: [
@@ -138,7 +138,7 @@ export const RESUME_EXAMPLES = [
     role: "Project Manager",
     seniority: "Mid to senior",
     blurb:
-      "Delivery across technical and business programmes — showing scope, not just methodology.",
+      "Delivery across technical and business programmes, showing scope, not just methodology.",
     intro:
       "Project management CVs list certifications and methodologies and skip the thing hiring managers care about: how big, how complex, and what happened. Two project managers with identical PRINCE2 certificates can be running a £40k internal tool or a £6m multi-vendor migration. Scope is the differentiator.",
     summary:
@@ -181,9 +181,9 @@ export const RESUME_EXAMPLES = [
     role: "Data Analyst",
     seniority: "Junior to mid",
     blurb:
-      "Analytics and BI roles — proving the decision your analysis changed, not the chart you built.",
+      "Analytics and BI roles, proving the decision your analysis changed, not the chart you built.",
     intro:
-      "Analyst CVs describe outputs — dashboards built, reports produced, queries written — and skip outcomes. Nobody hires an analyst for dashboards; they hire one to change decisions. Every strong analyst bullet ends with what somebody did differently because of the work.",
+      "Analyst CVs describe outputs (dashboards built, reports produced, queries written) and skip outcomes. Nobody hires an analyst for dashboards; they hire one to change decisions. Every strong analyst bullet ends with what somebody did differently because of the work.",
     summary:
       "Data Analyst, 3 years in e-commerce analytics. Built the retention model that redirected £240k of annual retention spend toward the two cohorts that responded to it. Fluent in SQL and Python, and the person the commercial team goes to before making a call.",
     bullets: [
@@ -224,7 +224,7 @@ export const RESUME_EXAMPLES = [
     role: "Accountant",
     seniority: "Qualified / part-qualified",
     blurb:
-      "Financial and management accounting — quantifying the process, not just the outputs.",
+      "Financial and management accounting, quantifying the process, not just the outputs.",
     intro:
       "Accounting CVs are full of numbers and still fail to show impact, because the numbers describe the ledger rather than the improvement. Close days, audit adjustments, reconciliation backlog, and error rates are all legitimate achievement metrics, and they are sitting in your month-end pack already.",
     summary:
@@ -268,7 +268,7 @@ export const RESUME_EXAMPLES = [
     role: "Account Executive",
     seniority: "Mid to senior",
     blurb:
-      "New-logo and expansion sales — attainment, deal size, and cycle length in every bullet.",
+      "New-logo and expansion sales: attainment, deal size, and cycle length in every bullet.",
     intro:
       "Sales is the easiest function to quantify and the most likely to hide behind *managed a pipeline*. A hiring manager is reading for four numbers: quota and attainment, average deal size, win rate, and cycle length. If those are not on the page, the CV is doing none of its job.",
     summary:
@@ -312,7 +312,7 @@ export const RESUME_EXAMPLES = [
     role: "Customer Service Representative",
     seniority: "Entry to mid",
     blurb:
-      "Support and service roles — volume, resolution, and the process you improved.",
+      "Support and service roles: volume, resolution, and the process you improved.",
     intro:
       "Customer service CVs are often the thinnest, and they need not be. Support roles generate more measurable data than almost any other entry-level job: ticket volume, handling time, first-contact resolution, satisfaction scores. Using them turns a generic CV into a specific one immediately.",
     summary:
@@ -355,7 +355,7 @@ export const RESUME_EXAMPLES = [
     role: "Teacher",
     seniority: "Qualified / QTS",
     blurb:
-      "Primary and secondary teaching — attainment, intervention, and responsibility beyond the classroom.",
+      "Primary and secondary teaching: attainment, intervention, and responsibility beyond the classroom.",
     intro:
       "Teaching CVs describe the timetable and skip the outcomes. Attainment and progress data, intervention results, and whole-school responsibilities are the evidence, and every teacher has them. Lead with the subject and key stage, because that is what recruiters filter on first.",
     summary:
@@ -398,7 +398,7 @@ export const RESUME_EXAMPLES = [
     role: "Product Manager",
     seniority: "Mid to senior",
     blurb:
-      "Product roles — the decision you made and what happened, not the features you shipped.",
+      "Product roles: the decision you made and what happened, not the features you shipped.",
     intro:
       "Product CVs list shipped features, which tells a hiring manager what the roadmap contained and nothing about your judgement. The interesting part is always the decision: what you chose not to build, what the data said, and what moved as a result.",
     summary:
@@ -418,7 +418,7 @@ export const RESUME_EXAMPLES = [
       {
         before: "Ran user research and gathered feedback.",
         after:
-          "Ran 32 customer interviews across two segments and killed a committed integration project, redirecting a quarter of engineering capacity to onboarding — activation rose from 41% to 58%.",
+          "Ran 32 customer interviews across two segments and killed a committed integration project, redirecting a quarter of engineering capacity to onboarding, activation rose from 41% to 58%.",
       },
     ],
     skills: [

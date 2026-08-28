@@ -4,7 +4,7 @@
 export const FAQS = [
   {
     q: "How do I tailor my CV from a job link?",
-    a: "Sign in, upload your reference CV once, then paste the URL of the job you want to apply for. FitMyCV reads the listing, extracts the requirements and vocabulary, matches them against your experience, and rewrites your CV and cover letter to fit the role — usually in under a minute.",
+    a: "Sign in, upload your reference CV once, then paste the URL of the job you want to apply for. FitMyCV reads the listing, extracts the requirements and vocabulary, matches them against your experience, and rewrites your CV and cover letter to fit the role, usually in under a minute.",
   },
   {
     q: "Which job boards work with a pasted link?",
@@ -12,7 +12,7 @@ export const FAQS = [
   },
   {
     q: "What if the job link does not work?",
-    a: "Some postings sit behind a login or an aggressive bot check, and a few company sites render the description only after a JavaScript step. When a link cannot be read you can paste the job description text directly instead — everything downstream works identically.",
+    a: "Some postings sit behind a login or an aggressive bot check, and a few company sites render the description only after a JavaScript step. When a link cannot be read you can paste the job description text directly instead, and everything downstream works identically.",
   },
   {
     q: "Will tailoring my CV from a job link help me pass ATS?",
@@ -32,7 +32,7 @@ export const FAQS = [
   },
   {
     q: "Can I edit the tailored CV before downloading it?",
-    a: "Yes, inline and section by section. You should — your judgement about which of your own achievements matters most to a particular employer is better than any model's, and a two-minute edit is what turns a good draft into your CV.",
+    a: "Yes, inline and section by section. You should. Your judgement about which of your own achievements matters most to a particular employer is better than any model's, and a two-minute edit is what turns a good draft into your CV.",
   },
   {
     q: "How is this different from pasting the job description into ChatGPT?",
@@ -51,7 +51,7 @@ export const HOW_TO = {
   steps: [
     {
       name: "Upload your reference CV once",
-      text: "Your CV is parsed into structured sections — roles, dates, bullets, skills — and reused for every application from then on.",
+      text: "Your CV is parsed into structured sections (roles, dates, bullets, skills) and reused for every application from then on.",
     },
     {
       name: "Paste the job link",
@@ -67,7 +67,7 @@ export const HOW_TO = {
 export const BLOCKS = [
   { h2: "Why a link beats a copy-paste" },
   {
-    p: "Every tailoring tool needs the job description. Most make you find it, select it, copy it, and paste it — and that is exactly where the process quietly breaks. People paste half the posting, miss the requirements section that was behind a *show more* toggle, or lose the responsibilities list entirely because it sat in a separate accordion.",
+    p: "Every tailoring tool needs the job description. Most make you find it, select it, copy it, and paste it, and that is exactly where the process quietly breaks. People paste half the posting, miss the requirements section that was behind a *show more* toggle, or lose the responsibilities list entirely because it sat in a separate accordion.",
   },
   {
     p: "Pasting the URL removes that whole class of error. The page is read as published, including the sections you would have missed, and the extraction works from the complete text rather than from whatever survived your clipboard.",
@@ -81,7 +81,7 @@ export const BLOCKS = [
     steps: [
       {
         title: "The posting is fetched and reduced to text",
-        body: "The page is retrieved and stripped down to the actual job content — navigation, cookie banners, related-jobs rails, and footer boilerplate are discarded so they do not pollute the keyword extraction.",
+        body: "The page is retrieved and stripped down to the actual job content: navigation, cookie banners, related-jobs rails, and footer boilerplate are discarded so they do not pollute the keyword extraction.",
       },
       {
         title: "Structure is pulled out of the prose",
@@ -104,17 +104,17 @@ export const BLOCKS = [
   {
     callout: {
       title: "The constraint that makes it useful",
-      body: "The rewrite can only use evidence that exists in your reference CV. That is a limitation and it is the point — it is what keeps the output defensible when an interviewer asks you to talk through the bullet they found most interesting.",
+      body: "The rewrite can only use evidence that exists in your reference CV. That is a limitation and it is the point. It is what keeps the output defensible when an interviewer asks you to talk through the bullet they found most interesting.",
     },
   },
 
   { h2: "Three before-and-afters from real tailoring passes" },
   {
-    p: "The same experience, rewritten against three different postings. Note that nothing is added — the achievements were already on the CV. What changes is which one leads and which words describe it.",
+    p: "The same experience, rewritten against three different postings. Note that nothing is added. The achievements were already on the CV. What changes is which one leads and which words describe it.",
   },
   {
     compare: {
-      title: "1. Professional summary — targeting a pricing-heavy PM role",
+      title: "1. Professional summary: targeting a pricing-heavy PM role",
       context:
         "The posting leads with pricing, monetisation, and cross-functional work. The original summary was written for a generic product role.",
       before:
@@ -125,7 +125,7 @@ export const BLOCKS = [
   },
   {
     compare: {
-      title: "2. Experience bullet — targeting a reliability-focused engineering role",
+      title: "2. Experience bullet: targeting a reliability-focused engineering role",
       context:
         "The posting repeats latency, on-call, and incident reduction. The original bullet buried all three.",
       before:
@@ -136,7 +136,7 @@ export const BLOCKS = [
   },
   {
     compare: {
-      title: "3. Experience bullet — targeting a demand-generation marketing role",
+      title: "3. Experience bullet: targeting a demand-generation marketing role",
       context:
         "The posting weights pipeline sourced and attribution heavily; the original described activity rather than outcome.",
       before:
@@ -146,7 +146,7 @@ export const BLOCKS = [
     },
   },
   {
-    p: "The pattern in all three is the same one covered in [how to tailor your CV to a job description](/blog/how-to-tailor-cv-to-job-description): verb, specific action, measurable result — with the posting's vocabulary used where it honestly applies.",
+    p: "The pattern in all three is the same one covered in [how to tailor your CV to a job description](/blog/how-to-tailor-cv-to-job-description): verb, specific action, measurable result, with the posting's vocabulary used where it honestly applies.",
   },
 
   { h2: "Tailoring from a link versus tailoring by hand" },
@@ -169,7 +169,7 @@ export const BLOCKS = [
     },
   },
   {
-    p: "At two applications a month, do it by hand — the [step-by-step guide](/blog/how-to-tailor-cv-to-job-description) is all you need. At ten a week, six hours of tailoring is what makes people stop tailoring, and a generic CV is what a low response rate is made of.",
+    p: "At two applications a month, do it by hand. The [step-by-step guide](/blog/how-to-tailor-cv-to-job-description) is all you need. At ten a week, six hours of tailoring is what makes people stop tailoring, and a generic CV is what a low response rate is made of.",
   },
 
   { h2: "Tailoring a resume from a LinkedIn job link" },
@@ -177,12 +177,12 @@ export const BLOCKS = [
     p: "LinkedIn is where most people find the role and it is also where most copy-paste attempts go wrong: the description is collapsed behind a *see more* control, and the skills-match panel sits in a different part of the page entirely. Pasting the posting URL reads the full description rather than the visible fragment.",
   },
   {
-    p: "Paste the URL of the individual job — the one that looks like `linkedin.com/jobs/view/…` — rather than a search or a collection page. If you are viewing the role inside the LinkedIn app, use the share option to copy the link to the posting itself.",
+    p: "Paste the URL of the individual job, the one that looks like `linkedin.com/jobs/view/…`, rather than a search or a collection page. If you are viewing the role inside the LinkedIn app, use the share option to copy the link to the posting itself.",
   },
 
   { h2: "Tailoring a resume from an Indeed or Glassdoor listing" },
   {
-    p: "Indeed and Glassdoor postings are usually more structured than LinkedIn's — a clean requirements block and a responsibilities list — which makes the extracted requirement weighting more reliable. The same rule applies: paste the URL for the individual posting, not a search result page.",
+    p: "Indeed and Glassdoor postings are usually more structured than LinkedIn's, with a clean requirements block and a responsibilities list, which makes the extracted requirement weighting more reliable. The same rule applies: paste the URL for the individual posting, not a search result page.",
   },
   {
     p: "Aggregators sometimes host a truncated version of a description that lives in full on the employer's own careers site. Where both exist, the employer's page is the better link, because it is the version the hiring team actually wrote.",
@@ -190,7 +190,7 @@ export const BLOCKS = [
 
   { h2: "Company careers pages and everything else" },
   {
-    p: "Most company careers pages read fine, including the common applicant-tracking-system-hosted ones. Where a link cannot be retrieved — a login wall, an aggressive bot check, or a description that only renders after an interaction — paste the job description text directly instead. Every step after the fetch is identical.",
+    p: "Most company careers pages read fine, including the common applicant-tracking-system-hosted ones. Where a link cannot be retrieved (a login wall, an aggressive bot check, or a description that only renders after an interaction), paste the job description text directly instead. Every step after the fetch is identical.",
   },
 
   { h2: "What tailoring cannot fix" },
@@ -200,7 +200,7 @@ export const BLOCKS = [
   {
     ul: [
       "**A genuine experience gap.** If a role needs five years of something you have never done, no rewrite closes that, and the interview would find it anyway.",
-      "**A CV with nothing measurable in it.** Tailoring reorders and rewords your evidence. If there are no numbers anywhere, add them first — [how to write a resume](/how-to-write-a-resume) covers where to find them.",
+      "**A CV with nothing measurable in it.** Tailoring reorders and rewords your evidence. If there are no numbers anywhere, add them first. [How to write a resume](/how-to-write-a-resume) covers where to find them.",
       "**Applying to the wrong roles.** A high match score on a role you do not want is not progress.",
       "**The rest of the application.** Screening questions, portfolio links, and referrals still matter, and often more than the CV.",
     ],

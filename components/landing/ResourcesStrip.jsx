@@ -8,7 +8,7 @@ const RESOURCES = [
   {
     label: "Tailor a CV from a job link",
     href: "/tailor-cv-from-job-link",
-    body: "The flagship flow — paste a posting URL, get a tailored CV and cover letter.",
+    body: "The flagship flow: paste a posting URL, get a tailored CV and cover letter.",
   },
   {
     label: "Free ATS resume checker",

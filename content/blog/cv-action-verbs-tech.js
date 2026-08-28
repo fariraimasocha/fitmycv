@@ -3,7 +3,7 @@ export const meta = {
   title: "30 CV Action Verbs for Tech and Engineering Roles",
   seoTitle: "30 CV Action Verbs for Tech & Engineering Roles",
   description:
-    "Thirty action verbs for software engineering, data, and IT CVs — grouped by what they prove, with before/after rewrites and the weak verbs to drop.",
+    "Thirty action verbs for software engineering, data, and IT CVs, grouped by what they prove, with before/after rewrites and the weak verbs to drop.",
   excerpt:
     "\"Responsible for the backend\" tells a recruiter nothing. Thirty verbs that do, grouped by the thing each one proves.",
   date: "2026-07-28",
@@ -89,11 +89,11 @@ export const blocks = [
   { h2: "Verbs to stop using" },
   {
     ul: [
-      "**Responsible for** — describes the job description, not you.",
-      "**Helped with / assisted** — erases your contribution. Name the part you owned.",
-      "**Worked on** — the emptiest phrase in tech CVs.",
-      "**Utilised** — say *used*, or better, say what it achieved.",
-      "**Participated in** — attendance is not an achievement.",
+      "**Responsible for:** describes the job description, not you.",
+      "**Helped with / assisted:** erases your contribution. Name the part you owned.",
+      "**Worked on:** the emptiest phrase in tech CVs.",
+      "**Utilised:** say *used*, or better, say what it achieved.",
+      "**Participated in:** attendance is not an achievement.",
     ],
   },
 

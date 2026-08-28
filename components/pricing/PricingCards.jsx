@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
-import { PRICING, LIFETIME_SAVINGS_COPY } from "@/lib/pricing";
+// Callers render LIFETIME_SAVINGS_COPY themselves — see components/landing/Pricing.js.
+import { PRICING } from "@/lib/pricing";
 
 export default function PricingCards({
   defaultPlan = "lifetime",
@@ -30,15 +31,14 @@ export default function PricingCards({
 
   return (
     <div className={`flex w-full flex-col gap-6 ${compact ? "" : "items-center"}`}>
-      {!compact && (
-        <p className="text-center text-sm text-[var(--landing-ink-soft)] max-w-md">
-          {LIFETIME_SAVINGS_COPY}
-        </p>
-      )}
-
+      {/* Below md the cards stack, so the features panel is ordered above them —
+          otherwise mobile shows two prices and two CTAs before any reason to buy.
+          The md breakpoint matches the grid going two-up below. */}
       <div
         className={`grid w-full gap-4 ${
-          compact ? "grid-cols-1 sm:grid-cols-2" : "max-w-3xl grid-cols-1 md:grid-cols-2"
+          compact
+            ? "grid-cols-1 sm:grid-cols-2"
+            : "order-2 max-w-3xl grid-cols-1 md:order-1 md:grid-cols-2"
         }`}
       >
         {plans.map((plan) => {
@@ -77,25 +77,6 @@ export default function PricingCards({
                 </span>
               </div>
 
-              {!compact && (
-                <ul className="flex flex-col gap-2.5">
-                  {PRO_FEATURES.slice(0, 4).map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2.5 text-sm text-[var(--landing-ink-soft)]"
-                    >
-                      <CheckIcon
-                        size={14}
-                        weight="bold"
-                        className="mt-0.5 shrink-0 text-[var(--landing-primary)]"
-                        aria-hidden="true"
-                      />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
               <button
                 type="button"
                 onClick={() => handleCheckout(plan.id)}
@@ -112,11 +93,37 @@ export default function PricingCards({
         })}
       </div>
 
+      {/* Both plans are the same product on different billing terms, so the
+          feature list lives here once rather than being repeated per card. */}
+      {!compact && (
+        <div className="order-1 w-full max-w-3xl rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 sm:p-7 md:order-2">
+          <h3 className="text-center font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+            Both plans include everything
+          </h3>
+          <ul className="mt-5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+            {PRO_FEATURES.map((feature) => (
+              <li
+                key={feature}
+                className="flex items-start gap-2.5 text-sm text-[var(--landing-ink-soft)]"
+              >
+                <CheckIcon
+                  size={14}
+                  weight="bold"
+                  className="mt-0.5 shrink-0 text-[var(--landing-primary)]"
+                  aria-hidden="true"
+                />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {onSkip && (
         <button
           type="button"
           onClick={onSkip}
-          className="mx-auto text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+          className="order-3 mx-auto text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
         >
           {skipLabel}
         </button>

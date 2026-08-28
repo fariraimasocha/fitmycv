@@ -3,7 +3,7 @@ export const meta = {
   title: "26 CV Action Verbs for Sales and Account Management",
   seoTitle: "26 CV Action Verbs for Sales & Account Management",
   description:
-    "Twenty-six action verbs for sales, account management, and customer success CVs — grouped by stage of the cycle, with before/after bullet rewrites.",
+    "Twenty-six action verbs for sales, account management, and customer success CVs, grouped by stage of the cycle, with before/after bullet rewrites.",
   excerpt:
     "Sales CVs are the easiest to quantify and the most likely to hide behind \"managed a pipeline\". Twenty-six verbs that force the number out.",
   date: "2026-07-28",
@@ -27,7 +27,7 @@ export const meta = {
 export const faqs = [
   {
     q: "What are the best action verbs for a sales CV?",
-    a: "Verbs tied to a stage of the cycle: prospected, qualified, negotiated, closed, expanded, renewed, and recovered. Each one implies a number — quota attainment, deal size, win rate, or retention — which is exactly what a sales hiring manager is scanning for.",
+    a: "Verbs tied to a stage of the cycle: prospected, qualified, negotiated, closed, expanded, renewed, and recovered. Each one implies a number (quota attainment, deal size, win rate, or retention) which is exactly what a sales hiring manager is scanning for.",
   },
   {
     q: "What numbers should be on a sales CV?",
@@ -35,13 +35,13 @@ export const faqs = [
   },
   {
     q: "How do I write a sales CV if I missed quota?",
-    a: "Lead with the metrics you did move — pipeline generated, new logos, win rate, expansion, or cycle length — and give honest context such as a territory change or a product gap. A CV with one strong true number beats a CV with a vague claim a hiring manager will test in the interview.",
+    a: "Lead with the metrics you did move: pipeline generated, new logos, win rate, expansion, or cycle length. Then give honest context such as a territory change or a product gap. A CV with one strong true number beats a CV with a vague claim a hiring manager will test in the interview.",
   },
 ];
 
 export const blocks = [
   {
-    p: "Sales is the easiest function to quantify and one of the most likely to hide behind vague phrasing. *Managed a pipeline of enterprise accounts* is the sales equivalent of saying nothing — a hiring manager wants attainment, deal size, and cycle length.",
+    p: "Sales is the easiest function to quantify and one of the most likely to hide behind vague phrasing. *Managed a pipeline of enterprise accounts* is the sales equivalent of saying nothing. A hiring manager wants attainment, deal size, and cycle length.",
   },
   {
     p: "The verbs below are grouped by stage of the cycle, because the stage you are strongest at is usually the thing the posting is hiring for.",
@@ -85,11 +85,11 @@ export const blocks = [
   { h2: "Verbs to stop using" },
   {
     ul: [
-      "**Managed a pipeline** — everyone in sales manages a pipeline.",
-      "**Responsible for a territory** — restates the job title.",
-      "**Built relationships** — pleasant and unmeasurable. Say what the relationship produced.",
-      "**Assisted with deals** — the fastest way to sound junior.",
-      "**Worked with clients** — attendance again.",
+      "**Managed a pipeline:** everyone in sales manages a pipeline.",
+      "**Responsible for a territory:** restates the job title.",
+      "**Built relationships:** pleasant and unmeasurable. Say what the relationship produced.",
+      "**Assisted with deals:** the fastest way to sound junior.",
+      "**Worked with clients:** attendance again.",
     ],
   },
 

@@ -2,7 +2,7 @@
 
 export const atsResumeChecker = {
   slug: "ats-resume-checker",
-  seoTitle: "Free ATS Resume Checker — Score Your CV",
+  seoTitle: "Free ATS Resume Checker: Score Your CV",
   description:
     "Free ATS resume checker. Paste a job description and your CV to see your keyword match score and which required terms are missing. Nothing is uploaded.",
   keywords: [
@@ -18,7 +18,7 @@ export const atsResumeChecker = {
   breadcrumbName: "ATS resume checker",
   h1: "Free ATS resume checker",
   lede:
-    "Paste a job description and your CV. See your keyword match score and the exact terms the posting expects that your CV never mentions — in about ten seconds, without signing up.",
+    "Paste a job description and your CV. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds, without signing up.",
   ctas: [
     { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link" },
     { label: "Read the ATS guide", href: "/blog/ats-resume-guide", variant: "secondary" },
@@ -54,7 +54,7 @@ export const atsResumeChecker = {
     },
     {
       q: "Does my CV get uploaded or stored anywhere?",
-      a: "No. The text you paste never leaves your browser tab — there is no network request and nothing is written to a server. Close the tab and it is gone.",
+      a: "No. The text you paste never leaves your browser tab. There is no network request and nothing is written to a server. Close the tab and it is gone.",
     },
     {
       q: "What is a good ATS match score?",
@@ -76,7 +76,7 @@ export const atsResumeChecker = {
   blocks: [
     { h2: "What this checker actually measures" },
     {
-      p: "It extracts the terms the job description leans on — single words and two-word phrases, weighted by how often and how prominently they appear — and checks which of them appear anywhere in your CV text. The score is the weighted proportion covered.",
+      p: "It extracts the terms the job description leans on: single words and two-word phrases, weighted by how often and how prominently they appear. Then it checks which of them appear anywhere in your CV text. The score is the weighted proportion covered.",
     },
     {
       p: "That is deliberately narrow. It tells you about **vocabulary overlap**, which is the thing that determines whether a recruiter's keyword search surfaces you. It does not judge your writing, your layout, or your experience.",
@@ -84,7 +84,7 @@ export const atsResumeChecker = {
     {
       callout: {
         title: "The copy-paste test comes free",
-        body: "When you paste your CV in, look at what arrives. If sections land out of order or content is missing, that is exactly what an applicant tracking system will extract from your file — and it is a layout problem, not a keyword problem.",
+        body: "When you paste your CV in, look at what arrives. If sections land out of order or content is missing, that is exactly what an applicant tracking system will extract from your file, and it is a layout problem, not a keyword problem.",
       },
     },
 
@@ -101,7 +101,7 @@ export const atsResumeChecker = {
 
     { h2: "Checker, or tailoring?" },
     {
-      p: "This page diagnoses. It does not rewrite. That distinction matters, because the rewrite is the part that takes twenty to forty minutes per role — which is why most people stop tailoring after a dozen applications.",
+      p: "This page diagnoses. It does not rewrite. That distinction matters, because the rewrite is the part that takes twenty to forty minutes per role, which is why most people stop tailoring after a dozen applications.",
     },
     {
       table: {
@@ -117,7 +117,7 @@ export const atsResumeChecker = {
       },
     },
     {
-      p: "If you would rather skip the manual rewrite, [tailor your CV from the job link](/tailor-cv-from-job-link) instead — it reads the posting for you and produces the rewritten CV and cover letter directly. The [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description) covers the manual method in full if you prefer to do it yourself.",
+      p: "If you would rather skip the manual rewrite, [tailor your CV from the job link](/tailor-cv-from-job-link) instead. It reads the posting for you and produces the rewritten CV and cover letter directly. The [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description) covers the manual method in full if you prefer to do it yourself.",
     },
   ],
   related: [
@@ -156,7 +156,7 @@ export const freeAtsKeywordChecker = {
   breadcrumbName: "ATS keyword checker",
   h1: "Free ATS keyword checker",
   lede:
-    "Paste any job description and get the ranked list of terms it actually leans on — the vocabulary a recruiter will search with and an ATS will index. No account, no email, no limit.",
+    "Paste any job description and get the ranked list of terms it actually leans on: the vocabulary a recruiter will search with and an ATS will index. No account, no email, no limit.",
   ctas: [
     { label: "Score my CV too", href: "/ats-resume-checker" },
     { label: "Tailor from a job link", href: "/tailor-cv-from-job-link", variant: "secondary" },
@@ -173,7 +173,7 @@ export const freeAtsKeywordChecker = {
     },
     {
       q: "How many keywords should I include?",
-      a: "Cover the terms you can honestly evidence and stop there. Density targets are a myth — repeating a term ten times does not outrank mentioning it once inside a bullet with a result attached, and it reads badly to the human at the end.",
+      a: "Cover the terms you can honestly evidence and stop there. Density targets are a myth. Repeating a term ten times does not outrank mentioning it once inside a bullet with a result attached, and it reads badly to the human at the end.",
     },
     {
       q: "Do I need to give my email to see the results?",
@@ -187,7 +187,7 @@ export const freeAtsKeywordChecker = {
   blocks: [
     { h2: "Why keyword extraction is the first step" },
     {
-      p: "Before you rewrite a single bullet you need to know what the employer is actually asking for — not what the role is called, but which specific terms carry the weight. Postings bury this: a requirement mentioned once in a bullet list matters far less than a phrase repeated in the summary, the responsibilities, and the requirements.",
+      p: "Before you rewrite a single bullet you need to know what the employer is actually asking for, not what the role is called, but which specific terms carry the weight. Postings bury this: a requirement mentioned once in a bullet list matters far less than a phrase repeated in the summary, the responsibilities, and the requirements.",
     },
     {
       p: "Ranking the terms makes that visible in a few seconds instead of two careful readings.",
@@ -202,7 +202,7 @@ export const freeAtsKeywordChecker = {
         },
         {
           title: "Put the top terms in your summary",
-          body: "Anything in the top five belongs in your professional summary, with evidence attached — not buried in your third bullet under your second job.",
+          body: "Anything in the top five belongs in your professional summary, with evidence attached, not buried in your third bullet under your second job.",
         },
         {
           title: "Prove each term in a bullet",
@@ -241,7 +241,7 @@ export const freeAtsKeywordChecker = {
 
 export const resumeOptimizer = {
   slug: "resume-optimizer",
-  seoTitle: "AI Resume Optimizer — Rewrite Your CV for Any Job",
+  seoTitle: "AI Resume Optimizer: Rewrite Your CV for Any Job",
   description:
     "An AI resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
   keywords: [
@@ -256,7 +256,7 @@ export const resumeOptimizer = {
   breadcrumbName: "Resume optimizer",
   h1: "AI resume optimizer",
   lede:
-    "Your CV is not broken — it is generic. FitMyCV rewrites the CV you already have against the specific posting you are applying to, so the right evidence leads and the right words are used.",
+    "Your CV is not broken. It is generic. FitMyCV rewrites the CV you already have against the specific posting you are applying to, so the right evidence leads and the right words are used.",
   ctas: [
     { label: "Optimize my CV", href: "/tailor-cv-from-job-link" },
     { label: "Check my score first", href: "/ats-resume-checker", variant: "secondary" },
@@ -264,7 +264,7 @@ export const resumeOptimizer = {
   faqs: [
     {
       q: "What does a resume optimizer actually do?",
-      a: "It takes a CV you already have and improves it against a target: stronger verbs, quantified bullets, sections ordered by relevance, and the vocabulary the posting uses. It does not invent experience — it changes which of your real experience leads and how it is described.",
+      a: "It takes a CV you already have and improves it against a target: stronger verbs, quantified bullets, sections ordered by relevance, and the vocabulary the posting uses. It does not invent experience. It changes which of your real experience leads and how it is described.",
     },
     {
       q: "Will an AI-optimized resume still sound like me?",
@@ -272,7 +272,7 @@ export const resumeOptimizer = {
     },
     {
       q: "Can a resume optimizer fix a CV that keeps getting rejected?",
-      a: "It fixes two of the three common causes — weak keyword coverage and buried relevance. It cannot fix a layout that scrambles when parsed, so if your CV is a two-column template with a sidebar, change that first. The third cause, a genuine experience gap, no tool can fix.",
+      a: "It fixes two of the three common causes: weak keyword coverage and buried relevance. It cannot fix a layout that scrambles when parsed, so if your CV is a two-column template with a sidebar, change that first. The third cause, a genuine experience gap, no tool can fix.",
     },
     {
       q: "Is it safe to run my CV through an AI tool?",
@@ -290,7 +290,7 @@ export const resumeOptimizer = {
   blocks: [
     { h2: "The three reasons a CV gets ignored" },
     {
-      p: "Before optimising anything, it is worth knowing which problem you actually have — they need different fixes.",
+      p: "Before optimising anything, it is worth knowing which problem you actually have. They need different fixes.",
     },
     {
       table: {
@@ -304,7 +304,7 @@ export const resumeOptimizer = {
           [
             "Responses for some roles, silence for others",
             "Generic CV that matches some postings by luck",
-            "Tailor per posting — this is what an optimizer is for",
+            "Tailor per posting, which is what an optimizer is for",
           ],
           [
             "Recruiter calls that go nowhere",
@@ -315,18 +315,18 @@ export const resumeOptimizer = {
       },
     },
     {
-      p: "The [free ATS resume checker](/ats-resume-checker) tells you quickly which of these you are dealing with — paste your CV and see whether the text arrives intact and whether the vocabulary matches.",
+      p: "The [free ATS resume checker](/ats-resume-checker) tells you quickly which of these you are dealing with: paste your CV and see whether the text arrives intact and whether the vocabulary matches.",
     },
 
     { h2: "What the optimizer changes" },
     {
       ul: [
-        "**The professional summary** — rewritten to name the target title and the two or three requirements the posting leans on hardest, with evidence attached.",
-        "**Bullet order** — the bullets that answer the posting move to the top of each role, where they are actually read.",
-        "**Bullet wording** — weak verbs replaced, duties converted into outcomes, and your numbers kept in place.",
-        "**Vocabulary** — the posting's exact terms and acronyms used where they honestly apply, so recruiter searches surface you.",
-        "**The skills section** — reordered around the must-haves and trimmed of anything irrelevant to this role.",
-        "**Layout** — exported as a single-column, text-based PDF that survives extraction.",
+        "**The professional summary:** rewritten to name the target title and the two or three requirements the posting leans on hardest, with evidence attached.",
+        "**Bullet order:** the bullets that answer the posting move to the top of each role, where they are actually read.",
+        "**Bullet wording:** weak verbs replaced, duties converted into outcomes, and your numbers kept in place.",
+        "**Vocabulary:** the posting's exact terms and acronyms used where they honestly apply, so recruiter searches surface you.",
+        "**The skills section:** reordered around the must-haves and trimmed of anything irrelevant to this role.",
+        "**Layout:** exported as a single-column, text-based PDF that survives extraction.",
       ],
     },
     {
@@ -349,7 +349,7 @@ export const resumeOptimizer = {
         },
         {
           title: "Review the rewrite",
-          body: "Summary, bullets, and skills come back rewritten against that posting. Edit anything inline — it is your CV and your judgement about your own work is better than any model's.",
+          body: "Summary, bullets, and skills come back rewritten against that posting. Edit anything inline. It is your CV and your judgement about your own work is better than any model's.",
         },
         {
           title: "Export and apply",
@@ -360,7 +360,7 @@ export const resumeOptimizer = {
 
     { h2: "Optimise for the posting, not for a score" },
     {
-      p: "It is tempting to treat a match percentage as the goal. It is not — it is a proxy. A CV stuffed with terms you cannot defend scores well and interviews badly. The honest version of optimisation is: cover everything you can genuinely evidence, describe it in the words the employer uses, and put the strongest evidence where it gets read.",
+      p: "It is tempting to treat a match percentage as the goal. It is not. It is a proxy. A CV stuffed with terms you cannot defend scores well and interviews badly. The honest version of optimisation is: cover everything you can genuinely evidence, describe it in the words the employer uses, and put the strongest evidence where it gets read.",
     },
     {
       p: "If you would rather do all of that by hand, the [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the same method written out, and the [ATS resume guide](/blog/ats-resume-guide) covers the formatting rules underneath it.",

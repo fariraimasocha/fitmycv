@@ -21,7 +21,7 @@ const hub = {
   eyebrow: "Examples",
   h1: "CV examples for ten jobs",
   lede:
-    "Worked CV examples with UK conventions built in — personal statement, two-page length, no photo, and the vocabulary British job adverts actually use.",
+    "Worked CV examples with UK conventions built in: personal statement, two-page length, no photo, and the vocabulary British job adverts actually use.",
   blocks: [
     { h2: "UK CV conventions" },
     {
@@ -37,7 +37,7 @@ const hub = {
           ["Date of birth, marital status", "Omit", "Omit"],
           ["Section heading", "Work Experience or Employment History", "Experience"],
           ["Spelling", "UK (organise, analyse)", "US (organize, analyze)"],
-          ["References", "Omit — \"on request\" is assumed", "Omit"],
+          ["References", "Omit, \"on request\" is assumed", "Omit"],
           ["Education detail", "Degree, plus A-levels and GCSEs if early career", "Degree only"],
         ],
       },
@@ -45,13 +45,13 @@ const hub = {
     {
       callout: {
         title: "Match the advert's spelling",
-        body: "Applicant tracking systems match literal strings, so \"optimised\" and \"optimized\" are different words to a keyword search. Use the spelling the advert uses — it costs nothing and occasionally matters.",
+        body: "Applicant tracking systems match literal strings, so \"optimised\" and \"optimized\" are different words to a keyword search. Use the spelling the advert uses. It costs nothing and occasionally matters.",
       },
     },
 
     { h2: "The personal statement" },
     {
-      p: "UK adverts often ask for a personal statement or profile at the top. It does the same job as a US summary: three or four lines naming your target role, your level and domain, and one concrete result. What it is not is a paragraph about being a hard-working team player with excellent communication skills — that sentence appears on roughly every CV in the country and distinguishes nobody.",
+      p: "UK adverts often ask for a personal statement or profile at the top. It does the same job as a US summary: three or four lines naming your target role, your level and domain, and one concrete result. What it is not is a paragraph about being a hard-working team player with excellent communication skills. That sentence appears on roughly every CV in the country and distinguishes nobody.",
     },
     {
       compare: {
@@ -70,14 +70,14 @@ const hub = {
     {
       ul: [
         "Never split a single role across the page break.",
-        "Repeat your name in a small footer on page two, in the body — not in the page header region, which parsers skip.",
+        "Repeat your name in a small footer on page two, in the body, not in the page header region, which parsers skip.",
         "If you are under three years into your career, one page is still fine and often better.",
       ],
     },
 
     { h2: "How to use these examples" },
     {
-      p: "Copy the structure, not the sentences. Each example page shows the profile, the bullets rewritten from a weak version to a strong one, the skills block, and the keywords those adverts lean on. The bullet shape — verb, specific action, measurable result — is what transfers; the content has to be yours.",
+      p: "Copy the structure, not the sentences. Each example page shows the profile, the bullets rewritten from a weak version to a strong one, the skills block, and the keywords those adverts lean on. The bullet shape (verb, specific action, measurable result) is what transfers; the content has to be yours.",
     },
     {
       p: "For the formatting rules underneath all of this, see the [ATS-friendly resume guide](/blog/ats-resume-guide); for building one from scratch, [how to write a CV](/how-to-write-a-resume); and for the layouts, [CV templates](/cv-templates).",
@@ -110,7 +110,7 @@ const hub = {
     },
     {
       q: "What is the difference between a CV and a resume?",
-      a: "Outside academia they are the same document under different names — UK and European CV, US resume. In academic and medical contexts a CV means something different: a long-form record of publications, funding, and teaching with no length limit.",
+      a: "Outside academia they are the same document under different names: UK and European CV, US resume. In academic and medical contexts a CV means something different: a long-form record of publications, funding, and teaching with no length limit.",
     },
     {
       q: "Do I need a different CV for every job application?",

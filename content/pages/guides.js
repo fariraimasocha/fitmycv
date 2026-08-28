@@ -5,7 +5,7 @@ export const resumeTips = {
   slug: "resume-tips",
   seoTitle: "27 Resume Tips That Lift Your Response Rate",
   description:
-    "Twenty-seven resume tips grouped by the problem they solve — parsing, keywords, bullets, structure, and the final check. Ordered by impact.",
+    "Twenty-seven resume tips grouped by the problem they solve: parsing, keywords, bullets, structure, and the final check. Ordered by impact.",
   keywords: [
     "resume tips",
     "cv tips",
@@ -18,7 +18,7 @@ export const resumeTips = {
   breadcrumbName: "Resume tips",
   h1: "Resume tips that actually change your response rate",
   lede:
-    "Twenty-seven specific things to change, grouped by the problem each one solves — and ordered so the highest-impact fixes come first.",
+    "Twenty-seven specific things to change, grouped by the problem each one solves, and ordered so the highest-impact fixes come first.",
   ctas: [
     { label: "Check my CV now", href: "/ats-resume-checker" },
     { label: "How to write a resume", href: "/how-to-write-a-resume", variant: "secondary" },
@@ -30,11 +30,11 @@ export const resumeTips = {
     },
     {
       q: "How long should a resume be?",
-      a: "One page under about eight years of experience, two pages beyond that, and rarely more. Length is not the real constraint — relevance is. A two-page CV where page two is a decade of unrelated roles is worse than a one-page CV that is entirely on target.",
+      a: "One page under about eight years of experience, two pages beyond that, and rarely more. Length is not the real constraint. Relevance is. A two-page CV where page two is a decade of unrelated roles is worse than a one-page CV that is entirely on target.",
     },
     {
       q: "Should I include a photo on my resume?",
-      a: "In the UK, US, Canada, and Australia, no — many employers strip them for bias reasons and some ATS parsers choke on them. In parts of continental Europe and Asia it remains normal. Follow the convention of the country you are applying in.",
+      a: "In the UK, US, Canada, and Australia, no. Many employers strip them for bias reasons and some ATS parsers choke on them. In parts of continental Europe and Asia it remains normal. Follow the convention of the country you are applying in.",
     },
     {
       q: "Do I need a resume objective or summary?",
@@ -42,7 +42,7 @@ export const resumeTips = {
     },
     {
       q: "Should I include references on my resume?",
-      a: "No, and \"references available on request\" is a wasted line — it is assumed. Use the space for another bullet with a number in it.",
+      a: "No, and \"references available on request\" is a wasted line. It is assumed. Use the space for another bullet with a number in it.",
     },
     {
       q: "How far back should a resume go?",
@@ -60,7 +60,7 @@ export const resumeTips = {
     },
     {
       ol: [
-        "**Use a single column.** Sidebars are the most common cause of scrambled parsing — a parser can read straight across both columns and interleave your skills into a job description.",
+        "**Use a single column.** Sidebars are the most common cause of scrambled parsing. A parser can read straight across both columns and interleave your skills into a job description.",
         "**Put contact details in the body, not the header.** Header and footer regions are routinely skipped, which produces a perfect record nobody can contact.",
         "**Delete tables and text boxes.** They parse inconsistently and can destroy reading order entirely.",
         "**Remove graphics, photos, and skill-rating dots.** They carry no text, so a parser sees nothing and the space is wasted.",
@@ -88,7 +88,7 @@ export const resumeTips = {
     {
       ol: [
         "**Lead with a verb, never with \"Responsible for\".** Responsibility describes the job you were given, not what you did with it.",
-        "**Attach a number wherever one honestly exists** — percentage, volume, time, revenue, headcount, error rate.",
+        "**Attach a number wherever one honestly exists:** percentage, volume, time, revenue, headcount, error rate.",
         "**Name the scope.** Team size, budget, region, user count. Scope is what separates two people with the same title.",
         "**Cut duties everyone in your role performs.** Keep only what you specifically changed.",
         "**One idea per bullet.** Two achievements crammed into one sentence means neither lands.",
@@ -109,7 +109,7 @@ export const resumeTips = {
     { h2: "Structure and relevance (tips 20–24)" },
     {
       ol: [
-        "**Put the most relevant role first within reverse-chronological order** — and if your most relevant experience is older, add a short \"Relevant experience\" section above it.",
+        "**Put the most relevant role first within reverse-chronological order.** If your most relevant experience is older, add a short \"Relevant experience\" section above it.",
         "**Lead each role with its strongest matching bullet.** Most readers get two bullets deep.",
         "**Write a three-line summary naming your target title, level, and one result.** Delete any summary that could describe someone else.",
         "**Compress old and irrelevant roles to a single line each** rather than deleting them and creating unexplained gaps.",
@@ -122,13 +122,13 @@ export const resumeTips = {
       ol: [
         "**Run the copy-paste test.** Select all in your exported PDF, paste into a plain text editor, and read what arrives. That is what the parser sees.",
         "**Do the six-second scan.** Cover everything below the top third of page one. Does what remains say what you do, at what level, and why you fit this role?",
-        "**Score the keyword overlap against the actual posting.** Eyeballing misses synonyms and acronyms — the [free ATS resume checker](/ats-resume-checker) does it in seconds.",
+        "**Score the keyword overlap against the actual posting.** Eyeballing misses synonyms and acronyms. The [free ATS resume checker](/ats-resume-checker) does it in seconds.",
       ],
     },
 
     { h2: "The one that outweighs the rest" },
     {
-      p: "Tailor per role. A CV that answers the specific posting beats a beautifully written generic one every time, and it is the only item on this list that compounds — every application you tailor is a fresh chance rather than the same lottery ticket.",
+      p: "Tailor per role. A CV that answers the specific posting beats a beautifully written generic one every time, and it is the only item on this list that compounds. Every application you tailor is a fresh chance rather than the same lottery ticket.",
     },
     {
       p: "The catch is time: twenty to forty minutes per role by hand. If that is what makes you stop, [tailoring from the job link](/tailor-cv-from-job-link) does the first pass in about a minute and leaves you to review it.",
@@ -170,7 +170,7 @@ export const howToWriteAResume = {
   breadcrumbName: "How to write a resume",
   h1: "How to write a resume",
   lede:
-    "From a blank page to a document you can send, in seven steps — what goes in each section, in what order, and how to write bullets a recruiter will actually stop on.",
+    "From a blank page to a document you can send, in seven steps: what goes in each section, in what order, and how to write bullets a recruiter will actually stop on.",
   ctas: [
     { label: "See CV templates", href: "/cv-templates" },
     { label: "Resume tips", href: "/resume-tips", variant: "secondary" },
@@ -213,7 +213,7 @@ export const howToWriteAResume = {
     },
     {
       q: "How do I write a resume with no experience?",
-      a: "Treat coursework, projects, volunteering, and part-time work as experience and write them the same way — verb, action, result. A university project with a real deliverable and a number is stronger evidence than a vague line about a summer job.",
+      a: "Treat coursework, projects, volunteering, and part-time work as experience and write them the same way: verb, action, result. A university project with a real deliverable and a number is stronger evidence than a vague line about a summer job.",
     },
     {
       q: "What is the best resume format?",
@@ -221,7 +221,7 @@ export const howToWriteAResume = {
     },
     {
       q: "How long should it take to write a resume?",
-      a: "Two to three hours for a solid first version if you gather the raw material first. Most of that time goes into the experience bullets — the summary, skills, and education take twenty minutes between them.",
+      a: "Two to three hours for a solid first version if you gather the raw material first. Most of that time goes into the experience bullets. The summary, skills, and education take twenty minutes between them.",
     },
     {
       q: "Should I write one resume or several?",
@@ -229,12 +229,12 @@ export const howToWriteAResume = {
     },
   ],
   blocks: [
-    { h2: "Step 1 — Gather the raw material" },
+    { h2: "Step 1: Gather the raw material" },
     {
       p: "Do not start writing. Open a blank document and dump, for each role: employer, exact title, start and end month, the tools you used, what you were measured on, and anything you changed. Do not edit and do not worry about phrasing.",
     },
     {
-      p: "This is the step people skip, and it is why first drafts stall — writing and remembering at the same time is much harder than doing them separately.",
+      p: "This is the step people skip, and it is why first drafts stall. Writing and remembering at the same time is much harder than doing them separately.",
     },
     {
       callout: {
@@ -243,22 +243,22 @@ export const howToWriteAResume = {
       },
     },
 
-    { h2: "Step 2 — Set up the structure" },
+    { h2: "Step 2: Set up the structure" },
     {
       p: "Single column, top to bottom, in this order:",
     },
     {
       ol: [
-        "**Contact details** — name, target job title, city, phone, email, LinkedIn. In the document body, never in the page header.",
-        "**Professional summary** — three lines. Written last.",
-        "**Experience** — reverse chronological.",
-        "**Skills** — grouped, twelve to twenty items, not forty.",
-        "**Education** — degree, institution, year. Move above experience if you graduated within the last year or two.",
-        "**Optional** — certifications, projects, publications, languages. Only if relevant to the roles you want.",
+        "**Contact details:** name, target job title, city, phone, email, LinkedIn. In the document body, never in the page header.",
+        "**Professional summary:** three lines. Written last.",
+        "**Experience:** reverse chronological.",
+        "**Skills:** grouped, twelve to twenty items, not forty.",
+        "**Education:** degree, institution, year. Move above experience if you graduated within the last year or two.",
+        "**Optional:** certifications, projects, publications, languages. Only if relevant to the roles you want.",
       ],
     },
 
-    { h2: "Step 3 — Write the experience section" },
+    { h2: "Step 3: Write the experience section" },
     {
       p: "This is 80% of the work and 80% of the value. For each role write a one-line context sentence if the employer is not well known, then three to six bullets in the same shape every time: **verb → specific action → measurable result.**",
     },
@@ -274,7 +274,7 @@ export const howToWriteAResume = {
       ul: [
         "Two lines maximum per bullet.",
         "One idea per bullet.",
-        "Strongest bullet first — most readers stop after two.",
+        "Strongest bullet first. Most readers stop after two.",
         "Cut anything everyone in your role does.",
       ],
     },
@@ -282,12 +282,12 @@ export const howToWriteAResume = {
       p: "If the verbs are the part you get stuck on, the action-verb series has lists by industry: [tech](/blog/cv-action-verbs-tech), [marketing](/blog/cv-action-verbs-marketing), [finance](/blog/cv-action-verbs-finance), [healthcare](/blog/cv-action-verbs-healthcare), and [sales](/blog/cv-action-verbs-sales).",
     },
 
-    { h2: "Step 4 — Write the skills section" },
+    { h2: "Step 4: Write the skills section" },
     {
-      p: "Group into two or three categories rather than one long comma-separated wall. Twelve to twenty items. Every item here should also appear inside a bullet above — a skill with no evidence anywhere is a claim, and readers discount claims.",
+      p: "Group into two or three categories rather than one long comma-separated wall. Twelve to twenty items. Every item here should also appear inside a bullet above. A skill with no evidence anywhere is a claim, and readers discount claims.",
     },
 
-    { h2: "Step 5 — Write the summary last" },
+    { h2: "Step 5: Write the summary last" },
     {
       p: "Now that the experience section exists, the summary is easy: three lines naming your target title, your level and domain, and the single strongest result from below. If it could describe someone else with your job title, rewrite it.",
     },
@@ -301,12 +301,12 @@ export const howToWriteAResume = {
       },
     },
 
-    { h2: "Step 6 — Trim to length" },
+    { h2: "Step 6: Trim to length" },
     {
       p: "One page if you have under about eight years of experience, two beyond that. Cut in this order: old irrelevant roles down to one line each, duty bullets, the skills wall, then anything on page two that does not support the roles you want. Never cut dates or shrink the font below 10pt to make it fit.",
     },
 
-    { h2: "Step 7 — Check before you send" },
+    { h2: "Step 7: Check before you send" },
     {
       ol: [
         "**Copy-paste test.** Select all in the PDF, paste into a plain text editor, read what arrives.",
@@ -318,7 +318,7 @@ export const howToWriteAResume = {
 
     { h2: "Then tailor it per application" },
     {
-      p: "What you have now is a master CV. It is not what you should send — sending the same document to every posting is the single biggest cause of low response rates.",
+      p: "What you have now is a master CV. It is not what you should send. Sending the same document to every posting is the single biggest cause of low response rates.",
     },
     {
       p: "For each role, reorder the bullets so the matching ones lead, rewrite the summary around that posting's top requirements, and adjust the vocabulary to match. The [tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the full method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass automatically if doing it by hand is what makes you stop.",

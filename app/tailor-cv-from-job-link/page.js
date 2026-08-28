@@ -26,7 +26,7 @@ import { softwareApplicationSchema } from "@/lib/structured-data";
 export const metadata = pageMetadata({
   absoluteTitle: "Tailor Your CV From a Job Link (2026) | FitMyCV",
   description:
-    "Paste any job link — LinkedIn, Indeed, Glassdoor or a careers page — and FitMyCV tailors your CV and cover letter to that role in seconds, with ATS keywords.",
+    "Paste any job link from LinkedIn, Indeed, Glassdoor or a careers page, and FitMyCV tailors your CV and cover letter to that role in seconds, with ATS keywords.",
   path: "/tailor-cv-from-job-link",
   keywords: [
     "tailor cv from job link",
@@ -45,7 +45,7 @@ const BENEFITS = [
   {
     icon: LinkIcon,
     title: "Paste a link, not a wall of text",
-    body: "Drop in a job URL from LinkedIn, Indeed, Glassdoor, or any board. FitMyCV reads the role and pulls out the requirements, skills, and keywords — including the sections hidden behind a 'see more' toggle.",
+    body: "Drop in a job URL from LinkedIn, Indeed, Glassdoor, or any board. FitMyCV reads the role and pulls out the requirements, skills, and keywords, including the sections hidden behind a 'see more' toggle.",
   },
   {
     icon: SealCheckIcon,
@@ -98,7 +98,7 @@ export default function TailorCvFromJobLinkPage() {
 
             <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
               Paste a job link from LinkedIn, Indeed, or any board and FitMyCV
-              rewrites your resume and cover letter to match the role — keyword
+              rewrites your resume and cover letter to match the role, keyword
               for keyword, ready in seconds.
             </p>
 
@@ -181,7 +181,7 @@ export default function TailorCvFromJobLinkPage() {
 
         <FaqSection
           faqs={FAQS}
-          heading="Tailoring your CV from a job link — FAQ"
+          heading="Tailoring your CV from a job link: FAQ"
           intro="Everything about turning a job link into a tailored application."
         />
 

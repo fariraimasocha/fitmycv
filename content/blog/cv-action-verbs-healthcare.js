@@ -3,7 +3,7 @@ export const meta = {
   title: "27 CV Action Verbs for Healthcare and Nursing Roles",
   seoTitle: "27 CV Action Verbs for Healthcare & Nursing",
   description:
-    "Twenty-seven action verbs for healthcare, nursing, and allied health CVs — grouped by clinical, coordination and quality work, with rewrites.",
+    "Twenty-seven action verbs for healthcare, nursing, and allied health CVs, grouped by clinical, coordination and quality work, with rewrites.",
   excerpt:
     "Clinical CVs undersell constantly. Twenty-seven verbs that show caseload, judgement, and outcomes without overclaiming.",
   date: "2026-07-28",
@@ -35,13 +35,13 @@ export const faqs = [
   },
   {
     q: "Should I list registrations and certifications on a healthcare CV?",
-    a: "Always, near the top and by their exact name — NMC PIN, RN, BLS, ALS, PALS, revalidation date, specialist competencies. These are hard filters for recruiters and are searched as literal strings.",
+    a: "Always, near the top and by their exact name: NMC PIN, RN, BLS, ALS, PALS, revalidation date, specialist competencies. These are hard filters for recruiters and are searched as literal strings.",
   },
 ];
 
 export const blocks = [
   {
-    p: "Healthcare CVs undersell more than any other category. *Provided high-quality patient care* is true of everyone on the rota, so it distinguishes nobody — and clinicians are trained to describe work in exactly that collective, modest register.",
+    p: "Healthcare CVs undersell more than any other category. *Provided high-quality patient care* is true of everyone on the rota, so it distinguishes nobody, and clinicians are trained to describe work in exactly that collective, modest register.",
   },
   {
     p: "The verbs below let you be specific about judgement and scale without overclaiming or breaching confidentiality.",
@@ -85,11 +85,11 @@ export const blocks = [
   { h2: "Verbs to stop using" },
   {
     ul: [
-      "**Provided care** — accurate and completely undifferentiating.",
-      "**Assisted with** — clinicians overuse this for work they actually led.",
-      "**Responsible for** — restates the band and the job title.",
-      "**Involved in** — hides your role in an improvement project.",
-      "**Duties included** — a job description, not an achievement.",
+      "**Provided care:** accurate and completely undifferentiating.",
+      "**Assisted with:** clinicians overuse this for work they actually led.",
+      "**Responsible for:** restates the band and the job title.",
+      "**Involved in:** hides your role in an improvement project.",
+      "**Duties included:** a job description, not an achievement.",
     ],
   },
 

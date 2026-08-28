@@ -20,7 +20,7 @@ export const metadata = {
     absolute: "Tailor Your CV to Any Job Link | FitMyCV",
   },
   description:
-    "Tailor your CV and cover letter to any job link in seconds — AI keyword matching, a free ATS resume checker, 11 ATS-safe templates, and one-click PDF export.",
+    "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 11 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
   // Page-level openGraph/twitter replace the layout objects wholesale (no
   // deep merge), so images and card type must be re-declared here.
@@ -31,7 +31,7 @@ export const metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "FitMyCV — Land more interviews with a CV that fits",
+        alt: "FitMyCV: Land more interviews with a CV that fits",
       },
     ],
   },

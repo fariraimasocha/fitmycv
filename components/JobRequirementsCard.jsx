@@ -54,7 +54,7 @@ export default function JobRequirementsCard({
       transition={{ duration: 0.3 }}
     >
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="px-4 py-4 sm:px-6 sm:py-5">
+        <CardHeader className="dashboard-card-pad">
           <div className="space-y-2">
             <div className="flex flex-wrap items-start justify-between gap-2">
               <CardTitle className="font-outfit text-xl font-semibold tracking-tight">
@@ -68,7 +68,7 @@ export default function JobRequirementsCard({
                 <GradeBadge grade={matchGrade} />
               )}
             </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-7 text-[var(--landing-ink-soft)]">
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">
               {data.company && (
                 <span className="flex items-center gap-1">
                   <BuildingsIcon size={14} aria-hidden="true" />
@@ -96,7 +96,7 @@ export default function JobRequirementsCard({
             </div>
           </div>
         </CardHeader>
-        <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+        <CardContent className="dashboard-card-pad space-y-4 pt-0">
           {data.requirements?.length > 0 && (
             <Section
               icon={<ListChecksIcon size={16} aria-hidden="true" />}
@@ -123,14 +123,14 @@ export default function JobRequirementsCard({
           )}
           {showTailorAction && onTailor && (
             <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+              <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
                 Ready to rewrite your CV for this role.
               </p>
               <Button
                 onClick={onTailor}
                 disabled={tailorPending}
                 aria-busy={tailorPending}
-                className="h-11 w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto"
+                className="h-11 w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto"
               >
                 {tailorPending ? (
                   <>
@@ -159,7 +159,7 @@ function Section({ icon, title, items }) {
         {icon}
         {title}
       </h3>
-      <ul className="list-disc space-y-1 pl-6 text-sm leading-7 text-[var(--landing-ink-soft)]">
+      <ul className="list-disc space-y-1 pl-6 text-sm leading-6 text-[var(--landing-ink-soft)]">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}

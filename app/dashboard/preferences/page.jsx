@@ -109,11 +109,11 @@ export default function PreferencesPage() {
             <CrownIcon className="mx-auto size-8 text-[var(--landing-accent)]" />
             <div className="space-y-1">
               <p className="text-lg font-semibold">Job preferences are a Pro feature</p>
-              <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+              <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
                 Upgrade to control your daily job matches by email.
               </p>
             </div>
-            <Button asChild className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90">
+            <Button asChild className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90">
               <Link href="/dashboard/upgrade">
                 Upgrade to Pro
                 <ArrowRightIcon className="ml-2 size-4" />
@@ -237,7 +237,7 @@ export default function PreferencesPage() {
 
       <div className="sticky bottom-3 z-10 flex justify-end">
         <Button
-          className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+          className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           onClick={() => mutation.mutate({ titles, country, remoteOnly, emailDigest })}
           disabled={mutation.isPending}
         >

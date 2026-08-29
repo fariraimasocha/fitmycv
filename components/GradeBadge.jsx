@@ -4,17 +4,20 @@ export function gradeChipClass(grade) {
   if (!grade || grade === "N/A") {
     return "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]";
   }
+  // Each grade gets its own fill, not just its own ink. B and C previously
+  // shared a background and were told apart only by how grey the letter was,
+  // which does not survive being read at chip size.
   const letter = String(grade).charAt(0);
   if (letter === "A") {
-    return "border border-[var(--landing-line)] bg-[#eef8f1] text-[var(--landing-success)]";
+    return "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]";
   }
   if (letter === "B") {
-    return "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink)]";
+    return "border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]";
   }
   if (letter === "C") {
     return "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]";
   }
-  return "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-accent)]";
+  return "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
 }
 
 export function GradeBadge({ grade, className, size = "sm" }) {

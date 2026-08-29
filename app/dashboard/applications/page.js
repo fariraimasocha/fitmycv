@@ -38,6 +38,7 @@ import {
 import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
 import { cn } from "@/lib/utils";
+import { gradeChipClass } from "@/components/GradeBadge";
 
 const STATUS_CONFIG = {
   evaluated: {
@@ -72,17 +73,6 @@ const FILTER_TABS = [
   { key: "interviewing", label: "Interviewing" },
   { key: "closed", label: "Closed" },
 ];
-
-function gradeColor(grade) {
-  if (!grade || grade === "N/A") {
-    return "bg-muted text-muted-foreground";
-  }
-  const letter = grade.charAt(0);
-  if (letter === "A") return "bg-emerald-50 text-emerald-800";
-  if (letter === "B") return "bg-blue-50 text-blue-800";
-  if (letter === "C") return "bg-amber-50 text-amber-800";
-  return "bg-red-50 text-red-700";
-}
 
 function filterApplications(applications, filter) {
   if (filter === "all") return applications;
@@ -135,7 +125,7 @@ function StatusSelect({ currentStatus, onStatusChange, disabled }) {
   );
 }
 
-function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending }) {
+function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending, confirmingDelete }) {
   const router = useRouter();
 
   return (
@@ -156,7 +146,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending })
         }}
         className="group cursor-pointer rounded-2xl border-border py-0 gap-0 transition-all hover:border-[var(--landing-line)] hover:shadow-[var(--landing-shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
       >
-        <CardContent className="flex flex-col gap-3 px-3 py-3 sm:flex-row sm:items-center sm:gap-3 sm:px-4 sm:py-3">
+        <CardContent className="dashboard-row-pad flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
           <div className="flex min-w-0 flex-1 items-start gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
               {(app.jobCompany?.[0] ?? "?").toUpperCase()}
@@ -171,7 +161,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending })
                   <span
                     className={cn(
                       "hidden shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold sm:inline-flex",
-                      gradeColor(app.matchGrade)
+                      gradeChipClass(app.matchGrade)
                     )}
                   >
                     {app.matchGrade}
@@ -197,7 +187,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending })
                   <span
                     className={cn(
                       "inline-flex rounded-full px-1.5 py-0.5 text-[10px] font-bold sm:hidden",
-                      gradeColor(app.matchGrade)
+                      gradeChipClass(app.matchGrade)
                     )}
                   >
                     {app.matchGrade}
@@ -237,14 +227,18 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending })
               </Button>
             )}
             <Button
-              variant="ghost"
+              variant={confirmingDelete ? "destructive" : "ghost"}
               size="icon-sm"
               className="shrink-0 text-muted-foreground hover:bg-red-50 hover:text-red-600"
-              title="Delete application"
-              aria-label="Delete application"
+              title={confirmingDelete ? "Tap again to confirm" : "Delete application"}
+              aria-label={
+                confirmingDelete
+                  ? `Confirm delete ${app.jobTitle || "application"}`
+                  : `Delete ${app.jobTitle || "application"}`
+              }
               onClick={() => onDelete(app._id)}
             >
-              <TrashIcon size={16} />
+              {confirmingDelete ? "?" : <TrashIcon size={16} />}
             </Button>
             <CaretRightIcon
               size={14}
@@ -261,6 +255,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending })
 export default function ApplicationsPage() {
   const queryClient = useQueryClient();
   const [activeFilter, setActiveFilter] = useState("all");
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
   const { data, isLoading } = useQuery({
     queryKey: ["applications"],
@@ -298,8 +293,12 @@ export default function ApplicationsPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["applications"] });
       toast.success("Application removed");
+      setConfirmDeleteId(null);
     },
-    onError: () => toast.error("Failed to delete"),
+    onError: () => {
+      toast.error("Failed to delete");
+      setConfirmDeleteId(null);
+    },
   });
 
   const applications = data || [];
@@ -329,8 +328,10 @@ export default function ApplicationsPage() {
   );
 
   const handleDelete = (id) => {
-    if (confirm("Remove this application?")) {
+    if (confirmDeleteId === id) {
       deleteMutation.mutate(id);
+    } else {
+      setConfirmDeleteId(id);
     }
   };
 
@@ -372,7 +373,7 @@ export default function ApplicationsPage() {
           applications.length > 0 ? (
             <Button
               asChild
-              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
             >
               <Link href="/dashboard/tailor">
                 <PlusIcon size={16} />
@@ -383,25 +384,29 @@ export default function ApplicationsPage() {
         }
       />
 
-      <DashboardStatGrid>
-        {statCards.map((card) => (
-          <DashboardStatCard key={card.label} {...card} />
-        ))}
-      </DashboardStatGrid>
+      {applications.length > 0 && (
+        <>
+          <DashboardStatGrid>
+            {statCards.map((card) => (
+              <DashboardStatCard key={card.label} {...card} />
+            ))}
+          </DashboardStatGrid>
 
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <DashboardFilterPills
-          tabs={FILTER_TABS.map((tab) => ({
-            ...tab,
-            count: filterCounts[tab.key],
-          }))}
-          activeKey={activeFilter}
-          onChange={setActiveFilter}
-        />
-        <p className="text-xs text-muted-foreground">
-          {filtered.length} {filtered.length === 1 ? "application" : "applications"}
-        </p>
-      </div>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <DashboardFilterPills
+              tabs={FILTER_TABS.map((tab) => ({
+                ...tab,
+                count: filterCounts[tab.key],
+              }))}
+              activeKey={activeFilter}
+              onChange={setActiveFilter}
+            />
+            <p className="text-xs text-muted-foreground">
+              {filtered.length} {filtered.length === 1 ? "application" : "applications"}
+            </p>
+          </div>
+        </>
+      )}
 
       {filtered.length === 0 ? (
         applications.length === 0 ? (
@@ -434,6 +439,7 @@ export default function ApplicationsPage() {
               app={app}
               index={i}
               statusPending={updateMutation.isPending}
+              confirmingDelete={confirmDeleteId === app._id}
               onStatusChange={(id, status) => updateMutation.mutate({ id, status })}
               onDelete={handleDelete}
             />

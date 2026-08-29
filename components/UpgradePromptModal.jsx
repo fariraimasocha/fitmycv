@@ -50,7 +50,7 @@ export default function UpgradePromptModal({ open, onClose }) {
         <div className="flex flex-col gap-3 pt-2">
           <Button
             onClick={handleLifetime}
-            className="w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            className="w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           >
             Get Lifetime · ${PRICING.lifetime.price}
           </Button>

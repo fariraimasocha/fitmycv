@@ -13,7 +13,9 @@ export function DashboardPageShell({ children, width = "default", className }) {
   return (
     <div
       className={cn(
-        "dashboard-page mx-auto w-full min-w-0 space-y-4 px-3 py-4 sm:px-6 sm:py-6",
+        // space-y-6 marks chapter breaks between blocks; groups inside a block
+        // use gap-3, so related things stay tighter than unrelated ones.
+        "dashboard-page mx-auto w-full min-w-0 space-y-6 px-3 py-4 sm:px-6 sm:py-6",
         WIDTH[width] ?? WIDTH.default,
         className
       )}

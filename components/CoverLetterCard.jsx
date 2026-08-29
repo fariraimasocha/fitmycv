@@ -43,7 +43,7 @@ export default function CoverLetterCard({
           <Button
             variant="outline"
             size="sm"
-            className="rounded-[10px] border-border"
+            className="rounded-md border-border"
             aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
             onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
           >
@@ -74,7 +74,7 @@ export default function CoverLetterCard({
               <Button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="rounded-[10px] bg-foreground px-6 font-outfit font-semibold text-background hover:opacity-90"
+                className="rounded-md bg-foreground px-6 font-outfit font-semibold text-background hover:opacity-90"
               >
                 {isSaving ? (
                   <>

@@ -282,7 +282,7 @@ export default function DashboardPage() {
             transition={{ duration: 0.3, delay: 0.15 }}
           >
             <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-              <CardHeader className="flex flex-row items-end justify-between px-5 pb-0 pt-5 sm:px-6 sm:pt-6">
+              <CardHeader className="dashboard-card-pad flex flex-row items-end justify-between pb-0">
                 <div>
                   <CardTitle className="text-sm font-semibold text-foreground">
                     Activity
@@ -292,7 +292,7 @@ export default function DashboardPage() {
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="px-5 pb-5 pt-4 sm:px-6">
+              <CardContent className="dashboard-card-pad pt-4">
                 <ActivityHeatmap cells={heatmapCells} />
               </CardContent>
             </Card>

@@ -172,7 +172,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
                   <p className="text-sm font-medium text-[var(--landing-ink)]">
                     {qa.question}
                   </p>
-                  <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+                  <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
                     {qa.suggestedAnswer}
                   </p>
                 </div>

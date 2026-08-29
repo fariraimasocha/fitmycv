@@ -273,7 +273,7 @@ export default function ApplicationDetailPage() {
       </motion.div>
 
       {app.matchScore != null && (
-        <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+        <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
           Match {app.matchScore.toFixed(1)}/5
         </p>
       )}

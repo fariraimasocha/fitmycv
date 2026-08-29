@@ -228,7 +228,7 @@ export default function ResumeForm({
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-[10px] border-border"
+              className="rounded-md border-border"
               onClick={() => appendProfile({ network: "", url: "" })}
             >
               <PlusIcon size={14} />
@@ -291,7 +291,7 @@ export default function ResumeForm({
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-[10px] border-border"
+              className="rounded-md border-border"
               onClick={() =>
                 appendWork({
                   company: "",
@@ -396,7 +396,7 @@ export default function ResumeForm({
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-[10px] border-border"
+              className="rounded-md border-border"
               onClick={() =>
                 appendEducation({
                   institution: "",
@@ -494,7 +494,7 @@ export default function ResumeForm({
               type="button"
               variant="outline"
               size="sm"
-              className="rounded-[10px] border-border"
+              className="rounded-md border-border"
               onClick={() => appendSkill({ category: "", skills: [] })}
             >
               <PlusIcon size={14} />
@@ -556,7 +556,7 @@ export default function ResumeForm({
         <Button
           type="submit"
           disabled={saveMutation.isPending}
-          className="w-full rounded-[10px] bg-foreground px-8 font-outfit font-semibold text-background shadow-[var(--landing-shadow-sm)] hover:opacity-90 sm:w-auto"
+          className="w-full rounded-md bg-foreground px-8 font-outfit font-semibold text-background shadow-[var(--landing-shadow-sm)] hover:opacity-90 sm:w-auto"
         >
           {saveMutation.isPending ? (
             <>

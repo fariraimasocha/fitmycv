@@ -42,7 +42,7 @@ export default function CompanyResearchPage() {
           briefs?.length > 0 ? (
             <Button
               asChild
-              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
             >
               <Link href="/dashboard/tailor">
                 <PlusIcon size={16} />

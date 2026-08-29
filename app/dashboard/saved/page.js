@@ -33,7 +33,7 @@ function SavedJobCard({ item, onRemove, removing }) {
   const job = item.job ?? {};
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardContent className="flex flex-col gap-3 p-3 sm:p-4">
+      <CardContent className="dashboard-row-pad flex flex-col gap-3">
         <div className="flex items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
             {job.logo ? (
@@ -90,7 +90,7 @@ function UpgradeGate() {
           </div>
           <Button
             asChild
-            className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           >
             <Link href="/dashboard/upgrade">
               Upgrade to Pro

@@ -52,7 +52,7 @@ export function CvEditorToolbar({
       <Button
         type="button"
         variant="outline"
-        className="w-full rounded-[10px] border-border"
+        className="w-full rounded-md border-border"
         onClick={onUploadNew}
       >
         <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />

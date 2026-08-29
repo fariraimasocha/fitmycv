@@ -22,7 +22,7 @@ export function DashboardEmptyState({
     actionHref ? (
       <Button
         asChild
-        className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+        className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
       >
         <Link
           href={actionHref}
@@ -38,7 +38,7 @@ export function DashboardEmptyState({
         type="button"
         onClick={onAction}
         disabled={actionDisabled}
-        className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+        className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
       >
         {actionLabel}
       </Button>

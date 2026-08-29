@@ -43,7 +43,7 @@ function SubscriptionBadge({ isPremium, status }) {
   }
 
   return (
-    <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400">
+    <span className="rounded-full border border-[#c8e6d4] bg-[#eef8f1] px-2.5 py-0.5 text-xs font-medium text-[var(--landing-success)]">
       PRO
     </span>
   );
@@ -138,7 +138,7 @@ export default function ProfilePage() {
           <CardHeader className="flex flex-col gap-2 pb-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
               <CrownIcon
-                className={`size-4 ${isPremium ? "text-amber-500" : "text-muted-foreground"}`}
+                className={`size-4 ${isPremium ? "text-[var(--landing-accent)]" : "text-muted-foreground"}`}
               />
               <CardTitle className="text-base">Subscription</CardTitle>
             </div>
@@ -150,7 +150,7 @@ export default function ProfilePage() {
                 <div className="space-y-1.5 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Status</span>
-                    <span className="font-medium capitalize text-green-600">
+                    <span className="font-medium capitalize text-[var(--landing-success)]">
                       {subscriptionStatus ?? "Active"}
                     </span>
                   </div>
@@ -167,7 +167,7 @@ export default function ProfilePage() {
                 <ul className="space-y-1.5">
                   {PRO_FEATURES.map((feature) => (
                     <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircleIcon className="size-4 text-green-600 shrink-0" />
+                      <CheckCircleIcon className="size-4 shrink-0 text-[var(--landing-success)]" />
                       {feature}
                     </li>
                   ))}

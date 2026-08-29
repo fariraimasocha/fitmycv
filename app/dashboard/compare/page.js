@@ -35,12 +35,12 @@ const DIMENSION_LABELS = {
 function ScoreCell({ score }) {
   const color =
     score >= 8
-      ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+      ? "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]"
       : score >= 6
-        ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+        ? "border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]"
         : score >= 4
-          ? "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300"
-          : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
+          ? "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]"
+          : "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
 
   return (
     <span className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-bold tabular-nums ${color}`}>
@@ -123,12 +123,12 @@ export default function ComparePage() {
                   disabled={disabled}
                   className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
                     isSelected
-                      ? "border-blue-300 bg-blue-50/50 dark:border-blue-800 dark:bg-blue-900/10"
+                      ? "border-[var(--landing-ink)] bg-[var(--landing-primary-soft)]"
                       : "border-border/60 hover:bg-muted/30"
                   } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
                 >
                   {isSelected ? (
-                    <CheckSquareIcon size={18} className="shrink-0 text-blue-600" weight="fill" />
+                    <CheckSquareIcon size={18} className="shrink-0 text-[var(--landing-ink)]" weight="fill" />
                   ) : (
                     <SquareIcon size={18} className="shrink-0 text-muted-foreground" />
                   )}
@@ -150,7 +150,7 @@ export default function ComparePage() {
           <Button
             onClick={() => compareMutation.mutate()}
             disabled={selectedIds.length < 2 || compareMutation.isPending}
-            className="w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            className="w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           >
             {compareMutation.isPending ? (
               <>
@@ -240,9 +240,9 @@ export default function ComparePage() {
 
           {/* Recommendation */}
           {comparisonResult.recommendation && (
-            <Card className="dashboard-card rounded-2xl border-border border-emerald-200">
+            <Card className="dashboard-card rounded-2xl border-[#c8e6d4]">
               <CardContent className="p-4">
-                <h3 className="flex items-center gap-2 text-sm font-semibold text-green-700 dark:text-green-400 mb-2">
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)] mb-2">
                   <LightbulbIcon size={16} weight="fill" />
                   Recommendation
                 </h3>
@@ -264,7 +264,7 @@ export default function ComparePage() {
                 <ul className="space-y-1.5">
                   {comparisonResult.tradeoffs.map((t, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="mt-0.5 shrink-0 text-amber-500">*</span>
+                      <span className="mt-0.5 shrink-0 text-[var(--landing-accent)]">*</span>
                       {t}
                     </li>
                   ))}

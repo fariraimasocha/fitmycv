@@ -71,10 +71,10 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="px-4 py-4 sm:px-6">
+        <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base">Analyzing ATS Compatibility…</CardTitle>
         </CardHeader>
-        <CardContent className="px-4 pb-5 sm:px-6">
+        <CardContent className="dashboard-card-pad pt-0">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -106,10 +106,10 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="px-4 py-4 sm:px-6">
+      <CardHeader className="dashboard-card-pad">
         <CardTitle className="text-base">ATS Compatibility Score</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6 px-4 pb-5 sm:px-6">
+      <CardContent className="dashboard-card-pad space-y-6 pt-0">
         {delta > 0 && (
           <div className="flex items-center gap-2 rounded-lg bg-[#eef8f1] px-3 py-2 text-sm">
             <span className="font-medium text-[var(--landing-success)]">
@@ -179,7 +179,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
             </div>
             <ul className="space-y-1.5">
               {recommendations.map((rec, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm leading-7 text-[var(--landing-ink-soft)]">
+                <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
                   <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
                   {rec}
                 </li>
@@ -196,7 +196,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
             </div>
             <ul className="space-y-1.5">
               {formattingNotes.map((note, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm leading-7 text-[var(--landing-ink-soft)]">
+                <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
                   <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
                   {note}
                 </li>

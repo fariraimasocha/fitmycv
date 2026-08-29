@@ -4,6 +4,7 @@ import Pricing from "@/components/landing/Pricing";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
+import { PRICING } from "@/lib/pricing";
 
 export const metadata = {
   title: "Pricing: Lifetime Access for $16.99",
@@ -99,7 +100,16 @@ export default function PricingPage() {
             >
               One plan. Unlimited tailored applications.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
+            {/* The price is the decision fact on this page, so it sits with the
+                title rather than a viewport down in the pricing band. */}
+            <p className="mt-5 font-outfit text-lg font-extrabold text-[var(--landing-ink)] sm:text-xl">
+              ${PRICING.lifetime.price} once
+              <span className="mx-2 font-normal text-[var(--landing-ink-soft)]">
+                or
+              </span>
+              ${PRICING.month.price}/mo
+            </p>
+            <p className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
               Tailor your CV and cover letter to every job link you paste,
               download them as clean PDFs, and track your match and ATS scores,
               all for one simple price.
@@ -112,7 +122,7 @@ export default function PricingPage() {
         {/* FAQ */}
         <section className="landing-section">
           <div className="landing-container flex flex-col items-center gap-4">
-            <h2 className="landing-heading text-center font-outfit text-3xl font-extrabold sm:text-4xl">
+            <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
               Pricing FAQ
             </h2>
             <p className="landing-copy text-center text-base">

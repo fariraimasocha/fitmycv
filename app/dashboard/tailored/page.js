@@ -121,7 +121,7 @@ export default function TailoredCVsPage() {
           cvs?.length > 0 ? (
             <Button
               asChild
-              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
             >
               <Link href="/dashboard/tailor">
                 <PlusIcon size={16} />
@@ -155,7 +155,7 @@ export default function TailoredCVsPage() {
             >
               <Link href={`/dashboard/tailored/${cv._id}`}>
                 <Card className="dashboard-list-row group cursor-pointer rounded-2xl border-border py-0 gap-0">
-                  <CardContent className="flex items-center gap-3 px-3 py-2.5 sm:px-4 sm:py-3">
+                  <CardContent className="dashboard-row-pad flex items-center gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                       <FileTextIcon size={18} aria-hidden="true" />
                     </div>

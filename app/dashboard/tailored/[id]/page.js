@@ -127,7 +127,7 @@ export default function TailoredCVDetailPage() {
         <p className="text-center text-sm text-[var(--landing-ink-soft)]">Tailored CV not found.</p>
         <Button
           variant="outline"
-          className="mx-auto mt-4 rounded-[10px]"
+          className="mx-auto mt-4 rounded-md"
           onClick={() => router.push("/dashboard/tailored")}
         >
           <ArrowLeftIcon size={16} />
@@ -185,7 +185,7 @@ export default function TailoredCVDetailPage() {
       <DashboardPageHeader
         title={cv.jobTitle || "Untitled Position"}
         description={
-          <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-7 text-[var(--landing-ink-soft)]">
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-6 text-[var(--landing-ink-soft)]">
             {cv.jobCompany && (
               <span className="inline-flex items-center gap-1">
                 <BuildingsIcon size={14} />
@@ -222,7 +222,7 @@ export default function TailoredCVDetailPage() {
               <>
                 <Button
                   variant="outline"
-                  className="rounded-[10px] border-border"
+                  className="rounded-md border-border"
                   onClick={() => setShowPreview(!showPreview)}
                 >
                   {showPreview ? (
@@ -247,7 +247,7 @@ export default function TailoredCVDetailPage() {
               </>
             )}
             <Button
-              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
               onClick={() => handleDownload(activeTab)}
             >
               {session?.user?.isPremium ? (
@@ -298,9 +298,14 @@ export default function TailoredCVDetailPage() {
               </div>
             )}
             <Button
-              className="h-11 shrink-0 rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="h-11 shrink-0 rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
               onClick={() => handleDownload(activeTab)}
             >
+              {session?.user?.isPremium ? (
+                <DownloadSimpleIcon size={16} />
+              ) : (
+                <CrownIcon size={16} />
+              )}
               Download PDF · {getTemplateName(selectedTemplate)}
             </Button>
           </div>

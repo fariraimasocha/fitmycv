@@ -40,7 +40,7 @@ export default function TemplatePicker({ value, onChange, data }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button type="button" variant="outline" className="w-full justify-start rounded-[10px] border-border">
+        <Button type="button" variant="outline" className="w-full justify-start rounded-md border-border">
           <SquaresFourIcon size={16} aria-hidden="true" />
           <span className="truncate">{current.name}</span>
         </Button>

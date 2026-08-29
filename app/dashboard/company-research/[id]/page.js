@@ -52,7 +52,7 @@ export default function CompanyResearchDetailPage() {
         </p>
         <Button
           variant="outline"
-          className="mx-auto mt-4 rounded-[10px]"
+          className="mx-auto mt-4 rounded-md"
           onClick={() => router.push("/dashboard/company-research")}
         >
           <ArrowLeftIcon size={16} />
@@ -76,7 +76,7 @@ export default function CompanyResearchDetailPage() {
       <DashboardPageHeader
         title={brief.companyName}
         description={
-          <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-7 text-[var(--landing-ink-soft)]">
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-6 text-[var(--landing-ink-soft)]">
             {brief.jobTitle && (
               <span className="inline-flex items-center gap-1">
                 <BriefcaseIcon size={14} />

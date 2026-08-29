@@ -11,7 +11,7 @@ export default function Pricing() {
     >
       <div className="landing-container flex flex-col items-center gap-5">
         <span className="landing-eyebrow">Pricing</span>
-        <h2 className="landing-heading font-serif-display text-center text-3xl font-normal sm:text-4xl lg:text-5xl">
+        <h2 className="landing-section-title text-center text-3xl sm:text-4xl lg:text-5xl">
           Less than an hour of a freelancer.
           <br />
           <span className="landing-accent-tail">Yours for good.</span>

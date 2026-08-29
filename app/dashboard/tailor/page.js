@@ -19,6 +19,7 @@ import {
   CrownIcon,
   PencilSimpleIcon,
   EyeIcon,
+  SparkleIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -412,7 +413,7 @@ export default function TailorPage() {
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="px-4 py-4 sm:px-6 sm:py-5">
+          <CardHeader className="dashboard-card-pad">
             <CardTitle className="flex items-center gap-2 text-base font-semibold">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                 <LinkIcon size={18} aria-hidden="true" />
@@ -425,7 +426,7 @@ export default function TailorPage() {
               </div>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+          <CardContent className="dashboard-card-pad space-y-4 pt-0">
             <form onSubmit={handleExtract} className="flex flex-col gap-3">
               <Input
                 type="url"
@@ -455,7 +456,7 @@ export default function TailorPage() {
                 type="submit"
                 disabled={extractMutation.isPending || !url.trim()}
                 aria-busy={extractMutation.isPending}
-                className="h-11 w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto sm:self-start"
+                className="h-11 w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto sm:self-start"
               >
                 {extractMutation.isPending ? (
                   <>
@@ -500,7 +501,7 @@ export default function TailorPage() {
           ].map((item) => (
             <div
               key={item.step}
-              className="dashboard-list-row rounded-2xl px-4 py-4"
+              className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 py-4"
             >
               <span className="font-outfit text-2xl font-semibold text-[var(--landing-accent)]">
                 {item.step}
@@ -539,6 +540,30 @@ export default function TailorPage() {
                   loading={atsLoading}
                   onClick={() => handleTabChange("ats")}
                 />
+              )}
+              {/* A long listing pushes the Tailor CV button in the requirements
+                  card well below the fold, so the primary action rides along
+                  with the context until it has been used. */}
+              {!tailorResult && (
+                <Button
+                  size="sm"
+                  onClick={() => tailorMutation.mutate()}
+                  disabled={tailorMutation.isPending}
+                  aria-busy={tailorMutation.isPending}
+                  className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+                >
+                  {tailorMutation.isPending ? (
+                    <>
+                      <SpinnerGapIcon size={14} className="animate-spin" aria-hidden="true" />
+                      Tailoring…
+                    </>
+                  ) : (
+                    <>
+                      <SparkleIcon size={14} aria-hidden="true" />
+                      Tailor CV
+                    </>
+                  )}
+                </Button>
               )}
             </div>
           </div>
@@ -602,7 +627,7 @@ export default function TailorPage() {
                 {activeTab === "cv" && savedId && (
                   <Button
                     variant="outline"
-                    className="rounded-[10px] border-border"
+                    className="rounded-md border-border"
                     onClick={() => setShowPreview(!showPreview)}
                   >
                     {showPreview ? (
@@ -628,7 +653,15 @@ export default function TailorPage() {
                   </div>
                 )}
                 <Button
-                  className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+                  variant="ghost"
+                  className="rounded-md text-[var(--landing-ink-soft)] hover:text-foreground"
+                  onClick={() => setLinkedInModalOpen(true)}
+                >
+                  <LinkedinLogoIcon size={16} />
+                  LinkedIn Message
+                </Button>
+                <Button
+                  className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:ml-auto"
                   onClick={() => handleDownload(activeTab)}
                 >
                   {session?.user?.isPremium ? (
@@ -637,14 +670,6 @@ export default function TailorPage() {
                     <CrownIcon size={16} />
                   )}
                   Download PDF · {getTemplateName(selectedTemplate)}
-                </Button>
-                <Button
-                  variant="outline"
-                  className="rounded-[10px] border-border"
-                  onClick={() => setLinkedInModalOpen(true)}
-                >
-                  <LinkedinLogoIcon size={16} />
-                  LinkedIn Message
                 </Button>
               </div>
             )}
@@ -668,7 +693,7 @@ export default function TailorPage() {
               <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
               {tailorResult.keywordsInjected?.length > 0 && (
                 <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-                  <CardContent className="px-4 py-4 sm:px-6">
+                  <CardContent className="dashboard-card-pad">
                     <p className="mb-2 text-xs font-medium text-[var(--landing-ink-soft)]">
                       Keywords injected
                     </p>
@@ -724,7 +749,7 @@ export default function TailorPage() {
               </div>
             )}
             <Button
-              className="h-11 shrink-0 rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="h-11 shrink-0 rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
               onClick={() => handleDownload(activeTab)}
             >
               {session?.user?.isPremium ? (

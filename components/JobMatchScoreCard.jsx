@@ -149,7 +149,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
             <p className="text-sm font-medium" style={{ color }}>
               {label}
             </p>
-            <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+            <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
               {recommendation}
             </p>
           </div>

@@ -127,7 +127,7 @@ export default async function ResumeExamplePage({ params }) {
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-12">
             {/* Summary */}
             <div>
-              <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+              <h2 className="landing-section-title text-2xl sm:text-3xl">
                 The professional summary
               </h2>
               <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
@@ -141,7 +141,7 @@ export default async function ResumeExamplePage({ params }) {
 
             {/* Bullets */}
             <div>
-              <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+              <h2 className="landing-section-title text-2xl sm:text-3xl">
                 Experience bullets, rewritten
               </h2>
               <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
@@ -192,7 +192,7 @@ export default async function ResumeExamplePage({ params }) {
 
             {/* Skills */}
             <div>
-              <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+              <h2 className="landing-section-title text-2xl sm:text-3xl">
                 The skills section
               </h2>
               <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
@@ -214,7 +214,7 @@ export default async function ResumeExamplePage({ params }) {
 
             {/* Keywords */}
             <div>
-              <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+              <h2 className="landing-section-title text-2xl sm:text-3xl">
                 Keywords these postings lean on
               </h2>
               <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
@@ -277,7 +277,7 @@ export default async function ResumeExamplePage({ params }) {
 
         <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
           <div className="landing-container">
-            <h2 className="landing-heading font-outfit text-xl font-extrabold sm:text-2xl">
+            <h2 className="landing-section-title text-xl sm:text-2xl">
               More resume examples
             </h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -39,7 +39,7 @@ function StoryCard({ story, index }) {
               {story.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-1.5 py-0.5 text-xs font-medium text-[var(--landing-ink-soft)]"
                 >
                   {tag}
                 </span>

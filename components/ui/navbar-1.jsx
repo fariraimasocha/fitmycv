@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { LayoutIcon, SignOutIcon } from "@phosphor-icons/react";
 
 const navLinks = [
   { label: "How It Works", href: "/#how-it-works" },
@@ -62,7 +62,7 @@ const Navbar1 = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--landing-bg)]/95 backdrop-blur-sm">
-      <div className="landing-container flex h-16 items-center justify-between gap-6 px-5 sm:px-10 lg:px-16">
+      <div className="landing-container flex h-16 items-center justify-between gap-6 px-5 sm:px-10 lg:px-16 xl:px-24">
         <Link
           href="/"
           className="font-serif-display text-xl tracking-tight text-[var(--landing-ink)]"
@@ -108,7 +108,7 @@ const Navbar1 = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard" className="flex cursor-pointer items-center">
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    <LayoutIcon className="mr-2 h-4 w-4" />
                     Dashboard
                   </Link>
                 </DropdownMenuItem>
@@ -117,14 +117,14 @@ const Navbar1 = () => {
                   onClick={handleLogout}
                   className="cursor-pointer text-red-600 focus:text-red-600"
                 >
-                  <LogOut className="mr-2 h-4 w-4" />
+                  <SignOutIcon className="mr-2 h-4 w-4" />
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm">
-              Login
+              Get FitMyCV
             </Link>
           )}
         </div>
@@ -164,7 +164,7 @@ const Navbar1 = () => {
                 </Link>
               ) : (
                 <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
-                  Login
+                  Get FitMyCV
                 </Link>
               )}
             </div>

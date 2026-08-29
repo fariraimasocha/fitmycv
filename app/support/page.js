@@ -80,7 +80,7 @@ export default function SupportPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[440px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.92_0.06_174_/_0.72),transparent_28rem)]"
+            className="absolute inset-x-0 top-0 -z-10 h-[440px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.94_0.02_84_/_0.7),transparent_28rem)]"
           />
           <div className="landing-container flex flex-col items-center text-center">
             <div className="landing-eyebrow">
@@ -88,7 +88,7 @@ export default function SupportPage() {
               Support
             </div>
             <h1
-              className="mt-6 max-w-3xl font-outfit font-extrabold leading-[1.02] tracking-normal text-[var(--landing-ink)]"
+              className="font-serif-display mt-6 max-w-3xl font-normal leading-[1.02] tracking-normal text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(36px, 5.4vw, 64px)" }}
             >
               How can we help?

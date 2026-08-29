@@ -15,8 +15,12 @@ import {
   CaretUpIcon,
   CheckCircleIcon,
   XCircleIcon,
+  SparkleIcon,
+  SpinnerGapIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { GradeBadge } from "@/components/GradeBadge";
 
 function matchesKeyword(keyword, cvText) {
   const normalizedKeyword = normalizeSearchText(keyword);
@@ -34,7 +38,15 @@ function normalizeSearchText(value) {
     .trim();
 }
 
-export default function JobRequirementsCard({ data, referenceCV }) {
+export default function JobRequirementsCard({
+  data,
+  referenceCV,
+  matchGrade,
+  matchLoading,
+  onTailor,
+  tailorPending,
+  showTailorAction,
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -42,12 +54,21 @@ export default function JobRequirementsCard({ data, referenceCV }) {
       transition={{ duration: 0.3 }}
     >
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6 sm:py-5">
+        <CardHeader className="px-4 py-4 sm:px-6 sm:py-5">
           <div className="space-y-2">
-            <CardTitle className="font-serif-display text-xl font-normal tracking-tight">
-              {data.title || "Job Listing"}
-            </CardTitle>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <CardTitle className="font-outfit text-xl font-semibold tracking-tight">
+                {data.title || "Job Listing"}
+              </CardTitle>
+              {matchLoading ? (
+                <span className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-semibold text-[var(--landing-ink-soft)]">
+                  Scoring…
+                </span>
+              ) : (
+                <GradeBadge grade={matchGrade} />
+              )}
+            </div>
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-7 text-[var(--landing-ink-soft)]">
               {data.company && (
                 <span className="flex items-center gap-1">
                   <BuildingsIcon size={14} aria-hidden="true" />
@@ -75,7 +96,7 @@ export default function JobRequirementsCard({ data, referenceCV }) {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="space-y-6 px-4 py-4 sm:px-6 sm:py-5">
+        <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
           {data.requirements?.length > 0 && (
             <Section
               icon={<ListChecksIcon size={16} aria-hidden="true" />}
@@ -100,6 +121,31 @@ export default function JobRequirementsCard({ data, referenceCV }) {
           {data.keywords?.length > 0 && (
             <KeywordsSection keywords={data.keywords} referenceCV={referenceCV} />
           )}
+          {showTailorAction && onTailor && (
+            <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+                Ready to rewrite your CV for this role.
+              </p>
+              <Button
+                onClick={onTailor}
+                disabled={tailorPending}
+                aria-busy={tailorPending}
+                className="h-11 w-full rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto"
+              >
+                {tailorPending ? (
+                  <>
+                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                    Tailoring…
+                  </>
+                ) : (
+                  <>
+                    <SparkleIcon size={16} aria-hidden="true" />
+                    Tailor CV
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
     </motion.div>
@@ -113,7 +159,7 @@ function Section({ icon, title, items }) {
         {icon}
         {title}
       </h3>
-      <ul className="space-y-1 pl-6 text-sm text-muted-foreground list-disc">
+      <ul className="list-disc space-y-1 pl-6 text-sm leading-7 text-[var(--landing-ink-soft)]">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
@@ -123,7 +169,7 @@ function Section({ icon, title, items }) {
 }
 
 function KeywordsSection({ keywords, referenceCV }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   // Build a text blob from the CV to match keywords against
   let cvText = "";
@@ -149,10 +195,10 @@ function KeywordsSection({ keywords, referenceCV }) {
         className="flex w-full items-center gap-2 text-sm font-semibold text-foreground hover:text-foreground/80 transition-colors"
       >
         <TagIcon size={16} aria-hidden="true" />
-        Key Terms ({keywords.length})
+        Key terms
         {hasCV && (
-          <span className="ml-auto text-xs font-normal text-muted-foreground">
-            {matched.length}/{keywords.length} in your CV
+          <span className="ml-auto text-xs font-normal text-[var(--landing-ink-soft)]">
+            {matched.length} in your CV
           </span>
         )}
         {expanded ? <CaretUpIcon size={14} /> : <CaretDownIcon size={14} />}

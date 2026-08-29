@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckIcon, CrownIcon } from "@phosphor-icons/react";
+import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
@@ -48,20 +48,19 @@ export default function PricingCards({
               key={plan.id}
               className={`relative flex flex-col gap-5 rounded-2xl border p-6 sm:p-7 ${
                 highlighted
-                  ? "border-[var(--landing-accent)] bg-white shadow-[0_0_0_1px_oklch(0.55_0.14_45_/_0.15),0_20px_40px_oklch(0.18_0.02_260_/_0.06)]"
+                  ? "border-[var(--landing-line)] bg-white shadow-[var(--landing-shadow-sm)]"
                   : "border-[var(--landing-line)] bg-[var(--landing-surface)]"
               }`}
             >
               {plan.badge && (
-                <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-[var(--landing-accent)] bg-[var(--landing-accent)] px-3 py-1 text-xs font-bold text-white">
-                  <CrownIcon size={12} weight="fill" aria-hidden="true" />
+                <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1 text-xs font-semibold text-[var(--landing-ink)]">
                   {plan.badge}
                 </span>
               )}
 
               <div className="flex flex-col gap-1">
                 <span className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                  Premium {plan.label}
+                  {plan.label}
                 </span>
                 <span className="text-sm text-[var(--landing-ink-soft)]">
                   {plan.subline}

@@ -226,9 +226,9 @@
     color: var(--landing-ink-soft);
     border-radius: 999px;
     padding: 0.35rem 0.75rem 0.35rem 0.35rem;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
 
@@ -260,8 +260,14 @@
 
   .landing-copy {
     color: var(--landing-ink-soft);
-    line-height: 1.72;
+    line-height: 2;
     max-width: 34em;
+  }
+
+  .dashboard-body {
+    color: var(--landing-ink-soft);
+    font-size: 0.875rem;
+    line-height: 1.75;
   }
 
   .landing-primary-btn,
@@ -359,11 +365,10 @@
   }
 
   .landing-meta-line {
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #9a948a;
+    letter-spacing: 0.04em;
+    color: var(--landing-ink-soft);
   }
 
   /* peeklens browser-chrome window around product screenshots */
@@ -446,9 +451,9 @@
   }
 
   .dashboard-tab-pill[data-active="true"] {
-    background: var(--landing-primary);
-    color: #ffffff;
-    box-shadow: var(--landing-shadow-sm);
+    background: var(--landing-primary-soft);
+    color: var(--landing-ink);
+    box-shadow: none;
   }
 
   .dashboard-tab-pill[data-active="false"] {

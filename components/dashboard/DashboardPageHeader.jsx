@@ -29,7 +29,7 @@ export function DashboardPageHeader({
           {title}
         </h1>
         {description && (
-          <div className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          <div className="mt-1 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
             {description}
           </div>
         )}

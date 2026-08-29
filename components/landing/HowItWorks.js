@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Play } from "lucide-react";
 import {
+  ArrowUpRightIcon,
+  PlayIcon,
   ClipboardTextIcon,
   LinkIcon,
   SparkleIcon,
@@ -144,10 +145,10 @@ export default function HowItWorks() {
           <div className="flex flex-col items-center gap-3 sm:flex-row">
             <Link href="/auth" className="landing-primary-btn text-sm">
               Get FitMyCV
-              <ArrowUpRight size={16} aria-hidden="true" />
+              <ArrowUpRightIcon size={16} aria-hidden="true" />
             </Link>
             <Link href="#features" className="landing-secondary-btn text-sm">
-              <Play size={15} aria-hidden="true" />
+              <PlayIcon size={15} weight="fill" aria-hidden="true" />
               See features
             </Link>
           </div>

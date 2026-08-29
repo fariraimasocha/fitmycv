@@ -9,7 +9,6 @@ import {
   MagnifyingGlassIcon,
   SpinnerGapIcon,
   LinkIcon,
-  SparkleIcon,
   FileTextIcon,
   EnvelopeSimpleIcon,
   DownloadSimpleIcon,
@@ -37,12 +36,14 @@ import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
-import { DEFAULT_TEMPLATE, getTemplateFontClass } from "@/utils/cv-templates/metadata";
+import { DEFAULT_TEMPLATE, getTemplateFontClass, getTemplateName } from "@/utils/cv-templates/metadata";
 import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardTabBar,
 } from "@/components/dashboard";
+import { GradeBadge, AtsScoreChip } from "@/components/GradeBadge";
+import { getRecentJobUrls, rememberJobUrl } from "@/lib/recent-job-urls";
 
 export default function TailorPage() {
   const { data: session } = useSession();
@@ -66,6 +67,7 @@ export default function TailorPage() {
   const [interviewPrepLoading, setInterviewPrepLoading] = useState(false);
   const [linkedInModalOpen, setLinkedInModalOpen] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [recentUrls, setRecentUrls] = useState(() => getRecentJobUrls());
   const tailorRef = useRef(null);
 
   const { data: referenceCVRecord } = useQuery({
@@ -188,6 +190,8 @@ export default function TailorPage() {
           .finally(() => setCompanyBriefLoading(false));
       }
 
+      rememberJobUrl(url.trim(), result.data?.title || "");
+      setRecentUrls(getRecentJobUrls());
       toast.success("Job requirements extracted!");
       setTimeout(() => {
         tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -408,7 +412,7 @@ export default function TailorPage() {
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6 sm:py-5">
+          <CardHeader className="px-4 py-4 sm:px-6 sm:py-5">
             <CardTitle className="flex items-center gap-2 text-base font-semibold">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                 <LinkIcon size={18} aria-hidden="true" />
@@ -433,6 +437,20 @@ export default function TailorPage() {
                 spellCheck={false}
                 className="h-11 rounded-xl border-border bg-[var(--landing-paper-soft)] text-base"
               />
+              {recentUrls.length > 0 && !jobData && (
+                <div className="flex flex-wrap gap-2">
+                  {recentUrls.map((item) => (
+                    <button
+                      key={item.url}
+                      type="button"
+                      onClick={() => setUrl(item.url)}
+                      className="max-w-full truncate rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-1 text-xs font-medium text-[var(--landing-ink)] transition-colors hover:border-[var(--landing-ink)]"
+                    >
+                      {item.title || item.url}
+                    </button>
+                  ))}
+                </div>
+              )}
               <Button
                 type="submit"
                 disabled={extractMutation.isPending || !url.trim()}
@@ -484,7 +502,7 @@ export default function TailorPage() {
               key={item.step}
               className="dashboard-list-row rounded-2xl px-4 py-4"
             >
-              <span className="font-serif-display text-2xl text-[var(--landing-accent)]">
+              <span className="font-outfit text-2xl font-semibold text-[var(--landing-accent)]">
                 {item.step}
               </span>
               <p className="mt-2 text-sm font-semibold text-foreground">{item.title}</p>
@@ -495,12 +513,54 @@ export default function TailorPage() {
       )}
 
       {jobData && (
+        <div className="sticky top-14 z-10 -mx-3 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/95 px-3 py-2 backdrop-blur-md sm:top-16 sm:-mx-6 sm:px-6">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-foreground">
+                {jobData.title || "Job listing"}
+              </p>
+              {jobData.company && (
+                <p className="truncate text-xs leading-5 text-[var(--landing-ink-soft)]">
+                  {jobData.company}
+                </p>
+              )}
+            </div>
+            <div className="flex shrink-0 items-center gap-2">
+              {matchScoreLoading ? (
+                <span className="text-xs font-semibold text-[var(--landing-ink-soft)]">
+                  Scoring…
+                </span>
+              ) : (
+                <GradeBadge grade={matchScore?.globalGrade} />
+              )}
+              {tailorResult && (
+                <AtsScoreChip
+                  score={atsScore?.score}
+                  loading={atsLoading}
+                  onClick={() => handleTabChange("ats")}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {jobData && (
         <motion.div
+          ref={tailorRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <JobRequirementsCard data={jobData} referenceCV={cachedReferenceCV} />
+          <JobRequirementsCard
+            data={jobData}
+            referenceCV={cachedReferenceCV}
+            matchGrade={matchScore?.globalGrade}
+            matchLoading={matchScoreLoading}
+            onTailor={() => tailorMutation.mutate()}
+            tailorPending={tailorMutation.isPending}
+            showTailorAction={!tailorResult}
+          />
         </motion.div>
       )}
 
@@ -514,60 +574,35 @@ export default function TailorPage() {
         </motion.div>
       )}
 
-      {jobData && !tailorResult && (
-        <motion.div
-          ref={tailorRef}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="dashboard-card rounded-2xl px-4 py-5 text-center sm:px-6">
-            <p className="text-sm text-muted-foreground">
-              Requirements extracted — ready to rewrite your CV for this role.
-            </p>
-            <Button
-              onClick={() => tailorMutation.mutate()}
-              disabled={tailorMutation.isPending}
-              aria-busy={tailorMutation.isPending}
-              className="mt-4 h-12 w-full rounded-[10px] bg-foreground px-8 font-outfit text-base font-semibold text-background shadow-[var(--landing-shadow-sm)] hover:opacity-90 sm:mx-auto sm:w-auto"
-            >
-            {tailorMutation.isPending ? (
-              <>
-                <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                Tailoring…
-              </>
-            ) : (
-              <>
-                <SparkleIcon size={16} aria-hidden="true" />
-                Tailor CV
-              </>
-            )}
-          </Button>
-          </div>
-        </motion.div>
-      )}
-
       {tailorResult && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="space-y-4"
+          className="space-y-4 pb-24 md:pb-0"
         >
           <div className="flex flex-col gap-3">
-            <DashboardTabBar
-              tabs={tailorTabs}
-              activeTab={activeTab}
-              onTabChange={handleTabChange}
-              ariaLabel="Resume output sections"
-            />
-            {/* Actions row — only shown for downloadable tabs */}
+            <div className="flex flex-wrap items-center gap-2">
+              <DashboardTabBar
+                tabs={tailorTabs}
+                activeTab={activeTab}
+                onTabChange={handleTabChange}
+                ariaLabel="Resume output sections"
+              />
+              {activeTab === "cv" && (
+                <AtsScoreChip
+                  score={atsScore?.score}
+                  loading={atsLoading}
+                  onClick={() => handleTabChange("ats")}
+                />
+              )}
+            </div>
             {activeTab !== "ats" && activeTab !== "research" && activeTab !== "interview" && (
-              <div className="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:items-center">
+              <div className="hidden items-center gap-2 sm:flex sm:flex-wrap">
                 {activeTab === "cv" && savedId && (
                   <Button
                     variant="outline"
-                    className="w-full rounded-[10px] border-border sm:w-auto"
+                    className="rounded-[10px] border-border"
                     onClick={() => setShowPreview(!showPreview)}
                   >
                     {showPreview ? (
@@ -584,7 +619,7 @@ export default function TailorPage() {
                   </Button>
                 )}
                 {activeTab === "cv" && (
-                  <div className="w-full sm:w-56">
+                  <div className="w-56">
                     <TemplatePicker
                       value={selectedTemplate}
                       onChange={handleTemplateChange}
@@ -593,20 +628,19 @@ export default function TailorPage() {
                   </div>
                 )}
                 <Button
-                  variant="outline"
-                  className="w-full rounded-[10px] border-border sm:w-auto"
+                  className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
                   onClick={() => handleDownload(activeTab)}
                 >
                   {session?.user?.isPremium ? (
                     <DownloadSimpleIcon size={16} />
                   ) : (
-                    <CrownIcon size={16} className="text-amber-500" />
+                    <CrownIcon size={16} />
                   )}
-                  Download PDF
+                  Download PDF · {getTemplateName(selectedTemplate)}
                 </Button>
                 <Button
                   variant="outline"
-                  className="w-full rounded-[10px] border-border sm:w-auto"
+                  className="rounded-[10px] border-border"
                   onClick={() => setLinkedInModalOpen(true)}
                 >
                   <LinkedinLogoIcon size={16} />
@@ -631,14 +665,12 @@ export default function TailorPage() {
           )}
           {activeTab === "cv" && (!savedId || showPreview) && (
             <>
-              <div className="dashboard-card overflow-hidden rounded-2xl border-border">
-                <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
-              </div>
+              <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
               {tailorResult.keywordsInjected?.length > 0 && (
                 <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
                   <CardContent className="px-4 py-4 sm:px-6">
-                    <p className="mb-2 text-xs font-medium text-muted-foreground">
-                      Keywords injected ({tailorResult.keywordsInjected.length})
+                    <p className="mb-2 text-xs font-medium text-[var(--landing-ink-soft)]">
+                      Keywords injected
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {tailorResult.keywordsInjected.map((k, i) => (
@@ -677,6 +709,33 @@ export default function TailorPage() {
             />
           )}
         </motion.div>
+      )}
+
+      {tailorResult && (activeTab === "cv" || activeTab === "letter") && (
+        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[var(--landing-line)] bg-[var(--landing-bg)]/95 p-3 backdrop-blur-md md:hidden">
+          <div className="mx-auto flex max-w-3xl items-center gap-2">
+            {activeTab === "cv" && (
+              <div className="min-w-0 flex-1">
+                <TemplatePicker
+                  value={selectedTemplate}
+                  onChange={handleTemplateChange}
+                  data={tailorResult.tailoredCV}
+                />
+              </div>
+            )}
+            <Button
+              className="h-11 shrink-0 rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              onClick={() => handleDownload(activeTab)}
+            >
+              {session?.user?.isPremium ? (
+                <DownloadSimpleIcon size={16} />
+              ) : (
+                <CrownIcon size={16} />
+              )}
+              Download PDF · {getTemplateName(selectedTemplate)}
+            </Button>
+          </div>
+        </div>
       )}
 
       <LinkedInOutreachModal

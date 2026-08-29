@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
@@ -22,14 +22,16 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
 } from "@/components/dashboard";
+import { GradeBadge } from "@/components/GradeBadge";
+import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 
 const STATUS_CONFIG = {
-  evaluated: { label: "Evaluated", color: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300" },
-  applied: { label: "Applied", color: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300" },
-  interviewing: { label: "Interviewing", color: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300" },
-  offer: { label: "Offer", color: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300" },
-  rejected: { label: "Rejected", color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300" },
-  withdrawn: { label: "Withdrawn", color: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300" },
+  evaluated: { label: "Evaluated", color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]" },
+  applied: { label: "Applied", color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink)]" },
+  interviewing: { label: "Interviewing", color: "border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]" },
+  offer: { label: "Offer", color: "border border-[var(--landing-line)] bg-[#eef8f1] text-[var(--landing-success)]" },
+  rejected: { label: "Rejected", color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-accent)]" },
+  withdrawn: { label: "Withdrawn", color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]" },
 };
 
 export default function ApplicationDetailPage() {
@@ -49,6 +51,13 @@ export default function ApplicationDetailPage() {
       return json.data;
     },
   });
+
+  const setDetailLabel = useBreadcrumbStore((s) => s.setDetailLabel);
+
+  useEffect(() => {
+    if (app?.jobTitle) setDetailLabel(app.jobTitle);
+    return () => setDetailLabel(null);
+  }, [app?.jobTitle, setDetailLabel]);
 
   // Initialize notes from fetched data
   if (app && !notesLoaded) {
@@ -123,9 +132,12 @@ export default function ApplicationDetailPage() {
           </span>
         }
         action={
-          <span className={`inline-flex rounded-full px-3 py-1 text-sm font-medium ${statusConfig.color}`}>
-            {statusConfig.label}
-          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <GradeBadge grade={app.matchGrade} size="md" />
+            <span className={`inline-flex rounded-full px-3 py-1 text-sm font-medium ${statusConfig.color}`}>
+              {statusConfig.label}
+            </span>
+          </div>
         }
       />
 
@@ -165,14 +177,14 @@ export default function ApplicationDetailPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          <Card className="rounded-2xl border shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-base flex items-center gap-2">
+          <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+            <CardHeader className="px-4 py-4 sm:px-6">
+              <CardTitle className="flex items-center gap-2 text-base">
                 <ClockIcon size={16} />
                 Timeline
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
               <div className="space-y-3">
                 {[...app.statusHistory].reverse().map((entry, i) => {
                   const config = STATUS_CONFIG[entry.status] || STATUS_CONFIG.evaluated;
@@ -213,14 +225,14 @@ export default function ApplicationDetailPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
       >
-        <Card className="rounded-2xl border shadow-lg">
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
+        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <CardHeader className="px-4 py-4 sm:px-6">
+            <CardTitle className="flex items-center gap-2 text-base">
               <NotepadIcon size={16} />
               Notes & Follow-up
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 px-4 pb-4 sm:px-6 sm:pb-6">
             <div>
               <label className="text-xs font-medium text-muted-foreground mb-1 block">
                 Follow-up Date
@@ -260,27 +272,10 @@ export default function ApplicationDetailPage() {
         </Card>
       </motion.div>
 
-      {/* Match Score */}
-      {app.matchScore && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
-          <Card className="rounded-2xl border shadow-lg">
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground">Match Score</span>
-                <span className="text-lg font-bold tabular-nums">{app.matchScore.toFixed(1)}/5</span>
-                {app.matchGrade && (
-                  <span className="rounded-full bg-blue-100 dark:bg-blue-900/30 px-2 py-0.5 text-xs font-semibold text-blue-800 dark:text-blue-300">
-                    {app.matchGrade}
-                  </span>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+      {app.matchScore != null && (
+        <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+          Match {app.matchScore.toFixed(1)}/5
+        </p>
       )}
     </DashboardPageShell>
   );

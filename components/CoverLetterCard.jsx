@@ -34,7 +34,7 @@ export default function CoverLetterCard({
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+      <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 px-4 py-4 sm:px-6">
         <CardTitle className="flex items-center gap-2 text-base font-semibold">
           <EnvelopeSimpleIcon size={18} aria-hidden="true" />
           Cover Letter
@@ -74,7 +74,7 @@ export default function CoverLetterCard({
               <Button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90"
+                className="rounded-[10px] bg-foreground px-6 font-outfit font-semibold text-background hover:opacity-90"
               >
                 {isSaving ? (
                   <>

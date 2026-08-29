@@ -170,7 +170,7 @@ export default function DashboardPage() {
       </div>
 
       {tailoredCVsLoading ? (
-        <Loader fullPage={false} className="min-h-75" />
+        <Loader fullPage={false} className="min-h-50" />
       ) : tailoredCVsError ? (
         <DashboardEmptyState
           icon={WarningCircleIcon}
@@ -180,7 +180,7 @@ export default function DashboardPage() {
           onAction={() => refetchTailoredCVs()}
           actionDisabled={tailoredCVsFetching}
           delay={0.05}
-          className="min-h-75"
+          className="min-h-50"
         />
       ) : isFirstUse ? (
         <DashboardEmptyState
@@ -190,7 +190,7 @@ export default function DashboardPage() {
           actionLabel="Tailor your first CV"
           actionHref="/dashboard/tailor"
           delay={0.05}
-          className="min-h-75"
+          className="min-h-50"
         />
       ) : (
         <div className="flex flex-col gap-3 sm:gap-4">

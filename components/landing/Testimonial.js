@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { StarIcon } from "@phosphor-icons/react";
+import { QuotesIcon } from "@phosphor-icons/react";
 
 export default function Testimonial() {
   return (
@@ -10,12 +10,12 @@ export default function Testimonial() {
       className="landing-section-tight landing-muted-band flex scroll-mt-24 flex-col items-center"
     >
       <div className="landing-container flex flex-col items-center w-full max-w-3xl gap-10">
-        {/* Stars */}
-        <div className="flex flex-row items-center gap-2" aria-label="5 out of 5 stars">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <StarIcon key={i} size={28} weight="fill" className="text-[var(--landing-accent)]" aria-hidden="true" />
-          ))}
-        </div>
+        <QuotesIcon
+          size={32}
+          weight="fill"
+          className="text-[var(--landing-accent)]"
+          aria-hidden="true"
+        />
 
         {/* Quote with highlight */}
         <div className="relative w-full">
@@ -25,7 +25,7 @@ export default function Testimonial() {
           />
           <p className="relative z-10 w-full text-center font-serif-display text-xl leading-relaxed text-[var(--landing-ink)] sm:text-2xl">
             Not having to rewrite my CV manually is saving me tons of application work. Now I
-            just paste a job link and FitMyCv handles everything itself
+            just paste a job link and FitMyCV handles everything itself
           </p>
         </div>
 

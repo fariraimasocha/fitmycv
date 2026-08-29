@@ -90,7 +90,7 @@ export default async function ResumeExamplePage({ params }) {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(circle_at_50%_14%,oklch(0.92_0.06_174_/_0.66),transparent_30rem)]"
+            className="absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(circle_at_50%_14%,oklch(0.94_0.02_84_/_0.7),transparent_30rem)]"
           />
           <div className="mx-auto w-full max-w-3xl">
             <nav
@@ -112,7 +112,7 @@ export default async function ResumeExamplePage({ params }) {
             </nav>
 
             <h1
-              className="mt-6 font-outfit font-extrabold leading-[1.04] tracking-tight text-[var(--landing-ink)]"
+              className="font-serif-display mt-6 font-normal leading-[1.04] tracking-tight text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(32px, 4.4vw, 52px)" }}
             >
               {example.role} resume example
@@ -241,7 +241,7 @@ export default async function ResumeExamplePage({ params }) {
             </div>
 
             {/* Tip */}
-            <aside className="rounded-2xl border border-[oklch(0.47_0.125_177_/_0.22)] bg-[oklch(0.92_0.06_174_/_0.35)] p-6">
+            <aside className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-6">
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
                 The one thing most {example.role.toLowerCase()} CVs miss
               </p>
@@ -250,7 +250,7 @@ export default async function ResumeExamplePage({ params }) {
               </p>
             </aside>
 
-            <div className="flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[linear-gradient(135deg,oklch(0.92_0.06_174_/_0.5),oklch(0.997_0.006_84))] p-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                   Tailor this for the job you are applying to

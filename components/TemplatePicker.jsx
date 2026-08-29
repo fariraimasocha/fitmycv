@@ -42,7 +42,7 @@ export default function TemplatePicker({ value, onChange, data }) {
       <DialogTrigger asChild>
         <Button type="button" variant="outline" className="w-full justify-start rounded-[10px] border-border">
           <SquaresFourIcon size={16} aria-hidden="true" />
-          <span className="truncate">Template: {current.name}</span>
+          <span className="truncate">{current.name}</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-3xl">
@@ -67,12 +67,13 @@ export default function TemplatePicker({ value, onChange, data }) {
                 }`}
               >
                 {selected && (
-                  <CheckCircleIcon
-                    size={22}
-                    weight="fill"
-                    className="absolute right-1 top-1 z-10 text-primary"
-                    aria-hidden="true"
-                  />
+                  <span className="absolute right-1 top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)]">
+                    <CheckCircleIcon
+                      size={16}
+                      weight="fill"
+                      aria-hidden="true"
+                    />
+                  </span>
                 )}
                 <TemplateThumbnail template={t.id} data={data} />
                 <div className="min-w-0">

@@ -76,7 +76,7 @@ export default function TailorCvFromJobLinkPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.92_0.06_174_/_0.72),transparent_34rem)]"
+            className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.94_0.02_84_/_0.7),transparent_34rem)]"
           />
           <div className="landing-container flex flex-col items-center text-center">
             <div className="landing-eyebrow">
@@ -85,14 +85,14 @@ export default function TailorCvFromJobLinkPage() {
             </div>
 
             <h1
-              className="mt-6 max-w-5xl font-outfit font-extrabold leading-[0.98] tracking-normal text-[var(--landing-ink)]"
+              className="font-serif-display mt-6 max-w-5xl font-normal leading-[0.98] tracking-normal text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(38px, 6vw, 78px)" }}
             >
               Paste a job URL,{" "}
               <span className="relative inline-block px-2">
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.87_0.071_313_/_0.72)]"
+                  className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.9_0.04_45_/_0.45)]"
                 />
                 tailor your CV to it.
               </span>

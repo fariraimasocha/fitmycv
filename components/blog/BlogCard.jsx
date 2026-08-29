@@ -31,7 +31,7 @@ export default function BlogCard({ post, priority = false }) {
               into the image, not a chip sitting on top of it. `rounded-tr`
               matches the card radius so the pin isn't clipped by it. */}
           <CutoutCardPin className="right-0 top-0 rounded-tr-[28px] rounded-bl-[20px] bg-[var(--landing-paper-soft)] pb-2.5 pl-3.5 pr-5 pt-3">
-            <span className="block font-outfit text-[0.68rem] font-extrabold uppercase tracking-[0.14em] text-[var(--landing-primary-dark)]">
+            <span className="block rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-2.5 py-0.5 font-sans text-xs font-semibold text-[var(--landing-ink)]">
               {category}
             </span>
             <CutoutCorner
@@ -53,7 +53,7 @@ export default function BlogCard({ post, priority = false }) {
                 aria-hidden="true"
                 className="text-[var(--landing-primary-dark)]"
               />
-              <span className="font-outfit text-[0.66rem] font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink)]">
+              <span className="font-sans text-xs font-medium text-[var(--landing-ink)]">
                 {readingTime} min read
               </span>
             </span>

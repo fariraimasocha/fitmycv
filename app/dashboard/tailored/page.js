@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
@@ -12,8 +13,8 @@ import {
   FileTextIcon,
   TrashIcon,
   ArrowRightIcon,
-  ReadCvLogoIcon,
   PlusIcon,
+  DownloadSimpleIcon,
 } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,9 +25,15 @@ import {
   DashboardPageHeader,
   DashboardEmptyState,
 } from "@/components/dashboard";
+import UpgradePromptModal from "@/components/UpgradePromptModal";
+import { printDocument } from "@/utils/print-document";
+import { buildPdfFilename } from "@/utils/pdf-filename";
+import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
 
 export default function TailoredCVsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const { data: session } = useSession();
   const queryClient = useQueryClient();
 
   const { data: cvs, isLoading } = useQuery({
@@ -64,6 +71,34 @@ export default function TailoredCVsPage() {
       setConfirmDeleteId(null);
     },
   });
+
+  const handleDownloadClick = async (e, cv) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!session?.user?.isPremium) {
+      setShowUpgradeModal(true);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/tailored-cv/${cv._id}`);
+      if (!res.ok) throw new Error("Failed to load CV");
+      const json = await res.json();
+      const data = json.data;
+      printDocument({
+        kind: "cv",
+        data: {
+          basics: data.basics,
+          work: data.work,
+          education: data.education,
+          skills: data.skills,
+        },
+        template: DEFAULT_TEMPLATE,
+        filename: buildPdfFilename(data.basics?.name, data.jobTitle, "cv"),
+      });
+    } catch (error) {
+      toast.error(error.message || "Could not download PDF");
+    }
+  };
 
   const handleTrashClick = (e, id) => {
     e.preventDefault();
@@ -142,6 +177,15 @@ export default function TailoredCVsPage() {
                       </div>
                     </div>
                     <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      className="shrink-0 text-muted-foreground hover:text-foreground"
+                      onClick={(e) => handleDownloadClick(e, cv)}
+                      aria-label={`Download ${cv.jobTitle || "CV"}`}
+                    >
+                      <DownloadSimpleIcon size={16} aria-hidden="true" />
+                    </Button>
+                    <Button
                       variant={confirmDeleteId === cv._id ? "destructive" : "ghost"}
                       size="icon-sm"
                       className="shrink-0 text-muted-foreground hover:bg-red-50 hover:text-red-600"
@@ -171,6 +215,10 @@ export default function TailoredCVsPage() {
           ))}
         </div>
       )}
+      <UpgradePromptModal
+        open={showUpgradeModal}
+        onClose={() => setShowUpgradeModal(false)}
+      />
     </DashboardPageShell>
   );
 }

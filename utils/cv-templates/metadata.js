@@ -100,3 +100,9 @@ const TEMPLATE_FONT_CLASSES = {
 export function getTemplateFontClass(template) {
   return TEMPLATE_FONT_CLASSES[template] || "font-sans";
 }
+
+export function getTemplateName(template) {
+  return (
+    TEMPLATE_METADATA.find((item) => item.id === template)?.name || "Classic"
+  );
+}

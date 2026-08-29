@@ -103,17 +103,17 @@ export default function PreferencesPage() {
 
   if (!isPremium) {
     return (
-      <div className="mx-auto max-w-2xl p-4 sm:p-6">
-        <Card className="rounded-xl border-border text-center">
-          <CardContent className="py-12 space-y-4">
-            <CrownIcon className="size-8 text-amber-500 mx-auto" />
+      <DashboardPageShell width="narrow">
+        <Card className="dashboard-card rounded-2xl border-border text-center">
+          <CardContent className="space-y-4 py-12">
+            <CrownIcon className="mx-auto size-8 text-[var(--landing-accent)]" />
             <div className="space-y-1">
               <p className="text-lg font-semibold">Job preferences are a Pro feature</p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
                 Upgrade to control your daily job matches by email.
               </p>
             </div>
-            <Button asChild>
+            <Button asChild className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90">
               <Link href="/dashboard/upgrade">
                 Upgrade to Pro
                 <ArrowRightIcon className="ml-2 size-4" />
@@ -121,7 +121,7 @@ export default function PreferencesPage() {
             </Button>
           </CardContent>
         </Card>
-      </div>
+      </DashboardPageShell>
     );
   }
 
@@ -235,8 +235,9 @@ export default function PreferencesPage() {
         </Card>
       </motion.div>
 
-      <div className="flex justify-end">
+      <div className="sticky bottom-3 z-10 flex justify-end">
         <Button
+          className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
           onClick={() => mutation.mutate({ titles, country, remoteOnly, emailDigest })}
           disabled={mutation.isPending}
         >

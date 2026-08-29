@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRightIcon, PlayIcon } from "@phosphor-icons/react";
+import { PRICING } from "@/lib/pricing";
 
 function DemoPreview() {
   const reduceMotion = useReducedMotion();
@@ -42,7 +43,7 @@ function DemoPreview() {
 
 export default function Hero() {
   return (
-    <section className="relative px-5 pb-20 pt-10 sm:px-10 lg:px-16 xl:px-24">
+    <section id="hero" className="relative px-5 pb-20 pt-10 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container relative flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -83,7 +84,7 @@ export default function Hero() {
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/auth" className="landing-primary-btn group min-w-[210px] text-sm">
               Get FitMyCV
-              <ArrowUpRight
+              <ArrowUpRightIcon
                 size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -93,13 +94,23 @@ export default function Hero() {
               href="#how-it-works"
               className="landing-secondary-btn min-w-[210px] text-sm"
             >
-              <Play size={15} aria-hidden="true" />
+              <PlayIcon size={15} weight="fill" aria-hidden="true" />
               See how it works
             </Link>
           </div>
 
-          <p className="landing-meta-line mt-6">
-            [ Google sign-in · Lifetime from $16.99 · Cancel anytime on monthly ]
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {["Google sign-in", "Delete anytime", "ATS-safe PDF"].map((chip) => (
+              <li
+                key={chip}
+                className="rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1 text-sm leading-7 text-[var(--landing-ink)]"
+              >
+                {chip}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm leading-7 text-[var(--landing-ink-soft)]">
+            Lifetime from ${PRICING.lifetime.price}. Cancel anytime on monthly.
           </p>
         </motion.div>
 

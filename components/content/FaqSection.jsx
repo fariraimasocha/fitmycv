@@ -16,7 +16,7 @@ export default function FaqSection({
       className={`landing-section ${muted ? "landing-muted-band" : ""}`}
     >
       <div className="landing-container flex flex-col items-center gap-4">
-        <h2 className="landing-heading text-center font-outfit text-3xl font-extrabold sm:text-4xl">
+        <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
           {heading}
         </h2>
         {intro ? (

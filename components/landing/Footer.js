@@ -49,7 +49,7 @@ export default function Footer() {
               <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] bg-[var(--landing-primary)]">
                 <FileTextIcon size={12} className="text-[var(--landing-bg)]" aria-hidden="true" />
               </div>
-              <span className="font-outfit font-extrabold text-lg text-[var(--landing-ink)]">FitMyCv</span>
+              <span className="font-serif-display text-lg text-[var(--landing-ink)]">FitMyCV</span>
             </div>
             <p className="font-sans text-sm text-[var(--landing-ink-soft)] leading-relaxed max-w-[260px]">
               AI-powered CV tailoring. Land more interviews with less effort.
@@ -133,7 +133,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full border-t border-[var(--landing-line)] gap-4 pt-6">
           <p className="font-sans text-sm text-[var(--landing-ink-soft)]">
-            2026 FitMyCv. All rights reserved.
+            2026 FitMyCV. All rights reserved.
           </p>
         </div>
       </div>

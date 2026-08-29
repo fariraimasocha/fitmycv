@@ -79,9 +79,16 @@ export default function OnboardingPage() {
             </button>
           )}
 
-          <p className="mt-5 text-center text-xs text-[var(--landing-ink-soft)]">
+          <p className="mt-5 text-center text-xs leading-5 text-[var(--landing-ink-soft)]">
             PDF only, up to 8MB. You can edit the parsed details later.
           </p>
+          <button
+            type="button"
+            onClick={completeOnboarding}
+            className="mx-auto mt-4 block text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+          >
+            Skip for now
+          </button>
         </section>
       </main>
     </div>

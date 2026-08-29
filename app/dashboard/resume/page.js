@@ -102,9 +102,7 @@ export default function MyResumePage() {
             }
             onDownload={() => handleDownload(resumeData)}
           />
-          <div className="dashboard-card overflow-hidden rounded-2xl border-border">
-            <ResumePreview data={resumeData} template={selectedTemplate} />
-          </div>
+          <ResumePreview data={resumeData} template={selectedTemplate} />
         </div>
       ) : (
         <ResumeForm initialData={resumeData} rawText={rawText} {...saveProps} />

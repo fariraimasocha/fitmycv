@@ -13,7 +13,7 @@ export function DashboardPageShell({ children, width = "default", className }) {
   return (
     <div
       className={cn(
-        "dashboard-page mx-auto w-full min-w-0 space-y-4 px-3 py-4 sm:space-y-6 sm:px-6 sm:py-6",
+        "dashboard-page mx-auto w-full min-w-0 space-y-4 px-3 py-4 sm:px-6 sm:py-6",
         WIDTH[width] ?? WIDTH.default,
         className
       )}

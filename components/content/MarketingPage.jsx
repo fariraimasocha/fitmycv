@@ -56,7 +56,7 @@ export default function MarketingPage({ page, children }) {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_50%_16%,oklch(0.92_0.06_174_/_0.7),transparent_32rem)]"
+            className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_50%_16%,oklch(0.94_0.02_84_/_0.7),transparent_32rem)]"
           />
           <div className="landing-container flex flex-col items-center text-center">
             <nav
@@ -83,7 +83,7 @@ export default function MarketingPage({ page, children }) {
             ) : null}
 
             <h1
-              className="mt-6 max-w-4xl font-outfit font-extrabold leading-[1.02] tracking-tight text-[var(--landing-ink)]"
+              className="font-serif-display mt-6 max-w-4xl font-normal leading-[1.02] tracking-tight text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(36px, 5.4vw, 68px)" }}
             >
               {h1}

@@ -14,7 +14,7 @@ import { PillTrack } from "@/components/charts/PillTrack";
 
 function scoreColor(score) {
   if (score >= 80) return "var(--landing-success)";
-  if (score >= 60) return "#9a6b2e";
+  if (score >= 60) return "var(--landing-ink)";
   return "var(--landing-accent)";
 }
 
@@ -147,7 +147,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium text-[var(--landing-success)]">
               <CheckCircleIcon size={16} weight="fill" aria-hidden="true" />
-              Keywords Found ({keywordsMatched.length})
+              Keywords found
             </div>
             <div className="flex flex-wrap gap-1.5">
               {keywordsMatched.map((kw) => (
@@ -161,7 +161,7 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium text-[var(--landing-accent)]">
               <XCircleIcon size={16} weight="fill" aria-hidden="true" />
-              Missing Keywords ({keywordsMissing.length})
+              Missing keywords
             </div>
             <div className="flex flex-wrap gap-1.5">
               {keywordsMissing.map((kw) => (
@@ -174,13 +174,13 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
         {recommendations.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-sm font-medium">
-              <LightbulbIcon size={16} weight="fill" className="text-[#9a6b2e]" aria-hidden="true" />
+              <LightbulbIcon size={16} weight="fill" className="text-[var(--landing-ink)]" aria-hidden="true" />
               Recommendations
             </div>
             <ul className="space-y-1.5">
               {recommendations.map((rec, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-[#9a6b2e]">•</span>
+                <li key={i} className="flex items-start gap-2 text-sm leading-7 text-[var(--landing-ink-soft)]">
+                  <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
                   {rec}
                 </li>
               ))}
@@ -190,14 +190,14 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
 
         {formattingNotes.length > 0 && (
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm font-medium text-[#9a6b2e]">
+            <div className="flex items-center gap-2 text-sm font-medium text-[var(--landing-ink)]">
               <WarningIcon size={16} weight="fill" aria-hidden="true" />
               Formatting Notes
             </div>
             <ul className="space-y-1.5">
               {formattingNotes.map((note, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-[#9a6b2e]">•</span>
+                <li key={i} className="flex items-start gap-2 text-sm leading-7 text-[var(--landing-ink-soft)]">
+                  <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
                   {note}
                 </li>
               ))}

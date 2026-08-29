@@ -11,6 +11,7 @@ import Pricing from "@/components/landing/Pricing";
 import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
+import StickyCtaBar from "@/components/landing/StickyCtaBar";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema } from "@/lib/seo";
 import { softwareApplicationSchema } from "@/lib/structured-data";
@@ -63,6 +64,7 @@ export default function Home() {
         <ResourcesStrip />
         <CTABand />
       </main>
+      <StickyCtaBar />
       <Footer />
       <JsonLd data={faqSchema(HOME_FAQS)} />
       <JsonLd data={softwareApplicationSchema} />

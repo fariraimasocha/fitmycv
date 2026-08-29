@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }) {
             />
             <div
               aria-hidden="true"
-              className="absolute inset-x-0 top-0 -z-10 h-[460px] bg-[radial-gradient(circle_at_50%_12%,oklch(0.92_0.06_174_/_0.6),transparent_30rem)]"
+              className="absolute inset-x-0 top-0 -z-10 h-[460px] bg-[radial-gradient(circle_at_50%_12%,oklch(0.94_0.02_84_/_0.7),transparent_30rem)]"
             />
 
             <div className="mx-auto w-full max-w-3xl">
@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }) {
               </nav>
 
               <h1
-                className="mt-6 font-outfit font-extrabold leading-[1.06] tracking-tight text-[var(--landing-ink)]"
+                className="font-serif-display mt-6 font-normal leading-[1.06] tracking-tight text-[var(--landing-ink)]"
                 style={{ fontSize: "clamp(32px, 4.4vw, 52px)" }}
               >
                 {meta.title}

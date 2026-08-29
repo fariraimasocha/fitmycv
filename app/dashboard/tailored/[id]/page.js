@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -27,7 +27,13 @@ import FormattedDate from "@/components/FormattedDate";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
-import { DEFAULT_TEMPLATE, getTemplateFontClass } from "@/utils/cv-templates/metadata";
+import { DEFAULT_TEMPLATE, getTemplateFontClass, getTemplateName } from "@/utils/cv-templates/metadata";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  DashboardTabBar,
+} from "@/components/dashboard";
+import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 
 export default function TailoredCVDetailPage() {
   const { id } = useParams();
@@ -38,6 +44,7 @@ export default function TailoredCVDetailPage() {
   const [showPreview, setShowPreview] = useState(true);
   const [templateOverride, setTemplateOverride] = useState(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const setDetailLabel = useBreadcrumbStore((s) => s.setDetailLabel);
 
   const { data: cv, isLoading } = useQuery({
     queryKey: ["tailored-cv", id],
@@ -48,6 +55,11 @@ export default function TailoredCVDetailPage() {
       return json.data;
     },
   });
+
+  useEffect(() => {
+    if (cv?.jobTitle) setDetailLabel(cv.jobTitle);
+    return () => setDetailLabel(null);
+  }, [cv?.jobTitle, setDetailLabel]);
 
   const { data: referenceCV } = useQuery({
     queryKey: ["resume"],
@@ -111,17 +123,17 @@ export default function TailoredCVDetailPage() {
 
   if (!cv) {
     return (
-      <div className="flex flex-col items-center justify-center py-20">
-        <p className="text-gray-500">Tailored CV not found.</p>
+      <DashboardPageShell width="narrow">
+        <p className="text-center text-sm text-[var(--landing-ink-soft)]">Tailored CV not found.</p>
         <Button
           variant="outline"
-          className="mt-4 rounded-full"
+          className="mx-auto mt-4 rounded-[10px]"
           onClick={() => router.push("/dashboard/tailored")}
         >
           <ArrowLeftIcon size={16} />
           Back to list
         </Button>
-      </div>
+      </DashboardPageShell>
     );
   }
 
@@ -160,40 +172,33 @@ export default function TailoredCVDetailPage() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="space-y-4"
+    <DashboardPageShell width="narrow" className="pb-24 md:pb-6">
+      <button
+        type="button"
+        onClick={() => router.push("/dashboard/tailored")}
+        className="flex items-center gap-1 text-sm text-[var(--landing-ink-soft)] transition-colors hover:text-foreground"
       >
-        <Button
-          variant="ghost"
-          className="rounded-full"
-          onClick={() => router.push("/dashboard/tailored")}
-        >
-          <ArrowLeftIcon size={16} />
-          Back to Tailored CVs
-        </Button>
+        <ArrowLeftIcon size={14} />
+        Back to Tailored CVs
+      </button>
 
-        <div>
-          <h1 className="text-2xl font-bold">
-            {cv.jobTitle || "Untitled Position"}
-          </h1>
-          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+      <DashboardPageHeader
+        title={cv.jobTitle || "Untitled Position"}
+        description={
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm leading-7 text-[var(--landing-ink-soft)]">
             {cv.jobCompany && (
-              <span className="flex items-center gap-1">
+              <span className="inline-flex items-center gap-1">
                 <BuildingsIcon size={14} />
                 {cv.jobCompany}
               </span>
             )}
-            <span className="flex items-center gap-1">
+            <span className="inline-flex items-center gap-1">
               <CalendarIcon size={14} />
               <FormattedDate date={cv.createdAt} />
             </span>
-          </div>
-        </div>
-      </motion.div>
+          </span>
+        }
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -202,33 +207,22 @@ export default function TailoredCVDetailPage() {
         className="space-y-4"
       >
         <div className="flex flex-col gap-3">
-          {/* Tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-1 [mask-image:linear-gradient(to_right,transparent_0,black_8px,black_calc(100%-8px),transparent_100%)]">
-            <Button
-              variant={activeTab === "cv" ? "default" : "outline"}
-              onClick={() => setActiveTab("cv")}
-              className="gap-2 shrink-0"
-            >
-              <FileTextIcon size={16} />
-              Tailored CV
-            </Button>
-            <Button
-              variant={activeTab === "letter" ? "default" : "outline"}
-              onClick={() => setActiveTab("letter")}
-              className="gap-2 shrink-0"
-            >
-              <EnvelopeSimpleIcon size={16} />
-              Cover Letter
-            </Button>
-          </div>
+          <DashboardTabBar
+            tabs={[
+              { id: "cv", label: "Tailored CV", icon: <FileTextIcon size={14} aria-hidden="true" /> },
+              { id: "letter", label: "Cover Letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
+            ]}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            ariaLabel="Tailored document sections"
+          />
 
-          {/* Actions row */}
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="hidden items-center gap-2 sm:flex sm:flex-wrap">
             {activeTab === "cv" && (
               <>
                 <Button
                   variant="outline"
-                  className="rounded-full"
+                  className="rounded-[10px] border-border"
                   onClick={() => setShowPreview(!showPreview)}
                 >
                   {showPreview ? (
@@ -243,7 +237,7 @@ export default function TailoredCVDetailPage() {
                     </>
                   )}
                 </Button>
-                <div className="w-full sm:w-56">
+                <div className="w-56">
                   <TemplatePicker
                     value={selectedTemplate}
                     onChange={handleTemplateChange}
@@ -253,16 +247,15 @@ export default function TailoredCVDetailPage() {
               </>
             )}
             <Button
-              variant="outline"
-              className="rounded-full"
+              className="rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
               onClick={() => handleDownload(activeTab)}
             >
               {session?.user?.isPremium ? (
                 <DownloadSimpleIcon size={16} />
               ) : (
-                <CrownIcon size={16} className="text-amber-500" />
+                <CrownIcon size={16} />
               )}
-              Download PDF
+              Download PDF · {getTemplateName(selectedTemplate)}
             </Button>
           </div>
         </div>
@@ -292,10 +285,32 @@ export default function TailoredCVDetailPage() {
         )}
       </motion.div>
 
+      {(activeTab === "cv" || activeTab === "letter") && (
+        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[var(--landing-line)] bg-[var(--landing-bg)]/95 p-3 backdrop-blur-md md:hidden">
+          <div className="mx-auto flex max-w-3xl items-center gap-2">
+            {activeTab === "cv" && (
+              <div className="min-w-0 flex-1">
+                <TemplatePicker
+                  value={selectedTemplate}
+                  onChange={handleTemplateChange}
+                  data={resumeData}
+                />
+              </div>
+            )}
+            <Button
+              className="h-11 shrink-0 rounded-[10px] bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              onClick={() => handleDownload(activeTab)}
+            >
+              Download PDF · {getTemplateName(selectedTemplate)}
+            </Button>
+          </div>
+        </div>
+      )}
+
       <UpgradePromptModal
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
       />
-    </div>
+    </DashboardPageShell>
   );
 }

@@ -18,6 +18,7 @@ import AuthProvider from "@/components/providers/auth-provider";
 import OnboardingGuard from "@/components/OnboardingGuard";
 import FeedbackModal from "@/components/FeedbackModal";
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
+import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 
 const PATH_LABELS = {
   "/dashboard": "Home",
@@ -30,10 +31,13 @@ const PATH_LABELS = {
   "/dashboard/applications": "Applications",
   "/dashboard/story-bank": "Story Bank",
   "/dashboard/compare": "Compare Offers",
+  "/dashboard/saved": "Saved Jobs",
+  "/dashboard/preferences": "Preferences",
 };
 
 function DashboardBreadcrumb() {
   const pathname = usePathname();
+  const detailLabel = useBreadcrumbStore((s) => s.detailLabel);
 
   const isTailoredDetail =
     pathname.startsWith("/dashboard/tailored/") &&
@@ -48,7 +52,7 @@ function DashboardBreadcrumb() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Detail</BreadcrumbPage>
+            <BreadcrumbPage>{detailLabel || "Detail"}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -68,7 +72,7 @@ function DashboardBreadcrumb() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Detail</BreadcrumbPage>
+            <BreadcrumbPage>{detailLabel || "Detail"}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -88,7 +92,7 @@ function DashboardBreadcrumb() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Brief Detail</BreadcrumbPage>
+            <BreadcrumbPage>{detailLabel || "Brief"}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

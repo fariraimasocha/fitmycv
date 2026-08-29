@@ -42,27 +42,27 @@ import { cn } from "@/lib/utils";
 const STATUS_CONFIG = {
   evaluated: {
     label: "Evaluated",
-    color: "bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]",
+    color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]",
   },
   applied: {
     label: "Applied",
-    color: "bg-blue-50 text-blue-800",
+    color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink)]",
   },
   interviewing: {
     label: "Interviewing",
-    color: "bg-purple-50 text-purple-800",
+    color: "border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]",
   },
   offer: {
     label: "Offer",
-    color: "bg-emerald-50 text-emerald-800",
+    color: "border border-[var(--landing-line)] bg-[#eef8f1] text-[var(--landing-success)]",
   },
   rejected: {
     label: "Rejected",
-    color: "bg-red-50 text-red-700",
+    color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-accent)]",
   },
   withdrawn: {
     label: "Withdrawn",
-    color: "bg-amber-50 text-amber-800",
+    color: "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]",
   },
 };
 

@@ -1502,7 +1502,7 @@ export default function ResumePreview({ data, template = "classic" }) {
   const padding = PADDING[template] || "p-5 sm:p-8";
 
   return (
-    <Card className="rounded-2xl border shadow-lg">
+    <Card className="dashboard-card rounded-2xl border-border">
       <CardContent className={padding}>
         <Preview basics={basics} work={work} education={education} skills={skills} />
       </CardContent>

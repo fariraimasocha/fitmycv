@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { GradeBadge, gradeChipClass } from "@/components/GradeBadge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   TargetIcon,
@@ -26,21 +27,10 @@ const GRADE_PERCENT = {
   F: 20,
 };
 
-const gradeColor = (grade) => {
-  if (!grade || grade === "N/A") {
-    return "border border-border bg-[var(--landing-paper-soft)] text-muted-foreground";
-  }
-  const letter = grade.charAt(0);
-  if (letter === "A") return "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]";
-  if (letter === "B") return "border border-[#cfe0f5] bg-[#edf4fc] text-[#2f5f9e]";
-  if (letter === "C") return "border border-[#f0dfc4] bg-[#fdf6ea] text-[#9a6b2e]";
-  return "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
-};
-
 const globalScoreColor = (score) => {
   if (score >= 4) return "var(--landing-success)";
-  if (score >= 3) return "#2f5f9e";
-  if (score >= 2) return "#9a6b2e";
+  if (score >= 3) return "var(--landing-ink)";
+  if (score >= 2) return "var(--landing-ink-soft)";
   return "var(--landing-accent)";
 };
 
@@ -76,7 +66,7 @@ function DimensionRow({ dimKey, dimension }) {
         <Icon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
         <span className="text-xs text-muted-foreground">{meta.label}</span>
         <span
-          className={`ml-auto inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${gradeColor(dimension.grade)}`}
+          className={`ml-auto inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${gradeChipClass(dimension.grade)}`}
         >
           {dimension.grade}
         </span>
@@ -114,7 +104,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="border-b border-border/60 px-4 py-4 sm:px-6">
+        <CardHeader className="px-4 py-4 sm:px-6">
           <CardTitle className="text-base font-semibold">Scoring job match…</CardTitle>
         </CardHeader>
         <CardContent className="px-4 py-4 sm:px-6 sm:py-5">
@@ -132,14 +122,10 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="border-b border-border/60 px-4 py-4 pb-3 sm:px-6">
+      <CardHeader className="px-4 py-4 pb-3 sm:px-6">
         <CardTitle className="flex items-center justify-between text-base font-semibold">
-          <span>Job Match Score</span>
-          <span
-            className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-bold ${gradeColor(globalGrade)}`}
-          >
-            {globalGrade}
-          </span>
+          <span>Job match</span>
+          <GradeBadge grade={globalGrade} size="md" />
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
@@ -163,7 +149,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
             <p className="text-sm font-medium" style={{ color }}>
               {label}
             </p>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
               {recommendation}
             </p>
           </div>
@@ -202,7 +188,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
                 <div key={key} className="space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-semibold">{meta.label}</span>
-                    <span className={`rounded-full px-1.5 py-0.5 text-xs font-semibold ${gradeColor(dim.grade)}`}>
+                    <span className={`rounded-full px-1.5 py-0.5 text-xs font-semibold ${gradeChipClass(dim.grade)}`}>
                       {dim.grade}
                     </span>
                   </div>

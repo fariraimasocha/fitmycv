@@ -27,7 +27,7 @@ export default function NotFound() {
             404
           </p>
           <h1
-            className="mt-4 max-w-2xl font-outfit font-extrabold leading-[1.05] tracking-normal text-[var(--landing-ink)]"
+            className="font-serif-display mt-4 max-w-2xl font-normal leading-[1.05] tracking-normal text-[var(--landing-ink)]"
             style={{ fontSize: "clamp(32px, 5vw, 56px)" }}
           >
             We couldn&apos;t find that page

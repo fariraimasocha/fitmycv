@@ -144,7 +144,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <ChatTeardropDotsIcon size={16} />
-              STAR Stories ({stories.length})
+              STAR stories
             </h3>
             <div className="space-y-2">
               {stories.map((story, i) => (
@@ -162,18 +162,18 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
         {/* Red Flag Q&A */}
         {redFlagQA?.length > 0 && (
           <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-400">
+            <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-ink)]">
               <WarningCircleIcon size={16} weight="fill" />
-              Red Flag Questions
+              Red flag questions
             </h3>
             <div className="space-y-3">
               {redFlagQA.map((qa, i) => (
-                <div key={i} className="rounded-lg bg-amber-50 dark:bg-amber-900/10 p-3 space-y-1.5">
-                  <p className="text-sm font-medium text-amber-900 dark:text-amber-200">
-                    Q: {qa.question}
+                <div key={i} className="space-y-1.5 rounded-lg bg-[var(--landing-paper-soft)] p-3">
+                  <p className="text-sm font-medium text-[var(--landing-ink)]">
+                    {qa.question}
                   </p>
-                  <p className="text-sm text-amber-800 dark:text-amber-300">
-                    A: {qa.suggestedAnswer}
+                  <p className="text-sm leading-7 text-[var(--landing-ink-soft)]">
+                    {qa.suggestedAnswer}
                   </p>
                 </div>
               ))}

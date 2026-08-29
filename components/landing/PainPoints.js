@@ -1,5 +1,7 @@
 "use client";
 
+import { XIcon } from "@phosphor-icons/react";
+
 const PAINS = [
   {
     title: "Generic CVs get ignored",
@@ -23,9 +25,12 @@ function PainCard({ title, body }) {
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-white p-6 sm:p-7">
       <h3 className="flex items-start gap-2.5 text-base font-semibold text-[var(--landing-ink)]">
-        <span className="mt-0.5 shrink-0 text-[var(--landing-accent)]" aria-hidden="true">
-          ✕
-        </span>
+        <XIcon
+          size={16}
+          weight="bold"
+          className="mt-0.5 shrink-0 text-[var(--landing-accent)]"
+          aria-hidden="true"
+        />
         {title}
       </h3>
       <p className="text-sm leading-relaxed text-[var(--landing-ink-soft)]">{body}</p>

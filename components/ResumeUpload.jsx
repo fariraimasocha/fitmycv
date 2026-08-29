@@ -130,11 +130,12 @@ export default function ResumeUpload({ onParsed }) {
               : "border-[var(--landing-line)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]"
           }`}
         >
-          <UploadSimpleIcon
-            size={40}
-            className="mb-3 text-[var(--landing-ink-soft)]"
-            aria-hidden="true"
-          />
+          <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
+            <UploadSimpleIcon
+              size={20}
+              aria-hidden="true"
+            />
+          </span>
           <p className="text-sm font-medium text-[var(--landing-ink)]">
             Drag and drop your CV PDF here
           </p>

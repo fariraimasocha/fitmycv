@@ -32,7 +32,7 @@ export default function ResourcesStrip() {
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container">
         <div className="flex flex-col items-center gap-3 text-center">
-          <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+          <h2 className="landing-section-title text-2xl sm:text-3xl">
             Everything else on the site
           </h2>
           <p className="landing-copy text-center text-base">

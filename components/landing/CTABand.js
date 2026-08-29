@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 export default function CTABand() {
@@ -15,7 +15,7 @@ export default function CTABand() {
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href="/auth" className="landing-primary-btn text-sm">
             Get FitMyCV
-            <ArrowUpRight size={16} aria-hidden="true" />
+            <ArrowUpRightIcon size={16} aria-hidden="true" />
           </Link>
           <Link href="#pricing" className="landing-secondary-btn text-sm">
             View Pricing

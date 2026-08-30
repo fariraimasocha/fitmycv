@@ -1,5 +1,7 @@
 import { auth } from "@/lib/auth";
 import { parseTailorResponse } from "@/utils/tailor-parser";
+import { connectDB } from "@/utils/connect";
+import User from "@/models/User";
 import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -83,7 +85,13 @@ Cover Letter Rules:
 - Do NOT write a generic cover letter that could apply to any job — every paragraph must tie back to this specific role
 - Do NOT repeat the CV verbatim — complement it with narrative that shows fit for this role
 - Quantify impact where the CV supports it, and never invent numbers or experience the candidate doesn't have
-- Avoid empty clichés ("hard worker", "team player", "passionate about") unless backed by a concrete example; keep it to ~250-350 words`;
+- Avoid empty clichés ("hard worker", "team player", "passionate about") unless backed by a concrete example; keep it to ~250-350 words
+
+If a "## Candidate context" section is present, let it steer emphasis only — never facts:
+- A goal of breaking into tech or switching fields means leading with transferable experience and reframing existing highlights in the target role's vocabulary.
+- A blocker about not getting responses means leaning harder on the hard-skill keyword strategy above and on scannable, front-loaded highlights.
+- A late search stage (interviewing, or holding an offer) means favouring depth and seniority signals over breadth.
+The rule against inventing numbers or experience the candidate does not have still overrides all of this.`;
 
 export async function POST(request) {
   const session = await auth();
@@ -97,7 +105,7 @@ export async function POST(request) {
     if (!referenceCV || !jobData) {
       return Response.json(
         { error: "Reference CV and job data are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -121,13 +129,31 @@ ${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}
 
 Please tailor the CV for this specific role and generate a cover letter that clearly addresses the ${jobData.title} position at ${jobData.company}.`;
 
+    // Onboarding answers, when the user gave them. Skippers and legacy users
+    // have none, and the prompt stays byte-identical to what it was for them.
+    await connectDB();
+    const user = await User.findById(session.user.id)
+      .select("onboarding")
+      .lean();
+    const contextLines = [
+      ["Goal", user?.onboarding?.goal],
+      ["Search stage", user?.onboarding?.stage],
+      ["Biggest blocker", user?.onboarding?.blocker],
+    ]
+      .filter(([, value]) => Boolean(value))
+      .map(([label, value]) => `${label}: ${value}`);
+
+    const promptMessage = contextLines.length
+      ? `${userMessage}\n\n## Candidate context\n${contextLines.join("\n")}`
+      : userMessage;
+
     const generate = () =>
       openai.chat.completions.create({
         // ponytail: gpt-4o for the quality-critical tailoring path; drop back to gpt-4o-mini if cost matters more than output quality
         model: "gpt-4o",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: userMessage },
+          { role: "user", content: promptMessage },
         ],
         response_format: { type: "json_object" },
         temperature: 0.3,
@@ -144,14 +170,17 @@ Please tailor the CV for this specific role and generate a cover letter that cle
         parsed = parseTailorResponse(responseText);
         break;
       } catch (err) {
-        console.warn(`Tailor parse failed (attempt ${attempt + 1}):`, err.message);
+        console.warn(
+          `Tailor parse failed (attempt ${attempt + 1}):`,
+          err.message,
+        );
       }
     }
 
     if (!parsed) {
       return Response.json(
         { error: "Failed to generate a valid tailored CV. Please try again." },
-        { status: 502 }
+        { status: 502 },
       );
     }
 
@@ -165,12 +194,11 @@ Please tailor the CV for this specific role and generate a cover letter that cle
       );
     }
 
-    return Response.json({ data: { tailoredCV, coverLetter, keywordsInjected } });
+    return Response.json({
+      data: { tailoredCV, coverLetter, keywordsInjected },
+    });
   } catch (error) {
     console.error("Tailor error:", error);
-    return Response.json(
-      { error: "Failed to tailor CV" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Failed to tailor CV" }, { status: 500 });
   }
 }

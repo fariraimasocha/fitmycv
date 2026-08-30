@@ -124,7 +124,7 @@ const Navbar1 = () => {
             </DropdownMenu>
           ) : (
             <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm">
-              Get FitMyCV
+              Login
             </Link>
           )}
         </div>
@@ -164,7 +164,7 @@ const Navbar1 = () => {
                 </Link>
               ) : (
                 <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
-                  Get FitMyCV
+                  Login
                 </Link>
               )}
             </div>

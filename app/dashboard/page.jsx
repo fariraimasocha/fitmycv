@@ -22,13 +22,11 @@ import {
   DashboardPageShell,
   DashboardStatCard,
   DashboardEmptyState,
+  DashboardActivation,
 } from "@/components/dashboard";
-import { ActivityHeatmap } from "@/components/charts/ActivityHeatmap";
-import {
-  buildWeeklyCounts,
-  buildHeatmapCells,
-} from "@/lib/activity-series";
+import { buildWeeklyCounts } from "@/lib/activity-series";
 import Loader from "@/components/Loader";
+import { getActivationSteps } from "@/lib/activation-steps";
 
 function getTimeOfDay() {
   const hour = new Date().getHours();
@@ -100,6 +98,31 @@ export default function DashboardPage() {
     },
   });
 
+  const isPremium = Boolean(session?.user?.isPremium);
+
+  const { data: referenceCV, isLoading: referenceCVLoading } = useQuery({
+    queryKey: ["reference-cv"],
+    queryFn: async () => {
+      const res = await fetch("/api/resume");
+      if (!res.ok) throw new Error("Failed to fetch");
+      const json = await res.json();
+      return json.data ?? null;
+    },
+  });
+
+  // /api/applications is behind requirePremium, so only free-of-paywall
+  // accounts fetch it — and only premium accounts get that third step.
+  const { data: applications } = useQuery({
+    queryKey: ["applications"],
+    enabled: isPremium,
+    queryFn: async () => {
+      const res = await fetch("/api/applications");
+      if (!res.ok) throw new Error("Failed to fetch");
+      const json = await res.json();
+      return json.data ?? [];
+    },
+  });
+
   const tailoredCount = tailoredCVs?.length ?? 0;
   const isFirstUse =
     !tailoredCVsLoading &&
@@ -110,14 +133,11 @@ export default function DashboardPage() {
     !companyResearchesLoading &&
     !companyResearchesError &&
     Array.isArray(companyResearches);
-  const researchCount = companyResearchesKnown
-    ? companyResearches.length
-    : "—";
+  const researchCount = companyResearchesKnown ? companyResearches.length : "—";
 
   const {
     thisWeekCount,
     coverLetterCount,
-    heatmapCells,
     cvWeekly,
     researchWeekly,
     jobsWeekly,
@@ -125,13 +145,14 @@ export default function DashboardPage() {
   } = useMemo(() => {
     const oneWeekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
     const cvs = tailoredCVs ?? [];
-    const researches = Array.isArray(companyResearches) ? companyResearches : [];
+    const researches = Array.isArray(companyResearches)
+      ? companyResearches
+      : [];
     const letters = cvs.filter((cv) => cv.hasCoverLetter);
     return {
       thisWeekCount: cvs.filter((cv) => new Date(cv.createdAt) >= oneWeekAgo)
         .length,
       coverLetterCount: letters.length,
-      heatmapCells: buildHeatmapCells(cvs, 20, now),
       cvWeekly: buildWeeklyCounts(cvs, 16, now),
       researchWeekly: buildWeeklyCounts(researches, 16, now),
       jobsWeekly: buildWeeklyCounts(cvs, 8, now),
@@ -144,6 +165,26 @@ export default function DashboardPage() {
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       .slice(0, 4);
   }, [tailoredCVs]);
+
+  const activationSteps = useMemo(() => {
+    const done = {
+      resume: Boolean(referenceCV),
+      tailor: tailoredCount > 0,
+      applications: (applications?.length ?? 0) > 0,
+    };
+    return getActivationSteps(isPremium).map((step) => ({
+      ...step,
+      done: done[step.key],
+    }));
+  }, [referenceCV, tailoredCount, applications, isPremium]);
+
+  // Hold the checklist back until both queries have answered, so a completed
+  // user does not see it flash on every dashboard load.
+  const showActivation =
+    !referenceCVLoading &&
+    !tailoredCVsLoading &&
+    !tailoredCVsError &&
+    activationSteps.some((step) => !step.done);
 
   return (
     <DashboardPageShell width="full">
@@ -169,6 +210,8 @@ export default function DashboardPage() {
         )}
       </div>
 
+      {showActivation && <DashboardActivation steps={activationSteps} />}
+
       {tailoredCVsLoading ? (
         <Loader fullPage={false} className="min-h-50" />
       ) : tailoredCVsError ? (
@@ -182,17 +225,7 @@ export default function DashboardPage() {
           delay={0.05}
           className="min-h-50"
         />
-      ) : isFirstUse ? (
-        <DashboardEmptyState
-          icon={PenIcon}
-          title="Tailor your first CV"
-          description="Paste a job URL and we will rewrite your CV for the role, create a matching cover letter, and show your ATS match."
-          actionLabel="Tailor your first CV"
-          actionHref="/dashboard/tailor"
-          delay={0.05}
-          className="min-h-50"
-        />
-      ) : (
+      ) : isFirstUse ? null : (
         <div className="flex flex-col gap-3 sm:gap-4">
           <div className="grid items-start gap-3 sm:gap-4 lg:grid-cols-12">
             <div className="min-w-0 lg:col-span-7">
@@ -255,9 +288,7 @@ export default function DashboardPage() {
                 value={researchCount}
                 icon={BuildingsIcon}
                 delay={0.05}
-                sparkline={
-                  companyResearchesKnown ? researchWeekly : undefined
-                }
+                sparkline={companyResearchesKnown ? researchWeekly : undefined}
               />
               <DashboardStatCard
                 label="This week"
@@ -275,28 +306,6 @@ export default function DashboardPage() {
               />
             </div>
           </div>
-
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-          >
-            <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-              <CardHeader className="dashboard-card-pad flex flex-row items-end justify-between pb-0">
-                <div>
-                  <CardTitle className="text-sm font-semibold text-foreground">
-                    Activity
-                  </CardTitle>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Tailored CVs over the last 20 weeks
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="dashboard-card-pad pt-4">
-                <ActivityHeatmap cells={heatmapCells} />
-              </CardContent>
-            </Card>
-          </motion.div>
 
           <div className="grid items-stretch gap-3 sm:gap-4 lg:grid-cols-12">
             <Link

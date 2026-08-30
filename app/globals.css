@@ -124,6 +124,14 @@
   --landing-primary-dark: #1a1a1a;
   --landing-primary-soft: #f0ebe3;
   --landing-accent: #c05a3f;
+  /* Accent ramp. --landing-primary is #1a1a1a, identical to --landing-ink, so
+     it cannot carry emphasis. These are the shades to reach for when something
+     needs to out-rank body text. Contrast on white: accent 4.4:1 (large text
+     and graphics only), accent-dark 6.4:1 (safe for small text). accent-dark
+     on accent-soft is 5.5:1. */
+  --landing-accent-dark: #9a4530;
+  --landing-accent-soft: #f7ece7;
+  --landing-accent-line: #e0b9a8;
   --landing-coral: #c05a3f;
   --landing-success: #3d8b5a;
   --landing-shadow: 0 18px 45px oklch(0.18 0.02 260 / 0.08), 0 4px 12px oklch(0.18 0.02 260 / 0.05);
@@ -224,6 +232,18 @@
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Text-only eyebrow. .landing-eyebrow is a pill whose left padding is tight
+     to seat a leading icon; without one the label sits off-centre in its own
+     chip. Use this where the eyebrow is just a section label. */
+  .landing-eyebrow-plain {
+    display: inline-block;
+    color: var(--landing-ink-soft);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 

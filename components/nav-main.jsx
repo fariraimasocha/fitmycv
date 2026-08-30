@@ -33,7 +33,7 @@ function NavGroup({ label, items, pathname, onNavigate }) {
                 isActive={isActive}
                 asChild
                 className={cn(
-                  "rounded-xl font-medium transition-all",
+                  "rounded-md font-medium transition-all",
                   isActive && "dashboard-nav-active"
                 )}
               >

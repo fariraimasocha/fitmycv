@@ -27,6 +27,13 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    // Captured in onboarding; labels are stored verbatim and fed to the
+    // tailoring prompt. Null for users who skipped and for legacy users.
+    onboarding: {
+      goal: { type: String, default: null },
+      stage: { type: String, default: null },
+      blocker: { type: String, default: null },
+    },
     polarCustomerId: {
       type: String,
       default: null,
@@ -41,7 +48,16 @@ const userSchema = new mongoose.Schema(
     },
     polarSubscriptionStatus: {
       type: String,
-      enum: [null, "incomplete", "incomplete_expired", "trialing", "active", "past_due", "canceled", "unpaid"],
+      enum: [
+        null,
+        "incomplete",
+        "incomplete_expired",
+        "trialing",
+        "active",
+        "past_due",
+        "canceled",
+        "unpaid",
+      ],
       default: null,
     },
     subscriptionCurrentPeriodEnd: {
@@ -65,7 +81,7 @@ const userSchema = new mongoose.Schema(
       emailDigest: { type: Boolean, default: true }, // the real unsubscribe toggle
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.models.User || mongoose.model("User", userSchema);

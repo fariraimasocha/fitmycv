@@ -18,10 +18,10 @@ export function TeamSwitcher() {
         <SidebarMenuButton
           size="lg"
           asChild
-          className="rounded-xl hover:bg-[var(--landing-primary-soft)]"
+          className="rounded-md hover:bg-[var(--landing-primary-soft)]"
         >
           <Link href="/dashboard">
-            <div className="flex aspect-square size-8 items-center justify-center rounded-xl bg-foreground text-background">
+            <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-foreground text-background">
               <ReadCvLogoIcon className="size-4" weight="bold" />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">

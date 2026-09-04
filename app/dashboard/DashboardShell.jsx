@@ -141,7 +141,7 @@ export default function DashboardShell({ children }) {
               <div className="ml-auto flex items-center gap-2">
                 <button
                   onClick={() => setFeedbackOpen(true)}
-                  className="flex items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground sm:text-sm"
+                  className="flex items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground sm:text-sm"
                 >
                   <ChatCircleDotsIcon size={16} aria-hidden="true" />
                   <span className="hidden sm:inline">Feedback</span>

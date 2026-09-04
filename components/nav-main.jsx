@@ -21,10 +21,11 @@ function NavGroup({ label, items, pathname, onNavigate }) {
       </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
+          // Match on segment boundaries only, else /dashboard/tailored/xyz
+          // also lights up /dashboard/tailor.
           const isActive =
-            item.url === "/dashboard"
-              ? pathname === "/dashboard"
-              : pathname.startsWith(item.url);
+            pathname === item.url ||
+            (item.url !== "/dashboard" && pathname.startsWith(`${item.url}/`));
 
           return (
             <SidebarMenuItem key={item.title}>

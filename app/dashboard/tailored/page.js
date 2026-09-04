@@ -7,9 +7,9 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import toast from "react-hot-toast";
 import {
-  BriefcaseIcon,
   BuildingsIcon,
   CalendarIcon,
+  CheckIcon,
   FileTextIcon,
   TrashIcon,
   ArrowRightIcon,
@@ -18,7 +18,8 @@ import {
 } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Loader from "@/components/Loader";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import FormattedDate from "@/components/FormattedDate";
 import {
   DashboardPageShell,
@@ -29,6 +30,44 @@ import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
+import { cn } from "@/lib/utils";
+
+const PAGE_TITLE = "Tailored CVs";
+const PAGE_DESCRIPTION = "View all your previously tailored resumes and cover letters.";
+const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
+
+/**
+ * Row action button. Hidden until the row is hovered on pointer devices —
+ * touch has no hover, so below `sm` they stay visible. `force` keeps a button
+ * on screen regardless (used by the delete-confirm state).
+ */
+function RowAction({ label, onClick, disabled, force, className, children }) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          disabled={disabled}
+          onClick={onClick}
+          aria-label={label}
+          className={cn(
+            "relative z-10 shrink-0 text-[var(--landing-ink-soft)] transition-opacity",
+            "hover:bg-[var(--landing-primary-soft)] hover:text-foreground",
+            "focus-visible:ring-2 focus-visible:ring-ring/40",
+            force
+              ? "opacity-100"
+              : "max-sm:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100",
+            className
+          )}
+        >
+          {children}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
+  );
+}
 
 export default function TailoredCVsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
@@ -110,13 +149,24 @@ export default function TailoredCVsPage() {
     }
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) {
+    return (
+      <DashboardPageShell width="wide">
+        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <div className="space-y-2">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} className="h-16 w-full rounded-2xl" />
+          ))}
+        </div>
+      </DashboardPageShell>
+    );
+  }
 
   return (
-    <DashboardPageShell width="narrow">
+    <DashboardPageShell width="wide">
       <DashboardPageHeader
-        title="Tailored CVs"
-        description="View all your previously tailored resumes and cover letters."
+        title={PAGE_TITLE}
+        description={PAGE_DESCRIPTION}
         action={
           cvs?.length > 0 ? (
             <Button
@@ -146,22 +196,35 @@ export default function TailoredCVsPage() {
         />
       ) : (
         <div className="space-y-2">
-          {cvs.map((cv, index) => (
-            <motion.div
-              key={cv._id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: index * 0.03 }}
-            >
-              <Link href={`/dashboard/tailored/${cv._id}`}>
-                <Card className="dashboard-list-row group cursor-pointer rounded-2xl border-border py-0 gap-0">
+          <p className="text-right text-xs text-muted-foreground">
+            {cvs.length} tailored {cvs.length === 1 ? "CV" : "CVs"}
+          </p>
+          {cvs.map((cv, index) => {
+            const title = cv.jobTitle || "Untitled Position";
+            const confirming = confirmDeleteId === cv._id;
+
+            return (
+              <motion.div
+                key={cv._id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: index * 0.03 }}
+              >
+                <Card className="dashboard-list-row group relative rounded-2xl border-border py-0 gap-0">
                   <CardContent className="dashboard-row-pad flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                      <FileTextIcon size={18} aria-hidden="true" />
+                    {/* Stretched link: the whole row navigates, but the action
+                        buttons stay siblings rather than children of an anchor. */}
+                    <Link
+                      href={`/dashboard/tailored/${cv._id}`}
+                      aria-label={title}
+                      className="absolute inset-0 z-0 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                    />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold text-[var(--landing-primary-dark)]">
+                      {(cv.jobCompany?.[0] ?? cv.jobTitle?.[0] ?? "?").toUpperCase()}
                     </div>
-                    <div className="min-w-0 flex-1">
+                    <div className="relative z-10 min-w-0 flex-1 pointer-events-none">
                       <p className="truncate text-sm font-semibold text-foreground group-hover:underline">
-                        {cv.jobTitle || "Untitled Position"}
+                        {title}
                       </p>
                       <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
                         {cv.jobCompany && (
@@ -172,47 +235,45 @@ export default function TailoredCVsPage() {
                         )}
                         <span className="inline-flex items-center gap-1">
                           <CalendarIcon size={12} aria-hidden="true" />
-                          <FormattedDate date={cv.createdAt} />
+                          <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />
                         </span>
                       </div>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="icon-sm"
-                      className="shrink-0 text-muted-foreground hover:text-foreground"
+
+                    <RowAction
+                      label={`Download ${title}`}
                       onClick={(e) => handleDownloadClick(e, cv)}
-                      aria-label={`Download ${cv.jobTitle || "CV"}`}
                     >
                       <DownloadSimpleIcon size={16} aria-hidden="true" />
-                    </Button>
-                    <Button
-                      variant={confirmDeleteId === cv._id ? "destructive" : "ghost"}
-                      size="icon-sm"
-                      className="shrink-0 text-muted-foreground hover:bg-red-50 hover:text-red-600"
+                    </RowAction>
+
+                    <RowAction
+                      label={confirming ? "Click again to delete" : `Delete ${title}`}
+                      force={confirming}
                       disabled={deleteMutation.isPending}
                       onClick={(e) => handleTrashClick(e, cv._id)}
-                      aria-label={
-                        confirmDeleteId === cv._id
-                          ? `Confirm delete ${cv.jobTitle || "CV"}`
-                          : `Delete ${cv.jobTitle || "CV"}`
-                      }
+                      className={cn(
+                        "hover:bg-red-50 hover:text-red-600",
+                        confirming && "bg-red-50 text-red-600"
+                      )}
                     >
-                      {confirmDeleteId === cv._id ? (
-                        "?"
+                      {confirming ? (
+                        <CheckIcon size={16} weight="bold" aria-hidden="true" />
                       ) : (
                         <TrashIcon size={16} aria-hidden="true" />
                       )}
-                    </Button>
+                    </RowAction>
+
                     <ArrowRightIcon
                       size={14}
-                      className="hidden shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground sm:block"
+                      className="shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground"
                       aria-hidden="true"
                     />
                   </CardContent>
                 </Card>
-              </Link>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       )}
       <UpgradePromptModal

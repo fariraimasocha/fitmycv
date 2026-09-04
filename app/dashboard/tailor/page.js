@@ -22,6 +22,7 @@ import {
   SparkleIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { DownloadButton } from "@/components/ui/download-button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
@@ -299,12 +300,12 @@ export default function TailorPage() {
   });
 
   const handleDownload = (tab) => {
-    if (!tailorResult) return;
+    if (!tailorResult) return false;
     const documentType = tab === "cv" ? "cv" : "cover_letter";
     const isPremium = !!session?.user?.isPremium;
     if (!isPremium) {
       setShowUpgradeModal(true);
-      return;
+      return false;
     }
     if (tab === "cv") {
       printDocument({
@@ -660,17 +661,12 @@ export default function TailorPage() {
                   <LinkedinLogoIcon size={16} />
                   LinkedIn Message
                 </Button>
-                <Button
-                  className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:ml-auto"
-                  onClick={() => handleDownload(activeTab)}
-                >
-                  {session?.user?.isPremium ? (
-                    <DownloadSimpleIcon size={16} />
-                  ) : (
-                    <CrownIcon size={16} />
-                  )}
-                  Download PDF · {getTemplateName(selectedTemplate)}
-                </Button>
+                <DownloadButton
+                  className="sm:ml-auto"
+                  label={`Download PDF · ${getTemplateName(selectedTemplate)}`}
+                  idleIcon={session?.user?.isPremium ? <DownloadSimpleIcon size={16} /> : <CrownIcon size={16} />}
+                  onDownload={() => handleDownload(activeTab)}
+                />
               </div>
             )}
           </div>
@@ -748,17 +744,12 @@ export default function TailorPage() {
                 />
               </div>
             )}
-            <Button
-              className="h-11 shrink-0 rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
-              onClick={() => handleDownload(activeTab)}
-            >
-              {session?.user?.isPremium ? (
-                <DownloadSimpleIcon size={16} />
-              ) : (
-                <CrownIcon size={16} />
-              )}
-              Download PDF · {getTemplateName(selectedTemplate)}
-            </Button>
+            <DownloadButton
+              className="h-11"
+              label={`Download PDF · ${getTemplateName(selectedTemplate)}`}
+              idleIcon={session?.user?.isPremium ? <DownloadSimpleIcon size={16} /> : <CrownIcon size={16} />}
+              onDownload={() => handleDownload(activeTab)}
+            />
           </div>
         </div>
       )}

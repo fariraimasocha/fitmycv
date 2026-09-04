@@ -18,6 +18,7 @@ import {
   CrownIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { DownloadButton } from "@/components/ui/download-button";
 import ResumePreview from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
@@ -147,7 +148,7 @@ export default function TailoredCVDetailPage() {
   const handleDownload = (tab) => {
     if (!session?.user?.isPremium) {
       setShowUpgradeModal(true);
-      return;
+      return false;
     }
     if (tab === "cv") {
       printDocument({
@@ -246,17 +247,11 @@ export default function TailoredCVDetailPage() {
                 </div>
               </>
             )}
-            <Button
-              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
-              onClick={() => handleDownload(activeTab)}
-            >
-              {session?.user?.isPremium ? (
-                <DownloadSimpleIcon size={16} />
-              ) : (
-                <CrownIcon size={16} />
-              )}
-              Download PDF · {getTemplateName(selectedTemplate)}
-            </Button>
+            <DownloadButton
+              label={`Download PDF · ${getTemplateName(selectedTemplate)}`}
+              idleIcon={session?.user?.isPremium ? <DownloadSimpleIcon size={16} /> : <CrownIcon size={16} />}
+              onDownload={() => handleDownload(activeTab)}
+            />
           </div>
         </div>
 
@@ -297,17 +292,12 @@ export default function TailoredCVDetailPage() {
                 />
               </div>
             )}
-            <Button
-              className="h-11 shrink-0 rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
-              onClick={() => handleDownload(activeTab)}
-            >
-              {session?.user?.isPremium ? (
-                <DownloadSimpleIcon size={16} />
-              ) : (
-                <CrownIcon size={16} />
-              )}
-              Download PDF · {getTemplateName(selectedTemplate)}
-            </Button>
+            <DownloadButton
+              className="h-11"
+              label={`Download PDF · ${getTemplateName(selectedTemplate)}`}
+              idleIcon={session?.user?.isPremium ? <DownloadSimpleIcon size={16} /> : <CrownIcon size={16} />}
+              onDownload={() => handleDownload(activeTab)}
+            />
           </div>
         </div>
       )}

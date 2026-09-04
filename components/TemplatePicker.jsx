@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircleIcon, SquaresFourIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, CheckCircleIcon, SquaresFourIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -40,9 +40,15 @@ export default function TemplatePicker({ value, onChange, data }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button type="button" variant="outline" className="w-full justify-start rounded-md border-border">
+        <Button
+          type="button"
+          variant="outline"
+          aria-haspopup="dialog"
+          className="w-full justify-start rounded-md border-border"
+        >
           <SquaresFourIcon size={16} aria-hidden="true" />
           <span className="truncate">{current.name}</span>
+          <CaretDownIcon size={14} aria-hidden="true" className="ml-auto shrink-0 opacity-60" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-3xl">

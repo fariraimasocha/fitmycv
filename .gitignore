@@ -45,3 +45,6 @@ opensrc/
 .aidesigner/*
 !.aidesigner/.gitkeep
 .cursor/debug-c551b4.log
+
+# Skill packages ship demo media we do not need in git history.
+.agents/**/*.mp4

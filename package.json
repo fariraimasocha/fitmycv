@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:ats": "node scripts/check-ats-chars.mjs"
+    "check:ats": "node scripts/check-ats-chars.mjs",
+    "check:jobs": "cp lib/job-crawler.js lib/job-crawler.mjs && node lib/job-crawler.mjs; rm -f lib/job-crawler.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

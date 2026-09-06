@@ -6,6 +6,7 @@ import {
   PenIcon,
   StackIcon,
   BinocularsIcon,
+  MagnifyingGlassIcon,
   KanbanIcon,
   BookOpenIcon,
   ScalesIcon,
@@ -43,6 +44,7 @@ const navGroups = [
   {
     label: "Job Search",
     items: [
+      { title: "Find Jobs", url: "/jobs", icon: MagnifyingGlassIcon },
       { title: "Applications", url: "/dashboard/applications", icon: KanbanIcon },
       { title: "Saved Jobs", url: "/dashboard/saved", icon: BookmarkSimpleIcon },
       { title: "Company Research", url: "/dashboard/company-research", icon: BinocularsIcon },

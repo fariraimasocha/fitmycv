@@ -3,7 +3,7 @@ main = "worker.js"
 compatibility_date = "2025-01-01"
 
 [triggers]
-crons = ["0 8 * * *"]
+crons = ["0 8 * * *", "0 20 * * *"]
 
 [vars]
 APP_URL = "https://fitmycv.link"

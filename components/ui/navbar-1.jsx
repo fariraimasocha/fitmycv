@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { FileTextIcon, ListIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
@@ -18,6 +18,7 @@ import {
 import { LayoutIcon, SignOutIcon } from "@phosphor-icons/react";
 
 const navLinks = [
+  { label: "Jobs", href: "/jobs" },
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Features", href: "/#features" },
   { label: "Templates", href: "/cv-templates" },
@@ -63,11 +64,13 @@ const Navbar1 = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--landing-bg)]/95 backdrop-blur-sm">
       <div className="landing-container flex h-16 items-center justify-between gap-6 px-5 sm:px-10 lg:px-16 xl:px-24">
-        <Link
-          href="/"
-          className="font-serif-display text-xl tracking-tight text-[var(--landing-ink)]"
-        >
-          FitMyCV
+        <Link href="/" className="flex flex-row items-center gap-2.5">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary)]">
+            <FileTextIcon size={14} className="text-[var(--landing-bg)]" aria-hidden="true" />
+          </div>
+          <span className="font-serif-display text-xl tracking-tight text-[var(--landing-ink)]">
+            FitMyCV
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">

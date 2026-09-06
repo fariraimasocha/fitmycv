@@ -13,6 +13,7 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    { path: "/jobs", changeFrequency: "daily", priority: 0.9 },
     { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
     { path: "/resume-examples", changeFrequency: "monthly", priority: 0.8 },
     { path: "/cv-examples", changeFrequency: "monthly", priority: 0.7 },

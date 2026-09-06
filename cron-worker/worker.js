@@ -1,7 +1,8 @@
 // Cloudflare Worker that replaces vercel.json crons.
 // It only pings the app on a schedule — all logic stays in Next.js.
 const JOBS = {
-  "0 8 * * *": ["/api/cron/job-digest"],
+  "0 8 * * *": ["/api/cron/job-digest", "/api/cron/jobs-crawl"],
+  "0 20 * * *": ["/api/cron/jobs-crawl"],
 };
 
 export default {

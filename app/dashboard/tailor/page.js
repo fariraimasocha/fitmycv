@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { Suspense, useState, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
@@ -46,11 +47,15 @@ import {
 } from "@/components/dashboard";
 import { GradeBadge, AtsScoreChip } from "@/components/GradeBadge";
 import { getRecentJobUrls, rememberJobUrl } from "@/lib/recent-job-urls";
+import Loader from "@/components/Loader";
 
-export default function TailorPage() {
+function Tailor() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
-  const [url, setUrl] = useState("");
+  const searchParams = useSearchParams();
+  // Prefilled when arriving from /jobs — that pool already holds the URL, so
+  // the user never retypes it. Lazy initializer: read once, then it is theirs.
+  const [url, setUrl] = useState(() => searchParams.get("url") ?? "");
   const [jobData, setJobData] = useState(null);
   const [tailorResult, setTailorResult] = useState(null);
   const [savedId, setSavedId] = useState(null);
@@ -766,5 +771,13 @@ export default function TailorPage() {
         onClose={() => setShowUpgradeModal(false)}
       />
     </DashboardPageShell>
+  );
+}
+
+export default function TailorPage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <Tailor />
+    </Suspense>
   );
 }

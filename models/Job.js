@@ -24,6 +24,11 @@ const jobSchema = new mongoose.Schema(
     companySlug: {
       type: String,
     },
+    // Company logo URL from the ATS CDN, allowlisted in logoFromImage.
+    logo: {
+      type: String,
+      default: null,
+    },
     // "greenhouse" | "lever" | "ashby" | "workable" | "smartrecruiters"
     source: {
       type: String,

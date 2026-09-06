@@ -37,6 +37,7 @@ export async function GET(request) {
         // Writing null unconditionally would erase every location and salary in
         // the pool the first time OpenAI is down, rate limited, or out of
         // credit, and the next crawl is 12 hours away.
+        if (job.logo) set.logo = job.logo;
         if (job.location) set.location = job.location;
         if (job.salary) set.salary = job.salary;
         if (job.employmentType) set.employmentType = job.employmentType;
@@ -69,6 +70,7 @@ export async function GET(request) {
       staleAfterEnrich,
       withLocation: jobs.filter((j) => j.location).length,
       withSalary: jobs.filter((j) => j.salary).length,
+      withLogo: jobs.filter((j) => j.logo).length,
       errors,
     });
   } catch (error) {

@@ -126,6 +126,44 @@ function LockedCompany() {
   );
 }
 
+// ATS CDNs serve wordmarks and banners from the same paths as square marks,
+// so shape cannot be known from the URL. Anything wider than this renders as an
+// unreadable sliver in a 40px tile, so it falls back to the initial.
+const MAX_LOGO_RATIO = 2.2;
+
+// Falls back to the initial when there is no logo, the CDN drops it, or the
+// image turns out to be a wordmark.
+function CompanyAvatar({ job }) {
+  const [rejected, setRejected] = useState(false);
+  const showLogo = Boolean(job.logo) && !rejected;
+
+  const handleLoad = (e) => {
+    const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+    if (!w || !h || w / h > MAX_LOGO_RATIO || h / w > MAX_LOGO_RATIO)
+      setRejected(true);
+  };
+
+  return (
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
+      {job.locked ? (
+        <LockSimpleIcon className="size-4 opacity-50" weight="bold" />
+      ) : showLogo ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={job.logo}
+          alt={job.company ? `${job.company} logo` : ""}
+          loading="lazy"
+          onLoad={handleLoad}
+          onError={() => setRejected(true)}
+          className="h-full w-full object-contain p-1"
+        />
+      ) : (
+        (job.company?.[0] ?? "?").toUpperCase()
+      )}
+    </div>
+  );
+}
+
 function JobCard({ job, upgradeHref }) {
   const posted = dateLabel(job);
   const meta = [
@@ -138,13 +176,7 @@ function JobCard({ job, upgradeHref }) {
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
       <CardContent className="dashboard-row-pad flex flex-col gap-3">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
-            {job.locked ? (
-              <LockSimpleIcon className="size-4 opacity-50" weight="bold" />
-            ) : (
-              (job.company?.[0] ?? "?").toUpperCase()
-            )}
-          </div>
+          <CompanyAvatar job={job} />
 
           <div className="min-w-0 flex-1">
             <p className="line-clamp-2 text-sm font-semibold leading-snug">

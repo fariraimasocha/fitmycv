@@ -1,3 +1,7 @@
+// ponytail: marketing copy hardcodes this list's length ("16 templates") in
+// app/page.js, components/landing/Features.js, components/content/TemplateGallery.jsx,
+// content/pages/templates.js and content/pages/guides.js. Add a template here,
+// update those. `grep -rn "16 .*\(template\|theme\|layout\)" app components content`
 export const TEMPLATE_METADATA = [
   {
     id: "classic",
@@ -81,7 +85,19 @@ export const TEMPLATE_METADATA = [
     id: "professional",
     name: "Professional",
     badge: "ATS-safe",
-    description: "Plain black-and-white with inline name and title.",
+    description: "Plain black-and-white with the name on its own first line.",
+  },
+  {
+    id: "standard",
+    name: "Standard",
+    badge: "ATS-safe",
+    description: "Company-first entries. The widely shared recruiter template.",
+  },
+  {
+    id: "scholar",
+    name: "Scholar",
+    badge: "Small caps",
+    description: "Small-caps ruled headings in serif. The LaTeX engineering-resume look.",
   },
 ];
 
@@ -94,6 +110,7 @@ export const DEFAULT_TEMPLATE = "classic";
 const TEMPLATE_FONT_CLASSES = {
   classic: "font-serif",
   elegant: "font-serif",
+  scholar: "font-serif",
   technical: "font-mono",
 };
 

@@ -5,7 +5,15 @@ import {
   MapPinIcon,
   GlobeSimpleIcon,
   LinkedinLogoIcon,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
+
+// ponytail: ATS parsers drop or garble text around en/em dashes, middle dots
+// and box-drawing glyphs. utils/sanitize-ai-text.js already strips those from
+// model output — these constants stop the templates re-adding them at render
+// time, which is the only place they were still getting into the PDF.
+const DATE_SEP = " - ";
+const META_SEP = " | ";
+const CONTACT_SEP = "  |  ";
 
 // ── Helper: split description into bullet items ──────────
 
@@ -422,7 +430,7 @@ function DashList({ description }) {
 
 function TechnicalPreview({ basics, work, education, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
-  const commentLine = "# " + "\u2500".repeat(36);
+  const commentLine = "# " + "-".repeat(36);
 
   return (
     <div className="space-y-3 font-mono text-black text-[9px]">
@@ -603,7 +611,7 @@ function SidebarPreview({ basics, work, education, skills }) {
                     {(edu.degree || edu.fieldOfStudy || edu.startDate || edu.endDate) && (
                       <p className="text-xs text-gray-600">
                         {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
-                        {(edu.degree || edu.fieldOfStudy) && (edu.startDate || edu.endDate) ? " · " : ""}
+                        {(edu.degree || edu.fieldOfStudy) && (edu.startDate || edu.endDate) ? META_SEP : ""}
                         {[edu.startDate, edu.endDate].filter(Boolean).join(" - ")}
                       </p>
                     )}
@@ -629,7 +637,7 @@ function SidebarPreview({ basics, work, education, skills }) {
                     </div>
                     {(job.company || job.location) && (
                       <p className="text-xs italic text-gray-600">
-                        {[job.company, job.location].filter(Boolean).join(" · ")}
+                        {[job.company, job.location].filter(Boolean).join(META_SEP)}
                       </p>
                     )}
                     <div className="text-xs leading-relaxed">
@@ -648,14 +656,14 @@ function SidebarPreview({ basics, work, education, skills }) {
 
 // ── Spotlight — Awesome-CV accent (Byungjin Park) ────────
 
+// The red accent used to come from slicing the heading into two coloured spans,
+// which put "EXP" and "ERIENCE" in separate text runs. The bar carries the
+// accent instead and the heading stays one run.
 function SpotlightSectionHeading({ children }) {
-  const text = String(children);
   return (
     <div className="mb-2 mt-4 flex items-center gap-3">
-      <h2 className="text-base font-bold uppercase tracking-wide">
-        <span className="text-red-700">{text.slice(0, 3)}</span>
-        <span className="text-gray-800">{text.slice(3)}</span>
-      </h2>
+      <span className="h-3 w-1 shrink-0 bg-red-700" aria-hidden="true" />
+      <h2 className="text-base font-bold uppercase tracking-wide text-gray-800">{children}</h2>
       <div className="h-px flex-1 bg-gray-300" />
     </div>
   );
@@ -788,7 +796,7 @@ function ExecutivePreview({ basics, work, education, skills }) {
                     {job.company && <span className="italic text-gray-700">{job.position ? ", " : ""}{job.company}</span>}
                   </p>
                   <div className="shrink-0 text-right text-xs text-gray-500">
-                    {(job.startDate || job.endDate) && <p>{[job.startDate, job.endDate].filter(Boolean).join(" – ")}</p>}
+                    {(job.startDate || job.endDate) && <p>{[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}</p>}
                     {job.location && <p>{job.location}</p>}
                   </div>
                 </div>
@@ -812,7 +820,7 @@ function ExecutivePreview({ basics, work, education, skills }) {
                   {edu.institution && <p className="text-xs italic text-gray-700">{edu.institution}</p>}
                 </div>
                 {(edu.startDate || edu.endDate) && (
-                  <p className="shrink-0 text-right text-xs text-gray-500">{[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}</p>
+                  <p className="shrink-0 text-right text-xs text-gray-500">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
                 )}
               </div>
             ))}
@@ -823,7 +831,8 @@ function ExecutivePreview({ basics, work, education, skills }) {
       {skills?.length > 0 && (
         <div>
           <ExecutiveSectionHeading>Skills</ExecutiveSectionHeading>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-1">
+          {/* Single column: a skills grid extracts across the columns. */}
+          <div className="space-y-1">
             {skills
               .flatMap((g) => (g.category ? [`${g.category}: ${(g.skills || []).join(", ")}`] : g.skills || []))
               .map((s, i) => (
@@ -861,7 +870,7 @@ function CompactPreview({ basics, work, education, skills }) {
         {basics.name && <h1 className="text-xl font-bold uppercase tracking-wide">{basics.name}</h1>}
         {basics.label && <p className="text-xs font-semibold text-gray-700">{basics.label}</p>}
         {(contactParts.length > 0 || profileParts.length > 0) && (
-          <p className="mt-0.5 text-[10px] text-gray-600">{[...contactParts, ...profileParts].join("  •  ")}</p>
+          <p className="mt-0.5 text-[10px] text-gray-600">{[...contactParts, ...profileParts].join(CONTACT_SEP)}</p>
         )}
       </div>
 
@@ -884,8 +893,8 @@ function CompactPreview({ basics, work, education, skills }) {
                     {job.company && <span className="italic">{job.position ? ", " : ""}{job.company}</span>}
                   </p>
                   <p className="shrink-0 text-[10px] text-gray-600">
-                    {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
-                    {job.location ? ` · ${job.location}` : ""}
+                    {[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}
+                    {job.location ? `${META_SEP}${job.location}` : ""}
                   </p>
                 </div>
                 {job.description && (
@@ -911,7 +920,7 @@ function CompactPreview({ basics, work, education, skills }) {
                   <span className="font-bold">{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</span>
                   {edu.institution && <span className="italic">, {edu.institution}</span>}
                 </p>
-                <p className="shrink-0 text-[10px] text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}</p>
+                <p className="shrink-0 text-[10px] text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
               </div>
             ))}
           </div>
@@ -970,7 +979,7 @@ function ElegantPreview({ basics, work, education, skills }) {
                 <div className="flex items-baseline justify-between gap-4">
                   {job.position && <p className="text-xs font-bold">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
-                    <p className="shrink-0 text-xs text-gray-600">{[job.startDate, job.endDate].filter(Boolean).join(" – ")}</p>
+                    <p className="shrink-0 text-xs text-gray-600">{[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}</p>
                   )}
                 </div>
                 <div className="flex items-baseline justify-between gap-4">
@@ -995,7 +1004,7 @@ function ElegantPreview({ basics, work, education, skills }) {
                 <div className="flex items-baseline justify-between gap-4">
                   <p className="text-xs font-bold">{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
                   {(edu.startDate || edu.endDate) && (
-                    <p className="shrink-0 text-xs text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}</p>
+                    <p className="shrink-0 text-xs text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
                   )}
                 </div>
                 {edu.institution && <p className="text-xs italic text-gray-700">{edu.institution}</p>}
@@ -1040,7 +1049,7 @@ function ProfessionalDashList({ description }) {
     <ul className="mt-1 space-y-0.5 text-xs leading-relaxed">
       {items.map((item, i) => (
         <li key={i} className="flex gap-1.5">
-          <span aria-hidden="true">–</span>
+          <span aria-hidden="true">-</span>
           <span>{item.trim()}</span>
         </li>
       ))}
@@ -1057,13 +1066,11 @@ function ProfessionalPreview({ basics, work, education, skills }) {
 
   return (
     <div className="text-black">
-      {basics.name && (
-        <h1 className="text-3xl font-bold">
-          {basics.name}
-          {basics.label && (
-            <span className="ml-2 text-base font-normal italic text-gray-600">{basics.label}</span>
-          )}
-        </h1>
+      {/* Name alone on the first line: as two spans in one h1 it extracted as
+          "NameJob Title", the single most common parse failure after skills. */}
+      {basics.name && <h1 className="text-3xl font-bold">{basics.name}</h1>}
+      {basics.label && (
+        <p className="text-base font-normal italic text-gray-600">{basics.label}</p>
       )}
       {allContact.length > 0 && (
         <p className="mt-1 text-xs text-gray-700">{allContact.join("  |  ")}</p>
@@ -1091,7 +1098,7 @@ function ProfessionalPreview({ basics, work, education, skills }) {
                   </p>
                   <div className="shrink-0 text-right text-xs text-gray-600">
                     {(job.startDate || job.endDate) && (
-                      <p>{[job.startDate, job.endDate].filter(Boolean).join(" – ")}</p>
+                      <p>{[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}</p>
                     )}
                     {job.location && <p>{job.location}</p>}
                   </div>
@@ -1114,7 +1121,7 @@ function ProfessionalPreview({ basics, work, education, skills }) {
                   {edu.institution && <span className="italic">, {edu.institution}</span>}
                 </p>
                 {(edu.startDate || edu.endDate) && (
-                  <p className="shrink-0 text-right text-xs text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}</p>
+                  <p className="shrink-0 text-right text-xs text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
                 )}
               </div>
             ))}
@@ -1195,13 +1202,13 @@ function HybridPreview({ basics, work, education, skills }) {
                   {job.position && <p className="text-xs font-bold">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
                     <p className="shrink-0 text-xs font-semibold text-gray-700">
-                      {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
+                      {[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
                 </div>
                 {(job.company || job.location) && (
                   <p className="text-xs text-gray-600">
-                    {[job.company, job.location].filter(Boolean).join(" · ")}
+                    {[job.company, job.location].filter(Boolean).join(META_SEP)}
                   </p>
                 )}
                 <div className="text-xs leading-relaxed">
@@ -1225,7 +1232,7 @@ function HybridPreview({ basics, work, education, skills }) {
                   </p>
                   {(edu.startDate || edu.endDate) && (
                     <p className="shrink-0 text-xs font-semibold text-gray-700">
-                      {[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}
+                      {[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
                 </div>
@@ -1281,13 +1288,13 @@ function AccentPreview({ basics, work, education, skills }) {
                   {job.position && <p className="text-xs font-bold text-black">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
                     <p className="shrink-0 text-xs font-semibold text-blue-800">
-                      {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
+                      {[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
                 </div>
                 {(job.company || job.location) && (
                   <p className="text-xs italic text-gray-600">
-                    {[job.company, job.location].filter(Boolean).join(" · ")}
+                    {[job.company, job.location].filter(Boolean).join(META_SEP)}
                   </p>
                 )}
                 <div className="text-xs leading-relaxed">
@@ -1311,7 +1318,7 @@ function AccentPreview({ basics, work, education, skills }) {
                   </p>
                   {(edu.startDate || edu.endDate) && (
                     <p className="shrink-0 text-xs font-semibold text-blue-800">
-                      {[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}
+                      {[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
                 </div>
@@ -1363,7 +1370,7 @@ function GraduatePreview({ basics, work, education, skills }) {
         {basics.label && <p className="text-sm text-gray-700">{basics.label}</p>}
         {(contactParts.length > 0 || profileParts.length > 0) && (
           <p className="mt-1 text-xs text-gray-600">
-            {[...contactParts, ...profileParts].join("  •  ")}
+            {[...contactParts, ...profileParts].join(CONTACT_SEP)}
           </p>
         )}
       </div>
@@ -1386,7 +1393,7 @@ function GraduatePreview({ basics, work, education, skills }) {
                   {edu.institution && <p className="text-xs font-bold">{edu.institution}</p>}
                   {(edu.startDate || edu.endDate) && (
                     <p className="shrink-0 text-xs text-gray-600">
-                      {[edu.startDate, edu.endDate].filter(Boolean).join(" – ")}
+                      {[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
                 </div>
@@ -1425,19 +1432,236 @@ function GraduatePreview({ basics, work, education, skills }) {
                   {job.position && <p className="text-xs font-bold">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
                     <p className="shrink-0 text-xs text-gray-600">
-                      {[job.startDate, job.endDate].filter(Boolean).join(" – ")}
+                      {[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
                 </div>
                 {(job.company || job.location) && (
                   <p className="text-xs italic text-gray-700">
-                    {[job.company, job.location].filter(Boolean).join(" · ")}
+                    {[job.company, job.location].filter(Boolean).join(META_SEP)}
                   </p>
                 )}
                 <div className="text-xs leading-relaxed">
                   <BulletList description={job.description} />
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Standard — Final Draft Resumes "Standard Resume Template" ──
+
+function StandardSectionHeading({ children }) {
+  return (
+    <h2 className="mb-2 border-b border-black pb-0.5 text-xs font-bold uppercase tracking-widest text-black">
+      {children}
+    </h2>
+  );
+}
+
+// The source template separates contacts with a diamond rather than a pipe and
+// leads each entry with the company, not the role. The diamond is dropped: a
+// dingbat between contact fields is the "icon bullet" parse failure.
+function StandardPreview({ basics, work, education, skills }) {
+  const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
+  const profileParts = (basics.profiles || [])
+    .filter((profile) => profile.url || profile.network)
+    .map((profile) => profile.url || profile.network);
+  const headerParts = [...contactParts, ...profileParts];
+
+  return (
+    <div className="space-y-5 text-black">
+      <div className="text-center">
+        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {headerParts.length > 0 && (
+          <p className="mt-1.5 text-xs">{headerParts.join(CONTACT_SEP)}</p>
+        )}
+      </div>
+
+      {basics.summary && (
+        <div>
+          <StandardSectionHeading>Summary</StandardSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <StandardSectionHeading>Work Experience</StandardSectionHeading>
+          <div className="space-y-3">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {job.company && <p className="text-xs font-bold">{job.company}</p>}
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 text-xs">
+                      {job.startDate}{job.startDate && job.endDate ? DATE_SEP : ""}{job.endDate}
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-start justify-between gap-4">
+                  {job.position && <p className="text-xs italic">{job.position}</p>}
+                  {job.location && <p className="shrink-0 text-xs italic">{job.location}</p>}
+                </div>
+                <div className="text-xs leading-relaxed">
+                  <BulletList description={job.description} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <StandardSectionHeading>Education</StandardSectionHeading>
+          <div className="space-y-2">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {edu.institution && <p className="text-xs font-bold">{edu.institution}</p>}
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 text-xs">
+                      {edu.startDate}{edu.startDate && edu.endDate ? DATE_SEP : ""}{edu.endDate}
+                    </p>
+                  )}
+                </div>
+                {(edu.degree || edu.fieldOfStudy) && (
+                  <p className="text-xs italic">
+                    {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(", ")}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <StandardSectionHeading>Skills</StandardSectionHeading>
+          {/* The source template runs every skill together as one
+              semicolon-separated paragraph rather than a per-category list. */}
+          <p className="text-xs leading-relaxed">
+            {skills.flatMap((group) => group.skills || []).join("; ")}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Scholar — small-caps ruled headings, LaTeX engineering look ──
+
+function ScholarSectionHeading({ children }) {
+  return (
+    <h2
+      className="mb-1.5 border-b border-black pb-0.5 text-sm text-black"
+      style={{ fontVariant: "small-caps" }}
+    >
+      {children}
+    </h2>
+  );
+}
+
+function ScholarPreview({ basics, work, education, skills }) {
+  const headerParts = [
+    basics.phone,
+    basics.email,
+    ...(basics.profiles || [])
+      .filter((profile) => profile.url || profile.network)
+      .map((profile) => profile.url || profile.network),
+  ].filter(Boolean);
+
+  return (
+    <div className="space-y-4 font-serif text-black">
+      <div className="text-center">
+        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {headerParts.length > 0 && (
+          <p className="mt-1 text-xs">
+            {headerParts.map((part, i) => (
+              <span key={i}>
+                {i > 0 && <span className="mx-1.5">|</span>}
+                <span className="underline">{part}</span>
+              </span>
+            ))}
+          </p>
+        )}
+        {basics.location && <p className="mt-0.5 text-xs">{basics.location}</p>}
+      </div>
+
+      {basics.summary && (
+        <div>
+          <ScholarSectionHeading>Summary</ScholarSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <ScholarSectionHeading>Education</ScholarSectionHeading>
+          <div className="space-y-1.5">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid">
+                {edu.institution && <p className="text-xs font-bold">{edu.institution}</p>}
+                <div className="flex items-start justify-between gap-4">
+                  {(edu.degree || edu.fieldOfStudy) && (
+                    <p className="text-xs italic">
+                      {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(", ")}
+                    </p>
+                  )}
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 text-xs italic">
+                      {edu.startDate}{edu.startDate && edu.endDate ? DATE_SEP : ""}{edu.endDate}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <ScholarSectionHeading>Experience</ScholarSectionHeading>
+          <div className="space-y-2.5">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {job.position && <p className="text-xs font-bold">{job.position}</p>}
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 text-xs">
+                      {job.startDate}{job.startDate && job.endDate ? DATE_SEP : ""}{job.endDate}
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-start justify-between gap-4">
+                  {job.company && <p className="text-xs italic">{job.company}</p>}
+                  {job.location && <p className="shrink-0 text-xs italic">{job.location}</p>}
+                </div>
+                <div className="text-xs leading-relaxed">
+                  <BulletList description={job.description} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <ScholarSectionHeading>Technical Skills</ScholarSectionHeading>
+          <div className="space-y-0.5">
+            {skills.map((group, i) => (
+              <p key={i} className="text-xs leading-relaxed">
+                {group.category && <span className="font-bold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </p>
             ))}
           </div>
         </div>
@@ -1463,6 +1687,8 @@ const PREVIEWS = {
   compact: CompactPreview,
   elegant: ElegantPreview,
   professional: ProfessionalPreview,
+  standard: StandardPreview,
+  scholar: ScholarPreview,
 };
 
 const PADDING = {
@@ -1477,6 +1703,8 @@ const PADDING = {
   executive: "p-8 sm:p-10",
   compact: "px-8 py-5 sm:px-10",
   elegant: "p-8 sm:p-10",
+  standard: "p-8 sm:p-10",
+  scholar: "px-8 py-6 sm:px-10",
 };
 
 // Bare template (no Card chrome) — shared by the on-screen preview and the

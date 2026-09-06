@@ -327,10 +327,10 @@ export default function Features() {
         </FeatureCard>
 
         <FeatureCard
-          pill="Six themes"
+          pill="16 themes"
           icon={PaletteIcon}
           title="A look for every industry and vibe"
-          copy="Pick from six professionally designed CV themes that fit your field and personality."
+          copy="Pick from 16 professionally designed CV themes that fit your field and personality."
         >
           <ThemesVisual />
         </FeatureCard>

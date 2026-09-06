@@ -144,6 +144,11 @@ export default function OnboardingPage() {
           throw new Error("Failed to save onboarding progress");
         }
 
+        // ponytail: the one signup signal Umami gets. The landing pageview
+        // already carries utm_source, so this event inherits the campaign and
+        // turns "Reddit sent traffic" into "Reddit sent signups".
+        window.umami?.track("signup");
+
         await update();
         router.replace(destination);
       } catch {

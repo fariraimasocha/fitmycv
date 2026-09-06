@@ -11,11 +11,11 @@ export const HOME_FAQS = [
   },
   {
     q: "What do I get for free, and what needs Premium?",
-    a: "Free, you can upload and store your CV and track every application in one place. Premium adds the full tailoring suite: paste any job link, get a match score and ATS score, then tailor and download your CV and cover letter as polished PDFs. Premium also includes interview prep, company research, outreach messages, and daily job matches by email.",
+    a: "Free covers the core workflow on screen: upload your CV, paste any job link, and generate the tailored CV and the cover letter, then read them in full without paying. Premium is for getting the documents out and keeping the search running: unlimited PDF downloads of your tailored CV and cover letter, a match score and an ATS score on every CV, application tracking, saved jobs, and daily job matches by email.",
   },
   {
     q: "What file formats can I export?",
-    a: "You can download your tailored CV and cover letter as PDF, ready to attach and send. PDF is the format recruiters and ATS systems handle best, so it keeps your formatting perfect on every application.",
+    a: "You can download your tailored CV and cover letter as PDF, ready to attach and send. PDF download is the Premium part; generating and reading the tailored documents is free. PDF is the format recruiters and ATS systems handle best, so it keeps your formatting perfect on every application.",
   },
   {
     q: "Can I cancel my subscription anytime?",

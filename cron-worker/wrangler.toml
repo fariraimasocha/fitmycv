@@ -6,5 +6,7 @@ compatibility_date = "2025-01-01"
 crons = ["0 8 * * *", "0 20 * * *"]
 
 [vars]
-APP_URL = "https://fitmycv.link"
+# Must be the www host. The apex 308-redirects to it and the Authorization
+# header is dropped across the redirect, so every cron hit returned 401.
+APP_URL = "https://www.fitmycv.link"
 # CRON_SECRET is a secret: npx wrangler secret put CRON_SECRET

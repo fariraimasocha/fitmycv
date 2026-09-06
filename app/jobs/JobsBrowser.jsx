@@ -19,6 +19,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CheckboxFieldInput } from "@/components/ui/checkbox-field-input";
 import {
   Select,
   SelectContent,
@@ -73,7 +74,14 @@ function dateLabel(job) {
   return null;
 }
 
-function FilterField({ id, label, value, onValueChange, options, triggerLabel }) {
+function FilterField({
+  id,
+  label,
+  value,
+  onValueChange,
+  options,
+  triggerLabel,
+}) {
   return (
     <div className="flex flex-col gap-1.5">
       {/* htmlFor points at the trigger so clicking the label opens the select
@@ -101,20 +109,6 @@ function FilterField({ id, label, value, onValueChange, options, triggerLabel })
         </SelectContent>
       </Select>
     </div>
-  );
-}
-
-function FilterToggle({ label, checked, onChange }) {
-  return (
-    <label className="flex cursor-pointer items-center gap-2 text-sm text-[var(--landing-ink)]">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="size-4 rounded-sm border-border accent-[var(--landing-ink)]"
-      />
-      {label}
-    </label>
   );
 }
 
@@ -364,18 +358,20 @@ export default function JobsBrowser() {
             />
 
             <div className="flex flex-col gap-2 border-t border-border pt-3">
-              <FilterToggle
+              <CheckboxFieldInput
+                id="filter-remote-only"
                 label="Remote only"
                 checked={remoteOnly}
-                onChange={(v) => {
+                onCheckedChange={(v) => {
                   setRemoteOnly(v);
                   setPage(1);
                 }}
               />
-              <FilterToggle
+              <CheckboxFieldInput
+                id="filter-salary-listed"
                 label="Salary listed"
                 checked={paidOnly}
-                onChange={(v) => {
+                onCheckedChange={(v) => {
                   setPaidOnly(v);
                   setPage(1);
                 }}

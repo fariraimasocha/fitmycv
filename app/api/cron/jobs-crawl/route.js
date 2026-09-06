@@ -22,27 +22,41 @@ export async function GET(request) {
     // Upsert on url: a posting we've already got keeps its original crawledAt
     // (so the TTL still measures from first sighting) but refreshes its title.
     const result = await Job.bulkWrite(
-      jobs.map((job) => ({
-        updateOne: {
-          filter: { url: job.url },
-          update: {
-            $set: {
-              title: job.title,
-              company: job.company,
-              companySlug: job.companySlug,
-              source: job.source,
-              remote: job.remote,
-              snippet: job.snippet,
-              category: job.category,
-              location: job.location ?? null,
-              salary: job.salary ?? null,
-              employmentType: job.employmentType ?? null,
+      jobs.map((job) => {
+        // Fields we derive ourselves are always safe to rewrite.
+        const set = {
+          title: job.title,
+          company: job.company,
+          companySlug: job.companySlug,
+          source: job.source,
+          remote: job.remote,
+          snippet: job.snippet,
+          category: job.category,
+        };
+        // Enrichment fields are only written when we actually got a value.
+        // Writing null unconditionally would erase every location and salary in
+        // the pool the first time OpenAI is down, rate limited, or out of
+        // credit, and the next crawl is 12 hours away.
+        if (job.location) set.location = job.location;
+        if (job.salary) set.salary = job.salary;
+        if (job.employmentType) set.employmentType = job.employmentType;
+        if (job.postedAt) set.postedAt = job.postedAt;
+
+        return {
+          updateOne: {
+            filter: { url: job.url },
+            update: {
+              $set: set,
+              $setOnInsert: {
+                url: job.url,
+                crawledAt: new Date(),
+                ...(job.postedAt ? {} : { postedAt: null }),
+              },
             },
-            $setOnInsert: { url: job.url, postedAt: job.postedAt, crawledAt: new Date() },
+            upsert: true,
           },
-          upsert: true,
-        },
-      })),
+        };
+      }),
       { ordered: false }
     );
 

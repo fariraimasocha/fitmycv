@@ -1,6 +1,6 @@
 import { connectDB } from "@/utils/connect";
 import Job from "@/models/Job";
-import { crawlJobs } from "@/lib/job-crawler";
+import { backfillStoredLogos, crawlJobs } from "@/lib/job-crawler";
 
 export const maxDuration = 300;
 
@@ -13,10 +13,11 @@ export async function GET(request) {
   try {
     await connectDB();
 
-    const { jobs, seen, skipped, staleAfterEnrich, errors } = await crawlJobs();
+    const { jobs, seen, skipped, staleAfterEnrich, logos, errors } = await crawlJobs();
 
     if (jobs.length === 0) {
-      return Response.json({ seen, upserted: 0, skipped, staleAfterEnrich, errors });
+      const backfill = await backfillStoredLogos(Job);
+      return Response.json({ seen, upserted: 0, skipped, staleAfterEnrich, logos, backfill, errors });
     }
 
     // Upsert on url: a posting we've already got keeps its original crawledAt
@@ -61,6 +62,8 @@ export async function GET(request) {
       { ordered: false }
     );
 
+    const backfill = await backfillStoredLogos(Job);
+
     return Response.json({
       seen,
       parsed: jobs.length,
@@ -71,6 +74,8 @@ export async function GET(request) {
       withLocation: jobs.filter((j) => j.location).length,
       withSalary: jobs.filter((j) => j.salary).length,
       withLogo: jobs.filter((j) => j.logo).length,
+      logos,
+      backfill,
       errors,
     });
   } catch (error) {

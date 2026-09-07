@@ -72,6 +72,20 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    // Opt-out for one-off product announcements. Separate from
+    // jobPreferences.emailDigest, which only governs the daily digest and sits
+    // behind a premium-gated settings page. Queries use $ne:false so legacy
+    // users with no value stay in.
+    marketingEmails: {
+      type: Boolean,
+      default: true,
+    },
+    // Stamped once the job board announcement is sent, so a re-run of
+    // scripts/send-announcement.mjs resumes instead of mailing anyone twice.
+    jobBoardAnnouncedAt: {
+      type: Date,
+      default: null,
+    },
     // Drives the daily job digest. Defaults are opt-in; an existing user with
     // no jobPreferences is treated as emailDigest:true / remoteOnly:true.
     jobPreferences: {

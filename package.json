@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "check:ats": "node scripts/check-ats-chars.mjs",
-    "check:jobs": "cp lib/job-crawler.js lib/job-crawler.mjs && node lib/job-crawler.mjs; rm -f lib/job-crawler.mjs"
+    "check:jobs": "cp lib/job-crawler.js lib/job-crawler.mjs && node lib/job-crawler.mjs; rm -f lib/job-crawler.mjs",
+    "announce": "node --env-file=.env scripts/send-announcement.mjs",
+    "check:names": "cp lib/announcement-email.js lib/announcement-email.mjs && node lib/announcement-email.mjs; rm -f lib/announcement-email.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

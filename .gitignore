@@ -48,3 +48,6 @@ opensrc/
 
 # Skill packages ship demo media we do not need in git history.
 .agents/**/*.mp4
+
+# transient copies made by check:jobs and the announce script
+lib/*.mjs

@@ -34,9 +34,16 @@ export async function GET(request) {
     const filter = {};
     if (q) filter.title = { $regex: escapeRegex(q), $options: "i" };
     if (CATEGORIES.includes(category)) filter.category = category;
-    // Dates come off crawledAt because it is always populated, unlike postedAt.
+    // The card shows postedAt when the ATS published one, so the filter has to
+    // read the same field or a job posted 5 weeks ago and crawled today would
+    // pass "Past 24 hours". crawledAt is the fallback for the ~65% of rows with
+    // no real publication date. {postedAt: null} also matches missing fields.
     if (PERIOD_DAYS[period]) {
-      filter.crawledAt = { $gte: new Date(Date.now() - PERIOD_DAYS[period] * 864e5) };
+      const cutoff = new Date(Date.now() - PERIOD_DAYS[period] * 864e5);
+      filter.$or = [
+        { postedAt: { $gte: cutoff } },
+        { postedAt: null, crawledAt: { $gte: cutoff } },
+      ];
     }
     if (EMPLOYMENT_TYPES.includes(jobType)) filter.employmentType = jobType;
     if (remoteOnly) filter.remote = true;

@@ -35,6 +35,22 @@ IMPORTANT — Extraction Strategy:
 - Always return at least 3-5 items per array field if the job posting contains a meaningful description. Try hard to populate every field.
 - Do NOT return empty arrays if there is any text describing the role — infer from context.`;
 
+// Same job page? Compare host (minus www/regional prefix) + path + job key.
+function isSamePage(requested, candidate) {
+  if (!candidate) return false;
+  try {
+    const a = new URL(requested);
+    const b = new URL(candidate);
+    const domain = (h) => h.split(".").slice(-2).join(".");
+    if (domain(a.hostname) !== domain(b.hostname)) return false;
+    if (a.pathname.replace(/\/$/, "") !== b.pathname.replace(/\/$/, "")) return false;
+    const key = (u) => u.searchParams.get("jk") || u.searchParams.get("jl") || "";
+    return key(a) === key(b);
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(request) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -57,12 +73,17 @@ export async function POST(request) {
       }
     }
 
-    // Normalize any Indeed URL to canonical viewjob?jk=VALUE form
+    // Normalize any Indeed URL to canonical viewjob?jk=VALUE form, keeping the
+    // regional host (uk.indeed.com etc) — a job key is not valid on www
     if (url.includes("indeed.com")) {
       // jk= appears in viewjob URLs; vjk= appears in search result URLs — both are the same job key
       const jkMatch = url.match(/[?&]jk=([a-zA-Z0-9]+)/) || url.match(/[?&]vjk=([a-zA-Z0-9]+)/);
       if (jkMatch) {
-        url = `https://www.indeed.com/viewjob?jk=${jkMatch[1]}`;
+        let host = "www.indeed.com";
+        try {
+          host = new URL(url).hostname;
+        } catch {}
+        url = `https://${host}/viewjob?jk=${jkMatch[1]}`;
         console.log("[job-extract] Normalized Indeed URL to:", url);
       }
     }
@@ -180,9 +201,14 @@ export async function POST(request) {
         if (searchRes.ok) {
           const searchData = await searchRes.json();
           const searchText = searchData.results?.[0]?.text;
-          if (searchText && searchText.length >= 50) {
+          const searchUrl = searchData.results?.[0]?.url;
+          // Neural search ranks by meaning, so a URL query can return a totally
+          // different job. Only trust a result that is the same page.
+          if (searchText && searchText.length >= 50 && isSamePage(url, searchUrl)) {
             console.log(`[job-extract] Search fallback returned ${searchText.length} chars`);
             finalText = searchText;
+          } else if (searchText) {
+            console.log("[job-extract] Discarded search fallback, different page:", searchUrl);
           }
         }
       } catch (err) {
@@ -196,7 +222,7 @@ export async function POST(request) {
       if (url.includes("linkedin.com")) {
         errorMsg = "LinkedIn blocks job page access. Try the company's own careers page URL instead.";
       } else if (url.includes("indeed.com")) {
-        errorMsg = "Could not extract the Indeed job listing. Try opening the job directly and copying its URL from the address bar.";
+        errorMsg = "Indeed blocks job page access. Try the company's own careers page URL instead.";
       } else if (url.includes("glassdoor.com")) {
         errorMsg = "Glassdoor blocks direct access. Try the company's own careers page URL instead.";
       } else if (url.includes("myworkdayjobs.com")) {

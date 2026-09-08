@@ -2,6 +2,11 @@ import { auth } from "@/lib/auth";
 import { parseJobFromResponse } from "@/utils/job-parser";
 import OpenAI from "openai";
 
+// This route calls a model. Without this the platform default (10-15s) kills
+// the function mid-response and the browser sees a dropped socket, which the
+// client can only report as a network error.
+export const maxDuration = 60;
+
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an expert job listing parser. Given the raw text content scraped from a job posting page, extract the structured job information. Return ONLY valid JSON with no additional text.

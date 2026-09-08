@@ -108,7 +108,17 @@ export function uploadResumeWithProgress(file, onUpdate) {
 
     xhr.onerror = () => {
       stopServerProgress();
-      reject(new Error("Network error while uploading"));
+      reject(
+        new Error("Upload failed. The connection dropped before your CV was processed. Try again.")
+      );
+    };
+
+    // Above the route's own 60s ceiling, so a hung socket fails with a real
+    // message instead of spinning forever.
+    xhr.timeout = 90000;
+    xhr.ontimeout = () => {
+      stopServerProgress();
+      reject(new Error("Upload timed out. Your CV took too long to process. Try again."));
     };
 
     xhr.onabort = () => {

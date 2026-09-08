@@ -4,6 +4,11 @@ import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
 import OpenAI from "openai";
 
+// This route calls a model. Without this the platform default (10-15s) kills
+// the function mid-response and the browser sees a dropped socket, which the
+// client can only report as a network error.
+export const maxDuration = 60;
+
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an expert CV tailoring assistant and career coach. Given a reference CV (JSON) and job requirements, you will:

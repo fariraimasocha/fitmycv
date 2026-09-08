@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRightIcon, PlayIcon } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
@@ -14,7 +13,7 @@ function DemoPreview() {
       initial={reduceMotion ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto mt-16 w-full max-w-5xl md:mt-20"
+      className="relative mx-auto mt-9 w-full max-w-5xl"
     >
       <div className="overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-white shadow-[0_24px_60px_oklch(0.18_0.02_260_/_0.08)]">
         <div className="landing-browser-bar">
@@ -26,13 +25,16 @@ function DemoPreview() {
           </span>
         </div>
         <div className="relative overflow-hidden">
-          <Image
-            src="/hero.jpg"
-            alt="FitMyCV dashboard preview"
-            width={2116}
-            height={1248}
-            sizes="(max-width: 1024px) 100vw, 1024px"
-            priority
+          {/* Muted autoplay so it works as a silent product demo on mobile too */}
+          <video
+            src="/fitmycv-demo.mp4"
+            poster="/hero.jpg"
+            autoPlay={!reduceMotion}
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="FitMyCV demo: paste a job link and download a tailored CV"
             className="h-auto w-full"
           />
         </div>
@@ -43,7 +45,7 @@ function DemoPreview() {
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative px-5 pb-20 pt-10 sm:px-10 lg:px-16 xl:px-24">
+    <section id="hero" className="relative px-5 pb-20 pt-24 sm:px-10 sm:pt-32 lg:px-16 xl:px-24">
       <div className="landing-container relative flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -53,37 +55,36 @@ export default function Hero() {
         >
           <span className="landing-eyebrow mb-8 gap-2.5">
             <span className="landing-eyebrow-new">New</span>
-            Tailor your CV from any job link
+            Works with the major job boards
           </span>
 
           <h1
             className="font-serif-display max-w-4xl font-normal leading-[1.02] tracking-tight text-[var(--landing-ink)]"
             style={{ fontSize: "clamp(2.75rem, 5.5vw, 4.75rem)" }}
           >
-            Your AI{" "}
-            <em className="text-[var(--landing-accent)]">CV tailoring</em>
-            {" "}&amp; cover letter team in one paste
+            Paste any job link. Get a CV and cover letter{" "}
+            <em className="text-[var(--landing-accent)]">made for that role</em>.
           </h1>
 
           <p className="mt-7 max-w-2xl text-base leading-8 text-[var(--landing-ink-soft)] sm:text-lg">
-            FitMyCV drops in{" "}
+            Upload your CV once. FitMyCV{" "}
             <strong className="font-semibold text-[var(--landing-ink)]">
-              job-link parsing
+              reads the listing
             </strong>
-            ,{" "}
+            , matches it against{" "}
             <strong className="font-semibold text-[var(--landing-ink)]">
-              ATS keyword matching
+              your real experience
+            </strong>
+            , and rewrites your CV in the words that role asks for. Cover letter and{" "}
+            <strong className="font-semibold text-[var(--landing-ink)]">
+              ATS-safe PDF
             </strong>{" "}
-            and{" "}
-            <strong className="font-semibold text-[var(--landing-ink)]">
-              one-click PDF export
-            </strong>
-            . Upload your CV once, paste a listing, and get a hire-ready application in under a minute.
+            included, in under a minute.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/auth" className="landing-primary-btn group min-w-[210px] text-sm">
-              Get FitMyCV
+              Tailor my CV
               <ArrowUpRightIcon
                 size={16}
                 aria-hidden="true"
@@ -99,17 +100,7 @@ export default function Hero() {
             </Link>
           </div>
 
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {["Google sign-in", "Delete anytime", "ATS-safe PDF"].map((chip) => (
-              <li
-                key={chip}
-                className="rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1 text-sm leading-7 text-[var(--landing-ink)]"
-              >
-                {chip}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-sm leading-7 text-[var(--landing-ink-soft)]">
+          <p className="mt-9 text-sm leading-7 text-[var(--landing-ink-soft)]">
             Lifetime from ${PRICING.lifetime.price}. Cancel anytime on monthly.
           </p>
         </motion.div>

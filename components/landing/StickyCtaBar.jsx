@@ -26,7 +26,7 @@ export default function StickyCtaBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--landing-line)] bg-[var(--landing-bg)]/95 p-3 backdrop-blur-md md:hidden">
       <Link href="/auth" className="landing-primary-btn w-full text-sm">
-        Get FitMyCV
+        Tailor my CV
         <ArrowUpRightIcon size={16} aria-hidden="true" />
       </Link>
     </div>

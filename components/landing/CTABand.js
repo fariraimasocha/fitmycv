@@ -14,7 +14,7 @@ export default function CTABand() {
         </p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href="/auth" className="landing-primary-btn text-sm">
-            Get FitMyCV
+            Tailor my CV
             <ArrowUpRightIcon size={16} aria-hidden="true" />
           </Link>
           <Link href="#pricing" className="landing-secondary-btn text-sm">

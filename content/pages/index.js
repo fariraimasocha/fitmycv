@@ -9,6 +9,18 @@ import {
 import { aiCoverLetterGenerator, coverLetterBuilder } from "./cover-letters";
 import { resumeTips, howToWriteAResume } from "./guides";
 import { cvTemplates, resumeTemplates, googleDocsCvTemplate } from "./templates";
+import {
+  jobscanAlternative,
+  tealAlternative,
+  kickresumeAlternative,
+} from "./alternatives";
+import {
+  workdayResumeFormat,
+  greenhouseAtsResume,
+  leverAtsResume,
+  taleoResumeFormat,
+  icimsResumeFormat,
+} from "./ats";
 
 export const MARKETING_PAGES = [
   atsResumeChecker,
@@ -21,6 +33,14 @@ export const MARKETING_PAGES = [
   cvTemplates,
   resumeTemplates,
   googleDocsCvTemplate,
+  jobscanAlternative,
+  tealAlternative,
+  kickresumeAlternative,
+  workdayResumeFormat,
+  greenhouseAtsResume,
+  leverAtsResume,
+  taleoResumeFormat,
+  icimsResumeFormat,
 ];
 
 const BY_SLUG = Object.fromEntries(

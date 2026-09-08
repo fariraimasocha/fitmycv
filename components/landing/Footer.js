@@ -5,37 +5,91 @@ import { FileTextIcon } from "@phosphor-icons/react";
 
 // Root-relative hrefs throughout — the footer renders on every page, so bare
 // "#features" anchors would dead-end everywhere except the homepage.
-const productLinks = [
-  { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link" },
-  { label: "ATS resume checker", href: "/ats-resume-checker" },
-  { label: "ATS keyword checker", href: "/free-ats-keyword-checker" },
-  { label: "Resume optimizer", href: "/resume-optimizer" },
-  { label: "AI cover letter generator", href: "/ai-cover-letter-generator" },
-  { label: "Cover letter builder", href: "/cover-letter-builder" },
-  { label: "Pricing", href: "/pricing" },
+const columns = [
+  {
+    heading: "Product",
+    links: [
+      { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link" },
+      { label: "ATS resume checker", href: "/ats-resume-checker" },
+      { label: "ATS keyword checker", href: "/free-ats-keyword-checker" },
+      { label: "Resume optimizer", href: "/resume-optimizer" },
+      { label: "AI cover letter generator", href: "/ai-cover-letter-generator" },
+      { label: "Cover letter builder", href: "/cover-letter-builder" },
+      { label: "Pricing", href: "/pricing" },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "ATS resume guide", href: "/blog/ats-resume-guide" },
+      { label: "How to write a resume", href: "/how-to-write-a-resume" },
+      { label: "Resume tips", href: "/resume-tips" },
+      { label: "Resume examples", href: "/resume-examples" },
+      { label: "CV examples", href: "/cv-examples" },
+      { label: "CV templates", href: "/cv-templates" },
+    ],
+  },
+  {
+    heading: "Compare",
+    links: [
+      { label: "Jobscan alternative", href: "/jobscan-alternative" },
+      { label: "Teal alternative", href: "/teal-alternative" },
+      { label: "Kickresume alternative", href: "/kickresume-alternative" },
+    ],
+  },
+  {
+    heading: "ATS guides",
+    links: [
+      { label: "Workday resume format", href: "/workday-resume-format" },
+      { label: "Greenhouse ATS resume", href: "/greenhouse-ats-resume" },
+      { label: "Lever ATS resume", href: "/lever-ats-resume" },
+      { label: "Taleo resume format", href: "/taleo-resume-format" },
+      { label: "iCIMS resume format", href: "/icims-resume-format" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Support", href: "/support" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms-and-conditions" },
+    ],
+  },
+  {
+    heading: "Other Apps",
+    links: [
+      { label: "LinkGenie", href: "https://linkgenie.one" },
+      { label: "Payfari", href: "https://payfari.com" },
+    ],
+  },
 ];
 
-const resourceLinks = [
-  { label: "Blog", href: "/blog" },
-  { label: "ATS resume guide", href: "/blog/ats-resume-guide" },
-  { label: "How to write a resume", href: "/how-to-write-a-resume" },
-  { label: "Resume tips", href: "/resume-tips" },
-  { label: "Resume examples", href: "/resume-examples" },
-  { label: "CV examples", href: "/cv-examples" },
-  { label: "CV templates", href: "/cv-templates" },
-];
+const LINK_CLASS =
+  "font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors";
 
-const companyLinks = [
-  { label: "Support", href: "/support" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms-and-conditions" },
-];
-
-const otherApps = [
-  { label: "LinkGenie", href: "https://linkgenie.one" },
-  { label: "WaitFast", href: "https://waitfast.one" },
-  { label: "LaunchMe", href: "https://launchme.site" },
-];
+function FooterColumn({ heading, links }) {
+  return (
+    <div className="flex flex-col gap-4">
+      <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">{heading}</h3>
+      <ul className="flex flex-col gap-3">
+        {links.map(({ label, href }) => (
+          <li key={label}>
+            {href.startsWith("http") ? (
+              <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+                {label}
+              </a>
+            ) : (
+              <Link href={href} className={LINK_CLASS}>
+                {label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
@@ -56,77 +110,10 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links + Other Apps */}
           <div className="flex flex-col flex-wrap gap-8 sm:flex-row sm:gap-12 lg:gap-14">
-            {/* Product col */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Product</h3>
-              <ul className="flex flex-col gap-3">
-                {productLinks.map(({ label, href }) => (
-                  <li key={label}>
-                    <Link
-                      href={href}
-                      className="font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources col */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Resources</h3>
-              <ul className="flex flex-col gap-3">
-                {resourceLinks.map(({ label, href }) => (
-                  <li key={label}>
-                    <Link
-                      href={href}
-                      className="font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Company col */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Company</h3>
-              <ul className="flex flex-col gap-3">
-                {companyLinks.map(({ label, href }) => (
-                  <li key={label}>
-                    <Link
-                      href={href}
-                      className="font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Other Apps col */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">Other Apps</h3>
-              <ul className="flex flex-col gap-3">
-                {otherApps.map(({ label, href }) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {columns.map((column) => (
+              <FooterColumn key={column.heading} {...column} />
+            ))}
           </div>
         </div>
 

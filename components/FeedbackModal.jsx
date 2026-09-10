@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,

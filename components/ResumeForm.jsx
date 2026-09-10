@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   PlusIcon,
   TrashIcon,

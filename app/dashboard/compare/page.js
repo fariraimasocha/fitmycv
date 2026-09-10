@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   ScalesIcon,
   SparkleIcon,

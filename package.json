@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:ats": "node scripts/check-ats-chars.mjs",
+    "check:sentences": "cp utils/count-sentences.js utils/count-sentences.mjs && node utils/count-sentences.mjs; rm -f utils/count-sentences.mjs",
     "check:jobs": "cp lib/job-crawler.js lib/job-crawler.mjs && node lib/job-crawler.mjs; rm -f lib/job-crawler.mjs",
     "announce": "node --env-file=.env scripts/send-announcement.mjs",
     "check:names": "cp lib/announcement-email.js lib/announcement-email.mjs && node lib/announcement-email.mjs; rm -f lib/announcement-email.mjs"
@@ -32,8 +33,8 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
-    "react-hot-toast": "^2.6.0",
     "recharts": "^3.7.0",
+    "sonner": "^2.0.8",
     "tailwind-merge": "^3.4.1",
     "unpdf": "^1.4.0",
     "zod": "^4.3.6",

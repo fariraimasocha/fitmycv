@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   BuildingsIcon,
   CalendarIcon,

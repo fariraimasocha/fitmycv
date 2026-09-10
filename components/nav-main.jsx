@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 function NavGroup({ label, items, pathname, onNavigate }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="text-[0.65rem] font-semibold uppercase tracking-wider text-muted-foreground/80">
+      <SidebarGroupLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
         {label}
       </SidebarGroupLabel>
       <SidebarMenu>

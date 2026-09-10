@@ -6,7 +6,7 @@ An audit of the app's UI against *Refactoring UI* (Wathan & Schoger), covering a
 eight chapters from "Starting from Scratch" to "Finishing Touches".
 
 Every item is verified in the code with a file reference and names the chapter it
-comes from. **Tier 1 is fixed.** Tiers 2 and 3 are open.
+comes from. **Tiers 1 and 2 are fixed.** Tier 3 is open.
 
 Scope and its limits: the counts below come from pattern searches across all 120 UI
 files, so they are totals rather than samples. But only nine files were read in
@@ -85,7 +85,7 @@ palette was reworked.
 *Fixed:* switched to the ink tokens. Only the button inside was ever visible,
 because `.landing-secondary-btn` sets its own colour.
 
-## Tier 2: systematic drift
+## Tier 2: systematic drift — FIXED
 
 **5. Twenty-six uses of sub-12px text.**
 `text-[10px]`, `text-[9px]`, `text-[11px]`, `text-[0.6rem]`, `text-[0.65rem]`
@@ -98,7 +98,14 @@ and 11 in `components/ResumePreview.jsx`.
 content that is too small. Use a lighter color or a lighter weight and keep the
 size readable. The `ResumePreview` ones are arguable, since that is a scaled CV
 document, but the app-chrome ones are labels shrunk to get out of the way.
-These also violate your own CLAUDE.md rule against bracket syntax.
+These also violate the CLAUDE.md rule against bracket syntax.
+*Fixed:* 14 sites across 8 files floored at `text-xs`. The file list above was
+incomplete: `components/landing/HowItWorks.js` (3) and
+`components/landing/Features.js` (3) also had them.
+`ResumePreview.jsx` is deliberately left alone. Those 11 are CV document
+typography, including a mono template set at 9px, and the chapter is about UI
+hierarchy rather than the document the app produces. Changing them would reflow
+generated CVs.
 
 **6. Card padding: 18 files inline, 6 using the recipe.**
 `globals.css` defines `.dashboard-card-pad` and `.dashboard-row-pad` with a
@@ -110,6 +117,13 @@ dashboard pages.
 → *"Limit your choices"* and *"Establish a spacing and sizing system"*: the system
 only pays off if it is the path of least resistance. Content starts at a different
 left edge in different blocks of the same column.
+*Fixed:* 31 declarations across 8 files now use `.dashboard-card-pad` or
+`.dashboard-row-pad`; 19 files use the recipes, up from 6. Bodies under an
+unruled header take `pt-0`; bodies under a `border-b` header keep their own top
+inset. Left as-is on purpose: the `py-10` and `py-12` loading and empty states,
+which are deliberately generous rather than card-body padding, `compare/page.js`'s
+header and footer, whose asymmetric inset hugs their rules, and the `p-4` nested
+cards.
 
 **7. Raw Tailwind palette in app chrome.**
 155 uses of stock palette colors: 82 `gray-*` plus `blue`, `purple`, `rose`,
@@ -122,6 +136,21 @@ front"*: ad-hoc hues outside the ramp mean "you might as well have no color
 system at all."
 Exclude `components/ResumePreview.jsx` and `app/print/page.js` from this. Those
 render the CV document itself and neutral grey is correct there.
+*Fixed:* every remaining use in app chrome now resolves through a token. Greys to
+`ink` / `ink-soft` / `line` / `paper` / `surface`; reds and roses to
+`destructive`; greens to `--landing-success`; the purple culture chips and the
+amber and yellow badges to the existing accent ramp, rather than inventing a
+warning hue the palette did not have. Blue news links became ink with the
+underline they already had on hover, per *"Not every link needs a color."*
+Two tokens were added, both to close real gaps: `--landing-ink-faint` (#726d62,
+4.7:1 on paper) because the ramp had only two greys and a third tier had nowhere
+to go, and `--landing-success-soft` because `#eef8f1` was a literal repeated in
+three files, which now all reference it.
+Dead `dark:` variants went with the colours they qualified. Nothing in the app
+toggles `.dark`, and the landing tokens have no dark values.
+Two uses stay on purpose: the LinkedIn logo in `LinkedInOutreachModal.jsx:79`, a
+brand mark, and the three window dots in `CoverLetterDemo.js`, where red, yellow
+and green is the thing being depicted.
 
 ## Tier 3: content
 
@@ -154,7 +183,12 @@ undo them:
 
 ## Verifying
 
-Tier 1: `npx eslint` passes on all seven touched files. Not yet checked in a
-browser, which is how items 1 and 3 should really be judged. `npm run dev`, then
-`/dashboard/tailored/<id>` for items 1 to 3, `/dashboard` for item 4, `/support`
-for item 5.
+`npx eslint` is clean on every touched file, and `next build` passes. Two
+pre-existing errors remain in files these changes touched and did not introduce:
+a synchronous `setState` in an effect at `app/payment/success/page.jsx:37`, and an
+unescaped apostrophe at `components/LinkedInOutreachModal.jsx:138`.
+
+Neither tier has been checked in a browser, which is how the spacing and contrast
+work should really be judged. `npm run dev`, then `/dashboard/tailored/<id>`,
+`/dashboard`, `/support`, `/payment/success`, and the applications and
+company-research pages for the padding changes.

@@ -86,10 +86,10 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="px-4 py-4 sm:px-6">
+        <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base">Generating interview prep...</CardTitle>
         </CardHeader>
-        <CardContent className="px-4 pb-5 sm:px-6">
+        <CardContent className="dashboard-card-pad pt-0">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -135,10 +135,10 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="px-4 py-4 sm:px-6">
+      <CardHeader className="dashboard-card-pad">
         <CardTitle className="text-base">Interview Preparation</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6 px-4 pb-5 sm:px-6">
+      <CardContent className="dashboard-card-pad space-y-6 pt-0">
         {/* STAR Stories */}
         {stories?.length > 0 && (
           <div className="space-y-2">
@@ -184,14 +184,14 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
         {/* Talking Points */}
         {talkingPoints?.length > 0 && (
           <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-green-700 dark:text-green-400">
+            <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)]">
               <LightbulbIcon size={16} weight="fill" />
               Key Talking Points
             </h3>
             <ul className="space-y-1.5">
               {talkingPoints.map((point, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-green-500">*</span>
+                  <span className="mt-0.5 shrink-0 text-[var(--landing-success)]">*</span>
                   {point}
                 </li>
               ))}

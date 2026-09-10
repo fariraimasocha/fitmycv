@@ -148,10 +148,10 @@ export default function ApplicationDetailPage() {
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="px-4 py-4 sm:px-6">
+          <CardHeader className="dashboard-card-pad">
             <CardTitle className="text-base">Update Status</CardTitle>
           </CardHeader>
-          <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+          <CardContent className="dashboard-card-pad pt-0">
             <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
               {Object.entries(STATUS_CONFIG).map(([key, { label, color }]) => (
                 <Button
@@ -178,13 +178,13 @@ export default function ApplicationDetailPage() {
           transition={{ duration: 0.3, delay: 0.1 }}
         >
           <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-            <CardHeader className="px-4 py-4 sm:px-6">
+            <CardHeader className="dashboard-card-pad">
               <CardTitle className="flex items-center gap-2 text-base">
                 <ClockIcon size={16} />
                 Timeline
               </CardTitle>
             </CardHeader>
-            <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+            <CardContent className="dashboard-card-pad pt-0">
               <div className="space-y-3">
                 {[...app.statusHistory].reverse().map((entry, i) => {
                   const config = STATUS_CONFIG[entry.status] || STATUS_CONFIG.evaluated;
@@ -226,13 +226,13 @@ export default function ApplicationDetailPage() {
         transition={{ duration: 0.3, delay: 0.15 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="px-4 py-4 sm:px-6">
+          <CardHeader className="dashboard-card-pad">
             <CardTitle className="flex items-center gap-2 text-base">
               <NotepadIcon size={16} />
               Notes & Follow-up
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 px-4 pb-4 sm:px-6 sm:pb-6">
+          <CardContent className="dashboard-card-pad space-y-4 pt-0">
             <div>
               <label className="text-xs font-medium text-muted-foreground mb-1 block">
                 Follow-up Date

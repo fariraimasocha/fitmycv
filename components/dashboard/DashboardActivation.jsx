@@ -60,7 +60,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                   <div className="flex flex-col items-center pt-1">
                     <span
                       className={cn(
-                        "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-semibold",
+                        "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs font-semibold",
                         isNow
                           ? "border-[var(--landing-accent-dark)] bg-[var(--landing-accent-dark)] text-white"
                           : step.done
@@ -102,7 +102,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                       {!step.done && (
                         <span
                           className={cn(
-                            "rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wider",
+                            "rounded px-1.5 py-0.5 text-xs font-semibold tracking-wider",
                             isNow
                               ? "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
                               : "text-muted-foreground",

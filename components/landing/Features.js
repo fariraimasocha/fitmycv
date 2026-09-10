@@ -27,7 +27,7 @@ function FeaturePill({ icon: Icon, label }) {
 function Bar({ label, pct }) {
   return (
     <div className="flex items-center gap-2.5">
-      <span className="w-20 shrink-0 font-sans text-[11px] font-semibold text-[var(--landing-ink-soft)]">
+      <span className="w-20 shrink-0 font-sans text-xs font-semibold text-[var(--landing-ink-soft)]">
         {label}
       </span>
       <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--landing-line)]">
@@ -36,7 +36,7 @@ function Bar({ label, pct }) {
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="w-8 text-right font-sans text-[11px] font-extrabold text-[var(--landing-primary-dark)]">
+      <span className="w-8 text-right font-sans text-xs font-extrabold text-[var(--landing-primary-dark)]">
         {pct}%
       </span>
     </div>
@@ -71,7 +71,7 @@ function Donut({ value }) {
         <span className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
           {value}%
         </span>
-        <span className="-mt-0.5 font-sans text-[9px] font-semibold uppercase tracking-wide text-[var(--landing-ink-soft)]">
+        <span className="-mt-0.5 font-sans text-xs font-semibold uppercase tracking-wide text-[var(--landing-ink-soft)]">
           match
         </span>
       </div>

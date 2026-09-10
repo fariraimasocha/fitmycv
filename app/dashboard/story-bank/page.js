@@ -33,7 +33,7 @@ function usedForLabel(usedFor) {
 function StarRow({ label, value }) {
   return (
     <div className="sm:grid sm:grid-cols-[5.5rem_1fr] sm:gap-x-4">
-      <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--landing-accent-dark)] sm:pt-1">
+      <p className="text-xs font-semibold uppercase tracking-wider text-[var(--landing-accent-dark)] sm:pt-1">
         {label}
       </p>
       <p className="mt-0.5 text-sm leading-6 text-foreground sm:mt-0">{value}</p>
@@ -69,7 +69,7 @@ function StoryCard({ story, index }) {
               {story.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-1.5 py-0.5 text-[11px] font-medium text-[var(--landing-ink-soft)]"
+                  className="inline-flex items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-1.5 py-0.5 text-xs font-medium text-[var(--landing-ink-soft)]"
                 >
                   {tag}
                 </span>

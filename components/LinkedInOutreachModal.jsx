@@ -106,8 +106,8 @@ export default function LinkedInOutreachModal({
                       onClick={() => selectMessage(i)}
                       className={`rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
                         activeIndex === i
-                          ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
-                          : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200"
+                          ? "bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]"
+                          : "text-[var(--landing-ink-soft)] hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
                       }`}
                     >
                       Version {i + 1}
@@ -126,7 +126,7 @@ export default function LinkedInOutreachModal({
                 />
                 <div
                   className={`absolute bottom-2 right-2 text-xs font-medium tabular-nums ${
-                    overLimit ? "text-red-500" : "text-muted-foreground"
+                    overLimit ? "text-destructive" : "text-muted-foreground"
                   }`}
                 >
                   {charCount}/300
@@ -134,7 +134,7 @@ export default function LinkedInOutreachModal({
               </div>
 
               {overLimit && (
-                <p className="text-xs text-red-500">
+                <p className="text-xs text-destructive">
                   Message exceeds LinkedIn's 300-character limit for connection requests.
                 </p>
               )}
@@ -150,7 +150,7 @@ export default function LinkedInOutreachModal({
                     {data.targetRoles.map((role) => (
                       <span
                         key={role}
-                        className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+                        className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
                       >
                         {role}
                       </span>

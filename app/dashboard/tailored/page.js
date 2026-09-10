@@ -253,8 +253,8 @@ export default function TailoredCVsPage() {
                       disabled={deleteMutation.isPending}
                       onClick={(e) => handleTrashClick(e, cv._id)}
                       className={cn(
-                        "hover:bg-red-50 hover:text-red-600",
-                        confirming && "bg-red-50 text-red-600"
+                        "hover:bg-destructive/10 hover:text-destructive",
+                        confirming && "bg-destructive/10 text-destructive"
                       )}
                     >
                       {confirming ? (

@@ -63,7 +63,7 @@ export function DownloadButton({
         "focus-visible:ring-[3px] focus-visible:ring-ring/50",
         idle && "cursor-pointer bg-foreground text-background hover:opacity-90 active:scale-[0.96]",
         downloading && "cursor-default bg-foreground/70 text-background",
-        done && "cursor-default bg-emerald-600 text-white",
+        done && "cursor-default bg-[var(--landing-success)] text-white",
         className
       )}
       {...props}

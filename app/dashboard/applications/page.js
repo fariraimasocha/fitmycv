@@ -160,7 +160,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending, c
                 {app.matchGrade && (
                   <span
                     className={cn(
-                      "hidden shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold sm:inline-flex",
+                      "hidden shrink-0 rounded-full px-2 py-0.5 text-xs font-bold sm:inline-flex",
                       gradeChipClass(app.matchGrade)
                     )}
                   >
@@ -186,7 +186,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending, c
                 {app.matchGrade && (
                   <span
                     className={cn(
-                      "inline-flex rounded-full px-1.5 py-0.5 text-[10px] font-bold sm:hidden",
+                      "inline-flex rounded-full px-1.5 py-0.5 text-xs font-bold sm:hidden",
                       gradeChipClass(app.matchGrade)
                     )}
                   >
@@ -229,7 +229,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending, c
             <Button
               variant={confirmingDelete ? "destructive" : "ghost"}
               size="icon-sm"
-              className="shrink-0 text-muted-foreground hover:bg-red-50 hover:text-red-600"
+              className="shrink-0 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
               title={confirmingDelete ? "Tap again to confirm" : "Delete application"}
               aria-label={
                 confirmingDelete

@@ -118,7 +118,7 @@ const Navbar1 = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={handleLogout}
-                  className="cursor-pointer text-red-600 focus:text-red-600"
+                  className="cursor-pointer text-destructive focus:text-destructive"
                 >
                   <SignOutIcon className="mr-2 h-4 w-4" />
                   Logout

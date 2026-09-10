@@ -173,10 +173,10 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Personal Information</CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-4 px-4 py-4 sm:grid-cols-2 sm:px-6 sm:py-5">
+          <CardContent className="dashboard-card-pad grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="name">Full Name *</Label>
               <Input id="name" {...register("basics.name")} />
@@ -222,7 +222,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Online Profiles</CardTitle>
             <Button
               type="button"
@@ -235,7 +235,7 @@ export default function ResumeForm({
               Add Profile
             </Button>
           </CardHeader>
-          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+          <CardContent className="dashboard-card-pad space-y-4">
             {profilesFieldsList.length === 0 && (
               <p className="text-sm text-muted-foreground">No profiles added yet.</p>
             )}
@@ -266,7 +266,7 @@ export default function ResumeForm({
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
+                    className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                     onClick={() => removeProfile(index)}
                   >
                     <TrashIcon size={16} />
@@ -285,7 +285,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.1 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Work Experience</CardTitle>
             <Button
               type="button"
@@ -307,7 +307,7 @@ export default function ResumeForm({
               Add Position
             </Button>
           </CardHeader>
-          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+          <CardContent className="dashboard-card-pad space-y-4">
             {workFieldsList.length === 0 && (
               <p className="text-sm text-muted-foreground">
                 No work experience added yet.
@@ -333,7 +333,7 @@ export default function ResumeForm({
                       type="button"
                       variant="ghost"
                       size="icon-xs"
-                      className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
+                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                       onClick={() => removeWork(index)}
                     >
                       <TrashIcon size={14} />
@@ -390,7 +390,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.15 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Education</CardTitle>
             <Button
               type="button"
@@ -411,7 +411,7 @@ export default function ResumeForm({
               Add Education
             </Button>
           </CardHeader>
-          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+          <CardContent className="dashboard-card-pad space-y-4">
             {educationFieldsList.length === 0 && (
               <p className="text-sm text-muted-foreground">No education added yet.</p>
             )}
@@ -435,7 +435,7 @@ export default function ResumeForm({
                       type="button"
                       variant="ghost"
                       size="icon-xs"
-                      className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
+                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                       onClick={() => removeEducation(index)}
                     >
                       <TrashIcon size={14} />
@@ -488,7 +488,7 @@ export default function ResumeForm({
         transition={{ duration: 0.3, delay: 0.2 }}
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 px-4 py-4 sm:px-6">
+          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Skills</CardTitle>
             <Button
               type="button"
@@ -501,7 +501,7 @@ export default function ResumeForm({
               Add Category
             </Button>
           </CardHeader>
-          <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+          <CardContent className="dashboard-card-pad space-y-4">
             {skillsFieldsList.length === 0 && (
               <p className="text-sm text-muted-foreground">No skills added yet.</p>
             )}
@@ -525,7 +525,7 @@ export default function ResumeForm({
                       type="button"
                       variant="ghost"
                       size="icon-xs"
-                      className="text-muted-foreground hover:bg-red-50 hover:text-red-600"
+                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
                       onClick={() => removeSkill(index)}
                     >
                       <TrashIcon size={14} />

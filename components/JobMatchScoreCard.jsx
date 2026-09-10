@@ -104,10 +104,10 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="px-4 py-4 sm:px-6">
+        <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base font-semibold">Scoring job match…</CardTitle>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-6 sm:py-5">
+        <CardContent className="dashboard-card-pad pt-0">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -122,13 +122,13 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="px-4 py-4 pb-3 sm:px-6">
+      <CardHeader className="dashboard-card-pad pb-3">
         <CardTitle className="flex items-center justify-between text-base font-semibold">
           <span>Job match</span>
           <GradeBadge grade={globalGrade} size="md" />
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4 px-4 py-4 sm:px-6 sm:py-5">
+      <CardContent className="dashboard-card-pad space-y-4 pt-0">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <ArcGauge
             value={globalScore}

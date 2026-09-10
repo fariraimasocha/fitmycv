@@ -97,10 +97,10 @@ export const CheckboxFieldInput = forwardRef(function CheckboxFieldInput(
             className={cn(
               "flex size-4 items-center justify-center rounded border transition-[border-color,background-color] duration-200",
               error
-                ? "border-rose-300 bg-white peer-focus:border-rose-400"
-                : "border-neutral-300 bg-white peer-focus:border-neutral-900",
-              "peer-checked:border-neutral-900 peer-checked:bg-neutral-900",
-              "peer-disabled:border-neutral-200 peer-disabled:bg-neutral-100",
+                ? "border-destructive/50 bg-[var(--landing-surface)] peer-focus:border-destructive"
+                : "border-[var(--landing-line)] bg-[var(--landing-surface)] peer-focus:border-[var(--landing-ink)]",
+              "peer-checked:border-[var(--landing-ink)] peer-checked:bg-[var(--landing-ink)]",
+              "peer-disabled:border-[var(--landing-line)] peer-disabled:bg-[var(--landing-paper-strong)]",
             )}
           >
             <CheckIcon
@@ -115,16 +115,16 @@ export const CheckboxFieldInput = forwardRef(function CheckboxFieldInput(
         </span>
 
         <span className="min-w-0">
-          <span className="block text-sm text-neutral-900">
+          <span className="block text-sm text-[var(--landing-ink)]">
             {label}
             {required ? (
-              <span className="ml-0.5 text-rose-500" aria-hidden>
+              <span className="ml-0.5 text-destructive" aria-hidden>
                 *
               </span>
             ) : null}
           </span>
           {hint ? (
-            <span id={hintId} className="mt-0.5 block text-xs text-neutral-500">
+            <span id={hintId} className="mt-0.5 block text-xs text-[var(--landing-ink-soft)]">
               {hint}
             </span>
           ) : null}
@@ -132,7 +132,7 @@ export const CheckboxFieldInput = forwardRef(function CheckboxFieldInput(
       </label>
 
       {error ? (
-        <p id={errorId} role="alert" className="mt-1.5 text-xs text-rose-600">
+        <p id={errorId} role="alert" className="mt-1.5 text-xs text-destructive">
           {errorMessage}
         </p>
       ) : null}

@@ -36,7 +36,7 @@ function SubscriptionBadge({ isPremium, status }) {
 
   if (status === "canceled") {
     return (
-      <span className="rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-700">
+      <span className="rounded-full bg-[var(--landing-accent-soft)] px-2.5 py-0.5 text-xs font-medium text-[var(--landing-accent-dark)]">
         PRO · Canceling
       </span>
     );

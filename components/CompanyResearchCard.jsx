@@ -26,7 +26,7 @@ function InfoBadge({ children }) {
 
 function CultureChip({ signal }) {
   return (
-    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
       {signal}
     </span>
   );
@@ -52,13 +52,13 @@ export default function CompanyResearchCard({ brief, isLoading }) {
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="px-4 py-4 sm:px-6">
+        <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base flex items-center gap-2">
             <BuildingsIcon size={16} className="text-muted-foreground" />
             Researching company…
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-4 pb-5 sm:px-6">
+        <CardContent className="dashboard-card-pad pt-0">
           <LoadingSkeleton />
         </CardContent>
       </Card>
@@ -77,7 +77,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="px-4 py-4 sm:px-6">
+      <CardHeader className="dashboard-card-pad">
         <CardTitle className="flex items-start justify-between gap-3">
           <span className="flex items-center gap-2 text-base">
             <BuildingsIcon size={18} className="text-muted-foreground" />
@@ -93,7 +93,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6 px-4 pb-5 sm:px-6">
+      <CardContent className="dashboard-card-pad space-y-6 pt-0">
         {/* Mission */}
         {brief.mission && (
           <div className="space-y-2">
@@ -158,7 +158,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
             <ul className="space-y-1.5">
               {brief.challenges.map((challenge, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-amber-500">*</span>
+                  <span className="mt-0.5 shrink-0 text-[var(--landing-accent-dark)]">*</span>
                   {challenge}
                 </li>
               ))}
@@ -189,14 +189,14 @@ export default function CompanyResearchCard({ brief, isLoading }) {
         {/* Positioning Tips */}
         {brief.positioningTips?.length > 0 && (
           <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-green-700 dark:text-green-400">
+            <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)]">
               <LightbulbIcon size={15} weight="fill" />
               Interview Positioning Tips
             </h3>
             <ul className="space-y-1.5">
               {brief.positioningTips.map((tip, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-green-500">*</span>
+                  <span className="mt-0.5 shrink-0 text-[var(--landing-success)]">*</span>
                   {tip}
                 </li>
               ))}
@@ -219,7 +219,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-1 text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+                      className="flex items-start gap-1 text-sm font-medium text-[var(--landing-ink)] hover:underline"
                     >
                       <span>{item.title}</span>
                       <ArrowSquareOutIcon size={12} className="mt-0.5 shrink-0" />

@@ -39,11 +39,11 @@ export default function PaymentSuccessPage() {
   }, [isPremiumConfirmed, update, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-sm border border-gray-200 p-5 sm:p-8 text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--landing-bg)] px-4">
+      <div className="max-w-md w-full bg-[var(--landing-surface)] rounded-lg shadow-sm border border-[var(--landing-line)] p-5 sm:p-8 text-center">
+        <div className="w-16 h-16 bg-[var(--landing-success-soft)] rounded-full flex items-center justify-center mx-auto mb-4">
           <svg
-            className="w-8 h-8 text-green-600"
+            className="w-8 h-8 text-[var(--landing-success)]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -57,31 +57,31 @@ export default function PaymentSuccessPage() {
           </svg>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <h1 className="text-2xl font-bold text-[var(--landing-ink)] mb-2">
           Payment Successful!
         </h1>
 
-        <p className="text-lg font-medium text-gray-700 mb-4">
+        <p className="text-lg font-medium text-[var(--landing-ink)] mb-4">
           Premium Activated
         </p>
 
-        <p className="text-gray-600 mb-6">
+        <p className="text-[var(--landing-ink-soft)] mb-6">
           Thank you for your purchase! You now have access to all premium
           features.
         </p>
 
         {isPremiumConfirmed ? (
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-[var(--landing-ink-soft)]">
             {sessionUpdating ? "Updating session..." : "Redirecting to dashboard..."}
           </p>
         ) : (
           <div>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-[var(--landing-ink-soft)] mb-4">
               Activating premium features...
             </p>
             <button
               onClick={() => router.push("/dashboard")}
-              className="text-xs text-gray-400 underline"
+              className="text-xs text-[var(--landing-ink-faint)] underline"
             >
               Taking too long? Skip to dashboard
             </button>
@@ -89,7 +89,7 @@ export default function PaymentSuccessPage() {
         )}
 
         {isPremiumConfirmed && (
-          <p className="text-sm text-green-600 mt-4">
+          <p className="text-sm text-[var(--landing-success)] mt-4">
             Premium status confirmed ✓
           </p>
         )}

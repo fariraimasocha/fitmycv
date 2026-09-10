@@ -61,6 +61,7 @@ export async function PUT(request, { params }) {
     if (body.education !== undefined) update.education = body.education;
     if (body.skills !== undefined) update.skills = body.skills;
     if (body.coverLetter !== undefined) update.coverLetter = body.coverLetter;
+    if (body.whyThisRole !== undefined) update.whyThisRole = body.whyThisRole;
     if (body.jobTitle !== undefined) update.jobTitle = body.jobTitle;
     if (body.jobCompany !== undefined) update.jobCompany = body.jobCompany;
     if (body.jobUrl !== undefined) update.jobUrl = body.jobUrl;

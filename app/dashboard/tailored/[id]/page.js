@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   ArrowLeftIcon,
   FileTextIcon,
@@ -16,12 +16,14 @@ import {
   PencilSimpleIcon,
   DownloadSimpleIcon,
   CrownIcon,
+  ChatCenteredTextIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { DownloadButton } from "@/components/ui/download-button";
 import ResumePreview from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
 import CoverLetterCard from "@/components/CoverLetterCard";
+import WhyThisRoleCard from "@/components/WhyThisRoleCard";
 import TemplatePicker from "@/components/TemplatePicker";
 import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
@@ -45,6 +47,8 @@ export default function TailoredCVDetailPage() {
   const [showPreview, setShowPreview] = useState(true);
   const [templateOverride, setTemplateOverride] = useState(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [whyAnswer, setWhyAnswer] = useState(null);
+  const [whyLoading, setWhyLoading] = useState(false);
   const setDetailLabel = useBreadcrumbStore((s) => s.setDetailLabel);
 
   const { data: cv, isLoading } = useQuery({
@@ -92,6 +96,60 @@ export default function TailoredCVDetailPage() {
   const handleTemplateChange = (template) => {
     setTemplateOverride(template);
     templateMutation.mutate(template);
+  };
+
+  const whyThisRoleMutation = useMutation({
+    mutationFn: async (whyThisRole) => {
+      const res = await fetch(`/api/tailored-cv/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ whyThisRole }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed to save");
+      }
+
+      return res.json();
+    },
+    onSuccess: () => {
+      toast.success("Answer saved");
+      queryClient.invalidateQueries({ queryKey: ["tailored-cv", id] });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  const generateWhyThisRole = async (question) => {
+    if (!cv) return;
+    setWhyLoading(true);
+    try {
+      const res = await fetch("/api/why-this-role", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tailoredCV: { basics: cv.basics, work: cv.work, skills: cv.skills },
+          jobData: cv.jobData || { title: cv.jobTitle, company: cv.jobCompany },
+          question,
+        }),
+      });
+      const json = await res.json();
+      if (json.code === "PREMIUM_REQUIRED") {
+        setShowUpgradeModal(true);
+        return;
+      }
+      if (!res.ok || !json.data) {
+        throw new Error(json.error || "Failed to write an answer");
+      }
+      setWhyAnswer(json.data);
+      whyThisRoleMutation.mutate(json.data.answer);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setWhyLoading(false);
+    }
   };
 
   const coverLetterMutation = useMutation({
@@ -212,12 +270,14 @@ export default function TailoredCVDetailPage() {
             tabs={[
               { id: "cv", label: "Tailored CV", icon: <FileTextIcon size={14} aria-hidden="true" /> },
               { id: "letter", label: "Cover Letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
+              { id: "why", label: "Why this role", icon: <ChatCenteredTextIcon size={14} aria-hidden="true" /> },
             ]}
             activeTab={activeTab}
             onTabChange={setActiveTab}
             ariaLabel="Tailored document sections"
           />
 
+          {activeTab !== "why" && (
           <div className="hidden items-center gap-2 sm:flex sm:flex-wrap">
             {activeTab === "cv" && (
               <>
@@ -253,6 +313,7 @@ export default function TailoredCVDetailPage() {
               onDownload={() => handleDownload(activeTab)}
             />
           </div>
+          )}
         </div>
 
         {activeTab === "cv" && (
@@ -267,6 +328,17 @@ export default function TailoredCVDetailPage() {
               saveButtonLabel="Save Tailored CV"
             />
           )
+        )}
+
+        {activeTab === "why" && (
+          <WhyThisRoleCard
+            answer={whyAnswer?.answer ?? cv.whyThisRole ?? ""}
+            question={whyAnswer?.question}
+            isLoading={whyLoading}
+            onGenerate={generateWhyThisRole}
+            onSave={(text) => whyThisRoleMutation.mutate(text)}
+            isSaving={whyThisRoleMutation.isPending}
+          />
         )}
 
         {activeTab === "letter" && (

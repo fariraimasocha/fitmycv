@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   MagnifyingGlassIcon,
   SpinnerGapIcon,
@@ -21,6 +21,7 @@ import {
   PencilSimpleIcon,
   EyeIcon,
   SparkleIcon,
+  ChatCenteredTextIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { DownloadButton } from "@/components/ui/download-button";
@@ -35,6 +36,7 @@ import TemplatePicker from "@/components/TemplatePicker";
 import ATSScoreCard from "@/components/ATSScoreCard";
 import CompanyResearchCard from "@/components/CompanyResearchCard";
 import InterviewPrepCard from "@/components/InterviewPrepCard";
+import WhyThisRoleCard from "@/components/WhyThisRoleCard";
 import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
@@ -73,6 +75,10 @@ function Tailor() {
   const [interviewPrep, setInterviewPrep] = useState(null);
   const [interviewPrepLoading, setInterviewPrepLoading] = useState(false);
   const [linkedInModalOpen, setLinkedInModalOpen] = useState(false);
+  const [whyThisRole, setWhyThisRole] = useState(null);
+  const [whyLoading, setWhyLoading] = useState(false);
+  const [applyingFix, setApplyingFix] = useState(null);
+  const [appliedFixes, setAppliedFixes] = useState([]);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [recentUrls, setRecentUrls] = useState(() => getRecentJobUrls());
   const tailorRef = useRef(null);
@@ -133,6 +139,8 @@ function Tailor() {
       setCompanyBrief(null);
       setMatchScore(null);
       setPreAtsScore(null);
+      setWhyThisRole(null);
+      setAppliedFixes([]);
 
       // Auto-trigger job match scoring + pre-ATS score in background
       setMatchScoreLoading(true);
@@ -266,6 +274,8 @@ function Tailor() {
       setSavedId(null);
       setShowPreview(true);
       setActiveTab("cv");
+      setWhyThisRole(null);
+      setAppliedFixes([]);
       toast.success("Resume tailored successfully!");
 
       // Trigger ATS analysis automatically
@@ -290,6 +300,7 @@ function Tailor() {
         jobTitle: jobData?.title || "",
         jobCompany: jobData?.company || "",
         jobUrl: url,
+        jobData,
         basics: result.data.tailoredCV.basics,
         work: result.data.tailoredCV.work,
         education: result.data.tailoredCV.education,
@@ -342,6 +353,102 @@ function Tailor() {
     }
   };
 
+  const persistTailoredCV = (patch) => {
+    if (!savedId) return;
+    fetch(`/api/tailored-cv/${savedId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(patch),
+    })
+      .then(() => queryClient.invalidateQueries({ queryKey: ["tailored-cv", savedId] }))
+      .catch(() => {});
+  };
+
+  const runAtsScore = (cv) => {
+    setAtsLoading(true);
+    fetch("/api/ats-score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tailoredCV: cv, jobData }),
+    })
+      .then((res) => res.json())
+      .then((ats) => {
+        if (ats.data) setAtsScore(ats.data);
+      })
+      .catch(() => {})
+      .finally(() => setAtsLoading(false));
+  };
+
+  const generateWhyThisRole = async (question) => {
+    if (!tailorResult) return;
+    setWhyLoading(true);
+    try {
+      const res = await fetch("/api/why-this-role", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tailoredCV: tailorResult.tailoredCV,
+          jobData,
+          companyBrief: companyBrief || null,
+          question,
+        }),
+      });
+      const json = await res.json();
+      if (json.code === "PREMIUM_REQUIRED") {
+        setShowUpgradeModal(true);
+        return;
+      }
+      if (!res.ok || !json.data) {
+        throw new Error(json.error || "Failed to write an answer");
+      }
+      setWhyThisRole(json.data);
+      persistTailoredCV({ whyThisRole: json.data.answer });
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setWhyLoading(false);
+    }
+  };
+
+  const handleApplyFix = async (fix) => {
+    if (!tailorResult) return;
+    setApplyingFix(fix);
+    try {
+      const res = await fetch("/api/ats-apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tailoredCV: tailorResult.tailoredCV,
+          jobData,
+          recommendation: fix,
+        }),
+      });
+      const json = await res.json();
+      if (json.code === "PREMIUM_REQUIRED") {
+        setShowUpgradeModal(true);
+        return;
+      }
+      if (!res.ok || !json.data) {
+        throw new Error(json.error || "Failed to apply the fix");
+      }
+      const updated = json.data.tailoredCV;
+      setTailorResult((r) => ({ ...r, tailoredCV: updated }));
+      setAppliedFixes((list) => [...list, fix]);
+      toast.success(json.data.changes?.[0] || "Applied to your CV");
+      persistTailoredCV({
+        basics: updated.basics,
+        work: updated.work,
+        education: updated.education,
+        skills: updated.skills,
+      });
+      runAtsScore(updated);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setApplyingFix(null);
+    }
+  };
+
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
     if (
@@ -367,6 +474,9 @@ function Tailor() {
         .catch(() => {})
         .finally(() => setInterviewPrepLoading(false));
     }
+    if (tabId === "why" && !whyThisRole && !whyLoading && tailorResult) {
+      generateWhyThisRole();
+    }
   };
 
   const tailorTabs = [
@@ -384,6 +494,11 @@ function Tailor() {
       id: "ats",
       label: "ATS Score",
       icon: <ChartBarIcon size={14} aria-hidden="true" />,
+    },
+    {
+      id: "why",
+      label: "Why this role",
+      icon: <ChatCenteredTextIcon size={14} aria-hidden="true" />,
     },
     {
       id: "research",
@@ -628,7 +743,7 @@ function Tailor() {
                 />
               )}
             </div>
-            {activeTab !== "ats" && activeTab !== "research" && activeTab !== "interview" && (
+            {(activeTab === "cv" || activeTab === "letter") && (
               <div className="hidden items-center gap-2 sm:flex sm:flex-wrap">
                 {activeTab === "cv" && savedId && (
                   <Button
@@ -721,7 +836,33 @@ function Tailor() {
             />
           )}
           {activeTab === "ats" && (
-            <ATSScoreCard atsData={atsScore} isLoading={atsLoading} preScore={preAtsScore?.score} />
+            <ATSScoreCard
+              atsData={atsScore}
+              isLoading={atsLoading}
+              preScore={preAtsScore?.score}
+              onApplyFix={handleApplyFix}
+              applyingFix={applyingFix}
+              appliedFixes={appliedFixes}
+            />
+          )}
+          {activeTab === "why" && (
+            <WhyThisRoleCard
+              answer={whyThisRole?.answer ?? ""}
+              question={whyThisRole?.question}
+              isLoading={whyLoading}
+              onGenerate={generateWhyThisRole}
+              onSave={
+                savedId
+                  ? (text) => {
+                      // Held in state too, so leaving the tab does not throw
+                      // away what the user edited.
+                      setWhyThisRole((w) => ({ ...w, answer: text }));
+                      persistTailoredCV({ whyThisRole: text });
+                      toast.success("Answer saved");
+                    }
+                  : undefined
+              }
+            />
           )}
           {activeTab === "research" && (
             <CompanyResearchCard brief={companyBrief} isLoading={companyBriefLoading} />

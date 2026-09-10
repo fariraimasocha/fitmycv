@@ -106,8 +106,8 @@ export default function WhyThisRoleCard({
         ) : (
           <p className="text-sm text-muted-foreground">
             {onGenerate
-              ? "Edit the question if yours is worded differently, then write the answer."
-              : "No answer saved for this application yet."}
+              ? "Change the question if yours is worded differently, then write your answer."
+              : "No answer saved for this application."}
           </p>
         )}
 

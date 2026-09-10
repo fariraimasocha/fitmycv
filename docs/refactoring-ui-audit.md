@@ -6,7 +6,7 @@ An audit of the app's UI against *Refactoring UI* (Wathan & Schoger), covering a
 eight chapters from "Starting from Scratch" to "Finishing Touches".
 
 Every item is verified in the code with a file reference and names the chapter it
-comes from. **Tiers 1 and 2 are fixed.** Tier 3 is open.
+comes from. **All three tiers are fixed.**
 
 Scope and its limits: the counts below come from pattern searches across all 120 UI
 files, so they are totals rather than samples. But only nine files were read in
@@ -152,7 +152,7 @@ Two uses stay on purpose: the LinkedIn logo in `LinkedInOutreachModal.jsx:79`, a
 brand mark, and the three window dots in `CoverLetterDemo.js`, where red, yellow
 and green is the thing being depicted.
 
-## Tier 3: content
+## Tier 3: content — FIXED
 
 **8. Six dead-end empty states inside cards.**
 Your page-level empty states are good: `DashboardEmptyState` gives an icon in a
@@ -163,7 +163,19 @@ letter generated yet."), `ResumeForm.jsx:240,313,416,506`, and
 `WhyThisRoleCard.jsx:106`.
 → *"Don't overlook empty states"*: an empty state is a user's first interaction
 with a feature, and should carry the call to action rather than describe absence.
-Per CLAUDE.md, rewriting these needs the `ux-writing` skill.
+Per CLAUDE.md, rewriting these needs the `ux-writing` skill, which was used.
+*Fixed:* each one now carries the action instead of naming the absence.
+The four `ResumeForm` sections share a new local `SectionEmptyState`, whose
+button calls the same `appendProfile` / `appendWork` / `appendEducation` /
+`appendSkill` the section header already used, so no new code path. The cover
+letter offers "Write one", which opens the editor that was previously reachable
+only from the header. Copy is sentence case, front-loads the verb, and each
+claim is checkable: positions really are what `/api/tailor` rewrites, and skills
+really are matched against the posting's requirements.
+One correction to this finding: the `WhyThisRoleCard` string it listed is now
+unreachable, because both call sites pass `onGenerate` after the Tier 1 work.
+The branch that actually renders was reworded instead. The dead branch is kept
+as a one-line fallback for read-only use.
 
 ## Not problems, do not "fix"
 
@@ -188,7 +200,9 @@ pre-existing errors remain in files these changes touched and did not introduce:
 a synchronous `setState` in an effect at `app/payment/success/page.jsx:37`, and an
 unescaped apostrophe at `components/LinkedInOutreachModal.jsx:138`.
 
-Neither tier has been checked in a browser, which is how the spacing and contrast
-work should really be judged. `npm run dev`, then `/dashboard/tailored/<id>`,
+No tier has been checked in a browser, which is how the spacing, contrast and
+empty-state work should really be judged. `npm run dev`, then `/dashboard/tailored/<id>`,
 `/dashboard`, `/support`, `/payment/success`, and the applications and
-company-research pages for the padding changes.
+company-research pages for the padding changes. For Tier 3, open
+`/dashboard/resume` with empty sections, and a tailored CV that has no cover
+letter saved.

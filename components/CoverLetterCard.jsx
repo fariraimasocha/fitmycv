@@ -99,9 +99,23 @@ export default function CoverLetterCard({
             {content}
           </p>
         ) : (
-          <p className="text-sm text-muted-foreground italic">
-            No cover letter generated yet.
-          </p>
+          <div className="flex flex-col items-start gap-3">
+            <p className="text-sm text-muted-foreground">
+              Tailoring a CV writes a cover letter with it. You can also write
+              your own.
+            </p>
+            {editable && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-md border-border"
+                onClick={() => setIsEditing(true)}
+              >
+                <PencilSimpleIcon size={14} aria-hidden="true" />
+                Write one
+              </Button>
+            )}
+          </div>
         )}
       </CardContent>
     </Card>

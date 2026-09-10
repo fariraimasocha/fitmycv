@@ -237,7 +237,12 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {profilesFieldsList.length === 0 && (
-              <p className="text-sm text-muted-foreground">No profiles added yet.</p>
+              <SectionEmptyState
+                actionLabel="Add profile"
+                onAction={() => appendProfile({ network: "", url: "" })}
+              >
+                Add the profiles you want employers to see.
+              </SectionEmptyState>
             )}
             {profilesFieldsList.map((field, index) => (
               <div key={field.id} className="flex flex-col gap-3 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-end">
@@ -309,9 +314,21 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {workFieldsList.length === 0 && (
-              <p className="text-sm text-muted-foreground">
-                No work experience added yet.
-              </p>
+              <SectionEmptyState
+                actionLabel="Add position"
+                onAction={() =>
+                  appendWork({
+                    company: "",
+                    position: "",
+                    location: "",
+                    startDate: "",
+                    endDate: "",
+                    description: "",
+                  })
+                }
+              >
+                Your positions are what get rewritten for each job.
+              </SectionEmptyState>
             )}
             {workFieldsList.map((field, index) => (
               <div
@@ -413,7 +430,20 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {educationFieldsList.length === 0 && (
-              <p className="text-sm text-muted-foreground">No education added yet.</p>
+              <SectionEmptyState
+                actionLabel="Add education"
+                onAction={() =>
+                  appendEducation({
+                    institution: "",
+                    degree: "",
+                    fieldOfStudy: "",
+                    startDate: "",
+                    endDate: "",
+                  })
+                }
+              >
+                Add where you studied and what you studied.
+              </SectionEmptyState>
             )}
             {educationFieldsList.map((field, index) => (
               <div
@@ -503,7 +533,12 @@ export default function ResumeForm({
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {skillsFieldsList.length === 0 && (
-              <p className="text-sm text-muted-foreground">No skills added yet.</p>
+              <SectionEmptyState
+                actionLabel="Add category"
+                onAction={() => appendSkill({ category: "", skills: [] })}
+              >
+                Skills get matched against each job’s requirements.
+              </SectionEmptyState>
             )}
             {skillsFieldsList.map((field, index) => (
               <div
@@ -575,7 +610,27 @@ export default function ResumeForm({
   );
 }
 
+// An empty section should carry the action, not describe the absence.
+function SectionEmptyState({ children, actionLabel, onAction }) {
+  return (
+    <div className="flex flex-col items-start gap-3 py-2">
+      <p className="text-sm text-muted-foreground">{children}</p>
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        className="rounded-md border-border"
+        onClick={onAction}
+      >
+        <PlusIcon size={14} />
+        {actionLabel}
+      </Button>
+    </div>
+  );
+}
+
 function SkillsList({ control, register, nestIndex }) {
+
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: `skills.${nestIndex}.skills`,

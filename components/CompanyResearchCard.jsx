@@ -54,7 +54,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
         <CardHeader className="px-4 py-4 sm:px-6">
           <CardTitle className="text-base flex items-center gap-2">
-            <BuildingsIcon size={16} />
+            <BuildingsIcon size={16} className="text-muted-foreground" />
             Researching company…
           </CardTitle>
         </CardHeader>
@@ -80,7 +80,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
       <CardHeader className="px-4 py-4 sm:px-6">
         <CardTitle className="flex items-start justify-between gap-3">
           <span className="flex items-center gap-2 text-base">
-            <BuildingsIcon size={18} />
+            <BuildingsIcon size={18} className="text-muted-foreground" />
             {brief.companyName}
           </span>
           <div className="flex flex-wrap gap-1.5 justify-end">

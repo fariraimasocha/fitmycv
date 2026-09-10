@@ -7,7 +7,7 @@ export function DashboardTabBar({ tabs, activeTab, onTabChange, className, ariaL
     <div
       role="tablist"
       aria-label={ariaLabel}
-      className={cn("dashboard-tab-pills w-full sm:w-auto", className)}
+      className={cn("dashboard-tab-pills w-full sm:w-auto sm:self-start", className)}
     >
       {tabs.map((tab) => (
         <button

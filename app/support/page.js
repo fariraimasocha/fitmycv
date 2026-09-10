@@ -104,13 +104,13 @@ export default function SupportPage() {
         <section className="landing-section-tight">
           <div className="landing-container">
             <div className="landing-card-strong mx-auto flex w-full max-w-2xl flex-col items-center gap-4 rounded-2xl p-8 text-center sm:p-10">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
                 <EnvelopeSimpleIcon size={24} aria-hidden="true" weight="bold" />
               </div>
-              <h2 className="font-outfit text-2xl font-extrabold text-white">
+              <h2 className="font-outfit text-2xl font-extrabold text-[var(--landing-ink)]">
                 Email our support team
               </h2>
-              <p className="max-w-md text-base leading-7 text-white/80">
+              <p className="max-w-md text-base leading-7 text-[var(--landing-ink-soft)]">
                 Questions about your account, billing, or a tailored CV? Send us a
                 message and we&apos;ll get back to you.
               </p>

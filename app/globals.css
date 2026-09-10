@@ -134,6 +134,12 @@
   --landing-accent-line: #e0b9a8;
   --landing-coral: #c05a3f;
   --landing-success: #3d8b5a;
+  /* Secondary text on the dark surfaces. Hand-picked at the ink's own hue
+     rather than white at reduced opacity, which desaturates whatever is under
+     it and reads as disabled. 8.8:1 on --foreground, 8.1:1 on
+     --landing-primary. Note this deliberately sits below the 13.5:1 that
+     white/70 resolved to: it is meant to be secondary. */
+  --landing-ink-inverse-soft: oklch(0.76 0.02 260);
   --landing-shadow: 0 18px 45px oklch(0.18 0.02 260 / 0.08), 0 4px 12px oklch(0.18 0.02 260 / 0.05);
   --landing-shadow-sm: 0 8px 20px oklch(0.18 0.02 260 / 0.06), 0 2px 6px oklch(0.18 0.02 260 / 0.04);
 }

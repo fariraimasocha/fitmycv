@@ -36,7 +36,11 @@ export default function CoverLetterCard({
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
       <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 px-4 py-4 sm:px-6">
         <CardTitle className="flex items-center gap-2 text-base font-semibold">
-          <EnvelopeSimpleIcon size={18} aria-hidden="true" />
+          <EnvelopeSimpleIcon
+            size={18}
+            className="text-muted-foreground"
+            aria-hidden="true"
+          />
           Cover Letter
         </CardTitle>
         {editable && (
@@ -68,7 +72,7 @@ export default function CoverLetterCard({
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
               rows={16}
-              className="text-sm leading-relaxed"
+              className="max-w-prose text-sm leading-relaxed"
             />
             <div className="flex justify-end">
               <Button
@@ -91,7 +95,7 @@ export default function CoverLetterCard({
             </div>
           </div>
         ) : content ? (
-          <p className={`text-sm leading-relaxed text-foreground whitespace-pre-line ${fontClass}`}>
+          <p className={`max-w-prose text-sm leading-relaxed text-foreground whitespace-pre-line ${fontClass}`}>
             {content}
           </p>
         ) : (

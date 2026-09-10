@@ -4,11 +4,11 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
-  ReadCvLogoIcon,
   ArrowRightIcon,
   ArrowLeftIcon,
   CheckIcon,
 } from "@phosphor-icons/react";
+import BrandLogo from "@/components/BrandLogo";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import ResumeUpload from "@/components/ResumeUpload";
@@ -206,16 +206,11 @@ export default function OnboardingPage() {
             <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" />
           </button>
 
-          <span className="flex shrink-0 items-center gap-2">
-            <ReadCvLogoIcon
-              size={22}
-              weight="bold"
-              className="text-[var(--landing-primary)]"
-              aria-hidden="true"
+          <span className="flex shrink-0 items-center">
+            <BrandLogo
+              size="sm"
+              wordmarkClassName="font-outfit text-base font-extrabold"
             />
-            <span className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-              FitMyCV
-            </span>
           </span>
 
           {!onPayoff && (

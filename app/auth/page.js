@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import { GoogleLogoIcon, WarningIcon, CopyIcon } from "@phosphor-icons/react";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { toast } from "sonner";
+import BrandLogo from "@/components/BrandLogo";
 
 function isWebView() {
   if (typeof navigator === "undefined") return false;
@@ -45,8 +46,8 @@ export default function AuthPage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <Link href="/" className="font-serif-display text-xl text-[var(--landing-ink)]">
-          FitMyCV
+        <Link href="/" className="flex items-center">
+          <BrandLogo size="lg" priority wordmarkClassName="text-xl" />
         </Link>
 
         <div className="text-center">

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { FileTextIcon } from "@phosphor-icons/react/dist/ssr";
 
+import BrandLogo from "@/components/BrandLogo";
 import { FREE_TOOLS } from "@/lib/free-tools";
 
 // Root-relative hrefs throughout. The footer renders on every page, so bare
@@ -103,11 +103,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row sm:justify-between w-full gap-10">
           {/* Brand col */}
           <div className="flex flex-col gap-4 max-w-[280px]">
-            <div className="flex flex-row items-center gap-2.5">
-              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] bg-[var(--landing-primary)]">
-                <FileTextIcon size={12} className="text-[var(--landing-bg)]" aria-hidden="true" />
-              </div>
-              <span className="font-serif-display text-lg text-[var(--landing-ink)]">FitMyCV</span>
+            <div className="flex flex-row items-center">
+              <BrandLogo size="sm" wordmarkClassName="text-lg" />
             </div>
             <p className="font-sans text-sm text-[var(--landing-ink-soft)] leading-relaxed max-w-[260px]">
               AI-powered CV tailoring. Land more interviews with less effort.

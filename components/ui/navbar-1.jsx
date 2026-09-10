@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CaretDownIcon, FileTextIcon, LayoutIcon, ListIcon, SignOutIcon, XIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, LayoutIcon, ListIcon, SignOutIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
+import BrandLogo from "@/components/BrandLogo";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -62,13 +63,8 @@ const Navbar1 = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--landing-bg)]/95 backdrop-blur-sm">
       <div className="landing-container flex h-16 items-center justify-between gap-6 px-5 sm:px-10 lg:px-16 xl:px-24">
-        <Link href="/" className="flex flex-row items-center gap-2.5">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary)]">
-            <FileTextIcon size={14} className="text-[var(--landing-bg)]" aria-hidden="true" />
-          </div>
-          <span className="font-serif-display text-xl tracking-tight text-[var(--landing-ink)]">
-            FitMyCV
-          </span>
+        <Link href="/" className="flex flex-row items-center">
+          <BrandLogo size="md" priority wordmarkClassName="text-xl" />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:gap-7 md:flex">

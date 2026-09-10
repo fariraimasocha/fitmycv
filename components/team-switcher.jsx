@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReadCvLogoIcon } from "@phosphor-icons/react";
+import BrandLogo from "@/components/BrandLogo";
 
 import {
   SidebarMenu,
@@ -21,8 +21,8 @@ export function TeamSwitcher() {
           className="rounded-md hover:bg-[var(--landing-primary-soft)]"
         >
           <Link href="/dashboard">
-            <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-foreground text-background">
-              <ReadCvLogoIcon className="size-4" weight="bold" />
+            <div className="flex aspect-square size-8 items-center justify-center overflow-hidden rounded-md">
+              <BrandLogo size="md" showWordmark={false} alt="" />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-serif-display text-base font-normal tracking-tight">

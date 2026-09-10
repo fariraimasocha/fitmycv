@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   LockKeyIcon,
   ProhibitIcon,
@@ -7,10 +8,12 @@ import {
   CreditCardIcon,
 } from "@phosphor-icons/react/dist/ssr";
 
+import { SUPPORT_EMAIL } from "@/lib/site";
+
 // Trust band for the homepage and the flagship feature page.
 //
 // Every claim here is a verifiable property of the product. Deliberately absent:
-// a user count, star rating, or named testimonials we do not have data for —
+// a user count, star rating, or named testimonials we do not have data for.
 // and therefore no aggregateRating schema. Google issues manual actions for
 // fabricated review markup, so that schema goes in only once there are real,
 // collectible reviews to back it (see lib/structured-data.js).
@@ -47,6 +50,9 @@ const SIGNALS = [
   },
 ];
 
+const POLICY_LINK_CLASS =
+  "font-medium text-[var(--landing-ink)] underline underline-offset-2 hover:text-[var(--landing-accent-dark)]";
+
 export default function TrustSignals() {
   return (
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
@@ -76,6 +82,36 @@ export default function TrustSignals() {
             </li>
           ))}
         </ul>
+
+        {/* Methodology and provenance. Every claim above is either a property
+            of the product or covered by a published policy, so link the
+            policies rather than asking visitors to take our word for it. */}
+        <div className="landing-card mt-6 flex flex-col gap-3 rounded-2xl p-6">
+          <h3 className="font-medium text-base text-[var(--landing-ink)]">
+            How the tailoring works
+          </h3>
+          <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+            We read the job posting at the link you paste, pull out its
+            requirements and keywords, then rewrite your CV against them. Every
+            line comes from the CV you uploaded. The model is instructed never
+            to invent employers, roles, or numbers you did not give it.
+          </p>
+          <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+            The claims above are covered by our{" "}
+            <Link href="/privacy-policy" className={POLICY_LINK_CLASS}>
+              privacy policy
+            </Link>{" "}
+            and{" "}
+            <Link href="/terms-and-conditions" className={POLICY_LINK_CLASS}>
+              terms and conditions
+            </Link>
+            . Questions about any of it go to{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className={POLICY_LINK_CLASS}>
+              {SUPPORT_EMAIL}
+            </a>
+            .
+          </p>
+        </div>
       </div>
     </section>
   );

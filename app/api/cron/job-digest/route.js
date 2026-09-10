@@ -78,7 +78,7 @@ export async function GET(request) {
 
       await sendEmail({
         to: user.email,
-        subject: `Your daily job matches — ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}`,
+        subject: `Your daily job matches: ${new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}`,
         html: buildJobDigestEmail({
           userId: String(user._id),
           userName: user.name,
@@ -87,7 +87,7 @@ export async function GET(request) {
         }),
       });
 
-      // Record what we sent — powers dedup and the email "Save" link.
+      // Record what we sent. Powers dedup and the email "Save" link.
       await JobDigestItem.insertMany(
         jobs.map((job) => ({ userId: user._id, jobId: job.id, job })),
         { ordered: false }

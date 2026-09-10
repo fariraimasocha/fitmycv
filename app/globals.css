@@ -260,16 +260,68 @@
     text-transform: uppercase;
   }
 
+  /* --landing-accent under white text measures 4.39:1, just under the 4.5:1
+     WCAG AA target for text this size. The dark step of the same accent ramp
+     keeps the brand colour and clears the target at 6.4:1. */
   .landing-eyebrow-new {
     display: inline-flex;
     align-items: center;
     border-radius: 999px;
-    background: var(--landing-accent);
+    background: var(--landing-accent-dark);
     color: white;
     padding: 0.2rem 0.55rem;
     font-size: 0.62rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+  }
+
+  /* Entrance animation for the hero. CSS keyframes rather than a JS motion
+     library: the animation starts on first paint instead of waiting for
+     hydration, and it keeps ~113KB of framer-motion off the landing page. */
+  @keyframes landing-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .landing-rise {
+    animation: landing-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .landing-rise-delayed {
+    animation: landing-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+
+  /* Height-animated disclosure. The content stays in the DOM when collapsed,
+     so crawlers and screen readers still get every answer. */
+  .landing-collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .landing-collapse[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+
+  .landing-collapse > * {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .landing-rise,
+    .landing-rise-delayed {
+      animation: none;
+    }
+
+    .landing-collapse {
+      transition: none;
+    }
   }
 
   .landing-heading {

@@ -71,22 +71,22 @@ export const blocks = [
   },
   {
     ul: [
-      "**Line 1 (title):** Customer Success Manager — B2B SaaS.",
+      "**Line 1 (title):** Customer Success Manager, B2B SaaS.",
       "**Line 2 (heaviest):** Reduce churn and onboard enterprise accounts.",
-      "**Line 3 (plus):** Gainsight or similar CS platform — candidate has not used Gainsight; has used a shared health-score sheet.",
+      "**Line 3 (plus):** Gainsight or similar CS platform. Candidate has not used Gainsight; has used a shared health-score sheet.",
     ],
   },
 
   { h2: "The worked letter, paragraph by paragraph" },
   {
     compare: {
-      title: "Opening — answers the title",
+      title: "Opening: answers the title",
       context:
         "Do not write “I am writing to apply”. Name the role and the one reason you fit.",
       before:
         "I am writing to apply for the Customer Success Manager position at your company. I am a passionate professional who thrives in fast-paced environments and would be a great fit for your team.",
       after:
-        "I am applying for the Customer Success Manager role because I have spent four years onboarding enterprise accounts and cutting logo churn — most recently taking a 40-account book from 11% annual churn to 6% without adding headcount.",
+        "I am applying for the Customer Success Manager role because I have spent four years onboarding enterprise accounts and cutting logo churn, most recently taking a 40-account book from 11% annual churn to 6% without adding headcount.",
     },
   },
   {
@@ -94,7 +94,7 @@ export const blocks = [
   },
   {
     compare: {
-      title: "Body — answers the heaviest requirement",
+      title: "Body: answers the heaviest requirement",
       context:
         "Go one level deeper than the CV bullet: the constraint, the decision, the result.",
       before:
@@ -105,7 +105,7 @@ export const blocks = [
   },
   {
     compare: {
-      title: "Close — the plus, honestly",
+      title: "Close: the plus, honestly",
       context:
         "The advert mentions Gainsight. The candidate has not used it. Do not claim it.",
       before:

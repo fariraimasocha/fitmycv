@@ -3,7 +3,7 @@ export const meta = {
   title: "FitMyCV vs ChatGPT for Resume Tailoring",
   seoTitle: "Best Way to Tailor a Resume to a Job Description",
   description:
-    "Best way to tailor a resume to a job description: ChatGPT vs a job-link tailor. Speed, hallucination risk, ATS files, and cost — when each one wins.",
+    "Best way to tailor a resume to a job description: ChatGPT vs a job-link tailor. Speed, hallucination risk, ATS files, and cost. When each one wins.",
   excerpt:
     "ChatGPT is fine for one role if you constrain it. It falls over when you apply every week. Here is the honest comparison, including where we lose.",
   date: "2026-08-28",
@@ -38,7 +38,7 @@ export const faqs = [
   },
   {
     q: "Will ChatGPT invent experience on my resume?",
-    a: "Often, unless you forbid it. One-shot “rewrite my resume for this job” is how tools, titles, and metrics appear that were never on your CV. A two-pass prompt — compare first, then edit — reduces that. A dedicated tailor that only uses your uploaded CV removes most of it.",
+    a: "Often, unless you forbid it. One-shot “rewrite my resume for this job” is how tools, titles, and metrics appear that were never on your CV. A two-pass prompt, compare first and then edit, reduces that. A dedicated tailor that only uses your uploaded CV removes most of it.",
   },
   {
     q: "Is FitMyCV cheaper than ChatGPT Plus?",
@@ -57,7 +57,7 @@ export const blocks = [
       head: ["", "ChatGPT (or Claude)", "FitMyCV"],
       rows: [
         ["Speed for one role", "Fine, if you already have the posting copied", "Faster: paste the URL"],
-        ["Speed at 10 applications/week", "Slow — copy, paste, check, lay out", "The point of the product"],
+        ["Speed at 10 applications/week", "Slow: copy, paste, check, lay out", "The point of the product"],
         ["Hallucination risk", "High unless you constrain it", "Blocked: only your uploaded evidence"],
         ["Reads a job link", "No", "Yes (LinkedIn, Indeed, Glassdoor, careers pages)"],
         ["ATS-safe PDF", "You build the file", "Single-column export"],

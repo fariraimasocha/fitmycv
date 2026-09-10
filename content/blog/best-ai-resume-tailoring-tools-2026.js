@@ -5,7 +5,7 @@ export const meta = {
   description:
     "Best AI to tailor a resume to a job description in 2026: FitMyCV, FastApply, MatchCV, Teal, and Rezi compared on job-link parse, honesty, ATS export, and price.",
   excerpt:
-    "Builders design a CV. Tailors rewrite one against a posting. This is the 2026 comparison of the second group — including where ours loses.",
+    "Builders design a CV. Tailors rewrite one against a posting. This is the 2026 comparison of the second group, including where ours loses.",
   date: "2026-08-28",
   updated: "2026-08-28",
   readingTime: 9,
@@ -26,7 +26,7 @@ export const meta = {
 export const faqs = [
   {
     q: "What is the best AI to tailor a resume to a job description?",
-    a: "The best AI for this job reads the posting and rewrites your existing CV against it, without inventing tools or metrics. FitMyCV does that from a job URL. Teal and Rezi do a version of it inside a broader builder. FastApply and MatchCV lean on volume and autofill. There is no single winner if you actually need a from-scratch design tool — that is a builder, not a tailor.",
+    a: "The best AI for this job reads the posting and rewrites your existing CV against it, without inventing tools or metrics. FitMyCV does that from a job URL. Teal and Rezi do a version of it inside a broader builder. FastApply and MatchCV lean on volume and autofill. There is no single winner if you actually need a from-scratch design tool. That is a builder, not a tailor.",
   },
   {
     q: "What is the difference between an AI resume builder and a tailoring tool?",
@@ -105,7 +105,7 @@ export const blocks = [
 
   { h2: "MatchCV" },
   {
-    p: "MatchCV sits closer to the Jobscan-plus-rewrite idea: score the CV against a description, then adjust. Useful if you want the diagnosis and the edit in one tab. Confirm whether the rewrite is allowed to add skills you did not evidence — that is the line that matters more than the score.",
+    p: "MatchCV sits closer to the Jobscan-plus-rewrite idea: score the CV against a description, then adjust. Useful if you want the diagnosis and the edit in one tab. Confirm whether the rewrite is allowed to add skills you did not evidence. That is the line that matters more than the score.",
   },
 
   { h2: "Teal" },

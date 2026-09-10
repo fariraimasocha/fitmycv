@@ -13,9 +13,13 @@ import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import StickyCtaBar from "@/components/landing/StickyCtaBar";
 import JsonLd from "@/components/JsonLd";
-import { faqSchema } from "@/lib/seo";
-import { softwareApplicationSchema } from "@/lib/structured-data";
-import { HOME_FAQS } from "@/content/pages/home";
+import { faqSchema, howToSchema } from "@/lib/seo";
+import {
+  softwareApplicationSchema,
+  webPageSchema,
+  reviewSchema,
+} from "@/lib/structured-data";
+import { HOME_FAQS, HOME_STEPS, HOME_TESTIMONIAL } from "@/content/pages/home";
 
 // The homepage previously shared its title tag with /tailor-cv-from-job-link,
 // which put the two pages in competition for the same query. The homepage now
@@ -66,8 +70,30 @@ export default function Home() {
       </main>
       <StickyCtaBar />
       <Footer />
+      {/* Every node below restates something a visitor can read on this page:
+          the H1 subject, the how-it-works steps, the FAQ answers, the pricing
+          cards, and the one attributed quote. */}
+      <JsonLd
+        data={webPageSchema({
+          name: "Tailor Your CV to Any Job Link",
+          description: metadata.description,
+          path: "/",
+        })}
+      />
       <JsonLd data={faqSchema(HOME_FAQS)} />
+      <JsonLd
+        data={howToSchema({
+          name: "How to tailor your CV to a job link",
+          description:
+            "Paste a job link, let FitMyCV rewrite your CV against the role's requirements, then download the CV and cover letter as PDFs.",
+          steps: HOME_STEPS.map(({ title, copy }) => ({
+            name: title,
+            text: copy,
+          })),
+        })}
+      />
       <JsonLd data={softwareApplicationSchema} />
+      <JsonLd data={reviewSchema(HOME_TESTIMONIAL)} />
     </div>
   );
 }

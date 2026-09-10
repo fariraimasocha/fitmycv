@@ -111,7 +111,7 @@ export default function DashboardPage() {
   });
 
   // /api/applications is behind requirePremium, so only free-of-paywall
-  // accounts fetch it — and only premium accounts get that third step.
+  // accounts fetch it, and only premium accounts get that third step.
   const { data: applications } = useQuery({
     queryKey: ["applications"],
     enabled: isPremium,
@@ -133,7 +133,7 @@ export default function DashboardPage() {
     !companyResearchesLoading &&
     !companyResearchesError &&
     Array.isArray(companyResearches);
-  const researchCount = companyResearchesKnown ? companyResearches.length : "—";
+  const researchCount = companyResearchesKnown ? companyResearches.length : "n/a";
 
   const {
     thisWeekCount,

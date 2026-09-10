@@ -1,6 +1,6 @@
-"use client";
-
 import Link from "next/link";
+
+import { HOME_STEPS as STEPS } from "@/content/pages/home";
 import {
   ArrowUpRightIcon,
   PlayIcon,
@@ -9,7 +9,7 @@ import {
   SparkleIcon,
   DownloadSimpleIcon,
   FileTextIcon,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
 
 function StepVisual({ step }) {
   if (step === 1) {
@@ -84,24 +84,6 @@ function StepVisual({ step }) {
     </div>
   );
 }
-
-const STEPS = [
-  {
-    num: "01",
-    title: "Paste the job listing",
-    copy: "Drop a link from LinkedIn, Indeed, or any careers page. We parse requirements, skills, and keywords instantly.",
-  },
-  {
-    num: "02",
-    title: "AI tailors your CV",
-    copy: "We rewrite bullet points with impact, mirror the role's keywords, and keep your voice, ATS-ready in ~30 seconds.",
-  },
-  {
-    num: "03",
-    title: "Download & apply",
-    copy: "Export a polished CV and matching cover letter as PDF. One dashboard tracks every application.",
-  },
-];
 
 export default function HowItWorks() {
   return (

@@ -1,4 +1,4 @@
-// Serves /llm.txt — an llms.txt-style summary of the site for AI crawlers and
+// Serves /llm.txt, an llms.txt-style summary of the site for AI crawlers and
 // assistants. Built from the same content registries as the sitemap, so new
 // blog posts, marketing pages, and resume examples appear automatically.
 import { SITE_URL } from "@/lib/site";

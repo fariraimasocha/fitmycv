@@ -34,7 +34,7 @@ export const faqs = [
   },
   {
     q: "Do I need to create an account to check my resume against a job description?",
-    a: "Not for a vocabulary-overlap check. FitMyCV’s checker and several privacy-first tools run in the browser: paste the posting, paste your CV text, get a score. Account-gated checkers (Jobscan, Resume Worded, Teal) store the file and cap free scans.",
+    a: "Not for a vocabulary-overlap check. FitMyCV’s checker and several privacy-first tools run in the browser: paste the posting, upload your CV, get a score. The file is read in the tab and is not stored. Account-gated checkers (Jobscan, Resume Worded, Teal) store the file and cap free scans.",
   },
   {
     q: "What is the difference between an ATS checker and a resume builder?",
@@ -98,12 +98,12 @@ export const blocks = [
     },
   },
 
-  { h2: "FitMyCV: no sign-up, job description, nothing uploaded" },
+  { h2: "FitMyCV: no sign-up, job description, nothing stored" },
   {
-    p: "The [free ATS resume checker](/ats-resume-checker) runs in your browser. Paste the posting and your CV text. You get a weighted keyword-match score and the terms the posting leans on that your CV never mentions. There is no account, no file upload, and no usage cap.",
+    p: "The [free ATS resume checker](/ats-resume-checker) runs in your browser. Paste the posting and upload your CV. You get a weighted keyword-match score and the terms the posting leans on that your CV never mentions. There is no account, no file sent to a server, and no usage cap.",
   },
   {
-    p: "What it does not do: it will not rewrite the CV, grade your prose, or claim to simulate Workday. It measures vocabulary overlap. That is the signal recruiters search on. If you want the rewrite as well, that is a different product — [tailoring from a job link](/tailor-cv-from-job-link).",
+    p: "What it does not do: it will not rewrite the CV, grade your prose, or claim to simulate Workday. It measures vocabulary overlap. That is the signal recruiters search on. If you want the rewrite as well, that is a different product: [tailoring from a job link](/tailor-cv-from-job-link).",
   },
   {
     p: "We built it. The useful comparison is not “is our score magic”. It is “can you run it on the posting in front of you without creating an account”. On that test it is the simplest of the five.",

@@ -11,6 +11,11 @@ const RESOURCES = [
     body: "The flagship flow: paste a posting URL, get a tailored CV and cover letter.",
   },
   {
+    label: "Resume job match checker",
+    href: "/resume-job-match-checker",
+    body: "Paste a resume and a posting. See the match, missing skills, and what to fix first.",
+  },
+  {
     label: "Free ATS resume checker",
     href: "/ats-resume-checker",
     body: "Score your CV against a job description and see the terms you are missing.",

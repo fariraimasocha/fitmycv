@@ -55,7 +55,7 @@ function Tailor() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
-  // Prefilled when arriving from /jobs — that pool already holds the URL, so
+  // Prefilled when arriving from /jobs. That pool already holds the URL, so
   // the user never retypes it. Lazy initializer: read once, then it is theirs.
   const [url, setUrl] = useState(() => searchParams.get("url") ?? "");
   const [jobData, setJobData] = useState(null);
@@ -525,7 +525,7 @@ function Tailor() {
       <DashboardPageHeader
         eyebrow="CV Toolkit"
         title="Tailor CV"
-        description="Paste a job listing URL — we'll extract requirements and rewrite your CV to match."
+        description="Paste a job listing URL. We'll extract requirements and rewrite your CV to match."
       />
 
       <motion.div

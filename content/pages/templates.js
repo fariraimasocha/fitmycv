@@ -1,6 +1,6 @@
 // Template landing pages. These describe the 16 layouts the app actually
 // ships (utils/cv-templates/metadata.js) rather than offering downloads we do
-// not have — the CTA sends people into the product where the templates exist.
+// not have. The CTA sends people into the product where the templates exist.
 
 export const cvTemplates = {
   slug: "cv-templates",
@@ -282,7 +282,7 @@ export const googleDocsCvTemplate = {
       },
       {
         name: "Set margins and type",
-        text: "2cm margins all round, a standard font at 10–11pt for body text, and 1.15 line spacing.",
+        text: "2cm margins all round, a standard font at 10 to 11pt for body text, and 1.15 line spacing.",
       },
       {
         name: "Build the sections in order",
@@ -342,7 +342,7 @@ export const googleDocsCvTemplate = {
         },
         {
           title: "Contact block: in the body",
-          body: "First lines of the document, not the header. Name at 16–18pt bold, then a single line: target job title | city | phone | email | LinkedIn URL.",
+          body: "First lines of the document, not the header. Name at 16 to 18pt bold, then a single line: target job title | city | phone | email | LinkedIn URL.",
         },
         {
           title: "Section headings",
@@ -350,7 +350,7 @@ export const googleDocsCvTemplate = {
         },
         {
           title: "Experience entries",
-          body: "One line per role: Employer - Job Title (Mar 2022 – Present). Then three to six bullets using the bulleted-list button, never typed dashes.",
+          body: "One line per role: Employer - Job Title (Mar 2022 to Present). Then three to six bullets using the bulleted-list button, never typed dashes.",
         },
         {
           title: "Skills",

@@ -7,6 +7,10 @@ import CTABand from "@/components/landing/CTABand";
 import Blocks from "@/components/content/Blocks";
 import FaqSection from "@/components/content/FaqSection";
 import KeywordChecker from "@/components/tools/KeywordChecker";
+import JobMatchChecker from "@/components/tools/JobMatchChecker";
+import BulletRewriter from "@/components/tools/BulletRewriter";
+import HeadlineGenerator from "@/components/tools/HeadlineGenerator";
+import FileNameGenerator from "@/components/tools/FileNameGenerator";
 import JsonLd from "@/components/JsonLd";
 import {
   breadcrumbSchema,
@@ -15,7 +19,21 @@ import {
 } from "@/lib/seo";
 import { softwareApplicationSchema } from "@/lib/structured-data";
 
+// Tools that own their whole component. Anything not listed here is a mode
+// of the shared KeywordChecker.
+const TOOL_COMPONENTS = {
+  "job-match": JobMatchChecker,
+  bullet: BulletRewriter,
+  headline: HeadlineGenerator,
+  filename: FileNameGenerator,
+};
+
 const PRODUCT_SLUGS = new Set([
+  "resume-job-match-checker",
+  "missing-resume-keywords",
+  "resume-bullet-rewriter",
+  "resume-headline-generator",
+  "resume-file-name-generator",
   "ats-resume-checker",
   "free-ats-keyword-checker",
   "resume-optimizer",
@@ -26,7 +44,7 @@ const PRODUCT_SLUGS = new Set([
 /**
  * Shared shell for the data-driven marketing pages in `content/pages`.
  * Every page gets the same hero, prose column, FAQ block, internal-link rail,
- * and schema stack — so a new landing page is a content file, not a layout.
+ * and schema stack, so a new landing page is a content file, not a layout.
  */
 export default function MarketingPage({ page, children }) {
   const {
@@ -43,6 +61,8 @@ export default function MarketingPage({ page, children }) {
     howTo,
     breadcrumbName,
   } = page;
+
+  const ToolComponent = tool ? TOOL_COMPONENTS[tool] : null;
 
   return (
     <div className="landing-root min-h-screen">
@@ -124,7 +144,11 @@ export default function MarketingPage({ page, children }) {
         {tool ? (
           <section id="tool" className="scroll-mt-24 px-5 pb-4 sm:px-10 lg:px-16 xl:px-24">
             <div className="mx-auto w-full max-w-4xl">
-              <KeywordChecker mode={tool} />
+              {ToolComponent ? (
+                <ToolComponent />
+              ) : (
+                <KeywordChecker mode={tool} />
+              )}
             </div>
           </section>
         ) : null}
@@ -145,7 +169,7 @@ export default function MarketingPage({ page, children }) {
           <FaqSection faqs={faqs} heading={faqHeading || "Frequently asked questions"} />
         ) : null}
 
-        {/* Internal-link rail — every page links out to at least two others. */}
+        {/* Internal-link rail, every page links out to at least two others. */}
         {related.length ? (
           <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
             <div className="landing-container">

@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
-// Callers render LIFETIME_SAVINGS_COPY themselves — see components/landing/Pricing.js.
+// Callers render LIFETIME_SAVINGS_COPY themselves. See components/landing/Pricing.js.
 import { PRICING } from "@/lib/pricing";
 
 export default function PricingCards({
@@ -31,7 +31,7 @@ export default function PricingCards({
 
   return (
     <div className={`flex w-full flex-col gap-6 ${compact ? "" : "items-center"}`}>
-      {/* Below md the cards stack, so the features panel is ordered above them —
+      {/* Below md the cards stack, so the features panel is ordered above them.
           otherwise mobile shows two prices and two CTAs before any reason to buy.
           The md breakpoint matches the grid going two-up below. */}
       <div

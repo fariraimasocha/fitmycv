@@ -79,9 +79,9 @@ export async function POST(request) {
     }
 
     // Normalize any Indeed URL to canonical viewjob?jk=VALUE form, keeping the
-    // regional host (uk.indeed.com etc) — a job key is not valid on www
+    // regional host (uk.indeed.com etc). A job key is not valid on www
     if (url.includes("indeed.com")) {
-      // jk= appears in viewjob URLs; vjk= appears in search result URLs — both are the same job key
+      // jk= appears in viewjob URLs; vjk= appears in search result URLs. Both are the same job key
       const jkMatch = url.match(/[?&]jk=([a-zA-Z0-9]+)/) || url.match(/[?&]vjk=([a-zA-Z0-9]+)/);
       if (jkMatch) {
         let host = "www.indeed.com";
@@ -176,7 +176,7 @@ export async function POST(request) {
       pageText ? `Preview: ${pageText.substring(0, 500)}` : "No text"
     );
 
-    // Detect LinkedIn login wall — short content with sign-in text but no job keywords
+    // Detect LinkedIn login wall: short content with sign-in text but no job keywords
     const isLoginWall = pageText &&
       pageText.length < 2000 &&
       /sign\s*in|log\s*in/i.test(pageText) &&

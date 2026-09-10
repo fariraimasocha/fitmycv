@@ -96,7 +96,7 @@ export const POST = Webhooks({
     const user = await resolveUser(subscription);
     if (!user) return;
 
-    // User keeps premium — they paid through the current period
+    // User keeps premium. They paid through the current period
     user.polarSubscriptionStatus = "canceled";
     user.subscriptionCanceledAt = subscription.canceledAt
       ? new Date(subscription.canceledAt)

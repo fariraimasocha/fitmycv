@@ -9,7 +9,7 @@ import {
 
 // ponytail: ATS parsers drop or garble text around en/em dashes, middle dots
 // and box-drawing glyphs. utils/sanitize-ai-text.js already strips those from
-// model output — these constants stop the templates re-adding them at render
+// model output. These constants stop the templates re-adding them at render
 // time, which is the only place they were still getting into the PDF.
 const DATE_SEP = " - ";
 const META_SEP = " | ";
@@ -30,7 +30,7 @@ function BulletList({ description }) {
   );
 }
 
-// ── Classic — Harvard Resume ────────────────────────────
+// ── Classic: Harvard Resume ────────────────────────────
 
 function ClassicSectionHeading({ children }) {
   return (
@@ -128,7 +128,7 @@ function ClassicPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Modern — Jake's Resume (Overleaf) ───────────────────
+// ── Modern: Jake's Resume (Overleaf) ───────────────────
 
 function ModernSectionHeading({ children }) {
   return (
@@ -228,7 +228,7 @@ function ModernPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Clean — FlowCV / Resume.io Modern ───────────────────
+// ── Clean: FlowCV / Resume.io Modern ───────────────────
 
 function CleanSectionHeading({ children }) {
   return (
@@ -327,7 +327,7 @@ function CleanPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Minimal — Zero decoration, max whitespace ───────────
+// ── Minimal: Zero decoration, max whitespace ───────────
 
 function MinimalPreview({ basics, work, education, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
@@ -413,7 +413,7 @@ function MinimalPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Technical — Monospace, terminal aesthetic ─────────────
+// ── Technical: Monospace, terminal aesthetic ─────────────
 
 function DashList({ description }) {
   if (!description) return null;
@@ -539,7 +539,7 @@ function ContactWithIcons({ basics, className = "", accentClass = "text-gray-500
   );
 }
 
-// ── Sidebar — Two-column functional (Mariah Blanchard) ───
+// ── Sidebar: Two-column functional (Mariah Blanchard) ───
 
 function SidebarSectionHeading({ children }) {
   return (
@@ -654,7 +654,7 @@ function SidebarPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Spotlight — Awesome-CV accent (Byungjin Park) ────────
+// ── Spotlight: Awesome-CV accent (Byungjin Park) ────────
 
 // The red accent used to come from slicing the heading into two coloured spans,
 // which put "EXP" and "ERIENCE" in separate text runs. The bar carries the
@@ -757,7 +757,7 @@ function SpotlightPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Executive — Navy professional (Daniel Mercer) ───────
+// ── Executive: Navy professional (Daniel Mercer) ───────
 
 function ExecutiveSectionHeading({ children }) {
   return (
@@ -848,7 +848,7 @@ function ExecutivePreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Compact — Dense one-pager (Olivia Bennett) ──────────
+// ── Compact: Dense one-pager (Olivia Bennett) ──────────
 
 function CompactSectionHeading({ children }) {
   return (
@@ -944,7 +944,7 @@ function CompactPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Elegant — Refined serif (Andrew O'Sullivan) ─────────
+// ── Elegant: Refined serif (Andrew O'Sullivan) ─────────
 
 function ElegantSectionHeading({ children }) {
   return (
@@ -1031,7 +1031,7 @@ function ElegantPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Professional — ATS B&W, inline name + title (Ahmed Hassan) ─
+// ── Professional: ATS B&W, inline name + title (Ahmed Hassan) ─
 
 function ProfessionalSectionHeading({ children }) {
   return (
@@ -1141,7 +1141,7 @@ function ProfessionalPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Hybrid — Skills-led + chronological timeline ─────────
+// ── Hybrid: Skills-led + chronological timeline ─────────
 
 function HybridSectionHeading({ children }) {
   return (
@@ -1177,7 +1177,7 @@ function HybridPreview({ basics, work, education, skills }) {
         </div>
       )}
 
-      {/* Core Skills directly under the summary — hybrid signature */}
+      {/* Core Skills directly under the summary, hybrid signature */}
       {skills?.length > 0 && (
         <div>
           <HybridSectionHeading>Core Skills</HybridSectionHeading>
@@ -1246,7 +1246,7 @@ function HybridPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Accent — Single column, deep blue accent ─────────────
+// ── Accent: Single column, deep blue accent ─────────────
 
 function AccentSectionHeading({ children }) {
   return (
@@ -1346,7 +1346,7 @@ function AccentPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Graduate — Education-first for entry level ───────────
+// ── Graduate: Education-first for entry level ───────────
 
 function GraduateSectionHeading({ children }) {
   return (
@@ -1382,7 +1382,7 @@ function GraduatePreview({ basics, work, education, skills }) {
         </div>
       )}
 
-      {/* Education FIRST — graduate signature */}
+      {/* Education FIRST, graduate signature */}
       {education?.length > 0 && (
         <div>
           <GraduateSectionHeading>Education</GraduateSectionHeading>
@@ -1453,7 +1453,7 @@ function GraduatePreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Standard — Final Draft Resumes "Standard Resume Template" ──
+// ── Standard: Final Draft Resumes "Standard Resume Template" ──
 
 function StandardSectionHeading({ children }) {
   return (
@@ -1555,7 +1555,7 @@ function StandardPreview({ basics, work, education, skills }) {
   );
 }
 
-// ── Scholar — small-caps ruled headings, LaTeX engineering look ──
+// ── Scholar: small-caps ruled headings, LaTeX engineering look ──
 
 function ScholarSectionHeading({ children }) {
   return (
@@ -1707,7 +1707,7 @@ const PADDING = {
   scholar: "px-8 py-6 sm:px-10",
 };
 
-// Bare template (no Card chrome) — shared by the on-screen preview and the
+// Bare template (no Card chrome), shared by the on-screen preview and the
 // /print route so the downloaded PDF matches the preview exactly.
 export function ResumeTemplate({ data, template = "classic" }) {
   const { basics, work, education, skills } = data;

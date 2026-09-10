@@ -1,10 +1,11 @@
 // Registry for the data-driven marketing pages rendered by app/[slug]/page.js.
-// Adding a landing page means adding a content object and one entry here — the
+// Adding a landing page means adding a content object and one entry here: the
 // route, metadata, schema, and sitemap entry all follow from it.
 import {
   atsResumeChecker,
   freeAtsKeywordChecker,
   resumeOptimizer,
+  resumeJobMatchChecker,
 } from "./tools";
 import { aiCoverLetterGenerator, coverLetterBuilder } from "./cover-letters";
 import { resumeTips, howToWriteAResume } from "./guides";
@@ -14,6 +15,11 @@ import {
   tealAlternative,
   kickresumeAlternative,
 } from "./alternatives";
+import { RESUME_KEYWORD_PAGES } from "@/content/resume-keywords";
+import { missingResumeKeywords } from "./missing-resume-keywords";
+import { resumeBulletRewriter } from "./resume-bullet-rewriter";
+import { resumeHeadlineGenerator } from "./resume-headline-generator";
+import { resumeFileNameGenerator } from "./resume-file-name-generator";
 import {
   workdayResumeFormat,
   greenhouseAtsResume,
@@ -23,6 +29,12 @@ import {
 } from "./ats";
 
 export const MARKETING_PAGES = [
+  resumeJobMatchChecker,
+  missingResumeKeywords,
+  resumeBulletRewriter,
+  resumeHeadlineGenerator,
+  resumeFileNameGenerator,
+  ...RESUME_KEYWORD_PAGES,
   atsResumeChecker,
   freeAtsKeywordChecker,
   resumeOptimizer,

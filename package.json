@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:ats": "node scripts/check-ats-chars.mjs",
+    "check:tools": "node scripts/check-tools.mjs",
     "check:sentences": "cp utils/count-sentences.js utils/count-sentences.mjs && node utils/count-sentences.mjs; rm -f utils/count-sentences.mjs",
     "check:jobs": "cp lib/job-crawler.js lib/job-crawler.mjs && node lib/job-crawler.mjs; rm -f lib/job-crawler.mjs",
     "announce": "node --env-file=.env scripts/send-announcement.mjs",

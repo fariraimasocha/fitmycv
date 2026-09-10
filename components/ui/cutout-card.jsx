@@ -1,13 +1,13 @@
 "use client";
 
-// Cutout card — ported from cult-ui (cult-ui.com/docs/components/cutout-card)
+// Cutout card, ported from cult-ui (cult-ui.com/docs/components/cutout-card)
 // to plain JSX and this app's landing tokens. The "cutout" is an optical trick:
 // an inset label sits flush in a corner of the media, and small concave corner
 // SVGs bridge the label back into the card surface so the label reads as a
 // notch punched out of the image rather than a box laid on top of it.
 //
 // ponytail: hover state is uncontrolled-only. The upstream controllable-state
-// prop was dropped — nothing here drives hover from a parent.
+// prop was dropped. Nothing here drives hover from a parent.
 
 import { createContext, useContext, useMemo, useState } from "react";
 import Image from "next/image";
@@ -111,7 +111,7 @@ export function CutoutCardPin({ className, ...props }) {
   return <div className={cn("absolute", className)} {...props} />;
 }
 
-/** Region that fades in on card hover — used for the "Read article" affordance. */
+/** Region that fades in on card hover, used for the "Read article" affordance. */
 export function CutoutCardAction({ className, revealOnHover = true, ...props }) {
   const { hovered } = useCutoutCard();
   const reduceMotion = useReducedMotion();

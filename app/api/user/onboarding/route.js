@@ -29,7 +29,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // The skip path and the retry send no body at all — that must keep working.
+  // The skip path and the retry send no body at all. That must keep working.
   let body = null;
   try {
     body = await request.json();

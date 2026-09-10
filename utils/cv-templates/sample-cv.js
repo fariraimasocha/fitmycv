@@ -4,7 +4,7 @@
 //
 // Written to the same rules the templates and the blog argue for: Mon YYYY
 // dates on the same line as the title, plain-text skill lines, boring section
-// content. Keep it ASCII — see scripts/check-ats-chars.mjs.
+// content. Keep it ASCII. See scripts/check-ats-chars.mjs.
 export const SAMPLE_CV = {
   basics: {
     name: "John Doe",

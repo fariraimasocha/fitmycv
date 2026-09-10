@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { FileTextIcon, ListIcon, XIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, FileTextIcon, LayoutIcon, ListIcon, SignOutIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
@@ -15,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { LayoutIcon, SignOutIcon } from "@phosphor-icons/react";
+import { FREE_TOOLS } from "@/lib/free-tools";
 
 const navLinks = [
   { label: "Jobs", href: "/jobs" },
@@ -23,7 +22,6 @@ const navLinks = [
   { label: "Features", href: "/#features" },
   { label: "Templates", href: "/cv-templates" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "FAQ", href: "/#faq" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -73,7 +71,7 @@ const Navbar1 = () => {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-6 lg:gap-7 md:flex">
           {navLinks.map((item) => (
             <Link
               key={item.label}
@@ -84,6 +82,35 @@ const Navbar1 = () => {
               {item.label}
             </Link>
           ))}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+              >
+                Free tools
+                <CaretDownIcon size={12} weight="bold" aria-hidden="true" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="w-72 border-[var(--landing-line)] bg-[var(--landing-surface)] p-1.5 text-[var(--landing-ink)]"
+            >
+              {FREE_TOOLS.map((tool) => (
+                <DropdownMenuItem key={tool.href} asChild>
+                  <Link
+                    href={tool.href}
+                    className="flex cursor-pointer flex-col items-start gap-0.5 rounded-md px-3 py-2"
+                  >
+                    <span className="text-sm font-medium">{tool.label}</span>
+                    <span className="text-xs leading-5 text-[var(--landing-ink-soft)]">
+                      {tool.body}
+                    </span>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -142,38 +169,49 @@ const Navbar1 = () => {
         </button>
       </div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((item) => (
+      {/* Rendered only while open so its links stay out of the tab order when
+          closed. The open state fades in with CSS; dropping framer-motion here
+          takes ~44KB of JavaScript off every page that shows the header. */}
+      {isOpen && (
+        <div className="landing-rise border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 md:hidden">
+          <div className="flex flex-col gap-4">
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-base font-medium text-[var(--landing-ink)]"
+                onClick={(e) => handleSmoothScroll(e, item.href)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="flex flex-col gap-2">
+              <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">
+                Free tools
+              </p>
+              {FREE_TOOLS.map((tool) => (
                 <Link
-                  key={item.label}
-                  href={item.href}
+                  key={tool.href}
+                  href={tool.href}
                   className="text-base font-medium text-[var(--landing-ink)]"
-                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  onClick={() => setIsOpen(false)}
                 >
-                  {item.label}
+                  {tool.label}
                 </Link>
               ))}
-              {session ? (
-                <Link href="/dashboard" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
-                  Dashboard
-                </Link>
-              ) : (
-                <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
-                  Login
-                </Link>
-              )}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {session ? (
+              <Link href="/dashboard" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
+                Dashboard
+              </Link>
+            ) : (
+              <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 };

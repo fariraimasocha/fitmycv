@@ -112,7 +112,7 @@ function SavedJobs() {
   useEffect(() => {
     const saved = searchParams.get("saved");
     if (saved === "1") toast.success("Job saved");
-    else if (saved === "0") toast.error("Couldn't save that job — the link may have expired");
+    else if (saved === "0") toast.error("Couldn't save that job. The link may have expired");
   }, [searchParams]);
 
   const { data: items, isLoading } = useQuery({

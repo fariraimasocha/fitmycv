@@ -18,7 +18,7 @@ Use this exact schema:
 {
   "mission": "The company's mission or purpose in 1-2 sentences",
   "summary": "A concise 1-paragraph executive summary (3-5 sentences) covering what they do, who they serve, their market position, and culture — written from a job seeker's perspective",
-  "teamSize": "Approximate team/employee count as a string, e.g. '~250 employees' or '1,001–5,000 (LinkedIn estimate)' or 'Unknown'",
+  "teamSize": "Approximate team/employee count as a string, e.g. '~250 employees' or '1,001 to 5,000 (LinkedIn estimate)' or 'Unknown'",
   "fundingStage": "e.g. 'Series B ($40M raised)', 'Public (NYSE: XYZ)', 'Bootstrapped', or 'Unknown'",
   "cultureSignals": ["signal1", "signal2", "signal3"],
   "recentNews": [
@@ -89,7 +89,7 @@ export async function POST(request) {
 
     const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
 
-    // Triple Exa.ai calls in parallel — news, about, and competitive intel
+    // Triple Exa.ai calls in parallel: news, about, and competitive intel
     const [newsRes, aboutRes, competitiveRes] = await Promise.all([
       fetch("https://api.exa.ai/search", {
         method: "POST",

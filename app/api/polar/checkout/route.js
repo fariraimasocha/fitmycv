@@ -29,7 +29,7 @@ export async function GET(request) {
       return NextResponse.redirect(localAppUrl("/api/polar/portal", request));
     }
 
-    // DB-first safety check — catches stale JWT (webhook fired but session not refreshed)
+    // DB-first safety check, catches stale JWT (webhook fired but session not refreshed)
     await connectDB();
     const dbUser = await User.findOne({ _id: session.user.id }).select("isPremium");
     if (dbUser?.isPremium) {

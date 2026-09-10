@@ -24,8 +24,18 @@ import careerChangeCv from "./career-change-cv";
 import howLongShouldCvBe from "./how-long-should-a-cv-be";
 import howToGetRemoteJob from "./how-to-get-a-remote-job";
 import cvProfessionalSummary from "./cv-professional-summary-examples";
+import atsResumeFormat from "./ats-resume-format";
+import howToMatchResume from "./how-to-match-resume-to-job-description";
+import howToCheckResume from "./how-to-check-resume-against-job-description";
+import howToFindKeywordGaps from "./how-to-find-resume-keyword-gaps";
+import whatIsMatchScore from "./what-is-a-resume-match-score";
 
 export const POSTS = [
+  atsResumeFormat,
+  howToMatchResume,
+  howToCheckResume,
+  howToFindKeywordGaps,
+  whatIsMatchScore,
   atsResumeGuide,
   howToTailorCv,
   chatgptPrompts,
@@ -68,7 +78,7 @@ export function listPosts() {
 
 /**
  * Related posts for the end-of-article rail. Prefers posts sharing the current
- * post's `series`, then falls back to shared tags, then to anything else — so
+ * post's `series`, then falls back to shared tags, then to anything else, so
  * every post always ends with three real internal links.
  */
 export function relatedPosts(slug, limit = 3) {

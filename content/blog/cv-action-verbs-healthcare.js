@@ -100,7 +100,7 @@ export const blocks = [
       before:
         "Responsible for providing care to patients on a busy surgical ward and assisting with admissions.",
       after:
-        "• Managed a caseload of 8–10 post-operative patients per shift on a 28-bed surgical ward, triaging deteriorating patients using NEWS2 and escalating 40+ cases to the outreach team over 12 months.",
+        "• Managed a caseload of 8 to 10 post-operative patients per shift on a 28-bed surgical ward, triaging deteriorating patients using NEWS2 and escalating 40+ cases to the outreach team over 12 months.",
     },
   },
   {

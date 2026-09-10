@@ -97,7 +97,7 @@ export default function ComparePage() {
     <DashboardPageShell width="wide">
       <DashboardPageHeader
         title="Compare Offers"
-        description="Select 2–4 applications to compare side by side."
+        description="Select 2 to 4 applications to compare side by side."
       />
 
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
@@ -215,7 +215,7 @@ export default function ComparePage() {
                                 </p>
                               </div>
                             ) : (
-                              <span className="text-xs text-muted-foreground">—</span>
+                              <span className="text-xs text-muted-foreground">n/a</span>
                             )}
                           </td>
                         ))}
@@ -226,7 +226,7 @@ export default function ComparePage() {
                       {comparisonResult.comparisons.map((c) => (
                         <td key={c.id || c.company} className="px-4 py-2 text-center">
                           <span className="text-lg font-bold tabular-nums">
-                            {c.totalScore?.toFixed(1) || "—"}
+                            {c.totalScore?.toFixed(1) || "n/a"}
                           </span>
                           <span className="text-xs text-muted-foreground">/10</span>
                         </td>

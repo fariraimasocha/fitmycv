@@ -60,7 +60,7 @@ export default function ProfilePage() {
   const router = useRouter();
   const hasRefreshed = useRef(false);
 
-  // Refresh JWT from DB once — avoids stale isPremium after Polar webhook
+  // Refresh JWT from DB once, avoids stale isPremium after Polar webhook
   useEffect(() => {
     if (hasRefreshed.current || status !== "authenticated") return;
     hasRefreshed.current = true;
@@ -116,9 +116,9 @@ export default function ProfilePage() {
             </Avatar>
             <div className="space-y-1 min-w-0">
               <p className="text-lg font-semibold leading-tight truncate">
-                {user.name ?? "—"}
+                {user.name ?? "Not set"}
               </p>
-              <p className="text-sm text-muted-foreground truncate">{user.email ?? "—"}</p>
+              <p className="text-sm text-muted-foreground truncate">{user.email ?? "Not set"}</p>
               <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
                 <UserIcon className="size-3" />
                 Google

@@ -17,7 +17,7 @@ const PAGE_TITLE = "Story Bank";
 const PAGE_DESCRIPTION =
   "Your accumulated STAR stories across all applications. Use these to prepare for any interview.";
 
-// Reflection is deliberately last and separated — it is not part of the STAR
+// Reflection is deliberately last and separated. It is not part of the STAR
 // acronym, so it gets a divider rather than another row in the rail.
 const STAR_SECTIONS = ["situation", "task", "action", "result"];
 
@@ -25,7 +25,7 @@ function usedForLabel(usedFor) {
   if (!usedFor?.length) return null;
   if (usedFor.length === 1) {
     const [first] = usedFor;
-    return `Used for ${[first.company, first.jobTitle].filter(Boolean).join(" — ")}`;
+    return `Used for ${[first.company, first.jobTitle].filter(Boolean).join(", ")}`;
   }
   return `Used for ${usedFor.length} applications`;
 }

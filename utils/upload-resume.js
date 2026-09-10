@@ -95,7 +95,7 @@ export function uploadResumeWithProgress(file, onUpdate) {
           onUpdate({
             progress: 100,
             stage: "complete",
-            label: "Complete — your CV is ready",
+            label: "Complete. Your CV is ready",
           });
           resolve(body);
           return;

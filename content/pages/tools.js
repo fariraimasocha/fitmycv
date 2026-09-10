@@ -4,7 +4,7 @@ export const atsResumeChecker = {
   slug: "ats-resume-checker",
   seoTitle: "Free ATS Resume Checker: No Sign-Up",
   description:
-    "Free ATS resume checker with job description, no login. Paste a posting and your CV for a keyword match score. Nothing is uploaded. Unlimited checks.",
+    "Free ATS resume checker with job description, no login. Upload your CV and paste a posting for a keyword match score. The file is read in your browser. Unlimited checks.",
   keywords: [
     "ats resume checker",
     "free ats resume checker",
@@ -20,7 +20,7 @@ export const atsResumeChecker = {
   breadcrumbName: "ATS resume checker",
   h1: "Free ATS resume checker",
   lede:
-    "Free ATS resume checker, no sign-up and nothing uploaded. Paste a job description and your CV. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds.",
+    "Free ATS resume checker, no sign-up. Upload your CV and paste a job description. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds.",
   ctas: [
     { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link" },
     { label: "Read the ATS guide", href: "/blog/ats-resume-guide", variant: "secondary" },
@@ -36,8 +36,8 @@ export const atsResumeChecker = {
         text: "Copy the full text of the posting you are applying to and paste it into the job description box.",
       },
       {
-        name: "Paste your CV text",
-        text: "Open your CV, select all, copy, and paste it in. If the text pastes out of order, your layout will scramble in a real ATS too.",
+        name: "Upload your CV",
+        text: "Drop the PDF. We pull the text out so you do not have to copy it. If the extracted text is out of order, your layout will scramble in a real ATS too.",
       },
       {
         name: "Read the score and the gaps",
@@ -52,11 +52,11 @@ export const atsResumeChecker = {
     },
     {
       q: "Is this ATS checker really free?",
-      a: "Yes, and there is no sign-up. The whole check runs in your browser using JavaScript on the page, so there is no account, no upload, and no usage limit.",
+      a: "Yes, and there is no sign-up. The whole check runs in your browser using JavaScript on the page, so there is no account and no usage limit.",
     },
     {
       q: "Does my CV get uploaded or stored anywhere?",
-      a: "No. The text you paste never leaves your browser tab. There is no network request and nothing is written to a server. Close the tab and it is gone.",
+      a: "The PDF is read in this tab. The file is never sent to a server, and nothing is stored. Close the tab and it is gone.",
     },
     {
       q: "What is a good ATS match score?",
@@ -85,8 +85,8 @@ export const atsResumeChecker = {
     },
     {
       callout: {
-        title: "The copy-paste test comes free",
-        body: "When you paste your CV in, look at what arrives. If sections land out of order or content is missing, that is exactly what an applicant tracking system will extract from your file, and it is a layout problem, not a keyword problem.",
+        title: "The extraction test comes free",
+        body: "When we read your PDF, look at the text that comes out. If sections land out of order or content is missing, that is exactly what an applicant tracking system will extract from your file, and it is a layout problem, not a keyword problem.",
       },
     },
 
@@ -101,7 +101,7 @@ export const atsResumeChecker = {
       ],
     },
 
-    { h2: "No login, no upload, unlimited checks" },
+    { h2: "No login, nothing stored, unlimited checks" },
     {
       p: "The whole check runs in your browser using JavaScript on the page. There is no account wall, no email gate, and no file sent to a server. Close the tab and the text is gone. That is the difference between this page and checkers that ask you to sign up for two free scans.",
     },
@@ -112,7 +112,7 @@ export const atsResumeChecker = {
         head: ["", "This checker", "Jobscan", "Tailoring from a job link"],
         rows: [
           ["Needs an account", "No", "Yes", "Yes"],
-          ["Uploads your file", "No", "Yes", "Yes, to your account"],
+          ["Sends your file to a server", "No", "Yes", "Yes, to your account"],
           ["Job-description matching", "Yes", "Yes", "Yes"],
           ["Rewrites the CV", "No", "No", "Yes"],
           ["Free limit", "Unlimited", "A few scans / month", "Paid generations"],
@@ -146,14 +146,14 @@ export const atsResumeChecker = {
   ],
   related: [
     {
+      label: "Resume job match checker",
+      href: "/resume-job-match-checker",
+      body: "A fit readout: skills, keywords, experience, and the first five things to fix.",
+    },
+    {
       label: "Tailor a CV from a job link",
       href: "/tailor-cv-from-job-link",
       body: "Paste the posting URL and get a rewritten CV and cover letter in under a minute.",
-    },
-    {
-      label: "Free ATS keyword checker",
-      href: "/free-ats-keyword-checker",
-      body: "Only have the job description? Pull out the terms that matter before you write.",
     },
     {
       label: "The complete ATS resume guide",
@@ -339,7 +339,7 @@ export const resumeOptimizer = {
       },
     },
     {
-      p: "The [free ATS resume checker](/ats-resume-checker) tells you quickly which of these you are dealing with: paste your CV and see whether the text arrives intact and whether the vocabulary matches.",
+      p: "The [free ATS resume checker](/ats-resume-checker) tells you quickly which of these you are dealing with: upload your CV and see whether the text arrives intact and whether the vocabulary matches.",
     },
 
     { h2: "What the optimizer changes" },
@@ -413,6 +413,160 @@ export const resumeOptimizer = {
       label: "Cover letter builder",
       href: "/cover-letter-builder",
       body: "A matching cover letter written from the same job posting.",
+    },
+  ],
+};
+
+export const resumeJobMatchChecker = {
+  slug: "resume-job-match-checker",
+  seoTitle: "Free Resume Job Match Checker: No Sign-Up",
+  description:
+    "Upload your resume and paste a job description. See your match score, strong skills, missing keywords, and the top five things to improve. Free, no login. The file is read in your browser.",
+  keywords: [
+    "resume job match checker",
+    "resume match checker",
+    "match resume to job description",
+    "compare resume to job description",
+    "resume vs job description",
+    "resume keyword match",
+    "resume skills gap checker",
+    "job description resume matcher",
+    "resume compatibility checker",
+    "resume relevance checker",
+    "resume keyword gap checker",
+  ],
+  eyebrow: "Free tool",
+  breadcrumbName: "Resume job match checker",
+  h1: "Resume job match checker",
+  lede:
+    "Upload your resume and paste the job description. See your match score, the skills you already cover, what is missing, and the first five things to fix before you apply.",
+  ctas: [
+    { label: "Check my match", href: "#tool" },
+    { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link", variant: "secondary" },
+  ],
+  tool: "job-match",
+  howTo: {
+    name: "How to check your resume against a job description",
+    description:
+      "Compare your resume to a specific job posting and see the skills, keywords, and experience gaps.",
+    steps: [
+      {
+        name: "Upload your resume",
+        text: "Drop the PDF. We pull the text out so you do not have to copy it.",
+      },
+      {
+        name: "Paste the job description",
+        text: "Copy the full posting you are applying to and paste it into the job description box.",
+      },
+      {
+        name: "Read the match and the gaps",
+        text: "You get an overall match score, strong and missing skills, experience, skills, and keyword scores, plus five concrete fixes.",
+      },
+    ],
+  },
+  faqs: [
+    {
+      q: "What does the match score mean?",
+      a: "It is a coverage score from your CV and the posting: named skills, posting keywords, and a light experience signal from years and seniority. Treat 75% and above as strong coverage, 50 to 75% as worth a tailoring pass, and below 50% as either a generic resume or a genuine stretch. It is not a prediction that you will get an interview.",
+    },
+    {
+      q: "Is this resume job match checker free?",
+      a: "Yes. There is no sign-up and no usage limit. The whole check runs in your browser, and nothing is stored.",
+    },
+    {
+      q: "Does my resume get uploaded or stored?",
+      a: "The PDF is read in this tab. The file is never sent to a server. Close the tab and it is gone.",
+    },
+    {
+      q: "How is this different from the ATS resume checker?",
+      a: "The ATS resume checker is a single keyword-overlap score. This page splits the result into experience, skills, and keywords, lists strong versus missing skills, and gives you five things to improve. Use this when you want a fit readout. Use the ATS checker when you only need missing terms.",
+    },
+    {
+      q: "Should I add every missing skill to my resume?",
+      a: "Only the ones you can honestly evidence. Put each one inside a bullet that shows you used it and what happened. Claiming tools you have never used just moves the rejection to the interview.",
+    },
+    {
+      q: "What do experience, skills, and keyword scores measure?",
+      a: "Skills are named tools and methods we can read in both texts, such as React or project management. Keywords are the other terms the posting leans on. Experience looks for years, seniority words, and role phrases. If the posting never mentions years, that part does not drag the score down.",
+    },
+    {
+      q: "Does a high match guarantee an interview?",
+      a: "No. Coverage helps a recruiter find you. The bullets are what earn the call. Once the score looks healthy, spend the rest of your time putting a number on each claim.",
+    },
+  ],
+  blocks: [
+    { h2: "What this checker measures" },
+    {
+      p: "It compares the resume you upload with the job description you paste. You get one overall match, then three parts: skills you share, keywords the posting leans on, and a light experience signal from years and seniority.",
+    },
+    {
+      p: "That is deliberately narrow. It tells you about overlap between two documents. It does not rank you inside Workday, Greenhouse, or Lever, and it does not judge your writing.",
+    },
+    {
+      callout: {
+        title: "This is not another ATS checker",
+        body: "The [ATS resume checker](/ats-resume-checker) stays the keyword diagnostic. This page answers a different question: how well does this resume fit this job, and what should I fix first?",
+      },
+    },
+
+    { h2: "How to read the result" },
+    {
+      ol: [
+        "**Strong matches** are named skills that appear in both texts. Keep those in bullets with a result attached.",
+        "**Missing or weak matches** are skills the posting names that your resume never mentions. Add only the ones you can evidence.",
+        "**Experience, skills, and keyword scores** show which part of the gap is vocabulary and which part is scope.",
+        "**Top 5 things to improve** is the order to work in. Fix those five, then run the check again.",
+      ],
+    },
+
+    { h2: "What to do after a low match" },
+    {
+      ol: [
+        "**Start with skills you already have under different words.** If the posting says GraphQL and you wrote API queries, use their term in a real bullet.",
+        "**Move the matching roles up.** A five-year overlap buried in role three does less than a shorter overlap in the first two bullets.",
+        "**Leave out skills you cannot defend.** A higher score that you cannot talk through is a wasted interview.",
+        "**Then rewrite, or let FitMyCV do it.** The [job-link tailoring flow](/tailor-cv-from-job-link) uses the same posting and your real experience.",
+      ],
+    },
+
+    { h2: "No login, nothing stored, unlimited checks" },
+    {
+      p: "The check runs in your browser. There is no account wall, no email gate, and no file sent to a server. Close the tab and the text is gone.",
+    },
+
+    { h2: "Match checker, or a full rewrite?" },
+    {
+      table: {
+        head: ["", "This checker", "ATS resume checker", "Tailoring from a job link"],
+        rows: [
+          ["Needs an account", "No", "No", "Yes"],
+          ["Sends your file to a server", "No", "No", "Yes, to your account"],
+          ["Overall match score", "Yes", "Keyword score only", "Yes"],
+          ["Skills versus keywords", "Yes", "No", "Yes"],
+          ["Top fixes", "Yes", "Missing terms", "Rewritten CV"],
+          ["Rewrites the CV", "No", "No", "Yes"],
+        ],
+      },
+    },
+    {
+      p: "If you want the rewrite next, [tailor your CV to this job](/tailor-cv-from-job-link). If you only want missing keywords, use the [ATS resume checker](/ats-resume-checker).",
+    },
+  ],
+  related: [
+    {
+      label: "Tailor my CV to this job",
+      href: "/tailor-cv-from-job-link",
+      body: "Paste the posting URL and get a rewritten CV and cover letter.",
+    },
+    {
+      label: "ATS resume checker",
+      href: "/ats-resume-checker",
+      body: "A keyword-only score plus the terms your CV never mentions.",
+    },
+    {
+      label: "How to tailor a CV to a job description",
+      href: "/blog/how-to-tailor-cv-to-job-description",
+      body: "The manual method if you would rather rewrite the bullets yourself.",
     },
   ],
 };

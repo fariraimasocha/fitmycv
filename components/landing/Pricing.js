@@ -1,5 +1,3 @@
-"use client";
-
 import PricingCards from "@/components/pricing/PricingCards";
 import { LIFETIME_SAVINGS_COPY } from "@/lib/pricing";
 

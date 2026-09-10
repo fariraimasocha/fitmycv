@@ -26,3 +26,34 @@ export const HOME_FAQS = [
     a: "Your privacy is our top priority. All data is encrypted, we never share your information, and you can delete your account and all associated data at any time.",
   },
 ];
+
+// The three visible "How it works" steps. Shared so the section on screen and
+// the HowTo schema describe the same process.
+export const HOME_STEPS = [
+  {
+    num: "01",
+    title: "Paste the job listing",
+    copy: "Drop a link from LinkedIn, Indeed, or any careers page. We parse requirements, skills, and keywords instantly.",
+  },
+  {
+    num: "02",
+    title: "AI tailors your CV",
+    copy: "We rewrite bullet points with impact, mirror the role's keywords, and keep your voice, ATS-ready in ~30 seconds.",
+  },
+  {
+    num: "03",
+    title: "Download & apply",
+    copy: "Export a polished CV and matching cover letter as PDF. One dashboard tracks every application.",
+  },
+];
+
+// The one testimonial we have permission to publish, with the name and role of
+// the person who gave it. Shared so the visible quote and the Review schema
+// carry identical text. Only add entries here for real, attributable feedback.
+export const HOME_TESTIMONIAL = {
+  quote:
+    "Not having to rewrite my CV manually is saving me tons of application work. Now I just paste a job link and FitMyCV handles everything itself",
+  author: "Farai Matsika",
+  role: "Software Developer",
+  image: "/farai.jpeg",
+};

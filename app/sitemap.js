@@ -25,6 +25,10 @@ export default function sitemap() {
 
   // Landing pages carrying a primary keyword rank above the informational ones.
   const highIntent = new Set([
+    "resume-job-match-checker",
+    "missing-resume-keywords",
+    "resume-bullet-rewriter",
+    "resume-headline-generator",
     "ats-resume-checker",
     "ai-cover-letter-generator",
     "cover-letter-builder",

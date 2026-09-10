@@ -10,7 +10,7 @@ import {
 // not JSX, so a post is a plain object a non-React editor can safely change.
 //
 // ponytail: this is a deliberately tiny inline parser instead of an MDX
-// pipeline — the only inline marks the content needs are links and bold, and
+// pipeline. The only inline marks the content needs are links and bold, and
 // MDX would pull in a compiler plus a loader config for that.
 
 /** Parses `[label](/href)` and `**bold**` in a plain string. */

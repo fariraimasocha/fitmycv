@@ -54,7 +54,7 @@ export const resumeTips = {
       p: "Most resume advice is either too vague to act on (\"be concise\") or too cosmetic to matter (\"use a modern font\"). What follows is neither. Each item names a specific change, and the sections are ordered by how much difference they make.",
     },
 
-    { h2: "Fix the parse first (tips 1–6)" },
+    { h2: "Fix the parse first (tips 1 to 6)" },
     {
       p: "None of the wording advice matters if the document does not extract cleanly. These six take under an hour and are the difference between being in the search results and being invisible.",
     },
@@ -72,7 +72,7 @@ export const resumeTips = {
       p: "The [ATS-friendly resume guide](/blog/ats-resume-guide) explains why each of these breaks, if you want the mechanism rather than the rule.",
     },
 
-    { h2: "Get found (tips 7–12)" },
+    { h2: "Get found (tips 7 to 12)" },
     {
       ol: [
         "**Use the market job title, not your internal one.** \"Growth Wizard\" matches nothing; put the real title first and the internal one in brackets.",
@@ -84,7 +84,7 @@ export const resumeTips = {
       ],
     },
 
-    { h2: "Make the bullets work (tips 13–19)" },
+    { h2: "Make the bullets work (tips 13 to 19)" },
     {
       ol: [
         "**Lead with a verb, never with \"Responsible for\".** Responsibility describes the job you were given, not what you did with it.",
@@ -106,18 +106,18 @@ export const resumeTips = {
       },
     },
 
-    { h2: "Structure and relevance (tips 20–24)" },
+    { h2: "Structure and relevance (tips 20 to 24)" },
     {
       ol: [
         "**Put the most relevant role first within reverse-chronological order.** If your most relevant experience is older, add a short \"Relevant experience\" section above it.",
         "**Lead each role with its strongest matching bullet.** Most readers get two bullets deep.",
         "**Write a three-line summary naming your target title, level, and one result.** Delete any summary that could describe someone else.",
         "**Compress old and irrelevant roles to a single line each** rather than deleting them and creating unexplained gaps.",
-        "**Give month and year for every date.** \"2021–2023\" across three roles forces the reader to guess.",
+        "**Give month and year for every date.** \"2021 to 2023\" across three roles forces the reader to guess.",
       ],
     },
 
-    { h2: "Before you send (tips 25–27)" },
+    { h2: "Before you send (tips 25 to 27)" },
     {
       ol: [
         "**Run the copy-paste test.** Select all in your exported PDF, paste into a plain text editor, and read what arrives. That is what the parser sees.",
@@ -267,7 +267,7 @@ export const howToWriteAResume = {
         title: "The shape, applied",
         before: "Duties included handling customer queries and updating records.",
         after:
-          "• Handled 60–80 customer queries a day across chat and email, and rebuilt the response macros; average handling time fell from 7.5 to 4.2 minutes with no drop in satisfaction.",
+          "• Handled 60 to 80 customer queries a day across chat and email, and rebuilt the response macros; average handling time fell from 7.5 to 4.2 minutes with no drop in satisfaction.",
       },
     },
     {

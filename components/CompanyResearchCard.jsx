@@ -178,7 +178,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                 <li key={i} className="text-sm">
                   <span className="font-medium text-foreground">{comp.name}</span>
                   {comp.differentiation && (
-                    <span className="text-muted-foreground"> — {comp.differentiation}</span>
+                    <span className="text-muted-foreground">: {comp.differentiation}</span>
                   )}
                 </li>
               ))}

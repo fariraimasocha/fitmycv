@@ -180,7 +180,7 @@ export const blocks = [
     table: {
       head: ["", "By hand", "From a job link"],
       rows: [
-        ["Time per role", "20–40 minutes", "Under a minute to first draft"],
+        ["Time per role", "20 to 40 minutes", "Under a minute to first draft"],
         ["Requirement extraction", "Manual highlighting", "Parsed from the posting"],
         ["Acronym and synonym coverage", "Easy to miss", "Matched against the posting text"],
         ["Cover letter", "Separate task", "Generated from the same posting"],

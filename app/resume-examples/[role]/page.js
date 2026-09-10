@@ -8,6 +8,7 @@ import CTABand from "@/components/landing/CTABand";
 import FaqSection from "@/components/content/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import { RESUME_EXAMPLES, getResumeExample } from "@/content/resume-examples";
+import { keywordsPageFor } from "@/content/resume-keywords";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -74,6 +75,7 @@ export async function generateMetadata({ params }) {
 export default async function ResumeExamplePage({ params }) {
   const { role: slug } = await params;
   const example = getResumeExample(slug);
+  const keywordsPage = example ? keywordsPageFor(example.slug) : null;
   if (!example) notFound();
 
   const faqs = [...(example.faqs || []), ...faqsFor(example)];
@@ -238,6 +240,19 @@ export default async function ResumeExamplePage({ params }) {
                   </li>
                 ))}
               </ul>
+              {keywordsPage ? (
+                <p className="mt-5 text-base leading-8 text-[var(--landing-ink-soft)]">
+                  A longer list, grouped by where each term belongs on the page,
+                  is on{" "}
+                  <Link
+                    href={`/${keywordsPage.slug}`}
+                    className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+                  >
+                    {keywordsPage.role.toLowerCase()} resume keywords
+                  </Link>
+                  .
+                </p>
+              ) : null}
             </div>
 
             {/* Tip */}

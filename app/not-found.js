@@ -2,13 +2,13 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
 
-// Next already emits <meta name="robots" content="noindex"> for not-found —
+// Next already emits <meta name="robots" content="noindex"> for not-found.
 // declaring it here too would render the tag twice.
 export const metadata = {
   title: "Page not found",
 };
 
-// ponytail: hand-picked links rather than a search box — three routes use
+// ponytail: hand-picked links rather than a search box. Three routes use
 // dynamicParams:false, so most 404s are near-miss slugs these cover.
 const links = [
   { label: "Tailor a CV from a job link", href: "/tailor-cv-from-job-link" },

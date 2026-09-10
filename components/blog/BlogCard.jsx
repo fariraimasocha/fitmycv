@@ -26,7 +26,7 @@ export default function BlogCard({ post, priority = false }) {
         <CutoutCardMedia className="relative aspect-3/2 w-full bg-[var(--landing-paper-strong)]">
           <CutoutCardImage src={image} alt={imageAlt} priority={priority} />
 
-          {/* Category pin — top-right. The two corners flare the surface out of
+          {/* Category pin, top-right. The two corners flare the surface out of
               the pin's left and bottom edges so it reads as a notch punched
               into the image, not a chip sitting on top of it. `rounded-tr`
               matches the card radius so the pin isn't clipped by it. */}
@@ -42,7 +42,7 @@ export default function BlogCard({ post, priority = false }) {
             />
           </CutoutCardPin>
 
-          {/* Reading time — bottom-left, notched into the media edge. The clock
+          {/* Reading time, bottom-left, notched into the media edge. The clock
               and label sit in their own pill inside the notch; without the
               surrounding padding the icon collides with the card border. */}
           <CutoutCardInsetLabel className="bottom-0 left-0 rounded-tr-[20px] bg-[var(--landing-paper-soft)] pl-4 pr-4 pt-3">

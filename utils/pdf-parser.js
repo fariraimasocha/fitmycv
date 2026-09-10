@@ -7,10 +7,10 @@ export async function extractPdfText(arrayBuffer) {
   const { text } = await extractText(new Uint8Array(arrayBuffer));
 
   const rawText = Array.isArray(text) ? text.join("\n") : (text || "");
-  return sanitizeText(rawText);
+  return sanitizeExtractedText(rawText);
 }
 
-function sanitizeText(text) {
+export function sanitizeExtractedText(text) {
   return (
     text
       // Smart quotes → straight quotes

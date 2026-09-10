@@ -37,7 +37,7 @@ export function GradeBadge({ grade, className, size = "sm" }) {
 }
 
 export function AtsScoreChip({ score, loading, className, onClick }) {
-  const label = loading ? "ATS…" : typeof score === "number" ? `ATS ${score}` : "ATS —";
+  const label = loading ? "ATS…" : typeof score === "number" ? `ATS ${score}` : "ATS n/a";
   const Comp = onClick ? "button" : "span";
   return (
     <Comp

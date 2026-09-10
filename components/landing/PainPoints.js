@@ -1,6 +1,4 @@
-"use client";
-
-import { XIcon } from "@phosphor-icons/react";
+import { XIcon } from "@phosphor-icons/react/dist/ssr";
 
 const PAINS = [
   {

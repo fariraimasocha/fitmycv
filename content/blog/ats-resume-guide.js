@@ -129,9 +129,9 @@ export const blocks = [
       context:
         "Same content, two layouts. The left version is what the parser produces when a sidebar is read straight across.",
       before:
-        "Jane Okafor  Skills  Senior Data Analyst  SQL, Python  Acme Corp 2022–Present  dbt, Looker  Built reporting pipeline...",
+        "Jane Okafor  Skills  Senior Data Analyst  SQL, Python  Acme Corp 2022 to Present  dbt, Looker  Built reporting pipeline...",
       after:
-        "Jane Okafor\nSenior Data Analyst | London | jane@email.com\n\nEXPERIENCE\nAcme Corp - Senior Data Analyst (2022–Present)\n• Built reporting pipeline...\n\nSKILLS\nSQL, Python, dbt, Looker",
+        "Jane Okafor\nSenior Data Analyst | London | jane@email.com\n\nEXPERIENCE\nAcme Corp - Senior Data Analyst (2022 to Present)\n• Built reporting pipeline...\n\nSKILLS\nSQL, Python, dbt, Looker",
     },
   },
 
@@ -157,7 +157,7 @@ export const blocks = [
   },
   { h3: "Write dates and titles consistently" },
   {
-    p: "Use one date format throughout: `Mar 2022 – Present` or `03/2022 – Present`, not both. Put the job title on its own line next to the employer rather than inside a sentence. Spell out the title the way the industry writes it: if the market says **Product Manager**, do not submit **Product Ninja**.",
+    p: "Use one date format throughout: `Mar 2022 to Present` or `03/2022 to Present`, not both. Put the job title on its own line next to the employer rather than inside a sentence. Spell out the title the way the industry writes it: if the market says **Product Manager**, do not submit **Product Ninja**.",
   },
 
   { h2: "Get the keywords right without stuffing" },
@@ -225,7 +225,7 @@ export const blocks = [
       "**A two-column template downloaded because it looked good.** Beautiful in a preview, scrambled after extraction.",
       "**Contact details in the header.** The system files a perfect record with no way to contact you.",
       "**Job titles nobody searches for.** Internal titles like \"Growth Wizard\" match nothing. Put the market title first and the internal one in brackets.",
-      "**Unexplained gaps and vague dates.** \"2021–2023\" across three roles forces a recruiter to guess. Give month and year.",
+      "**Unexplained gaps and vague dates.** \"2021 to 2023\" across three roles forces a recruiter to guess. Give month and year.",
       "**A skills wall with no evidence.** Forty comma-separated technologies signals breadth without depth.",
       "**Sending the file as an image or a scan.** Nothing to extract, nothing to rank.",
       "**Burying the most relevant role.** If the role that matches is third down the page, most readers never reach it. Lead with relevance.",
@@ -240,7 +240,7 @@ export const blocks = [
     ul: [
       "**File:** text-based PDF unless the form demands .docx. Workday parses both when the text layer exists.",
       "**Layout:** one column. Multi-column resumes are the usual Workday scramble.",
-      "**Headings:** Experience, Education, Skills — not “Where I have made an impact”.",
+      "**Headings:** Experience, Education, Skills, not “Where I have made an impact”.",
       "**Keywords:** copy the posting's must-have tools and the exact job title into bullets that already describe that work.",
       "**Do not** stuff a white-text block or a keyword footer. Recruiters see it, and it does not help ranking the way people think it does.",
     ],

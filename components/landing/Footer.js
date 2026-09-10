@@ -1,22 +1,25 @@
-"use client";
-
 import Link from "next/link";
-import { FileTextIcon } from "@phosphor-icons/react";
+import { FileTextIcon } from "@phosphor-icons/react/dist/ssr";
 
-// Root-relative hrefs throughout — the footer renders on every page, so bare
+import { FREE_TOOLS } from "@/lib/free-tools";
+
+// Root-relative hrefs throughout. The footer renders on every page, so bare
 // "#features" anchors would dead-end everywhere except the homepage.
+
 const columns = [
   {
     heading: "Product",
     links: [
       { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link" },
-      { label: "ATS resume checker", href: "/ats-resume-checker" },
-      { label: "ATS keyword checker", href: "/free-ats-keyword-checker" },
       { label: "Resume optimizer", href: "/resume-optimizer" },
       { label: "AI cover letter generator", href: "/ai-cover-letter-generator" },
       { label: "Cover letter builder", href: "/cover-letter-builder" },
       { label: "Pricing", href: "/pricing" },
     ],
+  },
+  {
+    heading: "Free tools",
+    links: FREE_TOOLS.map(({ label, href }) => ({ label, href })),
   },
   {
     heading: "Resources",
@@ -28,6 +31,7 @@ const columns = [
       { label: "Resume examples", href: "/resume-examples" },
       { label: "CV examples", href: "/cv-examples" },
       { label: "CV templates", href: "/cv-templates" },
+      { label: "FAQ", href: "/#faq" },
     ],
   },
   {

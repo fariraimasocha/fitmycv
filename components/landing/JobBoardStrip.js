@@ -1,5 +1,3 @@
-"use client";
-
 const boards = [
   "LinkedIn",
   "Indeed",

@@ -15,14 +15,14 @@ export async function connectDB() {
 
   // readyState: 0 disconnected, 1 connected, 2 connecting, 3 disconnecting.
   // Reuse only a live connection. After a laptop sleep / network change the
-  // cached socket dies (state 0) — the old code returned it anyway, which is
+  // cached socket dies (state 0). The old code returned it anyway, which is
   // what caused the "ReplicaSetNoPrimary" 500 on save.
   const state = mongoose.connection.readyState;
   if (state === 1) {
     return mongoose.connection;
   }
 
-  // Dead/disconnecting (0 or 3) — drop the stale promise so we redial.
+  // Dead/disconnecting (0 or 3). Drop the stale promise so we redial.
   // State 2 (connecting) keeps the in-flight promise.
   if (state !== 2) {
     cached.promise = null;
@@ -35,7 +35,7 @@ export async function connectDB() {
   try {
     await cached.promise;
   } catch (err) {
-    cached.promise = null; // don't cache a rejected connect — let the next call retry
+    cached.promise = null; // don't cache a rejected connect. Let the next call retry
     throw err;
   }
 

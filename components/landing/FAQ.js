@@ -1,19 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
 import { HOME_FAQS } from "@/content/pages/home";
 
 const faqs = HOME_FAQS.map(({ q, a }) => ({ question: q, answer: a }));
 
-function FAQItem({ faq, isOpen, onToggle }) {
+// Collapsed answers stay in the DOM and animate by CSS grid rows rather than
+// being unmounted. Two reasons: search and answer engines only see text that
+// is actually rendered, and it keeps framer-motion off the landing page.
+function FAQItem({ faq, index, isOpen, onToggle }) {
+  const panelId = `faq-panel-${index}`;
+  const buttonId = `faq-button-${index}`;
+
   return (
     <div className="border-b border-[var(--landing-line)] last:border-0 py-6">
       <button
+        id={buttonId}
         onClick={onToggle}
         className="flex items-center justify-between w-full text-left gap-3"
         aria-expanded={isOpen}
+        aria-controls={panelId}
       >
         <span className="font-medium text-[var(--landing-ink)]">
           {faq.question}
@@ -24,21 +31,19 @@ function FAQItem({ faq, isOpen, onToggle }) {
           <PlusIcon size={18} className="text-[var(--landing-ink-soft)] shrink-0" aria-hidden="true" />
         )}
       </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="overflow-hidden"
-          >
-            <p className="font-sans text-[var(--landing-ink-soft)] text-sm leading-relaxed pt-3">
-              {faq.answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        data-open={isOpen}
+        className="landing-collapse"
+      >
+        <div>
+          <p className="font-sans text-[var(--landing-ink-soft)] text-sm leading-relaxed pt-3">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -58,8 +63,9 @@ export default function FAQ() {
       <div className="landing-card w-full max-w-2xl rounded-2xl px-6 sm:px-8">
         {faqs.map((faq, i) => (
           <FAQItem
-            key={i}
+            key={faq.question}
             faq={faq}
+            index={i}
             isOpen={openIndex === i}
             onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
           />

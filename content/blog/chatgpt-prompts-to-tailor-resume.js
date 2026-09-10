@@ -96,7 +96,7 @@ export const blocks = [
   {
     callout: {
       title: "Copy-paste: summary",
-      body: "Rewrite my resume summary for this target job using only the supported evidence from the table. Keep it to 2–3 lines. State the target title, my level and domain, and two requirements I can evidence. Avoid generic phrases. Do not add facts.\n\nSupported evidence from the table:\n[PASTE THE STRONG ROWS]\n\nCurrent summary:\n[PASTE SUMMARY]",
+      body: "Rewrite my resume summary for this target job using only the supported evidence from the table. Keep it to 2 to 3 lines. State the target title, my level and domain, and two requirements I can evidence. Avoid generic phrases. Do not add facts.\n\nSupported evidence from the table:\n[PASTE THE STRONG ROWS]\n\nCurrent summary:\n[PASTE SUMMARY]",
     },
   },
 
@@ -107,7 +107,7 @@ export const blocks = [
   {
     callout: {
       title: "Copy-paste: bullets",
-      body: "The job description emphasises this requirement: “[PASTE THE EXACT REQUIREMENT LINE]”. Here are my current bullets from the most relevant role: [PASTE 3–5 BULLETS]. Rewrite so the most relevant bullet leads. Mirror the job description’s terminology only where it is accurate to my experience. Do not add tools, scope, or results I did not state. Keep each bullet under two lines, start with an action verb, and show before/after for each. Keep my numbers exactly as they are.",
+      body: "The job description emphasises this requirement: “[PASTE THE EXACT REQUIREMENT LINE]”. Here are my current bullets from the most relevant role: [PASTE 3 to 5 BULLETS]. Rewrite so the most relevant bullet leads. Mirror the job description’s terminology only where it is accurate to my experience. Do not add tools, scope, or results I did not state. Keep each bullet under two lines, start with an action verb, and show before/after for each. Keep my numbers exactly as they are.",
     },
   },
 
@@ -144,7 +144,7 @@ export const blocks = [
     table: {
       head: ["", "ChatGPT or Claude", "From a job link"],
       rows: [
-        ["Reads the posting from a URL", "No — you copy-paste", "Yes"],
+        ["Reads the posting from a URL", "No, you copy-paste", "Yes"],
         ["Works from a structured CV", "Only if you paste it each time", "Yes, uploaded once"],
         ["Invented tools and metrics", "Common unless you constrain it", "Blocked: only your evidence"],
         ["ATS-safe PDF export", "You lay it out yourself", "Single-column PDF"],
@@ -169,7 +169,7 @@ export const blocks = [
   {
     ul: [
       "Compare before you rewrite. Unsupported rows stay off the resume.",
-      "Edit the summary, skills order, and three bullets — not the whole document in one prompt.",
+      "Edit the summary, skills order, and three bullets, not the whole document in one prompt.",
       "Keep your original numbers. If a metric is missing, you supply it; the model does not.",
       "Run the sceptic pass. Delete anything it flags.",
       "Export from a real editor and run the [ATS checker](/ats-resume-checker) against the same posting.",

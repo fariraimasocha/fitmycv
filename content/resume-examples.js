@@ -4,6 +4,270 @@
 
 export const RESUME_EXAMPLES = [
   {
+    slug: "data-scientist",
+    role: "Data Scientist",
+    seniority: "Mid to senior",
+    blurb:
+      "Modelling roles where the CV has to show a model that reached production, not a notebook that reached a conclusion.",
+    intro:
+      "Data science CVs fail on the last mile. They document the modelling and go quiet about whether anything shipped, which leaves a hiring manager unable to tell a practitioner from a competent student. The example below leads with deployment and the decision the model changed, and lets the algorithm names sit inside that evidence rather than in a list of techniques.",
+    summary:
+      "Data Scientist, 6 years building forecasting and ranking models in Python, with 4 in production serving live traffic. Owned a churn model that moved retention spend from broad discounting to targeted intervention, cutting quarterly churn by 1.8 points.",
+    bullets: [
+      {
+        before: "Built machine learning models to predict customer churn.",
+        after:
+          "Built and deployed a gradient boosted churn model over 2.4M accounts, and redirected retention spend to the top decile, cutting quarterly churn from 7.1% to 5.3%.",
+      },
+      {
+        before: "Worked with stakeholders to understand business requirements.",
+        after:
+          "Replaced a monthly hand-built forecast with a model the commercial team now runs themselves, cutting the planning cycle from 9 days to 2.",
+      },
+      {
+        before: "Used A/B testing to evaluate model performance.",
+        after:
+          "Ran the ranking model as a 6 week online experiment against the incumbent, and held the rollout when lift proved flat outside the top two segments.",
+      },
+    ],
+    skills: [
+      "Languages: Python, SQL, R",
+      "Modelling: scikit-learn, XGBoost, PyTorch, time series forecasting, causal inference",
+      "Production: MLflow, Airflow, Docker, AWS SageMaker, feature stores",
+      "Practice: experiment design, model monitoring, stakeholder communication",
+    ],
+    keywords: [
+      "machine learning",
+      "predictive modelling",
+      "A/B testing",
+      "model deployment",
+      "feature engineering",
+      "experiment design",
+      "Python",
+    ],
+    tip: "Say what happened to the model after training. A model in production that changed a decision beats three notebooks with better accuracy, and the second kind is what most data science CVs are full of.",
+  },
+  {
+    slug: "devops-engineer",
+    role: "DevOps Engineer",
+    seniority: "Mid to senior",
+    blurb:
+      "Platform, SRE and infrastructure roles, and how to show reliability ownership rather than a tool inventory.",
+    intro:
+      "DevOps CVs are the most tool-heavy documents in the industry, and the tool list is the least useful part. Every candidate lists Terraform and Kubernetes. Almost none says what their platform did under load, how long a deploy took before they arrived, or what happened the night something broke. The example below is built around those three things.",
+    summary:
+      "DevOps Engineer, 7 years running production platforms on AWS and Kubernetes for teams of 30 to 80 engineers. Cut deploy time from 40 minutes to 6, took the platform through a 4x traffic increase without a customer-visible outage, and carried the pager throughout.",
+    bullets: [
+      {
+        before: "Responsible for CI/CD pipelines and deployment automation.",
+        after:
+          "Rebuilt the deploy pipeline in GitHub Actions with parallel test sharding, cutting median deploy from 40 minutes to 6 and raising releases from twice a week to 12 a day.",
+      },
+      {
+        before: "Managed AWS infrastructure using Terraform.",
+        after:
+          "Moved 60+ hand-provisioned AWS resources into Terraform modules, ending a class of drift incidents that had caused 3 of the previous year's 5 severity one outages.",
+      },
+      {
+        before: "Participated in the on-call rotation and incident response.",
+        after:
+          "Ran the on-call rotation for 4 teams and cut mean time to recovery from 95 minutes to 28 by adding service-level alerting and runbooks for the 10 most frequent alerts.",
+      },
+    ],
+    skills: [
+      "Cloud: AWS, GCP, Kubernetes, Docker, Terraform",
+      "Delivery: GitHub Actions, ArgoCD, Helm, infrastructure as code",
+      "Observability: Prometheus, Grafana, Datadog, OpenTelemetry, SLOs",
+      "Practice: incident response, on-call, cost optimisation, platform reliability",
+    ],
+    keywords: [
+      "CI/CD",
+      "Kubernetes",
+      "Terraform",
+      "infrastructure as code",
+      "observability",
+      "incident response",
+      "SRE",
+    ],
+    tip: "Reliability numbers are the whole argument: deploy frequency, mean time to recovery, uptime, and how many engineers depended on you. A tool list without them describes somebody who has read the documentation.",
+  },
+  {
+    slug: "financial-analyst",
+    role: "Financial Analyst",
+    seniority: "Entry to mid",
+    blurb:
+      "FP&A and commercial finance roles, and how to show the decision your model informed rather than the model itself.",
+    intro:
+      "Financial analyst CVs describe deliverables: models, decks, monthly packs. What a hiring manager needs to know is whether anyone acted on them. The strongest analyst CVs read like a short list of decisions the business made differently, with the analysis underneath. The example below is written that way.",
+    summary:
+      "Financial Analyst, 4 years in FP&A for a 180M turnover retail group. Own the rolling forecast and monthly variance pack for three business units, and built the model behind a pricing change that recovered 2.1 points of gross margin.",
+    bullets: [
+      {
+        before: "Prepared monthly management reports and variance analysis.",
+        after:
+          "Own the monthly variance pack across 3 business units, and flagged a freight cost overrun 6 weeks before year end that let procurement renegotiate rather than absorb it.",
+      },
+      {
+        before: "Built financial models in Excel to support decision making.",
+        after:
+          "Built the margin model behind a 2026 pricing review, and the scenario the board chose recovered 2.1 points of gross margin on the affected range.",
+      },
+      {
+        before: "Assisted with the annual budgeting process.",
+        after:
+          "Ran the budget cycle for 14 cost centres, cutting the consolidation step from 11 days to 4 by replacing emailed templates with a single Power BI model.",
+      },
+    ],
+    skills: [
+      "Analysis: forecasting, variance analysis, scenario modelling, margin analysis",
+      "Systems: advanced Excel, Power BI, SAP, NetSuite, SQL",
+      "Reporting: management accounts, board packs, KPI reporting",
+      "Practice: business partnering, budget cycle ownership, cost control",
+    ],
+    keywords: [
+      "financial modelling",
+      "variance analysis",
+      "forecasting",
+      "FP&A",
+      "budgeting",
+      "business partnering",
+      "advanced Excel",
+    ],
+    tip: "Name the decision. \"Built a pricing model\" is a deliverable. \"The scenario the board chose recovered 2.1 points of margin\" is why they would hire you over the other applicant who also builds models.",
+  },
+  {
+    slug: "hr-manager",
+    role: "HR Manager",
+    seniority: "Mid to senior",
+    blurb:
+      "People and HR business partner roles, and how to put numbers on work that feels unmeasurable.",
+    intro:
+      "HR CVs suffer from a belief that the work cannot be quantified. It can, and the numbers are usually sitting in a system somebody already reports on: time to hire, attrition, absence, engagement, tribunal exposure, headcount served. The example below uses them, and treats employee relations casework as the evidence of judgement that it actually is.",
+    summary:
+      "HR Manager supporting 340 employees across 4 sites, covering the full employee lifecycle. Cut regretted attrition from 19% to 12% over two years and led 30+ employee relations cases including 6 formal grievances, none of which reached tribunal.",
+    bullets: [
+      {
+        before: "Responsible for the recruitment process across the business.",
+        after:
+          "Rebuilt hiring around structured scorecards and a two stage process, cutting time to hire from 54 days to 31 while raising 12 month new starter retention to 88%.",
+      },
+      {
+        before: "Handled employee relations issues and disciplinary matters.",
+        after:
+          "Led 30+ employee relations cases including 6 formal grievances and 4 disciplinaries, with no case escalating to tribunal and all closed inside the policy timeframe.",
+      },
+      {
+        before: "Helped improve employee engagement across the organisation.",
+        after:
+          "Acted on the two lowest scoring engagement themes with a manager training programme and a pay banding review, lifting the engagement score from 6.1 to 7.4 across two cycles.",
+      },
+    ],
+    skills: [
+      "Lifecycle: recruitment, onboarding, performance management, succession planning",
+      "Employee relations: grievances, disciplinaries, absence management, TUPE, redundancy",
+      "Systems: Workday, BambooHR, SAP SuccessFactors, Greenhouse",
+      "Practice: employment law, policy design, HR business partnering, CIPD Level 7",
+    ],
+    keywords: [
+      "employee relations",
+      "HR business partnering",
+      "performance management",
+      "employment law",
+      "talent acquisition",
+      "attrition",
+      "CIPD",
+    ],
+    tip: "Attrition, time to hire, absence rate, headcount supported and case volume are all sitting in a system you already report from. Two of them turn a generic HR CV into a specific one.",
+  },
+  {
+    slug: "operations-manager",
+    role: "Operations Manager",
+    seniority: "Mid to senior",
+    blurb:
+      "Operations, logistics and service delivery roles, where scale and cost are the whole argument.",
+    intro:
+      "Operations CVs describe responsibilities that could belong to a team of three or a site of three hundred, and the reader has no way to tell which. The fix is unglamorous and immediate: put the scale in. Headcount, sites, volume, budget, and the metric you were held to. The example below does that in every bullet.",
+    summary:
+      "Operations Manager running a 3 site distribution operation with 85 staff and a 4.2M annual budget. Raised on-time dispatch from 91% to 98.5% and cut cost per unit shipped by 14% over two peak seasons.",
+    bullets: [
+      {
+        before: "Managed daily operations and a team of staff.",
+        after:
+          "Run daily operations across 3 sites and 85 staff, holding on-time dispatch at 98.5% through a peak season that doubled volume for 9 weeks.",
+      },
+      {
+        before: "Responsible for improving processes and reducing costs.",
+        after:
+          "Resequenced the pick and pack flow and renegotiated two carrier contracts, cutting cost per unit shipped by 14% with no change to delivery times.",
+      },
+      {
+        before: "Ensured compliance with health and safety requirements.",
+        after:
+          "Rebuilt the safety induction and near miss reporting after an audit finding, cutting reportable incidents from 11 to 3 a year across the 3 sites.",
+      },
+    ],
+    skills: [
+      "Operations: capacity planning, process improvement, Lean, Six Sigma, continuous improvement",
+      "Commercial: budget ownership, supplier negotiation, cost per unit, P&L",
+      "Systems: SAP, WMS, Power BI, Microsoft Dynamics",
+      "Practice: people management, health and safety, KPI reporting, vendor management",
+    ],
+    keywords: [
+      "process improvement",
+      "capacity planning",
+      "supply chain",
+      "cost reduction",
+      "KPI management",
+      "Lean",
+      "health and safety",
+    ],
+    tip: "Scale first, in every bullet. Headcount, sites, volume, budget. Without them a reader cannot tell a shift supervisor from a regional manager, and will assume the smaller of the two.",
+  },
+  {
+    slug: "sales-manager",
+    role: "Sales Manager",
+    seniority: "Mid to senior",
+    blurb:
+      "Sales leadership roles, where quota attainment and team performance carry the CV.",
+    intro:
+      "Sales is the one function where the numbers are unambiguous, which makes a vague sales CV unusually damaging: a reader assumes you left the numbers out because they were bad. Quota, attainment, deal size, cycle length and team performance belong on the page. The example below leads with them and treats team development as the thing that separates a manager from a strong individual seller.",
+    summary:
+      "Sales Manager leading a team of 8 across UK and Nordics, carrying a 6.4M annual quota. Hit 112% of team target in 2025, raised average deal size from 34k to 51k, and took 3 of 8 reps from under quota to above it inside two quarters.",
+    bullets: [
+      {
+        before: "Managed a team of sales representatives and their targets.",
+        after:
+          "Lead 8 account executives against a 6.4M annual quota, closing 2025 at 112% with 6 of 8 reps individually above target.",
+      },
+      {
+        before: "Responsible for growing revenue in the assigned territory.",
+        after:
+          "Moved the team upmarket from SMB to mid market, raising average deal size from 34k to 51k while holding the sales cycle at 71 days.",
+      },
+      {
+        before: "Coached team members and helped them improve performance.",
+        after:
+          "Introduced weekly deal reviews and a MEDDIC qualification standard, taking 3 underperforming reps above quota within two quarters and cutting slipped deals by a third.",
+      },
+    ],
+    skills: [
+      "Sales: pipeline management, forecasting, territory planning, MEDDIC, solution selling",
+      "Leadership: coaching, performance management, hiring, quota setting",
+      "Systems: Salesforce, HubSpot, Gong, Outreach, LinkedIn Sales Navigator",
+      "Practice: enterprise negotiation, QBRs, cross-functional with marketing and CS",
+    ],
+    keywords: [
+      "quota attainment",
+      "pipeline management",
+      "sales forecasting",
+      "team leadership",
+      "Salesforce",
+      "enterprise sales",
+      "territory management",
+    ],
+    tip: "Give the quota and the attainment together. 112% means nothing without the number it was measured against, and a reader who has to guess will guess low.",
+  },
+  {
     slug: "software-engineer",
     role: "Software Engineer",
     seniority: "Mid to senior",
@@ -92,19 +356,19 @@ export const RESUME_EXAMPLES = [
   {
     slug: "nurse",
     role: "Nurse",
-    seniority: "Registered / band 5–6",
+    seniority: "Registered / band 5 to 6",
     blurb:
       "Ward, community, and specialist nursing, showing caseload and judgement without breaching confidentiality.",
     intro:
       "Clinical CVs undersell more than any other category, because clinicians are trained to describe work collectively and modestly. *Provided high-quality patient care* is true of everyone on the rota. Caseload, acuity, escalation, and audit numbers describe your scope entirely at the service level. No patient detail is ever needed.",
     summary:
-      "Registered Nurse (NMC PIN active), 5 years across acute surgical and post-operative care on a 28-bed ward. Manages a caseload of 8–10 patients per shift, precepts newly qualified staff, and led a discharge-planning audit that cut average delay by 2.1 hours.",
+      "Registered Nurse (NMC PIN active), 5 years across acute surgical and post-operative care on a 28-bed ward. Manages a caseload of 8 to 10 patients per shift, precepts newly qualified staff, and led a discharge-planning audit that cut average delay by 2.1 hours.",
     bullets: [
       {
         before:
           "Responsible for providing care to patients on a busy surgical ward.",
         after:
-          "Managed a caseload of 8–10 post-operative patients per shift on a 28-bed surgical ward, triaging deterioration using NEWS2 and escalating 40+ cases to the critical care outreach team over 12 months.",
+          "Managed a caseload of 8 to 10 post-operative patients per shift on a 28-bed surgical ward, triaging deterioration using NEWS2 and escalating 40+ cases to the critical care outreach team over 12 months.",
       },
       {
         before: "Involved in a project to improve discharge processes.",
@@ -316,12 +580,12 @@ export const RESUME_EXAMPLES = [
     intro:
       "Customer service CVs are often the thinnest, and they need not be. Support roles generate more measurable data than almost any other entry-level job: ticket volume, handling time, first-contact resolution, satisfaction scores. Using them turns a generic CV into a specific one immediately.",
     summary:
-      "Customer Service Representative, 3 years in high-volume e-commerce support across chat, email, and phone. Handles 60–80 contacts a day at 94% CSAT, and rebuilt the response macro library that cut average handling time by 44%.",
+      "Customer Service Representative, 3 years in high-volume e-commerce support across chat, email, and phone. Handles 60 to 80 contacts a day at 94% CSAT, and rebuilt the response macro library that cut average handling time by 44%.",
     bullets: [
       {
         before: "Duties included handling customer queries and updating records.",
         after:
-          "Handled 60–80 customer contacts a day across chat and email, maintaining 94% CSAT against a team average of 88%.",
+          "Handled 60 to 80 customer contacts a day across chat and email, maintaining 94% CSAT against a team average of 88%.",
       },
       {
         before: "Helped improve our processes.",
@@ -359,12 +623,12 @@ export const RESUME_EXAMPLES = [
     intro:
       "Teaching CVs describe the timetable and skip the outcomes. Attainment and progress data, intervention results, and whole-school responsibilities are the evidence, and every teacher has them. Lead with the subject and key stage, because that is what recruiters filter on first.",
     summary:
-      "Secondary Mathematics Teacher (QTS), 6 years across KS3–KS5. Raised GCSE grade 5+ attainment in my classes from 58% to 74% over three cohorts, and led the Year 11 intervention programme across the department.",
+      "Secondary Mathematics Teacher (QTS), 6 years across KS3 to KS5. Raised GCSE grade 5+ attainment in my classes from 58% to 74% over three cohorts, and led the Year 11 intervention programme across the department.",
     bullets: [
       {
         before: "Taught maths to students in Years 7 to 13.",
         after:
-          "Taught KS3–KS5 Mathematics across 6 classes, raising grade 5+ attainment in my GCSE cohorts from 58% to 74% over three years against a department average of 63%.",
+          "Taught KS3 to KS5 Mathematics across 6 classes, raising grade 5+ attainment in my GCSE cohorts from 58% to 74% over three years against a department average of 63%.",
       },
       {
         before: "Ran intervention sessions for struggling students.",
@@ -565,7 +829,7 @@ export const RESUME_EXAMPLES = [
       "scheduling",
       "administrative support",
     ],
-    tip: "Put the search terms — calendar management, travel booking, expense reports — inside a bullet that shows volume or turnaround. A skills list of those words without evidence is what every other admin CV already has.",
+    tip: "Put the search terms, calendar management, travel booking and expense reports, inside a bullet that shows volume or turnaround. A skills list of those words without evidence is what every other admin CV already has.",
   },
   {
     slug: "business-analyst",
@@ -585,7 +849,7 @@ export const RESUME_EXAMPLES = [
     blurb:
       "Business analysis: requirements, process maps, and UAT written as decisions and outcomes, not as a list of artefacts.",
     intro:
-      "Business analyst CVs inventory artefacts — BRDs, user stories, process maps — and skip the decision those artefacts were for. A hiring manager already assumes you can open Jira. They want to know whether a requirement you wrote shipped, whether UAT you ran caught something, and whether a process you mapped actually changed. The example below leads with that.",
+      "Business analyst CVs inventory artefacts such as BRDs, user stories and process maps, then skip the decision those artefacts were for. A hiring manager already assumes you can open Jira. They want to know whether a requirement you wrote shipped, whether UAT you ran caught something, and whether a process you mapped actually changed. The example below leads with that.",
     summary:
       "Business Analyst, 5 years in operations and SaaS delivery. Translated messy stakeholder requests into 40+ shipped user stories last year and cut a claims-handoff cycle from 9 days to 4. Works in SQL, Jira, and Miro; comfortable running UAT with people who did not ask for the change.",
     bullets: [

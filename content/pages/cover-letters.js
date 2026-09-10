@@ -126,7 +126,7 @@ export const aiCoverLetterGenerator = {
         before:
           "I am writing to apply for the Customer Success Manager position at your company. I am a passionate professional who thrives in fast-paced environments and would be a great fit for your team.",
         after:
-          "I am applying for the Customer Success Manager role because I have spent four years onboarding enterprise accounts and cutting logo churn — most recently taking a 40-account book from 11% annual churn to 6% without adding headcount.",
+          "I am applying for the Customer Success Manager role because I have spent four years onboarding enterprise accounts and cutting logo churn, most recently taking a 40-account book from 11% annual churn to 6% without adding headcount.",
       },
     },
 
@@ -255,10 +255,10 @@ export const coverLetterBuilder = {
       table: {
         head: ["Paragraph", "Its one job", "Length"],
         rows: [
-          ["Opening", "Name the role and give the single strongest reason you fit", "2–3 sentences"],
-          ["Evidence", "Answer the posting's top requirement with a specific result", "3–4 sentences"],
-          ["Angle or objection", "A second requirement, or honest handling of the obvious doubt", "2–4 sentences"],
-          ["Close", "A plain next step", "1–2 sentences"],
+          ["Opening", "Name the role and give the single strongest reason you fit", "2 to 3 sentences"],
+          ["Evidence", "Answer the posting's top requirement with a specific result", "3 to 4 sentences"],
+          ["Angle or objection", "A second requirement, or honest handling of the obvious doubt", "2 to 4 sentences"],
+          ["Close", "A plain next step", "1 to 2 sentences"],
         ],
       },
     },

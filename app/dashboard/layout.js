@@ -1,7 +1,7 @@
 import DashboardShell from "./DashboardShell";
 
 // Server layout so /dashboard/* can carry real metadata. robots.txt already
-// disallows crawling, but that alone doesn't stop indexing of linked URLs —
+// disallows crawling, but that alone doesn't stop indexing of linked URLs.
 // noindex does. The interactive shell lives in DashboardShell.jsx.
 export const metadata = {
   title: "Dashboard",

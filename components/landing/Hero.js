@@ -1,20 +1,33 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRightIcon, PlayIcon } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
 
 function DemoPreview() {
-  const reduceMotion = useReducedMotion();
+  const videoRef = useRef(null);
+
+  // The video carries autoPlay so it starts before hydration. This pauses it
+  // again for anyone who asked their OS to reduce motion, and follows them if
+  // they change the setting while the page is open.
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const apply = () => {
+      const video = videoRef.current;
+      if (!video) return;
+      if (query.matches) video.pause();
+      else video.play().catch(() => {});
+    };
+
+    apply();
+    query.addEventListener("change", apply);
+    return () => query.removeEventListener("change", apply);
+  }, []);
 
   return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto mt-9 w-full max-w-5xl"
-    >
+    <div className="landing-rise-delayed relative mx-auto mt-9 w-full max-w-5xl">
       <div className="overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-white shadow-[0_24px_60px_oklch(0.18_0.02_260_/_0.08)]">
         <div className="landing-browser-bar">
           <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
@@ -27,9 +40,10 @@ function DemoPreview() {
         <div className="relative overflow-hidden">
           {/* Muted autoplay so it works as a silent product demo on mobile too */}
           <video
+            ref={videoRef}
             src="/fitmycv-demo.mp4"
             poster="/hero.jpg"
-            autoPlay={!reduceMotion}
+            autoPlay
             loop
             muted
             playsInline
@@ -39,7 +53,7 @@ function DemoPreview() {
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -47,12 +61,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative px-5 pb-20 pt-24 sm:px-10 sm:pt-32 lg:px-16 xl:px-24">
       <div className="landing-container relative flex flex-col items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex max-w-4xl flex-col items-center text-center"
-        >
+        <div className="landing-rise flex max-w-4xl flex-col items-center text-center">
           <span className="landing-eyebrow mb-8 gap-2.5">
             <span className="landing-eyebrow-new">New</span>
             Works with the major job boards
@@ -103,7 +112,7 @@ export default function Hero() {
           <p className="mt-9 text-sm leading-7 text-[var(--landing-ink-soft)]">
             Lifetime from ${PRICING.lifetime.price}. Cancel anytime on monthly.
           </p>
-        </motion.div>
+        </div>
 
         <DemoPreview />
       </div>

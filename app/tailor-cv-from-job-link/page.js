@@ -100,8 +100,8 @@ export default function TailorCvFromJobLinkPage() {
 
             <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
               Tailor your resume to a job description with AI: paste a job
-              link from LinkedIn, Indeed, or any board — or paste the posting
-              text — and FitMyCV rewrites your CV and cover letter to match
+              link from LinkedIn, Indeed, or any board, or paste the posting
+              text, and FitMyCV rewrites your CV and cover letter to match
               the role, keyword for keyword.
             </p>
 

@@ -37,7 +37,7 @@ const PAGE_DESCRIPTION = "View all your previously tailored resumes and cover le
 const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
 
 /**
- * Row action button. Hidden until the row is hovered on pointer devices —
+ * Row action button. Hidden until the row is hovered on pointer devices.
  * touch has no hover, so below `sm` they stay visible. `force` keeps a button
  * on screen regardless (used by the delete-confirm state).
  */

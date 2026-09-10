@@ -162,7 +162,7 @@ export default function OnboardingPage() {
     [router, update],
   );
 
-  // Skipping lands on /dashboard, not /dashboard/tailor — the tailor page
+  // Skipping lands on /dashboard, not /dashboard/tailor: the tailor page
   // errors on first action without a reference CV.
   const skip = () => completeOnboarding("/dashboard", answers);
 
@@ -181,7 +181,7 @@ export default function OnboardingPage() {
   const question = QUESTIONS[step];
   const facts = onPayoff ? summariseCV(parsedCV) : [];
   // The full checklist the dashboard will show, with the CV step already
-  // ticked — the user just finished it.
+  // ticked. The user just finished it.
   const plan = getActivationSteps(session?.user?.isPremium).map((step) => ({
     ...step,
     done: step.key === "resume",
@@ -192,7 +192,7 @@ export default function OnboardingPage() {
       <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-5 py-8 sm:px-8">
         <header className="flex items-center gap-3">
           {/* The slot keeps its layout box on every step so the logo never
-              shifts. visibility, not `hidden` — display:none would still jump. */}
+              shifts. visibility, not `hidden`. display:none would still jump. */}
           <button
             type="button"
             onClick={() => setStep((previous) => previous - 1)}
@@ -246,7 +246,7 @@ export default function OnboardingPage() {
         </header>
 
         <section className="flex flex-1 flex-col pt-16 pb-10 sm:pt-24">
-          {/* keyed so each step remounts and animates in; no exit animation —
+          {/* keyed so each step remounts and animates in; no exit animation.
               AnimatePresence mode="wait" deadlocks the swap here */}
           <motion.div
             key={onPayoff ? "payoff" : step}

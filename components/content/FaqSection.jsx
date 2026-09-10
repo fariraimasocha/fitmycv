@@ -1,7 +1,7 @@
 import { PlusIcon } from "@phosphor-icons/react/dist/ssr";
 
 // Server-rendered FAQ. Uses <details> rather than JS state so the answers are
-// present in the initial HTML — Google only credits FAQPage schema when the
+// present in the initial HTML. Google only credits FAQPage schema when the
 // answer text is actually visible on the page.
 export default function FaqSection({
   faqs,

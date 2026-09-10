@@ -318,7 +318,7 @@ export default function DashboardPage() {
                 </span>
                 <div>
                   <p className="text-sm font-semibold">Tailor a CV</p>
-                  <p className="text-xs text-background/70">
+                  <p className="text-xs text-[var(--landing-ink-inverse-soft)]">
                     Paste a job URL to get started
                   </p>
                 </div>

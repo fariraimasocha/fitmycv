@@ -14,7 +14,7 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 - **PDF:** unpdf (extract text), TBD (generate downloadable PDFs)
 - **Icons:** use @phosphor-icons/react. Always use the `Icon` suffix (e.g. `HouseIcon`, `XIcon`, `ListIcon`). Bare names like `X`, `List` are deprecated.
 - **Data fetching, caching and Mutations:** use tanstack-query
-- **Toasts:** use react-hot-toast for all notifications
+- **Toasts:** use sonner (`import { toast } from "sonner"`) for all notifications
 - **State Management:** use zustand for global state management
 - **Loading:** use `<Loader />` from `@/components/Loader`. This is the default full-page loader for all pages.
 

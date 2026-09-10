@@ -92,7 +92,7 @@ export function DashboardStatCard({
                 className={cn(
                   "mb-1 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold",
                   positive
-                    ? "bg-[#eef8f1] text-[var(--landing-success)]"
+                    ? "bg-[var(--landing-success-soft)] text-[var(--landing-success)]"
                     : "bg-[var(--landing-primary-soft)] text-muted-foreground"
                 )}
               >

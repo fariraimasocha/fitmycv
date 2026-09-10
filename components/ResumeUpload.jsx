@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   UploadSimpleIcon,
   FileTextIcon,

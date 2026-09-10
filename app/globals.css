@@ -119,6 +119,10 @@
   --landing-surface-elevated: #ffffff;
   --landing-ink: #1a1a1a;
   --landing-ink-soft: #5c5c5c;
+  /* Tertiary text. The ramp had only ink and ink-soft, so a third tier had to
+     borrow a cool Tailwind grey. Warm, to match the paper. 4.7:1 on
+     --landing-paper, 5.2:1 on white. */
+  --landing-ink-faint: #726d62;
   --landing-line: #e3ddd4;
   --landing-primary: #1a1a1a;
   --landing-primary-dark: #1a1a1a;
@@ -134,6 +138,15 @@
   --landing-accent-line: #e0b9a8;
   --landing-coral: #c05a3f;
   --landing-success: #3d8b5a;
+  /* Tinted background for success states. Was an #eef8f1 literal repeated in
+     three files. */
+  --landing-success-soft: #eef8f1;
+  /* Secondary text on the dark surfaces. Hand-picked at the ink's own hue
+     rather than white at reduced opacity, which desaturates whatever is under
+     it and reads as disabled. 8.8:1 on --foreground, 8.1:1 on
+     --landing-primary. Note this deliberately sits below the 13.5:1 that
+     white/70 resolved to: it is meant to be secondary. */
+  --landing-ink-inverse-soft: oklch(0.76 0.02 260);
   --landing-shadow: 0 18px 45px oklch(0.18 0.02 260 / 0.08), 0 4px 12px oklch(0.18 0.02 260 / 0.05);
   --landing-shadow-sm: 0 8px 20px oklch(0.18 0.02 260 / 0.06), 0 2px 6px oklch(0.18 0.02 260 / 0.04);
 }
@@ -372,7 +385,7 @@
     gap: 0.5rem;
     border-radius: 999px;
     border: 1px solid #c8e6d0;
-    background: #eef8f1;
+    background: var(--landing-success-soft);
     padding: 0.55rem 1rem;
     font-size: 0.82rem;
     font-weight: 500;

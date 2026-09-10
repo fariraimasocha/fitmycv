@@ -10,6 +10,9 @@ const tailoredCVSchema = new mongoose.Schema(
     jobTitle: String,
     jobCompany: String,
     jobUrl: String,
+    // The scraped posting, kept so the answer writers on the saved CV page
+    // have the requirements to work from.
+    jobData: mongoose.Schema.Types.Mixed,
     basics: {
       name: String,
       label: String,
@@ -50,6 +53,7 @@ const tailoredCVSchema = new mongoose.Schema(
       },
     ],
     coverLetter: String,
+    whyThisRole: String,
   },
   { timestamps: true }
 );

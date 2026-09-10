@@ -10,7 +10,7 @@ import {
   CheckIcon,
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";

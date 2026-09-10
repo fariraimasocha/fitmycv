@@ -24,7 +24,7 @@ function StepVisual({ step }) {
             <span className="truncate text-xs text-[var(--landing-ink-soft)]">
               linkedin.com/jobs/view/…
             </span>
-            <span className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--landing-primary)] px-2.5 py-1 text-[10px] font-semibold text-white">
+            <span className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--landing-primary)] px-2.5 py-1 text-xs font-semibold text-white">
               <ClipboardTextIcon size={10} />
               Paste
             </span>
@@ -33,7 +33,7 @@ function StepVisual({ step }) {
             {["LinkedIn", "Indeed", "Glassdoor"].map((label) => (
               <span
                 key={label}
-                className="rounded-full border border-[var(--landing-line)] bg-white px-2.5 py-1 text-[10px] font-medium text-[var(--landing-ink-soft)]"
+                className="rounded-full border border-[var(--landing-line)] bg-white px-2.5 py-1 text-xs font-medium text-[var(--landing-ink-soft)]"
               >
                 {label}
               </span>
@@ -76,7 +76,7 @@ function StepVisual({ step }) {
         <span className="text-xs font-semibold text-[var(--landing-ink)]">
           resume_tailored.pdf
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-primary)] px-4 py-2 text-[10px] font-semibold text-white">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-primary)] px-4 py-2 text-xs font-semibold text-white">
           <DownloadSimpleIcon size={12} />
           Download PDF
         </span>

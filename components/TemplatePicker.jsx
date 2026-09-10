@@ -86,7 +86,7 @@ export default function TemplatePicker({ value, onChange, data }) {
                   <div className="flex items-center justify-between gap-1">
                     <p className="truncate text-sm font-semibold">{t.name}</p>
                     {t.badge && (
-                      <Badge variant="secondary" className="shrink-0 text-[10px]">
+                      <Badge variant="secondary" className="shrink-0 text-xs">
                         {t.badge}
                       </Badge>
                     )}

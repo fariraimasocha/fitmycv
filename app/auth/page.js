@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { signIn } from "next-auth/react";
 import { GoogleLogoIcon, WarningIcon, CopyIcon } from "@phosphor-icons/react";
 import { useCheckoutStore } from "@/stores/checkout-store";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 function isWebView() {
   if (typeof navigator === "undefined") return false;

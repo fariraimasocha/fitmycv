@@ -31,7 +31,7 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { jobTitle, jobCompany, jobUrl, basics, work, education, skills, coverLetter, matchScore, matchGrade } = body;
+    const { jobTitle, jobCompany, jobUrl, jobData, basics, work, education, skills, coverLetter, whyThisRole, matchScore, matchGrade } = body;
 
     await connectDB();
     const cv = await TailoredCV.create({
@@ -39,11 +39,13 @@ export async function POST(request) {
       jobTitle,
       jobCompany,
       jobUrl,
+      jobData,
       basics,
       work,
       education,
       skills,
       coverLetter,
+      whyThisRole,
     });
 
     // Auto-create application entry

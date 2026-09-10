@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { motion } from "motion/react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import {
   ScalesIcon,
   SparkleIcon,
@@ -107,7 +107,7 @@ export default function ComparePage() {
             Select Applications ({selectedIds.length}/4)
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2 px-4 py-4 sm:px-6">
+        <CardContent className="dashboard-card-pad space-y-2">
           {apps.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               No applications yet. Tailor some resumes first.

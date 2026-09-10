@@ -91,7 +91,7 @@ export default function CoverLetterDemo() {
             </span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--landing-success)] animate-pulse" aria-hidden="true" />
             <span className="font-sans text-xs text-muted-foreground font-medium">
               {isComplete ? "Complete" : "Generating…"}
             </span>

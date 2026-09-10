@@ -114,7 +114,7 @@ function ScoreRing({ value }) {
         <span className="font-outfit text-2xl font-extrabold text-[var(--landing-ink)]">
           {value}%
         </span>
-        <span className="font-outfit text-[0.6rem] font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">
+        <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
           match
         </span>
       </div>

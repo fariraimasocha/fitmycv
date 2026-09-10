@@ -7,7 +7,10 @@ import {
   XCircleIcon,
   LightbulbIcon,
   WarningIcon,
+  SpinnerGapIcon,
+  MagicWandIcon,
 } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { ArcGauge } from "@/components/charts/ArcGauge";
 import { PillTrack } from "@/components/charts/PillTrack";
@@ -51,6 +54,46 @@ function KeywordChip({ keyword, variant }) {
   );
 }
 
+function FixItem({ text, onApply, isApplying, isApplied, disabled }) {
+  return (
+    <li className="flex items-start justify-between gap-3 text-sm leading-6 text-[var(--landing-ink-soft)]">
+      <span className="flex items-start gap-2">
+        <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
+        {text}
+      </span>
+      {onApply &&
+        (isApplied ? (
+          <span className="inline-flex shrink-0 items-center gap-1 py-1 text-xs font-medium text-[var(--landing-success)]">
+            <CheckCircleIcon size={14} weight="fill" aria-hidden="true" />
+            Applied
+          </span>
+        ) : (
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-7 shrink-0 rounded-md border-border px-2 text-xs"
+            onClick={() => onApply(text)}
+            disabled={disabled || isApplying}
+            aria-busy={isApplying}
+            aria-label={`Apply this fix: ${text}`}
+          >
+            {isApplying ? (
+              <>
+                <SpinnerGapIcon size={12} className="animate-spin" aria-hidden="true" />
+                Applying…
+              </>
+            ) : (
+              <>
+                <MagicWandIcon size={12} aria-hidden="true" />
+                Apply
+              </>
+            )}
+          </Button>
+        ))}
+    </li>
+  );
+}
+
 function LoadingSkeleton() {
   return (
     <div className="space-y-6">
@@ -67,7 +110,14 @@ function LoadingSkeleton() {
   );
 }
 
-export default function ATSScoreCard({ atsData, isLoading, preScore }) {
+export default function ATSScoreCard({
+  atsData,
+  isLoading,
+  preScore,
+  onApplyFix,
+  applyingFix = null,
+  appliedFixes = [],
+}) {
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
@@ -179,10 +229,14 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
             </div>
             <ul className="space-y-1.5">
               {recommendations.map((rec, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                  <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
-                  {rec}
-                </li>
+                <FixItem
+                  key={i}
+                  text={rec}
+                  onApply={onApplyFix}
+                  isApplying={applyingFix === rec}
+                  isApplied={appliedFixes.includes(rec)}
+                  disabled={Boolean(applyingFix)}
+                />
               ))}
             </ul>
           </div>
@@ -196,10 +250,14 @@ export default function ATSScoreCard({ atsData, isLoading, preScore }) {
             </div>
             <ul className="space-y-1.5">
               {formattingNotes.map((note, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                  <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
-                  {note}
-                </li>
+                <FixItem
+                  key={i}
+                  text={note}
+                  onApply={onApplyFix}
+                  isApplying={applyingFix === note}
+                  isApplied={appliedFixes.includes(note)}
+                  disabled={Boolean(applyingFix)}
+                />
               ))}
             </ul>
           </div>

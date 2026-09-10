@@ -34,9 +34,13 @@ export default function CoverLetterCard({
 
   return (
     <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-      <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 px-4 py-4 sm:px-6">
+      <CardHeader className="dashboard-card-pad flex flex-row flex-wrap items-center justify-between gap-2">
         <CardTitle className="flex items-center gap-2 text-base font-semibold">
-          <EnvelopeSimpleIcon size={18} aria-hidden="true" />
+          <EnvelopeSimpleIcon
+            size={18}
+            className="text-muted-foreground"
+            aria-hidden="true"
+          />
           Cover Letter
         </CardTitle>
         {editable && (
@@ -61,14 +65,14 @@ export default function CoverLetterCard({
           </Button>
         )}
       </CardHeader>
-      <CardContent className="px-4 py-4 sm:px-6 sm:py-5">
+      <CardContent className="dashboard-card-pad pt-0">
         {editable && isEditing ? (
           <div className="space-y-4">
             <Textarea
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
               rows={16}
-              className="text-sm leading-relaxed"
+              className="max-w-prose text-sm leading-relaxed"
             />
             <div className="flex justify-end">
               <Button
@@ -91,13 +95,27 @@ export default function CoverLetterCard({
             </div>
           </div>
         ) : content ? (
-          <p className={`text-sm leading-relaxed text-foreground whitespace-pre-line ${fontClass}`}>
+          <p className={`max-w-prose text-sm leading-relaxed text-foreground whitespace-pre-line ${fontClass}`}>
             {content}
           </p>
         ) : (
-          <p className="text-sm text-muted-foreground italic">
-            No cover letter generated yet.
-          </p>
+          <div className="flex flex-col items-start gap-3">
+            <p className="text-sm text-muted-foreground">
+              Tailoring a CV writes a cover letter with it. You can also write
+              your own.
+            </p>
+            {editable && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="rounded-md border-border"
+                onClick={() => setIsEditing(true)}
+              >
+                <PencilSimpleIcon size={14} aria-hidden="true" />
+                Write one
+              </Button>
+            )}
+          </div>
         )}
       </CardContent>
     </Card>

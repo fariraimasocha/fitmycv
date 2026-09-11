@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
 import { SUPPORT_EMAIL } from "@/lib/site";
+import { PRICING } from "@/lib/pricing";
 
 export const metadata = {
   title: "Terms and Conditions",
@@ -73,8 +74,13 @@ export default function TermsAndConditionsPage() {
             <Section title="3. Subscriptions and billing">
               <ul className="flex list-disc flex-col gap-2 pl-5">
                 <Bullet>
-                  FitMyCV Premium is offered at $6.99 per month or $16.99 for
-                  lifetime access, billed through our payment provider, Polar.
+                  FitMyCV Premium is offered at {`$${PRICING.month.price}`} per
+                  month or {`$${PRICING.lifetime.price}`} for lifetime access,
+                  billed through our payment provider, Polar.
+                </Bullet>
+                <Bullet>
+                  If prices change, your existing subscription keeps the rate you
+                  signed up at. New prices apply to new purchases only.
                 </Bullet>
                 <Bullet>
                   Subscriptions renew automatically at the end of each billing

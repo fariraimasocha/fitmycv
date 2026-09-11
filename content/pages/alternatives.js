@@ -41,7 +41,7 @@ export const jobscanAlternative = {
     },
     {
       q: "How much does Jobscan cost compared to FitMyCV?",
-      a: `As of ${PRICE_CHECKED}, Jobscan lists a free tier with a small monthly scan limit and paid plans billed monthly or quarterly. FitMyCV is $6.99 a month or $16.99 once for lifetime access. Check both pricing pages before you decide, since these change.`,
+      a: `As of ${PRICE_CHECKED}, Jobscan lists a free tier with a small monthly scan limit and paid plans billed monthly or quarterly. FitMyCV is $9.99 a month or $29.99 once for lifetime access. Check both pricing pages before you decide, since these change.`,
     },
     {
       q: "Does FitMyCV give a match score like Jobscan?",
@@ -93,7 +93,7 @@ export const jobscanAlternative = {
       p: "A job search is not a monthly habit. It is an intense two to four months, then nothing for two years. A subscription priced per month is priced for the wrong shape, which is why people forget to cancel.",
     },
     {
-      p: "FitMyCV is $6.99 a month if you want it that way, or $16.99 once and it is yours. Most people take the one payment because it is less than three months of the monthly plan.",
+      p: "FitMyCV is $9.99 a month if you want it that way, or $29.99 once and it is yours. Most people take the one payment because the monthly plan reaches the same figure by month three.",
     },
 
     { h2: "What you actually do with FitMyCV" },
@@ -122,7 +122,7 @@ export const jobscanAlternative = {
 
     { h2: "Try the free part first" },
     {
-      p: "You do not have to take any of this on trust. The [free ATS resume checker](/ats-resume-checker) runs in your browser, needs no account, and shows you the same keyword gap Jobscan charges for. If the gap looks right, [tailor from the job link](/tailor-cv-from-job-link) and see whether the rewrite is worth $16.99 to you.",
+      p: "You do not have to take any of this on trust. The [free ATS resume checker](/ats-resume-checker) runs in your browser, needs no account, and shows you the same keyword gap Jobscan charges for. If the gap looks right, [tailor from the job link](/tailor-cv-from-job-link) and see whether the rewrite is worth $29.99 to you.",
     },
   ],
   related: [
@@ -226,7 +226,7 @@ export const tealAlternative = {
       p: "Weekly billing looks cheap next to a monthly figure and is not. A weekly plan left running for a month costs meaningfully more than the monthly plan for the same product. That is worth checking against your own calendar before you subscribe, whichever tool you pick.",
     },
     {
-      p: "FitMyCV's answer to this is $16.99 once. No renewal, no forgetting to cancel after you land the job.",
+      p: "FitMyCV's answer to this is $29.99 once. No renewal, no forgetting to cancel after you land the job.",
     },
 
     { h2: "The honest recommendation" },

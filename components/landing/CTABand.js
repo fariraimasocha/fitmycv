@@ -1,6 +1,8 @@
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
+import { PRICING } from "@/lib/pricing";
+
 export default function CTABand() {
   return (
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
@@ -10,7 +12,7 @@ export default function CTABand() {
         </h2>
         <p className="max-w-[560px] text-center text-base leading-relaxed text-[var(--landing-ink-soft)]">
           Join job seekers landing interviews faster with AI-tailored
-          applications. Lifetime access from $16.99.
+          applications. Lifetime access for {`$${PRICING.lifetime.price}`}.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link href="/auth" className="landing-primary-btn text-sm">

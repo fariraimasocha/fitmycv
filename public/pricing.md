@@ -10,8 +10,8 @@ Cancel anytime. No contracts.
 
 | Plan | Price | Notes |
 | --- | --- | --- |
-| Monthly | **$6.99**/month | Cancel anytime |
-| Lifetime | **$16.99** once | Pay once, keep it forever |
+| Monthly | **$9.99**/month | Cancel anytime |
+| Lifetime | **$29.99** once | Pay once, keep it forever |
 
 ### What's included
 
@@ -28,7 +28,7 @@ Cancel anytime. No contracts.
 
 ### How much does FitMyCV cost?
 
-FitMyCV Premium is $6.99 per month, or $16.99 for lifetime access — pay once and keep it forever, for less than the cost of 3 months of monthly.
+FitMyCV Premium is $9.99 per month, or $29.99 for lifetime access. Pay once and keep it forever, for about what three months of monthly costs.
 
 ### What do I get with Premium?
 

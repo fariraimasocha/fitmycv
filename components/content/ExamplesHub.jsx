@@ -80,7 +80,7 @@ export default function ExamplesHub({ hub }) {
               <Link
                 key={example.slug}
                 href={`/resume-examples/${example.slug}`}
-                className="landing-card group flex flex-col gap-3 rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
+                className="landing-card landing-lift group flex flex-col gap-3 rounded-2xl p-6"
               >
                 <span className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
                   {example.seniority}

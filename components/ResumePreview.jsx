@@ -1,4 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
+import {
+  getTemplateStyleVars,
+  normalizeTemplateStyle,
+} from "@/utils/cv-templates/style";
 import {
   EnvelopeSimpleIcon,
   PhoneIcon,
@@ -44,10 +49,10 @@ function ClassicPreview({ basics, work, education, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
 
   return (
-    <div className="space-y-5 font-serif text-black">
+    <div className="space-y-5 text-black">
       {/* Header: centered, uppercase name */}
       <div className="text-center">
-        {basics.name && <h1 className="text-xl font-bold uppercase">{basics.name}</h1>}
+        {basics.name && <p className="text-xl font-bold uppercase">{basics.name}</p>}
         {contactParts.length > 0 && <p className="mt-1 text-xs">{contactParts.join("  |  ")}</p>}
         {basics.profiles?.length > 0 && (
           <p className="mt-0.5 text-xs">
@@ -146,7 +151,7 @@ function ModernPreview({ basics, work, education, skills }) {
     <div className="space-y-3 text-black">
       {/* Header: centered, large name */}
       <div className="text-center">
-        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-2xl font-bold">{basics.name}</p>}
         {contactParts.length > 0 && <p className="mt-1 text-xs">{contactParts.join("  |  ")}</p>}
         {basics.profiles?.length > 0 && (
           <p className="mt-0.5 text-xs">
@@ -245,7 +250,7 @@ function CleanPreview({ basics, work, education, skills }) {
     <div className="space-y-4 text-black">
       {/* Header: left-aligned, gray accents */}
       <div className="border-b-2 border-[#999] pb-3">
-        {basics.name && <h1 className="text-xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-xl font-bold">{basics.name}</p>}
         {basics.label && <p className="mt-0.5 text-sm text-[#444]">{basics.label}</p>}
         {contactParts.length > 0 && <p className="mt-1 text-xs text-[#555]">{contactParts.join("  |  ")}</p>}
         {basics.profiles?.length > 0 && (
@@ -336,7 +341,7 @@ function MinimalPreview({ basics, work, education, skills }) {
     <div className="space-y-8 text-black leading-loose">
       {/* Header: left-aligned, no decorations */}
       <div>
-        {basics.name && <h1 className="text-xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-xl font-bold">{basics.name}</p>}
         {contactParts.length > 0 && <p className="mt-1 text-xs">{contactParts.join("  |  ")}</p>}
         {basics.profiles?.length > 0 && (
           <p className="mt-0.5 text-[9px]">
@@ -433,11 +438,11 @@ function TechnicalPreview({ basics, work, education, skills }) {
   const commentLine = "# " + "-".repeat(36);
 
   return (
-    <div className="space-y-3 font-mono text-black text-[9px]">
+    <div className="space-y-3 text-black text-[9px]">
       {/* Header: terminal comment decorators */}
       <div>
         <p className="text-gray-500">{commentLine}</p>
-        {basics.name && <h1 className="text-sm font-bold uppercase">{basics.name}</h1>}
+        {basics.name && <p className="text-sm font-bold uppercase">{basics.name}</p>}
         {contactParts.length > 0 && <p>{contactParts.join(" | ")}</p>}
         {basics.profiles?.length > 0 && (
           <p>
@@ -510,7 +515,7 @@ function TechnicalPreview({ basics, work, education, skills }) {
 
 // ── Shared: contact row with icons ──────────────────────
 
-function ContactWithIcons({ basics, className = "", accentClass = "text-gray-500", center = false }) {
+function ContactWithIcons({ basics, className = "", accentClass = "text-gray-500", accentStyle, center = false }) {
   const items = [];
   if (basics.email) items.push({ Icon: EnvelopeSimpleIcon, text: basics.email });
   if (basics.phone) items.push({ Icon: PhoneIcon, text: basics.phone });
@@ -531,7 +536,7 @@ function ContactWithIcons({ basics, className = "", accentClass = "text-gray-500
     <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 ${center ? "justify-center" : ""} ${className}`}>
       {items.map(({ Icon, text }, i) => (
         <span key={i} className="inline-flex items-center gap-1">
-          <Icon size={12} className={accentClass} aria-hidden="true" />
+          <Icon size={12} className={accentStyle ? "" : accentClass} style={accentStyle} aria-hidden="true" />
           <span className="break-words">{text}</span>
         </span>
       ))}
@@ -556,7 +561,7 @@ function SidebarPreview({ basics, work, education, skills }) {
       {/* Header */}
       <div className="mb-6 border-b-2 border-black pb-3">
         {basics.name && (
-          <h1 className="text-3xl font-bold uppercase leading-tight tracking-wide">{basics.name}</h1>
+          <p className="text-3xl font-bold uppercase leading-tight tracking-wide">{basics.name}</p>
         )}
         {basics.label && (
           <p className="mt-1 text-sm uppercase tracking-[0.2em] text-gray-700">{basics.label}</p>
@@ -677,12 +682,12 @@ function SpotlightPreview({ basics, work, education, skills }) {
       {/* Header */}
       <div className="mb-4 text-center">
         {basics.name && (
-          <h1 className="text-4xl font-light tracking-wide text-gray-400">
+          <p className="text-4xl font-light tracking-wide text-gray-400">
             {firstName} <span className="font-bold text-black">{restName.join(" ")}</span>
-          </h1>
+          </p>
         )}
         {basics.label && (
-          <p className="mt-1 text-xs font-semibold uppercase tracking-[0.3em] text-red-700">{basics.label}</p>
+          <p className="mt-1 text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: "var(--cv-accent)" }}>{basics.label}</p>
         )}
         <ContactWithIcons basics={basics} center className="mt-2 text-xs text-gray-600" accentClass="text-gray-500" />
       </div>
@@ -702,12 +707,12 @@ function SpotlightPreview({ basics, work, education, skills }) {
               <div key={i} className="break-inside-avoid">
                 <div className="flex items-baseline justify-between gap-2">
                   {job.company && <p className="text-sm font-bold text-black">{job.company}</p>}
-                  {job.location && <p className="shrink-0 text-xs italic text-red-700">{job.location}</p>}
+                  {job.location && <p className="shrink-0 text-xs italic" style={{ color: "var(--cv-accent)" }}>{job.location}</p>}
                 </div>
                 <div className="flex items-baseline justify-between gap-2">
                   {job.position && <p className="text-xs uppercase tracking-wide text-gray-700">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
-                    <p className="shrink-0 text-xs italic text-red-700">{[job.startDate, job.endDate].filter(Boolean).join(" - ")}</p>
+                    <p className="shrink-0 text-xs italic" style={{ color: "var(--cv-accent)" }}>{[job.startDate, job.endDate].filter(Boolean).join(" - ")}</p>
                   )}
                 </div>
                 <div className="text-xs leading-relaxed">
@@ -728,7 +733,7 @@ function SpotlightPreview({ basics, work, education, skills }) {
                 <div className="flex items-baseline justify-between gap-2">
                   {edu.institution && <p className="text-sm font-bold text-black">{edu.institution}</p>}
                   {(edu.startDate || edu.endDate) && (
-                    <p className="shrink-0 text-xs italic text-red-700">{[edu.startDate, edu.endDate].filter(Boolean).join(" - ")}</p>
+                    <p className="shrink-0 text-xs italic" style={{ color: "var(--cv-accent)" }}>{[edu.startDate, edu.endDate].filter(Boolean).join(" - ")}</p>
                   )}
                 </div>
                 {(edu.degree || edu.fieldOfStudy) && (
@@ -772,7 +777,7 @@ function ExecutivePreview({ basics, work, education, skills }) {
   return (
     <div className="text-gray-800">
       <div>
-        {basics.name && <h1 className="text-3xl font-bold text-gray-900">{basics.name}</h1>}
+        {basics.name && <p className="text-3xl font-bold text-gray-900">{basics.name}</p>}
         {basics.label && <p className="text-base text-gray-900/80">{basics.label}</p>}
       </div>
       <ContactWithIcons basics={basics} className="mt-1 mb-2 text-xs text-gray-600" accentClass="text-gray-900" />
@@ -867,7 +872,7 @@ function CompactPreview({ basics, work, education, skills }) {
   return (
     <div className="text-[11px] leading-snug text-black">
       <div className="mb-2 text-center">
-        {basics.name && <h1 className="text-xl font-bold uppercase tracking-wide">{basics.name}</h1>}
+        {basics.name && <p className="text-xl font-bold uppercase tracking-wide">{basics.name}</p>}
         {basics.label && <p className="text-xs font-semibold text-gray-700">{basics.label}</p>}
         {(contactParts.length > 0 || profileParts.length > 0) && (
           <p className="mt-0.5 text-[10px] text-gray-600">{[...contactParts, ...profileParts].join(CONTACT_SEP)}</p>
@@ -956,9 +961,9 @@ function ElegantSectionHeading({ children }) {
 
 function ElegantPreview({ basics, work, education, skills }) {
   return (
-    <div className="font-serif text-black">
+    <div className="text-black">
       <div className="mb-3 text-center">
-        {basics.name && <h1 className="text-3xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-3xl font-bold">{basics.name}</p>}
         {basics.label && <p className="mt-0.5 text-sm italic text-gray-700">{basics.label}</p>}
         <ContactWithIcons basics={basics} center className="mt-1.5 text-xs text-gray-700" accentClass="text-gray-600" />
       </div>
@@ -1068,7 +1073,7 @@ function ProfessionalPreview({ basics, work, education, skills }) {
     <div className="text-black">
       {/* Name alone on the first line: as two spans in one h1 it extracted as
           "NameJob Title", the single most common parse failure after skills. */}
-      {basics.name && <h1 className="text-3xl font-bold">{basics.name}</h1>}
+      {basics.name && <p className="text-3xl font-bold">{basics.name}</p>}
       {basics.label && (
         <p className="text-base font-normal italic text-gray-600">{basics.label}</p>
       )}
@@ -1161,7 +1166,7 @@ function HybridPreview({ basics, work, education, skills }) {
     <div className="text-black">
       {/* Header: left-aligned */}
       <div>
-        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-2xl font-bold">{basics.name}</p>}
         {basics.label && <p className="text-sm text-gray-700">{basics.label}</p>}
         {(contactParts.length > 0 || profileParts.length > 0) && (
           <p className="mt-1 text-xs text-gray-600">
@@ -1251,8 +1256,8 @@ function HybridPreview({ basics, work, education, skills }) {
 function AccentSectionHeading({ children }) {
   return (
     <div className="mb-2 mt-4">
-      <h2 className="text-sm font-bold uppercase tracking-wide text-blue-800">{children}</h2>
-      <div className="mt-0.5 h-0.5 w-10 bg-blue-800" />
+      <h2 className="text-sm font-bold uppercase tracking-wide" style={{ color: "var(--cv-accent)" }}>{children}</h2>
+      <div className="mt-0.5 h-0.5 w-10" style={{ background: "var(--cv-accent)" }} />
     </div>
   );
 }
@@ -1262,12 +1267,12 @@ function AccentPreview({ basics, work, education, skills }) {
     <div className="text-gray-800">
       {/* Header: left-aligned, accent name */}
       <div className="border-b border-gray-300 pb-3">
-        {basics.name && <h1 className="text-3xl font-bold text-blue-800">{basics.name}</h1>}
+        {basics.name && <p className="text-3xl font-bold" style={{ color: "var(--cv-accent)" }}>{basics.name}</p>}
         {basics.label && <p className="mt-0.5 text-sm text-gray-700">{basics.label}</p>}
         <ContactWithIcons
           basics={basics}
           className="mt-1.5 text-xs text-gray-600"
-          accentClass="text-blue-800"
+          accentStyle={{ color: "var(--cv-accent)" }}
         />
       </div>
 
@@ -1287,7 +1292,7 @@ function AccentPreview({ basics, work, education, skills }) {
                 <div className="flex items-baseline justify-between gap-4">
                   {job.position && <p className="text-xs font-bold text-black">{job.position}</p>}
                   {(job.startDate || job.endDate) && (
-                    <p className="shrink-0 text-xs font-semibold text-blue-800">
+                    <p className="shrink-0 text-xs font-semibold" style={{ color: "var(--cv-accent)" }}>
                       {[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
@@ -1317,7 +1322,7 @@ function AccentPreview({ basics, work, education, skills }) {
                     {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
                   </p>
                   {(edu.startDate || edu.endDate) && (
-                    <p className="shrink-0 text-xs font-semibold text-blue-800">
+                    <p className="shrink-0 text-xs font-semibold" style={{ color: "var(--cv-accent)" }}>
                       {[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}
                     </p>
                   )}
@@ -1366,7 +1371,7 @@ function GraduatePreview({ basics, work, education, skills }) {
     <div className="text-black">
       {/* Compact centered header */}
       <div className="text-center">
-        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-2xl font-bold">{basics.name}</p>}
         {basics.label && <p className="text-sm text-gray-700">{basics.label}</p>}
         {(contactParts.length > 0 || profileParts.length > 0) && (
           <p className="mt-1 text-xs text-gray-600">
@@ -1476,7 +1481,7 @@ function StandardPreview({ basics, work, education, skills }) {
   return (
     <div className="space-y-5 text-black">
       <div className="text-center">
-        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-2xl font-bold">{basics.name}</p>}
         {headerParts.length > 0 && (
           <p className="mt-1.5 text-xs">{headerParts.join(CONTACT_SEP)}</p>
         )}
@@ -1555,6 +1560,149 @@ function StandardPreview({ basics, work, education, skills }) {
   );
 }
 
+// ── Rezi: 2026 Rezi Resume Template family ──
+
+function ReziSectionHeading({ children, style }) {
+  if (!style.dividers) {
+    return (
+      <h2
+        className="mb-1.5 mt-4 text-xs font-bold uppercase tracking-wide"
+        style={{ color: "var(--cv-accent, #111827)" }}
+      >
+        {children}
+      </h2>
+    );
+  }
+
+  return (
+    <h2 className="mb-1.5 mt-4 pt-2.5 text-xs font-bold uppercase tracking-wide text-black">
+      <span
+        className="block border-t border-b pb-1"
+        style={{
+          borderTopColor: "#e5e7eb",
+          borderBottomColor: "var(--cv-heading-border, #111827)",
+          color: "var(--cv-accent, #111827)",
+        }}
+      >
+        {children}
+      </span>
+    </h2>
+  );
+}
+
+function ReziParagraphList({ description, style }) {
+  if (!description) return null;
+  const items = description.split("\n").filter((line) => line.trim());
+  if (items.length === 0) return null;
+  const indentClass = style.indent ? "pl-4" : "";
+
+  return (
+    <div className={`space-y-0.5 ${indentClass}`}>
+      {items.map((item, i) => (
+        <p key={i} className="text-xs leading-relaxed">
+          {item.trim()}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function ReziPreview({ basics, work, education, skills, style = { dividers: true, indent: false } }) {
+  const contactParts = [basics.location, basics.email, basics.phone].filter(Boolean);
+  const profileParts = (basics.profiles || [])
+    .filter((profile) => profile.url || profile.network)
+    .map((profile) => {
+      if (profile.url) {
+        return profile.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+      }
+      return profile.network;
+    });
+
+  const headerParts = [...contactParts, ...profileParts];
+
+  const bodyIndent = style.indent ? "pl-4" : "";
+
+  return (
+    <div className="space-y-4 text-black">
+      <div className="text-center">
+        {basics.name && (
+          <p className="text-2xl font-bold" style={{ color: "var(--cv-accent, #111827)" }}>
+            {basics.name}
+          </p>
+        )}
+        {headerParts.length > 0 && (
+          <p className="mt-1 text-xs leading-relaxed text-gray-800">{headerParts.join("   ")}</p>
+        )}
+      </div>
+
+      {basics.summary && (
+        <div className={bodyIndent}>
+          <ReziSectionHeading style={style}>Professional Summary</ReziSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div className={bodyIndent}>
+          <ReziSectionHeading style={style}>Professional Experience</ReziSectionHeading>
+          <div className="space-y-3">
+            {work.map((job, i) => {
+              const dateRange = [job.startDate, job.endDate].filter(Boolean).join(DATE_SEP);
+              const metaLine =
+                job.company && dateRange
+                  ? `${job.company} ${dateRange}${job.location ? `, ${job.location}` : ""}`
+                  : [job.company, dateRange, job.location].filter(Boolean).join(", ");
+
+              return (
+                <div key={i} className="break-inside-avoid">
+                  {job.position && <p className="text-sm font-bold">{job.position}</p>}
+                  {metaLine && <p className="text-xs text-gray-800">{metaLine}</p>}
+                  <ReziParagraphList description={job.description} style={style} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div className={bodyIndent}>
+          <ReziSectionHeading style={style}>Education</ReziSectionHeading>
+          <div className="space-y-2">
+            {education.map((edu, i) => {
+              const degreeLine = [edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ");
+              const detailParts = [edu.institution, edu.endDate || edu.startDate].filter(Boolean);
+
+              return (
+                <div key={i} className="break-inside-avoid">
+                  {degreeLine && <p className="text-sm font-bold">{degreeLine}</p>}
+                  {detailParts.length > 0 && (
+                    <p className="text-xs text-gray-800">{detailParts.join("  •  ")}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div className={bodyIndent}>
+          <ReziSectionHeading style={style}>Skills</ReziSectionHeading>
+          <div className="space-y-0.5">
+            {skills.map((group, i) => (
+              <p key={i} className="text-xs leading-relaxed">
+                {group.category && <span className="font-semibold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Scholar: small-caps ruled headings, LaTeX engineering look ──
 
 function ScholarSectionHeading({ children }) {
@@ -1578,9 +1726,9 @@ function ScholarPreview({ basics, work, education, skills }) {
   ].filter(Boolean);
 
   return (
-    <div className="space-y-4 font-serif text-black">
+    <div className="space-y-4 text-black">
       <div className="text-center">
-        {basics.name && <h1 className="text-2xl font-bold">{basics.name}</h1>}
+        {basics.name && <p className="text-2xl font-bold">{basics.name}</p>}
         {headerParts.length > 0 && (
           <p className="mt-1 text-xs">
             {headerParts.map((part, i) => (
@@ -1689,6 +1837,9 @@ const PREVIEWS = {
   professional: ProfessionalPreview,
   standard: StandardPreview,
   scholar: ScholarPreview,
+  rezi: ReziPreview,
+  "rezi-simple": ReziPreview,
+  "rezi-modern": ReziPreview,
 };
 
 const PADDING = {
@@ -1705,34 +1856,57 @@ const PADDING = {
   elegant: "p-8 sm:p-10",
   standard: "p-8 sm:p-10",
   scholar: "px-8 py-6 sm:px-10",
+  rezi: "px-8 py-6 sm:px-10",
+  "rezi-simple": "px-8 py-6 sm:px-10",
+  "rezi-modern": "px-8 py-6 sm:px-10",
 };
 
-// Bare template (no Card chrome), shared by the on-screen preview and the
-// /print route so the downloaded PDF matches the preview exactly.
-export function ResumeTemplate({ data, template = "classic" }) {
+function renderTemplatePreview({ data, template, style, padding, Preview }) {
   const { basics, work, education, skills } = data;
-  const Preview = PREVIEWS[template] || ClassicPreview;
-  const padding = PADDING[template] || "p-5 sm:p-8";
+  const resolvedStyle = normalizeTemplateStyle(style ?? getTemplateDefaultStyle(template));
 
+  // The font and accent reach the document as inherited CSS variables, so the
+  // picker restyles all nineteen layouts without any of them knowing about it.
+  // `fontFamily` is set explicitly because Tailwind's font utilities inside the
+  // templates would otherwise win over a bare inherit.
   return (
     <div
       data-resume-template={template}
       className={padding}
+      style={{ ...getTemplateStyleVars(resolvedStyle), fontFamily: "var(--cv-font)" }}
     >
-      <Preview basics={basics} work={work} education={education} skills={skills} />
+      <Preview
+        basics={basics}
+        work={work}
+        education={education}
+        skills={skills}
+        style={resolvedStyle}
+      />
     </div>
   );
 }
 
-export default function ResumePreview({ data, template = "classic" }) {
-  const { basics, work, education, skills } = data;
+// The candidate name renders as <p>, not <h1>. These templates appear many
+// times over on the public templates pages, and as h1 each preview added a
+// "John Doe" heading that competed with the page's own h1. The name is the
+// title of a document, not a node in the page outline.
+// Bare template (no Card chrome), shared by the on-screen preview and the
+// /print route so the downloaded PDF matches the preview exactly.
+export function ResumeTemplate({ data, template = "classic", style }) {
+  const Preview = PREVIEWS[template] || ClassicPreview;
+  const padding = PADDING[template] || "p-5 sm:p-8";
+
+  return renderTemplatePreview({ data, template, style, padding, Preview });
+}
+
+export default function ResumePreview({ data, template = "classic", style }) {
   const Preview = PREVIEWS[template] || ClassicPreview;
   const padding = PADDING[template] || "p-5 sm:p-8";
 
   return (
     <Card className="dashboard-card rounded-2xl border-border">
-      <CardContent className={padding}>
-        <Preview basics={basics} work={work} education={education} skills={skills} />
+      <CardContent>
+        {renderTemplatePreview({ data, template, style, padding, Preview })}
       </CardContent>
     </Card>
   );

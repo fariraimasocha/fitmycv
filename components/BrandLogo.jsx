@@ -21,7 +21,7 @@ export default function BrandLogo({
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <Image
-        src="/cv-logo.png"
+        src="/fitmycv-logo.png"
         alt={imageAlt}
         width={512}
         height={512}
@@ -31,7 +31,7 @@ export default function BrandLogo({
       {showWordmark ? (
         <span
           className={cn(
-            "font-serif-display tracking-tight text-[var(--landing-ink)]",
+            "font-outfit font-extrabold tracking-tight text-[var(--landing-ink)]",
             wordmarkClassName,
           )}
         >

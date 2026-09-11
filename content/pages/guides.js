@@ -333,7 +333,7 @@ export const howToWriteAResume = {
     {
       label: "CV templates",
       href: "/cv-templates",
-      body: "16 ATS-safe layouts to drop your content into.",
+      body: "19 ATS-safe layouts to drop your content into.",
     },
     {
       label: "ATS resume checker",

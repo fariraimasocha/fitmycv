@@ -147,6 +147,19 @@
      --landing-primary. Note this deliberately sits below the 13.5:1 that
      white/70 resolved to: it is meant to be secondary. */
   --landing-ink-inverse-soft: oklch(0.76 0.02 260);
+  /* Motion. One easing curve and three durations across the whole product, so
+     a hover in the dashboard feels like a hover on the landing page. The curve
+     is an ease-out-quart: it leaves fast and settles slowly, which is what
+     makes a lift read as weightless rather than springy. */
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-expo: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --dur-fast: 200ms;
+  --dur: 300ms;
+  --dur-slow: 400ms;
+  /* Ground for the dark feature bands. A step deeper than --landing-ink so a
+     black heading sitting on it still separates. Secondary text on this ground
+     uses --landing-ink-inverse-soft. */
+  --landing-ink-deep: #151515;
   --landing-shadow: 0 18px 45px oklch(0.18 0.02 260 / 0.08), 0 4px 12px oklch(0.18 0.02 260 / 0.05);
   --landing-shadow-sm: 0 8px 20px oklch(0.18 0.02 260 / 0.06), 0 2px 6px oklch(0.18 0.02 260 / 0.04);
 }
@@ -195,6 +208,10 @@
   body {
     @apply bg-background text-foreground;
   }
+  ::selection {
+    background: var(--landing-accent);
+    color: #ffffff;
+  }
   h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
   }
@@ -221,6 +238,119 @@
     width: 100%;
     max-width: 1180px;
     margin-inline: auto;
+  }
+
+  /* Editorial grid rules. Faint vertical hairlines at the content edges, the
+     way a print grid shows its margins. Drawn as pseudo-elements so they cost
+     no markup and never affect the layout they frame. */
+  .landing-rules {
+    position: relative;
+  }
+
+  .landing-rules::before,
+  .landing-rules::after {
+    content: "";
+    position: absolute;
+    /* -1px so the verticals meet the top border rather than starting just
+       under it and leaving a hairline gap at each corner. */
+    top: -1px;
+    bottom: 0;
+    width: 1px;
+    background: var(--landing-line);
+    pointer-events: none;
+  }
+
+  .landing-rules::before {
+    left: 0;
+  }
+
+  .landing-rules::after {
+    right: 0;
+  }
+
+  /* Full-bleed dark feature band. Hairlines and chips are white at low alpha
+     rather than a fixed grey, so they sit correctly on the dark ground. */
+  .landing-dark-band {
+    background: var(--landing-ink-deep);
+    color: #ffffff;
+  }
+
+  .landing-dark-band .landing-copy,
+  .landing-dark-band .dashboard-body {
+    color: var(--landing-ink-inverse-soft);
+  }
+
+  .landing-dark-eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    background: oklch(1 0 0 / 0.08);
+    color: #ffffff;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .landing-dark-rule {
+    border-color: oklch(1 0 0 / 0.12);
+  }
+
+  /* Accordion row on the dark band. Collapsed rows show only their title; the
+     open row reveals its copy. Height is animated with a grid row so the
+     content stays in the DOM for crawlers and screen readers. */
+  .landing-dark-step {
+    border-top: 1px solid oklch(1 0 0 / 0.12);
+    transition: opacity var(--dur) var(--ease-out-quart);
+  }
+
+  .landing-dark-step[data-open="false"] {
+    opacity: 0.55;
+  }
+
+  .landing-dark-step[data-open="false"]:hover {
+    opacity: 0.85;
+  }
+
+  .landing-dark-collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--dur-slow) var(--ease-out-quart);
+  }
+
+  .landing-dark-collapse[data-open="true"] {
+    grid-template-rows: 1fr;
+  }
+
+  .landing-dark-collapse > * {
+    overflow: hidden;
+  }
+
+  .landing-dark-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    background: oklch(1 0 0 / 0.12);
+    color: #ffffff;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color var(--dur) var(--ease-out-quart);
+  }
+
+  .landing-dark-pill:hover {
+    background: oklch(1 0 0 / 0.2);
+  }
+
+  /* Third ground. The page alternates cream, muted and tinted so no two
+     neighbouring sections share a background, which is what made the lower
+     half read as one long undifferentiated block. */
+  .landing-tinted-band {
+    background: var(--landing-paper-strong);
+    border-block: 1px solid var(--landing-line);
   }
 
   .landing-muted-band {
@@ -297,6 +427,26 @@
     animation: landing-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
   }
 
+  /* Stagger steps for the hero. Each block enters just behind the one above
+     it, so the eye is walked down the page instead of everything landing at
+     once. CSS keyframes rather than a JS library: these run on first paint,
+     before hydration. */
+  .landing-rise-1 {
+    animation: landing-rise 0.6s var(--ease-out-quart) 0.06s both;
+  }
+
+  .landing-rise-2 {
+    animation: landing-rise 0.6s var(--ease-out-quart) 0.14s both;
+  }
+
+  .landing-rise-3 {
+    animation: landing-rise 0.6s var(--ease-out-quart) 0.22s both;
+  }
+
+  .landing-rise-4 {
+    animation: landing-rise 0.6s var(--ease-out-quart) 0.3s both;
+  }
+
   /* Height-animated disclosure. The content stays in the DOM when collapsed,
      so crawlers and screen readers still get every answer. */
   .landing-collapse {
@@ -356,7 +506,11 @@
 
   @media (prefers-reduced-motion: reduce) {
     .landing-rise,
-    .landing-rise-delayed {
+    .landing-rise-delayed,
+    .landing-rise-1,
+    .landing-rise-2,
+    .landing-rise-3,
+    .landing-rise-4 {
       animation: none;
     }
 
@@ -365,7 +519,8 @@
       animation: none;
     }
 
-    .landing-collapse {
+    .landing-collapse,
+    .landing-dark-collapse {
       transition: none;
     }
   }
@@ -377,11 +532,11 @@
   }
 
   .landing-section-title {
-    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-    font-weight: 400;
+    font-family: var(--font-outfit), system-ui, sans-serif;
+    font-weight: 500;
     color: var(--landing-ink);
-    letter-spacing: -0.02em;
-    line-height: 1.08;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
   }
 
   .landing-copy {
@@ -407,7 +562,12 @@
     padding: 0.85rem 1.5rem;
     font-weight: 600;
     font-size: 0.95rem;
-    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+    transition:
+      transform var(--dur-fast) var(--ease-out-quart),
+      box-shadow var(--dur) var(--ease-out-quart),
+      background-color var(--dur) var(--ease-out-quart),
+      color var(--dur) var(--ease-out-quart),
+      border-color var(--dur) var(--ease-out-quart);
   }
 
   .landing-primary-btn {
@@ -448,7 +608,22 @@
   .landing-card {
     border: 1px solid var(--landing-line);
     background: var(--landing-surface);
-    box-shadow: var(--landing-shadow-sm);
+    box-shadow:
+      0 20px 20px oklch(0.18 0.02 260 / 0.02),
+      0 5px 11px oklch(0.18 0.02 260 / 0.03);
+    transition:
+      box-shadow var(--dur-slow) var(--ease-out-quart),
+      border-color var(--dur) var(--ease-out-quart),
+      transform var(--dur-slow) var(--ease-out-quart);
+  }
+
+  /* Deepening the pool of light on hover, with no movement. Cards that should
+     also rise opt in by adding .landing-lift. */
+  .landing-card:hover {
+    box-shadow:
+      0 46px 28px oklch(0.18 0.02 260 / 0.02),
+      0 20px 20px oklch(0.18 0.02 260 / 0.03),
+      0 5px 11px oklch(0.18 0.02 260 / 0.04);
   }
 
   .landing-card-strong {
@@ -600,7 +775,10 @@
     padding: 0.5rem 0.875rem;
     font-size: 0.75rem;
     font-weight: 600;
-    transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    transition:
+      color var(--dur) var(--ease-out-quart),
+      background var(--dur) var(--ease-out-quart),
+      box-shadow var(--dur) var(--ease-out-quart);
   }
 
   .dashboard-tab-pill[data-active="true"] {
@@ -621,7 +799,10 @@
     border: 1px solid var(--landing-line);
     background: var(--landing-surface);
     border-radius: var(--radius-xl);
-    transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+    transition:
+      box-shadow var(--dur-slow) var(--ease-out-quart),
+      border-color var(--dur) var(--ease-out-quart),
+      transform var(--dur-slow) var(--ease-out-quart);
   }
 
   .dashboard-list-row:hover {
@@ -641,7 +822,9 @@
     font-family: var(--font-outfit), sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
-    transition: opacity 180ms ease, transform 180ms ease;
+    transition:
+      opacity var(--dur) var(--ease-out-quart),
+      transform var(--dur-fast) var(--ease-out-quart);
   }
 
   .dashboard-primary-btn:hover {
@@ -662,6 +845,341 @@
   .dashboard-nav-active:hover {
     background: #333333 !important;
     color: #ffffff !important;
+  }
+
+  /* Layered shadow. Five stacked low-alpha layers read as one soft pool of
+     light instead of the hard grey halo a single large shadow produces. */
+  .landing-shadow-lift {
+    box-shadow:
+      0 46px 28px oklch(0.18 0.02 260 / 0.01),
+      0 20px 20px oklch(0.18 0.02 260 / 0.02),
+      0 5px 11px oklch(0.18 0.02 260 / 0.03);
+  }
+
+  /* Hover lift. Applied to cards that are themselves a link or button. */
+  .landing-lift {
+    transition:
+      transform var(--dur-slow) var(--ease-out-quart),
+      box-shadow var(--dur-slow) var(--ease-out-quart),
+      border-color var(--dur) var(--ease-out-quart);
+  }
+
+  .landing-lift:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 82px 33px oklch(0.18 0.02 260 / 0.01),
+      0 46px 28px oklch(0.18 0.02 260 / 0.02),
+      0 20px 20px oklch(0.18 0.02 260 / 0.03),
+      0 5px 11px oklch(0.18 0.02 260 / 0.04);
+  }
+
+  /* Scroll reveal with no JavaScript and no layout thrash: the animation is
+     driven by the element's own position in the scrollport. Browsers without
+     scroll-driven animations (Safari, Firefox) simply render the content
+     already in place, which is the correct fallback. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .landing-reveal {
+        animation: landing-rise 1ms both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 20%;
+      }
+    }
+  }
+
+  /* The problem panel's figures fill as the band scrolls in. Scroll-driven, so
+     there is no JavaScript and nothing to get throttled while off screen; in
+     browsers without scroll timelines the values simply render in place, which
+     is the correct fallback for a figure that has to be right either way. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .problem-arc {
+        animation: problem-arc-fill 1ms linear both;
+        animation-timeline: view();
+        animation-range: entry 20% cover 35%;
+      }
+
+      .problem-bar {
+        animation: problem-bar-fill 1ms linear both;
+        animation-timeline: view();
+        animation-range: entry 20% cover 35%;
+      }
+    }
+  }
+
+  @keyframes problem-arc-fill {
+    from {
+      stroke-dashoffset: var(--arc-from);
+    }
+    to {
+      stroke-dashoffset: var(--arc-to);
+    }
+  }
+
+  @keyframes problem-bar-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .problem-bar {
+    transform-origin: left;
+  }
+
+  /* Toolbar that pins under the site header while its cards scroll past. */
+  /* Clears the 64px site header, which is itself sticky at z-50, so the bar
+     parks just under it instead of sliding behind it. */
+  .landing-sticky-bar {
+    position: sticky;
+    top: 4.5rem;
+    z-index: 30;
+    /* Translucent with a blur so the previews stay readable sliding under it.
+       The fallback keeps the bar opaque where backdrop-filter is unsupported,
+       otherwise the text behind it shows straight through. */
+    background: var(--landing-surface);
+  }
+
+  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+    .landing-sticky-bar {
+      background: color-mix(in srgb, var(--landing-surface) 88%, transparent);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+  }
+
+  /* Minimal card, after the Cult UI component of the same name (MIT).
+     Rebuilt on our own tokens rather than installed: the original ships as a
+     shadcn registry entry styled for a neutral palette, and the whole point of
+     the treatment is the warm inset highlight, which we can state directly.
+     The shape is a tray holding a framed panel: a soft off-white surround, an
+     inset cream highlight along the top edge, and a three-step ring around the
+     inner panel that reads like a mat inside a picture frame. */
+  .minimal-card {
+    border-radius: 1.5rem;
+    background: var(--landing-paper-soft);
+    padding: 0.5rem;
+    box-shadow:
+      0 1px 1px 0 oklch(0.18 0.02 260 / 0.05),
+      0 1px 1px 0 rgba(255, 252, 240, 0.5) inset,
+      0 0 0 1px oklch(1 0 0 / 0.1) inset,
+      0 0 0 1px oklch(0.18 0.02 260 / 0.08),
+      0 1px 2px -1px oklch(0.18 0.02 260 / 0.08),
+      0 2px 4px oklch(0.18 0.02 260 / 0.04);
+    transition:
+      background-color var(--dur) var(--ease-out-quart),
+      transform var(--dur-slow) var(--ease-out-quart),
+      box-shadow var(--dur-slow) var(--ease-out-quart);
+  }
+
+  .minimal-card:hover {
+    background: var(--landing-paper-strong);
+    transform: translateY(-2px);
+  }
+
+  /* The inner panel. The 3px white step is the mat; it sits inside the tray's
+     own 0.5rem padding, so the rings never clip. */
+  .minimal-card-inner {
+    border-radius: 1.125rem;
+    background: var(--landing-surface);
+    box-shadow:
+      0 0 0 1px oklch(0.18 0.02 260 / 0.07),
+      0 0 0 3px #ffffff,
+      0 0 0 4px oklch(0.18 0.02 260 / 0.08);
+  }
+
+  /* Template slider. The slide widths are fixed rather than fractional so the
+     document inside can be scaled by an exact factor: the preview is a real
+     640px resume shrunk with a transform, and a percentage width would leave
+     the scale guessing. Two slides fit the container at xl, with a sliver of
+     the third showing to say there is more. */
+  .template-slide {
+    flex: 0 0 17.5rem;
+    width: 17.5rem;
+  }
+
+  .template-slide .template-doc {
+    width: 40rem;
+    transform: scale(0.4375);
+  }
+
+  @media (min-width: 768px) {
+    .template-slide {
+      flex-basis: 26rem;
+      width: 26rem;
+    }
+
+    .template-slide .template-doc {
+      transform: scale(0.65);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .template-slide {
+      flex-basis: 32.5rem;
+      width: 32.5rem;
+    }
+
+    .template-slide .template-doc {
+      transform: scale(0.8125);
+    }
+  }
+
+  .template-doc {
+    transform-origin: top left;
+  }
+
+  /* Nineteen template cards each render a full resume document, so the gallery
+     is a few thousand DOM nodes of real text. content-visibility lets the
+     browser skip layout and paint for the cards that are off screen; the
+     intrinsic size keeps the scrollbar from jumping as they come into range.
+     Sized to the card: 256px preview on a 3:4 ratio plus the footer strip. */
+  .landing-card-deferred {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px auto 760px;
+  }
+
+  /* Hover scrim over a template preview. The actions inside rise as they fade
+     in, which reads as the scrim pushing them up rather than a hard cut. */
+  .landing-scrim {
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out-quart);
+    background: linear-gradient(
+      to top,
+      oklch(0.18 0.02 260 / 0.82) 0%,
+      oklch(0.18 0.02 260 / 0.58) 55%,
+      oklch(0.18 0.02 260 / 0.28) 100%
+    );
+  }
+
+  /* The blur is applied only while the scrim is up. A backdrop-filter on an
+     always-present element makes the browser keep a backdrop root for every
+     card, which is real work on a page holding nineteen of them. */
+  .group:hover .landing-scrim,
+  .group:focus-within .landing-scrim {
+    opacity: 1;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+
+  .landing-scrim-item {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity var(--dur) var(--ease-out-quart),
+      transform var(--dur) var(--ease-out-quart);
+  }
+
+  .group:hover .landing-scrim-item,
+  .group:focus-within .landing-scrim-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .landing-scrim-item:nth-child(2) {
+    transition-delay: 40ms;
+  }
+
+  .landing-scrim-item:nth-child(3) {
+    transition-delay: 80ms;
+  }
+
+  /* Pill button used inside the scrim and anywhere an action sits on a dark
+     ground. Fully rounded, matching the rest of the action language. */
+  .landing-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      background-color var(--dur) var(--ease-out-quart),
+      color var(--dur) var(--ease-out-quart),
+      border-color var(--dur) var(--ease-out-quart),
+      transform var(--dur-fast) var(--ease-out-quart);
+  }
+
+  .landing-pill-btn:active {
+    transform: scale(0.97);
+  }
+
+  .landing-pill-solid {
+    background: #ffffff;
+    color: var(--landing-ink);
+  }
+
+  .landing-pill-solid:hover {
+    background: var(--landing-paper-strong);
+  }
+
+  .landing-pill-ghost {
+    border: 1px solid oklch(1 0 0 / 0.45);
+    color: #ffffff;
+  }
+
+  .landing-pill-ghost:hover {
+    background: oklch(1 0 0 / 0.14);
+    border-color: oklch(1 0 0 / 0.75);
+  }
+
+  /* Swatch in the style toolbar. The ring sits outside the dot via an offset
+     box-shadow so selecting one does not change its size and nudge the row. */
+  .landing-swatch {
+    width: 1.375rem;
+    height: 1.375rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px oklch(0.18 0.02 260 / 0.12);
+    transition:
+      box-shadow var(--dur) var(--ease-out-quart),
+      transform var(--dur-fast) var(--ease-out-quart);
+  }
+
+  .landing-swatch:hover {
+    transform: scale(1.12);
+  }
+
+  .landing-swatch[data-selected="true"] {
+    box-shadow:
+      inset 0 0 0 1px oklch(0.18 0.02 260 / 0.12),
+      0 0 0 2px var(--landing-surface),
+      0 0 0 4px var(--landing-ink);
+  }
+
+  /* Toggle switch, matching the three on the reference toolbar. */
+  .landing-switch {
+    position: relative;
+    width: 2.5rem;
+    height: 1.375rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--landing-line);
+    transition: background-color var(--dur) var(--ease-out-quart);
+  }
+
+  .landing-switch[data-on="true"] {
+    background: var(--landing-ink);
+  }
+
+  .landing-switch > span {
+    position: absolute;
+    top: 0.1875rem;
+    left: 0.1875rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px oklch(0.18 0.02 260 / 0.25);
+    transition: transform var(--dur) var(--ease-out-quart);
+  }
+
+  .landing-switch[data-on="true"] > span {
+    transform: translateX(1.125rem);
   }
 }
 

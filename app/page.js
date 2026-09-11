@@ -1,9 +1,9 @@
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
 import JobBoardStrip from "@/components/landing/JobBoardStrip";
-import PainPoints from "@/components/landing/PainPoints";
+import TheProblem from "@/components/landing/TheProblem";
 import HowItWorks from "@/components/landing/HowItWorks";
-import Features from "@/components/landing/Features";
+import TemplateStrip from "@/components/landing/TemplateStrip";
 import Testimonial from "@/components/landing/Testimonial";
 import TrustSignals from "@/components/landing/TrustSignals";
 import ResourcesStrip from "@/components/landing/ResourcesStrip";
@@ -29,7 +29,7 @@ export const metadata = {
     absolute: "Tailor Your CV to Any Job Link | FitMyCV",
   },
   description:
-    "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 16 ATS-safe templates, and one-click PDF export.",
+    "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
   // Page-level openGraph/twitter replace the layout objects wholesale (no
   // deep merge), so images and card type must be re-declared here.
@@ -58,9 +58,9 @@ export default function Home() {
       <main>
         <Hero />
         <JobBoardStrip />
-        <PainPoints />
+        <TheProblem />
         <HowItWorks />
-        <Features />
+        <TemplateStrip />
         <Testimonial />
         <TrustSignals />
         <Pricing />

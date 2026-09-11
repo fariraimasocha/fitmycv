@@ -34,38 +34,36 @@ const RESOURCES = [
 
 export default function ResourcesStrip() {
   return (
-    <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container">
-        <div className="flex flex-col items-center gap-3 text-center">
+    <section className="landing-section-tight landing-tinted-band px-5 sm:px-10 lg:px-16 xl:px-24">
+      <div className="landing-reveal landing-container">
+        <div className="max-w-2xl">
           <h2 className="landing-section-title text-2xl sm:text-3xl">
             Everything else on the site
           </h2>
-          <p className="landing-copy text-center text-base">
+          <p className="landing-copy mt-4 text-base">
             Free tools and guides, whether or not you ever pay us a penny.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {RESOURCES.map(({ label, href, body }) => (
-            <Link
-              key={href}
-              href={href}
-              className="landing-card group flex flex-col gap-2 rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
-            >
-              <span className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {label}
-              </span>
-              <span className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {body}
-              </span>
-              <span className="mt-1 inline-flex items-center gap-1.5 font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-primary-dark)]">
-                Open
-                <ArrowRightIcon
-                  size={12}
-                  weight="bold"
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-0.5"
-                />
+            <Link key={href} href={href} className="minimal-card group block">
+              <span className="minimal-card-inner flex h-full flex-col gap-2 p-6">
+                <span className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
+                  {label}
+                </span>
+                <span className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+                  {body}
+                </span>
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-3 font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-primary-dark)]">
+                  Open
+                  <ArrowRightIcon
+                    size={12}
+                    weight="bold"
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  />
+                </span>
               </span>
             </Link>
           ))}

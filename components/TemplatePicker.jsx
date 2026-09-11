@@ -12,25 +12,40 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import TemplateStyleToolbar from "@/components/cv/TemplateStyleToolbar";
 import { ResumeTemplate } from "@/components/ResumePreview";
-import { TEMPLATE_METADATA, DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
+import {
+  TEMPLATE_METADATA,
+  DEFAULT_TEMPLATE,
+  getTemplateDefaultStyle,
+} from "@/utils/cv-templates/metadata";
+import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 
-function TemplateThumbnail({ template, data }) {
+function TemplateThumbnail({ template, data, style }) {
   return (
     <div className="relative aspect-3/4 w-full overflow-hidden rounded-md border border-border bg-white">
       <div className="pointer-events-none absolute inset-0 w-160 origin-top-left scale-33 select-none">
-        <ResumeTemplate data={data} template={template} />
+        <ResumeTemplate data={data} template={template} style={style} />
       </div>
     </div>
   );
 }
 
-export default function TemplatePicker({ value, onChange, data }) {
+export default function TemplatePicker({
+  value,
+  onChange,
+  data,
+  style,
+  onStyleChange,
+}) {
   const [open, setOpen] = useState(false);
 
   const current =
     TEMPLATE_METADATA.find((t) => t.id === value) ||
     TEMPLATE_METADATA.find((t) => t.id === DEFAULT_TEMPLATE);
+  const resolvedStyle = normalizeTemplateStyle(
+    style ?? getTemplateDefaultStyle(value),
+  );
 
   const handleSelect = (id) => {
     onChange(id);
@@ -58,6 +73,15 @@ export default function TemplatePicker({ value, onChange, data }) {
             Previews use your own CV. The downloaded PDF matches exactly what you see.
           </DialogDescription>
         </DialogHeader>
+
+        {onStyleChange ? (
+          <TemplateStyleToolbar
+            value={resolvedStyle}
+            onChange={onStyleChange}
+            template={value}
+          />
+        ) : null}
+
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           {TEMPLATE_METADATA.map((t) => {
             const selected = t.id === value;
@@ -81,7 +105,11 @@ export default function TemplatePicker({ value, onChange, data }) {
                     />
                   </span>
                 )}
-                <TemplateThumbnail template={t.id} data={data} />
+                <TemplateThumbnail
+                  template={t.id}
+                  data={data}
+                  style={resolvedStyle}
+                />
                 <div className="min-w-0">
                   <div className="flex items-center justify-between gap-1">
                     <p className="truncate text-sm font-semibold">{t.name}</p>

@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { Polar } from "@polar-sh/sdk";
+import { createPolarClient } from "@/lib/polar";
 import User from "@/models/User";
 import dbConnect from "@/lib/db";
 import { appUrl } from "@/lib/site";
 
-const polar = new Polar({
-  accessToken: process.env.POLAR_ACCESS_TOKEN,
-  server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
-});
+const polar = createPolarClient();
 
 function localAppUrl(path, request) {
   return process.env.NODE_ENV === "production"

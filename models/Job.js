@@ -29,7 +29,8 @@ const jobSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-    // "greenhouse" | "lever" | "ashby" | "workable" | "smartrecruiters"
+    // "greenhouse" | "lever" | "ashby" | "workable" | "smartrecruiters" |
+    // "workday" | "company" (the employer's own career domain).
     source: {
       type: String,
     },

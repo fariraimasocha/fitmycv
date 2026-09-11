@@ -13,11 +13,21 @@ export async function GET(request) {
   try {
     await connectDB();
 
-    const { jobs, seen, skipped, staleAfterEnrich, logos, errors } = await crawlJobs();
+    const { jobs, seen, skipped, crossSourceDupes, staleAfterEnrich, logos, errors } =
+      await crawlJobs();
 
     if (jobs.length === 0) {
       const backfill = await backfillStoredLogos(Job);
-      return Response.json({ seen, upserted: 0, skipped, staleAfterEnrich, logos, backfill, errors });
+      return Response.json({
+        seen,
+        upserted: 0,
+        skipped,
+        crossSourceDupes,
+        staleAfterEnrich,
+        logos,
+        backfill,
+        errors,
+      });
     }
 
     // Upsert on url: a posting we've already got keeps its original crawledAt
@@ -70,6 +80,7 @@ export async function GET(request) {
       upserted: result.upsertedCount ?? 0,
       matched: result.matchedCount ?? 0,
       skipped,
+      crossSourceDupes,
       staleAfterEnrich,
       withLocation: jobs.filter((j) => j.location).length,
       withSalary: jobs.filter((j) => j.salary).length,

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
+import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
 function ScoreRing({ value }) {
@@ -105,22 +106,22 @@ export default function JobMatchChecker() {
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const { running, ran, start, reset } = useToolRun();
 
   const jobTooShort = jobText.trim().length < 40;
   const cvTooShort = cvText.trim().length < 40;
 
   const result = useMemo(() => {
-    if (!submitted || jobTooShort || cvTooShort) return null;
+    if (!ran || jobTooShort || cvTooShort) return null;
     return scoreResumeJobMatch(jobText, cvText);
-  }, [submitted, jobText, cvText, jobTooShort, cvTooShort]);
+  }, [ran, jobText, cvText, jobTooShort, cvTooShort]);
 
   return (
     <div className="landing-card rounded-3xl p-6 sm:p-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setSubmitted(true);
+          start();
         }}
         className="flex flex-col gap-5"
       >
@@ -131,7 +132,7 @@ export default function JobMatchChecker() {
             value={cvText}
             onChange={(text) => {
               setCvText(text);
-              setSubmitted(false);
+              reset();
             }}
             onBusyChange={setCvBusy}
           />
@@ -148,7 +149,7 @@ export default function JobMatchChecker() {
               value={jobText}
               onChange={(e) => {
                 setJobText(e.target.value);
-                setSubmitted(false);
+                reset();
               }}
               rows={10}
               placeholder="Paste the full text of the job posting here."
@@ -158,25 +159,30 @@ export default function JobMatchChecker() {
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <button
-            type="submit"
+          <ToolSubmitButton
+            label="Check my match"
+            busyLabel="Checking your match"
+            running={running}
             disabled={jobTooShort || cvTooShort || cvBusy}
-            className="landing-primary-btn font-outfit text-sm disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            Check my match
-          </button>
+          />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
               ? "Reading your CV"
-              : jobTooShort || cvTooShort
+              : running
+                ? "Comparing your CV with the posting"
+                : jobTooShort || cvTooShort
                 ? "Add your CV and the full job description."
                 : "Your CV is read in this tab. Nothing is stored."}
           </p>
         </div>
       </form>
 
+      {running ? (
+        <ToolProgress message="Checking your match" lines={4} />
+      ) : null}
+
       {result ? (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <ScoreRing value={result.overall} />
             <div>

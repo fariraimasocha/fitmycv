@@ -114,7 +114,7 @@ export default function ResumeFileField({
       </label>
 
       {hasFile ? (
-        <div className="flex items-center gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
+        <div className="landing-rise flex items-center gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
           <FilePdfIcon
             size={22}
             weight="duotone"
@@ -177,6 +177,16 @@ export default function ResumeFileField({
           <p className="mt-1 text-xs font-semibold text-[var(--landing-ink-soft)]">
             {reading ? "Pulling the text out of the file" : "or choose a file"}
           </p>
+          {reading ? (
+            <span
+              role="status"
+              aria-live="polite"
+              aria-label="Reading your CV"
+              className="tool-progress-track mt-4 h-1 w-40 max-w-full"
+            >
+              <span />
+            </span>
+          ) : null}
         </label>
       )}
 

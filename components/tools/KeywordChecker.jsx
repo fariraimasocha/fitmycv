@@ -15,6 +15,7 @@ import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
+import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 
 // Words that carry no signal when matching a CV against a posting. The second
 // block is job-advert boilerplate. Without it the top of the list fills up
@@ -151,10 +152,10 @@ export default function KeywordChecker({ mode = "match" }) {
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const { running, ran, start, reset } = useToolRun();
 
   const result = useMemo(() => {
-    if (!submitted || jobText.trim().length < 40) return null;
+    if (!ran || jobText.trim().length < 40) return null;
 
     const withCv = mode === "match" || mode === "gaps";
     const terms = extractTerms(jobText, withCv ? 24 : 30);
@@ -192,7 +193,7 @@ export default function KeywordChecker({ mode = "match" }) {
       score: weightTotal ? Math.round((weightHit / weightTotal) * 100) : 0,
       missing,
     };
-  }, [submitted, jobText, cvText, mode]);
+  }, [ran, jobText, cvText, mode]);
 
   const tooShort = jobText.trim().length < 40;
 
@@ -201,7 +202,7 @@ export default function KeywordChecker({ mode = "match" }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setSubmitted(true);
+          start();
         }}
         className="flex flex-col gap-5"
       >
@@ -230,7 +231,7 @@ export default function KeywordChecker({ mode = "match" }) {
               value={cvText}
               onChange={(text) => {
                 setCvText(text);
-                setSubmitted(false);
+                reset();
               }}
               onBusyChange={setCvBusy}
             />
@@ -238,29 +239,51 @@ export default function KeywordChecker({ mode = "match" }) {
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <button
-            type="submit"
+          <ToolSubmitButton
+            label={
+              gapsMode
+                ? "Find missing keywords"
+                : matchMode
+                  ? "Score my CV"
+                  : "Extract keywords"
+            }
+            busyLabel={
+              gapsMode
+                ? "Finding your gaps"
+                : matchMode
+                  ? "Scoring your CV"
+                  : "Reading the posting"
+            }
+            running={running}
             disabled={tooShort || cvBusy || (needsCv && cvText.trim().length < 40)}
-            className="landing-primary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            {gapsMode
-              ? "Find missing keywords"
-              : matchMode
-                ? "Score my CV"
-                : "Extract keywords"}
-          </button>
+          />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
               ? "Reading your CV"
-              : needsCv
+              : running
+                ? "Working through the posting"
+                : needsCv
                 ? "Your CV is read in this tab. Nothing is stored."
                 : "Runs entirely in your browser. Nothing is stored."}
           </p>
         </div>
       </form>
 
+      {running ? (
+        <ToolProgress
+          message={
+            gapsMode
+              ? "Finding your gaps"
+              : matchMode
+                ? "Scoring your CV"
+                : "Reading the posting"
+          }
+          lines={5}
+        />
+      ) : null}
+
       {result ? (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           {gapsMode ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">

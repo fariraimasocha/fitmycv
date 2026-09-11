@@ -18,6 +18,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
+import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+
 // pure-region-start
 
 // Words that carry no signal when reading a posting. The second block is
@@ -525,10 +527,10 @@ function NoteIcon({ tone }) {
 export default function BulletRewriter() {
   const [bullet, setBullet] = useState("");
   const [jobText, setJobText] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const { running, ran, start } = useToolRun();
 
   const result = useMemo(() => {
-    if (!submitted) return null;
+    if (!ran) return null;
     const clean = normalizeBullet(bullet);
     if (clean.split(/\s+/).filter(Boolean).length < 3) return null;
 
@@ -540,7 +542,7 @@ export default function BulletRewriter() {
       verbs: VERB_FAMILIES[rewrite.family].verbs,
       familyHint: VERB_FAMILIES[rewrite.family].hint,
     };
-  }, [submitted, bullet, jobText]);
+  }, [ran, bullet, jobText]);
 
   const tooShort = normalizeBullet(bullet).split(/\s+/).filter(Boolean).length < 3;
   const jobStarted = jobText.trim().length > 0;
@@ -550,7 +552,7 @@ export default function BulletRewriter() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setSubmitted(true);
+          start();
         }}
         className="flex flex-col gap-5"
       >
@@ -597,32 +599,38 @@ export default function BulletRewriter() {
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <button
-            type="submit"
+          <ToolSubmitButton
+            label="Rewrite this bullet"
+            busyLabel="Rewriting your bullet"
+            running={running}
             disabled={tooShort}
-            className="landing-primary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            Rewrite this bullet
-          </button>
+          />
           <button
             type="button"
             onClick={() => {
               setBullet(EXAMPLE_BULLET);
               setJobText(EXAMPLE_JOB);
-              setSubmitted(true);
+              start();
             }}
-            className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+            disabled={running}
+            className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
           >
             Try an example
           </button>
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            Runs entirely in your browser. Nothing is uploaded or stored.
+            {running
+              ? "Rewriting your bullet"
+              : "Runs entirely in your browser. Nothing is uploaded or stored."}
           </p>
         </div>
       </form>
 
+      {running ? (
+        <ToolProgress message="Rewriting your bullet" lines={3} />
+      ) : null}
+
       {result ? (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             Three ways to rewrite it
           </p>

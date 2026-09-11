@@ -24,6 +24,7 @@ import {
 import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
+import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 
 // pure-helpers:start
 
@@ -566,7 +567,7 @@ export default function HeadlineGenerator() {
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const { running, ran, start, reset } = useToolRun();
   const [copiedId, setCopiedId] = useState(null);
   // Captured once so the render body stays pure. Years of experience read from
   // date ranges need a "today" to count up to.
@@ -579,9 +580,9 @@ export default function HeadlineGenerator() {
   const resumeTooShort = resumeText.trim().length < 40;
 
   const result = useMemo(() => {
-    if (!submitted || jobTooShort || resumeTooShort) return null;
+    if (!ran || jobTooShort || resumeTooShort) return null;
     return generateHeadlines(jobText, resumeText, currentYear);
-  }, [submitted, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
+  }, [ran, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
 
   async function copyHeadline(id, text) {
     try {
@@ -602,7 +603,7 @@ export default function HeadlineGenerator() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setSubmitted(true);
+          start();
         }}
         className="flex flex-col gap-5"
       >
@@ -630,32 +631,37 @@ export default function HeadlineGenerator() {
             value={resumeText}
             onChange={(text) => {
               setResumeText(text);
-              setSubmitted(false);
+              reset();
             }}
             onBusyChange={setCvBusy}
           />
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <button
-            type="submit"
+          <ToolSubmitButton
+            label="Generate headlines"
+            busyLabel="Writing your headlines"
+            running={running}
             disabled={jobTooShort || resumeTooShort || cvBusy}
-            className="landing-primary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            Generate headlines
-          </button>
+          />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
               ? "Reading your CV"
-              : jobTooShort || resumeTooShort
+              : running
+                ? "Matching your resume to the posting"
+                : jobTooShort || resumeTooShort
                 ? "Add the job description and your CV to generate."
                 : "Your CV is read in this tab. Nothing is stored."}
           </p>
         </div>
       </form>
 
+      {running ? (
+        <ToolProgress message="Writing your headlines" lines={5} />
+      ) : null}
+
       {result ? (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           {result.headlines.length ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">

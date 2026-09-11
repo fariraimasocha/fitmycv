@@ -46,7 +46,7 @@ const PRODUCT_SLUGS = new Set([
  * Every page gets the same hero, prose column, FAQ block, internal-link rail,
  * and schema stack, so a new landing page is a content file, not a layout.
  */
-export default function MarketingPage({ page, children }) {
+export default function MarketingPage({ page, children, hideHero = false }) {
   const {
     slug,
     eyebrow,
@@ -68,20 +68,31 @@ export default function MarketingPage({ page, children }) {
     <div className="landing-root min-h-screen">
       <Header />
       <main>
-        {/* Hero */}
-        <section className="relative isolate overflow-hidden px-5 pb-16 pt-32 sm:px-10 lg:px-16 xl:px-24">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_50%_16%,oklch(0.94_0.02_84_/_0.7),transparent_32rem)]"
-          />
+        {/* Hero. Template pages hide the headline and pass it to the gallery
+            below, so they only need a compact breadcrumb band here. */}
+        <section
+          className={`relative isolate overflow-hidden px-5 sm:px-10 lg:px-16 xl:px-24 ${
+            hideHero ? "pb-4 pt-24" : "pb-16 pt-32"
+          }`}
+        >
+          {hideHero ? null : (
+            <>
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_50%_16%,oklch(0.94_0.02_84_/_0.7),transparent_32rem)]"
+              />
+            </>
+          )}
           <div className="landing-container flex flex-col items-center text-center">
             <nav
               aria-label="Breadcrumb"
-              className="mb-8 flex flex-wrap items-center justify-center gap-1.5 text-xs font-bold text-[var(--landing-ink-soft)]"
+              className={`flex flex-wrap items-center justify-center gap-1.5 text-xs font-bold text-[var(--landing-ink-soft)] ${
+                hideHero ? "mb-0" : "mb-8"
+              }`}
             >
               <Link href="/" className="hover:text-[var(--landing-ink)]">
                 Home
@@ -92,7 +103,7 @@ export default function MarketingPage({ page, children }) {
               </span>
             </nav>
 
-            {eyebrow ? (
+            {hideHero ? null : eyebrow ? (
               <span className="landing-eyebrow">
                 <span
                   className="h-2 w-2 rounded-full bg-[var(--landing-primary)]"
@@ -102,18 +113,26 @@ export default function MarketingPage({ page, children }) {
               </span>
             ) : null}
 
-            <h1
-              className="font-serif-display mt-6 max-w-4xl font-normal leading-[1.02] tracking-tight text-[var(--landing-ink)]"
-              style={{ fontSize: "clamp(36px, 5.4vw, 68px)" }}
-            >
-              {h1}
-            </h1>
+            {hideHero ? null : (
+              <h1
+                className="font-outfit mt-6 max-w-4xl font-medium text-[var(--landing-ink)]"
+                style={{
+                  fontSize: "clamp(2.25rem, 4.4vw, 3.4rem)",
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {h1}
+              </h1>
+            )}
 
-            <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-              {lede}
-            </p>
+            {hideHero ? null : (
+              <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
+                {lede}
+              </p>
+            )}
 
-            {ctas.length ? (
+            {!hideHero && ctas.length ? (
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 {ctas.map(({ label, href, variant = "primary" }) => (
                   <Link
@@ -181,7 +200,7 @@ export default function MarketingPage({ page, children }) {
                   <Link
                     key={href}
                     href={href}
-                    className="landing-card group flex flex-col gap-2 rounded-2xl p-6 transition-transform duration-300 hover:-translate-y-1"
+                    className="landing-card landing-lift group flex flex-col gap-2 rounded-2xl p-6"
                   >
                     <span className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
                       {label}

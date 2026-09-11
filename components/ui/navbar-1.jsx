@@ -20,7 +20,6 @@ import { FREE_TOOLS } from "@/lib/free-tools";
 const navLinks = [
   { label: "Jobs", href: "/jobs" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Features", href: "/#features" },
   { label: "Templates", href: "/cv-templates" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
@@ -62,7 +61,15 @@ const Navbar1 = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--landing-bg)]/95 backdrop-blur-sm">
-      <div className="landing-container flex h-16 items-center justify-between gap-6 px-5 sm:px-10 lg:px-16 xl:px-24">
+      {/* Mirrors the hero exactly: outer section padding, then the shared
+          container with its own inset. That puts the logo and the auth buttons
+          on the same left and right edges as the hero's grid rules. */}
+      <div className="px-5 sm:px-10 lg:px-16 xl:px-24">
+        {/* Same rules as the hero, so the verticals run from the very top of the
+            screen, down past the nav, and into the hero without a break. The
+            pseudo-elements are absolutely positioned, so they are out of flow
+            and never become flex items of this row. */}
+        <div className="landing-container landing-rules flex h-16 items-center justify-between gap-6 px-4 sm:px-8">
         <Link href="/" className="flex flex-row items-center">
           <BrandLogo size="md" priority wordmarkClassName="text-xl" />
         </Link>
@@ -149,9 +156,20 @@ const Navbar1 = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm">
-              Login
-            </Link>
+            <>
+              <Link
+                href="/auth"
+                className="text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth"
+                className="landing-primary-btn landing-primary-btn-sm font-outfit"
+              >
+                Try for free
+              </Link>
+            </>
           )}
         </div>
 
@@ -163,6 +181,7 @@ const Navbar1 = () => {
         >
           {isOpen ? <XIcon size={22} /> : <ListIcon size={22} />}
         </button>
+        </div>
       </div>
 
       {/* Rendered only while open so its links stay out of the tab order when
@@ -201,9 +220,22 @@ const Navbar1 = () => {
                 Dashboard
               </Link>
             ) : (
-              <Link href="/auth" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
-                Login
-              </Link>
+              <>
+                <Link
+                  href="/auth"
+                  className="landing-primary-btn landing-primary-btn-sm w-full"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Try for free
+                </Link>
+                <Link
+                  href="/auth"
+                  className="landing-secondary-btn landing-secondary-btn-sm w-full"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Login
+                </Link>
+              </>
             )}
           </div>
         </div>

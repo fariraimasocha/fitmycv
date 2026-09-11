@@ -30,7 +30,12 @@ import FormattedDate from "@/components/FormattedDate";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
-import { DEFAULT_TEMPLATE, getTemplateFontClass, getTemplateName } from "@/utils/cv-templates/metadata";
+import {
+  DEFAULT_TEMPLATE,
+  getTemplateDefaultStyle,
+  getTemplateName,
+} from "@/utils/cv-templates/metadata";
+import { getTemplateFontOption, normalizeTemplateStyle } from "@/utils/cv-templates/style";
 import {
   DashboardPageShell,
   DashboardPageHeader,
@@ -46,6 +51,7 @@ export default function TailoredCVDetailPage() {
   const [activeTab, setActiveTab] = useState("cv");
   const [showPreview, setShowPreview] = useState(true);
   const [templateOverride, setTemplateOverride] = useState(null);
+  const [styleOverride, setStyleOverride] = useState(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [whyAnswer, setWhyAnswer] = useState(null);
   const [whyLoading, setWhyLoading] = useState(false);
@@ -77,13 +83,17 @@ export default function TailoredCVDetailPage() {
   });
 
   const selectedTemplate = templateOverride ?? referenceCV?.template ?? DEFAULT_TEMPLATE;
+  // Unsaved local change, then the stored value, then the layout's own look.
+  const selectedTemplateStyle = normalizeTemplateStyle(
+    styleOverride ?? referenceCV?.templateStyle ?? getTemplateDefaultStyle(selectedTemplate),
+  );
 
   const templateMutation = useMutation({
-    mutationFn: async (template) => {
+    mutationFn: async (patch) => {
       const res = await fetch("/api/resume", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ template }),
+        body: JSON.stringify(patch),
       });
       if (!res.ok) throw new Error("Failed to save template");
       return res.json();
@@ -93,9 +103,19 @@ export default function TailoredCVDetailPage() {
     },
   });
 
+  // Switching template adopts that layout's own look; the style toolbar in the
+  // picker is there to adjust from it.
   const handleTemplateChange = (template) => {
     setTemplateOverride(template);
-    templateMutation.mutate(template);
+    const nextStyle = getTemplateDefaultStyle(template);
+    setStyleOverride(nextStyle);
+    templateMutation.mutate({ template, templateStyle: nextStyle });
+  };
+
+  const handleTemplateStyleChange = (nextStyle) => {
+    const normalized = normalizeTemplateStyle(nextStyle);
+    setStyleOverride(normalized);
+    templateMutation.mutate({ template: selectedTemplate, templateStyle: normalized });
   };
 
   const whyThisRoleMutation = useMutation({
@@ -213,6 +233,7 @@ export default function TailoredCVDetailPage() {
         kind: "cv",
         data: resumeData,
         template: selectedTemplate,
+        style: selectedTemplateStyle,
         filename: buildPdfFilename(cv.basics?.name, cv.jobTitle, "cv"),
       });
     } else {
@@ -220,6 +241,7 @@ export default function TailoredCVDetailPage() {
         kind: "cover-letter",
         content: cv.coverLetter || "",
         template: selectedTemplate,
+        style: selectedTemplateStyle,
         meta: {
           name: cv.basics?.name,
           jobTitle: cv.jobTitle,
@@ -301,6 +323,8 @@ export default function TailoredCVDetailPage() {
                 <div className="w-56">
                   <TemplatePicker
                     value={selectedTemplate}
+                    style={selectedTemplateStyle}
+                    onStyleChange={handleTemplateStyleChange}
                     onChange={handleTemplateChange}
                     data={resumeData}
                   />
@@ -318,7 +342,7 @@ export default function TailoredCVDetailPage() {
 
         {activeTab === "cv" && (
           showPreview ? (
-            <ResumePreview data={resumeData} template={selectedTemplate} />
+            <ResumePreview data={resumeData} template={selectedTemplate} style={selectedTemplateStyle} />
           ) : (
             <ResumeForm
               initialData={resumeData}
@@ -345,7 +369,7 @@ export default function TailoredCVDetailPage() {
           <CoverLetterCard
             content={cv.coverLetter || ""}
             editable
-            fontClass={getTemplateFontClass(selectedTemplate)}
+            fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
             onSave={(content) => coverLetterMutation.mutate(content)}
             isSaving={coverLetterMutation.isPending}
           />
@@ -359,6 +383,8 @@ export default function TailoredCVDetailPage() {
               <div className="min-w-0 flex-1">
                 <TemplatePicker
                   value={selectedTemplate}
+                  style={selectedTemplateStyle}
+                  onStyleChange={handleTemplateStyleChange}
                   onChange={handleTemplateChange}
                   data={resumeData}
                 />

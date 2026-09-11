@@ -15,7 +15,7 @@ export default function Testimonial() {
       aria-labelledby="testimonials-heading"
       className="landing-section-tight landing-muted-band flex scroll-mt-24 flex-col items-center"
     >
-      <div className="landing-container flex flex-col items-center w-full max-w-3xl gap-8">
+      <div className="landing-reveal landing-container flex flex-col items-center w-full max-w-3xl gap-8">
         <QuotesIcon
           size={32}
           weight="fill"

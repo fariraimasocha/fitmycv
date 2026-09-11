@@ -17,7 +17,7 @@ export default function CoverLetterCard({
   editable,
   onSave,
   isSaving,
-  fontClass = "",
+  fontStack,
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
@@ -95,7 +95,10 @@ export default function CoverLetterCard({
             </div>
           </div>
         ) : content ? (
-          <p className={`max-w-prose text-sm leading-relaxed text-foreground whitespace-pre-line ${fontClass}`}>
+          <p
+            className="max-w-prose text-sm leading-relaxed text-foreground whitespace-pre-line"
+            style={fontStack ? { fontFamily: fontStack } : undefined}
+          >
             {content}
           </p>
         ) : (

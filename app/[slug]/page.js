@@ -36,8 +36,10 @@ export default async function MarketingSlugPage({ params }) {
   if (!page) notFound();
 
   return (
-    <MarketingPage page={page}>
-      {page.showTemplates ? <TemplateGallery /> : null}
+    <MarketingPage page={page} hideHero={Boolean(page.showTemplates)}>
+      {page.showTemplates ? (
+        <TemplateGallery asPageHeading title={page.h1} lede={page.lede} />
+      ) : null}
     </MarketingPage>
   );
 }

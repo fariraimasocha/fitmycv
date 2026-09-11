@@ -291,7 +291,7 @@ export const kickresumeAlternative = {
     },
     {
       q: "How many templates does FitMyCV have?",
-      a: "16 themes. That is fewer than Kickresume offers, and deliberately so: they are all single column and parser safe, because a template that scrambles in an ATS is not a design choice, it is a bug.",
+      a: "19 themes. That is fewer than Kickresume offers, and deliberately so: they are all single column and parser safe, because a template that scrambles in an ATS is not a design choice, it is a bug.",
     },
     {
       q: "Can I import my existing CV?",
@@ -313,7 +313,7 @@ export const kickresumeAlternative = {
         head: ["", "Kickresume", "FitMyCV"],
         rows: [
           ["Build a CV from scratch", "Yes, full editor", "No, you bring one"],
-          ["Template count", "Large gallery", "16, all single column"],
+          ["Template count", "Large gallery", "17, sixteen single column"],
           ["Rewrites per job posting", "AI writing help", "The whole product"],
           ["Reads a job URL", "No", "Yes"],
           ["Watermark on free exports", "Yes", "No watermark, ever"],
@@ -346,7 +346,7 @@ export const kickresumeAlternative = {
     {
       label: "CV templates",
       href: "/cv-templates",
-      body: "16 single column themes, all built to survive a parser.",
+      body: "19 layouts, sixteen single column, all built to survive a parser.",
     },
     {
       label: "Tailor a CV from a job link",

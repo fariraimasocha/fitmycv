@@ -41,7 +41,8 @@ import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
-import { DEFAULT_TEMPLATE, getTemplateFontClass, getTemplateName } from "@/utils/cv-templates/metadata";
+import { DEFAULT_TEMPLATE, getTemplateDefaultStyle, getTemplateName } from "@/utils/cv-templates/metadata";
+import { getTemplateFontOption, normalizeTemplateStyle } from "@/utils/cv-templates/style";
 import {
   DashboardPageShell,
   DashboardPageHeader,
@@ -64,6 +65,7 @@ function Tailor() {
   const [showPreview, setShowPreview] = useState(true);
   const [activeTab, setActiveTab] = useState("cv");
   const [templateOverride, setTemplateOverride] = useState(null);
+  const [templateStyleOverride, setTemplateStyleOverride] = useState(null);
   const [atsScore, setAtsScore] = useState(null);
   const [atsLoading, setAtsLoading] = useState(false);
   const [preAtsScore, setPreAtsScore] = useState(null);
@@ -94,13 +96,18 @@ function Tailor() {
   });
 
   const selectedTemplate = templateOverride ?? referenceCVRecord?.template ?? DEFAULT_TEMPLATE;
+  const selectedTemplateStyle = normalizeTemplateStyle(
+    templateStyleOverride ??
+      referenceCVRecord?.templateStyle ??
+      getTemplateDefaultStyle(selectedTemplate),
+  );
 
   const templateMutation = useMutation({
-    mutationFn: async (template) => {
+    mutationFn: async ({ template, templateStyle }) => {
       const res = await fetch("/api/resume", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ template }),
+        body: JSON.stringify({ template, templateStyle }),
       });
       if (!res.ok) throw new Error("Failed to save template");
       return res.json();
@@ -110,9 +117,21 @@ function Tailor() {
     },
   });
 
+  // Switching template adopts that layout's own look. Carrying the previous
+  // style across instead would mean picking "Technical" and not getting the
+  // monospace face that is the reason to pick it. The toolbar is right there
+  // to re-adjust afterwards.
   const handleTemplateChange = (template) => {
     setTemplateOverride(template);
-    templateMutation.mutate(template);
+    const nextStyle = getTemplateDefaultStyle(template);
+    setTemplateStyleOverride(nextStyle);
+    templateMutation.mutate({ template, templateStyle: nextStyle });
+  };
+
+  const handleTemplateStyleChange = (nextStyle) => {
+    const normalized = normalizeTemplateStyle(nextStyle);
+    setTemplateStyleOverride(normalized);
+    templateMutation.mutate({ template: selectedTemplate, templateStyle: normalized });
   };
 
   const extractMutation = useMutation({
@@ -328,6 +347,7 @@ function Tailor() {
         kind: "cv",
         data: tailorResult.tailoredCV,
         template: selectedTemplate,
+        style: selectedTemplateStyle,
         filename: buildPdfFilename(
           tailorResult.tailoredCV.basics?.name,
           jobData?.title,
@@ -339,6 +359,7 @@ function Tailor() {
         kind: "cover-letter",
         content: tailorResult.coverLetter || "",
         template: selectedTemplate,
+        style: selectedTemplateStyle,
         meta: {
           name: tailorResult.tailoredCV.basics?.name,
           jobTitle: jobData?.title,
@@ -769,6 +790,8 @@ function Tailor() {
                     <TemplatePicker
                       value={selectedTemplate}
                       onChange={handleTemplateChange}
+                      style={selectedTemplateStyle}
+                      onStyleChange={handleTemplateStyleChange}
                       data={tailorResult.tailoredCV}
                     />
                   </div>
@@ -806,7 +829,11 @@ function Tailor() {
           )}
           {activeTab === "cv" && (!savedId || showPreview) && (
             <>
-              <ResumePreview data={tailorResult.tailoredCV} template={selectedTemplate} />
+              <ResumePreview
+                data={tailorResult.tailoredCV}
+                template={selectedTemplate}
+                style={selectedTemplateStyle}
+              />
               {tailorResult.keywordsInjected?.length > 0 && (
                 <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
                   <CardContent className="dashboard-card-pad">
@@ -832,7 +859,7 @@ function Tailor() {
           {activeTab === "letter" && (
             <CoverLetterCard
               content={tailorResult.coverLetter}
-              fontClass={getTemplateFontClass(selectedTemplate)}
+              fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
             />
           )}
           {activeTab === "ats" && (
@@ -886,6 +913,8 @@ function Tailor() {
                 <TemplatePicker
                   value={selectedTemplate}
                   onChange={handleTemplateChange}
+                  style={selectedTemplateStyle}
+                  onStyleChange={handleTemplateStyleChange}
                   data={tailorResult.tailoredCV}
                 />
               </div>

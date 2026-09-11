@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import ResumeUpload from "@/components/ResumeUpload";
 import ResumeForm from "@/components/ResumeForm";
@@ -17,7 +18,8 @@ import {
 } from "@/components/dashboard";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
-import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
+import { DEFAULT_TEMPLATE, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
+import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 
 function buildResumeData(source) {
   return {
@@ -34,6 +36,7 @@ export default function MyResumePage() {
   const [showPreview, setShowPreview] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [templateOverride, setTemplateOverride] = useState(null);
+  const [styleOverride, setStyleOverride] = useState(null);
 
   const { data: savedCV, isLoading } = useQuery({
     queryKey: ["resume"],
@@ -46,13 +49,19 @@ export default function MyResumePage() {
   });
 
   const selectedTemplate = templateOverride ?? savedCV?.template ?? DEFAULT_TEMPLATE;
+  // An unsaved local change wins over the stored value, which wins over the
+  // template's own look. Without the last step a CV saved before styles
+  // existed would render with the global default instead of its layout's.
+  const selectedStyle = normalizeTemplateStyle(
+    styleOverride ?? savedCV?.templateStyle ?? getTemplateDefaultStyle(selectedTemplate),
+  );
 
   const templateMutation = useMutation({
-    mutationFn: async (template) => {
+    mutationFn: async (patch) => {
       const res = await fetch("/api/resume", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ template }),
+        body: JSON.stringify(patch),
       });
       if (!res.ok) throw new Error("Failed to save template");
       return res.json();
@@ -60,11 +69,25 @@ export default function MyResumePage() {
     onSuccess: (json) => {
       if (json.data) queryClient.setQueryData(["resume"], json.data);
     },
+    onError: () => {
+      toast.error("Could not save your template", {
+        description: "Your change is still on screen. Check your connection and try again.",
+      });
+    },
   });
 
+  // Switching template adopts that layout's own look, the same as the tailor
+  // page. The style toolbar is in the same dialog to re-adjust from there.
   const handleTemplateChange = (template) => {
     setTemplateOverride(template);
-    templateMutation.mutate(template);
+    const nextStyle = getTemplateDefaultStyle(template);
+    setStyleOverride(nextStyle);
+    templateMutation.mutate({ template, templateStyle: nextStyle });
+  };
+
+  const handleStyleChange = (nextStyle) => {
+    setStyleOverride(nextStyle);
+    templateMutation.mutate({ template: selectedTemplate, templateStyle: nextStyle });
   };
 
   const handleParsed = (data) => {
@@ -84,6 +107,7 @@ export default function MyResumePage() {
       kind: "cv",
       data: resumeData,
       template: selectedTemplate,
+      style: selectedStyle,
       filename: buildPdfFilename(resumeData.basics?.name, null, "cv"),
     });
   };
@@ -98,11 +122,13 @@ export default function MyResumePage() {
                 value={selectedTemplate}
                 onChange={handleTemplateChange}
                 data={resumeData}
+                style={selectedStyle}
+                onStyleChange={handleStyleChange}
               />
             }
             onDownload={() => handleDownload(resumeData)}
           />
-          <ResumePreview data={resumeData} template={selectedTemplate} />
+          <ResumePreview data={resumeData} template={selectedTemplate} style={selectedStyle} />
         </div>
       ) : (
         <ResumeForm initialData={resumeData} rawText={rawText} {...saveProps} />

@@ -56,28 +56,38 @@ const POLICY_LINK_CLASS =
 export default function TrustSignals() {
   return (
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container">
-        <div className="flex flex-col items-center gap-3 text-center">
+      <div className="landing-reveal landing-container">
+        {/* Left-aligned, matching the hero's type system. */}
+        <div className="max-w-2xl">
           <h2 className="landing-section-title text-2xl sm:text-3xl">
             What you are handing over, and what happens to it
           </h2>
-          <p className="landing-copy text-center text-base">
+          <p className="landing-copy mt-4 text-base">
             Your CV is the most personal document you own. Here is exactly how
             it is handled.
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* A ruled ledger rather than a card grid. ResourcesStrip below is
+            already a card grid, and two of those in one page read as the same
+            section twice. Rules also suit a list of commitments: it scans like
+            a policy, which is what it is. */}
+        <ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
           {SIGNALS.map(({ icon: Icon, title, body }) => (
-            <li key={title} className="landing-card flex flex-col gap-3 rounded-2xl p-6">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
-                <Icon size={19} weight="bold" aria-hidden="true" />
+            <li
+              key={title}
+              className="flex items-start gap-4 border-t border-[var(--landing-line)] py-5"
+            >
+              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
+                <Icon size={16} weight="bold" aria-hidden="true" />
               </span>
-              <span className="font-medium text-base text-[var(--landing-ink)]">
-                {title}
-              </span>
-              <span className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {body}
+              <span className="min-w-0">
+                <span className="block font-outfit text-base font-bold text-[var(--landing-ink)]">
+                  {title}
+                </span>
+                <span className="mt-1 block text-sm leading-6 text-[var(--landing-ink-soft)]">
+                  {body}
+                </span>
               </span>
             </li>
           ))}
@@ -86,31 +96,33 @@ export default function TrustSignals() {
         {/* Methodology and provenance. Every claim above is either a property
             of the product or covered by a published policy, so link the
             policies rather than asking visitors to take our word for it. */}
-        <div className="landing-card mt-6 flex flex-col gap-3 rounded-2xl p-6">
-          <h3 className="font-medium text-base text-[var(--landing-ink)]">
+        <div className="mt-10 border-t border-[var(--landing-line)] pt-8">
+          <h3 className="font-outfit text-base font-bold text-[var(--landing-ink)]">
             How the tailoring works
           </h3>
-          <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-            We read the job posting at the link you paste, pull out its
-            requirements and keywords, then rewrite your CV against them. Every
-            line comes from the CV you uploaded. The model is instructed never
-            to invent employers, roles, or numbers you did not give it.
-          </p>
-          <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-            The claims above are covered by our{" "}
-            <Link href="/privacy-policy" className={POLICY_LINK_CLASS}>
-              privacy policy
-            </Link>{" "}
-            and{" "}
-            <Link href="/terms-and-conditions" className={POLICY_LINK_CLASS}>
-              terms and conditions
-            </Link>
-            . Questions about any of it go to{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className={POLICY_LINK_CLASS}>
-              {SUPPORT_EMAIL}
-            </a>
-            .
-          </p>
+          <div className="mt-3 grid gap-4 text-sm leading-6 text-[var(--landing-ink-soft)] lg:grid-cols-2 lg:gap-12">
+            <p>
+              We read the job posting at the link you paste, pull out its
+              requirements and keywords, then rewrite your CV against them. Every
+              line comes from the CV you uploaded. The model is instructed never
+              to invent employers, roles, or numbers you did not give it.
+            </p>
+            <p>
+              The claims above are covered by our{" "}
+              <Link href="/privacy-policy" className={POLICY_LINK_CLASS}>
+                privacy policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/terms-and-conditions" className={POLICY_LINK_CLASS}>
+                terms and conditions
+              </Link>
+              . Questions about any of it go to{" "}
+              <a href={`mailto:${SUPPORT_EMAIL}`} className={POLICY_LINK_CLASS}>
+                {SUPPORT_EMAIL}
+              </a>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </section>

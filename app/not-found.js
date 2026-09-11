@@ -8,8 +8,9 @@ export const metadata = {
   title: "Page not found",
 };
 
-// ponytail: hand-picked links rather than a search box. Three routes use
-// dynamicParams:false, so most 404s are near-miss slugs these cover.
+// ponytail: hand-picked links rather than a search box. Most 404s that a real
+// person hits are near-miss slugs on the marketing, blog and examples routes,
+// which these four links cover.
 const links = [
   { label: "Tailor a CV from a job link", href: "/tailor-cv-from-job-link" },
   { label: "Resume examples", href: "/resume-examples" },

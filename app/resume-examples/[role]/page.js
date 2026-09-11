@@ -16,7 +16,8 @@ import {
   pageMetadata,
 } from "@/lib/seo";
 
-export const dynamicParams = false;
+// dynamicParams stays on: with it off, an unknown param made Next throw an
+// internal NoFallbackError into the logs. The notFound() below 404s either way.
 
 export function generateStaticParams() {
   return RESUME_EXAMPLES.map(({ slug }) => ({ role: slug }));

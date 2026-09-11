@@ -1,5 +1,15 @@
 import { extractText } from "unpdf";
 
+// pdf.js calls Math.sumPrecise while substituting embedded subset fonts. Node
+// does not ship it yet, so every upload logs a TypeError and the substitution
+// is skipped. ponytail: plain reduce, the inputs are small integer glyph sizes
+// so exact summation buys nothing. Drop this once Node ships Math.sumPrecise.
+Math.sumPrecise ??= (values) => {
+  let total = 0;
+  for (const value of values) total += value;
+  return total;
+};
+
 /**
  * Extract and sanitize text from a PDF ArrayBuffer.
  */

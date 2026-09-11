@@ -31,14 +31,21 @@ function extractJsonString(text) {
 }
 
 function cleanJsonString(str) {
-  return (
-    str
-      .trim()
-      // Remove trailing commas before } or ]
-      .replace(/,\s*([}\]])/g, "$1")
-      // Remove single-line comments
-      .replace(/\/\/.*$/gm, "")
+  // Remove trailing commas before } or ]
+  let cleaned = str.trim().replace(/,\s*([}\]])/g, "$1");
+
+  // Escape literal control characters inside JSON string values. Models
+  // sometimes put a raw newline in a summary or highlight, which JSON.parse
+  // rejects as a bad control character.
+  cleaned = cleaned.replace(/"(?:[^"\\]|\\.)*"/g, (match) =>
+    match
+      .replace(/\t/g, "\\t")
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r")
+      .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, "")
   );
+
+  return cleaned;
 }
 
 function extractBasics(raw) {

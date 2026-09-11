@@ -38,8 +38,7 @@ function extractJsonString(text) {
 function cleanJsonString(str) {
   let cleaned = str
     .trim()
-    .replace(/,\s*([}\]])/g, "$1")
-    .replace(/\/\/.*$/gm, "");
+    .replace(/,\s*([}\]])/g, "$1");
 
   cleaned = cleaned.replace(/"(?:[^"\\]|\\.)*"/g, (match) => {
     return match

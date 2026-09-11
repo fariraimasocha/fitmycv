@@ -14,7 +14,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { AppSidebar } from "@/components/app-sidebar";
-import AuthProvider from "@/components/providers/auth-provider";
 import OnboardingGuard from "@/components/OnboardingGuard";
 import FeedbackModal from "@/components/FeedbackModal";
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
@@ -112,22 +111,23 @@ function DashboardBreadcrumb() {
   );
 }
 
+// The session provider lives once, in app/layout.js. Mounting a second one here
+// broke it: next-auth keeps session state in a module-level singleton, so a
+// provider that mounts when one is already populated hits the "!event" early
+// return in _getSession and never calls its own setSession. On a client-side
+// nav from the landing page this left useSession() undefined until a hard
+// reload, and unmounting it wiped the root provider's state on the way out.
 export default function DashboardShell({ children }) {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const pathname = usePathname();
   const isOnboarding = pathname === "/dashboard/onboarding";
 
   if (isOnboarding) {
-    return (
-      <AuthProvider>
-        <OnboardingGuard>{children}</OnboardingGuard>
-      </AuthProvider>
-    );
+    return <OnboardingGuard>{children}</OnboardingGuard>;
   }
 
   return (
-    <AuthProvider>
-      <OnboardingGuard>
+    <OnboardingGuard>
       <TooltipProvider>
         <SidebarProvider>
           <AppSidebar />
@@ -155,7 +155,6 @@ export default function DashboardShell({ children }) {
         </SidebarProvider>
       </TooltipProvider>
       <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
-      </OnboardingGuard>
-    </AuthProvider>
+    </OnboardingGuard>
   );
 }

@@ -37,9 +37,9 @@ export const metadata = {
     title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/hero-new.png",
+        width: 3024,
+        height: 1724,
         alt: "FitMyCV: Land more interviews with a CV that fits",
       },
     ],
@@ -47,7 +47,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
-    images: ["/og-image.jpg"],
+    images: ["/hero-new.png"],
   },
 };
 

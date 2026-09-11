@@ -27,9 +27,9 @@ export const metadata = {
       "Fresh remote jobs pulled straight from company career pages twice a day. Find a role, then tailor your CV to it in one click.",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/hero-new.png",
+        width: 3024,
+        height: 1724,
         alt: "Remote jobs from company career pages",
       },
     ],
@@ -39,7 +39,7 @@ export const metadata = {
     title: "Remote Jobs From Company Career Pages | FitMyCV",
     description:
       "Fresh remote jobs pulled straight from company career pages twice a day.",
-    images: ["/og-image.jpg"],
+    images: ["/hero-new.png"],
   },
 };
 

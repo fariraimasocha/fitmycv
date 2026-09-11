@@ -25,14 +25,14 @@ export const metadata = {
     title: "Support | FitMyCV",
     description:
       "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account, or email our support team directly.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "FitMyCV" }],
+    images: [{ url: "/hero-new.png", width: 3024, height: 1724, alt: "FitMyCV" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Support | FitMyCV",
     description:
       "Need help with FitMyCV? Get answers about tailoring your CV from a job link, billing, and your account, or email our support team directly.",
-    images: ["/og-image.jpg"],
+    images: ["/hero-new.png"],
   },
 };
 

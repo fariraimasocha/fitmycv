@@ -29,9 +29,9 @@ export const metadata = {
       `Simple, transparent pricing. Lifetime access for $${PRICING.lifetime.price} or $${PRICING.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.`,
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "/hero-new.png",
+        width: 3024,
+        height: 1724,
         alt: "FitMyCV pricing: tailor your CV from any job link",
       },
     ],
@@ -41,7 +41,7 @@ export const metadata = {
     title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
     description:
       `Premium is $${PRICING.lifetime.price} lifetime or $${PRICING.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel monthly anytime.`,
-    images: ["/og-image.jpg"],
+    images: ["/hero-new.png"],
   },
 };
 

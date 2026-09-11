@@ -17,14 +17,14 @@ export const metadata = {
     title: "Terms and Conditions | FitMyCV",
     description:
       "The terms that govern your use of FitMyCV, including subscriptions, billing, acceptable use, and our AI-generated content disclaimer.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "FitMyCV" }],
+    images: [{ url: "/hero-new.png", width: 3024, height: 1724, alt: "FitMyCV" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Terms and Conditions | FitMyCV",
     description:
       "The terms that govern your use of FitMyCV, including subscriptions, billing, acceptable use, and our AI-generated content disclaimer.",
-    images: ["/og-image.jpg"],
+    images: ["/hero-new.png"],
   },
 };
 

@@ -48,7 +48,7 @@ function DemoPreview() {
           <video
             ref={videoRef}
             src="/fitmycv-demo.mp4"
-            poster="/hero.jpg"
+            poster="/hero-new.png"
             autoPlay
             loop
             muted

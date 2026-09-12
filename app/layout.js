@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
+import ChatwootWidget from "@/components/ChatwootWidget";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 
 const dmSans = DM_Sans({
@@ -119,6 +120,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             {children}
             <ToastProvider />
+            <ChatwootWidget />
           </AuthProvider>
         </QueryProvider>
         <Analytics />

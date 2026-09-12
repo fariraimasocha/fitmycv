@@ -1183,6 +1183,14 @@
   }
 }
 
+@media print {
+  .woot-widget-holder,
+  .woot--bubble-holder,
+  .woot-widget-bubble {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

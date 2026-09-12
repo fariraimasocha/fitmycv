@@ -266,7 +266,7 @@ export default function TailoredCVsPage() {
 
                     <ArrowRightIcon
                       size={14}
-                      className="shrink-0 text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground"
+                      className="shrink-0 text-muted-foreground/70 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground"
                       aria-hidden="true"
                     />
                   </CardContent>

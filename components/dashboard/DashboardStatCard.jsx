@@ -31,8 +31,10 @@ export function DashboardStatCard({
     >
       <Card
         className={cn(
-          "dashboard-stat-card flex flex-col overflow-hidden rounded-2xl border-border py-0 gap-0 transition-shadow hover:shadow-[var(--landing-shadow-sm)]",
-          featured ? "bg-[var(--landing-paper-soft)]" : "h-full",
+          "dashboard-stat-card flex flex-col overflow-hidden rounded-2xl border-border py-0 gap-0 transition-shadow",
+          featured
+            ? "bg-[var(--landing-paper-soft)] hover:shadow-[var(--landing-shadow-sm)]"
+            : "h-full",
           className
         )}
       >
@@ -74,14 +76,14 @@ export function DashboardStatCard({
                 value={value}
                 className={cn(
                   "font-outfit font-extrabold leading-none tracking-tight text-foreground",
-                  featured ? "text-5xl sm:text-6xl" : "text-xl sm:text-2xl"
+                  featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
                 )}
               />
             ) : (
               <p
                 className={cn(
                   "font-outfit font-extrabold leading-none text-foreground",
-                  featured ? "text-5xl sm:text-6xl" : "text-xl sm:text-2xl"
+                  featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
                 )}
               >
                 {value}

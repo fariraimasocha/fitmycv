@@ -193,7 +193,6 @@ export default function DashboardPage() {
       </Suspense>
 
       <div className="flex flex-col gap-1">
-        <span className="landing-meta-line">Dashboard</span>
         <h1
           suppressHydrationWarning
           className="font-outfit text-xl font-extrabold text-foreground sm:text-2xl md:text-3xl"

@@ -93,7 +93,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                         className={cn(
                           "text-sm font-semibold",
                           step.done
-                            ? "text-muted-foreground line-through"
+                            ? "text-muted-foreground"
                             : "text-foreground",
                         )}
                       >

@@ -836,14 +836,14 @@
   }
 
   .dashboard-nav-active {
-    background: var(--landing-primary) !important;
+    background: var(--landing-accent-dark) !important;
     color: #ffffff !important;
     font-weight: 600;
     box-shadow: 0 2px 8px oklch(0.18 0.02 260 / 0.12);
   }
 
   .dashboard-nav-active:hover {
-    background: #333333 !important;
+    background: #8a3e2a !important;
     color: #ffffff !important;
   }
 

@@ -1,7 +1,10 @@
 import PricingCards from "@/components/pricing/PricingCards";
-import { LIFETIME_SAVINGS_COPY } from "@/lib/pricing";
+import { getLifetimeSavingsCopy } from "@/lib/pricing";
+import { getServerPricing } from "@/lib/server-pricing";
 
-export default function Pricing() {
+export default async function Pricing() {
+  const { pricing, tier } = await getServerPricing();
+
   return (
     <section
       id="pricing"
@@ -20,10 +23,15 @@ export default function Pricing() {
       </div>
 
       <div className="landing-container w-full">
-        <PricingCards />
+        <PricingCards pricing={pricing} tier={tier} />
         <p className="mx-auto mt-8 max-w-lg text-center text-xs text-[var(--landing-ink-soft)]">
-          {LIFETIME_SAVINGS_COPY} Secure checkout via Polar.
+          {getLifetimeSavingsCopy(tier)} Secure checkout via Polar.
         </p>
+        {tier === "standard" ? (
+          <p className="mx-auto mt-2 max-w-lg text-center text-xs text-[var(--landing-ink-soft)]">
+            Lower regional pricing is available in select countries.
+          </p>
+        ) : null}
       </div>
     </section>
   );

@@ -1,24 +1,55 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
-// Callers render LIFETIME_SAVINGS_COPY themselves. See components/landing/Pricing.js.
 import { PRICING } from "@/lib/pricing";
+import { trackEvent } from "@/lib/analytics";
 
 export default function PricingCards({
   defaultPlan = "lifetime",
   compact = false,
   onSkip,
   skipLabel = "Continue free",
+  pricing: pricingProp,
+  tier: tierProp,
 }) {
   const { data: session } = useSession();
   const router = useRouter();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
+  const [pricing, setPricing] = useState(pricingProp ?? PRICING);
+  const [tier, setTier] = useState(tierProp ?? pricingProp?.tier ?? "standard");
+
+  useEffect(() => {
+    if (pricingProp) {
+      setPricing(pricingProp);
+      setTier(tierProp ?? pricingProp.tier ?? "standard");
+      trackEvent("pricing_tier_viewed", {
+        tier: tierProp ?? pricingProp.tier,
+      });
+      return;
+    }
+
+    fetch("/api/pricing-tier")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.pricing) {
+          setPricing(data.pricing);
+          setTier(data.tier ?? "standard");
+          trackEvent("pricing_tier_viewed", {
+            tier: data.tier,
+            country: data.country,
+          });
+        }
+      })
+      .catch(() => {});
+  }, [pricingProp, tierProp]);
 
   const handleCheckout = (plan) => {
+    trackEvent("checkout_start", { tier, plan });
     if (session?.user) {
       router.push(`/api/polar/checkout?plan=${plan}`);
     } else {
@@ -27,13 +58,16 @@ export default function PricingCards({
     }
   };
 
-  const plans = [PRICING.lifetime, PRICING.month];
+  const plans = [pricing.lifetime, pricing.month];
 
   return (
     <div className={`flex w-full flex-col gap-6 ${compact ? "" : "items-center"}`}>
-      {/* Below md the cards stack, so the features panel is ordered above them.
-          otherwise mobile shows two prices and two CTAs before any reason to buy.
-          The md breakpoint matches the grid going two-up below. */}
+      {pricing.regionalNote ? (
+        <p className="text-center text-xs font-semibold text-[var(--landing-ink-soft)]">
+          {pricing.regionalNote}
+        </p>
+      ) : null}
+
       <div
         className={`grid w-full gap-4 ${
           compact
@@ -92,8 +126,6 @@ export default function PricingCards({
         })}
       </div>
 
-      {/* Both plans are the same product on different billing terms, so the
-          feature list lives here once rather than being repeated per card. */}
       {!compact && (
         <div className="order-1 w-full max-w-3xl rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 sm:p-7 md:order-2">
           <h3 className="text-center font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
@@ -129,4 +161,20 @@ export default function PricingCards({
       )}
     </div>
   );
+}
+
+export function useClientPricing(initialPricing) {
+  const [pricing, setPricing] = useState(initialPricing ?? PRICING);
+
+  useEffect(() => {
+    if (initialPricing) return;
+    fetch("/api/pricing-tier")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.pricing) setPricing(data.pricing);
+      })
+      .catch(() => {});
+  }, [initialPricing]);
+
+  return pricing;
 }

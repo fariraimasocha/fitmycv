@@ -33,6 +33,13 @@ export default function sitemap() {
     "ai-cover-letter-generator",
     "cover-letter-builder",
     "resume-optimizer",
+    "huntr-alternative",
+    "enhancv-alternative",
+    "rezi-alternative",
+    "resume-worded-alternative",
+    "tailoredcv-alternative",
+    "seekario-alternative",
+    "visualcv-alternative",
   ]);
 
   const marketingRoutes = MARKETING_PAGES.map(({ slug }) => ({

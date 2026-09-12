@@ -29,8 +29,14 @@ import howToMatchResume from "./how-to-match-resume-to-job-description";
 import howToCheckResume from "./how-to-check-resume-against-job-description";
 import howToFindKeywordGaps from "./how-to-find-resume-keyword-gaps";
 import whatIsMatchScore from "./what-is-a-resume-match-score";
+import doesTailoringWork from "./does-tailoring-your-resume-actually-work";
+import howMuchToTailor from "./how-much-should-you-tailor-your-resume";
+import cvVsResume from "./cv-vs-resume-difference";
 
 export const POSTS = [
+  doesTailoringWork,
+  howMuchToTailor,
+  cvVsResume,
   atsResumeFormat,
   howToMatchResume,
   howToCheckResume,

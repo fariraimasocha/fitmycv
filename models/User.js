@@ -72,6 +72,12 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    // Set by Polar webhooks; consumed once by /api/user/purchase-analytics for
+    // idempotent purchase_complete analytics.
+    purchaseAnalyticsPending: {
+      orderId: { type: String, default: null },
+      plan: { type: String, default: null },
+    },
     // Opt-out for one-off product announcements. Separate from
     // jobPreferences.emailDigest, which only governs the daily digest and sits
     // behind a premium-gated settings page. Queries use $ne:false so legacy

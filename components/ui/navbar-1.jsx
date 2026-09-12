@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CaretDownIcon, LayoutIcon, ListIcon, SignOutIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
+import AuthLink from "@/components/landing/AuthLink";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
@@ -157,18 +158,18 @@ const Navbar1 = () => {
             </DropdownMenu>
           ) : (
             <>
-              <Link
+              <AuthLink
                 href="/auth"
                 className="text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
               >
                 Login
-              </Link>
-              <Link
+              </AuthLink>
+              <AuthLink
                 href="/auth"
                 className="landing-primary-btn landing-primary-btn-sm font-outfit"
               >
                 Try for free
-              </Link>
+              </AuthLink>
             </>
           )}
         </div>
@@ -221,20 +222,20 @@ const Navbar1 = () => {
               </Link>
             ) : (
               <>
-                <Link
+                <AuthLink
                   href="/auth"
                   className="landing-primary-btn landing-primary-btn-sm w-full"
                   onClick={() => setIsOpen(false)}
                 >
                   Try for free
-                </Link>
-                <Link
+                </AuthLink>
+                <AuthLink
                   href="/auth"
                   className="landing-secondary-btn landing-secondary-btn-sm w-full"
                   onClick={() => setIsOpen(false)}
                 >
                   Login
-                </Link>
+                </AuthLink>
               </>
             )}
           </div>

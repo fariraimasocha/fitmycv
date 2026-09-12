@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import AuthLink from "@/components/landing/AuthLink";
 
 import { HOME_STEPS as STEPS } from "@/content/pages/home";
 import {
@@ -94,7 +94,7 @@ function StepVisual({ step }) {
   );
 }
 
-export default function HowItWorks() {
+export default function HowItWorks({ lifetimePrice = "29.99" }) {
   const [active, setActive] = useState(0);
 
   return (
@@ -160,15 +160,15 @@ export default function HowItWorks() {
         </div>
 
         <div className="mt-14 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <Link
+          <AuthLink
             href="/auth"
             className="landing-dark-pill font-outfit"
           >
             Tailor my CV
             <ArrowUpRightIcon size={16} aria-hidden="true" />
-          </Link>
+          </AuthLink>
           <p className="text-sm text-[var(--landing-ink-inverse-soft)]">
-            Free to build and tailor. The PDF download is the paid part.
+            Preview on screen free. ${lifetimePrice} once to download PDFs.
           </p>
         </div>
       </div>

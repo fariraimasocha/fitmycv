@@ -25,6 +25,22 @@ export const HOME_FAQS = [
     q: "Is my data safe?",
     a: "Your privacy is our top priority. All data is encrypted, we never share your information, and you can delete your account and all associated data at any time.",
   },
+  {
+    q: "Why a job link instead of pasting the description?",
+    a: "A link lets FitMyCV read the full posting for you, including requirements buried in the page. You skip copying text into a form and start with a CV already matched to that listing.",
+  },
+  {
+    q: "Does tailoring actually help with ATS filters?",
+    a: "FitMyCV mirrors the role's keywords and skills in your existing experience. That alignment is what ATS systems scan for. You still review every line before you apply.",
+  },
+  {
+    q: "Google sign-in blocked in the LinkedIn app?",
+    a: "The LinkedIn in-app browser often blocks Google sign-in. Open fitmycv.link in Chrome or Safari, or use the email sign-in link on the auth page. Both paths work.",
+  },
+  {
+    q: "Is Premium worth it if I can read the CV on screen?",
+    a: "Reading on screen is free. Premium is for PDF downloads, ATS and match scores, application tracking, and the rest of the toolkit. Most people upgrade when they are ready to send the application.",
+  },
 ];
 
 // The three visible "How it works" steps. Shared so the section on screen and

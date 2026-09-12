@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import AuthLink from "@/components/landing/AuthLink";
 
 export default function StickyCtaBar() {
   const [visible, setVisible] = useState(false);
@@ -25,10 +25,10 @@ export default function StickyCtaBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--landing-line)] bg-[var(--landing-bg)]/95 p-3 backdrop-blur-md md:hidden">
-      <Link href="/auth" className="landing-primary-btn w-full text-sm">
+      <AuthLink href="/auth" className="landing-primary-btn w-full text-sm">
         Tailor my CV
         <ArrowUpRightIcon size={16} aria-hidden="true" />
-      </Link>
+      </AuthLink>
     </div>
   );
 }

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
+import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 
 // Words that carry no signal when matching a CV against a posting. The second
@@ -415,6 +416,11 @@ export default function KeywordChecker({ mode = "match" }) {
                     </li>
                   ))}
               </ul>
+
+              <LeadEmailCapture
+                score={result.score}
+                missingKeywordCount={result.missing.length}
+              />
             </>
           ) : (
             <>

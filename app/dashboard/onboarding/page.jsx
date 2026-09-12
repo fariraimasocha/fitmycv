@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
@@ -13,7 +13,9 @@ import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
+import PricingCards from "@/components/pricing/PricingCards";
 import { getActivationSteps } from "@/lib/activation-steps";
+import { trackEvent } from "@/lib/analytics";
 
 // Sentences are stored lowercase-initial so the name can be prefixed. With no
 // name on the session, the sentence stands alone rather than reading "there, ...".
@@ -61,7 +63,9 @@ const QUESTIONS = [
   },
 ];
 
-const TOTAL_STEPS = QUESTIONS.length + 1;
+const PRICING_STEP = QUESTIONS.length;
+const UPLOAD_STEP = QUESTIONS.length + 1;
+const TOTAL_STEPS = QUESTIONS.length + 2;
 
 function countYears(work) {
   const years = (work ?? [])
@@ -126,8 +130,20 @@ export default function OnboardingPage() {
   const [completionFailed, setCompletionFailed] = useState(false);
 
   const firstName = session?.user?.name?.split(" ")[0] || null;
-  const isUploadStep = step === QUESTIONS.length;
+  const isPricingStep = step === PRICING_STEP;
+  const isUploadStep = step === UPLOAD_STEP;
   const onPayoff = Boolean(parsedCV);
+
+  const goToUploadStep = () => {
+    trackEvent("onboarding_pricing_skipped");
+    setStep(UPLOAD_STEP);
+  };
+
+  useEffect(() => {
+    if (isPricingStep) {
+      trackEvent("onboarding_pricing_viewed");
+    }
+  }, [isPricingStep]);
 
   const completeOnboarding = useCallback(
     async (destination, payload) => {
@@ -336,6 +352,27 @@ export default function OnboardingPage() {
                   >
                     Go to dashboard
                   </button>
+                </div>
+              </>
+            ) : isPricingStep ? (
+              <>
+                <span className="landing-eyebrow-plain">Pricing</span>
+                <h1 className="mt-4 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl">
+                  {withName(
+                    firstName,
+                    "here is what Premium unlocks before you tailor.",
+                  )}
+                </h1>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
+                  You can preview your tailored CV on screen for free. Premium
+                  is for PDF downloads, ATS scores, and the full toolkit.
+                </p>
+
+                <div className="mt-7">
+                  <PricingCards
+                    onSkip={goToUploadStep}
+                    skipLabel="Continue with free preview"
+                  />
                 </div>
               </>
             ) : isUploadStep ? (

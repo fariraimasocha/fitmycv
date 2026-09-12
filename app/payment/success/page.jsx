@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { trackEvent } from "@/lib/analytics";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
 export default function PaymentSuccessPage() {
   const { update } = useSession();
   const router = useRouter();
+  const purchaseTracked = useRef(false);
 
   const { data } = useQuery({
     queryKey: ["premium-status"],
@@ -33,9 +35,25 @@ export default function PaymentSuccessPage() {
   const [sessionUpdating, setSessionUpdating] = useState(false);
 
   useEffect(() => {
-    if (!isPremiumConfirmed) return;
-    setSessionUpdating(true);
-    update().then(() => router.push("/dashboard"));
+    if (!isPremiumConfirmed || purchaseTracked.current) return;
+
+    purchaseTracked.current = true;
+
+    fetch("/api/user/purchase-analytics", { credentials: "same-origin" })
+      .then((res) => (res.ok ? res.json() : { pending: false }))
+      .then((payload) => {
+        if (payload.pending && payload.orderId) {
+          trackEvent("purchase_complete", {
+            plan: payload.plan || "lifetime",
+            orderId: payload.orderId,
+          });
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        setSessionUpdating(true);
+        update().then(() => router.push("/dashboard"));
+      });
   }, [isPremiumConfirmed, update, router]);
 
   return (

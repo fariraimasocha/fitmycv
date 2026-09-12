@@ -27,6 +27,9 @@ importers:
 
   .:
     dependencies:
+      '@auth/mongodb-adapter':
+        specifier: ^3.11.3
+        version: 3.11.3(mongodb@7.6.0(socks@2.8.9))(nodemailer@7.0.13)
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.7.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.85.0(react@19.2.3))(zod@4.4.3)
@@ -57,6 +60,9 @@ importers:
       lucide-react:
         specifier: ^0.574.0
         version: 0.574.0(react@19.2.3)
+      mongodb:
+        specifier: ^7.6.0
+        version: 7.6.0(socks@2.8.9)
       mongoose:
         specifier: ^9.2.1
         version: 9.9.2(socks@2.8.9)
@@ -68,7 +74,10 @@ importers:
         version: 16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       next-auth:
         specifier: 5.0.0-beta.30
-        version: 5.0.0-beta.30(next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
+        version: 5.0.0-beta.30(next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(nodemailer@7.0.13)(react@19.2.3)
+      nodemailer:
+        specifier: ^7.0.7
+        version: 7.0.13
       openai:
         specifier: ^6.25.0
         version: 6.49.0(ws@8.21.3)(zod@4.4.3)
@@ -144,6 +153,25 @@ packages:
         optional: true
       nodemailer:
         optional: true
+
+  '@auth/core@0.41.3':
+    resolution: {integrity: sha512-sJ3JMHHkXMD3aOjopv7mOBTO1Ocw4b0fAEXJBz6k7YHLpYQI6C40jCUPc5fNvUKxXRXNE1/sRISA15UrwWJBTw==}
+    peerDependencies:
+      '@simplewebauthn/browser': ^9.0.1
+      '@simplewebauthn/server': ^9.0.2
+      nodemailer: ^7.0.7 || ^8.0.5
+    peerDependenciesMeta:
+      '@simplewebauthn/browser':
+        optional: true
+      '@simplewebauthn/server':
+        optional: true
+      nodemailer:
+        optional: true
+
+  '@auth/mongodb-adapter@3.11.3':
+    resolution: {integrity: sha512-Fgecjf24MLo1975qKjeFhdiFLC4NGwpfCScS/LFqCTo7rIesxLyNqVZzSwtPiSizWlncCAQf3gURlQLK16DRIg==}
+    peerDependencies:
+      mongodb: ^6
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -3298,6 +3326,33 @@ packages:
       socks:
         optional: true
 
+  mongodb@7.6.0:
+    resolution: {integrity: sha512-WbZ6OCjYw2c53LOjfkQa+reXr7kIiOVpXXglnASFuiMtif0BvsMwHe3ClJHLm1/r7wJFwaasfFtD6iYIktB01g==}
+    engines: {node: '>=20.19.0'}
+    peerDependencies:
+      '@aws-sdk/credential-providers': ^3.806.0
+      '@mongodb-js/zstd': ^7.0.0
+      gcp-metadata: ^7.0.1
+      kerberos: ^7.0.0
+      mongodb-client-encryption: ^7.2.0
+      snappy: ^7.3.2
+      socks: ^2.8.6
+    peerDependenciesMeta:
+      '@aws-sdk/credential-providers':
+        optional: true
+      '@mongodb-js/zstd':
+        optional: true
+      gcp-metadata:
+        optional: true
+      kerberos:
+        optional: true
+      mongodb-client-encryption:
+        optional: true
+      snappy:
+        optional: true
+      socks:
+        optional: true
+
   mongoose@9.9.2:
     resolution: {integrity: sha512-Nz8Rwu9jvADm0pyX0M3mEy8bx3wB5b/tRDI4XnjL7p6tZgmdyL9g0gE/EC9It6/XMIbcvniwYQDKYs91Qm+o+g==}
     engines: {node: '>=20.19.0'}
@@ -3408,6 +3463,10 @@ packages:
   node-releases@2.0.53:
     resolution: {integrity: sha512-D9UOmYG3UH1V+ENW56t5QXBwJw1YEY18ruVeus89Rw+SyIgjPkCO84bRzO3uNIYosJbNwiabWVn48o3uJLjxFQ==}
     engines: {node: '>=18'}
+
+  nodemailer@7.0.13:
+    resolution: {integrity: sha512-PNDFSJdP+KFgdsG3ZzMXCgquO7I6McjY2vlqILjtJd0hy8wEvtugS9xKRF2NWlPNGxvLCXlTNIae4serI7dinw==}
+    engines: {node: '>=6.0.0'}
 
   npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
@@ -4346,13 +4405,34 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@auth/core@0.41.0':
+  '@auth/core@0.41.0(nodemailer@7.0.13)':
     dependencies:
       '@panva/hkdf': 1.2.1
       jose: 6.2.8
       oauth4webapi: 3.8.7
       preact: 10.24.3
       preact-render-to-string: 6.5.11(preact@10.24.3)
+    optionalDependencies:
+      nodemailer: 7.0.13
+
+  '@auth/core@0.41.3(nodemailer@7.0.13)':
+    dependencies:
+      '@panva/hkdf': 1.2.1
+      jose: 6.2.8
+      oauth4webapi: 3.8.7
+      preact: 10.24.3
+      preact-render-to-string: 6.5.11(preact@10.24.3)
+    optionalDependencies:
+      nodemailer: 7.0.13
+
+  '@auth/mongodb-adapter@3.11.3(mongodb@7.6.0(socks@2.8.9))(nodemailer@7.0.13)':
+    dependencies:
+      '@auth/core': 0.41.3(nodemailer@7.0.13)
+      mongodb: 7.6.0(socks@2.8.9)
+    transitivePeerDependencies:
+      - '@simplewebauthn/browser'
+      - '@simplewebauthn/server'
+      - nodemailer
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -7371,6 +7451,14 @@ snapshots:
     optionalDependencies:
       socks: 2.8.9
 
+  mongodb@7.6.0(socks@2.8.9):
+    dependencies:
+      '@mongodb-js/saslprep': 1.4.13
+      bson: 7.3.2
+      mongodb-connection-string-url: 7.0.2
+    optionalDependencies:
+      socks: 2.8.9
+
   mongoose@9.9.2(socks@2.8.9):
     dependencies:
       '@standard-schema/spec': 1.1.0
@@ -7417,11 +7505,13 @@ snapshots:
 
   negotiator@1.0.0: {}
 
-  next-auth@5.0.0-beta.30(next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3):
+  next-auth@5.0.0-beta.30(next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(nodemailer@7.0.13)(react@19.2.3):
     dependencies:
-      '@auth/core': 0.41.0
+      '@auth/core': 0.41.0(nodemailer@7.0.13)
       next: 16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react: 19.2.3
+    optionalDependencies:
+      nodemailer: 7.0.13
 
   next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
@@ -7461,6 +7551,8 @@ snapshots:
       whatwg-url: 5.0.0
 
   node-releases@2.0.53: {}
+
+  nodemailer@7.0.13: {}
 
   npm-run-path@4.0.1:
     dependencies:

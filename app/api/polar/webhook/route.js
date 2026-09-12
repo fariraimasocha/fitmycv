@@ -27,6 +27,14 @@ async function resolveUser(data) {
   return user;
 }
 
+function queuePurchaseAnalytics(user, { orderId, plan }) {
+  if (!orderId) return;
+  user.purchaseAnalyticsPending = {
+    orderId: String(orderId),
+    plan: plan === "month" ? "month" : "lifetime",
+  };
+}
+
 export const POST = Webhooks({
   webhookSecret: process.env.POLAR_WEBHOOK_SECRET,
 
@@ -39,6 +47,10 @@ export const POST = Webhooks({
     user.polarCustomerId = order.customer?.id || user.polarCustomerId || null;
     user.premiumActivatedAt = new Date();
     user.premiumRevokedAt = null;
+    queuePurchaseAnalytics(user, {
+      orderId: order.id,
+      plan: order.metadata?.plan,
+    });
     await user.save();
 
     console.log(`Premium activated for user: ${user.email} (order.paid)`);
@@ -84,6 +96,10 @@ export const POST = Webhooks({
       : null;
     user.subscriptionCanceledAt = null;
     user.premiumRevokedAt = null;
+    queuePurchaseAnalytics(user, {
+      orderId: subscription.id,
+      plan: subscription.metadata?.plan ?? "month",
+    });
     await user.save();
 
     console.log(

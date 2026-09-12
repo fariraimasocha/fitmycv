@@ -8,22 +8,21 @@ import Testimonial from "@/components/landing/Testimonial";
 import TrustSignals from "@/components/landing/TrustSignals";
 import ResourcesStrip from "@/components/landing/ResourcesStrip";
 import Pricing from "@/components/landing/Pricing";
-import FAQ from "@/components/landing/FAQ";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import StickyCtaBar from "@/components/landing/StickyCtaBar";
+import FounderFaqSection from "@/components/landing/FounderFaqSection";
+import { WebviewGateProvider } from "@/components/landing/WebviewGateProvider";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema, howToSchema } from "@/lib/seo";
 import {
-  softwareApplicationSchema,
+  getSoftwareApplicationSchema,
   webPageSchema,
   reviewSchema,
 } from "@/lib/structured-data";
 import { HOME_FAQS, HOME_STEPS, HOME_TESTIMONIAL } from "@/content/pages/home";
+import { getServerPricing } from "@/lib/server-pricing";
 
-// The homepage previously shared its title tag with /tailor-cv-from-job-link,
-// which put the two pages in competition for the same query. The homepage now
-// carries the brand-led title and the feature page keeps the long-tail one.
 export const metadata = {
   title: {
     absolute: "Tailor Your CV to Any Job Link | FitMyCV",
@@ -31,8 +30,6 @@ export const metadata = {
   description:
     "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
-  // Page-level openGraph/twitter replace the layout objects wholesale (no
-  // deep merge), so images and card type must be re-declared here.
   openGraph: {
     title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
     images: [
@@ -51,28 +48,29 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const { pricing } = await getServerPricing();
+
   return (
     <div className="landing-root min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <JobBoardStrip />
-        <TheProblem />
-        <HowItWorks />
-        <TemplateStrip />
-        <Testimonial />
-        <TrustSignals />
-        <Pricing />
-        <FAQ />
-        <ResourcesStrip />
-        <CTABand />
-      </main>
-      <StickyCtaBar />
+      <WebviewGateProvider>
+        <Header />
+        <main>
+          <Hero lifetimePrice={pricing.lifetime.price} />
+          <JobBoardStrip />
+          <TheProblem />
+          <HowItWorks lifetimePrice={pricing.lifetime.price} />
+          <TemplateStrip />
+          <Testimonial />
+          <TrustSignals />
+          <Pricing />
+          <FounderFaqSection />
+          <ResourcesStrip />
+          <CTABand lifetimePrice={pricing.lifetime.price} />
+        </main>
+        <StickyCtaBar />
+      </WebviewGateProvider>
       <Footer />
-      {/* Every node below restates something a visitor can read on this page:
-          the H1 subject, the how-it-works steps, the FAQ answers, the pricing
-          cards, and the one attributed quote. */}
       <JsonLd
         data={webPageSchema({
           name: "Tailor Your CV to Any Job Link",
@@ -92,7 +90,7 @@ export default function Home() {
           })),
         })}
       />
-      <JsonLd data={softwareApplicationSchema} />
+      <JsonLd data={getSoftwareApplicationSchema(pricing)} />
       <JsonLd data={reviewSchema(HOME_TESTIMONIAL)} />
     </div>
   );

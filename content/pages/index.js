@@ -14,6 +14,13 @@ import {
   jobscanAlternative,
   tealAlternative,
   kickresumeAlternative,
+  huntrAlternative,
+  enhancvAlternative,
+  reziAlternative,
+  resumeWordedAlternative,
+  tailoredcvAlternative,
+  seekarioAlternative,
+  visualcvAlternative,
 } from "./alternatives";
 import { RESUME_KEYWORD_PAGES } from "@/content/resume-keywords";
 import { missingResumeKeywords } from "./missing-resume-keywords";
@@ -48,6 +55,13 @@ export const MARKETING_PAGES = [
   jobscanAlternative,
   tealAlternative,
   kickresumeAlternative,
+  huntrAlternative,
+  enhancvAlternative,
+  reziAlternative,
+  resumeWordedAlternative,
+  tailoredcvAlternative,
+  seekarioAlternative,
+  visualcvAlternative,
   workdayResumeFormat,
   greenhouseAtsResume,
   leverAtsResume,

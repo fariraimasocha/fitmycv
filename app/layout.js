@@ -52,14 +52,15 @@ export const metadata = {
   },
   description:
     "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
+  // "tailor cv to job description" deliberately lives on
+  // /tailor-cv-from-job-link, not here. Two pages chasing one head term split
+  // the signal and neither wins it.
   keywords: [
     "tailor cv from job link",
     "tailor resume from job url",
     "paste job link to tailor resume",
     "tailored cv from job posting url",
     "ai resume from job link",
-    "tailor cv to job description",
-    "tailor cv to job description in seconds",
     "ai cv tailoring",
     "ats optimization",
     "ai cover letter from job link",

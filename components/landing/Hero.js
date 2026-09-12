@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowUpRightIcon,
   ArrowRightIcon,
@@ -10,13 +11,11 @@ import {
   CheckCircleIcon,
 } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
+import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
 function DemoPreview() {
   const videoRef = useRef(null);
 
-  // The video carries autoPlay so it starts before hydration. This pauses it
-  // again for anyone who asked their OS to reduce motion, and follows them if
-  // they change the setting while the page is open.
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -44,7 +43,6 @@ function DemoPreview() {
           </span>
         </div>
         <div className="relative overflow-hidden">
-          {/* Muted autoplay so it works as a silent product demo on mobile too */}
           <video
             ref={videoRef}
             src="/fitmycv-demo.mp4"
@@ -63,11 +61,6 @@ function DemoPreview() {
   );
 }
 
-/**
- * The free ATS checker, offered inline the way the reference site offers its
- * upload bar. It links to a tool that genuinely takes a CV and a job
- * description without an account, so the promise on the card is the product.
- */
 function CheckerBar() {
   return (
     <Link
@@ -99,18 +92,20 @@ function CheckerBar() {
   );
 }
 
-export default function Hero() {
+export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
+  const router = useRouter();
+  const gate = useWebviewGate();
+
+  const handleTryFree = (event) => {
+    if (gate?.interceptAuth(event)) return;
+    router.push("/auth");
+  };
+
   return (
     <section id="hero" className="relative px-5 pb-20 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container landing-rules relative border-t border-[var(--landing-line)] px-4 pt-24 sm:px-8 sm:pt-36">
-        {/* Asymmetric split, as on the reference: the headline owns the left
-            seven columns and the supporting column sits in the last four,
-            dropped down so it starts against the middle of the headline. */}
         <div className="grid grid-cols-1 items-start gap-x-8 gap-y-10 lg:grid-cols-12">
           <div className="landing-rise lg:col-span-7">
-            {/* Measured off the reference: 1.15 leading and near-neutral
-                tracking. The earlier 1.05 / -0.02em crashed the lines together
-                and read as cramped at this size. */}
             <h1
               className="font-outfit font-medium text-[var(--landing-ink)]"
               style={{
@@ -119,9 +114,6 @@ export default function Hero() {
                 letterSpacing: "-0.01em",
               }}
             >
-              {/* Two-tone: the muted line names the category, the full-strength
-                  line makes the promise. One typeface throughout, as on the
-                  reference. The accent carries the brand, not a second face. */}
               <span className="block text-[var(--landing-ink-faint)]">
                 AI CV and cover letters.
               </span>
@@ -133,28 +125,25 @@ export default function Hero() {
           </div>
 
           <div className="landing-rise-2 lg:col-span-4 lg:col-start-9 lg:mt-24">
-            {/* Two lines of larger type, as on the reference. The detail that
-                used to live here is covered further down the page. */}
             <p className="text-lg leading-relaxed text-[var(--landing-ink-soft)]">
               Upload your CV once. FitMyCV reads the listing and rewrites your CV
               in the words that role asks for.
             </p>
 
-            {/* Button and proof sit on one row, the way the reference pairs its
-                CTA with a rating. */}
             <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-4">
-              <Link href="/auth" className="landing-primary-btn group font-outfit text-sm">
+              <button
+                type="button"
+                onClick={handleTryFree}
+                className="landing-primary-btn group font-outfit text-sm"
+              >
                 Try for free
                 <ArrowUpRightIcon
                   size={16}
                   aria-hidden="true"
                   className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 />
-              </Link>
+              </button>
 
-              {/* Where the reference puts a star rating. We have no review data,
-                  so this states things that are true of the product instead.
-                  See the note in TrustSignals.jsx. */}
               <span className="flex flex-col gap-1 text-xs leading-5 text-[var(--landing-ink-soft)]">
                 <span className="flex items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)]">
                   <CheckCircleIcon
@@ -163,9 +152,9 @@ export default function Hero() {
                     aria-hidden="true"
                     className="text-[var(--landing-success)]"
                   />
-                  Free to build and tailor
+                  Preview your tailored CV free
                 </span>
-                <span>Only pay to download. ${PRICING.lifetime.price} once.</span>
+                <span>${lifetimePrice} once to download PDFs and apply.</span>
               </span>
             </div>
 
@@ -184,8 +173,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* The bar sits on the rule and masks it with its own surface, the
-            way the reference seats its upload strip on the section divider. */}
         <div className="relative mt-20">
           <div
             aria-hidden="true"
@@ -196,6 +183,7 @@ export default function Hero() {
 
         <DemoPreview />
       </div>
+
     </section>
   );
 }

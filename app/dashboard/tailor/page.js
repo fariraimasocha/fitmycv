@@ -82,6 +82,7 @@ function Tailor() {
   const [applyingFix, setApplyingFix] = useState(null);
   const [appliedFixes, setAppliedFixes] = useState([]);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [upgradeModalContext, setUpgradeModalContext] = useState("default");
   const [recentUrls, setRecentUrls] = useState(() => getRecentJobUrls());
   const tailorRef = useRef(null);
 
@@ -297,6 +298,11 @@ function Tailor() {
       setAppliedFixes([]);
       toast.success("Resume tailored successfully!");
 
+      if (!session?.user?.isPremium) {
+        setUpgradeModalContext("post_tailor");
+        setShowUpgradeModal(true);
+      }
+
       // Trigger ATS analysis automatically
       setAtsLoading(true);
       fetch("/api/ats-score", {
@@ -339,6 +345,7 @@ function Tailor() {
     const documentType = tab === "cv" ? "cv" : "cover_letter";
     const isPremium = !!session?.user?.isPremium;
     if (!isPremium) {
+      setUpgradeModalContext("default");
       setShowUpgradeModal(true);
       return false;
     }
@@ -939,6 +946,7 @@ function Tailor() {
       <UpgradePromptModal
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
+        context={upgradeModalContext}
       />
     </DashboardPageShell>
   );

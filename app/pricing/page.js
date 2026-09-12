@@ -4,82 +4,91 @@ import Pricing from "@/components/landing/Pricing";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
-import { PRICING } from "@/lib/pricing";
+import { getServerPricing } from "@/lib/server-pricing";
 
-export const metadata = {
-  title: `Pricing: Lifetime Access for $${PRICING.lifetime.price}`,
-  description:
-    `FitMyCV Premium is $${PRICING.lifetime.price} lifetime or $${PRICING.month.price}/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.`,
-  keywords: [
-    "fitmycv pricing",
-    "cv tailoring tool price",
-    "ai resume builder pricing",
-    "tailor cv from job link cost",
-    "ats resume optimizer pricing",
-  ],
-  alternates: {
-    canonical: "/pricing",
-  },
-  openGraph: {
-    type: "website",
-    url: "/pricing",
-    siteName: "FitMyCV",
-    title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
-    description:
-      `Simple, transparent pricing. Lifetime access for $${PRICING.lifetime.price} or $${PRICING.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.`,
-    images: [
-      {
-        url: "/hero-new.png",
-        width: 3024,
-        height: 1724,
-        alt: "FitMyCV pricing: tailor your CV from any job link",
-      },
+export async function generateMetadata() {
+  const { pricing } = await getServerPricing();
+
+  return {
+    title: `Pricing: Lifetime Access for $${pricing.lifetime.price}`,
+    description: `FitMyCV Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.`,
+    keywords: [
+      "fitmycv pricing",
+      "cv tailoring tool price",
+      "ai resume builder pricing",
+      "tailor cv from job link cost",
+      "ats resume optimizer pricing",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
-    description:
-      `Premium is $${PRICING.lifetime.price} lifetime or $${PRICING.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel monthly anytime.`,
-    images: ["/hero-new.png"],
-  },
-};
+    alternates: {
+      canonical: "/pricing",
+    },
+    openGraph: {
+      type: "website",
+      url: "/pricing",
+      siteName: "FitMyCV",
+      title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
+      description: `Simple, transparent pricing. Lifetime access for $${pricing.lifetime.price} or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.`,
+      images: [
+        {
+          url: "/hero-new.png",
+          width: 3024,
+          height: 1724,
+          alt: "FitMyCV pricing: tailor your CV from any job link",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
+      description: `Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel monthly anytime.`,
+      images: ["/hero-new.png"],
+    },
+  };
+}
 
-const FAQS = [
-  {
-    q: "How much does FitMyCV cost?",
-    a: `FitMyCV Premium is $${PRICING.lifetime.price} for lifetime access (pay once, keep it forever) or $${PRICING.month.price} per month with no contracts.`,
-  },
-  {
-    q: "What do I get with Premium?",
-    a: "Premium includes unlimited tailored CVs and cover letters from any job link, a match score and ATS score on every CV, interview prep with company research and outreach, daily job matches by email, and PDF export on everything.",
-  },
-  {
-    q: "Can I cancel anytime?",
-    a: "Monthly subscriptions can be canceled anytime. You keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable.",
-  },
-  {
-    q: "Which payment methods do you accept?",
-    a: "Payments are processed securely through Polar, which accepts all major credit and debit cards.",
-  },
-];
+function buildFaqs(pricing) {
+  return [
+    {
+      q: "How much does FitMyCV cost?",
+      a: `FitMyCV Premium is $${pricing.lifetime.price} for lifetime access (pay once, keep it forever) or $${pricing.month.price} per month with no contracts.`,
+    },
+    {
+      q: "What do I get with Premium?",
+      a: "Premium includes unlimited tailored CVs and cover letters from any job link, a match score and ATS score on every CV, interview prep with company research and outreach, daily job matches by email, and PDF export on everything.",
+    },
+    {
+      q: "Can I cancel anytime?",
+      a: "Monthly subscriptions can be canceled anytime. You keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable.",
+    },
+    {
+      q: "Which payment methods do you accept?",
+      a: "Payments are processed securely through Polar, which accepts all major credit and debit cards.",
+    },
+    {
+      q: "Is regional pricing available?",
+      a: "Yes. Lower pricing may apply in select countries based on your location at checkout.",
+    },
+  ];
+}
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-};
+export default async function PricingPage() {
+  const { pricing } = await getServerPricing();
+  const faqs = buildFaqs(pricing);
 
-export default function PricingPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
   return (
     <div className="landing-root min-h-screen">
       <Header />
       <main>
-        {/* Hero */}
         <section className="relative isolate overflow-hidden px-5 pb-12 pt-32 sm:px-10 lg:px-16 xl:px-24">
           <div
             aria-hidden="true"
@@ -100,14 +109,12 @@ export default function PricingPage() {
             >
               One plan. Unlimited tailored applications.
             </h1>
-            {/* The price is the decision fact on this page, so it sits with the
-                title rather than a viewport down in the pricing band. */}
             <p className="mt-5 font-outfit text-lg font-extrabold text-[var(--landing-ink)] sm:text-xl">
-              ${PRICING.lifetime.price} once
+              ${pricing.lifetime.price} once
               <span className="mx-2 font-normal text-[var(--landing-ink-soft)]">
                 or
               </span>
-              ${PRICING.month.price}/mo
+              ${pricing.month.price}/mo
             </p>
             <p className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
               Tailor your CV and cover letter to every job link you paste,
@@ -119,7 +126,6 @@ export default function PricingPage() {
 
         <Pricing />
 
-        {/* FAQ */}
         <section className="landing-section">
           <div className="landing-container flex flex-col items-center gap-4">
             <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
@@ -131,7 +137,7 @@ export default function PricingPage() {
           </div>
 
           <div className="landing-container mx-auto mt-10 flex w-full max-w-3xl flex-col gap-3">
-            {FAQS.map(({ q, a }) => (
+            {faqs.map(({ q, a }) => (
               <details
                 key={q}
                 className="landing-card group rounded-2xl px-6 py-5 [&_summary::-webkit-details-marker]:hidden"
@@ -150,7 +156,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <CTABand />
+        <CTABand lifetimePrice={pricing.lifetime.price} />
       </main>
       <Footer />
 

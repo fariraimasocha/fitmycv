@@ -9,6 +9,7 @@ import { PRO_FEATURES } from "@/lib/pro-features";
 import { PRICING } from "@/lib/pricing";
 import { trackEvent } from "@/lib/analytics";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
+import posthog from "posthog-js";
 
 export default function PricingCards({
   defaultPlan = "lifetime",
@@ -52,6 +53,9 @@ export default function PricingCards({
 
   const handleCheckout = (plan) => {
     trackEvent("checkout_start", { tier, plan });
+    if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+      posthog.capture("checkout_start", { tier, plan });
+    }
     if (session?.user) {
       router.push(`/api/polar/checkout?plan=${plan}`);
     } else {

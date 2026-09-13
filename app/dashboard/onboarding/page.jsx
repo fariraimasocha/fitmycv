@@ -14,6 +14,8 @@ import { toast } from "sonner";
 import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
+import { trackEvent } from "@/lib/analytics";
+import posthog from "posthog-js";
 
 // Sentences are stored lowercase-initial so the name can be prefixed. With no
 // name on the session, the sentence stands alone rather than reading "there, ...".
@@ -89,10 +91,13 @@ export default function OnboardingPage() {
           throw new Error("Failed to save onboarding progress");
         }
 
-        // ponytail: the one signup signal Umami gets. The landing pageview
+        // ponytail: the one signup signal PostHog gets. The landing pageview
         // already carries utm_source, so this event inherits the campaign and
         // turns "Reddit sent traffic" into "Reddit sent signups".
-        window.umami?.track("signup");
+        trackEvent("signup");
+        if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+          posthog.capture("signup");
+        }
 
         // Let OnboardingGuard allow the next navigation even before the JWT
         // has been refreshed (avoids the first-click bounce back to step 1).

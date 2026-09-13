@@ -128,11 +128,6 @@ export default function RootLayout({ children }) {
         </QueryProvider>
         <Analytics />
         <Script
-          src="https://cloud.umami.is/script.js"
-          data-website-id="a238c633-7560-473f-b36e-9b3eadb168f6"
-          strategy="afterInteractive"
-        />
-        <Script
           src="https://datafa.st/js/script.js"
           data-website-id="dfid_fwNMP7eI8dri3WgAXVMaz"
           data-domain="fitmycv.link"

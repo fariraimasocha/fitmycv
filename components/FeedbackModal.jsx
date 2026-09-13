@@ -21,6 +21,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import posthog from "posthog-js";
 
 export default function FeedbackModal({ open, onOpenChange }) {
   const { data: session } = useSession();
@@ -46,6 +47,9 @@ export default function FeedbackModal({ open, onOpenChange }) {
       return res.json();
     },
     onSuccess: () => {
+      if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+        posthog.capture("feedback_submitted", { feedback_type: type });
+      }
       toast.success("Feedback sent! Thank you.");
       onOpenChange(false);
       setType("General");

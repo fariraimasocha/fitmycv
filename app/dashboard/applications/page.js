@@ -39,6 +39,7 @@ import Loader from "@/components/Loader";
 import FormattedDate from "@/components/FormattedDate";
 import { cn } from "@/lib/utils";
 import { gradeChipClass } from "@/components/GradeBadge";
+import posthog from "posthog-js";
 
 const STATUS_CONFIG = {
   evaluated: {
@@ -277,7 +278,10 @@ export default function ApplicationsPage() {
       if (!res.ok) throw new Error("Failed to update");
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (_, { status }) => {
+      if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+        posthog.capture("application_status_changed", { status });
+      }
       queryClient.invalidateQueries({ queryKey: ["applications"] });
       toast.success("Status updated");
     },
@@ -291,6 +295,9 @@ export default function ApplicationsPage() {
       return res.json();
     },
     onSuccess: () => {
+      if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+        posthog.capture("application_deleted");
+      }
       queryClient.invalidateQueries({ queryKey: ["applications"] });
       toast.success("Application removed");
       setConfirmDeleteId(null);

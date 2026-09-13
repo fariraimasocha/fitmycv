@@ -5,6 +5,7 @@
 // couldn't load" fallback with no site chrome. This boundary replaces the
 // whole document, so it carries its own <html> and inline styles.
 import { useEffect } from "react";
+import posthog from "posthog-js";
 
 const STYLES = `
   body { margin: 0; background: #f7f4ef; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -23,6 +24,12 @@ const STYLES = `
 
 export default function GlobalError({ error }) {
   useEffect(() => {
+    if (
+      process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+      process.env.NEXT_PUBLIC_POSTHOG_HOST
+    ) {
+      posthog.captureException(error);
+    }
     console.error("Global page error:", error);
   }, [error]);
 

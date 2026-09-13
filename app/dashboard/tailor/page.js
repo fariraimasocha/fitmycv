@@ -51,6 +51,12 @@ import {
 import { GradeBadge, AtsScoreChip } from "@/components/GradeBadge";
 import { getRecentJobUrls, rememberJobUrl } from "@/lib/recent-job-urls";
 import Loader from "@/components/Loader";
+import posthog from "posthog-js";
+
+function capturePostHogEvent(event, properties) {
+  if (!process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN || !process.env.NEXT_PUBLIC_POSTHOG_HOST) return;
+  posthog.capture(event, properties);
+}
 
 function Tailor() {
   const { data: session } = useSession();
@@ -161,6 +167,10 @@ function Tailor() {
       setPreAtsScore(null);
       setWhyThisRole(null);
       setAppliedFixes([]);
+      capturePostHogEvent("job_requirements_extracted", {
+        has_company: Boolean(result.data?.company),
+        has_job_title: Boolean(result.data?.title),
+      });
 
       // Auto-trigger job match scoring + pre-ATS score in background
       setMatchScoreLoading(true);
@@ -296,6 +306,10 @@ function Tailor() {
       setActiveTab("cv");
       setWhyThisRole(null);
       setAppliedFixes([]);
+      capturePostHogEvent("cv_tailored", {
+        is_premium: Boolean(session?.user?.isPremium),
+        has_cover_letter: Boolean(result.data?.coverLetter),
+      });
       toast.success("Resume tailored successfully!");
 
       if (!session?.user?.isPremium) {
@@ -379,6 +393,10 @@ function Tailor() {
         ),
       });
     }
+    capturePostHogEvent("pdf_downloaded", {
+      document_type: documentType,
+      template: selectedTemplate,
+    });
   };
 
   const persistTailoredCV = (patch) => {
@@ -462,6 +480,7 @@ function Tailor() {
       const updated = json.data.tailoredCV;
       setTailorResult((r) => ({ ...r, tailoredCV: updated }));
       setAppliedFixes((list) => [...list, fix]);
+      capturePostHogEvent("ats_fix_applied");
       toast.success(json.data.changes?.[0] || "Applied to your CV");
       persistTailoredCV({
         basics: updated.basics,

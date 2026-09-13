@@ -63,7 +63,7 @@ export function AppSidebar({ ...props }) {
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r border-[var(--landing-line)] bg-[var(--landing-paper-soft)]"
+      className="border-r border-[var(--landing-line)] bg-[var(--landing-surface)]"
       {...props}
     >
       <SidebarHeader className="border-b border-[var(--landing-line)]/60">

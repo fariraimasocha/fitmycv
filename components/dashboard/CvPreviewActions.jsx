@@ -11,7 +11,7 @@ export function CvPreviewActions({ templateSelect, onDownload }) {
         <Button
           type="button"
           variant="outline"
-          className="w-full shrink-0 rounded-md border-border sm:w-auto"
+          className="w-full shrink-0 rounded-md border-[var(--landing-line)] sm:w-auto"
           onClick={onDownload}
         >
           <DownloadSimpleIcon size={16} aria-hidden="true" />

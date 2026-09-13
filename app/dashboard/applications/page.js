@@ -108,7 +108,7 @@ function StatusSelect({ currentStatus, onStatusChange, disabled }) {
     >
       <SelectTrigger
         className={cn(
-          "h-8 w-full min-w-0 rounded-full border-0 px-2.5 text-xs font-semibold shadow-none focus:ring-2 focus:ring-ring/40 sm:h-7 sm:w-auto sm:min-w-[108px]",
+          "h-8 w-full min-w-0 rounded-md border-0 px-2.5 text-xs font-semibold shadow-none focus:ring-2 focus:ring-ring/40 sm:h-7 sm:w-auto sm:min-w-[108px]",
           config.color
         )}
         onClick={(e) => e.stopPropagation()}
@@ -145,11 +145,11 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending, c
             router.push(`/dashboard/applications/${app._id}`);
           }
         }}
-        className="group cursor-pointer rounded-2xl border-border py-0 gap-0 transition-all hover:border-[var(--landing-line)] hover:shadow-[var(--landing-shadow-sm)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+        className="group cursor-pointer rounded-lg border-[var(--landing-line)] py-0 gap-0 transition-all hover:border-[#ccc5bb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
       >
         <CardContent className="dashboard-row-pad flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3">
           <div className="flex min-w-0 flex-1 items-start gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
               {(app.jobCompany?.[0] ?? "?").toUpperCase()}
             </div>
 
@@ -199,7 +199,7 @@ function ApplicationRow({ app, index, onStatusChange, onDelete, statusPending, c
           </div>
 
           <div
-            className="flex w-full items-center gap-1.5 border-t border-border/60 pt-3 sm:w-auto sm:shrink-0 sm:border-0 sm:pt-0"
+            className="flex w-full items-center gap-1.5 border-t border-[var(--landing-line)]/60 pt-3 sm:w-auto sm:shrink-0 sm:border-0 sm:pt-0"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="min-w-0 flex-1 sm:flex-none">
@@ -380,7 +380,7 @@ export default function ApplicationsPage() {
           applications.length > 0 ? (
             <Button
               asChild
-              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
             >
               <Link href="/dashboard/tailor">
                 <PlusIcon size={16} />
@@ -425,7 +425,7 @@ export default function ApplicationsPage() {
             actionHref="/dashboard/tailor"
           />
         ) : (
-          <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
             <CardContent className="py-10 text-center text-sm text-muted-foreground">
               No applications match this filter.{" "}
               <button

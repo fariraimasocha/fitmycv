@@ -195,7 +195,7 @@ export default function DashboardPage() {
       <div className="flex flex-col gap-1">
         <h1
           suppressHydrationWarning
-          className="font-outfit text-xl font-extrabold text-foreground sm:text-2xl md:text-3xl"
+          className="font-outfit text-xl font-semibold tracking-[-0.02em] text-foreground sm:text-2xl"
         >
           Good {greeting}, {firstName} <span aria-hidden="true">👋</span>
         </h1>
@@ -248,7 +248,7 @@ export default function DashboardPage() {
                         <li key={cv._id}>
                           <Link
                             href={`/dashboard/tailored/${cv._id}`}
-                            className="flex items-center gap-2.5 rounded-xl px-2 py-1.5 transition-colors hover:bg-background/70"
+                            className="flex items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-background/70"
                           >
                             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                               <FileTextIcon size={15} aria-hidden="true" />
@@ -309,10 +309,10 @@ export default function DashboardPage() {
           <div className="grid items-stretch gap-3 sm:gap-4 lg:grid-cols-12">
             <Link
               href="/dashboard/tailor"
-              className="group flex min-w-0 items-center justify-between gap-3 rounded-2xl bg-foreground px-4 py-4 text-background sm:px-5 lg:col-span-7"
+              className="group flex min-w-0 items-center justify-between gap-3 rounded-lg bg-foreground px-4 py-4 text-background sm:px-5 lg:col-span-7"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
+                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-background/10">
                   <PenIcon size={18} aria-hidden="true" />
                 </span>
                 <div>
@@ -333,7 +333,7 @@ export default function DashboardPage() {
               className="dashboard-list-row group flex min-w-0 items-center justify-between gap-3 px-4 py-4 sm:px-5 lg:col-span-5"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                   <KanbanIcon size={18} aria-hidden="true" />
                 </span>
                 <div>

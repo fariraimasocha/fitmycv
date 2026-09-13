@@ -49,7 +49,7 @@ function StoryCard({ story, index }) {
   const star = STAR_SECTIONS.filter((key) => story[key]);
 
   return (
-    <Card className="dashboard-list-row group overflow-hidden rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-list-row group overflow-hidden rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
@@ -130,7 +130,7 @@ export default function StoryBankPage() {
         <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
         <div className="space-y-2">
           {[0, 1, 2].map((i) => (
-            <Skeleton key={i} className="h-20 w-full rounded-2xl" />
+            <Skeleton key={i} className="h-20 w-full rounded-lg" />
           ))}
         </div>
       </DashboardPageShell>

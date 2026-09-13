@@ -71,7 +71,7 @@ function FixItem({ text, onApply, isApplying, isApplied, disabled }) {
           <Button
             variant="outline"
             size="sm"
-            className="h-7 shrink-0 rounded-md border-border px-2 text-xs"
+            className="h-7 shrink-0 rounded-md border-[var(--landing-line)] px-2 text-xs"
             onClick={() => onApply(text)}
             disabled={disabled || isApplying}
             aria-busy={isApplying}
@@ -120,7 +120,7 @@ export default function ATSScoreCard({
 }) {
   if (isLoading) {
     return (
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base">Analyzing ATS Compatibility…</CardTitle>
         </CardHeader>
@@ -133,7 +133,7 @@ export default function ATSScoreCard({
 
   if (!atsData) {
     return (
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardContent className="py-10 text-center text-sm text-muted-foreground">
           ATS score will appear here after tailoring your CV.
         </CardContent>
@@ -155,7 +155,7 @@ export default function ATSScoreCard({
     typeof preScore === "number" && score > preScore ? score - preScore : 0;
 
   return (
-    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardHeader className="dashboard-card-pad">
         <CardTitle className="text-base">ATS Compatibility Score</CardTitle>
       </CardHeader>

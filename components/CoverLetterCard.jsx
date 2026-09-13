@@ -33,7 +33,7 @@ export default function CoverLetterCard({
   };
 
   return (
-    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardHeader className="dashboard-card-pad flex flex-row flex-wrap items-center justify-between gap-2">
         <CardTitle className="flex items-center gap-2 text-base font-semibold">
           <EnvelopeSimpleIcon
@@ -47,7 +47,7 @@ export default function CoverLetterCard({
           <Button
             variant="outline"
             size="sm"
-            className="rounded-md border-border"
+            className="rounded-md border-[var(--landing-line)]"
             aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
             onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
           >
@@ -78,7 +78,7 @@ export default function CoverLetterCard({
               <Button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="rounded-md bg-foreground px-6 font-outfit font-semibold text-background hover:opacity-90"
+                className="rounded-md bg-foreground px-6 font-outfit font-medium text-background hover:bg-black"
               >
                 {isSaving ? (
                   <>
@@ -111,7 +111,7 @@ export default function CoverLetterCard({
               <Button
                 variant="outline"
                 size="sm"
-                className="rounded-md border-border"
+                className="rounded-md border-[var(--landing-line)]"
                 onClick={() => setIsEditing(true)}
               >
                 <PencilSimpleIcon size={14} aria-hidden="true" />

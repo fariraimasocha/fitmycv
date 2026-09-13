@@ -42,7 +42,7 @@ export default function CompanyResearchPage() {
           briefs?.length > 0 ? (
             <Button
               asChild
-              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
             >
               <Link href="/dashboard/tailor">
                 <PlusIcon size={16} />
@@ -71,9 +71,9 @@ export default function CompanyResearchPage() {
               transition={{ duration: 0.2, delay: index * 0.03 }}
             >
               <Link href={`/dashboard/company-research/${brief._id}`}>
-                <Card className="dashboard-list-row group cursor-pointer rounded-2xl border-border py-0 gap-0">
+                <Card className="dashboard-list-row group cursor-pointer rounded-lg border-[var(--landing-line)] py-0 gap-0">
                   <CardContent className="dashboard-row-pad flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
                       {(brief.companyName?.[0] ?? "?").toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">

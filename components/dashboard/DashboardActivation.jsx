@@ -19,7 +19,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
     >
       <Card
         className={cn(
-          "dashboard-card rounded-2xl border-border py-0 gap-0",
+          "dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0",
           className,
         )}
       >
@@ -65,7 +65,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                           ? "border-[var(--landing-accent-dark)] bg-[var(--landing-accent-dark)] text-white"
                           : step.done
                             ? "border-[var(--landing-line)] text-[var(--landing-ink-soft)]"
-                            : "border-border text-muted-foreground",
+                            : "border-[var(--landing-line)] text-muted-foreground",
                       )}
                     >
                       {step.done ? (
@@ -102,7 +102,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                       {!step.done && (
                         <span
                           className={cn(
-                            "rounded px-1.5 py-0.5 text-xs font-semibold tracking-wider",
+                            "rounded-sm px-1.5 py-0.5 text-xs font-semibold tracking-wider",
                             isNow
                               ? "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
                               : "text-muted-foreground",
@@ -123,7 +123,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                     {isNow ? (
                       <Link
                         href={step.href}
-                        className="landing-primary-btn mt-3 inline-flex text-sm"
+                        className="dashboard-primary-btn mt-3 inline-flex text-sm"
                       >
                         {step.cta}
                         <ArrowRightIcon

@@ -32,10 +32,10 @@ function locationLabel(job) {
 function SavedJobCard({ item, onRemove, removing }) {
   const job = item.job ?? {};
   return (
-    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardContent className="dashboard-row-pad flex flex-col gap-3">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
             {job.logo ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={job.logo} alt={job.company ?? ""} className="h-full w-full object-contain" />
@@ -79,7 +79,7 @@ function SavedJobCard({ item, onRemove, removing }) {
 function UpgradeGate() {
   return (
     <DashboardPageShell width="narrow">
-      <Card className="dashboard-card rounded-2xl border-border text-center py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] text-center py-0 gap-0">
         <CardContent className="space-y-4 py-12">
           <CrownIcon className="mx-auto size-8 text-[var(--landing-accent)]" />
           <div className="space-y-1">
@@ -90,7 +90,7 @@ function UpgradeGate() {
           </div>
           <Button
             asChild
-            className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 h-auto py-3"
+            className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black h-auto py-3"
           >
             <Link href="/dashboard/upgrade">
               Upgrade to Pro

@@ -13,7 +13,7 @@ export function CvEditorToolbar({
   return (
     <div className="flex w-full flex-col gap-3 sm:ml-auto sm:w-55 sm:min-w-55">
       <div
-        className="grid w-full grid-cols-2 rounded-xl border border-border bg-card p-1"
+        className="grid w-full grid-cols-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1"
         role="tablist"
         aria-label="CV view mode"
       >
@@ -23,9 +23,9 @@ export function CvEditorToolbar({
           aria-selected={!showPreview}
           onClick={() => showPreview && onTogglePreview()}
           className={cn(
-            "flex !w-full items-center justify-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold transition-colors sm:px-4",
+            "flex !w-full items-center justify-center gap-1.5 rounded-sm px-3 py-2 text-xs font-medium transition-colors sm:px-4",
             !showPreview
-              ? "bg-foreground text-background shadow-sm"
+              ? "bg-foreground text-background"
               : "text-muted-foreground hover:text-foreground"
           )}
         >
@@ -38,9 +38,9 @@ export function CvEditorToolbar({
           aria-selected={showPreview}
           onClick={() => !showPreview && onTogglePreview()}
           className={cn(
-            "flex !w-full items-center justify-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold transition-colors sm:px-4",
+            "flex !w-full items-center justify-center gap-1.5 rounded-sm px-3 py-2 text-xs font-medium transition-colors sm:px-4",
             showPreview
-              ? "bg-foreground text-background shadow-sm"
+              ? "bg-foreground text-background"
               : "text-muted-foreground hover:text-foreground"
           )}
         >
@@ -52,7 +52,7 @@ export function CvEditorToolbar({
       <Button
         type="button"
         variant="outline"
-        className="w-full rounded-md border-border"
+        className="w-full rounded-md border-[var(--landing-line)]"
         onClick={onUploadNew}
       >
         <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />

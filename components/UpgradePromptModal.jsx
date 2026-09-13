@@ -64,7 +64,7 @@ export default function UpgradePromptModal({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-lg">
+      <DialogContent className="rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-lg">
         <DialogHeader>
           <div className="mb-1 flex items-center gap-2">
             <CrownIcon className="size-5 text-[var(--landing-accent)]" />
@@ -82,7 +82,7 @@ export default function UpgradePromptModal({
         <div className="flex flex-col gap-3 pt-2">
           <Button
             onClick={handleLifetime}
-            className="w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            className="w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
           >
             Get Lifetime · ${pricing.lifetime.price}
           </Button>

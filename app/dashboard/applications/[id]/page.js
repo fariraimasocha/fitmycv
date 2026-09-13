@@ -147,7 +147,7 @@ export default function ApplicationDetailPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
           <CardHeader className="dashboard-card-pad">
             <CardTitle className="text-base">Update Status</CardTitle>
           </CardHeader>
@@ -177,7 +177,7 @@ export default function ApplicationDetailPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+          <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
             <CardHeader className="dashboard-card-pad">
               <CardTitle className="flex items-center gap-2 text-base">
                 <ClockIcon size={16} />
@@ -225,7 +225,7 @@ export default function ApplicationDetailPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
           <CardHeader className="dashboard-card-pad">
             <CardTitle className="flex items-center gap-2 text-base">
               <NotepadIcon size={16} />

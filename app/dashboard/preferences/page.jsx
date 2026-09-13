@@ -104,7 +104,7 @@ export default function PreferencesPage() {
   if (!isPremium) {
     return (
       <DashboardPageShell width="narrow">
-        <Card className="dashboard-card rounded-2xl border-border text-center">
+        <Card className="dashboard-card rounded-lg border-[var(--landing-line)] text-center">
           <CardContent className="space-y-4 py-12">
             <CrownIcon className="mx-auto size-8 text-[var(--landing-accent)]" />
             <div className="space-y-1">
@@ -113,7 +113,7 @@ export default function PreferencesPage() {
                 Upgrade to control your daily job matches by email.
               </p>
             </div>
-            <Button asChild className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 h-auto py-3">
+            <Button asChild className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black h-auto py-3">
               <Link href="/dashboard/upgrade">
                 Upgrade to Pro
                 <ArrowRightIcon className="ml-2 size-4" />
@@ -139,7 +139,7 @@ export default function PreferencesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
       >
-        <Card className="dashboard-card rounded-2xl border-border">
+        <Card className="dashboard-card rounded-lg border-[var(--landing-line)]">
           <CardHeader className="pb-3">
             <CardTitle className="text-base">Target roles</CardTitle>
           </CardHeader>
@@ -192,7 +192,7 @@ export default function PreferencesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut", delay: 0.05 }}
       >
-        <Card className="rounded-xl border-border">
+        <Card className="rounded-lg border-[var(--landing-line)]">
           <CardHeader className="pb-3">
             <CardTitle className="text-base">Email & filters</CardTitle>
           </CardHeader>
@@ -237,7 +237,7 @@ export default function PreferencesPage() {
 
       <div className="sticky bottom-3 z-10 flex justify-end">
         <Button
-          className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+          className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
           onClick={() => mutation.mutate({ titles, country, remoteOnly, emailDigest })}
           disabled={mutation.isPending}
         >

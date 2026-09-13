@@ -44,7 +44,7 @@ function ScoreCell({ score }) {
           : "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
 
   return (
-    <span className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-bold tabular-nums ${color}`}>
+    <span className={`inline-flex items-center justify-center rounded-sm px-2 py-1 text-xs font-bold tabular-nums ${color}`}>
       {score}/10
     </span>
   );
@@ -104,8 +104,8 @@ export default function ComparePage() {
         description="Select 2 to 4 applications to compare side by side."
       />
 
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
-        <CardHeader className="border-b border-border/60 px-4 pb-3 pt-5 sm:px-6 sm:pt-6">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
+        <CardHeader className="border-b border-[var(--landing-line)]/60 px-4 pb-3 pt-5 sm:px-6 sm:pt-6">
           <CardTitle className="flex items-center gap-2 text-base">
             <ScalesIcon size={16} aria-hidden="true" />
             Select Applications ({selectedIds.length}/4)
@@ -125,10 +125,10 @@ export default function ComparePage() {
                   key={app._id}
                   onClick={() => !disabled && toggleSelect(app._id)}
                   disabled={disabled}
-                  className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-colors ${
+                  className={`flex w-full items-center gap-3 rounded-md border p-3 text-left transition-colors ${
                     isSelected
                       ? "border-[var(--landing-ink)] bg-[var(--landing-primary-soft)]"
-                      : "border-border/60 hover:bg-muted/30"
+                      : "border-[var(--landing-line)]/60 hover:bg-muted/30"
                   } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
                 >
                   {isSelected ? (
@@ -150,11 +150,11 @@ export default function ComparePage() {
             })
           )}
         </CardContent>
-        <CardFooter className="flex w-full flex-col items-stretch border-t border-border/60 px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
+        <CardFooter className="flex w-full flex-col items-stretch border-t border-[var(--landing-line)]/60 px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
           <Button
             onClick={() => compareMutation.mutate()}
             disabled={selectedIds.length < 2 || compareMutation.isPending}
-            className="w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            className="w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
           >
             {compareMutation.isPending ? (
               <>
@@ -180,7 +180,7 @@ export default function ComparePage() {
           className="space-y-4"
         >
           {/* Comparison Table */}
-          <Card className="dashboard-card overflow-hidden rounded-2xl border-border">
+          <Card className="dashboard-card overflow-hidden rounded-lg border-[var(--landing-line)]">
             <CardHeader>
               <CardTitle className="text-base">Comparison Matrix</CardTitle>
             </CardHeader>
@@ -188,7 +188,7 @@ export default function ComparePage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b bg-muted/30">
+                    <tr className="border-b border-[var(--landing-line)]">
                       <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground">
                         Dimension
                       </th>
@@ -205,7 +205,7 @@ export default function ComparePage() {
                   </thead>
                   <tbody>
                     {Object.entries(DIMENSION_LABELS).map(([key, label]) => (
-                      <tr key={key} className="border-b last:border-0">
+                      <tr key={key} className="border-b border-[var(--landing-line)] last:border-0">
                         <td className="px-4 py-2 text-xs font-medium text-muted-foreground">
                           {label}
                         </td>
@@ -225,11 +225,11 @@ export default function ComparePage() {
                         ))}
                       </tr>
                     ))}
-                    <tr className="border-t-2 bg-muted/20">
+                    <tr className="border-t border-[var(--landing-line)]">
                       <td className="px-4 py-2 text-xs font-bold">Total</td>
                       {comparisonResult.comparisons.map((c) => (
                         <td key={c.id || c.company} className="px-4 py-2 text-center">
-                          <span className="text-lg font-bold tabular-nums">
+                          <span className="text-lg font-semibold tabular-nums">
                             {c.totalScore?.toFixed(1) || "n/a"}
                           </span>
                           <span className="text-xs text-muted-foreground">/10</span>
@@ -244,7 +244,7 @@ export default function ComparePage() {
 
           {/* Recommendation */}
           {comparisonResult.recommendation && (
-            <Card className="dashboard-card rounded-2xl border-[#c8e6d4]">
+            <Card className="dashboard-card rounded-lg border-[#c8e6d4]">
               <CardContent className="p-4">
                 <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)] mb-2">
                   <LightbulbIcon size={16} weight="fill" />
@@ -259,7 +259,7 @@ export default function ComparePage() {
 
           {/* Tradeoffs */}
           {comparisonResult.tradeoffs?.length > 0 && (
-            <Card className="dashboard-card rounded-2xl border-border">
+            <Card className="dashboard-card rounded-lg border-[var(--landing-line)]">
               <CardContent className="p-4">
                 <h3 className="flex items-center gap-2 text-sm font-semibold mb-2">
                   <ArrowsLeftRightIcon size={16} />

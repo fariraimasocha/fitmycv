@@ -6,7 +6,7 @@ export function DashboardFilterPills({ tabs, activeKey, onChange, className }) {
   return (
     <div
       className={cn(
-        "flex w-full max-w-full items-center overflow-x-auto rounded-xl border border-border bg-card p-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:inline-flex sm:w-fit [&::-webkit-scrollbar]:hidden",
+        "flex w-full max-w-full items-center overflow-x-auto rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:inline-flex sm:w-fit [&::-webkit-scrollbar]:hidden",
         className
       )}
       role="tablist"
@@ -19,9 +19,9 @@ export function DashboardFilterPills({ tabs, activeKey, onChange, className }) {
           aria-selected={activeKey === tab.key}
           onClick={() => onChange(tab.key)}
           className={cn(
-            "inline-flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-all sm:px-3.5",
+            "inline-flex shrink-0 items-center gap-1.5 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors sm:px-3.5",
             activeKey === tab.key
-              ? "bg-foreground text-background shadow-sm"
+              ? "bg-foreground text-background"
               : "text-muted-foreground hover:text-foreground"
           )}
         >

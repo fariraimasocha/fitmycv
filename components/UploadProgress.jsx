@@ -9,7 +9,7 @@ export default function UploadProgress({ progress, stage, label }) {
     stage === "complete" ? UPLOAD_STAGES.length : Math.max(stageIndex, 0);
 
   return (
-    <div className="space-y-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5">
+    <div className="space-y-4 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-sm font-semibold text-[var(--landing-ink)]">{label}</p>

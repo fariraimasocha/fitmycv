@@ -31,9 +31,9 @@ export function DashboardStatCard({
     >
       <Card
         className={cn(
-          "dashboard-stat-card flex flex-col overflow-hidden rounded-2xl border-border py-0 gap-0 transition-shadow",
+          "dashboard-stat-card flex flex-col overflow-hidden rounded-lg border-[var(--landing-line)] py-0 gap-0",
           featured
-            ? "bg-[var(--landing-paper-soft)] hover:shadow-[var(--landing-shadow-sm)]"
+            ? "bg-[var(--landing-paper-soft)] transition-colors hover:border-[#ccc5bb]"
             : "h-full",
           className
         )}
@@ -46,7 +46,7 @@ export function DashboardStatCard({
         >
           <CardTitle
             className={cn(
-              "font-semibold text-muted-foreground",
+              "font-medium text-muted-foreground",
               featured ? "text-sm" : "text-xs sm:text-sm"
             )}
           >
@@ -55,7 +55,7 @@ export function DashboardStatCard({
           {Icon && (
             <span
               className={cn(
-                "flex shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]",
+                "flex shrink-0 items-center justify-center rounded-sm bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]",
                 featured ? "h-9 w-9" : "h-7 w-7 sm:h-8 sm:w-8"
               )}
             >
@@ -75,14 +75,14 @@ export function DashboardStatCard({
               <AnimatedNumber
                 value={value}
                 className={cn(
-                  "font-outfit font-extrabold leading-none tracking-tight text-foreground",
+                  "font-outfit font-semibold leading-none tracking-[-0.02em] text-foreground",
                   featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
                 )}
               />
             ) : (
               <p
                 className={cn(
-                  "font-outfit font-extrabold leading-none text-foreground",
+                  "font-outfit font-semibold leading-none tracking-[-0.02em] text-foreground",
                   featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
                 )}
               >
@@ -92,7 +92,7 @@ export function DashboardStatCard({
             {subtitle && featured && (
               <span
                 className={cn(
-                  "mb-1 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold",
+                  "mb-1 inline-flex rounded-sm px-2 py-0.5 text-xs font-medium",
                   positive
                     ? "bg-[var(--landing-success-soft)] text-[var(--landing-success)]"
                     : "bg-[var(--landing-primary-soft)] text-muted-foreground"
@@ -131,7 +131,7 @@ export function DashboardStatCard({
             </div>
           )}
           {featured && children && (
-            <div className="mt-3 flex flex-col border-t border-border/70 pt-3">
+            <div className="mt-3 flex flex-col border-t border-[var(--landing-line)] pt-3">
               {children}
             </div>
           )}

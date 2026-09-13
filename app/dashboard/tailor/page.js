@@ -580,10 +580,10 @@ function Tailor() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
           <CardHeader className="dashboard-card-pad">
             <CardTitle className="flex items-center gap-2 text-base font-semibold">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
+              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                 <LinkIcon size={18} aria-hidden="true" />
               </span>
               <div>
@@ -604,7 +604,7 @@ function Tailor() {
                 aria-label="Job listing URL"
                 autoComplete="url"
                 spellCheck={false}
-                className="h-11 rounded-xl border-border bg-[var(--landing-paper-soft)] text-base"
+                className="h-11 rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] text-base"
               />
               {recentUrls.length > 0 && !jobData && (
                 <div className="flex flex-wrap gap-2">
@@ -624,7 +624,7 @@ function Tailor() {
                 type="submit"
                 disabled={extractMutation.isPending || !url.trim()}
                 aria-busy={extractMutation.isPending}
-                className="h-11 w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto sm:self-start"
+                className="h-11 w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black sm:w-auto sm:self-start"
               >
                 {extractMutation.isPending ? (
                   <>
@@ -642,44 +642,6 @@ function Tailor() {
           </CardContent>
         </Card>
       </motion.div>
-
-      {!jobData && !extractMutation.isPending && (
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="grid gap-3 sm:grid-cols-3"
-        >
-          {[
-            {
-              step: "01",
-              title: "Paste the job link",
-              copy: "Drop any listing URL from LinkedIn, Indeed, or a company careers page.",
-            },
-            {
-              step: "02",
-              title: "Review requirements",
-              copy: "We extract skills, qualifications, and keywords from the posting.",
-            },
-            {
-              step: "03",
-              title: "Tailor & apply",
-              copy: "Get a matched CV, cover letter, and interview prep in one flow.",
-            },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 py-4"
-            >
-              <span className="font-outfit text-2xl font-semibold text-[var(--landing-accent)]">
-                {item.step}
-              </span>
-              <p className="mt-2 text-sm font-semibold text-foreground">{item.title}</p>
-              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.copy}</p>
-            </div>
-          ))}
-        </motion.div>
-      )}
 
       {jobData && (
         <div className="sticky top-14 z-10 -mx-3 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/95 px-3 py-2 backdrop-blur-md sm:top-16 sm:-mx-6 sm:px-6">
@@ -718,7 +680,7 @@ function Tailor() {
                   onClick={() => tailorMutation.mutate()}
                   disabled={tailorMutation.isPending}
                   aria-busy={tailorMutation.isPending}
-                  className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+                  className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
                 >
                   {tailorMutation.isPending ? (
                     <>
@@ -795,7 +757,7 @@ function Tailor() {
                 {activeTab === "cv" && savedId && (
                   <Button
                     variant="outline"
-                    className="rounded-md border-border"
+                    className="rounded-md border-[var(--landing-line)]"
                     onClick={() => setShowPreview(!showPreview)}
                   >
                     {showPreview ? (
@@ -861,7 +823,7 @@ function Tailor() {
                 style={selectedTemplateStyle}
               />
               {tailorResult.keywordsInjected?.length > 0 && (
-                <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+                <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
                   <CardContent className="dashboard-card-pad">
                     <p className="mb-2 text-xs font-medium text-[var(--landing-ink-soft)]">
                       Keywords injected

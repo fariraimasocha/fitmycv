@@ -25,7 +25,7 @@ export function DashboardPageHeader({
         {eyebrow && (
           <span className="landing-eyebrow mb-3">{eyebrow}</span>
         )}
-        <h1 className="font-outfit text-xl font-extrabold tracking-tight text-foreground sm:text-2xl md:text-3xl">
+        <h1 className="font-outfit text-xl font-semibold tracking-[-0.02em] text-foreground sm:text-2xl">
           {title}
         </h1>
         {description && (

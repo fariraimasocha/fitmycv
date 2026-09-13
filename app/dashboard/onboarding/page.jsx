@@ -138,7 +138,7 @@ export default function OnboardingPage() {
   }));
 
   return (
-    <div className="landing-root min-h-screen">
+    <div className="dashboard-shell min-h-screen bg-[var(--landing-bg)] text-[var(--landing-ink)]">
       <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-5 py-8 sm:px-8">
         <header className="flex items-center gap-3">
           {/* The slot keeps its layout box on every step so the logo never
@@ -146,7 +146,7 @@ export default function OnboardingPage() {
           <button
             type="button"
             onClick={() => setStep((previous) => previous - 1)}
-            className={`-ml-1 shrink-0 rounded-lg p-1 text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] ${
+            className={`-ml-1 shrink-0 rounded-md p-1 text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] ${
               canGoBack ? "cursor-pointer" : "invisible"
             }`}
             aria-label="Back"
@@ -159,7 +159,7 @@ export default function OnboardingPage() {
           <span className="flex shrink-0 items-center">
             <BrandLogo
               size="sm"
-              wordmarkClassName="font-outfit text-base font-extrabold"
+              wordmarkClassName="font-outfit text-base font-semibold"
             />
           </span>
 
@@ -201,8 +201,8 @@ export default function OnboardingPage() {
           >
             {onPayoff ? (
               <>
-                <span className="landing-eyebrow-plain">Your CV is ready</span>
-                <h1 className="mt-4 font-outfit text-2xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-3xl">
+                <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">Your CV is ready</span>
+                <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight text-[var(--landing-ink)] sm:text-3xl">
                   {withName(firstName, "here is what we read.")}
                 </h1>
 
@@ -211,7 +211,7 @@ export default function OnboardingPage() {
                     {facts.map((fact) => (
                       <div key={fact.label}>
                         <dt className="sr-only">{fact.label}</dt>
-                        <dd className="font-outfit text-4xl font-extrabold text-[var(--landing-accent)]">
+                        <dd className="font-outfit text-4xl font-semibold text-[var(--landing-accent)]">
                           {fact.value}
                         </dd>
                         <p className="mt-0.5 text-xs text-[var(--landing-ink-soft)]">
@@ -270,7 +270,7 @@ export default function OnboardingPage() {
                     onClick={() =>
                       completeOnboarding("/dashboard/tailor", answers)
                     }
-                    className="landing-primary-btn w-full cursor-pointer text-sm sm:w-fit"
+                    className="dashboard-primary-btn w-full cursor-pointer text-sm sm:w-fit"
                   >
                     Start with step 1
                     <ArrowRightIcon
@@ -290,8 +290,8 @@ export default function OnboardingPage() {
               </>
             ) : (
               <>
-                <span className="landing-eyebrow-plain">Your CV</span>
-                <h1 className="mt-4 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl">
+                <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">Your CV</span>
+                <h1 className="mt-4 font-outfit text-3xl font-semibold leading-tight text-[var(--landing-ink)] sm:text-4xl">
                   {withName(
                     firstName,
                     "upload your CV so we can tailor everything to you.",
@@ -301,7 +301,7 @@ export default function OnboardingPage() {
                   Stays private. We read it, we never share it.
                 </p>
 
-                <div className="mt-7 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 sm:p-6">
+                <div className="mt-7 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 sm:p-6">
                   <ResumeUpload onParsed={onParsed} />
                 </div>
 
@@ -311,7 +311,7 @@ export default function OnboardingPage() {
                     onClick={() =>
                       completeOnboarding("/dashboard/tailor", answers)
                     }
-                    className="landing-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
+                    className="dashboard-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
                   >
                     Continue to tailoring
                     <ArrowRightIcon

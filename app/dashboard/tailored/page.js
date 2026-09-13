@@ -155,7 +155,7 @@ export default function TailoredCVsPage() {
         <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
         <div className="space-y-2">
           {[0, 1, 2, 3, 4].map((i) => (
-            <Skeleton key={i} className="h-16 w-full rounded-2xl" />
+            <Skeleton key={i} className="h-16 w-full rounded-lg" />
           ))}
         </div>
       </DashboardPageShell>
@@ -171,7 +171,7 @@ export default function TailoredCVsPage() {
           cvs?.length > 0 ? (
             <Button
               asChild
-              className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+              className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
             >
               <Link href="/dashboard/tailor">
                 <PlusIcon size={16} />
@@ -210,16 +210,16 @@ export default function TailoredCVsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2, delay: index * 0.03 }}
               >
-                <Card className="dashboard-list-row group relative rounded-2xl border-border py-0 gap-0">
+                <Card className="dashboard-list-row group relative rounded-lg border-[var(--landing-line)] py-0 gap-0">
                   <CardContent className="dashboard-row-pad flex items-center gap-3">
                     {/* Stretched link: the whole row navigates, but the action
                         buttons stay siblings rather than children of an anchor. */}
                     <Link
                       href={`/dashboard/tailored/${cv._id}`}
                       aria-label={title}
-                      className="absolute inset-0 z-0 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                      className="absolute inset-0 z-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                     />
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold text-[var(--landing-primary-dark)]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold text-[var(--landing-primary-dark)]">
                       {(cv.jobCompany?.[0] ?? cv.jobTitle?.[0] ?? "?").toUpperCase()}
                     </div>
                     <div className="relative z-10 min-w-0 flex-1 pointer-events-none">

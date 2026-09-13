@@ -129,11 +129,11 @@ export default function DashboardShell({ children }) {
   return (
     <OnboardingGuard>
       <TooltipProvider>
-        <SidebarProvider>
+        <SidebarProvider className="dashboard-shell">
           <AppSidebar />
           <SidebarInset className="min-w-0 overflow-x-clip">
             <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/90 px-3 backdrop-blur-md sm:h-16 sm:px-4">
-              <SidebarTrigger className="-ml-1 shrink-0 rounded-lg hover:bg-[var(--landing-primary-soft)]" />
+              <SidebarTrigger className="-ml-1 shrink-0 rounded-md hover:bg-[var(--landing-primary-soft)]" />
               <Separator orientation="vertical" className="mr-1 h-4 shrink-0 bg-[var(--landing-line)] sm:mr-2" />
               <div className="min-w-0 flex-1 overflow-hidden">
                 <DashboardBreadcrumb />
@@ -141,7 +141,7 @@ export default function DashboardShell({ children }) {
               <div className="ml-auto flex items-center gap-2">
                 <button
                   onClick={() => setFeedbackOpen(true)}
-                  className="flex items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground sm:text-sm"
+                  className="flex items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground sm:text-sm"
                 >
                   <ChatCircleDotsIcon size={16} aria-hidden="true" />
                   <span className="hidden sm:inline">Feedback</span>

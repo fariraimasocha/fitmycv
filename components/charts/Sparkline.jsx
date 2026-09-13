@@ -60,13 +60,13 @@ export function Sparkline({
       aria-hidden="true"
     >
       {fill && (
-        <path d={area} fill="currentColor" opacity="0.14" />
+        <path d={area} fill="currentColor" opacity="0.1" />
       )}
       <path
         d={line}
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"

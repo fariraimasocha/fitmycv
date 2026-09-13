@@ -160,7 +160,7 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut", delay: 0 }}
       >
-        <Card className="dashboard-card overflow-hidden rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card overflow-hidden rounded-lg border-[var(--landing-line)] py-0 gap-0">
           {/* Banner strip */}
           <div className="bg-foreground/5 flex flex-col items-start gap-4 px-4 py-5 sm:flex-row sm:items-center sm:px-6">
             <Avatar className="h-16 w-16 ring-2 ring-border">
@@ -187,7 +187,7 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut", delay: 0.05 }}
       >
-        <Card className="dashboard-card rounded-2xl border-border">
+        <Card className="dashboard-card rounded-lg border-[var(--landing-line)]">
           <CardHeader className="flex flex-col gap-2 pb-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
               <CrownIcon
@@ -262,7 +262,7 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut", delay: 0.1 }}
       >
-        <Card className="dashboard-card rounded-2xl border-destructive/30">
+        <Card className="dashboard-card rounded-lg border-destructive/30">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base text-destructive">
               <WarningCircleIcon size={18} weight="fill" className="text-destructive" />
@@ -273,7 +273,7 @@ export default function ProfilePage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="rounded-xl border border-destructive/20 bg-destructive/5 p-4">
+            <div className="rounded-md border border-destructive/20 bg-destructive/5 p-4">
               <p className="text-sm font-medium text-destructive">What will be deleted</p>
               <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
                 <li>Your profile and login</li>
@@ -309,7 +309,7 @@ export default function ProfilePage() {
           if (!open) setDeleteConfirm("");
         }}
       >
-        <DialogContent className="sm:max-w-md border-border bg-card">
+        <DialogContent className="rounded-md border-[var(--landing-line)] bg-card sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-destructive">
               <TrashIcon size={18} />

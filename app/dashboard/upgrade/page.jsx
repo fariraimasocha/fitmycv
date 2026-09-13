@@ -59,8 +59,8 @@ export default function UpgradePage() {
         {/* compact: the "Everything included" list below already covers PRO_FEATURES */}
         <PricingCards compact />
 
-        <div className="dashboard-card rounded-2xl border border-border bg-card p-6">
-          <h2 className="mb-4 font-outfit text-sm font-extrabold text-foreground">
+        <div className="dashboard-card rounded-lg border border-[var(--landing-line)] bg-card p-6">
+          <h2 className="mb-4 font-outfit text-sm font-semibold text-foreground">
             Everything included
           </h2>
           <ul className="grid gap-2 sm:grid-cols-2">

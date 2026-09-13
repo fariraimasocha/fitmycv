@@ -305,7 +305,7 @@ export default function TailoredCVDetailPage() {
               <>
                 <Button
                   variant="outline"
-                  className="rounded-md border-border"
+                  className="rounded-md border-[var(--landing-line)]"
                   onClick={() => setShowPreview(!showPreview)}
                 >
                   {showPreview ? (

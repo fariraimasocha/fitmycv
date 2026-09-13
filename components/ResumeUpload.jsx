@@ -130,13 +130,13 @@ export default function ResumeUpload({ onParsed }) {
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
-          className={`relative flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-6 transition-colors sm:p-10 ${
+          className={`relative flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 transition-colors sm:p-10 ${
             dragActive
               ? "border-[var(--landing-accent)] bg-[var(--landing-primary-soft)]"
               : "border-[var(--landing-line)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]"
           }`}
         >
-          <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
+          <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
             <UploadSimpleIcon
               size={20}
               aria-hidden="true"
@@ -165,7 +165,7 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {file && !isUploading && !isComplete && (
-        <div className="flex items-center gap-3 rounded-2xl border border-[var(--landing-line)] bg-white p-4 shadow-[var(--landing-shadow-sm)]">
+        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-white p-4">
           <FileTextIcon size={24} className="shrink-0 text-[var(--landing-accent)]" />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium text-[var(--landing-ink)]">
@@ -195,7 +195,7 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {isComplete && (
-        <div className="flex items-center gap-3 rounded-2xl border border-[#c8e6d0] bg-[#eef8f1] p-4 text-[#2d5a3d]">
+        <div className="flex items-center gap-3 rounded-lg border border-[#c8e6d0] bg-[#eef8f1] p-4 text-[#2d5a3d]">
           <CheckCircleIcon size={22} weight="fill" aria-hidden="true" />
           <div>
             <p className="text-sm font-semibold">CV uploaded and parsed</p>

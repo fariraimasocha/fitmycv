@@ -22,7 +22,7 @@ export function DashboardEmptyState({
     actionHref ? (
       <Button
         asChild
-        className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+        className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
       >
         <Link
           href={actionHref}
@@ -38,7 +38,7 @@ export function DashboardEmptyState({
         type="button"
         onClick={onAction}
         disabled={actionDisabled}
-        className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+        className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
       >
         {actionLabel}
       </Button>
@@ -51,10 +51,10 @@ export function DashboardEmptyState({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay }}
     >
-      <Card className={cn("dashboard-card rounded-2xl border-border py-0 gap-0", className)}>
+      <Card className={cn("dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0", className)}>
         <CardContent className="flex flex-col items-center justify-center gap-4 px-6 py-12 text-center sm:py-16">
           {Icon && (
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--landing-primary-soft)]">
+            <div className="flex h-14 w-14 items-center justify-center rounded-md bg-[var(--landing-primary-soft)]">
               <Icon
                 size={28}
                 className="text-[var(--landing-primary-dark)]"
@@ -63,7 +63,7 @@ export function DashboardEmptyState({
             </div>
           )}
           <div className="flex max-w-sm flex-col gap-1.5">
-            <h3 className="font-outfit text-lg font-semibold text-foreground">{title}</h3>
+            <h3 className="font-outfit text-lg font-semibold tracking-[-0.02em] text-foreground">{title}</h3>
             {description && (
               <p className="text-sm text-muted-foreground">{description}</p>
             )}

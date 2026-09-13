@@ -85,7 +85,7 @@ function LoadingSkeleton() {
 export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCompany }) {
   if (isLoading) {
     return (
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base">Generating interview prep...</CardTitle>
         </CardHeader>
@@ -98,7 +98,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
 
   if (!prepData) {
     return (
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
           Interview prep will appear here after tailoring your CV.
         </CardContent>
@@ -134,7 +134,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
   const { stories, redFlagQA, talkingPoints } = prepData;
 
   return (
-    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardHeader className="dashboard-card-pad">
         <CardTitle className="text-base">Interview Preparation</CardTitle>
       </CardHeader>

@@ -47,7 +47,7 @@ export default function WhyThisRoleCard({
   };
 
   return (
-    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardHeader className="dashboard-card-pad">
         <CardTitle className="flex items-center gap-2 text-base font-semibold">
           <ChatCenteredTextIcon
@@ -78,7 +78,7 @@ export default function WhyThisRoleCard({
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder={DEFAULT_QUESTION}
-            className="h-11 rounded-xl border-border bg-[var(--landing-paper-soft)] text-sm"
+            className="h-11 rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] text-sm"
           />
         </div>
         )}
@@ -117,7 +117,7 @@ export default function WhyThisRoleCard({
             onClick={() => onGenerate(prompt)}
             disabled={isLoading}
             aria-busy={isLoading}
-            className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90"
+            className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
           >
             {isLoading ? (
               <>
@@ -135,7 +135,7 @@ export default function WhyThisRoleCard({
           {draft && (
             <Button
               variant="outline"
-              className="rounded-md border-border"
+              className="rounded-md border-[var(--landing-line)]"
               onClick={handleCopy}
             >
               <CopyIcon size={16} aria-hidden="true" />
@@ -145,7 +145,7 @@ export default function WhyThisRoleCard({
           {draft && onSave && (
             <Button
               variant="outline"
-              className="rounded-md border-border"
+              className="rounded-md border-[var(--landing-line)]"
               onClick={() => onSave(draft)}
               disabled={isSaving}
               aria-busy={isSaving}

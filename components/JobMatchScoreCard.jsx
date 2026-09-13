@@ -103,7 +103,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
 
   if (isLoading) {
     return (
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base font-semibold">Scoring job match…</CardTitle>
         </CardHeader>
@@ -121,7 +121,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
   const label = globalScoreLabel(globalScore);
 
   return (
-    <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardHeader className="dashboard-card-pad pb-3">
         <CardTitle className="flex items-center justify-between text-base font-semibold">
           <span>Job match</span>

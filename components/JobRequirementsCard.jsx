@@ -53,7 +53,7 @@ export default function JobRequirementsCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardHeader className="dashboard-card-pad">
           <div className="space-y-2">
             <div className="flex flex-wrap items-start justify-between gap-2">
@@ -130,7 +130,7 @@ export default function JobRequirementsCard({
                 onClick={onTailor}
                 disabled={tailorPending}
                 aria-busy={tailorPending}
-                className="h-11 w-full rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 sm:w-auto"
+                className="h-11 w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black sm:w-auto"
               >
                 {tailorPending ? (
                   <>
@@ -230,7 +230,7 @@ function KeywordsSection({ keywords, referenceCV }) {
             keywords.map((kw) => (
               <span
                 key={kw}
-                className="inline-flex items-center rounded-full border border-border bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+                className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
               >
                 {kw}
               </span>

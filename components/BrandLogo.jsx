@@ -16,7 +16,7 @@ export default function BrandLogo({
   wordmarkClassName,
   alt,
 }) {
-  const imageAlt = alt ?? (showWordmark ? "" : "FitMyCV");
+  const imageAlt = alt ?? "FitMyCV";
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>

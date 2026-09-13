@@ -21,6 +21,7 @@ import {
 } from "@/lib/structured-data";
 import { HOME_FAQS, HOME_STEPS, HOME_TESTIMONIAL } from "@/content/pages/home";
 import { getServerPricing } from "@/lib/server-pricing";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
   title: {
@@ -30,20 +31,32 @@ export const metadata = {
     "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
+    url: `${SITE_URL}/`,
+    title: "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
+    description:
+      "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
     images: [
       {
-        url: "/hero-new.png",
-        width: 3024,
-        height: 1724,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "FitMyCV: Land more interviews with a CV that fits",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FitMyCV: AI Resume & Cover Letter Tailoring From Any Job Link",
-    images: ["/hero-new.png"],
+    title: "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
+    description:
+      "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "FitMyCV: Land more interviews with a CV that fits",
+      },
+    ],
   },
 };
 

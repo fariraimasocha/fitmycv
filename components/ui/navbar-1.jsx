@@ -71,7 +71,7 @@ const Navbar1 = () => {
             pseudo-elements are absolutely positioned, so they are out of flow
             and never become flex items of this row. */}
         <div className="landing-container landing-rules flex h-16 items-center justify-between gap-6 px-4 sm:px-8">
-        <Link href="/" className="flex flex-row items-center">
+        <Link href="/" className="tap-target flex flex-row items-center">
           <BrandLogo size="md" priority wordmarkClassName="text-xl" />
         </Link>
 
@@ -81,7 +81,7 @@ const Navbar1 = () => {
               key={item.label}
               href={item.href}
               onClick={(e) => handleSmoothScroll(e, item.href)}
-              className="text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+              className="tap-target text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
             >
               {item.label}
             </Link>
@@ -90,7 +90,7 @@ const Navbar1 = () => {
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+                className="tap-target inline-flex items-center gap-1 text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
               >
                 Free tools
                 <CaretDownIcon size={12} weight="bold" aria-hidden="true" />
@@ -160,13 +160,13 @@ const Navbar1 = () => {
             <>
               <AuthLink
                 href="/auth"
-                className="text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
+                className="tap-target text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
               >
                 Login
               </AuthLink>
               <AuthLink
                 href="/auth"
-                className="landing-primary-btn landing-primary-btn-sm font-outfit"
+                className="tap-target landing-primary-btn landing-primary-btn-sm font-outfit"
               >
                 Try for free
               </AuthLink>

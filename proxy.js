@@ -32,5 +32,5 @@ function applyGeoCookies(request, response) {
 export default auth((request) => applyGeoCookies(request, NextResponse.next()));
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|_vercel|favicon.ico).*)"],
 };

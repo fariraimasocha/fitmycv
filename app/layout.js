@@ -3,7 +3,6 @@ import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
-import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
@@ -81,9 +80,9 @@ export const metadata = {
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
       {
-        url: "/hero-new.png",
-        width: 3024,
-        height: 1724,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "FitMyCV: Land more interviews with a CV that fits",
       },
     ],
@@ -95,9 +94,9 @@ export const metadata = {
       "Tailor your CV and cover letter to any job description in seconds. AI-powered keyword matching, ATS optimization, and one-click PDF export.",
     images: [
       {
-        url: "/hero-new.png",
-        width: 3024,
-        height: 1724,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "FitMyCV: Land more interviews with a CV that fits",
       },
     ],
@@ -126,12 +125,11 @@ export default function RootLayout({ children }) {
             </WebviewGateProvider>
           </AuthProvider>
         </QueryProvider>
-        <Analytics />
         <Script
           src="https://datafa.st/js/script.js"
           data-website-id="dfid_fwNMP7eI8dri3WgAXVMaz"
           data-domain="fitmycv.link"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

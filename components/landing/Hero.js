@@ -160,7 +160,7 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
 
             <Link
               href="#how-it-works"
-              className="group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
+              className="tap-target group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
             >
               <PlayIcon size={14} weight="fill" aria-hidden="true" />
               See how it works

@@ -70,7 +70,7 @@ const columns = [
 ];
 
 const LINK_CLASS =
-  "font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors";
+  "tap-target font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors";
 
 function FooterColumn({ heading, links }) {
   return (

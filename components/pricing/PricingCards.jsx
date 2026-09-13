@@ -8,6 +8,7 @@ import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
 import { PRICING } from "@/lib/pricing";
 import { trackEvent } from "@/lib/analytics";
+import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
 export default function PricingCards({
   defaultPlan = "lifetime",
@@ -20,6 +21,7 @@ export default function PricingCards({
   const { data: session } = useSession();
   const router = useRouter();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
+  const gate = useWebviewGate();
   const [pricing, setPricing] = useState(pricingProp ?? PRICING);
   const [tier, setTier] = useState(tierProp ?? pricingProp?.tier ?? "standard");
 
@@ -54,6 +56,7 @@ export default function PricingCards({
       router.push(`/api/polar/checkout?plan=${plan}`);
     } else {
       setPendingCheckout(true, plan);
+      if (gate?.interceptAuth(null, "/auth")) return;
       router.push("/auth");
     }
   };

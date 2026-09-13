@@ -9,6 +9,7 @@ import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 import ChatwootWidget from "@/components/ChatwootWidget";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
+import { WebviewGateProvider } from "@/components/landing/WebviewGateProvider";
 
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
@@ -118,9 +119,11 @@ export default function RootLayout({ children }) {
         <JsonLd data={websiteSchema} />
         <QueryProvider>
           <AuthProvider>
-            {children}
-            <ToastProvider />
-            <ChatwootWidget />
+            <WebviewGateProvider>
+              {children}
+              <ToastProvider />
+              <ChatwootWidget />
+            </WebviewGateProvider>
           </AuthProvider>
         </QueryProvider>
         <Analytics />

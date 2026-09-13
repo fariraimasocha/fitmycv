@@ -54,8 +54,9 @@ export function NavUser() {
         <SidebarMenuItem>
           <SidebarMenuButton
             asChild
+            size="lg"
             tooltip="Upgrade to Pro"
-            className="bg-[var(--landing-accent-dark)] font-semibold text-white hover:bg-[var(--landing-accent-dark)]/90 hover:text-white"
+            className="bg-[var(--landing-accent-dark)] font-semibold text-white hover:bg-[var(--landing-accent-dark)]/90 hover:text-white h-auto py-3"
           >
             <Link href="/dashboard/upgrade">
               <CrownIcon weight="fill" />

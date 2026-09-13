@@ -113,7 +113,7 @@ export default function PreferencesPage() {
                 Upgrade to control your daily job matches by email.
               </p>
             </div>
-            <Button asChild className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90">
+            <Button asChild className="rounded-md bg-foreground font-outfit font-semibold text-background hover:opacity-90 h-auto py-3">
               <Link href="/dashboard/upgrade">
                 Upgrade to Pro
                 <ArrowRightIcon className="ml-2 size-4" />

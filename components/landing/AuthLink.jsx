@@ -10,7 +10,7 @@ export default function AuthLink({ href = "/auth", onClick, ...props }) {
     <Link
       href={href}
       onClick={(event) => {
-        if (gate?.interceptAuth(event)) return;
+        if (gate?.interceptAuth(event, href)) return;
         onClick?.(event);
       }}
       {...props}

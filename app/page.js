@@ -12,7 +12,6 @@ import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import StickyCtaBar from "@/components/landing/StickyCtaBar";
 import FounderFaqSection from "@/components/landing/FounderFaqSection";
-import { WebviewGateProvider } from "@/components/landing/WebviewGateProvider";
 import JsonLd from "@/components/JsonLd";
 import { faqSchema, howToSchema } from "@/lib/seo";
 import {
@@ -53,23 +52,21 @@ export default async function Home() {
 
   return (
     <div className="landing-root min-h-screen">
-      <WebviewGateProvider>
-        <Header />
-        <main>
-          <Hero lifetimePrice={pricing.lifetime.price} />
-          <JobBoardStrip />
-          <TheProblem />
-          <HowItWorks lifetimePrice={pricing.lifetime.price} />
-          <TemplateStrip />
-          <Testimonial />
-          <TrustSignals />
-          <Pricing />
-          <FounderFaqSection />
-          <ResourcesStrip />
-          <CTABand lifetimePrice={pricing.lifetime.price} />
-        </main>
-        <StickyCtaBar />
-      </WebviewGateProvider>
+      <Header />
+      <main>
+        <Hero lifetimePrice={pricing.lifetime.price} />
+        <JobBoardStrip />
+        <TheProblem />
+        <HowItWorks lifetimePrice={pricing.lifetime.price} />
+        <TemplateStrip />
+        <Testimonial />
+        <TrustSignals />
+        <Pricing />
+        <FounderFaqSection />
+        <ResourcesStrip />
+        <CTABand lifetimePrice={pricing.lifetime.price} />
+      </main>
+      <StickyCtaBar />
       <Footer />
       <JsonLd
         data={webPageSchema({

@@ -9,23 +9,43 @@ import {
   WarningIcon,
   CopyIcon,
   EnvelopeSimpleIcon,
+  ArrowSquareOutIcon,
 } from "@phosphor-icons/react";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { toast } from "sonner";
 import BrandLogo from "@/components/BrandLogo";
-import { isInAppWebView } from "@/lib/webview";
+import {
+  isInAppBrowser,
+  isLinkedInWebView,
+  isAndroid,
+  isIOS,
+  getInAppBrowserLabel,
+  tryOpenExternalBrowser,
+} from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
 
 export default function AuthPage() {
   const getPendingCheckout = useCheckoutStore((s) => s.getPendingCheckout);
   const getPendingCheckoutPlan = useCheckoutStore((s) => s.getPendingCheckoutPlan);
   const [inWebView, setInWebView] = useState(false);
+  const [isLinkedIn, setIsLinkedIn] = useState(false);
+  const [platform, setPlatform] = useState("unknown");
+  const [browserLabel, setBrowserLabel] = useState("in-app browser");
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    setInWebView(isInAppWebView(navigator.userAgent));
+    const ua = navigator.userAgent || "";
+    setInWebView(isInAppBrowser(ua));
+    setIsLinkedIn(isLinkedInWebView(ua));
+    setBrowserLabel(getInAppBrowserLabel(ua));
+    if (isAndroid(ua)) setPlatform("android");
+    else if (isIOS(ua)) setPlatform("ios");
+    else setPlatform("desktop");
+    if (isInAppBrowser(ua)) {
+      trackEvent("auth_webview_detected", { platform: isAndroid(ua) ? "android" : isIOS(ua) ? "ios" : "other", isLinkedIn: isLinkedInWebView(ua) });
+    }
   }, []);
 
   const callbackUrl = () => {
@@ -71,9 +91,37 @@ export default function AuthPage() {
     }
   };
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    toast.success("Link copied. Paste it in Chrome or Safari.");
+  const handleCopyLink = async () => {
+    const text = window.location.href;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "absolute";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      toast.success("Link copied. Paste it in Chrome or Safari.");
+      trackEvent("auth_copy_link", { platform });
+    } catch {
+      toast.error("Could not copy. Long press the address bar to copy the link.");
+    }
+  };
+
+  const handleOpenExternal = () => {
+    trackEvent("auth_try_open_external", { platform });
+    const didTry = tryOpenExternalBrowser(window.location.href);
+    if (!didTry) {
+      handleCopyLink();
+    } else if (platform === "android") {
+      toast.success("Opening in Chrome. If nothing happens, use Copy link.");
+    }
   };
 
   return (
@@ -99,27 +147,54 @@ export default function AuthPage() {
           <div
             role="alert"
             aria-live="polite"
-            className="flex w-full flex-col gap-3 rounded-xl border border-[var(--landing-coral)]/30 bg-[#fdf3ef] p-4"
+            className="flex w-full flex-col gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4"
           >
             <div className="flex items-start gap-2">
               <WarningIcon
                 size={18}
-                className="mt-0.5 shrink-0 text-[var(--landing-coral)]"
+                className="mt-0.5 shrink-0 text-amber-600"
                 weight="fill"
               />
-              <p className="text-sm text-[var(--landing-ink-soft)]">
-                Google sign-in does not work in in-app browsers. Use the email
-                link below, or open this page in Chrome or Safari.
-              </p>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-amber-900">
+                  {isLinkedIn
+                    ? "Google sign in is blocked inside LinkedIn"
+                    : `Google sign in is blocked inside ${browserLabel}`}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-amber-800">
+                  {isLinkedIn
+                    ? platform === "ios"
+                      ? "Tap the ••• at the top right, then choose Open in Browser to use Google. Or use email sign in below. It works here."
+                      : platform === "android"
+                        ? "Tap ⋮ at the top right, then Open in Chrome to use Google. Or use email sign in below. It works here."
+                        : "Copy this link and open it in Chrome or Safari to use Google. Or use email sign in below."
+                    : "Open this page in Chrome or Safari to use Google. Or use email sign in below. It works in this browser."}
+                </p>
+              </div>
             </div>
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--landing-paper-soft)] px-4 py-2 text-sm font-medium text-[var(--landing-ink)]"
-            >
-              <CopyIcon size={16} />
-              Copy link to open in browser
-            </button>
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={handleCopyLink}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-[var(--landing-ink)] shadow-sm ring-1 ring-amber-200 hover:bg-amber-50"
+              >
+                <CopyIcon size={16} />
+                Copy link to open in browser
+              </button>
+              {platform === "android" && (
+                <button
+                  type="button"
+                  onClick={handleOpenExternal}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--landing-ink)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-black"
+                >
+                  <ArrowSquareOutIcon size={16} />
+                  Try opening in Chrome
+                </button>
+              )}
+            </div>
+            <p className="text-xs leading-relaxed text-amber-700">
+              Email sign in works without leaving {isLinkedIn ? "LinkedIn" : "this app"}.
+            </p>
           </div>
         )}
 

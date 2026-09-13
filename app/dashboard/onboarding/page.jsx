@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import {
@@ -13,9 +13,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
-import PricingCards from "@/components/pricing/PricingCards";
 import { getActivationSteps } from "@/lib/activation-steps";
-import { trackEvent } from "@/lib/analytics";
 
 // Sentences are stored lowercase-initial so the name can be prefixed. With no
 // name on the session, the sentence stands alone rather than reading "there, ...".
@@ -25,47 +23,13 @@ function withName(name, sentence) {
     : sentence.charAt(0).toUpperCase() + sentence.slice(1);
 }
 
-const QUESTIONS = [
-  {
-    key: "goal",
-    eyebrow: "Your goal",
-    prompt: (name) => withName(name, "what are you here to do?"),
-    options: [
-      "Land my first job",
-      "Switch to a better company",
-      "Level up my title",
-      "Break into tech",
-      "Just exploring",
-    ],
-  },
-  {
-    key: "stage",
-    eyebrow: "Your search",
-    prompt: () => "Where are you in the search?",
-    options: [
-      "Not started applying yet",
-      "Applying, not hearing back",
-      "Interviewing, no offers yet",
-      "I have an offer",
-    ],
-  },
-  {
-    key: "blocker",
-    eyebrow: "The blocker",
-    prompt: (name) => withName(name, "what is slowing you down most?"),
-    options: [
-      "My CV is not getting responses",
-      "I cannot find good roles",
-      "I rewrite my CV for every job",
-      "I freeze in interviews",
-      "I do not have time to apply",
-    ],
-  },
-];
-
-const PRICING_STEP = QUESTIONS.length;
-const UPLOAD_STEP = QUESTIONS.length + 1;
-const TOTAL_STEPS = QUESTIONS.length + 2;
+// Onboarding is now just the CV upload (value first). The previous
+// 3-question wizard and the in-flow paywall have been removed per
+// feedback that the upload should be the only step. Pricing is still
+// available on /dashboard/upgrade and via the dashboard activation card.
+const QUESTIONS = [];
+const UPLOAD_STEP = 0;
+const TOTAL_STEPS = 1;
 
 function countYears(work) {
   const years = (work ?? [])
@@ -93,30 +57,7 @@ function summariseCV(cv) {
   ].filter(Boolean);
 }
 
-function OptionButton({ label, selected, onSelect }) {
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      aria-pressed={selected}
-      className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border-2 px-5 py-4 text-left text-sm font-medium transition-colors ${
-        selected
-          ? "border-[var(--landing-accent)] bg-[var(--landing-accent-soft)] text-[var(--landing-ink)]"
-          : "border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]"
-      }`}
-    >
-      {label}
-      {selected && (
-        <CheckIcon
-          size={16}
-          weight="bold"
-          className="shrink-0 text-[var(--landing-accent-dark)]"
-          aria-hidden="true"
-        />
-      )}
-    </button>
-  );
-}
+
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -130,20 +71,8 @@ export default function OnboardingPage() {
   const [completionFailed, setCompletionFailed] = useState(false);
 
   const firstName = session?.user?.name?.split(" ")[0] || null;
-  const isPricingStep = step === PRICING_STEP;
   const isUploadStep = step === UPLOAD_STEP;
   const onPayoff = Boolean(parsedCV);
-
-  const goToUploadStep = () => {
-    trackEvent("onboarding_pricing_skipped");
-    setStep(UPLOAD_STEP);
-  };
-
-  useEffect(() => {
-    if (isPricingStep) {
-      trackEvent("onboarding_pricing_viewed");
-    }
-  }, [isPricingStep]);
 
   const completeOnboarding = useCallback(
     async (destination, payload) => {
@@ -165,6 +94,12 @@ export default function OnboardingPage() {
         // turns "Reddit sent traffic" into "Reddit sent signups".
         window.umami?.track("signup");
 
+        // Let OnboardingGuard allow the next navigation even before the JWT
+        // has been refreshed (avoids the first-click bounce back to step 1).
+        try {
+          sessionStorage.setItem("onboardingJustCompleted", "1");
+        } catch {}
+
         await update();
         router.replace(destination);
       } catch {
@@ -182,11 +117,6 @@ export default function OnboardingPage() {
   // errors on first action without a reference CV.
   const skip = () => completeOnboarding("/dashboard", answers);
 
-  const answer = (key, value) => {
-    setAnswers((previous) => ({ ...previous, [key]: value }));
-    setStep((previous) => previous + 1);
-  };
-
   const onParsed = (cv) => setParsedCV(cv);
 
   if (finishing) {
@@ -194,7 +124,6 @@ export default function OnboardingPage() {
   }
 
   const canGoBack = step > 0 && !onPayoff;
-  const question = QUESTIONS[step];
   const facts = onPayoff ? summariseCV(parsedCV) : [];
   // The full checklist the dashboard will show, with the CV step already
   // ticked. The user just finished it.
@@ -354,28 +283,7 @@ export default function OnboardingPage() {
                   </button>
                 </div>
               </>
-            ) : isPricingStep ? (
-              <>
-                <span className="landing-eyebrow-plain">Pricing</span>
-                <h1 className="mt-4 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl">
-                  {withName(
-                    firstName,
-                    "here is what Premium unlocks before you tailor.",
-                  )}
-                </h1>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
-                  You can preview your tailored CV on screen for free. Premium
-                  is for PDF downloads, ATS scores, and the full toolkit.
-                </p>
-
-                <div className="mt-7">
-                  <PricingCards
-                    onSkip={goToUploadStep}
-                    skipLabel="Continue with free preview"
-                  />
-                </div>
-              </>
-            ) : isUploadStep ? (
+            ) : (
               <>
                 <span className="landing-eyebrow-plain">Your CV</span>
                 <h1 className="mt-4 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl">
@@ -412,26 +320,6 @@ export default function OnboardingPage() {
                 <p className="mt-5 text-xs leading-5 text-[var(--landing-ink-soft)]">
                   You can edit the parsed details later.
                 </p>
-              </>
-            ) : (
-              <>
-                <span className="landing-eyebrow-plain">
-                  {question.eyebrow}
-                </span>
-                <h1 className="mt-4 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl">
-                  {question.prompt(firstName)}
-                </h1>
-
-                <div className="mt-7 flex flex-col gap-2.5">
-                  {question.options.map((option) => (
-                    <OptionButton
-                      key={option}
-                      label={option}
-                      selected={answers[question.key] === option}
-                      onSelect={() => answer(question.key, option)}
-                    />
-                  ))}
-                </div>
               </>
             )}
           </motion.div>

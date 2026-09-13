@@ -97,7 +97,7 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
   const gate = useWebviewGate();
 
   const handleTryFree = (event) => {
-    if (gate?.interceptAuth(event)) return;
+    if (gate?.interceptAuth(event, "/auth")) return;
     router.push("/auth");
   };
 

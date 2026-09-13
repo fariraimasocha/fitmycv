@@ -5,7 +5,7 @@ import { CaretDownIcon, LayoutIcon, ListIcon, SignOutIcon, XIcon } from "@phosph
 import Link from "next/link";
 import AuthLink from "@/components/landing/AuthLink";
 import { useSession, signOut } from "next-auth/react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -29,7 +29,6 @@ const navLinks = [
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
-  const router = useRouter();
   const pathname = usePathname();
 
   const handleSmoothScroll = (e, href) => {
@@ -53,11 +52,6 @@ const Navbar1 = () => {
       .join("")
       .toUpperCase()
       .slice(0, 2);
-  };
-
-  const handleLogout = async () => {
-    await signOut({ redirect: false });
-    router.push("/");
   };
 
   return (
@@ -148,7 +142,7 @@ const Navbar1 = () => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  onClick={handleLogout}
+                  onClick={() => signOut({ redirectTo: "/" })}
                   className="cursor-pointer text-destructive focus:text-destructive"
                 >
                   <SignOutIcon className="mr-2 h-4 w-4" />

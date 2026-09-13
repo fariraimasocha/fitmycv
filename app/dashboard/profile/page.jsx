@@ -138,7 +138,7 @@ export default function ProfilePage() {
       try {
         sessionStorage.removeItem("onboardingJustCompleted");
       } catch {}
-      await signOut({ callbackUrl: "/" });
+      await signOut({ redirectTo: "/" });
     } catch (err) {
       toast.error(
         err instanceof Error ? err.message : "Could not delete account"

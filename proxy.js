@@ -18,6 +18,14 @@ function applyGeoCookies(request, response) {
     path: "/",
   });
 
+  res.cookies.set("__Secure-authjs.session-token", "", {
+    maxAge: 0,
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    path: "/",
+  });
+
   if (country) {
     res.cookies.set("visitor_country", country.toUpperCase(), {
       maxAge: COOKIE_MAX_AGE,

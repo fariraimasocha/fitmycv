@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
+import { STAGE_LABEL, pickApplicationFields } from "@/lib/applications";
 import Application from "@/models/Application";
 import TailoredCV from "@/models/TailoredCV";
 import CompanyResearch from "@/models/CompanyResearch";
@@ -19,8 +20,10 @@ export async function GET(request) {
 
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
+    const archived = searchParams.get("archived") === "true";
 
-    const query = { userId: session.user.id };
+    // Rows created before archiving existed have no flag, hence $ne.
+    const query = { userId: session.user.id, archived: archived ? true : { $ne: true } };
     if (status && status !== "all") {
       query.status = status;
     }
@@ -52,6 +55,11 @@ export async function POST(request) {
     await connectDB();
 
     const body = await request.json();
+    const fields = pickApplicationFields(body);
+
+    if (!fields.jobTitle || !fields.jobCompany) {
+      return Response.json({ error: "Add a company and a role." }, { status: 400 });
+    }
 
     if (body.tailoredCVId) {
       const ownedCv = await TailoredCV.findOne({
@@ -73,15 +81,18 @@ export async function POST(request) {
       }
     }
 
+    const status = STAGE_LABEL[body.status] ? body.status : "evaluated";
+
     const application = await Application.create({
+      ...fields,
       userId: session.user.id,
       tailoredCVId: body.tailoredCVId || undefined,
       companyResearchId: body.companyResearchId || undefined,
-      jobTitle: body.jobTitle || "",
-      jobCompany: body.jobCompany || "",
-      jobUrl: body.jobUrl || "",
-      status: "evaluated",
-      statusHistory: [{ status: "evaluated", date: new Date(), note: "CV tailored" }],
+      status,
+      statusHistory: [
+        { kind: "stage", status, date: new Date(), note: body.tailoredCVId ? "CV tailored" : "" },
+      ],
+      appliedAt: status === "evaluated" ? undefined : new Date(),
       matchScore: body.matchScore || undefined,
       matchGrade: body.matchGrade || undefined,
     });

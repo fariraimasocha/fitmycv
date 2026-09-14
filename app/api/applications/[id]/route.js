@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
+import { STAGE_LABEL, pickApplicationFields } from "@/lib/applications";
 import Application from "@/models/Application";
 import { connectDB } from "@/utils/connect";
 
@@ -49,6 +50,10 @@ export async function PUT(request, { params }) {
     const { id } = await params;
     const body = await request.json();
 
+    if (body.status && !STAGE_LABEL[body.status]) {
+      return Response.json({ error: "Unknown stage" }, { status: 400 });
+    }
+
     const application = await Application.findOne({
       _id: id,
       userId: session.user.id,
@@ -58,21 +63,32 @@ export async function PUT(request, { params }) {
       return Response.json({ error: "Application not found" }, { status: 404 });
     }
 
+    const fields = pickApplicationFields(body);
+    // Company and role are required, so a blank value keeps the stored one.
+    if (!fields.jobTitle) delete fields.jobTitle;
+    if (!fields.jobCompany) delete fields.jobCompany;
+    application.set(fields);
+
     // If status is changing, push to history
     if (body.status && body.status !== application.status) {
       application.statusHistory.push({
+        kind: "stage",
         status: body.status,
         date: new Date(),
-        note: body.statusNote || "",
+        note: typeof body.statusNote === "string" ? body.statusNote.slice(0, 500) : "",
       });
       application.status = body.status;
 
-      if (body.status === "applied" && !application.appliedAt) {
+      if (body.status !== "evaluated" && !application.appliedAt) {
         application.appliedAt = new Date();
       }
     }
 
-    if (body.notes !== undefined) application.notes = body.notes;
+    const note = typeof body.addNote === "string" ? body.addNote.trim() : "";
+    if (note) {
+      application.statusHistory.push({ kind: "note", date: new Date(), note: note.slice(0, 2000) });
+    }
+
     if (body.followUpDate !== undefined) {
       application.followUpDate = body.followUpDate ? new Date(body.followUpDate) : null;
     }

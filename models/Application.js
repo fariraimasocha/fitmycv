@@ -1,5 +1,24 @@
 import mongoose from "mongoose";
 
+// Stage changes and notes share one timeline. Rows written before notes
+// existed have no kind and read as stage changes. "kind", not "type": type is
+// reserved in mongoose schema definitions.
+const timelineEntrySchema = new mongoose.Schema({
+  kind: { type: String, enum: ["stage", "note"], default: "stage" },
+  status: { type: String },
+  date: { type: Date, default: Date.now },
+  note: { type: String, default: "" },
+});
+
+const contactSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  role: { type: String, default: "" },
+  // Free text shown as a label: Recruiter, Referral, Hiring manager.
+  kind: { type: String, default: "" },
+  email: { type: String, default: "" },
+  phone: { type: String, default: "" },
+});
+
 const applicationSchema = new mongoose.Schema(
   {
     userId: {
@@ -27,11 +46,14 @@ const applicationSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    // Keys predate the current stage names. lib/applications.js labels
+    // "evaluated" as Saved and "interviewing" as Interview.
     status: {
       type: String,
       enum: [
         "evaluated",
         "applied",
+        "screening",
         "interviewing",
         "offer",
         "rejected",
@@ -39,13 +61,7 @@ const applicationSchema = new mongoose.Schema(
       ],
       default: "evaluated",
     },
-    statusHistory: [
-      {
-        status: { type: String },
-        date: { type: Date, default: Date.now },
-        note: { type: String, default: "" },
-      },
-    ],
+    statusHistory: [timelineEntrySchema],
     notes: {
       type: String,
       default: "",
@@ -62,6 +78,14 @@ const applicationSchema = new mongoose.Schema(
     matchGrade: {
       type: String,
     },
+    location: { type: String, default: "" },
+    salary: { type: String, default: "" },
+    source: { type: String, default: "" },
+    tags: { type: [String], default: [] },
+    jobDescription: { type: String, default: "" },
+    contacts: [contactSchema],
+    // Hidden from the board without losing the record or its history.
+    archived: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

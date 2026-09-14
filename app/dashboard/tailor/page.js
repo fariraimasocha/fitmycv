@@ -854,6 +854,8 @@ function Tailor() {
             <ATSScoreCard
               atsData={atsScore}
               isLoading={atsLoading}
+              cv={tailorResult.tailoredCV}
+              jobData={jobData}
               preScore={preAtsScore?.score}
               onApplyFix={handleApplyFix}
               applyingFix={applyingFix}

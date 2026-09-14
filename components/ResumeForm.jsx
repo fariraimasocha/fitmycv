@@ -1,6 +1,7 @@
 "use client";
 
-import { useForm, useFieldArray } from "react-hook-form";
+import { useMemo, useState } from "react";
+import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -12,6 +13,8 @@ import {
   FloppyDiskIcon,
   SpinnerGapIcon,
   XIcon,
+  ListChecksIcon,
+  CaretDownIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +22,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ItemReorderControls from "@/components/ItemReorderControls";
+import { FindingList } from "@/components/ATSScoreCard";
+import { checkCv } from "@/lib/ats/rules";
 
 const resumeSchema = z.object({
   basics: z.object({
@@ -107,8 +112,24 @@ export default function ResumeForm({
     register,
     control,
     handleSubmit,
+    setFocus,
     formState: { errors },
   } = form;
+
+  // Live ATS checks. `now` is captured once so render stays pure; the rules
+  // only compare months, so one value per editing session is enough.
+  const [now] = useState(() => Date.now());
+  const values = useWatch({ control });
+  const report = useMemo(() => checkCv(values, now), [values, now]);
+
+  // Field paths ("work.2.startDate") get focus; section paths ("skills") scroll.
+  const goToFinding = (path) => {
+    if (path.includes(".")) {
+      setFocus(path);
+    } else {
+      document.getElementById(`cv-section-${path}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const {
     fields: workFieldsList,
@@ -166,6 +187,8 @@ export default function ResumeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <CvChecks report={report} onSelect={goToFinding} />
+
       {/* Personal Info */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -288,6 +311,8 @@ export default function ResumeForm({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.1 }}
+        id="cv-section-work"
+        className="scroll-mt-20"
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
@@ -405,6 +430,8 @@ export default function ResumeForm({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.15 }}
+        id="cv-section-education"
+        className="scroll-mt-20"
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
@@ -516,6 +543,8 @@ export default function ResumeForm({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.2 }}
+        id="cv-section-skills"
+        className="scroll-mt-20"
       >
         <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
@@ -607,6 +636,47 @@ export default function ResumeForm({
         </Button>
       </div>
     </form>
+  );
+}
+
+// The same rules as the ATS score, run on every keystroke. Collapsed by default
+// so it informs without taking over the editor.
+function CvChecks({ report, onSelect }) {
+  const issues = report.findings.filter((f) => f.severity !== "tip");
+  const tips = report.findings.filter((f) => f.severity === "tip");
+
+  return (
+    <details className="dashboard-card group rounded-2xl border border-border bg-card">
+      <summary className="dashboard-card-pad flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">
+        <span className="flex items-center gap-2 text-base font-semibold">
+          <ListChecksIcon size={18} aria-hidden="true" />
+          CV checks
+        </span>
+        <span className="flex items-center gap-3 text-sm text-muted-foreground">
+          <span className="tabular-nums">
+            {report.passedChecks} of {report.totalChecks} passed
+          </span>
+          <span className="rounded-md border border-border px-2 py-0.5 font-semibold tabular-nums text-foreground">
+            {report.score}
+          </span>
+          <CaretDownIcon size={14} className="transition-transform group-open:rotate-180" aria-hidden="true" />
+        </span>
+      </summary>
+      <div className="dashboard-card-pad space-y-4 border-t border-border/60">
+        {issues.length === 0 && (
+          <p className="text-sm text-muted-foreground">
+            {tips.length ? "Every scored check passes. The tips below are optional." : "Every check passes."}
+          </p>
+        )}
+        <FindingList findings={issues} onSelect={onSelect} />
+        {tips.length > 0 && (
+          <div className="space-y-1">
+            <p className="px-2 text-sm font-medium">Writing tips</p>
+            <FindingList findings={tips} onSelect={onSelect} />
+          </div>
+        )}
+      </div>
+    </details>
   );
 }
 

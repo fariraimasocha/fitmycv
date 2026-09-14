@@ -1,6 +1,6 @@
 /**
  * Parse the Groq LLM response into a structured company research brief.
- * Follows the same pattern as ats-parser.js and job-parser.js.
+ * Follows the same pattern as job-parser.js and tailor-parser.js.
  */
 export function parseCompanyResearchResponse(responseText) {
   const jsonStr = extractJsonString(responseText);

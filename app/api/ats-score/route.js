@@ -1,27 +1,11 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
-import { parseAtsResponse } from "@/utils/ats-parser";
-import { chat, MODEL_FAST } from "@/lib/groq";
+import { checkCv, cvToText, jobToText } from "@/lib/ats/rules";
+import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
-const SYSTEM_PROMPT = `You are an ATS (Applicant Tracking System) expert. Analyze how well a CV matches a job description.
-Score each dimension 0-100. Extract keywords from job requirements/responsibilities/qualifications.
-Check which keywords appear in the CV (case-insensitive). Return ONLY valid JSON, no markdown.
-
-Return this exact JSON structure:
-{
-  "score": 78,
-  "breakdown": { "keywords": 85, "skills": 90, "experience": 75, "sectionCompleteness": 80 },
-  "keywordsMatched": ["React", "TypeScript", "Node.js"],
-  "keywordsMissing": ["AWS", "Docker", "CI/CD"],
-  "formattingNotes": ["Avoid tables", "Keep to one page"],
-  "recommendations": ["Add 'AWS' to skills — mentioned 4x in job", "Expand DevOps bullet to mention containerization"]
-}`;
-
+// Rule-based, no model call. The score comes from lib/ats/rules.js, the same
+// rules the CV editor runs live, and keyword coverage is reported beside it,
+// never inside it. The AI opinion on the writing lives in /api/ats-review.
 export async function POST(request) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -34,57 +18,30 @@ export async function POST(request) {
   try {
     const { tailoredCV, jobData } = await request.json();
 
-    if (!tailoredCV || !jobData) {
-      return Response.json(
-        { error: "Tailored CV and job data are required" },
-        { status: 400 }
-      );
+    if (!tailoredCV || typeof tailoredCV !== "object") {
+      return Response.json({ error: "A CV is required" }, { status: 400 });
     }
 
-    const userMessage = `## Tailored CV
-${JSON.stringify(tailoredCV, null, 2)}
+    const report = checkCv(tailoredCV, Date.now());
+    const match = jobData ? scoreResumeJobMatch(jobToText(jobData), cvToText(tailoredCV)) : null;
 
-## Job Description
-Title: ${jobData.title || "Not specified"}
-Company: ${jobData.company || "Not specified"}
-
-Requirements:
-${(jobData.requirements || []).map((r) => `- ${r}`).join("\n")}
-
-Responsibilities:
-${(jobData.responsibilities || []).map((r) => `- ${r}`).join("\n")}
-
-Qualifications:
-${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}
-
-Analyze how well this tailored CV matches the job description and return the ATS score JSON.`;
-
-    const completion = await chat({
-      model: MODEL_FAST,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: userMessage },
-      ],
-      temperature: 0.1,
-      max_tokens: 2048,
+    return Response.json({
+      data: {
+        ...report,
+        coverage: match && {
+          matchedCount: match.keywords.present.length,
+          total: match.keywords.terms.length,
+          matched: match.keywords.present.map((t) => t.term),
+          missing: match.keywords.missing.map((t) => t.term),
+          stuffed: match.keywords.stuffed,
+          skillsMatched: match.skills.strong,
+          skillsMissing: match.skills.missing,
+        },
+        recommendations: match?.improvements ?? [],
+      },
     });
-
-    const responseText = completion.choices[0]?.message?.content;
-    if (!responseText) {
-      return Response.json(
-        { error: "Failed to generate ATS score" },
-        { status: 500 }
-      );
-    }
-
-    const atsResult = parseAtsResponse(responseText);
-
-    return Response.json({ data: atsResult });
   } catch (error) {
     console.error("ATS score error:", error);
-    return Response.json(
-      { error: "Failed to analyze ATS score" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Failed to check the CV" }, { status: 500 });
   }
 }

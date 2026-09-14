@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { parseJobFromResponse } from "@/utils/job-parser";
 import { chat, MODEL_FAST } from "@/lib/groq";
+import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
@@ -38,22 +39,6 @@ IMPORTANT — Extraction Strategy:
 - Always return at least 3-5 items per array field if the job posting contains a meaningful description. Try hard to populate every field.
 - Do NOT return empty arrays if there is any text describing the role — infer from context.`;
 
-// Same job page? Compare host (minus www/regional prefix) + path + job key.
-function isSamePage(requested, candidate) {
-  if (!candidate) return false;
-  try {
-    const a = new URL(requested);
-    const b = new URL(candidate);
-    const domain = (h) => h.split(".").slice(-2).join(".");
-    if (domain(a.hostname) !== domain(b.hostname)) return false;
-    if (a.pathname.replace(/\/$/, "") !== b.pathname.replace(/\/$/, "")) return false;
-    const key = (u) => u.searchParams.get("jk") || u.searchParams.get("jl") || "";
-    return key(a) === key(b);
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(request) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -61,179 +46,21 @@ export async function POST(request) {
   }
 
   try {
-    let { url } = await request.json();
+    const { url } = await request.json();
 
     if (!url || typeof url !== "string") {
       return Response.json({ error: "A valid URL is required" }, { status: 400 });
     }
 
-    // Transform any LinkedIn URL with currentJobId to a direct public job view URL
-    if (url.includes("linkedin.com") && url.includes("currentJobId=")) {
-      const match = url.match(/currentJobId=(\d+)/);
-      if (match) {
-        url = `https://www.linkedin.com/jobs/view/${match[1]}/`;
-        console.log("[job-extract] Transformed LinkedIn search URL to:", url);
+    // Step 1: Scrape the page (URL normalizing, Exa crawl, search fallback)
+    let finalText;
+    try {
+      ({ text: finalText } = await scrapeJobPage(url));
+    } catch (error) {
+      if (error instanceof JobPageError) {
+        return Response.json({ error: error.message }, { status: 422 });
       }
-    }
-
-    // Normalize any Indeed URL to canonical viewjob?jk=VALUE form, keeping the
-    // regional host (uk.indeed.com etc). A job key is not valid on www
-    if (url.includes("indeed.com")) {
-      // jk= appears in viewjob URLs; vjk= appears in search result URLs. Both are the same job key
-      const jkMatch = url.match(/[?&]jk=([a-zA-Z0-9]+)/) || url.match(/[?&]vjk=([a-zA-Z0-9]+)/);
-      if (jkMatch) {
-        let host = "www.indeed.com";
-        try {
-          host = new URL(url).hostname;
-        } catch {}
-        url = `https://${host}/viewjob?jk=${jkMatch[1]}`;
-        console.log("[job-extract] Normalized Indeed URL to:", url);
-      }
-    }
-
-    // Glassdoor: keep only the jl= (job listing ID) param, strip all tracking noise
-    if (url.includes("glassdoor.com")) {
-      try {
-        const urlObj = new URL(url);
-        const jl = urlObj.searchParams.get("jl");
-        urlObj.search = jl ? `?jl=${jl}` : "";
-        url = urlObj.toString();
-        console.log("[job-extract] Normalized Glassdoor URL to:", url);
-      } catch {}
-    }
-
-    // Lever: strip /apply suffix and lever-* tracking params
-    if (url.includes("jobs.lever.co")) {
-      url = url.replace(/\/apply(\?.*)?$/, "");
-      try {
-        const urlObj = new URL(url);
-        for (const key of [...urlObj.searchParams.keys()]) {
-          if (key.startsWith("lever-")) urlObj.searchParams.delete(key);
-        }
-        url = urlObj.toString().replace(/\?$/, "");
-        console.log("[job-extract] Normalized Lever URL to:", url);
-      } catch {}
-    }
-
-    // Greenhouse: job-boards.greenhouse.io → boards.greenhouse.io (canonical domain)
-    if (url.includes("greenhouse.io")) {
-      url = url.replace("job-boards.greenhouse.io", "boards.greenhouse.io");
-      console.log("[job-extract] Normalized Greenhouse URL to:", url);
-    }
-
-    // Workday: strip source= tracking param
-    if (url.includes("myworkdayjobs.com")) {
-      try {
-        const urlObj = new URL(url);
-        urlObj.searchParams.delete("source");
-        url = urlObj.toString().replace(/\?$/, "");
-        console.log("[job-extract] Normalized Workday URL to:", url);
-      } catch {}
-    }
-
-    // AngelList → Wellfound (rebranded domain)
-    if (url.includes("angel.co/")) {
-      url = url.replace("angel.co/", "wellfound.com/");
-      console.log("[job-extract] Normalized AngelList URL to Wellfound:", url);
-    }
-
-    // Step 1: Scrape page content via Exa.ai
-    const exaRes = await fetch("https://api.exa.ai/contents", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.EXA_API_KEY}`,
-      },
-      body: JSON.stringify({
-        urls: [url],
-        text: {
-          maxCharacters: 15000,
-          includeHtmlTags: false,
-        },
-        livecrawl: "always",
-        livecrawlTimeout: 15000,
-      }),
-    });
-
-    if (!exaRes.ok) {
-      const exaError = await exaRes.text();
-      console.error("Exa.ai error:", exaError);
-      return Response.json(
-        { error: "Failed to scrape job page. Please check the URL and try again." },
-        { status: 422 }
-      );
-    }
-
-    const exaData = await exaRes.json();
-    const pageText = exaData.results?.[0]?.text;
-
-    console.log(
-      "[job-extract] Scraped %d chars from %s | %s",
-      pageText?.length ?? 0,
-      url,
-      pageText ? `Preview: ${pageText.substring(0, 500)}` : "No text"
-    );
-
-    // Detect LinkedIn login wall: short content with sign-in text but no job keywords
-    const isLoginWall = pageText &&
-      pageText.length < 2000 &&
-      /sign\s*in|log\s*in/i.test(pageText) &&
-      !/requirements|responsibilities|qualifications|experience/i.test(pageText);
-
-    let finalText = pageText;
-
-    // Fallback: try Exa.ai neural search if direct crawl was blocked or empty
-    if (isLoginWall || !pageText || pageText.length < 50) {
-      console.log("[job-extract] Direct crawl failed, trying Exa.ai search fallback...");
-      try {
-        const searchRes = await fetch("https://api.exa.ai/search", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.EXA_API_KEY}`,
-          },
-          body: JSON.stringify({
-            query: url,
-            numResults: 1,
-            contents: {
-              text: { maxCharacters: 15000, includeHtmlTags: false },
-            },
-          }),
-        });
-
-        if (searchRes.ok) {
-          const searchData = await searchRes.json();
-          const searchText = searchData.results?.[0]?.text;
-          const searchUrl = searchData.results?.[0]?.url;
-          // Neural search ranks by meaning, so a URL query can return a totally
-          // different job. Only trust a result that is the same page.
-          if (searchText && searchText.length >= 50 && isSamePage(url, searchUrl)) {
-            console.log(`[job-extract] Search fallback returned ${searchText.length} chars`);
-            finalText = searchText;
-          } else if (searchText) {
-            console.log("[job-extract] Discarded search fallback, different page:", searchUrl);
-          }
-        }
-      } catch (err) {
-        console.error("[job-extract] Search fallback error:", err);
-      }
-    }
-
-    // If still no usable content, return actionable 422
-    if (!finalText || finalText.length < 50) {
-      let errorMsg = "Could not extract enough content from the page. Try a direct job listing URL.";
-      if (url.includes("linkedin.com")) {
-        errorMsg = "LinkedIn blocks job page access. Try the company's own careers page URL instead.";
-      } else if (url.includes("indeed.com")) {
-        errorMsg = "Indeed blocks job page access. Try the company's own careers page URL instead.";
-      } else if (url.includes("glassdoor.com")) {
-        errorMsg = "Glassdoor blocks direct access. Try the company's own careers page URL instead.";
-      } else if (url.includes("myworkdayjobs.com")) {
-        errorMsg = "Workday job pages are JavaScript-rendered and difficult to scrape. Try the company's direct careers page URL instead.";
-      } else if (url.includes("wellfound.com") || url.includes("angel.co")) {
-        errorMsg = "Wellfound job pages require a login to view. Try the company's own careers page URL instead.";
-      }
-      return Response.json({ error: errorMsg }, { status: 422 });
+      throw error;
     }
 
     // Step 2: Parse with Groq

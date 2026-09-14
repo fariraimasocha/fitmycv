@@ -12,6 +12,7 @@ import {
   ScalesIcon,
   BookmarkSimpleIcon,
   SlidersHorizontalIcon,
+  RobotIcon,
 } from "@phosphor-icons/react";
 
 import { NavMain } from "@/components/nav-main";
@@ -38,6 +39,7 @@ const navGroups = [
       { title: "My CV", url: "/dashboard/resume", icon: ReadCvLogoIcon },
       { title: "Tailor CV", url: "/dashboard/tailor", icon: PenIcon },
       { title: "Tailored CVs", url: "/dashboard/tailored", icon: StackIcon },
+      { title: "CV Agent", url: "/dashboard/agent", icon: RobotIcon },
       { title: "Story Bank", url: "/dashboard/story-bank", icon: BookOpenIcon },
     ],
   },

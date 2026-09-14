@@ -17,7 +17,8 @@ export function sanitizeAIText(str) {
     .replace(EXOTIC_SPACES, " ")
     .replace(/[\u2018\u2019\u201A\u201B]/g, "'")
     .replace(/[\u201C\u201D\u201E\u201F]/g, '"')
-    .replace(/[\u2013\u2014\u2015]/g, "-")
+    // Unicode hyphens (U+2010, U+2011) look right but defeat keyword search.
+    .replace(/[\u2010-\u2015]/g, "-")
     .replace(/\u2026/g, "...");
 }
 

@@ -55,7 +55,7 @@ export function FindingList({ findings, onSelect }) {
 
   return (
     <ul className="space-y-1">
-      {findings.map((finding, i) => {
+      {findings.map((finding) => {
         const severity = SEVERITY[finding.severity];
         const body = (
           <>
@@ -71,7 +71,7 @@ export function FindingList({ findings, onSelect }) {
         );
 
         return (
-          <li key={`${finding.code}-${finding.path}-${i}`}>
+          <li key={`${finding.code}-${finding.path}`}>
             {onSelect ? (
               <button
                 type="button"
@@ -219,8 +219,8 @@ function WritingReview({ cv, jobData, findings }) {
 
           {data.suggestions.length > 0 && (
             <ul className="space-y-3">
-              {data.suggestions.map((s, i) => (
-                <li key={i} className="space-y-1.5 rounded-md border border-[var(--landing-line)] p-3">
+              {data.suggestions.map((s) => (
+                <li key={`${s.section}-${s.issue}`} className="space-y-1.5 rounded-md border border-[var(--landing-line)] p-3">
                   <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                     <span className="font-semibold text-[var(--landing-ink)]">{IMPACT_LABEL[s.impact]}</span>
                     {s.section && <span>{s.section}</span>}
@@ -240,8 +240,8 @@ function WritingReview({ cv, jobData, findings }) {
             <div className="space-y-1.5">
               <p className="font-medium text-[var(--landing-success)]">What already works</p>
               <ul className="list-disc space-y-1 pl-5 text-[var(--landing-ink-soft)]">
-                {data.strengths.map((s, i) => (
-                  <li key={i}>{s}</li>
+                {data.strengths.map((s) => (
+                  <li key={s}>{s}</li>
                 ))}
               </ul>
             </div>

@@ -10,7 +10,7 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 - **Tailwind CSS:** use Tailwind v4 native utility values (e.g. `min-h-75`, `p-4`, `gap-6`) instead of arbitrary bracket syntax (e.g. `min-h-[300px]`, `p-[16px]`, `gap-[24px]`). Tailwind v4's spacing scale is `1 unit = 4px` (so `75 = 300px`).
 - **Auth:** NextAuth (Google OAuth)
 - **DB/ORM:** mongoose/MongoDB
-- **APIs:** Exa.ai (job page scraping), OpenAI (CV tailoring + cover letter), Groq (PDF text extraction)
+- **APIs:** Exa.ai (job page scraping), Groq for every model call (`chat()` and `MODEL_SMART` / `MODEL_FAST` from `lib/groq.js`)
 - **PDF:** unpdf (extract text), TBD (generate downloadable PDFs)
 - **Icons:** use @phosphor-icons/react. Always use the `Icon` suffix (e.g. `HouseIcon`, `XIcon`, `ListIcon`). Bare names like `X`, `List` are deprecated.
 - **Data fetching, caching and Mutations:** use tanstack-query

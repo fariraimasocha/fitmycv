@@ -3,14 +3,12 @@ import { requirePremium } from "@/lib/paywall";
 import { parseInterviewPrepResponse } from "@/utils/interview-prep-parser";
 import InterviewPrep from "@/models/InterviewPrep";
 import { connectDB } from "@/utils/connect";
-import OpenAI from "openai";
+import { chat, MODEL_FAST } from "@/lib/groq";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
 // client can only report as a network error.
 export const maxDuration = 60;
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an expert interview coach. Given a candidate's tailored CV and the job they're applying for, generate structured interview preparation materials. Return ONLY valid JSON.
 
@@ -87,8 +85,8 @@ ${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}${companyContex
 
 Generate interview preparation materials for this candidate and role.`;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const completion = await chat({
+      model: MODEL_FAST,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userMessage },

@@ -1,14 +1,12 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { parseJobScoreResponse } from "@/utils/job-score-parser";
-import OpenAI from "openai";
+import { chat, MODEL_FAST } from "@/lib/groq";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
 // client can only report as a network error.
 export const maxDuration = 60;
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are a career matching expert. Given a candidate's reference CV and a job description, assess the match quality BEFORE the CV is tailored. This helps the candidate decide if the job is worth pursuing.
 
@@ -92,8 +90,8 @@ ${(jobData.qualifications || []).map((q) => `- ${q}`).join("\n")}
 
 Assess how well this candidate matches this job BEFORE any tailoring.`;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const completion = await chat({
+      model: MODEL_FAST,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userMessage },

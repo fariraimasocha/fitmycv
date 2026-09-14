@@ -2,14 +2,12 @@ import { auth } from "@/lib/auth";
 import { parseTailorResponse } from "@/utils/tailor-parser";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
-import OpenAI from "openai";
+import { chat, MODEL_SMART } from "@/lib/groq";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
 // client can only report as a network error.
 export const maxDuration = 60;
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const SYSTEM_PROMPT = `You are an expert CV tailoring assistant and career coach. Given a reference CV (JSON) and job requirements, you will:
 
@@ -153,9 +151,9 @@ Please tailor the CV for this specific role and generate a cover letter that cle
       : userMessage;
 
     const generate = () =>
-      openai.chat.completions.create({
-        // ponytail: gpt-4o for the quality-critical tailoring path; drop back to gpt-4o-mini if cost matters more than output quality
-        model: "gpt-4o",
+      chat({
+        // ponytail: the 120b model for the quality-critical tailoring path; MODEL_FAST if cost matters more than output quality
+        model: MODEL_SMART,
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: promptMessage },

@@ -1,14 +1,12 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { sanitizeAIText } from "@/utils/sanitize-ai-text";
-import OpenAI from "openai";
+import { chat, MODEL_SMART } from "@/lib/groq";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
 // client can only report as a network error.
 export const maxDuration = 60;
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const DEFAULT_QUESTION =
   "In 3-5 sentences, tell us why you are interested in this role.";
@@ -86,8 +84,8 @@ ${companyContext}
 ## Question to answer
 ${prompt}`;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+    const completion = await chat({
+      model: MODEL_SMART,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: userMessage },

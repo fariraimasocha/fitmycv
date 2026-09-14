@@ -1,14 +1,12 @@
 import { auth } from "@/lib/auth";
 import { extractPdfText } from "@/utils/pdf-parser";
 import { parseResumeFromResponse } from "@/utils/resume-parser";
-import OpenAI from "openai";
+import { chat, MODEL_FAST } from "@/lib/groq";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
 // client can only report as a network error.
 export const maxDuration = 60;
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const MAX_FILE_SIZE = 8 * 1024 * 1024; // 8MB
 const MIN_TEXT_LENGTH = 100;
@@ -89,9 +87,8 @@ export async function POST(request) {
       );
     }
 
-    // Parse with OpenAI
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const completion = await chat({
+      model: MODEL_FAST,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: rawText },

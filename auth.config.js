@@ -46,6 +46,10 @@ export const authConfig = {
       if (isOnAuth && isLoggedIn) {
         return Response.redirect(new URL("/dashboard", nextUrl));
       }
+
+      if (pathname === "/" && isLoggedIn) {
+        return Response.redirect(new URL("/dashboard", nextUrl));
+      }
       return true;
     },
   },

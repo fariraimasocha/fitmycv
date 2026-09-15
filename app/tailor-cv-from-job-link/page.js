@@ -43,7 +43,7 @@ export const metadata = pageMetadata({
     "tailor resume from linkedin job link",
     "indeed resume matcher",
   ],
-  image: "/hero-new.png",
+  image: "/social-preview.jpg",
 });
 
 const BENEFITS = [

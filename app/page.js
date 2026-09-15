@@ -37,7 +37,7 @@ export const metadata = {
       "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/social-preview.jpg",
         width: 1200,
         height: 630,
         alt: "FitMyCV: Land more interviews with a CV that fits",
@@ -51,7 +51,7 @@ export const metadata = {
       "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/social-preview.jpg",
         width: 1200,
         height: 630,
         alt: "FitMyCV: Land more interviews with a CV that fits",

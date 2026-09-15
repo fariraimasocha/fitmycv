@@ -10,7 +10,7 @@ export const meta = {
   readingTime: 11,
   category: "ATS",
   tags: ["ats", "formatting", "resume format", "parsing"],
-  image: "/og-image.jpg",
+  image: "/social-preview.jpg",
   imageAlt: "FitMyCV",
   keywords: [
     "ats resume format",

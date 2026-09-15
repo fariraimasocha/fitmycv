@@ -16,14 +16,14 @@ export const metadata = {
     title: "Privacy Policy | FitMyCV",
     description:
       "How FitMyCV collects, uses, and protects your data, including your CV content, Google account details, and payment information.",
-    images: [{ url: "/hero-new.png", width: 3024, height: 1724, alt: "FitMyCV" }],
+    images: [{ url: "/social-preview.jpg", width: 1200, height: 630, alt: "FitMyCV" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy | FitMyCV",
     description:
       "How FitMyCV collects, uses, and protects your data, including your CV content, Google account details, and payment information.",
-    images: ["/hero-new.png"],
+    images: ["/social-preview.jpg"],
   },
 };
 

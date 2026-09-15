@@ -10,7 +10,7 @@ export const meta = {
   readingTime: 8,
   category: "ATS",
   tags: ["checking", "job description", "ats", "resume"],
-  image: "/og-image.jpg",
+  image: "/social-preview.jpg",
   imageAlt: "FitMyCV",
   keywords: [
     "how to check resume against job description",

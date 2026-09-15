@@ -10,7 +10,7 @@ export const meta = {
   readingTime: 8,
   category: "ATS",
   tags: ["keywords", "gap analysis", "ats", "resume"],
-  image: "/og-image.jpg",
+  image: "/social-preview.jpg",
   imageAlt: "FitMyCV",
   keywords: [
     "how to find resume keyword gaps",

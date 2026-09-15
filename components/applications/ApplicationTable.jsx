@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useConfirm } from "@/hooks/use-confirm";
-import { STAGES, STAGE_BY_KEY, initials, tileColor } from "@/lib/applications";
+import { STAGES, STAGE_BY_KEY, initials } from "@/lib/applications";
 import { requestJson } from "@/lib/request-json";
 import { cn } from "@/lib/utils";
 
@@ -213,12 +213,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                 </td>
                 <td className="px-3 py-2">
                   <button type="button" className="flex items-center gap-2.5 text-left" onClick={() => onOpen(app)}>
-                    <span
-                      className={cn(
-                        "flex size-7 shrink-0 items-center justify-center rounded-md text-[10px] font-bold text-white",
-                        tileColor(app.jobCompany)
-                      )}
-                    >
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] text-[10px] font-semibold text-foreground">
                       {initials(app.jobCompany)}
                     </span>
                     <div className="min-w-0">
@@ -270,12 +265,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
               aria-label={`Select ${app.jobCompany}`}
             />
             <button type="button" className="flex min-w-0 flex-1 items-center gap-2.5 text-left" onClick={() => onOpen(app)}>
-              <span
-                className={cn(
-                  "flex size-8 shrink-0 items-center justify-center rounded-md text-[10px] font-bold text-white",
-                  tileColor(app.jobCompany)
-                )}
-              >
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] text-[10px] font-semibold text-foreground">
                 {initials(app.jobCompany)}
               </span>
               <div className="min-w-0 flex-1">

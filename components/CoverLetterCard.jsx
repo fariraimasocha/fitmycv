@@ -95,12 +95,21 @@ export default function CoverLetterCard({
             </div>
           </div>
         ) : content ? (
-          <p
-            className="max-w-prose text-sm leading-relaxed text-foreground whitespace-pre-line"
+          // Shown as the page it becomes, in the CV's font, so what you read
+          // here is what the PDF looks like.
+          <article
+            className="mx-auto max-w-2xl rounded-md border border-[var(--landing-line)] bg-white px-5 py-7 text-base leading-7 text-foreground shadow-[var(--landing-shadow-sm)] sm:px-12 sm:py-12"
             style={fontStack ? { fontFamily: fontStack } : undefined}
           >
-            {content}
-          </p>
+            {content
+              .split(/\n\s*\n/)
+              .filter((paragraph) => paragraph.trim())
+              .map((paragraph, i) => (
+                <p key={`${i}-${paragraph.slice(0, 24)}`} className="mb-5 whitespace-pre-line last:mb-0">
+                  {paragraph.trim()}
+                </p>
+              ))}
+          </article>
         ) : (
           <div className="flex flex-col items-start gap-3">
             <p className="text-sm text-muted-foreground">

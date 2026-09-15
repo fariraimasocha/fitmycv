@@ -49,7 +49,9 @@ export default function ChatwootWidget() {
   const userEmail = session?.user?.email;
   const userName = session?.user?.name;
   const userImage = session?.user?.image;
-  const hideWidget = pathname?.startsWith("/print");
+  // Agent threads keep their composer at the bottom right, where the bubble
+  // would sit on top of the send button.
+  const hideWidget = pathname?.startsWith("/print") || pathname?.startsWith("/dashboard/agent/");
 
   useEffect(() => {
     if (!WEBSITE_TOKEN || hideWidget) return;

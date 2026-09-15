@@ -35,7 +35,7 @@ function SavedJobCard({ item, onRemove, removing }) {
     <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
       <CardContent className="dashboard-row-pad flex flex-col gap-3">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md border border-[var(--landing-line)] text-sm font-semibold text-foreground sm:h-11 sm:w-11">
             {job.logo ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={job.logo} alt={job.company ?? ""} className="h-full w-full object-contain" />

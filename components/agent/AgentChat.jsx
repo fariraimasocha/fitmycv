@@ -1,311 +1,271 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { toast } from "sonner";
+import { useEffect, useRef, useState } from "react";
 import {
+  ArrowCounterClockwiseIcon,
+  ArrowUpIcon,
+  BriefcaseIcon,
+  CheckCircleIcon,
   CheckIcon,
-  ClockCounterClockwiseIcon,
-  CopyIcon,
-  DotsThreeVerticalIcon,
-  GlobeIcon,
-  PaperPlaneRightIcon,
-  PencilSimpleLineIcon,
+  ListChecksIcon,
   ProhibitIcon,
-  ReadCvLogoIcon,
-  ShieldCheckIcon,
-  SidebarSimpleIcon,
+  SortAscendingIcon,
   SparkleIcon,
-  SquaresFourIcon,
-  TrashIcon,
+  TextAlignLeftIcon,
+  WarningCircleIcon,
 } from "@phosphor-icons/react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { getAtPath } from "@/lib/cv-patch";
 import { cn } from "@/lib/utils";
 
-// Ported from Reactive Resume's agent-chat.tsx, patch-approval-card.tsx and
-// tool-part-card.tsx, on FitMyCV's colors.
-
-const STARTER_PROMPTS = [
-  "Tailor my CV to this job: ",
-  "Tighten my summary to three lines",
-  "Rewrite my weakest bullets to show outcomes",
-  "Put the skills that matter most first",
-  "Turn my duties into achievements",
-  "Check my dates and make the formats match",
-  "Make my headline fit the role I want",
-  "Cut anything that repeats",
-  "What would you change for a senior role?",
-  "Shorten my longest bullets",
-  "Which of my bullets need numbers?",
-  "Give my current role a stronger opening line",
+const SUGGESTIONS = [
+  {
+    icon: BriefcaseIcon,
+    label: "Tailor it to a job",
+    description: "Paste a job link and it matches your CV to the role",
+    text: "Tailor my CV to this job: ",
+    send: false,
+  },
+  {
+    icon: TextAlignLeftIcon,
+    label: "Tighten my summary",
+    description: "Cut it down to three clear lines",
+    text: "Tighten my summary to three clear lines.",
+    send: true,
+  },
+  {
+    icon: ListChecksIcon,
+    label: "Strengthen weak bullets",
+    description: "Rewrite duties so they show results",
+    text: "Find my weakest bullets and rewrite them to show outcomes. Don't invent numbers.",
+    send: true,
+  },
+  {
+    icon: SortAscendingIcon,
+    label: "Reorder my skills",
+    description: "Put the most relevant skills first",
+    text: "Put the skills that matter most for my target role first.",
+    send: true,
+  },
 ];
 
-const TOOLS = {
-  read_cv: { label: "Read the CV", icon: ReadCvLogoIcon },
-  fetch_job_posting: { label: "Read the job posting", icon: GlobeIcon },
+const TOOL_LABEL = {
+  read_cv: { done: "Read your CV", failed: "Couldn't read your CV" },
+  fetch_job_posting: { done: "Read the job posting", failed: "Couldn't open the job posting" },
 };
 
-const LINE = "border-[var(--landing-line)]";
+const SECTION_LABEL = { basics: "Personal details", work: "Experience", education: "Education", skills: "Skills" };
+const FIELD_LABEL = {
+  name: "Name",
+  label: "Headline",
+  email: "Email",
+  phone: "Phone",
+  summary: "Summary",
+  location: "Location",
+  profiles: "Profiles",
+  network: "Network",
+  url: "Link",
+  company: "Company",
+  position: "Job title",
+  startDate: "Start date",
+  endDate: "End date",
+  description: "Bullets",
+  institution: "School",
+  degree: "Degree",
+  fieldOfStudy: "Field of study",
+  category: "Category",
+  skills: "Skills",
+};
+const ITEM_NAME = {
+  work: (item) => item.company || item.position,
+  education: (item) => item.institution,
+  skills: (item) => item.category,
+};
 
-function truncateValue(value, max = 80) {
-  if (value === undefined) return null;
-  const text = typeof value === "string" ? value : JSON.stringify(value);
-  return text.length > max ? `${text.slice(0, max - 1)}…` : text;
+/** "/work/0/description" reads as "Experience › Acme › Bullets". Entry names come from `draft` when given. */
+function describePath(path, draft) {
+  const [section, ...rest] = String(path).replace(/^\//, "").split("/");
+  const parts = [SECTION_LABEL[section] ?? section];
+  rest.forEach((token, i) => {
+    if (token === "-") {
+      parts.push("New entry");
+    } else if (/^\d+$/.test(token)) {
+      const item = i === 0 ? draft?.[section]?.[Number(token)] : undefined;
+      parts.push((item && ITEM_NAME[section]?.(item)) || `Entry ${Number(token) + 1}`);
+    } else {
+      parts.push(FIELD_LABEL[token] ?? token);
+    }
+  });
+  return parts.join(" › ");
 }
 
-function chunk(items, rows) {
-  return Array.from({ length: rows }, (_, row) => items.filter((_, i) => i % rows === row));
+function formatValue(value) {
+  if (value === undefined || value === null || value === "") return "Empty";
+  if (typeof value !== "object") return String(value);
+  if (Array.isArray(value) && value.every((v) => typeof v !== "object")) return value.join(", ");
+  return Object.entries(value)
+    .filter(([, v]) => v !== "" && !(Array.isArray(v) && v.length === 0))
+    .map(
+      ([key, v]) =>
+        `${FIELD_LABEL[key] ?? key}: ${Array.isArray(v) ? v.map((x) => (typeof x === "object" ? JSON.stringify(x) : x)).join(", ") : v}`
+    )
+    .join("\n");
 }
 
-function StarterPromptMarquee({ onSelect }) {
-  return (
-    <div className="relative mx-auto grid w-full max-w-4xl gap-3 overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-      {chunk(STARTER_PROMPTS, 3).map((row, rowIndex) => (
-        <div
-          key={row[0]}
-          className="landing-marquee-track flex w-max gap-3 motion-reduce:animate-none"
-          style={{ animationDuration: `${48 + rowIndex * 10}s`, animationDirection: rowIndex % 2 ? "reverse" : "normal" }}
-        >
-          {/* Repeated so the loop has no gap; only the first copy is reachable by keyboard. */}
-          {[...row, ...row, ...row, ...row].map((prompt, i) => (
-            <Button
-              key={`${prompt}-${i}`}
-              type="button"
-              size="sm"
-              variant="outline"
-              tabIndex={i < row.length ? undefined : -1}
-              aria-hidden={i < row.length ? undefined : true}
-              className={cn(
-                "h-8 shrink-0 rounded-full bg-[var(--landing-surface)]/70 px-3 font-normal text-muted-foreground hover:text-foreground",
-                LINE
-              )}
-              onClick={() => onSelect(prompt)}
-            >
-              {prompt}
-            </Button>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
+const STATUS_PILL = {
+  pending: {
+    label: "Needs your review",
+    className: "border-[var(--landing-ink)] text-foreground",
+  },
+  applied: { label: "Applied", className: "border-[var(--landing-line)] text-muted-foreground" },
+  reverted: { label: "Rolled back", className: "border-[var(--landing-line)] text-muted-foreground" },
+};
 
-function OperationRow({ operation }) {
-  const preview = truncateValue(operation.value);
-  return (
-    <li className="flex min-w-0 items-baseline gap-2 font-mono text-[11px] leading-relaxed">
-      <Badge variant="outline" className="shrink-0 font-mono uppercase">
-        {String(operation.op ?? "?")}
-      </Badge>
-      <span className="shrink-0 text-foreground">{String(operation.path ?? "")}</span>
-      {preview && <span className="truncate text-muted-foreground">{preview}</span>}
-    </li>
-  );
-}
+function ProposalCard({ proposal, draft, busy, onDecide }) {
+  const pending = proposal.status === "pending";
 
-function OutlineBubble({ children }) {
-  return (
-    <div className={cn("w-full min-w-0 rounded-xl border bg-[var(--landing-surface)] px-3 py-2", LINE)}>{children}</div>
-  );
-}
-
-function PatchApprovalCard({ proposal, disabled, onRespond }) {
-  return (
-    <div className="space-y-3 text-sm">
-      <div className="flex items-center gap-2 font-medium">
-        <ShieldCheckIcon className="text-muted-foreground" />
-        <span>Review this edit</span>
-      </div>
-      <div className="min-w-0">
-        <p className="truncate font-medium">{proposal.title}</p>
-        {proposal.summary && <p className="mt-0.5 text-xs text-muted-foreground">{proposal.summary}</p>}
-      </div>
-      <ul className={cn("max-h-48 space-y-1 overflow-auto rounded-md border bg-[var(--landing-paper-soft)] p-2", LINE)}>
-        {proposal.operations.map((operation, index) => (
-          <OperationRow key={`${String(operation.path)}-${index}`} operation={operation} />
-        ))}
-      </ul>
-      <div className="flex items-center gap-2">
-        <Button size="sm" disabled={disabled} onClick={() => onRespond(true)}>
-          <CheckIcon />
-          Approve
-        </Button>
-        <Button size="sm" variant="outline" disabled={disabled} onClick={() => onRespond(false)}>
-          <ProhibitIcon />
-          Deny
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-function PatchToolCard({ proposal, disabled, onRestore }) {
-  const reverted = proposal.status === "reverted";
-  return (
-    <details className="group text-xs text-muted-foreground">
-      <summary className="inline-flex max-w-full cursor-pointer list-none items-center gap-2 rounded-md py-1 font-medium hover:text-foreground [&::-webkit-details-marker]:hidden">
-        <PencilSimpleLineIcon className="size-4 shrink-0" />
-        <span className="shrink-0">{reverted ? "Patch rolled back" : "Patch applied"}</span>
-        <span className="truncate text-muted-foreground/70 group-open:hidden">{proposal.title}</span>
-      </summary>
-      <div className={cn("mt-2 space-y-2 rounded-md border bg-[var(--landing-paper-soft)] p-3", LINE)}>
-        <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            <p className="truncate font-medium text-foreground">{proposal.title}</p>
-            {reverted && (
-              <p className="mt-1">This patch was rolled back when the draft was restored to an earlier state.</p>
-            )}
-          </div>
-          {proposal.canRestore && (
-            <Button size="xs" variant="ghost" disabled={disabled} onClick={onRestore}>
-              <ClockCounterClockwiseIcon />
-              Restore
-            </Button>
-          )}
-        </div>
-        <ul className={cn("max-h-48 space-y-1 overflow-auto rounded border bg-[var(--landing-surface)] p-2", LINE)}>
-          {proposal.operations.map((operation, index) => (
-            <OperationRow key={`${String(operation.path)}-${index}`} operation={operation} />
-          ))}
-        </ul>
-        <details>
-          <summary className="cursor-pointer text-muted-foreground/70 hover:text-foreground">Raw JSON</summary>
-          <pre
-            className={cn(
-              "mt-1 max-h-72 overflow-auto rounded border bg-[var(--landing-surface)] p-3 font-mono text-[11px] leading-relaxed break-words whitespace-pre-wrap",
-              LINE
-            )}
-          >
-            {JSON.stringify(proposal.operations, null, 2)}
-          </pre>
-        </details>
-      </div>
-    </details>
-  );
-}
-
-function ToolPartCard({ message }) {
-  const tool = TOOLS[message.toolName];
-  const failed = message.content?.startsWith("Error");
-  const preview = message.content?.length > 4000 ? `${message.content.slice(0, 4000)}…` : message.content;
-
-  return (
-    <details className="group text-xs text-muted-foreground">
-      <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-md py-1 font-medium hover:text-foreground [&::-webkit-details-marker]:hidden">
-        <tool.icon className="size-4" />
-        <span>{tool.label}</span>
-        <Badge variant={failed ? "destructive" : "outline"}>{failed ? "Failed" : "Done"}</Badge>
-      </summary>
-      <div className={cn("mt-2 rounded-md border bg-[var(--landing-paper-soft)] p-3", LINE)}>
-        <pre
-          className={cn(
-            "max-h-72 overflow-auto rounded border bg-[var(--landing-surface)] p-2 font-mono text-[11px] break-words whitespace-pre-wrap",
-            LINE
-          )}
-        >
-          {preview}
-        </pre>
-      </div>
-    </details>
-  );
-}
-
-function AskUserQuestion({ id, question, answer, disabled, onAnswer }) {
-  const [choice, setChoice] = useState("");
-  const [other, setOther] = useState("");
-
-  if (answer !== null) {
+  if (proposal.status === "rejected") {
     return (
-      <div className="flex flex-col gap-1">
-        <p className="font-medium">{question.question}</p>
-        <p className="text-sm text-muted-foreground">{answer}</p>
-      </div>
+      <p className="flex items-center gap-2 text-xs text-muted-foreground">
+        <ProhibitIcon className="size-4 shrink-0" aria-hidden="true" />
+        <span className="truncate">You declined: {proposal.title}</span>
+      </p>
     );
   }
 
-  const value = other.trim() || choice;
+  const pill = STATUS_PILL[proposal.status];
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (value) onAnswer(value);
-      }}
-      className="flex w-full min-w-0 flex-col gap-4 py-1"
-    >
-      <fieldset disabled={disabled} className="flex min-w-0 flex-col gap-2">
-        <legend className="mb-4 text-base leading-snug font-medium text-pretty">{question.question}</legend>
-        {question.choices?.map((option) => {
-          const checked = choice === option && !other.trim();
+    <div className="overflow-hidden rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)]">
+      <div className="flex items-start justify-between gap-3 px-4 pt-3.5 pb-3">
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-foreground">{proposal.title}</p>
+          {proposal.summary && <p className="mt-0.5 text-sm leading-5 text-muted-foreground">{proposal.summary}</p>}
+        </div>
+        {pill && (
+          <span
+            className={cn(
+              "shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-medium whitespace-nowrap",
+              pill.className
+            )}
+          >
+            {pill.label}
+          </span>
+        )}
+      </div>
+
+      <ul className="max-h-80 space-y-3 overflow-y-auto border-t border-[var(--landing-line)] px-4 py-3">
+        {proposal.operations.map((op, i) => {
+          // Before values and entry names only hold while the draft still matches the proposal.
+          const before = pending && op.op !== "add" ? getAtPath(draft, op.path) : undefined;
           return (
-            <label
-              key={option}
-              className={cn(
-                "relative flex min-h-11 cursor-pointer items-start gap-2.5 rounded-lg border bg-transparent px-3 py-2.5 text-sm transition-colors select-none hover:bg-[var(--landing-paper-soft)] has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-ring/40",
-                LINE,
-                checked && "border-[var(--landing-ink-faint)] bg-[var(--landing-paper-soft)]"
+            <li key={`${op.op}-${op.path}-${i}`} className="space-y-1.5">
+              <p className="text-xs font-medium text-muted-foreground">{describePath(op.path, pending ? draft : null)}</p>
+              {before !== undefined && (
+                <p className="text-sm leading-6 break-words whitespace-pre-wrap text-muted-foreground line-through decoration-muted-foreground/40">
+                  <span className="sr-only">Before: </span>
+                  {formatValue(before)}
+                </p>
               )}
-            >
-              <input
-                type="radio"
-                name={`question-${id}`}
-                value={option}
-                checked={checked}
-                onChange={() => {
-                  setChoice(option);
-                  setOther("");
-                }}
-                className="mt-0.5 size-4 shrink-0 accent-[var(--landing-ink)]"
-              />
-              <span className="min-w-0 flex-1 leading-snug">{option}</span>
-            </label>
+              {op.op !== "remove" && (
+                <p className="text-sm leading-6 break-words whitespace-pre-wrap text-foreground">
+                  <span className="sr-only">After: </span>
+                  {formatValue(op.value)}
+                </p>
+              )}
+            </li>
           );
         })}
-        <input
-          aria-label="Answer in your own words"
-          placeholder="Something else…"
-          value={other}
-          onChange={(event) => setOther(event.target.value)}
-          className={cn(
-            "h-11 w-full min-w-0 rounded-lg border bg-transparent px-2.5 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/40 sm:h-9",
-            LINE
-          )}
-        />
-      </fieldset>
-      <div className="flex justify-end">
-        <Button type="submit" size="sm" disabled={disabled || !value}>
-          Send answer
-        </Button>
-      </div>
-    </form>
+      </ul>
+
+      {pending && (
+        <div className="flex items-center gap-2 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-2.5">
+          <Button
+            size="sm"
+            disabled={busy}
+            onClick={() => onDecide("apply")}
+            className="rounded-md bg-foreground font-medium text-background hover:bg-black"
+          >
+            <CheckIcon aria-hidden="true" />
+            Apply change
+          </Button>
+          <Button size="sm" variant="ghost" disabled={busy} onClick={() => onDecide("reject")} className="rounded-md">
+            Decline
+          </Button>
+        </div>
+      )}
+      {proposal.canRestore && (
+        <div className="border-t border-[var(--landing-line)] px-2 py-1.5">
+          <Button
+            size="sm"
+            variant="ghost"
+            disabled={busy}
+            onClick={() => onDecide("restore")}
+            className="rounded-md text-muted-foreground hover:text-foreground"
+          >
+            <ArrowCounterClockwiseIcon aria-hidden="true" />
+            Restore to before this change
+          </Button>
+        </div>
+      )}
+    </div>
   );
 }
 
-export function AgentChat({
-  thread,
-  sending,
-  sendingText,
-  onSend,
-  decidingId,
-  onDecide,
-  onReviewChange,
-  onDelete,
-  onToggleThreads,
-  onToggleResume,
-}) {
+function QuestionCard({ question, answer, disabled, onAnswer }) {
+  return (
+    <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4">
+      <p className="text-sm leading-6 font-medium text-foreground">{question.question}</p>
+      {answer !== null ? (
+        <p className="mt-1.5 text-sm text-muted-foreground">You answered: {answer}</p>
+      ) : (
+        <>
+          {question.choices?.length > 0 && (
+            <div className="mt-3 grid gap-2">
+              {question.choices.map((choice) => (
+                <button
+                  key={choice}
+                  type="button"
+                  disabled={disabled}
+                  onClick={() => onAnswer(choice)}
+                  className="min-h-11 rounded-lg border border-[var(--landing-line)] px-3 py-2 text-left text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
+                >
+                  {choice}
+                </button>
+              ))}
+            </div>
+          )}
+          <p className="mt-3 text-xs text-muted-foreground">Or type your own answer below.</p>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ToolRow({ message }) {
+  const failed = message.content?.startsWith("Error");
+  const Icon = failed ? WarningCircleIcon : CheckCircleIcon;
+  return (
+    <p className="flex items-center gap-2 text-xs text-muted-foreground">
+      <Icon className="size-4 shrink-0" aria-hidden="true" />
+      {TOOL_LABEL[message.toolName][failed ? "failed" : "done"]}
+    </p>
+  );
+}
+
+export function AgentChat({ thread, draft, sending, sendingText, onSend, decidingId, onDecide }) {
   const [text, setText] = useState("");
   const composerRef = useRef(null);
+  const scrollRef = useRef(null);
   const proposals = new Map(thread.proposals.map((p) => [String(p._id), p]));
   const messages = thread.messages;
+
+  // Keep the newest message in view.
+  useEffect(() => {
+    const list = scrollRef.current;
+    if (list) list.scrollTop = list.scrollHeight;
+  }, [messages.length, sending]);
 
   const submit = (value) => {
     const message = value.trim();
@@ -317,83 +277,47 @@ export function AgentChat({
 
   const answerAfter = (index) => messages.slice(index + 1).find((m) => m.role === "user")?.content ?? null;
 
-  const copyConversation = async () => {
-    const lines = messages
-      .filter((m) => (m.role === "user" || m.role === "assistant") && m.content?.trim())
-      .map((m) => `${m.role === "user" ? "You" : "Agent"}: ${m.content}`);
-    try {
-      await navigator.clipboard.writeText(lines.join("\n\n"));
-      toast.success("Conversation copied");
-    } catch {
-      toast.error("Couldn't copy. Select the text and copy it yourself.");
-    }
-  };
-
   return (
-    <section className="flex h-full min-h-0 flex-col bg-[var(--landing-bg)]">
-      <div className={cn("flex h-14 shrink-0 items-center justify-between border-b px-4", LINE)}>
-        <div className="flex min-w-0 items-center gap-2">
-          {onToggleThreads && (
-            <Button size="icon-sm" variant="ghost" aria-label="Toggle threads" onClick={onToggleThreads}>
-              <SidebarSimpleIcon />
-            </Button>
-          )}
-          <div className="min-w-0">
-            <div className="truncate font-semibold">Chat</div>
-            <div className="truncate text-xs text-muted-foreground">Copy of {thread.sourceLabel || "your CV"}</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-1">
-          {onToggleResume && (
-            <Button size="icon-sm" variant="ghost" aria-label="Toggle draft preview" onClick={onToggleResume}>
-              <SquaresFourIcon />
-            </Button>
-          )}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="icon-sm" variant="ghost" aria-label="Thread actions">
-                <DotsThreeVerticalIcon />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => void copyConversation()}>
-                <CopyIcon />
-                Copy
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuCheckboxItem
-                checked={thread.reviewEdits}
-                onCheckedChange={(checked) => onReviewChange(Boolean(checked))}
-              >
-                Review edits
-              </DropdownMenuCheckboxItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem variant="destructive" onClick={onDelete}>
-                <TrashIcon />
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      </div>
-
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain" data-agent-scroll>
-        <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col gap-4 p-4">
+    <section aria-label="Chat" className="flex h-full min-h-0 flex-col bg-[var(--landing-bg)]">
+      <div ref={scrollRef} className="@container min-h-0 flex-1 overflow-y-auto overscroll-contain">
+        <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col gap-4 px-4 py-5">
           {messages.length === 0 && !sending && (
-            <div className="flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 py-12 text-center">
-              <div className="flex max-w-sm flex-col items-center gap-2">
-                <div className="mb-2 flex size-8 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-foreground">
-                  <SparkleIcon className="size-4" />
-                </div>
-                <div className="font-outfit text-2xl font-medium tracking-tight">What do you want to do?</div>
-              </div>
-              <div className="w-full min-w-0">
-                <StarterPromptMarquee
-                  onSelect={(prompt) => {
-                    setText(prompt);
-                    composerRef.current?.focus();
-                  }}
-                />
+            <div className="flex flex-1 flex-col justify-center py-6">
+              <span className="flex size-10 items-center justify-center rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)]">
+                <SparkleIcon className="size-5 text-foreground" aria-hidden="true" />
+              </span>
+              <h2 className="mt-4 font-outfit text-2xl font-semibold tracking-tight text-foreground">
+                What should we work on?
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                Ask for any change in plain words. The agent edits a copy of {thread.sourceLabel || "your CV"}, so
+                your original stays as it is.
+              </p>
+              <div className="mt-5 grid gap-2 @md:grid-cols-2">
+                {SUGGESTIONS.map((s) => (
+                  <button
+                    key={s.label}
+                    type="button"
+                    onClick={() => {
+                      if (s.send) {
+                        submit(s.text);
+                      } else {
+                        setText(s.text);
+                        composerRef.current?.focus();
+                      }
+                    }}
+                    className="group flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-left transition-colors outline-none hover:border-[var(--landing-ink-faint)] focus-visible:ring-2 focus-visible:ring-ring/40"
+                  >
+                    <s.icon
+                      className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+                      aria-hidden="true"
+                    />
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-foreground">{s.label}</span>
+                      <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{s.description}</span>
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
           )}
@@ -402,60 +326,45 @@ export function AgentChat({
             if (m.role === "user") {
               return (
                 <div key={m._id} className="flex justify-end">
-                  <div className="max-w-[80%] rounded-xl bg-foreground px-3 py-2 text-sm leading-relaxed break-words whitespace-pre-wrap text-background">
+                  <p className="max-w-5/6 rounded-2xl rounded-br-md bg-foreground px-3.5 py-2 text-sm leading-6 break-words whitespace-pre-wrap text-background">
                     {m.content}
-                  </div>
+                  </p>
                 </div>
               );
             }
             if (m.role === "assistant") {
               return m.content?.trim() ? (
-                <div key={m._id} className="text-sm leading-relaxed break-words whitespace-pre-wrap text-foreground">
+                <p key={m._id} className="text-sm leading-6 break-words whitespace-pre-wrap text-foreground">
                   {m.content}
-                </div>
+                </p>
               ) : null;
             }
             if (m.proposalId) {
               const proposal = proposals.get(m.proposalId);
               if (!proposal) return null;
-              if (proposal.status === "rejected") {
-                return (
-                  <div key={m._id} className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <ProhibitIcon />
-                    <span>Edit declined: {proposal.title}</span>
-                  </div>
-                );
-              }
-              const busy = decidingId === m.proposalId;
               return (
-                <OutlineBubble key={m._id}>
-                  {proposal.status === "pending" ? (
-                    <PatchApprovalCard
-                      proposal={proposal}
-                      disabled={busy}
-                      onRespond={(approved) => onDecide(m.proposalId, approved ? "apply" : "reject")}
-                    />
-                  ) : (
-                    <PatchToolCard proposal={proposal} disabled={busy} onRestore={() => onDecide(m.proposalId, "restore")} />
-                  )}
-                </OutlineBubble>
+                <ProposalCard
+                  key={m._id}
+                  proposal={proposal}
+                  draft={draft}
+                  busy={decidingId === m.proposalId}
+                  onDecide={(action) => onDecide(m.proposalId, action)}
+                />
               );
             }
             if (m.question) {
               return (
-                <OutlineBubble key={m._id}>
-                  <AskUserQuestion
-                    id={m._id}
-                    question={m.question}
-                    answer={answerAfter(index)}
-                    disabled={sending}
-                    onAnswer={submit}
-                  />
-                </OutlineBubble>
+                <QuestionCard
+                  key={m._id}
+                  question={m.question}
+                  answer={answerAfter(index)}
+                  disabled={sending}
+                  onAnswer={submit}
+                />
               );
             }
-            if (m.role === "tool" && TOOLS[m.toolName]) {
-              return <ToolPartCard key={m._id} message={m} />;
+            if (m.role === "tool" && TOOL_LABEL[m.toolName]) {
+              return <ToolRow key={m._id} message={m} />;
             }
             return null;
           })}
@@ -463,16 +372,21 @@ export function AgentChat({
           {sending && (
             <>
               <div className="flex justify-end">
-                <div className="max-w-[80%] rounded-xl bg-foreground px-3 py-2 text-sm leading-relaxed break-words whitespace-pre-wrap text-background opacity-70">
+                <p className="max-w-5/6 rounded-2xl rounded-br-md bg-foreground px-3.5 py-2 text-sm leading-6 break-words whitespace-pre-wrap text-background opacity-70">
                   {sendingText}
-                </div>
+                </p>
               </div>
-              <div
-                role="status"
-                className="flex w-fit items-center gap-2 rounded-md bg-[var(--landing-paper-soft)] px-4 py-3 text-sm text-muted-foreground"
-              >
-                <SparkleIcon className="size-4" />
-                Working…
+              <div role="status" className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                <span className="flex gap-1" aria-hidden="true">
+                  {[0, 1, 2].map((i) => (
+                    <span
+                      key={i}
+                      className="size-1.5 animate-bounce rounded-full bg-current motion-reduce:animate-none"
+                      style={{ animationDelay: `${i * 150}ms` }}
+                    />
+                  ))}
+                </span>
+                Working on it
               </div>
             </>
           )}
@@ -484,10 +398,10 @@ export function AgentChat({
           event.preventDefault();
           submit(text);
         }}
-        className={cn("border-t p-3", LINE)}
+        className="shrink-0 border-t border-[var(--landing-line)] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-4"
       >
-        <div className="mx-auto flex max-w-3xl flex-col gap-2">
-          <div className={cn("flex items-end gap-1 rounded-md border bg-[var(--landing-surface)] p-1.5", LINE)}>
+        <div className="mx-auto max-w-2xl">
+          <div className="flex items-end gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1.5 pl-3.5 shadow-[var(--landing-shadow-sm)] transition-colors focus-within:border-[var(--landing-ink-faint)]">
             <Textarea
               ref={composerRef}
               rows={1}
@@ -501,12 +415,21 @@ export function AgentChat({
                   submit(text);
                 }
               }}
-              className="max-h-40 min-h-9 resize-none border-0 bg-transparent p-2 leading-5 shadow-none focus-visible:ring-0"
+              className="field-sizing-content max-h-40 min-h-9 flex-1 resize-none rounded-none border-0 bg-transparent px-0 py-2 text-base leading-5 shadow-none focus-visible:ring-0 sm:text-sm"
             />
-            <Button type="submit" size="icon" aria-label="Send message" disabled={!text.trim() || sending}>
-              <PaperPlaneRightIcon />
+            <Button
+              type="submit"
+              size="icon"
+              aria-label="Send message"
+              disabled={!text.trim() || sending}
+              className="size-9 shrink-0 rounded-xl bg-foreground text-background hover:bg-black"
+            >
+              <ArrowUpIcon weight="bold" />
             </Button>
           </div>
+          <p className="mt-1.5 hidden px-1 text-xs text-muted-foreground sm:block">
+            Press Enter to send. Shift and Enter adds a new line.
+          </p>
         </div>
       </form>
     </section>

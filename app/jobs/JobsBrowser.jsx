@@ -144,7 +144,7 @@ function CompanyAvatar({ job }) {
   };
 
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)] sm:h-11 sm:w-11">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[var(--landing-line)] text-sm font-semibold text-foreground sm:h-11 sm:w-11">
       {job.locked ? (
         <LockSimpleIcon className="size-4 opacity-50" weight="bold" />
       ) : showLogo ? (

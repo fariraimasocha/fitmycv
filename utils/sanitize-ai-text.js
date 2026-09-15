@@ -17,8 +17,18 @@ export function sanitizeAIText(str) {
     .replace(EXOTIC_SPACES, " ")
     .replace(/[\u2018\u2019\u201A\u201B]/g, "'")
     .replace(/[\u201C\u201D\u201E\u201F]/g, '"')
+    // A dash that starts a line is a list marker.
+    .replace(/^([ \t]*)[\u2012-\u2015][ \t]*/gm, "$1- ")
+    // An en dash touching a number is a range and keeps a plain hyphen:
+    // "2020\u20132022" and "Jan 2020 \u2013 Mar 2022" stay ranges.
+    .replace(/(\d)([ \t]*)[\u2012\u2013]/g, "$1$2-")
+    .replace(/[\u2012\u2013]([ \t]*)(\d)/g, "-$1$2")
+    // A dash used as punctuation reads as a comma. Swapping it for a bare
+    // hyphen glued words together: "code \u2014 a core" came out as "code-a core".
+    .replace(/[ \t]*[\u2012-\u2015][ \t]*/g, ", ")
+    .replace(/,[ \t]*([,.;:!?])/g, "$1")
     // Unicode hyphens (U+2010, U+2011) look right but defeat keyword search.
-    .replace(/[\u2010-\u2015]/g, "-")
+    .replace(/[\u2010\u2011]/g, "-")
     .replace(/\u2026/g, "...");
 }
 

@@ -219,7 +219,7 @@ export default function TailoredCVsPage() {
                       aria-label={title}
                       className="absolute inset-0 z-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                     />
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold text-[var(--landing-primary-dark)]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-sm font-semibold text-foreground">
                       {(cv.jobCompany?.[0] ?? cv.jobTitle?.[0] ?? "?").toUpperCase()}
                     </div>
                     <div className="relative z-10 min-w-0 flex-1 pointer-events-none">

@@ -254,8 +254,13 @@ function Tailor() {
         tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 100);
     },
-    onError: (error) => {
-      toast.error(error.message);
+    onError: (error, input) => {
+      // A blocked link is a dead end unless the paste box is one click away.
+      toast.error(error.message, {
+        action: input?.url
+          ? { label: "Paste description", onClick: () => setJobInputMode("text") }
+          : undefined,
+      });
     },
   });
 

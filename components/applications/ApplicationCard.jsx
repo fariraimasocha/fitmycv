@@ -2,7 +2,7 @@
 
 import { FileTextIcon, MapPinIcon } from "@phosphor-icons/react";
 import { ApplicationActionsMenu } from "@/components/applications/ApplicationActionsMenu";
-import { initials, tileColor } from "@/lib/applications";
+import { initials } from "@/lib/applications";
 import { cn } from "@/lib/utils";
 
 // Ported from Reactive Resume's application-card.tsx.
@@ -34,12 +34,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         />
       )}
       <div className="flex items-start gap-2.5">
-        <div
-          className={cn(
-            "flex size-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white",
-            tileColor(application.jobCompany)
-          )}
-        >
+        <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[var(--landing-line)] text-xs font-semibold text-foreground">
           {initials(application.jobCompany)}
         </div>
         <div className="min-w-0 flex-1">

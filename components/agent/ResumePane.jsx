@@ -2,29 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  ArrowSquareOutIcon,
-  ArrowsOutLineHorizontalIcon,
-  FilePdfIcon,
-  MinusIcon,
-  PlusIcon,
-} from "@phosphor-icons/react";
+import { DownloadSimpleIcon, FileDashedIcon, MinusIcon, PencilSimpleIcon, PlusIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ResumeTemplate } from "@/components/ResumePreview";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 
-// Ported from Reactive Resume's agent resume-pane.tsx. The draft renders at A4
-// size (96 dpi) and CSS zoom scales it, so text stays crisp at every zoom.
+// The draft renders at A4 size (96 dpi) and CSS zoom scales it, so text stays
+// crisp at every zoom and the preview matches the downloaded PDF.
 
 const ZOOM_STORAGE_KEY = "fitmycv:agent-preview-zoom";
 const MIN_ZOOM = 0.3;
 const MAX_ZOOM = 1.5;
-const ZOOM_STEP = 0.05;
+const ZOOM_STEP = 0.1;
 const PAGE_WIDTH = 794;
 const PAGE_HEIGHT = 1123;
-const PAGE_GUTTER = 32;
 
 const clampZoom = (value) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Number(value.toFixed(2))));
 
@@ -44,7 +37,13 @@ function ToolbarButton({ label, children, ...props }) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button size="icon-sm" variant="ghost" aria-label={label} {...props}>
+        <Button
+          size="icon-sm"
+          variant="ghost"
+          aria-label={label}
+          className="size-7 text-muted-foreground hover:text-foreground"
+          {...props}
+        >
           {children}
         </Button>
       </TooltipTrigger>
@@ -56,14 +55,12 @@ function ToolbarButton({ label, children, ...props }) {
 export function ResumePane({ draft, template, style }) {
   const scrollRef = useRef(null);
   const [userZoom, setUserZoom] = useState(storedZoom);
-  const [fitZoom, setFitZoom] = useState(0.5);
+  const [paneWidth, setPaneWidth] = useState(0);
 
   useEffect(() => {
     const scroller = scrollRef.current;
     if (!scroller) return undefined;
-    const observer = new ResizeObserver(([entry]) => {
-      setFitZoom(clampZoom((entry.contentRect.width - PAGE_GUTTER) / PAGE_WIDTH));
-    });
+    const observer = new ResizeObserver(([entry]) => setPaneWidth(entry.contentRect.width));
     observer.observe(scroller);
     return () => observer.disconnect();
   }, []);
@@ -77,82 +74,101 @@ export function ResumePane({ draft, template, style }) {
     }
   }, [userZoom]);
 
+  // Tighter margins on a phone so the page gets every pixel it can.
+  const gutter = paneWidth < 480 ? 12 : 28;
+  // Fit never enlarges past print size, where a CV starts to look oversized.
+  const fitZoom = paneWidth ? Math.min(1, clampZoom((paneWidth - gutter * 2) / PAGE_WIDTH)) : 0.5;
   const zoom = userZoom ?? fitZoom;
   const zoomPercent = Math.round(zoom * 100);
 
   return (
-    <section className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-soft)]">
-      <div className="flex h-14 shrink-0 items-center justify-between border-b border-[var(--landing-line)] px-4">
-        <div className="min-w-0">
-          <div className="font-semibold">Draft CV</div>
-          <div className="truncate text-xs text-muted-foreground">
-            {draft ? draft.basics?.name || "Untitled draft" : "Missing draft"}
-          </div>
+    <section aria-label="Draft CV" className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
+      <div className="flex h-12 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-bg)] px-3">
+        <div className="flex items-center rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-0.5">
+          <ToolbarButton
+            label="Zoom out"
+            disabled={!draft || zoom <= MIN_ZOOM}
+            onClick={() => setUserZoom(clampZoom(zoom - ZOOM_STEP))}
+          >
+            <MinusIcon />
+          </ToolbarButton>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                disabled={!draft}
+                onClick={() => setUserZoom(null)}
+                aria-label={`Zoom ${zoomPercent}%. Fit to width`}
+                className="h-7 min-w-12 rounded-md px-1 text-xs font-medium text-muted-foreground tabular-nums transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground disabled:opacity-50"
+              >
+                {zoomPercent}%
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">Fit to width</TooltipContent>
+          </Tooltip>
+          <ToolbarButton
+            label="Zoom in"
+            disabled={!draft || zoom >= MAX_ZOOM}
+            onClick={() => setUserZoom(clampZoom(zoom + ZOOM_STEP))}
+          >
+            <PlusIcon />
+          </ToolbarButton>
+        </div>
+        <div className="ml-auto flex items-center gap-2">
+          {draft && (
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)]"
+            >
+              <Link href={`/dashboard/tailored/${draft._id}`}>
+                <PencilSimpleIcon aria-hidden="true" />
+                Edit
+              </Link>
+            </Button>
+          )}
+          <Button
+            size="sm"
+            disabled={!draft}
+            className="rounded-md bg-foreground font-medium text-background hover:bg-black"
+            onClick={() =>
+              printDocument({
+                kind: "cv",
+                data: draft,
+                template,
+                style,
+                filename: buildPdfFilename(draft.basics?.name, "cv"),
+              })
+            }
+          >
+            <DownloadSimpleIcon aria-hidden="true" />
+            Download PDF
+          </Button>
         </div>
       </div>
+
       <div ref={scrollRef} className="min-h-0 flex-1 overflow-auto">
-        <div className="sticky top-0 z-10 flex h-10 items-center justify-between border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/90 px-2 backdrop-blur">
-          <div className="flex items-center gap-1">
-            <ToolbarButton label="Decrease zoom" disabled={!draft} onClick={() => setUserZoom(clampZoom(zoom - ZOOM_STEP))}>
-              <MinusIcon />
-            </ToolbarButton>
-            <input
-              type="text"
-              inputMode="numeric"
-              value={`${zoomPercent}%`}
-              disabled={!draft}
-              aria-label="Zoom level"
-              className="h-8 w-14 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-1 text-center text-xs outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
-              onChange={(event) => {
-                const next = Number(event.target.value.replace(/[^0-9.]/g, ""));
-                if (Number.isFinite(next) && next > 0) setUserZoom(clampZoom(next / 100));
-              }}
-            />
-            <ToolbarButton label="Increase zoom" disabled={!draft} onClick={() => setUserZoom(clampZoom(zoom + ZOOM_STEP))}>
-              <PlusIcon />
-            </ToolbarButton>
-            <ToolbarButton label="Fit to width" disabled={!draft || userZoom === null} onClick={() => setUserZoom(null)}>
-              <ArrowsOutLineHorizontalIcon />
-            </ToolbarButton>
-          </div>
-          <div className="flex items-center gap-1">
-            {draft && (
-              <ToolbarButton label="Open in editor" asChild>
-                <Link href={`/dashboard/tailored/${draft._id}`}>
-                  <ArrowSquareOutIcon />
-                </Link>
-              </ToolbarButton>
-            )}
-            <ToolbarButton
-              label="Download PDF"
-              disabled={!draft}
-              onClick={() =>
-                printDocument({
-                  kind: "cv",
-                  data: draft,
-                  template,
-                  style,
-                  filename: buildPdfFilename(draft.basics?.name, "cv"),
-                })
-              }
+        {draft ? (
+          <div style={{ padding: gutter }}>
+            <div
+              className="mx-auto w-fit bg-white shadow-[var(--landing-shadow)] ring-1 ring-black/5"
+              style={{ zoom }}
             >
-              <FilePdfIcon />
-            </ToolbarButton>
-          </div>
-        </div>
-        <div className="p-4">
-          {draft ? (
-            <div className="mx-auto w-fit shadow-lg" style={{ zoom }}>
-              <div className="bg-white" style={{ width: PAGE_WIDTH, minHeight: PAGE_HEIGHT }}>
+              <div style={{ width: PAGE_WIDTH, minHeight: PAGE_HEIGHT }}>
                 <ResumeTemplate data={draft} template={template} style={style} />
               </div>
             </div>
-          ) : (
-            <div className="rounded-md border border-dashed border-[var(--landing-line)] p-6 text-center text-muted-foreground">
-              The draft CV was deleted, so this thread can&apos;t make changes.
+          </div>
+        ) : (
+          <div className="flex h-full items-center justify-center p-6">
+            <div className="max-w-xs text-center">
+              <FileDashedIcon className="mx-auto size-8 text-muted-foreground" aria-hidden="true" />
+              <p className="mt-3 text-sm font-medium text-foreground">This draft was deleted</p>
+              <p className="mt-1 text-sm text-muted-foreground">Start a new thread to keep editing your CV.</p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -73,7 +73,7 @@ export default function CompanyResearchPage() {
               <Link href={`/dashboard/company-research/${brief._id}`}>
                 <Card className="dashboard-list-row group cursor-pointer rounded-lg border-[var(--landing-line)] py-0 gap-0">
                   <CardContent className="dashboard-row-pad flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-sm font-bold text-[var(--landing-primary-dark)]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] text-sm font-semibold text-foreground">
                       {(brief.companyName?.[0] ?? "?").toUpperCase()}
                     </div>
                     <div className="min-w-0 flex-1">

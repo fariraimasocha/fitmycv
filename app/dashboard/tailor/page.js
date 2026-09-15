@@ -10,6 +10,7 @@ import {
   MagnifyingGlassIcon,
   SpinnerGapIcon,
   LinkIcon,
+  TextAlignLeftIcon,
   FileTextIcon,
   EnvelopeSimpleIcon,
   DownloadSimpleIcon,
@@ -26,6 +27,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { DownloadButton } from "@/components/ui/download-button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
 import JobMatchScoreCard from "@/components/JobMatchScoreCard";
@@ -47,11 +49,15 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardTabBar,
+  DashboardFilterPills,
 } from "@/components/dashboard";
 import { GradeBadge, AtsScoreChip } from "@/components/GradeBadge";
 import { getRecentJobUrls, rememberJobUrl } from "@/lib/recent-job-urls";
 import Loader from "@/components/Loader";
 import posthog from "posthog-js";
+
+// Matches the extract route's minimum, so the button never sends a paste it would refuse.
+const MIN_JOB_TEXT_CHARS = 150;
 
 function capturePostHogEvent(event, properties) {
   if (!process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN || !process.env.NEXT_PUBLIC_POSTHOG_HOST) return;
@@ -65,6 +71,9 @@ function Tailor() {
   // Prefilled when arriving from /jobs. That pool already holds the URL, so
   // the user never retypes it. Lazy initializer: read once, then it is theirs.
   const [url, setUrl] = useState(() => searchParams.get("url") ?? "");
+  // Some boards block scraping, so a pasted description is the fallback.
+  const [jobInputMode, setJobInputMode] = useState("link");
+  const [jobText, setJobText] = useState("");
   const [jobData, setJobData] = useState(null);
   const [tailorResult, setTailorResult] = useState(null);
   const [savedId, setSavedId] = useState(null);
@@ -142,11 +151,12 @@ function Tailor() {
   };
 
   const extractMutation = useMutation({
-    mutationFn: async (jobUrl) => {
+    // input is { url } or { text }
+    mutationFn: async (input) => {
       const res = await fetch("/api/job/extract", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: jobUrl }),
+        body: JSON.stringify(input),
       });
 
       if (!res.ok) {
@@ -224,7 +234,7 @@ function Tailor() {
           body: JSON.stringify({
             companyName: result.data.company,
             jobTitle: result.data.title || "",
-            jobUrl: url.trim(),
+            jobUrl: jobInputMode === "link" ? url.trim() : "",
           }),
         })
           .then((res) => res.json())
@@ -235,8 +245,10 @@ function Tailor() {
           .finally(() => setCompanyBriefLoading(false));
       }
 
-      rememberJobUrl(url.trim(), result.data?.title || "");
-      setRecentUrls(getRecentJobUrls());
+      if (jobInputMode === "link") {
+        rememberJobUrl(url.trim(), result.data?.title || "");
+        setRecentUrls(getRecentJobUrls());
+      }
       toast.success("Job requirements extracted!");
       setTimeout(() => {
         tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -335,7 +347,7 @@ function Tailor() {
       saveMutation.mutate({
         jobTitle: jobData?.title || "",
         jobCompany: jobData?.company || "",
-        jobUrl: url,
+        jobUrl: jobInputMode === "link" ? url : "",
         jobData,
         basics: result.data.tailoredCV.basics,
         work: result.data.tailoredCV.work,
@@ -371,11 +383,7 @@ function Tailor() {
         data: tailorResult.tailoredCV,
         template: selectedTemplate,
         style: selectedTemplateStyle,
-        filename: buildPdfFilename(
-          tailorResult.tailoredCV.basics?.name,
-          jobData?.title,
-          "cv",
-        ),
+        filename: buildPdfFilename(tailorResult.tailoredCV.basics?.name, "cv"),
       });
     } else {
       printDocument({
@@ -388,11 +396,7 @@ function Tailor() {
           jobTitle: jobData?.title,
           jobCompany: jobData?.company,
         },
-        filename: buildPdfFilename(
-          tailorResult.tailoredCV.basics?.name,
-          jobData?.title,
-          "cover-letter",
-        ),
+        filename: buildPdfFilename(tailorResult.tailoredCV.basics?.name, "cover-letter"),
       });
     }
     capturePostHogEvent("pdf_downloaded", {
@@ -562,11 +566,19 @@ function Tailor() {
   ];
   const handleExtract = (e) => {
     e.preventDefault();
+    if (jobInputMode === "text") {
+      if (jobText.trim().length < MIN_JOB_TEXT_CHARS) {
+        toast.error("Paste the full job description, not just a few lines.");
+        return;
+      }
+      extractMutation.mutate({ text: jobText.trim() });
+      return;
+    }
     if (!url.trim()) {
       toast.error("Please enter a job URL");
       return;
     }
-    extractMutation.mutate(url.trim());
+    extractMutation.mutate({ url: url.trim() });
   };
 
   const handleTailor = () => {
@@ -589,7 +601,7 @@ function Tailor() {
       <DashboardPageHeader
         eyebrow="CV Toolkit"
         title="Tailor CV"
-        description="Paste a job listing URL. We'll extract requirements and rewrite your CV to match."
+        description="Paste a job link or the job description. We'll pull out the requirements and rewrite your CV to match."
       />
 
       <motion.div
@@ -601,45 +613,83 @@ function Tailor() {
           <CardHeader className="dashboard-card-pad">
             <CardTitle className="flex items-center gap-2 text-base font-semibold">
               <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                <LinkIcon size={18} aria-hidden="true" />
+                {jobInputMode === "link" ? (
+                  <LinkIcon size={18} aria-hidden="true" />
+                ) : (
+                  <TextAlignLeftIcon size={18} aria-hidden="true" />
+                )}
               </span>
               <div>
-                <span className="block">Job listing URL</span>
+                <span className="block">{jobInputMode === "link" ? "Job listing URL" : "Job description"}</span>
                 <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
-                  Works with LinkedIn, Indeed, Greenhouse, and most job boards
+                  {jobInputMode === "link"
+                    ? "Works with LinkedIn, Indeed, Greenhouse, and most job boards"
+                    : "Use this when a job board blocks the link"}
                 </span>
               </div>
             </CardTitle>
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4 pt-0">
+            <DashboardFilterPills
+              tabs={[
+                { key: "link", label: "Job link" },
+                { key: "text", label: "Paste description" },
+              ]}
+              activeKey={jobInputMode}
+              onChange={setJobInputMode}
+            />
             <form onSubmit={handleExtract} className="flex flex-col gap-3">
-              <Input
-                type="url"
-                placeholder="https://www.linkedin.com/jobs/view/…"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                aria-label="Job listing URL"
-                autoComplete="url"
-                spellCheck={false}
-                className="h-11 rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] text-base"
-              />
-              {recentUrls.length > 0 && !jobData && (
-                <div className="flex flex-wrap gap-2">
-                  {recentUrls.map((item) => (
-                    <button
-                      key={item.url}
-                      type="button"
-                      onClick={() => setUrl(item.url)}
-                      className="max-w-full truncate rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-1 text-xs font-medium text-[var(--landing-ink)] transition-colors hover:border-[var(--landing-ink)]"
-                    >
-                      {item.title || item.url}
-                    </button>
-                  ))}
-                </div>
+              {jobInputMode === "link" ? (
+                <>
+                  <Input
+                    type="url"
+                    placeholder="https://www.linkedin.com/jobs/view/…"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    aria-label="Job listing URL"
+                    autoComplete="url"
+                    spellCheck={false}
+                    className="h-11 rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] text-base"
+                  />
+                  {recentUrls.length > 0 && !jobData && (
+                    <div className="flex flex-wrap gap-2">
+                      {recentUrls.map((item) => (
+                        <button
+                          key={item.url}
+                          type="button"
+                          onClick={() => setUrl(item.url)}
+                          className="max-w-full truncate rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-1 text-xs font-medium text-[var(--landing-ink)] transition-colors hover:border-[var(--landing-ink)]"
+                        >
+                          {item.title || item.url}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <Textarea
+                    value={jobText}
+                    onChange={(e) => setJobText(e.target.value)}
+                    aria-label="Job description"
+                    placeholder="Paste the full posting, including the requirements and responsibilities"
+                    rows={8}
+                    maxLength={15000}
+                    className="min-h-40 rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] text-base"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    {jobText.trim().length < MIN_JOB_TEXT_CHARS
+                      ? `Paste at least ${MIN_JOB_TEXT_CHARS} characters so there's enough to work from.`
+                      : `${jobText.trim().length} characters`}
+                  </p>
+                </>
               )}
               <Button
                 type="submit"
-                disabled={extractMutation.isPending || !url.trim()}
+                disabled={
+                  extractMutation.isPending ||
+                  (jobInputMode === "link" ? !url.trim() : jobText.trim().length < MIN_JOB_TEXT_CHARS)
+                }
                 aria-busy={extractMutation.isPending}
                 className="h-11 w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black sm:w-auto sm:self-start"
               >

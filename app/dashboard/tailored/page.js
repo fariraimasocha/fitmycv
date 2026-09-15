@@ -132,7 +132,7 @@ export default function TailoredCVsPage() {
           skills: data.skills,
         },
         template: DEFAULT_TEMPLATE,
-        filename: buildPdfFilename(data.basics?.name, data.jobTitle, "cv"),
+        filename: buildPdfFilename(data.basics?.name, "cv"),
       });
     } catch (error) {
       toast.error(error.message || "Could not download PDF");

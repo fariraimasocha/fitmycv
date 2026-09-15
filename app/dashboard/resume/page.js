@@ -108,7 +108,7 @@ export default function MyResumePage() {
       data: resumeData,
       template: selectedTemplate,
       style: selectedStyle,
-      filename: buildPdfFilename(resumeData.basics?.name, null, "cv"),
+      filename: buildPdfFilename(resumeData.basics?.name, "cv"),
     });
   };
 

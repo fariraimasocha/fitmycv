@@ -234,7 +234,7 @@ export default function TailoredCVDetailPage() {
         data: resumeData,
         template: selectedTemplate,
         style: selectedTemplateStyle,
-        filename: buildPdfFilename(cv.basics?.name, cv.jobTitle, "cv"),
+        filename: buildPdfFilename(cv.basics?.name, "cv"),
       });
     } else {
       printDocument({
@@ -247,7 +247,7 @@ export default function TailoredCVDetailPage() {
           jobTitle: cv.jobTitle,
           jobCompany: cv.jobCompany,
         },
-        filename: buildPdfFilename(cv.basics?.name, cv.jobTitle, "cover-letter"),
+        filename: buildPdfFilename(cv.basics?.name, "cover-letter"),
       });
     }
   };

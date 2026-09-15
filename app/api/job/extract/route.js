@@ -8,6 +8,10 @@ import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
 // client can only report as a network error.
 export const maxDuration = 60;
 
+// Same cap as the scraper, so a pasted posting and a crawled one cost the same.
+const MIN_PASTED_CHARS = 150;
+const MAX_PASTED_CHARS = 15000;
+
 const SYSTEM_PROMPT = `You are an expert job listing parser. Given the raw text content scraped from a job posting page, extract the structured job information. Return ONLY valid JSON with no additional text.
 
 Use this exact schema:
@@ -46,21 +50,33 @@ export async function POST(request) {
   }
 
   try {
-    const { url } = await request.json();
+    const { url, text } = await request.json();
+    const pasted = typeof text === "string" ? text.trim() : "";
 
-    if (!url || typeof url !== "string") {
-      return Response.json({ error: "A valid URL is required" }, { status: 400 });
+    if (!pasted && (!url || typeof url !== "string")) {
+      return Response.json({ error: "Add a job link or paste the job description." }, { status: 400 });
     }
 
-    // Step 1: Scrape the page (URL normalizing, Exa crawl, search fallback)
+    // Step 1: Use the pasted description, or scrape the page (URL
+    // normalizing, Exa crawl, search fallback).
     let finalText;
-    try {
-      ({ text: finalText } = await scrapeJobPage(url));
-    } catch (error) {
-      if (error instanceof JobPageError) {
-        return Response.json({ error: error.message }, { status: 422 });
+    if (pasted) {
+      if (pasted.length < MIN_PASTED_CHARS) {
+        return Response.json(
+          { error: "Paste the full job description, not just a few lines." },
+          { status: 400 }
+        );
       }
-      throw error;
+      finalText = pasted.slice(0, MAX_PASTED_CHARS);
+    } else {
+      try {
+        ({ text: finalText } = await scrapeJobPage(url));
+      } catch (error) {
+        if (error instanceof JobPageError) {
+          return Response.json({ error: error.message }, { status: 422 });
+        }
+        throw error;
+      }
     }
 
     // Step 2: Parse with Groq

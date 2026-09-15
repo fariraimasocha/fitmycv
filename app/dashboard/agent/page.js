@@ -1,49 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { CaretRightIcon, RobotIcon, SpinnerGapIcon, TrashIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon, ChatCircleDotsIcon, FilePlusIcon, SpinnerGapIcon } from "@phosphor-icons/react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import FormattedDate from "@/components/FormattedDate";
-import { DashboardEmptyState, DashboardPageHeader, DashboardPageShell } from "@/components/dashboard";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ThreadSidebar } from "@/components/agent/ThreadSidebar";
+import { requestJson } from "@/lib/request-json";
 
-async function requestJson(url, { method = "GET", body } = {}) {
-  const res = await fetch(url, {
-    method,
-    headers: body ? { "Content-Type": "application/json" } : undefined,
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (!res.ok) {
-    const failure = await res.json().catch(() => ({}));
-    throw new Error(failure.error || "Couldn't reach FitMyCV. Try again.");
-  }
-  return (await res.json()).data;
-}
+// Ported from Reactive Resume's /agent index and new-thread-setup.tsx.
 
 export default function AgentPage() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [sourceId, setSourceId] = useState("reference");
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
 
-  const threads = useQuery({
-    queryKey: ["agent-threads"],
-    queryFn: () => requestJson("/api/agent/threads"),
-  });
-
-  const { data: tailored = [] } = useQuery({
+  const { data: tailored = [], isLoading: isLoadingCvs } = useQuery({
     queryKey: ["tailored-cvs"],
     queryFn: () => requestJson("/api/tailored-cv"),
   });
@@ -60,110 +36,70 @@ export default function AgentPage() {
     onError: (error) => toast.error(error.message),
   });
 
-  const remove = useMutation({
-    mutationFn: (threadId) => requestJson(`/api/agent/threads/${threadId}`, { method: "DELETE" }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["agent-threads"] });
-      toast.success("Thread deleted. Its draft is still in Tailored CVs.");
-      setConfirmDeleteId(null);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-      setConfirmDeleteId(null);
-    },
-  });
-
-  const list = threads.data ?? [];
-
   return (
-    <DashboardPageShell width="narrow">
-      <DashboardPageHeader
-        title="CV agent"
-        description="Chat with an AI agent that edits a copy of your CV. Your original stays as it is, and you can review each change before it applies."
-      />
-
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardContent className="dashboard-card-pad space-y-2">
-          <Label htmlFor="agent-source">Start from</Label>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <Select value={sourceId} onValueChange={setSourceId}>
-              <SelectTrigger id="agent-source" className="w-full sm:flex-1">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="reference">Main CV</SelectItem>
-                {sources.map((cv) => (
-                  <SelectItem key={cv._id} value={cv._id}>
-                    {[cv.jobTitle || "Tailored CV", cv.jobCompany].filter(Boolean).join(" at ")}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button
-              onClick={() => start.mutate()}
-              disabled={start.isPending}
-              aria-busy={start.isPending}
-              className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
-            >
-              {start.isPending && <SpinnerGapIcon size={14} className="animate-spin" aria-hidden="true" />}
-              Start thread
-            </Button>
+    <div className="flex h-[calc(100dvh-3.5rem)] min-w-0 flex-col overflow-hidden bg-[var(--landing-bg)] sm:h-[calc(100dvh-4rem)] lg:flex-row">
+      <div className="h-72 min-h-0 shrink-0 lg:h-auto lg:w-72">
+        <ThreadSidebar className="border-r-0 border-b lg:border-r lg:border-b-0" />
+      </div>
+      <main className="grid min-h-0 min-w-0 flex-1 place-items-center overflow-auto p-4 sm:p-6">
+        <div className="mx-auto grid w-full max-w-2xl gap-6">
+          <div className="flex items-start gap-4">
+            <div className="grid size-12 shrink-0 place-items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] shadow-sm lg:size-14">
+              <ChatCircleDotsIcon className="size-6 text-foreground" weight="fill" />
+            </div>
+            <div className="min-w-0">
+              <h1 className="font-outfit text-3xl font-semibold tracking-tight lg:text-4xl">Start a thread</h1>
+              <p className="mt-1 text-muted-foreground">
+                Pick the CV the agent should work on. It edits a copy, so your original stays as it is.
+              </p>
+            </div>
           </div>
-        </CardContent>
-      </Card>
 
-      {threads.isLoading ? (
-        <p className="py-6 text-center text-sm text-muted-foreground">Loading threads…</p>
-      ) : threads.isError ? (
-        <p className="py-6 text-center text-sm text-muted-foreground">{threads.error.message}</p>
-      ) : list.length === 0 ? (
-        <DashboardEmptyState
-          icon={RobotIcon}
-          title="No threads yet"
-          description="Start a thread above. The agent works on a copy, so you can try ideas without touching your CV."
-        />
-      ) : (
-        <ul className="space-y-2">
-          {list.map((thread) => (
-            <li key={thread._id}>
-              <Card className="rounded-lg border-[var(--landing-line)] py-0 gap-0 transition-colors hover:border-[#ccc5bb]">
-                <CardContent className="dashboard-row-pad flex items-center gap-3">
-                  <Link href={`/dashboard/agent/${thread._id}`} className="group flex min-w-0 flex-1 items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                      <RobotIcon size={18} aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-semibold text-foreground group-hover:underline">
-                        {thread.title}
-                      </span>
-                      <span className="block truncate text-xs text-muted-foreground">
-                        {thread.sourceLabel} ·{" "}
-                        <FormattedDate date={thread.updatedAt} options={{ month: "short", day: "numeric" }} />
-                      </span>
-                    </span>
-                    <CaretRightIcon size={14} className="shrink-0 text-muted-foreground/60" aria-hidden="true" />
-                  </Link>
-                  <Button
-                    variant={confirmDeleteId === thread._id ? "destructive" : "ghost"}
-                    size="icon-sm"
-                    className="shrink-0 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                    title={confirmDeleteId === thread._id ? "Tap again to confirm" : "Delete thread"}
-                    aria-label={
-                      confirmDeleteId === thread._id ? `Confirm delete ${thread.title}` : `Delete ${thread.title}`
-                    }
-                    disabled={remove.isPending}
-                    onClick={() =>
-                      confirmDeleteId === thread._id ? remove.mutate(thread._id) : setConfirmDeleteId(thread._id)
-                    }
-                  >
-                    {confirmDeleteId === thread._id ? "?" : <TrashIcon size={16} />}
-                  </Button>
-                </CardContent>
-              </Card>
-            </li>
-          ))}
-        </ul>
-      )}
-    </DashboardPageShell>
+          <div className="rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 shadow-sm lg:p-6">
+            <div className="relative isolate min-h-32 overflow-hidden rounded-md p-1 lg:p-2">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-7 right-1 -z-10 text-8xl leading-none font-black text-foreground/5 select-none lg:-top-10 lg:right-3 lg:text-9xl"
+              >
+                1
+              </span>
+              <div className="space-y-3">
+                <Label htmlFor="agent-source">Select a CV</Label>
+                <Select value={sourceId} onValueChange={setSourceId} disabled={isLoadingCvs}>
+                  <SelectTrigger id="agent-source" className="w-full">
+                    <SelectValue placeholder={isLoadingCvs ? "Loading CVs…" : "Choose a CV"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="reference">Main CV</SelectItem>
+                    {sources.map((cv) => (
+                      <SelectItem key={cv._id} value={cv._id}>
+                        {[cv.jobTitle || "Tailored CV", cv.jobCompany].filter(Boolean).join(" at ")}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                  <Badge variant="secondary" className="h-7 gap-1.5 rounded-md px-2">
+                    <FilePlusIcon />
+                    Duplicate as AI draft
+                  </Badge>
+                </div>
+              </div>
+            </div>
+            <div className="mt-2 flex border-t border-[var(--landing-line)] pt-5 lg:justify-end">
+              <Button
+                size="lg"
+                className="h-11 w-full gap-2 px-5 lg:w-auto"
+                disabled={start.isPending}
+                onClick={() => start.mutate()}
+              >
+                Start thread
+                {start.isPending ? <SpinnerGapIcon className="animate-spin" /> : <ArrowRightIcon />}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

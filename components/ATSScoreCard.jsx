@@ -2,173 +2,372 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import {
+  ArrowRightIcon,
   CheckCircleIcon,
-  XCircleIcon,
-  LightbulbIcon,
-  SpinnerGapIcon,
   MagicWandIcon,
   SparkleIcon,
-  WarningIcon,
+  SpinnerGapIcon,
 } from "@phosphor-icons/react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
-import { ArcGauge } from "@/components/charts/ArcGauge";
-import { PillTrack } from "@/components/charts/PillTrack";
 import { CATEGORIES } from "@/lib/ats/rules";
 import { cn } from "@/lib/utils";
 
-function scoreColor(score) {
-  if (score >= 80) return "var(--landing-success)";
-  if (score >= 60) return "var(--landing-ink)";
-  return "var(--landing-accent)";
-}
+// Ported from Reactive Resume's ATS report (report-view, score-header,
+// finding-row, jd-coverage) and AI review card, on FitMyCV's colors.
 
-function scoreLabel(score) {
-  if (score >= 80) return "Excellent";
-  if (score >= 60) return "Good";
-  return "Needs work";
+const LINE = "border-[var(--landing-line)]";
+const CARD = cn("rounded-md border bg-[var(--landing-surface)]", LINE);
+
+function scoreTone(score) {
+  if (score >= 80) return { text: "text-[var(--landing-success)]", bar: "bg-[var(--landing-success)]" };
+  if (score >= 60) return { text: "text-amber-600", bar: "bg-amber-600" };
+  return { text: "text-[var(--landing-accent)]", bar: "bg-[var(--landing-accent)]" };
 }
 
 const SEVERITY = {
-  blocker: {
-    label: "Blocker",
-    className: "border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]",
-  },
-  warning: {
-    label: "Warning",
-    className: "border-[var(--landing-line)] bg-[var(--landing-paper-strong)] text-[var(--landing-ink)]",
-  },
-  tip: {
-    label: "Tip",
-    className: "border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]",
-  },
+  blocker: { label: "Blocker", dot: "bg-[var(--landing-accent)]", plural: ["blocker", "blockers"] },
+  warning: { label: "Warning", dot: "bg-amber-500", plural: ["warning", "warnings"] },
+  tip: { label: "Tip", dot: "bg-sky-600", plural: ["tip", "tips"] },
 };
 
-const IMPACT_LABEL = { high: "High impact", medium: "Medium impact", low: "Low impact" };
+export const SEVERITY_ORDER = ["blocker", "warning", "tip"];
 
-/** Rule findings as a list. With `onSelect`, each row is a button that jumps to the field. */
-export function FindingList({ findings, onSelect }) {
-  if (!findings.length) return null;
+const IMPACT = {
+  high: { label: "High impact", dot: "bg-[var(--landing-accent)]" },
+  medium: { label: "Medium impact", dot: "bg-amber-500" },
+  low: { label: "Low impact", dot: "bg-[var(--landing-success)]" },
+};
 
+export function SeverityCount({ severity, count }) {
+  const { dot, plural } = SEVERITY[severity];
   return (
-    <ul className="space-y-1">
-      {findings.map((finding) => {
-        const severity = SEVERITY[finding.severity];
-        const body = (
-          <>
-            <span className={cn("mt-0.5 shrink-0 rounded border px-1.5 py-0.5 text-xs font-semibold", severity.className)}>
-              {severity.label}
-            </span>
-            <span className="min-w-0">
-              <span className="font-medium text-foreground">{finding.title}</span>
-              {finding.value && <span className="text-foreground"> “{finding.value}”</span>}{" "}
-              <span className="text-muted-foreground">{finding.action}</span>
-            </span>
-          </>
-        );
-
-        return (
-          <li key={`${finding.code}-${finding.path}`}>
-            {onSelect ? (
-              <button
-                type="button"
-                onClick={() => onSelect(finding.path)}
-                className="flex w-full items-start gap-3 rounded-md px-2 py-2 text-left text-sm hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
-              >
-                {body}
-              </button>
-            ) : (
-              <div className="flex items-start gap-3 px-2 py-2 text-sm">{body}</div>
-            )}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function BreakdownRow({ label, value }) {
-  return (
-    <div className="space-y-1">
-      <div className="flex justify-between text-sm">
-        <span className="text-muted-foreground">{label}</span>
-        <span className="font-medium tabular-nums">{value}</span>
-      </div>
-      <PillTrack value={value} color={scoreColor(value)} />
-    </div>
-  );
-}
-
-function KeywordChip({ keyword, variant }) {
-  const styles =
-    variant === "matched"
-      ? "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]"
-      : "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
-
-  return (
-    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${styles}`}>
-      {keyword}
+    <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+      <span className={cn("size-2 shrink-0 rounded-full", dot)} aria-hidden="true" />
+      {count} {count === 1 ? plural[0] : plural[1]}
     </span>
   );
 }
 
-function FixItem({ text, onApply, isApplying, isApplied, disabled }) {
+/** One finding. With `onJump`, a button under it takes the user to the field. */
+export function FindingRow({ finding, location, onJump }) {
+  const severity = SEVERITY[finding.severity];
   return (
-    <li className="flex items-start justify-between gap-3 text-sm leading-6 text-[var(--landing-ink-soft)]">
-      <span className="flex items-start gap-2">
-        <span className="mt-0.5 shrink-0 text-[var(--landing-ink-soft)]">•</span>
-        {text}
-      </span>
-      {onApply &&
-        (isApplied ? (
-          <span className="inline-flex shrink-0 items-center gap-1 py-1 text-xs font-medium text-[var(--landing-success)]">
-            <CheckCircleIcon size={14} weight="fill" aria-hidden="true" />
-            Applied
-          </span>
-        ) : (
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-7 shrink-0 rounded-md border-[var(--landing-line)] px-2 text-xs"
-            onClick={() => onApply(text)}
-            disabled={disabled || isApplying}
-            aria-busy={isApplying}
-            aria-label={`Apply this fix: ${text}`}
-          >
-            {isApplying ? (
-              <>
-                <SpinnerGapIcon size={12} className="animate-spin" aria-hidden="true" />
-                Applying…
-              </>
-            ) : (
-              <>
-                <MagicWandIcon size={12} aria-hidden="true" />
-                Apply
-              </>
-            )}
-          </Button>
-        ))}
+    <li className={cn("space-y-2 p-3", CARD)}>
+      <div className="flex items-start gap-2">
+        <span className={cn("mt-1.5 size-2 shrink-0 rounded-full", severity.dot)} aria-hidden="true" />
+        <div className="min-w-0 flex-1 space-y-1">
+          <p className="text-sm leading-snug font-medium">{finding.title}</p>
+          <p className="text-xs leading-normal text-muted-foreground">{finding.action}</p>
+        </div>
+        <Badge variant="secondary" className="shrink-0">
+          {severity.label}
+        </Badge>
+      </div>
+      {finding.value && (
+        <code className="block min-w-0 truncate rounded bg-[var(--landing-paper-strong)] px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+          {finding.value}
+        </code>
+      )}
+      {location && onJump && (
+        <Button type="button" size="sm" variant="ghost" className="h-7 gap-1.5 px-2 text-xs" onClick={onJump}>
+          {location}
+          <ArrowRightIcon />
+        </Button>
+      )}
     </li>
   );
 }
 
-function LoadingSkeleton() {
+function NothingHere({ children }) {
   return (
-    <div className="flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
-      <Skeleton className="h-24 w-24 shrink-0 rounded-full" />
-      <div className="w-full flex-1 space-y-3">
-        <Skeleton className="h-2 w-full rounded-full" />
-        <Skeleton className="h-2 w-full rounded-full" />
-        <Skeleton className="h-2 w-full rounded-full" />
-      </div>
+    <div className={cn("flex items-center gap-2 rounded-md border border-dashed p-2.5", LINE)}>
+      <CheckCircleIcon className="size-4 shrink-0 text-[var(--landing-success)]" />
+      <span className="text-xs leading-normal text-muted-foreground">{children}</span>
     </div>
   );
 }
 
-function WritingReview({ cv, jobData, findings }) {
+function ScoreHeader({ report, preScore }) {
+  const tone = scoreTone(report.score);
+  const capCode = report.cappedBy?.[0];
+  const capTitle = capCode && report.findings.find((f) => f.code === capCode)?.title;
+  const delta = typeof preScore === "number" && report.score > preScore ? report.score - preScore : 0;
+
+  return (
+    <div className={cn("space-y-3 p-3", CARD)}>
+      <div className="flex items-baseline gap-2">
+        <AnimatedNumber value={report.score} className={cn("text-4xl leading-none font-bold tabular-nums", tone.text)} />
+        <span className="text-sm text-muted-foreground">out of 100</span>
+        {delta > 0 && (
+          <Badge variant="secondary" className="ml-auto bg-[#eef8f1] text-[var(--landing-success)]">
+            Up {delta} from {preScore}
+          </Badge>
+        )}
+      </div>
+      <div className="h-1.5 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]">
+        <div
+          className={cn("h-full rounded-full transition-[width] duration-300", tone.bar)}
+          style={{ width: `${report.score}%` }}
+        />
+      </div>
+      <p className="text-xs text-muted-foreground">
+        {report.passedChecks} of {report.totalChecks} checks passed
+      </p>
+      {capTitle && (
+        <p className="rounded-md bg-[var(--landing-paper-soft)] p-2 text-xs leading-normal text-muted-foreground">
+          The score is capped because of a blocking problem: {capTitle}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function CategorySection({ category, findings }) {
+  const tone = scoreTone(category.score);
+  return (
+    <AccordionItem value={category.key} className={LINE}>
+      <AccordionTrigger className="hover:no-underline">
+        <span className="flex min-w-0 flex-1 items-center gap-2 pr-2">
+          <span className="min-w-0 truncate">{category.label}</span>
+          <Badge variant="secondary" className="shrink-0 tabular-nums">
+            <span className={tone.text}>{category.score}</span>
+          </Badge>
+          {findings.length > 0 && (
+            <span className="shrink-0 text-xs font-normal text-muted-foreground">{findings.length} to fix</span>
+          )}
+        </span>
+      </AccordionTrigger>
+      <AccordionContent className="space-y-3">
+        <p className="text-xs leading-normal text-muted-foreground">
+          {CATEGORIES[category.key]?.description}
+          {typeof category.totalChecks === "number" &&
+            ` ${category.passedChecks} of ${category.totalChecks} checks passed.`}
+        </p>
+        {findings.length === 0 ? (
+          <NothingHere>Nothing to fix here.</NothingHere>
+        ) : (
+          <ul className="space-y-2">
+            {findings.map((finding) => (
+              <FindingRow key={`${finding.code}-${finding.path}`} finding={finding} />
+            ))}
+          </ul>
+        )}
+      </AccordionContent>
+    </AccordionItem>
+  );
+}
+
+/** Unscored advice, kept visually apart so nobody reads it as part of the number. */
+function WritingSection({ tips }) {
+  return (
+    <AccordionItem value="content" className={LINE}>
+      <AccordionTrigger className="hover:no-underline">
+        <span className="flex min-w-0 flex-1 items-center gap-2 pr-2">
+          <span className="min-w-0 truncate">{CATEGORIES.content.label}</span>
+          <Badge variant="outline" className="shrink-0 font-normal">
+            Not scored
+          </Badge>
+        </span>
+      </AccordionTrigger>
+      <AccordionContent className="space-y-3">
+        <p className="text-xs leading-normal text-muted-foreground">{CATEGORIES.content.description}</p>
+        {tips.length === 0 ? (
+          <NothingHere>Nothing to suggest.</NothingHere>
+        ) : (
+          <ul className="space-y-2">
+            {tips.map((tip) => (
+              <FindingRow key={`${tip.code}-${tip.path}`} finding={tip} />
+            ))}
+          </ul>
+        )}
+      </AccordionContent>
+    </AccordionItem>
+  );
+}
+
+function JdCoverage({ coverage }) {
+  if (coverage.total === 0) {
+    return (
+      <p className={cn("rounded-md border border-dashed p-3 text-xs leading-normal text-muted-foreground", LINE)}>
+        No specific terms could be pulled out of that posting, so it may be mostly boilerplate.
+      </p>
+    );
+  }
+
+  const missing = [...new Set([...coverage.skillsMissing, ...coverage.missing])];
+  const matched = [...new Set([...coverage.skillsMatched, ...coverage.matched])];
+
+  return (
+    <div className={cn("space-y-3 p-3", CARD)}>
+      <div className="space-y-1">
+        <p className="text-sm leading-none font-medium">
+          {coverage.matchedCount} of {coverage.total} terms found
+        </p>
+        <p className="text-xs leading-normal text-muted-foreground">
+          Counted separately from the score. Coverage doesn&apos;t predict anything.
+        </p>
+      </div>
+      {missing.length > 0 && (
+        <div className="space-y-1.5">
+          <p className="text-xs font-medium text-muted-foreground">Not in your CV</p>
+          <div className="flex flex-wrap gap-1.5">
+            {missing.map((term) => (
+              <Badge key={term} variant="outline" className="font-normal">
+                {term}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+      {matched.length > 0 && (
+        <div className="space-y-1.5">
+          <p className="text-xs font-medium text-muted-foreground">Already covered</p>
+          <div className="flex flex-wrap gap-1.5">
+            {matched.map((term) => (
+              <Badge key={term} variant="secondary" className="font-normal">
+                {term}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+      {coverage.stuffed.length > 0 && (
+        <p className="text-xs leading-normal text-muted-foreground">
+          Repeated far more often than the posting uses them: {coverage.stuffed.join(", ")}. Heavy repetition can read
+          as keyword stuffing.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes }) {
+  return (
+    <div className={cn("space-y-3 p-3", CARD)}>
+      <div className="space-y-1">
+        <p className="text-sm leading-none font-medium">Fixes you can apply</p>
+        <p className="text-xs leading-normal text-muted-foreground">
+          Each fix edits your tailored CV with AI. Check the result before you download.
+        </p>
+      </div>
+      <ul className="space-y-2">
+        {recommendations.map((rec) => {
+          const applied = appliedFixes.includes(rec);
+          const applying = applyingFix === rec;
+          return (
+            <li key={rec} className={cn("flex items-start justify-between gap-3 rounded-md border p-3 text-sm", LINE)}>
+              <span className="leading-snug">{rec}</span>
+              {applied ? (
+                <span className="inline-flex shrink-0 items-center gap-1 py-1 text-xs font-medium text-[var(--landing-success)]">
+                  <CheckCircleIcon weight="fill" aria-hidden="true" />
+                  Applied
+                </span>
+              ) : (
+                onApplyFix && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-7 shrink-0 px-2 text-xs"
+                    disabled={Boolean(applyingFix)}
+                    aria-busy={applying}
+                    aria-label={`Apply this fix: ${rec}`}
+                    onClick={() => onApplyFix(rec)}
+                  >
+                    {applying ? <SpinnerGapIcon className="animate-spin" /> : <MagicWandIcon />}
+                    {applying ? "Applying…" : "Apply"}
+                  </Button>
+                )
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+function AiReviewResults({ review }) {
+  return (
+    <div className="space-y-3">
+      {review.summary && <p className="text-sm leading-normal text-muted-foreground">{review.summary}</p>}
+      {review.suggestions.length > 0 && (
+        <div className="space-y-2">
+          <h5 className="text-sm font-semibold">Suggestions</h5>
+          <ul className="space-y-2">
+            {review.suggestions.map((suggestion) => (
+              <li key={`${suggestion.section ?? ""}:${suggestion.issue}`} className={cn("space-y-2 p-3", CARD)}>
+                <div className="flex items-start gap-2">
+                  <span
+                    className={cn("mt-1.5 size-2 shrink-0 rounded-full", IMPACT[suggestion.impact].dot)}
+                    aria-hidden="true"
+                  />
+                  <p className="min-w-0 flex-1 text-sm leading-snug">{suggestion.issue}</p>
+                  <Badge variant="secondary" className="shrink-0">
+                    {IMPACT[suggestion.impact].label}
+                  </Badge>
+                </div>
+                {suggestion.section && <p className="text-xs text-muted-foreground">In {suggestion.section}</p>}
+                {suggestion.rewrite && (
+                  <p className="rounded bg-[var(--landing-paper-soft)] p-2 text-xs leading-normal text-muted-foreground">
+                    {suggestion.rewrite}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {review.strengths.length > 0 && (
+        <div className="space-y-2">
+          <h5 className="text-sm font-semibold">Strengths</h5>
+          <ul className="list-outside list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+            {review.strengths.map((strength) => (
+              <li key={strength}>{strength}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {review.jdAlignment && (
+        <div className={cn("space-y-2 p-3", CARD)}>
+          <h5 className="text-sm font-semibold">Against the job description</h5>
+          {review.jdAlignment.verdict && (
+            <p className="text-sm leading-normal text-muted-foreground">{review.jdAlignment.verdict}</p>
+          )}
+          {review.jdAlignment.missingConcepts.length > 0 && (
+            <div className="space-y-1.5">
+              <p className="text-xs font-medium text-muted-foreground">Not shown in your CV</p>
+              <div className="flex flex-wrap gap-1.5">
+                {review.jdAlignment.missingConcepts.map((concept) => (
+                  <Badge key={concept} variant="outline" className="font-normal">
+                    {concept}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+          {review.jdAlignment.strengths.length > 0 && (
+            <ul className="list-outside list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+              {review.jdAlignment.strengths.map((strength) => (
+                <li key={strength}>{strength}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+      <p className="text-xs leading-normal text-muted-foreground">
+        This review is a language model&apos;s opinion of your writing. It doesn&apos;t change the score above, and it
+        can be wrong. Treat it as a second opinion, not a verdict.
+      </p>
+    </div>
+  );
+}
+
+function AiReviewCard({ cv, jobData, findings }) {
   const review = useMutation({
     mutationFn: async () => {
       const res = await fetch("/api/ats-review", {
@@ -180,90 +379,35 @@ function WritingReview({ cv, jobData, findings }) {
           findings: findings.map((f) => ({ code: f.code, severity: f.severity, message: f.title })),
         }),
       });
-      const json = await res.json();
-      if (!res.ok || !json.data) throw new Error(json.error || "Couldn't review your writing. Try again.");
-      return json.data;
+      if (!res.ok) {
+        const failure = await res.json().catch(() => ({}));
+        throw new Error(failure.error || "Couldn't review your writing. Try again.");
+      }
+      return (await res.json()).data;
     },
     onError: (error) => toast.error(error.message),
   });
 
-  const data = review.data;
-
   return (
-    <div className="space-y-3 border-t border-[var(--landing-line)] pt-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-sm font-medium">Writing review</p>
-          <p className="text-xs text-muted-foreground">AI comments on your wording. It never changes the score.</p>
-        </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="rounded-md border-[var(--landing-line)]"
-          onClick={() => review.mutate()}
-          disabled={review.isPending || !cv}
-          aria-busy={review.isPending}
-        >
-          {review.isPending ? (
-            <SpinnerGapIcon size={14} className="animate-spin" aria-hidden="true" />
-          ) : (
-            <SparkleIcon size={14} aria-hidden="true" />
-          )}
-          {review.isPending ? "Reviewing…" : data ? "Review again" : "Review my writing"}
-        </Button>
+    <div className={cn("space-y-3 rounded-md border p-4", LINE)}>
+      <div className="flex items-center gap-2">
+        <SparkleIcon className="size-4 shrink-0 text-[var(--landing-accent)]" />
+        <h4 className="text-sm font-semibold">Review the writing with AI</h4>
       </div>
-
-      {data && (
-        <div className="space-y-4 text-sm">
-          {data.summary && <p className="leading-6 text-[var(--landing-ink-soft)]">{data.summary}</p>}
-
-          {data.suggestions.length > 0 && (
-            <ul className="space-y-3">
-              {data.suggestions.map((s) => (
-                <li key={`${s.section}-${s.issue}`} className="space-y-1.5 rounded-md border border-[var(--landing-line)] p-3">
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                    <span className="font-semibold text-[var(--landing-ink)]">{IMPACT_LABEL[s.impact]}</span>
-                    {s.section && <span>{s.section}</span>}
-                  </div>
-                  <p className="text-foreground">{s.issue}</p>
-                  {s.rewrite && (
-                    <p className="border-l-2 border-[var(--landing-accent-line)] pl-3 text-[var(--landing-ink-soft)]">
-                      {s.rewrite}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {data.strengths.length > 0 && (
-            <div className="space-y-1.5">
-              <p className="font-medium text-[var(--landing-success)]">What already works</p>
-              <ul className="list-disc space-y-1 pl-5 text-[var(--landing-ink-soft)]">
-                {data.strengths.map((s) => (
-                  <li key={s}>{s}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {data.jdAlignment && (
-            <div className="space-y-2">
-              <p className="font-medium">Fit with this role</p>
-              {data.jdAlignment.verdict && (
-                <p className="leading-6 text-[var(--landing-ink-soft)]">{data.jdAlignment.verdict}</p>
-              )}
-              {data.jdAlignment.missingConcepts.length > 0 && (
-                <div className="flex flex-wrap gap-1.5">
-                  {data.jdAlignment.missingConcepts.map((c) => (
-                    <KeywordChip key={c} keyword={c} variant="missing" />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+      <p className="text-sm leading-normal text-muted-foreground">
+        The checks above are mechanical. This asks a language model what a reader would think of your bullets, and
+        suggests rewrites. It produces no score.
+      </p>
+      <p className="text-xs leading-normal text-muted-foreground">
+        {jobData
+          ? "Sends your CV text and the job details to Groq, the AI provider FitMyCV uses."
+          : "Sends your CV text to Groq, the AI provider FitMyCV uses."}
+      </p>
+      <Button size="sm" disabled={review.isPending || !cv} onClick={() => review.mutate()}>
+        {review.isPending ? <SpinnerGapIcon className="animate-spin" /> : <SparkleIcon />}
+        {review.isPending ? "Reviewing…" : review.data ? "Run again" : "Run AI review"}
+      </Button>
+      {review.data && <AiReviewResults review={review.data} />}
     </div>
   );
 }
@@ -280,163 +424,50 @@ export default function ATSScoreCard({
 }) {
   if (isLoading) {
     return (
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardHeader className="dashboard-card-pad">
-          <CardTitle className="text-base">Checking your CV…</CardTitle>
-        </CardHeader>
-        <CardContent className="dashboard-card-pad pt-0">
-          <LoadingSkeleton />
-        </CardContent>
-      </Card>
+      <div className={cn("space-y-3 p-3", CARD)}>
+        <p className="text-sm font-medium">Checking your CV…</p>
+        <Skeleton className="h-10 w-24" />
+        <Skeleton className="h-1.5 w-full rounded-full" />
+        <Skeleton className="h-24 w-full" />
+      </div>
     );
   }
 
   if (!atsData) {
     return (
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardContent className="py-10 text-center text-sm text-muted-foreground">
-          Your ATS check appears here after you tailor your CV.
-        </CardContent>
-      </Card>
+      <div className={cn("rounded-md border border-dashed p-6 text-center text-sm text-muted-foreground", LINE)}>
+        Your ATS check appears here after you tailor your CV.
+      </div>
     );
   }
 
-  const {
-    score,
-    categories = [],
-    cappedBy = [],
-    passedChecks,
-    totalChecks,
-    findings = [],
-    coverage,
-    recommendations = [],
-  } = atsData;
-  const label = scoreLabel(score);
-  const color = scoreColor(score);
-  const delta = typeof preScore === "number" && score > preScore ? score - preScore : 0;
-  const missingKeywords = coverage ? [...new Set([...coverage.skillsMissing, ...coverage.missing])] : [];
-  const matchedKeywords = coverage ? [...new Set([...coverage.skillsMatched, ...coverage.matched])] : [];
+  const { findings = [], categories = [], coverage, recommendations = [] } = atsData;
+  const inCategory = (key) => findings.filter((f) => f.category === key);
+  const openCategories = categories.filter((c) => inCategory(c.key).length > 0).map((c) => c.key);
 
   return (
-    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-      <CardHeader className="dashboard-card-pad">
-        <CardTitle className="text-base">ATS check</CardTitle>
-        <p className="text-sm text-muted-foreground">
-          Scored by fixed rules on contact details, sections and dates. Keywords are counted separately.
-        </p>
-      </CardHeader>
-      <CardContent className="dashboard-card-pad space-y-6 pt-0">
-        {delta > 0 && (
-          <div className="flex items-center gap-2 rounded-lg bg-[#eef8f1] px-3 py-2 text-sm">
-            <span className="font-medium text-[var(--landing-success)]">
-              Score improved {preScore} to {score}
-            </span>
-            <span className="inline-flex min-w-9 items-center justify-center rounded-full bg-[#c8e6d4] px-2 py-0.5 text-xs font-bold text-[var(--landing-success)]">
-              +
-              <AnimatedNumber value={delta} minDigits={2} />
-            </span>
-          </div>
-        )}
-
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
-          <ArcGauge value={score} max={100} size={96} color={color} label={`ATS score: ${score} out of 100, ${label}`}>
-            <AnimatedNumber value={score} className="text-center text-2xl font-bold leading-none text-foreground" />
-            <span className="mt-0.5 text-xs text-muted-foreground">{label}</span>
-          </ArcGauge>
-          <div className="w-full flex-1 space-y-3">
-            {categories.map((c) => (
-              <BreakdownRow key={c.key} label={c.label} value={c.score} />
-            ))}
-            <p className="text-xs text-muted-foreground tabular-nums">
-              {passedChecks} of {totalChecks} checks passed
-            </p>
-          </div>
-        </div>
-
-        {cappedBy.length > 0 && (
-          <div className="flex items-start gap-2 rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-3 py-2 text-sm text-[var(--landing-accent-dark)]">
-            <WarningIcon size={16} weight="fill" className="mt-0.5 shrink-0" aria-hidden="true" />
-            Your score is held at {score} until the blockers below are fixed.
-          </div>
-        )}
-
-        {Object.entries(CATEGORIES).map(([key, { label: categoryLabel }]) => {
-          const items = findings.filter((f) => f.category === key);
-          if (!items.length) return null;
-          return (
-            <div key={key} className="space-y-1">
-              <p className="text-sm font-medium">{categoryLabel}</p>
-              <FindingList findings={items} />
-            </div>
-          );
-        })}
-
-        {coverage && coverage.total > 0 && (
-          <div className="space-y-3">
-            <div className="flex items-baseline justify-between gap-3 text-sm">
-              <span className="font-medium">Posting keywords</span>
-              <span className="tabular-nums text-muted-foreground">
-                {coverage.matchedCount} of {coverage.total} terms found
-              </span>
-            </div>
-            {matchedKeywords.length > 0 && (
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-medium text-[var(--landing-success)]">
-                  <CheckCircleIcon size={16} weight="fill" aria-hidden="true" />
-                  Found in your CV
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {matchedKeywords.map((kw) => (
-                    <KeywordChip key={kw} keyword={kw} variant="matched" />
-                  ))}
-                </div>
-              </div>
-            )}
-            {missingKeywords.length > 0 && (
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-medium text-[var(--landing-accent)]">
-                  <XCircleIcon size={16} weight="fill" aria-hidden="true" />
-                  Not in your CV
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {missingKeywords.map((kw) => (
-                    <KeywordChip key={kw} keyword={kw} variant="missing" />
-                  ))}
-                </div>
-              </div>
-            )}
-            {coverage.stuffed.length > 0 && (
-              <p className="text-sm text-[var(--landing-ink-soft)]">
-                These terms repeat far more often than the posting uses them: {coverage.stuffed.join(", ")}. Heavy
-                repetition can read as keyword stuffing.
-              </p>
-            )}
-          </div>
-        )}
-
-        {recommendations.length > 0 && (
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <LightbulbIcon size={16} weight="fill" className="text-[var(--landing-ink)]" aria-hidden="true" />
-              Recommendations
-            </div>
-            <ul className="space-y-1.5">
-              {recommendations.map((rec) => (
-                <FixItem
-                  key={rec}
-                  text={rec}
-                  onApply={onApplyFix}
-                  isApplying={applyingFix === rec}
-                  isApplied={appliedFixes.includes(rec)}
-                  disabled={Boolean(applyingFix)}
-                />
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <WritingReview cv={cv} jobData={jobData} findings={findings} />
-      </CardContent>
-    </Card>
+    <div className="space-y-4">
+      <ScoreHeader report={atsData} preScore={preScore} />
+      <Accordion type="multiple" defaultValue={openCategories} className={cn("rounded-md border px-3", LINE)}>
+        {categories.map((category) => (
+          <CategorySection key={category.key} category={category} findings={inCategory(category.key)} />
+        ))}
+        <WritingSection tips={inCategory("content")} />
+      </Accordion>
+      {coverage && <JdCoverage coverage={coverage} />}
+      {recommendations.length > 0 && (
+        <FixesCard
+          recommendations={recommendations}
+          onApplyFix={onApplyFix}
+          applyingFix={applyingFix}
+          appliedFixes={appliedFixes}
+        />
+      )}
+      <AiReviewCard cv={cv} jobData={jobData} findings={findings} />
+      <p className="text-xs leading-normal text-muted-foreground">
+        This checks whether software can read your CV&apos;s details: contact information, sections and dates. It
+        doesn&apos;t predict whether an application will be rejected, and no tool can.
+      </p>
+    </div>
   );
 }

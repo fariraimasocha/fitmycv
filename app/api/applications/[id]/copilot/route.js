@@ -80,8 +80,15 @@ export async function POST(request, { params }) {
         );
       }
       const match = scoreResumeJobMatch(jobText, cvText);
+      const fit = {
+        score: match.overall,
+        gaps: [...match.skills.missing, ...match.keywords.missing.map((t) => t.term)].slice(0, 5),
+        at: new Date(),
+      };
+      await Application.updateOne({ _id: id, userId }, { $set: { fit } });
       return Response.json({
         data: {
+          fit,
           match: {
             overall: match.overall,
             skillsMatched: match.skills.strong,

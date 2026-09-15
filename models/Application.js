@@ -69,6 +69,13 @@ const applicationSchema = new mongoose.Schema(
     followUpDate: {
       type: Date,
     },
+    followUpNote: { type: String, default: "" },
+    // Keyword and skill overlap from the copilot's "Score my fit". No model involved.
+    fit: {
+      score: Number,
+      gaps: { type: [String], default: undefined },
+      at: Date,
+    },
     appliedAt: {
       type: Date,
     },

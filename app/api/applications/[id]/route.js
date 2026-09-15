@@ -1,7 +1,9 @@
+import mongoose from "mongoose";
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { STAGE_LABEL, pickApplicationFields } from "@/lib/applications";
 import Application from "@/models/Application";
+import TailoredCV from "@/models/TailoredCV";
 import { connectDB } from "@/utils/connect";
 
 export async function GET(request, { params }) {
@@ -34,6 +36,14 @@ export async function GET(request, { params }) {
       { status: 500 }
     );
   }
+}
+
+// The stage entry that marks the current stage. It can't be deleted, or the
+// timeline would stop explaining why the application sits where it does.
+function currentStageEntry(application) {
+  return [...application.statusHistory]
+    .filter((entry) => (entry.kind ?? "stage") === "stage" && entry.status === application.status)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 }
 
 export async function PUT(request, { params }) {
@@ -69,6 +79,20 @@ export async function PUT(request, { params }) {
     if (!fields.jobCompany) delete fields.jobCompany;
     application.set(fields);
 
+    if (body.tailoredCVId !== undefined) {
+      if (!body.tailoredCVId) {
+        application.tailoredCVId = undefined;
+      } else {
+        const owned =
+          mongoose.isValidObjectId(body.tailoredCVId) &&
+          (await TailoredCV.exists({ _id: body.tailoredCVId, userId: session.user.id }));
+        if (!owned) {
+          return Response.json({ error: "Forbidden" }, { status: 403 });
+        }
+        application.tailoredCVId = body.tailoredCVId;
+      }
+    }
+
     // If status is changing, push to history
     if (body.status && body.status !== application.status) {
       application.statusHistory.push({
@@ -89,8 +113,31 @@ export async function PUT(request, { params }) {
       application.statusHistory.push({ kind: "note", date: new Date(), note: note.slice(0, 2000) });
     }
 
+    if (body.updateEntry && typeof body.updateEntry === "object") {
+      const { entryId, date, text } = body.updateEntry;
+      const entry = mongoose.isValidObjectId(entryId) ? application.statusHistory.id(entryId) : null;
+      if (!entry) {
+        return Response.json({ error: "Timeline entry not found" }, { status: 404 });
+      }
+      const parsed = date ? new Date(date) : null;
+      if (parsed && !Number.isNaN(parsed.getTime())) entry.date = parsed;
+      const trimmed = typeof text === "string" ? text.trim().slice(0, 2000) : "";
+      if (trimmed && entry.kind === "note") entry.note = trimmed;
+    }
+
+    if (body.deleteEntry) {
+      const entry = mongoose.isValidObjectId(body.deleteEntry) ? application.statusHistory.id(body.deleteEntry) : null;
+      if (entry) {
+        if (String(currentStageEntry(application)?._id) === String(entry._id)) {
+          return Response.json({ error: "The current stage's entry can't be deleted." }, { status: 400 });
+        }
+        entry.deleteOne();
+      }
+    }
+
     if (body.followUpDate !== undefined) {
-      application.followUpDate = body.followUpDate ? new Date(body.followUpDate) : null;
+      const followUp = body.followUpDate ? new Date(body.followUpDate) : null;
+      application.followUpDate = followUp && !Number.isNaN(followUp.getTime()) ? followUp : null;
     }
 
     await application.save();

@@ -15,6 +15,7 @@ import {
   XIcon,
   ListChecksIcon,
   CaretDownIcon,
+  CheckCircleIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,7 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ItemReorderControls from "@/components/ItemReorderControls";
-import { FindingList } from "@/components/ATSScoreCard";
+import { FindingRow, SEVERITY_ORDER, SeverityCount } from "@/components/ATSScoreCard";
 import { checkCv } from "@/lib/ats/rules";
 
 const resumeSchema = z.object({
@@ -639,11 +640,40 @@ export default function ResumeForm({
   );
 }
 
-// The same rules as the ATS score, run on every keystroke. Collapsed by default
-// so it informs without taking over the editor.
+// Where a finding points, in the words the form itself uses.
+const FIELD_NAMES = {
+  name: "Full name",
+  email: "Email",
+  phone: "Phone",
+  location: "Location",
+  summary: "Summary",
+  startDate: "Start date",
+  endDate: "End date",
+  description: "Description",
+  url: "URL",
+};
+
+function findingLocation(path) {
+  const [section, second, third, , field] = path.split(".");
+  if (section === "basics") {
+    return second === "profiles" ? `Profile ${Number(third) + 1}, URL` : `Personal Information, ${FIELD_NAMES[second]}`;
+  }
+  if (section === "work" || section === "education") {
+    const group = section === "work" ? "Position" : "Education";
+    if (second === undefined) return section === "work" ? "Work Experience" : "Education";
+    return `${group} ${Number(second) + 1}, ${FIELD_NAMES[third] ?? field ?? third}`;
+  }
+  return "Skills";
+}
+
+// The same rules as the ATS score, run on every keystroke. Ported from Reactive
+// Resume's live ATS lint. Collapsed by default so it informs without taking
+// over the editor.
 function CvChecks({ report, onSelect }) {
-  const issues = report.findings.filter((f) => f.severity !== "tip");
-  const tips = report.findings.filter((f) => f.severity === "tip");
+  const counts = Object.fromEntries(
+    SEVERITY_ORDER.map((severity) => [severity, report.findings.filter((f) => f.severity === severity).length]),
+  );
+  const percent = Math.round((report.passedChecks / report.totalChecks) * 100);
 
   return (
     <details className="dashboard-card group rounded-2xl border border-border bg-card">
@@ -656,24 +686,50 @@ function CvChecks({ report, onSelect }) {
           <span className="tabular-nums">
             {report.passedChecks} of {report.totalChecks} passed
           </span>
-          <span className="rounded-md border border-border px-2 py-0.5 font-semibold tabular-nums text-foreground">
-            {report.score}
-          </span>
           <CaretDownIcon size={14} className="transition-transform group-open:rotate-180" aria-hidden="true" />
         </span>
       </summary>
-      <div className="dashboard-card-pad space-y-4 border-t border-border/60">
-        {issues.length === 0 && (
-          <p className="text-sm text-muted-foreground">
-            {tips.length ? "Every scored check passes. The tips below are optional." : "Every check passes."}
+      <div className="dashboard-card-pad space-y-3 border-t border-border/60">
+        <div className="space-y-3 rounded-md border border-border bg-card p-3">
+          <p className="text-xs leading-normal text-muted-foreground">
+            These checks run as you type and never leave your browser. They test whether software can read your CV, not
+            how well it&apos;s written.
           </p>
-        )}
-        <FindingList findings={issues} onSelect={onSelect} />
-        {tips.length > 0 && (
-          <div className="space-y-1">
-            <p className="px-2 text-sm font-medium">Writing tips</p>
-            <FindingList findings={tips} onSelect={onSelect} />
+          <div className="space-y-2">
+            <p className="text-sm leading-none font-medium">
+              {report.passedChecks} of {report.totalChecks} checks passed
+            </p>
+            <div className="h-1.5 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]">
+              <div
+                className="h-full rounded-full bg-foreground transition-[width] duration-300"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
           </div>
+          {report.findings.length > 0 && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              {SEVERITY_ORDER.filter((severity) => counts[severity] > 0).map((severity) => (
+                <SeverityCount key={severity} severity={severity} count={counts[severity]} />
+              ))}
+            </div>
+          )}
+        </div>
+        {report.findings.length === 0 ? (
+          <div className="flex items-center gap-3 rounded-md border border-dashed border-border p-3">
+            <CheckCircleIcon className="size-5 shrink-0 text-[var(--landing-success)]" />
+            <p className="text-sm leading-normal text-muted-foreground">Every check passed.</p>
+          </div>
+        ) : (
+          <ul className="space-y-2">
+            {report.findings.map((finding) => (
+              <FindingRow
+                key={`${finding.code}-${finding.path}`}
+                finding={finding}
+                location={findingLocation(finding.path)}
+                onJump={() => onSelect(finding.path)}
+              />
+            ))}
+          </ul>
         )}
       </div>
     </details>

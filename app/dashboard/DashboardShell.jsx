@@ -32,66 +32,32 @@ const PATH_LABELS = {
   "/dashboard/compare": "Compare Offers",
   "/dashboard/saved": "Saved Jobs",
   "/dashboard/preferences": "Preferences",
+  "/dashboard/agent": "CV Agent",
 };
+
+// Detail pages read "Parent > item", with the item title from the breadcrumb store.
+const DETAIL_PARENTS = [
+  { base: "/dashboard/tailored", label: "Tailored CVs", fallback: "Detail" },
+  { base: "/dashboard/applications", label: "Applications", fallback: "Detail" },
+  { base: "/dashboard/company-research", label: "Company Research", fallback: "Brief" },
+  { base: "/dashboard/agent", label: "CV Agent", fallback: "Thread" },
+];
 
 function DashboardBreadcrumb() {
   const pathname = usePathname();
   const detailLabel = useBreadcrumbStore((s) => s.detailLabel);
+  const parent = DETAIL_PARENTS.find((p) => pathname.startsWith(`${p.base}/`));
 
-  const isTailoredDetail =
-    pathname.startsWith("/dashboard/tailored/") &&
-    pathname !== "/dashboard/tailored";
-
-  if (isTailoredDetail) {
+  if (parent) {
     return (
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/tailored">Tailored CVs</BreadcrumbLink>
+            <BreadcrumbLink href={parent.base}>{parent.label}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{detailLabel || "Detail"}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    );
-  }
-
-  const isApplicationDetail =
-    pathname.startsWith("/dashboard/applications/") &&
-    pathname !== "/dashboard/applications";
-
-  if (isApplicationDetail) {
-    return (
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/applications">Applications</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{detailLabel || "Detail"}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-    );
-  }
-
-  const isCompanyResearchDetail =
-    pathname.startsWith("/dashboard/company-research/") &&
-    pathname !== "/dashboard/company-research";
-
-  if (isCompanyResearchDetail) {
-    return (
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/company-research">Company Research</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{detailLabel || "Brief"}</BreadcrumbPage>
+          <BreadcrumbItem className="min-w-0">
+            <BreadcrumbPage className="truncate">{detailLabel || parent.fallback}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

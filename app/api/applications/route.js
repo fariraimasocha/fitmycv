@@ -20,10 +20,13 @@ export async function GET(request) {
 
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
-    const archived = searchParams.get("archived") === "true";
+    const archived = searchParams.get("archived");
 
-    // Rows created before archiving existed have no flag, hence $ne.
-    const query = { userId: session.user.id, archived: archived ? true : { $ne: true } };
+    const query = { userId: session.user.id };
+    // "all" lets the tracker filter archived rows on the client. Rows created
+    // before archiving existed have no flag, hence $ne.
+    if (archived === "true") query.archived = true;
+    else if (archived !== "all") query.archived = { $ne: true };
     if (status && status !== "all") {
       query.status = status;
     }
@@ -82,6 +85,9 @@ export async function POST(request) {
     }
 
     const status = STAGE_LABEL[body.status] ? body.status : "evaluated";
+    const entered = body.stageEnteredAt ? new Date(body.stageEnteredAt) : new Date();
+    const stageDate = Number.isNaN(entered.getTime()) ? new Date() : entered;
+    const followUp = body.followUpDate ? new Date(body.followUpDate) : null;
 
     const application = await Application.create({
       ...fields,
@@ -90,9 +96,10 @@ export async function POST(request) {
       companyResearchId: body.companyResearchId || undefined,
       status,
       statusHistory: [
-        { kind: "stage", status, date: new Date(), note: body.tailoredCVId ? "CV tailored" : "" },
+        { kind: "stage", status, date: stageDate, note: body.tailoredCVId && !body.stageEnteredAt ? "CV tailored" : "" },
       ],
-      appliedAt: status === "evaluated" ? undefined : new Date(),
+      appliedAt: status === "evaluated" ? undefined : stageDate,
+      followUpDate: followUp && !Number.isNaN(followUp.getTime()) ? followUp : undefined,
       matchScore: body.matchScore || undefined,
       matchGrade: body.matchGrade || undefined,
     });

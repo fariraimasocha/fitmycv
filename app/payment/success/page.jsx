@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { trackEvent } from "@/lib/analytics";
+import posthog from "posthog-js";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
@@ -47,6 +48,15 @@ export default function PaymentSuccessPage() {
             plan: payload.plan || "lifetime",
             orderId: payload.orderId,
           });
+          if (
+            process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+            process.env.NEXT_PUBLIC_POSTHOG_HOST
+          ) {
+            posthog.capture("purchase_complete", {
+              plan: payload.plan || "lifetime",
+              order_id: payload.orderId,
+            });
+          }
         }
       })
       .catch(() => {})

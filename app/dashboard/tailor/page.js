@@ -294,7 +294,9 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to tailor CV");
+        const error = new Error(err.error || "Failed to tailor CV");
+        error.code = err.code;
+        throw error;
       }
 
       return res.json();
@@ -311,11 +313,6 @@ function Tailor() {
         has_cover_letter: Boolean(result.data?.coverLetter),
       });
       toast.success("Resume tailored successfully!");
-
-      if (!session?.user?.isPremium) {
-        setUpgradeModalContext("post_tailor");
-        setShowUpgradeModal(true);
-      }
 
       // Trigger ATS analysis automatically
       setAtsLoading(true);
@@ -350,6 +347,11 @@ function Tailor() {
       });
     },
     onError: (error) => {
+      if (error.code === "PREMIUM_REQUIRED") {
+        setUpgradeModalContext("pre_tailor");
+        setShowUpgradeModal(true);
+        return;
+      }
       toast.error(error.message);
     },
   });
@@ -567,6 +569,21 @@ function Tailor() {
     extractMutation.mutate(url.trim());
   };
 
+  const handleTailor = () => {
+    capturePostHogEvent("tailor_started", {
+      is_premium: Boolean(session?.user?.isPremium),
+      has_match_score: Boolean(matchScore),
+    });
+
+    if (!session?.user?.isPremium) {
+      setUpgradeModalContext("pre_tailor");
+      setShowUpgradeModal(true);
+      return;
+    }
+
+    tailorMutation.mutate();
+  };
+
   return (
     <DashboardPageShell width="narrow">
       <DashboardPageHeader
@@ -677,7 +694,7 @@ function Tailor() {
               {!tailorResult && (
                 <Button
                   size="sm"
-                  onClick={() => tailorMutation.mutate()}
+                  onClick={handleTailor}
                   disabled={tailorMutation.isPending}
                   aria-busy={tailorMutation.isPending}
                   className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
@@ -712,7 +729,7 @@ function Tailor() {
             referenceCV={cachedReferenceCV}
             matchGrade={matchScore?.globalGrade}
             matchLoading={matchScoreLoading}
-            onTailor={() => tailorMutation.mutate()}
+            onTailor={handleTailor}
             tailorPending={tailorMutation.isPending}
             showTailorAction={!tailorResult}
           />

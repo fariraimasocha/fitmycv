@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import PricingCards from "@/components/pricing/PricingCards";
 import { useClientPricing } from "@/components/pricing/PricingCards";
 import { trackEvent } from "@/lib/analytics";
+import posthog from "posthog-js";
 
 const COPY = {
   default: {
@@ -23,10 +24,10 @@ const COPY = {
     description:
       "Your documents are ready. Upgrade to download PDFs and unlock the full toolkit.",
   },
-  post_tailor: {
-    title: "Your CV is ready",
-    description: (price) =>
-      `Download your tailored CV and cover letter as PDF for $${price} once.`,
+  pre_tailor: {
+    title: "Unlock your tailored documents",
+    description:
+      "Upgrade to generate your complete tailored CV and cover letter.",
   },
 };
 
@@ -43,6 +44,12 @@ export default function UpgradePromptModal({
   useEffect(() => {
     if (open) {
       trackEvent("paywall_view", { context });
+      if (
+        process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+        process.env.NEXT_PUBLIC_POSTHOG_HOST
+      ) {
+        posthog.capture("paywall_view", { context });
+      }
     }
   }, [open, context]);
 
@@ -54,6 +61,16 @@ export default function UpgradePromptModal({
 
   const handleLifetime = () => {
     trackEvent("checkout_start", { tier: pricing.tier, plan: "lifetime" });
+    if (
+      process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+      process.env.NEXT_PUBLIC_POSTHOG_HOST
+    ) {
+      posthog.capture("checkout_start", {
+        tier: pricing.tier,
+        plan: "lifetime",
+        source: "paywall_primary",
+      });
+    }
     if (session?.user) {
       router.push("/api/polar/checkout?plan=lifetime");
     } else {

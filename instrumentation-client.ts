@@ -14,10 +14,17 @@ if (!projectToken || !host) {
     );
   }
 } else {
+  // Local runs use the live project's token, so their events would count as
+  // real traffic. Drop them before they leave the browser. Debug logging still
+  // shows what would have been sent.
+  const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
   posthog.init(projectToken, {
     api_host: host,
     defaults: "2026-01-30",
     capture_exceptions: true,
     debug: process.env.NODE_ENV === "development",
+    disable_session_recording: isLocal,
+    before_send: (event) => (isLocal ? null : event),
   });
 }

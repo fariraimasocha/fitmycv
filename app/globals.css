@@ -841,29 +841,72 @@
     box-shadow: none;
   }
 
-  .dashboard-primary-btn {
+  /* Two button recipes for the shell, both 2.5rem tall so any pair lines up.
+     `-sm` drops to 2.25rem for toolbars and table rows. */
+  .dashboard-primary-btn,
+  .dashboard-secondary-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    height: 2.5rem;
     border-radius: var(--radius-md);
-    background: var(--landing-primary);
-    color: #ffffff;
-    padding: 0.625rem 1.25rem;
+    padding: 0 1rem;
     font-family: var(--font-outfit), sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
     transition:
       background var(--dur) var(--ease-out-quart),
+      border-color var(--dur) var(--ease-out-quart),
+      color var(--dur) var(--ease-out-quart),
       transform var(--dur-fast) var(--ease-out-quart);
+  }
+
+  .dashboard-primary-btn-sm,
+  .dashboard-secondary-btn-sm {
+    height: 2.25rem;
+    padding: 0 0.875rem;
+    font-size: 0.8125rem;
+  }
+
+  .dashboard-primary-btn {
+    background: var(--landing-primary);
+    color: #ffffff;
   }
 
   .dashboard-primary-btn:hover {
     background: #000000;
   }
 
-  .dashboard-primary-btn:active {
+  .dashboard-secondary-btn {
+    border: 1px solid var(--landing-line);
+    background: var(--landing-surface);
+    color: var(--landing-ink);
+  }
+
+  .dashboard-secondary-btn:hover {
+    border-color: #ccc5bb;
+    background: var(--landing-paper-soft);
+  }
+
+  .dashboard-primary-btn:active,
+  .dashboard-secondary-btn:active {
     transform: scale(0.98);
+  }
+
+  .dashboard-primary-btn:disabled,
+  .dashboard-secondary-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+  }
+
+  .dashboard-primary-btn:focus-visible,
+  .dashboard-secondary-btn:focus-visible {
+    outline: 2px solid var(--landing-ink);
+    outline-offset: 2px;
   }
 
   .dashboard-nav-active {

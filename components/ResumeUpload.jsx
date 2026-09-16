@@ -57,7 +57,7 @@ export default function ResumeUpload({ onParsed }) {
       setFile(droppedFile);
       setIsComplete(false);
     } else {
-      toast.error("Please drop a PDF file");
+      toast.error("Only PDF files are supported");
     }
   }, [isUploading]);
 
@@ -84,7 +84,7 @@ export default function ResumeUpload({ onParsed }) {
       const result = await uploadResumeWithProgress(file, setProgressState);
       setIsComplete(true);
       trackEvent("resume_uploaded", { file_size_bytes: file.size });
-      toast.success("Resume parsed successfully!");
+      toast.success("CV extracted. Review the details below.");
       onParsed({ ...result.data, rawText: result.rawText });
     } catch (error) {
       toast.error(error.message || "Upload failed");
@@ -161,7 +161,7 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {file && !isUploading && !isComplete && (
-        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-white p-4">
+        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
           <FileTextIcon size={24} className="shrink-0 text-[var(--landing-accent)]" />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium text-[var(--landing-ink)]">
@@ -191,7 +191,7 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {isComplete && (
-        <div className="flex items-center gap-3 rounded-lg border border-[#c8e6d0] bg-[#eef8f1] p-4 text-[#2d5a3d]">
+        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-success-soft)] p-4 text-[var(--landing-success)]">
           <CheckCircleIcon size={22} weight="fill" aria-hidden="true" />
           <div>
             <p className="text-sm font-semibold">CV uploaded and parsed</p>
@@ -206,10 +206,10 @@ export default function ResumeUpload({ onParsed }) {
             type="button"
             onClick={handleUpload}
             disabled={!file}
-            className="landing-primary-btn w-full cursor-pointer text-sm disabled:cursor-not-allowed disabled:opacity-50"
+            className="dashboard-primary-btn w-full"
           >
             <UploadSimpleIcon size={16} aria-hidden="true" />
-            Upload &amp; Parse
+            Upload and extract
           </button>
         </motion.div>
       )}

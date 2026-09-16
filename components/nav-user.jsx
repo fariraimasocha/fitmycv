@@ -56,10 +56,10 @@ export function NavUser() {
             asChild
             size="lg"
             tooltip="Upgrade to Pro"
-            className="bg-[var(--landing-accent-dark)] font-semibold text-white hover:bg-[var(--landing-accent-dark)]/90 hover:text-white h-auto py-3"
+            className="h-10 rounded-md bg-[var(--landing-ink)] font-outfit font-medium text-white hover:bg-black hover:text-white"
           >
             <Link href="/dashboard/upgrade">
-              <CrownIcon weight="fill" />
+              <CrownIcon weight="fill" aria-hidden="true" />
               <span>Upgrade to Pro</span>
             </Link>
           </SidebarMenuButton>
@@ -70,15 +70,17 @@ export function NavUser() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="rounded-md hover:bg-[var(--landing-primary-soft)] data-[state=open]:bg-[var(--landing-primary-soft)]"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
+              <Avatar className="h-8 w-8 rounded-md">
                 <AvatarImage src={user.image} alt={user.name} />
-                <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                <AvatarFallback className="rounded-md bg-[var(--landing-primary-soft)] text-xs font-semibold">
+                  {initials}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
               <CaretUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>

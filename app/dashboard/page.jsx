@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
 import {
   StackIcon,
   BuildingsIcon,
@@ -17,9 +16,11 @@ import {
   CheckCircleIcon,
   MagnifyingGlassIcon,
 } from "@phosphor-icons/react";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   DashboardPageShell,
+  DashboardPageHeader,
+  DashboardPanel,
+  DashboardPanelHeader,
   DashboardEmptyState,
   DashboardActivation,
   DashboardActivityChart,
@@ -28,7 +29,6 @@ import {
 import { buildWeeklyCounts, weekStartDates } from "@/lib/activity-series";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
-import { cn } from "@/lib/utils";
 
 const WEEKS = 12;
 
@@ -73,48 +73,6 @@ function CheckoutRedirect() {
   return null;
 }
 
-function Panel({ children, className, delay = 0 }) {
-  const reduceMotion = useReducedMotion();
-  return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay }}
-      className={cn("min-w-0", className)}
-    >
-      <Card className="dashboard-card h-full gap-0 rounded-lg py-0">
-        <CardContent className="dashboard-card-pad flex h-full flex-col">
-          {children}
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-}
-
-function PanelHeader({ title, description, href, linkLabel }) {
-  return (
-    <div className="flex items-start justify-between gap-3">
-      <div>
-        <h2 className="font-outfit text-sm font-semibold text-foreground">
-          {title}
-        </h2>
-        {description && (
-          <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
-        )}
-      </div>
-      {href && (
-        <Link
-          href={href}
-          className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
-        >
-          {linkLabel}
-          <ArrowRightIcon size={12} weight="bold" aria-hidden="true" />
-        </Link>
-      )}
-    </div>
-  );
-}
-
 function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
   return (
     <li>
@@ -155,8 +113,6 @@ export default function DashboardPage() {
   const [formattedDate] = useState(() => getFormattedDate());
   const [greeting] = useState(() => getTimeOfDay());
   const [now] = useState(() => Date.now());
-  const reduceMotion = useReducedMotion();
-
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
   const isPremium = Boolean(session?.user?.isPremium);
 
@@ -300,45 +256,26 @@ export default function DashboardPage() {
         <CheckoutRedirect />
       </Suspense>
 
-      <motion.div
-        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-      >
-        <div className="min-w-0">
-          <h1
-            suppressHydrationWarning
-            className="font-outfit text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-3xl"
-          >
+      <DashboardPageHeader
+        title={
+          <span suppressHydrationWarning>
             Good {greeting}, {firstName}
-          </h1>
-          {formattedDate && (
-            <p
-              suppressHydrationWarning
-              className="mt-1 text-sm text-muted-foreground"
-            >
-              {formattedDate}
-            </p>
-          )}
-        </div>
-        <div className="flex items-center gap-2">
-          <Link
-            href="/dashboard/resume"
-            className="landing-secondary-btn landing-secondary-btn-sm"
-          >
-            <FileTextIcon size={16} aria-hidden="true" />
-            My CV
-          </Link>
-          <Link
-            href="/dashboard/tailor"
-            className="dashboard-primary-btn text-sm"
-          >
-            <PlusIcon size={16} weight="bold" aria-hidden="true" />
-            Tailor a CV
-          </Link>
-        </div>
-      </motion.div>
+          </span>
+        }
+        description={<span suppressHydrationWarning>{formattedDate}</span>}
+        actions={
+          <>
+            <Link href="/dashboard/resume" className="dashboard-secondary-btn">
+              <FileTextIcon size={16} aria-hidden="true" />
+              My CV
+            </Link>
+            <Link href="/dashboard/tailor" className="dashboard-primary-btn">
+              <PlusIcon size={16} weight="bold" aria-hidden="true" />
+              Tailor a CV
+            </Link>
+          </>
+        }
+      />
 
       {showActivation && <DashboardActivation steps={activationSteps} />}
 
@@ -349,7 +286,7 @@ export default function DashboardPage() {
           icon={WarningCircleIcon}
           title="Couldn't load your dashboard"
           description="We couldn't load your tailored CVs. Try again in a moment."
-          actionLabel={tailoredCVsFetching ? "Retrying…" : "Try again"}
+          actionLabel={tailoredCVsFetching ? "Retrying" : "Try again"}
           onAction={() => refetchTailoredCVs()}
           actionDisabled={tailoredCVsFetching}
           delay={0.05}
@@ -365,8 +302,11 @@ export default function DashboardPage() {
               delay={0.05}
               className="lg:col-span-8"
             />
-            <Panel delay={0.1} className="lg:col-span-4">
-              <PanelHeader title="Totals" description="Everything you have made" />
+            <DashboardPanel delay={0.1} className="lg:col-span-4">
+              <DashboardPanelHeader
+                title="Totals"
+                description="Everything you have made"
+              />
               <ul className="mt-3 flex flex-1 flex-col divide-y divide-[var(--landing-line)]">
                 <TotalRow
                   href="/dashboard/tailored"
@@ -390,13 +330,13 @@ export default function DashboardPage() {
                   thisWeek={researchKnown ? researchWeekly.at(-1) : undefined}
                 />
               </ul>
-            </Panel>
+            </DashboardPanel>
           </div>
 
           {/* Row 2: what you made recently, and where applications stand. */}
           <div className="grid items-stretch gap-4 lg:grid-cols-12">
-            <Panel delay={0.15} className="lg:col-span-7">
-              <PanelHeader
+            <DashboardPanel delay={0.15} className="lg:col-span-7">
+              <DashboardPanelHeader
                 title="Recent tailored CVs"
                 description="Open one to review, edit or download"
                 href="/dashboard/tailored"
@@ -437,7 +377,7 @@ export default function DashboardPage() {
                   </li>
                 ))}
               </ul>
-            </Panel>
+            </DashboardPanel>
 
             <DashboardPipelineCard
               applications={applications}
@@ -449,15 +389,19 @@ export default function DashboardPage() {
           </div>
 
           {/* Row 3: company research. */}
-          <Panel delay={0.25}>
-            <PanelHeader
+          <DashboardPanel delay={0.25}>
+            <DashboardPanelHeader
               title="Company research"
               description={
                 recentResearch.length > 0
                   ? "Briefs on the companies you are applying to"
                   : "Know the company before the interview"
               }
-              href={recentResearch.length > 0 ? "/dashboard/company-research" : undefined}
+              href={
+                recentResearch.length > 0
+                  ? "/dashboard/company-research"
+                  : undefined
+              }
               linkLabel="View all"
             />
             {recentResearch.length > 0 ? (
@@ -476,7 +420,8 @@ export default function DashboardPage() {
                           {brief.companyName || "Unnamed company"}
                         </span>
                         <span className="block truncate text-xs text-muted-foreground">
-                          {brief.jobTitle || formatRelativeDay(brief.createdAt, now)}
+                          {brief.jobTitle ||
+                            formatRelativeDay(brief.createdAt, now)}
                         </span>
                       </span>
                     </Link>
@@ -496,13 +441,13 @@ export default function DashboardPage() {
                 </div>
                 <Link
                   href="/dashboard/company-research"
-                  className="landing-secondary-btn landing-secondary-btn-sm shrink-0"
+                  className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
                 >
                   Research a company
                 </Link>
               </div>
             )}
-          </Panel>
+          </DashboardPanel>
         </div>
       )}
     </DashboardPageShell>

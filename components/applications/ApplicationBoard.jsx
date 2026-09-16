@@ -37,19 +37,29 @@ function Column({ stage, applications, onOpen, onEdit }) {
   const remaining = applications.length - shown.length;
 
   return (
-    <div className="flex w-72 shrink-0 flex-col rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
-      <div className="flex items-center gap-2 px-3.5 py-3">
-        <span className="size-2.5 rounded-sm" style={{ background: stage.color }} />
-        <span className="text-sm font-semibold tracking-tight">{stage.label}</span>
-        <span className="rounded-full bg-[var(--landing-paper-strong)] px-2 py-0.5 text-xs font-semibold text-muted-foreground">
+    <section
+      aria-label={`${stage.label}, ${applications.length}`}
+      className="flex w-72 shrink-0 flex-col gap-2"
+    >
+      {/* Header sits above the tray so every column's cards share one top edge. */}
+      <div className="flex h-8 items-center gap-2 px-1">
+        <span
+          className="h-2 w-2 shrink-0 rounded-full"
+          style={{ background: stage.color }}
+          aria-hidden="true"
+        />
+        <span className="truncate text-xs font-semibold uppercase tracking-wide text-foreground">
+          {stage.label}
+        </span>
+        <span className="ml-auto text-xs font-medium tabular-nums text-muted-foreground">
           {applications.length}
         </span>
       </div>
       <div
         ref={setNodeRef}
         className={cn(
-          "flex min-h-24 flex-1 flex-col gap-2.5 overflow-y-auto px-2.5 pb-3 transition-colors",
-          isOver && "bg-[var(--landing-primary-soft)]"
+          "flex min-h-32 flex-1 flex-col gap-2 overflow-y-auto rounded-lg bg-[var(--landing-paper-soft)] p-2 transition-colors lg:max-h-[calc(100dvh-24rem)]",
+          isOver && "bg-[var(--landing-primary-soft)] ring-1 ring-inset ring-[var(--landing-line)]"
         )}
       >
         {shown.map((app) => (
@@ -59,13 +69,13 @@ function Column({ stage, applications, onOpen, onEdit }) {
           <button
             type="button"
             onClick={() => setVisible((v) => v + COLUMN_PAGE_SIZE)}
-            className="rounded-lg border border-dashed border-[var(--landing-line)] py-2 text-xs text-muted-foreground hover:bg-[var(--landing-primary-soft)]"
+            className="h-9 rounded-md border border-dashed border-[var(--landing-line)] text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-surface)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
           >
             Show {Math.min(remaining, COLUMN_PAGE_SIZE)} more
           </button>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -95,7 +105,7 @@ export function ApplicationBoard({ applications, onOpen, onEdit, onMove }) {
         if (app && app.status !== over.id) onMove(app._id, String(over.id));
       }}
     >
-      <div className="flex h-full min-h-0 gap-4 overflow-x-auto pb-4">
+      <div className="flex min-h-0 gap-3 overflow-x-auto pb-2">
         {STAGES.map((stage) => (
           <Column
             key={stage.key}

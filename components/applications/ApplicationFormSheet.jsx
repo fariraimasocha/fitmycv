@@ -5,7 +5,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { LinkSimpleIcon, SparkleIcon, SpinnerGapIcon, XIcon } from "@phosphor-icons/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -94,7 +93,7 @@ function TagsField({ id, value, suggestions, onChange }) {
         id={id}
         value={draft}
         list={`${id}-list`}
-        placeholder="Add a tag and press Enter…"
+        placeholder="Type a tag and press Enter"
         onChange={(event) => setDraft(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
@@ -114,16 +113,16 @@ function TagsField({ id, value, suggestions, onChange }) {
           {value.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center gap-1 rounded-full bg-[var(--landing-paper-strong)] px-2 py-0.5 text-xs text-muted-foreground"
+              className="inline-flex h-6 items-center gap-1 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] pl-2 pr-1 text-xs font-medium text-muted-foreground"
             >
               {tag}
               <button
                 type="button"
                 aria-label={`Remove tag ${tag}`}
-                className="hover:text-destructive"
+                className="flex h-4 w-4 items-center justify-center rounded-sm transition-colors hover:bg-destructive/10 hover:text-destructive"
                 onClick={() => onChange(value.filter((t) => t !== tag))}
               >
-                <XIcon className="size-3" />
+                <XIcon size={12} aria-hidden="true" />
               </button>
             </span>
           ))}
@@ -230,11 +229,11 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full gap-0 sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle>{isEditing ? "Edit application" : "Add application"}</SheetTitle>
+          <SheetTitle className="font-outfit">{isEditing ? "Edit application" : "Add application"}</SheetTitle>
           <SheetDescription>
             {isEditing
-              ? "Update this application's details."
-              : "Track a job you're applying to and link the CV you sent."}
+              ? "Update the details of this application."
+              : "Track a job you are applying to and link the CV you sent."}
           </SheetDescription>
         </SheetHeader>
 
@@ -244,43 +243,46 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
             type="single"
             collapsible
             defaultValue={form.jobDescription ? undefined : undefined}
-            className="rounded-lg border border-dashed border-[var(--landing-line)] px-3"
+            className="rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3"
           >
-            <AccordionItem value="job-description">
+            <AccordionItem value="job-description" className="border-0">
               <AccordionTrigger className="py-3 hover:no-underline">
-                <span className="flex items-center gap-1.5">
-                  <SparkleIcon className="text-[var(--landing-accent)]" />
+                <span className="flex items-center gap-2 text-sm font-medium text-foreground">
+                  <SparkleIcon size={16} className="text-[var(--landing-accent-dark)]" aria-hidden="true" />
                   Job description
                 </span>
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-2">
-                <p className="text-xs text-muted-foreground">
-                  Copy the whole job description from the posting and paste it below. We&apos;ll fill in the fields and
-                  keep the text with this application for fit scoring and drafts.
+                <p className="text-xs leading-5 text-muted-foreground">
+                  Paste the whole job description from the posting. We fill in the fields and keep the text with this
+                  application for fit scoring and drafts.
                 </p>
                 <Textarea
                   className="field-sizing-fixed h-40"
                   value={form.jobDescription}
                   rows={8}
                   maxLength={MAX_JOB_DESCRIPTION_CHARS}
-                  placeholder="Paste the full job description here…"
+                  placeholder="Paste the full job description here"
                   onChange={(event) => set("jobDescription", event.target.value)}
                   onPaste={(event) => runAutofill(event.clipboardData.getData("text"))}
                 />
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[11px] text-muted-foreground">
-                    {autofill.isPending ? "Reading the posting…" : "Pasting fills the fields automatically."}
+                    {autofill.isPending ? "Reading the posting" : "Pasting fills the fields for you."}
                   </p>
-                  <Button
+                  <button
                     type="button"
-                    size="sm"
-                    variant="outline"
+                    className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
                     disabled={form.jobDescription.trim().length < MIN_AUTOFILL_CHARS || autofill.isPending}
                     onClick={() => runAutofill(form.jobDescription)}
                   >
-                    {autofill.isPending ? <SpinnerGapIcon className="animate-spin" /> : <SparkleIcon />}
+                    {autofill.isPending ? (
+                      <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                    ) : (
+                      <SparkleIcon size={16} aria-hidden="true" />
+                    )}
                     Fill fields
-                  </Button>
+                  </button>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -298,7 +300,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 id={field("location")}
                 value={form.location}
                 list={field("locations")}
-                placeholder="Remote, hybrid, a city…"
+                placeholder="Remote, hybrid or a city"
                 onChange={(e) => set("location", e.target.value)}
               />
               <datalist id={field("locations")}>
@@ -317,7 +319,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 id={field("source")}
                 value={form.source}
                 list={field("sources")}
-                placeholder="LinkedIn, referral…"
+                placeholder="LinkedIn, referral"
                 onChange={(e) => set("source", e.target.value)}
               />
               <datalist id={field("sources")}>
@@ -334,7 +336,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 <SelectContent>
                   {STAGES.map((stage) => (
                     <SelectItem key={stage.key} value={stage.key}>
-                      <span className="size-2 rounded-sm" style={{ background: stage.color }} />
+                      <span className="h-2 w-2 rounded-full" style={{ background: stage.color }} aria-hidden="true" />
                       {stage.label}
                     </SelectItem>
                   ))}
@@ -348,19 +350,22 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 id={field("url")}
                 type="url"
                 value={form.jobUrl}
-                placeholder="https://…"
+                placeholder="https://"
                 onChange={(e) => set("jobUrl", e.target.value)}
               />
-              <Button
+              <button
                 type="button"
-                variant="outline"
-                className="shrink-0"
+                className="dashboard-secondary-btn shrink-0"
                 disabled={!/^https?:\/\//i.test(form.jobUrl.trim()) || fromLink.isPending}
                 onClick={() => fromLink.mutate()}
               >
-                {fromLink.isPending ? <SpinnerGapIcon className="animate-spin" /> : <LinkSimpleIcon />}
+                {fromLink.isPending ? (
+                  <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                ) : (
+                  <LinkSimpleIcon size={16} aria-hidden="true" />
+                )}
                 Fill from link
-              </Button>
+              </button>
             </div>
           </Field>
           {!isEditing && (
@@ -417,23 +422,24 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
               id={field("notes")}
               value={form.notes}
               rows={3}
-              placeholder="Who referred you, things to emphasize…"
+              placeholder="Who referred you, things to emphasize"
               onChange={(e) => set("notes", e.target.value)}
             />
           </Field>
         </div>
 
         <SheetFooter className="flex-row justify-end gap-2 border-t border-[var(--landing-line)]">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+          <button type="button" className="dashboard-secondary-btn" onClick={() => onOpenChange(false)}>
             Cancel
-          </Button>
-          <Button
+          </button>
+          <button
             type="button"
+            className="dashboard-primary-btn"
             disabled={!form.jobCompany.trim() || !form.jobTitle.trim() || save.isPending}
             onClick={submit}
           >
             {isEditing ? "Save changes" : "Add to pipeline"}
-          </Button>
+          </button>
         </SheetFooter>
       </SheetContent>
     </Sheet>

@@ -8,4 +8,10 @@ export { DashboardActivation } from "./DashboardActivation";
 export { DashboardActivityChart } from "./DashboardActivityChart";
 export { DashboardPipelineCard } from "./DashboardPipelineCard";
 export { DashboardFilterPills } from "./DashboardFilterPills";
+export {
+  DashboardPanel,
+  DashboardPanelHeader,
+  DashboardSectionTitle,
+} from "./DashboardPanel";
+export { DashboardStatStrip } from "./DashboardStatStrip";
 export { DashboardTabBar } from "./DashboardTabBar";

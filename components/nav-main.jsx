@@ -15,11 +15,11 @@ import { cn } from "@/lib/utils";
 
 function NavGroup({ label, items, pathname, onNavigate }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+    <SidebarGroup className="py-1.5">
+      <SidebarGroupLabel className="h-7 px-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/70">
         {label}
       </SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu className="gap-0.5">
         {items.map((item) => {
           // Match on segment boundaries only, else /dashboard/tailored/xyz
           // also lights up /dashboard/tailor.
@@ -34,12 +34,14 @@ function NavGroup({ label, items, pathname, onNavigate }) {
                 isActive={isActive}
                 asChild
                 className={cn(
-                  "rounded-md font-medium transition-all",
+                  "h-9 gap-2.5 rounded-md px-2.5 font-medium text-[var(--landing-ink)] transition-colors hover:bg-[var(--landing-primary-soft)] [&>svg]:size-[18px]",
                   isActive && "dashboard-nav-active"
                 )}
               >
                 <Link href={item.url} onClick={onNavigate}>
-                  {item.icon && <item.icon />}
+                  {item.icon && (
+                    <item.icon weight={isActive ? "fill" : "regular"} aria-hidden="true" />
+                  )}
                   <span>{item.title}</span>
                 </Link>
               </SidebarMenuButton>

@@ -1,9 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import {
   LightbulbIcon,
@@ -12,97 +9,126 @@ import {
   BookmarkSimpleIcon,
   CaretDownIcon,
   CaretUpIcon,
+  CheckIcon,
 } from "@phosphor-icons/react";
+import { DashboardPanelHeader } from "@/components/dashboard";
+
+const STAR_FIELDS = [
+  ["Situation", "situation"],
+  ["Task", "task"],
+  ["Action", "action"],
+  ["Result", "result"],
+  ["Reflection", "reflection"],
+];
 
 function StoryAccordion({ story, index, onSave }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="rounded-lg border">
+    <li className="rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)]">
       <button
+        type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between gap-2 p-3 text-left hover:bg-muted/30 transition-colors"
+        aria-expanded={expanded}
+        className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
       >
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-medium text-muted-foreground">Story {index + 1}</p>
-          <p className="text-sm font-medium line-clamp-1">{story.requirement}</p>
-        </div>
-        {expanded ? <CaretUpIcon size={14} /> : <CaretDownIcon size={14} />}
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold tabular-nums text-foreground">
+          {index + 1}
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-medium text-foreground">
+            {story.requirement}
+          </span>
+          <span className="block text-xs text-muted-foreground">STAR story</span>
+        </span>
+        {expanded ? (
+          <CaretUpIcon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
+        ) : (
+          <CaretDownIcon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
+        )}
       </button>
       {expanded && (
-        <div className="border-t px-3 pb-3 pt-2 space-y-2">
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Situation</p>
-            <p className="text-sm text-foreground">{story.situation}</p>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Task</p>
-            <p className="text-sm text-foreground">{story.task}</p>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Action</p>
-            <p className="text-sm text-foreground">{story.action}</p>
-          </div>
-          <div>
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Result</p>
-            <p className="text-sm text-foreground">{story.result}</p>
-          </div>
-          {story.reflection && (
-            <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Reflection</p>
-              <p className="text-sm text-foreground italic">{story.reflection}</p>
-            </div>
+        <div className="flex flex-col gap-3 border-t border-[var(--landing-line)] px-3 pb-3 pt-3">
+          {STAR_FIELDS.map(([label, key]) =>
+            story[key] ? (
+              <div key={key}>
+                <p className="text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="mt-0.5 text-sm leading-6 text-foreground">{story[key]}</p>
+              </div>
+            ) : null,
           )}
           {onSave && (
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
+              type="button"
               onClick={() => onSave(story)}
-              className="mt-1 text-xs"
+              className="dashboard-secondary-btn dashboard-secondary-btn-sm self-start"
             >
-              <BookmarkSimpleIcon size={14} />
-              Save to Story Bank
-            </Button>
+              <BookmarkSimpleIcon size={14} aria-hidden="true" />
+              Save to story bank
+            </button>
           )}
         </div>
       )}
-    </div>
+    </li>
   );
 }
 
 function LoadingSkeleton() {
   return (
-    <div className="space-y-4">
-      <Skeleton className="h-16 w-full rounded-lg" />
-      <Skeleton className="h-16 w-full rounded-lg" />
-      <Skeleton className="h-16 w-full rounded-lg" />
-      <Skeleton className="h-12 w-full rounded-lg" />
-      <Skeleton className="h-20 w-full rounded-lg" />
+    <div className="space-y-3" aria-busy="true">
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="tool-skeleton h-14 w-full rounded-md" />
+      ))}
+      <div className="tool-skeleton h-24 w-full rounded-md" />
     </div>
+  );
+}
+
+function SectionTitle({ icon: Icon, tone, children }) {
+  return (
+    <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+      <span
+        className={
+          tone === "success"
+            ? "flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-success-soft)] text-[var(--landing-success)]"
+            : tone === "accent"
+              ? "flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
+              : "flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground"
+        }
+      >
+        <Icon size={14} aria-hidden="true" />
+      </span>
+      {children}
+    </h3>
   );
 }
 
 export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCompany }) {
   if (isLoading) {
     return (
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardHeader className="dashboard-card-pad">
-          <CardTitle className="text-base">Generating interview prep...</CardTitle>
-        </CardHeader>
-        <CardContent className="dashboard-card-pad pt-0">
+      <section className="dashboard-card dashboard-card-pad rounded-lg">
+        <DashboardPanelHeader
+          title="Interview prep"
+          description="Writing STAR stories and talking points from your CV and this posting"
+        />
+        <div className="mt-4">
           <LoadingSkeleton />
-        </CardContent>
-      </Card>
+        </div>
+      </section>
     );
   }
 
   if (!prepData) {
     return (
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardContent className="py-10 text-center text-muted-foreground text-sm">
-          Interview prep will appear here after tailoring your CV.
-        </CardContent>
-      </Card>
+      <section className="dashboard-card dashboard-card-pad rounded-lg">
+        <DashboardPanelHeader
+          title="Interview prep"
+          description="STAR stories, tricky questions and talking points for this role."
+        />
+        <p className="mt-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
+          Your interview prep will appear here once the CV is tailored.
+        </p>
+      </section>
     );
   }
 
@@ -125,80 +151,76 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
         }),
       });
       if (!res.ok) throw new Error("Failed to save");
-      toast.success("Story saved to bank!");
+      toast.success("Story saved to your story bank");
     } catch {
-      toast.error("Failed to save story");
+      toast.error("Couldn't save the story. Try again.");
     }
   };
 
   const { stories, redFlagQA, talkingPoints } = prepData;
 
   return (
-    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-      <CardHeader className="dashboard-card-pad">
-        <CardTitle className="text-base">Interview Preparation</CardTitle>
-      </CardHeader>
-      <CardContent className="dashboard-card-pad space-y-6 pt-0">
-        {/* STAR Stories */}
+    <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+      <div className="dashboard-card-pad border-b border-[var(--landing-line)]">
+        <DashboardPanelHeader
+          title="Interview prep"
+          description="Drawn from your tailored CV and this posting."
+        />
+      </div>
+      <div className="divide-y divide-[var(--landing-line)]">
         {stories?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <ChatTeardropDotsIcon size={16} />
-              STAR stories
-            </h3>
-            <div className="space-y-2">
+          <div className="dashboard-card-pad">
+            <SectionTitle icon={ChatTeardropDotsIcon}>STAR stories</SectionTitle>
+            <ul className="mt-3 flex flex-col gap-2">
               {stories.map((story, i) => (
-                <StoryAccordion
-                  key={i}
-                  story={story}
-                  index={i}
-                  onSave={handleSaveStory}
-                />
+                <StoryAccordion key={i} story={story} index={i} onSave={handleSaveStory} />
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
-        {/* Red Flag Q&A */}
         {redFlagQA?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-ink)]">
-              <WarningCircleIcon size={16} weight="fill" />
-              Red flag questions
-            </h3>
-            <div className="space-y-3">
+          <div className="dashboard-card-pad">
+            <SectionTitle icon={WarningCircleIcon} tone="accent">
+              Questions to prepare for
+            </SectionTitle>
+            <ul className="mt-3 flex flex-col gap-2">
               {redFlagQA.map((qa, i) => (
-                <div key={i} className="space-y-1.5 rounded-lg bg-[var(--landing-paper-soft)] p-3">
-                  <p className="text-sm font-medium text-[var(--landing-ink)]">
-                    {qa.question}
-                  </p>
-                  <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+                <li
+                  key={i}
+                  className="rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-3"
+                >
+                  <p className="text-sm font-medium text-foreground">{qa.question}</p>
+                  <p className="mt-1 text-sm leading-6 text-[var(--landing-ink-soft)]">
                     {qa.suggestedAnswer}
                   </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
-        {/* Talking Points */}
         {talkingPoints?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)]">
-              <LightbulbIcon size={16} weight="fill" />
-              Key Talking Points
-            </h3>
-            <ul className="space-y-1.5">
+          <div className="dashboard-card-pad">
+            <SectionTitle icon={LightbulbIcon} tone="success">
+              Talking points
+            </SectionTitle>
+            <ul className="mt-3 flex flex-col gap-2">
               {talkingPoints.map((point, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-[var(--landing-success)]">*</span>
+                <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
+                  <CheckIcon
+                    size={14}
+                    weight="bold"
+                    className="mt-1.5 shrink-0 text-[var(--landing-success)]"
+                    aria-hidden="true"
+                  />
                   {point}
                 </li>
               ))}
             </ul>
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </section>
   );
 }

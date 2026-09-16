@@ -116,11 +116,56 @@ function formatValue(value) {
 const STATUS_PILL = {
   pending: {
     label: "Needs your review",
-    className: "border-[var(--landing-ink)] text-foreground",
+    className: "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]",
   },
-  applied: { label: "Applied", className: "border-[var(--landing-line)] text-muted-foreground" },
-  reverted: { label: "Rolled back", className: "border-[var(--landing-line)] text-muted-foreground" },
+  applied: {
+    label: "Applied",
+    className: "bg-[var(--landing-success-soft)] text-[var(--landing-success)]",
+  },
+  reverted: {
+    label: "Rolled back",
+    className: "bg-[var(--landing-paper-soft)] text-muted-foreground",
+  },
 };
+
+const TIME_FORMAT = { hour: "2-digit", minute: "2-digit" };
+const DATE_TIME_FORMAT = { day: "numeric", month: "short", ...TIME_FORMAT };
+
+/** Same day shows the time only, older messages add the date. */
+function formatMessageTime(value, now) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  const sameDay = date.toDateString() === new Date(now).toDateString();
+  return date.toLocaleString("en-GB", sameDay ? TIME_FORMAT : DATE_TIME_FORMAT);
+}
+
+/**
+ * One chat bubble. You sit on the right on a paper-soft fill, the agent on the
+ * left on plain surface. Both share the same width cap and radius.
+ */
+function Bubble({ role, at, now, pending, children }) {
+  const isUser = role === "user";
+  const time = formatMessageTime(at, now);
+  return (
+    <div className={cn("flex flex-col gap-1", isUser ? "items-end" : "items-start")}>
+      <div
+        className={cn(
+          "max-w-5/6 rounded-lg border border-[var(--landing-line)] px-3.5 py-2.5 text-sm leading-6 break-words whitespace-pre-wrap text-foreground",
+          isUser ? "bg-[var(--landing-paper-soft)]" : "bg-[var(--landing-surface)]",
+          pending && "opacity-70"
+        )}
+      >
+        {children}
+      </div>
+      {time && (
+        <time dateTime={new Date(at).toISOString()} className="px-1 text-xs tabular-nums text-muted-foreground">
+          {time}
+        </time>
+      )}
+    </div>
+  );
+}
 
 function ProposalCard({ proposal, draft, busy, onDecide }) {
   const pending = proposal.status === "pending";
@@ -128,7 +173,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
   if (proposal.status === "rejected") {
     return (
       <p className="flex items-center gap-2 text-xs text-muted-foreground">
-        <ProhibitIcon className="size-4 shrink-0" aria-hidden="true" />
+        <ProhibitIcon size={14} className="shrink-0" aria-hidden="true" />
         <span className="truncate">You declined: {proposal.title}</span>
       </p>
     );
@@ -137,16 +182,16 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
   const pill = STATUS_PILL[proposal.status];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)]">
+    <div className="overflow-hidden rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]">
       <div className="flex items-start justify-between gap-3 px-4 pt-3.5 pb-3">
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-foreground">{proposal.title}</p>
+          <p className="truncate text-sm font-semibold text-foreground">{proposal.title}</p>
           {proposal.summary && <p className="mt-0.5 text-sm leading-5 text-muted-foreground">{proposal.summary}</p>}
         </div>
         {pill && (
           <span
             className={cn(
-              "shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-medium whitespace-nowrap",
+              "inline-flex shrink-0 items-center rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap",
               pill.className
             )}
           >
@@ -181,18 +226,23 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
 
       {pending && (
         <div className="flex items-center gap-2 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-2.5">
-          <Button
-            size="sm"
+          <button
+            type="button"
             disabled={busy}
             onClick={() => onDecide("apply")}
-            className="rounded-md bg-foreground font-medium text-background hover:bg-black"
+            className="dashboard-primary-btn dashboard-primary-btn-sm"
           >
-            <CheckIcon aria-hidden="true" />
+            <CheckIcon size={16} weight="bold" aria-hidden="true" />
             Apply change
-          </Button>
-          <Button size="sm" variant="ghost" disabled={busy} onClick={() => onDecide("reject")} className="rounded-md">
+          </button>
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => onDecide("reject")}
+            className="dashboard-secondary-btn dashboard-secondary-btn-sm"
+          >
             Decline
-          </Button>
+          </button>
         </div>
       )}
       {proposal.canRestore && (
@@ -202,9 +252,9 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
             variant="ghost"
             disabled={busy}
             onClick={() => onDecide("restore")}
-            className="rounded-md text-muted-foreground hover:text-foreground"
+            className="rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
           >
-            <ArrowCounterClockwiseIcon aria-hidden="true" />
+            <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />
             Restore to before this change
           </Button>
         </div>
@@ -215,7 +265,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
 
 function QuestionCard({ question, answer, disabled, onAnswer }) {
   return (
-    <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4">
+    <div className="rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4">
       <p className="text-sm leading-6 font-medium text-foreground">{question.question}</p>
       {answer !== null ? (
         <p className="mt-1.5 text-sm text-muted-foreground">You answered: {answer}</p>
@@ -229,7 +279,7 @@ function QuestionCard({ question, answer, disabled, onAnswer }) {
                   type="button"
                   disabled={disabled}
                   onClick={() => onAnswer(choice)}
-                  className="min-h-11 rounded-lg border border-[var(--landing-line)] px-3 py-2 text-left text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
+                  className="min-h-10 rounded-md border border-[var(--landing-line)] px-3 py-2 text-left text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
                 >
                   {choice}
                 </button>
@@ -248,7 +298,11 @@ function ToolRow({ message }) {
   const Icon = failed ? WarningCircleIcon : CheckCircleIcon;
   return (
     <p className="flex items-center gap-2 text-xs text-muted-foreground">
-      <Icon className="size-4 shrink-0" aria-hidden="true" />
+      <Icon
+        size={14}
+        className={cn("shrink-0", !failed && "text-[var(--landing-success)]")}
+        aria-hidden="true"
+      />
       {TOOL_LABEL[message.toolName][failed ? "failed" : "done"]}
     </p>
   );
@@ -256,6 +310,8 @@ function ToolRow({ message }) {
 
 export function AgentChat({ thread, draft, sending, sendingText, onSend, decidingId, onDecide }) {
   const [text, setText] = useState("");
+  // Captured once so "today" in timestamps does not shift while you read.
+  const [now] = useState(() => Date.now());
   const composerRef = useRef(null);
   const scrollRef = useRef(null);
   const proposals = new Map(thread.proposals.map((p) => [String(p._id), p]));
@@ -283,10 +339,10 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
         <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col gap-4 px-4 py-5">
           {messages.length === 0 && !sending && (
             <div className="flex flex-1 flex-col justify-center py-6">
-              <span className="flex size-10 items-center justify-center rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)]">
-                <SparkleIcon className="size-5 text-foreground" aria-hidden="true" />
+              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+                <SparkleIcon size={20} aria-hidden="true" />
               </span>
-              <h2 className="mt-4 font-outfit text-2xl font-semibold tracking-tight text-foreground">
+              <h2 className="mt-4 font-outfit text-xl font-semibold tracking-[-0.02em] text-foreground">
                 What should we work on?
               </h2>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
@@ -306,12 +362,11 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                         composerRef.current?.focus();
                       }
                     }}
-                    className="group flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-left transition-colors outline-none hover:border-[var(--landing-ink-faint)] focus-visible:ring-2 focus-visible:ring-ring/40"
+                    className="group flex items-start gap-3 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-left transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
-                    <s.icon
-                      className="mt-0.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
-                      aria-hidden="true"
-                    />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+                      <s.icon size={16} aria-hidden="true" />
+                    </span>
                     <span className="min-w-0">
                       <span className="block text-sm font-medium text-foreground">{s.label}</span>
                       <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{s.description}</span>
@@ -325,18 +380,16 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
           {messages.map((m, index) => {
             if (m.role === "user") {
               return (
-                <div key={m._id} className="flex justify-end">
-                  <p className="max-w-5/6 rounded-2xl rounded-br-md bg-foreground px-3.5 py-2 text-sm leading-6 break-words whitespace-pre-wrap text-background">
-                    {m.content}
-                  </p>
-                </div>
+                <Bubble key={m._id} role="user" at={m.at} now={now}>
+                  {m.content}
+                </Bubble>
               );
             }
             if (m.role === "assistant") {
               return m.content?.trim() ? (
-                <p key={m._id} className="text-sm leading-6 break-words whitespace-pre-wrap text-foreground">
+                <Bubble key={m._id} role="assistant" at={m.at} now={now}>
                   {m.content}
-                </p>
+                </Bubble>
               ) : null;
             }
             if (m.proposalId) {
@@ -371,11 +424,9 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
 
           {sending && (
             <>
-              <div className="flex justify-end">
-                <p className="max-w-5/6 rounded-2xl rounded-br-md bg-foreground px-3.5 py-2 text-sm leading-6 break-words whitespace-pre-wrap text-background opacity-70">
-                  {sendingText}
-                </p>
-              </div>
+              <Bubble role="user" pending>
+                {sendingText}
+              </Bubble>
               <div role="status" className="flex items-center gap-2.5 text-sm text-muted-foreground">
                 <span className="flex gap-1" aria-hidden="true">
                   {[0, 1, 2].map((i) => (
@@ -393,15 +444,16 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
         </div>
       </div>
 
+      {/* The composer is its own hairline panel pinned to the bottom of the pane. */}
       <form
         onSubmit={(event) => {
           event.preventDefault();
           submit(text);
         }}
-        className="shrink-0 border-t border-[var(--landing-line)] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-4"
+        className="shrink-0 border-t border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-4"
       >
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-end gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1.5 pl-3.5 shadow-[var(--landing-shadow-sm)] transition-colors focus-within:border-[var(--landing-ink-faint)]">
+          <div className="flex items-end gap-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-bg)] p-1.5 pl-3 transition-colors focus-within:border-[var(--landing-ink)]">
             <Textarea
               ref={composerRef}
               rows={1}
@@ -417,15 +469,14 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
               }}
               className="field-sizing-content max-h-40 min-h-9 flex-1 resize-none rounded-none border-0 bg-transparent px-0 py-2 text-base leading-5 shadow-none focus-visible:ring-0 sm:text-sm"
             />
-            <Button
+            <button
               type="submit"
-              size="icon"
               aria-label="Send message"
               disabled={!text.trim() || sending}
-              className="size-9 shrink-0 rounded-xl bg-foreground text-background hover:bg-black"
+              className="dashboard-primary-btn h-9 w-9 shrink-0 px-0"
             >
-              <ArrowUpIcon weight="bold" />
-            </Button>
+              <ArrowUpIcon size={16} weight="bold" aria-hidden="true" />
+            </button>
           </div>
           <p className="mt-1.5 hidden px-1 text-xs text-muted-foreground sm:block">
             Press Enter to send. Shift and Enter adds a new line.

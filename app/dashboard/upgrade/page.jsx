@@ -4,23 +4,24 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion } from "motion/react";
-import { ArrowLeftIcon } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowLeftIcon, CheckIcon } from "@phosphor-icons/react";
 import Loader from "@/components/Loader";
 import {
   DashboardPageShell,
   DashboardPageHeader,
+  DashboardPanel,
+  DashboardPanelHeader,
 } from "@/components/dashboard";
 import PricingCards from "@/components/pricing/PricingCards";
 import { PRO_FEATURES } from "@/lib/pro-features";
-import { CheckIcon } from "@phosphor-icons/react";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
 export default function UpgradePage() {
   const { update } = useSession();
   const router = useRouter();
+  const reduceMotion = useReducedMotion();
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
@@ -46,47 +47,44 @@ export default function UpgradePage() {
   return (
     <DashboardPageShell width="narrow">
       <DashboardPageHeader
-        title="Upgrade to Premium"
-        description="Unlock PDF downloads, interview prep, and the full job search toolkit."
+        title="Upgrade to Pro"
+        description="Download your tailored CVs and cover letters as PDF, research companies and get daily job matches."
+        actions={
+          <Link href="/dashboard" className="dashboard-secondary-btn">
+            <ArrowLeftIcon size={16} aria-hidden="true" />
+            Back to home
+          </Link>
+        }
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="space-y-6"
+        transition={{ duration: 0.3, delay: 0.05 }}
       >
-        {/* compact: the "Everything included" list below already covers PRO_FEATURES */}
+        {/* compact: the "Everything in Pro" list below already covers PRO_FEATURES */}
         <PricingCards compact />
-
-        <div className="dashboard-card rounded-lg border border-[var(--landing-line)] bg-card p-6">
-          <h2 className="mb-4 font-outfit text-sm font-semibold text-foreground">
-            Everything included
-          </h2>
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {PRO_FEATURES.map((feature) => (
-              <li
-                key={feature}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
-              >
-                <CheckIcon
-                  size={14}
-                  weight="bold"
-                  className="mt-0.5 shrink-0 text-[var(--landing-success)]"
-                />
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <Button asChild variant="ghost">
-          <Link href="/dashboard">
-            <ArrowLeftIcon className="mr-2 size-4" />
-            Go back
-          </Link>
-        </Button>
       </motion.div>
+
+      <DashboardPanel delay={0.1}>
+        <DashboardPanelHeader
+          title="Everything in Pro"
+          description="Every line is a feature you unlock today."
+        />
+        <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+          {PRO_FEATURES.map((feature) => (
+            <li
+              key={feature}
+              className="flex items-start gap-2 text-sm leading-5 text-muted-foreground"
+            >
+              <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
+                <CheckIcon size={10} weight="bold" aria-hidden="true" />
+              </span>
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </DashboardPanel>
     </DashboardPageShell>
   );
 }

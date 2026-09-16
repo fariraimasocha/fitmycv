@@ -3,12 +3,13 @@
 import { useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { DownloadSimpleIcon } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { DashboardPanel, DashboardPanelHeader } from "@/components/dashboard";
 import { computeInsights, computeTimeline } from "@/lib/applications";
 
-// Ported from Reactive Resume's insights-view.tsx: stat tiles, a pipeline flow
-// snapshot you can export as a PNG, weekly velocity and sources. Plain SVG and
-// CSS bars, no chart library.
+// Ported from Reactive Resume's insights-view.tsx: a pipeline flow snapshot
+// you can export as a PNG, weekly velocity and sources. Plain SVG and CSS
+// bars, no chart library. The headline numbers live in the stat strip on the
+// page, so this view does not repeat them.
 
 // The flow chart draws with literal colors so the exported PNG matches the
 // screen. FitMyCV's ink and accent ramp stand in for Reactive Resume's palette.
@@ -18,7 +19,7 @@ const FLOW_REJECTED = "#e8836f";
 const FLOW_TEXT = "#faf8f5";
 const FLOW_MUTED = "#a39e94";
 
-function PipelineFlow({ insights }) {
+function PipelineFlow({ insights, delay }) {
   const svgRef = useRef(null);
   const W = 800;
   const H = 340;
@@ -62,18 +63,25 @@ function PipelineFlow({ insights }) {
   };
 
   return (
-    <div className="rounded-xl border border-[var(--landing-line)] p-5">
-      <div className="flex items-start justify-between gap-4">
-        <h3 className="text-sm font-semibold">Where your applications went</h3>
-        <Button size="sm" variant="outline" onClick={exportPng}>
-          <DownloadSimpleIcon />
-          Export PNG
-        </Button>
-      </div>
+    <DashboardPanel delay={delay}>
+      <DashboardPanelHeader
+        title="Where your applications went"
+        description="How many reached each stage"
+        action={
+          <button
+            type="button"
+            onClick={exportPng}
+            className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
+          >
+            <DownloadSimpleIcon size={16} aria-hidden="true" />
+            Export PNG
+          </button>
+        }
+      />
       <svg
         ref={svgRef}
         viewBox={`0 0 ${W} ${H}`}
-        className="mt-3 w-full rounded-xl"
+        className="mt-4 w-full rounded-md"
         style={{ fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
         role="img"
         aria-label="Pipeline flow"
@@ -86,7 +94,7 @@ function PipelineFlow({ insights }) {
             </linearGradient>
           ))}
         </defs>
-        <rect x={0} y={0} width={W} height={H} rx={16} fill={FLOW_BG} />
+        <rect x={0} y={0} width={W} height={H} rx={8} fill={FLOW_BG} />
         <text x={padX} y={40} fontSize={17} fontWeight={700} fill={FLOW_TEXT}>
           Job search pipeline
         </text>
@@ -131,7 +139,7 @@ function PipelineFlow({ insights }) {
           </g>
         ))}
       </svg>
-    </div>
+    </DashboardPanel>
   );
 }
 
@@ -158,79 +166,65 @@ export function ApplicationInsights({ applications }) {
 
   if (insights.total === 0) {
     return (
-      <p className="py-16 text-center text-sm text-muted-foreground">
-        No applications yet. Add a few to see your funnel and reply rates.
-      </p>
+      <DashboardPanel>
+        <p className="py-10 text-center text-sm text-muted-foreground">
+          Your funnel and reply rates appear here once you add applications.
+        </p>
+      </DashboardPanel>
     );
   }
 
-  const tiles = [
-    { label: "Total applications", value: insights.total, sub: "Not counting archived" },
-    { label: "Applied", value: insights.applied, sub: "Past saved" },
-    { label: "Response rate", value: `${insights.responseRate}%`, sub: "Reached screening" },
-    { label: "Interviews", value: insights.interviews, sub: "Interview or beyond" },
-    { label: "Offers", value: insights.offers, sub: insights.rejected > 0 ? `${insights.rejected} rejected` : "So far" },
-  ];
-
   return (
-    <div className="flex max-w-4xl flex-col gap-4 overflow-y-auto pb-6">
-      <p className="text-xs text-muted-foreground">Pipeline health across all applications</p>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        {tiles.map((tile) => (
-          <div key={tile.label} className="rounded-xl border border-[var(--landing-line)] p-4">
-            <div className="text-xs text-muted-foreground">{tile.label}</div>
-            <div className="mt-2 text-2xl font-bold tracking-tight">{tile.value}</div>
-            <div className="mt-1 text-xs text-muted-foreground">{tile.sub}</div>
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-col gap-4">
+      <PipelineFlow insights={insights} delay={0.05} />
 
-      <PipelineFlow insights={insights} />
-
-      <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-xl border border-[var(--landing-line)] p-5">
-          <h3 className="text-sm font-semibold">Applications over time</h3>
-          <p className="mt-0.5 text-xs text-muted-foreground">Applications sent per week, last 8 weeks</p>
+      <div className="grid items-stretch gap-4 lg:grid-cols-2">
+        <DashboardPanel delay={0.1}>
+          <DashboardPanelHeader
+            title="Applications over time"
+            description="Sent per week, last 8 weeks"
+          />
           <div className="mt-4 flex items-end gap-2">
             {timeline.map((bucket) => (
               <div key={bucket.label} className="flex flex-1 flex-col items-center gap-1">
                 <div className="flex h-28 w-full flex-col justify-end">
-                  <span className="mb-1 text-center text-[10px] text-muted-foreground tabular-nums">
+                  <span className="mb-1 text-center text-[10px] tabular-nums text-muted-foreground">
                     {bucket.count || ""}
                   </span>
                   <div
-                    className="w-full rounded-t bg-[var(--landing-accent)]/60"
+                    className="w-full rounded-t-sm bg-[var(--landing-accent)]/60"
                     style={{ height: `${bucket.count ? Math.max((bucket.count / maxWeek) * 100, 8) : 0}%` }}
                   />
                 </div>
-                <span className="text-[10px] text-muted-foreground tabular-nums">{bucket.label}</span>
+                <span className="text-[10px] tabular-nums text-muted-foreground">{bucket.label}</span>
               </div>
             ))}
           </div>
-        </div>
+        </DashboardPanel>
 
-        <div className="rounded-xl border border-[var(--landing-line)] p-5">
-          <h3 className="text-sm font-semibold">Where applications come from</h3>
-          <p className="mt-0.5 text-xs text-muted-foreground">Count by source</p>
+        <DashboardPanel delay={0.15}>
+          <DashboardPanelHeader title="Where applications come from" description="Count by source" />
           <div className="mt-4 flex flex-col gap-3">
             {sources.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No source data yet.</p>
+              <p className="text-sm text-muted-foreground">
+                Add a source to an application to see it counted here.
+              </p>
             ) : (
               sources.map((row) => (
                 <div key={row.source} className="flex items-center gap-3 text-xs">
-                  <span className="w-28 shrink-0 truncate font-medium">{row.source}</span>
+                  <span className="w-28 shrink-0 truncate font-medium text-foreground">{row.source}</span>
                   <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]">
                     <div
                       className="h-full rounded-full bg-foreground/70"
                       style={{ width: `${Math.max((row.count / maxSource) * 100, 3)}%` }}
                     />
                   </div>
-                  <span className="w-6 text-right text-muted-foreground">{row.count}</span>
+                  <span className="w-6 text-right tabular-nums text-muted-foreground">{row.count}</span>
                 </div>
               ))
             )}
           </div>
-        </div>
+        </DashboardPanel>
       </div>
     </div>
   );

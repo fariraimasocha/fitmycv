@@ -2,51 +2,121 @@
 
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { motion } from "motion/react";
 import { toast } from "sonner";
 import {
   ScalesIcon,
   SparkleIcon,
   SpinnerGapIcon,
-  CheckSquareIcon,
-  SquareIcon,
+  CheckIcon,
   LightbulbIcon,
   ArrowsLeftRightIcon,
 } from "@phosphor-icons/react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Loader from "@/components/Loader";
 import {
   DashboardPageShell,
   DashboardPageHeader,
+  DashboardPanel,
+  DashboardPanelHeader,
+  DashboardEmptyState,
 } from "@/components/dashboard";
+import { initials } from "@/lib/applications";
 import { trackEvent } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
+
+const PAGE_TITLE = "Compare Offers";
+const PAGE_DESCRIPTION = "Pick 2 to 4 applications and compare them side by side.";
+const MAX_SELECTED = 4;
+const MIN_SELECTED = 2;
 
 const DIMENSION_LABELS = {
-  roleFit: "Role Fit",
+  roleFit: "Role fit",
   compensation: "Compensation",
   growth: "Growth",
   culture: "Culture",
-  techStack: "Tech Stack",
-  workLifeBalance: "Work-Life Balance",
-  companyStage: "Company Stage",
+  techStack: "Tech stack",
+  workLifeBalance: "Work-life balance",
+  companyStage: "Company stage",
   brand: "Brand",
 };
 
-function ScoreCell({ score }) {
-  const color =
-    score >= 8
-      ? "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]"
-      : score >= 6
-        ? "border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]"
-        : score >= 4
-          ? "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]"
-          : "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
+// Score bands read from the same success and accent ramp as the rest of the
+// dashboard: green for strong, ink for good, muted for middling, terracotta for weak.
+function scoreTone(score) {
+  if (score >= 8) return "bg-[var(--landing-success-soft)] text-[var(--landing-success)]";
+  if (score >= 6) return "bg-[var(--landing-primary-soft)] text-foreground";
+  if (score >= 4) return "bg-[var(--landing-paper-soft)] text-muted-foreground";
+  return "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]";
+}
 
+function ScoreChip({ score }) {
   return (
-    <span className={`inline-flex items-center justify-center rounded-sm px-2 py-1 text-xs font-bold tabular-nums ${color}`}>
+    <span
+      className={cn(
+        "inline-flex h-6 min-w-12 items-center justify-center rounded-md px-2 text-xs font-semibold tabular-nums",
+        scoreTone(score)
+      )}
+    >
       {score}/10
     </span>
+  );
+}
+
+function OfferOption({ app, selected, disabled, onToggle }) {
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={selected}
+      disabled={disabled}
+      onClick={onToggle}
+      className={cn(
+        "flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+        selected
+          ? "border-foreground bg-[var(--landing-primary-soft)]"
+          : "border-[var(--landing-line)] bg-[var(--landing-surface)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]",
+        disabled && "cursor-not-allowed opacity-40 hover:border-[var(--landing-line)] hover:bg-[var(--landing-surface)]"
+      )}
+    >
+      <span
+        className={cn(
+          "flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border transition-colors",
+          selected ? "border-foreground bg-foreground text-background" : "border-[var(--landing-line)] bg-[var(--landing-surface)]"
+        )}
+        aria-hidden="true"
+      >
+        {selected && <CheckIcon size={12} weight="bold" />}
+      </span>
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-xs font-semibold text-foreground">
+        {initials(app.jobCompany)}
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-sm font-semibold text-foreground">
+          {app.jobTitle || "Untitled role"}
+        </span>
+        <span className="block truncate text-xs text-muted-foreground">{app.jobCompany || "Company not set"}</span>
+      </span>
+      {app.matchGrade && (
+        <span className="shrink-0 text-xs font-medium tabular-nums text-muted-foreground">{app.matchGrade}</span>
+      )}
+    </button>
+  );
+}
+
+function SelectionSkeleton() {
+  return (
+    <div className="dashboard-card rounded-lg dashboard-card-pad">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col gap-1.5">
+          <div className="tool-skeleton h-3.5 w-32 rounded-sm" />
+          <div className="tool-skeleton h-3 w-20 rounded-sm" />
+        </div>
+        <div className="tool-skeleton h-9 w-32 rounded-md" />
+      </div>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2">
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="tool-skeleton h-14 rounded-md" />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -80,9 +150,9 @@ export default function ComparePage() {
     onSuccess: (result) => {
       if (result.data) setComparisonResult(result.data);
       trackEvent("offers_compared", { offer_count: selectedIds.length });
-      toast.success("Comparison ready!");
+      toast.success("Comparison ready");
     },
-    onError: () => toast.error("Failed to compare offers"),
+    onError: () => toast.error("Couldn't compare these offers. Try again."),
   });
 
   const toggleSelect = (id) => {
@@ -91,190 +161,200 @@ export default function ComparePage() {
     );
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) {
+    return (
+      <DashboardPageShell width="wide">
+        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <SelectionSkeleton />
+      </DashboardPageShell>
+    );
+  }
 
   const apps = applications || [];
+  const selectedCount = selectedIds.length;
+  const canCompare = selectedCount >= MIN_SELECTED && !compareMutation.isPending;
+  const comparisons = comparisonResult?.comparisons ?? [];
 
   return (
     <DashboardPageShell width="wide">
-      <DashboardPageHeader
-        title="Compare Offers"
-        description="Select 2 to 4 applications to compare side by side."
-      />
+      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
 
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardHeader className="border-b border-[var(--landing-line)]/60 px-4 pb-3 pt-5 sm:px-6 sm:pt-6">
-          <CardTitle className="flex items-center gap-2 text-base">
-            <ScalesIcon size={16} aria-hidden="true" />
-            Select Applications ({selectedIds.length}/4)
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="dashboard-card-pad space-y-2">
-          {apps.length === 0 ? (
-            <p className="text-sm text-muted-foreground">
-              No applications yet. Tailor some resumes first.
-            </p>
-          ) : (
-            apps.map((app) => {
+      {apps.length === 0 ? (
+        <DashboardEmptyState
+          icon={ScalesIcon}
+          title="Your applications will appear here"
+          description="Add applications to your pipeline first, then pick 2 to 4 to compare."
+          actionLabel="Open applications"
+          actionHref="/dashboard/applications"
+        />
+      ) : (
+        <DashboardPanel delay={0.05}>
+          <DashboardPanelHeader
+            title="Select applications"
+            description={`${selectedCount} of ${MAX_SELECTED} selected`}
+            action={
+              <button
+                type="button"
+                onClick={() => compareMutation.mutate()}
+                disabled={!canCompare}
+                className="dashboard-primary-btn dashboard-primary-btn-sm shrink-0"
+              >
+                {compareMutation.isPending ? (
+                  <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                ) : (
+                  <SparkleIcon size={16} aria-hidden="true" />
+                )}
+                {compareMutation.isPending ? "Comparing" : "Compare selected"}
+              </button>
+            }
+          />
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {apps.map((app) => {
               const isSelected = selectedIds.includes(app._id);
-              const disabled = !isSelected && selectedIds.length >= 4;
+              const disabled = !isSelected && selectedCount >= MAX_SELECTED;
               return (
-                <button
+                <OfferOption
                   key={app._id}
-                  onClick={() => !disabled && toggleSelect(app._id)}
+                  app={app}
+                  selected={isSelected}
                   disabled={disabled}
-                  className={`flex w-full items-center gap-3 rounded-md border p-3 text-left transition-colors ${
-                    isSelected
-                      ? "border-[var(--landing-ink)] bg-[var(--landing-primary-soft)]"
-                      : "border-[var(--landing-line)]/60 hover:bg-muted/30"
-                  } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
-                >
-                  {isSelected ? (
-                    <CheckSquareIcon size={18} className="shrink-0 text-[var(--landing-ink)]" weight="fill" />
-                  ) : (
-                    <SquareIcon size={18} className="shrink-0 text-muted-foreground" />
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="line-clamp-1 text-sm font-medium">{app.jobTitle}</p>
-                    <p className="text-xs text-muted-foreground">{app.jobCompany}</p>
-                  </div>
-                  {app.matchGrade && (
-                    <span className="shrink-0 text-xs font-medium text-muted-foreground">
-                      {app.matchGrade}
-                    </span>
-                  )}
-                </button>
+                  onToggle={() => !disabled && toggleSelect(app._id)}
+                />
               );
-            })
-          )}
-        </CardContent>
-        <CardFooter className="flex w-full flex-col items-stretch border-t border-[var(--landing-line)]/60 px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
-          <Button
-            onClick={() => compareMutation.mutate()}
-            disabled={selectedIds.length < 2 || compareMutation.isPending}
-            className="w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
-          >
-            {compareMutation.isPending ? (
-              <>
-                <SpinnerGapIcon size={16} className="animate-spin" />
-                Comparing...
-              </>
-            ) : (
-              <>
-                <SparkleIcon size={16} />
-                Compare Selected ({selectedIds.length})
-              </>
-            )}
-          </Button>
-        </CardFooter>
-      </Card>
+            })}
+          </div>
+        </DashboardPanel>
+      )}
 
-      {/* Results */}
       {comparisonResult && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="space-y-4"
-        >
-          {/* Comparison Table */}
-          <Card className="dashboard-card overflow-hidden rounded-lg border-[var(--landing-line)]">
-            <CardHeader>
-              <CardTitle className="text-base">Comparison Matrix</CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-[var(--landing-line)]">
-                      <th className="px-4 py-2 text-left text-xs font-medium text-muted-foreground">
-                        Dimension
+        <div className="flex flex-col gap-4">
+          <DashboardPanel pad={false} delay={0.05}>
+            <div className="border-b border-[var(--landing-line)] px-4 py-4 sm:px-5">
+              <DashboardPanelHeader
+                title="Comparison matrix"
+                description="Each dimension scored out of 10"
+              />
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-160 border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-[var(--landing-line)]">
+                    <th
+                      scope="col"
+                      className="sticky left-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-5"
+                    >
+                      Dimension
+                    </th>
+                    {comparisons.map((c) => (
+                      <th
+                        key={c.id || c.company}
+                        scope="col"
+                        className="min-w-40 px-4 py-2.5 text-right align-bottom"
+                      >
+                        <span className="block truncate text-xs font-semibold text-foreground">
+                          {c.company}
+                        </span>
+                        <span className="block truncate text-xs font-normal text-muted-foreground">
+                          {c.jobTitle}
+                        </span>
                       </th>
-                      {comparisonResult.comparisons.map((c) => (
-                        <th
-                          key={c.id || c.company}
-                          className="px-4 py-2 text-center text-xs font-medium"
-                        >
-                          <div>{c.company}</div>
-                          <div className="text-muted-foreground font-normal">{c.jobTitle}</div>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.entries(DIMENSION_LABELS).map(([key, label]) => (
-                      <tr key={key} className="border-b border-[var(--landing-line)] last:border-0">
-                        <td className="px-4 py-2 text-xs font-medium text-muted-foreground">
-                          {label}
-                        </td>
-                        {comparisonResult.comparisons.map((c) => (
-                          <td key={c.id || c.company} className="px-4 py-2 text-center">
-                            {c.scores?.[key] ? (
-                              <div className="space-y-0.5">
-                                <ScoreCell score={c.scores[key].score} />
-                                <p className="text-xs text-muted-foreground">
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--landing-line)]">
+                  {Object.entries(DIMENSION_LABELS).map(([key, label]) => (
+                    <tr key={key} className="transition-colors hover:bg-[var(--landing-paper-soft)]">
+                      <th
+                        scope="row"
+                        className="sticky left-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-left text-xs font-medium text-muted-foreground sm:px-5"
+                      >
+                        {label}
+                      </th>
+                      {comparisons.map((c) => (
+                        <td key={c.id || c.company} className="px-4 py-3 text-right align-top">
+                          {c.scores?.[key] ? (
+                            <div className="flex flex-col items-end gap-1">
+                              <ScoreChip score={c.scores[key].score} />
+                              {c.scores[key].note && (
+                                <p className="max-w-56 text-xs leading-5 text-muted-foreground">
                                   {c.scores[key].note}
                                 </p>
-                              </div>
-                            ) : (
-                              <span className="text-xs text-muted-foreground">n/a</span>
-                            )}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                    <tr className="border-t border-[var(--landing-line)]">
-                      <td className="px-4 py-2 text-xs font-bold">Total</td>
-                      {comparisonResult.comparisons.map((c) => (
-                        <td key={c.id || c.company} className="px-4 py-2 text-center">
-                          <span className="text-lg font-semibold tabular-nums">
-                            {c.totalScore?.toFixed(1) || "n/a"}
-                          </span>
-                          <span className="text-xs text-muted-foreground">/10</span>
+                              )}
+                            </div>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">n/a</span>
+                          )}
                         </td>
                       ))}
                     </tr>
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Recommendation */}
-          {comparisonResult.recommendation && (
-            <Card className="dashboard-card rounded-lg border-[#c8e6d4]">
-              <CardContent className="p-4">
-                <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)] mb-2">
-                  <LightbulbIcon size={16} weight="fill" />
-                  Recommendation
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {comparisonResult.recommendation}
-                </p>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Tradeoffs */}
-          {comparisonResult.tradeoffs?.length > 0 && (
-            <Card className="dashboard-card rounded-lg border-[var(--landing-line)]">
-              <CardContent className="p-4">
-                <h3 className="flex items-center gap-2 text-sm font-semibold mb-2">
-                  <ArrowsLeftRightIcon size={16} />
-                  Key Tradeoffs
-                </h3>
-                <ul className="space-y-1.5">
-                  {comparisonResult.tradeoffs.map((t, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="mt-0.5 shrink-0 text-[var(--landing-accent)]">*</span>
-                      {t}
-                    </li>
                   ))}
-                </ul>
-              </CardContent>
-            </Card>
-          )}
-        </motion.div>
+                </tbody>
+                <tfoot>
+                  <tr className="border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
+                    <th
+                      scope="row"
+                      className="sticky left-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-foreground sm:px-5"
+                    >
+                      Total
+                    </th>
+                    {comparisons.map((c) => (
+                      <td key={c.id || c.company} className="px-4 py-3 text-right">
+                        <span className="font-outfit text-lg font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
+                          {typeof c.totalScore === "number" ? c.totalScore.toFixed(1) : "n/a"}
+                        </span>
+                        {typeof c.totalScore === "number" && (
+                          <span className="text-xs text-muted-foreground">/10</span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </DashboardPanel>
+
+          <div className="grid items-start gap-4 lg:grid-cols-2">
+            {comparisonResult.recommendation && (
+              <DashboardPanel delay={0.1}>
+                <div className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
+                    <LightbulbIcon size={16} weight="fill" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <h2 className="font-outfit text-sm font-semibold text-foreground">Recommendation</h2>
+                    <p className="mt-1.5 text-sm leading-6 text-muted-foreground">
+                      {comparisonResult.recommendation}
+                    </p>
+                  </div>
+                </div>
+              </DashboardPanel>
+            )}
+
+            {comparisonResult.tradeoffs?.length > 0 && (
+              <DashboardPanel delay={0.15}>
+                <div className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+                    <ArrowsLeftRightIcon size={16} aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <h2 className="font-outfit text-sm font-semibold text-foreground">Key tradeoffs</h2>
+                    <ul className="mt-1.5 flex flex-col gap-2">
+                      {comparisonResult.tradeoffs.map((t, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+                          <span
+                            className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--landing-accent)]"
+                            aria-hidden="true"
+                          />
+                          <span className="min-w-0">{t}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </DashboardPanel>
+            )}
+          </div>
+        </div>
       )}
     </DashboardPageShell>
   );

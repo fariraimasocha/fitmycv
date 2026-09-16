@@ -2,7 +2,6 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import {
   ArrowLeftIcon,
@@ -26,7 +25,13 @@ import { ResumeTemplate } from "@/components/ResumePreview";
 import TemplatePicker from "@/components/TemplatePicker";
 import Loader from "@/components/Loader";
 import { ScaledDocument } from "@/components/cv/ScaledDocument";
-import { DashboardPageShell, DashboardTabBar } from "@/components/dashboard";
+import {
+  DashboardPageShell,
+  DashboardPageHeader,
+  DashboardPanel,
+  DashboardStatStrip,
+  DashboardTabBar,
+} from "@/components/dashboard";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import {
@@ -61,18 +66,25 @@ function formatSavedAt(value, now) {
   return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 }
 
-// Both header buttons share one height and padding so they read as a pair.
-const SECONDARY_BTN =
-  "landing-secondary-btn landing-secondary-btn-sm h-10 px-4 font-outfit text-sm font-medium";
-const PRIMARY_BTN = "dashboard-primary-btn h-10 px-4 text-sm";
-
 const MOBILE_TABS = [
-  { id: "edit", label: "Edit", icon: <PencilSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "preview", label: "Preview", icon: <EyeIcon size={14} aria-hidden="true" /> },
+  {
+    id: "edit",
+    label: "Edit",
+    icon: <PencilSimpleIcon size={14} aria-hidden="true" />,
+  },
+  {
+    id: "preview",
+    label: "Preview",
+    icon: <EyeIcon size={14} aria-hidden="true" />,
+  },
 ];
 
 const UPLOAD_STEPS = [
-  { icon: UploadSimpleIcon, title: "Upload a PDF", body: "One file, up to 8MB." },
+  {
+    icon: UploadSimpleIcon,
+    title: "Upload a PDF",
+    body: "One file, up to 8MB.",
+  },
   {
     icon: SparkleIcon,
     title: "We extract the details",
@@ -85,168 +97,41 @@ const UPLOAD_STEPS = [
   },
 ];
 
-function Rise({ children, delay = 0, className }) {
-  const reduceMotion = useReducedMotion();
-  return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function PageHeader({ title, description, actions }) {
-  return (
-    <Rise className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div className="min-w-0">
-        <h1 className="font-outfit text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">
-          {title}
-        </h1>
-        {description && (
-          <p className="mt-1 max-w-xl text-sm leading-6 text-muted-foreground">
-            {description}
-          </p>
-        )}
-      </div>
-      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
-    </Rise>
-  );
-}
-
-function OverviewStat({ icon: Icon, label, value, tone }) {
-  return (
-    <div className="flex items-center gap-3 px-4 py-3 sm:px-5">
-      <span
-        className={cn(
-          "flex h-8 w-8 shrink-0 items-center justify-center rounded-md",
-          tone === "accent"
-            ? "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
-            : "bg-[var(--landing-primary-soft)] text-foreground",
-        )}
-      >
-        <Icon size={16} aria-hidden="true" />
-      </span>
-      <div className="min-w-0">
-        <p className="text-xs text-muted-foreground">{label}</p>
-        <p className="truncate text-sm font-semibold tabular-nums text-foreground">
-          {value}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function OverviewStrip({ data, report, templateName, savedAt, isDraft }) {
-  const basics = data.basics ?? {};
-  const checksLabel = report
-    ? `${report.passedChecks} of ${report.totalChecks} passed`
-    : "Checking";
-
-  return (
-    <Rise delay={0.05}>
-      <div className="dashboard-card overflow-hidden rounded-lg">
-        <div className="flex flex-col gap-3 border-b border-[var(--landing-line)] px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-          <div className="flex min-w-0 items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[var(--landing-ink)] text-white">
-              <FileTextIcon size={20} aria-hidden="true" />
-            </span>
-            <div className="min-w-0">
-              <p className="truncate font-outfit text-base font-semibold text-foreground">
-                {basics.name || "Unnamed CV"}
-              </p>
-              <p className="truncate text-sm text-muted-foreground">
-                {[basics.label, basics.email].filter(Boolean).join(", ") ||
-                  "Add a headline and email in Personal information"}
-              </p>
-            </div>
-          </div>
-          <span
-            className={cn(
-              "inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium",
-              isDraft
-                ? "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
-                : "bg-[var(--landing-success-soft)] text-[var(--landing-success)]",
-            )}
-          >
-            {isDraft ? "Not saved yet" : "Reference CV"}
-          </span>
-        </div>
-        <div className="grid grid-cols-2 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-y-0 sm:divide-x lg:grid-cols-5">
-          <OverviewStat
-            icon={ListChecksIcon}
-            label="CV checks"
-            value={checksLabel}
-            tone="accent"
-          />
-          <OverviewStat
-            icon={BriefcaseIcon}
-            label="Positions"
-            value={data.work?.length ?? 0}
-          />
-          <OverviewStat
-            icon={GraduationCapIcon}
-            label="Education"
-            value={data.education?.length ?? 0}
-          />
-          <OverviewStat
-            icon={TagIcon}
-            label="Skill groups"
-            value={data.skills?.length ?? 0}
-          />
-          <OverviewStat
-            icon={ClockIcon}
-            label={isDraft ? "Template" : "Last saved"}
-            value={isDraft ? templateName : savedAt ?? "Not yet"}
-          />
-        </div>
-      </div>
-    </Rise>
-  );
-}
-
 function UploadPanel({ onParsed, replacing }) {
   return (
-    <Rise delay={0.05}>
-      <div className="grid gap-4 lg:grid-cols-12">
-        <div className="dashboard-card rounded-lg lg:col-span-5">
-          <div className="dashboard-card-pad">
-            <h2 className="font-outfit text-sm font-semibold text-foreground">
-              How it works
-            </h2>
-            <ol className="mt-4 flex flex-col gap-4">
-              {UPLOAD_STEPS.map((step) => (
-                <li key={step.title} className="flex gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-                    <step.icon size={16} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{step.title}</p>
-                    <p className="mt-0.5 text-sm leading-6 text-muted-foreground">
-                      {step.body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            {replacing && (
-              <p className="mt-5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-2.5 text-xs leading-5 text-[var(--landing-ink-soft)]">
-                Your current CV stays until you save the new one. Its template
-                and style carry over.
-              </p>
-            )}
-          </div>
-        </div>
-        <div className="dashboard-card rounded-lg lg:col-span-7">
-          <div className="dashboard-card-pad">
-            <ResumeUpload onParsed={onParsed} />
-          </div>
-        </div>
-      </div>
-    </Rise>
+    <div className="grid items-start gap-4 lg:grid-cols-12">
+      <DashboardPanel delay={0.05} className="lg:col-span-5">
+        <h2 className="font-outfit text-sm font-semibold text-foreground">
+          How it works
+        </h2>
+        <ol className="mt-4 flex flex-col gap-4">
+          {UPLOAD_STEPS.map((step) => (
+            <li key={step.title} className="flex gap-3">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+                <step.icon size={16} aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  {step.title}
+                </p>
+                <p className="mt-0.5 text-sm leading-6 text-muted-foreground">
+                  {step.body}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        {replacing && (
+          <p className="mt-5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-2.5 text-xs leading-5 text-[var(--landing-ink-soft)]">
+            Your current CV stays until you save the new one. Its template and
+            style carry over.
+          </p>
+        )}
+      </DashboardPanel>
+      <DashboardPanel delay={0.1} className="lg:col-span-7">
+        <ResumeUpload onParsed={onParsed} />
+      </DashboardPanel>
+    </div>
   );
 }
 
@@ -271,15 +156,19 @@ export default function MyResumePage() {
     },
   });
 
-  const selectedTemplate = templateOverride ?? savedCV?.template ?? DEFAULT_TEMPLATE;
+  const selectedTemplate =
+    templateOverride ?? savedCV?.template ?? DEFAULT_TEMPLATE;
   // An unsaved local change wins over the stored value, which wins over the
   // template's own look. Without the last step a CV saved before styles
   // existed would render with the global default instead of its layout's.
   const selectedStyle = normalizeTemplateStyle(
-    styleOverride ?? savedCV?.templateStyle ?? getTemplateDefaultStyle(selectedTemplate),
+    styleOverride ??
+      savedCV?.templateStyle ??
+      getTemplateDefaultStyle(selectedTemplate),
   );
   const templateName =
-    TEMPLATE_METADATA.find((t) => t.id === selectedTemplate)?.name ?? selectedTemplate;
+    TEMPLATE_METADATA.find((t) => t.id === selectedTemplate)?.name ??
+    selectedTemplate;
 
   const templateMutation = useMutation({
     mutationFn: async (patch) => {
@@ -296,7 +185,8 @@ export default function MyResumePage() {
     },
     onError: () => {
       toast.error("Could not save your template", {
-        description: "Your change is still on screen. Check your connection and try again.",
+        description:
+          "Your change is still on screen. Check your connection and try again.",
       });
     },
   });
@@ -312,7 +202,10 @@ export default function MyResumePage() {
 
   const handleStyleChange = (nextStyle) => {
     setStyleOverride(nextStyle);
-    templateMutation.mutate({ template: selectedTemplate, templateStyle: nextStyle });
+    templateMutation.mutate({
+      template: selectedTemplate,
+      templateStyle: nextStyle,
+    });
   };
 
   const handleParsed = (data) => {
@@ -363,7 +256,7 @@ export default function MyResumePage() {
             Back to my CV
           </button>
         )}
-        <PageHeader
+        <DashboardPageHeader
           title={replacing ? "Replace your CV" : "Upload your CV"}
           description={
             replacing
@@ -381,7 +274,7 @@ export default function MyResumePage() {
 
   return (
     <DashboardPageShell width="full">
-      <PageHeader
+      <DashboardPageHeader
         title={isDraft ? "Review your CV" : "My CV"}
         description={
           isDraft
@@ -398,17 +291,25 @@ export default function MyResumePage() {
                   setLiveValues(null);
                   setLiveReport(null);
                 }}
-                className={SECONDARY_BTN}
+                className="dashboard-secondary-btn"
               >
                 <ArrowLeftIcon size={16} aria-hidden="true" />
                 Discard and keep saved CV
               </button>
             )}
-            <button type="button" onClick={handleReUpload} className={SECONDARY_BTN}>
+            <button
+              type="button"
+              onClick={handleReUpload}
+              className="dashboard-secondary-btn"
+            >
               <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />
               {isDraft ? "Upload a different PDF" : "Replace CV"}
             </button>
-            <button type="button" onClick={handleDownload} className={PRIMARY_BTN}>
+            <button
+              type="button"
+              onClick={handleDownload}
+              className="dashboard-primary-btn"
+            >
               <DownloadSimpleIcon size={16} aria-hidden="true" />
               Download PDF
             </button>
@@ -416,12 +317,40 @@ export default function MyResumePage() {
         }
       />
 
-      <OverviewStrip
-        data={previewData}
-        report={liveReport}
-        templateName={templateName}
-        savedAt={savedAt}
-        isDraft={isDraft}
+      <DashboardStatStrip
+        columns={5}
+        items={[
+          {
+            icon: ListChecksIcon,
+            label: "CV checks",
+            value: liveReport
+              ? `${liveReport.passedChecks} of ${liveReport.totalChecks} passed`
+              : "Checking",
+            tone: "accent",
+          },
+          {
+            icon: BriefcaseIcon,
+            label: "Positions",
+            value: previewData.work?.length ?? 0,
+          },
+          {
+            icon: GraduationCapIcon,
+            label: "Education",
+            value: previewData.education?.length ?? 0,
+          },
+          {
+            icon: TagIcon,
+            label: "Skill groups",
+            value: previewData.skills?.length ?? 0,
+          },
+          isDraft
+            ? { icon: FileTextIcon, label: "Template", value: templateName }
+            : {
+                icon: ClockIcon,
+                label: "Last saved",
+                value: savedAt ?? "Not yet",
+              },
+        ]}
       />
 
       <DashboardTabBar
@@ -433,15 +362,14 @@ export default function MyResumePage() {
       />
 
       <div className="grid items-start gap-4 lg:grid-cols-12">
-        <Rise
-          delay={0.1}
+        <div
           className={cn(
             "min-w-0 lg:col-span-7",
             mobileTab === "preview" && "hidden lg:block",
           )}
         >
           <ResumeForm
-            key={isDraft ? "draft" : savedCV?._id ?? "saved"}
+            key={isDraft ? "draft" : (savedCV?._id ?? "saved")}
             initialData={storedData}
             rawText={source?.rawText}
             isDraft={isDraft}
@@ -451,10 +379,9 @@ export default function MyResumePage() {
               setMobileTab("edit");
             }}
           />
-        </Rise>
+        </div>
 
-        <Rise
-          delay={0.15}
+        <div
           className={cn(
             "min-w-0 lg:col-span-5",
             mobileTab === "edit" && "hidden lg:block",
@@ -485,7 +412,7 @@ export default function MyResumePage() {
               </ScaledDocument>
             </div>
           </aside>
-        </Rise>
+        </div>
       </div>
     </DashboardPageShell>
   );

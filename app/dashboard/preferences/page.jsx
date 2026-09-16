@@ -1,15 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { motion } from "motion/react";
 import { toast } from "sonner";
-import { XIcon, CrownIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import {
+  XIcon,
+  CrownIcon,
+  FloppyDiskIcon,
+  SpinnerGapIcon,
+  WarningCircleIcon,
+} from "@phosphor-icons/react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import {
   Select,
   SelectContent,
@@ -22,55 +26,65 @@ import Loader from "@/components/Loader";
 import {
   DashboardPageShell,
   DashboardPageHeader,
+  DashboardPanel,
+  DashboardPanelHeader,
+  DashboardEmptyState,
 } from "@/components/dashboard";
+import { cn } from "@/lib/utils";
 
-function Toggle({ id, checked, onChange, label, description }) {
+const PAGE_TITLE = "Job preferences";
+const PAGE_DESCRIPTION = "Choose which jobs land in your daily email.";
+const MAX_TITLES = 10;
+
+function ToggleRow({ id, checked, onChange, label, description }) {
   return (
-    <label htmlFor={id} className="flex items-start justify-between gap-4 cursor-pointer">
-      <div className="space-y-0.5">
-        <p className="text-sm font-medium">{label}</p>
-        {description && <p className="text-xs text-muted-foreground">{description}</p>}
+    <div className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+      <div className="min-w-0">
+        <Label htmlFor={id} className="cursor-pointer text-sm font-medium">
+          {label}
+        </Label>
+        {description && (
+          <p className="mt-1 text-xs text-muted-foreground">{description}</p>
+        )}
       </div>
-      <input
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="mt-1 size-4 accent-primary shrink-0"
-      />
-    </label>
+      <Switch id={id} checked={checked} onCheckedChange={onChange} />
+    </div>
   );
 }
 
-export default function PreferencesPage() {
-  const { data: session, status } = useSession();
+function LoadingPanels() {
+  return (
+    <div className="space-y-6" aria-hidden="true">
+      <div className="tool-skeleton h-44 rounded-lg" />
+      <div className="tool-skeleton h-32 rounded-lg" />
+      <div className="tool-skeleton h-36 rounded-lg" />
+    </div>
+  );
+}
+
+// Saved values with the same defaults the API applies, so a fresh account
+// reads as "All changes saved" instead of "Unsaved changes".
+function readPrefs(prefs) {
+  return {
+    titles: prefs?.titles ?? [],
+    country: prefs?.country ?? "us",
+    remoteOnly: prefs ? prefs.remoteOnly !== false : true,
+    emailDigest: prefs ? prefs.emailDigest !== false : true,
+  };
+}
+
+// The form seeds its state from `prefs` once on mount. It only renders after
+// the query has settled, so the seed is the saved record. After a save the
+// refetched `prefs` feeds `saved`, which is what the status text compares to.
+function PreferencesForm({ prefs }) {
   const queryClient = useQueryClient();
-  const isPremium = !!session?.user?.isPremium;
+  const saved = useMemo(() => readPrefs(prefs), [prefs]);
 
-  const [titles, setTitles] = useState([]);
+  const [titles, setTitles] = useState(saved.titles);
   const [titleInput, setTitleInput] = useState("");
-  const [country, setCountry] = useState("us");
-  const [remoteOnly, setRemoteOnly] = useState(true);
-  const [emailDigest, setEmailDigest] = useState(true);
-
-  const { data: prefs, isLoading } = useQuery({
-    queryKey: ["preferences"],
-    queryFn: async () => {
-      const res = await fetch("/api/preferences");
-      if (!res.ok) throw new Error("Failed to fetch");
-      const json = await res.json();
-      return json.data;
-    },
-    enabled: isPremium,
-  });
-
-  useEffect(() => {
-    if (!prefs) return;
-    setTitles(prefs.titles ?? []);
-    setCountry(prefs.country ?? "us");
-    setRemoteOnly(prefs.remoteOnly !== false);
-    setEmailDigest(prefs.emailDigest !== false);
-  }, [prefs]);
+  const [country, setCountry] = useState(saved.country);
+  const [remoteOnly, setRemoteOnly] = useState(saved.remoteOnly);
+  const [emailDigest, setEmailDigest] = useState(saved.emailDigest);
 
   const mutation = useMutation({
     mutationFn: async (payload) => {
@@ -89,9 +103,16 @@ export default function PreferencesPage() {
     onError: () => toast.error("Could not save preferences"),
   });
 
+  const isDirty =
+    titles.length !== saved.titles.length ||
+    titles.some((t, i) => t !== saved.titles[i]) ||
+    country !== saved.country ||
+    remoteOnly !== saved.remoteOnly ||
+    emailDigest !== saved.emailDigest;
+
   function addTitle() {
     const t = titleInput.trim();
-    if (!t || titles.includes(t) || titles.length >= 10) {
+    if (!t || titles.includes(t) || titles.length >= MAX_TITLES) {
       setTitleInput("");
       return;
     }
@@ -99,76 +120,33 @@ export default function PreferencesPage() {
     setTitleInput("");
   }
 
-  if (status === "loading") return <Loader />;
-
-  if (!isPremium) {
-    return (
-      <DashboardPageShell width="narrow">
-        <Card className="dashboard-card rounded-lg border-[var(--landing-line)] text-center">
-          <CardContent className="space-y-4 py-12">
-            <CrownIcon className="mx-auto size-8 text-[var(--landing-accent)]" />
-            <div className="space-y-1">
-              <p className="text-lg font-semibold">Job preferences are a Pro feature</p>
-              <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Upgrade to control your daily job matches by email.
-              </p>
-            </div>
-            <Button asChild className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black h-auto py-3">
-              <Link href="/dashboard/upgrade">
-                Upgrade to Pro
-                <ArrowRightIcon className="ml-2 size-4" />
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </DashboardPageShell>
-    );
+  function handleSubmit(event) {
+    event.preventDefault();
+    mutation.mutate({ titles, country, remoteOnly, emailDigest });
   }
 
-  if (isLoading) return <Loader />;
+  const atLimit = titles.length >= MAX_TITLES;
 
   return (
-    <DashboardPageShell width="narrow">
-      <DashboardPageHeader
-        title="Job Preferences"
-        description="Control your daily job-match email."
-      />
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-      >
-        <Card className="dashboard-card rounded-lg border-[var(--landing-line)]">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">Target roles</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-xs text-muted-foreground">
-              Add the job titles you want matched. Leave empty to use the titles from your CV.
-            </p>
-            {titles.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {titles.map((t) => (
-                  <span
-                    key={t}
-                    className="inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1 text-sm"
-                  >
-                    {t}
-                    <button
-                      type="button"
-                      onClick={() => setTitles(titles.filter((x) => x !== t))}
-                      className="text-muted-foreground hover:text-foreground"
-                      aria-label={`Remove ${t}`}
-                    >
-                      <XIcon className="size-3.5" />
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <DashboardPanel delay={0.05}>
+        <DashboardPanelHeader
+          title="Target roles"
+          description="Add up to 10 job titles. Leave empty to use the titles from your CV."
+          action={
+            <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+              {titles.length} of {MAX_TITLES}
+            </span>
+          }
+        />
+        <div className="mt-4 grid gap-4">
+          <div className="grid gap-2">
+            <Label htmlFor="title-input" className="text-sm font-medium">
+              Job title
+            </Label>
             <div className="flex gap-2">
               <Input
+                id="title-input"
                 value={titleInput}
                 onChange={(e) => setTitleInput(e.target.value)}
                 onKeyDown={(e) => {
@@ -177,73 +155,214 @@ export default function PreferencesPage() {
                     addTitle();
                   }
                 }}
-                placeholder="e.g. Frontend Engineer"
+                placeholder="Frontend Engineer"
+                disabled={atLimit}
+                className="h-9"
               />
-              <Button type="button" variant="outline" onClick={addTitle}>
-                Add
-              </Button>
+              <button
+                type="button"
+                onClick={addTitle}
+                disabled={atLimit || !titleInput.trim()}
+                className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
+              >
+                Add title
+              </button>
             </div>
-          </CardContent>
-        </Card>
-      </motion.div>
+            <p className="text-xs text-muted-foreground">
+              {atLimit
+                ? "You have reached the limit. Remove a title to add another."
+                : "Press Enter or Add title to save it to the list."}
+            </p>
+          </div>
+          {titles.length > 0 && (
+            <ul className="flex flex-wrap gap-2">
+              {titles.map((t) => (
+                <li
+                  key={t}
+                  className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] pl-2.5 pr-1 text-sm text-foreground"
+                >
+                  <span className="max-w-60 truncate">{t}</span>
+                  <button
+                    type="button"
+                    onClick={() => setTitles(titles.filter((x) => x !== t))}
+                    className="inline-flex h-6 w-6 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                    aria-label={`Remove ${t}`}
+                  >
+                    <XIcon size={12} weight="bold" aria-hidden="true" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </DashboardPanel>
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, ease: "easeOut", delay: 0.05 }}
-      >
-        <Card className="rounded-lg border-[var(--landing-line)]">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">Email & filters</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">Country</p>
-                <p className="text-xs text-muted-foreground">
-                  Which job market to search. Remote roles are often country-scoped.
-                </p>
-              </div>
-              <Select value={country} onValueChange={setCountry}>
-                <SelectTrigger className="w-44 shrink-0">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {COUNTRIES.map((c) => (
-                    <SelectItem key={c.code} value={c.code}>
-                      {c.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <Toggle
-              id="emailDigest"
-              checked={emailDigest}
-              onChange={setEmailDigest}
-              label="Email me daily job matches"
-              description="Turn off to unsubscribe from the digest."
-            />
-            <Toggle
-              id="remoteOnly"
-              checked={remoteOnly}
-              onChange={setRemoteOnly}
-              label="Remote roles only"
-              description="Only include remote jobs in your matches."
-            />
-          </CardContent>
-        </Card>
-      </motion.div>
+      <DashboardPanel delay={0.1}>
+        <DashboardPanelHeader
+          title="Job market"
+          description="Where to look for matching roles."
+        />
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-2">
+            <Label htmlFor="country" className="text-sm font-medium">
+              Country
+            </Label>
+            <Select value={country} onValueChange={setCountry}>
+              <SelectTrigger
+                id="country"
+                className="h-9 w-full border-[var(--landing-line)] bg-[var(--landing-surface)]"
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {COUNTRIES.map((c) => (
+                  <SelectItem key={c.code} value={c.code}>
+                    {c.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-muted-foreground">
+              Remote roles are often limited to one country.
+            </p>
+          </div>
+        </div>
+      </DashboardPanel>
 
-      <div className="sticky bottom-3 z-10 flex justify-end">
-        <Button
-          className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
-          onClick={() => mutation.mutate({ titles, country, remoteOnly, emailDigest })}
-          disabled={mutation.isPending}
+      <DashboardPanel delay={0.15}>
+        <DashboardPanelHeader
+          title="Email"
+          description="What arrives in your inbox."
+        />
+        <div className="mt-4 divide-y divide-[var(--landing-line)]">
+          <ToggleRow
+            id="emailDigest"
+            checked={emailDigest}
+            onChange={setEmailDigest}
+            label="Email me daily job matches"
+            description="Turn off to stop the daily email."
+          />
+          <ToggleRow
+            id="remoteOnly"
+            checked={remoteOnly}
+            onChange={setRemoteOnly}
+            label="Remote roles only"
+            description="Only include remote jobs in your matches."
+          />
+        </div>
+      </DashboardPanel>
+
+      <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-3 py-2.5 backdrop-blur-md sm:bottom-4 sm:px-4">
+        <p
+          className={cn(
+            "flex items-center gap-1.5 text-xs font-medium",
+            isDirty ? "text-[var(--landing-accent-dark)]" : "text-muted-foreground",
+          )}
+          aria-live="polite"
         >
-          {mutation.isPending ? "Saving…" : "Save preferences"}
-        </Button>
+          {isDirty ? (
+            <>
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-[var(--landing-accent)]"
+                aria-hidden="true"
+              />
+              Unsaved changes
+            </>
+          ) : (
+            "All changes saved"
+          )}
+        </p>
+        <button
+          type="submit"
+          disabled={mutation.isPending}
+          className="dashboard-primary-btn"
+        >
+          {mutation.isPending ? (
+            <>
+              <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+              Saving…
+            </>
+          ) : (
+            <>
+              <FloppyDiskIcon size={16} aria-hidden="true" />
+              Save preferences
+            </>
+          )}
+        </button>
       </div>
+    </form>
+  );
+}
+
+export default function PreferencesPage() {
+  const { data: session, status } = useSession();
+  const isPremium = !!session?.user?.isPremium;
+
+  const {
+    data: prefs,
+    isLoading,
+    isError,
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: ["preferences"],
+    queryFn: async () => {
+      const res = await fetch("/api/preferences");
+      if (!res.ok) throw new Error("Failed to fetch");
+      const json = await res.json();
+      return json.data;
+    },
+    enabled: isPremium,
+  });
+
+  if (status === "loading") return <Loader />;
+
+  if (!isPremium) {
+    return (
+      <DashboardPageShell width="narrow">
+        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardEmptyState
+          icon={CrownIcon}
+          title="Job preferences are part of Pro"
+          description="Upgrade to pick the roles, country and email settings for your daily job matches."
+          actionLabel="Upgrade to Pro"
+          actionHref="/dashboard/upgrade"
+          secondaryLabel="Back to home"
+          secondaryHref="/dashboard"
+        />
+      </DashboardPageShell>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <DashboardPageShell width="narrow">
+        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <LoadingPanels />
+      </DashboardPageShell>
+    );
+  }
+
+  if (isError) {
+    return (
+      <DashboardPageShell width="narrow">
+        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardEmptyState
+          icon={WarningCircleIcon}
+          title="Couldn't load your preferences"
+          description="Check your connection and try again."
+          actionLabel={isFetching ? "Retrying…" : "Try again"}
+          onAction={() => refetch()}
+          actionDisabled={isFetching}
+        />
+      </DashboardPageShell>
+    );
+  }
+
+  return (
+    <DashboardPageShell width="narrow">
+      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <PreferencesForm prefs={prefs} />
     </DashboardPageShell>
   );
 }

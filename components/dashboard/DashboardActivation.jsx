@@ -123,7 +123,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                     {isNow ? (
                       <Link
                         href={step.href}
-                        className="dashboard-primary-btn mt-3 inline-flex text-sm"
+                        className="dashboard-primary-btn dashboard-primary-btn-sm mt-3"
                       >
                         {step.cta}
                         <ArrowRightIcon

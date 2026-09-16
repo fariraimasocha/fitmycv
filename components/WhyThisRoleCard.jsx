@@ -9,15 +9,13 @@ import {
   FloppyDiskIcon,
   SpinnerGapIcon,
 } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DashboardPanelHeader } from "@/components/dashboard";
 import { countSentences } from "@/utils/count-sentences";
 
 const DEFAULT_QUESTION =
-  "In 3-5 sentences, tell us why you are interested in this role.";
+  "In 3 to 5 sentences, tell us why you are interested in this role.";
 
 export default function WhyThisRoleCard({
   answer,
@@ -47,124 +45,117 @@ export default function WhyThisRoleCard({
   };
 
   return (
-    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-      <CardHeader className="dashboard-card-pad">
-        <CardTitle className="flex items-center gap-2 text-base font-semibold">
-          <ChatCenteredTextIcon
-            size={18}
-            className="text-muted-foreground"
-            aria-hidden="true"
-          />
-          <div>
-            <span className="block">Why this role</span>
-            <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
-              An answer for the application form, drawn from your CV and this
-              posting.
-            </span>
-          </div>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="dashboard-card-pad space-y-4 pt-0">
+    <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+      <div className="dashboard-card-pad flex items-start gap-3 border-b border-[var(--landing-line)]">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+          <ChatCenteredTextIcon size={17} aria-hidden="true" />
+        </span>
+        <DashboardPanelHeader
+          className="min-w-0 flex-1"
+          title="Why this role"
+          description="An answer for the application form, drawn from your CV and this posting."
+        />
+      </div>
+      <div className="dashboard-card-pad flex flex-col gap-4">
         {onGenerate && (
-        <div className="space-y-1.5">
-          <label
-            htmlFor="why-this-role-question"
-            className="text-xs font-medium text-[var(--landing-ink-soft)]"
-          >
-            The question you were asked
-          </label>
-          <Input
-            id="why-this-role-question"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder={DEFAULT_QUESTION}
-            className="h-11 rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] text-sm"
-          />
-        </div>
+          <div className="flex flex-col gap-1.5">
+            <label
+              htmlFor="why-this-role-question"
+              className="text-xs font-medium text-[var(--landing-ink-soft)]"
+            >
+              The question you were asked
+            </label>
+            <Input
+              id="why-this-role-question"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder={DEFAULT_QUESTION}
+              className="text-sm"
+            />
+          </div>
         )}
 
         {isLoading ? (
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-4/5" />
+          <div className="space-y-2" aria-busy="true">
+            <div className="tool-skeleton h-4 w-full rounded-sm" />
+            <div className="tool-skeleton h-4 w-full rounded-sm" />
+            <div className="tool-skeleton h-4 w-4/5 rounded-sm" />
           </div>
         ) : draft ? (
-          <>
+          <div className="flex flex-col gap-2">
             <Textarea
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               rows={7}
               aria-label="Your answer"
-              className="max-w-prose text-sm leading-relaxed"
+              className="text-sm leading-relaxed"
             />
             <p className="text-xs tabular-nums text-muted-foreground">
               {sentences} {sentences === 1 ? "sentence" : "sentences"}, {words}{" "}
               {words === 1 ? "word" : "words"}
             </p>
-          </>
+          </div>
         ) : (
-          <p className="text-sm text-muted-foreground">
+          <p className="rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
             {onGenerate
-              ? "Change the question if yours is worded differently, then write your answer."
+              ? "Your answer will appear here. Change the question if yours is worded differently, then write it."
               : "No answer saved for this application."}
           </p>
         )}
 
-        <div className="flex flex-wrap gap-2">
-          {onGenerate && (
-          <Button
-            onClick={() => onGenerate(prompt)}
-            disabled={isLoading}
-            aria-busy={isLoading}
-            className="rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
-          >
-            {isLoading ? (
-              <>
-                <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                Writing…
-              </>
-            ) : (
-              <>
-                <ArrowsClockwiseIcon size={16} aria-hidden="true" />
-                {draft ? "Write it again" : "Write my answer"}
-              </>
+        {(onGenerate || draft) && (
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+            {onGenerate && (
+              <button
+                type="button"
+                onClick={() => onGenerate(prompt)}
+                disabled={isLoading}
+                aria-busy={isLoading}
+                className="dashboard-primary-btn"
+              >
+                {isLoading ? (
+                  <>
+                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                    Writing…
+                  </>
+                ) : (
+                  <>
+                    <ArrowsClockwiseIcon size={16} aria-hidden="true" />
+                    {draft ? "Write it again" : "Write my answer"}
+                  </>
+                )}
+              </button>
             )}
-          </Button>
-          )}
-          {draft && (
-            <Button
-              variant="outline"
-              className="rounded-md border-[var(--landing-line)]"
-              onClick={handleCopy}
-            >
-              <CopyIcon size={16} aria-hidden="true" />
-              Copy answer
-            </Button>
-          )}
-          {draft && onSave && (
-            <Button
-              variant="outline"
-              className="rounded-md border-[var(--landing-line)]"
-              onClick={() => onSave(draft)}
-              disabled={isSaving}
-              aria-busy={isSaving}
-            >
-              {isSaving ? (
-                <>
-                  <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                  Saving…
-                </>
-              ) : (
-                <>
-                  <FloppyDiskIcon size={16} aria-hidden="true" />
-                  Save answer
-                </>
-              )}
-            </Button>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+            {draft && (
+              <button type="button" className="dashboard-secondary-btn" onClick={handleCopy}>
+                <CopyIcon size={16} aria-hidden="true" />
+                Copy answer
+              </button>
+            )}
+            {draft && onSave && (
+              <button
+                type="button"
+                className="dashboard-secondary-btn"
+                onClick={() => onSave(draft)}
+                disabled={isSaving}
+                aria-busy={isSaving}
+              >
+                {isSaving ? (
+                  <>
+                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                    Saving…
+                  </>
+                ) : (
+                  <>
+                    <FloppyDiskIcon size={16} aria-hidden="true" />
+                    Save answer
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

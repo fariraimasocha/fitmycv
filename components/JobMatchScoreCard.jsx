@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GradeBadge, gradeChipClass } from "@/components/GradeBadge";
-import { Skeleton } from "@/components/ui/skeleton";
+import { DashboardPanelHeader } from "@/components/dashboard";
 import {
   TargetIcon,
   CurrencyDollarIcon,
@@ -35,18 +34,18 @@ const globalScoreColor = (score) => {
 };
 
 const globalScoreLabel = (score) => {
-  if (score >= 4.5) return "Excellent Match";
-  if (score >= 4) return "Strong Match";
-  if (score >= 3) return "Good Match";
-  if (score >= 2) return "Fair Match";
-  return "Weak Match";
+  if (score >= 4.5) return "Excellent match";
+  if (score >= 4) return "Strong match";
+  if (score >= 3) return "Good match";
+  if (score >= 2) return "Fair match";
+  return "Weak match";
 };
 
 const dimensionMeta = {
-  cvMatch: { label: "CV Match", icon: TargetIcon },
+  cvMatch: { label: "CV match", icon: TargetIcon },
   compensation: { label: "Compensation", icon: CurrencyDollarIcon },
   cultureSignals: { label: "Culture", icon: UsersThreeIcon },
-  redFlags: { label: "Red Flags", icon: WarningCircleIcon },
+  redFlags: { label: "Red flags", icon: WarningCircleIcon },
 };
 
 function gradeToPercent(grade) {
@@ -66,7 +65,7 @@ function DimensionRow({ dimKey, dimension }) {
         <Icon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
         <span className="text-xs text-muted-foreground">{meta.label}</span>
         <span
-          className={`ml-auto inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${gradeChipClass(dimension.grade)}`}
+          className={`ml-auto inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
         >
           {dimension.grade}
         </span>
@@ -80,19 +79,19 @@ function DimensionRow({ dimKey, dimension }) {
 
 function LoadingSkeleton() {
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-        <Skeleton className="h-20 w-20 shrink-0 rounded-full" />
+    <div className="space-y-4" aria-busy="true">
+      <div className="flex items-center gap-4">
+        <div className="tool-skeleton h-20 w-20 shrink-0 rounded-full" />
         <div className="flex-1 space-y-2">
-          <Skeleton className="h-4 w-2/3" />
-          <Skeleton className="h-3 w-full" />
+          <div className="tool-skeleton h-4 w-2/3 rounded-sm" />
+          <div className="tool-skeleton h-3 w-full rounded-sm" />
+          <div className="tool-skeleton h-3 w-4/5 rounded-sm" />
         </div>
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <Skeleton className="h-8 w-full rounded-full" />
-        <Skeleton className="h-8 w-full rounded-full" />
-        <Skeleton className="h-8 w-full rounded-full" />
-        <Skeleton className="h-8 w-full rounded-full" />
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className="tool-skeleton h-8 w-full rounded-md" />
+        ))}
       </div>
     </div>
   );
@@ -103,14 +102,15 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
 
   if (isLoading) {
     return (
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardHeader className="dashboard-card-pad">
-          <CardTitle className="text-base font-semibold">Scoring job match…</CardTitle>
-        </CardHeader>
-        <CardContent className="dashboard-card-pad pt-0">
+      <section className="dashboard-card dashboard-card-pad rounded-lg">
+        <DashboardPanelHeader
+          title="Job match"
+          description="Scoring your CV against this posting"
+        />
+        <div className="mt-4">
           <LoadingSkeleton />
-        </CardContent>
-      </Card>
+        </div>
+      </section>
     );
   }
 
@@ -121,15 +121,14 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
   const label = globalScoreLabel(globalScore);
 
   return (
-    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-      <CardHeader className="dashboard-card-pad pb-3">
-        <CardTitle className="flex items-center justify-between text-base font-semibold">
-          <span>Job match</span>
-          <GradeBadge grade={globalGrade} size="md" />
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="dashboard-card-pad space-y-4 pt-0">
-        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+    <section className="dashboard-card dashboard-card-pad rounded-lg">
+      <DashboardPanelHeader
+        title="Job match"
+        description="How your reference CV fits this posting"
+        action={<GradeBadge grade={globalGrade} size="md" className="shrink-0" />}
+      />
+      <div className="mt-4 space-y-4">
+        <div className="flex items-center gap-4">
           <ArcGauge
             value={globalScore}
             max={5}
@@ -141,12 +140,12 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
             <AnimatedNumber
               value={globalScore}
               decimals={1}
-              className="text-center text-xl font-bold leading-none text-foreground"
+              className="text-center font-outfit text-xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground"
             />
             <span className="text-xs text-muted-foreground">/5</span>
           </ArcGauge>
-          <div className="flex-1 space-y-1">
-            <p className="text-sm font-medium" style={{ color }}>
+          <div className="min-w-0 flex-1 space-y-1">
+            <p className="text-sm font-semibold" style={{ color }}>
               {label}
             </p>
             <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
@@ -164,7 +163,8 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="flex w-full items-center justify-center gap-1 pt-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+          aria-expanded={expanded}
+          className="-mx-2 flex items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
         >
           <span className="relative inline-grid">
             <span className="invisible col-start-1 row-start-1">Show details</span>
@@ -180,15 +180,17 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
         </button>
 
         {expanded && (
-          <div className="space-y-3 pt-1">
+          <div className="space-y-3 border-t border-[var(--landing-line)] pt-4">
             {Object.entries(dimensions).map(([key, dim]) => {
               const meta = dimensionMeta[key];
               if (!meta) return null;
               return (
                 <div key={key} className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold">{meta.label}</span>
-                    <span className={`rounded-full px-1.5 py-0.5 text-xs font-semibold ${gradeChipClass(dim.grade)}`}>
+                    <span className="text-xs font-semibold text-foreground">{meta.label}</span>
+                    <span
+                      className={`rounded-sm px-1.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dim.grade)}`}
+                    >
                       {dim.grade}
                     </span>
                   </div>
@@ -200,7 +202,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
             })}
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </section>
   );
 }

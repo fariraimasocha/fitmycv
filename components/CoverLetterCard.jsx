@@ -8,9 +8,8 @@ import {
   FloppyDiskIcon,
   SpinnerGapIcon,
 } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { DashboardPanelHeader } from "@/components/dashboard";
 
 export default function CoverLetterCard({
   content,
@@ -33,72 +32,80 @@ export default function CoverLetterCard({
   };
 
   return (
-    <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-      <CardHeader className="dashboard-card-pad flex flex-row flex-wrap items-center justify-between gap-2">
-        <CardTitle className="flex items-center gap-2 text-base font-semibold">
-          <EnvelopeSimpleIcon
-            size={18}
-            className="text-muted-foreground"
-            aria-hidden="true"
-          />
-          Cover Letter
-        </CardTitle>
-        {editable && (
-          <Button
-            variant="outline"
-            size="sm"
-            className="rounded-md border-[var(--landing-line)]"
-            aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
-            onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
-          >
-            {isEditing ? (
-              <>
-                <XIcon size={14} />
-                Cancel
-              </>
-            ) : (
-              <>
-                <PencilSimpleIcon size={14} />
-                Edit
-              </>
-            )}
-          </Button>
-        )}
-      </CardHeader>
-      <CardContent className="dashboard-card-pad pt-0">
+    <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+      <div className="dashboard-card-pad flex items-start gap-3 border-b border-[var(--landing-line)]">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+          <EnvelopeSimpleIcon size={17} aria-hidden="true" />
+        </span>
+        <DashboardPanelHeader
+          className="min-w-0 flex-1 items-center"
+          title="Cover letter"
+          description={
+            content
+              ? "Written from your tailored CV and this posting."
+              : "Written with the CV when you tailor. You can also write your own."
+          }
+          action={
+            editable ? (
+              <button
+                type="button"
+                className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
+                aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
+                onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
+              >
+                {isEditing ? (
+                  <>
+                    <XIcon size={14} aria-hidden="true" />
+                    Cancel
+                  </>
+                ) : (
+                  <>
+                    <PencilSimpleIcon size={14} aria-hidden="true" />
+                    Edit
+                  </>
+                )}
+              </button>
+            ) : undefined
+          }
+        />
+      </div>
+      <div className="dashboard-card-pad">
         {editable && isEditing ? (
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             <Textarea
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
               rows={16}
-              className="max-w-prose text-sm leading-relaxed"
+              aria-label="Cover letter text"
+              className="text-sm leading-relaxed"
             />
-            <div className="flex justify-end">
-              <Button
+            <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+              <button
+                type="button"
                 onClick={handleSave}
                 disabled={isSaving}
-                className="rounded-md bg-foreground px-6 font-outfit font-medium text-background hover:bg-black"
+                aria-busy={isSaving}
+                className="dashboard-primary-btn"
               >
                 {isSaving ? (
                   <>
-                    <SpinnerGapIcon size={16} className="animate-spin" />
-                    Saving...
+                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                    Saving…
                   </>
                 ) : (
                   <>
-                    <FloppyDiskIcon size={16} />
-                    Save Cover Letter
+                    <FloppyDiskIcon size={16} aria-hidden="true" />
+                    Save cover letter
                   </>
                 )}
-              </Button>
+              </button>
             </div>
           </div>
         ) : content ? (
           // Shown as the page it becomes, in the CV's font, so what you read
           // here is what the PDF looks like.
           <article
-            className="mx-auto max-w-2xl rounded-md border border-[var(--landing-line)] bg-white px-5 py-7 text-base leading-7 text-foreground shadow-[var(--landing-shadow-sm)] sm:px-12 sm:py-12"
+            className="mx-auto max-w-2xl rounded-md border border-[var(--landing-line)] bg-white px-5 py-7 text-base leading-7 text-foreground sm:px-12 sm:py-12"
             style={fontStack ? { fontFamily: fontStack } : undefined}
           >
             {content
@@ -111,25 +118,24 @@ export default function CoverLetterCard({
               ))}
           </article>
         ) : (
-          <div className="flex flex-col items-start gap-3">
-            <p className="text-sm text-muted-foreground">
-              Tailoring a CV writes a cover letter with it. You can also write
-              your own.
+          <div className="flex flex-col items-start gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+              Your cover letter will appear here.
+              {editable ? " Write one now and it saves with this CV." : ""}
             </p>
             {editable && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="rounded-md border-[var(--landing-line)]"
+              <button
+                type="button"
+                className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
                 onClick={() => setIsEditing(true)}
               >
                 <PencilSimpleIcon size={14} aria-hidden="true" />
-                Write one
-              </Button>
+                Write a cover letter
+              </button>
             )}
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </section>
   );
 }

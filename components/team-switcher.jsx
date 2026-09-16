@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import BrandLogo from "@/components/BrandLogo";
 
 import {
@@ -9,9 +9,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
 
+// The second line names the plan, not the product. The wordmark already says
+// what the app is; the plan is the one fact about the account worth seeing
+// on every screen.
 export function TeamSwitcher() {
+  const { data: session } = useSession();
+  const plan = session?.user?.isPremium ? "Pro plan" : "Free plan";
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -29,7 +34,7 @@ export function TeamSwitcher() {
                 FitMyCV
               </span>
               <span className="truncate text-xs text-muted-foreground">
-                Tailor your CV
+                {session?.user ? plan : "Tailor your CV"}
               </span>
             </div>
           </Link>

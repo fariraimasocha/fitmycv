@@ -54,7 +54,7 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
 
   const onDelete = async () => {
     const confirmed = await confirm("Delete this application?", {
-      description: `"${application.jobTitle} · ${application.jobCompany}" and its full timeline will be deleted for good.`,
+      description: `${application.jobTitle} at ${application.jobCompany} and its full timeline will be deleted for good.`,
     });
     if (confirmed) remove.mutate();
   };
@@ -68,12 +68,12 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
             variant="ghost"
             aria-label="Application actions"
             className={cn(
-              "size-6 text-muted-foreground",
+              "size-6 rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground",
               showOnHover &&
                 "opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100"
             )}
           >
-            <DotsThreeVerticalIcon />
+            <DotsThreeVerticalIcon size={16} aria-hidden="true" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-44">
@@ -93,7 +93,7 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
                   disabled={stage.key === application.status}
                   onClick={() => update.mutate({ status: stage.key })}
                 >
-                  <span className="size-2 rounded-sm" style={{ background: stage.color }} />
+                  <span className="h-2 w-2 rounded-full" style={{ background: stage.color }} aria-hidden="true" />
                   {stage.label}
                 </DropdownMenuItem>
               ))}

@@ -95,7 +95,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
     <div className="flex flex-col gap-2">
       {contacts.map((contact, i) => (
         <div key={contact._id ?? `${contact.name}-${i}`} className="group flex items-center gap-3 text-sm">
-          <span className="flex size-8 items-center justify-center rounded-full bg-[var(--landing-paper-strong)] text-xs font-medium">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold text-foreground">
             {contact.name.slice(0, 2).toUpperCase()}
           </span>
           <div className="min-w-0 flex-1">
@@ -119,7 +119,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
             )}
           </div>
           {contact.kind && (
-            <span className="rounded-full bg-[var(--landing-paper-strong)] px-2 py-0.5 text-[11px] text-muted-foreground">
+            <span className="inline-flex h-6 items-center rounded-md border border-[var(--landing-line)] px-2 text-[11px] font-medium text-muted-foreground">
               {contact.kind}
             </span>
           )}
@@ -127,15 +127,15 @@ function ContactsEditor({ contacts, pending, onChange }) {
             type="button"
             aria-label={`Remove ${contact.name}`}
             disabled={pending}
-            className="text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:text-destructive focus-visible:opacity-100 disabled:opacity-40"
+            className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive/10 hover:text-destructive focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-40"
             onClick={() => onChange(contacts.filter((_, j) => j !== i))}
           >
-            <XIcon />
+            <XIcon size={14} aria-hidden="true" />
           </button>
         </div>
       ))}
       {adding ? (
-        <div className="flex flex-col gap-2 rounded-lg border border-[var(--landing-line)] p-2.5">
+        <div className="flex flex-col gap-2 rounded-md border border-[var(--landing-line)] p-2.5">
           <Input
             value={draft.name}
             placeholder="Name"
@@ -190,21 +190,27 @@ function ContactsEditor({ contacts, pending, onChange }) {
           </datalist>
           {error && <p className="text-xs text-destructive">{error}</p>}
           <div className="flex justify-end gap-2">
-            <Button type="button" size="sm" variant="ghost" onClick={reset}>
+            <button type="button" className="dashboard-secondary-btn dashboard-secondary-btn-sm" onClick={reset}>
               Cancel
-            </Button>
-            <Button type="button" size="sm" disabled={!draft.name.trim() || pending} onClick={add}>
-              Add
-            </Button>
+            </button>
+            <button
+              type="button"
+              className="dashboard-primary-btn dashboard-primary-btn-sm"
+              disabled={!draft.name.trim() || pending}
+              onClick={add}
+            >
+              Add contact
+            </button>
           </div>
         </div>
       ) : (
         <button
           type="button"
           onClick={() => setAdding(true)}
-          className="flex items-center gap-1.5 self-start text-xs text-muted-foreground hover:text-foreground"
+          className="flex items-center gap-1.5 self-start text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
-          <PlusIcon /> Add contact
+          <PlusIcon size={14} aria-hidden="true" />
+          Add contact
         </button>
       )}
     </div>
@@ -235,7 +241,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
             value={note}
             disabled={pending}
             aria-label="Add a note"
-            placeholder="Add a note…"
+            placeholder="Add a note"
             onChange={(event) => setNote(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === "Enter" && !event.shiftKey) {
@@ -244,9 +250,14 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
               }
             }}
           />
-          <Button type="button" variant="outline" disabled={!note.trim() || pending} onClick={add}>
-            Add
-          </Button>
+          <button
+            type="button"
+            className="dashboard-secondary-btn shrink-0"
+            disabled={!note.trim() || pending}
+            onClick={add}
+          >
+            Add note
+          </button>
         </div>
         <div className="relative flex flex-col gap-2 pl-4 before:absolute before:inset-y-2 before:left-1 before:w-px before:bg-[var(--landing-line)]">
           {sorted.map((entry) => {
@@ -255,7 +266,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
             return (
               <div
                 key={entry._id}
-                className="group relative rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-sm"
+                className="group relative rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-sm"
               >
                 <span
                   className={cn(
@@ -286,7 +297,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                   <div className="flex shrink-0 items-center gap-1">
                     <button
                       type="button"
-                      className="rounded-md border border-[var(--landing-line)] px-2 py-1 text-xs text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
+                      className="inline-flex h-7 items-center rounded-md border border-[var(--landing-line)] px-2 text-xs tabular-nums text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                       onClick={() => {
                         setEditingDate(entry);
                         setDateDraft(dateInputValue(entry.date));
@@ -299,10 +310,10 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                         type="button"
                         aria-label="Delete timeline entry"
                         disabled={pending}
-                        className="rounded-md p-1 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive/10 hover:text-destructive focus-visible:opacity-100 disabled:opacity-40"
+                        className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive/10 hover:text-destructive focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-40"
                         onClick={() => onDeleteEntry(entry._id)}
                       >
-                        <TrashIcon className="size-4" />
+                        <TrashIcon size={14} aria-hidden="true" />
                       </button>
                     )}
                   </div>
@@ -321,16 +332,17 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
           </DialogHeader>
           <Input type="date" aria-label="Date" value={dateDraft} onChange={(event) => setDateDraft(event.target.value)} />
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setEditingDate(null)}>
+            <button type="button" className="dashboard-secondary-btn" onClick={() => setEditingDate(null)}>
               Cancel
-            </Button>
-            <Button
+            </button>
+            <button
               type="button"
+              className="dashboard-primary-btn"
               disabled={!dateDraft || pending}
               onClick={() => onUpdateEntry(editingDate._id, { date: dateDraft }, () => setEditingDate(null))}
             >
-              Save
-            </Button>
+              Save date
+            </button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -343,16 +355,17 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
           </DialogHeader>
           <Textarea aria-label="Note" value={noteDraft} rows={4} onChange={(event) => setNoteDraft(event.target.value)} />
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setEditingNote(null)}>
+            <button type="button" className="dashboard-secondary-btn" onClick={() => setEditingNote(null)}>
               Cancel
-            </Button>
-            <Button
+            </button>
+            <button
               type="button"
+              className="dashboard-primary-btn"
               disabled={!noteDraft.trim() || pending}
               onClick={() => onUpdateEntry(editingNote._id, { text: noteDraft.trim() }, () => setEditingNote(null))}
             >
-              Save
-            </Button>
+              Save note
+            </button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -404,18 +417,21 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
     <Sheet open={Boolean(application)} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full gap-0 sm:max-w-lg">
         <SheetHeader className="gap-3">
-          <div className="flex items-start justify-between gap-2 pr-8">
+          <div className="flex items-start justify-between gap-3 pr-8">
             <div className="min-w-0">
-              <SheetTitle className="truncate">{current.jobTitle}</SheetTitle>
+              <SheetTitle className="truncate font-outfit">{current.jobTitle}</SheetTitle>
               <div className="truncate text-sm text-muted-foreground">
-                {current.jobCompany}
-                {current.location ? ` · ${current.location}` : ""}
+                {[current.jobCompany, current.location].filter(Boolean).join(", ")}
               </div>
             </div>
-            <Button size="sm" variant="outline" className="shrink-0" onClick={() => onEdit(current)}>
-              <PencilSimpleIcon />
+            <button
+              type="button"
+              className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
+              onClick={() => onEdit(current)}
+            >
+              <PencilSimpleIcon size={16} aria-hidden="true" />
               Edit
-            </Button>
+            </button>
           </div>
           <div className="flex gap-1.5">
             {STAGES.map((stage, i) => (
@@ -427,13 +443,25 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               />
             ))}
           </div>
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">{STAGE_BY_KEY[current.status]?.label ?? current.status}</span>
+          <div className="flex min-h-9 items-center justify-between gap-3">
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
+              <span
+                className="h-2 w-2 shrink-0 rounded-full"
+                style={{ background: STAGE_BY_KEY[current.status]?.color }}
+                aria-hidden="true"
+              />
+              {STAGE_BY_KEY[current.status]?.label ?? current.status}
+            </span>
             {nextStage && (
-              <Button size="sm" variant="outline" disabled={update.isPending} onClick={() => save({ status: nextStage.key })}>
+              <button
+                type="button"
+                className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
+                disabled={update.isPending}
+                onClick={() => save({ status: nextStage.key })}
+              >
                 Move to {nextStage.label}
-                <ArrowRightIcon />
-              </Button>
+                <ArrowRightIcon size={14} aria-hidden="true" />
+              </button>
             )}
           </div>
         </SheetHeader>
@@ -450,10 +478,10 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               href={current.jobUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-[var(--landing-accent)] hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--landing-accent-dark)] hover:underline"
             >
-              <ArrowSquareOutIcon />
-              Job posting
+              <ArrowSquareOutIcon size={14} aria-hidden="true" />
+              Open job posting
             </a>
           )}
 
@@ -467,13 +495,19 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
             {current.tailoredCVId ? (
               <Link
                 href={`/dashboard/tailored/${current.tailoredCVId}`}
-                className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] p-2.5 hover:bg-[var(--landing-paper-soft)]"
+                className="dashboard-list-row group flex items-center gap-3 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
               >
-                <span className="flex size-8 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[10px] font-bold text-[var(--landing-accent)]">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] font-outfit text-[10px] font-semibold text-[var(--landing-accent-dark)]">
                   CV
                 </span>
-                <span className="min-w-0 flex-1 truncate text-sm">Tailored CV for this job</span>
-                <ArrowSquareOutIcon className="text-muted-foreground" />
+                <span className="min-w-0 flex-1 truncate text-sm font-medium text-foreground">
+                  Tailored CV for this job
+                </span>
+                <ArrowRightIcon
+                  size={14}
+                  className="shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </Link>
             ) : (
               <p className="text-sm text-muted-foreground">No CV linked.</p>
@@ -493,8 +527,8 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
 
           {current.followUpDate && (
             <Section title="Follow-up">
-              <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-2.5 text-sm">
-                <span className="font-medium">{formatDate(current.followUpDate)}</span>
+              <div className="rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-2.5 text-sm text-foreground">
+                <span className="font-medium tabular-nums">{formatDate(current.followUpDate)}</span>
                 {current.followUpNote ? `: ${current.followUpNote}` : ""}
               </div>
             </Section>
@@ -518,27 +552,38 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
 
         <div className="flex items-center gap-1 border-t border-[var(--landing-line)] p-4">
           {current.status !== "rejected" && (
-            <Button size="sm" variant="ghost" disabled={update.isPending} onClick={() => save({ status: "rejected" })}>
-              <XCircleIcon />
+            <Button
+              size="sm"
+              variant="ghost"
+              className="h-9 hover:bg-[var(--landing-paper-soft)]"
+              disabled={update.isPending}
+              onClick={() => save({ status: "rejected" })}
+            >
+              <XCircleIcon size={16} aria-hidden="true" />
               Mark rejected
             </Button>
           )}
-          <Button size="sm" variant="ghost" onClick={() => save({ archived: !current.archived })}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-9 hover:bg-[var(--landing-paper-soft)]"
+            onClick={() => save({ archived: !current.archived })}
+          >
             {current.archived ? "Unarchive" : "Archive"}
           </Button>
           <Button
             size="sm"
             variant="ghost"
-            className="ml-auto text-destructive"
+            className="ml-auto h-9 text-destructive hover:bg-destructive/10 hover:text-destructive"
             disabled={remove.isPending}
             onClick={async () => {
               const confirmed = await confirm("Delete this application?", {
-                description: `"${current.jobTitle} · ${current.jobCompany}" and its full timeline will be deleted for good.`,
+                description: `${current.jobTitle} at ${current.jobCompany} and its full timeline will be deleted for good.`,
               });
               if (confirmed) remove.mutate();
             }}
           >
-            <TrashIcon />
+            <TrashIcon size={16} aria-hidden="true" />
             Delete
           </Button>
         </div>

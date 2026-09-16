@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import {
   BriefcaseIcon,
   MapPinIcon,
@@ -15,11 +14,7 @@ import {
   CaretUpIcon,
   CheckCircleIcon,
   XCircleIcon,
-  SparkleIcon,
-  SpinnerGapIcon,
 } from "@phosphor-icons/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { GradeBadge } from "@/components/GradeBadge";
 
 function matchesKeyword(keyword, cvText) {
@@ -38,128 +33,85 @@ function normalizeSearchText(value) {
     .trim();
 }
 
-export default function JobRequirementsCard({
-  data,
-  referenceCV,
-  matchGrade,
-  matchLoading,
-  onTailor,
-  tailorPending,
-  showTailorAction,
-}) {
+/**
+ * The scraped posting as a flat card: title and meta up top, then one
+ * hairline-divided section per list. The tailor action lives on the page.
+ */
+export default function JobRequirementsCard({ data, referenceCV, matchGrade, matchLoading }) {
+  const meta = [
+    data.company && { icon: BuildingsIcon, text: data.company },
+    data.location && { icon: MapPinIcon, text: data.location },
+    data.type && { icon: BriefcaseIcon, text: data.type },
+    data.salary && { icon: CurrencyDollarIcon, text: data.salary },
+  ].filter(Boolean);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardHeader className="dashboard-card-pad">
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <CardTitle className="font-outfit text-xl font-semibold tracking-tight">
-                {data.title || "Job Listing"}
-              </CardTitle>
-              {matchLoading ? (
-                <span className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-semibold text-[var(--landing-ink-soft)]">
-                  Scoring…
+    <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+      <div className="dashboard-card-pad flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h2 className="font-outfit text-base font-semibold tracking-[-0.01em] text-foreground">
+            {data.title || "Job listing"}
+          </h2>
+          {meta.length > 0 && (
+            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+              {meta.map((item) => (
+                <span key={item.text} className="inline-flex min-w-0 items-center gap-1">
+                  <item.icon size={12} className="shrink-0" aria-hidden="true" />
+                  <span className="truncate">{item.text}</span>
                 </span>
-              ) : (
-                <GradeBadge grade={matchGrade} />
-              )}
-            </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">
-              {data.company && (
-                <span className="flex items-center gap-1">
-                  <BuildingsIcon size={14} aria-hidden="true" />
-                  {data.company}
-                </span>
-              )}
-              {data.location && (
-                <span className="flex items-center gap-1">
-                  <MapPinIcon size={14} aria-hidden="true" />
-                  {data.location}
-                </span>
-              )}
-              {data.type && (
-                <span className="flex items-center gap-1">
-                  <BriefcaseIcon size={14} aria-hidden="true" />
-                  {data.type}
-                </span>
-              )}
-              {data.salary && (
-                <span className="flex items-center gap-1">
-                  <CurrencyDollarIcon size={14} aria-hidden="true" />
-                  {data.salary}
-                </span>
-              )}
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent className="dashboard-card-pad space-y-4 pt-0">
-          {data.requirements?.length > 0 && (
-            <Section
-              icon={<ListChecksIcon size={16} aria-hidden="true" />}
-              title="Requirements"
-              items={data.requirements}
-            />
-          )}
-          {data.responsibilities?.length > 0 && (
-            <Section
-              icon={<ClipboardTextIcon size={16} aria-hidden="true" />}
-              title="Responsibilities"
-              items={data.responsibilities}
-            />
-          )}
-          {data.qualifications?.length > 0 && (
-            <Section
-              icon={<GraduationCapIcon size={16} aria-hidden="true" />}
-              title="Qualifications"
-              items={data.qualifications}
-            />
-          )}
-          {data.keywords?.length > 0 && (
-            <KeywordsSection keywords={data.keywords} referenceCV={referenceCV} />
-          )}
-          {showTailorAction && onTailor && (
-            <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Ready to rewrite your CV for this role.
-              </p>
-              <Button
-                onClick={onTailor}
-                disabled={tailorPending}
-                aria-busy={tailorPending}
-                className="h-11 w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black sm:w-auto"
-              >
-                {tailorPending ? (
-                  <>
-                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                    Tailoring…
-                  </>
-                ) : (
-                  <>
-                    <SparkleIcon size={16} aria-hidden="true" />
-                    Tailor CV
-                  </>
-                )}
-              </Button>
+              ))}
             </div>
           )}
-        </CardContent>
-      </Card>
-    </motion.div>
+        </div>
+        {matchLoading ? (
+          <span className="shrink-0 text-xs font-medium text-muted-foreground">Scoring…</span>
+        ) : (
+          <GradeBadge grade={matchGrade} className="shrink-0" />
+        )}
+      </div>
+      <div className="divide-y divide-[var(--landing-line)] border-t border-[var(--landing-line)]">
+        {data.requirements?.length > 0 && (
+          <Section icon={ListChecksIcon} title="Requirements" items={data.requirements} />
+        )}
+        {data.responsibilities?.length > 0 && (
+          <Section
+            icon={ClipboardTextIcon}
+            title="Responsibilities"
+            items={data.responsibilities}
+          />
+        )}
+        {data.qualifications?.length > 0 && (
+          <Section
+            icon={GraduationCapIcon}
+            title="Qualifications"
+            items={data.qualifications}
+          />
+        )}
+        {data.keywords?.length > 0 && (
+          <KeywordsSection keywords={data.keywords} referenceCV={referenceCV} />
+        )}
+      </div>
+    </section>
+  );
+}
+
+function SectionTitle({ icon: Icon, children, trailing }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+        <Icon size={14} aria-hidden="true" />
+      </span>
+      <span className="text-sm font-semibold text-foreground">{children}</span>
+      {trailing}
+    </div>
   );
 }
 
 function Section({ icon, title, items }) {
   return (
-    <div className="space-y-2">
-      <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-        {icon}
-        {title}
-      </h3>
-      <ul className="list-disc space-y-1 pl-6 text-sm leading-6 text-[var(--landing-ink-soft)]">
+    <div className="dashboard-card-pad">
+      <SectionTitle icon={icon}>{title}</SectionTitle>
+      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-[var(--landing-ink-soft)]">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
@@ -189,54 +141,60 @@ function KeywordsSection({ keywords, referenceCV }) {
   const hasCV = Boolean(referenceCV);
 
   return (
-    <div className="space-y-2">
+    <div className="dashboard-card-pad">
       <button
+        type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center gap-2 text-sm font-semibold text-foreground hover:text-foreground/80 transition-colors"
+        aria-expanded={expanded}
+        className="-mx-2 flex items-center gap-2 rounded-md px-2 py-1 text-left transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
       >
-        <TagIcon size={16} aria-hidden="true" />
-        Key terms
-        {hasCV && (
-          <span className="ml-auto text-xs font-normal text-[var(--landing-ink-soft)]">
-            {matched.length} in your CV
-          </span>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+          <TagIcon size={14} aria-hidden="true" />
+        </span>
+        <span className="text-sm font-semibold text-foreground">Key terms</span>
+        <span className="ml-auto text-xs tabular-nums text-muted-foreground">
+          {hasCV ? `${matched.length} of ${keywords.length} in your CV` : `${keywords.length}`}
+        </span>
+        {expanded ? (
+          <CaretUpIcon size={14} className="text-muted-foreground" aria-hidden="true" />
+        ) : (
+          <CaretDownIcon size={14} className="text-muted-foreground" aria-hidden="true" />
         )}
-        {expanded ? <CaretUpIcon size={14} /> : <CaretDownIcon size={14} />}
       </button>
       {expanded && (
-        <div className="flex flex-wrap gap-1.5 pt-1">
+        <ul className="mt-3 flex flex-wrap gap-1.5">
           {hasCV ? (
             <>
               {matched.map((kw) => (
-                <span
+                <li
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-full border border-[#c8e6d4] bg-[#eef8f1] px-2.5 py-0.5 text-xs font-medium text-[var(--landing-success)]"
+                  className="inline-flex items-center gap-1 rounded-md border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
                 >
-                  <CheckCircleIcon size={12} weight="fill" />
+                  <CheckCircleIcon size={12} weight="fill" aria-hidden="true" />
                   {kw}
-                </span>
+                </li>
               ))}
               {missing.map((kw) => (
-                <span
+                <li
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-full border border-[#f0d4cc] bg-[#fdf3ef] px-2.5 py-0.5 text-xs font-medium text-[var(--landing-accent)]"
+                  className="inline-flex items-center gap-1 rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-accent-dark)]"
                 >
-                  <XCircleIcon size={12} weight="fill" />
+                  <XCircleIcon size={12} weight="fill" aria-hidden="true" />
                   {kw}
-                </span>
+                </li>
               ))}
             </>
           ) : (
             keywords.map((kw) => (
-              <span
+              <li
                 key={kw}
-                className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+                className="inline-flex items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2 py-0.5 text-xs font-medium text-muted-foreground"
               >
                 {kw}
-              </span>
+              </li>
             ))
           )}
-        </div>
+        </ul>
       )}
     </div>
   );

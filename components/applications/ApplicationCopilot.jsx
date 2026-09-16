@@ -61,19 +61,23 @@ function FitRing({ score }) {
 
 function ActionRow({ icon, title, description, disabled, pending, onClick, href }) {
   const className = cn(
-    "group/row flex w-full items-center gap-3 rounded-lg p-2 text-left transition-colors hover:bg-[var(--landing-accent-soft)]",
+    "group/row flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
     (disabled || pending) && "pointer-events-none opacity-45"
   );
   const body = (
     <>
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-accent-soft)] text-[var(--landing-accent)]">
-        {pending ? <SpinnerGapIcon className="animate-spin" /> : icon}
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+        {pending ? <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" /> : icon}
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block text-sm font-medium">{title}</span>
+        <span className="block truncate text-sm font-medium text-foreground">{title}</span>
         <span className="block truncate text-xs text-muted-foreground">{description}</span>
       </span>
-      <CaretRightIcon className="shrink-0 text-muted-foreground/50 transition-transform group-hover/row:translate-x-0.5" />
+      <CaretRightIcon
+        size={14}
+        className="shrink-0 text-muted-foreground transition-transform group-hover/row:translate-x-0.5"
+        aria-hidden="true"
+      />
     </>
   );
   if (href && !disabled) {
@@ -119,17 +123,17 @@ export function ApplicationCopilot({ application }) {
   };
 
   return (
-    <section className="overflow-hidden rounded-xl border border-[var(--landing-accent-line)]/50 bg-[var(--landing-accent-soft)]/40">
+    <section className="overflow-hidden rounded-lg border border-[var(--landing-accent-line)]/50 bg-[var(--landing-accent-soft)]/40">
       <header className="flex items-center gap-2 px-3.5 pt-3">
-        <span className="flex size-5 items-center justify-center rounded-md bg-[var(--landing-accent)] text-white">
-          <SparkleIcon weight="fill" className="size-3" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-[var(--landing-accent)] text-white">
+          <SparkleIcon weight="fill" size={12} aria-hidden="true" />
         </span>
-        <span className="text-sm font-medium">Application Copilot</span>
+        <span className="font-outfit text-sm font-semibold text-foreground">Application Copilot</span>
       </header>
 
       <div className="px-3.5 py-3">
         {!canScore ? (
-          <p className="rounded-lg bg-[var(--landing-paper-soft)] p-2.5 text-xs text-muted-foreground">
+          <p className="rounded-md bg-[var(--landing-paper-soft)] p-2.5 text-xs leading-5 text-muted-foreground">
             Paste the job description or link a tailored CV (Edit) to score your fit.
           </p>
         ) : score == null ? (
@@ -137,13 +141,19 @@ export function ApplicationCopilot({ application }) {
             type="button"
             disabled={run.isPending}
             onClick={() => run.mutate("match")}
-            className="flex w-full items-center gap-3 rounded-lg border border-dashed border-[var(--landing-accent-line)] p-2.5 text-left transition-colors hover:bg-[var(--landing-accent-soft)] disabled:opacity-60"
+            className="flex w-full items-center gap-3 rounded-md border border-dashed border-[var(--landing-accent-line)] p-2.5 text-left transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-60"
           >
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent)]">
-              {pendingKind === "match" ? <SpinnerGapIcon className="size-5 animate-spin" /> : <SparkleIcon className="size-5" />}
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+              {pendingKind === "match" ? (
+                <SpinnerGapIcon size={20} className="animate-spin" aria-hidden="true" />
+              ) : (
+                <SparkleIcon size={20} aria-hidden="true" />
+              )}
             </span>
-            <span>
-              <span className="block text-sm font-medium">{pendingKind === "match" ? "Scoring your fit…" : "Score my fit"}</span>
+            <span className="min-w-0">
+              <span className="block text-sm font-medium text-foreground">
+                {pendingKind === "match" ? "Scoring your fit" : "Score my fit"}
+              </span>
               <span className="block text-xs text-muted-foreground">See how much of the posting your CV covers</span>
             </span>
           </button>
@@ -151,7 +161,7 @@ export function ApplicationCopilot({ application }) {
           <div className="flex items-center gap-3.5">
             <div className="relative flex items-center justify-center">
               <FitRing score={score} />
-              <span className="absolute text-base font-semibold tabular-nums">{score}</span>
+              <span className="absolute font-outfit text-base font-semibold tabular-nums tracking-[-0.02em]">{score}</span>
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
@@ -162,15 +172,19 @@ export function ApplicationCopilot({ application }) {
                   type="button"
                   disabled={run.isPending}
                   onClick={() => run.mutate("match")}
-                  className="text-xs text-muted-foreground hover:text-foreground disabled:opacity-50"
+                  className="flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-[var(--landing-accent-soft)] hover:text-foreground disabled:opacity-50"
                   title="Score again"
                   aria-label="Score again"
                 >
-                  <ArrowsClockwiseIcon className={cn("size-3.5", pendingKind === "match" && "animate-spin")} />
+                  <ArrowsClockwiseIcon
+                    size={14}
+                    className={cn(pendingKind === "match" && "animate-spin")}
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
               {gaps.length > 0 && (
-                <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">Gaps: {gaps.slice(0, 3).join(" · ")}</p>
+                <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">Gaps: {gaps.slice(0, 3).join(", ")}</p>
               )}
             </div>
           </div>
@@ -179,14 +193,14 @@ export function ApplicationCopilot({ application }) {
 
       <div className="border-t border-[var(--landing-accent-line)]/40 px-2 py-2">
         <ActionRow
-          icon={<MagicWandIcon />}
+          icon={<MagicWandIcon size={16} aria-hidden="true" />}
           title="Tailor my CV"
           description={application.jobUrl ? "Make a copy tuned to this job" : "Add the job posting link first"}
           disabled={!application.jobUrl}
           href={application.jobUrl ? `/dashboard/tailor?url=${encodeURIComponent(application.jobUrl)}` : undefined}
         />
         <ActionRow
-          icon={<EnvelopeSimpleIcon />}
+          icon={<EnvelopeSimpleIcon size={16} aria-hidden="true" />}
           title="Draft a cover letter"
           description="From your CV and the posting"
           disabled={run.isPending}
@@ -194,7 +208,7 @@ export function ApplicationCopilot({ application }) {
           onClick={() => run.mutate("cover-letter")}
         />
         <ActionRow
-          icon={<PaperPlaneTiltIcon />}
+          icon={<PaperPlaneTiltIcon size={16} aria-hidden="true" />}
           title="Draft a follow-up"
           description="A short check-in for the recruiter"
           disabled={run.isPending}
@@ -205,21 +219,22 @@ export function ApplicationCopilot({ application }) {
 
       {draft && (
         <div className="border-t border-[var(--landing-accent-line)]/40 bg-[var(--landing-surface)]/60 p-3">
-          <div className="mb-1.5 flex items-center justify-between">
-            <span className="text-xs font-medium">
+          <div className="mb-1.5 flex items-center justify-between gap-3">
+            <span className="text-xs font-semibold text-foreground">
               {draft.kind === "cover-letter" ? "Cover letter draft" : "Follow-up draft"}
             </span>
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
-                className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground"
+                className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => void copyDraft()}
               >
-                <CopyIcon className="size-3.5" /> Copy
+                <CopyIcon size={14} aria-hidden="true" />
+                Copy draft
               </button>
               <button
                 type="button"
-                className="text-xs text-muted-foreground hover:text-foreground"
+                className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => setDraft(null)}
               >
                 Dismiss

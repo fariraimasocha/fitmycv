@@ -83,20 +83,21 @@ export default function UpgradePromptModal({
 
         <PricingCards compact pricing={pricing} tier={pricing.tier} />
 
-        <div className="flex flex-col gap-3 pt-2">
-          <Button
+        <div className="flex flex-col gap-2 pt-2">
+          <button
+            type="button"
             onClick={handleLifetime}
-            className="w-full rounded-md bg-foreground font-outfit font-medium text-background hover:bg-black"
+            className="dashboard-primary-btn w-full"
           >
-            Get Lifetime · ${pricing.lifetime.price}
-          </Button>
-          <Button
-            variant="ghost"
+            Get lifetime access for ${pricing.lifetime.price}
+          </button>
+          <button
+            type="button"
             onClick={onClose}
-            className="w-full text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
+            className="dashboard-secondary-btn w-full"
           >
             Maybe later
-          </Button>
+          </button>
           <Button
             variant="link"
             onClick={() => {
@@ -105,8 +106,8 @@ export default function UpgradePromptModal({
             }}
             className="w-full text-[var(--landing-ink-soft)]"
           >
-            View all features
-            <ArrowRightIcon className="ml-1 size-4" />
+            See everything in Pro
+            <ArrowRightIcon className="ml-1 size-4" aria-hidden="true" />
           </Button>
         </div>
       </DialogContent>

@@ -83,8 +83,8 @@ export function ResumePane({ draft, template, style }) {
 
   return (
     <section aria-label="Draft CV" className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
-      <div className="flex h-12 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-bg)] px-3">
-        <div className="flex items-center rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-0.5">
+      <div className="flex h-12 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3">
+        <div className="flex h-9 items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-0.5">
           <ToolbarButton
             label="Zoom out"
             disabled={!draft || zoom <= MIN_ZOOM}
@@ -116,22 +116,18 @@ export function ResumePane({ draft, template, style }) {
         </div>
         <div className="ml-auto flex items-center gap-2">
           {draft && (
-            <Button
-              asChild
-              size="sm"
-              variant="outline"
-              className="rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)]"
+            <Link
+              href={`/dashboard/tailored/${draft._id}`}
+              className="dashboard-secondary-btn dashboard-secondary-btn-sm"
             >
-              <Link href={`/dashboard/tailored/${draft._id}`}>
-                <PencilSimpleIcon aria-hidden="true" />
-                Edit
-              </Link>
-            </Button>
+              <PencilSimpleIcon size={16} aria-hidden="true" />
+              Edit
+            </Link>
           )}
-          <Button
-            size="sm"
+          <button
+            type="button"
             disabled={!draft}
-            className="rounded-md bg-foreground font-medium text-background hover:bg-black"
+            className="dashboard-primary-btn dashboard-primary-btn-sm"
             onClick={() =>
               printDocument({
                 kind: "cv",
@@ -142,9 +138,10 @@ export function ResumePane({ draft, template, style }) {
               })
             }
           >
-            <DownloadSimpleIcon aria-hidden="true" />
-            Download PDF
-          </Button>
+            <DownloadSimpleIcon size={16} aria-hidden="true" />
+            <span className="hidden sm:inline">Download PDF</span>
+            <span className="sm:hidden">PDF</span>
+          </button>
         </div>
       </div>
 
@@ -152,7 +149,7 @@ export function ResumePane({ draft, template, style }) {
         {draft ? (
           <div style={{ padding: gutter }}>
             <div
-              className="mx-auto w-fit bg-white shadow-[var(--landing-shadow)] ring-1 ring-black/5"
+              className="mx-auto w-fit border border-[var(--landing-line)] bg-white"
               style={{ zoom }}
             >
               <div style={{ width: PAGE_WIDTH, minHeight: PAGE_HEIGHT }}>
@@ -162,10 +159,16 @@ export function ResumePane({ draft, template, style }) {
           </div>
         ) : (
           <div className="flex h-full items-center justify-center p-6">
-            <div className="max-w-xs text-center">
-              <FileDashedIcon className="mx-auto size-8 text-muted-foreground" aria-hidden="true" />
-              <p className="mt-3 text-sm font-medium text-foreground">This draft was deleted</p>
-              <p className="mt-1 text-sm text-muted-foreground">Start a new thread to keep editing your CV.</p>
+            <div className="flex max-w-xs flex-col items-center text-center">
+              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground landing-inset-edge">
+                <FileDashedIcon size={22} aria-hidden="true" />
+              </span>
+              <p className="mt-4 font-outfit text-base font-semibold tracking-[-0.01em] text-foreground">
+                This draft was deleted
+              </p>
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                Start a new thread to keep editing your CV.
+              </p>
             </div>
           </div>
         )}

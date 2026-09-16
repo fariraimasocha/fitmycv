@@ -10,13 +10,14 @@
 // nothing to run and never sends anyone's CV anywhere. The real rewrite lives
 // behind /tailor-cv-from-job-link.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import { trackEvent } from "@/lib/analytics";
 
 // Words that carry no signal when matching a CV against a posting. The second
 // block is job-advert boilerplate. Without it the top of the list fills up
@@ -195,6 +196,33 @@ export default function KeywordChecker({ mode = "match" }) {
       missing,
     };
   }, [ran, jobText, cvText, mode]);
+
+  // One event per completed run. `result` recomputes on every keystroke in the
+  // job field, because the score updates live, so the ref scopes the event to
+  // the run rather than to the render. check_index is what makes the
+  // iterate-against-many-postings pattern legible: someone on their eighth pass
+  // is not the same user as someone on their first, and until now this page
+  // sent nothing at all.
+  const runReported = useRef(false);
+  const checksThisSession = useRef(0);
+
+  useEffect(() => {
+    if (!ran) {
+      runReported.current = false;
+      return;
+    }
+    if (runReported.current || !result) return;
+
+    runReported.current = true;
+    checksThisSession.current += 1;
+    trackEvent("ats_check_completed", {
+      mode,
+      check_index: checksThisSession.current,
+      term_count: result.terms.length,
+      ...(typeof result.score === "number" ? { score: result.score } : {}),
+      ...(result.missing ? { missing_count: result.missing.length } : {}),
+    });
+  }, [ran, result, mode]);
 
   const tooShort = jobText.trim().length < 40;
 

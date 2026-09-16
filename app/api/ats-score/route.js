@@ -1,5 +1,4 @@
 import { auth } from "@/lib/auth";
-import { requirePremium } from "@/lib/paywall";
 import { checkCv, cvToText, jobToText } from "@/lib/ats/rules";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
@@ -11,9 +10,6 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const paywallResponse = requirePremium(session);
-  if (paywallResponse) return paywallResponse;
 
   try {
     const { tailoredCV, jobData } = await request.json();

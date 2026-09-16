@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import posthog from "posthog-js";
+import { trackEvent } from "@/lib/analytics";
 import {
   ArchiveIcon,
   BriefcaseIcon,
@@ -59,12 +59,6 @@ const COMPARE = {
   applied: (a, b) => time(b.appliedAt) - time(a.appliedAt),
   company: (a, b) => (a.jobCompany || "").localeCompare(b.jobCompany || ""),
   role: (a, b) => (a.jobTitle || "").localeCompare(b.jobTitle || ""),
-};
-
-const trackEvent = (name, props) => {
-  if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
-    posthog.capture(name, props);
-  }
 };
 
 function TagChecklist({ allTags, tags, onChange }) {

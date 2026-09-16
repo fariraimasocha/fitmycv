@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import PricingCards from "@/components/pricing/PricingCards";
 import { useClientPricing } from "@/components/pricing/PricingCards";
 import { trackEvent } from "@/lib/analytics";
-import posthog from "posthog-js";
 
 const COPY = {
   default: {
@@ -44,12 +43,6 @@ export default function UpgradePromptModal({
   useEffect(() => {
     if (open) {
       trackEvent("paywall_view", { context });
-      if (
-        process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
-        process.env.NEXT_PUBLIC_POSTHOG_HOST
-      ) {
-        posthog.capture("paywall_view", { context });
-      }
     }
   }, [open, context]);
 
@@ -60,17 +53,11 @@ export default function UpgradePromptModal({
       : copy.description;
 
   const handleLifetime = () => {
-    trackEvent("checkout_start", { tier: pricing.tier, plan: "lifetime" });
-    if (
-      process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
-      process.env.NEXT_PUBLIC_POSTHOG_HOST
-    ) {
-      posthog.capture("checkout_start", {
-        tier: pricing.tier,
-        plan: "lifetime",
-        source: "paywall_primary",
-      });
-    }
+    trackEvent("checkout_start", {
+      tier: pricing.tier,
+      plan: "lifetime",
+      source: "paywall_primary",
+    });
     if (session?.user) {
       router.push("/api/polar/checkout?plan=lifetime");
     } else {

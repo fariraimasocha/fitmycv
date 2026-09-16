@@ -11,7 +11,7 @@ import {
 } from "@phosphor-icons/react";
 import UploadProgress from "@/components/UploadProgress";
 import { uploadResumeWithProgress } from "@/utils/upload-resume";
-import posthog from "posthog-js";
+import { trackEvent } from "@/lib/analytics";
 
 function formatFileSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -83,11 +83,7 @@ export default function ResumeUpload({ onParsed }) {
     try {
       const result = await uploadResumeWithProgress(file, setProgressState);
       setIsComplete(true);
-      if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
-        posthog.capture("resume_uploaded", {
-          file_size_bytes: file.size,
-        });
-      }
+      trackEvent("resume_uploaded", { file_size_bytes: file.size });
       toast.success("Resume parsed successfully!");
       onParsed({ ...result.data, rawText: result.rawText });
     } catch (error) {

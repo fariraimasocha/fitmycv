@@ -54,15 +54,10 @@ import {
 import { GradeBadge, AtsScoreChip } from "@/components/GradeBadge";
 import { getRecentJobUrls, rememberJobUrl } from "@/lib/recent-job-urls";
 import Loader from "@/components/Loader";
-import posthog from "posthog-js";
+import { trackEvent } from "@/lib/analytics";
 
 // Matches the extract route's minimum, so the button never sends a paste it would refuse.
 const MIN_JOB_TEXT_CHARS = 150;
-
-function capturePostHogEvent(event, properties) {
-  if (!process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN || !process.env.NEXT_PUBLIC_POSTHOG_HOST) return;
-  posthog.capture(event, properties);
-}
 
 function Tailor() {
   const { data: session } = useSession();
@@ -177,7 +172,7 @@ function Tailor() {
       setPreAtsScore(null);
       setWhyThisRole(null);
       setAppliedFixes([]);
-      capturePostHogEvent("job_requirements_extracted", {
+      trackEvent("job_requirements_extracted", {
         has_company: Boolean(result.data?.company),
         has_job_title: Boolean(result.data?.title),
       });
@@ -325,7 +320,7 @@ function Tailor() {
       setActiveTab("cv");
       setWhyThisRole(null);
       setAppliedFixes([]);
-      capturePostHogEvent("cv_tailored", {
+      trackEvent("cv_tailored", {
         is_premium: Boolean(session?.user?.isPremium),
         has_cover_letter: Boolean(result.data?.coverLetter),
       });
@@ -365,7 +360,7 @@ function Tailor() {
     },
     onError: (error) => {
       if (error.code === "PREMIUM_REQUIRED") {
-        setUpgradeModalContext("pre_tailor");
+        setUpgradeModalContext("default");
         setShowUpgradeModal(true);
         return;
       }
@@ -378,6 +373,10 @@ function Tailor() {
     const documentType = tab === "cv" ? "cv" : "cover_letter";
     const isPremium = !!session?.user?.isPremium;
     if (!isPremium) {
+      trackEvent("download_blocked", {
+        document_type: documentType,
+        template: selectedTemplate,
+      });
       setUpgradeModalContext("default");
       setShowUpgradeModal(true);
       return false;
@@ -404,7 +403,7 @@ function Tailor() {
         filename: buildPdfFilename(tailorResult.tailoredCV.basics?.name, "cover-letter"),
       });
     }
-    capturePostHogEvent("pdf_downloaded", {
+    trackEvent("pdf_downloaded", {
       document_type: documentType,
       template: selectedTemplate,
     });
@@ -491,7 +490,7 @@ function Tailor() {
       const updated = json.data.tailoredCV;
       setTailorResult((r) => ({ ...r, tailoredCV: updated }));
       setAppliedFixes((list) => [...list, fix]);
-      capturePostHogEvent("ats_fix_applied");
+      trackEvent("ats_fix_applied");
       toast.success(json.data.changes?.[0] || "Applied to your CV");
       persistTailoredCV({
         basics: updated.basics,
@@ -587,16 +586,10 @@ function Tailor() {
   };
 
   const handleTailor = () => {
-    capturePostHogEvent("tailor_started", {
+    trackEvent("tailor_started", {
       is_premium: Boolean(session?.user?.isPremium),
       has_match_score: Boolean(matchScore),
     });
-
-    if (!session?.user?.isPremium) {
-      setUpgradeModalContext("pre_tailor");
-      setShowUpgradeModal(true);
-      return;
-    }
 
     tailorMutation.mutate();
   };

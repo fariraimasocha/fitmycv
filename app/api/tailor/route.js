@@ -3,7 +3,6 @@ import { parseTailorResponse } from "@/utils/tailor-parser";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
 import { chat, MODEL_SMART } from "@/lib/groq";
-import { requirePremium } from "@/lib/paywall";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
@@ -102,9 +101,6 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const paywallResponse = requirePremium(session);
-  if (paywallResponse) return paywallResponse;
 
   try {
     const { referenceCV, jobData } = await request.json();

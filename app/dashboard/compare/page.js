@@ -20,7 +20,7 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
 } from "@/components/dashboard";
-import posthog from "posthog-js";
+import { trackEvent } from "@/lib/analytics";
 
 const DIMENSION_LABELS = {
   roleFit: "Role Fit",
@@ -79,9 +79,7 @@ export default function ComparePage() {
     },
     onSuccess: (result) => {
       if (result.data) setComparisonResult(result.data);
-      if (process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
-        posthog.capture("offers_compared", { offer_count: selectedIds.length });
-      }
+      trackEvent("offers_compared", { offer_count: selectedIds.length });
       toast.success("Comparison ready!");
     },
     onError: () => toast.error("Failed to compare offers"),

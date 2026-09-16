@@ -3,8 +3,19 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
-import { Sparkline } from "@/components/charts/Sparkline";
+import { Area, AreaChart, YAxis } from "recharts";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
+
+function weekLabel(weeksAgo) {
+  if (weeksAgo === 0) return "This week";
+  if (weeksAgo === 1) return "Last week";
+  return `${weeksAgo} weeks ago`;
+}
 
 export function DashboardStatCard({
   label,
@@ -21,6 +32,18 @@ export function DashboardStatCard({
   const numeric = typeof value === "number";
   const reduceMotion = useReducedMotion();
   const featured = variant === "featured";
+  const chartId = `stat-${label.toLowerCase().replaceAll(" ", "-")}`;
+  const chartData =
+    sparkline?.map((count, index) => ({
+      week: weekLabel(sparkline.length - 1 - index),
+      count,
+    })) ?? [];
+  const chartConfig = {
+    count: {
+      label,
+      color: "var(--landing-accent)",
+    },
+  };
 
   return (
     <motion.div
@@ -117,17 +140,64 @@ export function DashboardStatCard({
           {sparkline && (
             <div
               className={cn(
-                featured ? "relative -mx-4 mt-3 h-16 sm:-mx-6" : "mt-3"
+                "relative mt-3",
+                featured ? "-mx-4 sm:-mx-6" : "-mx-3 sm:-mx-4"
               )}
             >
-              <Sparkline
-                values={sparkline}
-                fill
-                className={cn(
-                  "w-full text-[var(--landing-accent)]",
-                  featured ? "h-16" : "h-8"
-                )}
-              />
+              <ChartContainer
+                id={chartId}
+                config={chartConfig}
+                className={cn("w-full", featured ? "h-20" : "h-14")}
+              >
+                <AreaChart
+                  accessibilityLayer
+                  data={chartData}
+                  margin={{ top: 6, right: 0, bottom: 2, left: 0 }}
+                >
+                  <defs>
+                    <linearGradient
+                      id={`fill-${chartId}`}
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="1"
+                    >
+                      <stop
+                        offset="5%"
+                        stopColor="var(--color-count)"
+                        stopOpacity={0.3}
+                      />
+                      <stop
+                        offset="95%"
+                        stopColor="var(--color-count)"
+                        stopOpacity={0.02}
+                      />
+                    </linearGradient>
+                  </defs>
+                  {/* Hidden axis so flat, zero-activity weeks sit inside the
+                      plot instead of on the clipped bottom edge. */}
+                  <YAxis hide domain={[0, "dataMax + 1"]} />
+                  <ChartTooltip
+                    cursor={{ strokeDasharray: "3 3" }}
+                    content={
+                      <ChartTooltipContent
+                        indicator="line"
+                        labelKey="week"
+                        labelFormatter={(_, items) => items?.[0]?.payload?.week}
+                      />
+                    }
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="count"
+                    stroke="var(--color-count)"
+                    strokeWidth={1.75}
+                    fill={`url(#fill-${chartId})`}
+                    activeDot={{ r: 3.5, strokeWidth: 0 }}
+                    isAnimationActive={!reduceMotion}
+                  />
+                </AreaChart>
+              </ChartContainer>
             </div>
           )}
           {featured && children && (

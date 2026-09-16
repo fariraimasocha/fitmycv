@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -25,6 +25,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ItemReorderControls from "@/components/ItemReorderControls";
 import { FindingRow, SEVERITY_ORDER, SeverityCount } from "@/components/ATSScoreCard";
 import { checkCv } from "@/lib/ats/rules";
+import { cn } from "@/lib/utils";
 
 const resumeSchema = z.object({
   basics: z.object({
@@ -86,8 +87,15 @@ export default function ResumeForm({
   saveEndpoint = "/api/resume",
   saveMethod = "PUT",
   queryKey = ["resume"],
-  saveButtonLabel = "Save Resume",
+  saveButtonLabel = "Save CV",
   onSaved,
+  // Fires with the current form values and the live check report on every
+  // change, so a parent can drive a preview without owning the form.
+  onValuesChange,
+  // Hide the built-in checks panel when the parent renders the report itself.
+  showChecks = true,
+  // True while the values came from a fresh upload and have never been saved.
+  isDraft = false,
 }) {
   const queryClient = useQueryClient();
 
@@ -114,7 +122,8 @@ export default function ResumeForm({
     control,
     handleSubmit,
     setFocus,
-    formState: { errors },
+    reset,
+    formState: { errors, isDirty },
   } = form;
 
   // Live ATS checks. `now` is captured once so render stays pure; the rules
@@ -122,6 +131,10 @@ export default function ResumeForm({
   const [now] = useState(() => Date.now());
   const values = useWatch({ control });
   const report = useMemo(() => checkCv(values, now), [values, now]);
+
+  useEffect(() => {
+    onValuesChange?.(values, report);
+  }, [values, report, onValuesChange]);
 
   // Field paths ("work.2.startDate") get focus; section paths ("skills") scroll.
   const goToFinding = (path) => {
@@ -173,8 +186,10 @@ export default function ResumeForm({
       return res.json();
     },
     onSuccess: (_result, data) => {
-      toast.success("Resume saved!");
+      toast.success("CV saved");
       queryClient.invalidateQueries({ queryKey });
+      // Saved values become the new baseline, so the dirty flag clears.
+      reset(data);
       onSaved?.(data);
     },
     onError: (error) => {
@@ -187,8 +202,8 @@ export default function ResumeForm({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <CvChecks report={report} onSelect={goToFinding} />
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {showChecks && <CvChecks report={report} onSelect={goToFinding} />}
 
       {/* Personal Info */}
       <motion.div
@@ -196,7 +211,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0 }}
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Personal Information</CardTitle>
           </CardHeader>
@@ -245,7 +260,7 @@ export default function ResumeForm({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.05 }}
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Online Profiles</CardTitle>
             <Button
@@ -315,7 +330,7 @@ export default function ResumeForm({
         id="cv-section-work"
         className="scroll-mt-20"
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Work Experience</CardTitle>
             <Button
@@ -434,7 +449,7 @@ export default function ResumeForm({
         id="cv-section-education"
         className="scroll-mt-20"
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Education</CardTitle>
             <Button
@@ -547,7 +562,7 @@ export default function ResumeForm({
         id="cv-section-skills"
         className="scroll-mt-20"
       >
-        <Card className="dashboard-card rounded-2xl border-border py-0 gap-0">
+        <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">Skills</CardTitle>
             <Button
@@ -617,11 +632,32 @@ export default function ResumeForm({
         </Card>
       </motion.div>
 
-      <div className="sticky bottom-3 z-10 flex justify-end pt-2 sm:bottom-4">
+      <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-3 py-2.5 shadow-[var(--landing-shadow-sm)] backdrop-blur-md sm:bottom-4 sm:px-4">
+        <p
+          className={cn(
+            "flex items-center gap-1.5 text-xs font-medium",
+            isDirty || isDraft
+              ? "text-[var(--landing-accent-dark)]"
+              : "text-muted-foreground",
+          )}
+          aria-live="polite"
+        >
+          {isDirty || isDraft ? (
+            <>
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-[var(--landing-accent)]"
+                aria-hidden="true"
+              />
+              {isDirty ? "Unsaved changes" : "Not saved yet"}
+            </>
+          ) : (
+            "All changes saved"
+          )}
+        </p>
         <Button
           type="submit"
           disabled={saveMutation.isPending}
-          className="w-full rounded-md bg-foreground px-8 font-outfit font-semibold text-background shadow-[var(--landing-shadow-sm)] hover:opacity-90 sm:w-auto"
+          className="rounded-md bg-foreground px-6 font-outfit font-semibold text-background hover:opacity-90"
         >
           {saveMutation.isPending ? (
             <>
@@ -676,7 +712,7 @@ function CvChecks({ report, onSelect }) {
   const percent = Math.round((report.passedChecks / report.totalChecks) * 100);
 
   return (
-    <details className="dashboard-card group rounded-2xl border border-border bg-card">
+    <details className="dashboard-card group rounded-lg">
       <summary className="dashboard-card-pad flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">
         <span className="flex items-center gap-2 text-base font-semibold">
           <ListChecksIcon size={18} aria-hidden="true" />

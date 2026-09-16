@@ -4,29 +4,33 @@ import { useEffect, useState, useMemo, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import {
   StackIcon,
   BuildingsIcon,
-  BriefcaseIcon,
   EnvelopeIcon,
-  PenIcon,
-  KanbanIcon,
+  PlusIcon,
   ArrowRightIcon,
   FileTextIcon,
   WarningCircleIcon,
+  CheckCircleIcon,
+  MagnifyingGlassIcon,
 } from "@phosphor-icons/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DashboardPageShell,
-  DashboardStatCard,
   DashboardEmptyState,
   DashboardActivation,
+  DashboardActivityChart,
+  DashboardPipelineCard,
 } from "@/components/dashboard";
-import { buildWeeklyCounts } from "@/lib/activity-series";
+import { buildWeeklyCounts, weekStartDates } from "@/lib/activity-series";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
+import { cn } from "@/lib/utils";
+
+const WEEKS = 12;
 
 function getTimeOfDay() {
   const hour = new Date().getHours();
@@ -44,6 +48,19 @@ function getFormattedDate() {
   });
 }
 
+function formatRelativeDay(value, now) {
+  const date = new Date(value);
+  const start = new Date(now);
+  start.setHours(0, 0, 0, 0);
+  const day = new Date(date);
+  day.setHours(0, 0, 0, 0);
+  const days = Math.round((start - day) / 86400000);
+  if (days <= 0) return "Today";
+  if (days === 1) return "Yesterday";
+  if (days < 7) return `${days} days ago`;
+  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
 function CheckoutRedirect() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -56,14 +73,92 @@ function CheckoutRedirect() {
   return null;
 }
 
+function Panel({ children, className, delay = 0 }) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <motion.div
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay }}
+      className={cn("min-w-0", className)}
+    >
+      <Card className="dashboard-card h-full gap-0 rounded-lg py-0">
+        <CardContent className="dashboard-card-pad flex h-full flex-col">
+          {children}
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
+function PanelHeader({ title, description, href, linkLabel }) {
+  return (
+    <div className="flex items-start justify-between gap-3">
+      <div>
+        <h2 className="font-outfit text-sm font-semibold text-foreground">
+          {title}
+        </h2>
+        {description && (
+          <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
+        )}
+      </div>
+      {href && (
+        <Link
+          href={href}
+          className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          {linkLabel}
+          <ArrowRightIcon size={12} weight="bold" aria-hidden="true" />
+        </Link>
+      )}
+    </div>
+  );
+}
+
+function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
+  return (
+    <li>
+      <Link
+        href={href}
+        className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
+      >
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+          <Icon size={17} aria-hidden="true" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-medium text-foreground">
+            {label}
+          </span>
+          <span className="block text-xs text-muted-foreground">
+            {typeof thisWeek === "number"
+              ? thisWeek > 0
+                ? `+${thisWeek} this week`
+                : "None this week"
+              : "Not available"}
+          </span>
+        </span>
+        <span className="font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
+          {value}
+        </span>
+        <ArrowRightIcon
+          size={14}
+          className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
+          aria-hidden="true"
+        />
+      </Link>
+    </li>
+  );
+}
+
 export default function DashboardPage() {
   const { data: session } = useSession();
   const [formattedDate] = useState(() => getFormattedDate());
   const [greeting] = useState(() => getTimeOfDay());
   const [now] = useState(() => Date.now());
-
   const reduceMotion = useReducedMotion();
+
   const firstName = session?.user?.name?.split(" ")[0] ?? "there";
+  const isPremium = Boolean(session?.user?.isPremium);
 
   const {
     data: tailoredCVs,
@@ -98,8 +193,6 @@ export default function DashboardPage() {
     },
   });
 
-  const isPremium = Boolean(session?.user?.isPremium);
-
   const { data: referenceCV, isLoading: referenceCVLoading } = useQuery({
     queryKey: ["reference-cv"],
     queryFn: async () => {
@@ -110,9 +203,9 @@ export default function DashboardPage() {
     },
   });
 
-  // /api/applications is behind requirePremium, so only free-of-paywall
-  // accounts fetch it, and only premium accounts get that third step.
-  const { data: applications } = useQuery({
+  // /api/applications is behind requirePremium, so only premium accounts
+  // fetch it. The pipeline card shows an upgrade nudge for everyone else.
+  const { data: applications, isLoading: applicationsLoading } = useQuery({
     queryKey: ["applications"],
     enabled: isPremium,
     queryFn: async () => {
@@ -129,42 +222,57 @@ export default function DashboardPage() {
     !tailoredCVsError &&
     Array.isArray(tailoredCVs) &&
     tailoredCVs.length === 0;
-  const companyResearchesKnown =
+  const researchKnown =
     !companyResearchesLoading &&
     !companyResearchesError &&
     Array.isArray(companyResearches);
-  const researchCount = companyResearchesKnown ? companyResearches.length : "n/a";
+  const researches = useMemo(
+    () => (researchKnown ? companyResearches : []),
+    [researchKnown, companyResearches],
+  );
 
   const {
-    thisWeekCount,
     coverLetterCount,
     cvWeekly,
-    researchWeekly,
-    jobsWeekly,
     letterWeekly,
+    researchWeekly,
+    weekStarts,
   } = useMemo(() => {
-    const oneWeekAgo = new Date(now - 7 * 24 * 60 * 60 * 1000);
     const cvs = tailoredCVs ?? [];
-    const researches = Array.isArray(companyResearches)
-      ? companyResearches
-      : [];
     const letters = cvs.filter((cv) => cv.hasCoverLetter);
     return {
-      thisWeekCount: cvs.filter((cv) => new Date(cv.createdAt) >= oneWeekAgo)
-        .length,
       coverLetterCount: letters.length,
-      cvWeekly: buildWeeklyCounts(cvs, 16, now),
-      researchWeekly: buildWeeklyCounts(researches, 16, now),
-      jobsWeekly: buildWeeklyCounts(cvs, 8, now),
-      letterWeekly: buildWeeklyCounts(letters, 16, now),
+      cvWeekly: buildWeeklyCounts(cvs, WEEKS, now),
+      letterWeekly: buildWeeklyCounts(letters, WEEKS, now),
+      researchWeekly: buildWeeklyCounts(researches, WEEKS, now),
+      weekStarts: weekStartDates(WEEKS, now),
     };
-  }, [tailoredCVs, companyResearches, now]);
+  }, [tailoredCVs, researches, now]);
 
-  const recentCVs = useMemo(() => {
-    return [...(tailoredCVs ?? [])]
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-      .slice(0, 4);
-  }, [tailoredCVs]);
+  const series = useMemo(
+    () => [
+      { id: "cvs", label: "Tailored CVs", counts: cvWeekly },
+      { id: "letters", label: "Cover letters", counts: letterWeekly },
+      { id: "research", label: "Research", counts: researchWeekly },
+    ],
+    [cvWeekly, letterWeekly, researchWeekly],
+  );
+
+  const recentCVs = useMemo(
+    () =>
+      [...(tailoredCVs ?? [])]
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 5),
+    [tailoredCVs],
+  );
+
+  const recentResearch = useMemo(
+    () =>
+      [...researches]
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 4),
+    [researches],
+  );
 
   const activationSteps = useMemo(() => {
     const done = {
@@ -192,22 +300,45 @@ export default function DashboardPage() {
         <CheckoutRedirect />
       </Suspense>
 
-      <div className="flex flex-col gap-1">
-        <h1
-          suppressHydrationWarning
-          className="font-outfit text-xl font-semibold tracking-[-0.02em] text-foreground sm:text-2xl"
-        >
-          Good {greeting}, {firstName} <span aria-hidden="true">👋</span>
-        </h1>
-        {formattedDate && (
-          <p
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+      >
+        <div className="min-w-0">
+          <h1
             suppressHydrationWarning
-            className="text-sm font-medium text-muted-foreground"
+            className="font-outfit text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-3xl"
           >
-            {formattedDate}
-          </p>
-        )}
-      </div>
+            Good {greeting}, {firstName}
+          </h1>
+          {formattedDate && (
+            <p
+              suppressHydrationWarning
+              className="mt-1 text-sm text-muted-foreground"
+            >
+              {formattedDate}
+            </p>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/dashboard/resume"
+            className="landing-secondary-btn landing-secondary-btn-sm"
+          >
+            <FileTextIcon size={16} aria-hidden="true" />
+            My CV
+          </Link>
+          <Link
+            href="/dashboard/tailor"
+            className="dashboard-primary-btn text-sm"
+          >
+            <PlusIcon size={16} weight="bold" aria-hidden="true" />
+            Tailor a CV
+          </Link>
+        </div>
+      </motion.div>
 
       {showActivation && <DashboardActivation steps={activationSteps} />}
 
@@ -225,133 +356,153 @@ export default function DashboardPage() {
           className="min-h-50"
         />
       ) : isFirstUse ? null : (
-        <div className="flex flex-col gap-3 sm:gap-4">
-          <div className="grid items-start gap-3 sm:gap-4 lg:grid-cols-12">
-            <div className="min-w-0 lg:col-span-7">
-              <DashboardStatCard
-                label="Tailored CVs"
-                value={tailoredCount}
-                subtitle={
-                  thisWeekCount > 0
-                    ? `+${thisWeekCount} this week`
-                    : "No new CVs this week"
-                }
-                icon={StackIcon}
-                positive={thisWeekCount > 0}
-                sparkline={cvWeekly}
-                variant="featured"
-              >
-                {recentCVs.length > 0 ? (
-                  <div className="flex flex-col gap-1">
-                    <ul className="flex flex-col gap-0.5">
-                      {recentCVs.map((cv) => (
-                        <li key={cv._id}>
-                          <Link
-                            href={`/dashboard/tailored/${cv._id}`}
-                            className="flex items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors hover:bg-background/70"
-                          >
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                              <FileTextIcon size={15} aria-hidden="true" />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                              <span className="block truncate text-sm font-medium text-foreground">
-                                {cv.jobTitle || "Untitled position"}
-                              </span>
-                              {cv.jobCompany && (
-                                <span className="block truncate text-xs text-muted-foreground">
-                                  {cv.jobCompany}
-                                </span>
-                              )}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href="/dashboard/tailored"
-                      className="mt-1 px-2 text-xs font-medium text-muted-foreground hover:text-foreground"
-                    >
-                      View all tailored CVs
-                    </Link>
-                  </div>
-                ) : (
-                  <p className="text-sm text-muted-foreground">
-                    Tailor a CV to see it here.
-                  </p>
-                )}
-              </DashboardStatCard>
-            </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
-              <DashboardStatCard
-                label="Researches"
-                value={researchCount}
-                icon={BuildingsIcon}
-                delay={0.05}
-                sparkline={companyResearchesKnown ? researchWeekly : undefined}
-              />
-              <DashboardStatCard
-                label="This week"
-                value={thisWeekCount}
-                icon={BriefcaseIcon}
-                delay={0.1}
-                sparkline={jobsWeekly}
-              />
-              <DashboardStatCard
-                label="Cover letters"
-                value={coverLetterCount}
-                icon={EnvelopeIcon}
-                delay={0.15}
-                sparkline={letterWeekly}
-              />
-            </div>
+        <div className="flex flex-col gap-4">
+          {/* Row 1: the chart carries the story, totals sit beside it. */}
+          <div className="grid items-stretch gap-4 lg:grid-cols-12">
+            <DashboardActivityChart
+              series={series}
+              weekStarts={weekStarts}
+              delay={0.05}
+              className="lg:col-span-8"
+            />
+            <Panel delay={0.1} className="lg:col-span-4">
+              <PanelHeader title="Totals" description="Everything you have made" />
+              <ul className="mt-3 flex flex-1 flex-col divide-y divide-[var(--landing-line)]">
+                <TotalRow
+                  href="/dashboard/tailored"
+                  icon={StackIcon}
+                  label="Tailored CVs"
+                  value={tailoredCount}
+                  thisWeek={cvWeekly.at(-1)}
+                />
+                <TotalRow
+                  href="/dashboard/tailored"
+                  icon={EnvelopeIcon}
+                  label="Cover letters"
+                  value={coverLetterCount}
+                  thisWeek={letterWeekly.at(-1)}
+                />
+                <TotalRow
+                  href="/dashboard/company-research"
+                  icon={BuildingsIcon}
+                  label="Company research"
+                  value={researchKnown ? researches.length : "n/a"}
+                  thisWeek={researchKnown ? researchWeekly.at(-1) : undefined}
+                />
+              </ul>
+            </Panel>
           </div>
 
-          <div className="grid items-stretch gap-3 sm:gap-4 lg:grid-cols-12">
-            <Link
-              href="/dashboard/tailor"
-              className="group flex min-w-0 items-center justify-between gap-3 rounded-lg bg-foreground px-4 py-4 text-background sm:px-5 lg:col-span-7"
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-background/10">
-                  <PenIcon size={18} aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold">Tailor a CV</p>
-                  <p className="text-xs text-[var(--landing-ink-inverse-soft)]">
-                    Paste a job URL to get started
-                  </p>
-                </div>
-              </div>
-              <ArrowRightIcon
-                size={16}
-                className="transition-transform group-hover:translate-x-0.5"
-                aria-hidden="true"
+          {/* Row 2: what you made recently, and where applications stand. */}
+          <div className="grid items-stretch gap-4 lg:grid-cols-12">
+            <Panel delay={0.15} className="lg:col-span-7">
+              <PanelHeader
+                title="Recent tailored CVs"
+                description="Open one to review, edit or download"
+                href="/dashboard/tailored"
+                linkLabel="View all"
               />
-            </Link>
-            <Link
-              href="/dashboard/applications"
-              className="dashboard-list-row group flex min-w-0 items-center justify-between gap-3 px-4 py-4 sm:px-5 lg:col-span-5"
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                  <KanbanIcon size={18} aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    View applications
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Track your job pipeline
-                  </p>
-                </div>
-              </div>
-              <ArrowRightIcon
-                size={16}
-                className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </Link>
+              <ul className="mt-3 flex flex-col divide-y divide-[var(--landing-line)]">
+                {recentCVs.map((cv) => (
+                  <li key={cv._id}>
+                    <Link
+                      href={`/dashboard/tailored/${cv._id}`}
+                      className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+                        <FileTextIcon size={17} aria-hidden="true" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-medium text-foreground">
+                          {cv.jobTitle || "Untitled position"}
+                        </span>
+                        <span className="block truncate text-xs text-muted-foreground">
+                          {cv.jobCompany || "Company not set"}
+                        </span>
+                      </span>
+                      {cv.hasCoverLetter && (
+                        <span className="hidden items-center gap-1 text-xs font-medium text-[var(--landing-success)] sm:inline-flex">
+                          <CheckCircleIcon
+                            size={14}
+                            weight="fill"
+                            aria-hidden="true"
+                          />
+                          Cover letter
+                        </span>
+                      )}
+                      <span className="w-20 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+                        {formatRelativeDay(cv.createdAt, now)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Panel>
+
+            <DashboardPipelineCard
+              applications={applications}
+              isPremium={isPremium}
+              isLoading={isPremium && applicationsLoading}
+              delay={0.2}
+              className="lg:col-span-5"
+            />
           </div>
+
+          {/* Row 3: company research. */}
+          <Panel delay={0.25}>
+            <PanelHeader
+              title="Company research"
+              description={
+                recentResearch.length > 0
+                  ? "Briefs on the companies you are applying to"
+                  : "Know the company before the interview"
+              }
+              href={recentResearch.length > 0 ? "/dashboard/company-research" : undefined}
+              linkLabel="View all"
+            />
+            {recentResearch.length > 0 ? (
+              <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {recentResearch.map((brief) => (
+                  <li key={brief._id}>
+                    <Link
+                      href={`/dashboard/company-research/${brief._id}`}
+                      className="dashboard-list-row group flex h-full flex-col gap-3 p-3.5"
+                    >
+                      <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+                        <BuildingsIcon size={17} aria-hidden="true" />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block truncate text-sm font-medium text-foreground">
+                          {brief.companyName || "Unnamed company"}
+                        </span>
+                        <span className="block truncate text-xs text-muted-foreground">
+                          {brief.jobTitle || formatRelativeDay(brief.createdAt, now)}
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="mt-4 flex flex-col items-start gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
+                    <MagnifyingGlassIcon size={17} aria-hidden="true" />
+                  </span>
+                  <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+                    Paste a job URL to get a brief on the company, its funding
+                    and team size.
+                  </p>
+                </div>
+                <Link
+                  href="/dashboard/company-research"
+                  className="landing-secondary-btn landing-secondary-btn-sm shrink-0"
+                >
+                  Research a company
+                </Link>
+              </div>
+            )}
+          </Panel>
         </div>
       )}
     </DashboardPageShell>

@@ -5,5 +5,7 @@ export { DashboardPageHeader } from "./DashboardPageHeader";
 export { DashboardStatCard, DashboardStatGrid } from "./DashboardStatCard";
 export { DashboardEmptyState } from "./DashboardEmptyState";
 export { DashboardActivation } from "./DashboardActivation";
+export { DashboardActivityChart } from "./DashboardActivityChart";
+export { DashboardPipelineCard } from "./DashboardPipelineCard";
 export { DashboardFilterPills } from "./DashboardFilterPills";
 export { DashboardTabBar } from "./DashboardTabBar";

@@ -16,9 +16,15 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path*",
-        has: [{ type: "host", value: "fitmycv.link" }],
-        destination: "https://www.fitmycv.link/:path*",
+        source: "/",
+        has: [{ type: "host", value: "^fitmycv\\.link$" }],
+        destination: "https://www.fitmycv.link/",
+        permanent: true,
+      },
+      {
+        source: "/:path+",
+        has: [{ type: "host", value: "^fitmycv\\.link$" }],
+        destination: "https://www.fitmycv.link/:path+",
         permanent: true,
       },
     ];

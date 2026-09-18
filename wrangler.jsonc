@@ -1,0 +1,27 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "fitmycv",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-09-01",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".open-next/assets"
+	},
+	"images": {
+		"binding": "IMAGES"
+	},
+	"routes": [
+		{ "pattern": "fitmycv.link/*", "zone_name": "fitmycv.link" },
+		{ "pattern": "www.fitmycv.link/*", "zone_name": "fitmycv.link" }
+	],
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "fitmycv"
+		}
+	],
+	"observability": {
+		"enabled": true
+	}
+}

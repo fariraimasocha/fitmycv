@@ -51,3 +51,8 @@ opensrc/
 
 # transient copies made by check:jobs and the announce script
 lib/*.mjs
+
+# Cloudflare / OpenNext
+.open-next/
+.wrangler/
+.dev.vars*

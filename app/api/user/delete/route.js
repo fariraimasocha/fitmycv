@@ -11,7 +11,7 @@ import InterviewPrep from "@/models/InterviewPrep";
 import JobDigestItem from "@/models/JobDigestItem";
 import Feedback from "@/models/Feedback";
 import Lead from "@/models/Lead";
-import clientPromise from "@/lib/mongodb-client";
+import getMongoClient from "@/lib/mongodb-client";
 
 export async function DELETE(request) {
   const session = await auth();
@@ -65,7 +65,7 @@ export async function DELETE(request) {
     // Auth.js adapter collections – accounts, sessions, verificationTokens live
     // in the same MongoDB database but are not Mongoose models.
     try {
-      const client = await clientPromise;
+      const client = await getMongoClient();
       const db = client.db();
       const userIdForAdapter = session.user.id;
 

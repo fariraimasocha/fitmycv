@@ -1,9 +1,41 @@
 import mongoose from "mongoose";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
-let cached = global.mongoose;
+// On Cloudflare Workers, a socket created during one request is canceled by
+// the runtime when that request ends — it can never be reused by another
+// request ("Cannot perform I/O on behalf of a different request", hung-worker
+// kills, "Connection was force closed"). Closing the stale connection is also
+// impossible (that would be I/O on the dead socket).
+//
+// So on workerd we never call mongoose.connect(). Per incoming request we:
+//   1. connect a brand-new MongoClient (owned by the current request),
+//   2. reset the default connection's bookkeeping (no socket I/O), and
+//   3. re-point the default connection at the new client via setClient().
+// The abandoned client's socket was already canceled by the runtime, so
+// nothing leaks. Outside workerd (node dev / next build) we keep the classic
+// cached mongoose.connect() — including the readyState check that guards
+// against dead sockets after laptop sleep ("ReplicaSetNoPrimary").
 
-if (!cached) {
-  cached = global.mongoose = { promise: null };
+let ownerCtx = null;
+let connectPromise = null;
+
+function currentRequestCtx() {
+  try {
+    return getCloudflareContext().ctx ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function connectWithFreshClient(uri) {
+  // Use mongoose's own mongodb driver module — the bundle can contain two
+  // copies of "mongodb", and setClient() rejects a client made from the
+  // other copy (instanceof check).
+  const client = await new mongoose.mongo.MongoClient(uri).connect();
+  const conn = mongoose.connection;
+  conn.readyState = 0; // abandon the dead socket's bookkeeping — no I/O
+  conn.setClient(client);
+  return conn;
 }
 
 export async function connectDB() {
@@ -13,31 +45,38 @@ export async function connectDB() {
     throw new Error("Please define the MONGODB_URI environment variable");
   }
 
-  // readyState: 0 disconnected, 1 connected, 2 connecting, 3 disconnecting.
-  // Reuse only a live connection. After a laptop sleep / network change the
-  // cached socket dies (state 0). The old code returned it anyway, which is
-  // what caused the "ReplicaSetNoPrimary" 500 on save.
-  const state = mongoose.connection.readyState;
-  if (state === 1) {
-    return mongoose.connection;
+  const ctx = currentRequestCtx();
+
+  if (ctx === null) {
+    // node (dev / build): classic cached connection.
+    // readyState: 0 disconnected, 1 connected, 2 connecting, 3 disconnecting.
+    const state = mongoose.connection.readyState;
+    if (state === 1) return mongoose.connection;
+    if (state !== 2) connectPromise = null; // dead socket — redial
+    if (!connectPromise) {
+      connectPromise = mongoose.connect(MONGODB_URI).then((m) => m.connection);
+    }
+    try {
+      return await connectPromise;
+    } catch (err) {
+      connectPromise = null;
+      throw err;
+    }
   }
 
-  // Dead/disconnecting (0 or 3). Drop the stale promise so we redial.
-  // State 2 (connecting) keeps the in-flight promise.
-  if (state !== 2) {
-    cached.promise = null;
+  // Same request: reuse its connection (multiple queries per request).
+  if (ctx === ownerCtx && connectPromise) {
+    return connectPromise;
   }
 
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI);
-  }
-
-  try {
-    await cached.promise;
-  } catch (err) {
-    cached.promise = null; // don't cache a rejected connect. Let the next call retry
+  ownerCtx = ctx;
+  const promise = connectWithFreshClient(MONGODB_URI).catch((err) => {
+    if (connectPromise === promise) {
+      connectPromise = null;
+      ownerCtx = null;
+    }
     throw err;
-  }
-
-  return mongoose.connection;
+  });
+  connectPromise = promise;
+  return promise;
 }

@@ -419,7 +419,7 @@ export default function DashboardPage() {
                         <span className="block truncate text-sm font-medium text-foreground">
                           {brief.companyName || "Unnamed company"}
                         </span>
-                        <span className="block truncate text-xs text-muted-foreground">
+                        <span className="mt-0.5 block text-xs leading-5 break-words whitespace-normal text-muted-foreground">
                           {brief.jobTitle ||
                             formatRelativeDay(brief.createdAt, now)}
                         </span>

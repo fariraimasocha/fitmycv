@@ -52,9 +52,18 @@ export function DashboardPanelHeader({
   linkLabel = "View all",
   action,
   className,
+  ...props
 }) {
   return (
-    <div className={cn("flex items-start justify-between gap-3", className)}>
+    <div
+      className={cn(
+        "flex items-start justify-between gap-3",
+        // On narrow screens, keep the action from squeezing the title row.
+        action && "flex-col sm:flex-row",
+        className
+      )}
+      {...props}
+    >
       <div className="min-w-0">
         <h2 className="font-outfit text-sm font-semibold text-foreground">{title}</h2>
         {description && (

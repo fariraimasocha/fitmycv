@@ -69,7 +69,7 @@ function OfferOption({ app, selected, disabled, onToggle }) {
       disabled={disabled}
       onClick={onToggle}
       className={cn(
-        "flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+        "flex w-full items-start gap-2.5 rounded-md border px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 sm:items-center sm:gap-3",
         selected
           ? "border-foreground bg-[var(--landing-primary-soft)]"
           : "border-[var(--landing-line)] bg-[var(--landing-surface)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]",
@@ -78,21 +78,21 @@ function OfferOption({ app, selected, disabled, onToggle }) {
     >
       <span
         className={cn(
-          "flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border transition-colors",
+          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border transition-colors sm:mt-0",
           selected ? "border-foreground bg-foreground text-background" : "border-[var(--landing-line)] bg-[var(--landing-surface)]"
         )}
         aria-hidden="true"
       >
         {selected && <CheckIcon size={12} weight="bold" />}
       </span>
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-xs font-semibold text-foreground">
+      <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-xs font-semibold text-foreground sm:flex">
         {initials(app.jobCompany)}
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block truncate text-sm font-semibold text-foreground">
+        <span className="block text-sm font-semibold leading-snug break-words whitespace-normal text-foreground">
           {app.jobTitle || "Untitled role"}
         </span>
-        <span className="block truncate text-xs text-muted-foreground">{app.jobCompany || "Company not set"}</span>
+        <span className="mt-0.5 block truncate text-xs text-muted-foreground">{app.jobCompany || "Company not set"}</span>
       </span>
       {app.matchGrade && (
         <span className="shrink-0 text-xs font-medium tabular-nums text-muted-foreground">{app.matchGrade}</span>

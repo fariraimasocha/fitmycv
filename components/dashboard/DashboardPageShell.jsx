@@ -15,7 +15,8 @@ export function DashboardPageShell({ children, width = "default", className }) {
       className={cn(
         // space-y-6 marks chapter breaks between blocks; groups inside a block
         // use gap-3, so related things stay tighter than unrelated ones.
-        "dashboard-page mx-auto w-full min-w-0 space-y-6 px-3 py-4 sm:px-6 sm:py-6",
+        // Extra bottom padding on small screens clears the Chatwoot FAB.
+        "dashboard-page mx-auto w-full min-w-0 space-y-6 px-3 pt-4 pb-24 sm:px-6 sm:py-6",
         WIDTH[width] ?? WIDTH.default,
         className
       )}

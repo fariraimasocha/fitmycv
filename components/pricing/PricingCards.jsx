@@ -17,6 +17,7 @@ export default function PricingCards({
   skipLabel = "Continue free",
   pricing: pricingProp,
   tier: tierProp,
+  primaryPlan,
 }) {
   const { data: session } = useSession();
   const router = useRouter();
@@ -61,7 +62,22 @@ export default function PricingCards({
     }
   };
 
-  const plans = [pricing.lifetime, pricing.month];
+  // Paywall leads with monthly. Public pricing keeps lifetime as best value.
+  const highlightId = primaryPlan ?? defaultPlan;
+  const ordered =
+    highlightId === "month"
+      ? [pricing.month, pricing.lifetime]
+      : [pricing.lifetime, pricing.month];
+  const plans = ordered.map((plan) => ({
+    ...plan,
+    highlight: plan.id === highlightId,
+    badge:
+      plan.id === highlightId
+        ? plan.id === "month"
+          ? "Start here"
+          : plan.badge || "Best value"
+        : null,
+  }));
 
   return (
     <div className={`flex w-full flex-col gap-6 ${compact ? "" : "items-center"}`}>

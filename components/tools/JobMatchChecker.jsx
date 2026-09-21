@@ -5,12 +5,18 @@
 // can stay unlimited and account-free.
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
+import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
+import { trackEvent } from "@/lib/analytics";
+
+const HIGH_MATCH_SCORE = 75;
 
 function ScoreRing({ value }) {
   const tone =
@@ -103,6 +109,9 @@ function SkillChip({ term, present }) {
 }
 
 export default function JobMatchChecker() {
+  const router = useRouter();
+  const { data: session } = useSession();
+  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
@@ -115,6 +124,37 @@ export default function JobMatchChecker() {
     if (!ran || jobTooShort || cvTooShort) return null;
     return scoreResumeJobMatch(jobText, cvText);
   }, [ran, jobText, cvText, jobTooShort, cvTooShort]);
+
+  const handleTailorHandoff = () => {
+    const text = jobText.trim();
+    if (!text) return;
+    const score =
+      typeof result?.overall === "number" ? result.overall : null;
+    saveAtsHandoff({ jobText: text, score, source: "job_match" });
+    trackEvent("ats_handoff_cta", {
+      score,
+      source: "job_match",
+      signed_in: Boolean(session?.user),
+    });
+    const dest = "/dashboard/tailor";
+    if (session?.user) {
+      router.push(dest);
+      return;
+    }
+    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
+    if (gate?.interceptAuth(null, authUrl)) return;
+    router.push(authUrl);
+  };
+
+  const highMatch =
+    typeof result?.overall === "number" && result.overall >= HIGH_MATCH_SCORE;
+  const ctaTitle = highMatch
+    ? "Lock this match into a tailored CV"
+    : "Close these gaps";
+  const ctaBody = highMatch
+    ? "Your match is strong. Keep this posting and rewrite your CV against it, using the experience you already have."
+    : "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.";
+  const ctaLabel = highMatch ? "Tailor my CV" : "Close these gaps";
 
   return (
     <div className="landing-card rounded-3xl p-6 sm:p-8">
@@ -266,24 +306,24 @@ export default function JobMatchChecker() {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                Tailor my CV to this job
+                {ctaTitle}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                FitMyCV rewrites your CV and cover letter against the posting,
-                using the experience you already have.
+                {ctaBody}
               </p>
             </div>
-            <Link
-              href="/tailor-cv-from-job-link"
+            <button
+              type="button"
+              onClick={handleTailorHandoff}
               className="landing-primary-btn group shrink-0 font-outfit text-sm"
             >
-              Tailor my CV to this job
+              {ctaLabel}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />
-            </Link>
+            </button>
           </div>
         </div>
       ) : null}

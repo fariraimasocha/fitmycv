@@ -7,16 +7,19 @@
 // ponytail: the extraction runs entirely in the browser. No API route, no
 // model call, no storage. A dropped PDF is read locally with unpdf. It is a
 // heuristic, not the tailoring engine, and that is the point: it costs
-// nothing to run and never sends anyone's CV anywhere. The real rewrite lives
-// behind /tailor-cv-from-job-link.
+// nothing to run and never sends anyone's CV anywhere. The rewrite CTA saves
+// the job text and sends signed-in users straight into /dashboard/tailor.
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
+import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { trackEvent } from "@/lib/analytics";
 
 // Words that carry no signal when matching a CV against a posting. The second
@@ -146,11 +149,40 @@ function ScoreRing({ value }) {
   );
 }
 
+const HIGH_MATCH_SCORE = 75;
+
+function handoffCopy({ gapsMode, score }) {
+  const high =
+    typeof score === "number" ? score >= HIGH_MATCH_SCORE : false;
+  if (high) {
+    return {
+      title: "Lock this match into a tailored CV",
+      body: "Your keyword coverage is strong. Keep this posting and rewrite your CV against it, using the experience you already have.",
+      cta: "Tailor my CV",
+    };
+  }
+  if (gapsMode) {
+    return {
+      title: "Close these gaps",
+      body: "Keep this posting and FitMyCV works the missing terms into your bullets, using the experience you already have.",
+      cta: "Close these gaps",
+    };
+  }
+  return {
+    title: "Close these gaps",
+    body: "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.",
+    cta: "Close these gaps",
+  };
+}
+
 export default function KeywordChecker({ mode = "match" }) {
   const matchMode = mode === "match";
   const gapsMode = mode === "gaps";
   // Both scoring modes need the CV as well as the posting.
   const needsCv = matchMode || gapsMode;
+  const router = useRouter();
+  const { data: session } = useSession();
+  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
@@ -225,6 +257,36 @@ export default function KeywordChecker({ mode = "match" }) {
   }, [ran, result, mode]);
 
   const tooShort = jobText.trim().length < 40;
+
+  const cta = handoffCopy({
+    gapsMode,
+    score: typeof result?.score === "number" ? result.score : null,
+  });
+
+  const handleTailorHandoff = () => {
+    const text = jobText.trim();
+    if (!text) return;
+    const score =
+      typeof result?.score === "number" ? result.score : null;
+    saveAtsHandoff({
+      jobText: text,
+      score,
+      source: gapsMode ? "gaps" : matchMode ? "match" : "keywords",
+    });
+    trackEvent("ats_handoff_cta", {
+      score,
+      source: gapsMode ? "gaps" : matchMode ? "match" : "keywords",
+      signed_in: Boolean(session?.user),
+    });
+    const dest = "/dashboard/tailor";
+    if (session?.user) {
+      router.push(dest);
+      return;
+    }
+    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
+    if (gate?.interceptAuth(null, authUrl)) return;
+    router.push(authUrl);
+  };
 
   return (
     <div className="landing-card rounded-3xl p-6 sm:p-8">
@@ -481,27 +543,24 @@ export default function KeywordChecker({ mode = "match" }) {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {gapsMode
-                  ? "Fix these gaps with FitMyCV"
-                  : "Want the rewrite, not just the diagnosis?"}
+                {cta.title}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {gapsMode
-                  ? "Paste the job link and FitMyCV works the missing terms into your bullets, using the experience you already have."
-                  : "Paste the job link and FitMyCV rewrites your CV and cover letter against the posting, keeping your real experience."}
+                {cta.body}
               </p>
             </div>
-            <Link
-              href="/tailor-cv-from-job-link"
+            <button
+              type="button"
+              onClick={handleTailorHandoff}
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              Tailor my CV
+              {cta.cta}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />
-            </Link>
+            </button>
           </div>
         </div>
       ) : null}

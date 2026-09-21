@@ -51,9 +51,24 @@ export default function AuthPage() {
   const callbackUrl = () => {
     const hasPending = getPendingCheckout();
     const pendingPlan = getPendingCheckoutPlan() ?? "lifetime";
-    return hasPending
-      ? `/dashboard?checkout=pending&plan=${pendingPlan}`
-      : "/dashboard";
+    if (hasPending) {
+      return `/dashboard?checkout=pending&plan=${pendingPlan}`;
+    }
+    // Safe same-origin path only. Used by ATS → tailor handoff.
+    try {
+      const next = new URLSearchParams(window.location.search).get("next");
+      if (
+        next &&
+        next.startsWith("/") &&
+        !next.startsWith("//") &&
+        !next.includes("://")
+      ) {
+        return next;
+      }
+    } catch {
+      // ignore
+    }
+    return "/dashboard";
   };
 
   const handleGoogleSignIn = () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useState, useRef } from "react";
+import { Suspense, useCallback, useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -61,6 +61,7 @@ import {
 } from "@/components/dashboard";
 import { GradeBadge, AtsScoreChip } from "@/components/GradeBadge";
 import { getRecentJobUrls, rememberJobUrl } from "@/lib/recent-job-urls";
+import { takeAtsHandoff } from "@/lib/ats-handoff";
 import Loader from "@/components/Loader";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -163,16 +164,29 @@ function Tailor() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
+  // ATS free tools stash the posting in sessionStorage. Read once on mount.
+  const [atsBoot] = useState(() => {
+    if (typeof window === "undefined") return null;
+    const handoff = takeAtsHandoff();
+    if (!handoff?.jobText) return null;
+    return {
+      jobText: handoff.jobText,
+      score: handoff.score ?? null,
+      source: handoff.source ?? null,
+    };
+  });
   // Prefilled when arriving from /jobs. That pool already holds the URL, so
   // the user never retypes it. Lazy initializer: read once, then it is theirs.
   const [url, setUrl] = useState(() => searchParams.get("url") ?? "");
   // Some boards block scraping, so a pasted description is the fallback.
-  const [jobInputMode, setJobInputMode] = useState("link");
-  const [jobText, setJobText] = useState("");
+  const [jobInputMode, setJobInputMode] = useState(() =>
+    atsBoot ? "text" : "link",
+  );
+  const [jobText, setJobText] = useState(() => atsBoot?.jobText ?? "");
   const [jobData, setJobData] = useState(null);
   // The job form folds into a summary bar once a job is in. `editingJob`
   // reopens it to swap the posting without leaving the page.
-  const [editingJob, setEditingJob] = useState(false);
+  const [editingJob, setEditingJob] = useState(() => Boolean(atsBoot));
   // Requirements and match fold away once the CV is tailored so the result
   // has the page. This brings them back.
   const [showJobDetails, setShowJobDetails] = useState(true);
@@ -202,6 +216,15 @@ function Tailor() {
   const [upgradeModalContext, setUpgradeModalContext] = useState("default");
   const [recentUrls, setRecentUrls] = useState(() => getRecentJobUrls());
   const tailorRef = useRef(null);
+
+  useEffect(() => {
+    if (!atsBoot) return;
+    trackEvent("ats_handoff_consumed", {
+      score: atsBoot.score,
+      source: atsBoot.source,
+      chars: atsBoot.jobText.length,
+    });
+  }, [atsBoot]);
 
   const { data: referenceCVRecord } = useQuery({
     queryKey: ["resume"],
@@ -437,6 +460,12 @@ function Tailor() {
         has_cover_letter: Boolean(result.data?.coverLetter),
       });
       toast.success("CV tailored");
+
+      // Peak intent: show monthly unlock before long template fiddling.
+      if (!session?.user?.isPremium) {
+        setUpgradeModalContext("post_tailor");
+        setShowUpgradeModal(true);
+      }
 
       // Trigger ATS analysis automatically
       setAtsLoading(true);

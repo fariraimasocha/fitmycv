@@ -20,13 +20,18 @@ import { trackEvent } from "@/lib/analytics";
 const COPY = {
   default: {
     title: "Unlock your tailored CV",
-    description:
-      "Your documents are ready. Upgrade to download PDFs and unlock the full toolkit.",
+    description: (pricing) =>
+      `You already tailored this one. Start a month for $${pricing.month.price} to download PDFs and tailor as many as you need, plus the job board and apply tools.`,
+  },
+  post_tailor: {
+    title: "Your tailored CV is ready",
+    description: (pricing) =>
+      `You already did the hard part. Start a month for $${pricing.month.price} to download it and keep tailoring this month.`,
   },
   pre_tailor: {
     title: "Unlock your tailored documents",
-    description:
-      "Upgrade to generate your complete tailored CV and cover letter.",
+    description: (pricing) =>
+      `Start a month for $${pricing.month.price} to generate your complete tailored CV and cover letter.`,
   },
 };
 
@@ -42,26 +47,26 @@ export default function UpgradePromptModal({
 
   useEffect(() => {
     if (open) {
-      trackEvent("paywall_view", { context });
+      trackEvent("paywall_view", { context, primary_plan: "month" });
     }
   }, [open, context]);
 
   const copy = COPY[context] ?? COPY.default;
   const description =
     typeof copy.description === "function"
-      ? copy.description(pricing.lifetime.price)
+      ? copy.description(pricing)
       : copy.description;
 
-  const handleLifetime = () => {
+  const startCheckout = (plan, source) => {
     trackEvent("checkout_start", {
       tier: pricing.tier,
-      plan: "lifetime",
-      source: "paywall_primary",
+      plan,
+      source,
     });
     if (session?.user) {
-      router.push("/api/polar/checkout?plan=lifetime");
+      router.push(`/api/polar/checkout?plan=${plan}`);
     } else {
-      setPendingCheckout(true, "lifetime");
+      setPendingCheckout(true, plan);
       router.push("/auth");
     }
   };
@@ -81,15 +86,27 @@ export default function UpgradePromptModal({
           </DialogDescription>
         </DialogHeader>
 
-        <PricingCards compact pricing={pricing} tier={pricing.tier} />
+        <PricingCards
+          compact
+          primaryPlan="month"
+          pricing={pricing}
+          tier={pricing.tier}
+        />
 
         <div className="flex flex-col gap-2 pt-2">
           <button
             type="button"
-            onClick={handleLifetime}
+            onClick={() => startCheckout("month", "paywall_primary")}
             className="dashboard-primary-btn w-full"
           >
-            Get lifetime access for ${pricing.lifetime.price}
+            Start a month for ${pricing.month.price}
+          </button>
+          <button
+            type="button"
+            onClick={() => startCheckout("lifetime", "paywall_secondary")}
+            className="dashboard-secondary-btn w-full"
+          >
+            Get lifetime for ${pricing.lifetime.price}
           </button>
           <button
             type="button"

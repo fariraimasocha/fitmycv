@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { createPolarClient } from "@/lib/polar";
 import { connectDB } from "@/utils/connect";
@@ -56,6 +56,9 @@ export async function GET(request) {
 
     const headerStore = await headers();
     const customerIp = resolveCustomerIp(headerStore);
+    const cookieStore = await cookies();
+    const datafastVisitorId = cookieStore.get("datafast_visitor_id")?.value;
+    const datafastSessionId = cookieStore.get("datafast_session_id")?.value;
 
     const checkout = await polar.checkouts.create({
       products: [productId],
@@ -73,6 +76,12 @@ export async function GET(request) {
         userId: String(session.user.id),
         pricingTier: tier,
         plan,
+        ...(datafastVisitorId
+          ? { datafast_visitor_id: datafastVisitorId }
+          : {}),
+        ...(datafastSessionId
+          ? { datafast_session_id: datafastSessionId }
+          : {}),
       },
     });
 

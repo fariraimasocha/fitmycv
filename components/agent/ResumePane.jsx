@@ -2,12 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { DownloadSimpleIcon, FileDashedIcon, MinusIcon, PencilSimpleIcon, PlusIcon } from "@phosphor-icons/react";
+import { useSession } from "next-auth/react";
+import { CrownIcon, DownloadSimpleIcon, FileDashedIcon, MinusIcon, PencilSimpleIcon, PlusIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ResumeTemplate } from "@/components/ResumePreview";
+import UpgradePromptModal from "@/components/UpgradePromptModal";
+import PreviewUnlockGate from "@/components/PreviewUnlockGate";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
+import { trackEvent } from "@/lib/analytics";
 
 // The draft renders at A4 size (96 dpi) and CSS zoom scales it, so text stays
 // crisp at every zoom and the preview matches the downloaded PDF.
@@ -53,9 +57,12 @@ function ToolbarButton({ label, children, ...props }) {
 }
 
 export function ResumePane({ draft, template, style }) {
+  const { data: session } = useSession();
   const scrollRef = useRef(null);
   const [userZoom, setUserZoom] = useState(storedZoom);
   const [paneWidth, setPaneWidth] = useState(0);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const isPremium = Boolean(session?.user?.isPremium);
 
   useEffect(() => {
     const scroller = scrollRef.current;
@@ -80,6 +87,29 @@ export function ResumePane({ draft, template, style }) {
   const fitZoom = paneWidth ? Math.min(1, clampZoom((paneWidth - gutter * 2) / PAGE_WIDTH)) : 0.5;
   const zoom = userZoom ?? fitZoom;
   const zoomPercent = Math.round(zoom * 100);
+
+  const handleDownload = () => {
+    if (!draft) return;
+    if (!isPremium) {
+      trackEvent("download_blocked", {
+        document_type: "cv",
+        source: "agent",
+      });
+      setShowUpgradeModal(true);
+      return;
+    }
+    printDocument({
+      kind: "cv",
+      data: draft,
+      template,
+      style,
+      filename: buildPdfFilename(draft.basics?.name, "cv"),
+    });
+    trackEvent("pdf_downloaded", {
+      document_type: "cv",
+      source: "agent",
+    });
+  };
 
   return (
     <section aria-label="Draft CV" className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
@@ -128,19 +158,17 @@ export function ResumePane({ draft, template, style }) {
             type="button"
             disabled={!draft}
             className="dashboard-primary-btn dashboard-primary-btn-sm"
-            onClick={() =>
-              printDocument({
-                kind: "cv",
-                data: draft,
-                template,
-                style,
-                filename: buildPdfFilename(draft.basics?.name, "cv"),
-              })
-            }
+            onClick={handleDownload}
           >
-            <DownloadSimpleIcon size={16} aria-hidden="true" />
-            <span className="hidden sm:inline">Download PDF</span>
-            <span className="sm:hidden">PDF</span>
+            {isPremium ? (
+              <DownloadSimpleIcon size={16} aria-hidden="true" />
+            ) : (
+              <CrownIcon size={16} aria-hidden="true" />
+            )}
+            <span className="hidden sm:inline">
+              {isPremium ? "Download PDF" : "Unlock PDF"}
+            </span>
+            <span className="sm:hidden">{isPremium ? "PDF" : "Unlock"}</span>
           </button>
         </div>
       </div>
@@ -148,14 +176,19 @@ export function ResumePane({ draft, template, style }) {
       <div ref={scrollRef} className="min-h-0 flex-1 overflow-auto">
         {draft ? (
           <div style={{ padding: gutter }}>
-            <div
-              className="mx-auto w-fit border border-[var(--landing-line)] bg-white"
-              style={{ zoom }}
+            <PreviewUnlockGate
+              locked={!isPremium}
+              onUnlock={() => setShowUpgradeModal(true)}
             >
-              <div style={{ width: PAGE_WIDTH, minHeight: PAGE_HEIGHT }}>
-                <ResumeTemplate data={draft} template={template} style={style} />
+              <div
+                className="mx-auto w-fit border border-[var(--landing-line)] bg-white"
+                style={{ zoom }}
+              >
+                <div style={{ width: PAGE_WIDTH, minHeight: PAGE_HEIGHT }}>
+                  <ResumeTemplate data={draft} template={template} style={style} />
+                </div>
               </div>
-            </div>
+            </PreviewUnlockGate>
           </div>
         ) : (
           <div className="flex h-full items-center justify-center p-6">
@@ -173,6 +206,12 @@ export function ResumePane({ draft, template, style }) {
           </div>
         )}
       </div>
+
+      <UpgradePromptModal
+        open={showUpgradeModal}
+        onClose={() => setShowUpgradeModal(false)}
+        context="download"
+      />
     </section>
   );
 }

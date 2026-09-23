@@ -23,10 +23,10 @@ const COPY = {
     description: (pricing) =>
       `You already tailored this one. Start a month for $${pricing.month.price} to download PDFs and tailor as many as you need, plus the job board and apply tools.`,
   },
-  post_tailor: {
-    title: "Your tailored CV is ready",
+  download: {
+    title: "Download your tailored CV",
     description: (pricing) =>
-      `You already did the hard part. Start a month for $${pricing.month.price} to download it and keep tailoring this month.`,
+      `Your rewrite is ready. Start a month for $${pricing.month.price} to download the PDF and keep tailoring this month.`,
   },
   pre_tailor: {
     title: "Unlock your tailored documents",

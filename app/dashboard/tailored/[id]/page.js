@@ -30,11 +30,13 @@ import WhyThisRoleCard from "@/components/WhyThisRoleCard";
 import TemplatePicker from "@/components/TemplatePicker";
 import FormattedDate from "@/components/FormattedDate";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
+import PreviewUnlockGate from "@/components/PreviewUnlockGate";
 import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
 import { getTemplateFontOption, normalizeTemplateStyle } from "@/utils/cv-templates/style";
+import { trackEvent } from "@/lib/analytics";
 import {
   DashboardPageShell,
   DashboardPageHeader,
@@ -123,6 +125,7 @@ export default function TailoredCVDetailPage() {
   const [templateOverride, setTemplateOverride] = useState(null);
   const [styleOverride, setStyleOverride] = useState(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [upgradeModalContext, setUpgradeModalContext] = useState("default");
   const [whyAnswer, setWhyAnswer] = useState(null);
   const [whyLoading, setWhyLoading] = useState(false);
   const [liveValues, setLiveValues] = useState(null);
@@ -300,7 +303,13 @@ export default function TailoredCVDetailPage() {
   const hasWhyAnswer = Boolean(whyAnswer?.answer || cv.whyThisRole);
 
   const handleDownload = (tab) => {
+    const documentType = tab === "cv" ? "cv" : "cover_letter";
     if (!isPremium) {
+      trackEvent("download_blocked", {
+        document_type: documentType,
+        template: selectedTemplate,
+      });
+      setUpgradeModalContext("download");
       setShowUpgradeModal(true);
       return false;
     }
@@ -326,6 +335,15 @@ export default function TailoredCVDetailPage() {
         filename: buildPdfFilename(cv.basics?.name, "cover-letter"),
       });
     }
+    trackEvent("pdf_downloaded", {
+      document_type: documentType,
+      template: selectedTemplate,
+    });
+  };
+
+  const openDownloadPaywall = () => {
+    setUpgradeModalContext("download");
+    setShowUpgradeModal(true);
   };
 
   const downloadTab = activeTab === "letter" ? "letter" : "cv";
@@ -452,13 +470,18 @@ export default function TailoredCVDetailPage() {
                   </p>
                 </div>
                 <div className="bg-white">
-                  <ScaledDocument>
-                    <ResumeTemplate
-                      data={previewData}
-                      template={selectedTemplate}
-                      style={selectedTemplateStyle}
-                    />
-                  </ScaledDocument>
+                  <PreviewUnlockGate
+                    locked={!isPremium}
+                    onUnlock={openDownloadPaywall}
+                  >
+                    <ScaledDocument>
+                      <ResumeTemplate
+                        data={previewData}
+                        template={selectedTemplate}
+                        style={selectedTemplateStyle}
+                      />
+                    </ScaledDocument>
+                  </PreviewUnlockGate>
                 </div>
               </aside>
             </div>
@@ -466,13 +489,18 @@ export default function TailoredCVDetailPage() {
         )}
 
         {activeTab === "letter" && (
-          <CoverLetterCard
-            content={cv.coverLetter || ""}
-            editable
-            fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
-            onSave={(content) => coverLetterMutation.mutate(content)}
-            isSaving={coverLetterMutation.isPending}
-          />
+          <PreviewUnlockGate
+            locked={!isPremium}
+            onUnlock={openDownloadPaywall}
+          >
+            <CoverLetterCard
+              content={cv.coverLetter || ""}
+              editable={isPremium}
+              fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
+              onSave={(content) => coverLetterMutation.mutate(content)}
+              isSaving={coverLetterMutation.isPending}
+            />
+          </PreviewUnlockGate>
         )}
 
         {activeTab === "why" && (
@@ -490,6 +518,7 @@ export default function TailoredCVDetailPage() {
       <UpgradePromptModal
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
+        context={upgradeModalContext}
       />
     </DashboardPageShell>
   );

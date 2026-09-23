@@ -46,6 +46,7 @@ import InterviewPrepCard from "@/components/InterviewPrepCard";
 import WhyThisRoleCard from "@/components/WhyThisRoleCard";
 import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
+import PreviewUnlockGate from "@/components/PreviewUnlockGate";
 import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
@@ -461,11 +462,8 @@ function Tailor() {
       });
       toast.success("CV tailored");
 
-      // Peak intent: show monthly unlock before long template fiddling.
-      if (!session?.user?.isPremium) {
-        setUpgradeModalContext("post_tailor");
-        setShowUpgradeModal(true);
-      }
+      // Paywall stays on download. Free users can see that tailor worked,
+      // then unlock when they try to take the PDF.
 
       // Trigger ATS analysis automatically
       setAtsLoading(true);
@@ -530,7 +528,7 @@ function Tailor() {
         document_type: documentType,
         template: selectedTemplate,
       });
-      setUpgradeModalContext("default");
+      setUpgradeModalContext("download");
       setShowUpgradeModal(true);
       return false;
     }
@@ -1145,13 +1143,21 @@ function Tailor() {
                       </p>
                     </div>
                     <div className="bg-white">
-                      <ScaledDocument>
-                        <ResumeTemplate
-                          data={previewData}
-                          template={selectedTemplate}
-                          style={selectedTemplateStyle}
-                        />
-                      </ScaledDocument>
+                      <PreviewUnlockGate
+                        locked={!isPremium}
+                        onUnlock={() => {
+                          setUpgradeModalContext("download");
+                          setShowUpgradeModal(true);
+                        }}
+                      >
+                        <ScaledDocument>
+                          <ResumeTemplate
+                            data={previewData}
+                            template={selectedTemplate}
+                            style={selectedTemplateStyle}
+                          />
+                        </ScaledDocument>
+                      </PreviewUnlockGate>
                     </div>
                     {tailorResult.keywordsInjected?.length > 0 && (
                       <div className="border-t border-[var(--landing-line)] px-4 py-3">
@@ -1177,10 +1183,18 @@ function Tailor() {
             </>
           )}
           {activeTab === "letter" && (
-            <CoverLetterCard
-              content={tailorResult.coverLetter}
-              fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
-            />
+            <PreviewUnlockGate
+              locked={!isPremium}
+              onUnlock={() => {
+                setUpgradeModalContext("download");
+                setShowUpgradeModal(true);
+              }}
+            >
+              <CoverLetterCard
+                content={tailorResult.coverLetter}
+                fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
+              />
+            </PreviewUnlockGate>
           )}
           {activeTab === "ats" && (
             <ATSScoreCard

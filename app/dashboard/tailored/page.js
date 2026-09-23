@@ -30,6 +30,7 @@ import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
+import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const PAGE_TITLE = "Tailored CVs";
@@ -161,6 +162,7 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
 export default function TailoredCVsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [upgradeModalContext, setUpgradeModalContext] = useState("default");
   const [filter, setFilter] = useState("all");
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -218,6 +220,12 @@ export default function TailoredCVsPage() {
     e.preventDefault();
     e.stopPropagation();
     if (!session?.user?.isPremium) {
+      trackEvent("download_blocked", {
+        document_type: "cv",
+        template: DEFAULT_TEMPLATE,
+        source: "tailored_list",
+      });
+      setUpgradeModalContext("download");
       setShowUpgradeModal(true);
       return;
     }
@@ -236,6 +244,11 @@ export default function TailoredCVsPage() {
         },
         template: DEFAULT_TEMPLATE,
         filename: buildPdfFilename(data.basics?.name, "cv"),
+      });
+      trackEvent("pdf_downloaded", {
+        document_type: "cv",
+        template: DEFAULT_TEMPLATE,
+        source: "tailored_list",
       });
     } catch (error) {
       toast.error(error.message || "Could not download PDF");
@@ -336,6 +349,7 @@ export default function TailoredCVsPage() {
       <UpgradePromptModal
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
+        context={upgradeModalContext}
       />
     </DashboardPageShell>
   );

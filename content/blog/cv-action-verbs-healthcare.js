@@ -12,7 +12,7 @@ export const meta = {
   category: "Action verbs",
   series: "action-verbs",
   tags: ["action verbs", "healthcare", "resume", "bullets"],
-  image: "/blog/cv-action-verbs-healthcare.png",
+  image: "/blog/cv-action-verbs-healthcare.jpg",
   imageAlt:
     "Flat illustration of a CV document beside a heartbeat line and a plus cross",
   keywords: [

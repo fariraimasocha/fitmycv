@@ -12,7 +12,7 @@ export const meta = {
   category: "Action verbs",
   series: "action-verbs",
   tags: ["action verbs", "finance", "resume", "bullets"],
-  image: "/blog/cv-action-verbs-finance.png",
+  image: "/blog/cv-action-verbs-finance.jpg",
   imageAlt:
     "Flat illustration of a CV document beside a rising bar chart and upward arrow",
   keywords: [

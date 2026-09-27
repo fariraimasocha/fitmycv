@@ -3,7 +3,7 @@ export const meta = {
   title: "ATS Resume Format: Two Columns, Tables, Icons and Photos Answered",
   seoTitle: "ATS Resume Format: What Parsers Can and Cannot Read",
   description:
-    "Can an ATS read two column resumes, tables, text boxes, icons or a photo? A direct answer on each, what actually breaks a parse, and how to test your own file.",
+    "Can an ATS read two column resumes, tables, text boxes, icons or a photo? A direct answer on each, what breaks a parse, and how to test your own file.",
   excerpt:
     "Most ATS formatting advice is folklore repeated until it sounds like fact. Here is what actually breaks a parse, what is merely risky, and the ten second test that settles it for your file.",
   date: "2026-09-10",

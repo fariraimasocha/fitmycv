@@ -11,7 +11,7 @@ export async function generateMetadata() {
 
   return {
     title: `Pricing: Lifetime Access for $${pricing.lifetime.price}`,
-    description: `FitMyCV Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month. Tailor and download unlimited CVs and cover letters from any job link, with ATS scoring and PDF export.`,
+    description: `FitMyCV Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month. Download unlimited tailored CVs and cover letters from any job link, with ATS scores.`,
     keywords: [
       "fitmycv pricing",
       "cv tailoring tool price",
@@ -27,7 +27,7 @@ export async function generateMetadata() {
       url: "/pricing",
       siteName: "FitMyCV",
       title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
-      description: `Simple, transparent pricing. Lifetime access for $${pricing.lifetime.price} or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.`,
+      description: `Lifetime access for $${pricing.lifetime.price} or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.`,
       images: [
         {
           url: "/hero-new.png",
@@ -40,7 +40,7 @@ export async function generateMetadata() {
     twitter: {
       card: "summary_large_image",
       title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
-      description: `Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export. Cancel monthly anytime.`,
+      description: `Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scores, and PDFs. Cancel monthly anytime.`,
       images: ["/hero-new.png"],
     },
   };

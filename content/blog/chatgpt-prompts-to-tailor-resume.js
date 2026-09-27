@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Tailor a Resume to a Job Description Using ChatGPT",
   seoTitle: "ChatGPT Prompts to Tailor a Resume to a Job Description",
   description:
-    "Copy-paste ChatGPT and Claude prompts to tailor your resume to a job description without inventing experience. Gap analysis first, then summary, then bullets.",
+    "Copy-paste ChatGPT and Claude prompts to tailor your resume to a job without inventing experience. Gap analysis first, then summary, then bullets.",
   excerpt:
     "The prompt that works is not “rewrite my resume”. It is a two-pass: compare first, then edit only what you can evidence. Here are the prompts, and when a job-link tool is faster.",
   date: "2026-08-28",
@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 9,
   category: "Tailoring",
   tags: ["tailoring", "chatgpt", "prompts", "resume", "job description"],
-  image: "/blog/chatgpt-prompts-to-tailor-resume.png",
+  image: "/blog/chatgpt-prompts-to-tailor-resume.jpg",
   imageAlt:
     "Flat illustration of a chat panel interlocking with a CV document, representing ChatGPT prompts used to tailor a resume",
   keywords: [

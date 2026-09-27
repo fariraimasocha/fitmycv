@@ -12,7 +12,7 @@ export const meta = {
   category: "CV Tips",
   series: "cv-foundations",
   tags: ["cv tips", "career change", "transferable skills", "job search"],
-  image: "/blog/career-change-cv.png",
+  image: "/blog/career-change-cv.jpg",
   imageAlt:
     "Flat illustration of a CV bridging two career paths, with transferable skills carrying across the gap",
   keywords: [

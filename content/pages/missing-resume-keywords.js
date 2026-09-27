@@ -5,7 +5,7 @@ export const missingResumeKeywords = {
   slug: "missing-resume-keywords",
   seoTitle: "Find Missing Resume Keywords: Free Tool",
   description:
-    "Upload your CV and paste a job description to see which keywords are missing from your resume, and how often the posting mentions each one. Free. The file is read in your browser.",
+    "Upload your CV and paste a job description to see which keywords your resume is missing and how often the posting uses each. Free, read in your browser.",
   keywords: [
     "missing resume keywords",
     "resume missing keywords",

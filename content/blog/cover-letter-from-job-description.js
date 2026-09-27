@@ -3,7 +3,7 @@ export const meta = {
   title: "How to Write a Cover Letter From a Job Description",
   seoTitle: "Cover Letter From a Resume and Job Description",
   description:
-    "How to write a cover letter from your resume and a job description: map each paragraph to a line in the posting. Worked example, then the AI generator path.",
+    "How to write a cover letter from your resume and a job description: map each paragraph to a line in the posting. A worked example, then the AI path.",
   excerpt:
     "A cover letter is not a summary of your CV. It is three paragraphs that answer three lines in the posting. Here is a worked letter, then the faster way to draft one.",
   date: "2026-08-28",
@@ -12,7 +12,7 @@ export const meta = {
   category: "Cover Letters",
   series: "cover-letters",
   tags: ["cover letter", "job description", "tailoring", "ai"],
-  image: "/blog/cover-letter-from-job-description.png",
+  image: "/blog/cover-letter-from-job-description.jpg",
   imageAlt:
     "Flat illustration of a job posting and a cover letter connecting with a single orange accent",
   keywords: [

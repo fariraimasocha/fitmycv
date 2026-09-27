@@ -28,13 +28,13 @@ export const metadata = {
     absolute: "Tailor Your CV to Any Job Link | FitMyCV",
   },
   description:
-    "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
+    "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
   alternates: { canonical: "/" },
   openGraph: {
     url: `${SITE_URL}/`,
     title: "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
     description:
-      "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
+      "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
     images: [
       {
         url: "/social-preview.jpg",
@@ -48,7 +48,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
     description:
-      "Tailor your CV and cover letter to any job link in seconds: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
+      "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
     images: [
       {
         url: "/social-preview.jpg",

@@ -4,7 +4,7 @@ export const atsResumeChecker = {
   slug: "ats-resume-checker",
   seoTitle: "Free ATS Resume Checker: No Sign-Up",
   description:
-    "Free ATS resume checker with job description, no login. Upload your CV and paste a posting for a keyword match score. The file is read in your browser. Unlimited checks.",
+    "Free ATS resume checker, no login. Upload your CV and paste a job posting for a keyword match score. Your file is read in your browser. Unlimited checks.",
   keywords: [
     "ats resume checker",
     "free ats resume checker",
@@ -421,7 +421,7 @@ export const resumeJobMatchChecker = {
   slug: "resume-job-match-checker",
   seoTitle: "Free Resume Job Match Checker: No Sign-Up",
   description:
-    "Upload your resume and paste a job description. See your match score, strong skills, missing keywords, and the top five things to improve. Free, no login. The file is read in your browser.",
+    "Upload your resume and paste a job description. See your match score, missing keywords, and the top five fixes. Free, no login, read in your browser.",
   keywords: [
     "resume job match checker",
     "resume match checker",

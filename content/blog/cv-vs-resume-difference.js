@@ -10,7 +10,7 @@ export const meta = {
   readingTime: 6,
   category: "Basics",
   tags: ["cv", "resume", "format", "international"],
-  image: "/blog/cv-vs-resume-difference.png",
+  image: "/blog/cv-vs-resume-difference.jpg",
   imageAlt:
     "Flat illustration of a short resume page and a long CV page beside a globe icon",
   keywords: [

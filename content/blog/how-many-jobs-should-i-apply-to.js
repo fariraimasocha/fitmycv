@@ -12,7 +12,7 @@ export const meta = {
   category: "Job Search",
   series: "job-search-funnel",
   tags: ["job search", "applications", "strategy", "productivity"],
-  image: "/blog/how-many-jobs-should-i-apply-to.png",
+  image: "/blog/how-many-jobs-should-i-apply-to.jpg",
   imageAlt:
     "Flat illustration of a calendar with a small stack of tailored applications outperforming a large stack of generic ones",
   keywords: [

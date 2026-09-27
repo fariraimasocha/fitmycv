@@ -12,7 +12,7 @@ export const meta = {
   category: "CV Tips",
   series: "cv-foundations",
   tags: ["cv tips", "employment gap", "career break", "job search"],
-  image: "/blog/how-to-explain-employment-gap-on-cv.png",
+  image: "/blog/how-to-explain-employment-gap-on-cv.jpg",
   imageAlt:
     "Flat illustration of a CV timeline with a clearly labelled gap that is handled calmly rather than hidden",
   keywords: [

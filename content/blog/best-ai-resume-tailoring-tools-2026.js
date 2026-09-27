@@ -3,7 +3,7 @@ export const meta = {
   title: "Best AI Resume Tailoring Tools in 2026",
   seoTitle: "Best AI to Tailor a Resume to a Job Description",
   description:
-    "Best AI to tailor a resume to a job description in 2026: FitMyCV, FastApply, MatchCV, Teal, and Rezi compared on job-link parse, honesty, ATS export, and price.",
+    "Best AI to tailor a resume to a job description in 2026: FitMyCV, FastApply, MatchCV, Teal, and Rezi compared on job-link parsing, honesty, and price.",
   excerpt:
     "Builders design a CV. Tailors rewrite one against a posting. This is the 2026 comparison of the second group, including where ours loses.",
   date: "2026-08-28",
@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 9,
   category: "Comparisons",
   tags: ["comparison", "tools", "tailoring", "ai"],
-  image: "/blog/best-ai-resume-tailoring-tools-2026.png",
+  image: "/blog/best-ai-resume-tailoring-tools-2026.jpg",
   imageAlt:
     "Flat illustration of three CV documents at different heights with checkmarks, representing a tailoring-tools comparison",
   keywords: [

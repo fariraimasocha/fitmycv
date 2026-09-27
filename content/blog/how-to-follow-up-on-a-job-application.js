@@ -12,7 +12,7 @@ export const meta = {
   category: "Job Search",
   series: "job-search-funnel",
   tags: ["job search", "applications", "follow up", "email templates"],
-  image: "/blog/how-to-follow-up-on-a-job-application.png",
+  image: "/blog/how-to-follow-up-on-a-job-application.jpg",
   imageAlt:
     "Flat illustration of a polite follow up email travelling toward a hiring manager's inbox",
   keywords: [

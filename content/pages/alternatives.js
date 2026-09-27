@@ -12,7 +12,7 @@ export const jobscanAlternative = {
   slug: "jobscan-alternative",
   seoTitle: "Jobscan Alternative: Tailor the CV, Not Just Score It",
   description:
-    "A Jobscan alternative that rewrites your CV instead of scoring it. Paste a job link, get a tailored CV and cover letter. One payment, no monthly subscription.",
+    "A Jobscan alternative that rewrites your CV instead of scoring it. Paste a job link, get a tailored CV and cover letter. One payment, no monthly fee.",
   keywords: [
     "jobscan alternative",
     "jobscan alternatives",
@@ -367,7 +367,7 @@ export const huntrAlternative = {
   slug: "huntr-alternative",
   seoTitle: "Huntr Alternative: The Rewrite Without the Tracker",
   description:
-    "A Huntr alternative for people who want the tailored CV, not a job board to maintain. Paste a job link, get a rewritten CV and cover letter. One payment, no subscription.",
+    "A Huntr alternative for people who want a tailored CV, not a job board to maintain. Paste a job link, get a CV and cover letter. One payment.",
   keywords: [
     "huntr alternative",
     "huntr alternatives",
@@ -839,7 +839,7 @@ export const tailoredcvAlternative = {
   slug: "tailoredcv-alternative",
   seoTitle: "TailoredCV Alternative: Same Job, From the Link",
   description:
-    "A TailoredCV.ai alternative that reads the job posting from its URL instead of asking you to paste it. One payment option, and a free checker with no account.",
+    "A TailoredCV.ai alternative that reads the job posting from its URL, so you never paste it. One payment option, and a free checker with no account.",
   keywords: [
     "tailoredcv alternative",
     "tailoredcv ai alternative",

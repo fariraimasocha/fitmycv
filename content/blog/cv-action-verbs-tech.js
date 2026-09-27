@@ -12,7 +12,7 @@ export const meta = {
   category: "Action verbs",
   series: "action-verbs",
   tags: ["action verbs", "tech", "resume", "bullets"],
-  image: "/blog/cv-action-verbs-tech.png",
+  image: "/blog/cv-action-verbs-tech.jpg",
   imageAlt:
     "Flat illustration of a CV document beside an abstract code-bracket motif",
   keywords: [

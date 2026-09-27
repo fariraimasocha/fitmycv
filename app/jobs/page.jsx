@@ -6,7 +6,7 @@ import JobsBrowser from "./JobsBrowser";
 export const metadata = {
   title: "Remote Jobs From Company Career Pages",
   description:
-    "Fresh remote jobs pulled straight from company career pages twice a day, posted by the employer rather than reposted by an aggregator. Find a role, then tailor your CV to it in one click.",
+    "Remote jobs pulled from company career pages twice a day, posted by the employer, not an aggregator. Find a role, then tailor your CV to it in one click.",
   keywords: [
     "remote jobs",
     "remote job board",

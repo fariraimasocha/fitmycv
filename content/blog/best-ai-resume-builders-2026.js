@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 11,
   category: "Comparisons",
   tags: ["comparison", "tools", "ats", "resume"],
-  image: "/blog/best-ai-resume-builders-2026.png",
+  image: "/blog/best-ai-resume-builders-2026.jpg",
   imageAlt:
     "Flat illustration of three CV documents standing at different heights like a comparison podium",
   keywords: [

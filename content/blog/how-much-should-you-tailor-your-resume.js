@@ -3,14 +3,14 @@ export const meta = {
   title: "How Much Should You Tailor Your Resume for Each Job?",
   seoTitle: "How Much Should You Tailor Your Resume?",
   description:
-    "How far to go when tailoring a CV to a posting, which sections earn the edit, where the returns stop, and the point where tailoring starts making the CV worse.",
+    "How far to tailor a CV to a posting, which sections earn the edit, where the returns stop, and when tailoring starts making the CV worse.",
   excerpt:
     "Change the top third, leave the history alone, and stop when the posting's real requirements are covered by experience you can evidence.",
   date: "2026-09-12",
   readingTime: 7,
   category: "Applications",
   tags: ["tailoring", "keywords", "cv", "process"],
-  image: "/blog/how-much-should-you-tailor-your-resume.png",
+  image: "/blog/how-much-should-you-tailor-your-resume.jpg",
   imageAlt:
     "Flat illustration of a CV with the top third highlighted for editing and the rest unchanged",
   keywords: [

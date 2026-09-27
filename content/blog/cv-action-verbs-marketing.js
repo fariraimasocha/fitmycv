@@ -3,7 +3,7 @@ export const meta = {
   title: "28 CV Action Verbs for Marketing Roles",
   seoTitle: "28 CV Action Verbs for Marketing Roles",
   description:
-    "Twenty-eight action verbs for marketing CVs across brand, growth, content and demand generation, grouped by what they prove, with before/after bullet rewrites.",
+    "Twenty-eight action verbs for marketing CVs across brand, growth, content and demand gen, grouped by what they prove, with before and after rewrites.",
   excerpt:
     "Marketing CVs drown in \"managed\" and \"created\". Twenty-eight verbs that show ownership and a number, grouped by discipline.",
   date: "2026-07-28",
@@ -12,7 +12,7 @@ export const meta = {
   category: "Action verbs",
   series: "action-verbs",
   tags: ["action verbs", "marketing", "resume", "bullets"],
-  image: "/blog/cv-action-verbs-marketing.png",
+  image: "/blog/cv-action-verbs-marketing.jpg",
   imageAlt: "Flat illustration of a CV document beside a geometric megaphone",
   keywords: [
     "cv action verbs marketing",

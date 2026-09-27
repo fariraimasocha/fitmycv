@@ -3,7 +3,7 @@ export const meta = {
   title: "Best Free ATS Resume Checkers in 2026, Compared",
   seoTitle: "Best Free ATS Resume Checker (2026 Comparison)",
   description:
-    "Best free ATS resume checkers in 2026: FitMyCV, Jobscan, Teal, ATSGrader, and Resume Worded compared on signup, job-description matching, privacy, and price.",
+    "Best free ATS resume checkers in 2026: FitMyCV, Jobscan, Teal, ATSGrader, and Resume Worded compared on signup, job matching, privacy, and price.",
   excerpt:
     "Five checkers, five different free tiers. What each one actually scores, whether you need an account, and which to use before you pay Jobscan.",
   date: "2026-08-28",
@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 8,
   category: "Comparisons",
   tags: ["comparison", "ats", "tools", "resume"],
-  image: "/blog/best-free-ats-resume-checkers-2026.png",
+  image: "/blog/best-free-ats-resume-checkers-2026.jpg",
   imageAlt:
     "Flat illustration of three CV documents at different heights with checkmarks, representing an ATS checker comparison",
   keywords: [

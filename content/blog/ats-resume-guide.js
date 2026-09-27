@@ -12,7 +12,7 @@ export const meta = {
   readingTime: 12,
   category: "ATS",
   tags: ["ats", "resume", "keywords", "formatting"],
-  image: "/blog/ats-resume-guide.png",
+  image: "/blog/ats-resume-guide.jpg",
   imageAlt:
     "Flat illustration of a CV document passing through a scanner beam, representing an applicant tracking system parsing a resume",
   keywords: [

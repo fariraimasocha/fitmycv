@@ -12,7 +12,7 @@ export const meta = {
   category: "Job Search",
   series: "job-search-funnel",
   tags: ["job search", "interviews", "applications", "ats"],
-  image: "/blog/why-am-i-not-getting-interviews.png",
+  image: "/blog/why-am-i-not-getting-interviews.jpg",
   imageAlt:
     "Flat illustration of a job application funnel with most applications falling away before reaching an interview stage",
   keywords: [

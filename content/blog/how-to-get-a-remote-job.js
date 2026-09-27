@@ -12,7 +12,7 @@ export const meta = {
   category: "Job Search",
   series: "job-search-funnel",
   tags: ["job search", "remote work", "applications", "cv tips"],
-  image: "/blog/how-to-get-a-remote-job.png",
+  image: "/blog/how-to-get-a-remote-job.jpg",
   imageAlt:
     "Flat illustration of a remote worker connecting to a global team from a home desk",
   keywords: [

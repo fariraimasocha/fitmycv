@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 10,
   category: "Tailoring",
   tags: ["tailoring", "job description", "keywords", "resume"],
-  image: "/blog/how-to-tailor-cv-to-job-description.png",
+  image: "/blog/how-to-tailor-cv-to-job-description.jpg",
   imageAlt:
     "Flat illustration of a CV and a job listing merging together with interlocking edges",
   // The bare "tailor cv to job description" is owned by

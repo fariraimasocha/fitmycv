@@ -12,7 +12,7 @@ export const meta = {
   category: "CV Tips",
   series: "cv-foundations",
   tags: ["cv tips", "professional summary", "resume summary", "personal statement"],
-  image: "/blog/cv-professional-summary-examples.png",
+  image: "/blog/cv-professional-summary-examples.jpg",
   imageAlt:
     "Flat illustration of the top of a CV with a sharp three-line professional summary highlighted",
   keywords: [

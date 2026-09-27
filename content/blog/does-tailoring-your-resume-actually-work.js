@@ -10,7 +10,7 @@ export const meta = {
   readingTime: 8,
   category: "Applications",
   tags: ["tailoring", "evidence", "callbacks", "research"],
-  image: "/blog/does-tailoring-your-resume-actually-work.png",
+  image: "/blog/does-tailoring-your-resume-actually-work.jpg",
   imageAlt:
     "Flat illustration of a CV with an upward trend arrow, magnifying glass, and checkmark",
   keywords: [

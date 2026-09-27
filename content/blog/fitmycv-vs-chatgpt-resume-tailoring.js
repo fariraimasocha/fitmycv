@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 8,
   category: "Comparisons",
   tags: ["comparison", "chatgpt", "tailoring", "tools"],
-  image: "/blog/fitmycv-vs-chatgpt-resume-tailoring.png",
+  image: "/blog/fitmycv-vs-chatgpt-resume-tailoring.jpg",
   imageAlt:
     "Flat illustration of a chat panel and a CV document joined by a single orange connector",
   keywords: [

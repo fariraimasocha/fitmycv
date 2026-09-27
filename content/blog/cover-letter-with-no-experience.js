@@ -12,7 +12,7 @@ export const meta = {
   category: "Cover Letters",
   series: "cover-letters",
   tags: ["cover letter", "no experience", "entry level", "graduates"],
-  image: "/blog/cover-letter-with-no-experience.png",
+  image: "/blog/cover-letter-with-no-experience.jpg",
   imageAlt:
     "Flat illustration of a first-time job seeker assembling a cover letter from projects, coursework, and volunteering",
   keywords: [

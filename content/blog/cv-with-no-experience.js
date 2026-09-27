@@ -12,7 +12,7 @@ export const meta = {
   category: "CV Tips",
   series: "cv-foundations",
   tags: ["cv tips", "no experience", "graduates", "entry level"],
-  image: "/blog/cv-with-no-experience.png",
+  image: "/blog/cv-with-no-experience.jpg",
   imageAlt:
     "Flat illustration of a first CV built from education, projects, and skills blocks slotting into place",
   keywords: [

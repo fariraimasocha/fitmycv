@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "CV & Resume Blog: ATS Guides and Tips",
   description:
-    "Practical guides on ATS-friendly resumes, tailoring your CV to a job description, and the action verbs that make bullets land, from the team behind FitMyCV.",
+    "Practical guides on ATS-friendly resumes, tailoring your CV to a job description, and the action verbs that make bullets land, from the FitMyCV team.",
   path: "/blog",
   keywords: [
     "cv blog",
@@ -19,7 +19,7 @@ export const metadata = pageMetadata({
     "cv tips",
     "resume writing guides",
   ],
-  image: "/blog/ats-resume-guide.png",
+  image: "/blog/ats-resume-guide.jpg",
 });
 
 const collectionSchema = (posts) => ({

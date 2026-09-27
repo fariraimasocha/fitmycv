@@ -7,7 +7,7 @@ export const resumeBulletRewriter = {
   slug: "resume-bullet-rewriter",
   seoTitle: "Resume Bullet Point Rewriter: Free, No Sign-Up",
   description:
-    "Paste a resume bullet and get three stronger rewrites with the metric slots marked. Turn job duties into achievement bullets. Free, no login, nothing uploaded.",
+    "Paste a resume bullet and get three stronger rewrites with the metric slots marked. Turn duties into achievements. Free, no login, nothing uploaded.",
   keywords: [
     "resume bullet point rewriter",
     "resume bullet point rewrite",

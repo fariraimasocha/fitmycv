@@ -12,7 +12,7 @@ export const meta = {
   category: "CV Tips",
   series: "cv-foundations",
   tags: ["cv tips", "cv length", "resume format", "job search"],
-  image: "/blog/how-long-should-a-cv-be.png",
+  image: "/blog/how-long-should-a-cv-be.jpg",
   imageAlt:
     "Flat illustration comparing a padded CV with a dense, well-edited CV of the right length",
   keywords: [

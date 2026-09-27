@@ -202,7 +202,7 @@ export const coverLetterBuilder = {
   slug: "cover-letter-builder",
   seoTitle: "AI Cover Letter Builder That Gets Read",
   description:
-    "A cover letter builder that starts from the job posting, not a blank page. Paragraph-by-paragraph structure, worked examples, and AI drafting from any job link.",
+    "A cover letter builder that starts from the job posting, not a blank page. Paragraph structure, worked examples, and AI drafts from any job link.",
   keywords: [
     "cover letter builder",
     "ai cover letter builder",

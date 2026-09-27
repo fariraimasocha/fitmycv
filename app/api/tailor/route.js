@@ -3,6 +3,7 @@ import { parseTailorResponse } from "@/utils/tailor-parser";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
 import { chat, MODEL_SMART } from "@/lib/groq";
+import { relevanceNotes } from "@/lib/jev";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket, which the
@@ -94,7 +95,13 @@ If a "## Candidate context" section is present, let it steer emphasis only — n
 - A goal of breaking into tech or switching fields means leading with transferable experience and reframing existing highlights in the target role's vocabulary.
 - A blocker about not getting responses means leaning harder on the hard-skill keyword strategy above and on scannable, front-loaded highlights.
 - A late search stage (interviewing, or holding an offer) means favouring depth and seniority signals over breadth.
-The rule against inventing numbers or experience the candidate does not have still overrides all of this.`;
+The rule against inventing numbers or experience the candidate does not have still overrides all of this.
+
+If a "## Relevance signals" section is present, a separate model has already judged the reference CV against this job:
+- Lead each role with its "Directly relevant" highlights and spend most of that role's highlights on them.
+- Keep "Not relevant" highlights short, merge them, or drop them when the role already has enough strong points.
+- List "Skills this job asks for" first in the skills section.
+Every role must still appear, and nothing may be invented.`;
 
 export async function POST(request) {
   const session = await auth();
@@ -135,9 +142,10 @@ Please tailor the CV for this specific role and generate a cover letter that cle
     // Onboarding answers, when the user gave them. Skippers and legacy users
     // have none, and the prompt stays byte-identical to what it was for them.
     await connectDB();
-    const user = await User.findById(session.user.id)
-      .select("onboarding")
-      .lean();
+    const [user, relevance] = await Promise.all([
+      User.findById(session.user.id).select("onboarding").lean(),
+      relevanceNotes(referenceCV, jobData),
+    ]);
     const contextLines = [
       ["Goal", user?.onboarding?.goal],
       ["Search stage", user?.onboarding?.stage],
@@ -146,9 +154,12 @@ Please tailor the CV for this specific role and generate a cover letter that cle
       .filter(([, value]) => Boolean(value))
       .map(([label, value]) => `${label}: ${value}`);
 
-    const promptMessage = contextLines.length
+    const withContext = contextLines.length
       ? `${userMessage}\n\n## Candidate context\n${contextLines.join("\n")}`
       : userMessage;
+    const promptMessage = relevance
+      ? `${withContext}\n\n## Relevance signals\n${relevance}`
+      : withContext;
 
     const generate = () =>
       chat({

@@ -1,7 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { CaretDownIcon, LayoutIcon, ListIcon, SignOutIcon, XIcon } from "@phosphor-icons/react";
+import {
+  CaretDownIcon,
+  FileTextIcon,
+  LayoutIcon,
+  LinkedinLogoIcon,
+  ListChecksIcon,
+  ListIcon,
+  ListMagnifyingGlassIcon,
+  MagnifyingGlassIcon,
+  PencilLineIcon,
+  ShieldCheckIcon,
+  SignOutIcon,
+  SparkleIcon,
+  TargetIcon,
+  TextAlignLeftIcon,
+  TextHOneIcon,
+  XIcon,
+} from "@phosphor-icons/react";
 import Link from "next/link";
 import AuthLink from "@/components/landing/AuthLink";
 import { useSession, signOut } from "next-auth/react";
@@ -25,6 +42,32 @@ const navLinks = [
   { label: "Pricing", href: "/#pricing" },
   { label: "Blog", href: "/blog" },
 ];
+
+// Icons live here, not in lib/free-tools.js, so the footer and any server code
+// that reads the catalog never pull in the icon set.
+const TOOL_ICONS = {
+  "/resume-job-match-checker": TargetIcon,
+  "/ats-resume-checker": ShieldCheckIcon,
+  "/free-ats-keyword-checker": MagnifyingGlassIcon,
+  "/missing-resume-keywords": ListMagnifyingGlassIcon,
+  "/resume-bullet-rewriter": PencilLineIcon,
+  "/resume-headline-generator": TextHOneIcon,
+  "/professional-summary-generator": TextAlignLeftIcon,
+  "/job-description-to-resume-bullets": ListChecksIcon,
+  "/resume-file-name-generator": FileTextIcon,
+  "/linkedin-url-for-resume": LinkedinLogoIcon,
+};
+
+function ToolIcon({ href, size }) {
+  const Icon = TOOL_ICONS[href] ?? SparkleIcon;
+  return (
+    <Icon
+      size={size}
+      aria-hidden="true"
+      className="shrink-0 text-[var(--landing-accent)]"
+    />
+  );
+}
 
 const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,18 +134,24 @@ const Navbar1 = () => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              align="start"
-              className="w-72 border-[var(--landing-line)] bg-[var(--landing-surface)] p-1.5 text-[var(--landing-ink)]"
+              align="center"
+              sideOffset={10}
+              className="grid w-176 max-w-[calc(100vw-2rem)] grid-cols-2 gap-1 rounded-xl border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-[var(--landing-ink)] shadow-lg"
             >
               {FREE_TOOLS.map((tool) => (
                 <DropdownMenuItem key={tool.href} asChild>
                   <Link
                     href={tool.href}
-                    className="flex cursor-pointer flex-col items-start gap-0.5 rounded-md px-3 py-2"
+                    className="flex cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5"
                   >
-                    <span className="text-sm font-medium">{tool.label}</span>
-                    <span className="text-xs leading-5 text-[var(--landing-ink-soft)]">
-                      {tool.body}
+                    <span className="mt-0.5">
+                      <ToolIcon href={tool.href} size={20} />
+                    </span>
+                    <span className="flex min-w-0 flex-col gap-0.5">
+                      <span className="text-sm font-semibold">{tool.label}</span>
+                      <span className="text-xs leading-5 text-[var(--landing-ink-soft)]">
+                        {tool.body}
+                      </span>
                     </span>
                   </Link>
                 </DropdownMenuItem>
@@ -183,7 +232,7 @@ const Navbar1 = () => {
           closed. The open state fades in with CSS; dropping framer-motion here
           takes ~44KB of JavaScript off every page that shows the header. */}
       {isOpen && (
-        <div className="landing-rise border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 md:hidden">
+        <div className="landing-rise max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 md:hidden">
           <div className="flex flex-col gap-4">
             {navLinks.map((item) => (
               <Link
@@ -195,20 +244,25 @@ const Navbar1 = () => {
                 {item.label}
               </Link>
             ))}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
               <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">
                 Free tools
               </p>
-              {FREE_TOOLS.map((tool) => (
-                <Link
-                  key={tool.href}
-                  href={tool.href}
-                  className="text-base font-medium text-[var(--landing-ink)]"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {tool.label}
-                </Link>
-              ))}
+              <div className="grid grid-cols-2 gap-2">
+                {FREE_TOOLS.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="flex min-h-11 items-start gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-sm font-medium leading-5 text-[var(--landing-ink)] transition-colors active:bg-[var(--landing-bg)]"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span className="mt-0.5">
+                      <ToolIcon href={tool.href} size={16} />
+                    </span>
+                    <span className="min-w-0">{tool.label}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
             {session ? (
               <Link href="/dashboard" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>

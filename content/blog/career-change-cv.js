@@ -81,6 +81,9 @@ export const blocks = [
   {
     p: "The second version is not a different job. It is the same work described in the language of the role being targeted: forecasting, modelling, data, and a measurable result.",
   },
+  {
+    p: "Do the same with the one line under your name. Lead with the role you are applying for, not the one you are leaving, then add two skills that carry over. The [resume headline generator](/resume-headline-generator) builds five options from the posting and your CV, using only skills your CV can back up.",
+  },
 
   { h2: "Use a hybrid structure, not a functional one" },
   {

@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "No experience does not mean no evidence. Coursework, projects, volunteering, and part-time work all count. Here is how to turn them into a cover letter that gets read.",
   date: "2026-08-21",
-  updated: "2026-08-28",
+  updated: "2026-09-27",
   readingTime: 8,
   category: "Cover Letters",
   series: "cover-letters",
@@ -41,6 +41,10 @@ export const faqs = [
   {
     q: "Do cover letters get read for entry level roles?",
     a: "Often yes, and they matter more when your CV is thin, because the letter is where you connect the dots a short CV cannot. Many applicant systems also parse cover letters for keywords, so mirror the posting's language. A specific, well-matched letter can be the difference between two similar candidates.",
+  },
+  {
+    q: "Can I say I am willing to learn in a cover letter?",
+    a: "Yes, once, near the end, and only after you have shown learning you already did. On its own the phrase proves nothing, because every applicant can write it. Pair it with evidence: the skill, where you practised it, and what you want to do next in this role.",
   },
   {
     q: "How do I make a no experience cover letter specific?",
@@ -82,6 +86,19 @@ export const blocks = [
   { h2: "Cover letter no experience but willing to learn" },
   {
     p: "Do not write the phrase “willing to learn” as your pitch. Everyone is. Show the learning you have already done: a project, a course, volunteering, or a part-time result that maps to one line in the posting. “Willing to learn” is a close. Evidence is the body. If you need a sentence that carries the idea without the cliché: name the skill, name where you practised it, and name what you are ready to do next in this role.",
+  },
+  {
+    compare: {
+      title: "Willing to learn, before and after",
+      context: "Applying for a junior marketing assistant role with no paid marketing work.",
+      before:
+        "I do not have much experience yet, but I am a fast learner and willing to learn anything the role requires.",
+      after:
+        "I ran the Instagram account for my university hiking club for a year and grew it from 300 to 1,100 followers by posting trip recaps twice a week. I would like to learn how your team plans paid campaigns, and I have started Google's free digital marketing course to get ready.",
+    },
+  },
+  {
+    p: "The second version still says you want to learn. It just earns the line first. It names a skill, a place you used it, a result, and one concrete step you already took toward the job.",
   },
 
   { h2: "The structure that works" },

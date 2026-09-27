@@ -75,6 +75,9 @@ export const blocks = [
   {
     p: "That is the whole structure. The reason most summaries fail is that they skip step three, the proof, and pad the first two with adjectives instead.",
   },
+  {
+    p: "One line sits above the summary: the headline, which is the target role plus two or three proofs. If yours still repeats your old job title, the [resume headline generator](/resume-headline-generator) builds five options from the posting and your CV, using only skills your CV can back up.",
+  },
 
   { h2: "Examples by career stage" },
   {

@@ -265,20 +265,23 @@ export const freeAtsKeywordChecker = {
 
 export const resumeOptimizer = {
   slug: "resume-optimizer",
-  seoTitle: "AI Resume Optimizer: Rewrite Your CV for Any Job",
+  seoTitle: "AI CV and Resume Optimizer for Any Job",
   description:
-    "An AI resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
+    "An AI CV and resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
   keywords: [
     "resume optimizer",
+    "cv optimizer",
+    "ai cv optimizer",
+    "cv optimiser",
     "resume optimizer tool",
     "ai resume writer",
     "optimize resume for ats",
     "ai resume optimizer",
     "improve my resume with ai",
   ],
-  eyebrow: "Resume optimizer",
-  breadcrumbName: "Resume optimizer",
-  h1: "AI resume optimizer",
+  eyebrow: "CV optimizer",
+  breadcrumbName: "CV and resume optimizer",
+  h1: "AI CV and resume optimizer",
   lede:
     "Your CV is not broken. It is generic. FitMyCV rewrites the CV you already have against the specific posting you are applying to, so the right evidence leads and the right words are used.",
   ctas: [
@@ -289,6 +292,10 @@ export const resumeOptimizer = {
     {
       q: "What does a resume optimizer actually do?",
       a: "It takes a CV you already have and improves it against a target: stronger verbs, quantified bullets, sections ordered by relevance, and the vocabulary the posting uses. It does not invent experience. It changes which of your real experience leads and how it is described.",
+    },
+    {
+      q: "Is a CV optimizer the same as a resume optimizer?",
+      a: "Yes. CV is the usual word in the UK, Europe, Africa and much of Asia, and resume is the usual word in the US and Canada. Both mean the document you send with a job application, and this tool works on either. Use whichever word the employer uses in the posting.",
     },
     {
       q: "Will an AI-optimized resume still sound like me?",

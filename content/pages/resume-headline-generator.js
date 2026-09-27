@@ -4,7 +4,7 @@
 
 export const resumeHeadlineGenerator = {
   slug: "resume-headline-generator",
-  seoTitle: "Resume Headline Generator: Free, Job Description Aware",
+  seoTitle: "Resume Headline Generator: Free Resume Title Ideas",
   description:
     "Upload your resume and paste a job description. Get five headlines built only from skills your CV shows. Free, no login, read in your browser.",
   keywords: [
@@ -16,10 +16,12 @@ export const resumeHeadlineGenerator = {
     "resume headline examples",
     "resume title examples",
     "ats resume headline",
+    "resume title ideas",
+    "headline for cv",
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Resume headline generator",
-  h1: "Resume headline generator",
+  h1: "Resume headline and title generator",
   lede:
     "Upload your resume and paste the job description. Get five headlines in five different shapes, built only from skills your CV can actually back up, with the role title taken from the posting itself.",
   ctas: [
@@ -171,6 +173,27 @@ export const resumeHeadlineGenerator = {
         title: "Match the employer's job title, not your old one",
         body: "If the posting says Growth Marketer and your last title was Marketing Executive, lead with Growth Marketer. You are not lying about your history, which the experience section states plainly. You are telling the reader which role this application is for.",
       },
+    },
+
+    { h2: "Resume title examples" },
+    {
+      p: "When a form or a CV template only has room for a title, give it the role in the employer's words and nothing else. Two to four words, matched to the posting.",
+    },
+    {
+      table: {
+        head: ["If the posting says", "Your resume title"],
+        rows: [
+          ["Senior Software Engineer, Payments", "Senior Software Engineer"],
+          ["Growth Marketing Manager", "Growth Marketing Manager"],
+          ["Registered Nurse, Emergency Department", "Registered Nurse"],
+          ["Junior Data Analyst (Graduate)", "Junior Data Analyst"],
+          ["Customer Success Manager, SaaS", "Customer Success Manager"],
+          ["Management Accountant", "Management Accountant"],
+        ],
+      },
+    },
+    {
+      p: "Leave the qualifiers after the comma for the headline, where you can prove them. A title that promises 'Payments' on a CV with no payments work invites the wrong first interview question.",
     },
 
     { h2: "Headline, title, summary or objective" },

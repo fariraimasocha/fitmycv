@@ -16,10 +16,14 @@ export const resumeFileNameGenerator = {
     "cv file name",
     "how to name a resume file",
     "resume naming convention",
+    "what to name a resume file",
+    "resume name example",
+    "resume name ideas",
+    "naming resume file",
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Resume file name generator",
-  h1: "Resume file name generator",
+  h1: "Resume file name generator: what to name your resume",
   lede:
     "Type your name and the role you are applying for. Get a clean file name a recruiter can find again, with the characters that break uploads stripped out. Copy it, rename your file, apply.",
   ctas: [
@@ -89,7 +93,7 @@ export const resumeFileNameGenerator = {
       p: "It is also the last thing you control before your application leaves your hands. Everything after upload belongs to somebody else's system.",
     },
 
-    { h2: "Names that work, and names that do not" },
+    { h2: "Resume file name examples that work, and ones that do not" },
     {
       table: {
         head: ["File name", "Verdict", "Why"],

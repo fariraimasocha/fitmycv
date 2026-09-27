@@ -32,8 +32,14 @@ import whatIsMatchScore from "./what-is-a-resume-match-score";
 import doesTailoringWork from "./does-tailoring-your-resume-actually-work";
 import howMuchToTailor from "./how-much-should-you-tailor-your-resume";
 import cvVsResume from "./cv-vs-resume-difference";
+import skillsToPutOnResume from "./skills-to-put-on-a-resume";
+import jobApplicationLetter from "./job-application-letter";
+import howToEmailApplication from "./how-to-email-a-job-application";
 
 export const POSTS = [
+  skillsToPutOnResume,
+  jobApplicationLetter,
+  howToEmailApplication,
   doesTailoringWork,
   howMuchToTailor,
   cvVsResume,

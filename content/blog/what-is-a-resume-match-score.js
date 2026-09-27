@@ -10,8 +10,9 @@ export const meta = {
   readingTime: 7,
   category: "ATS",
   tags: ["match score", "ats", "keywords", "resume"],
-  image: "/social-preview.jpg",
-  imageAlt: "FitMyCV",
+  image: "/blog/what-is-a-resume-match-score.jpg",
+  imageAlt:
+    "Flat illustration of a resume and a job posting with a partial match ring in front",
   keywords: [
     "what is a resume match score",
     "resume match score",

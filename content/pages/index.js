@@ -27,6 +27,10 @@ import { missingResumeKeywords } from "./missing-resume-keywords";
 import { resumeBulletRewriter } from "./resume-bullet-rewriter";
 import { resumeHeadlineGenerator } from "./resume-headline-generator";
 import { resumeFileNameGenerator } from "./resume-file-name-generator";
+import { professionalSummaryGenerator } from "./professional-summary-generator";
+import { linkedinUrlForResume } from "./linkedin-url-for-resume";
+import { jobDescriptionToResumeBullets } from "./job-description-to-resume-bullets";
+import { resumeKeywordsHub } from "./resume-keywords-hub";
 import {
   workdayResumeFormat,
   greenhouseAtsResume,
@@ -41,6 +45,10 @@ export const MARKETING_PAGES = [
   resumeBulletRewriter,
   resumeHeadlineGenerator,
   resumeFileNameGenerator,
+  professionalSummaryGenerator,
+  linkedinUrlForResume,
+  jobDescriptionToResumeBullets,
+  resumeKeywordsHub,
   ...RESUME_KEYWORD_PAGES,
   atsResumeChecker,
   freeAtsKeywordChecker,

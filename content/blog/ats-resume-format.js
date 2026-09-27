@@ -10,8 +10,9 @@ export const meta = {
   readingTime: 11,
   category: "ATS",
   tags: ["ats", "formatting", "resume format", "parsing"],
-  image: "/social-preview.jpg",
-  imageAlt: "FitMyCV",
+  image: "/blog/ats-resume-format.jpg",
+  imageAlt:
+    "Flat illustration of a single column CV, with a two column layout and a photo marked as rejected",
   keywords: [
     "ats resume format",
     "ats friendly resume format",

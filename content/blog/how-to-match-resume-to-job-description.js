@@ -10,8 +10,9 @@ export const meta = {
   readingTime: 9,
   category: "Tailoring",
   tags: ["matching", "job description", "keywords", "resume"],
-  image: "/social-preview.jpg",
-  imageAlt: "FitMyCV",
+  image: "/blog/how-to-match-resume-to-job-description.jpg",
+  imageAlt:
+    "Flat illustration of a resume mapped to a job posting, with lines connecting matching points",
   keywords: [
     "how to match resume to job description",
     "match resume to job description",

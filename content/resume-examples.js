@@ -707,7 +707,7 @@ export const RESUME_EXAMPLES = [
     seniority: "Student / fresher",
     date: "2026-08-28",
     updated: "2026-08-28",
-    seoTitle: "First Job Resume Example (2026)",
+    seoTitle: "First Job Resume Example: No Work Experience",
     seoDescription:
       "Resume examples for a first job, students, and freshers: a worked summary, four rewritten bullets from projects and part-time work, skills, and keywords.",
     seoKeywords: [
@@ -717,6 +717,9 @@ export const RESUME_EXAMPLES = [
       "first job resume example",
       "student resume example",
       "entry level resume example",
+      "resume examples for no work experience",
+      "resume with no work experience",
+      "resume no work experience",
     ],
     blurb:
       "Students and freshers: how to write a first-job resume from projects, coursework, and part-time work instead of apologising for a blank history.",

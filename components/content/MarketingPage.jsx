@@ -11,6 +11,9 @@ import JobMatchChecker from "@/components/tools/JobMatchChecker";
 import BulletRewriter from "@/components/tools/BulletRewriter";
 import HeadlineGenerator from "@/components/tools/HeadlineGenerator";
 import FileNameGenerator from "@/components/tools/FileNameGenerator";
+import SummaryGenerator from "@/components/tools/SummaryGenerator";
+import LinkedInUrlFormatter from "@/components/tools/LinkedInUrlFormatter";
+import DutiesToBullets from "@/components/tools/DutiesToBullets";
 import JsonLd from "@/components/JsonLd";
 import {
   breadcrumbSchema,
@@ -26,6 +29,9 @@ const TOOL_COMPONENTS = {
   bullet: BulletRewriter,
   headline: HeadlineGenerator,
   filename: FileNameGenerator,
+  summary: SummaryGenerator,
+  link: LinkedInUrlFormatter,
+  duties: DutiesToBullets,
 };
 
 const PRODUCT_SLUGS = new Set([

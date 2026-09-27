@@ -36,11 +36,14 @@ const relatedCore = [
 
 export const workdayResumeFormat = {
   slug: "workday-resume-format",
-  seoTitle: "Workday Resume Format: What the Parser Actually Reads",
+  seoTitle: "Workday CV and Resume Format: What It Reads",
   description:
     "How to format a CV for Workday: single column, standard headings, Month YYYY dates, and why you still have to type your skills in by hand.",
   keywords: [
     "workday resume format",
+    "workday cv",
+    "workday resume",
+    "workday cv format",
     "workday ats resume",
     "workday ats",
     "how to apply on workday",
@@ -61,6 +64,10 @@ export const workdayResumeFormat = {
     {
       q: "What resume format works best for Workday?",
       a: "A single column document with standard section headings, dates written as Month YYYY, and contact details in the body rather than the header. Whether you send PDF or DOCX matters less than whether the layout is simple.",
+    },
+    {
+      q: "Is a Workday CV different from a Workday resume?",
+      a: "No. Workday treats them as the same file. CV is the usual word in the UK, Europe, Africa and much of Asia, and resume is the usual word in the US and Canada. The upload step, the parsing and the formatting advice on this page are the same whichever word the employer uses.",
     },
     {
       q: "Why does Workday make me retype everything?",

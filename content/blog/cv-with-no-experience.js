@@ -1,13 +1,13 @@
 export const meta = {
   slug: "cv-with-no-experience",
   title: "How to Write a CV With No Experience (Template and Example)",
-  seoTitle: "How to Write a CV With No Experience",
+  seoTitle: "CV or Resume With No Work Experience",
   description:
     "How to write a CV with no work experience: which sections to use, how to order them, and how to turn projects and coursework into quantified bullets.",
   excerpt:
     "A first CV is not an empty CV. Reorder the page around what you actually have, prove it with numbers, and it reads like someone worth meeting.",
   date: "2026-08-20",
-  updated: "2026-08-20",
+  updated: "2026-09-27",
   readingTime: 8,
   category: "CV Tips",
   series: "cv-foundations",
@@ -21,6 +21,10 @@ export const meta = {
     "first cv no experience",
     "cv for first job",
     "student cv no work experience",
+    "resume with no work experience",
+    "resume no work experience",
+    "cv no work experience",
+    "resume examples for no work experience",
   ],
 };
 
@@ -95,6 +99,10 @@ export const blocks = [
       after:
         "Recent statistics graduate aiming for a junior data analyst role. Built a final-year project analysing 5 years of city transport data in Python and SQL, presenting the findings to a panel of 40. Comfortable with pandas, dashboards, and turning messy data into clear recommendations.",
     },
+  },
+
+  {
+    p: "Above the summary, one line under your name names the role and two skills you can prove, for example 'Junior Data Analyst | Python, SQL, Tableau'. If you are unsure what to put there, the [resume headline generator](/resume-headline-generator) suggests five from the posting and your CV.",
   },
 
   { h2: "Turn projects into evidence" },

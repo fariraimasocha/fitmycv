@@ -19,6 +19,18 @@ const REGIONS = {
     "// pure-helpers:start",
     "// pure-helpers:end",
   ],
+  "components/tools/SummaryGenerator.jsx": [
+    "// pure-helpers:start",
+    "// pure-helpers:end",
+  ],
+  "components/tools/LinkedInUrlFormatter.jsx": [
+    "// pure-helpers:start",
+    "// pure-helpers:end",
+  ],
+  "components/tools/DutiesToBullets.jsx": [
+    "// pure-helpers:start",
+    "// pure-helpers:end",
+  ],
 };
 
 /** Slices the marked region out of a component and imports it as a module. */
@@ -211,6 +223,197 @@ const check = (name, fn) => {
     const a = generateHeadlines(JOB, cv, 2026).headlines.map((h) => h.text);
     const b = generateHeadlines(JOB, cv, 2026).headlines.map((h) => h.text);
     assert.deepEqual(a, b);
+  });
+}
+
+// ---------------------------------------------------------------- summaries
+{
+  const { generateSummaries, findResultLines } = await loadRegion(
+    "components/tools/SummaryGenerator.jsx"
+  );
+
+  const JOB = `Senior Data Analyst
+We are hiring a Senior Data Analyst to join our fintech team.
+You will build dashboards in Tableau, write SQL, and model data in Python.
+Experience with SQL, Tableau and Python is essential. Stakeholder reporting matters.
+The Senior Data Analyst reports to the Head of Data.`;
+
+  const CV = `Jane Doe
+Data Analyst, Acme Payments (fintech), 2018 to present
+Built Tableau dashboards used by 40 managers across the business.
+Cut monthly reporting time by 35% by automating SQL extracts in Python.
+Email jane@example.com, phone +44 7700 900123`;
+
+  const out = generateSummaries(JOB, CV, 2026);
+
+  check("summary takes the role title from the posting", () => {
+    assert.equal(out.title, "Senior Data Analyst");
+    assert.equal(out.titleSource, "posting");
+  });
+
+  check("summary only claims skills found in both documents", () => {
+    const cvLower = CV.toLowerCase();
+    for (const { term } of out.matched) {
+      for (const word of term.split(" ")) {
+        assert.ok(cvLower.includes(word.slice(0, 4)), `${term} not in CV`);
+      }
+    }
+    for (const summary of out.summaries) {
+      for (const { label } of out.missing) {
+        assert.ok(!summary.text.includes(label), `${label} leaked into a summary`);
+      }
+    }
+  });
+
+  check("summary picks a CV line with an impact number", () => {
+    assert.equal(
+      out.result,
+      "Cut monthly reporting time by 35% by automating SQL extracts in Python."
+    );
+    assert.ok(out.summaries.every((summary) => !summary.hasSlot));
+  });
+
+  check("a date alone does not count as a result", () => {
+    assert.deepEqual(
+      findResultLines("Worked at Acme from March 2019 to June 2022 as an analyst."),
+      []
+    );
+  });
+
+  check("contact lines are never picked as a result", () => {
+    assert.deepEqual(findResultLines("Call me on +44 7700 900123 or write to me any time."), []);
+  });
+
+  check("no number in the CV leaves a visible slot", () => {
+    const plain = generateSummaries(
+      JOB,
+      "Data Analyst at Acme. Work with SQL and Tableau every day on reporting.",
+      2026
+    );
+    assert.equal(plain.result, null);
+    assert.ok(plain.summaries.length > 0);
+    assert.ok(plain.summaries.every((summary) => summary.hasSlot));
+  });
+
+  check("three distinct summaries come back", () => {
+    assert.equal(out.summaries.length, 3);
+    assert.equal(new Set(out.summaries.map((s) => s.text)).size, 3);
+  });
+}
+
+// ------------------------------------------------------------ LinkedIn links
+// Add "components/tools/LinkedInUrlFormatter.jsx": ["// pure-helpers:start", "// pure-helpers:end"] to REGIONS.
+{
+  const { parseLinkedInUrl, formatLinks, findLinkIssues } = await loadRegion(
+    "components/tools/LinkedInUrlFormatter.jsx"
+  );
+
+  check("strips tracking, country prefix and trailing slash", () => {
+    const parsed = parseLinkedInUrl("https://za.linkedin.com/in/Jane-Doe/?originalSubdomain=za");
+    assert.equal(parsed.handle, "Jane-Doe");
+    assert.equal(formatLinks(parsed.handle).short, "linkedin.com/in/jane-doe");
+    assert.equal(formatLinks(parsed.handle).full, "https://www.linkedin.com/in/jane-doe");
+  });
+
+  check("accepts a bare domain, mobile host, locale path and /in/ paste", () => {
+    assert.equal(parseLinkedInUrl("linkedin.com/in/jdoe").handle, "jdoe");
+    assert.equal(parseLinkedInUrl("m.linkedin.com/in/jdoe").handle, "jdoe");
+    assert.equal(parseLinkedInUrl("www.linkedin.com/in/jdoe/en").handle, "jdoe");
+    assert.equal(parseLinkedInUrl("/in/jdoe").handle, "jdoe");
+    assert.equal(parseLinkedInUrl("jdoe").handle, "jdoe");
+  });
+
+  check("rejects pages that are not a profile", () => {
+    assert.ok(parseLinkedInUrl("https://www.linkedin.com/company/acme").error);
+    assert.ok(parseLinkedInUrl("https://www.linkedin.com/posts/jdoe_activity-1").error);
+    assert.ok(parseLinkedInUrl("https://github.com/jdoe").error);
+    assert.ok(parseLinkedInUrl("https://www.linkedin.com/in/").error);
+    assert.ok(parseLinkedInUrl("https://evil-linkedin.com/in/jdoe").error);
+  });
+
+  check("flags LinkedIn's auto suffix but not a plain name", () => {
+    assert.equal(findLinkIssues("jane-doe-4b2a19c3").length, 1);
+    assert.equal(findLinkIssues("jane-doe-12345678").length, 1);
+    assert.equal(findLinkIssues("jane-doe").length, 0);
+    assert.equal(findLinkIssues("jane-doe-dev").length, 0);
+  });
+
+  check("flags characters outside letters, numbers and hyphens", () => {
+    const parsed = parseLinkedInUrl("https://www.linkedin.com/in/jos%C3%A9-mu%C3%B1oz");
+    assert.equal(parsed.handle, "josé-muñoz");
+    assert.ok(findLinkIssues(parsed.handle).length >= 1);
+  });
+
+  check("empty input is not an error message", () => {
+    assert.equal(parseLinkedInUrl("   ").error, "");
+  });
+}
+
+// -------------------------------------------------------------------- duties
+{
+  const { splitDuties, dutyToBullet, dutiesToBullets, pastTense } = await loadRegion(
+    "components/tools/DutiesToBullets.jsx"
+  );
+
+  check("splits lines, bullets, numbers and semicolons into duties", () => {
+    const duties = splitDuties(
+      "• Manage the support inbox\n1. Handle refund requests daily\n- Maintain the help centre; Train new starters on tools"
+    );
+    assert.deepEqual(duties, [
+      "Manage the support inbox",
+      "Handle refund requests daily",
+      "Maintain the help centre",
+      "Train new starters on tools",
+    ]);
+  });
+
+  check("drops fragments and duplicates", () => {
+    assert.deepEqual(splitDuties("Duties\nManage the inbox daily\nmanage the inbox daily"), [
+      "Manage the inbox daily",
+    ]);
+  });
+
+  check("removes weak openers and leads with a past tense verb", () => {
+    ["Responsible for managing the customer support inbox", "Tasked with preparing month end reports", "Assisted with onboarding new customers", "Duties included stock control and ordering"].forEach((duty) => {
+      const { bullet } = dutyToBullet(duty);
+      assert.ok(!/^(responsible|tasked|assisted|duties|managing|preparing|onboarding)/i.test(bullet), bullet);
+      assert.match(bullet, /^[A-Z][a-z]+(ed|led|ran|ove|ew|ilt|ght|ut)?\b/, bullet);
+    });
+  });
+
+  check("puts an advert duty into the past tense", () => {
+    assert.match(dutyToBullet("You will develop and maintain internal dashboards").bullet, /^Developed and maintained internal dashboards/);
+    assert.match(dutyToBullet("Monitor satisfaction scores and prepare weekly reports").bullet, /^Monitored satisfaction scores and prepared weekly reports/);
+  });
+
+  check("keeps the partner in a work with duty", () => {
+    assert.match(dutyToBullet("Work with the product team to report bugs").bullet, /^Partnered with the product team/);
+  });
+
+  check("marks a slot for the number and never invents one", () => {
+    const { bullet, note } = dutyToBullet("Handle refunds and billing questions from customers");
+    assert.ok(/\[[^\]]+\]/.test(bullet), bullet);
+    assert.ok(!/\d/.test(bullet), `invented a number: ${bullet}`);
+    assert.ok(note.length > 10);
+  });
+
+  check("does not repeat a swapped verb across one list", () => {
+    const verbs = dutiesToBullets(
+      "Responsible for the budget\nResponsible for the roadmap\nResponsible for vendor contracts\nResponsible for the hiring plan"
+    ).map((b) => b.verb);
+    assert.equal(new Set(verbs).size, verbs.length, verbs.join(", "));
+  });
+
+  check("is deterministic for the same input", () => {
+    const text = "Manage the support queue\nMaintain the help centre";
+    assert.deepEqual(dutiesToBullets(text), dutiesToBullets(text));
+  });
+
+  check("forms regular and irregular past tenses", () => {
+    assert.equal(pastTense("prepare"), "prepared");
+    assert.equal(pastTense("plan"), "planned");
+    assert.equal(pastTense("lead"), "led");
+    assert.equal(pastTense("identify"), "identified");
   });
 }
 

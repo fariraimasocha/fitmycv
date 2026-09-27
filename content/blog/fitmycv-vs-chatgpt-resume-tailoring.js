@@ -13,7 +13,7 @@ export const meta = {
   tags: ["comparison", "chatgpt", "tailoring", "tools"],
   image: "/blog/fitmycv-vs-chatgpt-resume-tailoring.jpg",
   imageAlt:
-    "Flat illustration of a chat panel and a CV document joined by a single orange connector",
+    "Flat illustration of a stack of chat bubbles beside a separate CV",
   keywords: [
     "best way to tailor resume to job description",
     "chatgpt vs resume tailor",

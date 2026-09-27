@@ -12,7 +12,7 @@ export const meta = {
   category: "Cover Letters",
   series: "cover-letters",
   tags: ["cover letter", "application letter", "job application", "templates"],
-  image: "/social-preview.jpg",
+  image: "/blog/job-application-letter.jpg",
   imageAlt:
     "Illustration of a one page job application letter with the role, the proof and the closing highlighted",
   keywords: [

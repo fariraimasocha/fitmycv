@@ -12,7 +12,7 @@ export const meta = {
   category: "Job Search",
   series: "job-search-funnel",
   tags: ["job search", "applications", "email templates", "cv"],
-  image: "/social-preview.jpg",
+  image: "/blog/how-to-email-a-job-application.jpg",
   imageAlt:
     "Illustration of a job application email with a clear subject line and a CV attached as a PDF",
   keywords: [

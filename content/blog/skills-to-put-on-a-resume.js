@@ -12,7 +12,7 @@ export const meta = {
   category: "CV Tips",
   series: "cv-foundations",
   tags: ["cv tips", "resume skills", "resume keywords", "ats"],
-  image: "/social-preview.jpg",
+  image: "/blog/skills-to-put-on-a-resume.jpg",
   imageAlt:
     "Illustration of a resume skills section next to a job posting with matching terms highlighted",
   keywords: [

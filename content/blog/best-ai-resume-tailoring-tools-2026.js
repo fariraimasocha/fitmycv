@@ -13,7 +13,7 @@ export const meta = {
   tags: ["comparison", "tools", "tailoring", "ai"],
   image: "/blog/best-ai-resume-tailoring-tools-2026.jpg",
   imageAlt:
-    "Flat illustration of three CV documents at different heights with checkmarks, representing a tailoring-tools comparison",
+    "Flat illustration of a plain CV above a tailored CV, with one section changed",
   keywords: [
     "best ai to tailor resume to job description",
     "best ai resume tailoring tools 2026",

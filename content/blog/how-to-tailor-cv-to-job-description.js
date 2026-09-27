@@ -13,7 +13,7 @@ export const meta = {
   tags: ["tailoring", "job description", "keywords", "resume"],
   image: "/blog/how-to-tailor-cv-to-job-description.jpg",
   imageAlt:
-    "Flat illustration of a CV and a job listing merging together with interlocking edges",
+    "Flat illustration of a short requirements list beside a CV with the summary marked for editing",
   // The bare "tailor cv to job description" is owned by
   // /tailor-cv-from-job-link, which is the transactional page for it. This post
   // targets the how-to intent instead, so the two do not compete.

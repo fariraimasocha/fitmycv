@@ -13,7 +13,7 @@ export const meta = {
   tags: ["tailoring", "chatgpt", "prompts", "resume", "job description"],
   image: "/blog/chatgpt-prompts-to-tailor-resume.jpg",
   imageAlt:
-    "Flat illustration of a chat panel interlocking with a CV document, representing ChatGPT prompts used to tailor a resume",
+    "Flat illustration of a prompt card beside a CV whose top line is being rewritten",
   keywords: [
     "how to tailor resume to job description using chatgpt",
     "how to tailor resume to job description using claude",

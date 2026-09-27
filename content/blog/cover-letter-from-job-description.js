@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cover letter", "job description", "tailoring", "ai"],
   image: "/blog/cover-letter-from-job-description.jpg",
   imageAlt:
-    "Flat illustration of a job posting and a cover letter connecting with a single orange accent",
+    "Flat illustration of a cover letter with three paragraphs, each tied to a line in the job posting",
   keywords: [
     "ai cover letter generator from resume and job description",
     "how to tailor cover letter to job description",

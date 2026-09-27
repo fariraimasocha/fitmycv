@@ -13,7 +13,7 @@ export const meta = {
   tags: ["comparison", "ats", "tools", "resume"],
   image: "/blog/best-free-ats-resume-checkers-2026.jpg",
   imageAlt:
-    "Flat illustration of three CV documents at different heights with checkmarks, representing an ATS checker comparison",
+    "Flat illustration of a CV beside a checklist, with some boxes checked and one still open",
   keywords: [
     "best free ats resume checker",
     "best ats resume checker 2026",

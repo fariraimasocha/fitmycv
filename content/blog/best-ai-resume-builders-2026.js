@@ -13,7 +13,7 @@ export const meta = {
   tags: ["comparison", "tools", "ats", "resume"],
   image: "/blog/best-ai-resume-builders-2026.jpg",
   imageAlt:
-    "Flat illustration of three CV documents standing at different heights like a comparison podium",
+    "Flat illustration of a CV page being assembled from blocks, with empty slots still open",
   keywords: [
     "best ai resume builder 2026",
     "best ai resume builders",

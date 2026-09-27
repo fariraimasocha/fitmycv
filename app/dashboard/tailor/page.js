@@ -1028,34 +1028,37 @@ function Tailor() {
       {/* Step 3: the result. Editor left, preview right, the same as My CV. */}
       {tailorResult && (
         <Rise className="flex flex-col gap-3">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex min-w-0 flex-wrap items-center gap-2">
+          {/* One row on desktop: the buttons stretch to the tab bar's height so
+              all three share a top, bottom and centre line. */}
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch lg:justify-between">
+            <div className="flex min-w-0 items-center">
               <DashboardTabBar
                 tabs={RESULT_TABS}
                 activeTab={activeTab}
                 onTabChange={handleTabChange}
                 ariaLabel="Resume output sections"
               />
-              {activeTab === "cv" && (
-                <AtsScoreChip
-                  score={atsScore?.score}
-                  loading={atsLoading}
-                  onClick={() => handleTabChange("ats")}
-                />
-              )}
             </div>
             {(activeTab === "cv" || activeTab === "letter") && (
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+                {activeTab === "cv" && (
+                  <AtsScoreChip
+                    className="self-start sm:self-center"
+                    score={atsScore?.score}
+                    loading={atsLoading}
+                    onClick={() => handleTabChange("ats")}
+                  />
+                )}
                 <button
                   type="button"
                   onClick={() => setLinkedInModalOpen(true)}
-                  className="dashboard-secondary-btn dashboard-secondary-btn-sm"
+                  className="dashboard-secondary-btn dashboard-secondary-btn-sm lg:h-auto"
                 >
                   <LinkedinLogoIcon size={16} aria-hidden="true" />
                   LinkedIn message
                 </button>
                 <DownloadButton
-                  className="h-9 w-full sm:w-auto"
+                  className="h-9 w-full sm:w-auto lg:h-auto"
                   label={activeTab === "cv" ? "Download PDF" : "Download cover letter"}
                   idleIcon={downloadIcon}
                   onDownload={() => handleDownload(activeTab)}

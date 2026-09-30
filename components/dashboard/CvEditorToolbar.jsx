@@ -8,7 +8,7 @@ export function CvEditorToolbar({
   showPreview,
   onTogglePreview,
   onUploadNew,
-  uploadLabel = "Upload New",
+  uploadLabel = "Replace CV",
 }) {
   return (
     <div className="flex w-full flex-col gap-3 sm:ml-auto sm:w-55 sm:min-w-55">

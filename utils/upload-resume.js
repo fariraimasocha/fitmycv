@@ -1,9 +1,9 @@
 const STAGES = [
   { id: "preparing", label: "Preparing your file", start: 0, end: 8 },
   { id: "uploading", label: "Uploading PDF", start: 8, end: 42 },
-  { id: "extracting", label: "Extracting text from PDF", start: 42, end: 58 },
-  { id: "parsing", label: "Structuring your experience with AI", start: 58, end: 88 },
-  { id: "saving", label: "Saving your CV", start: 88, end: 100 },
+  { id: "extracting", label: "Reading your PDF", start: 42, end: 58 },
+  { id: "parsing", label: "Sorting your experience into sections", start: 58, end: 88 },
+  { id: "saving", label: "Getting your details ready", start: 88, end: 100 },
 ];
 
 function getStageForProgress(progress) {
@@ -95,21 +95,21 @@ export function uploadResumeWithProgress(file, onUpdate) {
           onUpdate({
             progress: 100,
             stage: "complete",
-            label: "Complete. Your CV is ready",
+            label: "Done. Check your details.",
           });
           resolve(body);
           return;
         }
-        reject(new Error(body.error || "Upload failed"));
+        reject(new Error(body.error || "Couldn't upload your CV. Try again."));
       } catch {
-        reject(new Error("Upload failed"));
+        reject(new Error("Couldn't upload your CV. Try again."));
       }
     };
 
     xhr.onerror = () => {
       stopServerProgress();
       reject(
-        new Error("Upload failed. The connection dropped before your CV was processed. Try again.")
+        new Error("Couldn't upload your CV. The connection dropped. Try again.")
       );
     };
 
@@ -118,7 +118,7 @@ export function uploadResumeWithProgress(file, onUpdate) {
     xhr.timeout = 90000;
     xhr.ontimeout = () => {
       stopServerProgress();
-      reject(new Error("Upload timed out. Your CV took too long to process. Try again."));
+      reject(new Error("Couldn't upload your CV. It took too long to read. Try again."));
     };
 
     xhr.onabort = () => {

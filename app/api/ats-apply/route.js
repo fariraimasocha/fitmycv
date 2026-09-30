@@ -46,7 +46,7 @@ export async function POST(request) {
 
     if (!tailoredCV || !jobData || !recommendation) {
       return Response.json(
-        { error: "Tailored CV, job data, and a recommendation are required" },
+        { error: "Tailor a CV for this job first, then try again." },
         { status: 400 },
       );
     }
@@ -82,7 +82,7 @@ Apply this one recommendation and return the complete CV.`;
 
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
-      return Response.json({ error: "Failed to apply the fix" }, { status: 500 });
+      return Response.json({ error: "Couldn't apply this fix. Try again." }, { status: 500 });
     }
 
     const parsed = parseTailorResponse(responseText);
@@ -109,6 +109,6 @@ Apply this one recommendation and return the complete CV.`;
     return Response.json({ data: { tailoredCV: updatedCV, changes } });
   } catch (error) {
     console.error("ATS apply error:", error);
-    return Response.json({ error: "Failed to apply the fix" }, { status: 500 });
+    return Response.json({ error: "Couldn't apply this fix. Try again." }, { status: 500 });
   }
 }

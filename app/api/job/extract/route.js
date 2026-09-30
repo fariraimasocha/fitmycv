@@ -92,7 +92,7 @@ export async function POST(request) {
 
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
-      return Response.json({ error: "Failed to parse job listing" }, { status: 500 });
+      return Response.json({ error: "Couldn't read that job listing. Paste the job description instead." }, { status: 500 });
     }
 
     // Step 3: Parse structured data
@@ -102,7 +102,7 @@ export async function POST(request) {
   } catch (error) {
     console.error("Job extraction error:", error);
     return Response.json(
-      { error: "Failed to extract job requirements" },
+      { error: "Couldn't read that job listing. Paste the job description instead." },
       { status: 500 }
     );
   }

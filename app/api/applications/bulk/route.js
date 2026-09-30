@@ -27,7 +27,7 @@ export async function POST(request) {
       return Response.json({ error: "Select at least one application." }, { status: 400 });
     }
     if (body.status && !STAGE_LABEL[body.status]) {
-      return Response.json({ error: "Unknown stage" }, { status: 400 });
+      return Response.json({ error: "Choose a stage from the list." }, { status: 400 });
     }
 
     await connectDB();
@@ -65,6 +65,6 @@ export async function POST(request) {
     return Response.json({ data: { updated: ids.length } });
   } catch (error) {
     console.error("Applications bulk error:", error);
-    return Response.json({ error: "Bulk update failed" }, { status: 500 });
+    return Response.json({ error: "Couldn't update these applications. Try again." }, { status: 500 });
   }
 }

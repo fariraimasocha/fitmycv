@@ -23,7 +23,7 @@ export async function DELETE(request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return NextResponse.json({ error: "That request isn't valid. Refresh the page and try again." }, { status: 400 });
   }
 
   const confirmation = String(body?.confirmation ?? "").trim();
@@ -99,7 +99,7 @@ export async function DELETE(request) {
   } catch (error) {
     console.error("Delete account error:", error);
     return NextResponse.json(
-      { error: "Could not delete your account. Try again or contact support." },
+      { error: "Couldn't delete your account. Try again, or contact support." },
       { status: 500 }
     );
   }

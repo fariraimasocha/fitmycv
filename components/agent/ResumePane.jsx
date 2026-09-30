@@ -166,7 +166,7 @@ export function ResumePane({ draft, template, style }) {
               <CrownIcon size={16} aria-hidden="true" />
             )}
             <span className="hidden sm:inline">
-              {isPremium ? "Download PDF" : "Unlock PDF"}
+              {isPremium ? "Download PDF" : "Unlock to download"}
             </span>
             <span className="sm:hidden">{isPremium ? "PDF" : "Unlock"}</span>
           </button>

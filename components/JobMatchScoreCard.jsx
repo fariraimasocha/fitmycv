@@ -124,7 +124,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
     <section className="dashboard-card dashboard-card-pad rounded-lg">
       <DashboardPanelHeader
         title="Job match"
-        description="How your reference CV fits this posting"
+        description="How your CV fits this posting"
         action={<GradeBadge grade={globalGrade} size="md" className="shrink-0" />}
       />
       <div className="mt-4 space-y-4">

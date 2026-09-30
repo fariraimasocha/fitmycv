@@ -65,15 +65,15 @@ export async function POST(request) {
     const file = formData.get("file");
 
     if (!file) {
-      return Response.json({ error: "No file provided" }, { status: 400 });
+      return Response.json({ error: "Choose a PDF to upload." }, { status: 400 });
     }
 
     if (file.type !== "application/pdf") {
-      return Response.json({ error: "File must be a PDF" }, { status: 400 });
+      return Response.json({ error: "Choose a PDF file." }, { status: 400 });
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      return Response.json({ error: "File must be less than 8MB" }, { status: 400 });
+      return Response.json({ error: "Choose a PDF under 8MB." }, { status: 400 });
     }
 
     // Extract text from PDF
@@ -82,7 +82,7 @@ export async function POST(request) {
 
     if (rawText.length < MIN_TEXT_LENGTH) {
       return Response.json(
-        { error: "Could not extract enough text from PDF. The file may be scanned or image-based." },
+        { error: "Couldn't read text from this PDF. It may be a scan or an image. Upload a PDF with selectable text." },
         { status: 422 }
       );
     }
@@ -99,7 +99,7 @@ export async function POST(request) {
 
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
-      return Response.json({ error: "Failed to parse resume" }, { status: 500 });
+      return Response.json({ error: "Couldn't read your CV. Try again, or upload a different PDF." }, { status: 500 });
     }
 
     const parsed = parseResumeFromResponse(responseText);
@@ -108,7 +108,7 @@ export async function POST(request) {
   } catch (error) {
     console.error("Resume upload error:", error);
     return Response.json(
-      { error: "Failed to process resume" },
+      { error: "Couldn't read your CV. Try again, or upload a different PDF." },
       { status: 500 }
     );
   }

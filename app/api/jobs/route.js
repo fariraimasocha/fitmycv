@@ -24,7 +24,7 @@ export async function GET(request) {
       queries = buildQueriesFromCV(cv);
       if (queries.length === 0) {
         return Response.json(
-          { error: "No CV found. Upload your CV or pass ?query= to search manually." },
+          { error: "Upload your CV to see matching jobs, or search by job title." },
           { status: 422 }
         );
       }
@@ -47,6 +47,6 @@ export async function GET(request) {
     return Response.json({ queries, jobs, count: jobs.length });
   } catch (error) {
     console.error("Jobs API error:", error);
-    return Response.json({ error: "Failed to fetch jobs" }, { status: 500 });
+    return Response.json({ error: "Couldn't load jobs. Refresh the page." }, { status: 500 });
   }
 }

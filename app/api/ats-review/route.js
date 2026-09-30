@@ -104,7 +104,7 @@ export async function POST(request) {
     const { cv, jobData, findings } = await request.json();
 
     if (!cv || typeof cv !== "object") {
-      return Response.json({ error: "A CV is required" }, { status: 400 });
+      return Response.json({ error: "Add your CV first, then try again." }, { status: 400 });
     }
 
     const cvText = cvToText(cv).slice(0, MAX_CV_CHARS);
@@ -139,7 +139,7 @@ export async function POST(request) {
 
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
-      return Response.json({ error: "Failed to review the CV" }, { status: 502 });
+      return Response.json({ error: "Couldn't review your CV. Try again." }, { status: 502 });
     }
 
     const review = reviewSchema.parse(JSON.parse(responseText));
@@ -148,6 +148,6 @@ export async function POST(request) {
     return Response.json({ data: sanitizeAIObject(review) });
   } catch (error) {
     console.error("ATS review error:", error);
-    return Response.json({ error: "Failed to review the CV" }, { status: 500 });
+    return Response.json({ error: "Couldn't review your CV. Try again." }, { status: 500 });
   }
 }

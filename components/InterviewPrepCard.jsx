@@ -123,10 +123,10 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
       <section className="dashboard-card dashboard-card-pad rounded-lg">
         <DashboardPanelHeader
           title="Interview prep"
-          description="STAR stories, tricky questions and talking points for this role."
+          description="Example answers, hard questions and talking points for this role."
         />
         <p className="mt-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
-          Your interview prep will appear here once the CV is tailored.
+          On Pro, interview prep for this role appears here after your CV is tailored.
         </p>
       </section>
     );
@@ -150,7 +150,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
           },
         }),
       });
-      if (!res.ok) throw new Error("Failed to save");
+      if (!res.ok) throw new Error("Couldn't save your changes. Try again.");
       toast.success("Story saved to your story bank");
     } catch {
       toast.error("Couldn't save the story. Try again.");

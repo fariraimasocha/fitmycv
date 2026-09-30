@@ -57,7 +57,7 @@ function PlanBadge({ isPremium, status }) {
   if (status === "canceled") {
     return (
       <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-accent-soft)] px-2.5 text-xs font-medium text-[var(--landing-accent-dark)]">
-        Pro, canceling
+        Pro, cancelling
       </span>
     );
   }
@@ -78,8 +78,8 @@ function Field({ label, children, className }) {
 }
 
 const PRO_FEATURES = [
-  "Tailor and download unlimited CVs as PDF",
-  "AI cover letters you can download as PDF",
+  "Download every tailored CV as a PDF",
+  "Download every cover letter as a PDF",
   "Daily job matches by email",
 ];
 
@@ -142,7 +142,7 @@ export default function ProfilePage() {
         body: JSON.stringify({ confirmation: deleteConfirm.trim() }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Could not delete account");
+      if (!res.ok) throw new Error(data.error || "Couldn't delete your account. Try again.");
       toast.success("Your account has been deleted.");
       setDeleteOpen(false);
       setDeleteConfirm("");
@@ -153,7 +153,7 @@ export default function ProfilePage() {
       await signOut({ redirectTo: "/" });
     } catch (err) {
       toast.error(
-        err instanceof Error ? err.message : "Could not delete account"
+        err instanceof Error ? err.message : "Couldn't delete your account. Try again."
       );
     } finally {
       setDeleting(false);
@@ -262,13 +262,13 @@ export default function ProfilePage() {
               Delete account
             </span>
           }
-          description="Deletes your account and every file in it. This cannot be undone."
+          description="Deletes your account and everything in it. You can't undo this."
         />
         <div className="mt-4 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
           <p className="text-sm font-medium text-foreground">What gets deleted</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             <li>Your profile and login</li>
-            <li>Reference CV and all tailored CVs with cover letters</li>
+            <li>Your CV and every tailored CV and cover letter</li>
             <li>Applications, saved jobs, company research and story bank</li>
             <li>Subscription data linked to this account</li>
           </ul>
@@ -318,7 +318,7 @@ export default function ProfilePage() {
             <div className="rounded-md border border-destructive/20 bg-destructive/5 p-3">
               <p className="text-sm font-medium text-destructive">This cannot be undone</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                All CVs, tailored applications and research will be lost.
+                Your CVs, applications, research and story bank will be deleted.
                 {isPremium
                   ? " Your Pro access ends. Cancel billing first if you have a recurring plan."
                   : ""}

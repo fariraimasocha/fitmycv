@@ -135,7 +135,7 @@ export default function TailoredCVDetailPage() {
     queryKey: ["tailored-cv", id],
     queryFn: async () => {
       const res = await fetch(`/api/tailored-cv/${id}`);
-      if (!res.ok) throw new Error("Failed to fetch tailored CV");
+      if (!res.ok) throw new Error("Couldn't load this CV. Refresh the page.");
       const json = await res.json();
       return json.data;
     },
@@ -150,7 +150,7 @@ export default function TailoredCVDetailPage() {
     queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
-      if (!res.ok) throw new Error("Failed to fetch resume");
+      if (!res.ok) throw new Error("Couldn't load your CV. Refresh the page.");
       const json = await res.json();
       return json.data;
     },
@@ -169,7 +169,7 @@ export default function TailoredCVDetailPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patch),
       });
-      if (!res.ok) throw new Error("Failed to save template");
+      if (!res.ok) throw new Error("Couldn't save your template. Try again.");
       return res.json();
     },
     onSuccess: (json) => {
@@ -202,7 +202,7 @@ export default function TailoredCVDetailPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to save");
+        throw new Error(err.error || "Couldn't save your changes. Try again.");
       }
 
       return res.json();
@@ -235,7 +235,7 @@ export default function TailoredCVDetailPage() {
         return;
       }
       if (!res.ok || !json.data) {
-        throw new Error(json.error || "Failed to write an answer");
+        throw new Error(json.error || "Couldn't write an answer. Try again.");
       }
       setWhyAnswer(json.data);
       whyThisRoleMutation.mutate(json.data.answer);
@@ -256,7 +256,7 @@ export default function TailoredCVDetailPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to save");
+        throw new Error(err.error || "Couldn't save your changes. Try again.");
       }
 
       return res.json();
@@ -354,7 +354,7 @@ export default function TailoredCVDetailPage() {
       <BackLink />
 
       <DashboardPageHeader
-        title={cv.jobTitle || "Untitled position"}
+        title={cv.jobTitle || "Untitled role"}
         description={
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {cv.jobCompany && (

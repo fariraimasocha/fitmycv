@@ -40,7 +40,7 @@ export default function LinkedInOutreachModal({
         setActiveIndex(0);
       }
     } catch {
-      toast.error("Failed to generate message");
+      toast.error("Couldn't write your LinkedIn message. Try again.");
     } finally {
       setLoading(false);
     }
@@ -52,7 +52,7 @@ export default function LinkedInOutreachModal({
 
   const handleCopy = () => {
     navigator.clipboard.writeText(editedMessage);
-    toast.success("Copied to clipboard!");
+    toast.success("Message copied");
   };
 
   const selectMessage = (index) => {
@@ -77,7 +77,7 @@ export default function LinkedInOutreachModal({
         <div className="flex items-center justify-between border-b px-4 py-3">
           <div className="flex items-center gap-2">
             <LinkedinLogoIcon size={18} weight="fill" className="text-blue-600" />
-            <h2 className="text-sm font-semibold">LinkedIn Connection Message</h2>
+            <h2 className="text-sm font-semibold">LinkedIn connection message</h2>
           </div>
           <button
             onClick={onClose}
@@ -163,7 +163,7 @@ export default function LinkedInOutreachModal({
               <div className="flex gap-2">
                 <Button onClick={handleCopy} className="flex-1 gap-2" size="sm">
                   <CopyIcon size={14} />
-                  Copy Message
+                  Copy message
                 </Button>
                 <Button
                   variant="outline"
@@ -173,7 +173,7 @@ export default function LinkedInOutreachModal({
                   className="gap-2"
                 >
                   <ArrowsClockwiseIcon size={14} />
-                  Regenerate
+                  Write another
                 </Button>
               </div>
             </>

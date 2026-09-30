@@ -72,6 +72,6 @@ export async function GET(request) {
     });
   } catch (error) {
     console.error("Jobs feed GET error:", error);
-    return Response.json({ error: "Failed to fetch jobs" }, { status: 500 });
+    return Response.json({ error: "Couldn't load jobs. Refresh the page." }, { status: 500 });
   }
 }

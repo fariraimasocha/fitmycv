@@ -18,7 +18,7 @@ export async function GET() {
     return Response.json({ data: bank?.stories || [] });
   } catch (error) {
     console.error("Story bank GET error:", error);
-    return Response.json({ error: "Failed to fetch story bank" }, { status: 500 });
+    return Response.json({ error: "Couldn't load your stories. Refresh the page." }, { status: 500 });
   }
 }
 
@@ -36,7 +36,7 @@ export async function POST(request) {
     const { story } = await request.json();
 
     if (!story || !story.title) {
-      return Response.json({ error: "Story with title is required" }, { status: 400 });
+      return Response.json({ error: "Give your story a title." }, { status: 400 });
     }
 
     const bank = await StoryBank.findOneAndUpdate(
@@ -61,6 +61,6 @@ export async function POST(request) {
     return Response.json({ data: bank.stories }, { status: 201 });
   } catch (error) {
     console.error("Story bank POST error:", error);
-    return Response.json({ error: "Failed to save story" }, { status: 500 });
+    return Response.json({ error: "Couldn't save your story. Try again." }, { status: 500 });
   }
 }

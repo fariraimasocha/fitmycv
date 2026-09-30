@@ -57,7 +57,7 @@ export default function ResumeUpload({ onParsed }) {
       setFile(droppedFile);
       setIsComplete(false);
     } else {
-      toast.error("Only PDF files are supported");
+      toast.error("Choose a PDF file. Other file types aren't supported.");
     }
   }, [isUploading]);
 
@@ -84,10 +84,9 @@ export default function ResumeUpload({ onParsed }) {
       const result = await uploadResumeWithProgress(file, setProgressState);
       setIsComplete(true);
       trackEvent("resume_uploaded", { file_size_bytes: file.size });
-      toast.success("CV extracted. Review the details below.");
       onParsed({ ...result.data, rawText: result.rawText });
     } catch (error) {
-      toast.error(error.message || "Upload failed");
+      toast.error(error.message || "Couldn't upload your CV. Try again.");
       setProgressState({
         progress: 0,
         stage: "preparing",
@@ -194,8 +193,8 @@ export default function ResumeUpload({ onParsed }) {
         <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-success-soft)] p-4 text-[var(--landing-success)]">
           <CheckCircleIcon size={22} weight="fill" aria-hidden="true" />
           <div>
-            <p className="text-sm font-semibold">CV uploaded and parsed</p>
-            <p className="text-xs opacity-80">Your reference CV is ready to use.</p>
+            <p className="text-sm font-semibold">Your CV is uploaded</p>
+            <p className="text-xs opacity-80">Check the details, then save.</p>
           </div>
         </div>
       )}
@@ -209,7 +208,7 @@ export default function ResumeUpload({ onParsed }) {
             className="dashboard-primary-btn w-full"
           >
             <UploadSimpleIcon size={16} aria-hidden="true" />
-            Upload and extract
+            Upload CV
           </button>
         </motion.div>
       )}

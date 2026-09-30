@@ -19,13 +19,13 @@ export async function POST(request, { params }) {
 
   const { id, pid } = await params;
   if (!mongoose.isValidObjectId(id) || !mongoose.isValidObjectId(pid)) {
-    return Response.json({ error: "Change not found" }, { status: 404 });
+    return Response.json({ error: "This change no longer exists. Ask the agent again." }, { status: 404 });
   }
 
   try {
     const { action } = await request.json();
     if (!ACTIONS.includes(action)) {
-      return Response.json({ error: "Unknown action" }, { status: 400 });
+      return Response.json({ error: "That action isn't available. Refresh the page and try again." }, { status: 400 });
     }
 
     await connectDB();
@@ -33,7 +33,7 @@ export async function POST(request, { params }) {
     const thread = await AgentThread.findOne({ _id: id, userId });
     const proposal = thread?.proposals.id(pid);
     if (!proposal) {
-      return Response.json({ error: "Change not found" }, { status: 404 });
+      return Response.json({ error: "This change no longer exists. Ask the agent again." }, { status: 404 });
     }
     const draft = await TailoredCV.findOne({ _id: thread.draftCvId, userId });
     if (!draft) {
@@ -72,6 +72,6 @@ export async function POST(request, { params }) {
     return Response.json({ data: threadForClient(thread, draft) });
   } catch (error) {
     console.error("Agent proposal error:", error);
-    return Response.json({ error: "Failed to update the change" }, { status: 500 });
+    return Response.json({ error: "Couldn't apply this change. Try again." }, { status: 500 });
   }
 }

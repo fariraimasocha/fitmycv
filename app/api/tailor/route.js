@@ -114,7 +114,7 @@ export async function POST(request) {
 
     if (!referenceCV || !jobData) {
       return Response.json(
-        { error: "Reference CV and job data are required" },
+        { error: "Upload your CV and add a job first." },
         { status: 400 },
       );
     }
@@ -193,7 +193,7 @@ Please tailor the CV for this specific role and generate a cover letter that cle
 
     if (!parsed) {
       return Response.json(
-        { error: "Failed to generate a valid tailored CV. Please try again." },
+        { error: "Couldn't tailor your CV. Try again in a moment." },
         { status: 502 },
       );
     }
@@ -213,6 +213,6 @@ Please tailor the CV for this specific role and generate a cover letter that cle
     });
   } catch (error) {
     console.error("Tailor error:", error);
-    return Response.json({ error: "Failed to tailor CV" }, { status: 500 });
+    return Response.json({ error: "Couldn't tailor your CV. Try again in a moment." }, { status: 500 });
   }
 }

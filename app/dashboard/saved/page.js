@@ -26,7 +26,7 @@ import {
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Saved Jobs";
+const PAGE_TITLE = "Saved jobs";
 const PAGE_DESCRIPTION = "Roles you saved from your daily job-match emails.";
 
 function locationLabel(job) {
@@ -171,7 +171,7 @@ function SavedJobs() {
     queryKey: ["saved-jobs"],
     queryFn: async () => {
       const res = await fetch("/api/saved-jobs");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       return (await res.json()).data;
     },
     enabled: isPremium,

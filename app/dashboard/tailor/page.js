@@ -230,7 +230,7 @@ function Tailor() {
     queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
-      if (!res.ok) throw new Error("Failed to fetch resume");
+      if (!res.ok) throw new Error("Couldn't load your CV. Refresh the page.");
       const json = await res.json();
       return json.data;
     },
@@ -250,7 +250,7 @@ function Tailor() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ template, templateStyle }),
       });
-      if (!res.ok) throw new Error("Failed to save template");
+      if (!res.ok) throw new Error("Couldn't save your template. Try again.");
       return res.json();
     },
     onSuccess: (json) => {
@@ -286,7 +286,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to extract job requirements");
+        throw new Error(err.error || "Couldn't read that job listing. Paste the job description instead.");
       }
 
       return res.json();
@@ -404,7 +404,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to save tailored CV");
+        throw new Error(err.error || "Couldn't save your tailored CV. Try again.");
       }
 
       return res.json();
@@ -424,7 +424,7 @@ function Tailor() {
       const cvData = await cvRes.json();
 
       if (!cvData.data) {
-        throw new Error("Please upload your CV first");
+        throw new Error("Upload your CV on My CV first, then try again.");
       }
 
       const referenceCV = {
@@ -443,7 +443,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        const error = new Error(err.error || "Failed to tailor CV");
+        const error = new Error(err.error || "Couldn't tailor your CV. Try again in a moment.");
         error.code = err.code;
         throw error;
       }
@@ -611,7 +611,7 @@ function Tailor() {
         return;
       }
       if (!res.ok || !json.data) {
-        throw new Error(json.error || "Failed to write an answer");
+        throw new Error(json.error || "Couldn't write an answer. Try again.");
       }
       setWhyThisRole(json.data);
       persistTailoredCV({ whyThisRole: json.data.answer });
@@ -641,7 +641,7 @@ function Tailor() {
         return;
       }
       if (!res.ok || !json.data) {
-        throw new Error(json.error || "Failed to apply the fix");
+        throw new Error(json.error || "Couldn't apply this fix. Try again.");
       }
       const updated = json.data.tailoredCV;
       setTailorResult((r) => ({ ...r, tailoredCV: updated }));
@@ -751,7 +751,7 @@ function Tailor() {
     <DashboardPageShell width="full">
       <DashboardPageHeader
         title="Tailor CV"
-        description="Paste a job link or the job description. We pull out the requirements and rewrite your CV to match."
+        description="Paste a job link or the job description. We rewrite your CV and write a cover letter for that role."
       />
 
       <StepRail current={currentStep} />
@@ -1050,7 +1050,7 @@ function Tailor() {
                 tabs={RESULT_TABS}
                 activeTab={activeTab}
                 onTabChange={handleTabChange}
-                ariaLabel="Resume output sections"
+                ariaLabel="Tailored CV sections"
               />
             </div>
             {(activeTab === "cv" || activeTab === "letter") && (
@@ -1069,7 +1069,7 @@ function Tailor() {
                   className="dashboard-secondary-btn dashboard-secondary-btn-sm lg:h-auto"
                 >
                   <LinkedinLogoIcon size={16} aria-hidden="true" />
-                  LinkedIn message
+                  Write LinkedIn message
                 </button>
                 <DownloadButton
                   className="h-9 w-full sm:w-auto lg:h-auto"

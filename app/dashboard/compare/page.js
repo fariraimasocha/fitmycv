@@ -22,7 +22,7 @@ import { initials } from "@/lib/applications";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Compare Offers";
+const PAGE_TITLE = "Compare offers";
 const PAGE_DESCRIPTION = "Pick 2 to 4 applications and compare them side by side.";
 const MAX_SELECTED = 4;
 const MIN_SELECTED = 2;
@@ -128,7 +128,7 @@ export default function ComparePage() {
     queryKey: ["applications"],
     queryFn: async () => {
       const res = await fetch("/api/applications");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       return json.data;
     },
@@ -144,7 +144,7 @@ export default function ComparePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ offers: selectedOffers }),
       });
-      if (!res.ok) throw new Error("Failed to compare");
+      if (!res.ok) throw new Error("Couldn't compare your offers. Try again.");
       return res.json();
     },
     onSuccess: (result) => {

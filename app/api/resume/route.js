@@ -40,7 +40,7 @@ export async function PUT(request) {
     return Response.json({ data: cv });
   } catch (error) {
     console.error("Resume save error:", error);
-    return Response.json({ error: "Failed to save resume" }, { status: 500 });
+    return Response.json({ error: "Couldn't save your CV. Try again." }, { status: 500 });
   }
 }
 
@@ -57,7 +57,7 @@ export async function PATCH(request) {
 
     if (template !== undefined) {
       if (!TEMPLATE_IDS.includes(template)) {
-        return Response.json({ error: "Unknown template" }, { status: 400 });
+        return Response.json({ error: "Choose a template from the list." }, { status: 400 });
       }
       update.template = template;
     }
@@ -70,7 +70,7 @@ export async function PATCH(request) {
     }
 
     if (Object.keys(update).length === 0) {
-      return Response.json({ error: "Nothing to update" }, { status: 400 });
+      return Response.json({ error: "There are no changes to save." }, { status: 400 });
     }
 
     await connectDB();
@@ -83,6 +83,6 @@ export async function PATCH(request) {
     return Response.json({ data: cv });
   } catch (error) {
     console.error("Template save error:", error);
-    return Response.json({ error: "Failed to save template" }, { status: 500 });
+    return Response.json({ error: "Couldn't save your template. Try again." }, { status: 500 });
   }
 }

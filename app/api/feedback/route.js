@@ -24,7 +24,7 @@ export async function POST(request) {
     const email = session.user.email;
 
     if (!type || !message) {
-      return Response.json({ error: "type and message are required" }, { status: 400 });
+      return Response.json({ error: "Choose a type and write a message." }, { status: 400 });
     }
 
     await connectDB();
@@ -49,6 +49,6 @@ export async function POST(request) {
     return Response.json({ success: true });
   } catch (error) {
     console.error("Feedback error:", error);
-    return Response.json({ error: "Failed to send feedback" }, { status: 500 });
+    return Response.json({ error: "Couldn't send your feedback. Try again." }, { status: 500 });
   }
 }

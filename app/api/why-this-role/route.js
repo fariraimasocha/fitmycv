@@ -42,7 +42,7 @@ export async function POST(request) {
 
     if (!tailoredCV || !jobData) {
       return Response.json(
-        { error: "Tailored CV and job data are required" },
+        { error: "Tailor a CV for this job first, then try again." },
         { status: 400 },
       );
     }
@@ -98,7 +98,7 @@ ${prompt}`;
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
       return Response.json(
-        { error: "Failed to write an answer" },
+        { error: "Couldn't write an answer. Try again." },
         { status: 500 },
       );
     }
@@ -108,7 +108,7 @@ ${prompt}`;
 
     if (!answer) {
       return Response.json(
-        { error: "Failed to write an answer" },
+        { error: "Couldn't write an answer. Try again." },
         { status: 500 },
       );
     }
@@ -117,7 +117,7 @@ ${prompt}`;
   } catch (error) {
     console.error("Why this role error:", error);
     return Response.json(
-      { error: "Failed to write an answer" },
+      { error: "Couldn't write an answer. Try again." },
       { status: 500 },
     );
   }

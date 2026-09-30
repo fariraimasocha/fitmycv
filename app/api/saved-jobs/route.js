@@ -20,7 +20,7 @@ export async function GET() {
     return Response.json({ data: items });
   } catch (error) {
     console.error("Saved jobs GET error:", error);
-    return Response.json({ error: "Failed to fetch saved jobs" }, { status: 500 });
+    return Response.json({ error: "Couldn't load your saved jobs. Refresh the page." }, { status: 500 });
   }
 }
 
@@ -37,7 +37,7 @@ export async function DELETE(request) {
     await connectDB();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
-    if (!id) return Response.json({ error: "id is required" }, { status: 400 });
+    if (!id) return Response.json({ error: "Choose a job first." }, { status: 400 });
 
     await JobDigestItem.updateOne(
       { _id: id, userId: session.user.id },
@@ -46,6 +46,6 @@ export async function DELETE(request) {
     return Response.json({ ok: true });
   } catch (error) {
     console.error("Saved jobs DELETE error:", error);
-    return Response.json({ error: "Failed to remove saved job" }, { status: 500 });
+    return Response.json({ error: "Couldn't remove this job. Try again." }, { status: 500 });
   }
 }

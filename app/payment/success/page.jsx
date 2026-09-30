@@ -19,7 +19,7 @@ export default function PaymentSuccessPage() {
       const res = await fetch(PREMIUM_STATUS_ENDPOINT, {
         credentials: "same-origin",
       });
-      if (!res.ok) throw new Error("Failed to check premium status");
+      if (!res.ok) throw new Error("Couldn't check your Pro status.");
       return res.json();
     },
     refetchInterval: (query) => {
@@ -76,26 +76,26 @@ export default function PaymentSuccessPage() {
         </div>
 
         <h1 className="text-2xl font-bold text-[var(--landing-ink)] mb-2">
-          Payment Successful!
+          Payment successful
         </h1>
 
         <p className="text-lg font-medium text-[var(--landing-ink)] mb-4">
-          Premium Activated
+          Thanks for upgrading to Pro
         </p>
 
         <p className="text-[var(--landing-ink-soft)] mb-6">
-          Thank you for your purchase! You now have access to all premium
-          features.
+          Pro lets you download your tailored CVs and cover letters as
+          PDFs.
         </p>
 
         {isPremiumConfirmed ? (
           <p className="text-sm text-[var(--landing-ink-soft)]">
-            {sessionUpdating ? "Updating session..." : "Redirecting to dashboard..."}
+            {sessionUpdating ? "Pro is on. Loading your account…" : "Taking you to your dashboard…"}
           </p>
         ) : (
           <div>
             <p className="text-sm text-[var(--landing-ink-soft)] mb-4">
-              Activating premium features...
+              Activating Pro…
             </p>
             <button
               onClick={() => router.push("/dashboard")}
@@ -106,11 +106,6 @@ export default function PaymentSuccessPage() {
           </div>
         )}
 
-        {isPremiumConfirmed && (
-          <p className="text-sm text-[var(--landing-success)] mt-4">
-            Premium status confirmed ✓
-          </p>
-        )}
       </div>
     </div>
   );

@@ -19,19 +19,19 @@ import { trackEvent } from "@/lib/analytics";
 
 const COPY = {
   default: {
-    title: "Unlock your tailored CV",
+    title: "Get FitMyCV Pro",
     description: (pricing) =>
-      `You already tailored this one. Start a month for $${pricing.month.price} to download PDFs and tailor as many as you need, plus the job board and apply tools.`,
+      `Start a month for $${pricing.month.price} to download your CVs and cover letters as PDFs, plus company research, interview prep and application tracking.`,
   },
   download: {
-    title: "Download your tailored CV",
+    title: "Download your PDFs",
     description: (pricing) =>
-      `Your rewrite is ready. Start a month for $${pricing.month.price} to download the PDF and keep tailoring this month.`,
+      `Your CV and cover letter are ready. Start a month for $${pricing.month.price} to download them as PDFs.`,
   },
   pre_tailor: {
-    title: "Unlock your tailored documents",
+    title: "Download your PDFs",
     description: (pricing) =>
-      `Start a month for $${pricing.month.price} to generate your complete tailored CV and cover letter.`,
+      `Start a month for $${pricing.month.price} to download your tailored CV and cover letter as PDFs.`,
   },
 };
 

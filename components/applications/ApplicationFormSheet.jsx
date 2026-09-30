@@ -268,7 +268,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 />
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[11px] text-muted-foreground">
-                    {autofill.isPending ? "Reading the posting" : "Pasting fills the fields for you."}
+                    {autofill.isPending ? "Reading the posting…" : "Paste a posting and we fill in the fields. Or edit it, then choose Fill fields."}
                   </p>
                   <button
                     type="button"

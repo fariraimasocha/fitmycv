@@ -92,7 +92,7 @@ export default function AuthPage() {
       });
 
       if (result?.error) {
-        toast.error("Could not send the sign-in link. Try again.");
+        toast.error("Couldn't send the sign-in link. Try again.");
         return;
       }
 
@@ -100,7 +100,7 @@ export default function AuthPage() {
       setEmailSent(true);
       toast.success("Sign-in link sent. Check your inbox.");
     } catch {
-      toast.error("Could not send the sign-in link. Try again.");
+      toast.error("Couldn't send the sign-in link. Try again.");
     } finally {
       setSending(false);
     }
@@ -125,7 +125,7 @@ export default function AuthPage() {
       toast.success("Link copied. Paste it in Chrome or Safari.");
       trackEvent("auth_copy_link", { platform });
     } catch {
-      toast.error("Could not copy. Long press the address bar to copy the link.");
+      toast.error("Couldn't copy the link. Press and hold the address bar to copy it.");
     }
   };
 
@@ -243,7 +243,7 @@ export default function AuthPage() {
               whileTap={{ scale: 0.98 }}
             >
               <EnvelopeSimpleIcon size={18} />
-              {sending ? "Sending link..." : "Email me a sign-in link"}
+              {sending ? "Sending link…" : "Email me a sign-in link"}
             </motion.button>
           </form>
         )}

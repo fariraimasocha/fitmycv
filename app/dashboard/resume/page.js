@@ -87,7 +87,7 @@ const UPLOAD_STEPS = [
   },
   {
     icon: SparkleIcon,
-    title: "We extract the details",
+    title: "We read the details",
     body: "Experience, education, skills and contact details, in editable fields.",
   },
   {
@@ -150,7 +150,7 @@ export default function MyResumePage() {
     queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
-      if (!res.ok) throw new Error("Failed to fetch resume");
+      if (!res.ok) throw new Error("Couldn't load your CV. Refresh the page.");
       const json = await res.json();
       return json.data;
     },
@@ -177,14 +177,14 @@ export default function MyResumePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patch),
       });
-      if (!res.ok) throw new Error("Failed to save template");
+      if (!res.ok) throw new Error("Couldn't save your template. Try again.");
       return res.json();
     },
     onSuccess: (json) => {
       if (json.data) queryClient.setQueryData(["resume"], json.data);
     },
     onError: () => {
-      toast.error("Could not save your template", {
+      toast.error("Couldn't save your template", {
         description:
           "Your change is still on screen. Check your connection and try again.",
       });
@@ -260,7 +260,7 @@ export default function MyResumePage() {
           title={replacing ? "Replace your CV" : "Upload your CV"}
           description={
             replacing
-              ? "Upload a new PDF. You will review the extracted details before anything changes."
+              ? "Upload a new PDF. You can check the details before anything changes."
               : "Upload your CV as a PDF. Every tailored application starts from it."
           }
         />
@@ -278,8 +278,8 @@ export default function MyResumePage() {
         title={isDraft ? "Review your CV" : "My CV"}
         description={
           isDraft
-            ? "We extracted this from your PDF. Fix anything that looks off, then save."
-            : "Your reference CV. Every tailored CV and cover letter starts from here."
+            ? "We read this from your PDF. Fix anything that looks off, then save."
+            : "Every tailored CV and cover letter starts from this CV."
         }
         actions={
           <>

@@ -15,7 +15,7 @@ export async function POST(request) {
     const { tailoredCV, jobData } = await request.json();
 
     if (!tailoredCV || typeof tailoredCV !== "object") {
-      return Response.json({ error: "A CV is required" }, { status: 400 });
+      return Response.json({ error: "Add your CV first, then try again." }, { status: 400 });
     }
 
     const report = checkCv(tailoredCV, Date.now());
@@ -38,6 +38,6 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("ATS score error:", error);
-    return Response.json({ error: "Failed to check the CV" }, { status: 500 });
+    return Response.json({ error: "Couldn't check your CV. Try again." }, { status: 500 });
   }
 }

@@ -93,14 +93,14 @@ function PreferencesForm({ prefs }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Failed to save");
+      if (!res.ok) throw new Error("Couldn't save your changes. Try again.");
       return (await res.json()).data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["preferences"] });
       toast.success("Preferences saved");
     },
-    onError: () => toast.error("Could not save preferences"),
+    onError: () => toast.error("Couldn't save your preferences. Try again."),
   });
 
   const isDirty =
@@ -171,7 +171,7 @@ function PreferencesForm({ prefs }) {
             <p className="text-xs text-muted-foreground">
               {atLimit
                 ? "You have reached the limit. Remove a title to add another."
-                : "Press Enter or Add title to save it to the list."}
+                : "Press Enter or Add title to add it. Save preferences to keep your changes."}
             </p>
           </div>
           {titles.length > 0 && (
@@ -308,7 +308,7 @@ export default function PreferencesPage() {
     queryKey: ["preferences"],
     queryFn: async () => {
       const res = await fetch("/api/preferences");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       return json.data;
     },

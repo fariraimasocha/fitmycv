@@ -126,7 +126,7 @@ export default function DashboardPage() {
     queryKey: ["tailored-cvs"],
     queryFn: async () => {
       const res = await fetch("/api/tailored-cv");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       if (!Array.isArray(json.data)) {
         throw new Error("Tailored CV response did not contain a list");
@@ -143,7 +143,7 @@ export default function DashboardPage() {
     queryKey: ["company-research"],
     queryFn: async () => {
       const res = await fetch("/api/company-research");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       return json.data ?? json;
     },
@@ -153,7 +153,7 @@ export default function DashboardPage() {
     queryKey: ["reference-cv"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       return json.data ?? null;
     },
@@ -166,7 +166,7 @@ export default function DashboardPage() {
     enabled: isPremium,
     queryFn: async () => {
       const res = await fetch("/api/applications");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       return json.data ?? [];
     },
@@ -271,7 +271,7 @@ export default function DashboardPage() {
             </Link>
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              Tailor a CV
+              Tailor my CV
             </Link>
           </>
         }
@@ -354,7 +354,7 @@ export default function DashboardPage() {
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium text-foreground">
-                          {cv.jobTitle || "Untitled position"}
+                          {cv.jobTitle || "Untitled role"}
                         </span>
                         <span className="block truncate text-xs text-muted-foreground">
                           {cv.jobCompany || "Company not set"}
@@ -435,15 +435,15 @@ export default function DashboardPage() {
                     <MagnifyingGlassIcon size={17} aria-hidden="true" />
                   </span>
                   <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                    Paste a job URL to get a brief on the company, its funding
-                    and team size.
+                    Add a job on Tailor CV and get a brief on the company named
+                    in the posting.
                   </p>
                 </div>
                 <Link
                   href="/dashboard/company-research"
                   className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
                 >
-                  Research a company
+                  See company research
                 </Link>
               </div>
             )}

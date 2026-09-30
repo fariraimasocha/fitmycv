@@ -48,7 +48,7 @@ export async function POST(request, { params }) {
     const { kind } = await request.json();
 
     if (kind !== "match" && !DRAFTS[kind]) {
-      return Response.json({ error: "Unknown request" }, { status: 400 });
+      return Response.json({ error: "That request isn't available. Refresh the page and try again." }, { status: 400 });
     }
 
     await connectDB();
@@ -56,7 +56,7 @@ export async function POST(request, { params }) {
 
     const application = await Application.findOne({ _id: id, userId }).lean();
     if (!application) {
-      return Response.json({ error: "Application not found" }, { status: 404 });
+      return Response.json({ error: "This application no longer exists." }, { status: 404 });
     }
 
     // The CV tailored for this job when there is one, otherwise the main CV.
@@ -126,12 +126,12 @@ export async function POST(request, { params }) {
 
     const text = sanitizeAIText(completion.choices[0]?.message?.content?.trim() || "");
     if (!text) {
-      return Response.json({ error: "Failed to write a draft" }, { status: 502 });
+      return Response.json({ error: "Couldn't write a draft. Try again." }, { status: 502 });
     }
 
     return Response.json({ data: { text } });
   } catch (error) {
     console.error("Application copilot error:", error);
-    return Response.json({ error: "Failed to write a draft" }, { status: 500 });
+    return Response.json({ error: "Couldn't write a draft. Try again." }, { status: 500 });
   }
 }

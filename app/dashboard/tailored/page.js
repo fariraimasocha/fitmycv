@@ -85,7 +85,7 @@ function RowSkeleton() {
 
 function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDelete }) {
   const reduceMotion = useReducedMotion();
-  const title = cv.jobTitle || "Untitled position";
+  const title = cv.jobTitle || "Untitled role";
 
   return (
     <motion.li
@@ -171,7 +171,7 @@ export default function TailoredCVsPage() {
     queryKey: ["tailored-cvs"],
     queryFn: async () => {
       const res = await fetch("/api/tailored-cv");
-      if (!res.ok) throw new Error("Failed to fetch tailored CVs");
+      if (!res.ok) throw new Error("Couldn't load your tailored CVs. Refresh the page.");
       const json = await res.json();
       return json.data;
     },
@@ -189,7 +189,7 @@ export default function TailoredCVsPage() {
       const res = await fetch(`/api/tailored-cv/${id}`, { method: "DELETE" });
       if (!res.ok) {
         const json = await res.json();
-        throw new Error(json.error || "Failed to delete CV");
+        throw new Error(json.error || "Couldn't delete this CV. Try again.");
       }
     },
     onSuccess: () => {
@@ -231,7 +231,7 @@ export default function TailoredCVsPage() {
     }
     try {
       const res = await fetch(`/api/tailored-cv/${cv._id}`);
-      if (!res.ok) throw new Error("Failed to load CV");
+      if (!res.ok) throw new Error("Couldn't load this CV. Try again.");
       const json = await res.json();
       const data = json.data;
       printDocument({
@@ -251,7 +251,7 @@ export default function TailoredCVsPage() {
         source: "tailored_list",
       });
     } catch (error) {
-      toast.error(error.message || "Could not download PDF");
+      toast.error(error.message || "Couldn't download the PDF. Try again.");
     }
   };
 
@@ -294,7 +294,7 @@ export default function TailoredCVsPage() {
           !isEmpty ? (
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              Tailor a CV
+              Tailor my CV
             </Link>
           ) : null
         }
@@ -306,10 +306,10 @@ export default function TailoredCVsPage() {
           title="Your tailored CVs will appear here"
           description={
             hasReferenceCV
-              ? "Paste a job link and we rewrite your CV for that role. Each one is saved here."
-              : "Upload your CV first. Then paste a job link and we rewrite it for that role."
+              ? "Paste a job link or description and we rewrite your CV for that role. Each one is saved here."
+              : "Upload your CV first. Then paste a job link or description and we rewrite it for that role."
           }
-          actionLabel={hasReferenceCV ? "Tailor a CV" : "Upload your CV"}
+          actionLabel={hasReferenceCV ? "Tailor my CV" : "Upload your CV"}
           actionHref={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
         />
       ) : (

@@ -28,6 +28,6 @@ export async function GET(request, { params }) {
     return Response.json({ data: brief });
   } catch (error) {
     console.error("Company research GET [id] error:", error);
-    return Response.json({ error: "Failed to fetch company research" }, { status: 500 });
+    return Response.json({ error: "Couldn't load the company research. Refresh the page." }, { status: 500 });
   }
 }

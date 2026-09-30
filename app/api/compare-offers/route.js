@@ -55,7 +55,7 @@ export async function POST(request) {
 
     if (!offers || offers.length < 2) {
       return Response.json(
-        { error: "At least 2 offers are required for comparison" },
+        { error: "Add at least two offers to compare." },
         { status: 400 }
       );
     }
@@ -92,14 +92,14 @@ Compare these offers and provide a recommendation.`;
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
       return Response.json(
-        { error: "Failed to generate comparison" },
+        { error: "Couldn't compare your offers. Try again." },
         { status: 500 }
       );
     }
 
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      return Response.json({ error: "Failed to parse response" }, { status: 500 });
+      return Response.json({ error: "Couldn't read the result. Try again." }, { status: 500 });
     }
 
     const raw = JSON.parse(jsonMatch[0]);
@@ -114,7 +114,7 @@ Compare these offers and provide a recommendation.`;
   } catch (error) {
     console.error("Compare offers error:", error);
     return Response.json(
-      { error: "Failed to compare offers" },
+      { error: "Couldn't compare your offers. Try again." },
       { status: 500 }
     );
   }

@@ -33,7 +33,7 @@ import {
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Story Bank";
+const PAGE_TITLE = "Story bank";
 const PAGE_DESCRIPTION =
   "STAR stories you saved from interview prep, in one place. Open one to rehearse it before an interview.";
 
@@ -328,7 +328,7 @@ export default function StoryBankPage() {
     queryKey: ["story-bank"],
     queryFn: async () => {
       const res = await fetch("/api/story-bank");
-      if (!res.ok) throw new Error("Failed to fetch");
+      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
       const json = await res.json();
       return json.data;
     },

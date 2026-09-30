@@ -80,7 +80,7 @@ export default function CompanyResearchDetailPage() {
     queryKey: ["company-research", id],
     queryFn: async () => {
       const res = await fetch(`/api/company-research/${id}`);
-      if (!res.ok) throw new Error("Failed to fetch company research");
+      if (!res.ok) throw new Error("Couldn't load the company research. Refresh the page.");
       const json = await res.json();
       return json.data;
     },

@@ -18,7 +18,7 @@ const LABEL_LAYER =
 export function DownloadButton({
   className,
   label = "Download PDF",
-  downloadingLabel = "Preparing PDF...",
+  downloadingLabel = "Preparing PDF…",
   doneLabel = "Downloaded",
   idleIcon,
   downloadMs = 1400,

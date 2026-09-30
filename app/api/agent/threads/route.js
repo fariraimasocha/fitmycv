@@ -26,7 +26,7 @@ export async function GET() {
     return Response.json({ data: threads });
   } catch (error) {
     console.error("Agent threads GET error:", error);
-    return Response.json({ error: "Failed to load threads" }, { status: 500 });
+    return Response.json({ error: "Couldn't load your conversations. Refresh the page." }, { status: 500 });
   }
 }
 
@@ -79,6 +79,6 @@ export async function POST(request) {
     return Response.json({ data: { _id: thread._id } }, { status: 201 });
   } catch (error) {
     console.error("Agent threads POST error:", error);
-    return Response.json({ error: "Failed to start a thread" }, { status: 500 });
+    return Response.json({ error: "Couldn't start a conversation. Try again." }, { status: 500 });
   }
 }

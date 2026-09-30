@@ -43,18 +43,18 @@ export default function FeedbackModal({ open, onOpenChange }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("Failed to send feedback");
+      if (!res.ok) throw new Error("Couldn't send your feedback.");
       return res.json();
     },
     onSuccess: () => {
       trackEvent("feedback_submitted", { feedback_type: type });
-      toast.success("Feedback sent! Thank you.");
+      toast.success("Thanks. Your feedback is sent.");
       onOpenChange(false);
       setType("General");
       setMessage("");
     },
     onError: () => {
-      toast.error("Failed to send feedback. Please try again.");
+      toast.error("Couldn't send your feedback. Try again.");
     },
   });
 
@@ -68,7 +68,7 @@ export default function FeedbackModal({ open, onOpenChange }) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="rounded-md sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Send Feedback</DialogTitle>
+          <DialogTitle>Send feedback</DialogTitle>
           <DialogDescription>
             Help us improve FitMyCV by sharing your thoughts.
           </DialogDescription>
@@ -83,7 +83,7 @@ export default function FeedbackModal({ open, onOpenChange }) {
               <SelectContent>
                 <SelectItem value="General">General</SelectItem>
                 <SelectItem value="Bug">Bug</SelectItem>
-                <SelectItem value="Feature Request">Feature Request</SelectItem>
+                <SelectItem value="Feature Request">Feature request</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -94,14 +94,14 @@ export default function FeedbackModal({ open, onOpenChange }) {
               id="feedback-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell us what you think..."
+              placeholder="Tell us what you think…"
               rows={4}
               required
             />
           </div>
 
           <Button type="submit" className="w-full" disabled={mutation.isPending}>
-            {mutation.isPending ? "Sending..." : "Send Feedback"}
+            {mutation.isPending ? "Sending…" : "Send feedback"}
           </Button>
         </form>
       </DialogContent>

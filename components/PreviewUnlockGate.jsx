@@ -27,7 +27,7 @@ export default function PreviewUnlockGate({ locked, onUnlock, children }) {
           Unlock to download
         </button>
         <p className="mt-2 max-w-xs text-center text-sm text-muted-foreground">
-          Your rewrite is ready. Unlock to download the PDF.
+          It&apos;s ready. Unlock downloads to save it as a PDF.
         </p>
       </div>
     </div>

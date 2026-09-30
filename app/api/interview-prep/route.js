@@ -58,7 +58,7 @@ export async function POST(request) {
 
     if (!tailoredCV || !jobData) {
       return Response.json(
-        { error: "Tailored CV and job data are required" },
+        { error: "Tailor a CV for this job first, then try again." },
         { status: 400 }
       );
     }
@@ -98,7 +98,7 @@ Generate interview preparation materials for this candidate and role.`;
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
       return Response.json(
-        { error: "Failed to generate interview prep" },
+        { error: "Couldn't write your interview prep. Try again." },
         { status: 500 }
       );
     }
@@ -119,7 +119,7 @@ Generate interview preparation materials for this candidate and role.`;
   } catch (error) {
     console.error("Interview prep error:", error);
     return Response.json(
-      { error: "Failed to generate interview prep" },
+      { error: "Couldn't write your interview prep. Try again." },
       { status: 500 }
     );
   }

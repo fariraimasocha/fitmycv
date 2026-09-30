@@ -68,6 +68,6 @@ export async function POST(request) {
     return Response.json({ data: cv }, { status: 201 });
   } catch (error) {
     console.error("Tailored CV save error:", error);
-    return Response.json({ error: "Failed to save tailored CV" }, { status: 500 });
+    return Response.json({ error: "Couldn't save your tailored CV. Try again." }, { status: 500 });
   }
 }

@@ -288,7 +288,7 @@ function ApplicationsTracker() {
             <>
               <Link href="/dashboard/tailor" className="dashboard-secondary-btn">
                 <PenIcon size={16} aria-hidden="true" />
-                Tailor a CV
+                Tailor my CV
               </Link>
               <button type="button" onClick={() => setAddOpen(true)} className="dashboard-primary-btn">
                 <PlusIcon size={16} weight="bold" aria-hidden="true" />
@@ -306,7 +306,7 @@ function ApplicationsTracker() {
           description="Add a job you are applying to and link the CV you sent. Every CV you tailor is added here as Saved."
           actionLabel="Add application"
           onAction={() => setAddOpen(true)}
-          secondaryLabel="Tailor a CV"
+          secondaryLabel="Tailor my CV"
           secondaryHref="/dashboard/tailor"
         />
       ) : (

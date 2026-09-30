@@ -65,7 +65,7 @@ export async function GET() {
     return Response.json({ data: briefs });
   } catch (error) {
     console.error("Company research GET error:", error);
-    return Response.json({ error: "Failed to fetch company research" }, { status: 500 });
+    return Response.json({ error: "Couldn't load the company research. Refresh the page." }, { status: 500 });
   }
 }
 
@@ -82,7 +82,7 @@ export async function POST(request) {
     const { companyName, jobTitle, jobUrl } = await request.json();
 
     if (!companyName || companyName.trim().length < 2) {
-      return Response.json({ error: "companyName is required" }, { status: 400 });
+      return Response.json({ error: "Add a company name first." }, { status: 400 });
     }
 
     const ninetyDaysAgo = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString();
@@ -174,7 +174,7 @@ export async function POST(request) {
 
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
-      return Response.json({ error: "Failed to generate company research" }, { status: 500 });
+      return Response.json({ error: "Couldn't research this company. Try again." }, { status: 500 });
     }
 
     const parsed = parseCompanyResearchResponse(responseText);
@@ -211,6 +211,6 @@ export async function POST(request) {
     return Response.json({ data: brief }, { status: 201 });
   } catch (error) {
     console.error("Company research POST error:", error);
-    return Response.json({ error: "Failed to generate company research" }, { status: 500 });
+    return Response.json({ error: "Couldn't research this company. Try again." }, { status: 500 });
   }
 }

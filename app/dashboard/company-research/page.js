@@ -98,7 +98,7 @@ export default function CompanyResearchPage() {
     queryKey: ["company-research"],
     queryFn: async () => {
       const res = await fetch("/api/company-research");
-      if (!res.ok) throw new Error("Failed to fetch company research");
+      if (!res.ok) throw new Error("Couldn't load the company research. Refresh the page.");
       const json = await res.json();
       return json.data;
     },
@@ -134,7 +134,7 @@ export default function CompanyResearchPage() {
           hasBriefs ? (
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              Research a company
+              Add a job
             </Link>
           ) : null
         }
@@ -154,9 +154,9 @@ export default function CompanyResearchPage() {
       ) : !hasBriefs ? (
         <DashboardEmptyState
           icon={BinocularsIcon}
-          title="Your company briefs will appear here"
-          description="Paste a job URL on Tailor CV. We research the company while your CV is tailored."
-          actionLabel="Research a company"
+          title="No company briefs yet"
+          description="Company research is part of Pro. Add a job on Tailor CV and we research the company named in the posting."
+          actionLabel="Add a job"
           actionHref="/dashboard/tailor"
         />
       ) : (

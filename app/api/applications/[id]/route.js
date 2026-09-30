@@ -25,14 +25,14 @@ export async function GET(request, { params }) {
     }).lean();
 
     if (!application) {
-      return Response.json({ error: "Application not found" }, { status: 404 });
+      return Response.json({ error: "This application no longer exists." }, { status: 404 });
     }
 
     return Response.json({ data: application });
   } catch (error) {
     console.error("Application GET error:", error);
     return Response.json(
-      { error: "Failed to fetch application" },
+      { error: "Couldn't load this application. Refresh the page." },
       { status: 500 }
     );
   }
@@ -61,7 +61,7 @@ export async function PUT(request, { params }) {
     const body = await request.json();
 
     if (body.status && !STAGE_LABEL[body.status]) {
-      return Response.json({ error: "Unknown stage" }, { status: 400 });
+      return Response.json({ error: "Choose a stage from the list." }, { status: 400 });
     }
 
     const application = await Application.findOne({
@@ -70,7 +70,7 @@ export async function PUT(request, { params }) {
     });
 
     if (!application) {
-      return Response.json({ error: "Application not found" }, { status: 404 });
+      return Response.json({ error: "This application no longer exists." }, { status: 404 });
     }
 
     const fields = pickApplicationFields(body);
@@ -117,7 +117,7 @@ export async function PUT(request, { params }) {
       const { entryId, date, text } = body.updateEntry;
       const entry = mongoose.isValidObjectId(entryId) ? application.statusHistory.id(entryId) : null;
       if (!entry) {
-        return Response.json({ error: "Timeline entry not found" }, { status: 404 });
+        return Response.json({ error: "This timeline entry no longer exists." }, { status: 404 });
       }
       const parsed = date ? new Date(date) : null;
       if (parsed && !Number.isNaN(parsed.getTime())) entry.date = parsed;
@@ -146,7 +146,7 @@ export async function PUT(request, { params }) {
   } catch (error) {
     console.error("Application PUT error:", error);
     return Response.json(
-      { error: "Failed to update application" },
+      { error: "Couldn't update this application. Try again." },
       { status: 500 }
     );
   }
@@ -171,14 +171,14 @@ export async function DELETE(request, { params }) {
     });
 
     if (result.deletedCount === 0) {
-      return Response.json({ error: "Application not found" }, { status: 404 });
+      return Response.json({ error: "This application no longer exists." }, { status: 404 });
     }
 
     return Response.json({ success: true });
   } catch (error) {
     console.error("Application DELETE error:", error);
     return Response.json(
-      { error: "Failed to delete application" },
+      { error: "Couldn't delete this application. Try again." },
       { status: 500 }
     );
   }

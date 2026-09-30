@@ -31,7 +31,7 @@ const resumeSchema = z.object({
   basics: z.object({
     name: z.string().min(1, "Name is required"),
     label: z.string().optional().default(""),
-    email: z.string().email("Invalid email").or(z.literal("")),
+    email: z.string().email("Enter an email like name@example.com").or(z.literal("")),
     phone: z.string().optional().default(""),
     summary: z.string().optional().default(""),
     location: z.string().optional().default(""),
@@ -180,7 +180,7 @@ export default function ResumeForm({
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to save");
+        throw new Error(err.error || "Couldn't save your changes. Try again.");
       }
 
       return res.json();
@@ -213,11 +213,11 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Personal Information</CardTitle>
+            <CardTitle className="text-base font-semibold">Personal information</CardTitle>
           </CardHeader>
           <CardContent className="dashboard-card-pad grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name *</Label>
+              <Label htmlFor="name">Full name *</Label>
               <Input id="name" {...register("basics.name")} />
               {errors.basics?.name && (
                 <p className="text-destructive text-sm">
@@ -226,7 +226,7 @@ export default function ResumeForm({
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="label">Job Title / Headline</Label>
+              <Label htmlFor="label">Job title or headline</Label>
               <Input id="label" {...register("basics.label")} />
             </div>
             <div className="space-y-2">
@@ -247,7 +247,7 @@ export default function ResumeForm({
               <Input id="location" {...register("basics.location")} />
             </div>
             <div className="sm:col-span-2 space-y-2">
-              <Label htmlFor="summary">Professional Summary</Label>
+              <Label htmlFor="summary">Professional summary</Label>
               <Textarea id="summary" rows={4} {...register("basics.summary")} />
             </div>
           </CardContent>
@@ -262,7 +262,7 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Online Profiles</CardTitle>
+            <CardTitle className="text-base font-semibold">Online profiles</CardTitle>
             <Button
               type="button"
               variant="outline"
@@ -288,7 +288,7 @@ export default function ResumeForm({
                 <div className="flex-1 space-y-2">
                   <Label>Network</Label>
                   <Input
-                    placeholder="LinkedIn, GitHub..."
+                    placeholder="LinkedIn, GitHub…"
                     {...register(`basics.profiles.${index}.network`)}
                   />
                 </div>
@@ -332,7 +332,7 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Work Experience</CardTitle>
+            <CardTitle className="text-base font-semibold">Work experience</CardTitle>
             <Button
               type="button"
               variant="outline"
@@ -413,14 +413,14 @@ export default function ResumeForm({
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label>Start Date</Label>
+                      <Label>Start date</Label>
                       <Input
                         placeholder="YYYY-MM"
                         {...register(`work.${index}.startDate`)}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>End Date</Label>
+                      <Label>End date</Label>
                       <Input
                         placeholder="YYYY-MM or Present"
                         {...register(`work.${index}.endDate`)}
@@ -428,7 +428,7 @@ export default function ResumeForm({
                     </div>
                   </div>
                   <div className="sm:col-span-2 space-y-2">
-                    <Label>Description / Achievements</Label>
+                    <Label>Description and achievements</Label>
                     <Textarea
                       rows={3}
                       {...register(`work.${index}.description`)}
@@ -523,24 +523,24 @@ export default function ResumeForm({
                   <div className="space-y-2">
                     <Label>Degree</Label>
                     <Input
-                      placeholder="B.Sc., M.A., Ph.D..."
+                      placeholder="BSc, MA, PhD…"
                       {...register(`education.${index}.degree`)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>Field of Study</Label>
+                    <Label>Field of study</Label>
                     <Input {...register(`education.${index}.fieldOfStudy`)} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label>Start Date</Label>
+                      <Label>Start date</Label>
                       <Input
                         placeholder="YYYY-MM"
                         {...register(`education.${index}.startDate`)}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>End Date</Label>
+                      <Label>End date</Label>
                       <Input
                         placeholder="YYYY-MM"
                         {...register(`education.${index}.endDate`)}
@@ -614,7 +614,7 @@ export default function ResumeForm({
                 </div>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Category Name</Label>
+                    <Label>Category name</Label>
                     <Input
                       placeholder="e.g. Programming Languages"
                       {...register(`skills.${index}.category`)}
@@ -696,7 +696,7 @@ function findingLocation(path) {
   }
   if (section === "work" || section === "education") {
     const group = section === "work" ? "Position" : "Education";
-    if (second === undefined) return section === "work" ? "Work Experience" : "Education";
+    if (second === undefined) return section === "work" ? "Work experience" : "Education";
     return `${group} ${Number(second) + 1}, ${FIELD_NAMES[third] ?? field ?? third}`;
   }
   return "Skills";

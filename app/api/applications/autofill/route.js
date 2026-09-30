@@ -52,6 +52,6 @@ export async function POST(request) {
     return Response.json({ data: sanitizeAIObject(fields) });
   } catch (error) {
     console.error("Application autofill error:", error);
-    return Response.json({ error: "Failed to read the job description" }, { status: 500 });
+    return Response.json({ error: "Couldn't read the job description. Check it and try again." }, { status: 500 });
   }
 }

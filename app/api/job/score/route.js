@@ -64,7 +64,7 @@ export async function POST(request) {
 
     if (!referenceCV || !jobData) {
       return Response.json(
-        { error: "Reference CV and job data are required" },
+        { error: "Upload your CV and add a job first." },
         { status: 400 }
       );
     }
@@ -103,7 +103,7 @@ Assess how well this candidate matches this job BEFORE any tailoring.`;
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
       return Response.json(
-        { error: "Failed to score job match" },
+        { error: "Couldn't score your match for this job. Try again." },
         { status: 500 }
       );
     }
@@ -114,7 +114,7 @@ Assess how well this candidate matches this job BEFORE any tailoring.`;
   } catch (error) {
     console.error("Job score error:", error);
     return Response.json(
-      { error: "Failed to score job match" },
+      { error: "Couldn't score your match for this job. Try again." },
       { status: 500 }
     );
   }

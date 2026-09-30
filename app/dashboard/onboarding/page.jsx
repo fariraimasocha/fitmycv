@@ -91,7 +91,7 @@ export default function OnboardingPage() {
           body: JSON.stringify(payload ?? {}),
         });
         if (!response.ok) {
-          throw new Error("Failed to save onboarding progress");
+          throw new Error("Couldn't finish setting up your account.");
         }
 
         // ponytail: the one signup signal PostHog gets. The landing pageview
@@ -109,7 +109,7 @@ export default function OnboardingPage() {
         router.replace(destination);
       } catch {
         toast.error(
-          "Your CV is ready, but we could not continue. Please try again.",
+          "Your CV is saved, but we couldn't finish setting up your account. Try again.",
         );
         setCompletionFailed(true);
         setFinishing(false);
@@ -131,7 +131,7 @@ export default function OnboardingPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cv),
       });
-      if (!res.ok) throw new Error("Failed to save CV");
+      if (!res.ok) throw new Error("Couldn't save your CV.");
       return (await res.json()).data;
     },
     onSuccess: (saved, cv) => {
@@ -199,13 +199,10 @@ export default function OnboardingPage() {
                   transition={{ duration: reduceMotion ? 0 : 0.3 }}
                 />
               </span>
-              <span className="ml-auto shrink-0 text-xs tracking-wider text-[var(--landing-ink-soft)] sm:ml-0">
-                STEP {String(step + 1).padStart(2, "0")} / {TOTAL_STEPS}
-              </span>
               <button
                 type="button"
                 onClick={skip}
-                className="shrink-0 cursor-pointer text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+                className="ml-auto shrink-0 cursor-pointer sm:ml-0 text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
               >
                 Skip for now
               </button>
@@ -295,7 +292,7 @@ export default function OnboardingPage() {
                     }
                     className="dashboard-primary-btn w-full cursor-pointer text-sm sm:w-fit"
                   >
-                    Start with step 1
+                    Tailor your first CV
                     <ArrowRightIcon
                       size={16}
                       weight="bold"
@@ -321,7 +318,7 @@ export default function OnboardingPage() {
                   )}
                 </h1>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
-                  Stays private. We read it, we never share it.
+                  Only you can see your CV. Our AI provider reads it to write your applications.
                 </p>
 
                 <div className="mt-7 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 sm:p-6">
@@ -356,7 +353,7 @@ export default function OnboardingPage() {
                 )}
 
                 <p className="mt-5 text-xs leading-5 text-[var(--landing-ink-soft)]">
-                  You can edit the parsed details later.
+                  You can edit these details on My CV later.
                 </p>
               </>
             )}

@@ -67,7 +67,7 @@ export async function PUT(request, { params }) {
     if (body.jobUrl !== undefined) update.jobUrl = body.jobUrl;
 
     if (Object.keys(update).length === 0) {
-      return Response.json({ error: "No valid fields to update" }, { status: 400 });
+      return Response.json({ error: "There are no changes to save." }, { status: 400 });
     }
 
     await connectDB();
@@ -84,6 +84,6 @@ export async function PUT(request, { params }) {
     return Response.json({ data: cv });
   } catch (error) {
     console.error("Tailored CV update error:", error);
-    return Response.json({ error: "Failed to update tailored CV" }, { status: 500 });
+    return Response.json({ error: "Couldn't save your tailored CV. Try again." }, { status: 500 });
   }
 }

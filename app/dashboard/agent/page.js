@@ -40,7 +40,7 @@ export default function AgentPage() {
   return (
     <DashboardPageShell width="narrow">
       <DashboardPageHeader
-        title="CV Agent"
+        title="CV agent"
         description="Ask for changes in plain words. The agent edits a copy of your CV, so the original stays as it is."
       />
 
@@ -61,7 +61,7 @@ export default function AgentPage() {
               <SelectValue placeholder="Choose a CV" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="reference">Main CV</SelectItem>
+              <SelectItem value="reference">My CV</SelectItem>
               {sources.map((cv) => (
                 <SelectItem key={cv._id} value={cv._id}>
                   {[cv.jobTitle || "Tailored CV", cv.jobCompany].filter(Boolean).join(" at ")}

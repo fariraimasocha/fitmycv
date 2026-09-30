@@ -34,23 +34,23 @@ const navGroups = [
     ],
   },
   {
-    label: "CV Toolkit",
+    label: "CV toolkit",
     items: [
       { title: "My CV", url: "/dashboard/resume", icon: ReadCvLogoIcon },
       { title: "Tailor CV", url: "/dashboard/tailor", icon: PenIcon },
       { title: "Tailored CVs", url: "/dashboard/tailored", icon: StackIcon },
-      { title: "CV Agent", url: "/dashboard/agent", icon: RobotIcon },
-      { title: "Story Bank", url: "/dashboard/story-bank", icon: BookOpenIcon },
+      { title: "CV agent", url: "/dashboard/agent", icon: RobotIcon },
+      { title: "Story bank", url: "/dashboard/story-bank", icon: BookOpenIcon },
     ],
   },
   {
-    label: "Job Search",
+    label: "Job search",
     items: [
-      { title: "Find Jobs", url: "/jobs", icon: MagnifyingGlassIcon },
+      { title: "Find jobs", url: "/jobs", icon: MagnifyingGlassIcon },
       { title: "Applications", url: "/dashboard/applications", icon: KanbanIcon },
-      { title: "Saved Jobs", url: "/dashboard/saved", icon: BookmarkSimpleIcon },
-      { title: "Company Research", url: "/dashboard/company-research", icon: BinocularsIcon },
-      { title: "Compare Offers", url: "/dashboard/compare", icon: ScalesIcon },
+      { title: "Saved jobs", url: "/dashboard/saved", icon: BookmarkSimpleIcon },
+      { title: "Company research", url: "/dashboard/company-research", icon: BinocularsIcon },
+      { title: "Compare offers", url: "/dashboard/compare", icon: ScalesIcon },
     ],
   },
   {

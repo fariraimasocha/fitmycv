@@ -72,7 +72,7 @@ export default function AgentThreadPage() {
     queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
-      if (!res.ok) throw new Error("Failed to fetch resume");
+      if (!res.ok) throw new Error("Couldn't load your CV. Refresh the page.");
       const json = await res.json();
       return json.data;
     },

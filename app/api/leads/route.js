@@ -108,6 +108,6 @@ export async function POST(request) {
     return Response.json({ ok: true });
   } catch (error) {
     console.error("Lead capture error:", error);
-    return Response.json({ error: "Could not save your email." }, { status: 500 });
+    return Response.json({ error: "Couldn't save your email. Try again." }, { status: 500 });
   }
 }

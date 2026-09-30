@@ -39,7 +39,7 @@ export async function GET(request) {
   } catch (error) {
     console.error("Applications GET error:", error);
     return Response.json(
-      { error: "Failed to fetch applications" },
+      { error: "Couldn't load your applications. Refresh the page." },
       { status: 500 }
     );
   }
@@ -108,7 +108,7 @@ export async function POST(request) {
   } catch (error) {
     console.error("Applications POST error:", error);
     return Response.json(
-      { error: "Failed to create application" },
+      { error: "Couldn't add this application. Try again." },
       { status: 500 }
     );
   }

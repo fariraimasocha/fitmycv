@@ -128,7 +128,7 @@ export function ApplicationCopilot({ application }) {
         <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-[var(--landing-accent)] text-white">
           <SparkleIcon weight="fill" size={12} aria-hidden="true" />
         </span>
-        <span className="font-outfit text-sm font-semibold text-foreground">Application Copilot</span>
+        <span className="font-outfit text-sm font-semibold text-foreground">Application copilot</span>
       </header>
 
       <div className="px-3.5 py-3">
@@ -195,7 +195,7 @@ export function ApplicationCopilot({ application }) {
         <ActionRow
           icon={<MagicWandIcon size={16} aria-hidden="true" />}
           title="Tailor my CV"
-          description={application.jobUrl ? "Make a copy tuned to this job" : "Add the job posting link first"}
+          description={application.jobUrl ? "Make a copy tuned to this job" : "Add the job link to this application first"}
           disabled={!application.jobUrl}
           href={application.jobUrl ? `/dashboard/tailor?url=${encodeURIComponent(application.jobUrl)}` : undefined}
         />

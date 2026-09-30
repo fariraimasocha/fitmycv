@@ -47,7 +47,7 @@ export async function POST(request) {
 
     if (!tailoredCV || !jobData) {
       return Response.json(
-        { error: "Tailored CV and job data are required" },
+        { error: "Tailor a CV for this job first, then try again." },
         { status: 400 }
       );
     }
@@ -82,7 +82,7 @@ Generate a LinkedIn connection request message for reaching out about this role.
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
       return Response.json(
-        { error: "Failed to generate outreach message" },
+        { error: "Couldn't write your LinkedIn message. Try again." },
         { status: 500 }
       );
     }
@@ -90,7 +90,7 @@ Generate a LinkedIn connection request message for reaching out about this role.
     // Parse JSON
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      return Response.json({ error: "Failed to parse response" }, { status: 500 });
+      return Response.json({ error: "Couldn't read the result. Try again." }, { status: 500 });
     }
 
     const raw = JSON.parse(jsonMatch[0]);
@@ -106,7 +106,7 @@ Generate a LinkedIn connection request message for reaching out about this role.
   } catch (error) {
     console.error("LinkedIn outreach error:", error);
     return Response.json(
-      { error: "Failed to generate outreach message" },
+      { error: "Couldn't write your LinkedIn message. Try again." },
       { status: 500 }
     );
   }

@@ -21,7 +21,7 @@ export async function GET() {
     return Response.json({ data: { ...DEFAULTS, ...(user?.jobPreferences ?? {}) } });
   } catch (error) {
     console.error("Preferences GET error:", error);
-    return Response.json({ error: "Failed to fetch preferences" }, { status: 500 });
+    return Response.json({ error: "Couldn't load your preferences. Refresh the page." }, { status: 500 });
   }
 }
 
@@ -56,6 +56,6 @@ export async function PUT(request) {
     return Response.json({ data: jobPreferences });
   } catch (error) {
     console.error("Preferences PUT error:", error);
-    return Response.json({ error: "Failed to save preferences" }, { status: 500 });
+    return Response.json({ error: "Couldn't save your preferences. Try again." }, { status: 500 });
   }
 }

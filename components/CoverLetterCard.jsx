@@ -130,7 +130,7 @@ export default function CoverLetterCard({
                 onClick={() => setIsEditing(true)}
               >
                 <PencilSimpleIcon size={14} aria-hidden="true" />
-                Write a cover letter
+                Write your own
               </button>
             )}
           </div>

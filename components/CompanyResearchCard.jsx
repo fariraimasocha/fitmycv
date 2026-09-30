@@ -69,7 +69,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
     return (
       <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
-          Company research will appear here after tailoring your CV.
+          On Pro, a brief on the company appears here when the posting names it.
         </CardContent>
       </Card>
     );
@@ -112,7 +112,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <ArticleIcon size={15} />
-              Executive Summary
+              Executive summary
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {brief.summary}
@@ -125,7 +125,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <UsersThreeIcon size={15} />
-              Culture Signals
+              Culture signals
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {brief.cultureSignals.map((signal, i) => (
@@ -140,7 +140,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <LightningIcon size={15} />
-              Tech Strategy
+              Tech strategy
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {brief.techStrategy}
@@ -153,7 +153,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <WarningIcon size={15} />
-              Key Challenges
+              Key challenges
             </h3>
             <ul className="space-y-1.5">
               {brief.challenges.map((challenge, i) => (
@@ -171,7 +171,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <SwordIcon size={15} />
-              Competitive Landscape
+              Competitive landscape
             </h3>
             <ul className="space-y-2">
               {brief.competitors.map((comp, i) => (
@@ -191,7 +191,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)]">
               <LightbulbIcon size={15} weight="fill" />
-              Interview Positioning Tips
+              How to position yourself in the interview
             </h3>
             <ul className="space-y-1.5">
               {brief.positioningTips.map((tip, i) => (
@@ -209,7 +209,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <NewspaperIcon size={15} />
-              Recent News
+              Recent news
             </h3>
             <ul className="space-y-3">
               {brief.recentNews.map((item, i) => (

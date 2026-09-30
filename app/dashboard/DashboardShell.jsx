@@ -26,21 +26,21 @@ const PATH_LABELS = {
   "/dashboard/tailored": "Tailored CVs",
   "/dashboard/profile": "Profile",
   "/dashboard/upgrade": "Upgrade to Pro",
-  "/dashboard/company-research": "Company Research",
+  "/dashboard/company-research": "Company research",
   "/dashboard/applications": "Applications",
-  "/dashboard/story-bank": "Story Bank",
-  "/dashboard/compare": "Compare Offers",
-  "/dashboard/saved": "Saved Jobs",
+  "/dashboard/story-bank": "Story bank",
+  "/dashboard/compare": "Compare offers",
+  "/dashboard/saved": "Saved jobs",
   "/dashboard/preferences": "Preferences",
-  "/dashboard/agent": "CV Agent",
+  "/dashboard/agent": "CV agent",
 };
 
 // Detail pages read "Parent > item", with the item title from the breadcrumb store.
 const DETAIL_PARENTS = [
   { base: "/dashboard/tailored", label: "Tailored CVs", fallback: "Detail" },
   { base: "/dashboard/applications", label: "Applications", fallback: "Detail" },
-  { base: "/dashboard/company-research", label: "Company Research", fallback: "Brief" },
-  { base: "/dashboard/agent", label: "CV Agent", fallback: "Thread" },
+  { base: "/dashboard/company-research", label: "Company research", fallback: "Brief" },
+  { base: "/dashboard/agent", label: "CV agent", fallback: "Thread" },
 ];
 
 function DashboardBreadcrumb() {

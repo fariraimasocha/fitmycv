@@ -22,7 +22,7 @@ export async function POST(request, { params }) {
 
   const { id } = await params;
   if (!mongoose.isValidObjectId(id)) {
-    return Response.json({ error: "Thread not found" }, { status: 404 });
+    return Response.json({ error: "This conversation no longer exists. Start a new one." }, { status: 404 });
   }
 
   try {
@@ -36,7 +36,7 @@ export async function POST(request, { params }) {
     const userId = session.user.id;
     const thread = await AgentThread.findOne({ _id: id, userId });
     if (!thread) {
-      return Response.json({ error: "Thread not found" }, { status: 404 });
+      return Response.json({ error: "This conversation no longer exists. Start a new one." }, { status: 404 });
     }
     const draft = await TailoredCV.findOne({ _id: thread.draftCvId, userId });
     if (!draft) {
@@ -66,6 +66,6 @@ export async function POST(request, { params }) {
     return Response.json({ data: threadForClient(thread, draft) });
   } catch (error) {
     console.error("Agent message error:", error);
-    return Response.json({ error: "Failed to send the message" }, { status: 500 });
+    return Response.json({ error: "Couldn't send your message. Try again." }, { status: 500 });
   }
 }

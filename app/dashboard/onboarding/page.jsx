@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowRightIcon,
   ArrowLeftIcon,
@@ -46,7 +47,7 @@ function countYears(work) {
 function summariseCV(cv) {
   const roles = (cv?.work ?? []).length;
   const skills = (cv?.skills ?? []).reduce(
-    (total, group) => total + (group?.keywords?.length ?? 0),
+    (total, group) => total + (group?.skills?.length ?? 0),
     0,
   );
   const years = countYears(cv?.work);
@@ -68,6 +69,9 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [parsedCV, setParsedCV] = useState(null);
+  // A parsed CV whose save failed, kept so a retry doesn't need a re-upload.
+  const [pendingCV, setPendingCV] = useState(null);
+  const queryClient = useQueryClient();
   const [finishing, setFinishing] = useState(false);
   const [completionFailed, setCompletionFailed] = useState(false);
 
@@ -118,9 +122,32 @@ export default function OnboardingPage() {
   // errors on first action without a reference CV.
   const skip = () => completeOnboarding("/dashboard", answers);
 
-  const onParsed = (cv) => setParsedCV(cv);
+  // The upload route only parses. My CV saves after review, so onboarding has
+  // to save here, or the CV is gone the moment the user leaves this page.
+  const saveCV = useMutation({
+    mutationFn: async (cv) => {
+      const res = await fetch("/api/resume", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cv),
+      });
+      if (!res.ok) throw new Error("Failed to save CV");
+      return (await res.json()).data;
+    },
+    onSuccess: (saved, cv) => {
+      queryClient.setQueryData(["resume"], saved);
+      setPendingCV(null);
+      setParsedCV(cv);
+    },
+    onError: (_error, cv) => {
+      setPendingCV(cv);
+      toast.error("Couldn't save your CV. Check your connection and try again.");
+    },
+  });
 
-  if (finishing) {
+  const onParsed = (cv) => saveCV.mutate(cv);
+
+  if (finishing || saveCV.isPending) {
     return <Loader />;
   }
 
@@ -300,6 +327,16 @@ export default function OnboardingPage() {
                 <div className="mt-7 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 sm:p-6">
                   <ResumeUpload onParsed={onParsed} />
                 </div>
+
+                {pendingCV && (
+                  <button
+                    type="button"
+                    onClick={() => saveCV.mutate(pendingCV)}
+                    className="dashboard-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
+                  >
+                    Try again
+                  </button>
+                )}
 
                 {completionFailed && (
                   <button

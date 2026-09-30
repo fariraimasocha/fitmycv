@@ -7,7 +7,6 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import {
-  MagnifyingGlassIcon,
   SpinnerGapIcon,
   LinkIcon,
   TextAlignLeftIcon,
@@ -72,8 +71,8 @@ const MIN_JOB_TEXT_CHARS = 150;
 
 const STEPS = [
   { title: "Add the job", body: "Paste a link or the description." },
-  { title: "Review the match", body: "See the requirements and your match score." },
-  { title: "Tailor and download", body: "Edit the CV, check the ATS score, download." },
+  { title: "We tailor your CV", body: "Rewritten for the role, with a cover letter." },
+  { title: "Review and download", body: "Edit the CV, check the ATS score, download." },
 ];
 
 const JOB_INPUT_TABS = [
@@ -378,7 +377,9 @@ function Tailor() {
         rememberJobUrl(url.trim(), result.data?.title || "");
         setRecentUrls(getRecentJobUrls());
       }
-      toast.success("Job requirements extracted");
+      // One click: tailoring starts as soon as the job is read. Requirements and
+      // the match score fill in while the CV is being written.
+      startTailor(result.data);
       setTimeout(() => {
         tailorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 100);
@@ -414,8 +415,10 @@ function Tailor() {
     },
   });
 
+  // Takes the job as an argument: when chained from extract, `jobData` state
+  // has not re-rendered yet.
   const tailorMutation = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (job) => {
       // Fetch reference CV first
       const cvRes = await fetch("/api/resume");
       const cvData = await cvRes.json();
@@ -435,7 +438,7 @@ function Tailor() {
       const res = await fetch("/api/tailor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ referenceCV, jobData }),
+        body: JSON.stringify({ referenceCV, jobData: job }),
       });
 
       if (!res.ok) {
@@ -447,7 +450,7 @@ function Tailor() {
 
       return res.json();
     },
-    onSuccess: (result) => {
+    onSuccess: (result, job) => {
       setTailorResult(result.data);
       setSavedId(null);
       setLiveValues(null);
@@ -472,7 +475,7 @@ function Tailor() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           tailoredCV: result.data.tailoredCV,
-          jobData,
+          jobData: job,
         }),
       })
         .then((res) => res.json())
@@ -482,12 +485,14 @@ function Tailor() {
         .catch(() => {})
         .finally(() => setAtsLoading(false));
 
-      // Auto-save to database (includes auto-creating application)
+      // Auto-save to database (includes auto-creating application).
+      // ponytail: matchScore can still be loading if tailor finishes first; then
+      // only the saved grade is missing. Patch it on arrival if history needs it.
       saveMutation.mutate({
-        jobTitle: jobData?.title || "",
-        jobCompany: jobData?.company || "",
+        jobTitle: job?.title || "",
+        jobCompany: job?.company || "",
         jobUrl: jobInputMode === "link" ? url : "",
-        jobData,
+        jobData: job,
         basics: result.data.tailoredCV.basics,
         work: result.data.tailoredCV.work,
         education: result.data.tailoredCV.education,
@@ -705,17 +710,22 @@ function Tailor() {
     extractMutation.mutate({ url: url.trim() });
   };
 
-  const handleTailor = () => {
+  function startTailor(job = jobData) {
     trackEvent("tailor_started", {
       is_premium: Boolean(session?.user?.isPremium),
       has_match_score: Boolean(matchScore),
     });
 
-    tailorMutation.mutate();
-  };
+    tailorMutation.mutate(job);
+  }
+  const handleTailor = () => startTailor();
 
   const isPremium = Boolean(session?.user?.isPremium);
-  const currentStep = tailorResult ? 3 : jobData ? 2 : 1;
+  const currentStep = tailorResult
+    ? 3
+    : jobData || extractMutation.isPending || tailorMutation.isPending
+      ? 2
+      : 1;
   const showJobForm = !jobData || editingJob;
   const extractDisabled =
     extractMutation.isPending ||
@@ -796,12 +806,12 @@ function Tailor() {
                     {extractMutation.isPending ? (
                       <>
                         <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                        Extracting…
+                        Reading the job…
                       </>
                     ) : (
                       <>
-                        <MagnifyingGlassIcon size={16} aria-hidden="true" />
-                        Extract requirements
+                        <SparkleIcon size={16} aria-hidden="true" />
+                        Tailor my CV
                       </>
                     )}
                   </button>
@@ -852,12 +862,12 @@ function Tailor() {
                     {extractMutation.isPending ? (
                       <>
                         <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                        Extracting…
+                        Reading the job…
                       </>
                     ) : (
                       <>
-                        <MagnifyingGlassIcon size={16} aria-hidden="true" />
-                        Extract requirements
+                        <SparkleIcon size={16} aria-hidden="true" />
+                        Tailor my CV
                       </>
                     )}
                   </button>
@@ -932,7 +942,7 @@ function Tailor() {
                   ) : (
                     <>
                       <SparkleIcon size={14} aria-hidden="true" />
-                      Tailor CV
+                      Tailor my CV
                     </>
                   )}
                 </button>
@@ -991,7 +1001,11 @@ function Tailor() {
                   <DashboardPanel delay={0.05}>
                     <DashboardPanelHeader
                       title="Tailor your CV for this role"
-                      description="We rewrite your CV around these requirements and write a cover letter to go with it."
+                      description={
+                        tailorMutation.isPending
+                          ? "Rewriting your CV around these requirements and writing a cover letter."
+                          : "We rewrite your CV around these requirements and write a cover letter to go with it."
+                      }
                     />
                     <button
                       type="button"
@@ -1008,7 +1022,7 @@ function Tailor() {
                       ) : (
                         <>
                           <SparkleIcon size={16} aria-hidden="true" />
-                          Tailor CV
+                          Tailor my CV
                         </>
                       )}
                     </button>

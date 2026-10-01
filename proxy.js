@@ -37,7 +37,17 @@ function applyGeoCookies(request, response) {
   return res;
 }
 
-export default auth((request) => applyGeoCookies(request, NextResponse.next()));
+// Auth.js ignores authorized() === false when it wraps a middleware like this
+// one, so the dashboard guard has to live here. Without it, logged out
+// visitors got the dashboard shell and a 401 on every action.
+export default auth((request) => {
+  if (!request.auth?.user && request.nextUrl.pathname.startsWith("/dashboard")) {
+    const signInUrl = new URL("/auth", request.nextUrl);
+    signInUrl.searchParams.set("next", request.nextUrl.pathname + request.nextUrl.search);
+    return applyGeoCookies(request, NextResponse.redirect(signInUrl));
+  }
+  return applyGeoCookies(request, NextResponse.next());
+});
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|_vercel|favicon.ico).*)"],

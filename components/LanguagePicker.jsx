@@ -1,10 +1,8 @@
 "use client";
 
-import { useTransition } from "react";
 import { CheckIcon, GlobeIcon } from "@phosphor-icons/react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter as useNextRouter } from "next/navigation";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { getPathname, usePathname } from "@/i18n/navigation";
 import { LOCALE_LABELS, UNTRANSLATED, routing } from "@/i18n/routing";
 import {
   DropdownMenu,
@@ -20,19 +18,17 @@ export default function LanguagePicker({ className, align = "end" }) {
   const t = useTranslations("header");
   const locale = useLocale();
   const pathname = usePathname();
-  const router = useRouter();
-  const nextRouter = useNextRouter();
-  const [isPending, startTransition] = useTransition();
-
   const choose = (next) => {
     if (next === locale) return;
     document.cookie = `NEXT_LOCALE=${next}; path=/; max-age=${YEAR}; samesite=lax`;
-    startTransition(() => {
-      // The dashboard and blog have no /fr URLs, so re-render in place with
-      // the new cookie. Translated pages move to their localized URL.
-      if (UNTRANSLATED.test(pathname)) nextRouter.refresh();
-      else router.replace(pathname, { locale: next });
-    });
+    // A full page load, not router.replace. The root layout owns <html lang>
+    // and the message provider, and Next keeps it mounted across client
+    // navigations, so a soft switch left the old language in place and the
+    // next switch built URLs like /de/fr. The dashboard and blog have no /fr
+    // URLs, so they reload in place with the new cookie.
+    const { search, hash } = window.location;
+    if (UNTRANSLATED.test(pathname)) window.location.reload();
+    else window.location.assign(getPathname({ href: pathname, locale: next }) + search + hash);
   };
 
   return (
@@ -41,7 +37,6 @@ export default function LanguagePicker({ className, align = "end" }) {
         <button
           type="button"
           aria-label={t("language")}
-          disabled={isPending}
           className={cn(
             "tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)] transition-colors hover:text-[var(--landing-accent-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2",
             className

@@ -210,7 +210,7 @@ function PreferencesForm({ prefs }) {
             <Select value={country} onValueChange={setCountry}>
               <SelectTrigger
                 id="country"
-                className="h-9 w-full border-[var(--landing-line)] bg-[var(--landing-surface)]"
+                className="h-control w-full border-[var(--landing-line)] bg-[var(--landing-surface)]"
               >
                 <SelectValue />
               </SelectTrigger>

@@ -572,7 +572,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
             <Button
               size="sm"
               variant="ghost"
-              className="h-9 hover:bg-[var(--landing-paper-soft)]"
+              className="h-control hover:bg-[var(--landing-paper-soft)]"
               disabled={update.isPending}
               onClick={() => save({ status: "rejected" })}
             >
@@ -583,7 +583,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
           <Button
             size="sm"
             variant="ghost"
-            className="h-9 hover:bg-[var(--landing-paper-soft)]"
+            className="h-control hover:bg-[var(--landing-paper-soft)]"
             onClick={() => save({ archived: !current.archived })}
           >
             {current.archived ? t("unarchive") : t("archive")}
@@ -591,7 +591,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
           <Button
             size="sm"
             variant="ghost"
-            className="ml-auto h-9 text-destructive hover:bg-destructive/10 hover:text-destructive"
+            className="ml-auto h-control text-destructive hover:bg-destructive/10 hover:text-destructive"
             disabled={remove.isPending}
             onClick={async () => {
               const confirmed = await confirm(t("confirmTitle"), {

@@ -72,7 +72,7 @@ function Column({ stage, applications, onOpen, onEdit }) {
           <button
             type="button"
             onClick={() => setVisible((v) => v + COLUMN_PAGE_SIZE)}
-            className="h-9 rounded-md border border-dashed border-[var(--landing-line)] text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-surface)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+            className="h-control-sm rounded-md border border-dashed border-[var(--landing-line)] text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-surface)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
           >
             {t("appComponents.board.showMore", { count: Math.min(remaining, COLUMN_PAGE_SIZE) })}
           </button>

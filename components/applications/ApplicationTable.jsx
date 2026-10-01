@@ -68,7 +68,7 @@ function AddTagPopover({ onAdd }) {
             value={value}
             aria-label={t("newTag")}
             placeholder={t("newTag")}
-            className="h-9"
+            className="h-control"
             onChange={(event) => setValue(event.target.value)}
             onKeyDown={(event) => event.key === "Enter" && submit()}
           />

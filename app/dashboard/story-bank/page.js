@@ -288,7 +288,7 @@ function AddStoryDialog({ open, onOpenChange }) {
               value={form.tags}
               onChange={update("tags")}
               placeholder={t("tagsPlaceholder")}
-              className="h-10 border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
+              className="h-control border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
             />
             <p className="text-xs text-muted-foreground">{t("tagsHint")}</p>
           </div>

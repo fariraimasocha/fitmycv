@@ -826,7 +826,7 @@ function Tailor() {
                         type="button"
                         onClick={() => setUrl(item.url)}
                         title={item.url}
-                        className="inline-flex h-8 max-w-full items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-2.5 text-xs font-medium text-foreground transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+                        className="inline-flex h-control-sm max-w-full items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-2.5 text-xs font-medium text-foreground transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
                       >
                         <span className="truncate">{item.title || item.url}</span>
                       </button>
@@ -1062,13 +1062,13 @@ function Tailor() {
                 <button
                   type="button"
                   onClick={() => setLinkedInModalOpen(true)}
-                  className="dashboard-secondary-btn dashboard-secondary-btn-sm lg:h-auto"
+                  className="dashboard-secondary-btn dashboard-secondary-btn-sm"
                 >
                   <LinkedinLogoIcon size={16} aria-hidden="true" />
                   {t("result.linkedin")}
                 </button>
                 <DownloadButton
-                  className="h-9 w-full sm:w-auto lg:h-auto"
+                  className="h-control-sm w-full sm:w-auto"
                   label={activeTab === "cv" ? t("result.downloadPdf") : t("result.downloadLetter")}
                   idleIcon={downloadIcon}
                   onDownload={() => handleDownload(activeTab)}

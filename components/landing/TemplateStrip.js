@@ -32,7 +32,7 @@ function ArrowButton({ dir, onClick }) {
       type="button"
       onClick={onClick}
       aria-label={dir === "prev" ? t("prev") : t("next")}
-      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)] landing-shadow-lift transition-colors duration-300 hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2"
+      className="flex size-control cursor-pointer items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)] landing-shadow-lift transition-colors duration-300 hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2"
     >
       <Icon size={17} weight="bold" aria-hidden="true" />
     </button>

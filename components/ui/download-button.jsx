@@ -64,7 +64,7 @@ export function DownloadButton({
       aria-busy={downloading || undefined}
       onClick={handleClick}
       className={cn(
-        "inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-md px-4 font-outfit text-sm font-semibold outline-none select-none",
+        "inline-flex h-control shrink-0 items-center justify-center gap-2 rounded-md px-4 font-outfit text-sm font-semibold outline-none select-none",
         "transition-[background-color,color,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
         "focus-visible:ring-[3px] focus-visible:ring-ring/50",
         idle && "cursor-pointer bg-foreground text-background hover:opacity-90 active:scale-[0.96]",

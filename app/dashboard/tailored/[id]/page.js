@@ -377,7 +377,7 @@ export default function TailoredCVDetailPage() {
         }
         actions={
           <DownloadButton
-            className="h-10 px-4 font-medium"
+            className="h-control px-4 font-medium"
             label={downloadLabel}
             idleIcon={
               isPremium ? (

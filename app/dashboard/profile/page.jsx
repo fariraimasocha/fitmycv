@@ -335,7 +335,7 @@ export default function ProfilePage() {
                 value={deleteConfirm}
                 onChange={(e) => setDeleteConfirm(e.target.value)}
                 autoComplete="off"
-                className="h-9 border-input"
+                className="h-control border-input"
                 disabled={deleting}
               />
             </div>
@@ -357,7 +357,7 @@ export default function ProfilePage() {
               variant="destructive"
               onClick={handleDeleteAccount}
               disabled={!isDeleteConfirmed || deleting}
-              className="h-10 w-full rounded-md px-4 font-outfit text-sm font-medium sm:w-auto"
+              className="h-control w-full rounded-md px-4 font-outfit text-sm font-medium sm:w-auto"
             >
               {deleting ? t("deleting") : t("deleteAccount")}
             </Button>

@@ -815,7 +815,7 @@ function SkillsList({ control, register, nestIndex, t }) {
         {fields.map((field, k) => (
           <div key={field.id} className="flex items-center gap-1">
             <Input
-              className="h-8 w-36"
+              className="h-control-sm w-36"
               {...register(`skills.${nestIndex}.skills.${k}`)}
             />
             <ItemReorderControls

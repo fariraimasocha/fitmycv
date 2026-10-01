@@ -58,7 +58,7 @@ export default function AgentPage() {
           <Select value={sourceId} onValueChange={setSourceId} disabled={isLoadingCvs}>
             <SelectTrigger
               aria-label={t("cvSelectLabel")}
-              className="w-full min-w-0 bg-[var(--landing-surface)] shadow-none data-[size=default]:h-10 sm:flex-1"
+              className="w-full min-w-0 bg-[var(--landing-surface)] shadow-none data-[size=default]:h-control sm:flex-1"
             >
               <SelectValue placeholder={t("choosePlaceholder")} />
             </SelectTrigger>

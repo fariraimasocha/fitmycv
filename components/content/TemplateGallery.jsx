@@ -128,7 +128,7 @@ function TemplateCard({ template, style, selected, onSelect, onOpen, onDownload 
           type="button"
           onClick={() => onOpen(template.id)}
           aria-label={`Preview ${template.name} full size`}
-          className="landing-scrim-item absolute right-2 top-2 z-30 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-white text-[var(--landing-ink)] shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)]"
+          className="landing-scrim-item absolute right-2 top-2 z-30 flex size-control-sm cursor-pointer items-center justify-center rounded-full bg-white text-[var(--landing-ink)] shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)]"
         >
           <ArrowsOutIcon size={15} aria-hidden="true" />
         </button>

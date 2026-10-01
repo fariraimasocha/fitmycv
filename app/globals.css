@@ -74,9 +74,24 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  /* One height for every input and button so rows line up, and 44px meets the
+     iOS and Android touch target. The sm size is for dense toolbars and chips.
+     Use them as h-control, h-control-sm, size-control, min-h-control. */
+  --spacing-control: var(--control-height);
+  --spacing-control-sm: var(--control-height-sm);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --control-height-sm: 2.25rem;
+  }
 }
 
 :root {
+  --control-height: 2.75rem;
+  /* Compact controls only on wider screens. On phones every control keeps the
+     full 44px touch target. */
+  --control-height-sm: 2.75rem;
   --radius: 0.75rem;
   --background: oklch(0.975 0.012 85);
   --foreground: oklch(0.18 0.02 260);
@@ -557,9 +572,9 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    min-height: 3rem;
+    min-height: var(--control-height);
     border-radius: var(--radius-md);
-    padding: 0.85rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     font-weight: 600;
     font-size: 0.95rem;
     transition:
@@ -589,8 +604,8 @@
 
   .landing-primary-btn-sm,
   .landing-secondary-btn-sm {
-    min-height: 2.25rem;
-    padding: 0.45rem 1.125rem;
+    min-height: var(--control-height-sm);
+    padding: 0.25rem 1.125rem;
     font-size: 0.875rem;
   }
 
@@ -774,7 +789,7 @@
   }
 
   .dashboard-page [data-slot="input"] {
-    height: 2.5rem;
+    height: var(--control-height);
   }
 
   .dashboard-tab-pills {
@@ -803,8 +818,11 @@
     justify-content: center;
     gap: 0.375rem;
     border-radius: var(--radius-sm);
-    padding: 0.5rem 0.875rem;
-    font-size: 0.75rem;
+    /* Track padding (0.25rem) and border (1px) on both sides, so the whole
+       tab bar is exactly one control tall. */
+    height: calc(var(--control-height) - 0.5rem - 2px);
+    padding: 0 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     transition:
       color var(--dur) var(--ease-out-quart),
@@ -841,15 +859,15 @@
     box-shadow: none;
   }
 
-  /* Two button recipes for the shell, both 2.5rem tall so any pair lines up.
-     `-sm` drops to 2.25rem for toolbars and table rows. */
+  /* Two button recipes for the shell, both one control tall so any pair
+     lines up. `-sm` uses the compact size for toolbars and table rows. */
   .dashboard-primary-btn,
   .dashboard-secondary-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    height: 2.5rem;
+    height: var(--control-height);
     border-radius: var(--radius-md);
     padding: 0 1rem;
     font-family: var(--font-outfit), sans-serif;
@@ -866,7 +884,7 @@
 
   .dashboard-primary-btn-sm,
   .dashboard-secondary-btn-sm {
-    height: 2.25rem;
+    height: var(--control-height-sm);
     padding: 0 0.875rem;
     font-size: 0.8125rem;
   }
@@ -1168,7 +1186,8 @@
     justify-content: center;
     gap: 0.375rem;
     border-radius: 999px;
-    padding: 0.5rem 1rem;
+    min-height: var(--control-height-sm);
+    padding: 0.25rem 1rem;
     font-size: 0.8125rem;
     font-weight: 600;
     white-space: nowrap;
@@ -1273,5 +1292,15 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* iOS Safari zooms the page when a field under 16px gets focus, and the zoom
+   stays after typing. Unlayered so it beats text-sm on any field, phones only. */
+@media (max-width: 47.99rem) {
+  input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]),
+  textarea,
+  select {
+    font-size: 16px;
   }
 }

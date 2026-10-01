@@ -260,7 +260,7 @@ function QuestionCard({ question, answer, disabled, onAnswer }) {
                   type="button"
                   disabled={disabled}
                   onClick={() => onAnswer(choice)}
-                  className="min-h-10 rounded-md border border-[var(--landing-line)] px-3 py-2 text-left text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
+                  className="min-h-control rounded-md border border-[var(--landing-line)] px-3 py-2 text-left text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
                 >
                   {choice}
                 </button>
@@ -455,7 +455,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
               type="submit"
               aria-label={t("send")}
               disabled={!text.trim() || sending}
-              className="dashboard-primary-btn h-9 w-9 shrink-0 px-0"
+              className="dashboard-primary-btn size-control shrink-0 px-0"
             >
               <ArrowUpIcon size={16} weight="bold" aria-hidden="true" />
             </button>

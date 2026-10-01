@@ -41,7 +41,7 @@ function StyleToggle({ icon, label, checked, onChange, disabled }) {
         disabled={disabled}
         onClick={() => onChange(!checked)}
         data-on={checked}
-        className="landing-switch cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-ink)] focus-visible:ring-offset-2"
+        className="landing-switch tap-target cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-ink)] focus-visible:ring-offset-2"
       >
         <span />
       </button>
@@ -105,7 +105,7 @@ export default function TemplateStyleToolbar({
               data-selected={style.color === option.id}
               onClick={() => update({ color: option.id })}
               style={{ background: option.swatch }}
-              className="landing-swatch cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-ink)] focus-visible:ring-offset-2"
+              className="landing-swatch tap-target cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-ink)] focus-visible:ring-offset-2"
             />
           ))}
         </div>
@@ -118,7 +118,7 @@ export default function TemplateStyleToolbar({
         <Select value={style.font} onValueChange={(font) => update({ font })}>
           <SelectTrigger
             aria-label={t("font")}
-            className="h-9 w-44 rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] text-sm"
+            className="h-control-sm w-44 rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] text-sm"
           >
             <SelectValue>
               <span style={{ fontFamily: getTemplateFontOption(style.font).stack }}>

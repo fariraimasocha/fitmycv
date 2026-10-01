@@ -109,7 +109,7 @@ function SortSelect({ sort, onChange, className }) {
         aria-label={t("sortBy")}
         className={cn(
           CONTROL,
-          "rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] shadow-none data-[size=default]:h-9",
+          "rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] shadow-none data-[size=default]:h-control",
           className
         )}
       >
@@ -359,7 +359,7 @@ function ApplicationsTracker() {
                         {tags.length > 0 && (
                           <button
                             type="button"
-                            className="mt-1 h-8 w-full rounded-md text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
+                            className="mt-1 h-control-sm w-full rounded-md text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
                             onClick={() => setTags([])}
                           >
                             {t("clearTags")}

@@ -13,7 +13,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
       <button
         id={buttonId}
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 text-left"
+        className="flex min-h-control w-full items-center justify-between gap-4 text-left"
         aria-expanded={isOpen}
         aria-controls={panelId}
       >

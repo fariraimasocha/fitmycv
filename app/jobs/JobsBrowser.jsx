@@ -95,7 +95,7 @@ function FilterField({
       <Select value={value} onValueChange={onValueChange}>
         <SelectTrigger
           id={id}
-          className="h-10 w-full rounded-md"
+          className="h-control w-full rounded-md"
           aria-label={triggerLabel}
         >
           <SelectValue />
@@ -344,7 +344,7 @@ export default function JobsBrowser() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Search job titles"
           aria-label="Search job titles"
-          className="h-11 rounded-md pl-9"
+          className="h-control rounded-md pl-9"
         />
       </div>
 

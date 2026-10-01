@@ -222,7 +222,7 @@ const Navbar1 = () => {
 
         <button
           type="button"
-          className="rounded-lg p-2 text-[var(--landing-ink)] md:hidden"
+          className="inline-flex size-control items-center justify-center rounded-lg text-[var(--landing-ink)] md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? t("closeMenu") : t("openMenu")}
         >

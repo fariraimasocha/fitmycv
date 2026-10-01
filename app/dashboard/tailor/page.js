@@ -793,7 +793,7 @@ function Tailor() {
                     aria-label={t("form.urlAria")}
                     autoComplete="url"
                     spellCheck={false}
-                    className="min-w-0 flex-1 text-sm"
+                    className="min-w-0 text-sm sm:flex-1"
                   />
                   <button
                     type="submit"

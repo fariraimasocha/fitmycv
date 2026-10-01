@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { useLocale, useTranslations } from "next-intl";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -13,12 +14,12 @@ import { DashboardTabBar } from "./DashboardTabBar";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { cn } from "@/lib/utils";
 
-const CHART_CONFIG = {
-  count: { label: "Count", color: "var(--landing-accent)" },
-};
-
-function formatWeekLabel(date) {
-  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+function formatWeekLabel(date, locale) {
+  // English keeps the en-GB date order it always had.
+  return date.toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+    day: "numeric",
+    month: "short",
+  });
 }
 
 /**
@@ -31,7 +32,12 @@ export function DashboardActivityChart({
   className,
   delay = 0,
 }) {
+  const t = useTranslations("dashboard.activity");
+  const locale = useLocale();
   const reduceMotion = useReducedMotion();
+  const chartConfig = {
+    count: { label: t("count"), color: "var(--landing-accent)" },
+  };
   const [activeId, setActiveId] = useState(series[0]?.id);
   const active = series.find((s) => s.id === activeId) ?? series[0];
 
@@ -44,8 +50,8 @@ export function DashboardActivityChart({
   const data = counts.map((count, index) => {
     const start = weekStarts[index];
     return {
-      label: formatWeekLabel(start),
-      week: `Week of ${formatWeekLabel(start)}`,
+      label: formatWeekLabel(start, locale),
+      week: t("weekOf", { date: formatWeekLabel(start, locale) }),
       count,
     };
   });
@@ -62,14 +68,14 @@ export function DashboardActivityChart({
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h2 className="font-outfit text-sm font-semibold text-foreground">
-                Activity
+                {t("title")}
               </h2>
               <p className="mt-0.5 text-xs text-muted-foreground">
-                Last {counts.length} weeks
+                {t("lastWeeks", { count: counts.length })}
               </p>
             </div>
             <DashboardTabBar
-              ariaLabel="Choose what the chart shows"
+              ariaLabel={t("chooseSeries")}
               tabs={series.map((s) => ({ id: s.id, label: s.label }))}
               activeTab={active?.id}
               onTabChange={setActiveId}
@@ -78,7 +84,7 @@ export function DashboardActivityChart({
 
           <dl className="mt-5 grid grid-cols-3 divide-x divide-[var(--landing-line)]">
             <div className="pr-4">
-              <dt className="text-xs font-medium text-muted-foreground">This week</dt>
+              <dt className="text-xs font-medium text-muted-foreground">{t("thisWeek")}</dt>
               <dd className="mt-1">
                 <AnimatedNumber
                   value={thisWeek}
@@ -87,7 +93,7 @@ export function DashboardActivityChart({
               </dd>
             </div>
             <div className="px-4">
-              <dt className="text-xs font-medium text-muted-foreground">vs last week</dt>
+              <dt className="text-xs font-medium text-muted-foreground">{t("vsLastWeek")}</dt>
               <dd
                 className={cn(
                   "mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em]",
@@ -102,7 +108,7 @@ export function DashboardActivityChart({
               </dd>
             </div>
             <div className="pl-4">
-              <dt className="text-xs font-medium text-muted-foreground">Total in range</dt>
+              <dt className="text-xs font-medium text-muted-foreground">{t("totalInRange")}</dt>
               <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                 {total}
               </dd>
@@ -111,7 +117,7 @@ export function DashboardActivityChart({
 
           <ChartContainer
             id={`activity-${active?.id}`}
-            config={CHART_CONFIG}
+            config={chartConfig}
             className="mt-4 h-52 w-full"
           >
             <AreaChart

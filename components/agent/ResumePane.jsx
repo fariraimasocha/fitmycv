@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { CrownIcon, DownloadSimpleIcon, FileDashedIcon, MinusIcon, PencilSimpleIcon, PlusIcon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -57,6 +58,7 @@ function ToolbarButton({ label, children, ...props }) {
 }
 
 export function ResumePane({ draft, template, style }) {
+  const t = useTranslations("dashboard.agent.resume");
   const { data: session } = useSession();
   const scrollRef = useRef(null);
   const [userZoom, setUserZoom] = useState(storedZoom);
@@ -112,11 +114,11 @@ export function ResumePane({ draft, template, style }) {
   };
 
   return (
-    <section aria-label="Draft CV" className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
+    <section aria-label={t("draftCv")} className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
       <div className="flex h-12 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3">
         <div className="flex h-9 items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-0.5">
           <ToolbarButton
-            label="Zoom out"
+            label={t("zoomOut")}
             disabled={!draft || zoom <= MIN_ZOOM}
             onClick={() => setUserZoom(clampZoom(zoom - ZOOM_STEP))}
           >
@@ -128,16 +130,16 @@ export function ResumePane({ draft, template, style }) {
                 type="button"
                 disabled={!draft}
                 onClick={() => setUserZoom(null)}
-                aria-label={`Zoom ${zoomPercent}%. Fit to width`}
+                aria-label={t("zoomFit", { percent: zoomPercent })}
                 className="h-7 min-w-12 rounded-md px-1 text-xs font-medium text-muted-foreground tabular-nums transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground disabled:opacity-50"
               >
                 {zoomPercent}%
               </button>
             </TooltipTrigger>
-            <TooltipContent side="bottom">Fit to width</TooltipContent>
+            <TooltipContent side="bottom">{t("fitToWidth")}</TooltipContent>
           </Tooltip>
           <ToolbarButton
-            label="Zoom in"
+            label={t("zoomIn")}
             disabled={!draft || zoom >= MAX_ZOOM}
             onClick={() => setUserZoom(clampZoom(zoom + ZOOM_STEP))}
           >
@@ -151,7 +153,7 @@ export function ResumePane({ draft, template, style }) {
               className="dashboard-secondary-btn dashboard-secondary-btn-sm"
             >
               <PencilSimpleIcon size={16} aria-hidden="true" />
-              Edit
+              {t("edit")}
             </Link>
           )}
           <button
@@ -166,9 +168,9 @@ export function ResumePane({ draft, template, style }) {
               <CrownIcon size={16} aria-hidden="true" />
             )}
             <span className="hidden sm:inline">
-              {isPremium ? "Download PDF" : "Unlock to download"}
+              {isPremium ? t("downloadPdf") : t("unlockToDownload")}
             </span>
-            <span className="sm:hidden">{isPremium ? "PDF" : "Unlock"}</span>
+            <span className="sm:hidden">{isPremium ? t("pdf") : t("unlock")}</span>
           </button>
         </div>
       </div>
@@ -197,10 +199,10 @@ export function ResumePane({ draft, template, style }) {
                 <FileDashedIcon size={22} aria-hidden="true" />
               </span>
               <p className="mt-4 font-outfit text-base font-semibold tracking-[-0.01em] text-foreground">
-                This draft was deleted
+                {t("deletedTitle")}
               </p>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Start a new thread to keep editing your CV.
+                {t("deletedDescription")}
               </p>
             </div>
           </div>

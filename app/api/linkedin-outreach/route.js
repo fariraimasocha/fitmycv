@@ -30,6 +30,7 @@ Rules:
 - End with a soft ask ("would love to chat" or "happy to share insights")
 - Tone: confident, specific, direct — not salesy
 - Generate 2 alternate versions with different hooks
+- Write every message in the same language as the job posting
 - targetRoles: suggest 2-3 roles at the company worth reaching out to
 - Return ONLY the JSON object`;
 

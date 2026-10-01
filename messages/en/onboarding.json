@@ -1,0 +1,40 @@
+{
+  "back": "Back",
+  "skip": "Skip for now",
+  "tryAgain": "Try again",
+  "continueToTailoring": "Continue to tailoring",
+  "finishError": "Your CV is saved, but we couldn't finish setting up your account. Try again.",
+  "saveError": "Couldn't save your CV. Check your connection and try again.",
+  "upload": {
+    "eyebrow": "Your CV",
+    "title": "{hasName, select, yes {{name}, upload your CV so we can tailor everything to you.} other {Upload your CV so we can tailor everything to you.}}",
+    "privacy": "Only you can see your CV. Our AI provider reads it to write your applications.",
+    "editLater": "You can edit these details on My CV later."
+  },
+  "payoff": {
+    "eyebrow": "Your CV is ready",
+    "title": "{hasName, select, yes {{name}, here is what we read.} other {Here is what we read.}}",
+    "facts": {
+      "roles": "{count, plural, one {role} other {roles}}",
+      "skills": "{count, plural, one {skill} other {skills}}",
+      "years": "years of experience"
+    },
+    "intro": "Every tailored CV and cover letter is built from this. You can edit any of it later. Here is what happens next:",
+    "tailorCta": "Tailor your first CV",
+    "dashboardCta": "Go to dashboard"
+  },
+  "plan": {
+    "resume": {
+      "title": "Add your CV",
+      "description": "One upload becomes the source for every tailored application."
+    },
+    "tailor": {
+      "title": "Tailor your first CV",
+      "description": "Paste a job link or description. Get a rewritten CV and a cover letter to match."
+    },
+    "applications": {
+      "title": "Track your applications",
+      "description": "Keep every role you have applied to in one pipeline."
+    }
+  }
+}

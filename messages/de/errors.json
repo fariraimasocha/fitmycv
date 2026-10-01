@@ -1,0 +1,36 @@
+{
+  "notFound": {
+    "metaTitle": "Seite nicht gefunden",
+    "eyebrow": "404",
+    "title": "Diese Seite haben wir nicht gefunden",
+    "body": "Der Link ist vielleicht fehlerhaft oder die Seite wurde verschoben. Hier geht es für die meisten weiter.",
+    "links": {
+      "tailor": "Lebenslauf aus einem Stellenlink anpassen",
+      "resumeExamples": "Lebenslauf-Beispiele",
+      "blog": "Blog",
+      "pricing": "Preise"
+    },
+    "home": "Zurück zur Startseite"
+  },
+  "page": {
+    "eyebrow": "Fehler",
+    "title": "Diese Seite wurde nicht geladen",
+    "body": "Bei uns ist etwas schiefgelaufen. Versuch es noch einmal oder geh zurück zur Startseite.",
+    "retry": "Erneut versuchen",
+    "home": "Zur Startseite"
+  },
+  "dashboard": {
+    "title": "Diese Seite wurde nicht geladen",
+    "description": "Deine Lebensläufe und Anschreiben sind sicher. Versuch es noch einmal oder geh zurück zur Startseite.",
+    "retry": "Erneut versuchen",
+    "home": "Zur Startseite"
+  },
+  "global": {
+    "docTitle": "FitMyCV | Diese Seite wurde nicht geladen",
+    "title": "Diese Seite wurde nicht geladen",
+    "body": "Bei uns ist etwas schiefgelaufen. Versuch es noch einmal oder geh zurück zur Startseite.",
+    "retry": "Erneut versuchen",
+    "home": "Zur Startseite",
+    "support": "Wenn das weiter passiert, <link>wende dich an den Support</link>."
+  }
+}

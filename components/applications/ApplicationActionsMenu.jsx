@@ -2,6 +2,7 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   ArchiveIcon,
   ArrowRightIcon,
@@ -33,6 +34,8 @@ import { cn } from "@/lib/utils";
 const stop = (event) => event.stopPropagation();
 
 export function ApplicationActionsMenu({ application, onEdit, showOnHover, className }) {
+  const t = useTranslations("dashboard.appComponents.actions");
+  const tDashboard = useTranslations("dashboard");
   const queryClient = useQueryClient();
   const [confirm, confirmDialog] = useConfirm();
   const invalidate = () => queryClient.invalidateQueries({ queryKey: ["applications"] });
@@ -47,14 +50,15 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
     mutationFn: () => requestJson(`/api/applications/${application._id}`, { method: "DELETE" }),
     onSuccess: () => {
       invalidate();
-      toast.success("Application deleted");
+      toast.success(t("deleted"));
     },
     onError: (error) => toast.error(error.message),
   });
 
   const onDelete = async () => {
-    const confirmed = await confirm("Delete this application?", {
-      description: `${application.jobTitle} at ${application.jobCompany} and its full timeline will be deleted for good.`,
+    const confirmed = await confirm(t("confirmTitle"), {
+      description: t("confirmDescription", { title: application.jobTitle, company: application.jobCompany }),
+      confirmText: t("delete"),
     });
     if (confirmed) remove.mutate();
   };
@@ -66,7 +70,7 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
           <Button
             size="icon-sm"
             variant="ghost"
-            aria-label="Application actions"
+            aria-label={t("menuLabel")}
             className={cn(
               "size-6 rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground",
               showOnHover &&
@@ -79,12 +83,12 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
         <DropdownMenuContent align="end" className="w-44">
           <DropdownMenuItem onClick={() => onEdit(application)}>
             <PencilSimpleIcon />
-            Edit
+            {t("edit")}
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <ArrowRightIcon />
-              Move to
+              {t("moveTo")}
             </DropdownMenuSubTrigger>
             <DropdownMenuSubContent>
               {STAGES.map((stage) => (
@@ -94,19 +98,19 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
                   onClick={() => update.mutate({ status: stage.key })}
                 >
                   <span className="h-2 w-2 rounded-full" style={{ background: stage.color }} aria-hidden="true" />
-                  {stage.label}
+                  {tDashboard(`stages.${stage.key}`)}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuSubContent>
           </DropdownMenuSub>
           <DropdownMenuItem onClick={() => update.mutate({ archived: !application.archived })}>
             {application.archived ? <TrayArrowUpIcon /> : <ArchiveIcon />}
-            {application.archived ? "Unarchive" : "Archive"}
+            {application.archived ? t("unarchive") : t("archive")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive" onClick={() => void onDelete()}>
             <TrashIcon />
-            Delete
+            {t("delete")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -1,0 +1,40 @@
+{
+  "back": "Atrás",
+  "skip": "Omitir por ahora",
+  "tryAgain": "Reintentar",
+  "continueToTailoring": "Continuar a la adaptación",
+  "finishError": "Tu CV está guardado, pero no pudimos terminar de configurar tu cuenta. Inténtalo de nuevo.",
+  "saveError": "No se pudo guardar tu CV. Revisa tu conexión e inténtalo de nuevo.",
+  "upload": {
+    "eyebrow": "Tu CV",
+    "title": "{hasName, select, yes {{name}, sube tu CV para que podamos adaptarlo todo a ti.} other {Sube tu CV para que podamos adaptarlo todo a ti.}}",
+    "privacy": "Solo tú puedes ver tu CV. Nuestro proveedor de IA lo lee para redactar tus candidaturas.",
+    "editLater": "Puedes editar estos datos más tarde en Mi CV."
+  },
+  "payoff": {
+    "eyebrow": "Tu CV está listo",
+    "title": "{hasName, select, yes {{name}, esto es lo que hemos leído.} other {Esto es lo que hemos leído.}}",
+    "facts": {
+      "roles": "{count, plural, one {puesto} other {puestos}}",
+      "skills": "{count, plural, one {habilidad} other {habilidades}}",
+      "years": "años de experiencia"
+    },
+    "intro": "Cada CV adaptado y cada carta de presentación parten de esto. Puedes editar cualquier parte más tarde. Esto es lo que sigue:",
+    "tailorCta": "Adapta tu primer CV",
+    "dashboardCta": "Ir al panel"
+  },
+  "plan": {
+    "resume": {
+      "title": "Añade tu CV",
+      "description": "Una sola subida sirve de base para cada candidatura adaptada."
+    },
+    "tailor": {
+      "title": "Adapta tu primer CV",
+      "description": "Pega un enlace o la descripción de una oferta. Recibe un CV reescrito y una carta de presentación a juego."
+    },
+    "applications": {
+      "title": "Sigue tus candidaturas",
+      "description": "Ten todos los puestos a los que te has postulado en un solo seguimiento."
+    }
+  }
+}

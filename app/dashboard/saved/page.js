@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   BookmarkSimpleIcon,
   BuildingsIcon,
@@ -26,11 +27,13 @@ import {
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Saved jobs";
-const PAGE_DESCRIPTION = "Roles you saved from your daily job-match emails.";
+function SavedPageHeader() {
+  const t = useTranslations("dashboard.saved");
+  return <DashboardPageHeader title={t("title")} description={t("description")} />;
+}
 
-function locationLabel(job) {
-  if (job.isRemote) return "Remote";
+function locationLabel(job, remoteLabel) {
+  if (job.isRemote) return remoteLabel;
   const parts = [job.city, job.state].filter(Boolean);
   return parts.length ? parts.join(", ") : job.country ?? "";
 }
@@ -59,9 +62,10 @@ function RowAction({ label, onClick, disabled, className, children }) {
 }
 
 function SavedJobRow({ item, confirming, onRemove, removing }) {
+  const t = useTranslations("dashboard.saved");
   const job = item.job ?? {};
-  const location = locationLabel(job);
-  const title = job.title || "Untitled role";
+  const location = locationLabel(job, t("remote"));
+  const title = job.title || t("untitledRole");
 
   return (
     <li className="group flex flex-col gap-3 px-4 py-3 transition-colors hover:bg-[var(--landing-paper-soft)] sm:flex-row sm:items-center sm:px-5">
@@ -107,12 +111,12 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
             rel="noreferrer"
             className="dashboard-secondary-btn dashboard-secondary-btn-sm flex-1 sm:flex-none"
           >
-            Apply
+            {t("apply")}
             <ArrowSquareOutIcon size={14} aria-hidden="true" />
           </a>
         )}
         <RowAction
-          label={confirming ? "Click again to remove" : `Remove ${title}`}
+          label={confirming ? t("confirmRemove") : t("removeJob", { title })}
           disabled={removing}
           onClick={() => onRemove(item._id)}
           className={cn(
@@ -155,6 +159,7 @@ function ListSkeleton() {
 }
 
 function SavedJobs() {
+  const t = useTranslations("dashboard.saved");
   const { data: session, status } = useSession();
   const isPremium = !!session?.user?.isPremium;
   const queryClient = useQueryClient();
@@ -163,15 +168,15 @@ function SavedJobs() {
 
   useEffect(() => {
     const saved = searchParams.get("saved");
-    if (saved === "1") toast.success("Job saved");
-    else if (saved === "0") toast.error("Couldn't save that job. The link may have expired.");
-  }, [searchParams]);
+    if (saved === "1") toast.success(t("jobSaved"));
+    else if (saved === "0") toast.error(t("saveError"));
+  }, [searchParams, t]);
 
   const { data: items, isLoading } = useQuery({
     queryKey: ["saved-jobs"],
     queryFn: async () => {
       const res = await fetch("/api/saved-jobs");
-      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
+      if (!res.ok) throw new Error(t("loadError"));
       return (await res.json()).data;
     },
     enabled: isPremium,
@@ -184,11 +189,11 @@ function SavedJobs() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["saved-jobs"] });
-      toast.success("Job removed");
+      toast.success(t("jobRemoved"));
       setConfirmRemoveId(null);
     },
     onError: () => {
-      toast.error("Couldn't remove the job. Try again.");
+      toast.error(t("removeError"));
       setConfirmRemoveId(null);
     },
   });
@@ -202,7 +207,7 @@ function SavedJobs() {
   if (status === "loading" || (isPremium && isLoading)) {
     return (
       <DashboardPageShell>
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <SavedPageHeader />
         <ListSkeleton />
       </DashboardPageShell>
     );
@@ -211,12 +216,12 @@ function SavedJobs() {
   if (!isPremium) {
     return (
       <DashboardPageShell>
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <SavedPageHeader />
         <DashboardEmptyState
           icon={CrownIcon}
-          title="Saved jobs are on Pro"
-          description="Upgrade to get daily job matches by email and save the ones you like."
-          actionLabel="See Pro plans"
+          title={t("proTitle")}
+          description={t("proDescription")}
+          actionLabel={t("proAction")}
           actionHref="/dashboard/upgrade"
         />
       </DashboardPageShell>
@@ -227,20 +232,20 @@ function SavedJobs() {
 
   return (
     <DashboardPageShell>
-      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <SavedPageHeader />
 
       {count === 0 ? (
         <DashboardEmptyState
           icon={BookmarkSimpleIcon}
-          title="Your saved jobs will appear here"
-          description="Press Save on a role in your daily job-match email and it shows up on this page."
+          title={t("emptyTitle")}
+          description={t("emptyDescription")}
         />
       ) : (
         <DashboardPanel pad={false} as="section">
           <div className="border-b border-[var(--landing-line)] px-4 py-4 sm:px-5">
             <DashboardPanelHeader
-              title="All saved jobs"
-              description={`${count} ${count === 1 ? "job" : "jobs"}`}
+              title={t("allTitle")}
+              description={t("jobCount", { count })}
             />
           </div>
           <ul className="divide-y divide-[var(--landing-line)]">
@@ -265,7 +270,7 @@ export default function SavedJobsPage() {
     <Suspense
       fallback={
         <DashboardPageShell>
-          <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+          <SavedPageHeader />
           <ListSkeleton />
         </DashboardPageShell>
       }

@@ -1,0 +1,40 @@
+{
+  "back": "Zurück",
+  "skip": "Vorerst überspringen",
+  "tryAgain": "Erneut versuchen",
+  "continueToTailoring": "Weiter zum Anpassen",
+  "finishError": "Dein Lebenslauf ist gespeichert, aber wir konnten die Einrichtung deines Kontos nicht abschließen. Versuch es erneut.",
+  "saveError": "Dein Lebenslauf konnte nicht gespeichert werden. Prüf deine Verbindung und versuch es erneut.",
+  "upload": {
+    "eyebrow": "Dein Lebenslauf",
+    "title": "{hasName, select, yes {{name}, lade deinen Lebenslauf hoch, damit wir alles auf dich zuschneiden können.} other {Lade deinen Lebenslauf hoch, damit wir alles auf dich zuschneiden können.}}",
+    "privacy": "Nur du kannst deinen Lebenslauf sehen. Unser KI-Anbieter liest ihn, um deine Bewerbungen zu schreiben.",
+    "editLater": "Du kannst diese Angaben später unter Mein Lebenslauf bearbeiten."
+  },
+  "payoff": {
+    "eyebrow": "Dein Lebenslauf ist bereit",
+    "title": "{hasName, select, yes {{name}, das haben wir gelesen.} other {Das haben wir gelesen.}}",
+    "facts": {
+      "roles": "{count, plural, one {Position} other {Positionen}}",
+      "skills": "{count, plural, one {Fähigkeit} other {Fähigkeiten}}",
+      "years": "Jahre Berufserfahrung"
+    },
+    "intro": "Jeder angepasste Lebenslauf und jedes Anschreiben baut darauf auf. Du kannst später alles bearbeiten. So geht es weiter:",
+    "tailorCta": "Deinen ersten Lebenslauf anpassen",
+    "dashboardCta": "Zum Dashboard"
+  },
+  "plan": {
+    "resume": {
+      "title": "Lebenslauf hinzufügen",
+      "description": "Ein einziger Upload ist die Grundlage für jede angepasste Bewerbung."
+    },
+    "tailor": {
+      "title": "Deinen ersten Lebenslauf anpassen",
+      "description": "Füg einen Link oder eine Stellenbeschreibung ein. Du bekommst einen neu geschriebenen Lebenslauf und ein passendes Anschreiben."
+    },
+    "applications": {
+      "title": "Bewerbungen verfolgen",
+      "description": "Behalte alle Stellen, auf die du dich beworben hast, in einer Übersicht."
+    }
+  }
+}

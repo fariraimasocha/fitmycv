@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   LightbulbIcon,
   WarningCircleIcon,
@@ -13,16 +14,12 @@ import {
 } from "@phosphor-icons/react";
 import { DashboardPanelHeader } from "@/components/dashboard";
 
-const STAR_FIELDS = [
-  ["Situation", "situation"],
-  ["Task", "task"],
-  ["Action", "action"],
-  ["Result", "result"],
-  ["Reflection", "reflection"],
-];
+// Labels live in messages under tailor.interviewPrep.star.<key>.
+const STAR_FIELDS = ["situation", "task", "action", "result", "reflection"];
 
 function StoryAccordion({ story, index, onSave }) {
   const [expanded, setExpanded] = useState(false);
+  const t = useTranslations("tailor.interviewPrep");
 
   return (
     <li className="rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)]">
@@ -39,7 +36,7 @@ function StoryAccordion({ story, index, onSave }) {
           <span className="block truncate text-sm font-medium text-foreground">
             {story.requirement}
           </span>
-          <span className="block text-xs text-muted-foreground">STAR story</span>
+          <span className="block text-xs text-muted-foreground">{t("starStory")}</span>
         </span>
         {expanded ? (
           <CaretUpIcon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
@@ -49,10 +46,10 @@ function StoryAccordion({ story, index, onSave }) {
       </button>
       {expanded && (
         <div className="flex flex-col gap-3 border-t border-[var(--landing-line)] px-3 pb-3 pt-3">
-          {STAR_FIELDS.map(([label, key]) =>
+          {STAR_FIELDS.map((key) =>
             story[key] ? (
               <div key={key}>
-                <p className="text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="text-xs font-medium text-muted-foreground">{t(`star.${key}`)}</p>
                 <p className="mt-0.5 text-sm leading-6 text-foreground">{story[key]}</p>
               </div>
             ) : null,
@@ -64,7 +61,7 @@ function StoryAccordion({ story, index, onSave }) {
               className="dashboard-secondary-btn dashboard-secondary-btn-sm self-start"
             >
               <BookmarkSimpleIcon size={14} aria-hidden="true" />
-              Save to story bank
+              {t("saveToBank")}
             </button>
           )}
         </div>
@@ -104,12 +101,13 @@ function SectionTitle({ icon: Icon, tone, children }) {
 }
 
 export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCompany }) {
+  const t = useTranslations("tailor.interviewPrep");
   if (isLoading) {
     return (
       <section className="dashboard-card dashboard-card-pad rounded-lg">
         <DashboardPanelHeader
-          title="Interview prep"
-          description="Writing STAR stories and talking points from your CV and this posting"
+          title={t("title")}
+          description={t("loading")}
         />
         <div className="mt-4">
           <LoadingSkeleton />
@@ -122,11 +120,11 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
     return (
       <section className="dashboard-card dashboard-card-pad rounded-lg">
         <DashboardPanelHeader
-          title="Interview prep"
-          description="Example answers, hard questions and talking points for this role."
+          title={t("title")}
+          description={t("emptyDescription")}
         />
         <p className="mt-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
-          On Pro, interview prep for this role appears here after your CV is tailored.
+          {t("empty")}
         </p>
       </section>
     );
@@ -151,9 +149,9 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
         }),
       });
       if (!res.ok) throw new Error("Couldn't save your changes. Try again.");
-      toast.success("Story saved to your story bank");
+      toast.success(t("saved"));
     } catch {
-      toast.error("Couldn't save the story. Try again.");
+      toast.error(t("saveError"));
     }
   };
 
@@ -163,14 +161,14 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
     <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
       <div className="dashboard-card-pad border-b border-[var(--landing-line)]">
         <DashboardPanelHeader
-          title="Interview prep"
-          description="Drawn from your tailored CV and this posting."
+          title={t("title")}
+          description={t("description")}
         />
       </div>
       <div className="divide-y divide-[var(--landing-line)]">
         {stories?.length > 0 && (
           <div className="dashboard-card-pad">
-            <SectionTitle icon={ChatTeardropDotsIcon}>STAR stories</SectionTitle>
+            <SectionTitle icon={ChatTeardropDotsIcon}>{t("starStories")}</SectionTitle>
             <ul className="mt-3 flex flex-col gap-2">
               {stories.map((story, i) => (
                 <StoryAccordion key={i} story={story} index={i} onSave={handleSaveStory} />
@@ -182,7 +180,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
         {redFlagQA?.length > 0 && (
           <div className="dashboard-card-pad">
             <SectionTitle icon={WarningCircleIcon} tone="accent">
-              Questions to prepare for
+              {t("questions")}
             </SectionTitle>
             <ul className="mt-3 flex flex-col gap-2">
               {redFlagQA.map((qa, i) => (
@@ -203,7 +201,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
         {talkingPoints?.length > 0 && (
           <div className="dashboard-card-pad">
             <SectionTitle icon={LightbulbIcon} tone="success">
-              Talking points
+              {t("talkingPoints")}
             </SectionTitle>
             <ul className="mt-3 flex flex-col gap-2">
               {talkingPoints.map((point, i) => (

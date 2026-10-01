@@ -1,0 +1,36 @@
+{
+  "notFound": {
+    "metaTitle": "Page introuvable",
+    "eyebrow": "404",
+    "title": "Nous n'avons pas trouvé cette page",
+    "body": "Le lien est peut-être cassé ou la page a peut-être été déplacée. Voici où la plupart des gens vont ensuite.",
+    "links": {
+      "tailor": "Adapter un CV à partir d'un lien d'offre",
+      "resumeExamples": "Exemples de CV",
+      "blog": "Blog",
+      "pricing": "Tarifs"
+    },
+    "home": "Retour à l'accueil"
+  },
+  "page": {
+    "eyebrow": "Erreur",
+    "title": "Cette page ne s'est pas chargée",
+    "body": "Un problème est survenu de notre côté. Réessayez ou retournez à l'accueil.",
+    "retry": "Réessayer",
+    "home": "Aller à l'accueil"
+  },
+  "dashboard": {
+    "title": "Cette page ne s'est pas chargée",
+    "description": "Vos CV et lettres de motivation sont en sécurité. Réessayez ou revenez à l'accueil.",
+    "retry": "Réessayer",
+    "home": "Aller à l'accueil"
+  },
+  "global": {
+    "docTitle": "FitMyCV | Cette page ne s'est pas chargée",
+    "title": "Cette page ne s'est pas chargée",
+    "body": "Un problème est survenu de notre côté. Réessayez ou retournez à l'accueil.",
+    "retry": "Réessayer",
+    "home": "Aller à l'accueil",
+    "support": "Si le problème persiste, <link>contactez l'assistance</link>."
+  }
+}

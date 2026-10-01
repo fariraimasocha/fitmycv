@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   SpinnerGapIcon,
   LinkIcon,
@@ -69,29 +70,23 @@ import { cn } from "@/lib/utils";
 // Matches the extract route's minimum, so the button never sends a paste it would refuse.
 const MIN_JOB_TEXT_CHARS = 150;
 
-const STEPS = [
-  { title: "Add the job", body: "Paste a link or the description." },
-  { title: "We tailor your CV", body: "Rewritten for the role, with a cover letter." },
-  { title: "Review and download", body: "Edit the CV, check the ATS score, download." },
-];
+// Labels for these lists live in messages under tailor.tailorPage.
+const STEPS = ["job", "tailor", "review"];
 
-const JOB_INPUT_TABS = [
-  { key: "link", label: "Job link" },
-  { key: "text", label: "Paste description" },
-];
+const JOB_INPUT_TABS = ["link", "text"];
 
 const MOBILE_TABS = [
-  { id: "edit", label: "Edit", icon: <PencilSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "preview", label: "Preview", icon: <EyeIcon size={14} aria-hidden="true" /> },
+  { id: "edit", icon: <PencilSimpleIcon size={14} aria-hidden="true" /> },
+  { id: "preview", icon: <EyeIcon size={14} aria-hidden="true" /> },
 ];
 
 const RESULT_TABS = [
-  { id: "cv", label: "Tailored CV", icon: <FileTextIcon size={14} aria-hidden="true" /> },
-  { id: "letter", label: "Cover letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "ats", label: "ATS score", icon: <ChartBarIcon size={14} aria-hidden="true" /> },
-  { id: "why", label: "Why this role", icon: <ChatCenteredTextIcon size={14} aria-hidden="true" /> },
-  { id: "research", label: "Research", icon: <BinocularsIcon size={14} aria-hidden="true" /> },
-  { id: "interview", label: "Interview", icon: <ChatTeardropDotsIcon size={14} aria-hidden="true" /> },
+  { id: "cv", icon: <FileTextIcon size={14} aria-hidden="true" /> },
+  { id: "letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
+  { id: "ats", icon: <ChartBarIcon size={14} aria-hidden="true" /> },
+  { id: "why", icon: <ChatCenteredTextIcon size={14} aria-hidden="true" /> },
+  { id: "research", icon: <BinocularsIcon size={14} aria-hidden="true" /> },
+  { id: "interview", icon: <ChatTeardropDotsIcon size={14} aria-hidden="true" /> },
 ];
 
 function buildResumeData(source) {
@@ -119,6 +114,7 @@ function Rise({ children, delay = 0, className }) {
 
 /** Three cells, one per step. Done steps tick, the current one is inked. */
 function StepRail({ current }) {
+  const t = useTranslations("tailor.tailorPage.steps");
   return (
     <DashboardPanel pad={false} delay={0.05}>
       <ol className="grid grid-cols-1 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -127,7 +123,7 @@ function StepRail({ current }) {
           const state = number < current ? "done" : number === current ? "current" : "next";
           return (
             <li
-              key={step.title}
+              key={step}
               aria-current={state === "current" ? "step" : undefined}
               className="flex items-center gap-3 px-4 py-3 sm:px-5"
             >
@@ -148,9 +144,9 @@ function StepRail({ current }) {
                     state === "next" ? "text-muted-foreground" : "text-foreground",
                   )}
                 >
-                  {step.title}
+                  {t(`${step}.title`)}
                 </span>
-                <span className="block truncate text-xs text-muted-foreground">{step.body}</span>
+                <span className="block truncate text-xs text-muted-foreground">{t(`${step}.body`)}</span>
               </span>
             </li>
           );
@@ -162,6 +158,10 @@ function StepRail({ current }) {
 
 function Tailor() {
   const { data: session } = useSession();
+  const t = useTranslations("tailor.tailorPage");
+  const jobInputTabs = JOB_INPUT_TABS.map((key) => ({ key, label: t(`inputTabs.${key}`) }));
+  const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
+  const resultTabs = RESULT_TABS.map((tab) => ({ ...tab, label: t(`resultTabs.${tab.id}`) }));
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   // ATS free tools stash the posting in sessionStorage. Read once on mount.
@@ -286,7 +286,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Couldn't read that job listing. Paste the job description instead.");
+        throw new Error(err.error || t("errors.extract"));
       }
 
       return res.json();
@@ -388,7 +388,7 @@ function Tailor() {
       // A blocked link is a dead end unless the paste box is one click away.
       toast.error(error.message, {
         action: input?.url
-          ? { label: "Paste description", onClick: () => setJobInputMode("text") }
+          ? { label: t("inputTabs.text"), onClick: () => setJobInputMode("text") }
           : undefined,
       });
     },
@@ -404,7 +404,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Couldn't save your tailored CV. Try again.");
+        throw new Error(err.error || t("errors.save"));
       }
 
       return res.json();
@@ -424,7 +424,7 @@ function Tailor() {
       const cvData = await cvRes.json();
 
       if (!cvData.data) {
-        throw new Error("Upload your CV on My CV first, then try again.");
+        throw new Error(t("errors.noCv"));
       }
 
       const referenceCV = {
@@ -443,7 +443,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        const error = new Error(err.error || "Couldn't tailor your CV. Try again in a moment.");
+        const error = new Error(err.error || t("errors.tailor"));
         error.code = err.code;
         throw error;
       }
@@ -463,7 +463,7 @@ function Tailor() {
         is_premium: Boolean(session?.user?.isPremium),
         has_cover_letter: Boolean(result.data?.coverLetter),
       });
-      toast.success("CV tailored");
+      toast.success(t("tailored"));
 
       // Paywall stays on download. Free users can see that tailor worked,
       // then unlock when they try to take the PDF.
@@ -611,7 +611,7 @@ function Tailor() {
         return;
       }
       if (!res.ok || !json.data) {
-        throw new Error(json.error || "Couldn't write an answer. Try again.");
+        throw new Error(json.error || t("errors.why"));
       }
       setWhyThisRole(json.data);
       persistTailoredCV({ whyThisRole: json.data.answer });
@@ -641,14 +641,14 @@ function Tailor() {
         return;
       }
       if (!res.ok || !json.data) {
-        throw new Error(json.error || "Couldn't apply this fix. Try again.");
+        throw new Error(json.error || t("errors.fix"));
       }
       const updated = json.data.tailoredCV;
       setTailorResult((r) => ({ ...r, tailoredCV: updated }));
       setLiveValues(null);
       setAppliedFixes((list) => [...list, fix]);
       trackEvent("ats_fix_applied");
-      toast.success(json.data.changes?.[0] || "Applied to your CV");
+      toast.success(json.data.changes?.[0] || t("fixApplied"));
       persistTailoredCV({
         basics: updated.basics,
         work: updated.work,
@@ -697,14 +697,14 @@ function Tailor() {
     e.preventDefault();
     if (jobInputMode === "text") {
       if (jobText.trim().length < MIN_JOB_TEXT_CHARS) {
-        toast.error("Paste the full job description, not just a few lines.");
+        toast.error(t("errors.shortText"));
         return;
       }
       extractMutation.mutate({ text: jobText.trim() });
       return;
     }
     if (!url.trim()) {
-      toast.error("Enter a job URL first.");
+      toast.error(t("errors.noUrl"));
       return;
     }
     extractMutation.mutate({ url: url.trim() });
@@ -733,10 +733,10 @@ function Tailor() {
   const jobDetailSummary = jobData
     ? [
         jobData.requirements?.length
-          ? `${jobData.requirements.length} requirements`
+          ? t("summary.requirements", { count: jobData.requirements.length })
           : null,
-        jobData.keywords?.length ? `${jobData.keywords.length} key terms` : null,
-        matchScore?.globalGrade ? `match grade ${matchScore.globalGrade}` : null,
+        jobData.keywords?.length ? t("summary.keyTerms", { count: jobData.keywords.length }) : null,
+        matchScore?.globalGrade ? t("summary.grade", { grade: matchScore.globalGrade }) : null,
       ]
         .filter(Boolean)
         .join(", ")
@@ -750,8 +750,8 @@ function Tailor() {
   return (
     <DashboardPageShell width="full">
       <DashboardPageHeader
-        title="Tailor CV"
-        description="Paste a job link or the job description. We rewrite your CV and write a cover letter for that role."
+        title={t("title")}
+        description={t("description")}
       />
 
       <StepRail current={currentStep} />
@@ -769,17 +769,15 @@ function Tailor() {
             </span>
             <DashboardPanelHeader
               className="min-w-0 flex-1"
-              title={jobInputMode === "link" ? "Job link" : "Job description"}
+              title={jobInputMode === "link" ? t("form.linkTitle") : t("form.textTitle")}
               description={
-                jobInputMode === "link"
-                  ? "Paste the URL of the listing. If the board blocks it, paste the description instead."
-                  : "Paste the whole posting, including requirements and responsibilities."
+                jobInputMode === "link" ? t("form.linkDescription") : t("form.textDescription")
               }
             />
           </div>
           <DashboardFilterPills
             className="mt-4"
-            tabs={JOB_INPUT_TABS}
+            tabs={jobInputTabs}
             activeKey={jobInputMode}
             onChange={setJobInputMode}
           />
@@ -792,7 +790,7 @@ function Tailor() {
                     placeholder="https://www.linkedin.com/jobs/view/…"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    aria-label="Job listing URL"
+                    aria-label={t("form.urlAria")}
                     autoComplete="url"
                     spellCheck={false}
                     className="min-w-0 flex-1 text-sm"
@@ -806,12 +804,12 @@ function Tailor() {
                     {extractMutation.isPending ? (
                       <>
                         <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                        Reading the job…
+                        {t("form.reading")}
                       </>
                     ) : (
                       <>
                         <SparkleIcon size={16} aria-hidden="true" />
-                        Tailor my CV
+                        {t("tailorCta")}
                       </>
                     )}
                   </button>
@@ -820,7 +818,7 @@ function Tailor() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                       <ClockCounterClockwiseIcon size={12} aria-hidden="true" />
-                      Recent
+                      {t("form.recent")}
                     </span>
                     {recentUrls.map((item) => (
                       <button
@@ -841,8 +839,8 @@ function Tailor() {
                 <Textarea
                   value={jobText}
                   onChange={(e) => setJobText(e.target.value)}
-                  aria-label="Job description"
-                  placeholder="Paste the full posting, including the requirements and responsibilities"
+                  aria-label={t("form.textTitle")}
+                  placeholder={t("form.textPlaceholder")}
                   rows={8}
                   maxLength={15000}
                   className="min-h-40 text-sm"
@@ -850,8 +848,8 @@ function Tailor() {
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-xs tabular-nums text-muted-foreground">
                     {jobText.trim().length < MIN_JOB_TEXT_CHARS
-                      ? `Paste at least ${MIN_JOB_TEXT_CHARS} characters so there is enough to work from.`
-                      : `${jobText.trim().length} characters`}
+                      ? t("form.minChars", { min: MIN_JOB_TEXT_CHARS })
+                      : t("form.chars", { count: jobText.trim().length })}
                   </p>
                   <button
                     type="submit"
@@ -862,12 +860,12 @@ function Tailor() {
                     {extractMutation.isPending ? (
                       <>
                         <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                        Reading the job…
+                        {t("form.reading")}
                       </>
                     ) : (
                       <>
                         <SparkleIcon size={16} aria-hidden="true" />
-                        Tailor my CV
+                        {t("tailorCta")}
                       </>
                     )}
                   </button>
@@ -880,7 +878,7 @@ function Tailor() {
                 onClick={() => setEditingJob(false)}
                 className="dashboard-secondary-btn dashboard-secondary-btn-sm self-start"
               >
-                Keep the current job
+                {t("form.keepJob")}
               </button>
             )}
           </form>
@@ -895,16 +893,16 @@ function Tailor() {
             </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-foreground">
-                {jobData.title || "Job listing"}
+                {jobData.title || t("bar.fallbackTitle")}
               </p>
               <p className="truncate text-xs leading-5 text-muted-foreground">
                 {jobData.company ||
-                  (jobInputMode === "link" ? url.trim() : "Pasted description")}
+                  (jobInputMode === "link" ? url.trim() : t("bar.pasted"))}
               </p>
             </div>
             <div className="flex shrink-0 items-center gap-2">
               {matchScoreLoading ? (
-                <span className="text-xs font-medium text-muted-foreground">Scoring…</span>
+                <span className="text-xs font-medium text-muted-foreground">{t("bar.scoring")}</span>
               ) : (
                 <GradeBadge grade={matchScore?.globalGrade} />
               )}
@@ -919,10 +917,10 @@ function Tailor() {
                 type="button"
                 onClick={() => setEditingJob(true)}
                 className="dashboard-secondary-btn dashboard-secondary-btn-sm"
-                aria-label="Change job"
+                aria-label={t("bar.changeJob")}
               >
                 <PencilSimpleIcon size={16} aria-hidden="true" />
-                <span className="hidden sm:inline">Change job</span>
+                <span className="hidden sm:inline">{t("bar.changeJob")}</span>
               </button>
               {/* On lg the call to action sits in the sticky right column, so
                   the bar only carries it where that column stacks below. */}
@@ -937,12 +935,12 @@ function Tailor() {
                   {tailorMutation.isPending ? (
                     <>
                       <SpinnerGapIcon size={14} className="animate-spin" aria-hidden="true" />
-                      Tailoring…
+                      {t("tailoring")}
                     </>
                   ) : (
                     <>
                       <SparkleIcon size={14} aria-hidden="true" />
-                      Tailor my CV
+                      {t("tailorCta")}
                     </>
                   )}
                 </button>
@@ -963,10 +961,10 @@ function Tailor() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-foreground">
-                    Job requirements and match
+                    {t("details.title")}
                   </p>
                   <p className="truncate text-xs tabular-nums text-muted-foreground">
-                    {jobDetailSummary || "From the posting you added"}
+                    {jobDetailSummary || t("details.fallback")}
                   </p>
                 </div>
                 <button
@@ -975,7 +973,7 @@ function Tailor() {
                   aria-expanded={showJobDetails}
                   className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
                 >
-                  {showJobDetails ? "Hide details" : "Show details"}
+                  {showJobDetails ? t("details.hide") : t("details.show")}
                   {showJobDetails ? (
                     <CaretUpIcon size={14} aria-hidden="true" />
                   ) : (
@@ -1000,11 +998,9 @@ function Tailor() {
                 {!tailorResult && (
                   <DashboardPanel delay={0.05}>
                     <DashboardPanelHeader
-                      title="Tailor your CV for this role"
+                      title={t("cta.title")}
                       description={
-                        tailorMutation.isPending
-                          ? "Rewriting your CV around these requirements and writing a cover letter."
-                          : "We rewrite your CV around these requirements and write a cover letter to go with it."
+                        tailorMutation.isPending ? t("cta.pending") : t("cta.description")
                       }
                     />
                     <button
@@ -1017,12 +1013,12 @@ function Tailor() {
                       {tailorMutation.isPending ? (
                         <>
                           <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                          Tailoring…
+                          {t("tailoring")}
                         </>
                       ) : (
                         <>
                           <SparkleIcon size={16} aria-hidden="true" />
-                          Tailor my CV
+                          {t("tailorCta")}
                         </>
                       )}
                     </button>
@@ -1047,10 +1043,10 @@ function Tailor() {
           <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch lg:justify-between">
             <div className="flex min-w-0 items-center">
               <DashboardTabBar
-                tabs={RESULT_TABS}
+                tabs={resultTabs}
                 activeTab={activeTab}
                 onTabChange={handleTabChange}
-                ariaLabel="Tailored CV sections"
+                ariaLabel={t("result.sectionsAria")}
               />
             </div>
             {(activeTab === "cv" || activeTab === "letter") && (
@@ -1069,11 +1065,11 @@ function Tailor() {
                   className="dashboard-secondary-btn dashboard-secondary-btn-sm lg:h-auto"
                 >
                   <LinkedinLogoIcon size={16} aria-hidden="true" />
-                  Write LinkedIn message
+                  {t("result.linkedin")}
                 </button>
                 <DownloadButton
                   className="h-9 w-full sm:w-auto lg:h-auto"
-                  label={activeTab === "cv" ? "Download PDF" : "Download cover letter"}
+                  label={activeTab === "cv" ? t("result.downloadPdf") : t("result.downloadLetter")}
                   idleIcon={downloadIcon}
                   onDownload={() => handleDownload(activeTab)}
                 />
@@ -1084,8 +1080,8 @@ function Tailor() {
           {activeTab === "cv" && (
             <>
               <DashboardTabBar
-                ariaLabel="Edit or preview"
-                tabs={MOBILE_TABS}
+                ariaLabel={t("mobileTabs.ariaLabel")}
+                tabs={mobileTabs}
                 activeTab={mobileTab}
                 onTabChange={setMobileTab}
                 className="lg:hidden"
@@ -1104,7 +1100,7 @@ function Tailor() {
                       saveEndpoint={`/api/tailored-cv/${savedId}`}
                       saveMethod="PUT"
                       queryKey={["tailored-cv", savedId]}
-                      saveButtonLabel="Save tailored CV"
+                      saveButtonLabel={t("result.saveTailored")}
                       onValuesChange={handleValuesChange}
                       onSaved={(data) => {
                         setTailorResult((r) => ({ ...r, tailoredCV: data }));
@@ -1118,16 +1114,16 @@ function Tailor() {
                           <WarningCircleIcon size={17} aria-hidden="true" />
                         </span>
                         <DashboardPanelHeader
-                          title="Couldn't save this CV"
-                          description="Editing needs a saved copy. You can still preview and download it."
+                          title={t("result.saveFailedTitle")}
+                          description={t("result.saveFailedDescription")}
                         />
                       </div>
                     </DashboardPanel>
                   ) : (
                     <DashboardPanel aria-busy="true">
                       <DashboardPanelHeader
-                        title="Saving your tailored CV"
-                        description="Editing opens as soon as it is saved."
+                        title={t("result.savingTitle")}
+                        description={t("result.savingDescription")}
                       />
                       <div className="mt-4 space-y-2">
                         <div className="tool-skeleton h-10 w-full rounded-md" />
@@ -1156,7 +1152,7 @@ function Tailor() {
                         />
                       </div>
                       <p className="truncate text-xs text-muted-foreground">
-                        {savedId ? "Updates as you type" : "Preview"}
+                        {savedId ? t("result.liveUpdates") : t("mobileTabs.preview")}
                       </p>
                     </div>
                     <div className="bg-white">
@@ -1179,7 +1175,7 @@ function Tailor() {
                     {tailorResult.keywordsInjected?.length > 0 && (
                       <div className="border-t border-[var(--landing-line)] px-4 py-3">
                         <p className="text-xs font-medium text-muted-foreground">
-                          Keywords added from the posting
+                          {t("result.keywordsAdded")}
                         </p>
                         <ul className="mt-2 flex flex-wrap gap-1.5">
                           {tailorResult.keywordsInjected.map((k, i) => (
@@ -1238,7 +1234,7 @@ function Tailor() {
                       // away what the user edited.
                       setWhyThisRole((w) => ({ ...w, answer: text }));
                       persistTailoredCV({ whyThisRole: text });
-                      toast.success("Answer saved");
+                      toast.success(t("answerSaved"));
                     }
                   : undefined
               }

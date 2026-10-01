@@ -1,0 +1,36 @@
+{
+  "notFound": {
+    "metaTitle": "Page not found",
+    "eyebrow": "404",
+    "title": "We couldn't find that page",
+    "body": "The link may be broken or the page may have moved. Here's where most people go next.",
+    "links": {
+      "tailor": "Tailor a CV from a job link",
+      "resumeExamples": "Resume examples",
+      "blog": "Blog",
+      "pricing": "Pricing"
+    },
+    "home": "Back to the homepage"
+  },
+  "page": {
+    "eyebrow": "Error",
+    "title": "This page didn't load",
+    "body": "Something on our side failed. Try again, or head back to the homepage.",
+    "retry": "Try again",
+    "home": "Go to the homepage"
+  },
+  "dashboard": {
+    "title": "This page didn't load",
+    "description": "Your CVs and cover letters are safe. Try again, or go back to home.",
+    "retry": "Try again",
+    "home": "Go to home"
+  },
+  "global": {
+    "docTitle": "FitMyCV | This page didn't load",
+    "title": "This page didn't load",
+    "body": "Something on our side failed. Try again, or go back to the homepage.",
+    "retry": "Try again",
+    "home": "Go to the homepage",
+    "support": "If this keeps happening, <link>reach support</link>."
+  }
+}

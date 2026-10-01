@@ -8,6 +8,7 @@ import {
   CrownIcon,
 } from "@phosphor-icons/react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 import {
   Avatar,
@@ -31,6 +32,7 @@ import {
 } from "@/components/ui/sidebar"
 
 export function NavUser() {
+  const t = useTranslations("dashboard.sidebar")
   const { data: session } = useSession()
   const { isMobile } = useSidebar()
 
@@ -55,12 +57,12 @@ export function NavUser() {
           <SidebarMenuButton
             asChild
             size="lg"
-            tooltip="Upgrade to Pro"
+            tooltip={t("upgrade")}
             className="h-10 rounded-md bg-[var(--landing-ink)] font-outfit font-medium text-white hover:bg-black hover:text-white"
           >
             <Link href="/dashboard/upgrade">
               <CrownIcon weight="fill" aria-hidden="true" />
-              <span>Upgrade to Pro</span>
+              <span>{t("upgrade")}</span>
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
@@ -108,14 +110,14 @@ export function NavUser() {
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/profile">
                   <UserIcon className="mr-2 size-4" />
-                  Profile
+                  {t("profile")}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut({ redirectTo: "/" })}>
               <SignOutIcon className="mr-2 size-4" />
-              Log out
+              {t("logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

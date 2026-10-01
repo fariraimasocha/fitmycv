@@ -15,6 +15,9 @@ import {
   RobotIcon,
 } from "@phosphor-icons/react";
 
+import { useTranslations } from "next-intl";
+
+import LanguagePicker from "@/components/LanguagePicker";
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
@@ -26,42 +29,49 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
+// Labels and titles are keys under dashboard.sidebar, translated at render.
 const navGroups = [
   {
-    label: "Overview",
+    label: "overview",
     items: [
-      { title: "Home", url: "/dashboard", icon: HouseIcon },
+      { title: "home", url: "/dashboard", icon: HouseIcon },
     ],
   },
   {
-    label: "CV toolkit",
+    label: "cvToolkit",
     items: [
-      { title: "My CV", url: "/dashboard/resume", icon: ReadCvLogoIcon },
-      { title: "Tailor CV", url: "/dashboard/tailor", icon: PenIcon },
-      { title: "Tailored CVs", url: "/dashboard/tailored", icon: StackIcon },
-      { title: "CV agent", url: "/dashboard/agent", icon: RobotIcon },
-      { title: "Story bank", url: "/dashboard/story-bank", icon: BookOpenIcon },
+      { title: "resume", url: "/dashboard/resume", icon: ReadCvLogoIcon },
+      { title: "tailor", url: "/dashboard/tailor", icon: PenIcon },
+      { title: "tailored", url: "/dashboard/tailored", icon: StackIcon },
+      { title: "agent", url: "/dashboard/agent", icon: RobotIcon },
+      { title: "storyBank", url: "/dashboard/story-bank", icon: BookOpenIcon },
     ],
   },
   {
-    label: "Job search",
+    label: "jobSearch",
     items: [
-      { title: "Find jobs", url: "/jobs", icon: MagnifyingGlassIcon },
-      { title: "Applications", url: "/dashboard/applications", icon: KanbanIcon },
-      { title: "Saved jobs", url: "/dashboard/saved", icon: BookmarkSimpleIcon },
-      { title: "Company research", url: "/dashboard/company-research", icon: BinocularsIcon },
-      { title: "Compare offers", url: "/dashboard/compare", icon: ScalesIcon },
+      { title: "findJobs", url: "/jobs", icon: MagnifyingGlassIcon },
+      { title: "applications", url: "/dashboard/applications", icon: KanbanIcon },
+      { title: "saved", url: "/dashboard/saved", icon: BookmarkSimpleIcon },
+      { title: "companyResearch", url: "/dashboard/company-research", icon: BinocularsIcon },
+      { title: "compare", url: "/dashboard/compare", icon: ScalesIcon },
     ],
   },
   {
-    label: "Settings",
+    label: "settings",
     items: [
-      { title: "Preferences", url: "/dashboard/preferences", icon: SlidersHorizontalIcon },
+      { title: "preferences", url: "/dashboard/preferences", icon: SlidersHorizontalIcon },
     ],
   },
 ];
 
 export function AppSidebar({ ...props }) {
+  const t = useTranslations("dashboard.sidebar");
+  const groups = navGroups.map((group) => ({
+    label: t(`groups.${group.label}`),
+    items: group.items.map((item) => ({ ...item, title: t(`items.${item.title}`) })),
+  }));
+
   return (
     <Sidebar
       collapsible="icon"
@@ -72,10 +82,14 @@ export function AppSidebar({ ...props }) {
         <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent className="gap-0 py-2">
-        <NavMain groups={navGroups} />
+        <NavMain groups={groups} />
       </SidebarContent>
       <SidebarFooter className="border-t border-[var(--landing-line)]/60">
         <NavUser />
+        <LanguagePicker
+          align="start"
+          className="h-8 rounded-md px-2.5 text-xs text-muted-foreground hover:bg-[var(--landing-primary-soft)] hover:text-foreground group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:[&>span]:hidden"
+        />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

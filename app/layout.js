@@ -4,6 +4,9 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import ToastProvider from "@/components/providers/ToastProvider";
 import Script from "next/script";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
+import { PUBLIC_MESSAGES, pickMessages } from "@/i18n/request";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 import ChatwootWidget from "@/components/ChatwootWidget";
@@ -96,23 +99,26 @@ export const metadata = {
   manifest: "/favicon/site.webmanifest",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const [locale, messages] = await Promise.all([getLocale(), getMessages()]);
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
-        <QueryProvider>
-          <AuthProvider>
-            <WebviewGateProvider>
-              {children}
-              <ToastProvider />
-              <ChatwootWidget />
-            </WebviewGateProvider>
-          </AuthProvider>
-        </QueryProvider>
+        <NextIntlClientProvider messages={pickMessages(messages, PUBLIC_MESSAGES)}>
+          <QueryProvider>
+            <AuthProvider>
+              <WebviewGateProvider>
+                {children}
+                <ToastProvider />
+                <ChatwootWidget />
+              </WebviewGateProvider>
+            </AuthProvider>
+          </QueryProvider>
+        </NextIntlClientProvider>
         <Script
           src="https://datafa.st/js/script.js"
           data-website-id="dfid_fwNMP7eI8dri3WgAXVMaz"

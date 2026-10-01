@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import {
   CrownIcon,
   ArrowSquareOutIcon,
@@ -34,12 +35,12 @@ import {
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Profile";
-const PAGE_DESCRIPTION = "Your account, plan and data.";
+// Subscription statuses with a translated label. Anything else shows as stored.
+const KNOWN_STATUSES = ["active", "canceled", "trialing", "past_due", "incomplete", "unpaid"];
 
-function formatDate(dateStr) {
+function formatDate(dateStr, locale) {
   if (!dateStr) return null;
-  return new Date(dateStr).toLocaleDateString("en-GB", {
+  return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-GB" : locale, {
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -47,23 +48,24 @@ function formatDate(dateStr) {
 }
 
 function PlanBadge({ isPremium, status }) {
+  const t = useTranslations("dashboard.profile");
   if (!isPremium) {
     return (
       <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-muted-foreground">
-        Free
+        {t("planFree")}
       </span>
     );
   }
   if (status === "canceled") {
     return (
       <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-accent-soft)] px-2.5 text-xs font-medium text-[var(--landing-accent-dark)]">
-        Pro, cancelling
+        {t("planCancelling")}
       </span>
     );
   }
   return (
     <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-success-soft)] px-2.5 text-xs font-medium text-[var(--landing-success)]">
-      Pro
+      {t("planPro")}
     </span>
   );
 }
@@ -77,13 +79,12 @@ function Field({ label, children, className }) {
   );
 }
 
-const PRO_FEATURES = [
-  "Download every tailored CV as a PDF",
-  "Download every cover letter as a PDF",
-  "Daily job matches by email",
-];
+// Labels come from messages (profile.features.<key>).
+const PRO_FEATURES = ["tailoredPdf", "coverLetterPdf", "dailyMatches"];
 
 export default function ProfilePage() {
+  const t = useTranslations("dashboard.profile");
+  const locale = useLocale();
   const { data: session, status, update } = useSession();
   const router = useRouter();
   const hasRefreshed = useRef(false);
@@ -102,12 +103,10 @@ export default function ProfilePage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("error") === "portal_failed") {
-      toast.error(
-        "We couldn't open the billing portal. Contact support if this keeps happening.",
-      );
+      toast.error(t("portalError"));
       router.replace("/dashboard/profile", { scroll: false });
     }
-  }, [router]);
+  }, [router, t]);
 
   if (status === "loading" && !session) return <Loader />;
 
@@ -123,7 +122,7 @@ export default function ProfilePage() {
   const isPremium = !!user.isPremium;
   const subscriptionStatus = user.subscriptionStatus ?? null;
   const periodEnd = user.subscriptionCurrentPeriodEnd
-    ? formatDate(user.subscriptionCurrentPeriodEnd)
+    ? formatDate(user.subscriptionCurrentPeriodEnd, locale)
     : null;
 
   const isDeleteConfirmed =
@@ -142,8 +141,8 @@ export default function ProfilePage() {
         body: JSON.stringify({ confirmation: deleteConfirm.trim() }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Couldn't delete your account. Try again.");
-      toast.success("Your account has been deleted.");
+      if (!res.ok) throw new Error(data.error || t("deleteError"));
+      toast.success(t("deleted"));
       setDeleteOpen(false);
       setDeleteConfirm("");
       // Clear any cached onboarding flag
@@ -153,7 +152,7 @@ export default function ProfilePage() {
       await signOut({ redirectTo: "/" });
     } catch (err) {
       toast.error(
-        err instanceof Error ? err.message : "Couldn't delete your account. Try again."
+        err instanceof Error ? err.message : t("deleteError")
       );
     } finally {
       setDeleting(false);
@@ -162,12 +161,12 @@ export default function ProfilePage() {
 
   return (
     <DashboardPageShell width="narrow">
-      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <DashboardPageHeader title={t("title")} description={t("description")} />
 
       <DashboardPanel delay={0.05}>
         <DashboardPanelHeader
-          title="Account"
-          description="Details come from your Google account."
+          title={t("account")}
+          description={t("accountDescription")}
         />
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3">
@@ -179,46 +178,46 @@ export default function ProfilePage() {
             </Avatar>
             <div className="min-w-0">
               <p className="truncate font-outfit text-base font-semibold text-foreground">
-                {user.name ?? "Not set"}
+                {user.name ?? t("notSet")}
               </p>
               <p className="truncate text-sm text-muted-foreground">
-                {user.email ?? "Not set"}
+                {user.email ?? t("notSet")}
               </p>
             </div>
           </div>
           <span className="inline-flex h-8 w-fit shrink-0 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-foreground">
             <GoogleLogoIcon size={14} weight="bold" aria-hidden="true" />
-            Signed in with Google
+            {t("signedInWithGoogle")}
           </span>
         </div>
       </DashboardPanel>
 
       <DashboardPanel delay={0.1}>
         <DashboardPanelHeader
-          title="Plan"
-          description={
-            isPremium
-              ? "Your Pro plan and billing."
-              : "You are on the free plan."
-          }
+          title={t("plan")}
+          description={isPremium ? t("planDescriptionPro") : t("planDescriptionFree")}
           action={<PlanBadge isPremium={isPremium} status={subscriptionStatus} />}
         />
         {isPremium && (
           <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-            <Field label="Status">
+            <Field label={t("status")}>
               <span className="capitalize text-[var(--landing-success)]">
-                {subscriptionStatus ?? "Active"}
+                {!subscriptionStatus
+                  ? t("statuses.active")
+                  : KNOWN_STATUSES.includes(subscriptionStatus)
+                    ? t(`statuses.${subscriptionStatus}`)
+                    : subscriptionStatus}
               </span>
             </Field>
             {periodEnd && (
-              <Field label={subscriptionStatus === "canceled" ? "Access until" : "Renews on"}>
+              <Field label={subscriptionStatus === "canceled" ? t("accessUntil") : t("renewsOn")}>
                 <span className="tabular-nums">{periodEnd}</span>
               </Field>
             )}
           </dl>
         )}
         <p className="mt-4 border-t border-[var(--landing-line)] pt-4 text-xs text-muted-foreground">
-          {isPremium ? "Included in your plan" : "Included in Pro"}
+          {isPremium ? t("includedInPlan") : t("includedInPro")}
         </p>
         <ul className="mt-2 flex flex-col gap-2">
           {PRO_FEATURES.map((feature) => (
@@ -235,7 +234,7 @@ export default function ProfilePage() {
                 )}
                 aria-hidden="true"
               />
-              {feature}
+              {t(`features.${feature}`)}
             </li>
           ))}
         </ul>
@@ -243,12 +242,12 @@ export default function ProfilePage() {
           {isPremium ? (
             <Link href="/api/polar/portal" className="dashboard-secondary-btn w-full sm:w-auto">
               <ArrowSquareOutIcon size={16} aria-hidden="true" />
-              Manage billing
+              {t("manageBilling")}
             </Link>
           ) : (
             <Link href="/dashboard/upgrade" className="dashboard-primary-btn w-full sm:w-auto">
               <CrownIcon size={16} aria-hidden="true" />
-              Upgrade to Pro
+              {t("upgrade")}
             </Link>
           )}
         </div>
@@ -259,23 +258,22 @@ export default function ProfilePage() {
           title={
             <span className="inline-flex items-center gap-1.5 text-destructive">
               <WarningCircleIcon size={16} weight="fill" aria-hidden="true" />
-              Delete account
+              {t("deleteAccount")}
             </span>
           }
-          description="Deletes your account and everything in it. You can't undo this."
+          description={t("deleteDescription")}
         />
         <div className="mt-4 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
-          <p className="text-sm font-medium text-foreground">What gets deleted</p>
+          <p className="text-sm font-medium text-foreground">{t("whatGetsDeleted")}</p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-            <li>Your profile and login</li>
-            <li>Your CV and every tailored CV and cover letter</li>
-            <li>Applications, saved jobs, company research and story bank</li>
-            <li>Subscription data linked to this account</li>
+            <li>{t("deletedItems.profile")}</li>
+            <li>{t("deletedItems.cvs")}</li>
+            <li>{t("deletedItems.applications")}</li>
+            <li>{t("deletedItems.subscription")}</li>
           </ul>
           {isPremium && (
             <p className="mt-3 text-sm font-medium text-destructive">
-              You have an active Pro plan. Cancel it in Manage billing first to avoid
-              future charges through Polar.
+              {t("activePlanWarning")}
             </p>
           )}
         </div>
@@ -289,7 +287,7 @@ export default function ProfilePage() {
             className="dashboard-secondary-btn w-full text-destructive hover:border-destructive/40 hover:bg-destructive/10 sm:w-auto"
           >
             <TrashIcon size={16} aria-hidden="true" />
-            Delete account
+            {t("deleteAccount")}
           </button>
         </div>
       </DashboardPanel>
@@ -305,33 +303,35 @@ export default function ProfilePage() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-destructive">
               <TrashIcon size={18} aria-hidden="true" />
-              Delete your account?
+              {t("dialogTitle")}
             </DialogTitle>
             <DialogDescription className="text-left">
-              This deletes{" "}
-              <span className="font-medium text-foreground">{user.email}</span> and
-              all of its data. Type your email to confirm.
+              {t.rich("dialogDescription", {
+                email: user.email ?? "",
+                strong: (chunks) => <span className="font-medium text-foreground">{chunks}</span>,
+              })}
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 py-2">
             <div className="rounded-md border border-destructive/20 bg-destructive/5 p-3">
-              <p className="text-sm font-medium text-destructive">This cannot be undone</p>
+              <p className="text-sm font-medium text-destructive">{t("cannotUndo")}</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Your CVs, applications, research and story bank will be deleted.
-                {isPremium
-                  ? " Your Pro access ends. Cancel billing first if you have a recurring plan."
-                  : ""}
+                {t("dialogWarning")}
+                {isPremium ? ` ${t("dialogWarningPro")}` : ""}
               </p>
             </div>
 
             <div className="grid gap-2">
               <Label htmlFor="delete-confirm" className="text-sm font-medium">
-                Type <span className="font-semibold">{user.email}</span> to confirm
+                {t.rich("typeToConfirm", {
+                  email: user.email ?? "",
+                  strong: (chunks) => <span className="font-semibold">{chunks}</span>,
+                })}
               </Label>
               <Input
                 id="delete-confirm"
-                placeholder={user.email ?? "your email"}
+                placeholder={user.email ?? t("emailPlaceholder")}
                 value={deleteConfirm}
                 onChange={(e) => setDeleteConfirm(e.target.value)}
                 autoComplete="off"
@@ -351,7 +351,7 @@ export default function ProfilePage() {
               disabled={deleting}
               className="dashboard-secondary-btn w-full sm:w-auto"
             >
-              Cancel
+              {t("cancel")}
             </button>
             <Button
               variant="destructive"
@@ -359,7 +359,7 @@ export default function ProfilePage() {
               disabled={!isDeleteConfirmed || deleting}
               className="h-10 w-full rounded-md px-4 font-outfit text-sm font-medium sm:w-auto"
             >
-              {deleting ? "Deleting…" : "Delete account"}
+              {deleting ? t("deleting") : t("deleteAccount")}
             </Button>
           </DialogFooter>
         </DialogContent>

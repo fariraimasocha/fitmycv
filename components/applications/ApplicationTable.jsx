@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import { ArchiveIcon, ArrowRightIcon, CaretLeftIcon, CaretRightIcon, TagIcon, TrashIcon } from "@phosphor-icons/react";
 import { ApplicationActionsMenu } from "@/components/applications/ApplicationActionsMenu";
 import { Button } from "@/components/ui/button";
@@ -24,11 +25,16 @@ import { cn } from "@/lib/utils";
 
 const PAGE_SIZE = 25;
 
-const appliedOn = (app) => {
+// English keeps the day-first en-GB format. Other languages use their own.
+const appliedOn = (app, locale, fallback) => {
   const date = app.appliedAt ?? app.createdAt;
   return date
-    ? new Date(date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
-    : "Not set";
+    ? new Date(date).toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : fallback;
 };
 
 // Bulk bar buttons sit on a dark strip, so they use a light fill instead of
@@ -37,6 +43,7 @@ const BULK_BTN =
   "inline-flex h-8 items-center gap-1.5 rounded-md bg-background/15 px-2.5 text-xs font-medium text-background transition-colors hover:bg-background/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/40 disabled:opacity-50";
 
 function AddTagPopover({ onAdd }) {
+  const t = useTranslations("dashboard.appComponents.table");
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
   const submit = () => {
@@ -51,7 +58,7 @@ function AddTagPopover({ onAdd }) {
       <PopoverTrigger asChild>
         <button type="button" className={BULK_BTN}>
           <TagIcon size={14} aria-hidden="true" />
-          Add tag
+          {t("addTag")}
         </button>
       </PopoverTrigger>
       <PopoverContent align="start" className="w-64 p-2">
@@ -59,14 +66,14 @@ function AddTagPopover({ onAdd }) {
           <Input
             autoFocus
             value={value}
-            aria-label="New tag"
-            placeholder="New tag"
+            aria-label={t("newTag")}
+            placeholder={t("newTag")}
             className="h-9"
             onChange={(event) => setValue(event.target.value)}
             onKeyDown={(event) => event.key === "Enter" && submit()}
           />
           <button type="button" className="dashboard-primary-btn dashboard-primary-btn-sm" onClick={submit}>
-            Add
+            {t("add")}
           </button>
         </div>
       </PopoverContent>
@@ -75,17 +82,19 @@ function AddTagPopover({ onAdd }) {
 }
 
 function StageLabel({ status }) {
+  const t = useTranslations("dashboard");
   const stage = STAGE_BY_KEY[status];
   return (
     <span className="inline-flex items-center gap-1.5">
       <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: stage?.color }} aria-hidden="true" />
-      {stage?.label ?? status}
+      {stage ? t(`stages.${status}`) : status}
     </span>
   );
 }
 
 function TagList({ tags = [] }) {
-  if (tags.length === 0) return <span className="text-muted-foreground">None</span>;
+  const t = useTranslations("dashboard.appComponents.table");
+  if (tags.length === 0) return <span className="text-muted-foreground">{t("none")}</span>;
   return (
     <div className="flex max-w-40 flex-wrap items-center gap-1">
       {tags.slice(0, 2).map((tag) => (
@@ -102,6 +111,9 @@ function TagList({ tags = [] }) {
 }
 
 export function ApplicationTable({ applications, onOpen, onEdit }) {
+  const t = useTranslations("dashboard.appComponents.table");
+  const tDashboard = useTranslations("dashboard");
+  const locale = useLocale();
   const queryClient = useQueryClient();
   const [confirm, confirmDialog] = useConfirm();
   const [selection, setSelection] = useState(() => new Set());
@@ -117,9 +129,9 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
     onSuccess: (data, body) => {
       queryClient.invalidateQueries({ queryKey: ["applications"] });
       setSelection(new Set());
-      if (body.delete) toast.success(`Deleted ${data.deleted} ${data.deleted === 1 ? "application" : "applications"}`);
+      if (body.delete) toast.success(t("deletedCount", { count: data.deleted }));
     },
-    onError: () => toast.error("Couldn't update those applications. Try again."),
+    onError: () => toast.error(t("updateError")),
   });
 
   const pageCount = Math.max(1, Math.ceil(applications.length / PAGE_SIZE));
@@ -148,8 +160,9 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
     });
 
   const deleteSelected = async () => {
-    const confirmed = await confirm(`Delete ${ids.length} ${ids.length === 1 ? "application" : "applications"}?`, {
-      description: "Their full timelines will be deleted for good.",
+    const confirmed = await confirm(t("confirmTitle", { count: ids.length }), {
+      description: t("confirmDescription"),
+      confirmText: t("delete"),
     });
     if (confirmed) bulk.mutate({ ids, delete: true });
   };
@@ -158,20 +171,20 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
     <div className="flex flex-col gap-3">
       {selected.size > 0 && (
         <div className="flex flex-wrap items-center gap-2 rounded-md bg-foreground px-3 py-2 text-background">
-          <span className="text-sm font-semibold tabular-nums">{selected.size} selected</span>
+          <span className="text-sm font-semibold tabular-nums">{t("selected", { count: selected.size })}</span>
           <span className="mx-1 h-4 w-px bg-background/25" aria-hidden="true" />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button type="button" className={BULK_BTN}>
                 <ArrowRightIcon size={14} aria-hidden="true" />
-                Move stage
+                {t("moveStage")}
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               {STAGES.map((stage) => (
                 <DropdownMenuItem key={stage.key} onClick={() => bulk.mutate({ ids, status: stage.key })}>
                   <span className="h-2 w-2 rounded-full" style={{ background: stage.color }} aria-hidden="true" />
-                  {stage.label}
+                  {tDashboard(`stages.${stage.key}`)}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
@@ -179,7 +192,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
           <AddTagPopover onAdd={(tag) => bulk.mutate({ ids, addTags: [tag] })} />
           <button type="button" className={BULK_BTN} onClick={() => bulk.mutate({ ids, archived: true })}>
             <ArchiveIcon size={14} aria-hidden="true" />
-            Archive
+            {t("archive")}
           </button>
           <button
             type="button"
@@ -187,14 +200,14 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
             onClick={() => void deleteSelected()}
           >
             <TrashIcon size={14} aria-hidden="true" />
-            Delete
+            {t("delete")}
           </button>
           <button
             type="button"
             className={cn(BULK_BTN, "ml-auto bg-transparent")}
             onClick={() => setSelection(new Set())}
           >
-            Clear
+            {t("clear")}
           </button>
         </div>
       )}
@@ -208,18 +221,18 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                 <Checkbox
                   checked={allChecked ? true : someChecked ? "indeterminate" : false}
                   onCheckedChange={toggleAll}
-                  aria-label="Select all"
+                  aria-label={t("selectAll")}
                 />
               </th>
-              <th>Company and role</th>
-              <th>Stage</th>
-              <th>Location</th>
-              <th className="text-right!">Salary</th>
-              <th>Tags</th>
-              <th>Source</th>
-              <th className="text-right!">Applied</th>
+              <th>{t("columns.companyRole")}</th>
+              <th>{t("columns.stage")}</th>
+              <th>{t("columns.location")}</th>
+              <th className="text-right!">{t("columns.salary")}</th>
+              <th>{t("columns.tags")}</th>
+              <th>{t("columns.source")}</th>
+              <th className="text-right!">{t("columns.applied")}</th>
               <th className="w-10">
-                <span className="sr-only">Actions</span>
+                <span className="sr-only">{t("columns.actions")}</span>
               </th>
             </tr>
           </thead>
@@ -236,7 +249,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                   <Checkbox
                     checked={selected.has(app._id)}
                     onCheckedChange={() => toggleOne(app._id)}
-                    aria-label={`Select ${app.jobCompany}`}
+                    aria-label={t("selectRow", { company: app.jobCompany })}
                   />
                 </td>
                 <td className="px-3 py-2.5">
@@ -259,20 +272,20 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                 <td className="px-3 py-2.5 whitespace-nowrap">
                   <StageLabel status={app.status} />
                 </td>
-                <td className="max-w-40 truncate px-3 py-2.5 text-muted-foreground">{app.location || "Not set"}</td>
+                <td className="max-w-40 truncate px-3 py-2.5 text-muted-foreground">{app.location || t("notSet")}</td>
                 <td className="px-3 py-2.5 text-right whitespace-nowrap tabular-nums">
                   {app.salary ? (
                     <span className="font-medium text-foreground">{app.salary}</span>
                   ) : (
-                    <span className="text-muted-foreground">Not set</span>
+                    <span className="text-muted-foreground">{t("notSet")}</span>
                   )}
                 </td>
                 <td className="px-3 py-2.5">
                   <TagList tags={app.tags} />
                 </td>
-                <td className="px-3 py-2.5 whitespace-nowrap text-muted-foreground">{app.source || "Not set"}</td>
+                <td className="px-3 py-2.5 whitespace-nowrap text-muted-foreground">{app.source || t("notSet")}</td>
                 <td className="px-3 py-2.5 text-right whitespace-nowrap tabular-nums text-muted-foreground">
-                  {appliedOn(app)}
+                  {appliedOn(app, locale, t("notSet"))}
                 </td>
                 <td className="px-1 py-2.5">
                   <ApplicationActionsMenu application={app} onEdit={onEdit} />
@@ -295,7 +308,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
             <Checkbox
               checked={selected.has(app._id)}
               onCheckedChange={() => toggleOne(app._id)}
-              aria-label={`Select ${app.jobCompany}`}
+              aria-label={t("selectRow", { company: app.jobCompany })}
             />
             <button
               type="button"
@@ -323,14 +336,14 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
 
       <div className="flex items-center gap-3 text-xs text-muted-foreground">
         <span className="tabular-nums">
-          Showing {rows.length} of {applications.length}
+          {t("showing", { shown: rows.length, total: applications.length })}
         </span>
         {pageCount > 1 && (
           <div className="ml-auto flex items-center gap-1.5">
             <Button
               size="icon-sm"
               variant="outline"
-              aria-label="Previous page"
+              aria-label={t("previousPage")}
               disabled={safePage === 0}
               className="rounded-md border-[var(--landing-line)] shadow-none hover:bg-[var(--landing-paper-soft)]"
               onClick={() => setPage(safePage - 1)}
@@ -343,7 +356,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
             <Button
               size="icon-sm"
               variant="outline"
-              aria-label="Next page"
+              aria-label={t("nextPage")}
               disabled={safePage >= pageCount - 1}
               className="rounded-md border-[var(--landing-line)] shadow-none hover:bg-[var(--landing-paper-soft)]"
               onClick={() => setPage(safePage + 1)}

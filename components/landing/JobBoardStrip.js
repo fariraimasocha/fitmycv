@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 const boards = [
   "LinkedIn",
   "Indeed",
@@ -10,11 +12,13 @@ const boards = [
 ];
 
 export default function JobBoardStrip() {
+  const t = useTranslations("landing.jobBoards");
+
   return (
     <section className="landing-section-tight landing-muted-band overflow-hidden">
       <div className="flex flex-col items-center gap-6">
         <p className="font-sans text-center text-xs font-bold uppercase tracking-[0.16em] text-[var(--landing-ink-soft)]">
-          Works with any job link
+          {t("title")}
         </p>
 
         {/* Marquee with edge fade */}

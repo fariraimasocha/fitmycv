@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLineDownIcon, CheckIcon, SpinnerGapIcon } from "@phosphor-icons/react";
 
+import { useTranslations } from "next-intl";
+
 import { cn } from "@/lib/utils";
 
 const ICON_LAYER =
@@ -17,15 +19,19 @@ const LABEL_LAYER =
  */
 export function DownloadButton({
   className,
-  label = "Download PDF",
-  downloadingLabel = "Preparing PDF…",
-  doneLabel = "Downloaded",
+  label: labelProp,
+  downloadingLabel: downloadingLabelProp,
+  doneLabel: doneLabelProp,
   idleIcon,
   downloadMs = 1400,
   resetMs = 1800,
   onDownload,
   ...props
 }) {
+  const t = useTranslations("tailor.downloadButton");
+  const label = labelProp ?? t("label");
+  const downloadingLabel = downloadingLabelProp ?? t("downloading");
+  const doneLabel = doneLabelProp ?? t("done");
   const [phase, setPhase] = useState("idle");
   const timerRef = useRef(null);
 

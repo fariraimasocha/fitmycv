@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   XIcon,
   CrownIcon,
@@ -32,8 +33,6 @@ import {
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Job preferences";
-const PAGE_DESCRIPTION = "Choose which jobs land in your daily email.";
 const MAX_TITLES = 10;
 
 function ToggleRow({ id, checked, onChange, label, description }) {
@@ -77,6 +76,7 @@ function readPrefs(prefs) {
 // the query has settled, so the seed is the saved record. After a save the
 // refetched `prefs` feeds `saved`, which is what the status text compares to.
 function PreferencesForm({ prefs }) {
+  const t = useTranslations("dashboard.preferences");
   const queryClient = useQueryClient();
   const saved = useMemo(() => readPrefs(prefs), [prefs]);
 
@@ -93,30 +93,30 @@ function PreferencesForm({ prefs }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Couldn't save your changes. Try again.");
+      if (!res.ok) throw new Error(t("saveChangesError"));
       return (await res.json()).data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["preferences"] });
-      toast.success("Preferences saved");
+      toast.success(t("saved"));
     },
-    onError: () => toast.error("Couldn't save your preferences. Try again."),
+    onError: () => toast.error(t("saveError")),
   });
 
   const isDirty =
     titles.length !== saved.titles.length ||
-    titles.some((t, i) => t !== saved.titles[i]) ||
+    titles.some((title, i) => title !== saved.titles[i]) ||
     country !== saved.country ||
     remoteOnly !== saved.remoteOnly ||
     emailDigest !== saved.emailDigest;
 
   function addTitle() {
-    const t = titleInput.trim();
-    if (!t || titles.includes(t) || titles.length >= MAX_TITLES) {
+    const title = titleInput.trim();
+    if (!title || titles.includes(title) || titles.length >= MAX_TITLES) {
       setTitleInput("");
       return;
     }
-    setTitles([...titles, t]);
+    setTitles([...titles, title]);
     setTitleInput("");
   }
 
@@ -131,18 +131,18 @@ function PreferencesForm({ prefs }) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <DashboardPanel delay={0.05}>
         <DashboardPanelHeader
-          title="Target roles"
-          description="Add up to 10 job titles. Leave empty to use the titles from your CV."
+          title={t("targetRoles")}
+          description={t("targetRolesDescription")}
           action={
             <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
-              {titles.length} of {MAX_TITLES}
+              {t("titleCount", { count: titles.length, max: MAX_TITLES })}
             </span>
           }
         />
         <div className="mt-4 grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="title-input" className="text-sm font-medium">
-              Job title
+              {t("jobTitle")}
             </Label>
             <div className="flex gap-2">
               <Input
@@ -155,7 +155,7 @@ function PreferencesForm({ prefs }) {
                     addTitle();
                   }
                 }}
-                placeholder="Frontend Engineer"
+                placeholder={t("jobTitlePlaceholder")}
                 disabled={atLimit}
                 className="h-9"
               />
@@ -165,28 +165,28 @@ function PreferencesForm({ prefs }) {
                 disabled={atLimit || !titleInput.trim()}
                 className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
               >
-                Add title
+                {t("addTitle")}
               </button>
             </div>
             <p className="text-xs text-muted-foreground">
               {atLimit
-                ? "You have reached the limit. Remove a title to add another."
-                : "Press Enter or Add title to add it. Save preferences to keep your changes."}
+                ? t("limitReached")
+                : t("addTitleHint")}
             </p>
           </div>
           {titles.length > 0 && (
             <ul className="flex flex-wrap gap-2">
-              {titles.map((t) => (
+              {titles.map((title) => (
                 <li
-                  key={t}
+                  key={title}
                   className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] pl-2.5 pr-1 text-sm text-foreground"
                 >
-                  <span className="max-w-60 truncate">{t}</span>
+                  <span className="max-w-60 truncate">{title}</span>
                   <button
                     type="button"
-                    onClick={() => setTitles(titles.filter((x) => x !== t))}
+                    onClick={() => setTitles(titles.filter((x) => x !== title))}
                     className="inline-flex h-6 w-6 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-                    aria-label={`Remove ${t}`}
+                    aria-label={t("removeTitle", { title })}
                   >
                     <XIcon size={12} weight="bold" aria-hidden="true" />
                   </button>
@@ -199,13 +199,13 @@ function PreferencesForm({ prefs }) {
 
       <DashboardPanel delay={0.1}>
         <DashboardPanelHeader
-          title="Job market"
-          description="Where to look for matching roles."
+          title={t("jobMarket")}
+          description={t("jobMarketDescription")}
         />
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <div className="grid gap-2">
             <Label htmlFor="country" className="text-sm font-medium">
-              Country
+              {t("country")}
             </Label>
             <Select value={country} onValueChange={setCountry}>
               <SelectTrigger
@@ -223,7 +223,7 @@ function PreferencesForm({ prefs }) {
               </SelectContent>
             </Select>
             <p className="text-xs text-muted-foreground">
-              Remote roles are often limited to one country.
+              {t("countryHint")}
             </p>
           </div>
         </div>
@@ -231,23 +231,23 @@ function PreferencesForm({ prefs }) {
 
       <DashboardPanel delay={0.15}>
         <DashboardPanelHeader
-          title="Email"
-          description="What arrives in your inbox."
+          title={t("email")}
+          description={t("emailDescription")}
         />
         <div className="mt-4 divide-y divide-[var(--landing-line)]">
           <ToggleRow
             id="emailDigest"
             checked={emailDigest}
             onChange={setEmailDigest}
-            label="Email me daily job matches"
-            description="Turn off to stop the daily email."
+            label={t("emailDigest")}
+            description={t("emailDigestDescription")}
           />
           <ToggleRow
             id="remoteOnly"
             checked={remoteOnly}
             onChange={setRemoteOnly}
-            label="Remote roles only"
-            description="Only include remote jobs in your matches."
+            label={t("remoteOnly")}
+            description={t("remoteOnlyDescription")}
           />
         </div>
       </DashboardPanel>
@@ -266,10 +266,10 @@ function PreferencesForm({ prefs }) {
                 className="h-1.5 w-1.5 rounded-full bg-[var(--landing-accent)]"
                 aria-hidden="true"
               />
-              Unsaved changes
+              {t("unsaved")}
             </>
           ) : (
-            "All changes saved"
+            t("allSaved")
           )}
         </p>
         <button
@@ -280,12 +280,12 @@ function PreferencesForm({ prefs }) {
           {mutation.isPending ? (
             <>
               <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-              Saving…
+              {t("saving")}
             </>
           ) : (
             <>
               <FloppyDiskIcon size={16} aria-hidden="true" />
-              Save preferences
+              {t("savePreferences")}
             </>
           )}
         </button>
@@ -295,6 +295,7 @@ function PreferencesForm({ prefs }) {
 }
 
 export default function PreferencesPage() {
+  const t = useTranslations("dashboard.preferences");
   const { data: session, status } = useSession();
   const isPremium = !!session?.user?.isPremium;
 
@@ -308,7 +309,7 @@ export default function PreferencesPage() {
     queryKey: ["preferences"],
     queryFn: async () => {
       const res = await fetch("/api/preferences");
-      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
+      if (!res.ok) throw new Error(t("loadError"));
       const json = await res.json();
       return json.data;
     },
@@ -320,14 +321,14 @@ export default function PreferencesPage() {
   if (!isPremium) {
     return (
       <DashboardPageShell width="narrow">
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardEmptyState
           icon={CrownIcon}
-          title="Job preferences are part of Pro"
-          description="Upgrade to pick the roles, country and email settings for your daily job matches."
-          actionLabel="Upgrade to Pro"
+          title={t("proTitle")}
+          description={t("proDescription")}
+          actionLabel={t("proAction")}
           actionHref="/dashboard/upgrade"
-          secondaryLabel="Back to home"
+          secondaryLabel={t("backHome")}
           secondaryHref="/dashboard"
         />
       </DashboardPageShell>
@@ -337,7 +338,7 @@ export default function PreferencesPage() {
   if (isLoading) {
     return (
       <DashboardPageShell width="narrow">
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardPageHeader title={t("title")} description={t("description")} />
         <LoadingPanels />
       </DashboardPageShell>
     );
@@ -346,12 +347,12 @@ export default function PreferencesPage() {
   if (isError) {
     return (
       <DashboardPageShell width="narrow">
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardEmptyState
           icon={WarningCircleIcon}
-          title="Couldn't load your preferences"
-          description="Check your connection and try again."
-          actionLabel={isFetching ? "Retrying…" : "Try again"}
+          title={t("loadFailedTitle")}
+          description={t("loadFailedDescription")}
+          actionLabel={isFetching ? t("retrying") : t("tryAgain")}
           onAction={() => refetch()}
           actionDisabled={isFetching}
         />
@@ -361,7 +362,7 @@ export default function PreferencesPage() {
 
   return (
     <DashboardPageShell width="narrow">
-      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <DashboardPageHeader title={t("title")} description={t("description")} />
       <PreferencesForm prefs={prefs} />
     </DashboardPageShell>
   );

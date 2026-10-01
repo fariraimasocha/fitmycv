@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   EnvelopeSimpleIcon,
   PencilSimpleIcon,
@@ -19,6 +20,7 @@ export default function CoverLetterCard({
   fontStack,
 }) {
   const [isEditing, setIsEditing] = useState(false);
+  const t = useTranslations("tailor.coverLetter");
   const [editedContent, setEditedContent] = useState(content);
 
   const handleSave = () => {
@@ -39,29 +41,25 @@ export default function CoverLetterCard({
         </span>
         <DashboardPanelHeader
           className="min-w-0 flex-1 items-center"
-          title="Cover letter"
-          description={
-            content
-              ? "Written from your tailored CV and this posting."
-              : "Written with the CV when you tailor. You can also write your own."
-          }
+          title={t("title")}
+          description={content ? t("descriptionWritten") : t("descriptionEmpty")}
           action={
             editable ? (
               <button
                 type="button"
                 className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
-                aria-label={isEditing ? "Cancel editing cover letter" : "Edit cover letter"}
+                aria-label={isEditing ? t("cancelAria") : t("editAria")}
                 onClick={() => (isEditing ? handleCancel() : setIsEditing(true))}
               >
                 {isEditing ? (
                   <>
                     <XIcon size={14} aria-hidden="true" />
-                    Cancel
+                    {t("cancel")}
                   </>
                 ) : (
                   <>
                     <PencilSimpleIcon size={14} aria-hidden="true" />
-                    Edit
+                    {t("edit")}
                   </>
                 )}
               </button>
@@ -76,7 +74,7 @@ export default function CoverLetterCard({
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
               rows={16}
-              aria-label="Cover letter text"
+              aria-label={t("textAria")}
               className="text-sm leading-relaxed"
             />
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-end">
@@ -90,12 +88,12 @@ export default function CoverLetterCard({
                 {isSaving ? (
                   <>
                     <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                    Saving…
+                    {t("saving")}
                   </>
                 ) : (
                   <>
                     <FloppyDiskIcon size={16} aria-hidden="true" />
-                    Save cover letter
+                    {t("save")}
                   </>
                 )}
               </button>
@@ -120,8 +118,8 @@ export default function CoverLetterCard({
         ) : (
           <div className="flex flex-col items-start gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-              Your cover letter will appear here.
-              {editable ? " Write one now and it saves with this CV." : ""}
+              {t("empty")}
+              {editable ? ` ${t("emptyEditable")}` : ""}
             </p>
             {editable && (
               <button
@@ -130,7 +128,7 @@ export default function CoverLetterCard({
                 onClick={() => setIsEditing(true)}
               >
                 <PencilSimpleIcon size={14} aria-hidden="true" />
-                Write your own
+                {t("writeOwn")}
               </button>
             )}
           </div>

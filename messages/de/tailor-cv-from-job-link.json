@@ -1,0 +1,208 @@
+{
+  "FAQS": [
+    {
+      "q": "Wie passe ich meinen Lebenslauf über einen Joblink an?",
+      "a": "Melde dich an, lade deinen Referenz-Lebenslauf einmal hoch und füge dann die URL der Stelle ein, auf die du dich bewerben willst. FitMyCV liest die Anzeige, zieht Anforderungen und Begriffe heraus, gleicht sie mit deiner Erfahrung ab und schreibt deinen Lebenslauf und dein Anschreiben passend zur Stelle um, meist in weniger als einer Minute."
+    },
+    {
+      "q": "Welche Jobbörsen funktionieren mit einem eingefügten Link?",
+      "a": "Links von LinkedIn, Indeed, Glassdoor und den meisten großen Jobbörsen und Karriereseiten von Unternehmen. Füge die URL der einzelnen Stellenanzeige ein, nicht die einer Suchergebnisseite, dann werden die Anforderungen automatisch erkannt."
+    },
+    {
+      "q": "Was, wenn der Joblink nicht funktioniert?",
+      "a": "Manche Anzeigen liegen hinter einem Login oder einer strengen Bot-Prüfung, und einige Firmenwebsites zeigen die Beschreibung erst nach einem JavaScript-Schritt an. Wenn ein Link nicht gelesen werden kann, kannst du stattdessen den Text der Stellenbeschreibung direkt einfügen. Alles danach funktioniert genau gleich."
+    },
+    {
+      "q": "Hilft mir die Anpassung über einen Joblink, durch ATS zu kommen?",
+      "a": "Sie setzt bei dem Teil des ATS-Verhaltens an, den du beeinflussen kannst. Der angepasste Lebenslauf übernimmt die Keywords und Formulierungen der Anzeige, also das, wonach Recruiter suchen, und wird als einspaltiges, textbasiertes PDF exportiert, das sich sauber auslesen lässt. Erfahrung, die du nicht hast, kann er nicht erfinden."
+    },
+    {
+      "q": "Erfindet das Tool Erfahrung oder übertreibt es meinen Lebenslauf?",
+      "a": "Nein. Deine Arbeitgeber, Daten, Jobtitel und Erfolge stammen aus deinem Referenz-Lebenslauf und werden nicht verändert. Was sich ändert: was zuerst kommt, in welcher Reihenfolge es steht und mit welchen Begriffen es beschrieben wird. Wenn eine Anforderung nirgends in deinem Lebenslauf belegt ist, behauptet die angepasste Version sie auch nicht."
+    },
+    {
+      "q": "Bekomme ich auch ein Anschreiben?",
+      "a": "Ja. Zu jedem angepassten Lebenslauf gibt es ein passendes Anschreiben, erstellt aus derselben Analyse derselben Anzeige, damit sich beide Dokumente stützen statt widersprechen. Beide lassen sich als PDF exportieren."
+    },
+    {
+      "q": "Wie lange dauert es?",
+      "a": "Etwa 30 bis 60 Sekunden vom Einfügen des Links bis zu einem Entwurf, den du prüfen kannst, plus die Zeit, die du mit Bearbeiten verbringst. Von Hand brauchen die meisten für dieselbe Arbeit 20 bis 40 Minuten pro Stelle."
+    },
+    {
+      "q": "Kann ich den angepassten Lebenslauf vor dem Herunterladen bearbeiten?",
+      "a": "Ja, direkt und Abschnitt für Abschnitt. Das solltest du auch. Dein Urteil darüber, welche deiner Erfolge einem bestimmten Arbeitgeber am wichtigsten sind, ist besser als das jedes Modells, und zwei Minuten Bearbeitung machen aus einem guten Entwurf deinen Lebenslauf."
+    },
+    {
+      "q": "Was ist der Unterschied dazu, die Stellenbeschreibung in ChatGPT einzufügen?",
+      "a": "Drei Dinge: Es liest die Anzeige direkt über die URL, sodass beim Kopieren nichts verloren geht, es arbeitet mit einer strukturierten Version deines Lebenslaufs statt mit dem, woran du im Prompt gerade denkst, und es exportiert ein formatiertes, einspaltiges PDF statt Chattext, den du danach selbst gestalten musst."
+    },
+    {
+      "q": "Wird mein Lebenslauf mit Recruitern oder Arbeitgebern geteilt?",
+      "a": "Nein. FitMyCV ist keine Jobbörse und keine Lebenslauf-Datenbank. Dein Referenz-Lebenslauf wird in deinem Konto gespeichert, um deine eigenen Dokumente zu erstellen, und du kannst ihn und dein Konto jederzeit löschen."
+    }
+  ],
+  "HOW_TO": {
+    "name": "So passt du deinen Lebenslauf über einen Joblink an",
+    "description": "Mach aus der URL einer Stellenanzeige in weniger als einer Minute einen angepassten Lebenslauf und ein Anschreiben.",
+    "steps": [
+      {
+        "name": "Lade deinen Referenz-Lebenslauf einmal hoch",
+        "text": "Dein Lebenslauf wird in strukturierte Abschnitte zerlegt (Positionen, Daten, Stichpunkte, Skills) und ab dann für jede Bewerbung wiederverwendet."
+      },
+      {
+        "name": "Füge den Joblink ein",
+        "text": "Füge die URL der Anzeige von LinkedIn, Indeed, Glassdoor oder der Karriereseite eines Unternehmens ein. Die Anzeige wird gelesen und ihre Anforderungen werden herausgezogen."
+      },
+      {
+        "name": "Prüfen und herunterladen",
+        "text": "Deine Zusammenfassung, die Reihenfolge der Stichpunkte, die Formulierungen und Skills werden passend zu dieser Anzeige umgeschrieben, mit einem passenden Anschreiben. Bearbeite sie direkt und exportiere beides als PDF."
+      }
+    ]
+  },
+  "BLOCKS": [
+    { "h2": "Was ist Lebenslauf-Anpassung über einen Joblink?" },
+    {
+      "p": "Bei der Anpassung über einen Joblink dient die URL einer Stellenanzeige, von LinkedIn, Indeed, Glassdoor oder einer Karriereseite, als Grundlage für das Umschreiben. Die Seite wird gelesen, die geforderten Skills und Begriffe werden herausgezogen, und dein bestehender Lebenslauf wird so umsortiert und umformuliert, dass er zu dieser Anzeige passt. Wenn der Link nicht lädt, kannst du auch den Text der Anzeige einfügen. Es ist dieselbe Arbeit wie die Anpassung von Hand, nur ohne vierzig Minuten Kopieren und Einfügen."
+    },
+
+    { "h2": "Lebenslauf mit kostenloser KI an eine Stellenanzeige anpassen" },
+    {
+      "p": "Deinen Referenz-Lebenslauf hochzuladen und gegen eine Anzeige zu bewerten ist kostenlos. Den angepassten Lebenslauf und das Anschreiben zu erstellen ist der kostenpflichtige Schritt, weil dabei das Modell arbeitet. Wenn du zuerst nur die Analyse willst, nutze den [kostenlosen ATS-Check](/ats-resume-checker). Er braucht keinen Login und lädt nichts hoch. Wenn du bereit für das Umschreiben bist, füge hier den Joblink ein."
+    },
+
+    { "h2": "Warum ein Link besser ist als Kopieren und Einfügen" },
+    {
+      "p": "Jedes Tool zur Anpassung braucht die Stellenbeschreibung. Bei den meisten musst du sie suchen, markieren, kopieren und einfügen, und genau da geht der Prozess unbemerkt kaputt. Man fügt die halbe Anzeige ein, übersieht den Anforderungsteil hinter einem *Mehr anzeigen*-Button oder verliert die ganze Aufgabenliste, weil sie in einem eigenen Akkordeon stand."
+    },
+    {
+      "p": "Mit der URL fällt diese ganze Fehlerquelle weg. Die Seite wird so gelesen, wie sie veröffentlicht ist, inklusive der Abschnitte, die du übersehen hättest, und die Auswertung arbeitet mit dem vollständigen Text statt mit dem, was in deiner Zwischenablage übrig geblieben ist."
+    },
+
+    { "h2": "Wie die Auswertung eines Joblinks wirklich funktioniert" },
+    {
+      "p": "Es lohnt sich zu wissen, was zwischen dem Einfügen eines Links und dem fertigen Lebenslauf passiert, denn das erklärt sowohl, was das Tool gut kann, als auch, wo es dir nicht hilft."
+    },
+    {
+      "steps": [
+        {
+          "title": "Die Anzeige wird abgerufen und auf Text reduziert",
+          "body": "Die Seite wird abgerufen und auf den eigentlichen Stelleninhalt reduziert: Navigation, Cookie-Banner, Listen mit ähnlichen Jobs und Standardtext im Footer werden verworfen, damit sie die Keyword-Auswertung nicht verfälschen."
+        },
+        {
+          "title": "Aus dem Fließtext wird Struktur",
+          "body": "Jobtitel, Arbeitgeber, Karrierestufe, Aufgaben, Muss-Anforderungen, Wunsch-Anforderungen und genannte Tools werden getrennt erfasst. Eine Anforderung, die in Zusammenfassung, Aufgaben und Anforderungsliste wiederholt wird, zählt deutlich mehr als eine, die nur einmal vorkommt."
+        },
+        {
+          "title": "Dein Lebenslauf wird mit diesen Anforderungen abgeglichen",
+          "body": "Dein Referenz-Lebenslauf ist bereits in strukturierten Abschnitten gespeichert, deshalb wird jede herausgezogene Anforderung den Positionen und Stichpunkten in deinem Werdegang zugeordnet, die sie tatsächlich belegen. Anforderungen ohne Treffer bleiben offen, statt erfunden zu werden."
+        },
+        {
+          "title": "Das Umschreiben folgt dieser Zuordnung",
+          "body": "Die Zusammenfassung wird um die wichtigsten Anforderungen herum neu geschrieben, die du belegen kannst. Die Stichpunkte werden so umsortiert, dass Treffer vorne stehen, und in den Begriffen der Anzeige umformuliert, wobei deine Zahlen erhalten bleiben. Das Anschreiben entsteht aus derselben Zuordnung."
+        },
+        {
+          "title": "Beide Dokumente werden als PDF erstellt",
+          "body": "Eine Spalte, Standardüberschriften, Kontaktdaten im Fließtext, eine echte Textebene. Die Formatierungsregeln stehen ausführlich im [Leitfaden für ATS-taugliche Lebensläufe](/blog/ats-resume-guide)."
+        }
+      ]
+    },
+    {
+      "callout": {
+        "title": "Die Einschränkung, die es nützlich macht",
+        "body": "Beim Umschreiben kann nur verwendet werden, was in deinem Referenz-Lebenslauf belegt ist. Das ist eine Einschränkung, und genau darum geht es. So bleibt das Ergebnis vertretbar, wenn dich jemand im Interview bittet, den Stichpunkt zu erklären, der ihn am meisten interessiert hat."
+      }
+    },
+
+    { "h2": "Drei Vorher-Nachher-Beispiele aus echten Anpassungen" },
+    {
+      "p": "Dieselbe Erfahrung, umgeschrieben für drei verschiedene Anzeigen. Achte darauf, dass nichts hinzugefügt wird. Die Erfolge standen schon im Lebenslauf. Was sich ändert, ist, welcher vorne steht und mit welchen Worten er beschrieben wird."
+    },
+    {
+      "compare": {
+        "title": "1. Profil: für eine PM-Stelle mit Schwerpunkt Pricing",
+        "context": "Die Anzeige beginnt mit Pricing, Monetarisierung und bereichsübergreifender Zusammenarbeit. Das ursprüngliche Profil war für eine allgemeine Produktrolle geschrieben.",
+        "before": "Erfahrene Produktfachkraft mit nachweislichen Erfolgen bei der Umsetzung großartiger Produkte in schnelllebigen Umgebungen. Begeistert von nutzerzentriertem Design und der Zusammenarbeit mit funktionsübergreifenden Teams.",
+        "after": "Senior Product Manager mit 7 Jahren Erfahrung in B2B-SaaS, Schwerpunkt Pricing und Monetarisierung. Leitete bei Northwind die Umstellung auf nutzungsbasierte Abrechnung und steigerte die Net Revenue Retention von 104 % auf 121 %. Arbeitet täglich mit Engineering, Vertrieb und Finance zusammen, um Preisänderungen umzusetzen, ohne das Umsatzreporting zu gefährden."
+      }
+    },
+    {
+      "compare": {
+        "title": "2. Erfahrungs-Stichpunkt: für eine Engineering-Stelle mit Fokus auf Zuverlässigkeit",
+        "context": "Die Anzeige nennt immer wieder Latenz, Rufbereitschaft und weniger Incidents. Im ursprünglichen Stichpunkt gingen alle drei unter.",
+        "before": "Hat an der Verbesserung der Performance unserer Haupt-API gearbeitet und bei der Datenbank geholfen.",
+        "after": "• Die 12 langsamsten API-Endpunkte analysiert und optimiert sowie Covering-Indizes ergänzt. Dadurch sank die p95-Latenz von 840 ms auf 210 ms und ein geplantes Read-Replica fiel aus der Roadmap."
+      }
+    },
+    {
+      "compare": {
+        "title": "3. Erfahrungs-Stichpunkt: für eine Marketingstelle in der Demand Generation",
+        "context": "Die Anzeige legt viel Gewicht auf generierte Pipeline und Attribution. Der ursprüngliche Stichpunkt beschrieb Tätigkeiten statt Ergebnisse.",
+        "before": "Betreute den Firmenblog und die Social-Media-Kanäle und erstellte regelmäßig Inhalte.",
+        "after": "• Den Redaktionsplan um 14 Bottom-of-Funnel-Keywords neu aufgebaut und 40 Beiträge in 9 Monaten veröffentlicht. Die organischen Sitzungen stiegen um das 3,1-Fache und organischer Traffic brachte 22 % der Demo-Anfragen."
+      }
+    },
+    {
+      "p": "Das Muster ist in allen drei Fällen dasselbe wie in [So passt du deinen Lebenslauf an eine Stellenanzeige an](/blog/how-to-tailor-cv-to-job-description): Verb, konkrete Handlung, messbares Ergebnis, mit den Begriffen der Anzeige dort, wo sie ehrlich zutreffen."
+    },
+
+    { "h2": "Anpassung über einen Link oder von Hand" },
+    {
+      "p": "Die manuelle Methode funktioniert. Sie ist kein Geheimnis, und wir haben sie komplett aufgeschrieben. Das Problem ist die Rechnung."
+    },
+    {
+      "table": {
+        "head": ["", "Von Hand", "Über einen Joblink"],
+        "rows": [
+          ["Zeit bis zum ersten Entwurf", "20 bis 40 Minuten", "Unter einer Minute"],
+          ["Anforderungen herausziehen", "Von Hand markieren, ein Abschnitt geht leicht verloren", "Aus der vollständigen Anzeige ausgewertet"],
+          ["Gewichtung der Anforderungen", "Dein Urteil", "Häufigkeit und Position in der Anzeige"],
+          ["Abkürzungen und Synonyme", "Werden oft übersehen", "Mit dem Text der Anzeige abgeglichen"],
+          ["Stichpunkte umsortieren", "Von Hand", "Automatisch, bearbeitbar"],
+          ["Passendes Anschreiben", "Eine zweite, separate Aufgabe", "Aus derselben Analyse"],
+          ["Formatierungsrisiko", "Je nach deiner Vorlage", "Einspaltiges, ATS-taugliches PDF"],
+          ["Machbar bei mehr als 10 Bewerbungen pro Woche", "Selten", "Ja"]
+        ]
+      }
+    },
+    {
+      "p": "Bei zwei Bewerbungen im Monat mach es von Hand. Die [Schritt-für-Schritt-Anleitung](/blog/how-to-tailor-cv-to-job-description) ist alles, was du brauchst. Bei zehn pro Woche sind sechs Stunden Anpassung genau das, was Leute dazu bringt, mit dem Anpassen aufzuhören, und ein allgemeiner Lebenslauf ist genau das, woraus eine niedrige Rücklaufquote entsteht."
+    },
+
+    { "h2": "Lebenslauf über eine LinkedIn-Stellenanzeige anpassen" },
+    {
+      "p": "Auf LinkedIn finden die meisten die Stelle, und dort geht auch das Kopieren und Einfügen am häufigsten schief: Die Beschreibung ist hinter einem *Mehr anzeigen*-Button eingeklappt, und das Skill-Match-Feld liegt in einem ganz anderen Teil der Seite. Mit der URL der Anzeige wird die vollständige Beschreibung gelesen statt nur des sichtbaren Ausschnitts."
+    },
+    {
+      "p": "Füge die URL der einzelnen Stelle ein, die aussieht wie `linkedin.com/jobs/view/…`, und keine Such- oder Sammlungsseite. Wenn du die Stelle in der LinkedIn-App ansiehst, nutze die Teilen-Funktion, um den Link zur Anzeige selbst zu kopieren."
+    },
+
+    { "h2": "Lebenslauf über eine Indeed- oder Glassdoor-Anzeige anpassen" },
+    {
+      "p": "Anzeigen auf Indeed und Glassdoor sind meist strukturierter als die auf LinkedIn, mit einem klaren Anforderungsblock und einer Aufgabenliste. Dadurch ist die Gewichtung der herausgezogenen Anforderungen zuverlässiger. Es gilt dieselbe Regel: Füge die URL der einzelnen Anzeige ein, keine Suchergebnisseite."
+    },
+    {
+      "p": "Aggregatoren zeigen manchmal eine gekürzte Fassung einer Beschreibung, die vollständig auf der Karriereseite des Arbeitgebers steht. Wenn es beide gibt, ist die Seite des Arbeitgebers der bessere Link, weil das die Version ist, die das Recruiting-Team tatsächlich geschrieben hat."
+    },
+
+    { "h2": "Karriereseiten von Unternehmen und alles andere" },
+    {
+      "p": "Die meisten Karriereseiten lassen sich gut lesen, auch die verbreiteten, die über Bewerbermanagementsysteme gehostet werden. Wenn ein Link nicht abgerufen werden kann (eine Login-Sperre, eine strenge Bot-Prüfung oder eine Beschreibung, die erst nach einer Interaktion erscheint), füge stattdessen den Text der Stellenbeschreibung direkt ein. Jeder Schritt nach dem Abruf ist identisch."
+    },
+
+    { "h2": "Was Anpassung nicht lösen kann" },
+    {
+      "p": "Hier ehrlich zu sein ist nützlicher als eine Liste von Funktionen."
+    },
+    {
+      "ul": [
+        "**Eine echte Erfahrungslücke.** Wenn eine Stelle fünf Jahre Erfahrung in etwas verlangt, das du nie gemacht hast, schließt keine Umformulierung diese Lücke, und im Interview käme es ohnehin heraus.",
+        "**Ein Lebenslauf ohne messbare Ergebnisse.** Die Anpassung sortiert und formuliert deine Belege neu. Wenn nirgends Zahlen stehen, ergänze sie zuerst. [Wie man einen Lebenslauf schreibt](/how-to-write-a-resume) zeigt, wo du sie findest.",
+        "**Bewerbungen auf die falschen Stellen.** Ein hoher Match-Score für eine Stelle, die du nicht willst, ist kein Fortschritt.",
+        "**Der Rest der Bewerbung.** Screening-Fragen, Portfolio-Links und Empfehlungen zählen weiterhin, oft sogar mehr als der Lebenslauf."
+      ]
+    },
+    {
+      "p": "Wenn du wissen willst, wo du stehst, bevor du irgendetwas anpasst, bewertet der [kostenlose ATS-Check](/ats-resume-checker) deinen aktuellen Lebenslauf gegen eine Anzeige und zeigt genau, welche geforderten Begriffe fehlen."
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { LinkSimpleIcon, SparkleIcon, SpinnerGapIcon, XIcon } from "@phosphor-icons/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
@@ -23,7 +24,15 @@ import { requestJson } from "@/lib/request-json";
 
 // Ported from Reactive Resume's application-form-sheet.tsx.
 
-const SOURCE_OPTIONS = ["LinkedIn", "Indeed", "Company website", "Referral", "Recruiter", "Other"];
+// Brand names stay as typed. The rest are message keys, translated at render.
+const SOURCE_OPTIONS = [
+  { value: "LinkedIn" },
+  { value: "Indeed" },
+  { key: "companyWebsite" },
+  { key: "referral" },
+  { key: "recruiter" },
+  { key: "other" },
+];
 const MAX_JOB_DESCRIPTION_CHARS = 20_000;
 // A paste shorter than this is a snippet, not a posting, so it doesn't spend a model call.
 const MIN_AUTOFILL_CHARS = 200;
@@ -81,6 +90,7 @@ function Field({ label, required, htmlFor, children }) {
 
 // Type-and-Enter tag input with chips and an autocomplete list of existing tags.
 function TagsField({ id, value, suggestions, onChange }) {
+  const t = useTranslations("dashboard.appComponents.form");
   const [draft, setDraft] = useState("");
   const add = () => {
     const tag = draft.trim();
@@ -93,7 +103,7 @@ function TagsField({ id, value, suggestions, onChange }) {
         id={id}
         value={draft}
         list={`${id}-list`}
-        placeholder="Type a tag and press Enter"
+        placeholder={t("tagPlaceholder")}
         onChange={(event) => setDraft(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
@@ -118,7 +128,7 @@ function TagsField({ id, value, suggestions, onChange }) {
               {tag}
               <button
                 type="button"
-                aria-label={`Remove tag ${tag}`}
+                aria-label={t("removeTag", { tag })}
                 className="flex h-4 w-4 items-center justify-center rounded-sm transition-colors hover:bg-destructive/10 hover:text-destructive"
                 onClick={() => onChange(value.filter((t) => t !== tag))}
               >
@@ -133,6 +143,8 @@ function TagsField({ id, value, suggestions, onChange }) {
 }
 
 export function ApplicationFormSheet({ open, onOpenChange, application, allTags = [] }) {
+  const t = useTranslations("dashboard.appComponents.form");
+  const tDashboard = useTranslations("dashboard");
   const queryClient = useQueryClient();
   const uid = useId();
   const isEditing = Boolean(application);
@@ -164,12 +176,12 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
         : requestJson("/api/applications", { method: "POST", body: payload }),
     onSuccess: () => {
       invalidate();
-      toast.success(isEditing ? "Application updated" : "Application added to your pipeline");
+      toast.success(isEditing ? t("updated") : t("added"));
       if (!isEditing) setForm(emptyForm());
       onOpenChange(false);
     },
     onError: () =>
-      toast.error(isEditing ? "Couldn't save your changes. Try again." : "Couldn't add the application. Try again."),
+      toast.error(isEditing ? t("saveError") : t("addError")),
   });
 
   const autofill = useMutation({
@@ -177,7 +189,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
       requestJson("/api/applications/autofill", { method: "POST", body: { jobDescription } }),
     onSuccess: (result) => {
       fill({ jobCompany: result.company, jobTitle: result.role, location: result.location, salary: result.salary });
-      toast.success("Filled in what we could from the posting");
+      toast.success(t("autofilled"));
     },
     onError: (error) => toast.error(error.message),
   });
@@ -192,7 +204,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
         salary: job.salary,
         jobDescription: jobToText(job),
       });
-      toast.success("Filled in from the link");
+      toast.success(t("filledFromLink"));
     },
     onError: (error) => toast.error(error.message),
   });
@@ -229,11 +241,9 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full gap-0 sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle className="font-outfit">{isEditing ? "Edit application" : "Add application"}</SheetTitle>
+          <SheetTitle className="font-outfit">{isEditing ? t("editTitle") : t("addTitle")}</SheetTitle>
           <SheetDescription>
-            {isEditing
-              ? "Update the details of this application."
-              : "Track a job you are applying to and link the CV you sent."}
+            {isEditing ? t("editDescription") : t("addDescription")}
           </SheetDescription>
         </SheetHeader>
 
@@ -249,26 +259,25 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
               <AccordionTrigger className="py-3 hover:no-underline">
                 <span className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <SparkleIcon size={16} className="text-[var(--landing-accent-dark)]" aria-hidden="true" />
-                  Job description
+                  {t("jobDescription")}
                 </span>
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-2">
                 <p className="text-xs leading-5 text-muted-foreground">
-                  Paste the whole job description from the posting. We fill in the fields and keep the text with this
-                  application for fit scoring and drafts.
+                  {t("jobDescriptionHelp")}
                 </p>
                 <Textarea
                   className="field-sizing-fixed h-40"
                   value={form.jobDescription}
                   rows={8}
                   maxLength={MAX_JOB_DESCRIPTION_CHARS}
-                  placeholder="Paste the full job description here"
+                  placeholder={t("jobDescriptionPlaceholder")}
                   onChange={(event) => set("jobDescription", event.target.value)}
                   onPaste={(event) => runAutofill(event.clipboardData.getData("text"))}
                 />
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-[11px] text-muted-foreground">
-                    {autofill.isPending ? "Reading the posting…" : "Paste a posting and we fill in the fields. Or edit it, then choose Fill fields."}
+                    {autofill.isPending ? t("reading") : t("autofillHint")}
                   </p>
                   <button
                     type="button"
@@ -281,54 +290,55 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                     ) : (
                       <SparkleIcon size={16} aria-hidden="true" />
                     )}
-                    Fill fields
+                    {t("fillFields")}
                   </button>
                 </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
 
-          <Field label="Company" required htmlFor={field("company")}>
+          <Field label={t("company")} required htmlFor={field("company")}>
             <Input id={field("company")} value={form.jobCompany} onChange={(e) => set("jobCompany", e.target.value)} />
           </Field>
-          <Field label="Role / title" required htmlFor={field("role")}>
+          <Field label={t("role")} required htmlFor={field("role")}>
             <Input id={field("role")} value={form.jobTitle} onChange={(e) => set("jobTitle", e.target.value)} />
           </Field>
           <div className="grid grid-cols-2 gap-3">
-            <Field label="Location" htmlFor={field("location")}>
+            <Field label={t("location")} htmlFor={field("location")}>
               <Input
                 id={field("location")}
                 value={form.location}
                 list={field("locations")}
-                placeholder="Remote, hybrid or a city"
+                placeholder={t("locationPlaceholder")}
                 onChange={(e) => set("location", e.target.value)}
               />
               <datalist id={field("locations")}>
-                <option value="Remote" />
-                <option value="Hybrid" />
-                <option value="In-office" />
+                <option value={t("locations.remote")} />
+                <option value={t("locations.hybrid")} />
+                <option value={t("locations.inOffice")} />
               </datalist>
             </Field>
-            <Field label="Salary range" htmlFor={field("salary")}>
+            <Field label={t("salary")} htmlFor={field("salary")}>
               <Input id={field("salary")} value={form.salary} onChange={(e) => set("salary", e.target.value)} />
             </Field>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <Field label="Source" htmlFor={field("source")}>
+            <Field label={t("source")} htmlFor={field("source")}>
               <Input
                 id={field("source")}
                 value={form.source}
                 list={field("sources")}
-                placeholder="LinkedIn, referral"
+                placeholder={t("sourcePlaceholder")}
                 onChange={(e) => set("source", e.target.value)}
               />
               <datalist id={field("sources")}>
-                {SOURCE_OPTIONS.map((option) => (
-                  <option key={option} value={option} />
-                ))}
+                {SOURCE_OPTIONS.map((option) => {
+                  const label = option.key ? t(`sources.${option.key}`) : option.value;
+                  return <option key={option.key ?? option.value} value={label} />;
+                })}
               </datalist>
             </Field>
-            <Field label="Stage" htmlFor={field("stage")}>
+            <Field label={t("stage")} htmlFor={field("stage")}>
               <Select value={form.status} onValueChange={(value) => set("status", value)}>
                 <SelectTrigger id={field("stage")} className="w-full">
                   <SelectValue />
@@ -337,14 +347,14 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                   {STAGES.map((stage) => (
                     <SelectItem key={stage.key} value={stage.key}>
                       <span className="h-2 w-2 rounded-full" style={{ background: stage.color }} aria-hidden="true" />
-                      {stage.label}
+                      {tDashboard(`stages.${stage.key}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             </Field>
           </div>
-          <Field label="Job posting link" htmlFor={field("url")}>
+          <Field label={t("jobLink")} htmlFor={field("url")}>
             <div className="flex gap-2">
               <Input
                 id={field("url")}
@@ -364,44 +374,46 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 ) : (
                   <LinkSimpleIcon size={16} aria-hidden="true" />
                 )}
-                Fill from link
+                {t("fillFromLink")}
               </button>
             </div>
           </Field>
           {!isEditing && (
-            <Field label="Stage date" htmlFor={field("stage-date")}>
+            <Field label={t("stageDate")} htmlFor={field("stage-date")}>
               <Input
                 id={field("stage-date")}
                 type="date"
                 value={form.stageEnteredAt}
                 onChange={(e) => set("stageEnteredAt", e.target.value)}
               />
-              <p className="text-[11px] text-muted-foreground">Leave it empty to use today.</p>
+              <p className="text-[11px] text-muted-foreground">{t("stageDateHint")}</p>
             </Field>
           )}
-          <Field label="CV" htmlFor={field("cv")}>
+          <Field label={t("cv")} htmlFor={field("cv")}>
             <Select value={form.tailoredCVId || NO_CV} onValueChange={(value) => set("tailoredCVId", value === NO_CV ? "" : value)}>
               <SelectTrigger id={field("cv")} className="w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value={NO_CV}>No CV linked</SelectItem>
+                <SelectItem value={NO_CV}>{t("noCv")}</SelectItem>
                 {cvs.map((cv) => (
                   <SelectItem key={cv._id} value={String(cv._id)}>
-                    {[cv.jobTitle || "Tailored CV", cv.jobCompany].filter(Boolean).join(" at ")}
+                    {cv.jobCompany
+                      ? t("cvAt", { title: cv.jobTitle || t("tailoredCv"), company: cv.jobCompany })
+                      : cv.jobTitle || t("tailoredCv")}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
             <p className="text-[11px] text-muted-foreground">
-              Link the tailored CV you sent so the copilot can score your fit against it.
+              {t("cvHint")}
             </p>
           </Field>
-          <Field label="Tags" htmlFor={field("tags")}>
+          <Field label={t("tags")} htmlFor={field("tags")}>
             <TagsField id={field("tags")} value={form.tags} suggestions={allTags} onChange={(tags) => set("tags", tags)} />
           </Field>
           <div className="grid grid-cols-2 gap-3">
-            <Field label="Follow-up date" htmlFor={field("follow-up")}>
+            <Field label={t("followUpDate")} htmlFor={field("follow-up")}>
               <Input
                 id={field("follow-up")}
                 type="date"
@@ -409,7 +421,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 onChange={(e) => set("followUpDate", e.target.value)}
               />
             </Field>
-            <Field label="Follow-up note" htmlFor={field("follow-up-note")}>
+            <Field label={t("followUpNote")} htmlFor={field("follow-up-note")}>
               <Input
                 id={field("follow-up-note")}
                 value={form.followUpNote}
@@ -417,12 +429,12 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
               />
             </Field>
           </div>
-          <Field label="Notes" htmlFor={field("notes")}>
+          <Field label={t("notes")} htmlFor={field("notes")}>
             <Textarea
               id={field("notes")}
               value={form.notes}
               rows={3}
-              placeholder="Who referred you, things to emphasize"
+              placeholder={t("notesPlaceholder")}
               onChange={(e) => set("notes", e.target.value)}
             />
           </Field>
@@ -430,7 +442,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
 
         <SheetFooter className="flex-row justify-end gap-2 border-t border-[var(--landing-line)]">
           <button type="button" className="dashboard-secondary-btn" onClick={() => onOpenChange(false)}>
-            Cancel
+            {t("cancel")}
           </button>
           <button
             type="button"
@@ -438,7 +450,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
             disabled={!form.jobCompany.trim() || !form.jobTitle.trim() || save.isPending}
             onClick={submit}
           >
-            {isEditing ? "Save changes" : "Add to pipeline"}
+            {isEditing ? t("saveChanges") : t("addToPipeline")}
           </button>
         </SheetFooter>
       </SheetContent>

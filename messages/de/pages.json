@@ -1,0 +1,158 @@
+{
+  "pricingPage": {
+    "meta": {
+      "title": "Preise: lebenslanger Zugang für ${lifetime}",
+      "description": "FitMyCV Premium kostet ${lifetime} einmalig für immer oder ${month}/Monat. Lade unbegrenzt angepasste Lebensläufe und Anschreiben zu jedem Joblink herunter, mit ATS-Score.",
+      "socialTitle": "Preise: angepasste Lebensläufe aus jedem Joblink | FitMyCV",
+      "ogDescription": "Lebenslanger Zugang für ${lifetime} oder ${month}/Monat für unbegrenzt angepasste Lebensläufe, Anschreiben, ATS-Bewertung und PDF-Export.",
+      "twitterDescription": "Premium kostet ${lifetime} für immer oder ${month}/Monat für unbegrenzt angepasste Lebensläufe, Anschreiben, ATS-Scores und PDFs. Das Monatsabo ist jederzeit kündbar.",
+      "imageAlt": "FitMyCV Preise: Passe deinen Lebenslauf an jeden Joblink an"
+    },
+    "eyebrow": "Preise",
+    "title": "Ein Plan. Unbegrenzt angepasste Bewerbungen.",
+    "priceOnce": "${price} einmalig",
+    "or": "oder",
+    "priceMonthly": "${price}/Monat",
+    "intro": "Passe deinen Lebenslauf und dein Anschreiben an jeden Joblink an, den du einfügst, lade sie als saubere PDFs herunter und behalte deinen Match- und ATS-Score im Blick, alles zu einem einfachen Preis.",
+    "faqTitle": "Fragen zu den Preisen",
+    "faqIntro": "Alles, was du über FitMyCV Premium wissen musst.",
+    "faqs": {
+      "cost": {
+        "q": "Was kostet FitMyCV?",
+        "a": "FitMyCV Premium kostet ${lifetime} für lebenslangen Zugang (einmal zahlen, für immer behalten) oder ${month} pro Monat ohne Vertragsbindung."
+      },
+      "includes": {
+        "q": "Was bekomme ich mit Premium?",
+        "a": "Premium umfasst unbegrenzt angepasste Lebensläufe und Anschreiben zu jedem Joblink, einen Match-Score und ATS-Score für jeden Lebenslauf, Interviewvorbereitung mit Unternehmensrecherche und Kontaktaufnahme, tägliche passende Jobs per E-Mail und PDF-Export für alles."
+      },
+      "cancel": {
+        "q": "Kann ich jederzeit kündigen?",
+        "a": "Monatsabos kannst du jederzeit kündigen. Du behältst den Zugang bis zum Ende deines Abrechnungszeitraums. Der lebenslange Zugang ist ein einmaliger Kauf und wird nicht erstattet."
+      },
+      "payment": {
+        "q": "Welche Zahlungsmethoden werden akzeptiert?",
+        "a": "Zahlungen werden sicher über Polar abgewickelt. Polar akzeptiert alle gängigen Kredit- und Debitkarten."
+      },
+      "regional": {
+        "q": "Gibt es regionale Preise?",
+        "a": "Ja. In ausgewählten Ländern können je nach deinem Standort beim Bezahlen niedrigere Preise gelten."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "Preise",
+    "titleLine1": "Weniger als eine Stunde bei einem Freelancer.",
+    "titleLine2": "Und es gehört dir.",
+    "intro": "Einmal zahlen für lebenslangen Zugang, oder monatlich, jederzeit kündbar.",
+    "footnote": "Etwa drei Monate im Monatsabo, und danach gehört es dir für jede weitere Jobsuche. Sichere Bezahlung über Polar.",
+    "regionalAvailable": "In ausgewählten Ländern gibt es niedrigere regionale Preise."
+  },
+  "pricingCards": {
+    "plans": {
+      "month": {
+        "label": "Monatlich",
+        "suffix": "/Monat",
+        "subline": "Jederzeit kündbar. Keine Vertragsbindung.",
+        "cta": "Abonnieren"
+      },
+      "lifetime": {
+        "label": "Lebenslanger Zugang",
+        "suffix": " einmalig",
+        "subline": "Einmal zahlen, für immer behalten.",
+        "cta": "Lebenslangen Zugang holen"
+      }
+    },
+    "badges": {
+      "startHere": "Hier starten",
+      "bestValue": "Bester Preis"
+    },
+    "regionalNote": "Preise für deine Region",
+    "includesTitle": "Beide Pläne enthalten alles",
+    "features": [
+      "Jeden angepassten Lebenslauf als PDF herunterladen",
+      "Match-Score für jeden Job, den du hinzufügst",
+      "Jedes Anschreiben als PDF herunterladen",
+      "Unternehmensrecherche, bevor du dich bewirbst",
+      "Fragen zur Interviewvorbereitung für die Stelle",
+      "Story-Sammlung: wiederverwendbare Interviewantworten im STAR-Format (Situation, Aufgabe, Aktion, Ergebnis)",
+      "Bewerbungen, gespeicherte Jobs und Angebote verfolgen",
+      "Tägliche passende Jobs per E-Mail",
+      "Jede ATS-Empfehlung auf deinen Lebenslauf anwenden",
+      "Antwortentwürfe für Fragen in Bewerbungsformularen",
+      "LinkedIn-Kontaktnachrichten, und an wen du sie schickst"
+    ],
+    "continueFree": "Kostenlos weiter"
+  },
+  "upgradeModal": {
+    "default": {
+      "title": "Hol dir FitMyCV Pro",
+      "description": "Starte einen Monat für ${price}, um deine Lebensläufe und Anschreiben als PDF herunterzuladen, dazu Unternehmensrecherche, Interviewvorbereitung und Bewerbungsverwaltung."
+    },
+    "download": {
+      "title": "Lade deine PDFs herunter",
+      "description": "Dein Lebenslauf und dein Anschreiben sind fertig. Starte einen Monat für ${price}, um sie als PDF herunterzuladen."
+    },
+    "preTailor": {
+      "title": "Lade deine PDFs herunter",
+      "description": "Starte einen Monat für ${price}, um deinen angepassten Lebenslauf und dein Anschreiben als PDF herunterzuladen."
+    },
+    "startMonth": "Einen Monat für ${price} starten",
+    "getLifetime": "Lebenslangen Zugang für ${price} holen",
+    "maybeLater": "Vielleicht später",
+    "seeEverything": "Alles in Pro ansehen"
+  },
+  "unlockGate": {
+    "button": "Zum Herunterladen freischalten",
+    "body": "Fertig. Schalte Downloads frei, um das Dokument als PDF zu speichern."
+  },
+  "feedback": {
+    "title": "Feedback senden",
+    "description": "Hilf uns, FitMyCV zu verbessern, und teile deine Gedanken mit uns.",
+    "typeLabel": "Art",
+    "types": {
+      "general": "Allgemein",
+      "bug": "Fehler",
+      "featureRequest": "Funktionswunsch"
+    },
+    "messageLabel": "Nachricht",
+    "messagePlaceholder": "Sag uns, was du denkst…",
+    "submit": "Feedback senden",
+    "sending": "Wird gesendet…",
+    "sent": "Danke. Dein Feedback wurde gesendet.",
+    "sendError": "Dein Feedback konnte nicht gesendet werden. Versuch es noch einmal."
+  },
+  "tailorCvFromJobLink": {
+    "meta": {
+      "title": "Lebenslauf an eine Stellenanzeige anpassen, aus jedem Link | FitMyCV",
+      "description": "Passe deinen Lebenslauf mit KI an eine Stellenanzeige an. Füge einen Link von LinkedIn, Indeed, Glassdoor oder einer Karriereseite ein, oder den Text, und erhalte Lebenslauf und Anschreiben."
+    },
+    "eyebrow": "Lebenslauf-Anpassung mit KI",
+    "titleStart": "Passe deinen Lebenslauf an eine Stellenanzeige an,",
+    "titleHighlight": "direkt ab dem Link.",
+    "intro": "Passe deinen Lebenslauf mit KI an eine Stellenanzeige an: Füge einen Joblink von LinkedIn, Indeed oder einer beliebigen Jobbörse ein, oder den Text der Anzeige, und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben passend zur Stelle um, Keyword für Keyword.",
+    "ctaPrimary": "Meinen Lebenslauf anpassen",
+    "ctaSecondary": "Erst meinen Lebenslauf bewerten",
+    "worksWith": "Funktioniert mit",
+    "companySites": "Firmenwebsites",
+    "benefitsTitle": "Ein Joblink. Ein Lebenslauf für genau diese Stelle.",
+    "benefitsIntro": "Schick nicht mehr denselben allgemeinen Lebenslauf an jede Anzeige. FitMyCV erstellt zu jedem eingefügten Joblink einen neu angepassten Lebenslauf.",
+    "benefits": {
+      "link": {
+        "title": "Ein Link statt einer Textwand",
+        "body": "Füge die URL einer Stelle von LinkedIn, Indeed, Glassdoor oder einer beliebigen Jobbörse ein. FitMyCV liest die Stelle und zieht Anforderungen, Skills und Keywords heraus, auch aus Abschnitten, die hinter einem „Mehr anzeigen“-Button versteckt sind."
+      },
+      "ats": {
+        "title": "Gebaut, um ATS-Filter zu bestehen",
+        "body": "Dein Lebenslauf wird so umgeschrieben, dass er genau die Sprache der Anzeige aufgreift, und dann als einspaltiges, textbasiertes PDF exportiert, das Bewerbermanagementsysteme so auslesen, wie du es geschrieben hast."
+      },
+      "speed": {
+        "title": "Lebenslauf und Anschreiben in Sekunden",
+        "body": "Beide Dokumente entstehen aus derselben Analyse derselben Anzeige und stützen sich deshalb gegenseitig. Bearbeite sie direkt und exportiere sie mit einem Klick als PDFs, die bereit für Recruiter sind."
+      }
+    },
+    "faqHeading": "Lebenslauf aus einem Joblink anpassen: FAQ",
+    "faqIntro": "Alles darüber, wie aus einem Joblink eine angepasste Bewerbung wird.",
+    "breadcrumbHome": "Startseite",
+    "breadcrumbPage": "Lebenslauf aus einem Joblink anpassen"
+  }
+}

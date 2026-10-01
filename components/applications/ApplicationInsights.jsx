@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { DownloadSimpleIcon } from "@phosphor-icons/react";
 import { DashboardPanel, DashboardPanelHeader } from "@/components/dashboard";
 import { computeInsights, computeTimeline } from "@/lib/applications";
@@ -20,6 +21,8 @@ const FLOW_TEXT = "#faf8f5";
 const FLOW_MUTED = "#a39e94";
 
 function PipelineFlow({ insights, delay }) {
+  const t = useTranslations("dashboard.appComponents.insights");
+  const tDashboard = useTranslations("dashboard");
   const svgRef = useRef(null);
   const W = 800;
   const H = 340;
@@ -57,7 +60,7 @@ function PipelineFlow({ insights, delay }) {
       link.download = "pipeline-flow.png";
       link.href = canvas.toDataURL("image/png");
       link.click();
-      toast.success("Exported pipeline-flow.png");
+      toast.success(t("exported"));
     };
     image.src = `data:image/svg+xml;base64,${btoa(binary)}`;
   };
@@ -65,8 +68,8 @@ function PipelineFlow({ insights, delay }) {
   return (
     <DashboardPanel delay={delay}>
       <DashboardPanelHeader
-        title="Where your applications went"
-        description="How many reached each stage"
+        title={t("flowTitle")}
+        description={t("flowDescription")}
         action={
           <button
             type="button"
@@ -74,7 +77,7 @@ function PipelineFlow({ insights, delay }) {
             className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
           >
             <DownloadSimpleIcon size={16} aria-hidden="true" />
-            Export PNG
+            {t("exportPng")}
           </button>
         }
       />
@@ -84,7 +87,7 @@ function PipelineFlow({ insights, delay }) {
         className="mt-4 w-full rounded-md"
         style={{ fontFamily: "ui-sans-serif, system-ui, sans-serif" }}
         role="img"
-        aria-label="Pipeline flow"
+        aria-label={t("flowLabel")}
       >
         <defs>
           {bars.slice(0, -1).map((bar, i) => (
@@ -96,16 +99,16 @@ function PipelineFlow({ insights, delay }) {
         </defs>
         <rect x={0} y={0} width={W} height={H} rx={8} fill={FLOW_BG} />
         <text x={padX} y={40} fontSize={17} fontWeight={700} fill={FLOW_TEXT}>
-          Job search pipeline
+          {t("chartTitle")}
         </text>
         <text x={padX} y={60} fontSize={12} fill={FLOW_MUTED}>
-          {insights.total} {insights.total === 1 ? "application" : "applications"} tracked
+          {t("tracked", { count: insights.total })}
         </text>
         {insights.rejected > 0 && (
           <g>
             <circle cx={W - padX - 96} cy={54} r={4} fill={FLOW_REJECTED} />
             <text x={W - padX - 86} y={58} fontSize={12} fill={FLOW_MUTED}>
-              {insights.rejected} rejected
+              {t("rejected", { count: insights.rejected })}
             </text>
           </g>
         )}
@@ -129,7 +132,7 @@ function PipelineFlow({ insights, delay }) {
               {bar.reached}
             </text>
             <text x={bar.cx} y={H - 42} textAnchor="middle" fontSize={12} fontWeight={500} fill={FLOW_TEXT}>
-              {bar.label}
+              {tDashboard(`stages.${bar.key}`)}
             </text>
             {i > 0 && bar.conversion !== null && (
               <text x={bar.cx} y={H - 26} textAnchor="middle" fontSize={11} fill={bar.color}>
@@ -144,6 +147,7 @@ function PipelineFlow({ insights, delay }) {
 }
 
 export function ApplicationInsights({ applications }) {
+  const t = useTranslations("dashboard.appComponents.insights");
   const [now] = useState(() => Date.now());
   const insights = useMemo(() => computeInsights(applications), [applications]);
 
@@ -168,7 +172,7 @@ export function ApplicationInsights({ applications }) {
     return (
       <DashboardPanel>
         <p className="py-10 text-center text-sm text-muted-foreground">
-          Your funnel and reply rates appear here once you add applications.
+          {t("empty")}
         </p>
       </DashboardPanel>
     );
@@ -181,8 +185,8 @@ export function ApplicationInsights({ applications }) {
       <div className="grid items-stretch gap-4 lg:grid-cols-2">
         <DashboardPanel delay={0.1}>
           <DashboardPanelHeader
-            title="Applications over time"
-            description="Sent per week, last 8 weeks"
+            title={t("overTimeTitle")}
+            description={t("overTimeDescription")}
           />
           <div className="mt-4 flex items-end gap-2">
             {timeline.map((bucket) => (
@@ -203,11 +207,11 @@ export function ApplicationInsights({ applications }) {
         </DashboardPanel>
 
         <DashboardPanel delay={0.15}>
-          <DashboardPanelHeader title="Where applications come from" description="Count by source" />
+          <DashboardPanelHeader title={t("sourcesTitle")} description={t("sourcesDescription")} />
           <div className="mt-4 flex flex-col gap-3">
             {sources.length === 0 ? (
               <p className="text-sm text-muted-foreground">
-                Add a source to an application to see it counted here.
+                {t("sourcesEmpty")}
               </p>
             ) : (
               sources.map((row) => (

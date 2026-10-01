@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -49,13 +50,14 @@ function LoadingSkeleton() {
 }
 
 export default function CompanyResearchCard({ brief, isLoading }) {
+  const t = useTranslations("tailor.companyResearch");
   if (isLoading) {
     return (
       <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardHeader className="dashboard-card-pad">
           <CardTitle className="text-base flex items-center gap-2">
             <BuildingsIcon size={16} className="text-muted-foreground" />
-            Researching company…
+            {t("loading")}
           </CardTitle>
         </CardHeader>
         <CardContent className="dashboard-card-pad pt-0">
@@ -69,7 +71,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
     return (
       <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
         <CardContent className="py-10 text-center text-muted-foreground text-sm">
-          On Pro, a brief on the company appears here when the posting names it.
+          {t("empty")}
         </CardContent>
       </Card>
     );
@@ -99,7 +101,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <TargetIcon size={15} />
-              Mission
+              {t("mission")}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed italic border-l-2 border-muted pl-3">
               &ldquo;{brief.mission}&rdquo;
@@ -112,7 +114,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <ArticleIcon size={15} />
-              Executive summary
+              {t("summary")}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {brief.summary}
@@ -125,7 +127,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <UsersThreeIcon size={15} />
-              Culture signals
+              {t("culture")}
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {brief.cultureSignals.map((signal, i) => (
@@ -140,7 +142,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <LightningIcon size={15} />
-              Tech strategy
+              {t("tech")}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {brief.techStrategy}
@@ -153,7 +155,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <WarningIcon size={15} />
-              Key challenges
+              {t("challenges")}
             </h3>
             <ul className="space-y-1.5">
               {brief.challenges.map((challenge, i) => (
@@ -171,7 +173,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <SwordIcon size={15} />
-              Competitive landscape
+              {t("competitors")}
             </h3>
             <ul className="space-y-2">
               {brief.competitors.map((comp, i) => (
@@ -191,7 +193,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)]">
               <LightbulbIcon size={15} weight="fill" />
-              How to position yourself in the interview
+              {t("positioning")}
             </h3>
             <ul className="space-y-1.5">
               {brief.positioningTips.map((tip, i) => (
@@ -209,7 +211,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <div className="space-y-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold">
               <NewspaperIcon size={15} />
-              Recent news
+              {t("news")}
             </h3>
             <ul className="space-y-3">
               {brief.recentNews.map((item, i) => (

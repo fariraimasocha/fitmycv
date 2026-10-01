@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   ArrowsClockwiseIcon,
   CaretRightIcon,
@@ -22,9 +23,9 @@ import { cn } from "@/lib/utils";
 // overlap rather than claim a verdict on fit.
 
 function band(score) {
-  if (score >= 75) return { color: "var(--landing-success)", label: "Strong overlap" };
-  if (score >= 50) return { color: "#b7791f", label: "Some overlap" };
-  return { color: "var(--landing-accent)", label: "Low overlap" };
+  if (score >= 75) return { color: "var(--landing-success)", labelKey: "strong" };
+  if (score >= 50) return { color: "#b7791f", labelKey: "some" };
+  return { color: "var(--landing-accent)", labelKey: "low" };
 }
 
 function FitRing({ score }) {
@@ -95,6 +96,7 @@ function ActionRow({ icon, title, description, disabled, pending, onClick, href 
 }
 
 export function ApplicationCopilot({ application }) {
+  const t = useTranslations("dashboard.appComponents.copilot");
   const queryClient = useQueryClient();
   const [draft, setDraft] = useState(null);
   const id = application._id;
@@ -116,9 +118,9 @@ export function ApplicationCopilot({ application }) {
   const copyDraft = async () => {
     try {
       await navigator.clipboard.writeText(draft?.text ?? "");
-      toast.success("Copied to clipboard");
+      toast.success(t("copied"));
     } catch {
-      toast.error("Couldn't copy. Select the text and copy it yourself.");
+      toast.error(t("copyError"));
     }
   };
 
@@ -128,13 +130,13 @@ export function ApplicationCopilot({ application }) {
         <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-[var(--landing-accent)] text-white">
           <SparkleIcon weight="fill" size={12} aria-hidden="true" />
         </span>
-        <span className="font-outfit text-sm font-semibold text-foreground">Application copilot</span>
+        <span className="font-outfit text-sm font-semibold text-foreground">{t("title")}</span>
       </header>
 
       <div className="px-3.5 py-3">
         {!canScore ? (
           <p className="rounded-md bg-[var(--landing-paper-soft)] p-2.5 text-xs leading-5 text-muted-foreground">
-            Paste the job description or link a tailored CV (Edit) to score your fit.
+            {t("cannotScore")}
           </p>
         ) : score == null ? (
           <button
@@ -152,9 +154,9 @@ export function ApplicationCopilot({ application }) {
             </span>
             <span className="min-w-0">
               <span className="block text-sm font-medium text-foreground">
-                {pendingKind === "match" ? "Scoring your fit" : "Score my fit"}
+                {pendingKind === "match" ? t("scoring") : t("scoreMyFit")}
               </span>
-              <span className="block text-xs text-muted-foreground">See how much of the posting your CV covers</span>
+              <span className="block text-xs text-muted-foreground">{t("scoreHint")}</span>
             </span>
           </button>
         ) : (
@@ -166,15 +168,15 @@ export function ApplicationCopilot({ application }) {
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium" style={{ color: band(score).color }}>
-                  {band(score).label}
+                  {t(band(score).labelKey)}
                 </span>
                 <button
                   type="button"
                   disabled={run.isPending}
                   onClick={() => run.mutate("match")}
                   className="flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-[var(--landing-accent-soft)] hover:text-foreground disabled:opacity-50"
-                  title="Score again"
-                  aria-label="Score again"
+                  title={t("scoreAgain")}
+                  aria-label={t("scoreAgain")}
                 >
                   <ArrowsClockwiseIcon
                     size={14}
@@ -184,7 +186,7 @@ export function ApplicationCopilot({ application }) {
                 </button>
               </div>
               {gaps.length > 0 && (
-                <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">Gaps: {gaps.slice(0, 3).join(", ")}</p>
+                <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{t("gaps", { gaps: gaps.slice(0, 3).join(", ") })}</p>
               )}
             </div>
           </div>
@@ -194,23 +196,23 @@ export function ApplicationCopilot({ application }) {
       <div className="border-t border-[var(--landing-accent-line)]/40 px-2 py-2">
         <ActionRow
           icon={<MagicWandIcon size={16} aria-hidden="true" />}
-          title="Tailor my CV"
-          description={application.jobUrl ? "Make a copy tuned to this job" : "Add the job link to this application first"}
+          title={t("tailorTitle")}
+          description={application.jobUrl ? t("tailorDescription") : t("tailorNeedsLink")}
           disabled={!application.jobUrl}
           href={application.jobUrl ? `/dashboard/tailor?url=${encodeURIComponent(application.jobUrl)}` : undefined}
         />
         <ActionRow
           icon={<EnvelopeSimpleIcon size={16} aria-hidden="true" />}
-          title="Draft a cover letter"
-          description="From your CV and the posting"
+          title={t("coverTitle")}
+          description={t("coverDescription")}
           disabled={run.isPending}
           pending={pendingKind === "cover-letter"}
           onClick={() => run.mutate("cover-letter")}
         />
         <ActionRow
           icon={<PaperPlaneTiltIcon size={16} aria-hidden="true" />}
-          title="Draft a follow-up"
-          description="A short check-in for the recruiter"
+          title={t("followUpTitle")}
+          description={t("followUpDescription")}
           disabled={run.isPending}
           pending={pendingKind === "follow-up"}
           onClick={() => run.mutate("follow-up")}
@@ -221,7 +223,7 @@ export function ApplicationCopilot({ application }) {
         <div className="border-t border-[var(--landing-accent-line)]/40 bg-[var(--landing-surface)]/60 p-3">
           <div className="mb-1.5 flex items-center justify-between gap-3">
             <span className="text-xs font-semibold text-foreground">
-              {draft.kind === "cover-letter" ? "Cover letter draft" : "Follow-up draft"}
+              {draft.kind === "cover-letter" ? t("coverDraft") : t("followUpDraft")}
             </span>
             <div className="flex items-center gap-3">
               <button
@@ -230,14 +232,14 @@ export function ApplicationCopilot({ application }) {
                 onClick={() => void copyDraft()}
               >
                 <CopyIcon size={14} aria-hidden="true" />
-                Copy draft
+                {t("copyDraft")}
               </button>
               <button
                 type="button"
                 className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => setDraft(null)}
               >
-                Dismiss
+                {t("dismiss")}
               </button>
             </div>
           </div>

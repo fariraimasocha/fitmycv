@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import {
   StackIcon,
   BuildingsIcon,
@@ -39,8 +40,13 @@ function getTimeOfDay() {
   return "evening";
 }
 
-function getFormattedDate() {
-  return new Date().toLocaleDateString("en-GB", {
+// English keeps the en-GB date order it always had.
+function dateLocale(locale) {
+  return locale === "en" ? "en-GB" : locale;
+}
+
+function getFormattedDate(locale) {
+  return new Date().toLocaleDateString(dateLocale(locale), {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -48,17 +54,17 @@ function getFormattedDate() {
   });
 }
 
-function formatRelativeDay(value, now) {
+function formatRelativeDay(value, now, t, locale) {
   const date = new Date(value);
   const start = new Date(now);
   start.setHours(0, 0, 0, 0);
   const day = new Date(date);
   day.setHours(0, 0, 0, 0);
   const days = Math.round((start - day) / 86400000);
-  if (days <= 0) return "Today";
-  if (days === 1) return "Yesterday";
-  if (days < 7) return `${days} days ago`;
-  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  if (days <= 0) return t("today");
+  if (days === 1) return t("yesterday");
+  if (days < 7) return t("daysAgo", { days });
+  return date.toLocaleDateString(dateLocale(locale), { day: "numeric", month: "short" });
 }
 
 function CheckoutRedirect() {
@@ -74,6 +80,7 @@ function CheckoutRedirect() {
 }
 
 function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
+  const t = useTranslations("dashboard.home");
   return (
     <li>
       <Link
@@ -90,9 +97,9 @@ function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
           <span className="block text-xs text-muted-foreground">
             {typeof thisWeek === "number"
               ? thisWeek > 0
-                ? `+${thisWeek} this week`
-                : "None this week"
-              : "Not available"}
+                ? t("thisWeek", { count: thisWeek })
+                : t("noneThisWeek")
+              : t("notAvailable")}
           </span>
         </span>
         <span className="font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
@@ -109,11 +116,13 @@ function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
 }
 
 export default function DashboardPage() {
+  const t = useTranslations("dashboard.home");
+  const locale = useLocale();
   const { data: session } = useSession();
-  const [formattedDate] = useState(() => getFormattedDate());
+  const [formattedDate] = useState(() => getFormattedDate(locale));
   const [greeting] = useState(() => getTimeOfDay());
   const [now] = useState(() => Date.now());
-  const firstName = session?.user?.name?.split(" ")[0] ?? "there";
+  const firstName = session?.user?.name?.split(" ")[0];
   const isPremium = Boolean(session?.user?.isPremium);
 
   const {
@@ -207,11 +216,11 @@ export default function DashboardPage() {
 
   const series = useMemo(
     () => [
-      { id: "cvs", label: "Tailored CVs", counts: cvWeekly },
-      { id: "letters", label: "Cover letters", counts: letterWeekly },
-      { id: "research", label: "Research", counts: researchWeekly },
+      { id: "cvs", label: t("series.cvs"), counts: cvWeekly },
+      { id: "letters", label: t("series.letters"), counts: letterWeekly },
+      { id: "research", label: t("series.research"), counts: researchWeekly },
     ],
-    [cvWeekly, letterWeekly, researchWeekly],
+    [cvWeekly, letterWeekly, researchWeekly, t],
   );
 
   const recentCVs = useMemo(
@@ -259,7 +268,9 @@ export default function DashboardPage() {
       <DashboardPageHeader
         title={
           <span suppressHydrationWarning>
-            Good {greeting}, {firstName}
+            {firstName
+              ? t(`greeting.${greeting}`, { name: firstName })
+              : t(`greetingNoName.${greeting}`)}
           </span>
         }
         description={<span suppressHydrationWarning>{formattedDate}</span>}
@@ -267,11 +278,11 @@ export default function DashboardPage() {
           <>
             <Link href="/dashboard/resume" className="dashboard-secondary-btn">
               <FileTextIcon size={16} aria-hidden="true" />
-              My CV
+              {t("myCv")}
             </Link>
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              Tailor my CV
+              {t("tailorMyCv")}
             </Link>
           </>
         }
@@ -284,9 +295,9 @@ export default function DashboardPage() {
       ) : tailoredCVsError ? (
         <DashboardEmptyState
           icon={WarningCircleIcon}
-          title="Couldn't load your dashboard"
-          description="We couldn't load your tailored CVs. Try again in a moment."
-          actionLabel={tailoredCVsFetching ? "Retrying" : "Try again"}
+          title={t("error.title")}
+          description={t("error.description")}
+          actionLabel={tailoredCVsFetching ? t("error.retrying") : t("error.retry")}
           onAction={() => refetchTailoredCVs()}
           actionDisabled={tailoredCVsFetching}
           delay={0.05}
@@ -304,29 +315,29 @@ export default function DashboardPage() {
             />
             <DashboardPanel delay={0.1} className="lg:col-span-4">
               <DashboardPanelHeader
-                title="Totals"
-                description="Everything you have made"
+                title={t("totals.title")}
+                description={t("totals.description")}
               />
               <ul className="mt-3 flex flex-1 flex-col divide-y divide-[var(--landing-line)]">
                 <TotalRow
                   href="/dashboard/tailored"
                   icon={StackIcon}
-                  label="Tailored CVs"
+                  label={t("totals.cvs")}
                   value={tailoredCount}
                   thisWeek={cvWeekly.at(-1)}
                 />
                 <TotalRow
                   href="/dashboard/tailored"
                   icon={EnvelopeIcon}
-                  label="Cover letters"
+                  label={t("totals.letters")}
                   value={coverLetterCount}
                   thisWeek={letterWeekly.at(-1)}
                 />
                 <TotalRow
                   href="/dashboard/company-research"
                   icon={BuildingsIcon}
-                  label="Company research"
-                  value={researchKnown ? researches.length : "n/a"}
+                  label={t("totals.research")}
+                  value={researchKnown ? researches.length : t("totals.na")}
                   thisWeek={researchKnown ? researchWeekly.at(-1) : undefined}
                 />
               </ul>
@@ -337,10 +348,10 @@ export default function DashboardPage() {
           <div className="grid items-stretch gap-4 lg:grid-cols-12">
             <DashboardPanel delay={0.15} className="lg:col-span-7">
               <DashboardPanelHeader
-                title="Recent tailored CVs"
-                description="Open one to review, edit or download"
+                title={t("recent.title")}
+                description={t("recent.description")}
                 href="/dashboard/tailored"
-                linkLabel="View all"
+                linkLabel={t("viewAll")}
               />
               <ul className="mt-3 flex flex-col divide-y divide-[var(--landing-line)]">
                 {recentCVs.map((cv) => (
@@ -354,10 +365,10 @@ export default function DashboardPage() {
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium text-foreground">
-                          {cv.jobTitle || "Untitled role"}
+                          {cv.jobTitle || t("untitledRole")}
                         </span>
                         <span className="block truncate text-xs text-muted-foreground">
-                          {cv.jobCompany || "Company not set"}
+                          {cv.jobCompany || t("companyNotSet")}
                         </span>
                       </span>
                       {cv.hasCoverLetter && (
@@ -367,11 +378,11 @@ export default function DashboardPage() {
                             weight="fill"
                             aria-hidden="true"
                           />
-                          Cover letter
+                          {t("coverLetter")}
                         </span>
                       )}
                       <span className="w-20 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
-                        {formatRelativeDay(cv.createdAt, now)}
+                        {formatRelativeDay(cv.createdAt, now, t, locale)}
                       </span>
                     </Link>
                   </li>
@@ -391,18 +402,18 @@ export default function DashboardPage() {
           {/* Row 3: company research. */}
           <DashboardPanel delay={0.25}>
             <DashboardPanelHeader
-              title="Company research"
+              title={t("research.title")}
               description={
                 recentResearch.length > 0
-                  ? "Briefs on the companies you are applying to"
-                  : "Know the company before the interview"
+                  ? t("research.description")
+                  : t("research.emptyDescription")
               }
               href={
                 recentResearch.length > 0
                   ? "/dashboard/company-research"
                   : undefined
               }
-              linkLabel="View all"
+              linkLabel={t("viewAll")}
             />
             {recentResearch.length > 0 ? (
               <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
@@ -417,11 +428,11 @@ export default function DashboardPage() {
                       </span>
                       <span className="min-w-0">
                         <span className="block truncate text-sm font-medium text-foreground">
-                          {brief.companyName || "Unnamed company"}
+                          {brief.companyName || t("research.unnamed")}
                         </span>
                         <span className="mt-0.5 block text-xs leading-5 break-words whitespace-normal text-muted-foreground">
                           {brief.jobTitle ||
-                            formatRelativeDay(brief.createdAt, now)}
+                            formatRelativeDay(brief.createdAt, now, t, locale)}
                         </span>
                       </span>
                     </Link>
@@ -435,15 +446,14 @@ export default function DashboardPage() {
                     <MagnifyingGlassIcon size={17} aria-hidden="true" />
                   </span>
                   <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                    Add a job on Tailor CV and get a brief on the company named
-                    in the posting.
+                    {t("research.empty")}
                   </p>
                 </div>
                 <Link
                   href="/dashboard/company-research"
                   className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
                 >
-                  See company research
+                  {t("research.cta")}
                 </Link>
               </div>
             )}

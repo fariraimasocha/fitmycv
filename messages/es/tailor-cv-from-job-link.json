@@ -1,0 +1,208 @@
+{
+  "FAQS": [
+    {
+      "q": "¿Cómo adapto mi CV desde un enlace de empleo?",
+      "a": "Inicia sesión, sube tu CV de referencia una sola vez y pega la URL del empleo al que quieres postularte. FitMyCV lee la oferta, extrae los requisitos y el vocabulario, los compara con tu experiencia y reescribe tu CV y tu carta de presentación para que encajen con el puesto, normalmente en menos de un minuto."
+    },
+    {
+      "q": "¿Qué portales de empleo funcionan con un enlace pegado?",
+      "a": "Enlaces de LinkedIn, Indeed, Glassdoor y la mayoría de los grandes portales de empleo y páginas de empleo de empresas. Pega la URL de la oferta concreta y no la de una página de resultados de búsqueda, y los requisitos se detectan automáticamente."
+    },
+    {
+      "q": "¿Y si el enlace de la oferta no funciona?",
+      "a": "Algunas ofertas están detrás de un inicio de sesión o de un control anti-bots estricto, y unas pocas webs de empresa solo muestran la descripción después de un paso de JavaScript. Cuando no se puede leer un enlace, puedes pegar directamente el texto de la oferta, y todo lo demás funciona exactamente igual."
+    },
+    {
+      "q": "¿Adaptar mi CV desde un enlace de empleo me ayudará a pasar los ATS?",
+      "a": "Actúa sobre la parte del comportamiento de los ATS que puedes controlar. El CV adaptado refleja las palabras clave y las expresiones de la oferta, que es lo que buscan los reclutadores, y se exporta como PDF de texto a una sola columna que se lee sin problemas. No puede inventar experiencia que no tienes."
+    },
+    {
+      "q": "¿Inventa experiencia o exagera mi CV?",
+      "a": "No. Tus empresas, fechas, cargos y logros salen de tu CV de referencia y no se cambian. Lo que cambia es cuáles van primero, en qué orden aparecen y el vocabulario con el que se describen. Si un requisito no se demuestra en ninguna parte de tu CV, la versión adaptada no lo afirma."
+    },
+    {
+      "q": "¿También obtengo una carta de presentación?",
+      "a": "Sí. Cada CV adaptado viene con una carta de presentación a juego, generada a partir del mismo análisis de la misma oferta, para que los dos documentos se refuercen en lugar de contradecirse. Ambos se exportan a PDF."
+    },
+    {
+      "q": "¿Cuánto tarda?",
+      "a": "Unos 30 a 60 segundos desde que pegas el enlace hasta tener un borrador para revisar, más el tiempo que dediques a editarlo. Hacer lo mismo a mano le lleva a la mayoría de la gente entre 20 y 40 minutos por puesto."
+    },
+    {
+      "q": "¿Puedo editar el CV adaptado antes de descargarlo?",
+      "a": "Sí, directamente y sección por sección. Deberías hacerlo. Tu criterio sobre cuáles de tus logros importan más a un empleador concreto es mejor que el de cualquier modelo, y dos minutos de edición son lo que convierte un buen borrador en tu CV."
+    },
+    {
+      "q": "¿En qué se diferencia de pegar la oferta en ChatGPT?",
+      "a": "En tres cosas: lee la oferta desde la URL, así que no se pierde nada al copiar y pegar, trabaja con una versión estructurada de tu CV en lugar de con lo que recuerdes incluir en el prompt, y exporta un PDF maquetado a una sola columna en lugar de texto de chat que luego tienes que maquetar tú."
+    },
+    {
+      "q": "¿Se comparte mi CV con reclutadores o empresas?",
+      "a": "No. FitMyCV no es un portal de empleo ni una base de datos de CV. Tu CV de referencia se guarda en tu cuenta para generar tus propios documentos, y puedes eliminarlo, junto con tu cuenta, en cualquier momento."
+    }
+  ],
+  "HOW_TO": {
+    "name": "Cómo adaptar tu CV desde un enlace de empleo",
+    "description": "Convierte la URL de una oferta de empleo en un CV y una carta de presentación adaptados en menos de un minuto.",
+    "steps": [
+      {
+        "name": "Sube tu CV de referencia una sola vez",
+        "text": "Tu CV se analiza en secciones estructuradas (puestos, fechas, viñetas, habilidades) y se reutiliza en cada candidatura a partir de entonces."
+      },
+      {
+        "name": "Pega el enlace de la oferta",
+        "text": "Pega la URL de la oferta de LinkedIn, Indeed, Glassdoor o la página de empleo de una empresa. Se lee el anuncio y se extraen sus requisitos."
+      },
+      {
+        "name": "Revisa y descarga",
+        "text": "Tu resumen, el orden de las viñetas, la redacción y las habilidades se reescriben en función de esa oferta, con una carta de presentación a juego. Edita directamente y exporta ambos a PDF."
+      }
+    ]
+  },
+  "BLOCKS": [
+    { "h2": "¿Qué es adaptar el CV desde un enlace de empleo?" },
+    {
+      "p": "Adaptar el CV desde un enlace de empleo consiste en usar la URL de una oferta, de LinkedIn, Indeed, Glassdoor o una página de empleo, como fuente de referencia para la reescritura. Se lee la página, se extraen las habilidades y el vocabulario que se piden, y tu CV actual se reordena y se reformula para encajar con esa oferta. También puedes pegar el texto de la oferta si el enlace no carga. Es el mismo trabajo que adaptarlo a mano, sin los cuarenta minutos de copiar y pegar."
+    },
+
+    { "h2": "Adapta un CV a una oferta de empleo con IA gratis" },
+    {
+      "p": "Subir tu CV de referencia y puntuarlo frente a una oferta es gratis. Generar el CV adaptado y la carta de presentación es el paso de pago, porque es ahí donde trabaja el modelo. Si primero solo quieres el diagnóstico, usa el [comprobador ATS gratuito](/ats-resume-checker), que no pide iniciar sesión y no sube nada. Cuando quieras la reescritura, pega aquí el enlace de la oferta."
+    },
+
+    { "h2": "Por qué un enlace es mejor que copiar y pegar" },
+    {
+      "p": "Toda herramienta de adaptación necesita la descripción del puesto. La mayoría te obliga a buscarla, seleccionarla, copiarla y pegarla, y justo ahí es donde el proceso falla sin que te des cuenta. Se pega media oferta, se pierde la sección de requisitos que estaba detrás de un botón de *mostrar más*, o desaparece entera la lista de responsabilidades porque estaba en un desplegable aparte."
+    },
+    {
+      "p": "Pegar la URL elimina todo ese tipo de errores. La página se lee tal como está publicada, incluidas las secciones que se te habrían escapado, y la extracción parte del texto completo y no de lo que sobrevivió en tu portapapeles."
+    },
+
+    { "h2": "Cómo funciona de verdad el análisis de un enlace de empleo" },
+    {
+      "p": "Vale la pena saber qué pasa entre pegar un enlace y recibir un CV, porque explica tanto en qué es buena la herramienta como en qué no te va a ayudar."
+    },
+    {
+      "steps": [
+        {
+          "title": "Se descarga la oferta y se reduce a texto",
+          "body": "Se obtiene la página y se queda solo con el contenido real del empleo: la navegación, los avisos de cookies, las listas de empleos relacionados y el texto genérico del pie de página se descartan para que no contaminen la extracción de palabras clave."
+        },
+        {
+          "title": "Se extrae la estructura del texto",
+          "body": "Se separan el título del puesto, la empresa, el nivel, las responsabilidades, los requisitos imprescindibles, los deseables y las herramientas mencionadas. Un requisito que se repite en el resumen, las responsabilidades y la lista de requisitos pesa mucho más que uno mencionado una sola vez."
+        },
+        {
+          "title": "Tu CV se compara con esos requisitos",
+          "body": "Tu CV de referencia ya está guardado en secciones estructuradas, así que cada requisito extraído se relaciona con los puestos y viñetas de tu historial que realmente lo demuestran. Los requisitos sin coincidencia se dejan sin afirmar en lugar de inventarse."
+        },
+        {
+          "title": "La reescritura se genera a partir de esa relación",
+          "body": "El resumen se reescribe en torno a los requisitos de más peso que puedes demostrar. Las viñetas se reordenan para que las coincidencias vayan primero y se reformulan con el vocabulario de la oferta, manteniendo tus cifras. La carta de presentación se escribe a partir de la misma relación."
+        },
+        {
+          "title": "Los dos documentos se generan en PDF",
+          "body": "Una sola columna, encabezados estándar, datos de contacto en el cuerpo y una capa de texto real. Las reglas de formato se explican en detalle en la [guía de CV compatible con ATS](/blog/ats-resume-guide)."
+        }
+      ]
+    },
+    {
+      "callout": {
+        "title": "La limitación que la hace útil",
+        "body": "La reescritura solo puede usar pruebas que ya están en tu CV de referencia. Es una limitación y es justo la idea. Es lo que hace que el resultado se pueda defender cuando un entrevistador te pide que le cuentes la viñeta que más le ha interesado."
+      }
+    },
+
+    { "h2": "Tres antes y después de adaptaciones reales" },
+    {
+      "p": "La misma experiencia, reescrita para tres ofertas distintas. Fíjate en que no se añade nada. Los logros ya estaban en el CV. Lo que cambia es cuál va primero y qué palabras lo describen."
+    },
+    {
+      "compare": {
+        "title": "1. Resumen profesional: para un puesto de PM centrado en precios",
+        "context": "La oferta empieza por precios, monetización y trabajo entre equipos. El resumen original estaba escrito para un puesto de producto genérico.",
+        "before": "Profesional de producto con experiencia y trayectoria entregando grandes productos en entornos dinámicos. Apasionado por el diseño centrado en el usuario y la colaboración con equipos multidisciplinares.",
+        "after": "Senior Product Manager con 7 años en SaaS B2B, especializado en precios y monetización. Lideró el paso a la facturación por uso en Northwind, elevando la retención neta de ingresos del 104 % al 121 %. Trabaja a diario con ingeniería, ventas y finanzas para lanzar cambios de precios sin romper los informes de ingresos."
+      }
+    },
+    {
+      "compare": {
+        "title": "2. Viñeta de experiencia: para un puesto de ingeniería centrado en fiabilidad",
+        "context": "La oferta repite latencia, guardias y reducción de incidencias. La viñeta original escondía las tres.",
+        "before": "Trabajé en mejorar el rendimiento de nuestra API principal y ayudé con la base de datos.",
+        "after": "• Perfilé y optimicé los 12 endpoints de API más lentos y añadí índices de cobertura, reduciendo la latencia p95 de 840 ms a 210 ms y eliminando de la hoja de ruta una réplica de lectura prevista."
+      }
+    },
+    {
+      "compare": {
+        "title": "3. Viñeta de experiencia: para un puesto de marketing de generación de demanda",
+        "context": "La oferta da mucho peso al pipeline generado y a la atribución. La viñeta original describía actividad y no resultados.",
+        "before": "Gestioné el blog de la empresa y las redes sociales, creando contenido con regularidad.",
+        "after": "• Rehice el calendario de contenidos en torno a 14 palabras clave de fondo de embudo y publiqué 40 artículos en 9 meses. Las sesiones orgánicas se multiplicaron por 3,1 y el tráfico orgánico generó el 22 % de las solicitudes de demo."
+      }
+    },
+    {
+      "p": "El patrón en los tres casos es el mismo que se explica en [cómo adaptar tu CV a una oferta de empleo](/blog/how-to-tailor-cv-to-job-description): verbo, acción concreta, resultado medible, con el vocabulario de la oferta donde se aplica con honestidad."
+    },
+
+    { "h2": "Adaptar desde un enlace o adaptar a mano" },
+    {
+      "p": "El método manual funciona. No es ningún secreto y lo hemos explicado entero. El problema son las cuentas."
+    },
+    {
+      "table": {
+        "head": ["", "A mano", "Desde un enlace de empleo"],
+        "rows": [
+          ["Tiempo hasta el primer borrador", "De 20 a 40 minutos", "Menos de un minuto"],
+          ["Extracción de requisitos", "Subrayado manual, es fácil saltarse una sección", "Analizados desde la oferta completa"],
+          ["Peso de los requisitos", "Tu criterio", "Frecuencia y posición en la oferta"],
+          ["Siglas y sinónimos", "Se pasan por alto a menudo", "Comparados con el texto de la oferta"],
+          ["Reordenar viñetas", "Manual", "Automático, editable"],
+          ["Carta de presentación a juego", "Una segunda tarea aparte", "Del mismo análisis"],
+          ["Riesgo de formato", "Lo que haga tu plantilla", "PDF a una columna compatible con ATS"],
+          ["Sostenible con más de 10 candidaturas a la semana", "Pocas veces", "Sí"]
+        ]
+      }
+    },
+    {
+      "p": "Con dos candidaturas al mes, hazlo a mano. La [guía paso a paso](/blog/how-to-tailor-cv-to-job-description) es todo lo que necesitas. Con diez a la semana, seis horas de adaptación es lo que hace que la gente deje de adaptar, y un CV genérico es justo lo que lleva a una tasa de respuesta baja."
+    },
+
+    { "h2": "Adaptar un CV desde una oferta de LinkedIn" },
+    {
+      "p": "LinkedIn es donde la mayoría encuentra el puesto y también donde la mayoría de los intentos de copiar y pegar salen mal: la descripción está plegada tras un botón de *ver más*, y el panel de coincidencia de habilidades está en otra parte de la página. Pegar la URL de la oferta lee la descripción completa y no solo el fragmento visible."
+    },
+    {
+      "p": "Pega la URL del empleo concreto, la que se parece a `linkedin.com/jobs/view/…`, y no una página de búsqueda o de colección. Si estás viendo el puesto en la app de LinkedIn, usa la opción de compartir para copiar el enlace de la propia oferta."
+    },
+
+    { "h2": "Adaptar un CV desde una oferta de Indeed o Glassdoor" },
+    {
+      "p": "Las ofertas de Indeed y Glassdoor suelen estar más estructuradas que las de LinkedIn, con un bloque claro de requisitos y una lista de responsabilidades, lo que hace más fiable el peso de los requisitos extraídos. Se aplica la misma regla: pega la URL de la oferta concreta, no la de una página de resultados."
+    },
+    {
+      "p": "Los agregadores a veces alojan una versión recortada de una descripción que está completa en la web de empleo de la empresa. Si existen las dos, la página de la empresa es el mejor enlace, porque es la versión que escribió de verdad el equipo de selección."
+    },
+
+    { "h2": "Páginas de empleo de empresas y todo lo demás" },
+    {
+      "p": "La mayoría de las páginas de empleo de empresas se leen bien, incluidas las alojadas en los sistemas de seguimiento de candidatos más comunes. Cuando no se puede obtener un enlace (un muro de inicio de sesión, un control anti-bots estricto o una descripción que solo aparece tras una interacción), pega directamente el texto de la oferta. Todos los pasos después de la descarga son idénticos."
+    },
+
+    { "h2": "Lo que la adaptación no puede arreglar" },
+    {
+      "p": "Ser claro sobre esto es más útil que una lista de funciones."
+    },
+    {
+      "ul": [
+        "**Una falta real de experiencia.** Si un puesto pide cinco años en algo que nunca has hecho, ninguna reescritura cubre ese hueco, y la entrevista lo descubriría de todos modos.",
+        "**Un CV sin nada medible.** La adaptación reordena y reformula tus pruebas. Si no hay cifras en ninguna parte, añádelas primero. [Cómo escribir un CV](/how-to-write-a-resume) explica dónde encontrarlas.",
+        "**Postularte a los puestos equivocados.** Una puntuación de coincidencia alta en un puesto que no quieres no es un avance.",
+        "**El resto de la candidatura.** Las preguntas de preselección, los enlaces al portfolio y las recomendaciones siguen importando, y a menudo más que el CV."
+      ]
+    },
+    {
+      "p": "Si quieres ver en qué punto estás antes de adaptar nada, el [comprobador ATS gratuito](/ats-resume-checker) puntúa tu CV actual frente a una oferta y te muestra exactamente qué términos requeridos faltan."
+    }
+  ]
+}

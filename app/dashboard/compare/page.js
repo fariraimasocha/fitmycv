@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   ScalesIcon,
@@ -22,21 +23,20 @@ import { initials } from "@/lib/applications";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Compare offers";
-const PAGE_DESCRIPTION = "Pick 2 to 4 applications and compare them side by side.";
 const MAX_SELECTED = 4;
 const MIN_SELECTED = 2;
 
-const DIMENSION_LABELS = {
-  roleFit: "Role fit",
-  compensation: "Compensation",
-  growth: "Growth",
-  culture: "Culture",
-  techStack: "Tech stack",
-  workLifeBalance: "Work-life balance",
-  companyStage: "Company stage",
-  brand: "Brand",
-};
+// Score keys returned by the API. Labels come from messages at render.
+const DIMENSIONS = [
+  "roleFit",
+  "compensation",
+  "growth",
+  "culture",
+  "techStack",
+  "workLifeBalance",
+  "companyStage",
+  "brand",
+];
 
 // Score bands read from the same success and accent ramp as the rest of the
 // dashboard: green for strong, ink for good, muted for middling, terracotta for weak.
@@ -61,6 +61,7 @@ function ScoreChip({ score }) {
 }
 
 function OfferOption({ app, selected, disabled, onToggle }) {
+  const t = useTranslations("dashboard.compare");
   return (
     <button
       type="button"
@@ -90,9 +91,9 @@ function OfferOption({ app, selected, disabled, onToggle }) {
       </span>
       <span className="min-w-0 flex-1">
         <span className="block text-sm font-semibold leading-snug break-words whitespace-normal text-foreground">
-          {app.jobTitle || "Untitled role"}
+          {app.jobTitle || t("untitledRole")}
         </span>
-        <span className="mt-0.5 block truncate text-xs text-muted-foreground">{app.jobCompany || "Company not set"}</span>
+        <span className="mt-0.5 block truncate text-xs text-muted-foreground">{app.jobCompany || t("companyNotSet")}</span>
       </span>
       {app.matchGrade && (
         <span className="shrink-0 text-xs font-medium tabular-nums text-muted-foreground">{app.matchGrade}</span>
@@ -121,6 +122,7 @@ function SelectionSkeleton() {
 }
 
 export default function ComparePage() {
+  const t = useTranslations("dashboard.compare");
   const [selectedIds, setSelectedIds] = useState([]);
   const [comparisonResult, setComparisonResult] = useState(null);
 
@@ -128,7 +130,7 @@ export default function ComparePage() {
     queryKey: ["applications"],
     queryFn: async () => {
       const res = await fetch("/api/applications");
-      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
+      if (!res.ok) throw new Error(t("loadError"));
       const json = await res.json();
       return json.data;
     },
@@ -144,15 +146,15 @@ export default function ComparePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ offers: selectedOffers }),
       });
-      if (!res.ok) throw new Error("Couldn't compare your offers. Try again.");
+      if (!res.ok) throw new Error(t("compareError"));
       return res.json();
     },
     onSuccess: (result) => {
       if (result.data) setComparisonResult(result.data);
       trackEvent("offers_compared", { offer_count: selectedIds.length });
-      toast.success("Comparison ready");
+      toast.success(t("comparisonReady"));
     },
-    onError: () => toast.error("Couldn't compare these offers. Try again."),
+    onError: () => toast.error(t("compareToastError")),
   });
 
   const toggleSelect = (id) => {
@@ -164,7 +166,7 @@ export default function ComparePage() {
   if (isLoading) {
     return (
       <DashboardPageShell width="wide">
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardPageHeader title={t("title")} description={t("description")} />
         <SelectionSkeleton />
       </DashboardPageShell>
     );
@@ -177,21 +179,21 @@ export default function ComparePage() {
 
   return (
     <DashboardPageShell width="wide">
-      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <DashboardPageHeader title={t("title")} description={t("description")} />
 
       {apps.length === 0 ? (
         <DashboardEmptyState
           icon={ScalesIcon}
-          title="Your applications will appear here"
-          description="Add applications to your pipeline first, then pick 2 to 4 to compare."
-          actionLabel="Open applications"
+          title={t("emptyTitle")}
+          description={t("emptyDescription")}
+          actionLabel={t("emptyAction")}
           actionHref="/dashboard/applications"
         />
       ) : (
         <DashboardPanel delay={0.05}>
           <DashboardPanelHeader
-            title="Select applications"
-            description={`${selectedCount} of ${MAX_SELECTED} selected`}
+            title={t("selectTitle")}
+            description={t("selectedCount", { count: selectedCount, max: MAX_SELECTED })}
             action={
               <button
                 type="button"
@@ -204,7 +206,7 @@ export default function ComparePage() {
                 ) : (
                   <SparkleIcon size={16} aria-hidden="true" />
                 )}
-                {compareMutation.isPending ? "Comparing" : "Compare selected"}
+                {compareMutation.isPending ? t("comparing") : t("compareSelected")}
               </button>
             }
           />
@@ -231,8 +233,8 @@ export default function ComparePage() {
           <DashboardPanel pad={false} delay={0.05}>
             <div className="border-b border-[var(--landing-line)] px-4 py-4 sm:px-5">
               <DashboardPanelHeader
-                title="Comparison matrix"
-                description="Each dimension scored out of 10"
+                title={t("matrixTitle")}
+                description={t("matrixDescription")}
               />
             </div>
             <div className="overflow-x-auto">
@@ -243,7 +245,7 @@ export default function ComparePage() {
                       scope="col"
                       className="sticky left-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-5"
                     >
-                      Dimension
+                      {t("dimension")}
                     </th>
                     {comparisons.map((c) => (
                       <th
@@ -262,13 +264,13 @@ export default function ComparePage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[var(--landing-line)]">
-                  {Object.entries(DIMENSION_LABELS).map(([key, label]) => (
+                  {DIMENSIONS.map((key) => (
                     <tr key={key} className="transition-colors hover:bg-[var(--landing-paper-soft)]">
                       <th
                         scope="row"
                         className="sticky left-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-left text-xs font-medium text-muted-foreground sm:px-5"
                       >
-                        {label}
+                        {t(`dimensions.${key}`)}
                       </th>
                       {comparisons.map((c) => (
                         <td key={c.id || c.company} className="px-4 py-3 text-right align-top">
@@ -282,7 +284,7 @@ export default function ComparePage() {
                               )}
                             </div>
                           ) : (
-                            <span className="text-xs text-muted-foreground">n/a</span>
+                            <span className="text-xs text-muted-foreground">{t("notAvailable")}</span>
                           )}
                         </td>
                       ))}
@@ -295,12 +297,12 @@ export default function ComparePage() {
                       scope="row"
                       className="sticky left-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-foreground sm:px-5"
                     >
-                      Total
+                      {t("total")}
                     </th>
                     {comparisons.map((c) => (
                       <td key={c.id || c.company} className="px-4 py-3 text-right">
                         <span className="font-outfit text-lg font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
-                          {typeof c.totalScore === "number" ? c.totalScore.toFixed(1) : "n/a"}
+                          {typeof c.totalScore === "number" ? c.totalScore.toFixed(1) : t("notAvailable")}
                         </span>
                         {typeof c.totalScore === "number" && (
                           <span className="text-xs text-muted-foreground">/10</span>
@@ -321,7 +323,7 @@ export default function ComparePage() {
                     <LightbulbIcon size={16} weight="fill" aria-hidden="true" />
                   </span>
                   <div className="min-w-0">
-                    <h2 className="font-outfit text-sm font-semibold text-foreground">Recommendation</h2>
+                    <h2 className="font-outfit text-sm font-semibold text-foreground">{t("recommendation")}</h2>
                     <p className="mt-1.5 text-sm leading-6 text-muted-foreground">
                       {comparisonResult.recommendation}
                     </p>
@@ -337,15 +339,15 @@ export default function ComparePage() {
                     <ArrowsLeftRightIcon size={16} aria-hidden="true" />
                   </span>
                   <div className="min-w-0">
-                    <h2 className="font-outfit text-sm font-semibold text-foreground">Key tradeoffs</h2>
+                    <h2 className="font-outfit text-sm font-semibold text-foreground">{t("keyTradeoffs")}</h2>
                     <ul className="mt-1.5 flex flex-col gap-2">
-                      {comparisonResult.tradeoffs.map((t, i) => (
+                      {comparisonResult.tradeoffs.map((tradeoff, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
                           <span
                             className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--landing-accent)]"
                             aria-hidden="true"
                           />
-                          <span className="min-w-0">{t}</span>
+                          <span className="min-w-0">{tradeoff}</span>
                         </li>
                       ))}
                     </ul>

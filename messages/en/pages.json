@@ -1,0 +1,158 @@
+{
+  "pricingPage": {
+    "meta": {
+      "title": "Pricing: Lifetime Access for ${lifetime}",
+      "description": "FitMyCV Premium is ${lifetime} lifetime or ${month}/month. Download unlimited tailored CVs and cover letters from any job link, with ATS scores.",
+      "socialTitle": "Pricing: Tailored CVs From Any Job Link | FitMyCV",
+      "ogDescription": "Lifetime access for ${lifetime} or ${month}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.",
+      "twitterDescription": "Premium is ${lifetime} lifetime or ${month}/month for unlimited tailored CVs, cover letters, ATS scores, and PDFs. Cancel monthly anytime.",
+      "imageAlt": "FitMyCV pricing: tailor your CV from any job link"
+    },
+    "eyebrow": "Pricing",
+    "title": "One plan. Unlimited tailored applications.",
+    "priceOnce": "${price} once",
+    "or": "or",
+    "priceMonthly": "${price}/mo",
+    "intro": "Tailor your CV and cover letter to every job link you paste, download them as clean PDFs, and track your match and ATS scores, all for one simple price.",
+    "faqTitle": "Pricing FAQ",
+    "faqIntro": "Everything you need to know about FitMyCV Premium.",
+    "faqs": {
+      "cost": {
+        "q": "How much does FitMyCV cost?",
+        "a": "FitMyCV Premium is ${lifetime} for lifetime access (pay once, keep it forever) or ${month} per month with no contracts."
+      },
+      "includes": {
+        "q": "What do I get with Premium?",
+        "a": "Premium includes unlimited tailored CVs and cover letters from any job link, a match score and ATS score on every CV, interview prep with company research and outreach, daily job matches by email, and PDF export on everything."
+      },
+      "cancel": {
+        "q": "Can I cancel anytime?",
+        "a": "Monthly subscriptions can be canceled anytime. You keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable."
+      },
+      "payment": {
+        "q": "Which payment methods do you accept?",
+        "a": "Payments are processed securely through Polar, which accepts all major credit and debit cards."
+      },
+      "regional": {
+        "q": "Is regional pricing available?",
+        "a": "Yes. Lower pricing may apply in select countries based on your location at checkout."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "titleLine1": "Less than an hour of a freelancer.",
+    "titleLine2": "Yours for good.",
+    "intro": "One payment for lifetime access, or go monthly, cancel anytime.",
+    "footnote": "About three months of monthly, and yours for every search after. Secure checkout via Polar.",
+    "regionalAvailable": "Lower regional pricing is available in select countries."
+  },
+  "pricingCards": {
+    "plans": {
+      "month": {
+        "label": "Monthly",
+        "suffix": "/month",
+        "subline": "Cancel anytime. No contracts.",
+        "cta": "Subscribe"
+      },
+      "lifetime": {
+        "label": "Lifetime",
+        "suffix": " once",
+        "subline": "Pay once, keep it forever.",
+        "cta": "Get Lifetime"
+      }
+    },
+    "badges": {
+      "startHere": "Start here",
+      "bestValue": "Best value"
+    },
+    "regionalNote": "Pricing for your region",
+    "includesTitle": "Both plans include everything",
+    "features": [
+      "Download every tailored CV as a PDF",
+      "Job match score for every job you add",
+      "Download every cover letter as a PDF",
+      "Company research briefs before you apply",
+      "Interview prep questions for the role",
+      "Story bank: interview answers you can reuse, in the STAR format (situation, task, action, result)",
+      "Track applications, saved jobs and offers",
+      "Daily job matches by email",
+      "Apply each ATS recommendation to your CV",
+      "Draft answers for application form questions",
+      "LinkedIn connection messages, and who to send them to"
+    ],
+    "continueFree": "Continue free"
+  },
+  "upgradeModal": {
+    "default": {
+      "title": "Get FitMyCV Pro",
+      "description": "Start a month for ${price} to download your CVs and cover letters as PDFs, plus company research, interview prep and application tracking."
+    },
+    "download": {
+      "title": "Download your PDFs",
+      "description": "Your CV and cover letter are ready. Start a month for ${price} to download them as PDFs."
+    },
+    "preTailor": {
+      "title": "Download your PDFs",
+      "description": "Start a month for ${price} to download your tailored CV and cover letter as PDFs."
+    },
+    "startMonth": "Start a month for ${price}",
+    "getLifetime": "Get lifetime for ${price}",
+    "maybeLater": "Maybe later",
+    "seeEverything": "See everything in Pro"
+  },
+  "unlockGate": {
+    "button": "Unlock to download",
+    "body": "It's ready. Unlock downloads to save it as a PDF."
+  },
+  "feedback": {
+    "title": "Send feedback",
+    "description": "Help us improve FitMyCV by sharing your thoughts.",
+    "typeLabel": "Type",
+    "types": {
+      "general": "General",
+      "bug": "Bug",
+      "featureRequest": "Feature request"
+    },
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us what you think…",
+    "submit": "Send feedback",
+    "sending": "Sending…",
+    "sent": "Thanks. Your feedback is sent.",
+    "sendError": "Couldn't send your feedback. Try again."
+  },
+  "tailorCvFromJobLink": {
+    "meta": {
+      "title": "Tailor Your CV to a Job Description From Any Link | FitMyCV",
+      "description": "Tailor your CV to a job description with AI. Paste a link from LinkedIn, Indeed, Glassdoor or a careers page, or the text, and get a CV and cover letter."
+    },
+    "eyebrow": "AI CV tailoring",
+    "titleStart": "Tailor your CV to a job description,",
+    "titleHighlight": "starting from the link.",
+    "intro": "Tailor your resume to a job description with AI: paste a job link from LinkedIn, Indeed, or any board, or paste the posting text, and FitMyCV rewrites your CV and cover letter to match the role, keyword for keyword.",
+    "ctaPrimary": "Tailor my CV",
+    "ctaSecondary": "Score my CV first",
+    "worksWith": "Works with",
+    "companySites": "Company sites",
+    "benefitsTitle": "One job link. A CV built for that role.",
+    "benefitsIntro": "Stop sending the same generic resume to every posting. FitMyCV tailors a fresh CV from each job link you paste.",
+    "benefits": {
+      "link": {
+        "title": "Paste a link, not a wall of text",
+        "body": "Drop in a job URL from LinkedIn, Indeed, Glassdoor, or any board. FitMyCV reads the role and pulls out the requirements, skills, and keywords, including the sections hidden behind a 'see more' toggle."
+      },
+      "ats": {
+        "title": "Built to pass ATS filters",
+        "body": "Your CV is rewritten to mirror the exact language in the listing, then exported as a single-column, text-based PDF that applicant tracking systems parse the way you wrote it."
+      },
+      "speed": {
+        "title": "CV + cover letter in seconds",
+        "body": "Both documents come from the same parse of the same posting, so they reinforce each other. Edit either inline, then export to recruiter-ready PDFs with one click."
+      }
+    },
+    "faqHeading": "Tailoring your CV from a job link: FAQ",
+    "faqIntro": "Everything about turning a job link into a tailored application.",
+    "breadcrumbHome": "Home",
+    "breadcrumbPage": "Tailor CV from a job link"
+  }
+}

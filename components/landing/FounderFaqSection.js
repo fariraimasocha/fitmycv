@@ -1,29 +1,46 @@
 import Image from "next/image";
 import { cookies, headers } from "next/headers";
 import { EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
+import { getLocale, getTranslations } from "next-intl/server";
 import {
   countryCodeToFlag,
   getCountryLabel,
   resolveCountryFromHeaders,
 } from "@/lib/pricing-region";
 import { SUPPORT_EMAIL } from "@/lib/site";
-import { HOME_FAQS } from "@/content/pages/home";
+import { getHomeFaqs } from "@/content/pages/home";
 import FounderFaqAccordion from "@/components/landing/FounderFaqAccordion";
 
-const faqs = HOME_FAQS.map(({ q, a }) => ({ question: q, answer: a }));
+// English keeps the hand-written labels. Other languages ask Intl
+// for the country name in that language, falling back to English.
+function localizedCountryName(country, locale) {
+  const english = getCountryLabel(country);
+  if (!english || locale === "en") return english;
+  try {
+    return new Intl.DisplayNames([locale], { type: "region" }).of(country.toUpperCase()) ?? english;
+  } catch {
+    return english;
+  }
+}
 
 export default async function FounderFaqSection() {
-  const [cookieStore, headerStore] = await Promise.all([cookies(), headers()]);
+  const [cookieStore, headerStore, t, locale] = await Promise.all([
+    cookies(),
+    headers(),
+    getTranslations("landing.faq"),
+    getLocale(),
+  ]);
   const countryFromHeader = resolveCountryFromHeaders(headerStore);
   const countryFromCookie = cookieStore.get("visitor_country")?.value?.toLowerCase();
   const country = countryFromHeader ?? countryFromCookie ?? null;
   const flag = country ? countryCodeToFlag(country) : null;
-  const countryName = getCountryLabel(country);
+  const countryName = localizedCountryName(country, locale);
+  const faqs = getHomeFaqs(locale).map(({ q, a }) => ({ question: q, answer: a }));
 
   const greeting =
     flag && countryName
-      ? `Hey friend from ${flag} ${countryName}, I'm Farirai.`
-      : "Hey friend, I'm Farirai.";
+      ? t("greetingCountry", { flag, country: countryName })
+      : t("greeting");
 
   return (
     <section
@@ -36,7 +53,7 @@ export default async function FounderFaqSection() {
           <header className="flex items-center gap-4">
             <Image
               src="/fari.png"
-              alt="Farirai James, founder of FitMyCV"
+              alt={t("founderAlt")}
               width={56}
               height={56}
               className="size-14 shrink-0 rounded-full object-cover"
@@ -46,7 +63,7 @@ export default async function FounderFaqSection() {
                 Farirai James
               </p>
               <p className="text-sm text-[var(--landing-ink-soft)]">
-                Founder, FitMyCV •{" "}
+                {t("founderRole")}{" "}
                 <a
                   href="https://x.com/fariraijames"
                   target="_blank"
@@ -63,23 +80,15 @@ export default async function FounderFaqSection() {
             id="founder-faq-heading"
             className="font-serif-display mt-8 text-2xl font-normal leading-snug text-[var(--landing-ink)] sm:text-[1.75rem]"
           >
-            I kept rewriting my CV for every job link I clicked.
+            {t("heading")}
           </h2>
 
           <div className="mt-5 space-y-4 text-xs leading-6 text-[var(--landing-ink-soft)] sm:text-sm">
             <p>
-              {greeting} I kept rewriting my CV for every job link I clicked.
-              Each application took longer to prep than to submit.
+              {greeting} {t("story1")}
             </p>
-            <p>
-              So I built FitMyCV. Paste a job link and it reads the posting,
-              then rewrites your CV and cover letter for that role. No copying
-              requirements into a form.
-            </p>
-            <p>
-              I use FitMyCV on my own applications. If it saves me time on
-              every link, it should do the same for you.
-            </p>
+            <p>{t("story2")}</p>
+            <p>{t("story3")}</p>
           </div>
 
           <footer className="mt-8 border-t border-[var(--landing-line)] pt-6">

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
 export default function AuthLink({ href = "/auth", onClick, ...props }) {

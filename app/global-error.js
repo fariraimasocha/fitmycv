@@ -4,8 +4,29 @@
 // cannot reach. Without this file Next renders its plain "This page
 // couldn't load" fallback with no site chrome. This boundary replaces the
 // whole document, so it carries its own <html> and inline styles.
-import { useEffect } from "react";
+//
+// It also sits outside NextIntlClientProvider, so it bundles the errors
+// messages itself and picks the language from the URL prefix or the
+// NEXT_LOCALE cookie. The server render and hydration always use English,
+// then the client switches, which avoids a hydration mismatch.
+import { useEffect, useSyncExternalStore } from "react";
 import posthog from "posthog-js";
+import { createTranslator } from "next-intl";
+import en from "@/messages/en/errors.json";
+import fr from "@/messages/fr/errors.json";
+import es from "@/messages/es/errors.json";
+import de from "@/messages/de/errors.json";
+
+const MESSAGES = { en, fr, es, de };
+
+function detectLocale() {
+  const prefix = window.location.pathname.split("/")[1];
+  if (Object.hasOwn(MESSAGES, prefix)) return prefix;
+  const cookie = document.cookie.match(/(?:^|; )NEXT_LOCALE=([^;]+)/)?.[1];
+  return cookie && Object.hasOwn(MESSAGES, cookie) ? cookie : "en";
+}
+
+const subscribe = () => () => {};
 
 const STYLES = `
   body { margin: 0; background: #f7f4ef; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -23,6 +44,13 @@ const STYLES = `
 `;
 
 export default function GlobalError({ error }) {
+  const locale = useSyncExternalStore(subscribe, detectLocale, () => "en");
+  const t = createTranslator({
+    locale,
+    messages: { errors: MESSAGES[locale] },
+    namespace: "errors.global",
+  });
+
   useEffect(() => {
     if (
       process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
@@ -40,27 +68,29 @@ export default function GlobalError({ error }) {
   };
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
-        <title>FitMyCV | This page didn&apos;t load</title>
+        <title>{t("docTitle")}</title>
         <style dangerouslySetInnerHTML={{ __html: STYLES }} />
       </head>
       <body>
         <div className="wrap">
           <div className="card">
             <span className="brand">FitMyCV</span>
-            <h1>This page didn&apos;t load</h1>
-            <p>Something on our side failed. Try again, or go back to the homepage.</p>
+            <h1>{t("title")}</h1>
+            <p>{t("body")}</p>
             <div className="actions">
               <button type="button" className="btn" onClick={handleReload}>
-                Try again
+                {t("retry")}
               </button>
               <a href="/" className="btn btn-secondary">
-                Go to the homepage
+                {t("home")}
               </a>
             </div>
             <footer>
-              If this keeps happening, <a href="/support">reach support</a>.
+              {t.rich("support", {
+                link: (chunks) => <a href="/support">{chunks}</a>,
+              })}
             </footer>
           </div>
         </div>

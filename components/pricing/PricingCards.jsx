@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
 import { PRICING } from "@/lib/pricing";
@@ -14,13 +16,16 @@ export default function PricingCards({
   defaultPlan = "lifetime",
   compact = false,
   onSkip,
-  skipLabel = "Continue free",
+  skipLabel,
   pricing: pricingProp,
   tier: tierProp,
   primaryPlan,
 }) {
+  const t = useTranslations("pages.pricingCards");
   const { data: session } = useSession();
   const router = useRouter();
+  // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
+  const localeRouter = useLocaleRouter();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
   const gate = useWebviewGate();
   const [pricing, setPricing] = useState(pricingProp ?? PRICING);
@@ -58,7 +63,7 @@ export default function PricingCards({
     } else {
       setPendingCheckout(true, plan);
       if (gate?.interceptAuth(null, "/auth")) return;
-      router.push("/auth");
+      localeRouter.push("/auth");
     }
   };
 
@@ -70,20 +75,33 @@ export default function PricingCards({
       : [pricing.lifetime, pricing.month];
   const plans = ordered.map((plan) => ({
     ...plan,
+    label: t(`plans.${plan.id}.label`),
+    subline: t(`plans.${plan.id}.subline`),
+    suffix: t(`plans.${plan.id}.suffix`),
+    cta: t(`plans.${plan.id}.cta`),
     highlight: plan.id === highlightId,
     badge:
       plan.id === highlightId
         ? plan.id === "month"
-          ? "Start here"
-          : plan.badge || "Best value"
+          ? t("badges.startHere")
+          : t("badges.bestValue")
         : null,
   }));
+
+  // PRO_FEATURES stays the source of truth. Fall back to it if the translated
+  // list ever gets out of step with it.
+  const translatedFeatures = t.raw("features");
+  const features =
+    Array.isArray(translatedFeatures) &&
+    translatedFeatures.length === PRO_FEATURES.length
+      ? translatedFeatures
+      : PRO_FEATURES;
 
   return (
     <div className={`flex w-full flex-col gap-6 ${compact ? "" : "items-center"}`}>
       {pricing.regionalNote ? (
         <p className="text-center text-xs font-semibold text-[var(--landing-ink-soft)]">
-          {pricing.regionalNote}
+          {t("regionalNote")}
         </p>
       ) : null}
 
@@ -148,10 +166,10 @@ export default function PricingCards({
       {!compact && (
         <div className="order-1 w-full max-w-3xl rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 sm:p-7 md:order-2">
           <h3 className="text-center font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            Both plans include everything
+            {t("includesTitle")}
           </h3>
           <ul className="mt-5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
-            {PRO_FEATURES.map((feature) => (
+            {features.map((feature) => (
               <li
                 key={feature}
                 className="flex items-start gap-2.5 text-sm text-[var(--landing-ink-soft)]"
@@ -175,7 +193,7 @@ export default function PricingCards({
           onClick={onSkip}
           className="order-3 mx-auto text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
         >
-          {skipLabel}
+          {skipLabel ?? t("continueFree")}
         </button>
       )}
     </div>

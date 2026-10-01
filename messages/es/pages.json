@@ -1,0 +1,158 @@
+{
+  "pricingPage": {
+    "meta": {
+      "title": "Precios: acceso de por vida por ${lifetime}",
+      "description": "FitMyCV Premium cuesta ${lifetime} de por vida o ${month}/mes. Descarga CV y cartas de presentación adaptados sin límite desde cualquier enlace de empleo, con puntuación ATS.",
+      "socialTitle": "Precios: CV adaptados desde cualquier enlace de empleo | FitMyCV",
+      "ogDescription": "Acceso de por vida por ${lifetime} o ${month}/mes para CV adaptados, cartas de presentación, puntuación ATS y exportación a PDF sin límite.",
+      "twitterDescription": "Premium cuesta ${lifetime} de por vida o ${month}/mes para CV adaptados, cartas de presentación, puntuaciones ATS y PDF sin límite. Cancela el plan mensual cuando quieras.",
+      "imageAlt": "Precios de FitMyCV: adapta tu CV desde cualquier enlace de empleo"
+    },
+    "eyebrow": "Precios",
+    "title": "Un solo plan. Candidaturas adaptadas sin límite.",
+    "priceOnce": "${price} una vez",
+    "or": "o",
+    "priceMonthly": "${price}/mes",
+    "intro": "Adapta tu CV y tu carta de presentación a cada enlace de empleo que pegues, descárgalos como PDF limpios y sigue tus puntuaciones de coincidencia y ATS, todo por un precio sencillo.",
+    "faqTitle": "Preguntas frecuentes sobre precios",
+    "faqIntro": "Todo lo que necesitas saber sobre FitMyCV Premium.",
+    "faqs": {
+      "cost": {
+        "q": "¿Cuánto cuesta FitMyCV?",
+        "a": "FitMyCV Premium cuesta ${lifetime} por acceso de por vida (pagas una vez y es tuyo para siempre) o ${month} al mes, sin permanencia."
+      },
+      "includes": {
+        "q": "¿Qué incluye Premium?",
+        "a": "Premium incluye CV y cartas de presentación adaptados sin límite desde cualquier enlace de empleo, una puntuación de coincidencia y una puntuación ATS en cada CV, preparación de entrevistas con investigación de la empresa y contacto, ofertas que encajan contigo cada día por correo y exportación a PDF de todo."
+      },
+      "cancel": {
+        "q": "¿Puedo cancelar cuando quiera?",
+        "a": "Las suscripciones mensuales se pueden cancelar en cualquier momento. Mantienes el acceso hasta el final de tu periodo de facturación. Las compras de por vida son un pago único y no se reembolsan."
+      },
+      "payment": {
+        "q": "¿Qué métodos de pago se aceptan?",
+        "a": "Los pagos se procesan de forma segura a través de Polar, que acepta las principales tarjetas de crédito y débito."
+      },
+      "regional": {
+        "q": "¿Hay precios regionales?",
+        "a": "Sí. En algunos países pueden aplicarse precios más bajos según tu ubicación al pagar."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "Precios",
+    "titleLine1": "Menos que una hora de un freelance.",
+    "titleLine2": "Tuyo para siempre.",
+    "intro": "Un solo pago para acceso de por vida, o paga cada mes y cancela cuando quieras.",
+    "footnote": "Cuesta unos tres meses del plan mensual y es tuyo para todas tus búsquedas futuras. Pago seguro con Polar.",
+    "regionalAvailable": "Hay precios regionales más bajos en algunos países."
+  },
+  "pricingCards": {
+    "plans": {
+      "month": {
+        "label": "Mensual",
+        "suffix": "/mes",
+        "subline": "Cancela cuando quieras. Sin permanencia.",
+        "cta": "Suscribirme"
+      },
+      "lifetime": {
+        "label": "De por vida",
+        "suffix": " una vez",
+        "subline": "Paga una vez y es tuyo para siempre.",
+        "cta": "Obtener de por vida"
+      }
+    },
+    "badges": {
+      "startHere": "Empieza aquí",
+      "bestValue": "Mejor precio"
+    },
+    "regionalNote": "Precios para tu región",
+    "includesTitle": "Los dos planes lo incluyen todo",
+    "features": [
+      "Descarga cada CV adaptado en PDF",
+      "Puntuación de coincidencia para cada empleo que añadas",
+      "Descarga cada carta de presentación en PDF",
+      "Informes sobre la empresa antes de postularte",
+      "Preguntas de preparación de entrevista para el puesto",
+      "Banco de historias: respuestas de entrevista que puedes reutilizar, en formato STAR (situación, tarea, acción, resultado)",
+      "Seguimiento de candidaturas, empleos guardados y ofertas",
+      "Ofertas que encajan contigo cada día por correo",
+      "Aplica cada recomendación ATS a tu CV",
+      "Borradores de respuestas para las preguntas de los formularios de solicitud",
+      "Mensajes de conexión para LinkedIn, y a quién enviarlos"
+    ],
+    "continueFree": "Seguir gratis"
+  },
+  "upgradeModal": {
+    "default": {
+      "title": "Hazte FitMyCV Pro",
+      "description": "Empieza un mes por ${price} para descargar tus CV y cartas de presentación en PDF, además de investigación de empresas, preparación de entrevistas y seguimiento de candidaturas."
+    },
+    "download": {
+      "title": "Descarga tus PDF",
+      "description": "Tu CV y tu carta de presentación están listos. Empieza un mes por ${price} para descargarlos en PDF."
+    },
+    "preTailor": {
+      "title": "Descarga tus PDF",
+      "description": "Empieza un mes por ${price} para descargar tu CV adaptado y tu carta de presentación en PDF."
+    },
+    "startMonth": "Empezar un mes por ${price}",
+    "getLifetime": "Acceso de por vida por ${price}",
+    "maybeLater": "Quizá más tarde",
+    "seeEverything": "Ver todo lo que incluye Pro"
+  },
+  "unlockGate": {
+    "button": "Desbloquear para descargar",
+    "body": "Ya está listo. Desbloquea las descargas para guardarlo en PDF."
+  },
+  "feedback": {
+    "title": "Enviar comentarios",
+    "description": "Ayúdanos a mejorar FitMyCV contándonos tu opinión.",
+    "typeLabel": "Tipo",
+    "types": {
+      "general": "General",
+      "bug": "Error",
+      "featureRequest": "Sugerencia de función"
+    },
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Cuéntanos qué te parece…",
+    "submit": "Enviar comentarios",
+    "sending": "Enviando…",
+    "sent": "Gracias. Hemos recibido tus comentarios.",
+    "sendError": "No se pudieron enviar tus comentarios. Inténtalo de nuevo."
+  },
+  "tailorCvFromJobLink": {
+    "meta": {
+      "title": "Adapta tu CV a una oferta de empleo desde cualquier enlace | FitMyCV",
+      "description": "Adapta tu CV a una oferta de empleo con IA. Pega un enlace de LinkedIn, Indeed, Glassdoor o una página de empleo, o el texto, y obtén un CV y una carta de presentación."
+    },
+    "eyebrow": "Adaptación de CV con IA",
+    "titleStart": "Adapta tu CV a una oferta de empleo,",
+    "titleHighlight": "empezando por el enlace.",
+    "intro": "Adapta tu CV a una oferta de empleo con IA: pega un enlace de LinkedIn, Indeed o cualquier portal, o pega el texto de la oferta, y FitMyCV reescribe tu CV y tu carta de presentación para que encajen con el puesto, palabra clave por palabra clave.",
+    "ctaPrimary": "Adaptar mi CV",
+    "ctaSecondary": "Puntuar mi CV primero",
+    "worksWith": "Funciona con",
+    "companySites": "Webs de empresas",
+    "benefitsTitle": "Un enlace de empleo. Un CV hecho para ese puesto.",
+    "benefitsIntro": "Deja de enviar el mismo CV genérico a todas las ofertas. FitMyCV adapta un CV nuevo a cada enlace de empleo que pegas.",
+    "benefits": {
+      "link": {
+        "title": "Pega un enlace, no un muro de texto",
+        "body": "Pega la URL de una oferta de LinkedIn, Indeed, Glassdoor o cualquier portal. FitMyCV lee el puesto y extrae los requisitos, las habilidades y las palabras clave, incluidas las secciones ocultas tras un botón de «ver más»."
+      },
+      "ats": {
+        "title": "Hecho para superar los filtros ATS",
+        "body": "Tu CV se reescribe con el lenguaje exacto de la oferta y se exporta como PDF de texto a una sola columna, que los sistemas de seguimiento de candidatos (ATS) leen tal como lo escribiste."
+      },
+      "speed": {
+        "title": "CV y carta de presentación en segundos",
+        "body": "Los dos documentos salen del mismo análisis de la misma oferta, así que se refuerzan entre sí. Edita cualquiera de ellos directamente y expórtalos a PDF listos para reclutadores con un clic."
+      }
+    },
+    "faqHeading": "Adaptar tu CV desde un enlace de empleo: preguntas frecuentes",
+    "faqIntro": "Todo sobre cómo convertir un enlace de empleo en una candidatura adaptada.",
+    "breadcrumbHome": "Inicio",
+    "breadcrumbPage": "Adaptar el CV desde un enlace de empleo"
+  }
+}

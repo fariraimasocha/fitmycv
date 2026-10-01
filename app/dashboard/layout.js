@@ -1,3 +1,4 @@
+import { NextIntlClientProvider } from "next-intl";
 import DashboardShell from "./DashboardShell";
 
 // Server layout so /dashboard/* can carry real metadata. robots.txt already
@@ -9,5 +10,11 @@ export const metadata = {
 };
 
 export default function DashboardLayout({ children }) {
-  return <DashboardShell>{children}</DashboardShell>;
+  // Without a messages prop the provider passes every namespace, which the
+  // dashboard needs. The root layout only sends the public ones.
+  return (
+    <NextIntlClientProvider>
+      <DashboardShell>{children}</DashboardShell>
+    </NextIntlClientProvider>
+  );
 }

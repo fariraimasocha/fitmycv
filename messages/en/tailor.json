@@ -1,0 +1,696 @@
+{
+  "upload": {
+    "pdfOnlyError": "Choose a PDF file. Other file types aren't supported.",
+    "uploadError": "Couldn't upload your CV. Try again.",
+    "dropHere": "Drag and drop your CV PDF here",
+    "or": "or",
+    "browse": "Browse files",
+    "hint": "PDF only, max 8MB",
+    "removeFile": "Remove file",
+    "doneTitle": "Your CV is uploaded",
+    "doneBody": "Check the details, then save.",
+    "submit": "Upload CV",
+    "step": "Step {current} of {total}",
+    "stages": {
+      "preparing": "Preparing your file",
+      "uploading": "Uploading PDF",
+      "extracting": "Reading your PDF",
+      "parsing": "Sorting your experience into sections",
+      "saving": "Getting your details ready",
+      "complete": "Done. Check your details."
+    }
+  },
+  "templatePicker": {
+    "title": "Choose a template",
+    "description": "Previews use your own CV. The downloaded PDF matches exactly what you see.",
+    "badges": {
+      "atsSafe": "ATS-safe",
+      "skillsFirst": "Skills-first",
+      "twoColumn": "Two-column",
+      "accentRed": "Accent red",
+      "onePager": "One-pager",
+      "serif": "Serif",
+      "smallCaps": "Small caps"
+    },
+    "descriptions": {
+      "classic": "Harvard-style serif single column. Corporate, finance, law.",
+      "hybrid": "Skills-led with chronological timeline. Tech roles and career changers.",
+      "accent": "Single column with a deep blue accent. The modern builder signature look.",
+      "graduate": "Education-first layout. Students and fresh graduates.",
+      "modern": "Jake's Resume style. Compact, company-first entries.",
+      "clean": "Left-aligned with soft gray accents. Works everywhere.",
+      "minimal": "Zero decoration, maximum whitespace.",
+      "technical": "Monospace terminal aesthetic with skills on top.",
+      "sidebar": "Left rail for contact and skills. Best when a human reads first.",
+      "spotlight": "Awesome-CV style with centered header and red highlights.",
+      "executive": "Summary-heavy and concise. Senior leadership roles.",
+      "compact": "Dense layout that fits a long history on one page.",
+      "elegant": "Refined serif with a centered header.",
+      "professional": "Plain black-and-white with the name on its own first line.",
+      "standard": "Company-first entries. The widely shared recruiter template.",
+      "scholar": "Small-caps ruled headings in serif. The LaTeX engineering-resume look.",
+      "rezi": "Rezi's 2026 serif layout. Ruled headings, role-first entries, paragraph achievements.",
+      "rezi-simple": "Clean sans-serif Rezi layout with minimal rules. Finance, law, and government friendly.",
+      "rezi-modern": "Rezi layout with accent headings and tighter spacing for tech and product roles."
+    }
+  },
+  "resume": {
+    "uploadPanel": {
+      "title": "How it works",
+      "steps": {
+        "upload": {
+          "title": "Upload a PDF",
+          "body": "One file, up to 8MB."
+        },
+        "read": {
+          "title": "We read the details",
+          "body": "Experience, education, skills and contact details, in editable fields."
+        },
+        "review": {
+          "title": "You review and save",
+          "body": "Fix anything that looks off. Nothing is stored until you save."
+        }
+      },
+      "replacingNote": "Your current CV stays until you save the new one. Its template and style carry over."
+    },
+    "tabs": {
+      "edit": "Edit",
+      "preview": "Preview",
+      "ariaLabel": "Edit or preview"
+    },
+    "templateSaveError": {
+      "title": "Couldn't save your template",
+      "description": "Your change is still on screen. Check your connection and try again."
+    },
+    "backToCv": "Back to my CV",
+    "replace": {
+      "title": "Replace your CV",
+      "description": "Upload a new PDF. You can check the details before anything changes."
+    },
+    "upload": {
+      "title": "Upload your CV",
+      "description": "Upload your CV as a PDF. Every tailored application starts from it."
+    },
+    "review": {
+      "title": "Review your CV",
+      "description": "We read this from your PDF. Fix anything that looks off, then save."
+    },
+    "saved": {
+      "title": "My CV",
+      "description": "Every tailored CV and cover letter starts from this CV."
+    },
+    "discard": "Discard and keep saved CV",
+    "uploadDifferent": "Upload a different PDF",
+    "replaceCv": "Replace CV",
+    "downloadPdf": "Download PDF",
+    "stats": {
+      "checks": "CV checks",
+      "checksPassed": "{passed} of {total} passed",
+      "checking": "Checking",
+      "positions": "Positions",
+      "education": "Education",
+      "skillGroups": "Skill groups",
+      "template": "Template",
+      "lastSaved": "Last saved",
+      "notYet": "Not yet"
+    },
+    "liveUpdates": "Updates as you type",
+    "savedAt": {
+      "justNow": "Just now",
+      "minutesAgo": "{count} min ago",
+      "hoursAgo": "{count} h ago",
+      "yesterday": "Yesterday",
+      "daysAgo": "{count} days ago"
+    }
+  },
+  "resumeForm": {
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailInvalid": "Enter an email like name@example.com"
+    },
+    "saveError": "Couldn't save your changes. Try again.",
+    "saved": "CV saved",
+    "save": "Save CV",
+    "saving": "Saving...",
+    "sections": {
+      "personal": "Personal information",
+      "profiles": "Online profiles",
+      "work": "Work experience",
+      "education": "Education",
+      "skills": "Skills"
+    },
+    "fields": {
+      "fullNameRequired": "Full name *",
+      "headline": "Job title or headline",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "summary": "Professional summary",
+      "network": "Network",
+      "url": "URL",
+      "company": "Company",
+      "position": "Position",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "description": "Description and achievements",
+      "institution": "Institution",
+      "degree": "Degree",
+      "fieldOfStudy": "Field of study",
+      "categoryName": "Category name"
+    },
+    "placeholders": {
+      "network": "LinkedIn, GitHub…",
+      "yearMonth": "YYYY-MM",
+      "endDate": "YYYY-MM or Present",
+      "degree": "BSc, MA, PhD…",
+      "category": "e.g. Programming Languages"
+    },
+    "addProfileButton": "Add Profile",
+    "addProfile": "Add profile",
+    "addPositionButton": "Add Position",
+    "addPosition": "Add position",
+    "addEducationButton": "Add Education",
+    "addEducation": "Add education",
+    "addCategoryButton": "Add Category",
+    "addCategory": "Add category",
+    "addSkill": "Add Skill",
+    "empty": {
+      "profiles": "Add the profiles you want employers to see.",
+      "work": "Your positions are what get rewritten for each job.",
+      "education": "Add where you studied and what you studied.",
+      "skills": "Skills get matched against each job’s requirements."
+    },
+    "positionN": "Position {index}",
+    "educationN": "Education {index}",
+    "categoryN": "Category {index}",
+    "status": {
+      "unsaved": "Unsaved changes",
+      "notSaved": "Not saved yet",
+      "allSaved": "All changes saved"
+    },
+    "location": {
+      "fields": {
+        "name": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location",
+        "summary": "Summary",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "description": "Description",
+        "url": "URL"
+      },
+      "profileUrl": "Profile {index}, URL",
+      "personal": "Personal Information, {field}",
+      "position": "Position {index}, {field}",
+      "education": "Education {index}, {field}"
+    },
+    "checks": {
+      "title": "CV checks",
+      "passed": "{passed} of {total} passed",
+      "intro": "These checks run as you type and never leave your browser. They test whether software can read your CV, not how well it's written.",
+      "checksPassed": "{passed} of {total} checks passed",
+      "allPassed": "Every check passed."
+    }
+  },
+  "ats": {
+    "severity": {
+      "blocker": {
+        "label": "Blocker",
+        "count": "{count} {count, plural, one {blocker} other {blockers}}"
+      },
+      "warning": {
+        "label": "Warning",
+        "count": "{count} {count, plural, one {warning} other {warnings}}"
+      },
+      "tip": {
+        "label": "Tip",
+        "count": "{count} {count, plural, one {tip} other {tips}}"
+      }
+    },
+    "impact": {
+      "high": "High impact",
+      "medium": "Medium impact",
+      "low": "Low impact"
+    },
+    "outOf100": "out of 100",
+    "upFrom": "Up {delta} from {preScore}",
+    "checksPassed": "{passed} of {total} checks passed",
+    "checksPassedSentence": "{passed} of {total} checks passed.",
+    "capped": "The score is capped because of a blocking problem: {title}",
+    "toFix": "{count} to fix",
+    "nothingToFix": "Nothing to fix here.",
+    "notScored": "Not scored",
+    "nothingToSuggest": "Nothing to suggest.",
+    "coverage": {
+      "empty": "No specific terms could be pulled out of that posting, so it may be mostly boilerplate.",
+      "found": "{matched} of {total} terms found",
+      "note": "Counted separately from the score. Coverage doesn't predict anything.",
+      "missing": "Not in your CV",
+      "matched": "Already covered",
+      "stuffed": "Repeated far more often than the posting uses them: {terms}. Heavy repetition can read as keyword stuffing."
+    },
+    "fixes": {
+      "title": "Fixes you can apply",
+      "description": "Each fix edits your tailored CV with AI. Check the result before you download.",
+      "applied": "Applied",
+      "applyAria": "Apply this fix: {fix}",
+      "applying": "Applying…",
+      "apply": "Apply"
+    },
+    "review": {
+      "suggestions": "Suggestions",
+      "inSection": "In {section}",
+      "strengths": "Strengths",
+      "againstJob": "Against the job description",
+      "notShown": "Not shown in your CV",
+      "disclaimer": "This review is a language model's opinion of your writing. It doesn't change the score above, and it can be wrong. Treat it as a second opinion, not a verdict.",
+      "error": "Couldn't review your writing. Try again.",
+      "title": "Review the writing with AI",
+      "description": "The checks above are mechanical. This asks a language model what a reader would think of your bullets, and suggests rewrites. It produces no score.",
+      "sendsWithJob": "Sends your CV text and the job details to Groq, the AI provider FitMyCV uses.",
+      "sends": "Sends your CV text to Groq, the AI provider FitMyCV uses.",
+      "reviewing": "Reviewing…",
+      "runAgain": "Run again",
+      "run": "Run AI review"
+    },
+    "checking": "Checking your CV…",
+    "empty": "Your ATS check appears here after you tailor your CV.",
+    "footer": "This checks whether software can read your CV's details: contact information, sections and dates. It doesn't predict whether an application will be rejected, and no tool can.",
+    "categories": {
+      "contact": {
+        "label": "Contact details",
+        "description": "Whether a recruiter can reach you."
+      },
+      "sections": {
+        "label": "Sections",
+        "description": "Whether your CV has the sections software expects to find."
+      },
+      "dates": {
+        "label": "Dates",
+        "description": "Whether your timeline can be reconstructed."
+      },
+      "content": {
+        "label": "Writing",
+        "description": "Advice for the person reading it. None of this affects the score."
+      }
+    },
+    "findings": {
+      "MISSING_NAME": {
+        "title": "Your CV has no name.",
+        "action": "Add your full name under Personal Information."
+      },
+      "MISSING_EMAIL": {
+        "title": "Your CV has no email address.",
+        "action": "Add an email address so recruiters can reach you."
+      },
+      "MALFORMED_EMAIL": {
+        "title": "This email address is not in a standard form.",
+        "action": "Use a plain address such as name@example.com, with no extra text."
+      },
+      "MISSING_PHONE": {
+        "title": "Your CV has no phone number.",
+        "action": "Add one with its country code. Some application forms ask for it."
+      },
+      "MISSING_LOCATION": {
+        "title": "Your CV has no location.",
+        "action": "Add at least a city and country."
+      },
+      "MALFORMED_URL": {
+        "title": "This link is missing https://.",
+        "action": "Write the full address, including https://."
+      },
+      "NO_EXPERIENCE": {
+        "title": "Your CV shows no work experience.",
+        "action": "Add a position, or use projects and volunteer work to show similar history."
+      },
+      "MISSING_DESCRIPTION": {
+        "title": "This position has no description.",
+        "action": "Describe what you did. An empty role adds no keywords for matching."
+      },
+      "NO_SKILLS": {
+        "title": "Your CV lists no skills.",
+        "action": "Add the tools and methods you use."
+      },
+      "NO_EDUCATION": {
+        "title": "Your CV has no education.",
+        "action": "Add where you studied, or a relevant course or certificate."
+      },
+      "NO_SUMMARY": {
+        "title": "Your CV has no summary.",
+        "action": "Add two or three lines at the top describing what you do."
+      },
+      "MISSING_DATES": {
+        "title": "This entry has no start date.",
+        "action": "Add a date such as Mar 2022 so it lands on your timeline."
+      },
+      "MISSING_END_DATE": {
+        "title": "This position has no end date.",
+        "action": "Write Present if you still work here, or add the month you left."
+      },
+      "UNPARSEABLE_DATE": {
+        "title": "This date is written in a form software may not read.",
+        "action": "Use a form such as Mar 2022, 2022-03 or 2022."
+      },
+      "REVERSED_PERIOD": {
+        "title": "This entry ends before it starts.",
+        "action": "Swap the start and end dates."
+      },
+      "FUTURE_DATE": {
+        "title": "This date is in the future.",
+        "action": "Correct the year, or write Present for ongoing work."
+      },
+      "MIXED_DATE_FORMATS": {
+        "title": "Your work dates are written in different ways.",
+        "action": "Pick one format and use it for every position."
+      },
+      "NO_QUANTIFIED_IMPACT": {
+        "title": "Few of your bullets include a number.",
+        "action": "Add figures where you have them: volumes, percentages, time frames, team sizes."
+      },
+      "WEAK_OPENERS": {
+        "title": "Many bullets open with filler such as \"Responsible for\".",
+        "action": "Start each one with what you did: built, led, reduced, migrated."
+      },
+      "FIRST_PERSON_PRONOUNS": {
+        "title": "Your CV uses \"I\" and \"my\".",
+        "action": "Drop the pronouns and start from the verb."
+      },
+      "LONG_BULLETS": {
+        "title": "Some bullets run long.",
+        "action": "Keep each one to about two lines."
+      },
+      "EMPLOYMENT_GAP": {
+        "title": "There is a gap of more than six months between two positions.",
+        "action": "A gap is fine. Add a short line about it only if you want to."
+      }
+    }
+  },
+  "jobMatch": {
+    "levels": {
+      "excellent": "Excellent match",
+      "strong": "Strong match",
+      "good": "Good match",
+      "fair": "Fair match",
+      "weak": "Weak match"
+    },
+    "dimensions": {
+      "cvMatch": "CV match",
+      "compensation": "Compensation",
+      "cultureSignals": "Culture",
+      "redFlags": "Red flags"
+    },
+    "title": "Job match",
+    "scoring": "Scoring your CV against this posting",
+    "description": "How your CV fits this posting",
+    "gaugeLabel": "Match score: {score} out of 5",
+    "showDetails": "Show details",
+    "hideDetails": "Hide details"
+  },
+  "jobRequirements": {
+    "fallbackTitle": "Job listing",
+    "scoring": "Scoring…",
+    "requirements": "Requirements",
+    "responsibilities": "Responsibilities",
+    "qualifications": "Qualifications",
+    "keyTerms": "Key terms",
+    "inYourCv": "{matched} of {total} in your CV"
+  },
+  "coverLetter": {
+    "title": "Cover letter",
+    "descriptionWritten": "Written from your tailored CV and this posting.",
+    "descriptionEmpty": "Written with the CV when you tailor. You can also write your own.",
+    "cancelAria": "Cancel editing cover letter",
+    "editAria": "Edit cover letter",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "textAria": "Cover letter text",
+    "saving": "Saving…",
+    "save": "Save cover letter",
+    "empty": "Your cover letter will appear here.",
+    "emptyEditable": "Write one now and it saves with this CV.",
+    "writeOwn": "Write your own"
+  },
+  "linkedin": {
+    "error": "Couldn't write your LinkedIn message. Try again.",
+    "copied": "Message copied",
+    "title": "LinkedIn connection message",
+    "version": "Version {index}",
+    "overLimit": "Message exceeds LinkedIn's 300-character limit for connection requests.",
+    "targets": "Suggested targets",
+    "copy": "Copy message",
+    "another": "Write another"
+  },
+  "whyThisRole": {
+    "defaultQuestion": "In 3 to 5 sentences, tell us why you are interested in this role.",
+    "copied": "Answer copied",
+    "title": "Why this role",
+    "description": "An answer for the application form, drawn from your CV and this posting.",
+    "questionLabel": "The question you were asked",
+    "answerAria": "Your answer",
+    "counts": "{sentences} {sentences, plural, one {sentence} other {sentences}}, {words} {words, plural, one {word} other {words}}",
+    "emptyGenerate": "Your answer will appear here. Change the question if yours is worded differently, then write it.",
+    "emptySaved": "No answer saved for this application.",
+    "writing": "Writing…",
+    "writeAgain": "Write it again",
+    "write": "Write my answer",
+    "copy": "Copy answer",
+    "saving": "Saving…",
+    "save": "Save answer"
+  },
+  "interviewPrep": {
+    "star": {
+      "situation": "Situation",
+      "task": "Task",
+      "action": "Action",
+      "result": "Result",
+      "reflection": "Reflection"
+    },
+    "starStory": "STAR story",
+    "saveToBank": "Save to story bank",
+    "title": "Interview prep",
+    "loading": "Writing STAR stories and talking points from your CV and this posting",
+    "emptyDescription": "Example answers, hard questions and talking points for this role.",
+    "empty": "On Pro, interview prep for this role appears here after your CV is tailored.",
+    "saved": "Story saved to your story bank",
+    "saveError": "Couldn't save the story. Try again.",
+    "description": "Drawn from your tailored CV and this posting.",
+    "starStories": "STAR stories",
+    "questions": "Questions to prepare for",
+    "talkingPoints": "Talking points"
+  },
+  "atsChip": {
+    "loading": "ATS…",
+    "score": "ATS {score}",
+    "none": "ATS n/a"
+  },
+  "reorder": {
+    "up": "Move up",
+    "down": "Move down"
+  },
+  "companyResearch": {
+    "loading": "Researching company…",
+    "empty": "On Pro, a brief on the company appears here when the posting names it.",
+    "mission": "Mission",
+    "summary": "Executive summary",
+    "culture": "Culture signals",
+    "tech": "Tech strategy",
+    "challenges": "Key challenges",
+    "competitors": "Competitive landscape",
+    "positioning": "How to position yourself in the interview",
+    "news": "Recent news"
+  },
+  "styleToolbar": {
+    "accent": "Accent colour",
+    "font": "Font",
+    "dividers": "Dividers",
+    "indent": "Indent",
+    "colors": {
+      "black": "Black",
+      "rust": "Rust",
+      "blue": "Blue",
+      "teal": "Teal",
+      "purple": "Purple",
+      "burgundy": "Burgundy"
+    }
+  },
+  "editorToolbar": {
+    "viewMode": "CV view mode",
+    "edit": "Edit",
+    "preview": "Preview",
+    "replace": "Replace CV"
+  },
+  "previewActions": {
+    "download": "Download PDF"
+  },
+  "downloadButton": {
+    "label": "Download PDF",
+    "downloading": "Preparing PDF…",
+    "done": "Downloaded"
+  },
+  "tailorPage": {
+    "steps": {
+      "job": {
+        "title": "Add the job",
+        "body": "Paste a link or the description."
+      },
+      "tailor": {
+        "title": "We tailor your CV",
+        "body": "Rewritten for the role, with a cover letter."
+      },
+      "review": {
+        "title": "Review and download",
+        "body": "Edit the CV, check the ATS score, download."
+      }
+    },
+    "inputTabs": {
+      "link": "Job link",
+      "text": "Paste description"
+    },
+    "mobileTabs": {
+      "edit": "Edit",
+      "preview": "Preview",
+      "ariaLabel": "Edit or preview"
+    },
+    "resultTabs": {
+      "cv": "Tailored CV",
+      "letter": "Cover letter",
+      "ats": "ATS score",
+      "why": "Why this role",
+      "research": "Research",
+      "interview": "Interview"
+    },
+    "errors": {
+      "extract": "Couldn't read that job listing. Paste the job description instead.",
+      "save": "Couldn't save your tailored CV. Try again.",
+      "noCv": "Upload your CV on My CV first, then try again.",
+      "tailor": "Couldn't tailor your CV. Try again in a moment.",
+      "why": "Couldn't write an answer. Try again.",
+      "fix": "Couldn't apply this fix. Try again.",
+      "shortText": "Paste the full job description, not just a few lines.",
+      "noUrl": "Enter a job URL first."
+    },
+    "tailored": "CV tailored",
+    "fixApplied": "Applied to your CV",
+    "answerSaved": "Answer saved",
+    "summary": {
+      "requirements": "{count} requirements",
+      "keyTerms": "{count} key terms",
+      "grade": "match grade {grade}"
+    },
+    "title": "Tailor CV",
+    "description": "Paste a job link or the job description. We rewrite your CV and write a cover letter for that role.",
+    "tailorCta": "Tailor my CV",
+    "tailoring": "Tailoring…",
+    "form": {
+      "linkTitle": "Job link",
+      "textTitle": "Job description",
+      "linkDescription": "Paste the URL of the listing. If the board blocks it, paste the description instead.",
+      "textDescription": "Paste the whole posting, including requirements and responsibilities.",
+      "urlAria": "Job listing URL",
+      "reading": "Reading the job…",
+      "recent": "Recent",
+      "textPlaceholder": "Paste the full posting, including the requirements and responsibilities",
+      "minChars": "Paste at least {min} characters so there is enough to work from.",
+      "chars": "{count} characters",
+      "keepJob": "Keep the current job"
+    },
+    "bar": {
+      "fallbackTitle": "Job listing",
+      "pasted": "Pasted description",
+      "scoring": "Scoring…",
+      "changeJob": "Change job"
+    },
+    "details": {
+      "title": "Job requirements and match",
+      "fallback": "From the posting you added",
+      "hide": "Hide details",
+      "show": "Show details"
+    },
+    "cta": {
+      "title": "Tailor your CV for this role",
+      "pending": "Rewriting your CV around these requirements and writing a cover letter.",
+      "description": "We rewrite your CV around these requirements and write a cover letter to go with it."
+    },
+    "result": {
+      "sectionsAria": "Tailored CV sections",
+      "linkedin": "Write LinkedIn message",
+      "downloadPdf": "Download PDF",
+      "downloadLetter": "Download cover letter",
+      "saveTailored": "Save tailored CV",
+      "saveFailedTitle": "Couldn't save this CV",
+      "saveFailedDescription": "Editing needs a saved copy. You can still preview and download it.",
+      "savingTitle": "Saving your tailored CV",
+      "savingDescription": "Editing opens as soon as it is saved.",
+      "liveUpdates": "Updates as you type",
+      "keywordsAdded": "Keywords added from the posting"
+    }
+  },
+  "tailoredList": {
+    "title": "Tailored CVs",
+    "description": "Every CV you tailor is saved here. Open one to edit, download or write a cover letter.",
+    "untitled": "Untitled role",
+    "open": "Open {title}",
+    "coverLetter": "Cover letter",
+    "download": "Download {title}",
+    "confirmDelete": "Click again to delete",
+    "delete": "Delete {title}",
+    "deleteError": "Couldn't delete this CV. Try again.",
+    "deleted": "CV deleted",
+    "loadError": "Couldn't load this CV. Try again.",
+    "downloadError": "Couldn't download the PDF. Try again.",
+    "loading": "Loading tailored CVs",
+    "tailorCta": "Tailor my CV",
+    "empty": {
+      "title": "Your tailored CVs will appear here",
+      "withCv": "Paste a job link or description and we rewrite your CV for that role. Each one is saved here.",
+      "noCv": "Upload your CV first. Then paste a job link or description and we rewrite it for that role.",
+      "upload": "Upload your CV"
+    },
+    "filters": {
+      "all": "All",
+      "letter": "With cover letter"
+    },
+    "noLetters": {
+      "title": "No cover letters yet",
+      "description": "Open a tailored CV and write one from the Cover letter tab."
+    }
+  },
+  "tailoredDetail": {
+    "documentTabs": {
+      "cv": "Tailored CV",
+      "letter": "Cover letter",
+      "why": "Why this role"
+    },
+    "mobileTabs": {
+      "edit": "Edit",
+      "preview": "Preview",
+      "ariaLabel": "Edit or preview"
+    },
+    "back": "Back to tailored CVs",
+    "saveError": "Couldn't save your changes. Try again.",
+    "answerSaved": "Answer saved",
+    "whyError": "Couldn't write an answer. Try again.",
+    "letterSaved": "Cover letter saved",
+    "notFound": {
+      "title": "We couldn't find this tailored CV",
+      "description": "It may have been deleted. Your other tailored CVs are still in the list."
+    },
+    "downloadLetter": "Download cover letter",
+    "downloadPdf": "Download PDF",
+    "untitled": "Untitled role",
+    "stats": {
+      "tailored": "Tailored",
+      "positions": "Positions",
+      "skillGroups": "Skill groups",
+      "coverLetter": "Cover letter",
+      "written": "Written",
+      "notYet": "Not yet",
+      "whyThisRole": "Why this role",
+      "answered": "Answered"
+    },
+    "sectionsAria": "Tailored document sections",
+    "saveTailored": "Save tailored CV",
+    "liveUpdates": "Updates as you type"
+  }
+}

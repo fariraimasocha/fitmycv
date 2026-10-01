@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   Dialog,
   DialogContent,
@@ -24,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 
 export default function FeedbackModal({ open, onOpenChange }) {
+  const t = useTranslations("pages.feedback");
   const { data: session } = useSession();
 
   const [type, setType] = useState("General");
@@ -48,13 +50,13 @@ export default function FeedbackModal({ open, onOpenChange }) {
     },
     onSuccess: () => {
       trackEvent("feedback_submitted", { feedback_type: type });
-      toast.success("Thanks. Your feedback is sent.");
+      toast.success(t("sent"));
       onOpenChange(false);
       setType("General");
       setMessage("");
     },
     onError: () => {
-      toast.error("Couldn't send your feedback. Try again.");
+      toast.error(t("sendError"));
     },
   });
 
@@ -68,40 +70,40 @@ export default function FeedbackModal({ open, onOpenChange }) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="rounded-md sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Send feedback</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>
-            Help us improve FitMyCV by sharing your thoughts.
+            {t("description")}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
-            <Label htmlFor="feedback-type">Type</Label>
+            <Label htmlFor="feedback-type">{t("typeLabel")}</Label>
             <Select value={type} onValueChange={setType}>
               <SelectTrigger id="feedback-type">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="General">General</SelectItem>
-                <SelectItem value="Bug">Bug</SelectItem>
-                <SelectItem value="Feature Request">Feature request</SelectItem>
+                <SelectItem value="General">{t("types.general")}</SelectItem>
+                <SelectItem value="Bug">{t("types.bug")}</SelectItem>
+                <SelectItem value="Feature Request">{t("types.featureRequest")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="feedback-message">Message</Label>
+            <Label htmlFor="feedback-message">{t("messageLabel")}</Label>
             <Textarea
               id="feedback-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell us what you think…"
+              placeholder={t("messagePlaceholder")}
               rows={4}
               required
             />
           </div>
 
           <Button type="submit" className="w-full" disabled={mutation.isPending}>
-            {mutation.isPending ? "Sending…" : "Send feedback"}
+            {mutation.isPending ? t("sending") : t("submit")}
           </Button>
         </form>
       </DialogContent>

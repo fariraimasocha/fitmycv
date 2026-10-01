@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import BrandLogo from "@/components/BrandLogo";
 import { FREE_TOOLS } from "@/lib/free-tools";
@@ -6,62 +7,64 @@ import { FREE_TOOLS } from "@/lib/free-tools";
 // Root-relative hrefs throughout. The footer renders on every page, so bare
 // "#features" anchors would dead-end everywhere except the homepage.
 
+// `key` points at landing.footer.links. Free tool labels come from the tool
+// catalog and stay English, so they carry a plain `label` instead.
 const columns = [
   {
-    heading: "Product",
+    key: "product",
     links: [
-      { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link" },
-      { label: "Resume optimizer", href: "/resume-optimizer" },
-      { label: "AI cover letter generator", href: "/ai-cover-letter-generator" },
-      { label: "Cover letter builder", href: "/cover-letter-builder" },
-      { label: "Pricing", href: "/pricing" },
+      { key: "tailor", href: "/tailor-cv-from-job-link" },
+      { key: "optimizer", href: "/resume-optimizer" },
+      { key: "aiCoverLetter", href: "/ai-cover-letter-generator" },
+      { key: "coverLetterBuilder", href: "/cover-letter-builder" },
+      { key: "pricing", href: "/pricing" },
     ],
   },
   {
-    heading: "Free tools",
+    key: "freeTools",
     links: FREE_TOOLS.map(({ label, href }) => ({ label, href })),
   },
   {
-    heading: "Resources",
+    key: "resources",
     links: [
-      { label: "Blog", href: "/blog" },
-      { label: "ATS resume guide", href: "/blog/ats-resume-guide" },
-      { label: "How to write a resume", href: "/how-to-write-a-resume" },
-      { label: "Resume tips", href: "/resume-tips" },
-      { label: "Resume examples", href: "/resume-examples" },
-      { label: "CV examples", href: "/cv-examples" },
-      { label: "CV templates", href: "/cv-templates" },
-      { label: "FAQ", href: "/#faq" },
+      { key: "blog", href: "/blog" },
+      { key: "atsGuide", href: "/blog/ats-resume-guide" },
+      { key: "howToWrite", href: "/how-to-write-a-resume" },
+      { key: "tips", href: "/resume-tips" },
+      { key: "resumeExamples", href: "/resume-examples" },
+      { key: "cvExamples", href: "/cv-examples" },
+      { key: "cvTemplates", href: "/cv-templates" },
+      { key: "faq", href: "/#faq" },
     ],
   },
   {
-    heading: "Compare",
+    key: "compare",
     links: [
-      { label: "Jobscan alternative", href: "/jobscan-alternative" },
-      { label: "Teal alternative", href: "/teal-alternative" },
-      { label: "Kickresume alternative", href: "/kickresume-alternative" },
+      { key: "jobscan", href: "/jobscan-alternative" },
+      { key: "teal", href: "/teal-alternative" },
+      { key: "kickresume", href: "/kickresume-alternative" },
     ],
   },
   {
-    heading: "ATS guides",
+    key: "atsGuides",
     links: [
-      { label: "Workday resume format", href: "/workday-resume-format" },
-      { label: "Greenhouse ATS resume", href: "/greenhouse-ats-resume" },
-      { label: "Lever ATS resume", href: "/lever-ats-resume" },
-      { label: "Taleo resume format", href: "/taleo-resume-format" },
-      { label: "iCIMS resume format", href: "/icims-resume-format" },
+      { key: "workday", href: "/workday-resume-format" },
+      { key: "greenhouse", href: "/greenhouse-ats-resume" },
+      { key: "lever", href: "/lever-ats-resume" },
+      { key: "taleo", href: "/taleo-resume-format" },
+      { key: "icims", href: "/icims-resume-format" },
     ],
   },
   {
-    heading: "Company",
+    key: "company",
     links: [
-      { label: "Support", href: "/support" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms & Conditions", href: "/terms-and-conditions" },
+      { key: "support", href: "/support" },
+      { key: "privacy", href: "/privacy-policy" },
+      { key: "terms", href: "/terms-and-conditions" },
     ],
   },
   {
-    heading: "Other Apps",
+    key: "otherApps",
     links: [
       { label: "LinkGenie", href: "https://linkgenie.one" },
       { label: "Payfari", href: "https://payfari.com" },
@@ -73,29 +76,36 @@ const LINK_CLASS =
   "tap-target font-sans text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)] transition-colors";
 
 function FooterColumn({ heading, links }) {
+  const t = useTranslations("landing.footer.links");
+
   return (
     <div className="flex flex-col gap-4">
       <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">{heading}</h3>
       <ul className="flex flex-col gap-3">
-        {links.map(({ label, href }) => (
-          <li key={label}>
-            {href.startsWith("http") ? (
-              <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
-                {label}
-              </a>
-            ) : (
-              <Link href={href} className={LINK_CLASS}>
-                {label}
-              </Link>
-            )}
-          </li>
-        ))}
+        {links.map(({ key, label: plainLabel, href }) => {
+          const label = key ? t(key) : plainLabel;
+          return (
+            <li key={href}>
+              {href.startsWith("http") ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
+                  {label}
+                </a>
+              ) : (
+                <Link href={href} className={LINK_CLASS}>
+                  {label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 }
 
 export default function Footer() {
+  const t = useTranslations("landing.footer");
+
   return (
     <footer className="landing-muted-band px-5 py-12 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container flex flex-col gap-12">
@@ -107,13 +117,17 @@ export default function Footer() {
               <BrandLogo size="sm" wordmarkClassName="text-lg" />
             </div>
             <p className="font-sans text-sm text-[var(--landing-ink-soft)] leading-relaxed max-w-[260px]">
-              AI-powered CV tailoring. Land more interviews with less effort.
+              {t("tagline")}
             </p>
           </div>
 
           <div className="flex flex-col flex-wrap gap-8 sm:flex-row sm:gap-12 lg:gap-14">
             {columns.map((column) => (
-              <FooterColumn key={column.heading} {...column} />
+              <FooterColumn
+                key={column.key}
+                heading={t(`headings.${column.key}`)}
+                links={column.links}
+              />
             ))}
           </div>
         </div>
@@ -121,7 +135,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full border-t border-[var(--landing-line)] gap-4 pt-6">
           <p className="font-sans text-sm text-[var(--landing-ink-soft)]">
-            2026 FitMyCV. All rights reserved.
+            {t("rights")}
           </p>
         </div>
       </div>

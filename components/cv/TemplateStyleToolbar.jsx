@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { PaletteIcon, TextAaIcon, MinusIcon, TextIndentIcon } from "@phosphor-icons/react";
 import {
   Select,
@@ -69,6 +70,7 @@ export default function TemplateStyleToolbar({
   sticky = false,
   className = "",
 }) {
+  const t = useTranslations("tailor.styleToolbar");
   const style = normalizeTemplateStyle(value);
 
   // A toggle that changes nothing is worse than no toggle, so the two
@@ -92,13 +94,13 @@ export default function TemplateStyleToolbar({
       className={`${surface} flex flex-wrap items-center gap-x-5 gap-y-3 rounded-2xl border border-[var(--landing-line)] px-4 py-3 landing-shadow-lift ${className}`}
     >
       <div className="flex items-center gap-2.5">
-        <GroupLabel icon={PaletteIcon}>Accent colour</GroupLabel>
+        <GroupLabel icon={PaletteIcon}>{t("accent")}</GroupLabel>
         <div className="flex items-center gap-1.5">
           {TEMPLATE_COLOR_OPTIONS.map((option) => (
             <button
               key={option.id}
               type="button"
-              aria-label={option.label}
+              aria-label={t.has(`colors.${option.id}`) ? t(`colors.${option.id}`) : option.label}
               aria-pressed={style.color === option.id}
               data-selected={style.color === option.id}
               onClick={() => update({ color: option.id })}
@@ -112,10 +114,10 @@ export default function TemplateStyleToolbar({
       <Divider />
 
       <div className="flex items-center gap-2.5">
-        <GroupLabel icon={TextAaIcon}>Font</GroupLabel>
+        <GroupLabel icon={TextAaIcon}>{t("font")}</GroupLabel>
         <Select value={style.font} onValueChange={(font) => update({ font })}>
           <SelectTrigger
-            aria-label="Font"
+            aria-label={t("font")}
             className="h-9 w-44 rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] text-sm"
           >
             <SelectValue>
@@ -140,7 +142,7 @@ export default function TemplateStyleToolbar({
 
       <StyleToggle
         icon={MinusIcon}
-        label="Dividers"
+        label={t("dividers")}
         checked={style.dividers}
         disabled={!structural}
         onChange={(dividers) => update({ dividers })}
@@ -150,7 +152,7 @@ export default function TemplateStyleToolbar({
 
       <StyleToggle
         icon={TextIndentIcon}
-        label="Indent"
+        label={t("indent")}
         checked={style.indent}
         disabled={!structural}
         onChange={(indent) => update({ indent })}

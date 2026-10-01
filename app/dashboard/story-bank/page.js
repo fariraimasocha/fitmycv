@@ -3,6 +3,7 @@
 import { useId, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   BookOpenIcon,
   BriefcaseIcon,
@@ -33,21 +34,12 @@ import {
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Story bank";
-const PAGE_DESCRIPTION =
-  "STAR stories you saved from interview prep, in one place. Open one to rehearse it before an interview.";
-
 // Reflection is deliberately last and separated. It is not part of the STAR
 // acronym, so it gets a divider rather than another row in the rail.
 const STAR_SECTIONS = ["situation", "task", "action", "result"];
 
-const STORY_FIELDS = [
-  { key: "situation", label: "Situation", hint: "Where you were and what was going on." },
-  { key: "task", label: "Task", hint: "What you had to do." },
-  { key: "action", label: "Action", hint: "What you did, step by step." },
-  { key: "result", label: "Result", hint: "What changed. Use numbers if you have them." },
-  { key: "reflection", label: "Reflection", hint: "What you learned. Optional." },
-];
+// Labels and hints come from messages (storyBank.fields.<key>).
+const STORY_FIELDS = ["situation", "task", "action", "result", "reflection"];
 
 const EMPTY_FORM = {
   title: "",
@@ -61,14 +53,17 @@ const EMPTY_FORM = {
 
 const MAX_ROW_TAGS = 2;
 
-function usedForLabel(usedFor) {
+function usedForLabel(usedFor, t) {
   if (!usedFor?.length) return null;
   if (usedFor.length === 1) {
     const [first] = usedFor;
-    const target = [first.jobTitle, first.company].filter(Boolean).join(" at ");
-    return target ? `Used for ${target}` : "Used for 1 application";
+    if (first.jobTitle && first.company) {
+      return t("usedForRoleAtCompany", { role: first.jobTitle, company: first.company });
+    }
+    const target = first.jobTitle || first.company;
+    return target ? t("usedForTarget", { target }) : t("usedForOne");
   }
-  return `Used for ${usedFor.length} applications`;
+  return t("usedForMany", { count: usedFor.length });
 }
 
 function applicationKey(use) {
@@ -95,11 +90,12 @@ function StarRow({ label, value }) {
 }
 
 function StoryRow({ story, index }) {
+  const t = useTranslations("dashboard.storyBank");
   const [expanded, setExpanded] = useState(false);
   const panelId = useId();
 
-  const title = story.title || `Story ${index + 1}`;
-  const meta = usedForLabel(story.usedFor);
+  const title = story.title || t("untitledStory", { number: index + 1 });
+  const meta = usedForLabel(story.usedFor, t);
   const star = STAR_SECTIONS.filter((key) => story[key]);
   const tags = story.tags ?? [];
   const hiddenTags = tags.length - MAX_ROW_TAGS;
@@ -131,7 +127,7 @@ function StoryRow({ story, index }) {
             )}
             <span className="inline-flex shrink-0 items-center gap-1 tabular-nums">
               <ListChecksIcon size={12} aria-hidden="true" />
-              {star.length} of {STAR_SECTIONS.length} STAR parts
+              {t("starParts", { done: star.length, total: STAR_SECTIONS.length })}
             </span>
           </span>
         </span>
@@ -160,14 +156,14 @@ function StoryRow({ story, index }) {
           className="dashboard-row-pad space-y-3.5 border-t border-[var(--landing-line)] pt-3.5"
         >
           {star.length === 0 && !story.reflection && (
-            <p className="text-sm text-muted-foreground">This story has a title only.</p>
+            <p className="text-sm text-muted-foreground">{t("titleOnly")}</p>
           )}
           {star.map((key) => (
-            <StarRow key={key} label={key} value={story[key]} />
+            <StarRow key={key} label={t(`fields.${key}.label`)} value={story[key]} />
           ))}
           {story.reflection && (
             <div className={cn(star.length > 0 && "border-t border-[var(--landing-line)] pt-3.5")}>
-              <StarRow label="Reflection" value={story.reflection} />
+              <StarRow label={t("fields.reflection.label")} value={story.reflection} />
             </div>
           )}
           {tags.length > 0 && (
@@ -198,6 +194,7 @@ function RowSkeleton() {
 }
 
 function AddStoryDialog({ open, onOpenChange }) {
+  const t = useTranslations("dashboard.storyBank");
   const queryClient = useQueryClient();
   const formId = useId();
   const [form, setForm] = useState(EMPTY_FORM);
@@ -227,13 +224,13 @@ function AddStoryDialog({ open, onOpenChange }) {
         }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json.error || "Couldn't save your story. Try again.");
+      if (!res.ok) throw new Error(json.error || t("saveError"));
       return json.data;
     },
     onSuccess: (stories) => {
       if (Array.isArray(stories)) queryClient.setQueryData(["story-bank"], stories);
       else queryClient.invalidateQueries({ queryKey: ["story-bank"] });
-      toast.success("Story saved");
+      toast.success(t("storySaved"));
       setForm(EMPTY_FORM);
       onOpenChange(false);
     },
@@ -246,9 +243,9 @@ function AddStoryDialog({ open, onOpenChange }) {
     <Dialog open={open} onOpenChange={(next) => !save.isPending && onOpenChange(next)}>
       <DialogContent className="max-h-[90dvh] overflow-y-auto border-[var(--landing-line)] bg-[var(--landing-surface)] shadow-none sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-outfit">Add a story</DialogTitle>
+          <DialogTitle className="font-outfit">{t("addTitle")}</DialogTitle>
           <DialogDescription>
-            Write it in STAR form so it is ready to use in an interview.
+            {t("addDescription")}
           </DialogDescription>
         </DialogHeader>
         <form
@@ -260,40 +257,40 @@ function AddStoryDialog({ open, onOpenChange }) {
           }}
         >
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor={`${formId}-title`}>Title</Label>
+            <Label htmlFor={`${formId}-title`}>{t("titleLabel")}</Label>
             <Input
               id={`${formId}-title`}
               value={form.title}
               onChange={update("title")}
-              placeholder="Led a migration under a tight deadline"
+              placeholder={t("titlePlaceholder")}
               required
               autoFocus
               className="h-10 border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
             />
           </div>
           {STORY_FIELDS.map((field) => (
-            <div key={field.key} className="flex flex-col gap-1.5">
-              <Label htmlFor={`${formId}-${field.key}`}>{field.label}</Label>
+            <div key={field} className="flex flex-col gap-1.5">
+              <Label htmlFor={`${formId}-${field}`}>{t(`fields.${field}.label`)}</Label>
               <Textarea
-                id={`${formId}-${field.key}`}
-                value={form[field.key]}
-                onChange={update(field.key)}
+                id={`${formId}-${field}`}
+                value={form[field]}
+                onChange={update(field)}
                 rows={2}
                 className="min-h-16 border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
               />
-              <p className="text-xs text-muted-foreground">{field.hint}</p>
+              <p className="text-xs text-muted-foreground">{t(`fields.${field}.hint`)}</p>
             </div>
           ))}
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor={`${formId}-tags`}>Tags</Label>
+            <Label htmlFor={`${formId}-tags`}>{t("tagsLabel")}</Label>
             <Input
               id={`${formId}-tags`}
               value={form.tags}
               onChange={update("tags")}
-              placeholder="leadership, delivery"
+              placeholder={t("tagsPlaceholder")}
               className="h-10 border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
             />
-            <p className="text-xs text-muted-foreground">Separate tags with commas.</p>
+            <p className="text-xs text-muted-foreground">{t("tagsHint")}</p>
           </div>
         </form>
         <DialogFooter>
@@ -303,16 +300,16 @@ function AddStoryDialog({ open, onOpenChange }) {
             disabled={save.isPending}
             className="dashboard-secondary-btn"
           >
-            Cancel
+            {t("cancel")}
           </button>
           <button type="submit" form={formId} disabled={!canSave} className="dashboard-primary-btn">
             {save.isPending ? (
               <>
                 <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                Saving…
+                {t("saving")}
               </>
             ) : (
-              "Save story"
+              t("saveStory")
             )}
           </button>
         </DialogFooter>
@@ -322,13 +319,14 @@ function AddStoryDialog({ open, onOpenChange }) {
 }
 
 export default function StoryBankPage() {
+  const t = useTranslations("dashboard.storyBank");
   const [addOpen, setAddOpen] = useState(false);
 
   const { data: stories, isLoading } = useQuery({
     queryKey: ["story-bank"],
     queryFn: async () => {
       const res = await fetch("/api/story-bank");
-      if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");
+      if (!res.ok) throw new Error(t("loadError"));
       const json = await res.json();
       return json.data;
     },
@@ -353,14 +351,14 @@ export default function StoryBankPage() {
   const addButton = (
     <button type="button" onClick={() => setAddOpen(true)} className="dashboard-primary-btn">
       <PlusIcon size={16} weight="bold" aria-hidden="true" />
-      Add story
+      {t("addStory")}
     </button>
   );
 
   if (isLoading) {
     return (
       <DashboardPageShell width="narrow">
-        <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardPanel pad={false} delay={0.05} aria-hidden="true">
           <div className="grid grid-cols-2 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
             {[0, 1, 2].map((i) => (
@@ -374,7 +372,7 @@ export default function StoryBankPage() {
             ))}
           </div>
         </DashboardPanel>
-        <DashboardPanel pad={false} delay={0.1} aria-label="Loading stories">
+        <DashboardPanel pad={false} delay={0.1} aria-label={t("loadingStories")}>
           <div className="border-b border-[var(--landing-line)] px-3 py-3 sm:px-4">
             <span className="tool-skeleton block h-3.5 w-28 rounded-sm" />
             <span className="tool-skeleton mt-1.5 block h-3 w-40 rounded-sm" />
@@ -392,19 +390,19 @@ export default function StoryBankPage() {
   return (
     <DashboardPageShell width="narrow">
       <DashboardPageHeader
-        title={PAGE_TITLE}
-        description={PAGE_DESCRIPTION}
+        title={t("title")}
+        description={t("description")}
         actions={count > 0 ? addButton : undefined}
       />
 
       {count === 0 ? (
         <DashboardEmptyState
           icon={BookOpenIcon}
-          title="Your stories will show up here"
-          description="Save a STAR story from Interview prep on a tailored CV, or write one yourself."
-          actionLabel="Add story"
+          title={t("emptyTitle")}
+          description={t("emptyDescription")}
+          actionLabel={t("addStory")}
           onAction={() => setAddOpen(true)}
-          secondaryLabel="Open tailored CVs"
+          secondaryLabel={t("openTailored")}
           secondaryHref="/dashboard/tailored"
         />
       ) : (
@@ -414,27 +412,27 @@ export default function StoryBankPage() {
             items={[
               {
                 icon: BookOpenIcon,
-                label: "Stories",
+                label: t("statStories"),
                 value: count,
                 tone: "accent",
               },
               {
                 icon: BriefcaseIcon,
-                label: "Applications covered",
+                label: t("statApplications"),
                 value: applicationCount,
               },
               {
                 icon: TagIcon,
-                label: "Tags",
+                label: t("statTags"),
                 value: tagCount,
               },
             ]}
           />
 
-          <DashboardPanel pad={false} delay={0.1} aria-label="Saved stories">
+          <DashboardPanel pad={false} delay={0.1} aria-label={t("savedStories")}>
             <DashboardPanelHeader
-              title="Saved stories"
-              description={`${count} ${count === 1 ? "story" : "stories"}. Open one to read the full answer.`}
+              title={t("savedStories")}
+              description={t("savedStoriesDescription", { count })}
               className="border-b border-[var(--landing-line)] px-3 py-3 sm:px-4"
             />
             <ul className="divide-y divide-[var(--landing-line)]">

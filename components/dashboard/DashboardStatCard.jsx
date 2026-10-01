@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { Area, AreaChart, YAxis } from "recharts";
@@ -11,10 +12,10 @@ import {
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
-function weekLabel(weeksAgo) {
-  if (weeksAgo === 0) return "This week";
-  if (weeksAgo === 1) return "Last week";
-  return `${weeksAgo} weeks ago`;
+function weekLabel(weeksAgo, t) {
+  if (weeksAgo === 0) return t("thisWeek");
+  if (weeksAgo === 1) return t("lastWeek");
+  return t("weeksAgo", { weeks: weeksAgo });
 }
 
 export function DashboardStatCard({
@@ -29,13 +30,14 @@ export function DashboardStatCard({
   className,
   children,
 }) {
+  const t = useTranslations("dashboard.statCard");
   const numeric = typeof value === "number";
   const reduceMotion = useReducedMotion();
   const featured = variant === "featured";
   const chartId = `stat-${label.toLowerCase().replaceAll(" ", "-")}`;
   const chartData =
     sparkline?.map((count, index) => ({
-      week: weekLabel(sparkline.length - 1 - index),
+      week: weekLabel(sparkline.length - 1 - index, t),
       count,
     })) ?? [];
   const chartConfig = {

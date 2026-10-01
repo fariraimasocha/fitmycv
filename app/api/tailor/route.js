@@ -15,6 +15,8 @@ const SYSTEM_PROMPT = `You are an expert CV tailoring assistant and career coach
 1. Rewrite the CV to be optimized for the specific role and to pass Applicant Tracking Systems (ATS)
 2. Generate a matching cover letter
 
+Write the CV and cover letter in the same language as the job posting. JSON keys stay in English.
+
 Return ONLY valid JSON with this exact structure:
 {
   "cv": {

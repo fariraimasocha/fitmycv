@@ -17,33 +17,36 @@ import { AppSidebar } from "@/components/app-sidebar";
 import OnboardingGuard from "@/components/OnboardingGuard";
 import FeedbackModal from "@/components/FeedbackModal";
 import { ChatCircleDotsIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 
+// Values are keys under dashboard.shell.pages, translated at render.
 const PATH_LABELS = {
-  "/dashboard": "Home",
-  "/dashboard/resume": "My CV",
-  "/dashboard/tailor": "Tailor CV",
-  "/dashboard/tailored": "Tailored CVs",
-  "/dashboard/profile": "Profile",
-  "/dashboard/upgrade": "Upgrade to Pro",
-  "/dashboard/company-research": "Company research",
-  "/dashboard/applications": "Applications",
-  "/dashboard/story-bank": "Story bank",
-  "/dashboard/compare": "Compare offers",
-  "/dashboard/saved": "Saved jobs",
-  "/dashboard/preferences": "Preferences",
-  "/dashboard/agent": "CV agent",
+  "/dashboard": "home",
+  "/dashboard/resume": "resume",
+  "/dashboard/tailor": "tailor",
+  "/dashboard/tailored": "tailored",
+  "/dashboard/profile": "profile",
+  "/dashboard/upgrade": "upgrade",
+  "/dashboard/company-research": "companyResearch",
+  "/dashboard/applications": "applications",
+  "/dashboard/story-bank": "storyBank",
+  "/dashboard/compare": "compare",
+  "/dashboard/saved": "saved",
+  "/dashboard/preferences": "preferences",
+  "/dashboard/agent": "agent",
 };
 
 // Detail pages read "Parent > item", with the item title from the breadcrumb store.
 const DETAIL_PARENTS = [
-  { base: "/dashboard/tailored", label: "Tailored CVs", fallback: "Detail" },
-  { base: "/dashboard/applications", label: "Applications", fallback: "Detail" },
-  { base: "/dashboard/company-research", label: "Company research", fallback: "Brief" },
-  { base: "/dashboard/agent", label: "CV agent", fallback: "Thread" },
+  { base: "/dashboard/tailored", label: "tailored", fallback: "detail" },
+  { base: "/dashboard/applications", label: "applications", fallback: "detail" },
+  { base: "/dashboard/company-research", label: "companyResearch", fallback: "brief" },
+  { base: "/dashboard/agent", label: "agent", fallback: "thread" },
 ];
 
 function DashboardBreadcrumb() {
+  const t = useTranslations("dashboard.shell");
   const pathname = usePathname();
   const detailLabel = useBreadcrumbStore((s) => s.detailLabel);
   const parent = DETAIL_PARENTS.find((p) => pathname.startsWith(`${p.base}/`));
@@ -53,18 +56,18 @@ function DashboardBreadcrumb() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href={parent.base}>{parent.label}</BreadcrumbLink>
+            <BreadcrumbLink href={parent.base}>{t(`pages.${parent.label}`)}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem className="min-w-0">
-            <BreadcrumbPage className="truncate">{detailLabel || parent.fallback}</BreadcrumbPage>
+            <BreadcrumbPage className="truncate">{detailLabel || t(`fallback.${parent.fallback}`)}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     );
   }
 
-  const label = PATH_LABELS[pathname] ?? "Dashboard";
+  const label = PATH_LABELS[pathname] ? t(`pages.${PATH_LABELS[pathname]}`) : t("dashboard");
 
   return (
     <Breadcrumb>
@@ -84,6 +87,7 @@ function DashboardBreadcrumb() {
 // nav from the landing page this left useSession() undefined until a hard
 // reload, and unmounting it wiped the root provider's state on the way out.
 export default function DashboardShell({ children }) {
+  const t = useTranslations("dashboard.shell");
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const pathname = usePathname();
   const isOnboarding = pathname === "/dashboard/onboarding";
@@ -111,7 +115,7 @@ export default function DashboardShell({ children }) {
                   className="dashboard-secondary-btn dashboard-secondary-btn-sm text-muted-foreground hover:text-foreground"
                 >
                   <ChatCircleDotsIcon size={16} aria-hidden="true" />
-                  <span className="hidden sm:inline">Feedback</span>
+                  <span className="hidden sm:inline">{t("feedback")}</span>
                 </button>
               </div>
             </header>

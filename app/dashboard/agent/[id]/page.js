@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   ChatCircleDotsIcon,
   CopyIcon,
@@ -50,12 +51,13 @@ const HEADER_ICON_BTN =
   "size-9 shrink-0 rounded-md text-[var(--landing-ink-soft)] hover:bg-[var(--landing-primary-soft)] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40";
 
 const DECISION_TOAST = {
-  apply: "Change applied to your draft",
-  reject: "Change declined",
-  restore: "Draft restored",
+  apply: "decisionApply",
+  reject: "decisionReject",
+  restore: "decisionRestore",
 };
 
 export default function AgentThreadPage() {
+  const t = useTranslations("dashboard.agent.detail");
   const { id } = useParams();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -72,7 +74,7 @@ export default function AgentThreadPage() {
     queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
-      if (!res.ok) throw new Error("Couldn't load your CV. Refresh the page.");
+      if (!res.ok) throw new Error(t("cvLoadError"));
       const json = await res.json();
       return json.data;
     },
@@ -101,9 +103,9 @@ export default function AgentThreadPage() {
       refreshDraft(payload);
       // On a phone the draft is on the other tab, so offer a way to see the result.
       const draftHidden = !window.matchMedia("(min-width: 1024px)").matches;
-      toast.success(DECISION_TOAST[action], {
+      toast.success(t(DECISION_TOAST[action]), {
         action:
-          draftHidden && action !== "reject" ? { label: "View draft", onClick: () => setPane("draft") } : undefined,
+          draftHidden && action !== "reject" ? { label: t("viewDraft"), onClick: () => setPane("draft") } : undefined,
       });
     },
     onError: (error) => toast.error(error.message),
@@ -120,7 +122,7 @@ export default function AgentThreadPage() {
     mutationFn: () => requestJson(`/api/agent/threads/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["agent-threads"] });
-      toast.success("Thread deleted. Its draft is still in Tailored CVs.");
+      toast.success(t("threadDeleted"));
       router.push("/dashboard/agent");
     },
     onError: (error) => toast.error(error.message),
@@ -141,9 +143,9 @@ export default function AgentThreadPage() {
       <DashboardPageShell width="narrow">
         <DashboardEmptyState
           icon={ChatCircleDotsIcon}
-          title="We couldn't open this thread"
-          description="It may have been deleted. Start a new thread to keep editing your CV."
-          actionLabel="Start a new thread"
+          title={t("notFoundTitle")}
+          description={t("notFoundDescription")}
+          actionLabel={t("startNewThread")}
           actionHref="/dashboard/agent"
           delay={0}
         />
@@ -161,22 +163,22 @@ export default function AgentThreadPage() {
       icon: <ChatCircleDotsIcon size={14} aria-hidden="true" />,
       label: (
         <span className="inline-flex items-center gap-1.5">
-          Chat
+          {t("chat")}
           {pendingCount > 0 && (
             <span className="inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--landing-accent)] px-1 text-xs leading-none text-white tabular-nums">
               {pendingCount}
-              <span className="sr-only"> changes waiting for review</span>
+              <span className="sr-only"> {t("changesWaiting")}</span>
             </span>
           )}
         </span>
       ),
     },
-    { id: "draft", icon: <FileTextIcon size={14} aria-hidden="true" />, label: "Draft" },
+    { id: "draft", icon: <FileTextIcon size={14} aria-hidden="true" />, label: t("draft") },
   ];
 
   const handleDelete = async () => {
-    const confirmed = await confirm("Delete this thread?", {
-      description: "This deletes the conversation. The draft CV stays in Tailored CVs.",
+    const confirmed = await confirm(t("deleteConfirmTitle"), {
+      description: t("deleteConfirmDescription"),
     });
     if (confirmed) remove.mutate();
   };
@@ -184,12 +186,12 @@ export default function AgentThreadPage() {
   const copyConversation = async () => {
     const lines = thread.messages
       .filter((m) => (m.role === "user" || m.role === "assistant") && m.content?.trim())
-      .map((m) => `${m.role === "user" ? "You" : "Agent"}: ${m.content}`);
+      .map((m) => `${m.role === "user" ? t("copyYou") : t("copyAgent")}: ${m.content}`);
     try {
       await navigator.clipboard.writeText(lines.join("\n\n"));
-      toast.success("Conversation copied");
+      toast.success(t("copied"));
     } catch {
-      toast.error("Couldn't copy. Select the text and copy it yourself.");
+      toast.error(t("copyFailed"));
     }
   };
 
@@ -199,17 +201,17 @@ export default function AgentThreadPage() {
         <div className="flex h-14 items-center gap-2 px-3 sm:px-4">
           <button
             type="button"
-            aria-label="Show threads"
+            aria-label={t("showThreads")}
             onClick={() => setThreadsOpen(true)}
             className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0 px-2.5 sm:px-3.5"
           >
             <ListIcon size={16} aria-hidden="true" />
-            <span className="hidden sm:inline">Threads</span>
+            <span className="hidden sm:inline">{t("threads")}</span>
           </button>
           <div className="min-w-0 flex-1 px-1">
             <h1 className="truncate font-outfit text-sm font-semibold text-foreground">{thread.title}</h1>
             <p className="truncate text-xs text-muted-foreground">
-              Editing a copy of {thread.sourceLabel || "your CV"}
+              {t("editingCopyOf", { source: thread.sourceLabel || t("yourCv") })}
             </p>
           </div>
           <label className="hidden h-9 shrink-0 cursor-pointer items-center gap-2 rounded-md border border-[var(--landing-line)] px-3 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground md:flex">
@@ -218,16 +220,16 @@ export default function AgentThreadPage() {
               disabled={review.isPending}
               onCheckedChange={(checked) => review.mutate(Boolean(checked))}
             />
-            Review edits first
+            {t("reviewEditsFirst")}
           </label>
-          <Button asChild size="icon-sm" variant="ghost" aria-label="New thread" className={HEADER_ICON_BTN}>
+          <Button asChild size="icon-sm" variant="ghost" aria-label={t("newThread")} className={HEADER_ICON_BTN}>
             <Link href="/dashboard/agent">
               <PlusIcon size={16} aria-hidden="true" />
             </Link>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button size="icon-sm" variant="ghost" aria-label="Thread actions" className={HEADER_ICON_BTN}>
+              <Button size="icon-sm" variant="ghost" aria-label={t("threadActions")} className={HEADER_ICON_BTN}>
                 <DotsThreeVerticalIcon size={16} aria-hidden="true" />
               </Button>
             </DropdownMenuTrigger>
@@ -237,17 +239,17 @@ export default function AgentThreadPage() {
                 checked={thread.reviewEdits}
                 onCheckedChange={(checked) => review.mutate(Boolean(checked))}
               >
-                Review edits first
+                {t("reviewEditsFirst")}
               </DropdownMenuCheckboxItem>
               <DropdownMenuSeparator className="md:hidden" />
               <DropdownMenuItem onClick={() => void copyConversation()}>
                 <CopyIcon />
-                Copy conversation
+                {t("copyConversation")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem variant="destructive" onClick={() => void handleDelete()}>
                 <TrashIcon />
-                Delete thread
+                {t("deleteThread")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -255,7 +257,7 @@ export default function AgentThreadPage() {
 
         <div className="px-3 pb-2.5 lg:hidden">
           <DashboardTabBar
-            ariaLabel="Show chat or draft"
+            ariaLabel={t("paneSwitch")}
             tabs={paneTabs}
             activeTab={pane}
             onTabChange={setPane}
@@ -289,8 +291,8 @@ export default function AgentThreadPage() {
       <Sheet open={threadsOpen} onOpenChange={setThreadsOpen}>
         <SheetContent side="left" className="w-80 max-w-[85vw] gap-0 bg-[var(--landing-surface)] p-0">
           <SheetHeader className="border-b border-[var(--landing-line)] p-4">
-            <SheetTitle className="font-outfit">Threads</SheetTitle>
-            <SheetDescription>Each thread edits its own copy of a CV.</SheetDescription>
+            <SheetTitle className="font-outfit">{t("threads")}</SheetTitle>
+            <SheetDescription>{t("threadsDescription")}</SheetDescription>
           </SheetHeader>
           <div className="border-b border-[var(--landing-line)] p-3">
             <Link
@@ -299,7 +301,7 @@ export default function AgentThreadPage() {
               className="dashboard-primary-btn w-full"
             >
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              New thread
+              {t("newThread")}
             </Link>
           </div>
           <div className="min-h-0 flex-1 overflow-y-auto">

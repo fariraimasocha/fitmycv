@@ -1,4 +1,5 @@
 import { XCircleIcon, CheckCircleIcon, FileTextIcon } from "@phosphor-icons/react/dist/ssr";
+import { useTranslations } from "next-intl";
 
 // ponytail: the dashboard's ArcGauge and PillTrack animate on mount, which is
 // right where they are used (they mount in view when data lands) and wrong
@@ -16,7 +17,7 @@ const ARC_STROKE = 9;
 const ARC_RADIUS = ARC_SIZE / 2 - ARC_STROKE;
 const ARC_CIRCUMFERENCE = 2 * Math.PI * ARC_RADIUS;
 
-function ScoreArc({ value }) {
+function ScoreArc({ value, label }) {
   const offset = ARC_CIRCUMFERENCE * (1 - value / 100);
   return (
     <div
@@ -29,7 +30,7 @@ function ScoreArc({ value }) {
         viewBox={`0 0 ${ARC_SIZE} ${ARC_SIZE}`}
         className="-rotate-90"
         role="img"
-        aria-label={`Match score ${value} out of 100`}
+        aria-label={label}
       >
         <circle
           cx={ARC_SIZE / 2}
@@ -88,10 +89,13 @@ function Term({ label, found }) {
  * same thing in prose.
  */
 export default function TheProblem() {
+  const t = useTranslations("landing.problem");
+  const score = 47;
+
   return (
     <section className="landing-dark-band landing-section">
       <div className="landing-container">
-        <span className="landing-dark-eyebrow">The problem</span>
+        <span className="landing-dark-eyebrow">{t("eyebrow")}</span>
 
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-12 lg:gap-14">
           <h2
@@ -102,13 +106,11 @@ export default function TheProblem() {
               letterSpacing: "-0.01em",
             }}
           >
-            You are not being turned down. You are being filtered out.
+            {t("title")}
           </h2>
 
           <p className="text-lg leading-relaxed text-[var(--landing-ink-inverse-soft)] lg:col-span-5 lg:col-start-8">
-            Most companies screen with software before a recruiter sees
-            anything. If your CV misses the words the posting uses, it is
-            dropped. Quietly, and with no reply to tell you why.
+            {t("body")}
           </p>
         </div>
 
@@ -117,30 +119,30 @@ export default function TheProblem() {
           <div className="flex items-center gap-3 border-b border-[oklch(1_0_0_/_0.12)] px-5 py-4">
             <FileTextIcon size={18} className="text-white" aria-hidden="true" />
             <span className="font-outfit text-sm font-bold text-white">
-              Your CV, against one posting
+              {t("cardTitle")}
             </span>
             <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-accent-dark)] px-3 py-1 text-xs font-semibold text-white">
               <XCircleIcon size={12} weight="fill" aria-hidden="true" />
-              Filtered out
+              {t("filteredOut")}
             </span>
           </div>
 
           <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-12 lg:gap-12">
             <div className="flex items-center gap-5 lg:col-span-4">
-              <ScoreArc value={47} />
+              <ScoreArc value={score} label={t("scoreLabel", { value: score })} />
               <div>
                 <p className="font-outfit text-sm font-bold text-white">
-                  Qualification match
+                  {t("matchTitle")}
                 </p>
                 <p className="mt-1 text-sm text-[var(--landing-ink-inverse-soft)]">
-                  Against the job description
+                  {t("matchBody")}
                 </p>
               </div>
             </div>
 
             <div className="lg:col-span-8">
               <p className="text-sm font-semibold text-white">
-                Five terms the posting asks for that your CV never says
+                {t("missingTitle")}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {MISSING.map((term) => (
@@ -154,10 +156,13 @@ export default function TheProblem() {
               <div className="mt-6">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs font-semibold text-[var(--landing-ink-inverse-soft)]">
-                    Keyword coverage
+                    {t("coverage")}
                   </span>
                   <span className="font-outfit text-xs font-bold text-white">
-                    3 of 8
+                    {t("coverageCount", {
+                      found: PRESENT.length,
+                      total: MISSING.length + PRESENT.length,
+                    })}
                   </span>
                 </div>
                 <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[oklch(1_0_0_/_0.12)]">
@@ -172,8 +177,7 @@ export default function TheProblem() {
         </div>
 
         <p className="mt-8 max-w-2xl text-base text-[var(--landing-ink-inverse-soft)]">
-          FitMyCV reads the posting, finds the terms you are missing, and
-          rewrites your CV to use them. Only from experience you actually have.
+          {t("footer")}
         </p>
       </div>
     </section>

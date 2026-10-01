@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRightIcon, KanbanIcon, LockSimpleIcon } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -56,25 +57,25 @@ export function DashboardPipelineCard({
   className,
   delay = 0,
 }) {
+  const t = useTranslations("dashboard");
   if (!isPremium) {
     return (
       <CardFrame className={className} delay={delay}>
-        <Header title="Applications" description="Pipeline tracking is on Pro." />
+        <Header title={t("pipeline.title")} description={t("pipeline.proOnly")} />
         <div className="mt-4 flex flex-1 flex-col justify-between gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
           <div className="flex items-start gap-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
               <LockSimpleIcon size={17} aria-hidden="true" />
             </span>
             <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-              Track every role from saved to offer, with follow-up dates and
-              contacts in one place.
+              {t("pipeline.upsell")}
             </p>
           </div>
           <Link
             href="/dashboard/upgrade"
             className="dashboard-primary-btn w-full text-sm"
           >
-            See Pro plans
+            {t("pipeline.seePlans")}
           </Link>
         </div>
       </CardFrame>
@@ -90,14 +91,14 @@ export function DashboardPipelineCard({
   return (
     <CardFrame className={className} delay={delay}>
       <Header
-        title="Applications"
+        title={t("pipeline.title")}
         description={
           insights.total > 0
-            ? `${insights.total} in your pipeline`
-            : "Nothing tracked yet"
+            ? t("pipeline.inPipeline", { count: insights.total })
+            : t("pipeline.nothingYet")
         }
         href="/dashboard/applications"
-        linkLabel="Open board"
+        linkLabel={t("pipeline.openBoard")}
       />
 
       {isLoading ? (
@@ -113,15 +114,14 @@ export function DashboardPipelineCard({
               <KanbanIcon size={17} aria-hidden="true" />
             </span>
             <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-              Every CV you tailor is added here as Saved. Move it to Applied
-              once you send it.
+              {t("pipeline.empty")}
             </p>
           </div>
           <Link
             href="/dashboard/applications"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
           >
-            Open your pipeline
+            {t("pipeline.openPipeline")}
             <ArrowRightIcon size={14} weight="bold" aria-hidden="true" />
           </Link>
         </div>
@@ -133,7 +133,7 @@ export function DashboardPipelineCard({
             className="mt-5 flex h-2.5 w-full overflow-hidden rounded-full bg-[var(--landing-paper-strong)]"
             role="img"
             aria-label={shown
-              .map((s) => `${s.label} ${s.count}`)
+              .map((s) => `${t(`stages.${s.key}`)} ${s.count}`)
               .join(", ")}
           >
             {shown.map((s) => (
@@ -157,7 +157,7 @@ export function DashboardPipelineCard({
                   aria-hidden="true"
                 />
                 <span className="flex-1 truncate text-[var(--landing-ink-soft)]">
-                  {s.label}
+                  {t(`stages.${s.key}`)}
                 </span>
                 <span className="font-medium tabular-nums text-foreground">
                   {s.count}
@@ -168,21 +168,21 @@ export function DashboardPipelineCard({
 
           <dl className="mt-auto grid grid-cols-3 gap-3 border-t border-[var(--landing-line)] pt-4">
             <div>
-              <dt className="text-xs text-muted-foreground">Applied</dt>
+              <dt className="text-xs text-muted-foreground">{t("pipeline.applied")}</dt>
               <dd className="font-outfit text-lg font-semibold leading-tight tabular-nums text-foreground">
                 {insights.applied}
               </dd>
             </div>
             <div>
-              <dt className="text-xs text-muted-foreground">Interviews</dt>
+              <dt className="text-xs text-muted-foreground">{t("pipeline.interviews")}</dt>
               <dd className="font-outfit text-lg font-semibold leading-tight tabular-nums text-foreground">
                 {insights.interviews}
               </dd>
             </div>
             <div>
-              <dt className="text-xs text-muted-foreground">Response rate</dt>
+              <dt className="text-xs text-muted-foreground">{t("pipeline.responseRate")}</dt>
               <dd className="font-outfit text-lg font-semibold leading-tight tabular-nums text-foreground">
-                {insights.applied > 0 ? `${insights.responseRate}%` : "n/a"}
+                {insights.applied > 0 ? `${insights.responseRate}%` : t("pipeline.na")}
               </dd>
             </div>
           </dl>

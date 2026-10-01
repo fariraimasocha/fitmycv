@@ -2,6 +2,14 @@ import { SITE_URL } from "@/lib/site";
 import { POSTS } from "@/content/blog";
 import { MARKETING_PAGES } from "@/content/pages";
 import { RESUME_EXAMPLES } from "@/content/resume-examples";
+import { TRANSLATED_PATHS, localeAlternates } from "@/lib/seo";
+
+function languageUrls(path) {
+  const { languages } = localeAlternates("en", path);
+  return Object.fromEntries(
+    Object.entries(languages).map(([lang, href]) => [lang, `${SITE_URL}${href}`])
+  );
+}
 
 export default function sitemap() {
   const lastModified = new Date();
@@ -64,7 +72,23 @@ export default function sitemap() {
       lastModified,
       changeFrequency,
       priority,
+      ...(TRANSLATED_PATHS.includes(path)
+        ? { alternates: { languages: languageUrls(path) } }
+        : {}),
     })
+  );
+
+  // Each translated page also gets its own entry per language.
+  const localizedRoutes = ["fr", "es", "de"].flatMap((locale) =>
+    staticRoutes
+      .filter(({ path }) => TRANSLATED_PATHS.includes(path))
+      .map(({ path, changeFrequency, priority }) => ({
+        url: `${SITE_URL}${localeAlternates(locale, path).canonical}`,
+        lastModified,
+        changeFrequency,
+        priority,
+        alternates: { languages: languageUrls(path) },
+      }))
   );
 
   // Posts carry their own lastModified so a content refresh is a real signal.
@@ -75,5 +99,5 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...routes, ...postRoutes];
+  return [...routes, ...localizedRoutes, ...postRoutes];
 }

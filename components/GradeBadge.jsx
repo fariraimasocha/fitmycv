@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export function gradeChipClass(grade) {
@@ -37,7 +38,12 @@ export function GradeBadge({ grade, className, size = "sm" }) {
 }
 
 export function AtsScoreChip({ score, loading, className, onClick }) {
-  const label = loading ? "ATS…" : typeof score === "number" ? `ATS ${score}` : "ATS n/a";
+  const t = useTranslations("tailor.atsChip");
+  const label = loading
+    ? t("loading")
+    : typeof score === "number"
+      ? t("score", { score })
+      : t("none");
   const Comp = onClick ? "button" : "span";
   return (
     <Comp

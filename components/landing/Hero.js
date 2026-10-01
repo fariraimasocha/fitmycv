@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import NextLink from "next/link";
+import { useTranslations } from "next-intl";
+import { Link, useRouter } from "@/i18n/navigation";
 import {
   ArrowUpRightIcon,
   ArrowRightIcon,
@@ -14,6 +15,7 @@ import { PRICING } from "@/lib/pricing";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
 function DemoPreview() {
+  const t = useTranslations("landing.hero");
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ function DemoPreview() {
             muted
             playsInline
             preload="metadata"
-            aria-label="FitMyCV demo: paste a job link and download a tailored CV"
+            aria-label={t("videoLabel")}
             className="h-auto w-full"
           />
         </div>
@@ -62,6 +64,7 @@ function DemoPreview() {
 }
 
 function CheckerBar() {
+  const t = useTranslations("landing.hero");
   return (
     <Link
       href="/ats-resume-checker"
@@ -73,15 +76,15 @@ function CheckerBar() {
 
       <span className="min-w-0 flex-1 text-center sm:text-left">
         <span className="block text-sm font-semibold text-[var(--landing-ink)] sm:text-base">
-          Check your CV against a job posting, free
+          {t("checkerTitle")}
         </span>
         <span className="mt-0.5 block text-xs text-[var(--landing-ink-soft)] sm:text-sm">
-          No sign-up. Your file is read in your browser.
+          {t("checkerBody")}
         </span>
       </span>
 
       <span className="landing-secondary-btn landing-secondary-btn-sm font-outfit w-full shrink-0 sm:w-auto">
-        Score my CV
+        {t("checkerCta")}
         <ArrowRightIcon
           size={15}
           aria-hidden="true"
@@ -93,6 +96,7 @@ function CheckerBar() {
 }
 
 export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
+  const t = useTranslations("landing.hero");
   const router = useRouter();
   const gate = useWebviewGate();
 
@@ -115,19 +119,21 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
               }}
             >
               <span className="block text-[var(--landing-ink-faint)]">
-                AI CV and cover letters.
+                {t("titleLead")}
               </span>
               <span className="block">
-                Paste any job link. Get a CV{" "}
-                <span className="text-[var(--landing-accent)]">made for that role</span>.
+                {t.rich("titleMain", {
+                  accent: (chunks) => (
+                    <span className="text-[var(--landing-accent)]">{chunks}</span>
+                  ),
+                })}
               </span>
             </h1>
           </div>
 
           <div className="landing-rise-2 lg:col-span-4 lg:col-start-9 lg:mt-24">
             <p className="text-lg leading-relaxed text-[var(--landing-ink-soft)]">
-              Upload your CV once. FitMyCV reads the listing and rewrites your CV
-              in the words that role asks for.
+              {t("body")}
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-4">
@@ -136,7 +142,7 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
                 onClick={handleTryFree}
                 className="landing-primary-btn group font-outfit text-sm"
               >
-                Try for free
+                {t("tryFree")}
                 <ArrowUpRightIcon
                   size={16}
                   aria-hidden="true"
@@ -152,24 +158,24 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
                     aria-hidden="true"
                     className="text-[var(--landing-success)]"
                   />
-                  Preview your tailored CV free
+                  {t("previewFree")}
                 </span>
-                <span>${lifetimePrice} once to download PDFs and apply.</span>
+                <span>{t("priceNote", { price: lifetimePrice })}</span>
               </span>
             </div>
 
-            <Link
+            <NextLink
               href="#how-it-works"
               className="tap-target group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
             >
               <PlayIcon size={14} weight="fill" aria-hidden="true" />
-              See how it works
+              {t("seeHow")}
               <ArrowRightIcon
                 size={14}
                 aria-hidden="true"
                 className="transition-transform duration-300 group-hover:translate-x-0.5"
               />
-            </Link>
+            </NextLink>
           </div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   XIcon,
   CopyIcon,
@@ -20,6 +21,7 @@ export default function LinkedInOutreachModal({
   companyBrief,
 }) {
   const [data, setData] = useState(null);
+  const t = useTranslations("tailor.linkedin");
   const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [editedMessage, setEditedMessage] = useState("");
@@ -40,7 +42,7 @@ export default function LinkedInOutreachModal({
         setActiveIndex(0);
       }
     } catch {
-      toast.error("Couldn't write your LinkedIn message. Try again.");
+      toast.error(t("error"));
     } finally {
       setLoading(false);
     }
@@ -52,7 +54,7 @@ export default function LinkedInOutreachModal({
 
   const handleCopy = () => {
     navigator.clipboard.writeText(editedMessage);
-    toast.success("Message copied");
+    toast.success(t("copied"));
   };
 
   const selectMessage = (index) => {
@@ -77,7 +79,7 @@ export default function LinkedInOutreachModal({
         <div className="flex items-center justify-between border-b px-4 py-3">
           <div className="flex items-center gap-2">
             <LinkedinLogoIcon size={18} weight="fill" className="text-blue-600" />
-            <h2 className="text-sm font-semibold">LinkedIn connection message</h2>
+            <h2 className="text-sm font-semibold">{t("title")}</h2>
           </div>
           <button
             onClick={onClose}
@@ -110,7 +112,7 @@ export default function LinkedInOutreachModal({
                           : "text-[var(--landing-ink-soft)] hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
                       }`}
                     >
-                      Version {i + 1}
+                      {t("version", { index: i + 1 })}
                     </button>
                   ))}
                 </div>
@@ -135,7 +137,7 @@ export default function LinkedInOutreachModal({
 
               {overLimit && (
                 <p className="text-xs text-destructive">
-                  Message exceeds LinkedIn's 300-character limit for connection requests.
+                  {t("overLimit")}
                 </p>
               )}
 
@@ -144,7 +146,7 @@ export default function LinkedInOutreachModal({
                 <div className="space-y-1">
                   <p className="flex items-center gap-1 text-xs font-medium text-muted-foreground">
                     <UsersThreeIcon size={12} />
-                    Suggested targets
+                    {t("targets")}
                   </p>
                   <div className="flex flex-wrap gap-1">
                     {data.targetRoles.map((role) => (
@@ -163,7 +165,7 @@ export default function LinkedInOutreachModal({
               <div className="flex gap-2">
                 <Button onClick={handleCopy} className="flex-1 gap-2" size="sm">
                   <CopyIcon size={14} />
-                  Copy message
+                  {t("copy")}
                 </Button>
                 <Button
                   variant="outline"
@@ -173,7 +175,7 @@ export default function LinkedInOutreachModal({
                   className="gap-2"
                 >
                   <ArrowsClockwiseIcon size={14} />
-                  Write another
+                  {t("another")}
                 </Button>
               </div>
             </>

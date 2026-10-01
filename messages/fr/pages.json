@@ -1,0 +1,158 @@
+{
+  "pricingPage": {
+    "meta": {
+      "title": "Tarifs : accès à vie pour ${lifetime}",
+      "description": "FitMyCV Premium coûte ${lifetime} à vie ou ${month}/mois. Téléchargez autant de CV et de lettres de motivation adaptés que vous voulez depuis n'importe quelle offre, avec un score ATS.",
+      "socialTitle": "Tarifs : des CV adaptés depuis n'importe quelle offre | FitMyCV",
+      "ogDescription": "Accès à vie pour ${lifetime} ou ${month}/mois : CV adaptés et lettres de motivation illimités, score ATS et export PDF.",
+      "twitterDescription": "Premium coûte ${lifetime} à vie ou ${month}/mois : CV adaptés, lettres de motivation, scores ATS et PDF illimités. L'abonnement mensuel se résilie à tout moment.",
+      "imageAlt": "Tarifs FitMyCV : adaptez votre CV à partir de n'importe quelle offre d'emploi"
+    },
+    "eyebrow": "Tarifs",
+    "title": "Une seule formule. Des candidatures adaptées en illimité.",
+    "priceOnce": "${price} en une fois",
+    "or": "ou",
+    "priceMonthly": "${price}/mois",
+    "intro": "Adaptez votre CV et votre lettre de motivation à chaque offre que vous collez, téléchargez-les en PDF soignés et suivez vos scores de correspondance et ATS, le tout pour un prix unique.",
+    "faqTitle": "FAQ sur les tarifs",
+    "faqIntro": "Tout ce qu'il faut savoir sur FitMyCV Premium.",
+    "faqs": {
+      "cost": {
+        "q": "Combien coûte FitMyCV ?",
+        "a": "FitMyCV Premium coûte ${lifetime} pour un accès à vie (vous payez une fois, c'est à vous pour toujours) ou ${month} par mois, sans engagement."
+      },
+      "includes": {
+        "q": "Qu'est-ce que Premium comprend ?",
+        "a": "Premium comprend des CV et lettres de motivation adaptés en illimité depuis n'importe quelle offre, un score de correspondance et un score ATS pour chaque CV, la préparation aux entretiens avec recherche sur l'entreprise et prise de contact, des offres qui vous correspondent chaque jour par e-mail, et l'export PDF de tout."
+      },
+      "cancel": {
+        "q": "Puis-je résilier à tout moment ?",
+        "a": "L'abonnement mensuel se résilie à tout moment. Vous gardez l'accès jusqu'à la fin de votre période de facturation. L'achat à vie est un paiement unique et non remboursable."
+      },
+      "payment": {
+        "q": "Quels moyens de paiement acceptez-vous ?",
+        "a": "Les paiements sont traités de façon sécurisée par Polar, qui accepte toutes les principales cartes de crédit et de débit."
+      },
+      "regional": {
+        "q": "Proposez-vous des tarifs régionaux ?",
+        "a": "Oui. Des tarifs plus bas peuvent s'appliquer dans certains pays selon votre localisation au moment du paiement."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "Tarifs",
+    "titleLine1": "Moins d'une heure de freelance.",
+    "titleLine2": "À vous pour de bon.",
+    "intro": "Un seul paiement pour un accès à vie, ou passez au mensuel, résiliable à tout moment.",
+    "footnote": "Environ trois mois d'abonnement mensuel, et c'est à vous pour toutes vos recherches suivantes. Paiement sécurisé via Polar.",
+    "regionalAvailable": "Des tarifs régionaux plus bas sont proposés dans certains pays."
+  },
+  "pricingCards": {
+    "plans": {
+      "month": {
+        "label": "Mensuel",
+        "suffix": "/mois",
+        "subline": "Résiliable à tout moment. Sans engagement.",
+        "cta": "S'abonner"
+      },
+      "lifetime": {
+        "label": "À vie",
+        "suffix": " en une fois",
+        "subline": "Payez une fois, gardez-le pour toujours.",
+        "cta": "Obtenir l'accès à vie"
+      }
+    },
+    "badges": {
+      "startHere": "Commencez ici",
+      "bestValue": "Meilleure offre"
+    },
+    "regionalNote": "Tarifs pour votre région",
+    "includesTitle": "Les deux formules incluent tout",
+    "features": [
+      "Téléchargez chaque CV adapté en PDF",
+      "Score de correspondance pour chaque offre ajoutée",
+      "Téléchargez chaque lettre de motivation en PDF",
+      "Fiches de recherche sur l'entreprise avant de postuler",
+      "Questions de préparation à l'entretien pour le poste",
+      "Banque d'histoires : des réponses d'entretien réutilisables, au format STAR (situation, tâche, action, résultat)",
+      "Suivi des candidatures, offres enregistrées et propositions",
+      "Des offres qui vous correspondent chaque jour par e-mail",
+      "Appliquez chaque recommandation ATS à votre CV",
+      "Brouillons de réponses aux questions des formulaires de candidature",
+      "Messages de connexion LinkedIn, et à qui les envoyer"
+    ],
+    "continueFree": "Continuer gratuitement"
+  },
+  "upgradeModal": {
+    "default": {
+      "title": "Passez à FitMyCV Pro",
+      "description": "Commencez un mois pour ${price} pour télécharger vos CV et lettres de motivation en PDF, avec en plus la recherche sur l'entreprise, la préparation aux entretiens et le suivi des candidatures."
+    },
+    "download": {
+      "title": "Téléchargez vos PDF",
+      "description": "Votre CV et votre lettre de motivation sont prêts. Commencez un mois pour ${price} pour les télécharger en PDF."
+    },
+    "preTailor": {
+      "title": "Téléchargez vos PDF",
+      "description": "Commencez un mois pour ${price} pour télécharger votre CV adapté et votre lettre de motivation en PDF."
+    },
+    "startMonth": "Commencer un mois pour ${price}",
+    "getLifetime": "Accès à vie pour ${price}",
+    "maybeLater": "Plus tard",
+    "seeEverything": "Tout ce que comprend Pro"
+  },
+  "unlockGate": {
+    "button": "Débloquer le téléchargement",
+    "body": "C'est prêt. Débloquez les téléchargements pour l'enregistrer en PDF."
+  },
+  "feedback": {
+    "title": "Envoyer un avis",
+    "description": "Aidez-nous à améliorer FitMyCV en partageant votre avis.",
+    "typeLabel": "Type",
+    "types": {
+      "general": "Général",
+      "bug": "Bug",
+      "featureRequest": "Suggestion de fonctionnalité"
+    },
+    "messageLabel": "Message",
+    "messagePlaceholder": "Dites-nous ce que vous en pensez…",
+    "submit": "Envoyer l'avis",
+    "sending": "Envoi…",
+    "sent": "Merci. Votre avis a été envoyé.",
+    "sendError": "Impossible d'envoyer votre avis. Réessayez."
+  },
+  "tailorCvFromJobLink": {
+    "meta": {
+      "title": "Adaptez votre CV à une offre d'emploi depuis n'importe quel lien | FitMyCV",
+      "description": "Adaptez votre CV à une offre d'emploi avec l'IA. Collez un lien LinkedIn, Indeed, Glassdoor ou d'une page carrières, ou le texte, et obtenez un CV et une lettre de motivation."
+    },
+    "eyebrow": "Adaptation de CV par IA",
+    "titleStart": "Adaptez votre CV à une offre d'emploi,",
+    "titleHighlight": "à partir du lien.",
+    "intro": "Adaptez votre CV à une offre d'emploi avec l'IA : collez un lien LinkedIn, Indeed ou de n'importe quel site d'emploi, ou collez le texte de l'offre, et FitMyCV réécrit votre CV et votre lettre de motivation pour correspondre au poste, mot-clé par mot-clé.",
+    "ctaPrimary": "Adapter mon CV",
+    "ctaSecondary": "Évaluer d'abord mon CV",
+    "worksWith": "Compatible avec",
+    "companySites": "Sites d'entreprise",
+    "benefitsTitle": "Un lien d'offre. Un CV conçu pour ce poste.",
+    "benefitsIntro": "Arrêtez d'envoyer le même CV générique à chaque offre. FitMyCV crée un nouveau CV adapté à chaque lien que vous collez.",
+    "benefits": {
+      "link": {
+        "title": "Collez un lien, pas un pavé de texte",
+        "body": "Collez l'URL d'une offre LinkedIn, Indeed, Glassdoor ou de n'importe quel site d'emploi. FitMyCV lit le poste et en extrait les exigences, les compétences et les mots-clés, y compris les sections masquées derrière un bouton « voir plus »."
+      },
+      "ats": {
+        "title": "Conçu pour passer les filtres ATS",
+        "body": "Votre CV est réécrit pour reprendre exactement les termes de l'offre, puis exporté en PDF texte sur une seule colonne, que les logiciels de recrutement (ATS) lisent tel que vous l'avez écrit."
+      },
+      "speed": {
+        "title": "CV et lettre de motivation en quelques secondes",
+        "body": "Les deux documents sont créés à partir de la même analyse de la même offre, ils se renforcent donc l'un l'autre. Modifiez l'un ou l'autre directement, puis exportez-les en PDF prêts pour les recruteurs en un clic."
+      }
+    },
+    "faqHeading": "Adapter votre CV depuis un lien d'offre : FAQ",
+    "faqIntro": "Tout sur la transformation d'un lien d'offre en candidature adaptée.",
+    "breadcrumbHome": "Accueil",
+    "breadcrumbPage": "Adapter son CV depuis un lien d'offre"
+  }
+}

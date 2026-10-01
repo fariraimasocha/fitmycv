@@ -14,6 +14,7 @@ import {
   TextAlignLeftIcon,
   WarningCircleIcon,
 } from "@phosphor-icons/react";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { getAtPath } from "@/lib/cv-patch";
@@ -22,61 +23,37 @@ import { cn } from "@/lib/utils";
 const SUGGESTIONS = [
   {
     icon: BriefcaseIcon,
-    label: "Tailor it to a job",
-    description: "Paste a job link and it matches your CV to the role",
+    key: "tailor",
     text: "Tailor my CV to this job: ",
     send: false,
   },
   {
     icon: TextAlignLeftIcon,
-    label: "Tighten my summary",
-    description: "Cut it down to three clear lines",
+    key: "summary",
     text: "Tighten my summary to three clear lines.",
     send: true,
   },
   {
     icon: ListChecksIcon,
-    label: "Strengthen weak bullets",
-    description: "Rewrite duties so they show results",
+    key: "bullets",
     text: "Find my weakest bullets and rewrite them to show outcomes. Don't invent numbers.",
     send: true,
   },
   {
     icon: SortAscendingIcon,
-    label: "Reorder my skills",
-    description: "Put the most relevant skills first",
+    key: "skills",
     text: "Put the skills that matter most for my target role first.",
     send: true,
   },
 ];
 
-const TOOL_LABEL = {
-  read_cv: { done: "Read your CV", failed: "Couldn't read your CV" },
-  fetch_job_posting: { done: "Read the job posting", failed: "Couldn't open the job posting" },
-};
+// Labels live in messages under dashboard.agent.chat (tools, sections, fields).
+const TOOL_NAMES = new Set(["read_cv", "fetch_job_posting"]);
+const SECTION_KEYS = new Set(["basics", "work", "education", "skills"]);
 
-const SECTION_LABEL = { basics: "Personal details", work: "Experience", education: "Education", skills: "Skills" };
-const FIELD_LABEL = {
-  name: "Name",
-  label: "Headline",
-  email: "Email",
-  phone: "Phone",
-  summary: "Summary",
-  location: "Location",
-  profiles: "Profiles",
-  network: "Network",
-  url: "Link",
-  company: "Company",
-  position: "Job title",
-  startDate: "Start date",
-  endDate: "End date",
-  description: "Bullets",
-  institution: "School",
-  degree: "Degree",
-  fieldOfStudy: "Field of study",
-  category: "Category",
-  skills: "Skills",
-};
+function fieldLabel(key, t) {
+  return t.has(`fields.${key}`) ? t(`fields.${key}`) : key;
+}
 const ITEM_NAME = {
   work: (item) => item.company || item.position,
   education: (item) => item.institution,
@@ -84,46 +61,46 @@ const ITEM_NAME = {
 };
 
 /** "/work/0/description" reads as "Experience › Acme › Bullets". Entry names come from `draft` when given. */
-function describePath(path, draft) {
+function describePath(path, draft, t) {
   const [section, ...rest] = String(path).replace(/^\//, "").split("/");
-  const parts = [SECTION_LABEL[section] ?? section];
+  const parts = [SECTION_KEYS.has(section) ? t(`sections.${section}`) : section];
   rest.forEach((token, i) => {
     if (token === "-") {
-      parts.push("New entry");
+      parts.push(t("newEntry"));
     } else if (/^\d+$/.test(token)) {
       const item = i === 0 ? draft?.[section]?.[Number(token)] : undefined;
-      parts.push((item && ITEM_NAME[section]?.(item)) || `Entry ${Number(token) + 1}`);
+      parts.push((item && ITEM_NAME[section]?.(item)) || t("entry", { number: Number(token) + 1 }));
     } else {
-      parts.push(FIELD_LABEL[token] ?? token);
+      parts.push(fieldLabel(token, t));
     }
   });
   return parts.join(" › ");
 }
 
-function formatValue(value) {
-  if (value === undefined || value === null || value === "") return "Empty";
+function formatValue(value, t) {
+  if (value === undefined || value === null || value === "") return t("empty");
   if (typeof value !== "object") return String(value);
   if (Array.isArray(value) && value.every((v) => typeof v !== "object")) return value.join(", ");
   return Object.entries(value)
     .filter(([, v]) => v !== "" && !(Array.isArray(v) && v.length === 0))
     .map(
       ([key, v]) =>
-        `${FIELD_LABEL[key] ?? key}: ${Array.isArray(v) ? v.map((x) => (typeof x === "object" ? JSON.stringify(x) : x)).join(", ") : v}`
+        `${fieldLabel(key, t)}: ${Array.isArray(v) ? v.map((x) => (typeof x === "object" ? JSON.stringify(x) : x)).join(", ") : v}`
     )
     .join("\n");
 }
 
 const STATUS_PILL = {
   pending: {
-    label: "Needs your review",
+    label: "status.pending",
     className: "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]",
   },
   applied: {
-    label: "Applied",
+    label: "status.applied",
     className: "bg-[var(--landing-success-soft)] text-[var(--landing-success)]",
   },
   reverted: {
-    label: "Rolled back",
+    label: "status.reverted",
     className: "bg-[var(--landing-paper-soft)] text-muted-foreground",
   },
 };
@@ -132,12 +109,13 @@ const TIME_FORMAT = { hour: "2-digit", minute: "2-digit" };
 const DATE_TIME_FORMAT = { day: "numeric", month: "short", ...TIME_FORMAT };
 
 /** Same day shows the time only, older messages add the date. */
-function formatMessageTime(value, now) {
+function formatMessageTime(value, now, locale) {
   if (!value) return null;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return null;
   const sameDay = date.toDateString() === new Date(now).toDateString();
-  return date.toLocaleString("en-GB", sameDay ? TIME_FORMAT : DATE_TIME_FORMAT);
+  // English keeps en-GB so times stay 24 hour, as before.
+  return date.toLocaleString(locale === "en" ? "en-GB" : locale, sameDay ? TIME_FORMAT : DATE_TIME_FORMAT);
 }
 
 /**
@@ -145,8 +123,9 @@ function formatMessageTime(value, now) {
  * left on plain surface. Both share the same width cap and radius.
  */
 function Bubble({ role, at, now, pending, children }) {
+  const locale = useLocale();
   const isUser = role === "user";
-  const time = formatMessageTime(at, now);
+  const time = formatMessageTime(at, now, locale);
   return (
     <div className={cn("flex flex-col gap-1", isUser ? "items-end" : "items-start")}>
       <div
@@ -168,13 +147,14 @@ function Bubble({ role, at, now, pending, children }) {
 }
 
 function ProposalCard({ proposal, draft, busy, onDecide }) {
+  const t = useTranslations("dashboard.agent.chat");
   const pending = proposal.status === "pending";
 
   if (proposal.status === "rejected") {
     return (
       <p className="flex items-center gap-2 text-xs text-muted-foreground">
         <ProhibitIcon size={14} className="shrink-0" aria-hidden="true" />
-        <span className="truncate">You declined: {proposal.title}</span>
+        <span className="truncate">{t("declined", { title: proposal.title })}</span>
       </p>
     );
   }
@@ -195,7 +175,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
               pill.className
             )}
           >
-            {pill.label}
+            {t(pill.label)}
           </span>
         )}
       </div>
@@ -206,17 +186,17 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
           const before = pending && op.op !== "add" ? getAtPath(draft, op.path) : undefined;
           return (
             <li key={`${op.op}-${op.path}-${i}`} className="space-y-1.5">
-              <p className="text-xs font-medium text-muted-foreground">{describePath(op.path, pending ? draft : null)}</p>
+              <p className="text-xs font-medium text-muted-foreground">{describePath(op.path, pending ? draft : null, t)}</p>
               {before !== undefined && (
                 <p className="text-sm leading-6 break-words whitespace-pre-wrap text-muted-foreground line-through decoration-muted-foreground/40">
-                  <span className="sr-only">Before: </span>
-                  {formatValue(before)}
+                  <span className="sr-only">{t("before")} </span>
+                  {formatValue(before, t)}
                 </p>
               )}
               {op.op !== "remove" && (
                 <p className="text-sm leading-6 break-words whitespace-pre-wrap text-foreground">
-                  <span className="sr-only">After: </span>
-                  {formatValue(op.value)}
+                  <span className="sr-only">{t("after")} </span>
+                  {formatValue(op.value, t)}
                 </p>
               )}
             </li>
@@ -233,7 +213,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
             className="dashboard-primary-btn dashboard-primary-btn-sm"
           >
             <CheckIcon size={16} weight="bold" aria-hidden="true" />
-            Apply change
+            {t("applyChange")}
           </button>
           <button
             type="button"
@@ -241,7 +221,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
             onClick={() => onDecide("reject")}
             className="dashboard-secondary-btn dashboard-secondary-btn-sm"
           >
-            Decline
+            {t("decline")}
           </button>
         </div>
       )}
@@ -255,7 +235,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
             className="rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
           >
             <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />
-            Restore to before this change
+            {t("restore")}
           </Button>
         </div>
       )}
@@ -264,11 +244,12 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
 }
 
 function QuestionCard({ question, answer, disabled, onAnswer }) {
+  const t = useTranslations("dashboard.agent.chat");
   return (
     <div className="rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4">
       <p className="text-sm leading-6 font-medium text-foreground">{question.question}</p>
       {answer !== null ? (
-        <p className="mt-1.5 text-sm text-muted-foreground">You answered: {answer}</p>
+        <p className="mt-1.5 text-sm text-muted-foreground">{t("answered", { answer })}</p>
       ) : (
         <>
           {question.choices?.length > 0 && (
@@ -286,7 +267,7 @@ function QuestionCard({ question, answer, disabled, onAnswer }) {
               ))}
             </div>
           )}
-          <p className="mt-3 text-xs text-muted-foreground">Or type your own answer below.</p>
+          <p className="mt-3 text-xs text-muted-foreground">{t("ownAnswer")}</p>
         </>
       )}
     </div>
@@ -294,6 +275,7 @@ function QuestionCard({ question, answer, disabled, onAnswer }) {
 }
 
 function ToolRow({ message }) {
+  const t = useTranslations("dashboard.agent.chat");
   const failed = message.content?.startsWith("Error");
   const Icon = failed ? WarningCircleIcon : CheckCircleIcon;
   return (
@@ -303,12 +285,13 @@ function ToolRow({ message }) {
         className={cn("shrink-0", !failed && "text-[var(--landing-success)]")}
         aria-hidden="true"
       />
-      {TOOL_LABEL[message.toolName][failed ? "failed" : "done"]}
+      {t(`tools.${message.toolName}.${failed ? "failed" : "done"}`)}
     </p>
   );
 }
 
 export function AgentChat({ thread, draft, sending, sendingText, onSend, decidingId, onDecide }) {
+  const t = useTranslations("dashboard.agent.chat");
   const [text, setText] = useState("");
   // Captured once so "today" in timestamps does not shift while you read.
   const [now] = useState(() => Date.now());
@@ -334,7 +317,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
   const answerAfter = (index) => messages.slice(index + 1).find((m) => m.role === "user")?.content ?? null;
 
   return (
-    <section aria-label="Chat" className="flex h-full min-h-0 flex-col bg-[var(--landing-bg)]">
+    <section aria-label={t("chatLabel")} className="flex h-full min-h-0 flex-col bg-[var(--landing-bg)]">
       <div ref={scrollRef} className="@container min-h-0 flex-1 overflow-y-auto overscroll-contain">
         <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col gap-4 px-4 py-5">
           {messages.length === 0 && !sending && (
@@ -343,16 +326,15 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                 <SparkleIcon size={20} aria-hidden="true" />
               </span>
               <h2 className="mt-4 font-outfit text-xl font-semibold tracking-[-0.02em] text-foreground">
-                What should we work on?
+                {t("emptyTitle")}
               </h2>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Ask for any change in plain words. The agent edits a copy of {thread.sourceLabel || "your CV"}, so
-                your original stays as it is.
+                {t("emptyDescription", { source: thread.sourceLabel || t("yourCv") })}
               </p>
               <div className="mt-5 grid gap-2 @md:grid-cols-2">
                 {SUGGESTIONS.map((s) => (
                   <button
-                    key={s.label}
+                    key={s.key}
                     type="button"
                     onClick={() => {
                       if (s.send) {
@@ -368,8 +350,8 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                       <s.icon size={16} aria-hidden="true" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-sm font-medium text-foreground">{s.label}</span>
-                      <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{s.description}</span>
+                      <span className="block text-sm font-medium text-foreground">{t(`suggestions.${s.key}.label`)}</span>
+                      <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{t(`suggestions.${s.key}.description`)}</span>
                     </span>
                   </button>
                 ))}
@@ -416,7 +398,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                 />
               );
             }
-            if (m.role === "tool" && TOOL_LABEL[m.toolName]) {
+            if (m.role === "tool" && TOOL_NAMES.has(m.toolName)) {
               return <ToolRow key={m._id} message={m} />;
             }
             return null;
@@ -437,7 +419,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                     />
                   ))}
                 </span>
-                Working on it
+                {t("working")}
               </div>
             </>
           )}
@@ -458,8 +440,8 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
               ref={composerRef}
               rows={1}
               value={text}
-              aria-label="Message the agent"
-              placeholder="Ask for a change, or paste a job link"
+              aria-label={t("messageLabel")}
+              placeholder={t("placeholder")}
               onChange={(event) => setText(event.target.value)}
               onKeyDown={(event) => {
                 if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
@@ -471,7 +453,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
             />
             <button
               type="submit"
-              aria-label="Send message"
+              aria-label={t("send")}
               disabled={!text.trim() || sending}
               className="dashboard-primary-btn h-9 w-9 shrink-0 px-0"
             >
@@ -479,7 +461,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
             </button>
           </div>
           <p className="mt-1.5 hidden px-1 text-xs text-muted-foreground sm:block">
-            Press Enter to send. Shift and Enter adds a new line.
+            {t("hint")}
           </p>
         </div>
       </form>

@@ -9,8 +9,14 @@ import {
   WarningCircleIcon,
 } from "@phosphor-icons/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { isAndroid, isIOS, tryOpenExternalBrowser } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
+
+// Bold step labels inside the translated instructions.
+const strong = (chunks) => (
+  <span className="font-semibold text-[var(--landing-ink)]">{chunks}</span>
+);
 
 export default function WebviewGateModal({
   open,
@@ -19,6 +25,7 @@ export default function WebviewGateModal({
   targetUrl,
   fullScreen = false,
 }) {
+  const t = useTranslations("landing.webview");
   const [platform, setPlatform] = useState("unknown");
 
   useEffect(() => {
@@ -50,10 +57,10 @@ export default function WebviewGateModal({
         document.execCommand("copy");
         document.body.removeChild(ta);
       }
-      toast.success("Link copied. Paste it in Chrome or Safari.");
+      toast.success(t("toastCopied"));
       trackEvent("webview_copy_link", { platform });
     } catch {
-      toast.error("Could not copy. Long press the link to copy it.");
+      toast.error(t("toastCopyFailed"));
     }
   };
 
@@ -64,7 +71,7 @@ export default function WebviewGateModal({
       // iOS fallback is copy + instruction
       handleCopy();
     } else if (platform === "android") {
-      toast.success("Opening in Chrome. If nothing happens, use Copy link.");
+      toast.success(t("toastOpening"));
     }
   };
 
@@ -97,13 +104,13 @@ export default function WebviewGateModal({
             id="webview-gate-title"
             className="font-outfit text-lg font-extrabold leading-tight text-[var(--landing-ink)]"
           >
-            Open in your browser to sign in
+            {t("title")}
           </h2>
           <button
             type="button"
             onClick={onClose}
             className="shrink-0 rounded-lg p-1 text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
-            aria-label="Close"
+            aria-label={t("close")}
           >
             <XIcon size={18} />
           </button>
@@ -117,70 +124,57 @@ export default function WebviewGateModal({
             aria-hidden="true"
           />
           <p className="text-xs leading-relaxed text-amber-900">
-            Google does not allow sign in inside the LinkedIn app. Use Chrome or Safari, or
-            continue with email which works here.
+            {t("warning")}
           </p>
         </div>
 
         <div className="mt-4 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
           <p className="text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--landing-ink-soft)]">
-            How to open in your browser
+            {t("howTo")}
           </p>
           {platform === "ios" ? (
             <ol className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-[var(--landing-ink-soft)]">
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">1.</span>
-                <span>
-                  Tap the <span className="font-semibold text-[var(--landing-ink)]">•••</span> or
-                  share icon at the top right of LinkedIn.
-                </span>
+                <span>{t.rich("ios1", { b: strong })}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">2.</span>
-                <span>
-                  Choose <span className="font-semibold text-[var(--landing-ink)]">Open in Browser</span> or{" "}
-                  <span className="font-semibold text-[var(--landing-ink)]">Open in Safari</span>.
-                </span>
+                <span>{t.rich("ios2", { b: strong })}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">3.</span>
-                <span>Sign in with Google once the page reloads in Safari.</span>
+                <span>{t("ios3")}</span>
               </li>
             </ol>
           ) : platform === "android" ? (
             <ol className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-[var(--landing-ink-soft)]">
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">1.</span>
-                <span>
-                  Tap the <span className="font-semibold text-[var(--landing-ink)]">⋮</span> menu at the top
-                  right.
-                </span>
+                <span>{t.rich("android1", { b: strong })}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">2.</span>
-                <span>
-                  Choose <span className="font-semibold text-[var(--landing-ink)]">Open in Chrome</span> or{" "}
-                  <span className="font-semibold text-[var(--landing-ink)]">Open in browser</span>.
-                </span>
+                <span>{t.rich("android2", { b: strong })}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">3.</span>
-                <span>Sign in with Google once the page reloads in Chrome.</span>
+                <span>{t("android3")}</span>
               </li>
             </ol>
           ) : (
             <ol className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-[var(--landing-ink-soft)]">
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">1.</span>
-                <span>Copy the sign in link below.</span>
+                <span>{t("desktop1")}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">2.</span>
-                <span>Paste it in Chrome or Safari.</span>
+                <span>{t("desktop2")}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-[var(--landing-ink)]">3.</span>
-                <span>Sign in with Google there.</span>
+                <span>{t("desktop3")}</span>
               </li>
             </ol>
           )}
@@ -196,7 +190,7 @@ export default function WebviewGateModal({
             className="landing-primary-btn w-full text-sm"
           >
             <CopyIcon size={16} />
-            Copy sign in link
+            {t("copy")}
           </button>
 
           {platform === "android" && (
@@ -206,7 +200,7 @@ export default function WebviewGateModal({
               className="landing-secondary-btn w-full text-sm"
             >
               <ArrowSquareOutIcon size={18} />
-              Try opening in Chrome
+              {t("openChrome")}
             </button>
           )}
 
@@ -216,12 +210,12 @@ export default function WebviewGateModal({
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--landing-line)] bg-white px-4 py-3 text-sm font-semibold text-[var(--landing-ink)] hover:bg-[var(--landing-paper-soft)]"
           >
             <EnvelopeSimpleIcon size={18} />
-            Continue with email instead
+            {t("continueEmail")}
           </button>
         </div>
 
         <p className="mt-3 text-center text-xs leading-relaxed text-[var(--landing-ink-soft)]">
-          Email sign in works inside LinkedIn. No need to switch browser.
+          {t("emailNote")}
         </p>
 
         <button
@@ -229,7 +223,7 @@ export default function WebviewGateModal({
           onClick={onClose}
           className="mt-4 w-full text-center text-sm font-semibold text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
         >
-          Continue browsing
+          {t("continueBrowsing")}
         </button>
       </div>
     </div>

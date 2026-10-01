@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   ArrowLeftIcon,
   FileTextIcon,
@@ -49,15 +50,16 @@ import { cn } from "@/lib/utils";
 
 const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
 
+// Tab labels live in messages under tailor.tailoredDetail.
 const DOCUMENT_TABS = [
-  { id: "cv", label: "Tailored CV", icon: <FileTextIcon size={14} aria-hidden="true" /> },
-  { id: "letter", label: "Cover letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "why", label: "Why this role", icon: <ChatCenteredTextIcon size={14} aria-hidden="true" /> },
+  { id: "cv", icon: <FileTextIcon size={14} aria-hidden="true" /> },
+  { id: "letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
+  { id: "why", icon: <ChatCenteredTextIcon size={14} aria-hidden="true" /> },
 ];
 
 const MOBILE_TABS = [
-  { id: "edit", label: "Edit", icon: <PencilSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "preview", label: "Preview", icon: <EyeIcon size={14} aria-hidden="true" /> },
+  { id: "edit", icon: <PencilSimpleIcon size={14} aria-hidden="true" /> },
+  { id: "preview", icon: <EyeIcon size={14} aria-hidden="true" /> },
 ];
 
 function buildResumeData(source) {
@@ -84,13 +86,14 @@ function Rise({ children, delay = 0, className }) {
 }
 
 function BackLink() {
+  const t = useTranslations("tailor.tailoredDetail");
   return (
     <Link
       href="/dashboard/tailored"
       className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
     >
       <ArrowLeftIcon size={16} aria-hidden="true" />
-      Back to tailored CVs
+      {t("back")}
     </Link>
   );
 }
@@ -118,6 +121,9 @@ function DetailSkeleton() {
 
 export default function TailoredCVDetailPage() {
   const { id } = useParams();
+  const t = useTranslations("tailor.tailoredDetail");
+  const documentTabs = DOCUMENT_TABS.map((tab) => ({ ...tab, label: t(`documentTabs.${tab.id}`) }));
+  const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
   const { data: session } = useSession();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("cv");
@@ -202,13 +208,13 @@ export default function TailoredCVDetailPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Couldn't save your changes. Try again.");
+        throw new Error(err.error || t("saveError"));
       }
 
       return res.json();
     },
     onSuccess: () => {
-      toast.success("Answer saved");
+      toast.success(t("answerSaved"));
       queryClient.invalidateQueries({ queryKey: ["tailored-cv", id] });
     },
     onError: (error) => {
@@ -235,7 +241,7 @@ export default function TailoredCVDetailPage() {
         return;
       }
       if (!res.ok || !json.data) {
-        throw new Error(json.error || "Couldn't write an answer. Try again.");
+        throw new Error(json.error || t("whyError"));
       }
       setWhyAnswer(json.data);
       whyThisRoleMutation.mutate(json.data.answer);
@@ -256,13 +262,13 @@ export default function TailoredCVDetailPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Couldn't save your changes. Try again.");
+        throw new Error(err.error || t("saveError"));
       }
 
       return res.json();
     },
     onSuccess: () => {
-      toast.success("Cover letter saved");
+      toast.success(t("letterSaved"));
       queryClient.invalidateQueries({ queryKey: ["tailored-cv", id] });
     },
     onError: (error) => {
@@ -289,9 +295,9 @@ export default function TailoredCVDetailPage() {
         <BackLink />
         <DashboardEmptyState
           icon={WarningCircleIcon}
-          title="We couldn't find this tailored CV"
-          description="It may have been deleted. Your other tailored CVs are still in the list."
-          actionLabel="Back to tailored CVs"
+          title={t("notFound.title")}
+          description={t("notFound.description")}
+          actionLabel={t("back")}
           actionHref="/dashboard/tailored"
         />
       </DashboardPageShell>
@@ -347,14 +353,14 @@ export default function TailoredCVDetailPage() {
   };
 
   const downloadTab = activeTab === "letter" ? "letter" : "cv";
-  const downloadLabel = activeTab === "letter" ? "Download cover letter" : "Download PDF";
+  const downloadLabel = activeTab === "letter" ? t("downloadLetter") : t("downloadPdf");
 
   return (
     <DashboardPageShell width="full">
       <BackLink />
 
       <DashboardPageHeader
-        title={cv.jobTitle || "Untitled role"}
+        title={cv.jobTitle || t("untitled")}
         description={
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {cv.jobCompany && (
@@ -390,21 +396,21 @@ export default function TailoredCVDetailPage() {
         items={[
           {
             icon: CalendarIcon,
-            label: "Tailored",
+            label: t("stats.tailored"),
             value: <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />,
           },
-          { icon: BriefcaseIcon, label: "Positions", value: resumeData.work.length },
-          { icon: TagIcon, label: "Skill groups", value: resumeData.skills.length },
+          { icon: BriefcaseIcon, label: t("stats.positions"), value: resumeData.work.length },
+          { icon: TagIcon, label: t("stats.skillGroups"), value: resumeData.skills.length },
           {
             icon: EnvelopeSimpleIcon,
-            label: "Cover letter",
-            value: hasCoverLetter ? "Written" : "Not yet",
+            label: t("stats.coverLetter"),
+            value: hasCoverLetter ? t("stats.written") : t("stats.notYet"),
             tone: hasCoverLetter ? "success" : undefined,
           },
           {
             icon: ChatCenteredTextIcon,
-            label: "Why this role",
-            value: hasWhyAnswer ? "Answered" : "Not yet",
+            label: t("stats.whyThisRole"),
+            value: hasWhyAnswer ? t("stats.answered") : t("stats.notYet"),
             tone: hasWhyAnswer ? "success" : undefined,
           },
         ]}
@@ -413,15 +419,15 @@ export default function TailoredCVDetailPage() {
       <Rise delay={0.1} className="flex flex-col gap-3">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <DashboardTabBar
-            tabs={DOCUMENT_TABS}
+            tabs={documentTabs}
             activeTab={activeTab}
             onTabChange={setActiveTab}
-            ariaLabel="Tailored document sections"
+            ariaLabel={t("sectionsAria")}
           />
           {activeTab === "cv" && (
             <DashboardTabBar
-              ariaLabel="Edit or preview"
-              tabs={MOBILE_TABS}
+              ariaLabel={t("mobileTabs.ariaLabel")}
+              tabs={mobileTabs}
               activeTab={mobileTab}
               onTabChange={setMobileTab}
               className="lg:hidden"
@@ -443,7 +449,7 @@ export default function TailoredCVDetailPage() {
                 saveEndpoint={`/api/tailored-cv/${id}`}
                 saveMethod="PUT"
                 queryKey={["tailored-cv", id]}
-                saveButtonLabel="Save tailored CV"
+                saveButtonLabel={t("saveTailored")}
                 onValuesChange={handleValuesChange}
               />
             </div>
@@ -466,7 +472,7 @@ export default function TailoredCVDetailPage() {
                     />
                   </div>
                   <p className="truncate text-xs text-muted-foreground">
-                    Updates as you type
+                    {t("liveUpdates")}
                   </p>
                 </div>
                 <div className="bg-white">

@@ -1,4 +1,5 @@
 import { CaretUpIcon, CaretDownIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
 export default function ItemReorderControls({
@@ -7,6 +8,7 @@ export default function ItemReorderControls({
   onMoveUp,
   onMoveDown,
 }) {
+  const t = useTranslations("tailor.reorder");
   if (totalCount <= 1) return null;
 
   const isFirst = index === 0;
@@ -19,7 +21,7 @@ export default function ItemReorderControls({
         variant="ghost"
         size="icon-xs"
         disabled={isFirst}
-        aria-label="Move up"
+        aria-label={t("up")}
         onClick={onMoveUp}
       >
         <CaretUpIcon size={14} />
@@ -29,7 +31,7 @@ export default function ItemReorderControls({
         variant="ghost"
         size="icon-xs"
         disabled={isLast}
-        aria-label="Move down"
+        aria-label={t("down")}
         onClick={onMoveDown}
       >
         <CaretDownIcon size={14} />

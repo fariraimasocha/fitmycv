@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import {
   ArrowRightIcon,
   LinkIcon,
@@ -19,54 +20,71 @@ import {
   breadcrumbSchema,
   faqSchema,
   howToSchema,
+  localeAlternates,
   pageMetadata,
 } from "@/lib/seo";
 import { softwareApplicationSchema } from "@/lib/structured-data";
 
-export const metadata = pageMetadata({
-  absoluteTitle: "Tailor Your CV to a Job Description From Any Link | FitMyCV",
-  description:
-    "Tailor your CV to a job description with AI. Paste a link from LinkedIn, Indeed, Glassdoor or a careers page, or the text, and get a CV and cover letter.",
-  path: "/tailor-cv-from-job-link",
-  keywords: [
-    "tailor cv to job description",
-    "tailor cv to job description in seconds",
-    "tailor resume to job description",
-    "tailor cv from job link",
-    "paste job link to tailor resume",
-    "tailor resume to job description ai free",
-    "ai resume builder based on job description",
-    "tailor resume from job url",
-    "tailored cv from job posting url",
-    "ai resume from job link",
-    "job specific resume",
-    "tailor resume from linkedin job link",
-    "indeed resume matcher",
-  ],
-  image: "/social-preview.jpg",
-});
+const PATH = "/tailor-cv-from-job-link";
+
+// The long-form body (FAQs, how-to steps, article blocks) is too big for the
+// messages that ship to every client page, so each language keeps its own file
+// and only this server page loads it. English reads the original content file.
+async function getContent(locale) {
+  if (locale === "en") return { BLOCKS, FAQS, HOW_TO };
+  return (await import(`../../../messages/${locale}/tailor-cv-from-job-link.json`)).default;
+}
+
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: "pages.tailorCvFromJobLink.meta",
+  });
+  const alternates = localeAlternates(locale, PATH);
+  const base = pageMetadata({
+    absoluteTitle: t("title"),
+    description: t("description"),
+    path: alternates.canonical,
+    keywords: [
+      "tailor cv to job description",
+      "tailor cv to job description in seconds",
+      "tailor resume to job description",
+      "tailor cv from job link",
+      "paste job link to tailor resume",
+      "tailor resume to job description ai free",
+      "ai resume builder based on job description",
+      "tailor resume from job url",
+      "tailored cv from job posting url",
+      "ai resume from job link",
+      "job specific resume",
+      "tailor resume from linkedin job link",
+      "indeed resume matcher",
+    ],
+    image: "/social-preview.jpg",
+  });
+  return { ...base, alternates };
+}
 
 const BENEFITS = [
-  {
-    icon: LinkIcon,
-    title: "Paste a link, not a wall of text",
-    body: "Drop in a job URL from LinkedIn, Indeed, Glassdoor, or any board. FitMyCV reads the role and pulls out the requirements, skills, and keywords, including the sections hidden behind a 'see more' toggle.",
-  },
-  {
-    icon: SealCheckIcon,
-    title: "Built to pass ATS filters",
-    body: "Your CV is rewritten to mirror the exact language in the listing, then exported as a single-column, text-based PDF that applicant tracking systems parse the way you wrote it.",
-  },
-  {
-    icon: LightningIcon,
-    title: "CV + cover letter in seconds",
-    body: "Both documents come from the same parse of the same posting, so they reinforce each other. Edit either inline, then export to recruiter-ready PDFs with one click.",
-  },
+  { key: "link", icon: LinkIcon },
+  { key: "ats", icon: SealCheckIcon },
+  { key: "speed", icon: LightningIcon },
 ];
 
-const SUPPORTED_BOARDS = ["LinkedIn", "Indeed", "Glassdoor", "Company sites"];
+const SUPPORTED_BOARDS = ["LinkedIn", "Indeed", "Glassdoor"];
 
-export default function TailorCvFromJobLinkPage() {
+export default async function TailorCvFromJobLinkPage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: "pages.tailorCvFromJobLink",
+  });
+  const content = await getContent(locale);
+  const boards = [...SUPPORTED_BOARDS, t("companySites")];
+  const homePath = locale === "en" ? "/" : `/${locale}`;
+  const pagePath = locale === "en" ? PATH : `/${locale}${PATH}`;
+
   return (
     <div className="landing-root min-h-screen">
       <Header />
@@ -84,28 +102,25 @@ export default function TailorCvFromJobLinkPage() {
           <div className="landing-container flex flex-col items-center text-center">
             <div className="landing-eyebrow">
               <div className="h-2 w-2 shrink-0 rounded-full bg-[var(--landing-primary)]" />
-              AI CV tailoring
+              {t("eyebrow")}
             </div>
 
             <h1
               className="font-serif-display mt-6 max-w-5xl font-normal leading-[0.98] tracking-normal text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(38px, 6vw, 78px)" }}
             >
-              Tailor your CV to a job description,{" "}
+              {t("titleStart")}{" "}
               <span className="relative inline-block px-2">
                 <span
                   aria-hidden="true"
                   className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.9_0.04_45_/_0.45)]"
                 />
-                starting from the link.
+                {t("titleHighlight")}
               </span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-              Tailor your resume to a job description with AI: paste a job
-              link from LinkedIn, Indeed, or any board, or paste the posting
-              text, and FitMyCV rewrites your CV and cover letter to match
-              the role, keyword for keyword.
+              {t("intro")}
             </p>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -113,7 +128,7 @@ export default function TailorCvFromJobLinkPage() {
                 href="/auth"
                 className="landing-primary-btn group min-w-[210px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
               >
-                Tailor my CV
+                {t("ctaPrimary")}
                 <ArrowRightIcon
                   size={17}
                   aria-hidden="true"
@@ -124,15 +139,15 @@ export default function TailorCvFromJobLinkPage() {
                 href="/ats-resume-checker"
                 className="landing-secondary-btn min-w-[190px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
               >
-                Score my CV first
+                {t("ctaSecondary")}
               </Link>
             </div>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--landing-ink-soft)]">
-                Works with
+                {t("worksWith")}
               </span>
-              {SUPPORTED_BOARDS.map((board) => (
+              {boards.map((board) => (
                 <span
                   key={board}
                   className="rounded-full border border-[var(--landing-line)] bg-[oklch(0.985_0.012_84)] px-3 py-1 text-xs font-bold text-[var(--landing-ink-soft)]"
@@ -148,27 +163,28 @@ export default function TailorCvFromJobLinkPage() {
         <section className="landing-section">
           <div className="landing-container flex flex-col items-center gap-4">
             <h2 className="landing-heading text-center font-outfit text-3xl font-extrabold sm:text-4xl">
-              One job link. A CV built for that role.
+              {t("benefitsTitle")}
             </h2>
             <p className="landing-copy text-center text-base">
-              Stop sending the same generic resume to every posting. FitMyCV
-              tailors a fresh CV from each job link you paste.
+              {t("benefitsIntro")}
             </p>
           </div>
 
           <div className="landing-container mt-12 grid gap-6 md:grid-cols-3">
-            {BENEFITS.map(({ icon: Icon, title, body }) => (
+            {BENEFITS.map(({ key, icon: Icon }) => (
               <div
-                key={title}
+                key={key}
                 className="landing-card flex flex-col gap-4 rounded-2xl p-7"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
                   <Icon size={24} aria-hidden="true" weight="bold" />
                 </div>
                 <h3 className="font-outfit text-xl font-extrabold text-[var(--landing-ink)]">
-                  {title}
+                  {t(`benefits.${key}.title`)}
                 </h3>
-                <p className="landing-copy text-sm leading-7">{body}</p>
+                <p className="landing-copy text-sm leading-7">
+                  {t(`benefits.${key}.body`)}
+                </p>
               </div>
             ))}
           </div>
@@ -179,32 +195,29 @@ export default function TailorCvFromJobLinkPage() {
         {/* Long-form body */}
         <section className="px-5 pb-10 pt-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="mx-auto w-full max-w-3xl">
-            <Blocks blocks={BLOCKS} />
+            <Blocks blocks={content.BLOCKS} />
           </div>
         </section>
 
         <TrustSignals />
 
         <FaqSection
-          faqs={FAQS}
-          heading="Tailoring your CV from a job link: FAQ"
-          intro="Everything about turning a job link into a tailored application."
+          faqs={content.FAQS}
+          heading={t("faqHeading")}
+          intro={t("faqIntro")}
         />
 
         <CTABand />
       </main>
       <Footer />
 
-      <JsonLd data={faqSchema(FAQS)} />
-      <JsonLd data={howToSchema(HOW_TO)} />
+      <JsonLd data={faqSchema(content.FAQS)} />
+      <JsonLd data={howToSchema(content.HOW_TO)} />
       <JsonLd data={softwareApplicationSchema} />
       <JsonLd
         data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          {
-            name: "Tailor CV from a job link",
-            path: "/tailor-cv-from-job-link",
-          },
+          { name: t("breadcrumbHome"), path: homePath },
+          { name: t("breadcrumbPage"), path: pagePath },
         ])}
       />
     </div>

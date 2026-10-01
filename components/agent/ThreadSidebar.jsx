@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowRightIcon,
   ChatCircleDotsIcon,
@@ -32,16 +33,18 @@ const UNITS = [
   ["minute", 60],
 ];
 
-function relativeTime(date, now) {
+function relativeTime(date, now, locale, justNow) {
   const seconds = Math.round((new Date(date).getTime() - now) / 1000);
-  const format = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
+  const format = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
   for (const [unit, size] of UNITS) {
     if (Math.abs(seconds) >= size) return format.format(Math.round(seconds / size), unit);
   }
-  return "Just now";
+  return justNow;
 }
 
 function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
+  const t = useTranslations("dashboard.agent.threads");
+  const locale = useLocale();
   return (
     <li
       className={cn(
@@ -80,7 +83,7 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
           )}
           <span className="inline-flex shrink-0 items-center gap-1 tabular-nums">
             <ClockIcon size={12} aria-hidden="true" />
-            {relativeTime(thread.updatedAt, now)}
+            {relativeTime(thread.updatedAt, now, locale, t("justNow"))}
           </span>
         </div>
       </div>
@@ -91,7 +94,7 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
             size="icon-sm"
             disabled={deleting}
             onClick={onDelete}
-            aria-label={`Delete ${thread.title}`}
+            aria-label={t("deleteNamed", { title: thread.title })}
             className={cn(
               "relative z-10 shrink-0 text-[var(--landing-ink-soft)] transition-opacity",
               "hover:bg-destructive/10 hover:text-destructive focus-visible:ring-2 focus-visible:ring-ring/40",
@@ -101,7 +104,7 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
             <TrashIcon size={16} aria-hidden="true" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent>Delete thread</TooltipContent>
+        <TooltipContent>{t("deleteThread")}</TooltipContent>
       </Tooltip>
       <ArrowRightIcon
         size={14}
@@ -130,6 +133,7 @@ function RowSkeleton() {
  * for the thread drawer.
  */
 export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0 }) {
+  const t = useTranslations("dashboard.agent.threads");
   const router = useRouter();
   const queryClient = useQueryClient();
   const [confirm, confirmDialog] = useConfirm();
@@ -145,15 +149,15 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
     mutationFn: (threadId) => requestJson(`/api/agent/threads/${threadId}`, { method: "DELETE" }),
     onSuccess: (_data, threadId) => {
       queryClient.invalidateQueries({ queryKey: ["agent-threads"] });
-      toast.success("Thread deleted. Its draft is still in Tailored CVs.");
+      toast.success(t("threadDeleted"));
       if (activeThreadId === threadId) router.push("/dashboard/agent");
     },
     onError: (error) => toast.error(error.message),
   });
 
   const handleDelete = async (threadId) => {
-    const confirmed = await confirm("Delete this thread?", {
-      description: "This deletes the conversation. The draft CV stays in Tailored CVs.",
+    const confirmed = await confirm(t("deleteConfirmTitle"), {
+      description: t("deleteConfirmDescription"),
     });
     if (confirmed) remove.mutate(threadId);
   };
@@ -161,7 +165,7 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
   const count = threads?.length ?? 0;
 
   const list = isLoading ? (
-    <ul aria-label="Loading threads" className="divide-y divide-[var(--landing-line)]">
+    <ul aria-label={t("loading")} className="divide-y divide-[var(--landing-line)]">
       {[0, 1, 2].map((i) => (
         <RowSkeleton key={i} />
       ))}
@@ -187,14 +191,14 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
       <DashboardEmptyState
         compact
         icon={ChatCircleDotsIcon}
-        title="Your threads will show up here"
-        description="Start a thread above. Each one edits its own copy of a CV."
+        title={t("emptyTitle")}
+        description={t("emptyDescription")}
         delay={delay}
       />
     ) : (
       <div className="p-3">
         <p className="rounded-md border border-dashed border-[var(--landing-line)] px-4 py-6 text-center text-sm text-muted-foreground">
-          Your threads will show up here.
+          {t("emptyShort")}
         </p>
       </div>
     );
@@ -216,8 +220,8 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
           title={title}
           description={
             isLoading
-              ? "Newest first"
-              : `${count} ${count === 1 ? "thread" : "threads"}, newest first`
+              ? t("newestFirst")
+              : t("countNewestFirst", { count })
           }
           className="border-b border-[var(--landing-line)] px-3 py-3 sm:px-4"
         />

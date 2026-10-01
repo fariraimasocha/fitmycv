@@ -1,0 +1,208 @@
+{
+  "FAQS": [
+    {
+      "q": "Comment adapter mon CV à partir d'un lien d'offre ?",
+      "a": "Connectez-vous, importez votre CV de référence une seule fois, puis collez l'URL de l'offre qui vous intéresse. FitMyCV lit l'annonce, en extrait les exigences et le vocabulaire, les compare à votre expérience et réécrit votre CV et votre lettre de motivation pour correspondre au poste, généralement en moins d'une minute."
+    },
+    {
+      "q": "Quels sites d'emploi fonctionnent avec un lien collé ?",
+      "a": "Les liens de LinkedIn, Indeed, Glassdoor et de la plupart des grands sites d'emploi et pages carrières d'entreprise. Collez l'URL de l'offre elle-même plutôt que celle d'une page de résultats de recherche, et les exigences sont détectées automatiquement."
+    },
+    {
+      "q": "Et si le lien de l'offre ne fonctionne pas ?",
+      "a": "Certaines offres sont protégées par une connexion ou un contrôle anti-robots strict, et quelques sites d'entreprise n'affichent la description qu'après une étape JavaScript. Quand un lien ne peut pas être lu, vous pouvez coller directement le texte de l'offre à la place, et toute la suite fonctionne exactement de la même façon."
+    },
+    {
+      "q": "Adapter mon CV à partir d'un lien d'offre m'aidera-t-il à passer les ATS ?",
+      "a": "Cela agit sur la partie du comportement des ATS que vous pouvez contrôler. Le CV adapté reprend les mots-clés et les formulations de l'offre, c'est-à-dire ce que les recruteurs recherchent, et s'exporte en PDF texte sur une seule colonne qui se lit proprement. Il ne peut pas inventer une expérience que vous n'avez pas."
+    },
+    {
+      "q": "Est-ce que l'outil invente de l'expérience ou exagère mon CV ?",
+      "a": "Non. Vos employeurs, dates, intitulés de poste et réalisations viennent de votre CV de référence et ne sont pas modifiés. Ce qui change, c'est ce qui passe en premier, l'ordre des éléments et le vocabulaire utilisé pour les décrire. Si une exigence n'apparaît nulle part dans votre CV, la version adaptée ne la revendique pas."
+    },
+    {
+      "q": "Est-ce que j'obtiens aussi une lettre de motivation ?",
+      "a": "Oui. Chaque CV adapté est accompagné d'une lettre de motivation assortie, générée à partir de la même analyse de la même offre, pour que les deux documents se renforcent au lieu de se contredire. Les deux s'exportent en PDF."
+    },
+    {
+      "q": "Combien de temps cela prend-il ?",
+      "a": "Environ 30 à 60 secondes entre le moment où vous collez le lien et un brouillon prêt à relire, plus le temps que vous passez à le modifier. Le même travail à la main prend à la plupart des gens 20 à 40 minutes par poste."
+    },
+    {
+      "q": "Puis-je modifier le CV adapté avant de le télécharger ?",
+      "a": "Oui, directement et section par section. Vous devriez le faire. Votre jugement sur celles de vos réalisations qui comptent le plus pour un employeur donné vaut mieux que celui de n'importe quel modèle, et deux minutes de retouches suffisent à transformer un bon brouillon en votre CV."
+    },
+    {
+      "q": "Quelle différence avec le fait de coller l'offre dans ChatGPT ?",
+      "a": "Trois choses : l'outil lit l'offre depuis l'URL, donc rien ne se perd au copier-coller, il s'appuie sur une version structurée de votre CV plutôt que sur ce que vous pensez à inclure dans le prompt, et il exporte un PDF mis en forme sur une seule colonne au lieu d'un texte de chat que vous devez ensuite mettre en page vous-même."
+    },
+    {
+      "q": "Mon CV est-il partagé avec des recruteurs ou des employeurs ?",
+      "a": "Non. FitMyCV n'est ni un site d'emploi ni une CVthèque. Votre CV de référence est enregistré sur votre compte pour générer vos propres documents, et vous pouvez le supprimer, ainsi que votre compte, à tout moment."
+    }
+  ],
+  "HOW_TO": {
+    "name": "Comment adapter votre CV à partir d'un lien d'offre",
+    "description": "Transformez l'URL d'une offre d'emploi en CV et lettre de motivation adaptés en moins d'une minute.",
+    "steps": [
+      {
+        "name": "Importez votre CV de référence une seule fois",
+        "text": "Votre CV est analysé en sections structurées (postes, dates, puces, compétences) et réutilisé pour chaque candidature par la suite."
+      },
+      {
+        "name": "Collez le lien de l'offre",
+        "text": "Collez l'URL de l'offre depuis LinkedIn, Indeed, Glassdoor ou la page carrières d'une entreprise. L'annonce est lue et ses exigences sont extraites."
+      },
+      {
+        "name": "Relisez et téléchargez",
+        "text": "Votre résumé, l'ordre de vos puces, la formulation et vos compétences sont réécrits en fonction de cette offre, avec une lettre de motivation assortie. Modifiez directement, puis exportez les deux en PDF."
+      }
+    ]
+  },
+  "BLOCKS": [
+    { "h2": "Qu'est-ce que l'adaptation de CV à partir d'un lien d'offre ?" },
+    {
+      "p": "Adapter son CV à partir d'un lien d'offre, c'est utiliser l'URL d'une annonce, sur LinkedIn, Indeed, Glassdoor ou une page carrières, comme source de référence pour la réécriture. La page est lue, les compétences et le vocabulaire demandés sont extraits, et votre CV existant est réorganisé et reformulé pour correspondre à cette offre. Vous pouvez aussi coller le texte de l'offre si le lien ne se charge pas. C'est le même travail que l'adaptation à la main, sans les quarante minutes de copier-coller."
+    },
+
+    { "h2": "Adapter un CV à une offre d'emploi avec une IA gratuite" },
+    {
+      "p": "Importer votre CV de référence et l'évaluer par rapport à une offre est gratuit. Générer le CV adapté et la lettre de motivation est l'étape payante, car c'est là que le modèle travaille. Si vous voulez d'abord le diagnostic, utilisez le [vérificateur ATS gratuit](/ats-resume-checker), qui ne demande pas de connexion et n'importe rien. Quand vous êtes prêt pour la réécriture, collez le lien de l'offre ici."
+    },
+
+    { "h2": "Pourquoi un lien vaut mieux qu'un copier-coller" },
+    {
+      "p": "Tout outil d'adaptation a besoin de la description du poste. La plupart vous obligent à la trouver, la sélectionner, la copier et la coller, et c'est précisément là que le processus se casse sans bruit. On colle la moitié de l'offre, on rate la section des exigences cachée derrière un bouton *afficher plus*, ou on perd toute la liste des missions parce qu'elle se trouvait dans un accordéon séparé."
+    },
+    {
+      "p": "Coller l'URL élimine toute cette catégorie d'erreurs. La page est lue telle qu'elle est publiée, y compris les sections que vous auriez manquées, et l'extraction part du texte complet plutôt que de ce qui a survécu à votre presse-papiers."
+    },
+
+    { "h2": "Comment fonctionne vraiment l'analyse d'un lien d'offre" },
+    {
+      "p": "Il est utile de savoir ce qui se passe entre le moment où vous collez un lien et celui où vous récupérez un CV, car cela explique à la fois ce que l'outil fait bien et là où il ne vous aidera pas."
+    },
+    {
+      "steps": [
+        {
+          "title": "L'offre est récupérée et réduite à son texte",
+          "body": "La page est récupérée puis réduite au contenu réel du poste : la navigation, les bandeaux de cookies, les listes d'offres similaires et le texte générique du pied de page sont écartés pour ne pas polluer l'extraction des mots-clés."
+        },
+        {
+          "title": "La structure est extraite du texte",
+          "body": "L'intitulé du poste, l'employeur, le niveau d'expérience, les missions, les exigences indispensables, les atouts et les outils cités sont séparés. Une exigence répétée dans le résumé, les missions et la liste des exigences pèse bien plus lourd qu'une exigence mentionnée une seule fois."
+        },
+        {
+          "title": "Votre CV est comparé à ces exigences",
+          "body": "Votre CV de référence est déjà enregistré en sections structurées, donc chaque exigence extraite est rapprochée des postes et des puces de votre parcours qui la démontrent réellement. Les exigences sans correspondance restent non revendiquées plutôt qu'inventées."
+        },
+        {
+          "title": "La réécriture est générée à partir de cette correspondance",
+          "body": "Le résumé est réécrit autour des exigences les plus importantes que vous pouvez démontrer. Les puces sont réordonnées pour que les correspondances passent en premier, et reformulées avec le vocabulaire de l'offre tout en gardant vos chiffres. La lettre de motivation est rédigée à partir de la même correspondance."
+        },
+        {
+          "title": "Les deux documents sont générés en PDF",
+          "body": "Une seule colonne, des titres standards, les coordonnées dans le corps du document, une vraie couche de texte. Les règles de mise en forme sont détaillées dans le [guide du CV compatible ATS](/blog/ats-resume-guide)."
+        }
+      ]
+    },
+    {
+      "callout": {
+        "title": "La contrainte qui fait son utilité",
+        "body": "La réécriture ne peut utiliser que des éléments présents dans votre CV de référence. C'est une limite, et c'est tout l'intérêt. C'est ce qui permet de défendre le résultat quand un recruteur vous demande de détailler la puce qu'il a trouvée la plus intéressante."
+      }
+    },
+
+    { "h2": "Trois avant/après tirés de vraies adaptations" },
+    {
+      "p": "La même expérience, réécrite pour trois offres différentes. Remarquez que rien n'est ajouté. Les réalisations figuraient déjà sur le CV. Ce qui change, c'est celle qui passe en premier et les mots qui la décrivent."
+    },
+    {
+      "compare": {
+        "title": "1. Résumé professionnel : pour un poste de PM axé sur la tarification",
+        "context": "L'offre met en avant la tarification, la monétisation et le travail transverse. Le résumé d'origine était écrit pour un poste produit générique.",
+        "before": "Professionnel du produit expérimenté, habitué à livrer d'excellents produits dans des environnements dynamiques. Passionné par la conception centrée sur l'utilisateur et la collaboration avec des équipes transverses.",
+        "after": "Senior Product Manager avec 7 ans d'expérience en SaaS B2B, spécialisé dans la tarification et la monétisation. A mené le passage à la facturation à l'usage chez Northwind, faisant passer la rétention nette du revenu de 104 % à 121 %. Travaille au quotidien avec l'ingénierie, les ventes et la finance pour déployer des changements de prix sans casser le reporting du chiffre d'affaires."
+      }
+    },
+    {
+      "compare": {
+        "title": "2. Puce d'expérience : pour un poste d'ingénieur axé sur la fiabilité",
+        "context": "L'offre répète latence, astreinte et réduction des incidents. La puce d'origine noyait les trois.",
+        "before": "A travaillé à l'amélioration des performances de notre API principale et aidé sur la base de données.",
+        "after": "• Profilé et optimisé les 12 endpoints d'API les plus lents et ajouté des index couvrants, réduisant la latence p95 de 840 ms à 210 ms et supprimant un réplica de lecture prévu dans la feuille de route."
+      }
+    },
+    {
+      "compare": {
+        "title": "3. Puce d'expérience : pour un poste marketing en génération de demande",
+        "context": "L'offre accorde beaucoup de poids au pipeline généré et à l'attribution. La puce d'origine décrivait une activité plutôt qu'un résultat.",
+        "before": "Géré le blog de l'entreprise et les réseaux sociaux, en créant régulièrement du contenu.",
+        "after": "• Refondu le calendrier éditorial autour de 14 mots-clés de bas de funnel, avec 40 articles publiés en 9 mois. Les sessions organiques ont été multipliées par 3,1 et le trafic organique a généré 22 % des demandes de démo."
+      }
+    },
+    {
+      "p": "Le schéma est le même dans les trois cas, celui détaillé dans [comment adapter votre CV à une offre d'emploi](/blog/how-to-tailor-cv-to-job-description) : un verbe, une action précise, un résultat mesurable, avec le vocabulaire de l'offre utilisé là où il s'applique honnêtement."
+    },
+
+    { "h2": "Adapter à partir d'un lien ou adapter à la main" },
+    {
+      "p": "La méthode manuelle fonctionne. Ce n'est pas un secret et nous l'avons décrite en entier. Le problème, c'est l'arithmétique."
+    },
+    {
+      "table": {
+        "head": ["", "À la main", "À partir d'un lien d'offre"],
+        "rows": [
+          ["Temps jusqu'au premier brouillon", "20 à 40 minutes", "Moins d'une minute"],
+          ["Extraction des exigences", "Surlignage manuel, facile de rater une section", "Analysées depuis l'offre complète"],
+          ["Pondération des exigences", "Votre jugement", "Fréquence et position dans l'offre"],
+          ["Acronymes et synonymes", "Souvent oubliés", "Comparés au texte de l'offre"],
+          ["Réorganisation des puces", "Manuelle", "Automatique, modifiable"],
+          ["Lettre de motivation assortie", "Une deuxième tâche séparée", "Issue de la même analyse"],
+          ["Risque de mise en forme", "Selon votre modèle", "PDF sur une colonne compatible ATS"],
+          ["Tenable à plus de 10 candidatures par semaine", "Rarement", "Oui"]
+        ]
+      }
+    },
+    {
+      "p": "À deux candidatures par mois, faites-le à la main. Le [guide étape par étape](/blog/how-to-tailor-cv-to-job-description) suffit. À dix par semaine, six heures d'adaptation, c'est ce qui pousse les gens à arrêter d'adapter, et un CV générique, c'est exactement ce qui produit un faible taux de réponse."
+    },
+
+    { "h2": "Adapter un CV à partir d'une offre LinkedIn" },
+    {
+      "p": "LinkedIn est l'endroit où la plupart des gens trouvent le poste, et c'est aussi là que la plupart des copier-coller tournent mal : la description est repliée derrière un bouton *voir plus*, et le panneau de correspondance des compétences se trouve dans une tout autre partie de la page. Coller l'URL de l'offre permet de lire la description complète plutôt que le fragment visible."
+    },
+    {
+      "p": "Collez l'URL de l'offre elle-même, celle qui ressemble à `linkedin.com/jobs/view/…`, plutôt qu'une page de recherche ou de collection. Si vous consultez le poste dans l'application LinkedIn, utilisez l'option de partage pour copier le lien de l'offre."
+    },
+
+    { "h2": "Adapter un CV à partir d'une offre Indeed ou Glassdoor" },
+    {
+      "p": "Les offres Indeed et Glassdoor sont généralement plus structurées que celles de LinkedIn, avec un bloc d'exigences clair et une liste de missions, ce qui rend la pondération des exigences extraites plus fiable. La même règle s'applique : collez l'URL de l'offre elle-même, pas celle d'une page de résultats."
+    },
+    {
+      "p": "Les agrégateurs hébergent parfois une version tronquée d'une description publiée en entier sur le site carrières de l'employeur. Quand les deux existent, la page de l'employeur est le meilleur lien, car c'est la version que l'équipe de recrutement a réellement rédigée."
+    },
+
+    { "h2": "Pages carrières d'entreprise et tout le reste" },
+    {
+      "p": "La plupart des pages carrières d'entreprise se lisent sans problème, y compris celles hébergées par les logiciels de recrutement courants. Quand un lien ne peut pas être récupéré (connexion obligatoire, contrôle anti-robots strict, ou description qui ne s'affiche qu'après une interaction), collez directement le texte de l'offre à la place. Toutes les étapes après la récupération sont identiques."
+    },
+
+    { "h2": "Ce que l'adaptation ne peut pas corriger" },
+    {
+      "p": "Être franc sur ce point est plus utile qu'une liste de fonctionnalités."
+    },
+    {
+      "ul": [
+        "**Un vrai manque d'expérience.** Si un poste demande cinq ans d'expérience dans un domaine que vous n'avez jamais pratiqué, aucune réécriture ne comble cet écart, et l'entretien le révélerait de toute façon.",
+        "**Un CV sans rien de mesurable.** L'adaptation réorganise et reformule vos preuves. S'il n'y a aucun chiffre nulle part, ajoutez-en d'abord. [Comment rédiger un CV](/how-to-write-a-resume) explique où les trouver.",
+        "**Postuler aux mauvais postes.** Un score de correspondance élevé pour un poste que vous ne voulez pas n'est pas un progrès.",
+        "**Le reste de la candidature.** Les questions de présélection, les liens vers un portfolio et les recommandations comptent toujours, et souvent plus que le CV."
+      ]
+    },
+    {
+      "p": "Si vous voulez savoir où vous en êtes avant d'adapter quoi que ce soit, le [vérificateur ATS gratuit](/ats-resume-checker) évalue votre CV actuel par rapport à une offre et montre exactement quels termes demandés manquent."
+    }
+  ]
+}

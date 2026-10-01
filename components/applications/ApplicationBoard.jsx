@@ -11,6 +11,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import { useTranslations } from "next-intl";
 import { ApplicationCard } from "@/components/applications/ApplicationCard";
 import { STAGES } from "@/lib/applications";
 import { cn } from "@/lib/utils";
@@ -31,14 +32,16 @@ function DraggableCard({ application, onOpen, onEdit }) {
 }
 
 function Column({ stage, applications, onOpen, onEdit }) {
+  const t = useTranslations("dashboard");
   const { setNodeRef, isOver } = useDroppable({ id: stage.key });
+  const label = t(`stages.${stage.key}`);
   const [visible, setVisible] = useState(COLUMN_PAGE_SIZE);
   const shown = applications.slice(0, visible);
   const remaining = applications.length - shown.length;
 
   return (
     <section
-      aria-label={`${stage.label}, ${applications.length}`}
+      aria-label={t("appComponents.board.columnLabel", { stage: label, count: applications.length })}
       className="flex w-72 shrink-0 flex-col gap-2"
     >
       {/* Header sits above the tray so every column's cards share one top edge. */}
@@ -49,7 +52,7 @@ function Column({ stage, applications, onOpen, onEdit }) {
           aria-hidden="true"
         />
         <span className="truncate text-xs font-semibold uppercase tracking-wide text-foreground">
-          {stage.label}
+          {label}
         </span>
         <span className="ml-auto text-xs font-medium tabular-nums text-muted-foreground">
           {applications.length}
@@ -71,7 +74,7 @@ function Column({ stage, applications, onOpen, onEdit }) {
             onClick={() => setVisible((v) => v + COLUMN_PAGE_SIZE)}
             className="h-9 rounded-md border border-dashed border-[var(--landing-line)] text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-surface)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
           >
-            Show {Math.min(remaining, COLUMN_PAGE_SIZE)} more
+            {t("appComponents.board.showMore", { count: Math.min(remaining, COLUMN_PAGE_SIZE) })}
           </button>
         )}
       </div>

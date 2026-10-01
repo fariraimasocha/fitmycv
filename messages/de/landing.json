@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Passe deinen Lebenslauf an jede Stellenanzeige an | FitMyCV",
+    "description": "Passe Lebenslauf und Anschreiben an jeden Stellenlink an: KI-Abgleich der Schlüsselwörter, ein kostenloser ATS-Check, 19 ATS-sichere Vorlagen und PDF-Export mit einem Klick.",
+    "ogTitle": "FitMyCV: Passe deinen Lebenslauf in Sekunden an jede Stellenanzeige an",
+    "ogAlt": "FitMyCV: Mehr Vorstellungsgespräche mit einem Lebenslauf, der passt",
+    "schemaName": "Passe deinen Lebenslauf an jede Stellenanzeige an",
+    "howToName": "So passt du deinen Lebenslauf an eine Stellenanzeige an",
+    "howToDescription": "Füge einen Stellenlink ein, lass FitMyCV deinen Lebenslauf passend zu den Anforderungen der Stelle umschreiben und lade dann Lebenslauf und Anschreiben als PDF herunter."
+  },
+  "hero": {
+    "videoLabel": "FitMyCV-Demo: Stellenlink einfügen und einen angepassten Lebenslauf herunterladen",
+    "checkerTitle": "Prüfe deinen Lebenslauf kostenlos gegen eine Stellenanzeige",
+    "checkerBody": "Keine Anmeldung. Deine Datei wird in deinem Browser gelesen.",
+    "checkerCta": "Lebenslauf bewerten",
+    "titleLead": "Lebenslauf und Anschreiben mit KI.",
+    "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, <accent>der genau zu dieser Stelle passt</accent>.",
+    "body": "Lade deinen Lebenslauf einmal hoch. FitMyCV liest die Anzeige und schreibt deinen Lebenslauf in den Worten um, die diese Stelle verlangt.",
+    "tryFree": "Kostenlos testen",
+    "previewFree": "Vorschau deines angepassten Lebenslaufs kostenlos",
+    "priceNote": "Einmalig ${price}, um PDFs herunterzuladen und dich zu bewerben.",
+    "seeHow": "So funktioniert es"
+  },
+  "jobBoards": {
+    "title": "Funktioniert mit jedem Stellenlink"
+  },
+  "problem": {
+    "eyebrow": "Das Problem",
+    "title": "Du wirst nicht abgelehnt. Du wirst aussortiert.",
+    "body": "Die meisten Unternehmen filtern mit Software, bevor eine Personalerin oder ein Personaler überhaupt etwas sieht. Fehlen in deinem Lebenslauf die Begriffe aus der Anzeige, fliegt er raus. Leise und ohne Antwort, die dir sagt, warum.",
+    "cardTitle": "Dein Lebenslauf im Abgleich mit einer Anzeige",
+    "filteredOut": "Aussortiert",
+    "scoreLabel": "Match-Score {value} von 100",
+    "matchTitle": "Übereinstimmung der Qualifikationen",
+    "matchBody": "Im Abgleich mit der Stellenbeschreibung",
+    "missingTitle": "Fünf Begriffe, die die Anzeige verlangt und die in deinem Lebenslauf nie vorkommen",
+    "coverage": "Abdeckung der Schlüsselwörter",
+    "coverageCount": "{found} von {total}",
+    "footer": "FitMyCV liest die Anzeige, findet die Begriffe, die dir fehlen, und schreibt deinen Lebenslauf so um, dass er sie verwendet. Nur auf Basis der Erfahrung, die du wirklich hast."
+  },
+  "howItWorks": {
+    "eyebrow": "FitMyCV in Aktion",
+    "title": "Einmal einfügen. Kein Umschreiben. Kein Rätselraten.",
+    "jobListing": "Stellenanzeige",
+    "paste": "Einfügen",
+    "cvPreview": "Lebenslauf-Vorschau",
+    "tailor": "Lebenslauf anpassen",
+    "export": "Export",
+    "download": "PDF herunterladen",
+    "priceNote": "Vorschau am Bildschirm kostenlos. Einmalig ${price}, um PDFs herunterzuladen."
+  },
+  "templates": {
+    "eyebrow": "Vorlagen",
+    "title": "Neunzehn Layouts, alle so gebaut, dass Bewerbungssoftware sie lesen kann",
+    "body": "Einspaltig, Standardüberschriften, keine Grafiken, die beim Auslesen durcheinandergeraten. Ändere bei jeder Vorlage Farbe und Schrift.",
+    "prev": "Vorherige Vorlagen",
+    "next": "Nächste Vorlagen",
+    "seeAll": "Alle Vorlagen ansehen"
+  },
+  "testimonial": {
+    "heading": "Von einem FitMyCV-Nutzer"
+  },
+  "trust": {
+    "title": "Was du uns anvertraust und was damit passiert",
+    "body": "Dein Lebenslauf ist das persönlichste Dokument, das du hast. So gehen wir damit um.",
+    "signals": {
+      "yours": {
+        "title": "Dein Lebenslauf bleibt deiner",
+        "body": "Dein Referenz-Lebenslauf wird in deinem Konto gespeichert und nur verwendet, um deine eigenen Dokumente zu erstellen."
+      },
+      "notShared": {
+        "title": "Nie an Personalvermittler weitergegeben",
+        "body": "Wir sind keine Jobbörse und keine Lebenslauf-Datenbank. Nichts, was du hochlädst, wird verkauft, veröffentlicht oder Arbeitgebern gezeigt."
+      },
+      "delete": {
+        "title": "Alles löschen, jederzeit",
+        "body": "Entferne deinen Lebenslauf, deine angepassten Dokumente und dein Konto im Dashboard, wann immer du willst."
+      },
+      "boards": {
+        "title": "Funktioniert mit den großen Jobbörsen",
+        "body": "Füge einen Link von LinkedIn, Indeed, Glassdoor oder einer Karriereseite ein, ohne den Anzeigentext zu kopieren."
+      },
+      "pdf": {
+        "title": "ATS-sicherer PDF-Export",
+        "body": "Einspaltige, textbasierte PDFs mit Standardüberschriften, damit Bewerbungssoftware sie so liest, wie du sie geschrieben hast."
+      },
+      "cancel": {
+        "title": "Jederzeit kündbar",
+        "body": "Kein Vertrag und kein mühsamer Kündigungsprozess. Der Zugang läuft bis zum Ende des bezahlten Zeitraums."
+      }
+    },
+    "methodTitle": "So funktioniert die Anpassung",
+    "methodBody": "Wir lesen die Stellenanzeige hinter dem Link, den du einfügst, ziehen Anforderungen und Schlüsselwörter heraus und schreiben deinen Lebenslauf darauf abgestimmt um. Jede Zeile stammt aus dem Lebenslauf, den du hochgeladen hast. Das Modell ist angewiesen, niemals Arbeitgeber, Positionen oder Zahlen zu erfinden, die du nicht angegeben hast.",
+    "policies": "Die Aussagen oben sind durch unsere <privacy>Datenschutzerklärung</privacy> und unsere <terms>Allgemeinen Geschäftsbedingungen</terms> abgedeckt. Fragen dazu kannst du an <mail>{email}</mail> schicken."
+  },
+  "faq": {
+    "founderAlt": "Farirai James, Gründer von FitMyCV",
+    "founderRole": "Gründer, FitMyCV •",
+    "greetingCountry": "Hallo, Freund aus {flag} {country}, ich bin Farirai.",
+    "greeting": "Hallo, Freund, ich bin Farirai.",
+    "heading": "Ich habe meinen Lebenslauf für jeden Stellenlink neu geschrieben, den ich angeklickt habe.",
+    "story1": "Ich habe meinen Lebenslauf für jeden Stellenlink neu geschrieben, den ich angeklickt habe. Jede Bewerbung vorzubereiten dauerte länger, als sie abzuschicken.",
+    "story2": "Also habe ich FitMyCV gebaut. Füge einen Stellenlink ein, und es liest die Anzeige und schreibt dann deinen Lebenslauf und dein Anschreiben für diese Stelle um. Kein Abtippen von Anforderungen in ein Formular.",
+    "story3": "Ich nutze FitMyCV für meine eigenen Bewerbungen. Wenn es mir bei jedem Link Zeit spart, sollte es das auch für dich tun.",
+    "eyebrow": "FAQ",
+    "title": "Ehrliche Antworten."
+  },
+  "resources": {
+    "title": "Alles andere auf der Website",
+    "body": "Kostenlose Tools und Ratgeber, ob du uns je einen Cent zahlst oder nicht.",
+    "open": "Öffnen",
+    "items": {
+      "tailor": {
+        "label": "Lebenslauf aus einem Stellenlink anpassen",
+        "body": "Der Kernablauf: URL einer Anzeige einfügen, angepassten Lebenslauf und Anschreiben erhalten."
+      },
+      "match": {
+        "label": "Lebenslauf-Stellen-Abgleich",
+        "body": "Füge einen Lebenslauf und eine Anzeige ein. Sieh die Übereinstimmung, fehlende Fähigkeiten und was du zuerst verbessern solltest."
+      },
+      "ats": {
+        "label": "Kostenloser ATS-Lebenslauf-Check",
+        "body": "Bewerte deinen Lebenslauf gegen eine Stellenbeschreibung und sieh, welche Begriffe dir fehlen."
+      },
+      "atsGuide": {
+        "label": "So schreibst du einen ATS-freundlichen Lebenslauf",
+        "body": "Formatierung, Schlüsselwörter und die Fehler, durch die Lebensläufe aussortiert werden, bevor ein Mensch sie liest."
+      },
+      "examples": {
+        "label": "Lebenslauf-Beispiele für vierzehn Berufe",
+        "body": "Ausformulierte Profile, Stichpunkte im Vorher-nachher-Vergleich und die Schlüsselwörter, die diese Anzeigen verwenden."
+      }
+    }
+  },
+  "cta": {
+    "title": "Bereit, nicht mehr übersehen zu werden?",
+    "body": "Schließ dich Jobsuchenden an, die mit KI-angepassten Bewerbungen schneller zu Vorstellungsgesprächen kommen. Lebenslanger Zugang für ${price}.",
+    "tryFree": "Kostenlos testen",
+    "pricing": "Preise ansehen"
+  },
+  "sticky": {
+    "cta": "Lebenslauf anpassen"
+  },
+  "footer": {
+    "tagline": "KI-gestützte Lebenslauf-Anpassung. Mehr Vorstellungsgespräche mit weniger Aufwand.",
+    "rights": "2026 FitMyCV. Alle Rechte vorbehalten.",
+    "headings": {
+      "product": "Produkt",
+      "freeTools": "Kostenlose Tools",
+      "resources": "Ressourcen",
+      "compare": "Vergleich",
+      "atsGuides": "ATS-Ratgeber",
+      "company": "Unternehmen",
+      "otherApps": "Weitere Apps"
+    },
+    "links": {
+      "tailor": "Lebenslauf aus Stellenlink anpassen",
+      "optimizer": "Lebenslauf-Optimierer",
+      "aiCoverLetter": "KI-Anschreiben-Generator",
+      "coverLetterBuilder": "Anschreiben-Editor",
+      "pricing": "Preise",
+      "blog": "Blog",
+      "atsGuide": "ATS-Lebenslauf-Ratgeber",
+      "howToWrite": "So schreibst du einen Lebenslauf",
+      "tips": "Tipps für den Lebenslauf",
+      "resumeExamples": "Lebenslauf-Beispiele",
+      "cvExamples": "Lebenslauf-Beispiele für Großbritannien",
+      "cvTemplates": "Lebenslauf-Vorlagen",
+      "faq": "FAQ",
+      "jobscan": "Jobscan-Alternative",
+      "teal": "Teal-Alternative",
+      "kickresume": "Kickresume-Alternative",
+      "workday": "Lebenslauf-Format für Workday",
+      "greenhouse": "Lebenslauf für das Greenhouse-ATS",
+      "lever": "Lebenslauf für das Lever-ATS",
+      "taleo": "Lebenslauf-Format für Taleo",
+      "icims": "Lebenslauf-Format für iCIMS",
+      "support": "Support",
+      "privacy": "Datenschutzerklärung",
+      "terms": "AGB"
+    }
+  },
+  "coverLetterDemo": {
+    "badge": "KI schreibt live",
+    "titleLine1": "Sieh zu, wie sich dein Anschreiben",
+    "titleLine2": "selbst schreibt",
+    "body": "FitMyCV liest die Stellenbeschreibung und schreibt in Sekunden ein angepasstes, professionelles Anschreiben in deinem Ton.",
+    "complete": "Fertig",
+    "generating": "Wird erstellt…",
+    "tailoredFor": "Angepasst für:",
+    "role": "Senior Software Engineer",
+    "at": "bei",
+    "letterLabel": "Anschreiben wird erstellt",
+    "characters": "{count} / {total} Zeichen",
+    "generateMine": "Meins erstellen",
+    "note": "Jedes Anschreiben ist einzigartig und passt genau zur Stelle, zum Unternehmen und zu deinem Werdegang."
+  },
+  "webview": {
+    "title": "Öffne deinen Browser, um dich anzumelden",
+    "close": "Schließen",
+    "warning": "Google erlaubt keine Anmeldung in der LinkedIn-App. Nutze Chrome oder Safari oder fahre mit E-Mail fort, das funktioniert hier.",
+    "howTo": "So öffnest du die Seite im Browser",
+    "ios1": "Tippe oben rechts in LinkedIn auf <b>•••</b> oder das Teilen-Symbol.",
+    "ios2": "Wähle <b>Im Browser öffnen</b> oder <b>In Safari öffnen</b>.",
+    "ios3": "Melde dich mit Google an, sobald die Seite in Safari neu geladen ist.",
+    "android1": "Tippe oben rechts auf das Menü <b>⋮</b>.",
+    "android2": "Wähle <b>In Chrome öffnen</b> oder <b>Im Browser öffnen</b>.",
+    "android3": "Melde dich mit Google an, sobald die Seite in Chrome neu geladen ist.",
+    "desktop1": "Kopiere den Anmeldelink unten.",
+    "desktop2": "Füge ihn in Chrome oder Safari ein.",
+    "desktop3": "Melde dich dort mit Google an.",
+    "copy": "Anmeldelink kopieren",
+    "openChrome": "In Chrome öffnen",
+    "continueEmail": "Stattdessen mit E-Mail fortfahren",
+    "emailNote": "Die Anmeldung per E-Mail funktioniert in LinkedIn. Du musst den Browser nicht wechseln.",
+    "continueBrowsing": "Weiter stöbern",
+    "toastCopied": "Link kopiert. Füge ihn in Chrome oder Safari ein.",
+    "toastCopyFailed": "Kopieren fehlgeschlagen. Halte den Link gedrückt, um ihn zu kopieren.",
+    "toastOpening": "Wird in Chrome geöffnet. Wenn nichts passiert, nutze Link kopieren."
+  }
+}

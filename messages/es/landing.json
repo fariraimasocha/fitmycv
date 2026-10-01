@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Adapta tu CV a cualquier oferta de empleo | FitMyCV",
+    "description": "Adapta tu CV y tu carta de presentación a cualquier enlace de oferta: coincidencia de palabras clave con IA, un verificador ATS gratuito, 19 plantillas compatibles con ATS y exportación a PDF en un clic.",
+    "ogTitle": "FitMyCV: adapta tu CV a cualquier oferta en segundos",
+    "ogAlt": "FitMyCV: consigue más entrevistas con un CV que encaja",
+    "schemaName": "Adapta tu CV a cualquier oferta de empleo",
+    "howToName": "Cómo adaptar tu CV a una oferta de empleo",
+    "howToDescription": "Pega el enlace de una oferta, deja que FitMyCV reescriba tu CV según los requisitos del puesto y descarga el CV y la carta de presentación en PDF."
+  },
+  "hero": {
+    "videoLabel": "Demo de FitMyCV: pega el enlace de una oferta y descarga un CV adaptado",
+    "checkerTitle": "Compara tu CV con una oferta de empleo, gratis",
+    "checkerBody": "Sin registro. Tu archivo se lee en tu navegador.",
+    "checkerCta": "Puntuar mi CV",
+    "titleLead": "CV y cartas de presentación con IA.",
+    "titleMain": "Pega el enlace de cualquier oferta. Recibe un CV <accent>hecho para ese puesto</accent>.",
+    "body": "Sube tu CV una sola vez. FitMyCV lee la oferta y reescribe tu CV con las palabras que pide ese puesto.",
+    "tryFree": "Pruébalo gratis",
+    "previewFree": "Vista previa gratis de tu CV adaptado",
+    "priceNote": "${price} un único pago para descargar los PDF y postularte.",
+    "seeHow": "Mira cómo funciona"
+  },
+  "jobBoards": {
+    "title": "Funciona con cualquier enlace de empleo"
+  },
+  "problem": {
+    "eyebrow": "El problema",
+    "title": "No te están rechazando. Te están filtrando.",
+    "body": "La mayoría de las empresas filtran con software antes de que un reclutador vea nada. Si tu CV no usa las palabras de la oferta, queda descartado. En silencio, y sin ninguna respuesta que te diga por qué.",
+    "cardTitle": "Tu CV, frente a una oferta",
+    "filteredOut": "Descartado",
+    "scoreLabel": "Puntuación de coincidencia {value} de 100",
+    "matchTitle": "Coincidencia de requisitos",
+    "matchBody": "Frente a la descripción del puesto",
+    "missingTitle": "Cinco términos que pide la oferta y que tu CV nunca menciona",
+    "coverage": "Cobertura de palabras clave",
+    "coverageCount": "{found} de {total}",
+    "footer": "FitMyCV lee la oferta, encuentra los términos que te faltan y reescribe tu CV para incluirlos. Solo a partir de la experiencia que de verdad tienes."
+  },
+  "howItWorks": {
+    "eyebrow": "FitMyCV en acción",
+    "title": "Pegas una vez. Sin reescribir. Sin adivinar.",
+    "jobListing": "Oferta de empleo",
+    "paste": "Pegar",
+    "cvPreview": "Vista previa del CV",
+    "tailor": "Adaptar mi CV",
+    "export": "Exportar",
+    "download": "Descargar PDF",
+    "priceNote": "Vista previa en pantalla gratis. ${price} un único pago para descargar los PDF."
+  },
+  "templates": {
+    "eyebrow": "Plantillas",
+    "title": "Diecinueve diseños, todos pensados para superar a los lectores automáticos",
+    "body": "Una sola columna, encabezados estándar y ningún gráfico que se desordene al extraer el texto. Cambia el color y la fuente de cualquiera de ellos.",
+    "prev": "Plantillas anteriores",
+    "next": "Plantillas siguientes",
+    "seeAll": "Ver todas las plantillas"
+  },
+  "testimonial": {
+    "heading": "De un usuario de FitMyCV"
+  },
+  "trust": {
+    "title": "Qué nos entregas y qué pasa con ello",
+    "body": "Tu CV es el documento más personal que tienes. Así es exactamente como lo tratamos.",
+    "signals": {
+      "yours": {
+        "title": "Tu CV sigue siendo tuyo",
+        "body": "Tu CV de referencia se guarda en tu cuenta y solo se usa para generar tus propios documentos."
+      },
+      "notShared": {
+        "title": "Nunca se comparte con reclutadores",
+        "body": "No somos un portal de empleo ni una base de datos de CV. Nada de lo que subes se vende, se publica ni se muestra a empleadores."
+      },
+      "delete": {
+        "title": "Borra todo cuando quieras",
+        "body": "Elimina tu CV, tus documentos adaptados y tu cuenta desde el panel cuando quieras."
+      },
+      "boards": {
+        "title": "Funciona con los principales portales",
+        "body": "Pega un enlace de LinkedIn, Indeed, Glassdoor o de la página de empleo de una empresa, sin copiar y pegar el texto de la oferta."
+      },
+      "pdf": {
+        "title": "Exportación PDF compatible con ATS",
+        "body": "PDF de una sola columna, basados en texto y con encabezados estándar, para que los lectores automáticos los lean tal como los escribiste."
+      },
+      "cancel": {
+        "title": "Cancela cuando quieras",
+        "body": "Sin contrato y sin un proceso de cancelación contra el que pelear. El acceso dura hasta el final del periodo que pagaste."
+      }
+    },
+    "methodTitle": "Cómo funciona la adaptación",
+    "methodBody": "Leemos la oferta de empleo del enlace que pegas, extraemos sus requisitos y palabras clave y reescribimos tu CV en función de ellos. Cada línea sale del CV que subiste. El modelo tiene instrucciones de no inventar nunca empleadores, puestos ni cifras que no le hayas dado.",
+    "policies": "Lo anterior está cubierto por nuestra <privacy>política de privacidad</privacy> y nuestros <terms>términos y condiciones</terms>. Si tienes preguntas sobre cualquiera de estos puntos, escribe a <mail>{email}</mail>."
+  },
+  "faq": {
+    "founderAlt": "Farirai James, fundador de FitMyCV",
+    "founderRole": "Fundador, FitMyCV •",
+    "greetingCountry": "Hola, amigo de {flag} {country}, soy Farirai.",
+    "greeting": "Hola, amigo, soy Farirai.",
+    "heading": "Reescribía mi CV para cada oferta en la que hacía clic.",
+    "story1": "Reescribía mi CV para cada oferta en la que hacía clic. Cada candidatura me llevaba más tiempo prepararla que enviarla.",
+    "story2": "Así que creé FitMyCV. Pega el enlace de una oferta: lee el anuncio y reescribe tu CV y tu carta de presentación para ese puesto. Sin copiar requisitos en un formulario.",
+    "story3": "Uso FitMyCV en mis propias candidaturas. Si me ahorra tiempo con cada enlace, debería hacer lo mismo por ti.",
+    "eyebrow": "Preguntas frecuentes",
+    "title": "Respuestas sinceras."
+  },
+  "resources": {
+    "title": "Todo lo demás del sitio",
+    "body": "Herramientas y guías gratuitas, nos pagues algún día o no.",
+    "open": "Abrir",
+    "items": {
+      "tailor": {
+        "label": "Adapta un CV a partir de un enlace de empleo",
+        "body": "El flujo principal: pega la URL de una oferta y recibe un CV y una carta de presentación adaptados."
+      },
+      "match": {
+        "label": "Verificador de coincidencia entre currículum y oferta",
+        "body": "Pega un currículum y una oferta. Mira la coincidencia, las habilidades que faltan y qué corregir primero."
+      },
+      "ats": {
+        "label": "Verificador ATS de currículum gratis",
+        "body": "Puntúa tu CV frente a una descripción de puesto y mira los términos que te faltan."
+      },
+      "atsGuide": {
+        "label": "Cómo escribir un currículum compatible con ATS",
+        "body": "Formato, palabras clave y los errores que hacen que un CV quede descartado antes de que lo lea una persona."
+      },
+      "examples": {
+        "label": "Ejemplos de currículum para catorce empleos",
+        "body": "Resúmenes resueltos, viñetas de antes y después, y las palabras clave que usan esas ofertas."
+      }
+    }
+  },
+  "cta": {
+    "title": "¿Listo para dejar de ser ignorado?",
+    "body": "Únete a quienes buscan empleo y consiguen entrevistas más rápido con candidaturas adaptadas por IA. Acceso de por vida por ${price}.",
+    "tryFree": "Pruébalo gratis",
+    "pricing": "Ver precios"
+  },
+  "sticky": {
+    "cta": "Adaptar mi CV"
+  },
+  "footer": {
+    "tagline": "Adaptación de CV con IA. Consigue más entrevistas con menos esfuerzo.",
+    "rights": "2026 FitMyCV. Todos los derechos reservados.",
+    "headings": {
+      "product": "Producto",
+      "freeTools": "Herramientas gratis",
+      "resources": "Recursos",
+      "compare": "Comparar",
+      "atsGuides": "Guías ATS",
+      "company": "Empresa",
+      "otherApps": "Otras apps"
+    },
+    "links": {
+      "tailor": "Adapta tu CV desde un enlace de empleo",
+      "optimizer": "Optimizador de currículum",
+      "aiCoverLetter": "Generador de cartas de presentación con IA",
+      "coverLetterBuilder": "Creador de cartas de presentación",
+      "pricing": "Precios",
+      "blog": "Blog",
+      "atsGuide": "Guía de currículum ATS",
+      "howToWrite": "Cómo escribir un currículum",
+      "tips": "Consejos para el currículum",
+      "resumeExamples": "Ejemplos de currículum",
+      "cvExamples": "Ejemplos de CV",
+      "cvTemplates": "Plantillas de CV",
+      "faq": "Preguntas frecuentes",
+      "jobscan": "Alternativa a Jobscan",
+      "teal": "Alternativa a Teal",
+      "kickresume": "Alternativa a Kickresume",
+      "workday": "Formato de currículum para Workday",
+      "greenhouse": "Currículum para el ATS Greenhouse",
+      "lever": "Currículum para el ATS Lever",
+      "taleo": "Formato de currículum para Taleo",
+      "icims": "Formato de currículum para iCIMS",
+      "support": "Soporte",
+      "privacy": "Política de privacidad",
+      "terms": "Términos y condiciones"
+    }
+  },
+  "coverLetterDemo": {
+    "badge": "La IA escribe en directo",
+    "titleLine1": "Mira cómo tu carta de presentación",
+    "titleLine2": "se escribe sola",
+    "body": "FitMyCV lee la descripción del puesto y escribe en segundos una carta de presentación profesional y adaptada, con tu voz.",
+    "complete": "Completada",
+    "generating": "Generando…",
+    "tailoredFor": "Adaptada para:",
+    "role": "Ingeniero de software sénior",
+    "at": "en",
+    "letterLabel": "Carta de presentación en proceso de generación",
+    "characters": "{count} / {total} caracteres",
+    "generateMine": "Generar la mía",
+    "note": "Cada carta es única, escrita para encajar con el puesto exacto, la empresa y tu trayectoria."
+  },
+  "webview": {
+    "title": "Abre tu navegador para iniciar sesión",
+    "close": "Cerrar",
+    "warning": "Google no permite iniciar sesión dentro de la app de LinkedIn. Usa Chrome o Safari, o continúa con el correo, que funciona aquí.",
+    "howTo": "Cómo abrirlo en tu navegador",
+    "ios1": "Toca el icono <b>•••</b> o el de compartir, arriba a la derecha en LinkedIn.",
+    "ios2": "Elige <b>Abrir en el navegador</b> o <b>Abrir en Safari</b>.",
+    "ios3": "Inicia sesión con Google cuando la página se recargue en Safari.",
+    "android1": "Toca el menú <b>⋮</b> arriba a la derecha.",
+    "android2": "Elige <b>Abrir en Chrome</b> o <b>Abrir en el navegador</b>.",
+    "android3": "Inicia sesión con Google cuando la página se recargue en Chrome.",
+    "desktop1": "Copia el enlace de inicio de sesión de abajo.",
+    "desktop2": "Pégalo en Chrome o Safari.",
+    "desktop3": "Inicia sesión con Google allí.",
+    "copy": "Copiar enlace de inicio de sesión",
+    "openChrome": "Intentar abrir en Chrome",
+    "continueEmail": "Continuar con el correo",
+    "emailNote": "El inicio de sesión por correo funciona dentro de LinkedIn. No hace falta cambiar de navegador.",
+    "continueBrowsing": "Seguir navegando",
+    "toastCopied": "Enlace copiado. Pégalo en Chrome o Safari.",
+    "toastCopyFailed": "No se pudo copiar. Mantén pulsado el enlace para copiarlo.",
+    "toastOpening": "Abriendo en Chrome. Si no pasa nada, usa Copiar enlace."
+  }
+}

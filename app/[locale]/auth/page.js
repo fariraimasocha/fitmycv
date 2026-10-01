@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion } from "motion/react";
 import { signIn } from "next-auth/react";
 import {
@@ -25,12 +26,13 @@ import {
 import { trackEvent } from "@/lib/analytics";
 
 export default function AuthPage() {
+  const t = useTranslations("auth");
   const getPendingCheckout = useCheckoutStore((s) => s.getPendingCheckout);
   const getPendingCheckoutPlan = useCheckoutStore((s) => s.getPendingCheckoutPlan);
   const [inWebView, setInWebView] = useState(false);
   const [isLinkedIn, setIsLinkedIn] = useState(false);
   const [platform, setPlatform] = useState("unknown");
-  const [browserLabel, setBrowserLabel] = useState("in-app browser");
+  const [browserLabel, setBrowserLabel] = useState(null);
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -39,7 +41,10 @@ export default function AuthPage() {
     const ua = navigator.userAgent || "";
     setInWebView(isInAppBrowser(ua));
     setIsLinkedIn(isLinkedInWebView(ua));
-    setBrowserLabel(getInAppBrowserLabel(ua));
+    // getInAppBrowserLabel returns a brand name, or "in-app browser" when it
+    // cannot tell. null means the translated generic label.
+    const label = getInAppBrowserLabel(ua);
+    setBrowserLabel(label === "in-app browser" ? null : label);
     if (isAndroid(ua)) setPlatform("android");
     else if (isIOS(ua)) setPlatform("ios");
     else setPlatform("desktop");
@@ -79,7 +84,7 @@ export default function AuthPage() {
     event.preventDefault();
     const trimmed = email.trim();
     if (!trimmed) {
-      toast.error("Enter your email address.");
+      toast.error(t("toasts.emailRequired"));
       return;
     }
 
@@ -92,15 +97,15 @@ export default function AuthPage() {
       });
 
       if (result?.error) {
-        toast.error("Couldn't send the sign-in link. Try again.");
+        toast.error(t("toasts.sendError"));
         return;
       }
 
       trackEvent("magic_link_requested");
       setEmailSent(true);
-      toast.success("Sign-in link sent. Check your inbox.");
+      toast.success(t("toasts.sent"));
     } catch {
-      toast.error("Couldn't send the sign-in link. Try again.");
+      toast.error(t("toasts.sendError"));
     } finally {
       setSending(false);
     }
@@ -122,10 +127,10 @@ export default function AuthPage() {
         document.execCommand("copy");
         document.body.removeChild(ta);
       }
-      toast.success("Link copied. Paste it in Chrome or Safari.");
+      toast.success(t("toasts.copied"));
       trackEvent("auth_copy_link", { platform });
     } catch {
-      toast.error("Couldn't copy the link. Press and hold the address bar to copy it.");
+      toast.error(t("toasts.copyError"));
     }
   };
 
@@ -135,7 +140,7 @@ export default function AuthPage() {
     if (!didTry) {
       handleCopyLink();
     } else if (platform === "android") {
-      toast.success("Opening in Chrome. If nothing happens, use Copy link.");
+      toast.success(t("toasts.openingChrome"));
     }
   };
 
@@ -152,9 +157,9 @@ export default function AuthPage() {
         </Link>
 
         <div className="text-center">
-          <h1 className="text-xl font-semibold text-[var(--landing-ink)]">Welcome</h1>
+          <h1 className="text-xl font-semibold text-[var(--landing-ink)]">{t("title")}</h1>
           <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
-            Sign in to tailor your CV
+            {t("subtitle")}
           </p>
         </div>
 
@@ -172,18 +177,20 @@ export default function AuthPage() {
               />
               <div className="flex-1">
                 <p className="text-sm font-semibold text-amber-900">
-                  {isLinkedIn
-                    ? "Google sign in is blocked inside LinkedIn"
-                    : `Google sign in is blocked inside ${browserLabel}`}
+                  {t("webview.blocked", {
+                    browser: isLinkedIn
+                      ? "LinkedIn"
+                      : browserLabel ?? t("webview.inAppBrowser"),
+                  })}
                 </p>
                 <p className="mt-1 text-sm leading-relaxed text-amber-800">
                   {isLinkedIn
                     ? platform === "ios"
-                      ? "Tap the ••• at the top right, then choose Open in Browser to use Google. Or use email sign in below. It works here."
+                      ? t("webview.linkedinIos")
                       : platform === "android"
-                        ? "Tap ⋮ at the top right, then Open in Chrome to use Google. Or use email sign in below. It works here."
-                        : "Copy this link and open it in Chrome or Safari to use Google. Or use email sign in below."
-                    : "Open this page in Chrome or Safari to use Google. Or use email sign in below. It works in this browser."}
+                        ? t("webview.linkedinAndroid")
+                        : t("webview.linkedinOther")
+                    : t("webview.other")}
                 </p>
               </div>
             </div>
@@ -194,7 +201,7 @@ export default function AuthPage() {
                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-[var(--landing-ink)] shadow-sm ring-1 ring-amber-200 hover:bg-amber-50"
               >
                 <CopyIcon size={16} />
-                Copy link to open in browser
+                {t("webview.copyLink")}
               </button>
               {platform === "android" && (
                 <button
@@ -203,12 +210,14 @@ export default function AuthPage() {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--landing-ink)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-black"
                 >
                   <ArrowSquareOutIcon size={16} />
-                  Try opening in Chrome
+                  {t("webview.openChrome")}
                 </button>
               )}
             </div>
             <p className="text-xs leading-relaxed text-amber-700">
-              Email sign in works without leaving {isLinkedIn ? "LinkedIn" : "this app"}.
+              {isLinkedIn
+                ? t("webview.emailWorksLinkedin")
+                : t("webview.emailWorksApp")}
             </p>
           </div>
         )}
@@ -216,22 +225,22 @@ export default function AuthPage() {
         {emailSent ? (
           <div className="w-full rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-center">
             <p className="text-sm font-semibold text-[var(--landing-ink)]">
-              Check your inbox
+              {t("emailSent.title")}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-[var(--landing-ink-soft)]">
-              We sent a sign-in link to {email}. It works in this app.
+              {t("emailSent.body", { email })}
             </p>
           </div>
         ) : (
           <form onSubmit={handleMagicLink} className="flex w-full flex-col gap-3">
             <label htmlFor="auth-email" className="sr-only">
-              Email address
+              {t("emailLabel")}
             </label>
             <input
               id="auth-email"
               type="email"
               autoComplete="email"
-              placeholder="you@email.com"
+              placeholder={t("emailPlaceholder")}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="w-full rounded-lg border border-[var(--landing-line)] bg-white px-4 py-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
@@ -243,14 +252,14 @@ export default function AuthPage() {
               whileTap={{ scale: 0.98 }}
             >
               <EnvelopeSimpleIcon size={18} />
-              {sending ? "Sending link…" : "Email me a sign-in link"}
+              {sending ? t("sending") : t("sendLink")}
             </motion.button>
           </form>
         )}
 
         <div className="flex w-full items-center gap-3">
           <span className="h-px flex-1 bg-[var(--landing-line)]" aria-hidden="true" />
-          <span className="text-xs font-semibold text-[var(--landing-ink-soft)]">or</span>
+          <span className="text-xs font-semibold text-[var(--landing-ink-soft)]">{t("or")}</span>
           <span className="h-px flex-1 bg-[var(--landing-line)]" aria-hidden="true" />
         </div>
 
@@ -263,7 +272,7 @@ export default function AuthPage() {
           whileTap={inWebView ? {} : { scale: 0.98 }}
         >
           <GoogleLogoIcon size={20} weight="bold" />
-          Continue with Google
+          {t("google")}
         </motion.button>
       </motion.div>
     </div>

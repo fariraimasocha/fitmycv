@@ -2,8 +2,10 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { CrownIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import {
   Dialog,
@@ -17,22 +19,11 @@ import PricingCards from "@/components/pricing/PricingCards";
 import { useClientPricing } from "@/components/pricing/PricingCards";
 import { trackEvent } from "@/lib/analytics";
 
-const COPY = {
-  default: {
-    title: "Get FitMyCV Pro",
-    description: (pricing) =>
-      `Start a month for $${pricing.month.price} to download your CVs and cover letters as PDFs, plus company research, interview prep and application tracking.`,
-  },
-  download: {
-    title: "Download your PDFs",
-    description: (pricing) =>
-      `Your CV and cover letter are ready. Start a month for $${pricing.month.price} to download them as PDFs.`,
-  },
-  pre_tailor: {
-    title: "Download your PDFs",
-    description: (pricing) =>
-      `Start a month for $${pricing.month.price} to download your tailored CV and cover letter as PDFs.`,
-  },
+// Keys in messages/<locale>/pages.json under upgradeModal.
+const COPY_KEYS = {
+  default: "default",
+  download: "download",
+  pre_tailor: "preTailor",
 };
 
 export default function UpgradePromptModal({
@@ -40,7 +31,10 @@ export default function UpgradePromptModal({
   onClose,
   context = "default",
 }) {
+  const t = useTranslations("pages.upgradeModal");
   const router = useRouter();
+  // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
+  const localeRouter = useLocaleRouter();
   const { data: session } = useSession();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
   const pricing = useClientPricing();
@@ -51,11 +45,11 @@ export default function UpgradePromptModal({
     }
   }, [open, context]);
 
-  const copy = COPY[context] ?? COPY.default;
-  const description =
-    typeof copy.description === "function"
-      ? copy.description(pricing)
-      : copy.description;
+  const copyKey = COPY_KEYS[context] ?? COPY_KEYS.default;
+  const title = t(`${copyKey}.title`);
+  const description = t(`${copyKey}.description`, {
+    price: pricing.month.price,
+  });
 
   const startCheckout = (plan, source) => {
     trackEvent("checkout_start", {
@@ -67,7 +61,7 @@ export default function UpgradePromptModal({
       router.push(`/api/polar/checkout?plan=${plan}`);
     } else {
       setPendingCheckout(true, plan);
-      router.push("/auth");
+      localeRouter.push("/auth");
     }
   };
 
@@ -78,7 +72,7 @@ export default function UpgradePromptModal({
           <div className="mb-1 flex items-center gap-2">
             <CrownIcon className="size-5 text-[var(--landing-accent)]" />
             <DialogTitle className="text-[var(--landing-ink)]">
-              {copy.title}
+              {title}
             </DialogTitle>
           </div>
           <DialogDescription className="text-[var(--landing-ink-soft)]">
@@ -99,21 +93,21 @@ export default function UpgradePromptModal({
             onClick={() => startCheckout("month", "paywall_primary")}
             className="dashboard-primary-btn w-full"
           >
-            Start a month for ${pricing.month.price}
+            {t("startMonth", { price: pricing.month.price })}
           </button>
           <button
             type="button"
             onClick={() => startCheckout("lifetime", "paywall_secondary")}
             className="dashboard-secondary-btn w-full"
           >
-            Get lifetime for ${pricing.lifetime.price}
+            {t("getLifetime", { price: pricing.lifetime.price })}
           </button>
           <button
             type="button"
             onClick={onClose}
             className="dashboard-secondary-btn w-full"
           >
-            Maybe later
+            {t("maybeLater")}
           </button>
           <Button
             variant="link"
@@ -123,7 +117,7 @@ export default function UpgradePromptModal({
             }}
             className="w-full text-[var(--landing-ink-soft)]"
           >
-            See everything in Pro
+            {t("seeEverything")}
             <ArrowRightIcon className="ml-1 size-4" aria-hidden="true" />
           </Button>
         </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import BrandLogo from "@/components/BrandLogo";
 
 import {
@@ -14,8 +15,9 @@ import {
 // what the app is; the plan is the one fact about the account worth seeing
 // on every screen.
 export function TeamSwitcher() {
+  const t = useTranslations("dashboard.sidebar");
   const { data: session } = useSession();
-  const plan = session?.user?.isPremium ? "Pro plan" : "Free plan";
+  const plan = session?.user?.isPremium ? t("proPlan") : t("freePlan");
 
   return (
     <SidebarMenu>
@@ -34,7 +36,7 @@ export function TeamSwitcher() {
                 FitMyCV
               </span>
               <span className="truncate text-xs text-muted-foreground">
-                {session?.user ? plan : "Tailor your CV"}
+                {session?.user ? plan : t("tagline")}
               </span>
             </div>
           </Link>

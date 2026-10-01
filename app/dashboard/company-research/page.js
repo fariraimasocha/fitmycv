@@ -14,6 +14,7 @@ import {
   StackIcon,
   WarningCircleIcon,
 } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import FormattedDate from "@/components/FormattedDate";
 import {
   DashboardPageShell,
@@ -22,9 +23,6 @@ import {
   DashboardStatStrip,
 } from "@/components/dashboard";
 
-const PAGE_TITLE = "Company research";
-const PAGE_DESCRIPTION =
-  "A brief on each company you tailored a CV for. Read it before the interview.";
 const DATE_FORMAT = { day: "numeric", month: "short", year: "numeric" };
 
 function LoadingRows() {
@@ -39,8 +37,9 @@ function LoadingRows() {
 }
 
 function BriefRow({ brief, index }) {
+  const t = useTranslations("dashboard.companyResearch.list");
   const reduceMotion = useReducedMotion();
-  const name = brief.companyName || "Unnamed company";
+  const name = brief.companyName || t("unnamed");
 
   return (
     <motion.li
@@ -88,6 +87,7 @@ function BriefRow({ brief, index }) {
 }
 
 export default function CompanyResearchPage() {
+  const t = useTranslations("dashboard.companyResearch.list");
   const {
     data: briefs,
     isLoading,
@@ -98,7 +98,7 @@ export default function CompanyResearchPage() {
     queryKey: ["company-research"],
     queryFn: async () => {
       const res = await fetch("/api/company-research");
-      if (!res.ok) throw new Error("Couldn't load the company research. Refresh the page.");
+      if (!res.ok) throw new Error(t("loadError"));
       const json = await res.json();
       return json.data;
     },
@@ -128,13 +128,13 @@ export default function CompanyResearchPage() {
   return (
     <DashboardPageShell width="wide">
       <DashboardPageHeader
-        title={PAGE_TITLE}
-        description={PAGE_DESCRIPTION}
+        title={t("title")}
+        description={t("description")}
         actions={
           hasBriefs ? (
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              Add a job
+              {t("addJob")}
             </Link>
           ) : null
         }
@@ -145,18 +145,18 @@ export default function CompanyResearchPage() {
       ) : isError ? (
         <DashboardEmptyState
           icon={WarningCircleIcon}
-          title="Couldn't load your briefs"
-          description="Check your connection and try again."
-          actionLabel={isFetching ? "Retrying…" : "Try again"}
+          title={t("errorTitle")}
+          description={t("errorDescription")}
+          actionLabel={isFetching ? t("retrying") : t("tryAgain")}
           onAction={() => refetch()}
           actionDisabled={isFetching}
         />
       ) : !hasBriefs ? (
         <DashboardEmptyState
           icon={BinocularsIcon}
-          title="No company briefs yet"
-          description="Company research is part of Pro. Add a job on Tailor CV and we research the company named in the posting."
-          actionLabel="Add a job"
+          title={t("emptyTitle")}
+          description={t("emptyDescription")}
+          actionLabel={t("addJob")}
           actionHref="/dashboard/tailor"
         />
       ) : (
@@ -166,14 +166,14 @@ export default function CompanyResearchPage() {
             items={[
               {
                 icon: StackIcon,
-                label: "Briefs",
+                label: t("briefs"),
                 value: sorted.length,
                 tone: "accent",
               },
-              { icon: BuildingsIcon, label: "Companies", value: companyCount },
+              { icon: BuildingsIcon, label: t("companies"), value: companyCount },
               {
                 icon: CalendarIcon,
-                label: "Newest",
+                label: t("newest"),
                 value: (
                   <FormattedDate date={newest.createdAt} options={DATE_FORMAT} />
                 ),

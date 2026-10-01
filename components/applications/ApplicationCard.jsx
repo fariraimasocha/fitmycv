@@ -1,6 +1,7 @@
 "use client";
 
 import { FileTextIcon, MapPinIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { ApplicationActionsMenu } from "@/components/applications/ApplicationActionsMenu";
 import { initials } from "@/lib/applications";
 import { cn } from "@/lib/utils";
@@ -8,6 +9,7 @@ import { cn } from "@/lib/utils";
 // Ported from Reactive Resume's application-card.tsx. Styled as a flat
 // hairline card so it matches the rest of the dashboard.
 export function ApplicationCard({ application, onClick, onEdit, dragging }) {
+  const t = useTranslations("dashboard.appComponents.card");
   const followUp = application.followUpDate && !application.archived;
 
   return (
@@ -44,8 +46,8 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         </div>
         {followUp && (
           <span
-            title="Needs follow-up"
-            aria-label="Needs follow-up"
+            title={t("needsFollowUp")}
+            aria-label={t("needsFollowUp")}
             className={cn(
               "mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--landing-accent)] ring-2 ring-[var(--landing-accent-soft)]",
               onEdit && "mr-6"
@@ -73,7 +75,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
           {application.tailoredCVId && (
             <span className="inline-flex h-6 items-center gap-1 rounded-md bg-[var(--landing-paper-soft)] px-2 text-[11px] font-medium text-muted-foreground">
               <FileTextIcon size={12} aria-hidden="true" />
-              CV linked
+              {t("cvLinked")}
             </span>
           )}
           {application.source && (

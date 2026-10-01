@@ -1,9 +1,12 @@
 "use client";
 
 import { CheckCircleIcon, CircleIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { UPLOAD_STAGES } from "@/utils/upload-resume";
 
-export default function UploadProgress({ progress, stage, label }) {
+export default function UploadProgress({ progress, stage }) {
+  const t = useTranslations("tailor.upload");
+  const label = t(`stages.${stage}`);
   const stageIndex = UPLOAD_STAGES.findIndex((s) => s.id === stage);
   const activeIndex =
     stage === "complete" ? UPLOAD_STAGES.length : Math.max(stageIndex, 0);
@@ -14,8 +17,10 @@ export default function UploadProgress({ progress, stage, label }) {
         <div>
           <p className="text-sm font-semibold text-[var(--landing-ink)]">{label}</p>
           <p className="text-xs text-[var(--landing-ink-soft)]">
-            Step {Math.min(activeIndex + 1, UPLOAD_STAGES.length)} of{" "}
-            {UPLOAD_STAGES.length}
+            {t("step", {
+              current: Math.min(activeIndex + 1, UPLOAD_STAGES.length),
+              total: UPLOAD_STAGES.length,
+            })}
           </p>
         </div>
         <span className="font-outfit text-lg font-semibold text-[var(--landing-ink)]">
@@ -63,7 +68,7 @@ export default function UploadProgress({ progress, stage, label }) {
                   aria-hidden="true"
                 />
               )}
-              {item.label}
+              {t(`stages.${item.id}`)}
             </li>
           );
         })}

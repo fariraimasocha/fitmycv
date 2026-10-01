@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { trackEvent } from "@/lib/analytics";
 import {
   ArchiveIcon,
@@ -39,26 +40,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { STAGE_LABEL, computeInsights } from "@/lib/applications";
+import { computeInsights } from "@/lib/applications";
 import { requestJson } from "@/lib/request-json";
 import { cn } from "@/lib/utils";
 
 // Ported from Reactive Resume's /dashboard/applications route.
 
-const PAGE_TITLE = "Applications";
-const PAGE_DESCRIPTION = "Track every role from saved to offer. Move cards as you hear back.";
-
-const SORT_OPTIONS = [
-  { value: "updated", label: "Last updated" },
-  { value: "applied", label: "Date applied" },
-  { value: "company", label: "Company A to Z" },
-  { value: "role", label: "Role A to Z" },
-];
+const SORT_OPTIONS = ["updated", "applied", "company", "role"];
 
 const VIEWS = [
-  { id: "board", label: "Board", icon: <KanbanIcon size={14} aria-hidden="true" /> },
-  { id: "table", label: "Table", icon: <RowsIcon size={14} aria-hidden="true" /> },
-  { id: "insights", label: "Insights", icon: <ChartBarIcon size={14} aria-hidden="true" /> },
+  { id: "board", icon: <KanbanIcon size={14} aria-hidden="true" /> },
+  { id: "table", icon: <RowsIcon size={14} aria-hidden="true" /> },
+  { id: "insights", icon: <ChartBarIcon size={14} aria-hidden="true" /> },
 ];
 
 const LIST_KEY = ["applications", "list"];
@@ -109,10 +102,11 @@ function TagChecklist({ allTags, tags, onChange }) {
 }
 
 function SortSelect({ sort, onChange, className }) {
+  const t = useTranslations("dashboard.applications");
   return (
     <Select value={sort} onValueChange={onChange}>
       <SelectTrigger
-        aria-label="Sort by"
+        aria-label={t("sortBy")}
         className={cn(
           CONTROL,
           "rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] shadow-none data-[size=default]:h-9",
@@ -123,8 +117,8 @@ function SortSelect({ sort, onChange, className }) {
       </SelectTrigger>
       <SelectContent>
         {SORT_OPTIONS.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
+          <SelectItem key={option} value={option}>
+            {t(`sort.${option}`)}
           </SelectItem>
         ))}
       </SelectContent>
@@ -133,6 +127,7 @@ function SortSelect({ sort, onChange, className }) {
 }
 
 function ArchivedToggle({ archived, count, onToggle, className }) {
+  const t = useTranslations("dashboard.applications");
   return (
     <button
       type="button"
@@ -145,16 +140,17 @@ function ArchivedToggle({ archived, count, onToggle, className }) {
       )}
     >
       <ArchiveIcon size={16} aria-hidden="true" />
-      Archived
+      {t("archived")}
       <span className="tabular-nums text-muted-foreground">{count}</span>
     </button>
   );
 }
 
 function PageSkeleton() {
+  const t = useTranslations("dashboard.applications");
   return (
     <DashboardPageShell width="full">
-      <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <DashboardPageHeader title={t("title")} description={t("description")} />
       <div className="dashboard-card grid grid-cols-2 divide-y divide-[var(--landing-line)] rounded-lg sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-5">
         {[0, 1, 2, 3, 4].map((i) => (
           <div key={i} className="flex items-center gap-3 px-4 py-3 sm:px-5">
@@ -180,6 +176,8 @@ function PageSkeleton() {
 }
 
 function ApplicationsTracker() {
+  const t = useTranslations("dashboard.applications");
+  const tDashboard = useTranslations("dashboard");
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
@@ -211,11 +209,11 @@ function ApplicationsTracker() {
     },
     onError: (_error, _vars, context) => {
       if (context?.previous) queryClient.setQueryData(LIST_KEY, context.previous);
-      toast.error("Couldn't move the application. Try again.");
+      toast.error(t("moveError"));
     },
     onSuccess: (_data, { status }) => {
       trackEvent("application_status_changed", { status });
-      toast.success(`Moved to ${STAGE_LABEL[status]}`);
+      toast.success(t("moved", { stage: tDashboard(`stages.${status}`) }));
     },
     onSettled: () => queryClient.invalidateQueries({ queryKey: ["applications"] }),
   });
@@ -266,14 +264,14 @@ function ApplicationsTracker() {
   };
 
   const stats = [
-    { icon: KanbanIcon, label: "In your pipeline", value: insights.total },
-    { icon: PaperPlaneTiltIcon, label: "Applied", value: insights.applied },
-    { icon: ChatsCircleIcon, label: "Interviews", value: insights.interviews },
-    { icon: HandshakeIcon, label: "Offers", value: insights.offers, tone: "success" },
+    { icon: KanbanIcon, label: t("stats.pipeline"), value: insights.total },
+    { icon: PaperPlaneTiltIcon, label: t("stats.applied"), value: insights.applied },
+    { icon: ChatsCircleIcon, label: t("stats.interviews"), value: insights.interviews },
+    { icon: HandshakeIcon, label: t("stats.offers"), value: insights.offers, tone: "success" },
     {
       icon: ChartLineUpIcon,
-      label: "Response rate",
-      value: insights.applied > 0 ? `${insights.responseRate}%` : "n/a",
+      label: t("stats.responseRate"),
+      value: insights.applied > 0 ? `${insights.responseRate}%` : t("stats.notAvailable"),
       tone: "accent",
     },
   ];
@@ -281,18 +279,18 @@ function ApplicationsTracker() {
   return (
     <DashboardPageShell width="full">
       <DashboardPageHeader
-        title={PAGE_TITLE}
-        description={PAGE_DESCRIPTION}
+        title={t("title")}
+        description={t("description")}
         actions={
           isEmpty ? null : (
             <>
               <Link href="/dashboard/tailor" className="dashboard-secondary-btn">
                 <PenIcon size={16} aria-hidden="true" />
-                Tailor my CV
+                {t("tailorCv")}
               </Link>
               <button type="button" onClick={() => setAddOpen(true)} className="dashboard-primary-btn">
                 <PlusIcon size={16} weight="bold" aria-hidden="true" />
-                Add application
+                {t("addApplication")}
               </button>
             </>
           )
@@ -302,11 +300,11 @@ function ApplicationsTracker() {
       {isEmpty ? (
         <DashboardEmptyState
           icon={KanbanIcon}
-          title="Track your first application"
-          description="Add a job you are applying to and link the CV you sent. Every CV you tailor is added here as Saved."
-          actionLabel="Add application"
+          title={t("emptyTitle")}
+          description={t("emptyDescription")}
+          actionLabel={t("addApplication")}
           onAction={() => setAddOpen(true)}
-          secondaryLabel="Tailor my CV"
+          secondaryLabel={t("tailorCv")}
           secondaryHref="/dashboard/tailor"
         />
       ) : (
@@ -317,8 +315,8 @@ function ApplicationsTracker() {
             {/* View tabs left, filters right. Search grows, everything else keeps its width. */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <DashboardTabBar
-                ariaLabel="Applications view"
-                tabs={VIEWS}
+                ariaLabel={t("viewLabel")}
+                tabs={VIEWS.map((v) => ({ ...v, label: t(`views.${v.id}`) }))}
                 activeTab={view}
                 onTabChange={changeView}
               />
@@ -333,8 +331,8 @@ function ApplicationsTracker() {
                     />
                     <Input
                       value={search}
-                      aria-label="Search applications"
-                      placeholder="Search by company or role"
+                      aria-label={t("searchLabel")}
+                      placeholder={t("searchPlaceholder")}
                       onChange={(event) => setSearch(event.target.value)}
                       className={cn(CONTROL, "pl-9")}
                     />
@@ -353,7 +351,7 @@ function ApplicationsTracker() {
                           )}
                         >
                           <TagIcon size={16} aria-hidden="true" />
-                          {tags.length ? `${tags.length} ${tags.length === 1 ? "tag" : "tags"}` : "Tags"}
+                          {tags.length ? t("tagCount", { count: tags.length }) : t("tags")}
                         </button>
                       </PopoverTrigger>
                       <PopoverContent align="end" className="w-60 rounded-lg border-[var(--landing-line)] p-2 shadow-none">
@@ -364,7 +362,7 @@ function ApplicationsTracker() {
                             className="mt-1 h-8 w-full rounded-md text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
                             onClick={() => setTags([])}
                           >
-                            Clear tags
+                            {t("clearTags")}
                           </button>
                         )}
                       </PopoverContent>
@@ -387,7 +385,7 @@ function ApplicationsTracker() {
                     <PopoverTrigger asChild>
                       <button
                         type="button"
-                        aria-label="Filters"
+                        aria-label={t("filters")}
                         aria-pressed={filtersActive}
                         className={cn(SECONDARY_SM, "relative w-9 shrink-0 px-0 sm:hidden")}
                       >
@@ -400,12 +398,12 @@ function ApplicationsTracker() {
                     <PopoverContent align="end" className="flex w-64 flex-col gap-3 rounded-lg border-[var(--landing-line)] p-3 shadow-none">
                       {allTags.length > 0 && (
                         <div className="flex flex-col gap-1.5">
-                          <Label className="text-xs text-muted-foreground">Tags</Label>
+                          <Label className="text-xs text-muted-foreground">{t("tags")}</Label>
                           <TagChecklist allTags={allTags} tags={tags} onChange={setTags} />
                         </div>
                       )}
                       <div className="flex flex-col gap-1.5">
-                        <Label className="text-xs text-muted-foreground">Sort by</Label>
+                        <Label className="text-xs text-muted-foreground">{t("sortBy")}</Label>
                         <SortSelect sort={sort} onChange={setSort} className="w-full" />
                       </div>
                       {archivedCount > 0 && (
@@ -426,9 +424,9 @@ function ApplicationsTracker() {
               <DashboardEmptyState
                 compact
                 icon={MagnifyingGlassIcon}
-                title="No applications match"
-                description="Change your search or filters to see applications here."
-                actionLabel="Clear filters"
+                title={t("noMatchTitle")}
+                description={t("noMatchDescription")}
+                actionLabel={t("clearFilters")}
                 onAction={clearFilters}
                 delay={0}
               />

@@ -1,6 +1,7 @@
 "use client";
 
 import { CrownIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 /**
  * Free users can confirm a tailor worked. Full document value (readable
@@ -8,6 +9,7 @@ import { CrownIcon } from "@phosphor-icons/react";
  * download and print are still blocked in the handlers.
  */
 export default function PreviewUnlockGate({ locked, onUnlock, children }) {
+  const t = useTranslations("pages.unlockGate");
   if (!locked) return children;
 
   return (
@@ -24,10 +26,10 @@ export default function PreviewUnlockGate({ locked, onUnlock, children }) {
           className="dashboard-primary-btn inline-flex items-center gap-2"
         >
           <CrownIcon size={16} aria-hidden="true" />
-          Unlock to download
+          {t("button")}
         </button>
         <p className="mt-2 max-w-xs text-center text-sm text-muted-foreground">
-          It&apos;s ready. Unlock downloads to save it as a PDF.
+          {t("body")}
         </p>
       </div>
     </div>

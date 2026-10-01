@@ -3,11 +3,14 @@
 import { useEffect } from "react";
 import posthog from "posthog-js";
 import { WarningCircleIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { DashboardPageShell, DashboardEmptyState } from "@/components/dashboard";
 
 // Renders inside DashboardShell, so the sidebar and header stay put and the
 // reader keeps their place. app/error.js would replace the whole shell.
 export default function DashboardError({ error, reset }) {
+  const t = useTranslations("errors.dashboard");
+
   useEffect(() => {
     if (
       process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
@@ -22,11 +25,11 @@ export default function DashboardError({ error, reset }) {
     <DashboardPageShell width="narrow">
       <DashboardEmptyState
         icon={WarningCircleIcon}
-        title="This page didn't load"
-        description="Your CVs and cover letters are safe. Try again, or go back to home."
-        actionLabel="Try again"
+        title={t("title")}
+        description={t("description")}
+        actionLabel={t("retry")}
         onAction={reset}
-        secondaryLabel="Go to home"
+        secondaryLabel={t("home")}
         secondaryHref="/dashboard"
         compact
         delay={0}

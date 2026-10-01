@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
@@ -49,11 +50,12 @@ export function DashboardPanelHeader({
   title,
   description,
   href,
-  linkLabel = "View all",
+  linkLabel,
   action,
   className,
   ...props
 }) {
+  const t = useTranslations("dashboard.home");
   return (
     <div
       className={cn(
@@ -76,7 +78,7 @@ export function DashboardPanelHeader({
           href={href}
           className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
-          {linkLabel}
+          {linkLabel ?? t("viewAll")}
           <ArrowRightIcon size={12} weight="bold" aria-hidden="true" />
         </Link>
       )}

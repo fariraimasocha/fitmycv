@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import AuthLink from "@/components/landing/AuthLink";
 
-import { HOME_STEPS as STEPS } from "@/content/pages/home";
+import { getHomeSteps } from "@/content/pages/home";
 import {
   ArrowUpRightIcon,
   ClipboardTextIcon,
@@ -19,11 +20,13 @@ import {
  * real UI rather than being screenshots, so they never drift out of date.
  */
 function StepVisual({ step }) {
+  const t = useTranslations("landing.howItWorks");
+
   if (step === 1) {
     return (
       <div className="overflow-hidden rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
         <div className="border-b border-[var(--landing-line)] px-4 py-3 text-xs font-medium text-[var(--landing-ink-soft)]">
-          Job listing
+          {t("jobListing")}
         </div>
         <div className="space-y-4 p-5">
           <div className="flex items-center gap-2 rounded-lg border border-[var(--landing-line)] bg-white px-3 py-3">
@@ -33,7 +36,7 @@ function StepVisual({ step }) {
             </span>
             <span className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--landing-primary)] px-3 py-1.5 text-xs font-semibold text-white">
               <ClipboardTextIcon size={11} />
-              Paste
+              {t("paste")}
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -55,7 +58,7 @@ function StepVisual({ step }) {
     return (
       <div className="overflow-hidden rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
         <div className="border-b border-[var(--landing-line)] px-4 py-3 text-xs font-medium text-[var(--landing-ink-soft)]">
-          CV preview
+          {t("cvPreview")}
         </div>
         <div className="space-y-4 p-5">
           <div className="space-y-2.5 rounded-lg border border-[var(--landing-line)] bg-white p-4">
@@ -68,7 +71,7 @@ function StepVisual({ step }) {
           </div>
           <div className="flex items-center justify-center gap-2 rounded-lg bg-[var(--landing-primary)] py-3 text-sm font-semibold text-white">
             <SparkleIcon size={15} />
-            Tailor my CV
+            {t("tailor")}
           </div>
         </div>
       </div>
@@ -78,7 +81,7 @@ function StepVisual({ step }) {
   return (
     <div className="overflow-hidden rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
       <div className="border-b border-[var(--landing-line)] px-4 py-3 text-xs font-medium text-[var(--landing-ink-soft)]">
-        Export
+        {t("export")}
       </div>
       <div className="flex flex-col items-center gap-3 p-8">
         <FileTextIcon size={40} className="text-[var(--landing-ink)]" />
@@ -87,7 +90,7 @@ function StepVisual({ step }) {
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-primary)] px-5 py-2.5 text-sm font-semibold text-white">
           <DownloadSimpleIcon size={13} />
-          Download PDF
+          {t("download")}
         </span>
       </div>
     </div>
@@ -95,12 +98,14 @@ function StepVisual({ step }) {
 }
 
 export default function HowItWorks({ lifetimePrice = "29.99" }) {
+  const t = useTranslations("landing.howItWorks");
+  const STEPS = getHomeSteps(useLocale());
   const [active, setActive] = useState(0);
 
   return (
     <section id="how-it-works" className="landing-dark-band landing-section">
       <div className="landing-container">
-        <span className="landing-dark-eyebrow">FitMyCV in action</span>
+        <span className="landing-dark-eyebrow">{t("eyebrow")}</span>
 
         <h2
           className="font-outfit mt-6 max-w-2xl font-medium text-white"
@@ -110,7 +115,7 @@ export default function HowItWorks({ lifetimePrice = "29.99" }) {
             letterSpacing: "-0.01em",
           }}
         >
-          One paste. No rewrites. No guesswork.
+          {t("title")}
         </h2>
 
         <div className="mt-14 grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
@@ -164,11 +169,11 @@ export default function HowItWorks({ lifetimePrice = "29.99" }) {
             href="/auth"
             className="landing-dark-pill font-outfit"
           >
-            Tailor my CV
+            {t("tailor")}
             <ArrowUpRightIcon size={16} aria-hidden="true" />
           </AuthLink>
           <p className="text-sm text-[var(--landing-ink-inverse-soft)]">
-            Preview on screen free. ${lifetimePrice} once to download PDFs.
+            {t("priceNote", { price: lifetimePrice })}
           </p>
         </div>
       </div>

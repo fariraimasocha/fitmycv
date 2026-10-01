@@ -1,9 +1,11 @@
 "use client";
 
 import { DownloadSimpleIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
 export function CvPreviewActions({ templateSelect, onDownload }) {
+  const t = useTranslations("tailor.previewActions");
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
       {templateSelect && <div className="w-full sm:w-45">{templateSelect}</div>}
@@ -15,7 +17,7 @@ export function CvPreviewActions({ templateSelect, onDownload }) {
           onClick={onDownload}
         >
           <DownloadSimpleIcon size={16} aria-hidden="true" />
-          Download PDF
+          {t("download")}
         </Button>
       )}
     </div>

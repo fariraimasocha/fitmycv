@@ -1,0 +1,40 @@
+{
+  "back": "Retour",
+  "skip": "Passer pour l’instant",
+  "tryAgain": "Réessayer",
+  "continueToTailoring": "Continuer vers l’adaptation",
+  "finishError": "Votre CV est enregistré, mais nous n’avons pas pu terminer la configuration de votre compte. Réessayez.",
+  "saveError": "Impossible d’enregistrer votre CV. Vérifiez votre connexion et réessayez.",
+  "upload": {
+    "eyebrow": "Votre CV",
+    "title": "{hasName, select, yes {{name}, importez votre CV pour que nous puissions tout adapter à votre profil.} other {Importez votre CV pour que nous puissions tout adapter à votre profil.}}",
+    "privacy": "Vous seul pouvez voir votre CV. Notre fournisseur d’IA le lit pour rédiger vos candidatures.",
+    "editLater": "Vous pourrez modifier ces informations plus tard dans Mon CV."
+  },
+  "payoff": {
+    "eyebrow": "Votre CV est prêt",
+    "title": "{hasName, select, yes {{name}, voici ce que nous avons lu.} other {Voici ce que nous avons lu.}}",
+    "facts": {
+      "roles": "{count, plural, one {poste} other {postes}}",
+      "skills": "{count, plural, one {compétence} other {compétences}}",
+      "years": "années d’expérience"
+    },
+    "intro": "Chaque CV adapté et chaque lettre de motivation partent de ces informations. Vous pourrez tout modifier plus tard. Voici la suite :",
+    "tailorCta": "Adapter votre premier CV",
+    "dashboardCta": "Aller au tableau de bord"
+  },
+  "plan": {
+    "resume": {
+      "title": "Ajouter votre CV",
+      "description": "Un seul import sert de base à chaque candidature adaptée."
+    },
+    "tailor": {
+      "title": "Adapter votre premier CV",
+      "description": "Collez un lien ou une description d’offre. Recevez un CV réécrit et une lettre de motivation assortie."
+    },
+    "applications": {
+      "title": "Suivre vos candidatures",
+      "description": "Gardez tous les postes auxquels vous avez postulé dans un seul suivi."
+    }
+  }
+}

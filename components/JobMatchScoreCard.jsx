@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { GradeBadge, gradeChipClass } from "@/components/GradeBadge";
 import { DashboardPanelHeader } from "@/components/dashboard";
 import {
@@ -33,19 +34,21 @@ const globalScoreColor = (score) => {
   return "var(--landing-accent)";
 };
 
+// Returns a message key under tailor.jobMatch.levels.
 const globalScoreLabel = (score) => {
-  if (score >= 4.5) return "Excellent match";
-  if (score >= 4) return "Strong match";
-  if (score >= 3) return "Good match";
-  if (score >= 2) return "Fair match";
-  return "Weak match";
+  if (score >= 4.5) return "excellent";
+  if (score >= 4) return "strong";
+  if (score >= 3) return "good";
+  if (score >= 2) return "fair";
+  return "weak";
 };
 
+// Labels live in messages under tailor.jobMatch.dimensions.<key>.
 const dimensionMeta = {
-  cvMatch: { label: "CV match", icon: TargetIcon },
-  compensation: { label: "Compensation", icon: CurrencyDollarIcon },
-  cultureSignals: { label: "Culture", icon: UsersThreeIcon },
-  redFlags: { label: "Red flags", icon: WarningCircleIcon },
+  cvMatch: { icon: TargetIcon },
+  compensation: { icon: CurrencyDollarIcon },
+  cultureSignals: { icon: UsersThreeIcon },
+  redFlags: { icon: WarningCircleIcon },
 };
 
 function gradeToPercent(grade) {
@@ -54,6 +57,7 @@ function gradeToPercent(grade) {
 }
 
 function DimensionRow({ dimKey, dimension }) {
+  const t = useTranslations("tailor.jobMatch");
   const meta = dimensionMeta[dimKey];
   if (!meta) return null;
   const Icon = meta.icon;
@@ -63,7 +67,7 @@ function DimensionRow({ dimKey, dimension }) {
     <div className="space-y-1.5">
       <div className="flex items-center gap-2">
         <Icon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
-        <span className="text-xs text-muted-foreground">{meta.label}</span>
+        <span className="text-xs text-muted-foreground">{t(`dimensions.${dimKey}`)}</span>
         <span
           className={`ml-auto inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
         >
@@ -99,13 +103,14 @@ function LoadingSkeleton() {
 
 export default function JobMatchScoreCard({ scoreData, isLoading }) {
   const [expanded, setExpanded] = useState(false);
+  const t = useTranslations("tailor.jobMatch");
 
   if (isLoading) {
     return (
       <section className="dashboard-card dashboard-card-pad rounded-lg">
         <DashboardPanelHeader
-          title="Job match"
-          description="Scoring your CV against this posting"
+          title={t("title")}
+          description={t("scoring")}
         />
         <div className="mt-4">
           <LoadingSkeleton />
@@ -118,13 +123,13 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
 
   const { globalScore, globalGrade, recommendation, dimensions = {} } = scoreData;
   const color = globalScoreColor(globalScore);
-  const label = globalScoreLabel(globalScore);
+  const label = t(`levels.${globalScoreLabel(globalScore)}`);
 
   return (
     <section className="dashboard-card dashboard-card-pad rounded-lg">
       <DashboardPanelHeader
-        title="Job match"
-        description="How your CV fits this posting"
+        title={t("title")}
+        description={t("description")}
         action={<GradeBadge grade={globalGrade} size="md" className="shrink-0" />}
       />
       <div className="mt-4 space-y-4">
@@ -135,7 +140,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
             size={80}
             strokeWidth={6}
             color={color}
-            label={`Match score: ${globalScore} out of 5`}
+            label={t("gaugeLabel", { score: globalScore })}
           >
             <AnimatedNumber
               value={globalScore}
@@ -167,9 +172,9 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
           className="-mx-2 flex items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
         >
           <span className="relative inline-grid">
-            <span className="invisible col-start-1 row-start-1">Show details</span>
+            <span className="invisible col-start-1 row-start-1">{t("showDetails")}</span>
             <span className="col-start-1 row-start-1">
-              {expanded ? "Hide details" : "Show details"}
+              {expanded ? t("hideDetails") : t("showDetails")}
             </span>
           </span>
           {expanded ? (
@@ -187,7 +192,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading }) {
               return (
                 <div key={key} className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-foreground">{meta.label}</span>
+                    <span className="text-xs font-semibold text-foreground">{t(`dimensions.${key}`)}</span>
                     <span
                       className={`rounded-sm px-1.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dim.grade)}`}
                     >

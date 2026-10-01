@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import { SparkleIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const COVER_LETTER = `Dear Hiring Manager,
 
@@ -23,6 +24,7 @@ const SPEED = 18; // ms per character
 const RESTART_DELAY = 2500; // ms before restarting
 
 export default function CoverLetterDemo() {
+  const t = useTranslations("landing.coverLetterDemo");
   const [displayed, setDisplayed] = useState("");
   const [isComplete, setIsComplete] = useState(false);
   const indexRef = useRef(0);
@@ -62,17 +64,16 @@ export default function CoverLetterDemo() {
         <div className="inline-flex flex-row items-center gap-2 bg-muted border border-border rounded-full px-4 py-1.5">
           <SparkleIcon size={14} className="text-foreground" aria-hidden="true" />
           <span className="font-sans font-medium text-sm text-foreground">
-            AI Writing Live
+            {t("badge")}
           </span>
         </div>
         <h2 className="font-outfit font-bold text-foreground text-3xl sm:text-4xl tracking-tight leading-tight">
-          Watch your cover letter
+          {t("titleLine1")}
           <br />
-          write itself
+          {t("titleLine2")}
         </h2>
         <p className="font-sans text-muted-foreground text-base max-w-xl">
-          FitMyCV reads the job description and writes a tailored, professional
-          cover letter in seconds, in your voice.
+          {t("body")}
         </p>
       </div>
 
@@ -93,19 +94,19 @@ export default function CoverLetterDemo() {
           <div className="flex items-center gap-1.5">
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--landing-success)] animate-pulse" aria-hidden="true" />
             <span className="font-sans text-xs text-muted-foreground font-medium">
-              {isComplete ? "Complete" : "Generating…"}
+              {isComplete ? t("complete") : t("generating")}
             </span>
           </div>
         </div>
 
         {/* Job context strip */}
         <div className="flex flex-row items-center gap-3 bg-background border-b border-border px-5 py-3">
-          <span className="font-sans text-xs text-muted-foreground">Tailored for:</span>
+          <span className="font-sans text-xs text-muted-foreground">{t("tailoredFor")}</span>
           <div className="flex items-center gap-2">
             <span className="font-sans font-semibold text-sm text-foreground">
-              Senior Software Engineer
+              {t("role")}
             </span>
-            <span className="font-sans text-xs text-muted-foreground">at</span>
+            <span className="font-sans text-xs text-muted-foreground">{t("at")}</span>
             <span className="font-sans font-semibold text-sm text-foreground">Stripe</span>
           </div>
         </div>
@@ -115,7 +116,7 @@ export default function CoverLetterDemo() {
           <p
             className="font-sans text-sm leading-relaxed text-foreground whitespace-pre-wrap"
             aria-live="polite"
-            aria-label="Cover letter being generated"
+            aria-label={t("letterLabel")}
           >
             {displayed}
             {!isComplete && (
@@ -130,13 +131,13 @@ export default function CoverLetterDemo() {
         {/* Card footer */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 bg-muted border-t border-border px-5 py-3.5">
           <span className="font-sans text-xs text-muted-foreground">
-            {displayed.length} / {COVER_LETTER.length} characters
+            {t("characters", { count: displayed.length, total: COVER_LETTER.length })}
           </span>
           <Link
             href="/auth"
             className="inline-flex items-center gap-1.5 font-sans font-semibold text-xs text-foreground hover:opacity-70 transition"
           >
-            Generate mine
+            {t("generateMine")}
             <ArrowRightIcon size={12} aria-hidden="true" />
           </Link>
         </div>
@@ -144,7 +145,7 @@ export default function CoverLetterDemo() {
 
       {/* Bottom note */}
       <p className="font-sans text-sm text-muted-foreground text-center">
-        Every letter is unique, written to match the exact job, company, and your background.
+        {t("note")}
       </p>
 
       <style jsx global>{`

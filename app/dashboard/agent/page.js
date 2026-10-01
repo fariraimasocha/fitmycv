@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ArrowRightIcon, SpinnerGapIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   DashboardPageHeader,
@@ -16,6 +17,7 @@ import { ThreadList } from "@/components/agent/ThreadSidebar";
 import { requestJson } from "@/lib/request-json";
 
 export default function AgentPage() {
+  const t = useTranslations("dashboard.agent.page");
   const router = useRouter();
   const queryClient = useQueryClient();
   const [sourceId, setSourceId] = useState("reference");
@@ -40,12 +42,12 @@ export default function AgentPage() {
   return (
     <DashboardPageShell width="narrow">
       <DashboardPageHeader
-        title="CV agent"
-        description="Ask for changes in plain words. The agent edits a copy of your CV, so the original stays as it is."
+        title={t("title")}
+        description={t("description")}
       />
 
-      <DashboardPanel delay={0.05} aria-label="Start a thread">
-        <DashboardPanelHeader title="Start a thread" description="Choose the CV to work on." />
+      <DashboardPanel delay={0.05} aria-label={t("startTitle")}>
+        <DashboardPanelHeader title={t("startTitle")} description={t("startDescription")} />
         <form
           className="mt-4 flex flex-col gap-2 sm:flex-row"
           onSubmit={(event) => {
@@ -55,16 +57,18 @@ export default function AgentPage() {
         >
           <Select value={sourceId} onValueChange={setSourceId} disabled={isLoadingCvs}>
             <SelectTrigger
-              aria-label="CV to work on"
+              aria-label={t("cvSelectLabel")}
               className="w-full min-w-0 bg-[var(--landing-surface)] shadow-none data-[size=default]:h-10 sm:flex-1"
             >
-              <SelectValue placeholder="Choose a CV" />
+              <SelectValue placeholder={t("choosePlaceholder")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="reference">My CV</SelectItem>
+              <SelectItem value="reference">{t("myCv")}</SelectItem>
               {sources.map((cv) => (
                 <SelectItem key={cv._id} value={cv._id}>
-                  {[cv.jobTitle || "Tailored CV", cv.jobCompany].filter(Boolean).join(" at ")}
+                  {cv.jobCompany
+                    ? t("cvAtCompany", { title: cv.jobTitle || t("tailoredCv"), company: cv.jobCompany })
+                    : cv.jobTitle || t("tailoredCv")}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -78,11 +82,11 @@ export default function AgentPage() {
             {start.isPending ? (
               <>
                 <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                Starting…
+                {t("starting")}
               </>
             ) : (
               <>
-                Start thread
+                {t("startThread")}
                 <ArrowRightIcon size={16} aria-hidden="true" />
               </>
             )}
@@ -90,7 +94,7 @@ export default function AgentPage() {
         </form>
       </DashboardPanel>
 
-      <ThreadList title="Your threads" delay={0.1} />
+      <ThreadList title={t("yourThreads")} delay={0.1} />
     </DashboardPageShell>
   );
 }

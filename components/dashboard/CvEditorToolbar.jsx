@@ -1,6 +1,7 @@
 "use client";
 
 import { EyeIcon, PencilSimpleIcon, ArrowCounterClockwiseIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -8,14 +9,15 @@ export function CvEditorToolbar({
   showPreview,
   onTogglePreview,
   onUploadNew,
-  uploadLabel = "Replace CV",
+  uploadLabel,
 }) {
+  const t = useTranslations("tailor.editorToolbar");
   return (
     <div className="flex w-full flex-col gap-3 sm:ml-auto sm:w-55 sm:min-w-55">
       <div
         className="grid w-full grid-cols-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1"
         role="tablist"
-        aria-label="CV view mode"
+        aria-label={t("viewMode")}
       >
         <button
           type="button"
@@ -30,7 +32,7 @@ export function CvEditorToolbar({
           )}
         >
           <PencilSimpleIcon size={14} aria-hidden="true" />
-          Edit
+          {t("edit")}
         </button>
         <button
           type="button"
@@ -45,7 +47,7 @@ export function CvEditorToolbar({
           )}
         >
           <EyeIcon size={14} aria-hidden="true" />
-          Preview
+          {t("preview")}
         </button>
       </div>
 
@@ -56,7 +58,7 @@ export function CvEditorToolbar({
         onClick={onUploadNew}
       >
         <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />
-        {uploadLabel}
+        {uploadLabel ?? t("replace")}
       </Button>
     </div>
   );

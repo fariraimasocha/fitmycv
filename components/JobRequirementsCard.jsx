@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   BriefcaseIcon,
   MapPinIcon,
@@ -38,6 +39,7 @@ function normalizeSearchText(value) {
  * hairline-divided section per list. The tailor action lives on the page.
  */
 export default function JobRequirementsCard({ data, referenceCV, matchGrade, matchLoading }) {
+  const t = useTranslations("tailor.jobRequirements");
   const meta = [
     data.company && { icon: BuildingsIcon, text: data.company },
     data.location && { icon: MapPinIcon, text: data.location },
@@ -50,7 +52,7 @@ export default function JobRequirementsCard({ data, referenceCV, matchGrade, mat
       <div className="dashboard-card-pad flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="font-outfit text-base font-semibold tracking-[-0.01em] text-foreground">
-            {data.title || "Job listing"}
+            {data.title || t("fallbackTitle")}
           </h2>
           {meta.length > 0 && (
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
@@ -64,26 +66,26 @@ export default function JobRequirementsCard({ data, referenceCV, matchGrade, mat
           )}
         </div>
         {matchLoading ? (
-          <span className="shrink-0 text-xs font-medium text-muted-foreground">Scoring…</span>
+          <span className="shrink-0 text-xs font-medium text-muted-foreground">{t("scoring")}</span>
         ) : (
           <GradeBadge grade={matchGrade} className="shrink-0" />
         )}
       </div>
       <div className="divide-y divide-[var(--landing-line)] border-t border-[var(--landing-line)]">
         {data.requirements?.length > 0 && (
-          <Section icon={ListChecksIcon} title="Requirements" items={data.requirements} />
+          <Section icon={ListChecksIcon} title={t("requirements")} items={data.requirements} />
         )}
         {data.responsibilities?.length > 0 && (
           <Section
             icon={ClipboardTextIcon}
-            title="Responsibilities"
+            title={t("responsibilities")}
             items={data.responsibilities}
           />
         )}
         {data.qualifications?.length > 0 && (
           <Section
             icon={GraduationCapIcon}
-            title="Qualifications"
+            title={t("qualifications")}
             items={data.qualifications}
           />
         )}
@@ -122,6 +124,7 @@ function Section({ icon, title, items }) {
 
 function KeywordsSection({ keywords, referenceCV }) {
   const [expanded, setExpanded] = useState(true);
+  const t = useTranslations("tailor.jobRequirements");
 
   // Build a text blob from the CV to match keywords against
   let cvText = "";
@@ -151,9 +154,9 @@ function KeywordsSection({ keywords, referenceCV }) {
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
           <TagIcon size={14} aria-hidden="true" />
         </span>
-        <span className="text-sm font-semibold text-foreground">Key terms</span>
+        <span className="text-sm font-semibold text-foreground">{t("keyTerms")}</span>
         <span className="ml-auto text-xs tabular-nums text-muted-foreground">
-          {hasCV ? `${matched.length} of ${keywords.length} in your CV` : `${keywords.length}`}
+          {hasCV ? t("inYourCv", { matched: matched.length, total: keywords.length }) : `${keywords.length}`}
         </span>
         {expanded ? (
           <CaretUpIcon size={14} className="text-muted-foreground" aria-hidden="true" />

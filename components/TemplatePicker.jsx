@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CaretDownIcon, CheckCircleIcon, SquaresFourIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -21,6 +22,18 @@ import {
 } from "@/utils/cv-templates/metadata";
 import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 
+// Badge text lives in metadata as English. Known labels map to message keys;
+// anything else (like "ATS 98%") renders as written.
+const BADGE_KEYS = {
+  "ATS-safe": "atsSafe",
+  "Skills-first": "skillsFirst",
+  "Two-column": "twoColumn",
+  "Accent red": "accentRed",
+  "One-pager": "onePager",
+  Serif: "serif",
+  "Small caps": "smallCaps",
+};
+
 function TemplateThumbnail({ template, data, style }) {
   return (
     <div className="relative aspect-3/4 w-full overflow-hidden rounded-md border border-border bg-white">
@@ -39,6 +52,7 @@ export default function TemplatePicker({
   onStyleChange,
 }) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("tailor.templatePicker");
 
   const current =
     TEMPLATE_METADATA.find((t) => t.id === value) ||
@@ -68,9 +82,9 @@ export default function TemplatePicker({
       </DialogTrigger>
       <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-3xl">
         <DialogHeader>
-          <DialogTitle>Choose a template</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>
-            Previews use your own CV. The downloaded PDF matches exactly what you see.
+            {t("description")}
           </DialogDescription>
         </DialogHeader>
 
@@ -83,13 +97,13 @@ export default function TemplatePicker({
         ) : null}
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {TEMPLATE_METADATA.map((t) => {
-            const selected = t.id === value;
+          {TEMPLATE_METADATA.map((tpl) => {
+            const selected = tpl.id === value;
             return (
               <button
-                key={t.id}
+                key={tpl.id}
                 type="button"
-                onClick={() => handleSelect(t.id)}
+                onClick={() => handleSelect(tpl.id)}
                 className={`group relative flex flex-col gap-2 rounded-lg border p-2 text-left transition-colors ${
                   selected
                     ? "border-primary ring-2 ring-primary"
@@ -106,22 +120,26 @@ export default function TemplatePicker({
                   </span>
                 )}
                 <TemplateThumbnail
-                  template={t.id}
+                  template={tpl.id}
                   data={data}
                   style={resolvedStyle}
                 />
                 <div className="min-w-0">
                   <div className="flex items-center justify-between gap-1">
-                    <p className="truncate text-sm font-semibold">{t.name}</p>
-                    {t.badge && (
+                    <p className="truncate text-sm font-semibold">{tpl.name}</p>
+                    {tpl.badge && (
                       <Badge variant="secondary" className="shrink-0 text-xs">
-                        {t.badge}
+                        {BADGE_KEYS[tpl.badge]
+                          ? t(`badges.${BADGE_KEYS[tpl.badge]}`)
+                          : tpl.badge}
                       </Badge>
                     )}
                   </div>
-                  {t.description && (
+                  {tpl.description && (
                     <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
-                      {t.description}
+                      {t.has(`descriptions.${tpl.id}`)
+                        ? t(`descriptions.${tpl.id}`)
+                        : tpl.description}
                     </p>
                   )}
                 </div>

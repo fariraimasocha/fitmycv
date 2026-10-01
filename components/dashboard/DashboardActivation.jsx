@@ -2,11 +2,13 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { CheckIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export function DashboardActivation({ steps, className, delay = 0.05 }) {
+  const t = useTranslations("dashboard.activation");
   const reduceMotion = useReducedMotion();
   const doneCount = steps.filter((step) => step.done).length;
   const nowIndex = steps.findIndex((step) => !step.done);
@@ -26,7 +28,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
         <CardContent className="dashboard-card-pad py-5 sm:py-6">
           <div className="flex items-center justify-between gap-4">
             <h2 className="font-outfit text-sm font-semibold text-foreground">
-              Get set up
+              {t("title")}
             </h2>
             <div className="flex items-center gap-2.5">
               {steps.length > 2 && (
@@ -45,7 +47,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                 </span>
               )}
               <span className="text-xs text-muted-foreground">
-                {doneCount} of {steps.length}
+                {t("progress", { done: doneCount, total: steps.length })}
               </span>
             </div>
           </div>
@@ -97,7 +99,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                             : "text-foreground",
                         )}
                       >
-                        {step.title}
+                        {t(`steps.${step.key}.title`)}
                       </p>
                       {!step.done && (
                         <span
@@ -108,14 +110,14 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                               : "text-muted-foreground",
                           )}
                         >
-                          {isNow ? "NOW" : "NEXT"}
+                          {isNow ? t("now") : t("next")}
                         </span>
                       )}
                     </div>
 
                     {!step.done && (
                       <p className="mt-1 text-xs text-muted-foreground">
-                        {step.description}
+                        {t(`steps.${step.key}.description`)}
                       </p>
                     )}
 
@@ -125,7 +127,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                         href={step.href}
                         className="dashboard-primary-btn dashboard-primary-btn-sm mt-3"
                       >
-                        {step.cta}
+                        {t(`steps.${step.key}.cta`)}
                         <ArrowRightIcon
                           size={15}
                           weight="bold"
@@ -138,7 +140,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                           href={step.href}
                           className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
-                          {step.cta}
+                          {t(`steps.${step.key}.cta`)}
                           <ArrowRightIcon
                             size={12}
                             weight="bold"

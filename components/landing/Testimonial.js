@@ -1,13 +1,15 @@
 import Image from "next/image";
 import { QuotesIcon } from "@phosphor-icons/react/dist/ssr";
+import { useLocale, useTranslations } from "next-intl";
 
-import { HOME_TESTIMONIAL } from "@/content/pages/home";
+import { getHomeTestimonial } from "@/content/pages/home";
 
 // One real, attributed quote. The section carries a heading and figure/
 // figcaption markup so readers, crawlers, and screen readers can all tell the
 // quote from the attribution. Add more entries only for feedback we can name.
 export default function Testimonial() {
-  const { quote, author, role, image } = HOME_TESTIMONIAL;
+  const t = useTranslations("landing.testimonial");
+  const { quote, author, role, image } = getHomeTestimonial(useLocale());
 
   return (
     <section
@@ -27,7 +29,7 @@ export default function Testimonial() {
           id="testimonials-heading"
           className="landing-eyebrow-plain text-center"
         >
-          From a FitMyCV user
+          {t("heading")}
         </h2>
 
         <figure className="flex w-full flex-col items-center gap-8">

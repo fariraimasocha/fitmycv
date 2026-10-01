@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   ChatCenteredTextIcon,
   CopyIcon,
@@ -14,9 +15,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { DashboardPanelHeader } from "@/components/dashboard";
 import { countSentences } from "@/utils/count-sentences";
 
-const DEFAULT_QUESTION =
-  "In 3 to 5 sentences, tell us why you are interested in this role.";
-
 export default function WhyThisRoleCard({
   answer,
   question,
@@ -25,9 +23,11 @@ export default function WhyThisRoleCard({
   onSave,
   isSaving,
 }) {
+  const t = useTranslations("tailor.whyThisRole");
+  const defaultQuestion = t("defaultQuestion");
   const [draft, setDraft] = useState(answer ?? "");
   const [lastAnswer, setLastAnswer] = useState(answer ?? "");
-  const [prompt, setPrompt] = useState(question || DEFAULT_QUESTION);
+  const [prompt, setPrompt] = useState(() => question || defaultQuestion);
 
   // A fresh answer from the parent replaces the draft, but typing is never
   // clobbered while the same answer is still on screen.
@@ -41,7 +41,7 @@ export default function WhyThisRoleCard({
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(draft);
-    toast.success("Answer copied");
+    toast.success(t("copied"));
   };
 
   return (
@@ -52,8 +52,8 @@ export default function WhyThisRoleCard({
         </span>
         <DashboardPanelHeader
           className="min-w-0 flex-1"
-          title="Why this role"
-          description="An answer for the application form, drawn from your CV and this posting."
+          title={t("title")}
+          description={t("description")}
         />
       </div>
       <div className="dashboard-card-pad flex flex-col gap-4">
@@ -63,13 +63,13 @@ export default function WhyThisRoleCard({
               htmlFor="why-this-role-question"
               className="text-xs font-medium text-[var(--landing-ink-soft)]"
             >
-              The question you were asked
+              {t("questionLabel")}
             </label>
             <Input
               id="why-this-role-question"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder={DEFAULT_QUESTION}
+              placeholder={defaultQuestion}
               className="text-sm"
             />
           </div>
@@ -87,19 +87,18 @@ export default function WhyThisRoleCard({
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               rows={7}
-              aria-label="Your answer"
+              aria-label={t("answerAria")}
               className="text-sm leading-relaxed"
             />
             <p className="text-xs tabular-nums text-muted-foreground">
-              {sentences} {sentences === 1 ? "sentence" : "sentences"}, {words}{" "}
-              {words === 1 ? "word" : "words"}
+              {t("counts", { sentences, words })}
             </p>
           </div>
         ) : (
           <p className="rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
             {onGenerate
-              ? "Your answer will appear here. Change the question if yours is worded differently, then write it."
-              : "No answer saved for this application."}
+              ? t("emptyGenerate")
+              : t("emptySaved")}
           </p>
         )}
 
@@ -116,12 +115,12 @@ export default function WhyThisRoleCard({
                 {isLoading ? (
                   <>
                     <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                    Writing…
+                    {t("writing")}
                   </>
                 ) : (
                   <>
                     <ArrowsClockwiseIcon size={16} aria-hidden="true" />
-                    {draft ? "Write it again" : "Write my answer"}
+                    {draft ? t("writeAgain") : t("write")}
                   </>
                 )}
               </button>
@@ -129,7 +128,7 @@ export default function WhyThisRoleCard({
             {draft && (
               <button type="button" className="dashboard-secondary-btn" onClick={handleCopy}>
                 <CopyIcon size={16} aria-hidden="true" />
-                Copy answer
+                {t("copy")}
               </button>
             )}
             {draft && onSave && (
@@ -143,12 +142,12 @@ export default function WhyThisRoleCard({
                 {isSaving ? (
                   <>
                     <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                    Saving…
+                    {t("saving")}
                   </>
                 ) : (
                   <>
                     <FloppyDiskIcon size={16} aria-hidden="true" />
-                    Save answer
+                    {t("save")}
                   </>
                 )}
               </button>

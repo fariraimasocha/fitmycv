@@ -7,6 +7,7 @@ import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   PlusIcon,
   TrashIcon,
@@ -27,11 +28,12 @@ import { FindingRow, SEVERITY_ORDER, SeverityCount } from "@/components/ATSScore
 import { checkCv } from "@/lib/ats/rules";
 import { cn } from "@/lib/utils";
 
+// Validation messages are message keys, translated where they render.
 const resumeSchema = z.object({
   basics: z.object({
-    name: z.string().min(1, "Name is required"),
+    name: z.string().min(1, "nameRequired"),
     label: z.string().optional().default(""),
-    email: z.string().email("Enter an email like name@example.com").or(z.literal("")),
+    email: z.string().email("emailInvalid").or(z.literal("")),
     phone: z.string().optional().default(""),
     summary: z.string().optional().default(""),
     location: z.string().optional().default(""),
@@ -87,7 +89,7 @@ export default function ResumeForm({
   saveEndpoint = "/api/resume",
   saveMethod = "PUT",
   queryKey = ["resume"],
-  saveButtonLabel = "Save CV",
+  saveButtonLabel,
   onSaved,
   // Fires with the current form values and the live check report on every
   // change, so a parent can drive a preview without owning the form.
@@ -98,6 +100,7 @@ export default function ResumeForm({
   isDraft = false,
 }) {
   const queryClient = useQueryClient();
+  const t = useTranslations("tailor.resumeForm");
 
   const form = useForm({
     resolver: zodResolver(resumeSchema),
@@ -180,13 +183,13 @@ export default function ResumeForm({
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Couldn't save your changes. Try again.");
+        throw new Error(err.error || t("saveError"));
       }
 
       return res.json();
     },
     onSuccess: (_result, data) => {
-      toast.success("CV saved");
+      toast.success(t("saved"));
       queryClient.invalidateQueries({ queryKey });
       // Saved values become the new baseline, so the dirty flag clears.
       reset(data);
@@ -203,7 +206,7 @@ export default function ResumeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      {showChecks && <CvChecks report={report} onSelect={goToFinding} />}
+      {showChecks && <CvChecks report={report} onSelect={goToFinding} t={t} />}
 
       {/* Personal Info */}
       <motion.div
@@ -213,41 +216,41 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Personal information</CardTitle>
+            <CardTitle className="text-base font-semibold">{t("sections.personal")}</CardTitle>
           </CardHeader>
           <CardContent className="dashboard-card-pad grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="name">Full name *</Label>
+              <Label htmlFor="name">{t("fields.fullNameRequired")}</Label>
               <Input id="name" {...register("basics.name")} />
               {errors.basics?.name && (
                 <p className="text-destructive text-sm">
-                  {errors.basics.name.message}
+                  {t(`errors.${errors.basics.name.message}`)}
                 </p>
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="label">Job title or headline</Label>
+              <Label htmlFor="label">{t("fields.headline")}</Label>
               <Input id="label" {...register("basics.label")} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("fields.email")}</Label>
               <Input id="email" type="email" {...register("basics.email")} />
               {errors.basics?.email && (
                 <p className="text-destructive text-sm">
-                  {errors.basics.email.message}
+                  {t(`errors.${errors.basics.email.message}`)}
                 </p>
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
+              <Label htmlFor="phone">{t("fields.phone")}</Label>
               <Input id="phone" {...register("basics.phone")} />
             </div>
             <div className="sm:col-span-2 space-y-2">
-              <Label htmlFor="location">Location</Label>
+              <Label htmlFor="location">{t("fields.location")}</Label>
               <Input id="location" {...register("basics.location")} />
             </div>
             <div className="sm:col-span-2 space-y-2">
-              <Label htmlFor="summary">Professional summary</Label>
+              <Label htmlFor="summary">{t("fields.summary")}</Label>
               <Textarea id="summary" rows={4} {...register("basics.summary")} />
             </div>
           </CardContent>
@@ -262,7 +265,7 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Online profiles</CardTitle>
+            <CardTitle className="text-base font-semibold">{t("sections.profiles")}</CardTitle>
             <Button
               type="button"
               variant="outline"
@@ -271,29 +274,29 @@ export default function ResumeForm({
               onClick={() => appendProfile({ network: "", url: "" })}
             >
               <PlusIcon size={14} />
-              Add Profile
+              {t("addProfileButton")}
             </Button>
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {profilesFieldsList.length === 0 && (
               <SectionEmptyState
-                actionLabel="Add profile"
+                actionLabel={t("addProfile")}
                 onAction={() => appendProfile({ network: "", url: "" })}
               >
-                Add the profiles you want employers to see.
+                {t("empty.profiles")}
               </SectionEmptyState>
             )}
             {profilesFieldsList.map((field, index) => (
               <div key={field.id} className="flex flex-col gap-3 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-end">
                 <div className="flex-1 space-y-2">
-                  <Label>Network</Label>
+                  <Label>{t("fields.network")}</Label>
                   <Input
-                    placeholder="LinkedIn, GitHub…"
+                    placeholder={t("placeholders.network")}
                     {...register(`basics.profiles.${index}.network`)}
                   />
                 </div>
                 <div className="flex-1 space-y-2">
-                  <Label>URL</Label>
+                  <Label>{t("fields.url")}</Label>
                   <Input
                     placeholder="https://..."
                     {...register(`basics.profiles.${index}.url`)}
@@ -332,7 +335,7 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Work experience</CardTitle>
+            <CardTitle className="text-base font-semibold">{t("sections.work")}</CardTitle>
             <Button
               type="button"
               variant="outline"
@@ -350,13 +353,13 @@ export default function ResumeForm({
               }
             >
               <PlusIcon size={14} />
-              Add Position
+              {t("addPositionButton")}
             </Button>
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {workFieldsList.length === 0 && (
               <SectionEmptyState
-                actionLabel="Add position"
+                actionLabel={t("addPosition")}
                 onAction={() =>
                   appendWork({
                     company: "",
@@ -368,7 +371,7 @@ export default function ResumeForm({
                   })
                 }
               >
-                Your positions are what get rewritten for each job.
+                {t("empty.work")}
               </SectionEmptyState>
             )}
             {workFieldsList.map((field, index) => (
@@ -378,7 +381,7 @@ export default function ResumeForm({
               >
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-semibold text-foreground">
-                    Position {index + 1}
+                    {t("positionN", { index: index + 1 })}
                   </p>
                   <div className="flex items-center gap-1">
                     <ItemReorderControls
@@ -400,35 +403,35 @@ export default function ResumeForm({
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label>Company</Label>
+                    <Label>{t("fields.company")}</Label>
                     <Input {...register(`work.${index}.company`)} />
                   </div>
                   <div className="space-y-2">
-                    <Label>Position</Label>
+                    <Label>{t("fields.position")}</Label>
                     <Input {...register(`work.${index}.position`)} />
                   </div>
                   <div className="space-y-2">
-                    <Label>Location</Label>
+                    <Label>{t("fields.location")}</Label>
                     <Input {...register(`work.${index}.location`)} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label>Start date</Label>
+                      <Label>{t("fields.startDate")}</Label>
                       <Input
-                        placeholder="YYYY-MM"
+                        placeholder={t("placeholders.yearMonth")}
                         {...register(`work.${index}.startDate`)}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>End date</Label>
+                      <Label>{t("fields.endDate")}</Label>
                       <Input
-                        placeholder="YYYY-MM or Present"
+                        placeholder={t("placeholders.endDate")}
                         {...register(`work.${index}.endDate`)}
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-2 space-y-2">
-                    <Label>Description and achievements</Label>
+                    <Label>{t("fields.description")}</Label>
                     <Textarea
                       rows={3}
                       {...register(`work.${index}.description`)}
@@ -451,7 +454,7 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Education</CardTitle>
+            <CardTitle className="text-base font-semibold">{t("sections.education")}</CardTitle>
             <Button
               type="button"
               variant="outline"
@@ -468,13 +471,13 @@ export default function ResumeForm({
               }
             >
               <PlusIcon size={14} />
-              Add Education
+              {t("addEducationButton")}
             </Button>
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {educationFieldsList.length === 0 && (
               <SectionEmptyState
-                actionLabel="Add education"
+                actionLabel={t("addEducation")}
                 onAction={() =>
                   appendEducation({
                     institution: "",
@@ -485,7 +488,7 @@ export default function ResumeForm({
                   })
                 }
               >
-                Add where you studied and what you studied.
+                {t("empty.education")}
               </SectionEmptyState>
             )}
             {educationFieldsList.map((field, index) => (
@@ -495,7 +498,7 @@ export default function ResumeForm({
               >
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-semibold text-foreground">
-                    Education {index + 1}
+                    {t("educationN", { index: index + 1 })}
                   </p>
                   <div className="flex items-center gap-1">
                     <ItemReorderControls
@@ -517,32 +520,32 @@ export default function ResumeForm({
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <Label>Institution</Label>
+                    <Label>{t("fields.institution")}</Label>
                     <Input {...register(`education.${index}.institution`)} />
                   </div>
                   <div className="space-y-2">
-                    <Label>Degree</Label>
+                    <Label>{t("fields.degree")}</Label>
                     <Input
-                      placeholder="BSc, MA, PhD…"
+                      placeholder={t("placeholders.degree")}
                       {...register(`education.${index}.degree`)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label>Field of study</Label>
+                    <Label>{t("fields.fieldOfStudy")}</Label>
                     <Input {...register(`education.${index}.fieldOfStudy`)} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label>Start date</Label>
+                      <Label>{t("fields.startDate")}</Label>
                       <Input
-                        placeholder="YYYY-MM"
+                        placeholder={t("placeholders.yearMonth")}
                         {...register(`education.${index}.startDate`)}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>End date</Label>
+                      <Label>{t("fields.endDate")}</Label>
                       <Input
-                        placeholder="YYYY-MM"
+                        placeholder={t("placeholders.yearMonth")}
                         {...register(`education.${index}.endDate`)}
                       />
                     </div>
@@ -564,7 +567,7 @@ export default function ResumeForm({
       >
         <Card className="dashboard-card rounded-lg py-0 gap-0">
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">Skills</CardTitle>
+            <CardTitle className="text-base font-semibold">{t("sections.skills")}</CardTitle>
             <Button
               type="button"
               variant="outline"
@@ -573,16 +576,16 @@ export default function ResumeForm({
               onClick={() => appendSkill({ category: "", skills: [] })}
             >
               <PlusIcon size={14} />
-              Add Category
+              {t("addCategoryButton")}
             </Button>
           </CardHeader>
           <CardContent className="dashboard-card-pad space-y-4">
             {skillsFieldsList.length === 0 && (
               <SectionEmptyState
-                actionLabel="Add category"
+                actionLabel={t("addCategory")}
                 onAction={() => appendSkill({ category: "", skills: [] })}
               >
-                Skills get matched against each job’s requirements.
+                {t("empty.skills")}
               </SectionEmptyState>
             )}
             {skillsFieldsList.map((field, index) => (
@@ -592,7 +595,7 @@ export default function ResumeForm({
               >
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-semibold text-foreground">
-                    Category {index + 1}
+                    {t("categoryN", { index: index + 1 })}
                   </p>
                   <div className="flex items-center gap-1">
                     <ItemReorderControls
@@ -614,9 +617,9 @@ export default function ResumeForm({
                 </div>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label>Category name</Label>
+                    <Label>{t("fields.categoryName")}</Label>
                     <Input
-                      placeholder="e.g. Programming Languages"
+                      placeholder={t("placeholders.category")}
                       {...register(`skills.${index}.category`)}
                     />
                   </div>
@@ -624,6 +627,7 @@ export default function ResumeForm({
                     control={control}
                     register={register}
                     nestIndex={index}
+                    t={t}
                   />
                 </div>
               </div>
@@ -648,10 +652,10 @@ export default function ResumeForm({
                 className="h-1.5 w-1.5 rounded-full bg-[var(--landing-accent)]"
                 aria-hidden="true"
               />
-              {isDirty ? "Unsaved changes" : "Not saved yet"}
+              {isDirty ? t("status.unsaved") : t("status.notSaved")}
             </>
           ) : (
-            "All changes saved"
+            t("status.allSaved")
           )}
         </p>
         <Button
@@ -662,12 +666,12 @@ export default function ResumeForm({
           {saveMutation.isPending ? (
             <>
               <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-              Saving...
+              {t("saving")}
             </>
           ) : (
             <>
               <FloppyDiskIcon size={16} aria-hidden="true" />
-              {saveButtonLabel}
+              {saveButtonLabel ?? t("save")}
             </>
           )}
         </Button>
@@ -676,36 +680,43 @@ export default function ResumeForm({
   );
 }
 
-// Where a finding points, in the words the form itself uses.
+// Where a finding points, in the words the form itself uses. Values are
+// message keys under tailor.resumeForm.location.fields.
 const FIELD_NAMES = {
-  name: "Full name",
-  email: "Email",
-  phone: "Phone",
-  location: "Location",
-  summary: "Summary",
-  startDate: "Start date",
-  endDate: "End date",
-  description: "Description",
-  url: "URL",
+  name: "name",
+  email: "email",
+  phone: "phone",
+  location: "location",
+  summary: "summary",
+  startDate: "startDate",
+  endDate: "endDate",
+  description: "description",
+  url: "url",
 };
 
-function findingLocation(path) {
+function findingLocation(path, t) {
   const [section, second, third, , field] = path.split(".");
+  const fieldName = (key) =>
+    FIELD_NAMES[key] ? t(`location.fields.${FIELD_NAMES[key]}`) : key;
   if (section === "basics") {
-    return second === "profiles" ? `Profile ${Number(third) + 1}, URL` : `Personal Information, ${FIELD_NAMES[second]}`;
+    return second === "profiles"
+      ? t("location.profileUrl", { index: Number(third) + 1 })
+      : t("location.personal", { field: fieldName(second) });
   }
   if (section === "work" || section === "education") {
-    const group = section === "work" ? "Position" : "Education";
-    if (second === undefined) return section === "work" ? "Work experience" : "Education";
-    return `${group} ${Number(second) + 1}, ${FIELD_NAMES[third] ?? field ?? third}`;
+    if (second === undefined) return section === "work" ? t("sections.work") : t("sections.education");
+    const label = FIELD_NAMES[third] ? fieldName(third) : (field ?? third);
+    return section === "work"
+      ? t("location.position", { index: Number(second) + 1, field: label })
+      : t("location.education", { index: Number(second) + 1, field: label });
   }
-  return "Skills";
+  return t("sections.skills");
 }
 
 // The same rules as the ATS score, run on every keystroke. Ported from Reactive
 // Resume's live ATS lint. Collapsed by default so it informs without taking
 // over the editor.
-function CvChecks({ report, onSelect }) {
+function CvChecks({ report, onSelect, t }) {
   const counts = Object.fromEntries(
     SEVERITY_ORDER.map((severity) => [severity, report.findings.filter((f) => f.severity === severity).length]),
   );
@@ -716,11 +727,11 @@ function CvChecks({ report, onSelect }) {
       <summary className="dashboard-card-pad flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">
         <span className="flex items-center gap-2 text-base font-semibold">
           <ListChecksIcon size={18} aria-hidden="true" />
-          CV checks
+          {t("checks.title")}
         </span>
         <span className="flex items-center gap-3 text-sm text-muted-foreground">
           <span className="tabular-nums">
-            {report.passedChecks} of {report.totalChecks} passed
+            {t("checks.passed", { passed: report.passedChecks, total: report.totalChecks })}
           </span>
           <CaretDownIcon size={14} className="transition-transform group-open:rotate-180" aria-hidden="true" />
         </span>
@@ -728,12 +739,11 @@ function CvChecks({ report, onSelect }) {
       <div className="dashboard-card-pad space-y-3 border-t border-border/60">
         <div className="space-y-3 rounded-md border border-border bg-card p-3">
           <p className="text-xs leading-normal text-muted-foreground">
-            These checks run as you type and never leave your browser. They test whether software can read your CV, not
-            how well it&apos;s written.
+            {t("checks.intro")}
           </p>
           <div className="space-y-2">
             <p className="text-sm leading-none font-medium">
-              {report.passedChecks} of {report.totalChecks} checks passed
+              {t("checks.checksPassed", { passed: report.passedChecks, total: report.totalChecks })}
             </p>
             <div className="h-1.5 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]">
               <div
@@ -753,7 +763,7 @@ function CvChecks({ report, onSelect }) {
         {report.findings.length === 0 ? (
           <div className="flex items-center gap-3 rounded-md border border-dashed border-border p-3">
             <CheckCircleIcon className="size-5 shrink-0 text-[var(--landing-success)]" />
-            <p className="text-sm leading-normal text-muted-foreground">Every check passed.</p>
+            <p className="text-sm leading-normal text-muted-foreground">{t("checks.allPassed")}</p>
           </div>
         ) : (
           <ul className="space-y-2">
@@ -761,7 +771,7 @@ function CvChecks({ report, onSelect }) {
               <FindingRow
                 key={`${finding.code}-${finding.path}`}
                 finding={finding}
-                location={findingLocation(finding.path)}
+                location={findingLocation(finding.path, t)}
                 onJump={() => onSelect(finding.path)}
               />
             ))}
@@ -791,7 +801,7 @@ function SectionEmptyState({ children, actionLabel, onAction }) {
   );
 }
 
-function SkillsList({ control, register, nestIndex }) {
+function SkillsList({ control, register, nestIndex, t }) {
 
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -800,7 +810,7 @@ function SkillsList({ control, register, nestIndex }) {
 
   return (
     <div className="space-y-2">
-      <Label>Skills</Label>
+      <Label>{t("sections.skills")}</Label>
       <div className="flex flex-wrap gap-2">
         {fields.map((field, k) => (
           <div key={field.id} className="flex items-center gap-1">
@@ -834,7 +844,7 @@ function SkillsList({ control, register, nestIndex }) {
         onClick={() => append("")}
       >
         <PlusIcon size={12} />
-        Add Skill
+        {t("addSkill")}
       </Button>
     </div>
   );

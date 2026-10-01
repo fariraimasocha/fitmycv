@@ -19,10 +19,11 @@ import {
   TextHOneIcon,
   XIcon,
 } from "@phosphor-icons/react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import LanguagePicker from "@/components/LanguagePicker";
 import AuthLink from "@/components/landing/AuthLink";
 import { useSession, signOut } from "next-auth/react";
-import { usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -36,11 +37,11 @@ import {
 import { FREE_TOOLS } from "@/lib/free-tools";
 
 const navLinks = [
-  { label: "Jobs", href: "/jobs" },
-  { label: "How It Works", href: "/#how-it-works" },
-  { label: "Templates", href: "/cv-templates" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "Blog", href: "/blog" },
+  { key: "jobs", href: "/jobs" },
+  { key: "howItWorks", href: "/#how-it-works" },
+  { key: "templates", href: "/cv-templates" },
+  { key: "pricing", href: "/#pricing" },
+  { key: "blog", href: "/blog" },
 ];
 
 // Icons live here, not in lib/free-tools.js, so the footer and any server code
@@ -70,6 +71,7 @@ function ToolIcon({ href, size }) {
 }
 
 const Navbar1 = () => {
+  const t = useTranslations("header");
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const pathname = usePathname();
@@ -115,12 +117,12 @@ const Navbar1 = () => {
         <nav className="hidden items-center gap-6 lg:gap-7 md:flex">
           {navLinks.map((item) => (
             <Link
-              key={item.label}
+              key={item.key}
               href={item.href}
               onClick={(e) => handleSmoothScroll(e, item.href)}
               className="tap-target text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
             >
-              {item.label}
+              {t(item.key)}
             </Link>
           ))}
           <DropdownMenu>
@@ -129,7 +131,7 @@ const Navbar1 = () => {
                 type="button"
                 className="tap-target inline-flex items-center gap-1 text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
               >
-                Free tools
+                {t("freeTools")}
                 <CaretDownIcon size={12} weight="bold" aria-hidden="true" />
               </button>
             </DropdownMenuTrigger>
@@ -161,6 +163,7 @@ const Navbar1 = () => {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          <LanguagePicker />
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -186,7 +189,7 @@ const Navbar1 = () => {
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard" className="flex cursor-pointer items-center">
                     <LayoutIcon className="mr-2 h-4 w-4" />
-                    Dashboard
+                    {t("dashboard")}
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
@@ -195,7 +198,7 @@ const Navbar1 = () => {
                   className="cursor-pointer text-destructive focus:text-destructive"
                 >
                   <SignOutIcon className="mr-2 h-4 w-4" />
-                  Logout
+                  {t("logout")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -205,13 +208,13 @@ const Navbar1 = () => {
                 href="/auth"
                 className="tap-target text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
               >
-                Login
+                {t("login")}
               </AuthLink>
               <AuthLink
                 href="/auth"
                 className="tap-target landing-primary-btn landing-primary-btn-sm font-outfit"
               >
-                Try for free
+                {t("tryFree")}
               </AuthLink>
             </>
           )}
@@ -221,7 +224,7 @@ const Navbar1 = () => {
           type="button"
           className="rounded-lg p-2 text-[var(--landing-ink)] md:hidden"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? t("closeMenu") : t("openMenu")}
         >
           {isOpen ? <XIcon size={22} /> : <ListIcon size={22} />}
         </button>
@@ -236,17 +239,17 @@ const Navbar1 = () => {
           <div className="flex flex-col gap-4">
             {navLinks.map((item) => (
               <Link
-                key={item.label}
+                key={item.key}
                 href={item.href}
                 className="text-base font-medium text-[var(--landing-ink)]"
                 onClick={(e) => handleSmoothScroll(e, item.href)}
               >
-                {item.label}
+                {t(item.key)}
               </Link>
             ))}
             <div className="flex flex-col gap-3">
               <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">
-                Free tools
+                {t("freeTools")}
               </p>
               <div className="grid grid-cols-2 gap-2">
                 {FREE_TOOLS.map((tool) => (
@@ -264,9 +267,10 @@ const Navbar1 = () => {
                 ))}
               </div>
             </div>
+            <LanguagePicker align="start" className="self-start" />
             {session ? (
               <Link href="/dashboard" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
-                Dashboard
+                {t("dashboard")}
               </Link>
             ) : (
               <>
@@ -275,14 +279,14 @@ const Navbar1 = () => {
                   className="landing-primary-btn landing-primary-btn-sm w-full"
                   onClick={() => setIsOpen(false)}
                 >
-                  Try for free
+                  {t("tryFree")}
                 </AuthLink>
                 <AuthLink
                   href="/auth"
                   className="landing-secondary-btn landing-secondary-btn-sm w-full"
                   onClick={() => setIsOpen(false)}
                 >
-                  Login
+                  {t("login")}
                 </AuthLink>
               </>
             )}

@@ -5,13 +5,22 @@ import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
 import { getServerPricing } from "@/lib/server-pricing";
+import { getTranslations } from "next-intl/server";
+import { localeAlternates } from "@/lib/seo";
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.pricingPage.meta" });
   const { pricing } = await getServerPricing();
+  const prices = {
+    lifetime: pricing.lifetime.price,
+    month: pricing.month.price,
+  };
+  const alternates = localeAlternates(locale, "/pricing");
 
   return {
-    title: `Pricing: Lifetime Access for $${pricing.lifetime.price}`,
-    description: `FitMyCV Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month. Download unlimited tailored CVs and cover letters from any job link, with ATS scores.`,
+    title: t("title", prices),
+    description: t("description", prices),
     keywords: [
       "fitmycv pricing",
       "cv tailoring tool price",
@@ -19,61 +28,49 @@ export async function generateMetadata() {
       "tailor cv from job link cost",
       "ats resume optimizer pricing",
     ],
-    alternates: {
-      canonical: "/pricing",
-    },
+    alternates,
     openGraph: {
       type: "website",
-      url: "/pricing",
+      url: alternates.canonical,
       siteName: "FitMyCV",
-      title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
-      description: `Lifetime access for $${pricing.lifetime.price} or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scoring, and PDF export.`,
+      title: t("socialTitle"),
+      description: t("ogDescription", prices),
       images: [
         {
           url: "/hero-new.png",
           width: 3024,
           height: 1724,
-          alt: "FitMyCV pricing: tailor your CV from any job link",
+          alt: t("imageAlt"),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Pricing: Tailored CVs From Any Job Link | FitMyCV",
-      description: `Premium is $${pricing.lifetime.price} lifetime or $${pricing.month.price}/month for unlimited tailored CVs, cover letters, ATS scores, and PDFs. Cancel monthly anytime.`,
+      title: t("socialTitle"),
+      description: t("twitterDescription", prices),
       images: ["/hero-new.png"],
     },
   };
 }
 
-function buildFaqs(pricing) {
-  return [
-    {
-      q: "How much does FitMyCV cost?",
-      a: `FitMyCV Premium is $${pricing.lifetime.price} for lifetime access (pay once, keep it forever) or $${pricing.month.price} per month with no contracts.`,
-    },
-    {
-      q: "What do I get with Premium?",
-      a: "Premium includes unlimited tailored CVs and cover letters from any job link, a match score and ATS score on every CV, interview prep with company research and outreach, daily job matches by email, and PDF export on everything.",
-    },
-    {
-      q: "Can I cancel anytime?",
-      a: "Monthly subscriptions can be canceled anytime. You keep access until the end of your billing period. Lifetime purchases are one-time and non-refundable.",
-    },
-    {
-      q: "Which payment methods do you accept?",
-      a: "Payments are processed securely through Polar, which accepts all major credit and debit cards.",
-    },
-    {
-      q: "Is regional pricing available?",
-      a: "Yes. Lower pricing may apply in select countries based on your location at checkout.",
-    },
-  ];
+const FAQ_KEYS = ["cost", "includes", "cancel", "payment", "regional"];
+
+function buildFaqs(t, pricing) {
+  const prices = {
+    lifetime: pricing.lifetime.price,
+    month: pricing.month.price,
+  };
+  return FAQ_KEYS.map((key) => ({
+    q: t(`faqs.${key}.q`),
+    a: t(`faqs.${key}.a`, prices),
+  }));
 }
 
-export default async function PricingPage() {
+export default async function PricingPage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.pricingPage" });
   const { pricing } = await getServerPricing();
-  const faqs = buildFaqs(pricing);
+  const faqs = buildFaqs(t, pricing);
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -101,25 +98,23 @@ export default async function PricingPage() {
           <div className="landing-container flex flex-col items-center text-center">
             <div className="landing-eyebrow">
               <div className="h-2 w-2 shrink-0 rounded-full bg-[var(--landing-primary)]" />
-              Pricing
+              {t("eyebrow")}
             </div>
             <h1
               className="font-serif-display mt-6 max-w-4xl font-normal leading-[1.02] tracking-normal text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(36px, 5.4vw, 68px)" }}
             >
-              One plan. Unlimited tailored applications.
+              {t("title")}
             </h1>
             <p className="mt-5 font-outfit text-lg font-extrabold text-[var(--landing-ink)] sm:text-xl">
-              ${pricing.lifetime.price} once
+              {t("priceOnce", { price: pricing.lifetime.price })}
               <span className="mx-2 font-normal text-[var(--landing-ink-soft)]">
-                or
+                {t("or")}
               </span>
-              ${pricing.month.price}/mo
+              {t("priceMonthly", { price: pricing.month.price })}
             </p>
             <p className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-              Tailor your CV and cover letter to every job link you paste,
-              download them as clean PDFs, and track your match and ATS scores,
-              all for one simple price.
+              {t("intro")}
             </p>
           </div>
         </section>
@@ -129,10 +124,10 @@ export default async function PricingPage() {
         <section className="landing-section">
           <div className="landing-container flex flex-col items-center gap-4">
             <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
-              Pricing FAQ
+              {t("faqTitle")}
             </h2>
             <p className="landing-copy text-center text-base">
-              Everything you need to know about FitMyCV Premium.
+              {t("faqIntro")}
             </p>
           </div>
 

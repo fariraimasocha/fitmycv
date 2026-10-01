@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowLeftIcon,
   ArrowCounterClockwiseIcon,
@@ -51,71 +52,61 @@ function buildResumeData(source) {
   };
 }
 
-function formatSavedAt(value, now) {
+function formatSavedAt(value, now, t, locale) {
   if (!value) return null;
   const date = new Date(value);
   const diffMs = now - date.getTime();
   const minutes = Math.round(diffMs / 60000);
-  if (minutes < 1) return "Just now";
-  if (minutes < 60) return `${minutes} min ago`;
+  if (minutes < 1) return t("justNow");
+  if (minutes < 60) return t("minutesAgo", { count: minutes });
   const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours} h ago`;
+  if (hours < 24) return t("hoursAgo", { count: hours });
   const days = Math.round(hours / 24);
-  if (days === 1) return "Yesterday";
-  if (days < 7) return `${days} days ago`;
-  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  if (days === 1) return t("yesterday");
+  if (days < 7) return t("daysAgo", { count: days });
+  return date.toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+    day: "numeric",
+    month: "short",
+  });
 }
 
 const MOBILE_TABS = [
   {
     id: "edit",
-    label: "Edit",
     icon: <PencilSimpleIcon size={14} aria-hidden="true" />,
   },
   {
     id: "preview",
-    label: "Preview",
     icon: <EyeIcon size={14} aria-hidden="true" />,
   },
 ];
 
 const UPLOAD_STEPS = [
-  {
-    icon: UploadSimpleIcon,
-    title: "Upload a PDF",
-    body: "One file, up to 8MB.",
-  },
-  {
-    icon: SparkleIcon,
-    title: "We read the details",
-    body: "Experience, education, skills and contact details, in editable fields.",
-  },
-  {
-    icon: CheckCircleIcon,
-    title: "You review and save",
-    body: "Fix anything that looks off. Nothing is stored until you save.",
-  },
+  { key: "upload", icon: UploadSimpleIcon },
+  { key: "read", icon: SparkleIcon },
+  { key: "review", icon: CheckCircleIcon },
 ];
 
 function UploadPanel({ onParsed, replacing }) {
+  const t = useTranslations("tailor.resume.uploadPanel");
   return (
     <div className="grid items-start gap-4 lg:grid-cols-12">
       <DashboardPanel delay={0.05} className="lg:col-span-5">
         <h2 className="font-outfit text-sm font-semibold text-foreground">
-          How it works
+          {t("title")}
         </h2>
         <ol className="mt-4 flex flex-col gap-4">
           {UPLOAD_STEPS.map((step) => (
-            <li key={step.title} className="flex gap-3">
+            <li key={step.key} className="flex gap-3">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
                 <step.icon size={16} aria-hidden="true" />
               </span>
               <div>
                 <p className="text-sm font-medium text-foreground">
-                  {step.title}
+                  {t(`steps.${step.key}.title`)}
                 </p>
                 <p className="mt-0.5 text-sm leading-6 text-muted-foreground">
-                  {step.body}
+                  {t(`steps.${step.key}.body`)}
                 </p>
               </div>
             </li>
@@ -123,8 +114,7 @@ function UploadPanel({ onParsed, replacing }) {
         </ol>
         {replacing && (
           <p className="mt-5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-2.5 text-xs leading-5 text-[var(--landing-ink-soft)]">
-            Your current CV stays until you save the new one. Its template and
-            style carry over.
+            {t("replacingNote")}
           </p>
         )}
       </DashboardPanel>
@@ -145,6 +135,12 @@ export default function MyResumePage() {
   const [liveValues, setLiveValues] = useState(null);
   const [liveReport, setLiveReport] = useState(null);
   const [now] = useState(() => Date.now());
+  const t = useTranslations("tailor.resume");
+  const locale = useLocale();
+  const mobileTabs = MOBILE_TABS.map((tab) => ({
+    ...tab,
+    label: t(`tabs.${tab.id}`),
+  }));
 
   const { data: savedCV, isLoading } = useQuery({
     queryKey: ["resume"],
@@ -184,9 +180,8 @@ export default function MyResumePage() {
       if (json.data) queryClient.setQueryData(["resume"], json.data);
     },
     onError: () => {
-      toast.error("Couldn't save your template", {
-        description:
-          "Your change is still on screen. Check your connection and try again.",
+      toast.error(t("templateSaveError.title"), {
+        description: t("templateSaveError.description"),
       });
     },
   });
@@ -253,15 +248,13 @@ export default function MyResumePage() {
             className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeftIcon size={16} aria-hidden="true" />
-            Back to my CV
+            {t("backToCv")}
           </button>
         )}
         <DashboardPageHeader
-          title={replacing ? "Replace your CV" : "Upload your CV"}
+          title={replacing ? t("replace.title") : t("upload.title")}
           description={
-            replacing
-              ? "Upload a new PDF. You can check the details before anything changes."
-              : "Upload your CV as a PDF. Every tailored application starts from it."
+            replacing ? t("replace.description") : t("upload.description")
           }
         />
         <UploadPanel onParsed={handleParsed} replacing={replacing} />
@@ -270,16 +263,19 @@ export default function MyResumePage() {
   }
 
   const isDraft = Boolean(parsedData);
-  const savedAt = formatSavedAt(savedCV?.updatedAt, now);
+  const savedAt = formatSavedAt(
+    savedCV?.updatedAt,
+    now,
+    (key, values) => t(`savedAt.${key}`, values),
+    locale,
+  );
 
   return (
     <DashboardPageShell width="full">
       <DashboardPageHeader
-        title={isDraft ? "Review your CV" : "My CV"}
+        title={isDraft ? t("review.title") : t("saved.title")}
         description={
-          isDraft
-            ? "We read this from your PDF. Fix anything that looks off, then save."
-            : "Every tailored CV and cover letter starts from this CV."
+          isDraft ? t("review.description") : t("saved.description")
         }
         actions={
           <>
@@ -294,7 +290,7 @@ export default function MyResumePage() {
                 className="dashboard-secondary-btn"
               >
                 <ArrowLeftIcon size={16} aria-hidden="true" />
-                Discard and keep saved CV
+                {t("discard")}
               </button>
             )}
             <button
@@ -303,7 +299,7 @@ export default function MyResumePage() {
               className="dashboard-secondary-btn"
             >
               <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />
-              {isDraft ? "Upload a different PDF" : "Replace CV"}
+              {isDraft ? t("uploadDifferent") : t("replaceCv")}
             </button>
             <button
               type="button"
@@ -311,7 +307,7 @@ export default function MyResumePage() {
               className="dashboard-primary-btn"
             >
               <DownloadSimpleIcon size={16} aria-hidden="true" />
-              Download PDF
+              {t("downloadPdf")}
             </button>
           </>
         }
@@ -322,40 +318,43 @@ export default function MyResumePage() {
         items={[
           {
             icon: ListChecksIcon,
-            label: "CV checks",
+            label: t("stats.checks"),
             value: liveReport
-              ? `${liveReport.passedChecks} of ${liveReport.totalChecks} passed`
-              : "Checking",
+              ? t("stats.checksPassed", {
+                  passed: liveReport.passedChecks,
+                  total: liveReport.totalChecks,
+                })
+              : t("stats.checking"),
             tone: "accent",
           },
           {
             icon: BriefcaseIcon,
-            label: "Positions",
+            label: t("stats.positions"),
             value: previewData.work?.length ?? 0,
           },
           {
             icon: GraduationCapIcon,
-            label: "Education",
+            label: t("stats.education"),
             value: previewData.education?.length ?? 0,
           },
           {
             icon: TagIcon,
-            label: "Skill groups",
+            label: t("stats.skillGroups"),
             value: previewData.skills?.length ?? 0,
           },
           isDraft
-            ? { icon: FileTextIcon, label: "Template", value: templateName }
+            ? { icon: FileTextIcon, label: t("stats.template"), value: templateName }
             : {
                 icon: ClockIcon,
-                label: "Last saved",
-                value: savedAt ?? "Not yet",
+                label: t("stats.lastSaved"),
+                value: savedAt ?? t("stats.notYet"),
               },
         ]}
       />
 
       <DashboardTabBar
-        ariaLabel="Edit or preview"
-        tabs={MOBILE_TABS}
+        ariaLabel={t("tabs.ariaLabel")}
+        tabs={mobileTabs}
         activeTab={mobileTab}
         onTabChange={setMobileTab}
         className="lg:hidden"
@@ -399,7 +398,7 @@ export default function MyResumePage() {
                 />
               </div>
               <p className="truncate text-xs text-muted-foreground">
-                Updates as you type
+                {t("liveUpdates")}
               </p>
             </div>
             <div className="bg-white">

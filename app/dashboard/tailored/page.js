@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   BuildingsIcon,
   CalendarIcon,
@@ -33,8 +34,6 @@ import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const PAGE_TITLE = "Tailored CVs";
-const PAGE_DESCRIPTION = "Every CV you tailor is saved here. Open one to edit, download or write a cover letter.";
 const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
 
 /**
@@ -85,7 +84,8 @@ function RowSkeleton() {
 
 function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDelete }) {
   const reduceMotion = useReducedMotion();
-  const title = cv.jobTitle || "Untitled role";
+  const t = useTranslations("tailor.tailoredList");
+  const title = cv.jobTitle || t("untitled");
 
   return (
     <motion.li
@@ -98,7 +98,7 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
             stay siblings rather than children of an anchor. */}
         <Link
           href={`/dashboard/tailored/${cv._id}`}
-          aria-label={`Open ${title}`}
+          aria-label={t("open", { title })}
           className="absolute inset-0 z-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
         />
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-sm font-semibold text-foreground">
@@ -122,18 +122,18 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
             {cv.hasCoverLetter && (
               <span className="inline-flex items-center gap-1 font-medium text-[var(--landing-success)]">
                 <CheckCircleIcon size={12} weight="fill" aria-hidden="true" />
-                Cover letter
+                {t("coverLetter")}
               </span>
             )}
           </div>
         </div>
 
-        <RowAction label={`Download ${title}`} onClick={onDownload}>
+        <RowAction label={t("download", { title })} onClick={onDownload}>
           <DownloadSimpleIcon size={16} aria-hidden="true" />
         </RowAction>
 
         <RowAction
-          label={confirming ? "Click again to delete" : `Delete ${title}`}
+          label={confirming ? t("confirmDelete") : t("delete", { title })}
           force={confirming}
           disabled={deletePending}
           onClick={onDelete}
@@ -161,6 +161,9 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
 
 export default function TailoredCVsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const t = useTranslations("tailor.tailoredList");
+  const PAGE_TITLE = t("title");
+  const PAGE_DESCRIPTION = t("description");
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [upgradeModalContext, setUpgradeModalContext] = useState("default");
   const [filter, setFilter] = useState("all");
@@ -189,12 +192,12 @@ export default function TailoredCVsPage() {
       const res = await fetch(`/api/tailored-cv/${id}`, { method: "DELETE" });
       if (!res.ok) {
         const json = await res.json();
-        throw new Error(json.error || "Couldn't delete this CV. Try again.");
+        throw new Error(json.error || t("deleteError"));
       }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
-      toast.success("CV deleted");
+      toast.success(t("deleted"));
       setConfirmDeleteId(null);
     },
     onError: (error) => {
@@ -231,7 +234,7 @@ export default function TailoredCVsPage() {
     }
     try {
       const res = await fetch(`/api/tailored-cv/${cv._id}`);
-      if (!res.ok) throw new Error("Couldn't load this CV. Try again.");
+      if (!res.ok) throw new Error(t("loadError"));
       const json = await res.json();
       const data = json.data;
       printDocument({
@@ -251,7 +254,7 @@ export default function TailoredCVsPage() {
         source: "tailored_list",
       });
     } catch (error) {
-      toast.error(error.message || "Couldn't download the PDF. Try again.");
+      toast.error(error.message || t("downloadError"));
     }
   };
 
@@ -271,7 +274,7 @@ export default function TailoredCVsPage() {
         <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
         <div className="flex flex-col gap-3">
           <div className="tool-skeleton h-9 w-56 rounded-md" />
-          <ul className="flex flex-col gap-2" aria-busy="true" aria-label="Loading tailored CVs">
+          <ul className="flex flex-col gap-2" aria-busy="true" aria-label={t("loading")}>
             {[0, 1, 2, 3, 4].map((i) => (
               <li key={i}>
                 <RowSkeleton />
@@ -294,7 +297,7 @@ export default function TailoredCVsPage() {
           !isEmpty ? (
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
-              Tailor my CV
+              {t("tailorCta")}
             </Link>
           ) : null
         }
@@ -303,21 +306,19 @@ export default function TailoredCVsPage() {
       {isEmpty ? (
         <DashboardEmptyState
           icon={FileTextIcon}
-          title="Your tailored CVs will appear here"
+          title={t("empty.title")}
           description={
-            hasReferenceCV
-              ? "Paste a job link or description and we rewrite your CV for that role. Each one is saved here."
-              : "Upload your CV first. Then paste a job link or description and we rewrite it for that role."
+            hasReferenceCV ? t("empty.withCv") : t("empty.noCv")
           }
-          actionLabel={hasReferenceCV ? "Tailor my CV" : "Upload your CV"}
+          actionLabel={hasReferenceCV ? t("tailorCta") : t("empty.upload")}
           actionHref={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
         />
       ) : (
         <div className="flex flex-col gap-3">
           <DashboardFilterPills
             tabs={[
-              { key: "all", label: "All", count: sorted.length },
-              { key: "letter", label: "With cover letter", count: withLetter.length },
+              { key: "all", label: t("filters.all"), count: sorted.length },
+              { key: "letter", label: t("filters.letter"), count: withLetter.length },
             ]}
             activeKey={filter}
             onChange={setFilter}
@@ -326,8 +327,8 @@ export default function TailoredCVsPage() {
             <DashboardEmptyState
               compact
               icon={CheckCircleIcon}
-              title="No cover letters yet"
-              description="Open a tailored CV and write one from the Cover letter tab."
+              title={t("noLetters.title")}
+              description={t("noLetters.description")}
             />
           ) : (
             <ul className="flex flex-col gap-2">

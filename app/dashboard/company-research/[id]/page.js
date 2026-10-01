@@ -15,6 +15,7 @@ import {
   NewspaperIcon,
   WarningCircleIcon,
 } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import CompanyResearchCard from "@/components/CompanyResearchCard";
 import FormattedDate from "@/components/FormattedDate";
 import {
@@ -29,13 +30,14 @@ const LIST_HREF = "/dashboard/company-research";
 const DATE_FORMAT = { day: "numeric", month: "short", year: "numeric" };
 
 function BackLink() {
+  const t = useTranslations("dashboard.companyResearch.detail");
   return (
     <Link
       href={LIST_HREF}
       className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
     >
       <ArrowLeftIcon size={16} aria-hidden="true" />
-      Back to company research
+      {t("back")}
     </Link>
   );
 }
@@ -67,6 +69,7 @@ function Rise({ children, delay = 0 }) {
 }
 
 export default function CompanyResearchDetailPage() {
+  const t = useTranslations("dashboard.companyResearch.detail");
   const { id } = useParams();
   const setDetailLabel = useBreadcrumbStore((s) => s.setDetailLabel);
 
@@ -80,7 +83,7 @@ export default function CompanyResearchDetailPage() {
     queryKey: ["company-research", id],
     queryFn: async () => {
       const res = await fetch(`/api/company-research/${id}`);
-      if (!res.ok) throw new Error("Couldn't load the company research. Refresh the page.");
+      if (!res.ok) throw new Error(t("loadError"));
       const json = await res.json();
       return json.data;
     },
@@ -106,12 +109,12 @@ export default function CompanyResearchDetailPage() {
         <BackLink />
         <DashboardEmptyState
           icon={WarningCircleIcon}
-          title="Couldn't load this brief"
-          description="Check your connection and try again."
-          actionLabel={isFetching ? "Retrying…" : "Try again"}
+          title={t("errorTitle")}
+          description={t("errorDescription")}
+          actionLabel={isFetching ? t("retrying") : t("tryAgain")}
           onAction={() => refetch()}
           actionDisabled={isFetching}
-          secondaryLabel="Back to company research"
+          secondaryLabel={t("back")}
           secondaryHref={LIST_HREF}
         />
       </DashboardPageShell>
@@ -124,9 +127,9 @@ export default function CompanyResearchDetailPage() {
         <BackLink />
         <DashboardEmptyState
           icon={BinocularsIcon}
-          title="This brief is not available"
-          description="It may have been removed. Your other briefs are still in the list."
-          actionLabel="Back to company research"
+          title={t("notAvailableTitle")}
+          description={t("notAvailableDescription")}
+          actionLabel={t("back")}
           actionHref={LIST_HREF}
         />
       </DashboardPageShell>
@@ -141,11 +144,11 @@ export default function CompanyResearchDetailPage() {
       <BackLink />
 
       <DashboardPageHeader
-        title={brief.companyName || "Unnamed company"}
+        title={brief.companyName || t("unnamed")}
         description={
           brief.jobTitle
-            ? `Brief for the ${brief.jobTitle} role.`
-            : "Brief on the company behind this job."
+            ? t("briefForRole", { role: brief.jobTitle })
+            : t("briefGeneric")
         }
         actions={
           brief.jobUrl ? (
@@ -156,7 +159,7 @@ export default function CompanyResearchDetailPage() {
               className="dashboard-secondary-btn"
             >
               <ArrowSquareOutIcon size={16} aria-hidden="true" />
-              Open job posting
+              {t("openPosting")}
             </a>
           ) : null
         }
@@ -167,19 +170,19 @@ export default function CompanyResearchDetailPage() {
         items={[
           {
             icon: BriefcaseIcon,
-            label: "Role",
-            value: brief.jobTitle || "Not set",
+            label: t("role"),
+            value: brief.jobTitle || t("notSet"),
             tone: "accent",
           },
           {
             icon: CalendarIcon,
-            label: "Added",
+            label: t("added"),
             value: <FormattedDate date={brief.createdAt} options={DATE_FORMAT} />,
           },
-          { icon: NewspaperIcon, label: "News items", value: newsCount },
+          { icon: NewspaperIcon, label: t("newsItems"), value: newsCount },
           {
             icon: LightbulbIcon,
-            label: "Positioning tips",
+            label: t("positioningTips"),
             value: tipsCount,
             tone: "success",
           },

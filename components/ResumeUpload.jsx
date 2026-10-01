@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef } from "react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   UploadSimpleIcon,
   FileTextIcon,
@@ -20,6 +21,7 @@ function formatFileSize(bytes) {
 }
 
 export default function ResumeUpload({ onParsed }) {
+  const t = useTranslations("tailor.upload");
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -57,9 +59,9 @@ export default function ResumeUpload({ onParsed }) {
       setFile(droppedFile);
       setIsComplete(false);
     } else {
-      toast.error("Choose a PDF file. Other file types aren't supported.");
+      toast.error(t("pdfOnlyError"));
     }
-  }, [isUploading]);
+  }, [isUploading, t]);
 
   const handleFileChange = (e) => {
     const selected = e.target.files?.[0];
@@ -86,7 +88,7 @@ export default function ResumeUpload({ onParsed }) {
       trackEvent("resume_uploaded", { file_size_bytes: file.size });
       onParsed({ ...result.data, rawText: result.rawText });
     } catch (error) {
-      toast.error(error.message || "Couldn't upload your CV. Try again.");
+      toast.error(error.message || t("uploadError"));
       setProgressState({
         progress: 0,
         stage: "preparing",
@@ -138,11 +140,11 @@ export default function ResumeUpload({ onParsed }) {
             />
           </span>
           <p className="text-sm font-medium text-[var(--landing-ink)]">
-            Drag and drop your CV PDF here
+            {t("dropHere")}
           </p>
-          <p className="mt-1 text-xs text-[var(--landing-ink-soft)]">or</p>
+          <p className="mt-1 text-xs text-[var(--landing-ink-soft)]">{t("or")}</p>
           <span className="mt-3 text-sm font-medium text-[var(--landing-ink)] underline-offset-2 hover:underline">
-            Browse files
+            {t("browse")}
           </span>
           <input
             ref={inputRef}
@@ -154,7 +156,7 @@ export default function ResumeUpload({ onParsed }) {
             aria-describedby="resume-file-hint"
           />
           <p id="resume-file-hint" className="mt-3 text-xs text-[var(--landing-ink-soft)]">
-            PDF only, max 8MB
+            {t("hint")}
           </p>
         </div>
       )}
@@ -174,7 +176,7 @@ export default function ResumeUpload({ onParsed }) {
             type="button"
             onClick={removeFile}
             className="rounded-lg p-1.5 text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
-            aria-label="Remove file"
+            aria-label={t("removeFile")}
           >
             <XIcon size={16} aria-hidden="true" />
           </button>
@@ -185,7 +187,6 @@ export default function ResumeUpload({ onParsed }) {
         <UploadProgress
           progress={progressState.progress}
           stage={progressState.stage}
-          label={progressState.label}
         />
       )}
 
@@ -193,8 +194,8 @@ export default function ResumeUpload({ onParsed }) {
         <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-success-soft)] p-4 text-[var(--landing-success)]">
           <CheckCircleIcon size={22} weight="fill" aria-hidden="true" />
           <div>
-            <p className="text-sm font-semibold">Your CV is uploaded</p>
-            <p className="text-xs opacity-80">Check the details, then save.</p>
+            <p className="text-sm font-semibold">{t("doneTitle")}</p>
+            <p className="text-xs opacity-80">{t("doneBody")}</p>
           </div>
         </div>
       )}
@@ -208,7 +209,7 @@ export default function ResumeUpload({ onParsed }) {
             className="dashboard-primary-btn w-full"
           >
             <UploadSimpleIcon size={16} aria-hidden="true" />
-            Upload CV
+            {t("submit")}
           </button>
         </motion.div>
       )}

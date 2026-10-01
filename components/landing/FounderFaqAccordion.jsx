@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 
 function FAQItem({ faq, index, isOpen, onToggle }) {
   const panelId = `founder-faq-panel-${index}`;
@@ -51,13 +52,14 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
 }
 
 export default function FounderFaqAccordion({ faqs }) {
+  const t = useTranslations("landing.faq");
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
     <div>
-      <p className="landing-eyebrow-plain">FAQ</p>
+      <p className="landing-eyebrow-plain">{t("eyebrow")}</p>
       <h2 className="mt-3 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl lg:text-5xl">
-        Honest answers.
+        {t("title")}
       </h2>
       <div className="mt-8">
         {faqs.map((faq, i) => (

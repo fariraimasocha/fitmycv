@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Tailor Your CV to Any Job Link | FitMyCV",
+    "description": "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
+    "ogTitle": "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
+    "ogAlt": "FitMyCV: Land more interviews with a CV that fits",
+    "schemaName": "Tailor Your CV to Any Job Link",
+    "howToName": "How to tailor your CV to a job link",
+    "howToDescription": "Paste a job link, let FitMyCV rewrite your CV against the role's requirements, then download the CV and cover letter as PDFs."
+  },
+  "hero": {
+    "videoLabel": "FitMyCV demo: paste a job link and download a tailored CV",
+    "checkerTitle": "Check your CV against a job posting, free",
+    "checkerBody": "No sign-up. Your file is read in your browser.",
+    "checkerCta": "Score my CV",
+    "titleLead": "AI CV and cover letters.",
+    "titleMain": "Paste any job link. Get a CV <accent>made for that role</accent>.",
+    "body": "Upload your CV once. FitMyCV reads the listing and rewrites your CV in the words that role asks for.",
+    "tryFree": "Try for free",
+    "previewFree": "Preview your tailored CV free",
+    "priceNote": "${price} once to download PDFs and apply.",
+    "seeHow": "See how it works"
+  },
+  "jobBoards": {
+    "title": "Works with any job link"
+  },
+  "problem": {
+    "eyebrow": "The problem",
+    "title": "You are not being turned down. You are being filtered out.",
+    "body": "Most companies screen with software before a recruiter sees anything. If your CV misses the words the posting uses, it is dropped. Quietly, and with no reply to tell you why.",
+    "cardTitle": "Your CV, against one posting",
+    "filteredOut": "Filtered out",
+    "scoreLabel": "Match score {value} out of 100",
+    "matchTitle": "Qualification match",
+    "matchBody": "Against the job description",
+    "missingTitle": "Five terms the posting asks for that your CV never says",
+    "coverage": "Keyword coverage",
+    "coverageCount": "{found} of {total}",
+    "footer": "FitMyCV reads the posting, finds the terms you are missing, and rewrites your CV to use them. Only from experience you actually have."
+  },
+  "howItWorks": {
+    "eyebrow": "FitMyCV in action",
+    "title": "One paste. No rewrites. No guesswork.",
+    "jobListing": "Job listing",
+    "paste": "Paste",
+    "cvPreview": "CV preview",
+    "tailor": "Tailor my CV",
+    "export": "Export",
+    "download": "Download PDF",
+    "priceNote": "Preview on screen free. ${price} once to download PDFs."
+  },
+  "templates": {
+    "eyebrow": "Templates",
+    "title": "Nineteen layouts, all built to survive a parser",
+    "body": "Single column, standard headings, no graphics that scramble on extraction. Change the colour and the font on any of them.",
+    "prev": "Previous templates",
+    "next": "Next templates",
+    "seeAll": "See all templates"
+  },
+  "testimonial": {
+    "heading": "From a FitMyCV user"
+  },
+  "trust": {
+    "title": "What you are handing over, and what happens to it",
+    "body": "Your CV is the most personal document you own. Here is exactly how it is handled.",
+    "signals": {
+      "yours": {
+        "title": "Your CV stays yours",
+        "body": "Your reference CV is stored against your account and used only to generate your own documents."
+      },
+      "notShared": {
+        "title": "Never shared with recruiters",
+        "body": "We are not a job board and not a CV database. Nothing you upload is sold, listed, or shown to employers."
+      },
+      "delete": {
+        "title": "Delete everything, any time",
+        "body": "Remove your CV, your tailored documents, and your account from the dashboard whenever you want."
+      },
+      "boards": {
+        "title": "Works with the major boards",
+        "body": "Paste a link from LinkedIn, Indeed, Glassdoor, or a company careers page, with no copy-pasting job text."
+      },
+      "pdf": {
+        "title": "ATS-safe PDF export",
+        "body": "Single-column, text-based PDFs with standard headings, so parsers read them the way you wrote them."
+      },
+      "cancel": {
+        "title": "Cancel whenever",
+        "body": "No contract and no cancellation flow to fight. Access runs to the end of the period you paid for."
+      }
+    },
+    "methodTitle": "How the tailoring works",
+    "methodBody": "We read the job posting at the link you paste, pull out its requirements and keywords, then rewrite your CV against them. Every line comes from the CV you uploaded. The model is instructed never to invent employers, roles, or numbers you did not give it.",
+    "policies": "The claims above are covered by our <privacy>privacy policy</privacy> and <terms>terms and conditions</terms>. Questions about any of it go to <mail>{email}</mail>."
+  },
+  "faq": {
+    "founderAlt": "Farirai James, founder of FitMyCV",
+    "founderRole": "Founder, FitMyCV •",
+    "greetingCountry": "Hey friend from {flag} {country}, I'm Farirai.",
+    "greeting": "Hey friend, I'm Farirai.",
+    "heading": "I kept rewriting my CV for every job link I clicked.",
+    "story1": "I kept rewriting my CV for every job link I clicked. Each application took longer to prep than to submit.",
+    "story2": "So I built FitMyCV. Paste a job link and it reads the posting, then rewrites your CV and cover letter for that role. No copying requirements into a form.",
+    "story3": "I use FitMyCV on my own applications. If it saves me time on every link, it should do the same for you.",
+    "eyebrow": "FAQ",
+    "title": "Honest answers."
+  },
+  "resources": {
+    "title": "Everything else on the site",
+    "body": "Free tools and guides, whether or not you ever pay us a penny.",
+    "open": "Open",
+    "items": {
+      "tailor": {
+        "label": "Tailor a CV from a job link",
+        "body": "The flagship flow: paste a posting URL, get a tailored CV and cover letter."
+      },
+      "match": {
+        "label": "Resume job match checker",
+        "body": "Paste a resume and a posting. See the match, missing skills, and what to fix first."
+      },
+      "ats": {
+        "label": "Free ATS resume checker",
+        "body": "Score your CV against a job description and see the terms you are missing."
+      },
+      "atsGuide": {
+        "label": "How to write an ATS-friendly resume",
+        "body": "Formatting, keywords, and the mistakes that get CVs filtered out before a human reads them."
+      },
+      "examples": {
+        "label": "Resume examples for fourteen jobs",
+        "body": "Worked summaries, before-and-after bullets, and the keywords those postings use."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to stop being ignored?",
+    "body": "Join job seekers landing interviews faster with AI-tailored applications. Lifetime access for ${price}.",
+    "tryFree": "Try for free",
+    "pricing": "View pricing"
+  },
+  "sticky": {
+    "cta": "Tailor my CV"
+  },
+  "footer": {
+    "tagline": "AI-powered CV tailoring. Land more interviews with less effort.",
+    "rights": "2026 FitMyCV. All rights reserved.",
+    "headings": {
+      "product": "Product",
+      "freeTools": "Free tools",
+      "resources": "Resources",
+      "compare": "Compare",
+      "atsGuides": "ATS guides",
+      "company": "Company",
+      "otherApps": "Other Apps"
+    },
+    "links": {
+      "tailor": "Tailor CV from a job link",
+      "optimizer": "Resume optimizer",
+      "aiCoverLetter": "AI cover letter generator",
+      "coverLetterBuilder": "Cover letter builder",
+      "pricing": "Pricing",
+      "blog": "Blog",
+      "atsGuide": "ATS resume guide",
+      "howToWrite": "How to write a resume",
+      "tips": "Resume tips",
+      "resumeExamples": "Resume examples",
+      "cvExamples": "CV examples",
+      "cvTemplates": "CV templates",
+      "faq": "FAQ",
+      "jobscan": "Jobscan alternative",
+      "teal": "Teal alternative",
+      "kickresume": "Kickresume alternative",
+      "workday": "Workday resume format",
+      "greenhouse": "Greenhouse ATS resume",
+      "lever": "Lever ATS resume",
+      "taleo": "Taleo resume format",
+      "icims": "iCIMS resume format",
+      "support": "Support",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
+  },
+  "coverLetterDemo": {
+    "badge": "AI Writing Live",
+    "titleLine1": "Watch your cover letter",
+    "titleLine2": "write itself",
+    "body": "FitMyCV reads the job description and writes a tailored, professional cover letter in seconds, in your voice.",
+    "complete": "Complete",
+    "generating": "Generating…",
+    "tailoredFor": "Tailored for:",
+    "role": "Senior Software Engineer",
+    "at": "at",
+    "letterLabel": "Cover letter being generated",
+    "characters": "{count} / {total} characters",
+    "generateMine": "Generate mine",
+    "note": "Every letter is unique, written to match the exact job, company, and your background."
+  },
+  "webview": {
+    "title": "Open in your browser to sign in",
+    "close": "Close",
+    "warning": "Google does not allow sign in inside the LinkedIn app. Use Chrome or Safari, or continue with email which works here.",
+    "howTo": "How to open in your browser",
+    "ios1": "Tap the <b>•••</b> or share icon at the top right of LinkedIn.",
+    "ios2": "Choose <b>Open in Browser</b> or <b>Open in Safari</b>.",
+    "ios3": "Sign in with Google once the page reloads in Safari.",
+    "android1": "Tap the <b>⋮</b> menu at the top right.",
+    "android2": "Choose <b>Open in Chrome</b> or <b>Open in browser</b>.",
+    "android3": "Sign in with Google once the page reloads in Chrome.",
+    "desktop1": "Copy the sign in link below.",
+    "desktop2": "Paste it in Chrome or Safari.",
+    "desktop3": "Sign in with Google there.",
+    "copy": "Copy sign in link",
+    "openChrome": "Try opening in Chrome",
+    "continueEmail": "Continue with email instead",
+    "emailNote": "Email sign in works inside LinkedIn. No need to switch browser.",
+    "continueBrowsing": "Continue browsing",
+    "toastCopied": "Link copied. Paste it in Chrome or Safari.",
+    "toastCopyFailed": "Could not copy. Long press the link to copy it.",
+    "toastOpening": "Opening in Chrome. If nothing happens, use Copy link."
+  }
+}

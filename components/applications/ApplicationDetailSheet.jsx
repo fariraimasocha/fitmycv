@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowRightIcon,
   ArrowSquareOutIcon,
@@ -39,8 +40,15 @@ const dateInputValue = (value) => {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 10);
 };
-const formatDate = (value) =>
-  value ? new Date(value).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "Not set";
+// English keeps the browser's date format. Other languages format in the language the user picked.
+const formatDate = (value, locale, fallback) =>
+  value
+    ? new Date(value).toLocaleDateString(locale === "en" ? undefined : locale, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : fallback;
 const byNewest = (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime();
 const isStage = (entry) => (entry.kind ?? "stage") === "stage";
 const currentStageAnchorId = (history, status) =>
@@ -56,10 +64,11 @@ function Section({ title, children }) {
 }
 
 function Fact({ label, value }) {
+  const t = useTranslations("dashboard.appComponents.detail");
   return (
     <div>
       <dt className="text-xs text-muted-foreground">{label}</dt>
-      <dd className="mt-0.5 font-medium">{value || "Not set"}</dd>
+      <dd className="mt-0.5 font-medium">{value || t("notSet")}</dd>
     </div>
   );
 }
@@ -67,6 +76,7 @@ function Fact({ label, value }) {
 const EMPTY_CONTACT = { name: "", role: "", kind: "", email: "", phone: "" };
 
 function ContactsEditor({ contacts, pending, onChange }) {
+  const t = useTranslations("dashboard.appComponents.detail");
   const [adding, setAdding] = useState(false);
   const [draft, setDraft] = useState(EMPTY_CONTACT);
   const [error, setError] = useState("");
@@ -80,7 +90,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
   const add = () => {
     if (pending || !draft.name.trim()) return;
     if (draft.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(draft.email.trim())) {
-      setError("Enter a valid email address.");
+      setError(t("invalidEmail"));
       return;
     }
     onChange([...contacts, draft]);
@@ -125,7 +135,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
           )}
           <button
             type="button"
-            aria-label={`Remove ${contact.name}`}
+            aria-label={t("removeContact", { name: contact.name })}
             disabled={pending}
             className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive/10 hover:text-destructive focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-40"
             onClick={() => onChange(contacts.filter((_, j) => j !== i))}
@@ -138,8 +148,8 @@ function ContactsEditor({ contacts, pending, onChange }) {
         <div className="flex flex-col gap-2 rounded-md border border-[var(--landing-line)] p-2.5">
           <Input
             value={draft.name}
-            placeholder="Name"
-            aria-label="Name"
+            placeholder={t("name")}
+            aria-label={t("name")}
             autoFocus
             onChange={(event) => setDraft((d) => ({ ...d, name: event.target.value }))}
             onKeyDown={submitOnEnter}
@@ -147,16 +157,16 @@ function ContactsEditor({ contacts, pending, onChange }) {
           <div className="grid grid-cols-2 gap-2">
             <Input
               value={draft.role}
-              placeholder="Role (optional)"
-              aria-label="Role"
+              placeholder={t("rolePlaceholder")}
+              aria-label={t("role")}
               onChange={(event) => setDraft((d) => ({ ...d, role: event.target.value }))}
               onKeyDown={submitOnEnter}
             />
             <Input
               value={draft.kind}
               list="contact-kinds"
-              placeholder="Label"
-              aria-label="Label"
+              placeholder={t("label")}
+              aria-label={t("label")}
               onChange={(event) => setDraft((d) => ({ ...d, kind: event.target.value }))}
               onKeyDown={submitOnEnter}
             />
@@ -165,8 +175,8 @@ function ContactsEditor({ contacts, pending, onChange }) {
             <Input
               type="email"
               value={draft.email}
-              placeholder="Email (optional)"
-              aria-label="Email"
+              placeholder={t("emailPlaceholder")}
+              aria-label={t("email")}
               onChange={(event) => {
                 setError("");
                 setDraft((d) => ({ ...d, email: event.target.value }));
@@ -176,22 +186,22 @@ function ContactsEditor({ contacts, pending, onChange }) {
             <Input
               type="tel"
               value={draft.phone}
-              placeholder="Phone (optional)"
-              aria-label="Phone"
+              placeholder={t("phonePlaceholder")}
+              aria-label={t("phone")}
               onChange={(event) => setDraft((d) => ({ ...d, phone: event.target.value }))}
               onKeyDown={submitOnEnter}
             />
           </div>
           <datalist id="contact-kinds">
-            <option value="Recruiter" />
-            <option value="Hiring manager" />
-            <option value="Referral" />
-            <option value="Interviewer" />
+            <option value={t("kinds.recruiter")} />
+            <option value={t("kinds.hiringManager")} />
+            <option value={t("kinds.referral")} />
+            <option value={t("kinds.interviewer")} />
           </datalist>
           {error && <p className="text-xs text-destructive">{error}</p>}
           <div className="flex justify-end gap-2">
             <button type="button" className="dashboard-secondary-btn dashboard-secondary-btn-sm" onClick={reset}>
-              Cancel
+              {t("cancel")}
             </button>
             <button
               type="button"
@@ -199,7 +209,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
               disabled={!draft.name.trim() || pending}
               onClick={add}
             >
-              Add contact
+              {t("addContact")}
             </button>
           </div>
         </div>
@@ -210,7 +220,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
           className="flex items-center gap-1.5 self-start text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           <PlusIcon size={14} aria-hidden="true" />
-          Add contact
+          {t("addContact")}
         </button>
       )}
     </div>
@@ -218,6 +228,9 @@ function ContactsEditor({ contacts, pending, onChange }) {
 }
 
 function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, onDeleteEntry }) {
+  const t = useTranslations("dashboard.appComponents.detail");
+  const tDashboard = useTranslations("dashboard");
+  const locale = useLocale();
   const [note, setNote] = useState("");
   const [editingDate, setEditingDate] = useState(null);
   const [editingNote, setEditingNote] = useState(null);
@@ -234,14 +247,14 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
   };
 
   return (
-    <Section title="Timeline">
+    <Section title={t("timeline")}>
       <div className="flex flex-col gap-3">
         <div className="flex gap-2">
           <Input
             value={note}
             disabled={pending}
-            aria-label="Add a note"
-            placeholder="Add a note"
+            aria-label={t("addNotePlaceholder")}
+            placeholder={t("addNotePlaceholder")}
             onChange={(event) => setNote(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === "Enter" && !event.shiftKey) {
@@ -256,7 +269,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
             disabled={!note.trim() || pending}
             onClick={add}
           >
-            Add note
+            {t("addNote")}
           </button>
         </div>
         <div className="relative flex flex-col gap-2 pl-4 before:absolute before:inset-y-2 before:left-1 before:w-px before:bg-[var(--landing-line)]">
@@ -278,7 +291,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0 flex-1">
                     {stage ? (
-                      <div className="font-medium">Moved to {stage.label}</div>
+                      <div className="font-medium">{t("movedTo", { stage: tDashboard(`stages.${entry.status}`) })}</div>
                     ) : (
                       <button
                         type="button"
@@ -292,7 +305,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                       </button>
                     )}
                     {stage && entry.note && <div className="mt-1 text-xs text-muted-foreground">{entry.note}</div>}
-                    {isAnchor && <div className="mt-1 text-xs text-muted-foreground">Current stage</div>}
+                    {isAnchor && <div className="mt-1 text-xs text-muted-foreground">{t("currentStage")}</div>}
                   </div>
                   <div className="flex shrink-0 items-center gap-1">
                     <button
@@ -303,12 +316,12 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                         setDateDraft(dateInputValue(entry.date));
                       }}
                     >
-                      {formatDate(entry.date)}
+                      {formatDate(entry.date, locale, t("notSet"))}
                     </button>
                     {!isAnchor && (
                       <button
                         type="button"
-                        aria-label="Delete timeline entry"
+                        aria-label={t("deleteEntry")}
                         disabled={pending}
                         className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:bg-destructive/10 hover:text-destructive focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-40"
                         onClick={() => onDeleteEntry(entry._id)}
@@ -327,13 +340,13 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
       <Dialog open={Boolean(editingDate)} onOpenChange={(open) => !open && setEditingDate(null)}>
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
-            <DialogTitle>Edit date</DialogTitle>
-            <DialogDescription>Update the calendar date for this timeline entry.</DialogDescription>
+            <DialogTitle>{t("editDate")}</DialogTitle>
+            <DialogDescription>{t("editDateDescription")}</DialogDescription>
           </DialogHeader>
-          <Input type="date" aria-label="Date" value={dateDraft} onChange={(event) => setDateDraft(event.target.value)} />
+          <Input type="date" aria-label={t("date")} value={dateDraft} onChange={(event) => setDateDraft(event.target.value)} />
           <DialogFooter>
             <button type="button" className="dashboard-secondary-btn" onClick={() => setEditingDate(null)}>
-              Cancel
+              {t("cancel")}
             </button>
             <button
               type="button"
@@ -341,7 +354,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
               disabled={!dateDraft || pending}
               onClick={() => onUpdateEntry(editingDate._id, { date: dateDraft }, () => setEditingDate(null))}
             >
-              Save date
+              {t("saveDate")}
             </button>
           </DialogFooter>
         </DialogContent>
@@ -350,13 +363,13 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
       <Dialog open={Boolean(editingNote)} onOpenChange={(open) => !open && setEditingNote(null)}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Edit note</DialogTitle>
-            <DialogDescription>Update this timeline note.</DialogDescription>
+            <DialogTitle>{t("editNote")}</DialogTitle>
+            <DialogDescription>{t("editNoteDescription")}</DialogDescription>
           </DialogHeader>
-          <Textarea aria-label="Note" value={noteDraft} rows={4} onChange={(event) => setNoteDraft(event.target.value)} />
+          <Textarea aria-label={t("note")} value={noteDraft} rows={4} onChange={(event) => setNoteDraft(event.target.value)} />
           <DialogFooter>
             <button type="button" className="dashboard-secondary-btn" onClick={() => setEditingNote(null)}>
-              Cancel
+              {t("cancel")}
             </button>
             <button
               type="button"
@@ -364,7 +377,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
               disabled={!noteDraft.trim() || pending}
               onClick={() => onUpdateEntry(editingNote._id, { text: noteDraft.trim() }, () => setEditingNote(null))}
             >
-              Save note
+              {t("saveNote")}
             </button>
           </DialogFooter>
         </DialogContent>
@@ -374,6 +387,9 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
 }
 
 export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
+  const t = useTranslations("dashboard.appComponents.detail");
+  const tDashboard = useTranslations("dashboard");
+  const locale = useLocale();
   const queryClient = useQueryClient();
   const [confirm, confirmDialog] = useConfirm();
   const id = application?._id;
@@ -401,10 +417,10 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
     mutationFn: () => requestJson(`/api/applications/${id}`, { method: "DELETE" }),
     onSuccess: () => {
       invalidate();
-      toast.success("Application deleted");
+      toast.success(t("deleted"));
       onOpenChange(false);
     },
-    onError: () => toast.error("Couldn't delete the application."),
+    onError: () => toast.error(t("deleteError")),
   });
 
   if (!current) return null;
@@ -430,14 +446,14 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               onClick={() => onEdit(current)}
             >
               <PencilSimpleIcon size={16} aria-hidden="true" />
-              Edit
+              {t("edit")}
             </button>
           </div>
           <div className="flex gap-1.5">
             {STAGES.map((stage, i) => (
               <span
                 key={stage.key}
-                title={stage.label}
+                title={tDashboard(`stages.${stage.key}`)}
                 className={cn("h-1.5 flex-1 rounded-full", i > idx && "bg-[var(--landing-paper-strong)]")}
                 style={i <= idx ? { background: stage.color } : undefined}
               />
@@ -450,7 +466,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
                 style={{ background: STAGE_BY_KEY[current.status]?.color }}
                 aria-hidden="true"
               />
-              {STAGE_BY_KEY[current.status]?.label ?? current.status}
+              {STAGE_BY_KEY[current.status] ? tDashboard(`stages.${current.status}`) : current.status}
             </span>
             {nextStage && (
               <button
@@ -459,7 +475,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
                 disabled={update.isPending}
                 onClick={() => save({ status: nextStage.key })}
               >
-                Move to {nextStage.label}
+                {t("moveToStage", { stage: tDashboard(`stages.${nextStage.key}`) })}
                 <ArrowRightIcon size={14} aria-hidden="true" />
               </button>
             )}
@@ -468,9 +484,9 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
 
         <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto px-4 py-4 [&>*]:shrink-0">
           <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-            <Fact label="Salary" value={current.salary} />
-            <Fact label="Source" value={current.source} />
-            <Fact label="Applied on" value={current.appliedAt ? formatDate(current.appliedAt) : null} />
+            <Fact label={t("salary")} value={current.salary} />
+            <Fact label={t("source")} value={current.source} />
+            <Fact label={t("appliedOn")} value={current.appliedAt ? formatDate(current.appliedAt, locale, t("notSet")) : null} />
           </dl>
 
           {current.jobUrl && (
@@ -481,17 +497,17 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--landing-accent-dark)] hover:underline"
             >
               <ArrowSquareOutIcon size={14} aria-hidden="true" />
-              Open job posting
+              {t("openPosting")}
             </a>
           )}
 
           {current.notes?.trim() && (
-            <Section title="Notes">
+            <Section title={t("notes")}>
               <p className="text-sm break-words whitespace-pre-wrap">{current.notes}</p>
             </Section>
           )}
 
-          <Section title="Documents sent">
+          <Section title={t("documentsSent")}>
             {current.tailoredCVId ? (
               <Link
                 href={`/dashboard/tailored/${current.tailoredCVId}`}
@@ -501,7 +517,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
                   CV
                 </span>
                 <span className="min-w-0 flex-1 truncate text-sm font-medium text-foreground">
-                  Tailored CV for this job
+                  {t("tailoredForJob")}
                 </span>
                 <ArrowRightIcon
                   size={14}
@@ -510,13 +526,13 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
                 />
               </Link>
             ) : (
-              <p className="text-sm text-muted-foreground">No CV linked.</p>
+              <p className="text-sm text-muted-foreground">{t("noCv")}</p>
             )}
           </Section>
 
           <ApplicationCopilot application={current} />
 
-          <Section title="Contacts">
+          <Section title={t("contacts")}>
             <ContactsEditor
               key={current._id}
               contacts={current.contacts ?? []}
@@ -526,9 +542,9 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
           </Section>
 
           {current.followUpDate && (
-            <Section title="Follow-up">
+            <Section title={t("followUp")}>
               <div className="rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-2.5 text-sm text-foreground">
-                <span className="font-medium tabular-nums">{formatDate(current.followUpDate)}</span>
+                <span className="font-medium tabular-nums">{formatDate(current.followUpDate, locale, t("notSet"))}</span>
                 {current.followUpNote ? `: ${current.followUpNote}` : ""}
               </div>
             </Section>
@@ -541,8 +557,9 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
             onAddNote={(text, then) => save({ addNote: text }, then)}
             onUpdateEntry={(entryId, input, then) => save({ updateEntry: { entryId, ...input } }, then)}
             onDeleteEntry={(entryId) => {
-              void confirm("Delete this timeline entry?", {
-                description: "This entry will be deleted for good.",
+              void confirm(t("deleteEntryTitle"), {
+                description: t("deleteEntryDescription"),
+                confirmText: t("delete"),
               }).then((confirmed) => {
                 if (confirmed) save({ deleteEntry: entryId });
               });
@@ -560,7 +577,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               onClick={() => save({ status: "rejected" })}
             >
               <XCircleIcon size={16} aria-hidden="true" />
-              Mark rejected
+              {t("markRejected")}
             </Button>
           )}
           <Button
@@ -569,7 +586,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
             className="h-9 hover:bg-[var(--landing-paper-soft)]"
             onClick={() => save({ archived: !current.archived })}
           >
-            {current.archived ? "Unarchive" : "Archive"}
+            {current.archived ? t("unarchive") : t("archive")}
           </Button>
           <Button
             size="sm"
@@ -577,14 +594,15 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
             className="ml-auto h-9 text-destructive hover:bg-destructive/10 hover:text-destructive"
             disabled={remove.isPending}
             onClick={async () => {
-              const confirmed = await confirm("Delete this application?", {
-                description: `${current.jobTitle} at ${current.jobCompany} and its full timeline will be deleted for good.`,
+              const confirmed = await confirm(t("confirmTitle"), {
+                description: t("confirmDescription", { title: current.jobTitle, company: current.jobCompany }),
+                confirmText: t("delete"),
               });
               if (confirmed) remove.mutate();
             }}
           >
             <TrashIcon size={16} aria-hidden="true" />
-            Delete
+            {t("delete")}
           </Button>
         </div>
         {confirmDialog}

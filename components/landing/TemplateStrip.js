@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { ArrowRightIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 
 import { ResumeTemplate } from "@/components/ResumePreview";
@@ -24,12 +25,13 @@ const CARDS = SHOWN.map((id) => TEMPLATE_METADATA.find((t) => t.id === id)).filt
 const GAP = 20;
 
 function ArrowButton({ dir, onClick }) {
+  const t = useTranslations("landing.templates");
   const Icon = dir === "prev" ? CaretLeftIcon : CaretRightIcon;
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={dir === "prev" ? "Previous templates" : "Next templates"}
+      aria-label={dir === "prev" ? t("prev") : t("next")}
       className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)] landing-shadow-lift transition-colors duration-300 hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2"
     >
       <Icon size={17} weight="bold" aria-hidden="true" />
@@ -48,6 +50,7 @@ function ArrowButton({ dir, onClick }) {
  * disabled styling was all the state bought, and it is not worth a freeze.
  */
 export default function TemplateStrip() {
+  const t = useTranslations("landing.templates");
   const trackRef = useRef(null);
 
   const move = (direction) => {
@@ -66,13 +69,12 @@ export default function TemplateStrip() {
       <div className="landing-reveal landing-container">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <span className="landing-eyebrow-plain">Templates</span>
+            <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
             <h2 className="landing-section-title mt-3 text-2xl sm:text-3xl">
-              Nineteen layouts, all built to survive a parser
+              {t("title")}
             </h2>
             <p className="landing-copy mt-4 text-base">
-              Single column, standard headings, no graphics that scramble on
-              extraction. Change the colour and the font on any of them.
+              {t("body")}
             </p>
           </div>
 
@@ -83,7 +85,7 @@ export default function TemplateStrip() {
               href="/cv-templates"
               className="landing-secondary-btn landing-secondary-btn-sm font-outfit group"
             >
-              See all templates
+              {t("seeAll")}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"

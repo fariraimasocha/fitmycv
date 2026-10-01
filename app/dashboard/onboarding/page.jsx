@@ -12,18 +12,11 @@ import {
 import BrandLogo from "@/components/BrandLogo";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
 import { trackEvent } from "@/lib/analytics";
-
-// Sentences are stored lowercase-initial so the name can be prefixed. With no
-// name on the session, the sentence stands alone rather than reading "there, ...".
-function withName(name, sentence) {
-  return name
-    ? `${name}, ${sentence}`
-    : sentence.charAt(0).toUpperCase() + sentence.slice(1);
-}
 
 // Onboarding is now just the CV upload (value first). The previous
 // 3-question wizard and the in-flow paywall have been removed per
@@ -53,9 +46,9 @@ function summariseCV(cv) {
   const years = countYears(cv?.work);
 
   return [
-    roles > 0 && { value: roles, label: roles === 1 ? "role" : "roles" },
-    skills > 0 && { value: skills, label: skills === 1 ? "skill" : "skills" },
-    years && { value: `${years}+`, label: "years of experience" },
+    roles > 0 && { key: "roles", value: roles, count: roles },
+    skills > 0 && { key: "skills", value: skills, count: skills },
+    years && { key: "years", value: `${years}+`, count: years },
   ].filter(Boolean);
 }
 
@@ -65,6 +58,7 @@ export default function OnboardingPage() {
   const router = useRouter();
   const { data: session, update } = useSession();
   const reduceMotion = useReducedMotion();
+  const t = useTranslations("onboarding");
 
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -108,14 +102,12 @@ export default function OnboardingPage() {
         await update();
         router.replace(destination);
       } catch {
-        toast.error(
-          "Your CV is saved, but we couldn't finish setting up your account. Try again.",
-        );
+        toast.error(t("finishError"));
         setCompletionFailed(true);
         setFinishing(false);
       }
     },
-    [router, update],
+    [router, update, t],
   );
 
   // Skipping lands on /dashboard, not /dashboard/tailor: the tailor page
@@ -141,7 +133,7 @@ export default function OnboardingPage() {
     },
     onError: (_error, cv) => {
       setPendingCV(cv);
-      toast.error("Couldn't save your CV. Check your connection and try again.");
+      toast.error(t("saveError"));
     },
   });
 
@@ -172,7 +164,7 @@ export default function OnboardingPage() {
             className={`-ml-1 shrink-0 rounded-md p-1 text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] ${
               canGoBack ? "cursor-pointer" : "invisible"
             }`}
-            aria-label="Back"
+            aria-label={t("back")}
             aria-hidden={!canGoBack}
             tabIndex={canGoBack ? undefined : -1}
           >
@@ -204,7 +196,7 @@ export default function OnboardingPage() {
                 onClick={skip}
                 className="ml-auto shrink-0 cursor-pointer sm:ml-0 text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
               >
-                Skip for now
+                {t("skip")}
               </button>
             </>
           )}
@@ -221,21 +213,21 @@ export default function OnboardingPage() {
           >
             {onPayoff ? (
               <>
-                <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">Your CV is ready</span>
+                <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">{t("payoff.eyebrow")}</span>
                 <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight text-[var(--landing-ink)] sm:text-3xl">
-                  {withName(firstName, "here is what we read.")}
+                  {t("payoff.title", { hasName: firstName ? "yes" : "no", name: firstName ?? "" })}
                 </h1>
 
                 {facts.length > 0 && (
                   <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-4">
                     {facts.map((fact) => (
-                      <div key={fact.label}>
-                        <dt className="sr-only">{fact.label}</dt>
+                      <div key={fact.key}>
+                        <dt className="sr-only">{t(`payoff.facts.${fact.key}`, { count: fact.count })}</dt>
                         <dd className="font-outfit text-4xl font-semibold text-[var(--landing-accent)]">
                           {fact.value}
                         </dd>
                         <p className="mt-0.5 text-xs text-[var(--landing-ink-soft)]">
-                          {fact.label}
+                          {t(`payoff.facts.${fact.key}`, { count: fact.count })}
                         </p>
                       </div>
                     ))}
@@ -243,8 +235,7 @@ export default function OnboardingPage() {
                 )}
 
                 <p className="mt-7 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
-                  Every tailored CV and cover letter is built from this. You can
-                  edit any of it later. Here is what happens next:
+                  {t("payoff.intro")}
                 </p>
 
                 <ol className="mt-6 divide-y divide-[var(--landing-line)] border-y border-[var(--landing-line)]">
@@ -272,11 +263,11 @@ export default function OnboardingPage() {
                               : "block text-sm font-semibold text-[var(--landing-ink)]"
                           }
                         >
-                          {item.title}
+                          {t(`plan.${item.key}.title`)}
                         </span>
                         {!item.done && (
                           <span className="mt-0.5 block text-sm text-[var(--landing-ink-soft)]">
-                            {item.description}
+                            {t(`plan.${item.key}.description`)}
                           </span>
                         )}
                       </span>
@@ -292,7 +283,7 @@ export default function OnboardingPage() {
                     }
                     className="dashboard-primary-btn w-full cursor-pointer text-sm sm:w-fit"
                   >
-                    Tailor your first CV
+                    {t("payoff.tailorCta")}
                     <ArrowRightIcon
                       size={16}
                       weight="bold"
@@ -304,21 +295,18 @@ export default function OnboardingPage() {
                     onClick={() => completeOnboarding("/dashboard", answers)}
                     className="cursor-pointer text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
                   >
-                    Go to dashboard
+                    {t("payoff.dashboardCta")}
                   </button>
                 </div>
               </>
             ) : (
               <>
-                <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">Your CV</span>
+                <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">{t("upload.eyebrow")}</span>
                 <h1 className="mt-4 font-outfit text-3xl font-semibold leading-tight text-[var(--landing-ink)] sm:text-4xl">
-                  {withName(
-                    firstName,
-                    "upload your CV so we can tailor everything to you.",
-                  )}
+                  {t("upload.title", { hasName: firstName ? "yes" : "no", name: firstName ?? "" })}
                 </h1>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
-                  Only you can see your CV. Our AI provider reads it to write your applications.
+                  {t("upload.privacy")}
                 </p>
 
                 <div className="mt-7 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 sm:p-6">
@@ -331,7 +319,7 @@ export default function OnboardingPage() {
                     onClick={() => saveCV.mutate(pendingCV)}
                     className="dashboard-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
                   >
-                    Try again
+                    {t("tryAgain")}
                   </button>
                 )}
 
@@ -343,7 +331,7 @@ export default function OnboardingPage() {
                     }
                     className="dashboard-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
                   >
-                    Continue to tailoring
+                    {t("continueToTailoring")}
                     <ArrowRightIcon
                       size={16}
                       weight="bold"
@@ -353,7 +341,7 @@ export default function OnboardingPage() {
                 )}
 
                 <p className="mt-5 text-xs leading-5 text-[var(--landing-ink-soft)]">
-                  You can edit these details on My CV later.
+                  {t("upload.editLater")}
                 </p>
               </>
             )}

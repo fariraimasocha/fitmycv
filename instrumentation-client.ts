@@ -1,5 +1,26 @@
 import posthog from "posthog-js";
 
+// ponytail: browser translation (Chrome, Edge) swaps React's text nodes for its
+// own, then React throws NotFoundError on the next update and the page shows
+// the error boundary (facebook/react#11538). Skip the move instead of crashing.
+// Remove once React handles this itself.
+if (typeof Node === "function" && Node.prototype) {
+  const originalRemoveChild = Node.prototype.removeChild;
+  Node.prototype.removeChild = function <T extends Node>(this: Node, child: T): T {
+    if (child.parentNode !== this) return child;
+    return originalRemoveChild.call(this, child) as T;
+  };
+  const originalInsertBefore = Node.prototype.insertBefore;
+  Node.prototype.insertBefore = function <T extends Node>(
+    this: Node,
+    newNode: T,
+    referenceNode: Node | null,
+  ): T {
+    if (referenceNode && referenceNode.parentNode !== this) return newNode;
+    return originalInsertBefore.call(this, newNode, referenceNode) as T;
+  };
+}
+
 const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
 const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 

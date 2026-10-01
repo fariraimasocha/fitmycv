@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import posthog from "posthog-js";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
@@ -9,6 +10,12 @@ import Footer from "@/components/landing/Footer";
 // a thrown error shows Next's default error page instead of the site.
 export default function Error({ error, reset }) {
   useEffect(() => {
+    if (
+      process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN &&
+      process.env.NEXT_PUBLIC_POSTHOG_HOST
+    ) {
+      posthog.captureException(error);
+    }
     console.error("Page error:", error);
   }, [error]);
 

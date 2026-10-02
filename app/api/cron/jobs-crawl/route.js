@@ -1,12 +1,10 @@
 import { connectDB } from "@/utils/connect";
+import { isCronRequest } from "@/lib/sign";
 import Job from "@/models/Job";
 import { backfillStoredLogos, crawlJobs } from "@/lib/job-crawler";
 
-export const maxDuration = 300;
-
 export async function GET(request) {
-  const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!isCronRequest(request)) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 

@@ -5,11 +5,6 @@ import InterviewPrep from "@/models/InterviewPrep";
 import { connectDB } from "@/utils/connect";
 import { chat, MODEL_FAST } from "@/lib/groq";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
 const SYSTEM_PROMPT = `You are an expert interview coach. Given a candidate's tailored CV and the job they're applying for, generate structured interview preparation materials. Return ONLY valid JSON.
 
 {

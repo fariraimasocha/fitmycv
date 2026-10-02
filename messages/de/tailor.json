@@ -401,10 +401,6 @@
       "downloadPdf": "PDF herunterladen",
       "downloadLetter": "Anschreiben herunterladen",
       "saveTailored": "Angepassten Lebenslauf speichern",
-      "saveFailedTitle": "Dieser Lebenslauf konnte nicht gespeichert werden",
-      "saveFailedDescription": "Zum Bearbeiten wird eine gespeicherte Kopie gebraucht. Ansehen und herunterladen kannst du ihn trotzdem.",
-      "savingTitle": "Dein angepasster Lebenslauf wird gespeichert",
-      "savingDescription": "Die Bearbeitung öffnet sich, sobald er gespeichert ist.",
       "liveUpdates": "Aktualisiert sich beim Tippen",
       "keywordsAdded": "Aus der Anzeige hinzugefügte Keywords"
     }

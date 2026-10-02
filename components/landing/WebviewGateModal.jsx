@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   CopyIcon,
   XIcon,
@@ -10,8 +9,9 @@ import {
 } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
-import { isAndroid, isIOS, tryOpenExternalBrowser } from "@/lib/webview";
+import { tryOpenExternalBrowser } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
+import { platformOf, useUserAgent } from "@/hooks/use-user-agent";
 
 // Bold step labels inside the translated instructions.
 const strong = (chunks) => (
@@ -26,15 +26,7 @@ export default function WebviewGateModal({
   fullScreen = false,
 }) {
   const t = useTranslations("landing.webview");
-  const [platform, setPlatform] = useState("unknown");
-
-  useEffect(() => {
-    if (!open) return;
-    const ua = navigator.userAgent || "";
-    if (isAndroid(ua)) setPlatform("android");
-    else if (isIOS(ua)) setPlatform("ios");
-    else setPlatform("desktop");
-  }, [open]);
+  const platform = platformOf(useUserAgent());
 
   if (!open) return null;
 

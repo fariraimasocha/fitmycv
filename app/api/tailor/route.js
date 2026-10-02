@@ -2,13 +2,12 @@ import { auth } from "@/lib/auth";
 import { parseTailorResponse } from "@/utils/tailor-parser";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
+import TailoredCV from "@/models/TailoredCV";
+import Application from "@/models/Application";
+import { atsReport } from "@/lib/ats/score";
+import { httpUrl, tailoredForViewer } from "@/lib/tailored-preview";
 import { chat, MODEL_SMART } from "@/lib/groq";
 import { relevanceNotes } from "@/lib/jev";
-
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
 
 const SYSTEM_PROMPT = `You are an expert CV tailoring assistant and career coach. Given a reference CV (JSON) and job requirements, you will:
 
@@ -112,7 +111,7 @@ export async function POST(request) {
   }
 
   try {
-    const { referenceCV, jobData } = await request.json();
+    const { referenceCV, jobData, jobUrl, matchScore, matchGrade } = await request.json();
 
     if (!referenceCV || !jobData) {
       return Response.json(
@@ -210,8 +209,45 @@ Please tailor the CV for this specific role and generate a cover letter that cle
       );
     }
 
+    // Saved here, not by the client, so a free user's preview can never
+    // overwrite the full document they unlock later.
+    const saved = await TailoredCV.create({
+      userId: session.user.id,
+      jobTitle: jobData.title || "",
+      jobCompany: jobData.company || "",
+      jobUrl: httpUrl(jobUrl),
+      jobData,
+      ...tailoredCV,
+      coverLetter,
+    });
+    try {
+      await Application.create({
+        userId: session.user.id,
+        tailoredCVId: saved._id,
+        jobTitle: jobData.title || "",
+        jobCompany: jobData.company || "",
+        jobUrl: httpUrl(jobUrl),
+        status: "evaluated",
+        statusHistory: [{ status: "evaluated", date: new Date(), note: "CV tailored" }],
+        matchScore: Number.isFinite(matchScore) ? matchScore : undefined,
+        matchGrade: typeof matchGrade === "string" ? matchGrade : undefined,
+      });
+    } catch (appErr) {
+      console.error("Auto-create application error (non-fatal):", appErr);
+    }
+
+    const visible = tailoredForViewer(session, { ...tailoredCV, coverLetter });
+    const { coverLetter: visibleLetter, locked, ...visibleCV } = visible;
     return Response.json({
-      data: { tailoredCV, coverLetter, keywordsInjected },
+      data: {
+        savedId: saved._id,
+        tailoredCV: visibleCV,
+        coverLetter: visibleLetter,
+        keywordsInjected,
+        // Scored on the full CV, so free users see the real number.
+        atsScore: atsReport(tailoredCV, jobData),
+        locked: Boolean(locked),
+      },
     });
   } catch (error) {
     console.error("Tailor error:", error);

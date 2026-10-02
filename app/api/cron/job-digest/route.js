@@ -1,4 +1,5 @@
 import { connectDB } from "@/utils/connect";
+import { isCronRequest } from "@/lib/sign";
 import User from "@/models/User";
 import ReferenceCV from "@/models/ReferenceCV";
 import JobDigestItem from "@/models/JobDigestItem";
@@ -6,13 +7,10 @@ import { searchJobs, buildQueries, scoreJob } from "@/lib/jsearch";
 import { buildJobDigestEmail } from "@/lib/job-digest-email";
 import { sendEmail } from "@/lib/email";
 
-export const maxDuration = 300;
-
 const DEDUP_WINDOW_DAYS = 14;
 
 export async function GET(request) {
-  const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!isCronRequest(request)) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 

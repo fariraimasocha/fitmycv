@@ -3,11 +3,6 @@ import { requirePremium } from "@/lib/paywall";
 import { sanitizeAIText } from "@/utils/sanitize-ai-text";
 import { chat, MODEL_SMART } from "@/lib/groq";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
 const DEFAULT_QUESTION =
   "In 3-5 sentences, tell us why you are interested in this role.";
 

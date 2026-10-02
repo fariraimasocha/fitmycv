@@ -3,11 +3,6 @@ import { requirePremium } from "@/lib/paywall";
 import { parseJobScoreResponse } from "@/utils/job-score-parser";
 import { chat, MODEL_FAST } from "@/lib/groq";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
 const SYSTEM_PROMPT = `You are a career matching expert. Given a candidate's reference CV and a job description, assess the match quality BEFORE the CV is tailored. This helps the candidate decide if the job is worth pursuing.
 
 Score across 4 dimensions with letter grades (A+, A, B+, B, C+, C, D, F). Return ONLY valid JSON:

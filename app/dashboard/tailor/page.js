@@ -29,7 +29,6 @@ import {
   ListChecksIcon,
   CaretDownIcon,
   CaretUpIcon,
-  WarningCircleIcon,
 } from "@phosphor-icons/react";
 import { DownloadButton } from "@/components/ui/download-button";
 import { Input } from "@/components/ui/input";
@@ -394,27 +393,6 @@ function Tailor() {
     },
   });
 
-  const saveMutation = useMutation({
-    mutationFn: async (data) => {
-      const res = await fetch("/api/tailored-cv", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || t("errors.save"));
-      }
-
-      return res.json();
-    },
-    onSuccess: (result) => {
-      setSavedId(result?.data?._id ?? null);
-      queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
-    },
-  });
-
   // Takes the job as an argument: when chained from extract, `jobData` state
   // has not re-rendered yet.
   const tailorMutation = useMutation({
@@ -438,7 +416,15 @@ function Tailor() {
       const res = await fetch("/api/tailor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ referenceCV, jobData: job }),
+        body: JSON.stringify({
+          referenceCV,
+          jobData: job,
+          jobUrl: jobInputMode === "link" ? url : "",
+          // ponytail: matchScore can still be loading if tailor finishes first;
+          // then only the application's grade is missing.
+          matchScore: matchScore?.globalScore,
+          matchGrade: matchScore?.globalGrade,
+        }),
       });
 
       if (!res.ok) {
@@ -450,9 +436,12 @@ function Tailor() {
 
       return res.json();
     },
-    onSuccess: (result, job) => {
+    onSuccess: (result) => {
       setTailorResult(result.data);
-      setSavedId(null);
+      // The tailor route saves the CV (and its application) itself.
+      setSavedId(result.data.savedId);
+      setAtsScore(result.data.atsScore);
+      queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
       setLiveValues(null);
       setMobileTab("preview");
       setShowJobDetails(false);
@@ -467,40 +456,6 @@ function Tailor() {
 
       // Paywall stays on download. Free users can see that tailor worked,
       // then unlock when they try to take the PDF.
-
-      // Trigger ATS analysis automatically
-      setAtsLoading(true);
-      fetch("/api/ats-score", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          tailoredCV: result.data.tailoredCV,
-          jobData: job,
-        }),
-      })
-        .then((res) => res.json())
-        .then((ats) => {
-          if (ats.data) setAtsScore(ats.data);
-        })
-        .catch(() => {})
-        .finally(() => setAtsLoading(false));
-
-      // Auto-save to database (includes auto-creating application).
-      // ponytail: matchScore can still be loading if tailor finishes first; then
-      // only the saved grade is missing. Patch it on arrival if history needs it.
-      saveMutation.mutate({
-        jobTitle: job?.title || "",
-        jobCompany: job?.company || "",
-        jobUrl: jobInputMode === "link" ? url : "",
-        jobData: job,
-        basics: result.data.tailoredCV.basics,
-        work: result.data.tailoredCV.work,
-        education: result.data.tailoredCV.education,
-        skills: result.data.tailoredCV.skills,
-        coverLetter: result.data.coverLetter,
-        matchScore: matchScore?.globalScore,
-        matchGrade: matchScore?.globalGrade,
-      });
     },
     onError: (error) => {
       if (error.code === "PREMIUM_REQUIRED") {
@@ -1093,7 +1048,7 @@ function Tailor() {
                     mobileTab === "preview" && "hidden lg:block",
                   )}
                 >
-                  {savedId ? (
+                  {savedId && (
                     <ResumeForm
                       key={savedId}
                       initialData={tailorResult.tailoredCV}
@@ -1107,30 +1062,6 @@ function Tailor() {
                         setLiveValues(null);
                       }}
                     />
-                  ) : saveMutation.isError ? (
-                    <DashboardPanel>
-                      <div className="flex items-start gap-3">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
-                          <WarningCircleIcon size={17} aria-hidden="true" />
-                        </span>
-                        <DashboardPanelHeader
-                          title={t("result.saveFailedTitle")}
-                          description={t("result.saveFailedDescription")}
-                        />
-                      </div>
-                    </DashboardPanel>
-                  ) : (
-                    <DashboardPanel aria-busy="true">
-                      <DashboardPanelHeader
-                        title={t("result.savingTitle")}
-                        description={t("result.savingDescription")}
-                      />
-                      <div className="mt-4 space-y-2">
-                        <div className="tool-skeleton h-10 w-full rounded-md" />
-                        <div className="tool-skeleton h-10 w-full rounded-md" />
-                        <div className="tool-skeleton h-24 w-full rounded-md" />
-                      </div>
-                    </DashboardPanel>
                   )}
                 </div>
 

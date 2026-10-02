@@ -14,13 +14,17 @@ import { cn } from "@/lib/utils";
 
 const YEAR = 60 * 60 * 24 * 365;
 
+function saveLocaleCookie(locale) {
+  document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=${YEAR}; samesite=lax`;
+}
+
 export default function LanguagePicker({ className, align = "end" }) {
   const t = useTranslations("header");
   const locale = useLocale();
   const pathname = usePathname();
   const choose = (next) => {
     if (next === locale) return;
-    document.cookie = `NEXT_LOCALE=${next}; path=/; max-age=${YEAR}; samesite=lax`;
+    saveLocaleCookie(next);
     // A full page load, not router.replace. The root layout owns <html lang>
     // and the message provider, and Next keeps it mounted across client
     // navigations, so a soft switch left the old language in place and the

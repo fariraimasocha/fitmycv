@@ -12,6 +12,8 @@ function escapeHtml(str) {
     .replace(/'/g, "&#x27;");
 }
 
+const MAX_MESSAGE = 5000;
+
 export async function POST(request) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -25,6 +27,12 @@ export async function POST(request) {
 
     if (!type || !message) {
       return Response.json({ error: "Choose a type and write a message." }, { status: 400 });
+    }
+    if (String(message).length > MAX_MESSAGE) {
+      return Response.json(
+        { error: `Keep your message under ${MAX_MESSAGE} characters.` },
+        { status: 400 },
+      );
     }
 
     await connectDB();

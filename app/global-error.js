@@ -83,12 +83,15 @@ export default function GlobalError({ error }) {
               <button type="button" className="btn" onClick={handleReload}>
                 {t("retry")}
               </button>
+              {/* A full page load on purpose: the root layout just crashed. */}
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
               <a href="/" className="btn btn-secondary">
                 {t("home")}
               </a>
             </div>
             <footer>
               {t.rich("support", {
+                // eslint-disable-next-line @next/next/no-html-link-for-pages
                 link: (chunks) => <a href="/support">{chunks}</a>,
               })}
             </footer>

@@ -1,3 +1,4 @@
+import { httpUrl } from "@/lib/tailored-preview";
 /**
  * Parse the Groq LLM response into a structured company research brief.
  * Follows the same pattern as job-parser.js and tailor-parser.js.
@@ -17,7 +18,7 @@ export function parseCompanyResearchResponse(responseText) {
     recentNews: Array.isArray(raw.recentNews)
       ? raw.recentNews.map((item) => ({
           title: item.title || "",
-          url: item.url || "",
+          url: httpUrl(item.url),
           publishedAt: item.publishedAt || "",
           snippet: item.snippet || "",
         }))

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
@@ -26,17 +25,9 @@ import { trackEvent } from "@/lib/analytics";
 
 export default function FeedbackModal({ open, onOpenChange }) {
   const t = useTranslations("pages.feedback");
-  const { data: session } = useSession();
 
   const [type, setType] = useState("General");
-  const [name, setName] = useState(session?.user?.name ?? "");
-  const [email, setEmail] = useState(session?.user?.email ?? "");
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    if (session?.user?.name) setName(session.user.name);
-    if (session?.user?.email) setEmail(session.user.email);
-  }, [session]);
 
   const mutation = useMutation({
     mutationFn: async (data) => {
@@ -63,7 +54,8 @@ export default function FeedbackModal({ open, onOpenChange }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!message.trim()) return;
-    mutation.mutate({ type, name, email, message });
+    // The API takes name and email from the session.
+    mutation.mutate({ type, message });
   }
 
   return (
@@ -96,6 +88,7 @@ export default function FeedbackModal({ open, onOpenChange }) {
               id="feedback-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              maxLength={5000}
               placeholder={t("messagePlaceholder")}
               rows={4}
               required

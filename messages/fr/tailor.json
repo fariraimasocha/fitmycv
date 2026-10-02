@@ -401,10 +401,6 @@
       "downloadPdf": "Télécharger le PDF",
       "downloadLetter": "Télécharger la lettre",
       "saveTailored": "Enregistrer le CV adapté",
-      "saveFailedTitle": "Impossible d’enregistrer ce CV",
-      "saveFailedDescription": "La modification nécessite une copie enregistrée. Vous pouvez quand même le prévisualiser et le télécharger.",
-      "savingTitle": "Enregistrement de votre CV adapté",
-      "savingDescription": "La modification s’ouvre dès qu’il est enregistré.",
       "liveUpdates": "Mis à jour pendant la saisie",
       "keywordsAdded": "Mots-clés ajoutés depuis l’offre"
     }

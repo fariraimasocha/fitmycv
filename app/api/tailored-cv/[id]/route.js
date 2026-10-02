@@ -1,6 +1,10 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import TailoredCV from "@/models/TailoredCV";
+import { requirePremium } from "@/lib/paywall";
+import { httpUrl, tailoredForViewer } from "@/lib/tailored-preview";
+
+const CONTENT_FIELDS = ["basics", "work", "education", "skills", "coverLetter", "whyThisRole"];
 
 export async function GET(request, { params }) {
   const session = await auth();
@@ -20,7 +24,7 @@ export async function GET(request, { params }) {
     return Response.json({ error: "Not found" }, { status: 404 });
   }
 
-  return Response.json({ data: cv });
+  return Response.json({ data: tailoredForViewer(session, cv) });
 }
 
 export async function DELETE(request, { params }) {
@@ -55,16 +59,17 @@ export async function PUT(request, { params }) {
   try {
     const body = await request.json();
 
+    // Free users only hold the preview, so saving it would wipe the full CV.
+    if (CONTENT_FIELDS.some((field) => body[field] !== undefined)) {
+      const paywallResponse = requirePremium(session);
+      if (paywallResponse) return paywallResponse;
+    }
+
     const update = {};
-    if (body.basics !== undefined) update.basics = body.basics;
-    if (body.work !== undefined) update.work = body.work;
-    if (body.education !== undefined) update.education = body.education;
-    if (body.skills !== undefined) update.skills = body.skills;
-    if (body.coverLetter !== undefined) update.coverLetter = body.coverLetter;
-    if (body.whyThisRole !== undefined) update.whyThisRole = body.whyThisRole;
-    if (body.jobTitle !== undefined) update.jobTitle = body.jobTitle;
-    if (body.jobCompany !== undefined) update.jobCompany = body.jobCompany;
-    if (body.jobUrl !== undefined) update.jobUrl = body.jobUrl;
+    for (const field of [...CONTENT_FIELDS, "jobTitle", "jobCompany"]) {
+      if (body[field] !== undefined) update[field] = body[field];
+    }
+    if (body.jobUrl !== undefined) update.jobUrl = httpUrl(body.jobUrl);
 
     if (Object.keys(update).length === 0) {
       return Response.json({ error: "There are no changes to save." }, { status: 400 });
@@ -81,7 +86,7 @@ export async function PUT(request, { params }) {
       return Response.json({ error: "Not found" }, { status: 404 });
     }
 
-    return Response.json({ data: cv });
+    return Response.json({ data: tailoredForViewer(session, cv) });
   } catch (error) {
     console.error("Tailored CV update error:", error);
     return Response.json({ error: "Couldn't save your tailored CV. Try again." }, { status: 500 });

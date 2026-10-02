@@ -3,11 +3,6 @@ import { parseJobFromResponse } from "@/utils/job-parser";
 import { chat, MODEL_FAST } from "@/lib/groq";
 import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
 // Same cap as the scraper, so a pasted posting and a crawled one cost the same.
 const MIN_PASTED_CHARS = 150;
 const MAX_PASTED_CHARS = 15000;

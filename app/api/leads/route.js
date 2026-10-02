@@ -5,6 +5,11 @@ import { sendLeadNurtureEmail } from "@/lib/lead-nurture-email";
 import { resolveCountryFromHeaders } from "@/lib/pricing-region";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// The only form that posts here. Taking source from the body let one address
+// be mailed again under every new source string.
+const SOURCE = "ats_checker";
+// ponytail: per-isolate map, so it only slows a burst. Add a Cloudflare rate
+// limiting rule on /api/leads if abuse shows up.
 const rateLimit = new Map();
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 5;
@@ -47,7 +52,6 @@ export async function POST(request) {
     const email = String(body.email ?? "")
       .trim()
       .toLowerCase();
-    const source = String(body.source ?? "ats_checker").trim();
     const score =
       typeof body.score === "number" ? Math.round(body.score) : null;
     const missingKeywordCount =
@@ -60,10 +64,8 @@ export async function POST(request) {
     }
 
     const headerStore = await headers();
-    const ip =
-      headerStore.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      headerStore.get("x-real-ip") ||
-      "unknown";
+    // Set by Cloudflare and not spoofable, unlike the first x-forwarded-for entry.
+    const ip = headerStore.get("cf-connecting-ip") || "unknown";
 
     if (isRateLimited(ip)) {
       return Response.json(
@@ -79,7 +81,8 @@ export async function POST(request) {
 
     await connectDB();
 
-    const existing = await Lead.findOne({ email, source });
+    // One nurture email per address, ever.
+    const existing = await Lead.findOne({ email });
     if (existing) {
       if (!existing.emailedAt) {
         try {
@@ -93,7 +96,7 @@ export async function POST(request) {
 
     const lead = await Lead.create({
       email,
-      source,
+      source: SOURCE,
       country,
       score,
       missingKeywordCount,

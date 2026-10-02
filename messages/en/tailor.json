@@ -618,10 +618,6 @@
       "downloadPdf": "Download PDF",
       "downloadLetter": "Download cover letter",
       "saveTailored": "Save tailored CV",
-      "saveFailedTitle": "Couldn't save this CV",
-      "saveFailedDescription": "Editing needs a saved copy. You can still preview and download it.",
-      "savingTitle": "Saving your tailored CV",
-      "savingDescription": "Editing opens as soon as it is saved.",
       "liveUpdates": "Updates as you type",
       "keywordsAdded": "Keywords added from the posting"
     }

@@ -7,6 +7,9 @@ export const routing = defineRouting({
   locales: ["en", "fr", "es", "de"],
   defaultLocale: "en",
   localePrefix: "as-needed",
+  // Page metadata already emits alternates.languages for translated pages.
+  // The default Link headers also advertised English-only pages in every language.
+  alternateLinks: false,
 });
 
 export const LOCALE_LABELS = {
@@ -19,4 +22,4 @@ export const LOCALE_LABELS = {
 // These stay English at their current URLs and live outside app/[locale].
 // Files with an extension (og images, robots.txt, llm.txt) skip it too.
 export const UNTRANSLATED =
-  /^\/(dashboard|blog|cv-examples|resume-examples|jobs|print|support)(\/|$)|\.[a-z0-9]+$/i;
+  /^\/(dashboard|blog|cv-examples|resume-examples|jobs|print|support|payment)(\/|$)|\.[a-z0-9]+$/i;

@@ -28,13 +28,13 @@ export default function PricingCards({
   const localeRouter = useLocaleRouter();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
   const gate = useWebviewGate();
-  const [pricing, setPricing] = useState(pricingProp ?? PRICING);
-  const [tier, setTier] = useState(tierProp ?? pricingProp?.tier ?? "standard");
+  // Server-rendered pages pass the regional pricing in. Without it, fetch it.
+  const [fetched, setFetched] = useState(null);
+  const pricing = pricingProp ?? fetched?.pricing ?? PRICING;
+  const tier = tierProp ?? pricingProp?.tier ?? fetched?.tier ?? "standard";
 
   useEffect(() => {
     if (pricingProp) {
-      setPricing(pricingProp);
-      setTier(tierProp ?? pricingProp.tier ?? "standard");
       trackEvent("pricing_tier_viewed", {
         tier: tierProp ?? pricingProp.tier,
       });
@@ -45,8 +45,7 @@ export default function PricingCards({
       .then((res) => res.json())
       .then((data) => {
         if (data?.pricing) {
-          setPricing(data.pricing);
-          setTier(data.tier ?? "standard");
+          setFetched({ pricing: data.pricing, tier: data.tier ?? "standard" });
           trackEvent("pricing_tier_viewed", {
             tier: data.tier,
             country: data.country,

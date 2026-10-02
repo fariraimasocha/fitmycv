@@ -56,8 +56,8 @@ const PERIOD_OPTIONS = [
   { value: "month", label: "Past month" },
 ];
 
-function ago(date) {
-  const days = Math.floor((Date.now() - new Date(date).getTime()) / 864e5);
+function ago(date, now) {
+  const days = Math.floor((now - new Date(date).getTime()) / 864e5);
   if (days <= 0) return "today";
   if (days === 1) return "yesterday";
   if (days < 7) return `${days} days ago`;
@@ -68,9 +68,9 @@ function ago(date) {
 // Most ATS pages do not publish a date. Saying "Posted today" for a job we
 // merely found today would be a claim we cannot back, so an unknown date falls
 // back to when it entered the pool and says so.
-function dateLabel(job) {
-  if (job.postedAt) return `Posted ${ago(job.postedAt)}`;
-  if (job.listedAt) return `Listed ${ago(job.listedAt)}`;
+function dateLabel(job, now) {
+  if (job.postedAt) return `Posted ${ago(job.postedAt, now)}`;
+  if (job.listedAt) return `Listed ${ago(job.listedAt, now)}`;
   return null;
 }
 
@@ -164,8 +164,8 @@ function CompanyAvatar({ job }) {
   );
 }
 
-function JobCard({ job, upgradeHref }) {
-  const posted = dateLabel(job);
+function JobCard({ job, upgradeHref, now }) {
+  const posted = dateLabel(job, now);
   const meta = [
     job.remote ? "Remote" : null,
     job.employmentType,
@@ -268,6 +268,7 @@ function JobCard({ job, upgradeHref }) {
 
 export default function JobsBrowser() {
   const { data: session } = useSession();
+  const [now] = useState(() => Date.now());
   const [input, setInput] = useState("");
   const [q, setQ] = useState("");
   const [category, setCategory] = useState(ALL);
@@ -471,7 +472,7 @@ export default function JobsBrowser() {
               className="space-y-2"
             >
               {jobs.map((job) => (
-                <JobCard key={job.id} job={job} upgradeHref={upgradeHref} />
+                <JobCard key={job.id} job={job} upgradeHref={upgradeHref} now={now} />
               ))}
             </motion.div>
           )}

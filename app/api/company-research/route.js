@@ -5,11 +5,6 @@ import CompanyResearch from "@/models/CompanyResearch";
 import { connectDB } from "@/utils/connect";
 import { chat, MODEL_FAST } from "@/lib/groq";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
 const SYSTEM_PROMPT = `You are a company research analyst. Given web content about a company, extract and synthesize a structured 6-axis research brief for a job seeker preparing for an interview. Return ONLY valid JSON with no additional text.
 
 Use this exact schema:

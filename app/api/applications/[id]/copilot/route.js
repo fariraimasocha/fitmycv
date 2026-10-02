@@ -11,8 +11,6 @@ import { connectDB } from "@/utils/connect";
 
 // Drafting calls a model. Without this the platform default kills the
 // function mid-response.
-export const maxDuration = 60;
-
 const RULES = `Rules:
 - Use only facts from the CV and the job details. Never invent employers, projects, numbers, or skills.
 - No placeholders such as [Name] or [Company].

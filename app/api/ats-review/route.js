@@ -7,8 +7,6 @@ import { sanitizeAIObject } from "@/utils/sanitize-ai-text";
 
 // This route calls a model. Without this the platform default (10-15s) kills
 // the function mid-response and the browser sees a dropped socket.
-export const maxDuration = 60;
-
 const MAX_CV_CHARS = 50_000;
 const MAX_JOB_CHARS = 20_000;
 const MAX_FINDINGS = 120;

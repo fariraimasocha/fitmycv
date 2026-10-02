@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
@@ -11,6 +12,8 @@ import InterviewPrep from "@/models/InterviewPrep";
 import JobDigestItem from "@/models/JobDigestItem";
 import Feedback from "@/models/Feedback";
 import Lead from "@/models/Lead";
+import AgentThread from "@/models/AgentThread";
+import { createPolarClient } from "@/lib/polar";
 import getMongoClient from "@/lib/mongodb-client";
 
 export async function DELETE(request) {
@@ -47,6 +50,26 @@ export async function DELETE(request) {
   try {
     await connectDB();
 
+    // Stop billing first. If this fails we keep the account, otherwise a
+    // deleted user would keep paying with no way to sign in and cancel.
+    // "canceled" already ends at the period end, so it needs nothing.
+    const billing = await User.findById(userId)
+      .select("polarSubscriptionId polarSubscriptionStatus")
+      .lean();
+    if (billing?.polarSubscriptionId && billing.polarSubscriptionStatus && billing.polarSubscriptionStatus !== "canceled") {
+      try {
+        await createPolarClient().subscriptions.revoke({ id: billing.polarSubscriptionId });
+      } catch (error) {
+        if (error?.name !== "AlreadyCanceledSubscription") {
+          console.error("Polar revoke failed on account delete:", error);
+          return NextResponse.json(
+            { error: "Couldn't cancel your subscription, so your account wasn't deleted. Try again, or contact support." },
+            { status: 502 }
+          );
+        }
+      }
+    }
+
     // Delete app data in parallel. Each delete is idempotent.
     const objectId = userId; // mongoose will cast string to ObjectId
 
@@ -60,6 +83,7 @@ export async function DELETE(request) {
       JobDigestItem.deleteMany({ userId: objectId }),
       Feedback.deleteMany({ userId: objectId }),
       Lead.deleteMany({ email }),
+      AgentThread.deleteMany({ userId: objectId }),
     ]);
 
     // Auth.js adapter collections – accounts, sessions, verificationTokens live
@@ -70,13 +94,9 @@ export async function DELETE(request) {
       const userIdForAdapter = session.user.id;
 
       // accounts and sessions use userId as ObjectId or string – try both
-      const { ObjectId } = await import("mongodb");
-      let oid = null;
-      try {
-        oid = new ObjectId(userIdForAdapter);
-      } catch {
-        oid = null;
-      }
+      const oid = mongoose.isValidObjectId(userIdForAdapter)
+        ? new mongoose.Types.ObjectId(userIdForAdapter)
+        : null;
       const userIdFilter = oid ? { $in: [userIdForAdapter, oid] } : userIdForAdapter;
 
       await Promise.all([

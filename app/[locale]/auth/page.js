@@ -18,40 +18,33 @@ import BrandLogo from "@/components/BrandLogo";
 import {
   isInAppBrowser,
   isLinkedInWebView,
-  isAndroid,
-  isIOS,
   getInAppBrowserLabel,
   tryOpenExternalBrowser,
 } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
+import { platformOf, useUserAgent } from "@/hooks/use-user-agent";
 
 export default function AuthPage() {
   const t = useTranslations("auth");
   const getPendingCheckout = useCheckoutStore((s) => s.getPendingCheckout);
   const getPendingCheckoutPlan = useCheckoutStore((s) => s.getPendingCheckoutPlan);
-  const [inWebView, setInWebView] = useState(false);
-  const [isLinkedIn, setIsLinkedIn] = useState(false);
-  const [platform, setPlatform] = useState("unknown");
-  const [browserLabel, setBrowserLabel] = useState(null);
+  const ua = useUserAgent();
+  const inWebView = isInAppBrowser(ua);
+  const isLinkedIn = isLinkedInWebView(ua);
+  const platform = platformOf(ua);
+  // getInAppBrowserLabel returns a brand name, or "in-app browser" when it
+  // cannot tell. null means the translated generic label.
+  const rawBrowserLabel = ua ? getInAppBrowserLabel(ua) : null;
+  const browserLabel = rawBrowserLabel === "in-app browser" ? null : rawBrowserLabel;
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [sending, setSending] = useState(false);
 
   useEffect(() => {
-    const ua = navigator.userAgent || "";
-    setInWebView(isInAppBrowser(ua));
-    setIsLinkedIn(isLinkedInWebView(ua));
-    // getInAppBrowserLabel returns a brand name, or "in-app browser" when it
-    // cannot tell. null means the translated generic label.
-    const label = getInAppBrowserLabel(ua);
-    setBrowserLabel(label === "in-app browser" ? null : label);
-    if (isAndroid(ua)) setPlatform("android");
-    else if (isIOS(ua)) setPlatform("ios");
-    else setPlatform("desktop");
-    if (isInAppBrowser(ua)) {
-      trackEvent("auth_webview_detected", { platform: isAndroid(ua) ? "android" : isIOS(ua) ? "ios" : "other", isLinkedIn: isLinkedInWebView(ua) });
+    if (inWebView) {
+      trackEvent("auth_webview_detected", { platform: platform === "desktop" ? "other" : platform, isLinkedIn });
     }
-  }, []);
+  }, [inWebView, platform, isLinkedIn]);
 
   const callbackUrl = () => {
     const hasPending = getPendingCheckout();

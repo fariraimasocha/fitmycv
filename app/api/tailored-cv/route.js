@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import TailoredCV from "@/models/TailoredCV";
-import Application from "@/models/Application";
 
 export async function GET() {
   const session = await auth();
@@ -21,53 +20,4 @@ export async function GET() {
       hasCoverLetter: Boolean(coverLetter && String(coverLetter).trim()),
     })),
   });
-}
-
-export async function POST(request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return Response.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  try {
-    const body = await request.json();
-    const { jobTitle, jobCompany, jobUrl, jobData, basics, work, education, skills, coverLetter, whyThisRole, matchScore, matchGrade } = body;
-
-    await connectDB();
-    const cv = await TailoredCV.create({
-      userId: session.user.id,
-      jobTitle,
-      jobCompany,
-      jobUrl,
-      jobData,
-      basics,
-      work,
-      education,
-      skills,
-      coverLetter,
-      whyThisRole,
-    });
-
-    // Auto-create application entry
-    try {
-      await Application.create({
-        userId: session.user.id,
-        tailoredCVId: cv._id,
-        jobTitle: jobTitle || "",
-        jobCompany: jobCompany || "",
-        jobUrl: jobUrl || "",
-        status: "evaluated",
-        statusHistory: [{ status: "evaluated", date: new Date(), note: "CV tailored" }],
-        matchScore: matchScore || undefined,
-        matchGrade: matchGrade || undefined,
-      });
-    } catch (appErr) {
-      console.error("Auto-create application error (non-fatal):", appErr);
-    }
-
-    return Response.json({ data: cv }, { status: 201 });
-  } catch (error) {
-    console.error("Tailored CV save error:", error);
-    return Response.json({ error: "Couldn't save your tailored CV. Try again." }, { status: 500 });
-  }
 }

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { STAGE_LABEL, pickApplicationFields } from "@/lib/applications";
@@ -62,6 +63,13 @@ export async function POST(request) {
 
     if (!fields.jobTitle || !fields.jobCompany) {
       return Response.json({ error: "Add a company and a role." }, { status: 400 });
+    }
+
+    // A raw object here ({"$ne": null}) reached findOne and ended in a 500.
+    for (const key of ["tailoredCVId", "companyResearchId"]) {
+      if (body[key] && !mongoose.isValidObjectId(body[key])) {
+        return Response.json({ error: "That link isn't valid. Refresh the page and try again." }, { status: 400 });
+      }
     }
 
     if (body.tailoredCVId) {

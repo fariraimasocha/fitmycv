@@ -401,10 +401,6 @@
       "downloadPdf": "Descargar PDF",
       "downloadLetter": "Descargar carta de presentación",
       "saveTailored": "Guardar CV adaptado",
-      "saveFailedTitle": "No se pudo guardar este CV",
-      "saveFailedDescription": "Para editar hace falta una copia guardada. Aún puedes verlo y descargarlo.",
-      "savingTitle": "Guardando tu CV adaptado",
-      "savingDescription": "La edición se abre en cuanto se guarda.",
       "liveUpdates": "Se actualiza mientras escribes",
       "keywordsAdded": "Palabras clave añadidas desde la oferta"
     }

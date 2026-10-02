@@ -4,9 +4,8 @@ import { CrownIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 
 /**
- * Free users can confirm a tailor worked. Full document value (readable
- * preview + PDF) stays behind unlock. CSS blur alone is not a hard gate;
- * download and print are still blocked in the handlers.
+ * Free users can confirm a tailor worked. The blur is only the visual: the
+ * API already sends free users a trimmed preview (lib/tailored-preview.js).
  */
 export default function PreviewUnlockGate({ locked, onUnlock, children }) {
   const t = useTranslations("pages.unlockGate");

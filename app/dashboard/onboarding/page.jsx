@@ -26,24 +26,24 @@ const QUESTIONS = [];
 const UPLOAD_STEP = 0;
 const TOTAL_STEPS = 1;
 
-function countYears(work) {
+function countYears(work, thisYear) {
   const years = (work ?? [])
     .map((role) =>
       Number.parseInt(String(role?.startDate ?? "").slice(0, 4), 10),
     )
     .filter((year) => Number.isFinite(year) && year > 1950);
   if (!years.length) return null;
-  const span = new Date().getFullYear() - Math.min(...years);
+  const span = thisYear - Math.min(...years);
   return span > 0 ? span : null;
 }
 
-function summariseCV(cv) {
+function summariseCV(cv, thisYear) {
   const roles = (cv?.work ?? []).length;
   const skills = (cv?.skills ?? []).reduce(
     (total, group) => total + (group?.skills?.length ?? 0),
     0,
   );
-  const years = countYears(cv?.work);
+  const years = countYears(cv?.work, thisYear);
 
   return [
     roles > 0 && { key: "roles", value: roles, count: roles },
@@ -60,6 +60,7 @@ export default function OnboardingPage() {
   const reduceMotion = useReducedMotion();
   const t = useTranslations("onboarding");
 
+  const [thisYear] = useState(() => new Date().getFullYear());
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [parsedCV, setParsedCV] = useState(null);
@@ -144,7 +145,7 @@ export default function OnboardingPage() {
   }
 
   const canGoBack = step > 0 && !onPayoff;
-  const facts = onPayoff ? summariseCV(parsedCV) : [];
+  const facts = onPayoff ? summariseCV(parsedCV, thisYear) : [];
   // The full checklist the dashboard will show, with the CV step already
   // ticked. The user just finished it.
   const plan = getActivationSteps(session?.user?.isPremium).map((step) => ({

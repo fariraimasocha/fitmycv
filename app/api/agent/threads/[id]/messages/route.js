@@ -7,8 +7,6 @@ import TailoredCV from "@/models/TailoredCV";
 import { connectDB } from "@/utils/connect";
 
 // A turn can take several model calls plus a job page crawl.
-export const maxDuration = 120;
-
 const MAX_MESSAGE_CHARS = 8000;
 
 export async function POST(request, { params }) {

@@ -3,11 +3,6 @@ import { requirePremium } from "@/lib/paywall";
 import { parseTailorResponse } from "@/utils/tailor-parser";
 import { chat, MODEL_SMART } from "@/lib/groq";
 
-// This route calls a model. Without this the platform default (10-15s) kills
-// the function mid-response and the browser sees a dropped socket, which the
-// client can only report as a network error.
-export const maxDuration = 60;
-
 const SYSTEM_PROMPT = `You edit an already tailored CV to apply ONE specific ATS recommendation. You are not rewriting the CV from scratch.
 
 Return ONLY valid JSON with this exact structure:

@@ -34,13 +34,14 @@ import {
   DashboardPanelHeader,
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
+import { dateLocale } from "@/i18n/routing";
 
 // Subscription statuses with a translated label. Anything else shows as stored.
 const KNOWN_STATUSES = ["active", "canceled", "trialing", "past_due", "incomplete", "unpaid"];
 
 function formatDate(dateStr, locale) {
   if (!dateStr) return null;
-  return new Date(dateStr).toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+  return new Date(dateStr).toLocaleDateString(dateLocale(locale), {
     day: "numeric",
     month: "short",
     year: "numeric",

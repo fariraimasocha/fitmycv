@@ -42,6 +42,7 @@ import {
 } from "@/utils/cv-templates/metadata";
 import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 import { cn } from "@/lib/utils";
+import { dateLocale } from "@/i18n/routing";
 
 function buildResumeData(source) {
   return {
@@ -64,7 +65,7 @@ function formatSavedAt(value, now, t, locale) {
   const days = Math.round(hours / 24);
   if (days === 1) return t("yesterday");
   if (days < 7) return t("daysAgo", { count: days });
-  return date.toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+  return date.toLocaleDateString(dateLocale(locale), {
     day: "numeric",
     month: "short",
   });

@@ -23,3 +23,6 @@ export const LOCALE_LABELS = {
 // Files with an extension (og images, robots.txt, llm.txt) skip it too.
 export const UNTRANSLATED =
   /^\/(dashboard|blog|cv-examples|resume-examples|jobs|print|support|payment)(\/|$)|\.[a-z0-9]+$/i;
+
+// English dates keep the en-GB day-month order they always had.
+export const dateLocale = (locale) => (locale === "en" ? "en-GB" : locale);

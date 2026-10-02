@@ -57,3 +57,7 @@ lib/*.mjs
 .open-next/
 .wrangler/
 .dev.vars*
+
+# Local editor/agent config. The skills live in .claude and .agents.
+.cursor/
+.agents/skills/*/dist/

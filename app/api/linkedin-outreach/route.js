@@ -1,3 +1,4 @@
+import { extractJsonString } from "@/utils/llm-json";
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { chat, MODEL_FAST } from "@/lib/groq";
@@ -83,13 +84,12 @@ Generate a LinkedIn connection request message for reaching out about this role.
       );
     }
 
-    // Parse JSON
-    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
+    let raw;
+    try {
+      raw = JSON.parse(extractJsonString(responseText));
+    } catch {
       return Response.json({ error: "Couldn't read the result. Try again." }, { status: 500 });
     }
-
-    const raw = JSON.parse(jsonMatch[0]);
 
     return Response.json({
       data: {

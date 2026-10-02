@@ -1,3 +1,4 @@
+import { extractJsonString } from "./llm-json.js";
 /**
  * Parse the Groq LLM response into structured resume data.
  * Handles markdown code blocks, JSON quirks, and missing fields.
@@ -12,40 +13,6 @@ export function parseResumeFromResponse(responseText) {
     education: mapEducation(raw),
     skills: mapSkills(raw),
   };
-}
-
-function extractJsonString(text) {
-  // Try to extract from markdown code block first
-  const codeBlockMatch = text.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
-  if (codeBlockMatch) {
-    return cleanJsonString(codeBlockMatch[1]);
-  }
-
-  // Try to find raw JSON object
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
-  if (jsonMatch) {
-    return cleanJsonString(jsonMatch[0]);
-  }
-
-  throw new Error("No JSON found in LLM response");
-}
-
-function cleanJsonString(str) {
-  // Remove trailing commas before } or ]
-  let cleaned = str.trim().replace(/,\s*([}\]])/g, "$1");
-
-  // Escape literal control characters inside JSON string values. Models
-  // sometimes put a raw newline in a summary or highlight, which JSON.parse
-  // rejects as a bad control character.
-  cleaned = cleaned.replace(/"(?:[^"\\]|\\.)*"/g, (match) =>
-    match
-      .replace(/\t/g, "\\t")
-      .replace(/\n/g, "\\n")
-      .replace(/\r/g, "\\r")
-      .replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, "")
-  );
-
-  return cleaned;
 }
 
 function extractBasics(raw) {

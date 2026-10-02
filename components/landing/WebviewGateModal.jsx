@@ -9,7 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
-import { tryOpenExternalBrowser } from "@/lib/webview";
+import { copyText, tryOpenExternalBrowser } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
 import { platformOf, useUserAgent } from "@/hooks/use-user-agent";
 
@@ -36,19 +36,7 @@ export default function WebviewGateModal({
   const handleCopy = async () => {
     const text = urlToShare;
     try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "absolute";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
+      await copyText(text);
       toast.success(t("toastCopied"));
       trackEvent("webview_copy_link", { platform });
     } catch {

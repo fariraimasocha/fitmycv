@@ -5,14 +5,12 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.js");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: false,
-  serverExternalPackages: ["jspdf"],
   images: {
     formats: ["image/avif", "image/webp"],
   },
   experimental: {
     optimizePackageImports: [
       "@phosphor-icons/react",
-      "lucide-react",
       "radix-ui",
       "motion",
     ],

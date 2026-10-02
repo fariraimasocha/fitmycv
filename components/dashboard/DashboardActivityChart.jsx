@@ -13,10 +13,11 @@ import {
 import { DashboardTabBar } from "./DashboardTabBar";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { cn } from "@/lib/utils";
+import { dateLocale } from "@/i18n/routing";
 
 function formatWeekLabel(date, locale) {
   // English keeps the en-GB date order it always had.
-  return date.toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+  return date.toLocaleDateString(dateLocale(locale), {
     day: "numeric",
     month: "short",
   });

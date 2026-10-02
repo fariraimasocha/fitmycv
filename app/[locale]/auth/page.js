@@ -20,6 +20,7 @@ import {
   isLinkedInWebView,
   getInAppBrowserLabel,
   tryOpenExternalBrowser,
+  copyText,
 } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
 import { platformOf, useUserAgent } from "@/hooks/use-user-agent";
@@ -107,19 +108,7 @@ export default function AuthPage() {
   const handleCopyLink = async () => {
     const text = window.location.href;
     try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "absolute";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
+      await copyText(text);
       toast.success(t("toasts.copied"));
       trackEvent("auth_copy_link", { platform });
     } catch {

@@ -20,6 +20,7 @@ import { useConfirm } from "@/hooks/use-confirm";
 import { STAGES, STAGE_BY_KEY, initials } from "@/lib/applications";
 import { requestJson } from "@/lib/request-json";
 import { cn } from "@/lib/utils";
+import { dateLocale } from "@/i18n/routing";
 
 // Ported from Reactive Resume's table-view.tsx.
 
@@ -29,7 +30,7 @@ const PAGE_SIZE = 25;
 const appliedOn = (app, locale, fallback) => {
   const date = app.appliedAt ?? app.createdAt;
   return date
-    ? new Date(date).toLocaleDateString(locale === "en" ? "en-GB" : locale, {
+    ? new Date(date).toLocaleDateString(dateLocale(locale), {
         day: "numeric",
         month: "short",
         year: "numeric",

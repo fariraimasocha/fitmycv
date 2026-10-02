@@ -30,6 +30,7 @@ import {
 import { buildWeeklyCounts, weekStartDates } from "@/lib/activity-series";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
+import { dateLocale } from "@/i18n/routing";
 
 const WEEKS = 12;
 
@@ -42,11 +43,6 @@ function getTimeOfDay() {
   if (hour < 12) return "morning";
   if (hour < 17) return "afternoon";
   return "evening";
-}
-
-// English keeps the en-GB date order it always had.
-function dateLocale(locale) {
-  return locale === "en" ? "en-GB" : locale;
 }
 
 function getFormattedDate(locale) {

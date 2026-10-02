@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { getAtPath } from "@/lib/cv-patch";
 import { cn } from "@/lib/utils";
+import { dateLocale } from "@/i18n/routing";
 
 const SUGGESTIONS = [
   {
@@ -115,7 +116,7 @@ function formatMessageTime(value, now, locale) {
   if (Number.isNaN(date.getTime())) return null;
   const sameDay = date.toDateString() === new Date(now).toDateString();
   // English keeps en-GB so times stay 24 hour, as before.
-  return date.toLocaleString(locale === "en" ? "en-GB" : locale, sameDay ? TIME_FORMAT : DATE_TIME_FORMAT);
+  return date.toLocaleString(dateLocale(locale), sameDay ? TIME_FORMAT : DATE_TIME_FORMAT);
 }
 
 /**

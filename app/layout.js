@@ -3,7 +3,7 @@ import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
 import { auth } from "@/lib/auth";
-import ToastProvider from "@/components/providers/ToastProvider";
+import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
@@ -118,7 +118,7 @@ export default async function RootLayout({ children }) {
             <AuthProvider session={session}>
               <WebviewGateProvider>
                 {children}
-                <ToastProvider />
+                <Toaster position="top-center" />
                 <ChatwootWidget />
               </WebviewGateProvider>
             </AuthProvider>

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const tailoredCVSchema = new mongoose.Schema(
   {
@@ -60,5 +61,4 @@ const tailoredCVSchema = new mongoose.Schema(
 
 tailoredCVSchema.index({ userId: 1, createdAt: -1 });
 
-export default mongoose.models.TailoredCV ||
-  mongoose.model("TailoredCV", tailoredCVSchema);
+export default defineModel("TailoredCV", tailoredCVSchema);

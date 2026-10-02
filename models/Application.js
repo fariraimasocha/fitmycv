@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 // Stage changes and notes share one timeline. Rows written before notes
 // existed have no kind and read as stage changes. "kind", not "type": type is
@@ -100,5 +101,4 @@ const applicationSchema = new mongoose.Schema(
 applicationSchema.index({ userId: 1, createdAt: -1 });
 applicationSchema.index({ userId: 1, status: 1 });
 
-export default mongoose.models.Application ||
-  mongoose.model("Application", applicationSchema);
+export default defineModel("Application", applicationSchema);

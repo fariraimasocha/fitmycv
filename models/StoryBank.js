@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const storyBankSchema = new mongoose.Schema(
   {
@@ -31,5 +32,4 @@ const storyBankSchema = new mongoose.Schema(
 
 storyBankSchema.index({ userId: 1 }, { unique: true });
 
-export default mongoose.models.StoryBank ||
-  mongoose.model("StoryBank", storyBankSchema);
+export default defineModel("StoryBank", storyBankSchema);

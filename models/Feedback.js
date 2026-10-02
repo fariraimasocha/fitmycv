@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const feedbackSchema = new mongoose.Schema(
   {
@@ -11,4 +12,4 @@ const feedbackSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Feedback || mongoose.model("Feedback", feedbackSchema);
+export default defineModel("Feedback", feedbackSchema);

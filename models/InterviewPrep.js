@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const interviewPrepSchema = new mongoose.Schema(
   {
@@ -36,5 +37,4 @@ const interviewPrepSchema = new mongoose.Schema(
 
 interviewPrepSchema.index({ userId: 1, createdAt: -1 });
 
-export default mongoose.models.InterviewPrep ||
-  mongoose.model("InterviewPrep", interviewPrepSchema);
+export default defineModel("InterviewPrep", interviewPrepSchema);

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { createPolarClient } from "@/lib/polar";
 import User from "@/models/User";
-import dbConnect from "@/lib/db";
+import { connectDB } from "@/utils/connect";
 import { appUrl } from "@/lib/site";
 
 const polar = createPolarClient();
@@ -65,7 +65,7 @@ export async function GET(request) {
       return NextResponse.redirect(localAppUrl("/auth", request));
     }
 
-    await dbConnect();
+    await connectDB();
     const user = await User.findOne({ email: session.user.email }).select(
       "email polarCustomerId isPremium",
     );

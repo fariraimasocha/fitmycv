@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 // Shared pool of remote jobs crawled from company ATS pages (greenhouse, lever,
 // ashby and friends). Unlike JobDigestItem these rows belong to nobody: one
@@ -69,4 +70,4 @@ jobSchema.index({ crawledAt: 1 }, { expireAfterSeconds: 30 * 24 * 60 * 60 });
 // Backs the category filter, which is the one that actually narrows the list.
 jobSchema.index({ category: 1, crawledAt: -1 });
 
-export default mongoose.models.Job || mongoose.model("Job", jobSchema);
+export default defineModel("Job", jobSchema);

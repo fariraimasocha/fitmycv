@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const userSchema = new mongoose.Schema(
   {
@@ -104,4 +105,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.models.User || mongoose.model("User", userSchema);
+export default defineModel("User", userSchema);

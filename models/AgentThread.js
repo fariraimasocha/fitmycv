@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 // One conversation with the CV agent. Messages are stored in the shape the
 // model API expects, so each turn replays them as they are.
@@ -55,5 +56,4 @@ const agentThreadSchema = new mongoose.Schema(
 
 agentThreadSchema.index({ userId: 1, updatedAt: -1 });
 
-export default mongoose.models.AgentThread ||
-  mongoose.model("AgentThread", agentThreadSchema);
+export default defineModel("AgentThread", agentThreadSchema);

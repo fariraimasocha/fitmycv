@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const leadSchema = new mongoose.Schema(
   {
@@ -35,4 +36,4 @@ const leadSchema = new mongoose.Schema(
 
 leadSchema.index({ email: 1, source: 1 }, { unique: true });
 
-export default mongoose.models.Lead || mongoose.model("Lead", leadSchema);
+export default defineModel("Lead", leadSchema);

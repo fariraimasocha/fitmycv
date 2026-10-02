@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const companyResearchSchema = new mongoose.Schema(
   {
@@ -63,5 +64,4 @@ const companyResearchSchema = new mongoose.Schema(
 companyResearchSchema.index({ userId: 1, createdAt: -1 });
 companyResearchSchema.index({ userId: 1, jobUrl: 1 });
 
-export default mongoose.models.CompanyResearch ||
-  mongoose.model("CompanyResearch", companyResearchSchema);
+export default defineModel("CompanyResearch", companyResearchSchema);

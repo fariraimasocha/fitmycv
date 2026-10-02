@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 const referenceCVSchema = new mongoose.Schema(
   {
@@ -59,5 +60,4 @@ const referenceCVSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.ReferenceCV ||
-  mongoose.model("ReferenceCV", referenceCVSchema);
+export default defineModel("ReferenceCV", referenceCVSchema);

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { defineModel } from "@/utils/connect";
 
 // One row per job we email a user. Powers two things at once:
 //   - dedup: the cron skips jobIds already sent to this user recently
@@ -40,5 +41,4 @@ jobDigestItemSchema.index({ userId: 1, jobId: 1 }, { unique: true });
 jobDigestItemSchema.index({ userId: 1, saved: 1, savedAt: -1 });
 jobDigestItemSchema.index({ userId: 1, sentAt: -1 });
 
-export default mongoose.models.JobDigestItem ||
-  mongoose.model("JobDigestItem", jobDigestItemSchema);
+export default defineModel("JobDigestItem", jobDigestItemSchema);

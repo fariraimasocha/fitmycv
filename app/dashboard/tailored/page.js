@@ -33,6 +33,7 @@ import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { requestJson } from "@/lib/request-json";
 
 const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
 
@@ -182,10 +183,13 @@ export default function TailoredCVsPage() {
 
   const { data: referenceCV } = useQuery({
     queryKey: ["reference-cv"],
-    queryFn: () => fetch("/api/reference-cv").then((r) => r.json()),
+    // Same key and shape as the dashboard home. This used to call
+    // /api/reference-cv, which does not exist, so the empty state always
+    // said to upload a CV.
+    queryFn: () => requestJson("/api/resume"),
   });
 
-  const hasReferenceCV = !!referenceCV?.data;
+  const hasReferenceCV = !!referenceCV;
 
   const deleteMutation = useMutation({
     mutationFn: async (id) => {

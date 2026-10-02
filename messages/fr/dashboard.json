@@ -59,11 +59,13 @@
     "noneThisWeek": "Aucun cette semaine",
     "notAvailable": "Non disponible",
     "greeting": {
+      "default": "Bonjour, {name}",
       "morning": "Bonjour, {name}",
       "afternoon": "Bon après-midi, {name}",
       "evening": "Bonsoir, {name}"
     },
     "greetingNoName": {
+      "default": "Bonjour",
       "morning": "Bonjour",
       "afternoon": "Bon après-midi",
       "evening": "Bonsoir"

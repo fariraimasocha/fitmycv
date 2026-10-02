@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo, Suspense } from "react";
+import { useEffect, useState, useMemo, Suspense, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
@@ -33,6 +33,10 @@ import { getActivationSteps } from "@/lib/activation-steps";
 
 const WEEKS = 12;
 
+const noSubscribe = () => () => {};
+
+// The server renders in UTC and has no idea of the visitor's clock, so the
+// time-of-day greeting is read on the client only. Server HTML says "Hello".
 function getTimeOfDay() {
   const hour = new Date().getHours();
   if (hour < 12) return "morning";
@@ -115,12 +119,12 @@ function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
   );
 }
 
-export default function DashboardPage() {
+export default function DashboardHome() {
   const t = useTranslations("dashboard.home");
   const locale = useLocale();
   const { data: session } = useSession();
   const [formattedDate] = useState(() => getFormattedDate(locale));
-  const [greeting] = useState(() => getTimeOfDay());
+  const greeting = useSyncExternalStore(noSubscribe, getTimeOfDay, () => "default");
   const [now] = useState(() => Date.now());
   const firstName = session?.user?.name?.split(" ")[0];
   const isPremium = Boolean(session?.user?.isPremium);
@@ -150,6 +154,8 @@ export default function DashboardPage() {
     isError: companyResearchesError,
   } = useQuery({
     queryKey: ["company-research"],
+    // Behind requirePremium too. Free accounts only ever got a 402 here.
+    enabled: isPremium,
     queryFn: async () => {
       const res = await fetch("/api/company-research");
       if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");

@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
-import TailoredCV from "@/models/TailoredCV";
+import { listTailoredCVs } from "@/lib/dashboard-data";
 
 export async function GET() {
   const session = await auth();
@@ -9,15 +9,5 @@ export async function GET() {
   }
 
   await connectDB();
-  const cvs = await TailoredCV.find({ userId: session.user.id })
-    .sort({ createdAt: -1 })
-    .select("jobTitle jobCompany jobUrl createdAt coverLetter")
-    .lean();
-
-  return Response.json({
-    data: cvs.map(({ coverLetter, ...cv }) => ({
-      ...cv,
-      hasCoverLetter: Boolean(coverLetter && String(coverLetter).trim()),
-    })),
-  });
+  return Response.json({ data: await listTailoredCVs(session.user.id) });
 }

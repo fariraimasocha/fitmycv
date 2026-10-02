@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import ReferenceCV from "@/models/ReferenceCV";
+import { getReferenceCV } from "@/lib/dashboard-data";
 import { TEMPLATE_IDS, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
 import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 
@@ -11,13 +12,8 @@ export async function GET() {
   }
 
   await connectDB();
-  const cv = await ReferenceCV.findOne({ userId: session.user.id }).lean();
-
-  if (!cv) {
-    return Response.json({ data: null });
-  }
-
-  return Response.json({ data: cv });
+  const cv = await getReferenceCV(session.user.id);
+  return Response.json({ data: cv ?? null });
 }
 
 export async function PUT(request) {

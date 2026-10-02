@@ -2,6 +2,7 @@ import { Geist_Mono, DM_Sans, Outfit, Instrument_Serif } from "next/font/google"
 import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
+import { auth } from "@/lib/auth";
 import ToastProvider from "@/components/providers/ToastProvider";
 import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
@@ -100,7 +101,11 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const [locale, messages] = await Promise.all([getLocale(), getMessages()]);
+  // The session is read here so useSession() has it on the first render.
+  // Without it every dashboard page server-rendered a spinner and waited for
+  // /api/auth/session. ponytail: this keeps every page dynamic; split the
+  // marketing pages into their own root layout when they should prerender.
+  const [locale, messages, session] = await Promise.all([getLocale(), getMessages(), auth()]);
   return (
     <html lang={locale}>
       <body
@@ -110,7 +115,7 @@ export default async function RootLayout({ children }) {
         <JsonLd data={websiteSchema} />
         <NextIntlClientProvider messages={pickMessages(messages, PUBLIC_MESSAGES)}>
           <QueryProvider>
-            <AuthProvider>
+            <AuthProvider session={session}>
               <WebviewGateProvider>
                 {children}
                 <ToastProvider />

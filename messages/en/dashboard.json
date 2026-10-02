@@ -59,11 +59,13 @@
     "noneThisWeek": "None this week",
     "notAvailable": "Not available",
     "greeting": {
+      "default": "Hello, {name}",
       "morning": "Good morning, {name}",
       "afternoon": "Good afternoon, {name}",
       "evening": "Good evening, {name}"
     },
     "greetingNoName": {
+      "default": "Hello",
       "morning": "Good morning, there",
       "afternoon": "Good afternoon, there",
       "evening": "Good evening, there"

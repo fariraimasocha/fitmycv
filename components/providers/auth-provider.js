@@ -43,9 +43,11 @@ function PostHogIdentity() {
   return null;
 }
 
-export default function AuthProvider({ children }) {
+export default function AuthProvider({ session, children }) {
+  // Focus refetches hit /api/auth/session (and the DB) on every tab switch.
+  // Checkout and upgrade call update() themselves.
   return (
-    <SessionProvider>
+    <SessionProvider session={session} refetchOnWindowFocus={false}>
       <PostHogIdentity />
       {children}
     </SessionProvider>

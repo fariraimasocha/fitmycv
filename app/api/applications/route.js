@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { auth } from "@/lib/auth";
+import { listApplications } from "@/lib/dashboard-data";
 import { requirePremium } from "@/lib/paywall";
 import { STAGE_LABEL, pickApplicationFields } from "@/lib/applications";
 import Application from "@/models/Application";
@@ -23,18 +24,7 @@ export async function GET(request) {
     const status = searchParams.get("status");
     const archived = searchParams.get("archived");
 
-    const query = { userId: session.user.id };
-    // "all" lets the tracker filter archived rows on the client. Rows created
-    // before archiving existed have no flag, hence $ne.
-    if (archived === "true") query.archived = true;
-    else if (archived !== "all") query.archived = { $ne: true };
-    if (status && status !== "all") {
-      query.status = status;
-    }
-
-    const applications = await Application.find(query)
-      .sort({ createdAt: -1 })
-      .lean();
+    const applications = await listApplications(session.user.id, { status, archived });
 
     return Response.json({ data: applications });
   } catch (error) {

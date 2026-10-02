@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { parseCompanyResearchResponse } from "@/utils/company-research-parser";
 import CompanyResearch from "@/models/CompanyResearch";
+import { listCompanyResearch } from "@/lib/dashboard-data";
 import { connectDB } from "@/utils/connect";
 import { chat, MODEL_FAST } from "@/lib/groq";
 
@@ -52,10 +53,7 @@ export async function GET() {
 
   try {
     await connectDB();
-    const briefs = await CompanyResearch.find({ userId: session.user.id })
-      .sort({ createdAt: -1 })
-      .select("companyName jobTitle jobUrl createdAt summary fundingStage teamSize")
-      .lean();
+    const briefs = await listCompanyResearch(session.user.id);
 
     return Response.json({ data: briefs });
   } catch (error) {

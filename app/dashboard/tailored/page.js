@@ -167,6 +167,7 @@ export default function TailoredCVsPage() {
   const PAGE_DESCRIPTION = t("description");
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [upgradeModalContext, setUpgradeModalContext] = useState("default");
+  const [paywallJob, setPaywallJob] = useState(null);
   const [filter, setFilter] = useState("all");
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -233,6 +234,7 @@ export default function TailoredCVsPage() {
         source: "tailored_list",
       });
       setUpgradeModalContext("download");
+      setPaywallJob({ title: cv.jobTitle, company: cv.jobCompany });
       setShowUpgradeModal(true);
       return;
     }
@@ -355,6 +357,7 @@ export default function TailoredCVsPage() {
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
         context={upgradeModalContext}
+        job={paywallJob}
       />
     </DashboardPageShell>
   );

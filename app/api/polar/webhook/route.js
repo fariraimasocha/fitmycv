@@ -1,6 +1,7 @@
 import { Webhooks } from "@polar-sh/nextjs";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
+import { captureServerEvent } from "@/lib/posthog-server";
 
 async function resolveUser(data) {
   await connectDB();
@@ -27,12 +28,21 @@ async function resolveUser(data) {
   return user;
 }
 
-function queuePurchaseAnalytics(user, { orderId, plan }) {
-  if (!orderId) return;
-  user.purchaseAnalyticsPending = {
-    orderId: String(orderId),
+// Sent from here, not the success page: a buyer who closes the tab or blocks
+// scripts still counts. distinct_id is the user id the client identifies with.
+// Renewals are skipped so this counts first purchases only.
+async function capturePurchase(user, order) {
+  if (order.billingReason === "subscription_cycle") return;
+  const plan =
+    order.metadata?.plan ?? (order.subscriptionId ? "month" : "lifetime");
+  await captureServerEvent(user._id, "purchase_complete", {
     plan: plan === "month" ? "month" : "lifetime",
-  };
+    order_id: order.id,
+    tier: order.metadata?.pricingTier ?? null,
+    revenue: order.totalAmount / 100,
+    currency: order.currency,
+    $insert_id: order.id,
+  });
 }
 
 export const POST = Webhooks({
@@ -47,11 +57,8 @@ export const POST = Webhooks({
     user.polarCustomerId = order.customer?.id || user.polarCustomerId || null;
     user.premiumActivatedAt = new Date();
     user.premiumRevokedAt = null;
-    queuePurchaseAnalytics(user, {
-      orderId: order.id,
-      plan: order.metadata?.plan,
-    });
     await user.save();
+    await capturePurchase(user, order);
 
     console.log(`Premium activated for user: ${user.email} (order.paid)`);
   },
@@ -96,10 +103,6 @@ export const POST = Webhooks({
       : null;
     user.subscriptionCanceledAt = null;
     user.premiumRevokedAt = null;
-    queuePurchaseAnalytics(user, {
-      orderId: subscription.id,
-      plan: subscription.metadata?.plan ?? "month",
-    });
     await user.save();
 
     console.log(

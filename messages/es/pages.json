@@ -86,20 +86,24 @@
   "upgradeModal": {
     "default": {
       "title": "Hazte FitMyCV Pro",
-      "description": "Empieza un mes por ${price} para descargar tus CV y cartas de presentación en PDF, además de investigación de empresas, preparación de entrevistas y seguimiento de candidaturas."
+      "description": "Paga ${price} una sola vez para descargar tus CV y cartas de presentación en PDF, además de investigación de empresas, preparación de entrevistas y seguimiento de candidaturas."
     },
     "download": {
       "title": "Descarga tus PDF",
-      "description": "Tu CV y tu carta de presentación están listos. Empieza un mes por ${price} para descargarlos en PDF."
+      "description": "Tu CV y tu carta de presentación están listos. Paga ${price} una sola vez para descargarlos en PDF."
     },
     "preTailor": {
       "title": "Descarga tus PDF",
-      "description": "Empieza un mes por ${price} para descargar tu CV adaptado y tu carta de presentación en PDF."
+      "description": "Paga ${price} una sola vez para descargar tu CV adaptado y tu carta de presentación en PDF."
     },
     "startMonth": "Empezar un mes por ${price}",
     "getLifetime": "Acceso de por vida por ${price}",
     "maybeLater": "Quizá más tarde",
-    "seeEverything": "Ver todo lo que incluye Pro"
+    "seeEverything": "Ver todo lo que incluye Pro",
+    "forJob": {
+      "title": "Descarga tu CV para {title}",
+      "titleWithCompany": "Descarga tu CV para {title} en {company}"
+    }
   },
   "unlockGate": {
     "button": "Desbloquear para descargar",

@@ -1196,6 +1196,7 @@ function Tailor() {
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
         context={upgradeModalContext}
+        job={jobData}
       />
     </DashboardPageShell>
   );

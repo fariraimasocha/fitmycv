@@ -30,6 +30,7 @@ export default function UpgradePromptModal({
   open,
   onClose,
   context = "default",
+  job = null,
 }) {
   const t = useTranslations("pages.upgradeModal");
   const router = useRouter();
@@ -41,14 +42,22 @@ export default function UpgradePromptModal({
 
   useEffect(() => {
     if (open) {
-      trackEvent("paywall_view", { context, primary_plan: "month" });
+      trackEvent("paywall_view", {
+        context,
+        primary_plan: "lifetime",
+        has_job: Boolean(job?.title),
+      });
     }
-  }, [open, context]);
+  }, [open, context, job?.title]);
 
   const copyKey = COPY_KEYS[context] ?? COPY_KEYS.default;
-  const title = t(`${copyKey}.title`);
+  const title = job?.title
+    ? job.company
+      ? t("forJob.titleWithCompany", { title: job.title, company: job.company })
+      : t("forJob.title", { title: job.title })
+    : t(`${copyKey}.title`);
   const description = t(`${copyKey}.description`, {
-    price: pricing.month.price,
+    price: pricing.lifetime.price,
   });
 
   const startCheckout = (plan, source) => {
@@ -82,7 +91,7 @@ export default function UpgradePromptModal({
 
         <PricingCards
           compact
-          primaryPlan="month"
+          primaryPlan="lifetime"
           pricing={pricing}
           tier={pricing.tier}
         />
@@ -90,17 +99,17 @@ export default function UpgradePromptModal({
         <div className="flex flex-col gap-2 pt-2">
           <button
             type="button"
-            onClick={() => startCheckout("month", "paywall_primary")}
+            onClick={() => startCheckout("lifetime", "paywall_primary")}
             className="dashboard-primary-btn w-full"
           >
-            {t("startMonth", { price: pricing.month.price })}
+            {t("getLifetime", { price: pricing.lifetime.price })}
           </button>
           <button
             type="button"
-            onClick={() => startCheckout("lifetime", "paywall_secondary")}
+            onClick={() => startCheckout("month", "paywall_secondary")}
             className="dashboard-secondary-btn w-full"
           >
-            {t("getLifetime", { price: pricing.lifetime.price })}
+            {t("startMonth", { price: pricing.month.price })}
           </button>
           <button
             type="button"

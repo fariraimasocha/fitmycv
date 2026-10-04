@@ -66,7 +66,7 @@ export default function PricingCards({
     }
   };
 
-  // Paywall leads with monthly. Public pricing keeps lifetime as best value.
+  // Callers can pick which plan leads. Lifetime is the default everywhere.
   const highlightId = primaryPlan ?? defaultPlan;
   const ordered =
     highlightId === "month"

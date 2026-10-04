@@ -86,20 +86,24 @@
   "upgradeModal": {
     "default": {
       "title": "Hol dir FitMyCV Pro",
-      "description": "Starte einen Monat für ${price}, um deine Lebensläufe und Anschreiben als PDF herunterzuladen, dazu Unternehmensrecherche, Interviewvorbereitung und Bewerbungsverwaltung."
+      "description": "Zahle einmalig ${price}, um deine Lebensläufe und Anschreiben als PDF herunterzuladen, dazu Unternehmensrecherche, Interviewvorbereitung und Bewerbungsverwaltung."
     },
     "download": {
       "title": "Lade deine PDFs herunter",
-      "description": "Dein Lebenslauf und dein Anschreiben sind fertig. Starte einen Monat für ${price}, um sie als PDF herunterzuladen."
+      "description": "Dein Lebenslauf und dein Anschreiben sind fertig. Zahle einmalig ${price}, um sie als PDF herunterzuladen."
     },
     "preTailor": {
       "title": "Lade deine PDFs herunter",
-      "description": "Starte einen Monat für ${price}, um deinen angepassten Lebenslauf und dein Anschreiben als PDF herunterzuladen."
+      "description": "Zahle einmalig ${price}, um deinen angepassten Lebenslauf und dein Anschreiben als PDF herunterzuladen."
     },
     "startMonth": "Einen Monat für ${price} starten",
     "getLifetime": "Lebenslangen Zugang für ${price} holen",
     "maybeLater": "Vielleicht später",
-    "seeEverything": "Alles in Pro ansehen"
+    "seeEverything": "Alles in Pro ansehen",
+    "forJob": {
+      "title": "Lade deinen Lebenslauf für {title} herunter",
+      "titleWithCompany": "Lade deinen Lebenslauf für {title} bei {company} herunter"
+    }
   },
   "unlockGate": {
     "button": "Zum Herunterladen freischalten",

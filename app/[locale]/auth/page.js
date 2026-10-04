@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { motion } from "motion/react";
@@ -23,7 +23,22 @@ import {
   copyText,
 } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
+import { useClientPricing } from "@/components/pricing/PricingCards";
 import { platformOf, useUserAgent } from "@/hooks/use-user-agent";
+
+// The pending plan lives in localStorage, so the server snapshot is null and
+// the real value arrives right after hydration without a mismatch.
+function pendingPlanSnapshot() {
+  const { pendingCheckout, pendingCheckoutTimestamp, pendingCheckoutPlan } =
+    useCheckoutStore.getState();
+  if (!pendingCheckout || !pendingCheckoutTimestamp) return null;
+  if (Date.now() - pendingCheckoutTimestamp > 10 * 60 * 1000) return null;
+  return pendingCheckoutPlan === "month" ? "month" : "lifetime";
+}
+
+function usePendingPlan() {
+  return useSyncExternalStore(useCheckoutStore.subscribe, pendingPlanSnapshot, () => null);
+}
 
 export default function AuthPage() {
   const t = useTranslations("auth");
@@ -40,6 +55,15 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const pendingPlan = usePendingPlan();
+  const pricing = useClientPricing();
+  // Buyers came for checkout, so the one-click option leads. Google is
+  // disabled in a webview, where email stays first.
+  const googleFirst = Boolean(pendingPlan) && !inWebView;
+
+  useEffect(() => {
+    if (pendingPlan) trackEvent("auth_checkout_intent_shown", { plan: pendingPlan });
+  }, [pendingPlan]);
 
   useEffect(() => {
     if (inWebView) {
@@ -126,6 +150,55 @@ export default function AuthPage() {
     }
   };
 
+  const emailForm = emailSent ? (
+    <div className="w-full rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-center">
+      <p className="text-sm font-semibold text-[var(--landing-ink)]">
+        {t("emailSent.title")}
+      </p>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--landing-ink-soft)]">
+        {t("emailSent.body", { email })}
+      </p>
+    </div>
+  ) : (
+    <form onSubmit={handleMagicLink} className="flex w-full flex-col gap-3">
+      <label htmlFor="auth-email" className="sr-only">
+        {t("emailLabel")}
+      </label>
+      <input
+        id="auth-email"
+        type="email"
+        autoComplete="email"
+        placeholder={t("emailPlaceholder")}
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+        className="w-full rounded-lg border border-[var(--landing-line)] bg-white px-4 py-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
+      />
+      <motion.button
+        type="submit"
+        disabled={sending}
+        className="landing-primary-btn w-full text-sm disabled:cursor-not-allowed disabled:opacity-60"
+        whileTap={{ scale: 0.98 }}
+      >
+        <EnvelopeSimpleIcon size={18} />
+        {sending ? t("sending") : t("sendLink")}
+      </motion.button>
+    </form>
+  );
+
+  const googleButton = (
+    <motion.button
+      type="button"
+      onClick={handleGoogleSignIn}
+      disabled={inWebView}
+      className="landing-secondary-btn w-full text-sm disabled:cursor-not-allowed disabled:opacity-40"
+      whileHover={inWebView ? {} : { scale: 1.02 }}
+      whileTap={inWebView ? {} : { scale: 0.98 }}
+    >
+      <GoogleLogoIcon size={20} weight="bold" />
+      {t("google")}
+    </motion.button>
+  );
+
   return (
     <div className="landing-root flex min-h-screen items-center justify-center px-4">
       <motion.div
@@ -139,9 +212,19 @@ export default function AuthPage() {
         </Link>
 
         <div className="text-center">
-          <h1 className="text-xl font-semibold text-[var(--landing-ink)]">{t("title")}</h1>
+          <h1 className="text-xl font-semibold text-[var(--landing-ink)]">
+            {pendingPlan === "month"
+              ? t("checkoutIntent.titleMonth")
+              : pendingPlan
+                ? t("checkoutIntent.titleLifetime")
+                : t("title")}
+          </h1>
           <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
-            {t("subtitle")}
+            {pendingPlan === "month"
+              ? t("checkoutIntent.subtitleMonth", { price: pricing.month.price })
+              : pendingPlan
+                ? t("checkoutIntent.subtitleLifetime", { price: pricing.lifetime.price })
+                : t("subtitle")}
           </p>
         </div>
 
@@ -204,40 +287,7 @@ export default function AuthPage() {
           </div>
         )}
 
-        {emailSent ? (
-          <div className="w-full rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-center">
-            <p className="text-sm font-semibold text-[var(--landing-ink)]">
-              {t("emailSent.title")}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-[var(--landing-ink-soft)]">
-              {t("emailSent.body", { email })}
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleMagicLink} className="flex w-full flex-col gap-3">
-            <label htmlFor="auth-email" className="sr-only">
-              {t("emailLabel")}
-            </label>
-            <input
-              id="auth-email"
-              type="email"
-              autoComplete="email"
-              placeholder={t("emailPlaceholder")}
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="w-full rounded-lg border border-[var(--landing-line)] bg-white px-4 py-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
-            />
-            <motion.button
-              type="submit"
-              disabled={sending}
-              className="landing-primary-btn w-full text-sm disabled:cursor-not-allowed disabled:opacity-60"
-              whileTap={{ scale: 0.98 }}
-            >
-              <EnvelopeSimpleIcon size={18} />
-              {sending ? t("sending") : t("sendLink")}
-            </motion.button>
-          </form>
-        )}
+        {googleFirst ? googleButton : emailForm}
 
         <div className="flex w-full items-center gap-3">
           <span className="h-px flex-1 bg-[var(--landing-line)]" aria-hidden="true" />
@@ -245,17 +295,7 @@ export default function AuthPage() {
           <span className="h-px flex-1 bg-[var(--landing-line)]" aria-hidden="true" />
         </div>
 
-        <motion.button
-          type="button"
-          onClick={handleGoogleSignIn}
-          disabled={inWebView}
-          className="landing-secondary-btn w-full text-sm disabled:cursor-not-allowed disabled:opacity-40"
-          whileHover={inWebView ? {} : { scale: 1.02 }}
-          whileTap={inWebView ? {} : { scale: 0.98 }}
-        >
-          <GoogleLogoIcon size={20} weight="bold" />
-          {t("google")}
-        </motion.button>
+        {googleFirst ? emailForm : googleButton}
       </motion.div>
     </div>
   );

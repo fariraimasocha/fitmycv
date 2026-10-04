@@ -525,6 +525,7 @@ export default function TailoredCVDetailPage() {
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
         context={upgradeModalContext}
+        job={cv ? { title: cv.jobTitle, company: cv.jobCompany } : null}
       />
     </DashboardPageShell>
   );

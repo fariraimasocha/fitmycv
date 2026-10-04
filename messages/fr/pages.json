@@ -86,20 +86,24 @@
   "upgradeModal": {
     "default": {
       "title": "Passez à FitMyCV Pro",
-      "description": "Commencez un mois pour ${price} pour télécharger vos CV et lettres de motivation en PDF, avec en plus la recherche sur l'entreprise, la préparation aux entretiens et le suivi des candidatures."
+      "description": "Payez ${price} une seule fois pour télécharger vos CV et lettres de motivation en PDF, avec en plus la recherche sur l'entreprise, la préparation aux entretiens et le suivi des candidatures."
     },
     "download": {
       "title": "Téléchargez vos PDF",
-      "description": "Votre CV et votre lettre de motivation sont prêts. Commencez un mois pour ${price} pour les télécharger en PDF."
+      "description": "Votre CV et votre lettre de motivation sont prêts. Payez ${price} une seule fois pour les télécharger en PDF."
     },
     "preTailor": {
       "title": "Téléchargez vos PDF",
-      "description": "Commencez un mois pour ${price} pour télécharger votre CV adapté et votre lettre de motivation en PDF."
+      "description": "Payez ${price} une seule fois pour télécharger votre CV adapté et votre lettre de motivation en PDF."
     },
     "startMonth": "Commencer un mois pour ${price}",
     "getLifetime": "Accès à vie pour ${price}",
     "maybeLater": "Plus tard",
-    "seeEverything": "Tout ce que comprend Pro"
+    "seeEverything": "Tout ce que comprend Pro",
+    "forJob": {
+      "title": "Téléchargez votre CV pour {title}",
+      "titleWithCompany": "Téléchargez votre CV pour {title} chez {company}"
+    }
   },
   "unlockGate": {
     "button": "Débloquer le téléchargement",

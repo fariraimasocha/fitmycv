@@ -218,7 +218,7 @@ export default function ResumeForm({
           <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
             <CardTitle className="text-base font-semibold">{t("sections.personal")}</CardTitle>
           </CardHeader>
-          <CardContent className="dashboard-card-pad grid gap-4 sm:grid-cols-2">
+          <CardContent className="dashboard-card-pad grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="name">{t("fields.fullNameRequired")}</Label>
               <Input id="name" {...register("basics.name")} />
@@ -401,7 +401,7 @@ export default function ResumeForm({
                     </Button>
                   </div>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label>{t("fields.company")}</Label>
                     <Input {...register(`work.${index}.company`)} />
@@ -518,7 +518,7 @@ export default function ResumeForm({
                     </Button>
                   </div>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label>{t("fields.institution")}</Label>
                     <Input {...register(`education.${index}.institution`)} />

@@ -14,6 +14,15 @@ import { cn } from "@/lib/utils";
 
 const YEAR = 60 * 60 * 24 * 365;
 
+// ponytail: emoji flags, no assets. Windows has no flag emoji and shows the
+// two letters instead (GB, FR). Swap in SVG flags if that matters.
+const LOCALE_FLAGS = {
+  en: "🇬🇧",
+  fr: "🇫🇷",
+  es: "🇪🇸",
+  de: "🇩🇪",
+};
+
 function saveLocaleCookie(locale) {
   document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=${YEAR}; samesite=lax`;
 }
@@ -58,7 +67,10 @@ export default function LanguagePicker({ className, align = "end" }) {
             onClick={() => choose(code)}
             className="flex cursor-pointer items-center justify-between"
           >
-            {LOCALE_LABELS[code]}
+            <span className="flex items-center gap-2">
+              <span aria-hidden="true">{LOCALE_FLAGS[code]}</span>
+              {LOCALE_LABELS[code]}
+            </span>
             {code === locale ? <CheckIcon size={14} aria-hidden="true" /> : null}
           </DropdownMenuItem>
         ))}

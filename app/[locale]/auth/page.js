@@ -55,6 +55,7 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [googlePending, setGooglePending] = useState(false);
   const pendingPlan = usePendingPlan();
   const pricing = useClientPricing();
   // Buyers came for checkout, so the one-click option leads. Google is
@@ -70,6 +71,16 @@ export default function AuthPage() {
       trackEvent("auth_webview_detected", { platform: platform === "desktop" ? "other" : platform, isLinkedIn });
     }
   }, [inWebView, platform, isLinkedIn]);
+
+  // Safari can restore this page from the back-forward cache after the
+  // Google redirect, with the button still disabled.
+  useEffect(() => {
+    const onPageShow = (event) => {
+      if (event.persisted) setGooglePending(false);
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
 
   const callbackUrl = () => {
     const hasPending = getPendingCheckout();
@@ -94,8 +105,17 @@ export default function AuthPage() {
     return "/dashboard";
   };
 
-  const handleGoogleSignIn = () => {
-    signIn("google", { callbackUrl: callbackUrl() });
+  // A second tap starts a second sign-in flow. When the first one
+  // redirects, Safari aborts the other fetch with "Load failed".
+  const handleGoogleSignIn = async () => {
+    if (googlePending) return;
+    setGooglePending(true);
+    try {
+      await signIn("google", { callbackUrl: callbackUrl() });
+    } catch {
+      toast.error(t("toasts.googleError"));
+      setGooglePending(false);
+    }
   };
 
   const handleMagicLink = async (event) => {
@@ -189,10 +209,10 @@ export default function AuthPage() {
     <motion.button
       type="button"
       onClick={handleGoogleSignIn}
-      disabled={inWebView}
+      disabled={inWebView || googlePending}
       className="landing-secondary-btn w-full text-sm disabled:cursor-not-allowed disabled:opacity-40"
-      whileHover={inWebView ? {} : { scale: 1.02 }}
-      whileTap={inWebView ? {} : { scale: 0.98 }}
+      whileHover={inWebView || googlePending ? {} : { scale: 1.02 }}
+      whileTap={inWebView || googlePending ? {} : { scale: 0.98 }}
     >
       <GoogleLogoIcon size={20} weight="bold" />
       {t("google")}

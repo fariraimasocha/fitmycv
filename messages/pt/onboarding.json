@@ -1,0 +1,40 @@
+{
+  "back": "Voltar",
+  "skip": "Pular por enquanto",
+  "tryAgain": "Tentar de novo",
+  "continueToTailoring": "Continuar para a adaptação",
+  "finishError": "Seu currículo está salvo, mas não conseguimos terminar de configurar sua conta. Tente de novo.",
+  "saveError": "Não foi possível salvar seu currículo. Verifique sua conexão e tente de novo.",
+  "upload": {
+    "eyebrow": "Seu currículo",
+    "title": "{hasName, select, yes {{name}, envie seu currículo para adaptarmos tudo a você.} other {Envie seu currículo para adaptarmos tudo a você.}}",
+    "privacy": "Só você pode ver seu currículo. Nosso provedor de IA o lê para escrever suas candidaturas.",
+    "editLater": "Você pode editar esses dados depois em Meu currículo."
+  },
+  "payoff": {
+    "eyebrow": "Seu currículo está pronto",
+    "title": "{hasName, select, yes {{name}, veja o que lemos.} other {Veja o que lemos.}}",
+    "facts": {
+      "roles": "{count, plural, one {cargo} other {cargos}}",
+      "skills": "{count, plural, one {habilidade} other {habilidades}}",
+      "years": "anos de experiência"
+    },
+    "intro": "Todo currículo adaptado e toda carta de apresentação partem disto. Você pode editar qualquer parte depois. Veja o que vem a seguir:",
+    "tailorCta": "Adapte seu primeiro currículo",
+    "dashboardCta": "Ir para o painel"
+  },
+  "plan": {
+    "resume": {
+      "title": "Adicione seu currículo",
+      "description": "Um único envio vira a base de todas as candidaturas adaptadas."
+    },
+    "tailor": {
+      "title": "Adapte seu primeiro currículo",
+      "description": "Cole o link ou a descrição de uma vaga. Receba um currículo reescrito e uma carta de apresentação que combinam com ela."
+    },
+    "applications": {
+      "title": "Acompanhe suas candidaturas",
+      "description": "Mantenha todas as vagas para as quais você se candidatou em um só funil."
+    }
+  }
+}

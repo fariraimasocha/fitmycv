@@ -1,0 +1,692 @@
+{
+  "upload": {
+    "pdfOnlyError": "请选择 PDF 文件。不支持其他文件类型。",
+    "uploadError": "无法上传你的简历，请重试。",
+    "dropHere": "将你的简历 PDF 拖放到这里",
+    "or": "或",
+    "browse": "浏览文件",
+    "hint": "仅限 PDF，最大 8MB",
+    "removeFile": "移除文件",
+    "doneTitle": "你的简历已上传",
+    "doneBody": "检查信息后保存。",
+    "submit": "上传简历",
+    "step": "第 {current} 步，共 {total} 步",
+    "stages": {
+      "preparing": "正在准备你的文件",
+      "uploading": "正在上传 PDF",
+      "extracting": "正在读取你的 PDF",
+      "parsing": "正在将你的经历整理到各个部分",
+      "saving": "正在准备你的信息",
+      "complete": "完成。请检查你的信息。"
+    }
+  },
+  "templatePicker": {
+    "title": "选择模板",
+    "description": "预览使用的是你自己的简历。下载的 PDF 与你看到的完全一致。",
+    "badges": {
+      "atsSafe": "适配 ATS",
+      "skillsFirst": "技能优先",
+      "twoColumn": "双栏",
+      "accentRed": "红色点缀",
+      "onePager": "单页",
+      "serif": "衬线体",
+      "smallCaps": "小型大写"
+    },
+    "descriptions": {
+      "classic": "哈佛风格衬线单栏。适合企业、金融、法律行业。",
+      "hybrid": "技能为主，配合时间线。适合技术岗位和转行者。",
+      "accent": "单栏布局，带深蓝色点缀。现代简历工具的标志性外观。",
+      "graduate": "教育经历优先的布局。适合学生和应届毕业生。",
+      "modern": "Jake's Resume 风格。紧凑，以公司名称开头。",
+      "clean": "左对齐，带柔和的灰色点缀。适用于任何场合。",
+      "minimal": "零装饰，最大留白。",
+      "technical": "等宽字体的终端风格，技能放在顶部。",
+      "sidebar": "左侧栏放联系方式和技能。最适合先由人工阅读的场合。",
+      "spotlight": "Awesome-CV 风格，居中标题，红色强调。",
+      "executive": "以个人简介为主，简洁明了。适合高级管理岗位。",
+      "compact": "紧凑布局，可将较长的经历放在一页内。",
+      "elegant": "精致的衬线体，居中标题。",
+      "professional": "简洁黑白风格，姓名单独占第一行。",
+      "standard": "以公司名称开头。广为流传的招聘人员模板。",
+      "scholar": "衬线体小型大写标题，带分隔线。LaTeX 工程类简历风格。",
+      "rezi": "Rezi 2026 年的衬线布局。带分隔线的标题，以职位开头，段落式成就描述。",
+      "rezi-simple": "简洁的无衬线 Rezi 布局，分隔线极少。适合金融、法律和政府岗位。",
+      "rezi-modern": "Rezi 布局，带强调色标题和更紧凑的间距，适合技术和产品岗位。"
+    }
+  },
+  "resume": {
+    "uploadPanel": {
+      "title": "使用方法",
+      "steps": {
+        "upload": {
+          "title": "上传 PDF",
+          "body": "一个文件，最大 8MB。"
+        },
+        "read": {
+          "title": "我们读取信息",
+          "body": "工作经历、教育背景、技能和联系方式，均放在可编辑的字段中。"
+        },
+        "review": {
+          "title": "你检查并保存",
+          "body": "修改任何看起来不对的地方。在你保存之前，不会存储任何内容。"
+        }
+      },
+      "replacingNote": "在你保存新简历之前，当前简历会一直保留。它的模板和样式会沿用到新简历。"
+    },
+    "tabs": {
+      "edit": "编辑",
+      "preview": "预览",
+      "ariaLabel": "编辑或预览"
+    },
+    "templateSaveError": {
+      "title": "无法保存你的模板",
+      "description": "你的更改仍显示在屏幕上。请检查网络连接后重试。"
+    },
+    "backToCv": "返回我的简历",
+    "replace": {
+      "title": "替换你的简历",
+      "description": "上传新的 PDF。在任何内容更改之前，你可以先检查信息。"
+    },
+    "upload": {
+      "title": "上传你的简历",
+      "description": "以 PDF 格式上传你的简历。每份定制求职材料都以它为基础。"
+    },
+    "review": {
+      "title": "检查你的简历",
+      "description": "这是我们从你的 PDF 中读取的内容。修改任何看起来不对的地方，然后保存。"
+    },
+    "saved": {
+      "title": "我的简历",
+      "description": "每份定制简历和求职信都以这份简历为基础。"
+    },
+    "discard": "放弃并保留已保存的简历",
+    "uploadDifferent": "上传其他 PDF",
+    "replaceCv": "替换简历",
+    "downloadPdf": "下载 PDF",
+    "stats": {
+      "checks": "简历检查",
+      "checksPassed": "已通过 {passed}/{total} 项",
+      "checking": "正在检查",
+      "positions": "职位",
+      "education": "教育背景",
+      "skillGroups": "技能组",
+      "template": "模板",
+      "lastSaved": "上次保存",
+      "notYet": "尚未保存"
+    },
+    "liveUpdates": "随输入实时更新",
+    "savedAt": {
+      "justNow": "刚刚",
+      "minutesAgo": "{count} 分钟前",
+      "hoursAgo": "{count} 小时前",
+      "yesterday": "昨天",
+      "daysAgo": "{count} 天前"
+    }
+  },
+  "resumeForm": {
+    "errors": {
+      "nameRequired": "姓名为必填项",
+      "emailInvalid": "请输入类似 name@example.com 的邮箱地址"
+    },
+    "saveError": "无法保存你的更改，请重试。",
+    "saved": "简历已保存",
+    "save": "保存简历",
+    "saving": "正在保存...",
+    "sections": {
+      "personal": "个人信息",
+      "profiles": "在线主页",
+      "work": "工作经历",
+      "education": "教育背景",
+      "skills": "技能"
+    },
+    "fields": {
+      "fullNameRequired": "全名 *",
+      "headline": "职位名称或个人标题",
+      "email": "邮箱",
+      "phone": "电话",
+      "location": "所在地",
+      "summary": "个人简介",
+      "network": "平台",
+      "url": "网址",
+      "company": "公司",
+      "position": "职位",
+      "startDate": "开始日期",
+      "endDate": "结束日期",
+      "description": "工作内容和成就",
+      "institution": "学校或机构",
+      "degree": "学位",
+      "fieldOfStudy": "专业",
+      "categoryName": "类别名称"
+    },
+    "placeholders": {
+      "network": "LinkedIn、GitHub…",
+      "yearMonth": "YYYY-MM",
+      "endDate": "YYYY-MM 或 至今",
+      "degree": "学士、硕士、博士…",
+      "category": "例如：编程语言"
+    },
+    "addProfileButton": "添加主页",
+    "addProfile": "添加主页",
+    "addPositionButton": "添加职位",
+    "addPosition": "添加职位",
+    "addEducationButton": "添加教育经历",
+    "addEducation": "添加教育经历",
+    "addCategoryButton": "添加类别",
+    "addCategory": "添加类别",
+    "addSkill": "添加技能",
+    "empty": {
+      "profiles": "添加你希望雇主看到的主页。",
+      "work": "针对每个职位改写的就是你的这些工作经历。",
+      "education": "添加你就读的学校和所学专业。",
+      "skills": "技能会与每个职位的要求进行匹配。"
+    },
+    "positionN": "职位 {index}",
+    "educationN": "教育经历 {index}",
+    "categoryN": "类别 {index}",
+    "status": {
+      "unsaved": "有未保存的更改",
+      "notSaved": "尚未保存",
+      "allSaved": "所有更改已保存"
+    },
+    "location": {
+      "fields": {
+        "name": "全名",
+        "email": "邮箱",
+        "phone": "电话",
+        "location": "所在地",
+        "summary": "个人简介",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "description": "描述",
+        "url": "网址"
+      },
+      "profileUrl": "主页 {index}，网址",
+      "personal": "个人信息，{field}",
+      "position": "职位 {index}，{field}",
+      "education": "教育经历 {index}，{field}"
+    },
+    "checks": {
+      "title": "简历检查",
+      "passed": "已通过 {passed}/{total} 项",
+      "intro": "这些检查会随你输入实时运行，数据不会离开你的浏览器。它们检验的是软件能否读取你的简历，而不是简历写得好不好。",
+      "checksPassed": "已通过 {passed}/{total} 项检查",
+      "allPassed": "所有检查均已通过。"
+    }
+  },
+  "ats": {
+    "severity": {
+      "blocker": {
+        "label": "阻断问题",
+        "count": "{count} {count, plural, one {个阻断问题} other {个阻断问题}}"
+      },
+      "warning": {
+        "label": "警告",
+        "count": "{count} {count, plural, one {个警告} other {个警告}}"
+      },
+      "tip": {
+        "label": "提示",
+        "count": "{count} {count, plural, one {条提示} other {条提示}}"
+      }
+    },
+    "impact": {
+      "high": "影响大",
+      "medium": "影响中等",
+      "low": "影响小"
+    },
+    "outOf100": "/100",
+    "upFrom": "比 {preScore} 提高了 {delta}",
+    "checksPassed": "已通过 {passed}/{total} 项检查",
+    "checksPassedSentence": "已通过 {passed}/{total} 项检查。",
+    "capped": "由于存在阻断问题，分数受到上限限制：{title}",
+    "toFix": "{count} 项待修复",
+    "nothingToFix": "这里没有需要修复的内容。",
+    "notScored": "未评分",
+    "nothingToSuggest": "没有建议。",
+    "coverage": {
+      "empty": "无法从该职位信息中提取出具体词语，它可能大多是套话。",
+      "found": "找到 {matched}/{total} 个词语",
+      "note": "与分数分开计算。覆盖率不能预测任何结果。",
+      "missing": "简历中没有",
+      "matched": "已覆盖",
+      "stuffed": "重复次数远多于职位信息中的使用次数：{terms}。大量重复可能被视为堆砌关键词。"
+    },
+    "fixes": {
+      "title": "可以应用的修复",
+      "description": "每项修复都会用 AI 编辑你的定制简历。下载前请检查结果。",
+      "applied": "已应用",
+      "applyAria": "应用此修复：{fix}",
+      "applying": "正在应用…",
+      "apply": "应用"
+    },
+    "review": {
+      "suggestions": "建议",
+      "inSection": "位于{section}",
+      "strengths": "优点",
+      "againstJob": "对照职位描述",
+      "notShown": "你的简历中未体现",
+      "disclaimer": "此评审是语言模型对你文字的看法。它不会改变上方的分数，而且可能有误。请把它当作参考意见，而不是定论。",
+      "error": "无法评审你的文字，请重试。",
+      "title": "用 AI 评审文字",
+      "description": "上方的检查是机械式的。这里会询问语言模型，读者会如何看待你的要点描述，并给出改写建议。它不会给出分数。",
+      "sendsWithJob": "会将你的简历文本和职位信息发送给 FitMyCV 使用的 AI 服务商 Groq。",
+      "sends": "会将你的简历文本发送给 FitMyCV 使用的 AI 服务商 Groq。",
+      "reviewing": "正在评审…",
+      "runAgain": "再次运行",
+      "run": "运行 AI 评审"
+    },
+    "checking": "正在检查你的简历…",
+    "empty": "定制简历后，你的 ATS 检查结果会显示在这里。",
+    "footer": "此检查用于判断软件能否读取你简历中的信息：联系方式、各个部分和日期。它不能预测申请是否会被拒绝，任何工具都做不到。",
+    "categories": {
+      "contact": {
+        "label": "联系方式",
+        "description": "招聘人员能否联系到你。"
+      },
+      "sections": {
+        "label": "各个部分",
+        "description": "你的简历是否包含软件预期的各个部分。"
+      },
+      "dates": {
+        "label": "日期",
+        "description": "能否还原你的经历时间线。"
+      },
+      "content": {
+        "label": "文字",
+        "description": "给阅读者的建议。这些都不会影响分数。"
+      }
+    },
+    "findings": {
+      "MISSING_NAME": {
+        "title": "你的简历没有姓名。",
+        "action": "在“个人信息”中添加你的全名。"
+      },
+      "MISSING_EMAIL": {
+        "title": "你的简历没有邮箱地址。",
+        "action": "添加邮箱地址，方便招聘人员联系你。"
+      },
+      "MALFORMED_EMAIL": {
+        "title": "此邮箱地址格式不规范。",
+        "action": "使用 name@example.com 这样的简单地址，不要附加其他文字。"
+      },
+      "MISSING_PHONE": {
+        "title": "你的简历没有电话号码。",
+        "action": "添加带国家代码的电话号码。有些申请表会要求填写。"
+      },
+      "MISSING_LOCATION": {
+        "title": "你的简历没有所在地。",
+        "action": "至少添加城市和国家。"
+      },
+      "MALFORMED_URL": {
+        "title": "此链接缺少 https://。",
+        "action": "写出完整地址，包括 https://。"
+      },
+      "NO_EXPERIENCE": {
+        "title": "你的简历没有工作经历。",
+        "action": "添加一个职位，或用项目和志愿者经历来展示类似的经历。"
+      },
+      "MISSING_DESCRIPTION": {
+        "title": "此职位没有描述。",
+        "action": "描述你做过的事情。空白的职位不会为匹配提供任何关键词。"
+      },
+      "NO_SKILLS": {
+        "title": "你的简历没有列出技能。",
+        "action": "添加你使用的工具和方法。"
+      },
+      "NO_EDUCATION": {
+        "title": "你的简历没有教育背景。",
+        "action": "添加你就读的学校，或相关的课程或证书。"
+      },
+      "NO_SUMMARY": {
+        "title": "你的简历没有个人简介。",
+        "action": "在顶部添加两三行，描述你的工作内容。"
+      },
+      "MISSING_DATES": {
+        "title": "此条目没有开始日期。",
+        "action": "添加类似 2022 年 3 月的日期，让它出现在你的时间线上。"
+      },
+      "MISSING_END_DATE": {
+        "title": "此职位没有结束日期。",
+        "action": "如果你仍在职，请填写“至今”，否则添加你离职的月份。"
+      },
+      "UNPARSEABLE_DATE": {
+        "title": "此日期的写法可能无法被软件读取。",
+        "action": "使用类似 Mar 2022、2022-03 或 2022 的写法。"
+      },
+      "REVERSED_PERIOD": {
+        "title": "此条目的结束日期早于开始日期。",
+        "action": "交换开始日期和结束日期。"
+      },
+      "FUTURE_DATE": {
+        "title": "此日期在未来。",
+        "action": "更正年份，或为仍在进行的工作填写“至今”。"
+      },
+      "MIXED_DATE_FORMATS": {
+        "title": "你的工作日期写法不统一。",
+        "action": "选择一种格式，并在每个职位中使用。"
+      },
+      "NO_QUANTIFIED_IMPACT": {
+        "title": "你的要点描述中很少包含数字。",
+        "action": "在有数据的地方加上数字：数量、百分比、时间范围、团队规模。"
+      },
+      "WEAK_OPENERS": {
+        "title": "许多要点以“负责”之类的空话开头。",
+        "action": "每条都以你做的事情开头：搭建、带领、降低、迁移。"
+      },
+      "FIRST_PERSON_PRONOUNS": {
+        "title": "你的简历使用了“我”和“我的”。",
+        "action": "去掉代词，直接以动词开头。"
+      },
+      "LONG_BULLETS": {
+        "title": "有些要点过长。",
+        "action": "每条控制在两行左右。"
+      },
+      "EMPLOYMENT_GAP": {
+        "title": "两个职位之间有超过六个月的空档。",
+        "action": "有空档没关系。只有在你愿意时，才需要加一行简短说明。"
+      }
+    }
+  },
+  "jobMatch": {
+    "levels": {
+      "excellent": "非常匹配",
+      "strong": "高度匹配",
+      "good": "较为匹配",
+      "fair": "一般匹配",
+      "weak": "匹配度低"
+    },
+    "dimensions": {
+      "cvMatch": "简历匹配度",
+      "compensation": "薪酬",
+      "cultureSignals": "文化",
+      "redFlags": "风险信号"
+    },
+    "title": "职位匹配度",
+    "scoring": "正在对照此职位信息为你的简历评分",
+    "description": "你的简历与此职位信息的契合程度",
+    "gaugeLabel": "匹配度评分：{score}/5",
+    "showDetails": "显示详情",
+    "hideDetails": "隐藏详情"
+  },
+  "jobRequirements": {
+    "fallbackTitle": "职位信息",
+    "scoring": "正在评分…",
+    "requirements": "要求",
+    "responsibilities": "职责",
+    "qualifications": "资历",
+    "keyTerms": "关键词",
+    "inYourCv": "你的简历中有 {matched}/{total} 个"
+  },
+  "coverLetter": {
+    "title": "求职信",
+    "descriptionWritten": "根据你的定制简历和此职位信息撰写。",
+    "descriptionEmpty": "定制时会与简历一起撰写。你也可以自己写。",
+    "cancelAria": "取消编辑求职信",
+    "editAria": "编辑求职信",
+    "cancel": "取消",
+    "edit": "编辑",
+    "textAria": "求职信文本",
+    "saving": "正在保存…",
+    "save": "保存求职信",
+    "empty": "你的求职信会显示在这里。",
+    "emptyEditable": "现在就写一封，它会与这份简历一起保存。",
+    "writeOwn": "自己写"
+  },
+  "linkedin": {
+    "error": "无法撰写你的 LinkedIn 消息，请重试。",
+    "copied": "消息已复制",
+    "title": "LinkedIn 联系消息",
+    "version": "版本 {index}",
+    "overLimit": "消息超出了 LinkedIn 联系请求 300 个字符的限制。",
+    "targets": "建议联系的人",
+    "copy": "复制消息",
+    "another": "再写一条"
+  },
+  "whyThisRole": {
+    "defaultQuestion": "请用 3 到 5 句话告诉我们，你为什么对这个职位感兴趣。",
+    "copied": "回答已复制",
+    "title": "为什么选择这个职位",
+    "description": "用于申请表的回答，基于你的简历和此职位信息。",
+    "questionLabel": "你被问到的问题",
+    "answerAria": "你的回答",
+    "counts": "{sentences} {sentences, plural, one {句} other {句}}，{words} {words, plural, one {个词} other {个词}}",
+    "emptyGenerate": "你的回答会显示在这里。如果你的问题措辞不同，请先修改问题，然后再生成回答。",
+    "emptySaved": "此申请没有已保存的回答。",
+    "writing": "正在撰写…",
+    "writeAgain": "重新撰写",
+    "write": "撰写我的回答",
+    "copy": "复制回答",
+    "saving": "正在保存…",
+    "save": "保存回答"
+  },
+  "interviewPrep": {
+    "star": {
+      "situation": "情境",
+      "task": "任务",
+      "action": "行动",
+      "result": "结果",
+      "reflection": "反思"
+    },
+    "starStory": "STAR 故事",
+    "saveToBank": "保存到故事库",
+    "title": "面试准备",
+    "loading": "正在根据你的简历和此职位信息撰写 STAR 故事和谈话要点",
+    "emptyDescription": "针对这个职位的示例回答、难题和谈话要点。",
+    "empty": "开通 Pro 后，简历定制完成时，此职位的面试准备会显示在这里。",
+    "saved": "故事已保存到你的故事库",
+    "saveError": "无法保存故事，请重试。",
+    "description": "基于你的定制简历和此职位信息。",
+    "starStories": "STAR 故事",
+    "questions": "需要准备的问题",
+    "talkingPoints": "谈话要点"
+  },
+  "atsChip": {
+    "loading": "ATS…",
+    "score": "ATS {score}",
+    "none": "ATS 不适用"
+  },
+  "reorder": {
+    "up": "上移",
+    "down": "下移"
+  },
+  "companyResearch": {
+    "loading": "正在调研公司…",
+    "empty": "开通 Pro 后，如果职位信息中写明了公司名称，这里会显示该公司的简报。",
+    "mission": "使命",
+    "summary": "概要",
+    "culture": "文化信号",
+    "tech": "技术战略",
+    "challenges": "主要挑战",
+    "competitors": "竞争格局",
+    "positioning": "如何在面试中展示自己",
+    "news": "近期新闻"
+  },
+  "styleToolbar": {
+    "accent": "强调色",
+    "font": "字体",
+    "dividers": "分隔线",
+    "indent": "缩进",
+    "colors": {
+      "black": "黑色",
+      "rust": "铁锈红",
+      "blue": "蓝色",
+      "teal": "青色",
+      "purple": "紫色",
+      "burgundy": "酒红色"
+    }
+  },
+  "editorToolbar": {
+    "viewMode": "简历查看模式",
+    "edit": "编辑",
+    "preview": "预览",
+    "replace": "替换简历"
+  },
+  "previewActions": {
+    "download": "下载 PDF"
+  },
+  "downloadButton": {
+    "label": "下载 PDF",
+    "downloading": "正在准备 PDF…",
+    "done": "已下载"
+  },
+  "tailorPage": {
+    "steps": {
+      "job": {
+        "title": "添加职位",
+        "body": "粘贴链接或职位描述。"
+      },
+      "tailor": {
+        "title": "我们定制你的简历",
+        "body": "针对该职位改写，并附一封求职信。"
+      },
+      "review": {
+        "title": "检查并下载",
+        "body": "编辑简历，查看 ATS 分数，然后下载。"
+      }
+    },
+    "inputTabs": {
+      "link": "职位链接",
+      "text": "粘贴描述"
+    },
+    "mobileTabs": {
+      "edit": "编辑",
+      "preview": "预览",
+      "ariaLabel": "编辑或预览"
+    },
+    "resultTabs": {
+      "cv": "定制简历",
+      "letter": "求职信",
+      "ats": "ATS 分数",
+      "why": "为什么选择这个职位",
+      "research": "调研",
+      "interview": "面试"
+    },
+    "errors": {
+      "extract": "无法读取该职位信息。请改为粘贴职位描述。",
+      "save": "无法保存你的定制简历，请重试。",
+      "noCv": "请先在“我的简历”中上传你的简历，然后重试。",
+      "tailor": "无法定制你的简历。请稍后重试。",
+      "why": "无法撰写回答，请重试。",
+      "fix": "无法应用此修复，请重试。",
+      "shortText": "请粘贴完整的职位描述，而不是只有几行。",
+      "noUrl": "请先输入职位网址。"
+    },
+    "tailored": "简历已定制",
+    "fixApplied": "已应用到你的简历",
+    "answerSaved": "回答已保存",
+    "summary": {
+      "requirements": "{count} 项要求",
+      "keyTerms": "{count} 个关键词",
+      "grade": "匹配等级 {grade}"
+    },
+    "title": "定制简历",
+    "description": "粘贴职位链接或职位描述。我们会改写你的简历，并为该职位撰写一封求职信。",
+    "tailorCta": "定制我的简历",
+    "tailoring": "正在定制…",
+    "form": {
+      "linkTitle": "职位链接",
+      "textTitle": "职位描述",
+      "linkDescription": "粘贴职位信息的网址。如果招聘网站阻止读取，请改为粘贴职位描述。",
+      "textDescription": "粘贴完整的职位信息，包括要求和职责。",
+      "urlAria": "职位信息网址",
+      "reading": "正在读取职位…",
+      "recent": "最近",
+      "textPlaceholder": "粘贴完整的职位信息，包括要求和职责",
+      "minChars": "请至少粘贴 {min} 个字符，以便有足够的内容可用。",
+      "chars": "{count} 个字符",
+      "keepJob": "保留当前职位"
+    },
+    "bar": {
+      "fallbackTitle": "职位信息",
+      "pasted": "已粘贴的描述",
+      "scoring": "正在评分…",
+      "changeJob": "更换职位"
+    },
+    "details": {
+      "title": "职位要求和匹配度",
+      "fallback": "来自你添加的职位信息",
+      "hide": "隐藏详情",
+      "show": "显示详情"
+    },
+    "cta": {
+      "title": "为这个职位定制你的简历",
+      "pending": "正在围绕这些要求改写你的简历，并撰写求职信。",
+      "description": "我们会围绕这些要求改写你的简历，并撰写一封配套的求职信。"
+    },
+    "result": {
+      "sectionsAria": "定制简历的各个部分",
+      "linkedin": "撰写 LinkedIn 消息",
+      "downloadPdf": "下载 PDF",
+      "downloadLetter": "下载求职信",
+      "saveTailored": "保存定制简历",
+      "liveUpdates": "随输入实时更新",
+      "keywordsAdded": "从职位信息中添加的关键词"
+    }
+  },
+  "tailoredList": {
+    "title": "定制简历",
+    "description": "你定制的每份简历都保存在这里。打开一份即可编辑、下载或撰写求职信。",
+    "untitled": "未命名职位",
+    "open": "打开{title}",
+    "coverLetter": "求职信",
+    "download": "下载{title}",
+    "confirmDelete": "再次点击以删除",
+    "delete": "删除{title}",
+    "deleteError": "无法删除这份简历，请重试。",
+    "deleted": "简历已删除",
+    "loadError": "无法加载这份简历，请重试。",
+    "downloadError": "无法下载 PDF，请重试。",
+    "loading": "正在加载定制简历",
+    "tailorCta": "定制我的简历",
+    "empty": {
+      "title": "你的定制简历会显示在这里",
+      "withCv": "粘贴职位链接或职位描述，我们会为该职位改写你的简历。每一份都会保存在这里。",
+      "noCv": "请先上传你的简历。然后粘贴职位链接或职位描述，我们会为该职位改写简历。",
+      "upload": "上传你的简历"
+    },
+    "filters": {
+      "all": "全部",
+      "letter": "含求职信"
+    },
+    "noLetters": {
+      "title": "还没有求职信",
+      "description": "打开一份定制简历，在“求职信”标签页中撰写。"
+    }
+  },
+  "tailoredDetail": {
+    "documentTabs": {
+      "cv": "定制简历",
+      "letter": "求职信",
+      "why": "为什么选择这个职位"
+    },
+    "mobileTabs": {
+      "edit": "编辑",
+      "preview": "预览",
+      "ariaLabel": "编辑或预览"
+    },
+    "back": "返回定制简历",
+    "saveError": "无法保存你的更改，请重试。",
+    "answerSaved": "回答已保存",
+    "whyError": "无法撰写回答，请重试。",
+    "letterSaved": "求职信已保存",
+    "notFound": {
+      "title": "我们找不到这份定制简历",
+      "description": "它可能已被删除。你的其他定制简历仍在列表中。"
+    },
+    "downloadLetter": "下载求职信",
+    "downloadPdf": "下载 PDF",
+    "untitled": "未命名职位",
+    "stats": {
+      "tailored": "定制于",
+      "positions": "职位",
+      "skillGroups": "技能组",
+      "coverLetter": "求职信",
+      "written": "已撰写",
+      "notYet": "尚未撰写",
+      "whyThisRole": "为什么选择这个职位",
+      "answered": "已回答"
+    },
+    "sectionsAria": "定制文件的各个部分",
+    "saveTailored": "保存定制简历",
+    "liveUpdates": "随输入实时更新"
+  }
+}

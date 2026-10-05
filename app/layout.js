@@ -8,6 +8,7 @@ import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { PUBLIC_MESSAGES, pickMessages } from "@/i18n/request";
+import { RTL_LOCALES } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 import ChatwootWidget from "@/components/ChatwootWidget";
@@ -107,7 +108,7 @@ export default async function RootLayout({ children }) {
   // marketing pages into their own root layout when they should prerender.
   const [locale, messages, session] = await Promise.all([getLocale(), getMessages(), auth()]);
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={RTL_LOCALES.includes(locale) ? "rtl" : "ltr"}>
       <body
         className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >

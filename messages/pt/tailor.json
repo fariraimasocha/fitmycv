@@ -1,0 +1,692 @@
+{
+  "upload": {
+    "pdfOnlyError": "Escolha um arquivo PDF. Outros tipos de arquivo não são aceitos.",
+    "uploadError": "Não foi possível enviar seu currículo. Tente de novo.",
+    "dropHere": "Arraste e solte o PDF do seu currículo aqui",
+    "or": "ou",
+    "browse": "Procurar arquivos",
+    "hint": "Só PDF, até 8MB",
+    "removeFile": "Remover arquivo",
+    "doneTitle": "Seu currículo foi enviado",
+    "doneBody": "Confira os dados e salve.",
+    "submit": "Enviar currículo",
+    "step": "Etapa {current} de {total}",
+    "stages": {
+      "preparing": "Preparando seu arquivo",
+      "uploading": "Enviando o PDF",
+      "extracting": "Lendo seu PDF",
+      "parsing": "Organizando sua experiência em seções",
+      "saving": "Preparando seus dados",
+      "complete": "Pronto. Confira seus dados."
+    }
+  },
+  "templatePicker": {
+    "title": "Escolha um modelo",
+    "description": "As prévias usam o seu próprio currículo. O PDF baixado fica exatamente igual ao que você vê.",
+    "badges": {
+      "atsSafe": "Compatível com ATS",
+      "skillsFirst": "Habilidades primeiro",
+      "twoColumn": "Duas colunas",
+      "accentRed": "Destaque vermelho",
+      "onePager": "Uma página",
+      "serif": "Serifa",
+      "smallCaps": "Versaletes"
+    },
+    "descriptions": {
+      "classic": "Coluna única com serifa, no estilo Harvard. Corporativo, finanças, direito.",
+      "hybrid": "Foco em habilidades com linha do tempo cronológica. Vagas de tecnologia e quem está mudando de carreira.",
+      "accent": "Coluna única com destaque em azul escuro. O visual típico dos criadores de currículo modernos.",
+      "graduate": "Layout com formação primeiro. Estudantes e recém-formados.",
+      "modern": "Estilo Jake's Resume. Compacto, com a empresa no início de cada item.",
+      "clean": "Alinhado à esquerda com detalhes em cinza suave. Funciona em qualquer lugar.",
+      "minimal": "Nenhuma decoração, o máximo de espaço em branco.",
+      "technical": "Estética de terminal em fonte monoespaçada, com habilidades no topo.",
+      "sidebar": "Coluna lateral para contato e habilidades. Melhor quando uma pessoa lê primeiro.",
+      "spotlight": "Estilo Awesome-CV com cabeçalho centralizado e destaques em vermelho.",
+      "executive": "Conciso e com foco no resumo. Cargos de alta liderança.",
+      "compact": "Layout denso que cabe um histórico longo em uma página.",
+      "elegant": "Serifa refinada com cabeçalho centralizado.",
+      "professional": "Preto e branco simples, com o nome sozinho na primeira linha.",
+      "standard": "Itens com a empresa primeiro. O modelo de recrutador mais compartilhado.",
+      "scholar": "Títulos em versaletes com linhas, em serifa. O visual de currículo de engenharia em LaTeX.",
+      "rezi": "Layout com serifa do Rezi de 2026. Títulos com linhas, cargo primeiro e conquistas em parágrafos.",
+      "rezi-simple": "Layout limpo do Rezi sem serifa e com poucas linhas. Bom para finanças, direito e governo.",
+      "rezi-modern": "Layout do Rezi com títulos em destaque e espaçamento menor para vagas de tecnologia e produto."
+    }
+  },
+  "resume": {
+    "uploadPanel": {
+      "title": "Como funciona",
+      "steps": {
+        "upload": {
+          "title": "Envie um PDF",
+          "body": "Um arquivo, até 8MB."
+        },
+        "read": {
+          "title": "Lemos os dados",
+          "body": "Experiência, formação, habilidades e contato, em campos editáveis."
+        },
+        "review": {
+          "title": "Você revisa e salva",
+          "body": "Corrija o que parecer errado. Nada é guardado até você salvar."
+        }
+      },
+      "replacingNote": "Seu currículo atual continua até você salvar o novo. O modelo e o estilo dele são mantidos."
+    },
+    "tabs": {
+      "edit": "Editar",
+      "preview": "Prévia",
+      "ariaLabel": "Editar ou ver prévia"
+    },
+    "templateSaveError": {
+      "title": "Não foi possível salvar seu modelo",
+      "description": "Sua alteração continua na tela. Verifique sua conexão e tente de novo."
+    },
+    "backToCv": "Voltar para meu currículo",
+    "replace": {
+      "title": "Substituir seu currículo",
+      "description": "Envie um novo PDF. Você pode conferir os dados antes de qualquer mudança."
+    },
+    "upload": {
+      "title": "Envie seu currículo",
+      "description": "Envie seu currículo em PDF. Toda candidatura adaptada começa por ele."
+    },
+    "review": {
+      "title": "Revise seu currículo",
+      "description": "Lemos isto do seu PDF. Corrija o que parecer errado e salve."
+    },
+    "saved": {
+      "title": "Meu currículo",
+      "description": "Todo currículo adaptado e toda carta de apresentação começam por este currículo."
+    },
+    "discard": "Descartar e manter o currículo salvo",
+    "uploadDifferent": "Enviar outro PDF",
+    "replaceCv": "Substituir currículo",
+    "downloadPdf": "Baixar PDF",
+    "stats": {
+      "checks": "Verificações do currículo",
+      "checksPassed": "{passed} de {total} aprovadas",
+      "checking": "Verificando",
+      "positions": "Cargos",
+      "education": "Formação",
+      "skillGroups": "Grupos de habilidades",
+      "template": "Modelo",
+      "lastSaved": "Salvo por último",
+      "notYet": "Ainda não"
+    },
+    "liveUpdates": "Atualiza enquanto você digita",
+    "savedAt": {
+      "justNow": "Agora mesmo",
+      "minutesAgo": "Há {count} min",
+      "hoursAgo": "Há {count} h",
+      "yesterday": "Ontem",
+      "daysAgo": "Há {count} dias"
+    }
+  },
+  "resumeForm": {
+    "errors": {
+      "nameRequired": "O nome é obrigatório",
+      "emailInvalid": "Digite um e-mail como nome@exemplo.com"
+    },
+    "saveError": "Não foi possível salvar suas alterações. Tente de novo.",
+    "saved": "Currículo salvo",
+    "save": "Salvar currículo",
+    "saving": "Salvando...",
+    "sections": {
+      "personal": "Dados pessoais",
+      "profiles": "Perfis online",
+      "work": "Experiência profissional",
+      "education": "Formação",
+      "skills": "Habilidades"
+    },
+    "fields": {
+      "fullNameRequired": "Nome completo *",
+      "headline": "Cargo ou título profissional",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "location": "Localização",
+      "summary": "Resumo profissional",
+      "network": "Rede",
+      "url": "URL",
+      "company": "Empresa",
+      "position": "Cargo",
+      "startDate": "Data de início",
+      "endDate": "Data de término",
+      "description": "Descrição e conquistas",
+      "institution": "Instituição",
+      "degree": "Grau",
+      "fieldOfStudy": "Área de estudo",
+      "categoryName": "Nome da categoria"
+    },
+    "placeholders": {
+      "network": "LinkedIn, GitHub…",
+      "yearMonth": "AAAA-MM",
+      "endDate": "AAAA-MM ou Atual",
+      "degree": "Bacharelado, Mestrado, Doutorado…",
+      "category": "ex.: Linguagens de programação"
+    },
+    "addProfileButton": "Adicionar perfil",
+    "addProfile": "Adicionar perfil",
+    "addPositionButton": "Adicionar cargo",
+    "addPosition": "Adicionar cargo",
+    "addEducationButton": "Adicionar formação",
+    "addEducation": "Adicionar formação",
+    "addCategoryButton": "Adicionar categoria",
+    "addCategory": "Adicionar categoria",
+    "addSkill": "Adicionar habilidade",
+    "empty": {
+      "profiles": "Adicione os perfis que você quer que os empregadores vejam.",
+      "work": "Seus cargos são o que reescrevemos para cada vaga.",
+      "education": "Adicione onde e o que você estudou.",
+      "skills": "As habilidades são comparadas com os requisitos de cada vaga."
+    },
+    "positionN": "Cargo {index}",
+    "educationN": "Formação {index}",
+    "categoryN": "Categoria {index}",
+    "status": {
+      "unsaved": "Alterações não salvas",
+      "notSaved": "Ainda não salvo",
+      "allSaved": "Todas as alterações salvas"
+    },
+    "location": {
+      "fields": {
+        "name": "Nome completo",
+        "email": "E-mail",
+        "phone": "Telefone",
+        "location": "Localização",
+        "summary": "Resumo",
+        "startDate": "Data de início",
+        "endDate": "Data de término",
+        "description": "Descrição",
+        "url": "URL"
+      },
+      "profileUrl": "Perfil {index}, URL",
+      "personal": "Dados pessoais, {field}",
+      "position": "Cargo {index}, {field}",
+      "education": "Formação {index}, {field}"
+    },
+    "checks": {
+      "title": "Verificações do currículo",
+      "passed": "{passed} de {total} aprovadas",
+      "intro": "Estas verificações rodam enquanto você digita e nunca saem do seu navegador. Elas testam se um software consegue ler seu currículo, não se ele está bem escrito.",
+      "checksPassed": "{passed} de {total} verificações aprovadas",
+      "allPassed": "Todas as verificações foram aprovadas."
+    }
+  },
+  "ats": {
+    "severity": {
+      "blocker": {
+        "label": "Bloqueio",
+        "count": "{count} {count, plural, one {bloqueio} other {bloqueios}}"
+      },
+      "warning": {
+        "label": "Aviso",
+        "count": "{count} {count, plural, one {aviso} other {avisos}}"
+      },
+      "tip": {
+        "label": "Dica",
+        "count": "{count} {count, plural, one {dica} other {dicas}}"
+      }
+    },
+    "impact": {
+      "high": "Impacto alto",
+      "medium": "Impacto médio",
+      "low": "Impacto baixo"
+    },
+    "outOf100": "de 100",
+    "upFrom": "Subiu {delta} de {preScore}",
+    "checksPassed": "{passed} de {total} verificações aprovadas",
+    "checksPassedSentence": "{passed} de {total} verificações aprovadas.",
+    "capped": "A pontuação está limitada por causa de um problema que bloqueia: {title}",
+    "toFix": "{count} para corrigir",
+    "nothingToFix": "Nada para corrigir aqui.",
+    "notScored": "Sem pontuação",
+    "nothingToSuggest": "Nada para sugerir.",
+    "coverage": {
+      "empty": "Não conseguimos extrair termos específicos desse anúncio, então ele pode ser quase todo texto genérico.",
+      "found": "{matched} de {total} termos encontrados",
+      "note": "Contado separadamente da pontuação. A cobertura não prevê nada.",
+      "missing": "Não está no seu currículo",
+      "matched": "Já incluído",
+      "stuffed": "Repetidos muito mais vezes do que o anúncio usa: {terms}. Repetir demais pode parecer excesso de palavras-chave."
+    },
+    "fixes": {
+      "title": "Correções que você pode aplicar",
+      "description": "Cada correção edita seu currículo adaptado com IA. Confira o resultado antes de baixar.",
+      "applied": "Aplicada",
+      "applyAria": "Aplicar esta correção: {fix}",
+      "applying": "Aplicando…",
+      "apply": "Aplicar"
+    },
+    "review": {
+      "suggestions": "Sugestões",
+      "inSection": "Em {section}",
+      "strengths": "Pontos fortes",
+      "againstJob": "Em relação à descrição da vaga",
+      "notShown": "Não aparece no seu currículo",
+      "disclaimer": "Esta revisão é a opinião de um modelo de linguagem sobre o seu texto. Ela não muda a pontuação acima e pode estar errada. Trate como uma segunda opinião, não como um veredito.",
+      "error": "Não foi possível revisar seu texto. Tente de novo.",
+      "title": "Revise o texto com IA",
+      "description": "As verificações acima são mecânicas. Esta pergunta a um modelo de linguagem o que um leitor acharia dos seus tópicos e sugere novas versões. Ela não gera pontuação.",
+      "sendsWithJob": "Envia o texto do seu currículo e os dados da vaga para a Groq, o provedor de IA que o FitMyCV usa.",
+      "sends": "Envia o texto do seu currículo para a Groq, o provedor de IA que o FitMyCV usa.",
+      "reviewing": "Revisando…",
+      "runAgain": "Rodar de novo",
+      "run": "Rodar revisão com IA"
+    },
+    "checking": "Verificando seu currículo…",
+    "empty": "Sua verificação ATS aparece aqui depois que você adaptar seu currículo.",
+    "footer": "Isto verifica se um software consegue ler os dados do seu currículo: contato, seções e datas. Não prevê se uma candidatura será rejeitada, e nenhuma ferramenta consegue prever.",
+    "categories": {
+      "contact": {
+        "label": "Dados de contato",
+        "description": "Se um recrutador consegue falar com você."
+      },
+      "sections": {
+        "label": "Seções",
+        "description": "Se seu currículo tem as seções que o software espera encontrar."
+      },
+      "dates": {
+        "label": "Datas",
+        "description": "Se a sua linha do tempo pode ser reconstruída."
+      },
+      "content": {
+        "label": "Texto",
+        "description": "Conselhos para a pessoa que vai ler. Nada disso afeta a pontuação."
+      }
+    },
+    "findings": {
+      "MISSING_NAME": {
+        "title": "Seu currículo não tem nome.",
+        "action": "Adicione seu nome completo em Dados pessoais."
+      },
+      "MISSING_EMAIL": {
+        "title": "Seu currículo não tem e-mail.",
+        "action": "Adicione um e-mail para que os recrutadores possam falar com você."
+      },
+      "MALFORMED_EMAIL": {
+        "title": "Este e-mail não está em um formato padrão.",
+        "action": "Use um endereço simples como nome@exemplo.com, sem texto extra."
+      },
+      "MISSING_PHONE": {
+        "title": "Seu currículo não tem telefone.",
+        "action": "Adicione um com o código do país. Alguns formulários de candidatura pedem."
+      },
+      "MISSING_LOCATION": {
+        "title": "Seu currículo não tem localização.",
+        "action": "Adicione pelo menos uma cidade e um país."
+      },
+      "MALFORMED_URL": {
+        "title": "Falta https:// neste link.",
+        "action": "Escreva o endereço completo, incluindo https://."
+      },
+      "NO_EXPERIENCE": {
+        "title": "Seu currículo não mostra experiência profissional.",
+        "action": "Adicione um cargo, ou use projetos e trabalho voluntário para mostrar um histórico parecido."
+      },
+      "MISSING_DESCRIPTION": {
+        "title": "Este cargo não tem descrição.",
+        "action": "Descreva o que você fez. Um cargo vazio não adiciona palavras-chave para a comparação."
+      },
+      "NO_SKILLS": {
+        "title": "Seu currículo não lista habilidades.",
+        "action": "Adicione as ferramentas e os métodos que você usa."
+      },
+      "NO_EDUCATION": {
+        "title": "Seu currículo não tem formação.",
+        "action": "Adicione onde você estudou, ou um curso ou certificado relevante."
+      },
+      "NO_SUMMARY": {
+        "title": "Seu currículo não tem resumo.",
+        "action": "Adicione duas ou três linhas no topo descrevendo o que você faz."
+      },
+      "MISSING_DATES": {
+        "title": "Este item não tem data de início.",
+        "action": "Adicione uma data como mar 2022 para que ele entre na sua linha do tempo."
+      },
+      "MISSING_END_DATE": {
+        "title": "Este cargo não tem data de término.",
+        "action": "Escreva Atual se você ainda trabalha lá, ou adicione o mês em que saiu."
+      },
+      "UNPARSEABLE_DATE": {
+        "title": "Esta data está escrita de um jeito que um software pode não ler.",
+        "action": "Use um formato como mar 2022, 2022-03 ou 2022."
+      },
+      "REVERSED_PERIOD": {
+        "title": "Este item termina antes de começar.",
+        "action": "Troque as datas de início e de término."
+      },
+      "FUTURE_DATE": {
+        "title": "Esta data está no futuro.",
+        "action": "Corrija o ano, ou escreva Atual para um trabalho em andamento."
+      },
+      "MIXED_DATE_FORMATS": {
+        "title": "As datas da sua experiência estão escritas de jeitos diferentes.",
+        "action": "Escolha um formato e use em todos os cargos."
+      },
+      "NO_QUANTIFIED_IMPACT": {
+        "title": "Poucos dos seus tópicos têm números.",
+        "action": "Adicione números quando tiver: volumes, porcentagens, prazos, tamanho de equipes."
+      },
+      "WEAK_OPENERS": {
+        "title": "Muitos tópicos começam com expressões vazias como \"Responsável por\".",
+        "action": "Comece cada um com o que você fez: criei, liderei, reduzi, migrei."
+      },
+      "FIRST_PERSON_PRONOUNS": {
+        "title": "Seu currículo usa \"eu\" e \"meu\".",
+        "action": "Tire os pronomes e comece pelo verbo."
+      },
+      "LONG_BULLETS": {
+        "title": "Alguns tópicos estão longos.",
+        "action": "Deixe cada um com cerca de duas linhas."
+      },
+      "EMPLOYMENT_GAP": {
+        "title": "Há um intervalo de mais de seis meses entre dois cargos.",
+        "action": "Um intervalo não é problema. Adicione uma linha curta sobre ele só se quiser."
+      }
+    }
+  },
+  "jobMatch": {
+    "levels": {
+      "excellent": "Compatibilidade excelente",
+      "strong": "Compatibilidade forte",
+      "good": "Compatibilidade boa",
+      "fair": "Compatibilidade razoável",
+      "weak": "Compatibilidade fraca"
+    },
+    "dimensions": {
+      "cvMatch": "Compatibilidade do currículo",
+      "compensation": "Remuneração",
+      "cultureSignals": "Cultura",
+      "redFlags": "Sinais de alerta"
+    },
+    "title": "Compatibilidade com a vaga",
+    "scoring": "Avaliando seu currículo em relação a esta vaga",
+    "description": "Como seu currículo se encaixa nesta vaga",
+    "gaugeLabel": "Pontuação de compatibilidade: {score} de 5",
+    "showDetails": "Mostrar detalhes",
+    "hideDetails": "Ocultar detalhes"
+  },
+  "jobRequirements": {
+    "fallbackTitle": "Anúncio da vaga",
+    "scoring": "Avaliando…",
+    "requirements": "Requisitos",
+    "responsibilities": "Responsabilidades",
+    "qualifications": "Qualificações",
+    "keyTerms": "Termos-chave",
+    "inYourCv": "{matched} de {total} no seu currículo"
+  },
+  "coverLetter": {
+    "title": "Carta de apresentação",
+    "descriptionWritten": "Escrita a partir do seu currículo adaptado e desta vaga.",
+    "descriptionEmpty": "Escrita junto com o currículo quando você adapta. Você também pode escrever a sua.",
+    "cancelAria": "Cancelar a edição da carta de apresentação",
+    "editAria": "Editar carta de apresentação",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "textAria": "Texto da carta de apresentação",
+    "saving": "Salvando…",
+    "save": "Salvar carta de apresentação",
+    "empty": "Sua carta de apresentação vai aparecer aqui.",
+    "emptyEditable": "Escreva uma agora e ela fica salva com este currículo.",
+    "writeOwn": "Escrever a minha"
+  },
+  "linkedin": {
+    "error": "Não foi possível escrever sua mensagem para o LinkedIn. Tente de novo.",
+    "copied": "Mensagem copiada",
+    "title": "Mensagem de conexão no LinkedIn",
+    "version": "Versão {index}",
+    "overLimit": "A mensagem passa do limite de 300 caracteres do LinkedIn para pedidos de conexão.",
+    "targets": "Pessoas sugeridas",
+    "copy": "Copiar mensagem",
+    "another": "Escrever outra"
+  },
+  "whyThisRole": {
+    "defaultQuestion": "Em 3 a 5 frases, conte por que você tem interesse nesta vaga.",
+    "copied": "Resposta copiada",
+    "title": "Por que esta vaga",
+    "description": "Uma resposta para o formulário de candidatura, feita a partir do seu currículo e desta vaga.",
+    "questionLabel": "A pergunta que fizeram para você",
+    "answerAria": "Sua resposta",
+    "counts": "{sentences} {sentences, plural, one {frase} other {frases}}, {words} {words, plural, one {palavra} other {palavras}}",
+    "emptyGenerate": "Sua resposta vai aparecer aqui. Mude a pergunta se a sua estiver escrita de outro jeito e depois gere a resposta.",
+    "emptySaved": "Nenhuma resposta salva para esta candidatura.",
+    "writing": "Escrevendo…",
+    "writeAgain": "Escrever de novo",
+    "write": "Escrever minha resposta",
+    "copy": "Copiar resposta",
+    "saving": "Salvando…",
+    "save": "Salvar resposta"
+  },
+  "interviewPrep": {
+    "star": {
+      "situation": "Situação",
+      "task": "Tarefa",
+      "action": "Ação",
+      "result": "Resultado",
+      "reflection": "Reflexão"
+    },
+    "starStory": "História STAR",
+    "saveToBank": "Salvar no banco de histórias",
+    "title": "Preparação para entrevista",
+    "loading": "Escrevendo histórias STAR e pontos de conversa a partir do seu currículo e desta vaga",
+    "emptyDescription": "Exemplos de respostas, perguntas difíceis e pontos de conversa para esta vaga.",
+    "empty": "No Pro, a preparação para a entrevista desta vaga aparece aqui depois que seu currículo for adaptado.",
+    "saved": "História salva no seu banco de histórias",
+    "saveError": "Não foi possível salvar a história. Tente de novo.",
+    "description": "Feito a partir do seu currículo adaptado e desta vaga.",
+    "starStories": "Histórias STAR",
+    "questions": "Perguntas para se preparar",
+    "talkingPoints": "Pontos de conversa"
+  },
+  "atsChip": {
+    "loading": "ATS…",
+    "score": "ATS {score}",
+    "none": "ATS n/d"
+  },
+  "reorder": {
+    "up": "Mover para cima",
+    "down": "Mover para baixo"
+  },
+  "companyResearch": {
+    "loading": "Pesquisando a empresa…",
+    "empty": "No Pro, um resumo da empresa aparece aqui quando o anúncio cita o nome dela.",
+    "mission": "Missão",
+    "summary": "Resumo executivo",
+    "culture": "Sinais da cultura",
+    "tech": "Estratégia de tecnologia",
+    "challenges": "Principais desafios",
+    "competitors": "Cenário competitivo",
+    "positioning": "Como se posicionar na entrevista",
+    "news": "Notícias recentes"
+  },
+  "styleToolbar": {
+    "accent": "Cor de destaque",
+    "font": "Fonte",
+    "dividers": "Divisórias",
+    "indent": "Recuo",
+    "colors": {
+      "black": "Preto",
+      "rust": "Ferrugem",
+      "blue": "Azul",
+      "teal": "Verde-azulado",
+      "purple": "Roxo",
+      "burgundy": "Bordô"
+    }
+  },
+  "editorToolbar": {
+    "viewMode": "Modo de visualização do currículo",
+    "edit": "Editar",
+    "preview": "Prévia",
+    "replace": "Substituir currículo"
+  },
+  "previewActions": {
+    "download": "Baixar PDF"
+  },
+  "downloadButton": {
+    "label": "Baixar PDF",
+    "downloading": "Preparando o PDF…",
+    "done": "Baixado"
+  },
+  "tailorPage": {
+    "steps": {
+      "job": {
+        "title": "Adicione a vaga",
+        "body": "Cole um link ou a descrição."
+      },
+      "tailor": {
+        "title": "Adaptamos seu currículo",
+        "body": "Reescrito para a vaga, com uma carta de apresentação."
+      },
+      "review": {
+        "title": "Revise e baixe",
+        "body": "Edite o currículo, confira a pontuação ATS e baixe."
+      }
+    },
+    "inputTabs": {
+      "link": "Link da vaga",
+      "text": "Colar descrição"
+    },
+    "mobileTabs": {
+      "edit": "Editar",
+      "preview": "Prévia",
+      "ariaLabel": "Editar ou ver prévia"
+    },
+    "resultTabs": {
+      "cv": "Currículo adaptado",
+      "letter": "Carta de apresentação",
+      "ats": "Pontuação ATS",
+      "why": "Por que esta vaga",
+      "research": "Pesquisa",
+      "interview": "Entrevista"
+    },
+    "errors": {
+      "extract": "Não foi possível ler esse anúncio de vaga. Cole a descrição da vaga.",
+      "save": "Não foi possível salvar seu currículo adaptado. Tente de novo.",
+      "noCv": "Envie seu currículo em Meu currículo primeiro e tente de novo.",
+      "tailor": "Não foi possível adaptar seu currículo. Tente de novo daqui a pouco.",
+      "why": "Não foi possível escrever uma resposta. Tente de novo.",
+      "fix": "Não foi possível aplicar esta correção. Tente de novo.",
+      "shortText": "Cole a descrição completa da vaga, não só algumas linhas.",
+      "noUrl": "Digite a URL de uma vaga primeiro."
+    },
+    "tailored": "Currículo adaptado",
+    "fixApplied": "Aplicado ao seu currículo",
+    "answerSaved": "Resposta salva",
+    "summary": {
+      "requirements": "{count} requisitos",
+      "keyTerms": "{count} termos-chave",
+      "grade": "nota de compatibilidade {grade}"
+    },
+    "title": "Adaptar currículo",
+    "description": "Cole o link ou a descrição de uma vaga. Reescrevemos seu currículo e escrevemos uma carta de apresentação para essa vaga.",
+    "tailorCta": "Adaptar meu currículo",
+    "tailoring": "Adaptando…",
+    "form": {
+      "linkTitle": "Link da vaga",
+      "textTitle": "Descrição da vaga",
+      "linkDescription": "Cole a URL do anúncio. Se o site bloquear, cole a descrição.",
+      "textDescription": "Cole o anúncio inteiro, incluindo requisitos e responsabilidades.",
+      "urlAria": "URL do anúncio da vaga",
+      "reading": "Lendo a vaga…",
+      "recent": "Recentes",
+      "textPlaceholder": "Cole o anúncio completo, incluindo os requisitos e as responsabilidades",
+      "minChars": "Cole pelo menos {min} caracteres para termos material suficiente.",
+      "chars": "{count} caracteres",
+      "keepJob": "Manter a vaga atual"
+    },
+    "bar": {
+      "fallbackTitle": "Anúncio da vaga",
+      "pasted": "Descrição colada",
+      "scoring": "Avaliando…",
+      "changeJob": "Trocar vaga"
+    },
+    "details": {
+      "title": "Requisitos da vaga e compatibilidade",
+      "fallback": "Do anúncio que você adicionou",
+      "hide": "Ocultar detalhes",
+      "show": "Mostrar detalhes"
+    },
+    "cta": {
+      "title": "Adapte seu currículo para esta vaga",
+      "pending": "Reescrevendo seu currículo com base nesses requisitos e escrevendo uma carta de apresentação.",
+      "description": "Reescrevemos seu currículo com base nesses requisitos e escrevemos uma carta de apresentação para acompanhá-lo."
+    },
+    "result": {
+      "sectionsAria": "Seções do currículo adaptado",
+      "linkedin": "Escrever mensagem para o LinkedIn",
+      "downloadPdf": "Baixar PDF",
+      "downloadLetter": "Baixar carta de apresentação",
+      "saveTailored": "Salvar currículo adaptado",
+      "liveUpdates": "Atualiza enquanto você digita",
+      "keywordsAdded": "Palavras-chave adicionadas a partir do anúncio"
+    }
+  },
+  "tailoredList": {
+    "title": "Currículos adaptados",
+    "description": "Todo currículo que você adapta fica salvo aqui. Abra um para editar, baixar ou escrever uma carta de apresentação.",
+    "untitled": "Vaga sem título",
+    "open": "Abrir {title}",
+    "coverLetter": "Carta de apresentação",
+    "download": "Baixar {title}",
+    "confirmDelete": "Clique de novo para excluir",
+    "delete": "Excluir {title}",
+    "deleteError": "Não foi possível excluir este currículo. Tente de novo.",
+    "deleted": "Currículo excluído",
+    "loadError": "Não foi possível carregar este currículo. Tente de novo.",
+    "downloadError": "Não foi possível baixar o PDF. Tente de novo.",
+    "loading": "Carregando currículos adaptados",
+    "tailorCta": "Adaptar meu currículo",
+    "empty": {
+      "title": "Seus currículos adaptados vão aparecer aqui",
+      "withCv": "Cole o link ou a descrição de uma vaga e reescrevemos seu currículo para ela. Cada um fica salvo aqui.",
+      "noCv": "Envie seu currículo primeiro. Depois cole o link ou a descrição de uma vaga e o reescrevemos para ela.",
+      "upload": "Enviar seu currículo"
+    },
+    "filters": {
+      "all": "Todos",
+      "letter": "Com carta de apresentação"
+    },
+    "noLetters": {
+      "title": "Nenhuma carta de apresentação ainda",
+      "description": "Abra um currículo adaptado e escreva uma na aba Carta de apresentação."
+    }
+  },
+  "tailoredDetail": {
+    "documentTabs": {
+      "cv": "Currículo adaptado",
+      "letter": "Carta de apresentação",
+      "why": "Por que esta vaga"
+    },
+    "mobileTabs": {
+      "edit": "Editar",
+      "preview": "Prévia",
+      "ariaLabel": "Editar ou ver prévia"
+    },
+    "back": "Voltar para os currículos adaptados",
+    "saveError": "Não foi possível salvar suas alterações. Tente de novo.",
+    "answerSaved": "Resposta salva",
+    "whyError": "Não foi possível escrever uma resposta. Tente de novo.",
+    "letterSaved": "Carta de apresentação salva",
+    "notFound": {
+      "title": "Não encontramos este currículo adaptado",
+      "description": "Ele pode ter sido excluído. Seus outros currículos adaptados continuam na lista."
+    },
+    "downloadLetter": "Baixar carta de apresentação",
+    "downloadPdf": "Baixar PDF",
+    "untitled": "Vaga sem título",
+    "stats": {
+      "tailored": "Adaptado",
+      "positions": "Cargos",
+      "skillGroups": "Grupos de habilidades",
+      "coverLetter": "Carta de apresentação",
+      "written": "Escrita",
+      "notYet": "Ainda não",
+      "whyThisRole": "Por que esta vaga",
+      "answered": "Respondida"
+    },
+    "sectionsAria": "Seções do documento adaptado",
+    "saveTailored": "Salvar currículo adaptado",
+    "liveUpdates": "Atualiza enquanto você digita"
+  }
+}

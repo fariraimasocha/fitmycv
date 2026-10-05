@@ -1,0 +1,36 @@
+{
+  "notFound": {
+    "metaTitle": "找不到页面",
+    "eyebrow": "404",
+    "title": "我们找不到这个页面",
+    "body": "链接可能已失效，或者页面已被移动。大多数人接下来会去这些地方。",
+    "links": {
+      "tailor": "根据职位链接定制简历",
+      "resumeExamples": "简历范例",
+      "blog": "博客",
+      "pricing": "价格"
+    },
+    "home": "返回首页"
+  },
+  "page": {
+    "eyebrow": "错误",
+    "title": "此页面未能加载",
+    "body": "我们这边出了问题。请重试，或返回首页。",
+    "retry": "重试",
+    "home": "前往首页"
+  },
+  "dashboard": {
+    "title": "此页面未能加载",
+    "description": "你的简历和求职信都安全无虞。请重试，或返回主页。",
+    "retry": "重试",
+    "home": "返回主页"
+  },
+  "global": {
+    "docTitle": "FitMyCV | 此页面未能加载",
+    "title": "此页面未能加载",
+    "body": "我们这边出了问题。请重试，或返回首页。",
+    "retry": "重试",
+    "home": "前往首页",
+    "support": "如果问题持续出现，请<link>联系支持团队</link>。"
+  }
+}

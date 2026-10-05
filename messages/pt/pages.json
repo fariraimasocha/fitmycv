@@ -1,0 +1,162 @@
+{
+  "pricingPage": {
+    "meta": {
+      "title": "Preços: acesso vitalício por ${lifetime}",
+      "description": "O FitMyCV Premium custa ${lifetime} vitalício ou ${month}/mês. Baixe currículos e cartas de apresentação adaptados sem limite a partir de qualquer link de vaga, com pontuação ATS.",
+      "socialTitle": "Preços: currículos adaptados a partir de qualquer link de vaga | FitMyCV",
+      "ogDescription": "Acesso vitalício por ${lifetime} ou ${month}/mês para currículos adaptados sem limite, cartas de apresentação, pontuação ATS e exportação em PDF.",
+      "twitterDescription": "O Premium custa ${lifetime} vitalício ou ${month}/mês para currículos adaptados sem limite, cartas de apresentação, pontuação ATS e PDFs. Cancele o mensal quando quiser.",
+      "imageAlt": "Preços do FitMyCV: adapte seu currículo a partir de qualquer link de vaga"
+    },
+    "eyebrow": "Preços",
+    "title": "Um plano. Candidaturas adaptadas sem limite.",
+    "priceOnce": "${price} uma vez",
+    "or": "ou",
+    "priceMonthly": "${price}/mês",
+    "intro": "Adapte seu currículo e sua carta de apresentação a cada link de vaga que você colar, baixe tudo em PDFs limpos e acompanhe suas pontuações de compatibilidade e ATS, tudo por um preço simples.",
+    "faqTitle": "Perguntas frequentes sobre preços",
+    "faqIntro": "Tudo o que você precisa saber sobre o FitMyCV Premium.",
+    "faqs": {
+      "cost": {
+        "q": "Quanto custa o FitMyCV?",
+        "a": "O FitMyCV Premium custa ${lifetime} pelo acesso vitalício (pague uma vez e use para sempre) ou ${month} por mês, sem fidelidade."
+      },
+      "includes": {
+        "q": "O que eu recebo com o Premium?",
+        "a": "O Premium inclui currículos e cartas de apresentação adaptados sem limite a partir de qualquer link de vaga, pontuação de compatibilidade e pontuação ATS em cada currículo, preparação para entrevistas com pesquisa da empresa e mensagens de contato, vagas compatíveis por e-mail todos os dias e exportação em PDF de tudo."
+      },
+      "cancel": {
+        "q": "Posso cancelar quando quiser?",
+        "a": "As assinaturas mensais podem ser canceladas a qualquer momento. Você mantém o acesso até o fim do período de cobrança. As compras vitalícias são pagas uma única vez e não são reembolsáveis."
+      },
+      "payment": {
+        "q": "Quais formas de pagamento vocês aceitam?",
+        "a": "Os pagamentos são processados com segurança pela Polar, que aceita os principais cartões de crédito e débito."
+      },
+      "regional": {
+        "q": "Existe preço regional?",
+        "a": "Sim. Preços menores podem valer em alguns países, de acordo com a sua localização no pagamento."
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "Preços",
+    "titleLine1": "Menos que uma hora de um freelancer.",
+    "titleLine2": "Seu para sempre.",
+    "intro": "Um pagamento para acesso vitalício, ou assine por mês e cancele quando quiser.",
+    "footnote": "Cerca de três meses do plano mensal, e seu para todas as buscas depois disso. Pagamento seguro pela Polar.",
+    "regionalAvailable": "Há preços regionais menores em alguns países."
+  },
+  "pricingCards": {
+    "plans": {
+      "month": {
+        "label": "Mensal",
+        "suffix": "/mês",
+        "subline": "Cancele quando quiser. Sem fidelidade.",
+        "cta": "Assinar"
+      },
+      "lifetime": {
+        "label": "Vitalício",
+        "suffix": " uma vez",
+        "subline": "Pague uma vez e use para sempre.",
+        "cta": "Quero o vitalício"
+      }
+    },
+    "badges": {
+      "startHere": "Comece aqui",
+      "bestValue": "Melhor custo-benefício"
+    },
+    "regionalNote": "Preço para a sua região",
+    "includesTitle": "Os dois planos incluem tudo",
+    "features": [
+      "Baixe cada currículo adaptado em PDF",
+      "Pontuação de compatibilidade para cada vaga que você adicionar",
+      "Baixe cada carta de apresentação em PDF",
+      "Resumos de pesquisa da empresa antes de você se candidatar",
+      "Perguntas de preparação para a entrevista da vaga",
+      "Banco de histórias: respostas de entrevista que você pode reutilizar, no formato STAR (situação, tarefa, ação, resultado)",
+      "Acompanhe candidaturas, vagas salvas e ofertas",
+      "Vagas compatíveis por e-mail todos os dias",
+      "Aplique cada recomendação de ATS ao seu currículo",
+      "Rascunhos de respostas para perguntas de formulários de candidatura",
+      "Mensagens de conexão no LinkedIn e para quem enviá-las"
+    ],
+    "continueFree": "Continuar grátis"
+  },
+  "upgradeModal": {
+    "default": {
+      "title": "Tenha o FitMyCV Pro",
+      "description": "Pague ${price} uma vez para baixar seus currículos e cartas de apresentação em PDF, além de pesquisa da empresa, preparação para entrevistas e acompanhamento de candidaturas."
+    },
+    "download": {
+      "title": "Baixe seus PDFs",
+      "description": "Seu currículo e sua carta de apresentação estão prontos. Pague ${price} uma vez para baixá-los em PDF."
+    },
+    "preTailor": {
+      "title": "Baixe seus PDFs",
+      "description": "Pague ${price} uma vez para baixar seu currículo adaptado e sua carta de apresentação em PDF."
+    },
+    "startMonth": "Comece um mês por ${price}",
+    "getLifetime": "Acesso vitalício por ${price}",
+    "maybeLater": "Agora não",
+    "seeEverything": "Veja tudo o que o Pro inclui",
+    "forJob": {
+      "title": "Baixe seu currículo para {title}",
+      "titleWithCompany": "Baixe seu currículo para {title} na {company}"
+    }
+  },
+  "unlockGate": {
+    "button": "Desbloquear para baixar",
+    "body": "Está pronto. Desbloqueie os downloads para salvar em PDF."
+  },
+  "feedback": {
+    "title": "Enviar feedback",
+    "description": "Ajude a melhorar o FitMyCV contando o que você acha.",
+    "typeLabel": "Tipo",
+    "types": {
+      "general": "Geral",
+      "bug": "Bug",
+      "featureRequest": "Sugestão de recurso"
+    },
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Conte o que você acha…",
+    "submit": "Enviar feedback",
+    "sending": "Enviando…",
+    "sent": "Obrigado. Seu feedback foi enviado.",
+    "sendError": "Não foi possível enviar seu feedback. Tente de novo."
+  },
+  "tailorCvFromJobLink": {
+    "meta": {
+      "title": "Adapte seu currículo à descrição da vaga a partir de qualquer link | FitMyCV",
+      "description": "Adapte seu currículo à descrição da vaga com IA. Cole um link do LinkedIn, Indeed, Glassdoor ou de uma página de carreiras, ou o texto, e receba um currículo e uma carta de apresentação."
+    },
+    "eyebrow": "Adaptação de currículo com IA",
+    "titleStart": "Adapte seu currículo à descrição da vaga,",
+    "titleHighlight": "a partir do link.",
+    "intro": "Adapte seu currículo à descrição da vaga com IA: cole o link de uma vaga do LinkedIn, Indeed ou qualquer site de vagas, ou cole o texto do anúncio, e o FitMyCV reescreve seu currículo e sua carta de apresentação para combinar com a vaga, palavra-chave por palavra-chave.",
+    "ctaPrimary": "Adaptar meu currículo",
+    "ctaSecondary": "Avaliar meu currículo primeiro",
+    "worksWith": "Funciona com",
+    "companySites": "Sites de empresas",
+    "benefitsTitle": "Um link de vaga. Um currículo feito para essa vaga.",
+    "benefitsIntro": "Pare de enviar o mesmo currículo genérico para todas as vagas. O FitMyCV adapta um currículo novo a partir de cada link de vaga que você colar.",
+    "benefits": {
+      "link": {
+        "title": "Cole um link, não um bloco de texto",
+        "body": "Cole a URL de uma vaga do LinkedIn, Indeed, Glassdoor ou qualquer site de vagas. O FitMyCV lê a vaga e extrai os requisitos, as habilidades e as palavras-chave, inclusive as seções escondidas atrás de um botão \"ver mais\"."
+      },
+      "ats": {
+        "title": "Feito para passar nos filtros de ATS",
+        "body": "Seu currículo é reescrito para refletir a linguagem exata do anúncio e depois exportado como um PDF de coluna única, baseado em texto, que os sistemas de recrutamento (ATS) leem do jeito que você escreveu."
+      },
+      "speed": {
+        "title": "Currículo e carta de apresentação em segundos",
+        "body": "Os dois documentos vêm da mesma leitura do mesmo anúncio, então um reforça o outro. Edite qualquer um direto na página e exporte em PDFs prontos para recrutadores com um clique."
+      }
+    },
+    "faqHeading": "Adaptar seu currículo a partir do link da vaga: perguntas frequentes",
+    "faqIntro": "Tudo sobre transformar um link de vaga em uma candidatura adaptada.",
+    "breadcrumbHome": "Início",
+    "breadcrumbPage": "Adaptar currículo a partir do link da vaga"
+  }
+}

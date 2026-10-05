@@ -16,8 +16,12 @@ import en from "@/messages/en/errors.json";
 import fr from "@/messages/fr/errors.json";
 import es from "@/messages/es/errors.json";
 import de from "@/messages/de/errors.json";
+import pt from "@/messages/pt/errors.json";
+import zh from "@/messages/zh/errors.json";
+import ar from "@/messages/ar/errors.json";
+import { RTL_LOCALES } from "@/i18n/routing";
 
-const MESSAGES = { en, fr, es, de };
+const MESSAGES = { en, fr, es, de, pt, zh, ar };
 
 function detectLocale() {
   const prefix = window.location.pathname.split("/")[1];
@@ -68,7 +72,7 @@ export default function GlobalError({ error }) {
   };
 
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={RTL_LOCALES.includes(locale) ? "rtl" : "ltr"}>
       <head>
         <title>{t("docTitle")}</title>
         <style dangerouslySetInnerHTML={{ __html: STYLES }} />

@@ -1,0 +1,199 @@
+{
+  "FAQS": [
+    {
+      "q": "Como adapto meu currículo a partir do link de uma vaga?",
+      "a": "Entre, envie seu currículo de referência uma vez e cole a URL da vaga para a qual você quer se candidatar. O FitMyCV lê o anúncio, extrai os requisitos e o vocabulário, compara tudo com a sua experiência e reescreve seu currículo e sua carta de apresentação para combinar com a vaga, geralmente em menos de um minuto."
+    },
+    {
+      "q": "Quais sites de vagas funcionam com um link colado?",
+      "a": "Links do LinkedIn, Indeed, Glassdoor e da maioria dos grandes sites de vagas e páginas de carreiras de empresas. Cole a URL da vaga específica, e não de uma página de resultados de busca, e os requisitos são detectados automaticamente."
+    },
+    {
+      "q": "E se o link da vaga não funcionar?",
+      "a": "Alguns anúncios ficam atrás de um login ou de uma verificação antirrobô rígida, e alguns sites de empresas só mostram a descrição depois de uma etapa em JavaScript. Quando não for possível ler um link, você pode colar diretamente o texto da descrição da vaga, e todo o resto funciona do mesmo jeito."
+    },
+    {
+      "q": "Adaptar meu currículo a partir do link da vaga me ajuda a passar no ATS?",
+      "a": "Ajuda na parte do comportamento do ATS que você consegue controlar. O currículo adaptado reflete as palavras-chave e as expressões do anúncio, que são o que os recrutadores buscam, e é exportado como um PDF de coluna única, baseado em texto, que é lido sem problemas. Ele não consegue inventar uma experiência que você não tem."
+    },
+    {
+      "q": "Ele inventa experiência ou exagera meu currículo?",
+      "a": "Não. Seus empregadores, datas, cargos e conquistas vêm do seu currículo de referência e não são alterados. O que muda é quais aparecem primeiro, em que ordem ficam e o vocabulário usado para descrevê-los. Se um requisito não aparece comprovado em nenhuma parte do seu currículo, a versão adaptada não afirma que você o tem."
+    },
+    {
+      "q": "Também recebo uma carta de apresentação?",
+      "a": "Sim. Todo currículo adaptado vem com uma carta de apresentação que combina com ele, gerada a partir da mesma leitura do mesmo anúncio, para que os dois documentos se reforcem em vez de se contradizerem. Os dois podem ser exportados em PDF."
+    },
+    {
+      "q": "Quanto tempo leva?",
+      "a": "Cerca de 30 a 60 segundos entre colar o link e ter um rascunho para revisar, mais o tempo que você passar editando. Fazer o mesmo trabalho à mão leva de 20 a 40 minutos por vaga para a maioria das pessoas."
+    },
+    {
+      "q": "Posso editar o currículo adaptado antes de baixar?",
+      "a": "Sim, direto na página e seção por seção. E vale a pena. Você sabe melhor do que qualquer modelo quais das suas conquistas importam mais para um empregador específico, e uma edição de dois minutos é o que transforma um bom rascunho no seu currículo."
+    },
+    {
+      "q": "Qual a diferença entre isso e colar a descrição da vaga no ChatGPT?",
+      "a": "Três coisas: ele lê o anúncio pela URL, então nada se perde no copiar e colar, trabalha a partir de uma versão estruturada do seu currículo, e não do que você lembrar de incluir no prompt, e exporta um PDF formatado em coluna única, em vez de um texto de chat que você ainda precisa diagramar."
+    },
+    {
+      "q": "Meu currículo é compartilhado com recrutadores ou empregadores?",
+      "a": "Não. O FitMyCV não é um site de vagas nem um banco de currículos. Seu currículo de referência fica salvo na sua conta para gerar os seus próprios documentos, e você pode excluí-lo, junto com sua conta, a qualquer momento."
+    }
+  ],
+  "HOW_TO": {
+    "name": "Como adaptar seu currículo a partir do link de uma vaga",
+    "description": "Transforme a URL de um anúncio de vaga em um currículo e uma carta de apresentação adaptados em menos de um minuto.",
+    "steps": [
+      {
+        "name": "Envie seu currículo de referência uma vez",
+        "text": "Seu currículo é organizado em seções estruturadas (cargos, datas, tópicos, habilidades) e reutilizado em todas as candidaturas a partir daí."
+      },
+      {
+        "name": "Cole o link da vaga",
+        "text": "Cole a URL do anúncio do LinkedIn, Indeed, Glassdoor ou da página de carreiras de uma empresa. O anúncio é lido e os requisitos são extraídos."
+      },
+      {
+        "name": "Revise e baixe",
+        "text": "Seu resumo, a ordem dos tópicos, o texto e as habilidades voltam reescritos com base nesse anúncio, com uma carta de apresentação que combina com eles. Edite direto na página e exporte os dois em PDF."
+      }
+    ]
+  },
+  "BLOCKS": [
+    { "h2": "O que é adaptar o currículo a partir do link da vaga?" },
+    {
+      "p": "Adaptar o currículo a partir do link da vaga é usar a URL de um anúncio, do LinkedIn, Indeed, Glassdoor ou de uma página de carreiras, como fonte para reescrever o currículo. A página é lida, as habilidades e o vocabulário exigidos são extraídos, e seu currículo atual é reordenado e reescrito para combinar com aquele anúncio. Você também pode colar o texto da descrição da vaga se o link não carregar. É o mesmo trabalho de adaptar à mão, sem os quarenta minutos de copiar e colar."
+    },
+    { "h2": "Adapte um currículo à descrição da vaga com IA grátis" },
+    {
+      "p": "Enviar seu currículo de referência e avaliá-lo em relação a um anúncio é grátis. Gerar o currículo adaptado e a carta de apresentação é a etapa paga, porque é ela que usa o modelo. Se você quer só o diagnóstico primeiro, use o [verificador ATS de currículo grátis](/ats-resume-checker), que não pede login e não envia nada. Quando estiver pronto para reescrever, cole o link da vaga aqui."
+    },
+    { "h2": "Por que um link é melhor que copiar e colar" },
+    {
+      "p": "Toda ferramenta de adaptação precisa da descrição da vaga. A maioria obriga você a encontrar, selecionar, copiar e colar o texto, e é exatamente aí que o processo falha sem ninguém perceber. As pessoas colam metade do anúncio, perdem a seção de requisitos que estava escondida atrás de um botão *mostrar mais* ou perdem a lista de responsabilidades inteira porque ela ficava em outro bloco expansível."
+    },
+    {
+      "p": "Colar a URL elimina esse tipo de erro. A página é lida como foi publicada, incluindo as seções que você teria perdido, e a extração usa o texto completo, e não o que sobrou na sua área de transferência."
+    },
+    { "h2": "Como a leitura do link da vaga funciona de verdade" },
+    {
+      "p": "Vale a pena saber o que acontece entre colar um link e receber um currículo, porque isso explica no que a ferramenta é boa e onde ela não vai ajudar."
+    },
+    {
+      "steps": [
+        {
+          "title": "O anúncio é buscado e reduzido a texto",
+          "body": "A página é baixada e limpa até sobrar só o conteúdo da vaga: menus, avisos de cookies, listas de vagas relacionadas e textos de rodapé são descartados para não atrapalhar a extração de palavras-chave."
+        },
+        {
+          "title": "A estrutura é extraída do texto",
+          "body": "O título da vaga, o empregador, o nível, as responsabilidades, os requisitos obrigatórios, os desejáveis e as ferramentas citadas são separados. Um requisito repetido no resumo, nas responsabilidades e na lista de requisitos recebe muito mais peso do que um citado uma única vez."
+        },
+        {
+          "title": "Seu currículo é comparado com esses requisitos",
+          "body": "Seu currículo de referência já está salvo em seções estruturadas, então cada requisito extraído é ligado aos cargos e tópicos do seu histórico que realmente o comprovam. Requisitos sem correspondência ficam de fora, em vez de serem inventados."
+        },
+        {
+          "title": "A nova versão é gerada com base nessa ligação",
+          "body": "O resumo é reescrito em torno dos requisitos de maior peso que você consegue comprovar. Os tópicos são reordenados para que as correspondências venham primeiro e reescritos com o vocabulário do anúncio, mantendo seus números. A carta de apresentação é escrita a partir da mesma ligação."
+        },
+        {
+          "title": "Os dois documentos são gerados em PDF",
+          "body": "Coluna única, títulos padrão, contato no corpo do documento e camada de texto real. As regras de formatação estão explicadas por completo no [guia de currículo compatível com ATS](/blog/ats-resume-guide)."
+        }
+      ]
+    },
+    {
+      "callout": {
+        "title": "A restrição que torna isso útil",
+        "body": "A nova versão só pode usar evidências que existem no seu currículo de referência. Isso é uma limitação e é justamente o objetivo. É o que mantém o resultado defensável quando um entrevistador pede para você falar sobre o tópico que achou mais interessante."
+      }
+    },
+    { "h2": "Três antes e depois de adaptações reais" },
+    {
+      "p": "A mesma experiência, reescrita para três anúncios diferentes. Repare que nada é acrescentado. As conquistas já estavam no currículo. O que muda é qual vem primeiro e quais palavras a descrevem."
+    },
+    {
+      "compare": {
+        "title": "1. Resumo profissional: para uma vaga de PM com foco em preços",
+        "context": "O anúncio começa com precificação, monetização e trabalho com várias áreas. O resumo original foi escrito para uma vaga de produto genérica.",
+        "before": "Profissional de produto experiente, com histórico de entregar ótimos produtos em ambientes dinâmicos. Apaixonado por design centrado no usuário e por colaborar com equipes multidisciplinares.",
+        "after": "Gerente de produto sênior com 7 anos em SaaS B2B, com foco em precificação e monetização. Liderou a mudança para cobrança por uso na Northwind, elevando a retenção líquida de receita de 104% para 121%. Trabalha no dia a dia com engenharia, vendas e finanças para lançar mudanças de preço sem quebrar os relatórios de receita."
+      }
+    },
+    {
+      "compare": {
+        "title": "2. Tópico de experiência: para uma vaga de engenharia com foco em confiabilidade",
+        "context": "O anúncio repete latência, plantão e redução de incidentes. O tópico original escondia os três.",
+        "before": "Trabalhei na melhoria do desempenho da nossa API principal e ajudei com o banco de dados.",
+        "after": "• Analisou e otimizou os 12 endpoints mais lentos da API e adicionou índices de cobertura, reduzindo a latência p95 de 840ms para 210ms e tirando do roadmap uma réplica de leitura que estava planejada."
+      }
+    },
+    {
+      "compare": {
+        "title": "3. Tópico de experiência: para uma vaga de marketing de geração de demanda",
+        "context": "O anúncio dá muito peso a pipeline gerado e atribuição. O original descrevia atividades, e não resultados.",
+        "before": "Gerenciei o blog da empresa e as redes sociais, criando conteúdo com regularidade.",
+        "after": "• Reformulou o calendário de conteúdo em torno de 14 palavras-chave de fundo de funil, publicando 40 posts em 9 meses. As sessões orgânicas cresceram 3,1x e o tráfego orgânico gerou 22% dos pedidos de demonstração."
+      }
+    },
+    {
+      "p": "O padrão nos três é o mesmo explicado em [como adaptar seu currículo à descrição da vaga](/blog/how-to-tailor-cv-to-job-description): verbo, ação específica, resultado mensurável, com o vocabulário do anúncio usado onde ele se aplica de verdade."
+    },
+    { "h2": "Adaptar a partir de um link ou adaptar à mão" },
+    {
+      "p": "O método manual funciona. Não é segredo e já escrevemos o passo a passo inteiro. O problema é a conta."
+    },
+    {
+      "table": {
+        "head": ["", "À mão", "A partir do link da vaga"],
+        "rows": [
+          ["Tempo até o primeiro rascunho", "De 20 a 40 minutos", "Menos de um minuto"],
+          ["Extração de requisitos", "Marcação manual, fácil de perder uma seção", "Extraídos do anúncio completo"],
+          ["Peso dos requisitos", "Seu julgamento", "Frequência e posição ao longo do anúncio"],
+          ["Siglas e sinônimos", "Muitas vezes esquecidos", "Comparados com o texto do anúncio"],
+          ["Reordenação dos tópicos", "Manual", "Automática e editável"],
+          ["Carta de apresentação que combina", "Uma segunda tarefa separada", "Da mesma leitura"],
+          ["Risco de formatação", "Depende do seu modelo", "PDF de coluna única compatível com ATS"],
+          ["Sustentável com mais de 10 candidaturas por semana", "Raramente", "Sim"]
+        ]
+      }
+    },
+    {
+      "p": "Com duas candidaturas por mês, faça à mão. O [guia passo a passo](/blog/how-to-tailor-cv-to-job-description) é tudo de que você precisa. Com dez por semana, seis horas de adaptação são o que faz as pessoas desistirem de adaptar, e um currículo genérico é a receita de uma taxa de resposta baixa."
+    },
+    { "h2": "Adaptar um currículo a partir de um link de vaga do LinkedIn" },
+    {
+      "p": "O LinkedIn é onde a maioria das pessoas encontra a vaga e também onde a maioria das tentativas de copiar e colar dá errado: a descrição fica recolhida atrás de um botão *ver mais*, e o painel de compatibilidade de habilidades fica em outra parte da página. Colar a URL do anúncio lê a descrição completa, e não só o trecho visível."
+    },
+    {
+      "p": "Cole a URL da vaga específica, aquela no formato `linkedin.com/jobs/view/…`, e não de uma busca ou de uma página de coleção. Se você estiver vendo a vaga no app do LinkedIn, use a opção de compartilhar para copiar o link do próprio anúncio."
+    },
+    { "h2": "Adaptar um currículo a partir de um anúncio do Indeed ou do Glassdoor" },
+    {
+      "p": "Os anúncios do Indeed e do Glassdoor costumam ser mais estruturados que os do LinkedIn, com um bloco de requisitos limpo e uma lista de responsabilidades, o que deixa o peso dos requisitos extraídos mais confiável. A regra é a mesma: cole a URL da vaga específica, e não de uma página de resultados de busca."
+    },
+    {
+      "p": "Agregadores às vezes mostram uma versão cortada de uma descrição que está completa no site de carreiras do próprio empregador. Quando existem as duas, a página do empregador é o melhor link, porque é a versão que a equipe de contratação realmente escreveu."
+    },
+    { "h2": "Páginas de carreiras de empresas e todo o resto" },
+    {
+      "p": "A maioria das páginas de carreiras de empresas é lida sem problemas, incluindo as mais comuns hospedadas em sistemas de recrutamento (ATS). Quando não for possível acessar um link (uma barreira de login, uma verificação antirrobô rígida ou uma descrição que só aparece depois de uma interação), cole diretamente o texto da descrição da vaga. Todas as etapas depois da busca são iguais."
+    },
+    { "h2": "O que a adaptação não resolve" },
+    {
+      "p": "Ser direto sobre isso é mais útil do que uma lista de recursos."
+    },
+    {
+      "ul": [
+        "**Uma falta real de experiência.** Se uma vaga exige cinco anos de algo que você nunca fez, nenhuma reescrita resolve isso, e a entrevista descobriria de qualquer forma.",
+        "**Um currículo sem nada mensurável.** A adaptação reordena e reescreve suas evidências. Se não houver números em lugar nenhum, adicione-os primeiro. [Como escrever um currículo](/how-to-write-a-resume) mostra onde encontrá-los.",
+        "**Se candidatar às vagas erradas.** Uma pontuação de compatibilidade alta em uma vaga que você não quer não é progresso.",
+        "**O resto da candidatura.** Perguntas de triagem, links de portfólio e indicações continuam importando, e muitas vezes mais do que o currículo."
+      ]
+    },
+    {
+      "p": "Se você quer ver onde está antes de adaptar qualquer coisa, o [verificador ATS de currículo grátis](/ats-resume-checker) avalia seu currículo atual em relação a um anúncio e mostra exatamente quais termos exigidos estão faltando."
+    }
+  ]
+}

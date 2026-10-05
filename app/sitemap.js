@@ -3,6 +3,7 @@ import { POSTS } from "@/content/blog";
 import { MARKETING_PAGES } from "@/content/pages";
 import { RESUME_EXAMPLES } from "@/content/resume-examples";
 import { TRANSLATED_PATHS, localeAlternates } from "@/lib/seo";
+import { routing } from "@/i18n/routing";
 
 function languageUrls(path) {
   const { languages } = localeAlternates("en", path);
@@ -79,7 +80,7 @@ export default function sitemap() {
   );
 
   // Each translated page also gets its own entry per language.
-  const localizedRoutes = ["fr", "es", "de"].flatMap((locale) =>
+  const localizedRoutes = routing.locales.filter((l) => l !== routing.defaultLocale).flatMap((locale) =>
     staticRoutes
       .filter(({ path }) => TRANSLATED_PATHS.includes(path))
       .map(({ path, changeFrequency, priority }) => ({

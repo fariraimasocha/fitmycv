@@ -1,0 +1,162 @@
+{
+  "pricingPage": {
+    "meta": {
+      "title": "价格：终身访问仅需 ${lifetime}",
+      "description": "FitMyCV Premium 终身版 ${lifetime}，或每月 ${month}。从任意职位链接下载不限数量的定制简历和求职信，并附带 ATS 评分。",
+      "socialTitle": "价格：从任意职位链接定制简历 | FitMyCV",
+      "ogDescription": "终身访问 ${lifetime}，或每月 ${month}，即可获得不限数量的定制简历、求职信、ATS 评分和 PDF 导出。",
+      "twitterDescription": "Premium 终身版 ${lifetime}，或每月 ${month}，含不限数量的定制简历、求职信、ATS 评分和 PDF。月度版可随时取消。",
+      "imageAlt": "FitMyCV 价格：从任意职位链接定制你的简历"
+    },
+    "eyebrow": "价格",
+    "title": "一个方案，不限数量的定制求职材料。",
+    "priceOnce": "一次性 ${price}",
+    "or": "或",
+    "priceMonthly": "${price}/月",
+    "intro": "根据你粘贴的每个职位链接定制简历和求职信，下载为整洁的 PDF，并查看匹配度和 ATS 评分，一个简单的价格全部包含。",
+    "faqTitle": "价格常见问题",
+    "faqIntro": "关于 FitMyCV Premium 你需要了解的一切。",
+    "faqs": {
+      "cost": {
+        "q": "FitMyCV 多少钱？",
+        "a": "FitMyCV Premium 终身访问 ${lifetime}（一次付款，永久使用），或每月 ${month}，无需签订合约。"
+      },
+      "includes": {
+        "q": "Premium 包含哪些内容？",
+        "a": "Premium 包含：从任意职位链接生成不限数量的定制简历和求职信，每份简历的匹配度评分和 ATS 评分，含公司调研和主动联系的面试准备，每日邮件职位推荐，以及所有内容的 PDF 导出。"
+      },
+      "cancel": {
+        "q": "可以随时取消吗？",
+        "a": "月度订阅可随时取消，在当前计费周期结束前仍可使用。终身版为一次性购买，不予退款。"
+      },
+      "payment": {
+        "q": "支持哪些付款方式？",
+        "a": "付款通过 Polar 安全处理，支持所有主流信用卡和借记卡。"
+      },
+      "regional": {
+        "q": "有地区定价吗？",
+        "a": "有。在部分国家，结账时会根据你所在的位置提供更低的价格。"
+      }
+    }
+  },
+  "pricing": {
+    "eyebrow": "价格",
+    "titleLine1": "不到请自由职业者一小时的费用。",
+    "titleLine2": "永久归你所有。",
+    "intro": "一次付款获得终身访问，或选择月付，随时可取消。",
+    "footnote": "约等于三个月的月费，之后的每次求职都能使用。通过 Polar 安全结账。",
+    "regionalAvailable": "部分国家可享受更低的地区价格。"
+  },
+  "pricingCards": {
+    "plans": {
+      "month": {
+        "label": "月度版",
+        "suffix": "/月",
+        "subline": "随时取消，无需合约。",
+        "cta": "订阅"
+      },
+      "lifetime": {
+        "label": "终身版",
+        "suffix": " 一次性",
+        "subline": "一次付款，永久使用。",
+        "cta": "获取终身版"
+      }
+    },
+    "badges": {
+      "startHere": "从这里开始",
+      "bestValue": "最划算"
+    },
+    "regionalNote": "你所在地区的价格",
+    "includesTitle": "两个方案都包含全部功能",
+    "features": [
+      "将每份定制简历下载为 PDF",
+      "为你添加的每个职位提供匹配度评分",
+      "将每封求职信下载为 PDF",
+      "申请前提供公司调研简报",
+      "针对该职位的面试准备问题",
+      "故事库：可重复使用的面试回答，采用 STAR 格式（情境、任务、行动、结果）",
+      "跟踪求职申请、已保存的职位和录用通知",
+      "每日邮件职位推荐",
+      "将每条 ATS 建议应用到你的简历",
+      "为申请表中的问题起草回答",
+      "LinkedIn 联系消息，以及该发给谁"
+    ],
+    "continueFree": "继续免费使用"
+  },
+  "upgradeModal": {
+    "default": {
+      "title": "获取 FitMyCV Pro",
+      "description": "一次性支付 ${price}，即可将简历和求职信下载为 PDF，还可使用公司调研、面试准备和求职申请跟踪。"
+    },
+    "download": {
+      "title": "下载你的 PDF",
+      "description": "你的简历和求职信已准备好。一次性支付 ${price} 即可下载为 PDF。"
+    },
+    "preTailor": {
+      "title": "下载你的 PDF",
+      "description": "一次性支付 ${price}，即可将你的定制简历和求职信下载为 PDF。"
+    },
+    "startMonth": "以 ${price} 开通一个月",
+    "getLifetime": "以 ${price} 获取终身版",
+    "maybeLater": "以后再说",
+    "seeEverything": "查看 Pro 的全部内容",
+    "forJob": {
+      "title": "下载你用于{title}的简历",
+      "titleWithCompany": "下载你用于{company}{title}职位的简历"
+    }
+  },
+  "unlockGate": {
+    "button": "解锁下载",
+    "body": "已准备好。解锁下载即可保存为 PDF。"
+  },
+  "feedback": {
+    "title": "发送反馈",
+    "description": "分享你的想法，帮助我们改进 FitMyCV。",
+    "typeLabel": "类型",
+    "types": {
+      "general": "一般",
+      "bug": "问题",
+      "featureRequest": "功能建议"
+    },
+    "messageLabel": "内容",
+    "messagePlaceholder": "告诉我们你的想法…",
+    "submit": "发送反馈",
+    "sending": "正在发送…",
+    "sent": "谢谢，你的反馈已发送。",
+    "sendError": "无法发送你的反馈，请重试。"
+  },
+  "tailorCvFromJobLink": {
+    "meta": {
+      "title": "从任意链接根据职位描述定制你的简历 | FitMyCV",
+      "description": "用 AI 根据职位描述定制你的简历。粘贴来自 LinkedIn、Indeed、Glassdoor 或公司招聘页面的链接，或者粘贴职位文本，即可获得简历和求职信。"
+    },
+    "eyebrow": "AI 简历定制",
+    "titleStart": "根据职位描述定制你的简历，",
+    "titleHighlight": "从一个链接开始。",
+    "intro": "用 AI 根据职位描述定制你的简历：粘贴来自 LinkedIn、Indeed 或任意招聘网站的职位链接，或粘贴职位文本，FitMyCV 会逐个关键词改写你的简历和求职信，使其与职位相匹配。",
+    "ctaPrimary": "定制我的简历",
+    "ctaSecondary": "先给我的简历评分",
+    "worksWith": "支持",
+    "companySites": "公司官网",
+    "benefitsTitle": "一个职位链接，一份为该职位打造的简历。",
+    "benefitsIntro": "别再给每个职位发送同一份通用简历。FitMyCV 会根据你粘贴的每个职位链接定制一份新简历。",
+    "benefits": {
+      "link": {
+        "title": "粘贴链接，而不是一大段文字",
+        "body": "放入来自 LinkedIn、Indeed、Glassdoor 或任意招聘网站的职位网址。FitMyCV 会读取职位并提取要求、技能和关键词，包括隐藏在“查看更多”按钮后面的部分。"
+      },
+      "ats": {
+        "title": "专为通过 ATS 筛选而打造",
+        "body": "你的简历会被改写为与职位信息中完全一致的措辞，然后导出为单栏、基于文本的 PDF，让申请人跟踪系统按你写的方式解析。"
+      },
+      "speed": {
+        "title": "几秒内生成简历和求职信",
+        "body": "两份文件都来自对同一职位信息的同一次解析，因此彼此呼应。你可以直接编辑其中任意一份，然后一键导出为可直接发给招聘人员的 PDF。"
+      }
+    },
+    "faqHeading": "根据职位链接定制简历：常见问题",
+    "faqIntro": "关于把职位链接变成定制求职材料的一切。",
+    "breadcrumbHome": "首页",
+    "breadcrumbPage": "根据职位链接定制简历"
+  }
+}

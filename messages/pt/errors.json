@@ -1,0 +1,36 @@
+{
+  "notFound": {
+    "metaTitle": "Página não encontrada",
+    "eyebrow": "404",
+    "title": "Não encontramos essa página",
+    "body": "O link pode estar quebrado ou a página pode ter mudado de lugar. Veja para onde a maioria das pessoas vai em seguida.",
+    "links": {
+      "tailor": "Adaptar um currículo a partir do link da vaga",
+      "resumeExamples": "Exemplos de currículo",
+      "blog": "Blog",
+      "pricing": "Preços"
+    },
+    "home": "Voltar para a página inicial"
+  },
+  "page": {
+    "eyebrow": "Erro",
+    "title": "Esta página não carregou",
+    "body": "Algo falhou do nosso lado. Tente de novo ou volte para a página inicial.",
+    "retry": "Tentar de novo",
+    "home": "Ir para a página inicial"
+  },
+  "dashboard": {
+    "title": "Esta página não carregou",
+    "description": "Seus currículos e cartas de apresentação estão seguros. Tente de novo ou volte para o início.",
+    "retry": "Tentar de novo",
+    "home": "Ir para o início"
+  },
+  "global": {
+    "docTitle": "FitMyCV | Esta página não carregou",
+    "title": "Esta página não carregou",
+    "body": "Algo falhou do nosso lado. Tente de novo ou volte para a página inicial.",
+    "retry": "Tentar de novo",
+    "home": "Ir para a página inicial",
+    "support": "Se isso continuar acontecendo, <link>fale com o suporte</link>."
+  }
+}

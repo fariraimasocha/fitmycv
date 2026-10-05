@@ -21,6 +21,9 @@ const LOCALE_FLAGS = {
   fr: "🇫🇷",
   es: "🇪🇸",
   de: "🇩🇪",
+  pt: "🇧🇷",
+  zh: "🇨🇳",
+  ar: "🇸🇦",
 };
 
 function saveLocaleCookie(locale) {

@@ -74,7 +74,7 @@ export const HOME_TESTIMONIAL = {
   image: "/farai.jpeg",
 };
 
-// French, Spanish and German versions of the FAQ and steps above. Same order,
+// Translated versions of the FAQ and steps above. Same order,
 // same claims. English stays the source: edit it first, then these.
 const HOME_FAQS_TRANSLATED = {
   fr: [
@@ -113,6 +113,42 @@ const HOME_FAQS_TRANSLATED = {
     { q: "Google-Anmeldung in der LinkedIn-App blockiert?", a: "Der In-App-Browser von LinkedIn blockiert oft die Google-Anmeldung. Öffne fitmycv.link in Chrome oder Safari, oder nutze den Anmeldelink per E-Mail auf der Anmeldeseite. Beides funktioniert." },
     { q: "Lohnt sich Premium, wenn ich den Lebenslauf auf dem Bildschirm lesen kann?", a: "Lesen auf dem Bildschirm ist kostenlos. Premium ist für PDF-Downloads, ATS- und Match-Scores, Bewerbungstracking und die restlichen Tools. Die meisten wechseln zu Premium, wenn sie bereit sind, die Bewerbung abzuschicken." },
   ],
+  pt: [
+    { q: "Como o FitMyCV adapta meu currículo?", a: "Nossa IA lê a descrição da vaga, identifica os principais requisitos e palavras-chave e reorganiza seu currículo para destacar a experiência e as habilidades que combinam com a vaga. O resultado passa nos filtros de ATS e soa natural para os recrutadores." },
+    { q: "Meu currículo ainda vai soar como eu?", a: "Com certeza. O FitMyCV melhora o conteúdo que você já tem. Ele não o substitui. Sua voz, sua experiência e suas conquistas continuam em primeiro plano. Só garantimos que elas sejam apresentadas da melhor forma para cada vaga." },
+    { q: "O que é grátis e o que precisa do Premium?", a: "O plano grátis cobre o fluxo principal na tela: envie seu currículo, cole qualquer link de vaga, gere o currículo adaptado e a carta de apresentação e leia os dois por completo sem pagar. O Premium serve para tirar os documentos do site e manter sua busca andando: downloads ilimitados em PDF do seu currículo adaptado e da sua carta de apresentação, pontuação de compatibilidade e pontuação ATS em cada currículo, acompanhamento de candidaturas, vagas salvas e vagas compatíveis por e-mail todos os dias." },
+    { q: "Em quais formatos posso exportar?", a: "Você pode baixar seu currículo adaptado e sua carta de apresentação em PDF, prontos para anexar e enviar. O download em PDF é a parte Premium. Gerar e ler os documentos adaptados é grátis. O PDF é o formato que recrutadores e sistemas ATS leem melhor, então ele mantém sua formatação perfeita em cada candidatura." },
+    { q: "Posso cancelar minha assinatura quando quiser?", a: "Sim, você pode cancelar sua assinatura Premium a qualquer momento. Você continua com acesso até o fim do período de cobrança. Sem perguntas e sem taxas escondidas." },
+    { q: "Meus dados estão seguros?", a: "Sua privacidade é nossa prioridade. Todos os dados são criptografados, nunca compartilhamos suas informações e você pode excluir sua conta e todos os dados ligados a ela a qualquer momento." },
+    { q: "Por que um link em vez de colar a descrição?", a: "Um link permite que o FitMyCV leia o anúncio completo por você, incluindo requisitos escondidos na página. Você não precisa copiar texto para um formulário e já começa com um currículo adaptado àquela vaga." },
+    { q: "Adaptar o currículo ajuda mesmo com os filtros de ATS?", a: "O FitMyCV reflete as palavras-chave e as habilidades da vaga na experiência que você já tem. É esse alinhamento que os sistemas ATS procuram. Você ainda revisa cada linha antes de se candidatar." },
+    { q: "O login com Google está bloqueado no app do LinkedIn?", a: "O navegador interno do LinkedIn costuma bloquear o login com Google. Abra fitmycv.link no Chrome ou no Safari, ou use o link de login por e-mail na página de acesso. Os dois caminhos funcionam." },
+    { q: "O Premium vale a pena se eu posso ler o currículo na tela?", a: "Ler na tela é grátis. O Premium é para downloads em PDF, pontuações ATS e de compatibilidade, acompanhamento de candidaturas e o resto das ferramentas. A maioria das pessoas assina quando está pronta para enviar a candidatura." },
+  ],
+  zh: [
+    { q: "FitMyCV 如何定制我的简历？", a: "我们的 AI 会读取职位描述，找出关键要求和关键词，然后调整你简历的结构，突出相匹配的经历和技能。结果能通过 ATS 筛选，招聘人员读起来也很自然。" },
+    { q: "我的简历读起来还会像我写的吗？", a: "当然会。FitMyCV 是在你现有内容的基础上改进，而不是替换它。你的口吻、经历和成就依然是重点。我们只是确保它们以最适合每个职位的方式呈现。" },
+    { q: "哪些功能免费，哪些需要 Premium？", a: "免费版涵盖屏幕上的核心流程：上传你的简历，粘贴任意职位链接，生成定制简历和求职信，然后无需付费即可完整阅读。Premium 用于导出文件并持续推进你的求职：不限次数地将定制简历和求职信下载为 PDF，每份简历的匹配度评分和 ATS 评分，求职申请跟踪，已保存的职位，以及每日邮件职位推荐。" },
+    { q: "我可以导出哪些文件格式？", a: "你可以将定制简历和求职信下载为 PDF，直接作为附件发送。PDF 下载属于 Premium，生成和阅读定制文件是免费的。PDF 是招聘人员和 ATS 系统处理得最好的格式，因此每次申请都能保持你的排版完好。" },
+    { q: "我可以随时取消订阅吗？", a: "可以，你可以随时取消 Premium 订阅。在当前计费周期结束前，你仍可继续使用。无需说明理由，没有隐藏费用。" },
+    { q: "我的数据安全吗？", a: "你的隐私是我们的首要任务。所有数据都经过加密，我们绝不分享你的信息，你也可以随时删除你的账户和所有相关数据。" },
+    { q: "为什么用职位链接，而不是粘贴职位描述？", a: "有了链接，FitMyCV 就能替你读取完整的职位信息，包括藏在页面深处的要求。你不用把文字复制到表单里，一开始就能得到一份已与该职位匹配的简历。" },
+    { q: "定制真的有助于通过 ATS 筛选吗？", a: "FitMyCV 会在你现有的经历中体现该职位的关键词和技能。ATS 系统扫描的正是这种契合度。申请前，你仍然要检查每一行内容。" },
+    { q: "在 LinkedIn 应用中无法使用 Google 登录？", a: "LinkedIn 的应用内浏览器经常会阻止 Google 登录。请在 Chrome 或 Safari 中打开 fitmycv.link，或在登录页面使用邮箱登录链接。两种方式都可以。" },
+    { q: "既然能在屏幕上阅读简历，Premium 还值得买吗？", a: "在屏幕上阅读是免费的。Premium 用于 PDF 下载、ATS 评分和匹配度评分、求职申请跟踪以及其他工具。大多数人会在准备好投递申请时升级。" },
+  ],
+  ar: [
+    { q: "كيف يخصّص FitMyCV سيرتي الذاتية؟", a: "يقرأ الذكاء الاصطناعي لدينا الوصف الوظيفي، ويحدد المتطلبات والكلمات المفتاحية الأساسية، ثم يعيد هيكلة سيرتك الذاتية لإبراز الخبرة والمهارات المطابقة. النتيجة تجتاز فلاتر ATS وتُقرأ بشكل طبيعي لدى مسؤولي التوظيف." },
+    { q: "هل ستبقى سيرتي الذاتية معبّرة عني؟", a: "بالتأكيد. يحسّن FitMyCV محتواك الحالي ولا يستبدله. يبقى أسلوبك وخبرتك وإنجازاتك في الواجهة. نحن فقط نتأكد من عرضها بأفضل طريقة ممكنة لكل وظيفة." },
+    { q: "ما الذي أحصل عليه مجانًا، وما الذي يحتاج إلى Premium؟", a: "تغطي الخطة المجانية سير العمل الأساسي على الشاشة: ارفع سيرتك الذاتية، والصق أي رابط وظيفة، وأنشئ السيرة الذاتية المخصصة وخطاب التقديم، ثم اقرأهما كاملين دون أن تدفع. أما Premium فهو لإخراج المستندات ومواصلة البحث عن عمل: تنزيلات PDF بلا حدود لسيرتك الذاتية المخصصة وخطاب التقديم، ودرجة مطابقة ودرجة ATS لكل سيرة ذاتية، ومتابعة الطلبات، والوظائف المحفوظة، ووظائف مطابقة يوميًا عبر البريد الإلكتروني." },
+    { q: "ما صيغ الملفات التي يمكنني التصدير بها؟", a: "يمكنك تنزيل سيرتك الذاتية المخصصة وخطاب التقديم بصيغة PDF، جاهزين للإرفاق والإرسال. تنزيل PDF هو الجزء الخاص بـ Premium، أما إنشاء المستندات المخصصة وقراءتها فمجاني. وPDF هي الصيغة التي يتعامل معها مسؤولو التوظيف وأنظمة ATS على أفضل وجه، فتحافظ على تنسيقك سليمًا في كل طلب." },
+    { q: "هل يمكنني إلغاء اشتراكي في أي وقت؟", a: "نعم، يمكنك إلغاء اشتراك Premium في أي وقت. وسيبقى وصولك متاحًا حتى نهاية فترة الفوترة. دون أي أسئلة، ودون رسوم خفية." },
+    { q: "هل بياناتي آمنة؟", a: "خصوصيتك أولويتنا القصوى. كل البيانات مشفرة، ولا نشارك معلوماتك أبدًا، ويمكنك حذف حسابك وكل البيانات المرتبطة به في أي وقت." },
+    { q: "لماذا رابط وظيفة بدلًا من لصق الوصف؟", a: "يتيح الرابط لـ FitMyCV أن يقرأ الإعلان كاملًا نيابة عنك، بما في ذلك المتطلبات المدفونة في الصفحة. فتتخطى نسخ النص إلى نموذج، وتبدأ بسيرة ذاتية مطابقة لذلك الإعلان بالفعل." },
+    { q: "هل يساعد التخصيص فعلًا مع فلاتر ATS؟", a: "يعكس FitMyCV الكلمات المفتاحية والمهارات الخاصة بالوظيفة في خبرتك الحالية. وهذا التوافق هو ما تبحث عنه أنظمة ATS. ومع ذلك تراجع كل سطر قبل أن تتقدّم." },
+    { q: "هل تسجيل الدخول عبر Google محظور في تطبيق LinkedIn؟", a: "كثيرًا ما يحظر المتصفح داخل تطبيق LinkedIn تسجيل الدخول عبر Google. افتح fitmycv.link في Chrome أو Safari، أو استخدم رابط تسجيل الدخول بالبريد الإلكتروني في صفحة تسجيل الدخول. الطريقتان تعملان." },
+    { q: "هل يستحق Premium ثمنه إذا كنت أستطيع قراءة السيرة الذاتية على الشاشة؟", a: "القراءة على الشاشة مجانية. أما Premium فهو لتنزيلات PDF، ودرجات ATS والمطابقة، ومتابعة الطلبات، وبقية الأدوات. يرقّي معظم الناس حين يصبحون مستعدين لإرسال الطلب." },
+  ],
 };
 
 const HOME_STEPS_TRANSLATED = {
@@ -131,6 +167,21 @@ const HOME_STEPS_TRANSLATED = {
     { title: "KI passt deinen Lebenslauf an", copy: "Wir formulieren deine Stichpunkte wirkungsvoller, greifen die Schlüsselwörter der Stelle auf und behalten deine Stimme bei, ATS-tauglich in etwa 30 Sekunden." },
     { title: "Herunterladen und bewerben", copy: "Exportiere einen ausgefeilten Lebenslauf und das passende Anschreiben als PDF. Ein Dashboard verfolgt jede Bewerbung." },
   ],
+  pt: [
+    { title: "Cole o anúncio da vaga", copy: "Cole um link do LinkedIn, Indeed ou de qualquer página de carreiras. Extraímos requisitos, habilidades e palavras-chave na hora." },
+    { title: "A IA adapta seu currículo", copy: "Reescrevemos seus tópicos com mais impacto, refletimos as palavras-chave da vaga e mantemos sua voz, pronto para ATS em cerca de 30 segundos." },
+    { title: "Baixe e se candidate", copy: "Exporte em PDF um currículo bem acabado e uma carta de apresentação que combina com ele. Um único painel acompanha todas as candidaturas." },
+  ],
+  zh: [
+    { title: "粘贴职位信息", copy: "放入来自 LinkedIn、Indeed 或任意招聘页面的链接。我们会立即解析其中的要求、技能和关键词。" },
+    { title: "AI 定制你的简历", copy: "我们会改写要点让它更有力，沿用职位的关键词，并保留你的口吻，约 30 秒即可得到适配 ATS 的简历。" },
+    { title: "下载并申请", copy: "将一份精心打磨的简历和相匹配的求职信导出为 PDF。一个控制台即可跟踪每份申请。" },
+  ],
+  ar: [
+    { title: "الصق إعلان الوظيفة", copy: "ضع رابطًا من LinkedIn أو Indeed أو أي صفحة وظائف. نحلّل المتطلبات والمهارات والكلمات المفتاحية فورًا." },
+    { title: "الذكاء الاصطناعي يخصّص سيرتك الذاتية", copy: "نعيد كتابة نقاطك بتأثير أقوى، ونعكس الكلمات المفتاحية للوظيفة، ونحافظ على أسلوبك، جاهزة لأنظمة ATS في نحو 30 ثانية." },
+    { title: "نزّل وتقدّم", copy: "صدّر سيرة ذاتية مصقولة وخطاب تقديم مطابقًا بصيغة PDF. ولوحة تحكم واحدة تتابع كل طلب." },
+  ],
 };
 
 export const getHomeFaqs = (locale) => HOME_FAQS_TRANSLATED[locale] ?? HOME_FAQS;
@@ -143,6 +194,9 @@ const HOME_TESTIMONIAL_ROLE = {
   fr: "Développeur logiciel",
   es: "Desarrollador de software",
   de: "Softwareentwickler",
+  pt: "Desenvolvedor de software",
+  zh: "软件开发工程师",
+  ar: "مطوّر برمجيات",
 };
 
 export const getHomeTestimonial = (locale) => ({

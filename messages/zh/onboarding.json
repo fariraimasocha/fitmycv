@@ -1,0 +1,40 @@
+{
+  "back": "返回",
+  "skip": "暂时跳过",
+  "tryAgain": "重试",
+  "continueToTailoring": "继续定制",
+  "finishError": "你的简历已保存，但我们未能完成账户设置。请重试。",
+  "saveError": "无法保存你的简历。请检查网络连接后重试。",
+  "upload": {
+    "eyebrow": "你的简历",
+    "title": "{hasName, select, yes {{name}，上传你的简历，我们会为你量身定制所有内容。} other {上传你的简历，我们会为你量身定制所有内容。}}",
+    "privacy": "只有你能看到你的简历。我们的 AI 服务商会读取它来撰写你的求职材料。",
+    "editLater": "你之后可以在“我的简历”中编辑这些信息。"
+  },
+  "payoff": {
+    "eyebrow": "你的简历已就绪",
+    "title": "{hasName, select, yes {{name}，这是我们读取到的内容。} other {这是我们读取到的内容。}}",
+    "facts": {
+      "roles": "{count, plural, one {个职位} other {个职位}}",
+      "skills": "{count, plural, one {项技能} other {项技能}}",
+      "years": "年工作经验"
+    },
+    "intro": "每份定制简历和求职信都基于这些内容生成。你之后可以编辑其中任何部分。接下来是这些步骤：",
+    "tailorCta": "定制你的第一份简历",
+    "dashboardCta": "前往控制台"
+  },
+  "plan": {
+    "resume": {
+      "title": "添加你的简历",
+      "description": "上传一次，即可作为每份定制求职材料的基础。"
+    },
+    "tailor": {
+      "title": "定制你的第一份简历",
+      "description": "粘贴职位链接或职位描述，即可获得一份改写后的简历和一封相匹配的求职信。"
+    },
+    "applications": {
+      "title": "跟踪你的求职申请",
+      "description": "把你申请过的所有职位集中在一个流程中管理。"
+    }
+  }
+}

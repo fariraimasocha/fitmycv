@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "根据任意职位链接定制你的简历 | FitMyCV",
+    "description": "根据任意职位链接定制你的简历和求职信：AI 关键词匹配、免费 ATS 简历检查器、19 款适配 ATS 的模板，以及一键导出 PDF。",
+    "ogTitle": "FitMyCV：几秒内根据任意职位链接定制你的简历",
+    "ogAlt": "FitMyCV：用一份契合职位的简历获得更多面试机会",
+    "schemaName": "根据任意职位链接定制你的简历",
+    "howToName": "如何根据职位链接定制你的简历",
+    "howToDescription": "粘贴职位链接，让 FitMyCV 按照职位要求改写你的简历，然后将简历和求职信下载为 PDF。"
+  },
+  "hero": {
+    "videoLabel": "FitMyCV 演示：粘贴职位链接，下载定制简历",
+    "checkerTitle": "免费对照职位信息检查你的简历",
+    "checkerBody": "无需注册。你的文件只在你的浏览器中读取。",
+    "checkerCta": "给我的简历评分",
+    "titleLead": "AI 简历和求职信。",
+    "titleMain": "粘贴任意职位链接，获得一份<accent>为该职位打造</accent>的简历。",
+    "body": "只需上传一次简历。FitMyCV 会读取职位信息，并用该职位要求的措辞改写你的简历。",
+    "tryFree": "免费试用",
+    "previewFree": "免费预览你的定制简历",
+    "priceNote": "一次性支付 ${price}，即可下载 PDF 并投递。",
+    "seeHow": "了解使用方法"
+  },
+  "jobBoards": {
+    "title": "支持任意职位链接"
+  },
+  "problem": {
+    "eyebrow": "问题所在",
+    "title": "你不是被拒绝了，而是被筛掉了。",
+    "body": "大多数公司在招聘人员看到简历之前，会先用软件筛选。如果你的简历缺少职位信息中使用的词语，它就会被淘汰。悄无声息，也没有任何回复告诉你原因。",
+    "cardTitle": "你的简历与一个职位的对比",
+    "filteredOut": "已被筛掉",
+    "scoreLabel": "匹配度评分 {value}/100",
+    "matchTitle": "资历匹配度",
+    "matchBody": "对照职位描述",
+    "missingTitle": "职位要求但你的简历从未提到的五个词",
+    "coverage": "关键词覆盖率",
+    "coverageCount": "{found}/{total}",
+    "footer": "FitMyCV 会读取职位信息，找出你缺少的词语，并改写你的简历来使用它们。只基于你真实拥有的经验。"
+  },
+  "howItWorks": {
+    "eyebrow": "FitMyCV 实际演示",
+    "title": "粘贴一次。无需改写，无需猜测。",
+    "jobListing": "职位信息",
+    "paste": "粘贴",
+    "cvPreview": "简历预览",
+    "tailor": "定制我的简历",
+    "export": "导出",
+    "download": "下载 PDF",
+    "priceNote": "在屏幕上免费预览。一次性支付 ${price} 即可下载 PDF。"
+  },
+  "templates": {
+    "eyebrow": "模板",
+    "title": "十九款版式，全部经得起解析器的考验",
+    "body": "单栏布局，标准标题，没有会在提取时错乱的图形。每一款都可以更改颜色和字体。",
+    "prev": "上一组模板",
+    "next": "下一组模板",
+    "seeAll": "查看全部模板"
+  },
+  "testimonial": {
+    "heading": "来自一位 FitMyCV 用户"
+  },
+  "trust": {
+    "title": "你交给我们的是什么，以及它会如何被处理",
+    "body": "你的简历是你最私密的文件。以下是我们处理它的具体方式。",
+    "signals": {
+      "yours": {
+        "title": "你的简历始终归你所有",
+        "body": "你的参考简历存储在你的账户下，仅用于生成你自己的文件。"
+      },
+      "notShared": {
+        "title": "绝不分享给招聘人员",
+        "body": "我们不是招聘网站，也不是简历数据库。你上传的任何内容都不会被出售、公开或展示给雇主。"
+      },
+      "delete": {
+        "title": "随时删除所有内容",
+        "body": "你可以随时在控制台中删除你的简历、定制文件和账户。"
+      },
+      "boards": {
+        "title": "支持主流招聘网站",
+        "body": "粘贴来自 LinkedIn、Indeed、Glassdoor 或公司招聘页面的链接，无需复制粘贴职位文本。"
+      },
+      "pdf": {
+        "title": "适配 ATS 的 PDF 导出",
+        "body": "单栏、基于文本、使用标准标题的 PDF，让解析器按你写的方式读取。"
+      },
+      "cancel": {
+        "title": "随时取消",
+        "body": "没有合约，也没有繁琐的取消流程。访问权限持续到你已付费周期结束。"
+      }
+    },
+    "methodTitle": "定制是如何进行的",
+    "methodBody": "我们读取你粘贴的链接中的职位信息，提取其中的要求和关键词，然后据此改写你的简历。每一行内容都来自你上传的简历。模型被明确要求不得编造你未提供的雇主、职位或数字。",
+    "policies": "以上说明受我们的<privacy>隐私政策</privacy>和<terms>条款与条件</terms>约束。如有任何疑问，请发送至 <mail>{email}</mail>。"
+  },
+  "faq": {
+    "founderAlt": "Farirai James，FitMyCV 创始人",
+    "founderRole": "FitMyCV 创始人 •",
+    "greetingCountry": "嗨，来自 {flag} {country} 的朋友，我是 Farirai。",
+    "greeting": "嗨，朋友，我是 Farirai。",
+    "heading": "以前我每点开一个职位链接，就要重写一遍简历。",
+    "story1": "以前我每点开一个职位链接，就要重写一遍简历。每份申请的准备时间都比提交时间还长。",
+    "story2": "所以我做了 FitMyCV。粘贴职位链接，它会读取职位信息，然后为该职位改写你的简历和求职信。不用把职位要求复制到表单里。",
+    "story3": "我自己求职时也用 FitMyCV。如果它能让我在每个链接上都节省时间，它也应该能为你做到。",
+    "eyebrow": "常见问题",
+    "title": "坦诚的回答。"
+  },
+  "resources": {
+    "title": "网站上的其他内容",
+    "body": "免费工具和指南，无论你是否付费都可以使用。",
+    "open": "打开",
+    "items": {
+      "tailor": {
+        "label": "根据职位链接定制简历",
+        "body": "核心流程：粘贴职位网址，获得定制简历和求职信。"
+      },
+      "match": {
+        "label": "简历职位匹配检查器",
+        "body": "粘贴简历和职位信息，查看匹配度、缺少的技能，以及应该优先修改的地方。"
+      },
+      "ats": {
+        "label": "免费 ATS 简历检查器",
+        "body": "对照职位描述为你的简历评分，并查看你缺少的词语。"
+      },
+      "atsGuide": {
+        "label": "如何撰写适配 ATS 的简历",
+        "body": "格式、关键词，以及会让简历在被人看到之前就被筛掉的错误。"
+      },
+      "examples": {
+        "label": "十四种职位的简历范例",
+        "body": "完整的个人简介、修改前后的要点对比，以及这些职位信息使用的关键词。"
+      }
+    }
+  },
+  "cta": {
+    "title": "不想再被忽视了吗？",
+    "body": "加入用 AI 定制求职材料、更快获得面试的求职者行列。终身访问仅需 ${price}。",
+    "tryFree": "免费试用",
+    "pricing": "查看价格"
+  },
+  "sticky": {
+    "cta": "定制我的简历"
+  },
+  "footer": {
+    "tagline": "AI 驱动的简历定制。花更少的力气，获得更多面试。",
+    "rights": "2026 FitMyCV。保留所有权利。",
+    "headings": {
+      "product": "产品",
+      "freeTools": "免费工具",
+      "resources": "资源",
+      "compare": "对比",
+      "atsGuides": "ATS 指南",
+      "company": "公司",
+      "otherApps": "其他应用"
+    },
+    "links": {
+      "tailor": "根据职位链接定制简历",
+      "optimizer": "简历优化器",
+      "aiCoverLetter": "AI 求职信生成器",
+      "coverLetterBuilder": "求职信制作工具",
+      "pricing": "价格",
+      "blog": "博客",
+      "atsGuide": "ATS 简历指南",
+      "howToWrite": "如何撰写简历",
+      "tips": "简历技巧",
+      "resumeExamples": "简历范例",
+      "cvExamples": "CV 范例",
+      "cvTemplates": "简历模板",
+      "faq": "常见问题",
+      "jobscan": "Jobscan 替代方案",
+      "teal": "Teal 替代方案",
+      "kickresume": "Kickresume 替代方案",
+      "workday": "Workday 简历格式",
+      "greenhouse": "Greenhouse ATS 简历",
+      "lever": "Lever ATS 简历",
+      "taleo": "Taleo 简历格式",
+      "icims": "iCIMS 简历格式",
+      "support": "支持",
+      "privacy": "隐私政策",
+      "terms": "条款与条件"
+    }
+  },
+  "coverLetterDemo": {
+    "badge": "AI 实时撰写",
+    "titleLine1": "看着你的求职信",
+    "titleLine2": "自动写成",
+    "body": "FitMyCV 会读取职位描述，几秒内用你的口吻写出一封专业的定制求职信。",
+    "complete": "完成",
+    "generating": "正在生成…",
+    "tailoredFor": "定制职位：",
+    "role": "高级软件工程师",
+    "at": "就职于",
+    "letterLabel": "正在生成的求职信",
+    "characters": "{count} / {total} 个字符",
+    "generateMine": "生成我的求职信",
+    "note": "每封求职信都独一无二，按照具体的职位、公司和你的背景撰写。"
+  },
+  "webview": {
+    "title": "在浏览器中打开以登录",
+    "close": "关闭",
+    "warning": "Google 不允许在 LinkedIn 应用内登录。请使用 Chrome 或 Safari，或者改用邮箱登录，在这里就能用。",
+    "howTo": "如何在浏览器中打开",
+    "ios1": "点按 LinkedIn 右上角的 <b>•••</b> 或分享图标。",
+    "ios2": "选择<b>在浏览器中打开</b>或<b>在 Safari 中打开</b>。",
+    "ios3": "页面在 Safari 中重新加载后，使用 Google 登录。",
+    "android1": "点按右上角的 <b>⋮</b> 菜单。",
+    "android2": "选择<b>在 Chrome 中打开</b>或<b>在浏览器中打开</b>。",
+    "android3": "页面在 Chrome 中重新加载后，使用 Google 登录。",
+    "desktop1": "复制下方的登录链接。",
+    "desktop2": "将其粘贴到 Chrome 或 Safari 中。",
+    "desktop3": "在那里使用 Google 登录。",
+    "copy": "复制登录链接",
+    "openChrome": "尝试在 Chrome 中打开",
+    "continueEmail": "改用邮箱继续",
+    "emailNote": "邮箱登录在 LinkedIn 内即可使用，无需切换浏览器。",
+    "continueBrowsing": "继续浏览",
+    "toastCopied": "链接已复制，请粘贴到 Chrome 或 Safari 中。",
+    "toastCopyFailed": "无法复制。长按链接即可复制。",
+    "toastOpening": "正在用 Chrome 打开。如果没有反应，请使用“复制链接”。"
+  }
+}

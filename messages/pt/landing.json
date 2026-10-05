@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "title": "Adapte seu currículo a qualquer link de vaga | FitMyCV",
+    "description": "Adapte seu currículo e sua carta de apresentação a qualquer link de vaga: correspondência de palavras-chave com IA, verificador ATS de currículo grátis, 19 modelos compatíveis com ATS e exportação em PDF com um clique.",
+    "ogTitle": "FitMyCV: adapte seu currículo a qualquer link de vaga em segundos",
+    "ogAlt": "FitMyCV: consiga mais entrevistas com um currículo que combina com a vaga",
+    "schemaName": "Adapte seu currículo a qualquer link de vaga",
+    "howToName": "Como adaptar seu currículo a um link de vaga",
+    "howToDescription": "Cole um link de vaga, deixe o FitMyCV reescrever seu currículo com base nos requisitos da vaga e baixe o currículo e a carta de apresentação em PDF."
+  },
+  "hero": {
+    "videoLabel": "Demonstração do FitMyCV: cole um link de vaga e baixe um currículo adaptado",
+    "checkerTitle": "Compare seu currículo com uma vaga, grátis",
+    "checkerBody": "Sem cadastro. Seu arquivo é lido no seu navegador.",
+    "checkerCta": "Avaliar meu currículo",
+    "titleLead": "Currículo e carta de apresentação com IA.",
+    "titleMain": "Cole qualquer link de vaga. Receba um currículo <accent>feito para essa vaga</accent>.",
+    "body": "Envie seu currículo uma vez. O FitMyCV lê o anúncio e reescreve seu currículo com as palavras que a vaga pede.",
+    "tryFree": "Teste grátis",
+    "previewFree": "Veja seu currículo adaptado grátis",
+    "priceNote": "${price} uma vez para baixar os PDFs e se candidatar.",
+    "seeHow": "Veja como funciona"
+  },
+  "jobBoards": {
+    "title": "Funciona com qualquer link de vaga"
+  },
+  "problem": {
+    "eyebrow": "O problema",
+    "title": "Você não está sendo recusado. Você está sendo filtrado.",
+    "body": "A maioria das empresas faz uma triagem com software antes que um recrutador veja qualquer coisa. Se o seu currículo não tem as palavras que o anúncio usa, ele é descartado. Sem aviso e sem resposta dizendo o motivo.",
+    "cardTitle": "Seu currículo comparado com uma vaga",
+    "filteredOut": "Filtrado",
+    "scoreLabel": "Pontuação de compatibilidade {value} de 100",
+    "matchTitle": "Compatibilidade de qualificações",
+    "matchBody": "Comparado com a descrição da vaga",
+    "missingTitle": "Cinco termos que a vaga pede e que seu currículo nunca menciona",
+    "coverage": "Cobertura de palavras-chave",
+    "coverageCount": "{found} de {total}",
+    "footer": "O FitMyCV lê o anúncio, encontra os termos que faltam e reescreve seu currículo para usá-los. Só com base na experiência que você realmente tem."
+  },
+  "howItWorks": {
+    "eyebrow": "FitMyCV em ação",
+    "title": "Cole uma vez. Sem reescrever. Sem adivinhar.",
+    "jobListing": "Anúncio da vaga",
+    "paste": "Colar",
+    "cvPreview": "Prévia do currículo",
+    "tailor": "Adaptar meu currículo",
+    "export": "Exportar",
+    "download": "Baixar PDF",
+    "priceNote": "Veja a prévia na tela grátis. ${price} uma vez para baixar os PDFs."
+  },
+  "templates": {
+    "eyebrow": "Modelos",
+    "title": "Dezenove layouts, todos feitos para passar por um leitor de currículos",
+    "body": "Coluna única, títulos padrão e nenhum gráfico que se embaralha na extração. Mude a cor e a fonte de qualquer um deles.",
+    "prev": "Modelos anteriores",
+    "next": "Próximos modelos",
+    "seeAll": "Ver todos os modelos"
+  },
+  "testimonial": {
+    "heading": "De quem usa o FitMyCV"
+  },
+  "trust": {
+    "title": "O que você nos entrega e o que acontece com isso",
+    "body": "Seu currículo é o documento mais pessoal que você tem. Veja exatamente como ele é tratado.",
+    "signals": {
+      "yours": {
+        "title": "Seu currículo continua seu",
+        "body": "Seu currículo de referência fica salvo na sua conta e é usado apenas para gerar os seus próprios documentos."
+      },
+      "notShared": {
+        "title": "Nunca compartilhado com recrutadores",
+        "body": "Não somos um site de vagas nem um banco de currículos. Nada do que você envia é vendido, listado ou mostrado a empregadores."
+      },
+      "delete": {
+        "title": "Apague tudo quando quiser",
+        "body": "Remova seu currículo, seus documentos adaptados e sua conta pelo painel quando quiser."
+      },
+      "boards": {
+        "title": "Funciona com os principais sites de vagas",
+        "body": "Cole um link do LinkedIn, Indeed, Glassdoor ou da página de carreiras de uma empresa, sem copiar e colar o texto da vaga."
+      },
+      "pdf": {
+        "title": "Exportação em PDF compatível com ATS",
+        "body": "PDFs de coluna única, baseados em texto e com títulos padrão, para que os leitores de currículo os leiam do jeito que você escreveu."
+      },
+      "cancel": {
+        "title": "Cancele quando quiser",
+        "body": "Sem contrato e sem um processo de cancelamento complicado. O acesso vai até o fim do período que você pagou."
+      }
+    },
+    "methodTitle": "Como a adaptação funciona",
+    "methodBody": "Lemos o anúncio da vaga no link que você cola, extraímos os requisitos e as palavras-chave e reescrevemos seu currículo com base neles. Cada linha vem do currículo que você enviou. O modelo é instruído a nunca inventar empregadores, cargos ou números que você não informou.",
+    "policies": "O que está escrito acima é coberto pela nossa <privacy>política de privacidade</privacy> e pelos nossos <terms>termos e condições</terms>. Dúvidas sobre qualquer ponto podem ser enviadas para <mail>{email}</mail>."
+  },
+  "faq": {
+    "founderAlt": "Farirai James, fundador do FitMyCV",
+    "founderRole": "Fundador, FitMyCV •",
+    "greetingCountry": "Oi, amigo do {flag} {country}, eu sou o Farirai.",
+    "greeting": "Oi, amigo, eu sou o Farirai.",
+    "heading": "Eu vivia reescrevendo meu currículo para cada link de vaga que abria.",
+    "story1": "Eu vivia reescrevendo meu currículo para cada link de vaga que abria. Preparar cada candidatura levava mais tempo do que enviá-la.",
+    "story2": "Então criei o FitMyCV. Cole um link de vaga e ele lê o anúncio e reescreve seu currículo e sua carta de apresentação para essa vaga. Sem copiar requisitos para um formulário.",
+    "story3": "Eu uso o FitMyCV nas minhas próprias candidaturas. Se ele me economiza tempo em cada link, deve fazer o mesmo por você.",
+    "eyebrow": "Perguntas frequentes",
+    "title": "Respostas sinceras."
+  },
+  "resources": {
+    "title": "Todo o resto do site",
+    "body": "Ferramentas e guias grátis, mesmo que você nunca nos pague um centavo.",
+    "open": "Abrir",
+    "items": {
+      "tailor": {
+        "label": "Adaptar um currículo a partir do link da vaga",
+        "body": "O fluxo principal: cole a URL de uma vaga e receba um currículo e uma carta de apresentação adaptados."
+      },
+      "match": {
+        "label": "Verificador de compatibilidade entre currículo e vaga",
+        "body": "Cole um currículo e uma vaga. Veja a compatibilidade, as habilidades que faltam e o que corrigir primeiro."
+      },
+      "ats": {
+        "label": "Verificador ATS de currículo grátis",
+        "body": "Avalie seu currículo em relação a uma descrição de vaga e veja os termos que faltam."
+      },
+      "atsGuide": {
+        "label": "Como escrever um currículo compatível com ATS",
+        "body": "Formatação, palavras-chave e os erros que fazem currículos serem filtrados antes que uma pessoa os leia."
+      },
+      "examples": {
+        "label": "Exemplos de currículo para catorze profissões",
+        "body": "Resumos prontos, tópicos de antes e depois e as palavras-chave que essas vagas usam."
+      }
+    }
+  },
+  "cta": {
+    "title": "Pronto para deixar de ser ignorado?",
+    "body": "Junte-se a quem está conseguindo entrevistas mais rápido com candidaturas adaptadas por IA. Acesso vitalício por ${price}.",
+    "tryFree": "Teste grátis",
+    "pricing": "Ver preços"
+  },
+  "sticky": {
+    "cta": "Adaptar meu currículo"
+  },
+  "footer": {
+    "tagline": "Adaptação de currículo com IA. Consiga mais entrevistas com menos esforço.",
+    "rights": "2026 FitMyCV. Todos os direitos reservados.",
+    "headings": {
+      "product": "Produto",
+      "freeTools": "Ferramentas grátis",
+      "resources": "Recursos",
+      "compare": "Comparar",
+      "atsGuides": "Guias de ATS",
+      "company": "Empresa",
+      "otherApps": "Outros apps"
+    },
+    "links": {
+      "tailor": "Adaptar currículo a partir do link da vaga",
+      "optimizer": "Otimizador de currículo",
+      "aiCoverLetter": "Gerador de carta de apresentação com IA",
+      "coverLetterBuilder": "Criador de carta de apresentação",
+      "pricing": "Preços",
+      "blog": "Blog",
+      "atsGuide": "Guia de currículo para ATS",
+      "howToWrite": "Como escrever um currículo",
+      "tips": "Dicas de currículo",
+      "resumeExamples": "Exemplos de currículo",
+      "cvExamples": "Exemplos de CV",
+      "cvTemplates": "Modelos de CV",
+      "faq": "Perguntas frequentes",
+      "jobscan": "Alternativa ao Jobscan",
+      "teal": "Alternativa ao Teal",
+      "kickresume": "Alternativa ao Kickresume",
+      "workday": "Formato de currículo para Workday",
+      "greenhouse": "Currículo para o ATS Greenhouse",
+      "lever": "Currículo para o ATS Lever",
+      "taleo": "Formato de currículo para Taleo",
+      "icims": "Formato de currículo para iCIMS",
+      "support": "Suporte",
+      "privacy": "Política de privacidade",
+      "terms": "Termos e condições"
+    }
+  },
+  "coverLetterDemo": {
+    "badge": "IA escrevendo ao vivo",
+    "titleLine1": "Veja sua carta de apresentação",
+    "titleLine2": "se escrever sozinha",
+    "body": "O FitMyCV lê a descrição da vaga e escreve uma carta de apresentação adaptada e profissional em segundos, com a sua voz.",
+    "complete": "Concluída",
+    "generating": "Gerando…",
+    "tailoredFor": "Adaptada para:",
+    "role": "Engenheiro de software sênior",
+    "at": "na",
+    "letterLabel": "Carta de apresentação sendo gerada",
+    "characters": "{count} / {total} caracteres",
+    "generateMine": "Gerar a minha",
+    "note": "Cada carta é única, escrita para combinar com a vaga, a empresa e a sua trajetória."
+  },
+  "webview": {
+    "title": "Abra no seu navegador para entrar",
+    "close": "Fechar",
+    "warning": "O Google não permite login dentro do app do LinkedIn. Use o Chrome ou o Safari, ou continue com o e-mail, que funciona aqui.",
+    "howTo": "Como abrir no seu navegador",
+    "ios1": "Toque no <b>•••</b> ou no ícone de compartilhar no canto superior direito do LinkedIn.",
+    "ios2": "Escolha <b>Abrir no navegador</b> ou <b>Abrir no Safari</b>.",
+    "ios3": "Entre com o Google quando a página recarregar no Safari.",
+    "android1": "Toque no menu <b>⋮</b> no canto superior direito.",
+    "android2": "Escolha <b>Abrir no Chrome</b> ou <b>Abrir no navegador</b>.",
+    "android3": "Entre com o Google quando a página recarregar no Chrome.",
+    "desktop1": "Copie o link de login abaixo.",
+    "desktop2": "Cole no Chrome ou no Safari.",
+    "desktop3": "Entre com o Google por lá.",
+    "copy": "Copiar link de login",
+    "openChrome": "Tentar abrir no Chrome",
+    "continueEmail": "Continuar com e-mail",
+    "emailNote": "O login por e-mail funciona dentro do LinkedIn. Não é preciso trocar de navegador.",
+    "continueBrowsing": "Continuar navegando",
+    "toastCopied": "Link copiado. Cole no Chrome ou no Safari.",
+    "toastCopyFailed": "Não foi possível copiar. Toque e segure o link para copiar.",
+    "toastOpening": "Abrindo no Chrome. Se nada acontecer, use Copiar link."
+  }
+}

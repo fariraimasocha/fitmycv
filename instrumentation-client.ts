@@ -1,4 +1,5 @@
 import posthog from "posthog-js";
+import { reloadOnChunkLoadError } from "@/lib/chunkReload";
 
 // ponytail: browser translation (Chrome, Edge) swaps React's text nodes for its
 // own, then React throws NotFoundError on the next update and the page shows
@@ -20,6 +21,13 @@ if (typeof Node === "function" && Node.prototype) {
     return originalInsertBefore.call(this, newNode, referenceNode) as T;
   };
 }
+
+// Error boundaries handle chunk errors that React catches. These listeners
+// handle the rest, for example a chunk that fails outside a render.
+window.addEventListener("error", (event) => reloadOnChunkLoadError(event.error));
+window.addEventListener("unhandledrejection", (event) =>
+  reloadOnChunkLoadError(event.reason),
+);
 
 const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
 const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;

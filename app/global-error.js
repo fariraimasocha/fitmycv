@@ -11,6 +11,7 @@
 // then the client switches, which avoids a hydration mismatch.
 import { useEffect, useSyncExternalStore } from "react";
 import posthog from "posthog-js";
+import { reloadOnChunkLoadError } from "@/lib/chunkReload";
 import { createTranslator } from "next-intl";
 import en from "@/messages/en/errors.json";
 import fr from "@/messages/fr/errors.json";
@@ -63,6 +64,7 @@ export default function GlobalError({ error }) {
       posthog.captureException(error);
     }
     console.error("Global page error:", error);
+    reloadOnChunkLoadError(error);
   }, [error]);
 
   const handleReload = () => {

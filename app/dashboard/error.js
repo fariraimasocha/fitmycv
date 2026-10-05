@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import posthog from "posthog-js";
+import { reloadOnChunkLoadError } from "@/lib/chunkReload";
 import { WarningCircleIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 import { DashboardPageShell, DashboardEmptyState } from "@/components/dashboard";
@@ -19,6 +20,7 @@ export default function DashboardError({ error, reset }) {
       posthog.captureException(error);
     }
     console.error("Dashboard error:", error);
+    reloadOnChunkLoadError(error);
   }, [error]);
 
   return (

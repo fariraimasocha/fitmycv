@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import posthog from "posthog-js";
+import { reloadOnChunkLoadError } from "@/lib/chunkReload";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Header from "@/components/Header";
@@ -20,6 +21,7 @@ export default function Error({ error, reset }) {
       posthog.captureException(error);
     }
     console.error("Page error:", error);
+    reloadOnChunkLoadError(error);
   }, [error]);
 
   return (

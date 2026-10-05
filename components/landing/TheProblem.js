@@ -121,7 +121,7 @@ export default function TheProblem() {
             <span className="font-outfit text-sm font-bold text-white">
               {t("cardTitle")}
             </span>
-            <span className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-accent-dark)] px-3 py-1 text-xs font-semibold text-white">
+            <span className="ms-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-accent-dark)] px-3 py-1 text-xs font-semibold text-white">
               <XCircleIcon size={12} weight="fill" aria-hidden="true" />
               {t("filteredOut")}
             </span>

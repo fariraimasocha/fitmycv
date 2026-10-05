@@ -108,7 +108,7 @@ function StoryRow({ story, index }) {
         aria-expanded={expanded}
         aria-controls={panelId}
         className={cn(
-          "dashboard-row-pad flex w-full items-center gap-3 text-left transition-colors",
+          "dashboard-row-pad flex w-full items-center gap-3 text-start transition-colors",
           "hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40",
           expanded && "bg-[var(--landing-paper-soft)]"
         )}
@@ -168,7 +168,7 @@ function StoryRow({ story, index }) {
           )}
           {tags.length > 0 && (
             <div className="flex flex-wrap items-center gap-1 border-t border-[var(--landing-line)] pt-3.5 sm:hidden">
-              <TagIcon size={12} className="mr-1 text-muted-foreground" aria-hidden="true" />
+              <TagIcon size={12} className="me-1 text-muted-foreground" aria-hidden="true" />
               {tags.map((tag) => (
                 <TagPill key={tag}>{tag}</TagPill>
               ))}

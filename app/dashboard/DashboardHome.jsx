@@ -383,7 +383,7 @@ export default function DashboardHome() {
                           {t("coverLetter")}
                         </span>
                       )}
-                      <span className="w-20 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+                      <span className="w-20 shrink-0 text-end text-xs tabular-nums text-muted-foreground">
                         {formatRelativeDay(cv.createdAt, now, t, locale)}
                       </span>
                     </Link>

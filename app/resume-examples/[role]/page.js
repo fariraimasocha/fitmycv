@@ -85,7 +85,7 @@ export default async function ResumeExamplePage({ params }) {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main>
+      <main dir="ltr">
         <section className="relative isolate overflow-hidden px-5 pb-12 pt-32 sm:px-10 lg:px-16 xl:px-24">
           <div
             aria-hidden="true"
@@ -137,7 +137,7 @@ export default async function ResumeExamplePage({ params }) {
                 Three lines, written last. Name the target title, the level and
                 domain, and one result strong enough to earn the next paragraph.
               </p>
-              <blockquote className="landing-card mt-5 rounded-2xl border-l-4 border-l-[var(--landing-primary)] p-6 font-mono text-sm leading-7 text-[var(--landing-ink)]">
+              <blockquote className="landing-card mt-5 rounded-2xl border-s-4 border-s-[var(--landing-primary)] p-6 font-mono text-sm leading-7 text-[var(--landing-ink)]">
                 {example.summary}
               </blockquote>
             </div>

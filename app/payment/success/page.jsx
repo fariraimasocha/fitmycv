@@ -42,7 +42,7 @@ export default function PaymentSuccessPage() {
   }, [isPremiumConfirmed, update, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[var(--landing-bg)] px-4">
+    <div dir="ltr" className="min-h-screen flex items-center justify-center bg-[var(--landing-bg)] px-4">
       <div className="max-w-md w-full bg-[var(--landing-surface)] rounded-lg shadow-sm border border-[var(--landing-line)] p-5 sm:p-8 text-center">
         <div className="w-16 h-16 bg-[var(--landing-success-soft)] rounded-full flex items-center justify-center mx-auto mb-4">
           <svg

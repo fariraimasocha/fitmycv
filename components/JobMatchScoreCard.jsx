@@ -69,7 +69,7 @@ function DimensionRow({ dimKey, dimension }) {
         <Icon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
         <span className="text-xs text-muted-foreground">{t(`dimensions.${dimKey}`)}</span>
         <span
-          className={`ml-auto inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
+          className={`ms-auto inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
         >
           {dimension.grade}
         </span>

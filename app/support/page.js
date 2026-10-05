@@ -71,7 +71,7 @@ export default function SupportPage() {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main>
+      <main dir="ltr">
         {/* Hero */}
         <section className="relative isolate overflow-hidden px-5 pb-12 pt-32 sm:px-10 lg:px-16 xl:px-24">
           <div

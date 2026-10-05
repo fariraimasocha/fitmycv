@@ -269,7 +269,7 @@ export default function AgentThreadPage() {
       <div className="grid min-h-0 flex-1 grid-rows-1 lg:grid-cols-[minmax(20rem,2fr)_3fr] xl:grid-cols-[30rem_1fr]">
         <div
           className={cn(
-            "min-h-0 min-w-0 lg:block lg:border-r lg:border-[var(--landing-line)]",
+            "min-h-0 min-w-0 lg:block lg:border-e lg:border-[var(--landing-line)]",
             pane !== "chat" && "hidden"
           )}
         >

@@ -261,7 +261,7 @@ function QuestionCard({ question, answer, disabled, onAnswer }) {
                   type="button"
                   disabled={disabled}
                   onClick={() => onAnswer(choice)}
-                  className="min-h-control rounded-md border border-[var(--landing-line)] px-3 py-2 text-left text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
+                  className="min-h-control rounded-md border border-[var(--landing-line)] px-3 py-2 text-start text-sm leading-5 text-foreground transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-50"
                 >
                   {choice}
                 </button>
@@ -345,7 +345,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                         composerRef.current?.focus();
                       }
                     }}
-                    className="group flex items-start gap-3 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-left transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40"
+                    className="group flex items-start gap-3 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-start transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
                       <s.icon size={16} aria-hidden="true" />
@@ -436,7 +436,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
         className="shrink-0 border-t border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-4"
       >
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-end gap-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-bg)] p-1.5 pl-3 transition-colors focus-within:border-[var(--landing-ink)]">
+          <div className="flex items-end gap-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-bg)] p-1.5 ps-3 transition-colors focus-within:border-[var(--landing-ink)]">
             <Textarea
               ref={composerRef}
               rows={1}

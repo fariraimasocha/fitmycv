@@ -54,7 +54,7 @@ function Column({ stage, applications, onOpen, onEdit }) {
         <span className="truncate text-xs font-semibold uppercase tracking-wide text-foreground">
           {label}
         </span>
-        <span className="ml-auto text-xs font-medium tabular-nums text-muted-foreground">
+        <span className="ms-auto text-xs font-medium tabular-nums text-muted-foreground">
           {applications.length}
         </span>
       </div>

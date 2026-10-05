@@ -103,7 +103,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
               <TargetIcon size={15} />
               {t("mission")}
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed italic border-l-2 border-muted pl-3">
+            <p className="text-sm text-muted-foreground leading-relaxed italic border-s-2 border-muted ps-3">
               &ldquo;{brief.mission}&rdquo;
             </p>
           </div>

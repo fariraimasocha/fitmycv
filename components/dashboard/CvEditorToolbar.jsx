@@ -13,7 +13,7 @@ export function CvEditorToolbar({
 }) {
   const t = useTranslations("tailor.editorToolbar");
   return (
-    <div className="flex w-full flex-col gap-3 sm:ml-auto sm:w-55 sm:min-w-55">
+    <div className="flex w-full flex-col gap-3 sm:ms-auto sm:w-55 sm:min-w-55">
       <div
         className="grid w-full grid-cols-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1"
         role="tablist"

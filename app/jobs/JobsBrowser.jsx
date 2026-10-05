@@ -227,7 +227,7 @@ function JobCard({ job, upgradeHref, now }) {
               className="w-full sm:w-auto"
             >
               <Link href={upgradeHref}>
-                <LockSimpleIcon className="mr-1.5 size-3.5" />
+                <LockSimpleIcon className="me-1.5 size-3.5" />
                 Unlock company and apply link
               </Link>
             </Button>
@@ -241,7 +241,7 @@ function JobCard({ job, upgradeHref, now }) {
               >
                 <a href={job.applyUrl} target="_blank" rel="noreferrer">
                   Apply on company site
-                  <ArrowSquareOutIcon className="ml-1.5 size-3.5" />
+                  <ArrowSquareOutIcon className="ms-1.5 size-3.5" />
                 </a>
               </Button>
               {/* The pool already holds the URL, so tailoring skips the paste a link step. */}
@@ -254,7 +254,7 @@ function JobCard({ job, upgradeHref, now }) {
                 <Link
                   href={`/dashboard/tailor?url=${encodeURIComponent(job.applyUrl)}`}
                 >
-                  <SparkleIcon className="mr-1.5 size-3.5" />
+                  <SparkleIcon className="me-1.5 size-3.5" />
                   Tailor my CV
                 </Link>
               </Button>
@@ -339,13 +339,13 @@ export default function JobsBrowser() {
   return (
     <div className="landing-container flex flex-col gap-5 pb-20">
       <div className="relative">
-        <MagnifyingGlassIcon className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <MagnifyingGlassIcon className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Search job titles"
           aria-label="Search job titles"
-          className="h-control rounded-md pl-9"
+          className="h-control rounded-md ps-9"
         />
       </div>
 
@@ -485,7 +485,7 @@ export default function JobsBrowser() {
                 disabled={page === 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
               >
-                <CaretLeftIcon className="mr-1 size-3.5" aria-hidden="true" />
+                <CaretLeftIcon className="me-1 size-3.5" aria-hidden="true" />
                 Previous page
               </Button>
               <span className="text-sm text-muted-foreground">Page {page}</span>
@@ -496,7 +496,7 @@ export default function JobsBrowser() {
                 onClick={() => setPage((p) => p + 1)}
               >
                 Next page
-                <CaretRightIcon className="ml-1 size-3.5" aria-hidden="true" />
+                <CaretRightIcon className="ms-1 size-3.5" aria-hidden="true" />
               </Button>
             </div>
           )}

@@ -103,7 +103,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 pl-13 sm:pl-0">
+      <div className="flex items-center gap-2 ps-13 sm:ps-0">
         {job.applyLink && (
           <a
             href={job.applyLink}

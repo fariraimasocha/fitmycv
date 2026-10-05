@@ -205,7 +205,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
           </button>
           <button
             type="button"
-            className={cn(BULK_BTN, "ml-auto bg-transparent")}
+            className={cn(BULK_BTN, "ms-auto bg-transparent")}
             onClick={() => setSelection(new Set())}
           >
             {t("clear")}
@@ -256,7 +256,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                 <td className="px-3 py-2.5">
                   <button
                     type="button"
-                    className="group flex max-w-full items-center gap-2.5 rounded-sm text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                    className="group flex max-w-full items-center gap-2.5 rounded-sm text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                     onClick={() => onOpen(app)}
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-[10px] font-semibold text-foreground">
@@ -274,7 +274,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                   <StageLabel status={app.status} />
                 </td>
                 <td className="max-w-40 truncate px-3 py-2.5 text-muted-foreground">{app.location || t("notSet")}</td>
-                <td className="px-3 py-2.5 text-right whitespace-nowrap tabular-nums">
+                <td className="px-3 py-2.5 text-end whitespace-nowrap tabular-nums">
                   {app.salary ? (
                     <span className="font-medium text-foreground">{app.salary}</span>
                   ) : (
@@ -285,7 +285,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                   <TagList tags={app.tags} />
                 </td>
                 <td className="px-3 py-2.5 whitespace-nowrap text-muted-foreground">{app.source || t("notSet")}</td>
-                <td className="px-3 py-2.5 text-right whitespace-nowrap tabular-nums text-muted-foreground">
+                <td className="px-3 py-2.5 text-end whitespace-nowrap tabular-nums text-muted-foreground">
                   {appliedOn(app, locale, t("notSet"))}
                 </td>
                 <td className="px-1 py-2.5">
@@ -313,7 +313,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
             />
             <button
               type="button"
-              className="flex min-w-0 flex-1 items-center gap-3 rounded-sm text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+              className="flex min-w-0 flex-1 items-center gap-3 rounded-sm text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
               onClick={() => onOpen(app)}
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-xs font-semibold text-foreground">
@@ -340,7 +340,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
           {t("showing", { shown: rows.length, total: applications.length })}
         </span>
         {pageCount > 1 && (
-          <div className="ml-auto flex items-center gap-1.5">
+          <div className="ms-auto flex items-center gap-1.5">
             <Button
               size="icon-sm"
               variant="outline"

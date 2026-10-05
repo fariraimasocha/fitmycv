@@ -128,7 +128,7 @@ function TemplateCard({ template, style, selected, onSelect, onOpen, onDownload 
           type="button"
           onClick={() => onOpen(template.id)}
           aria-label={`Preview ${template.name} full size`}
-          className="landing-scrim-item absolute right-2 top-2 z-30 flex size-control-sm cursor-pointer items-center justify-center rounded-full bg-white text-[var(--landing-ink)] shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)]"
+          className="landing-scrim-item absolute end-2 top-2 z-30 flex size-control-sm cursor-pointer items-center justify-center rounded-full bg-white text-[var(--landing-ink)] shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)]"
         >
           <ArrowsOutIcon size={15} aria-hidden="true" />
         </button>
@@ -233,7 +233,7 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
                 type="button"
                 onClick={() => setCategory(id)}
                 aria-pressed={active}
-                className={`landing-lift flex cursor-pointer items-center gap-3 rounded-2xl border bg-[var(--landing-surface)] px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2 ${
+                className={`landing-lift flex cursor-pointer items-center gap-3 rounded-2xl border bg-[var(--landing-surface)] px-4 py-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2 ${
                   active
                     ? "border-[var(--landing-accent)] bg-[var(--landing-accent-soft)]"
                     : "border-[var(--landing-line)]"

@@ -127,7 +127,7 @@ export default function UpgradePromptModal({
             className="w-full text-[var(--landing-ink-soft)]"
           >
             {t("seeEverything")}
-            <ArrowRightIcon className="ml-1 size-4" aria-hidden="true" />
+            <ArrowRightIcon className="ms-1 size-4" aria-hidden="true" />
           </Button>
         </div>
       </DialogContent>

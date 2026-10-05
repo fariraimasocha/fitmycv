@@ -179,7 +179,7 @@ function PreferencesForm({ prefs }) {
               {titles.map((title) => (
                 <li
                   key={title}
-                  className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] pl-2.5 pr-1 text-sm text-foreground"
+                  className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-2.5 pe-1 text-sm text-foreground"
                 >
                   <span className="max-w-60 truncate">{title}</span>
                   <button

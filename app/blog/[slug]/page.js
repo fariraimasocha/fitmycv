@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }) {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main>
+      <main dir="ltr">
         <article>
           {/* Header */}
           <section className="relative isolate overflow-hidden px-5 pb-10 pt-32 sm:px-10 lg:px-16 xl:px-24">

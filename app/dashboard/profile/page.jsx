@@ -266,7 +266,7 @@ export default function ProfilePage() {
         />
         <div className="mt-4 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
           <p className="text-sm font-medium text-foreground">{t("whatGetsDeleted")}</p>
-          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+          <ul className="mt-2 list-disc space-y-1 ps-5 text-sm text-muted-foreground">
             <li>{t("deletedItems.profile")}</li>
             <li>{t("deletedItems.cvs")}</li>
             <li>{t("deletedItems.applications")}</li>
@@ -306,7 +306,7 @@ export default function ProfilePage() {
               <TrashIcon size={18} aria-hidden="true" />
               {t("dialogTitle")}
             </DialogTitle>
-            <DialogDescription className="text-left">
+            <DialogDescription className="text-start">
               {t.rich("dialogDescription", {
                 email: user.email ?? "",
                 strong: (chunks) => <span className="font-medium text-foreground">{chunks}</span>,

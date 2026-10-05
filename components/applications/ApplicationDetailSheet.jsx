@@ -272,7 +272,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
             {t("addNote")}
           </button>
         </div>
-        <div className="relative flex flex-col gap-2 pl-4 before:absolute before:inset-y-2 before:left-1 before:w-px before:bg-[var(--landing-line)]">
+        <div className="relative flex flex-col gap-2 ps-4 before:absolute before:inset-y-2 before:start-1 before:w-px before:bg-[var(--landing-line)]">
           {sorted.map((entry) => {
             const stage = isStage(entry) ? STAGE_BY_KEY[entry.status] : null;
             const isAnchor = String(entry._id) === String(anchorId);
@@ -283,7 +283,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
               >
                 <span
                   className={cn(
-                    "absolute top-4 -left-4.25 size-2.5 rounded-full border-2 border-[var(--landing-surface)]",
+                    "absolute top-4 -start-4.25 size-2.5 rounded-full border-2 border-[var(--landing-surface)]",
                     !stage && "bg-[var(--landing-accent)]/70"
                   )}
                   style={stage ? { background: stage.color } : undefined}
@@ -295,7 +295,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                     ) : (
                       <button
                         type="button"
-                        className="block w-full rounded-sm text-left hover:text-[var(--landing-accent)] focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
+                        className="block w-full rounded-sm text-start hover:text-[var(--landing-accent)] focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none"
                         onClick={() => {
                           setEditingNote(entry);
                           setNoteDraft(entry.note);
@@ -433,7 +433,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
     <Sheet open={Boolean(application)} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full gap-0 sm:max-w-lg">
         <SheetHeader className="gap-3">
-          <div className="flex items-start justify-between gap-3 pr-8">
+          <div className="flex items-start justify-between gap-3 pe-8">
             <div className="min-w-0">
               <SheetTitle className="truncate font-outfit">{current.jobTitle}</SheetTitle>
               <div className="truncate text-sm text-muted-foreground">
@@ -591,7 +591,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
           <Button
             size="sm"
             variant="ghost"
-            className="ml-auto h-control text-destructive hover:bg-destructive/10 hover:text-destructive"
+            className="ms-auto h-control text-destructive hover:bg-destructive/10 hover:text-destructive"
             disabled={remove.isPending}
             onClick={async () => {
               const confirmed = await confirm(t("confirmTitle"), {

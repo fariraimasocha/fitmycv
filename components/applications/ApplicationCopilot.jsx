@@ -62,7 +62,7 @@ function FitRing({ score }) {
 
 function ActionRow({ icon, title, description, disabled, pending, onClick, href }) {
   const className = cn(
-    "group/row flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+    "group/row flex w-full items-center gap-3 rounded-md p-2 text-start transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
     (disabled || pending) && "pointer-events-none opacity-45"
   );
   const body = (
@@ -143,7 +143,7 @@ export function ApplicationCopilot({ application }) {
             type="button"
             disabled={run.isPending}
             onClick={() => run.mutate("match")}
-            className="flex w-full items-center gap-3 rounded-md border border-dashed border-[var(--landing-accent-line)] p-2.5 text-left transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-60"
+            className="flex w-full items-center gap-3 rounded-md border border-dashed border-[var(--landing-accent-line)] p-2.5 text-start transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-60"
           >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
               {pendingKind === "match" ? (

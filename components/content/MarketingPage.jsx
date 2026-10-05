@@ -73,7 +73,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main>
+      <main dir="ltr">
         {/* Hero. Template pages hide the headline and pass it to the gallery
             below, so they only need a compact breadcrumb band here. */}
         <section

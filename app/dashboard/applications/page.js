@@ -326,7 +326,7 @@ function ApplicationsTracker() {
                   <div className="relative min-w-0 flex-1 sm:w-56 sm:flex-none">
                     <MagnifyingGlassIcon
                       size={16}
-                      className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
+                      className="pointer-events-none absolute top-1/2 start-3 -translate-y-1/2 text-muted-foreground"
                       aria-hidden="true"
                     />
                     <Input
@@ -334,7 +334,7 @@ function ApplicationsTracker() {
                       aria-label={t("searchLabel")}
                       placeholder={t("searchPlaceholder")}
                       onChange={(event) => setSearch(event.target.value)}
-                      className={cn(CONTROL, "pl-9")}
+                      className={cn(CONTROL, "ps-9")}
                     />
                   </div>
 
@@ -391,7 +391,7 @@ function ApplicationsTracker() {
                       >
                         <FunnelIcon size={16} aria-hidden="true" />
                         {filtersActive && (
-                          <span className="absolute top-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-[var(--landing-accent)]" />
+                          <span className="absolute top-1.5 end-1.5 h-1.5 w-1.5 rounded-full bg-[var(--landing-accent)]" />
                         )}
                       </button>
                     </PopoverTrigger>

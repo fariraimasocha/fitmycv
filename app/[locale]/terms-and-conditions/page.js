@@ -34,7 +34,7 @@ export default function TermsAndConditionsPage() {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main className="px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
+      <main dir="ltr" className="px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
         <article className="mx-auto flex w-full max-w-3xl flex-col">
           <h1 className="font-outfit text-4xl font-extrabold text-[var(--landing-ink)] sm:text-5xl">
             Terms and Conditions
@@ -72,7 +72,7 @@ export default function TermsAndConditionsPage() {
             </Section>
 
             <Section title="3. Subscriptions and billing">
-              <ul className="flex list-disc flex-col gap-2 pl-5">
+              <ul className="flex list-disc flex-col gap-2 ps-5">
                 <Bullet>
                   FitMyCV Premium is offered at {`$${PRICING.month.price}`} per
                   month or {`$${PRICING.lifetime.price}`} for lifetime access,
@@ -100,7 +100,7 @@ export default function TermsAndConditionsPage() {
               <p className="landing-copy text-base leading-7">
                 You agree not to misuse FitMyCV. In particular, you will not:
               </p>
-              <ul className="mt-3 flex list-disc flex-col gap-2 pl-5">
+              <ul className="mt-3 flex list-disc flex-col gap-2 ps-5">
                 <Bullet>
                   Upload content you do not have the right to use, or submit false
                   or misleading information in your CV.

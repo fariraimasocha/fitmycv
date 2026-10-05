@@ -127,7 +127,7 @@ export default function LinkedInOutreachModal({
                   className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                 />
                 <div
-                  className={`absolute bottom-2 right-2 text-xs font-medium tabular-nums ${
+                  className={`absolute bottom-2 end-2 text-xs font-medium tabular-nums ${
                     overLimit ? "text-destructive" : "text-muted-foreground"
                   }`}
                 >

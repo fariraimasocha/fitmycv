@@ -146,7 +146,7 @@ export function ResumePane({ draft, template, style }) {
             <PlusIcon />
           </ToolbarButton>
         </div>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ms-auto flex items-center gap-2">
           {draft && (
             <Link
               href={`/dashboard/tailored/${draft._id}`}

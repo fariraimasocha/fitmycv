@@ -188,7 +188,7 @@ const Navbar1 = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard" className="flex cursor-pointer items-center">
-                    <LayoutIcon className="mr-2 h-4 w-4" />
+                    <LayoutIcon className="me-2 h-4 w-4" />
                     {t("dashboard")}
                   </Link>
                 </DropdownMenuItem>
@@ -197,7 +197,7 @@ const Navbar1 = () => {
                   onClick={() => signOut({ redirectTo: "/" })}
                   className="cursor-pointer text-destructive focus:text-destructive"
                 >
-                  <SignOutIcon className="mr-2 h-4 w-4" />
+                  <SignOutIcon className="me-2 h-4 w-4" />
                   {t("logout")}
                 </DropdownMenuItem>
               </DropdownMenuContent>

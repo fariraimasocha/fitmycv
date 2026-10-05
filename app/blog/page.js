@@ -47,7 +47,7 @@ export default function BlogIndexPage() {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main>
+      <main dir="ltr">
         <section className="relative isolate overflow-hidden px-5 pb-10 pt-32 sm:px-10 lg:px-16 xl:px-24">
           <div
             aria-hidden="true"

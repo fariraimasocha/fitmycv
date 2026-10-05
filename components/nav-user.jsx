@@ -80,11 +80,11 @@ export function NavUser() {
                   {initials}
                 </AvatarFallback>
               </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
+              <div className="grid flex-1 text-start text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
-              <CaretUpDownIcon className="ml-auto size-4" />
+              <CaretUpDownIcon className="ms-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -94,12 +94,12 @@ export function NavUser() {
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+              <div className="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.image} alt={user.name} />
                   <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
                 </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
+                <div className="grid flex-1 text-start text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
                   <span className="truncate text-xs">{user.email}</span>
                 </div>
@@ -109,14 +109,14 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/profile">
-                  <UserIcon className="mr-2 size-4" />
+                  <UserIcon className="me-2 size-4" />
                   {t("profile")}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut({ redirectTo: "/" })}>
-              <SignOutIcon className="mr-2 size-4" />
+              <SignOutIcon className="me-2 size-4" />
               {t("logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>

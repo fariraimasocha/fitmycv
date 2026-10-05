@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main className="px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
+      <main dir="ltr" className="px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
         <article className="mx-auto flex w-full max-w-3xl flex-col">
           <h1 className="font-outfit text-4xl font-extrabold text-[var(--landing-ink)] sm:text-5xl">
             Privacy Policy
@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
               <p className="landing-copy text-base leading-7">
                 We collect the following categories of information:
               </p>
-              <ul className="mt-3 flex list-disc flex-col gap-2 pl-5">
+              <ul className="mt-3 flex list-disc flex-col gap-2 ps-5">
                 <Bullet>
                   <strong>Account information.</strong> When you sign in with
                   Google, we receive your name, email address, and profile
@@ -91,7 +91,7 @@ export default function PrivacyPolicyPage() {
             </Section>
 
             <Section title="How we use your information">
-              <ul className="flex list-disc flex-col gap-2 pl-5">
+              <ul className="flex list-disc flex-col gap-2 ps-5">
                 <Bullet>To provide and operate the FitMyCV service.</Bullet>
                 <Bullet>
                   To generate tailored CVs and cover letters from your reference
@@ -127,7 +127,7 @@ export default function PrivacyPolicyPage() {
                 We share data only with the service providers that make FitMyCV
                 work, including:
               </p>
-              <ul className="mt-3 flex list-disc flex-col gap-2 pl-5">
+              <ul className="mt-3 flex list-disc flex-col gap-2 ps-5">
                 <Bullet>Google (authentication).</Bullet>
                 <Bullet>OpenAI, Groq, and Exa.ai (AI processing and scraping).</Bullet>
                 <Bullet>Polar (payments and subscriptions).</Bullet>

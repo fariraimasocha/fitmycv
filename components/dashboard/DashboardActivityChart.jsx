@@ -84,7 +84,7 @@ export function DashboardActivityChart({
           </div>
 
           <dl className="mt-5 grid grid-cols-3 divide-x divide-[var(--landing-line)]">
-            <div className="pr-4">
+            <div className="pe-4">
               <dt className="text-xs font-medium text-muted-foreground">{t("thisWeek")}</dt>
               <dd className="mt-1">
                 <AnimatedNumber
@@ -108,7 +108,7 @@ export function DashboardActivityChart({
                 {delta > 0 ? `+${delta}` : delta}
               </dd>
             </div>
-            <div className="pl-4">
+            <div className="ps-4">
               <dt className="text-xs font-medium text-muted-foreground">{t("totalInRange")}</dt>
               <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                 {total}

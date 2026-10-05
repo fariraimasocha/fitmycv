@@ -36,7 +36,7 @@ export default function Testimonial() {
           {/* Quote with highlight */}
           <div className="relative w-full">
             <div
-              className="hidden sm:block absolute bg-[oklch(0.9_0.075_68)] rounded h-[30px] w-[45%] right-0 top-[3px]"
+              className="hidden sm:block absolute bg-[oklch(0.9_0.075_68)] rounded h-[30px] w-[45%] end-0 top-[3px]"
               aria-hidden="true"
             />
             <blockquote className="relative z-10 w-full text-center font-serif-display text-xl leading-relaxed text-[var(--landing-ink)] sm:text-2xl">

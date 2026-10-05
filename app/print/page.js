@@ -133,7 +133,7 @@ export default function PrintPage() {
   return (
     <div className="print-root">
       <style>{PRINT_CSS}</style>
-      <div className="no-print fixed right-4 top-4 z-50 flex gap-2">
+      <div className="no-print fixed end-4 top-4 z-50 flex gap-2">
         <button
           onClick={() => window.print()}
           className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white shadow"

@@ -551,7 +551,7 @@ export default function DutiesToBullets() {
                     )}
                   </button>
                 </div>
-                <p className="pl-8 text-xs leading-6 text-[var(--landing-ink-soft)]">{item.note}</p>
+                <p className="ps-8 text-xs leading-6 text-[var(--landing-ink-soft)]">{item.note}</p>
               </li>
             ))}
           </ol>

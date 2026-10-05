@@ -31,7 +31,7 @@ export function TeamSwitcher() {
             <div className="flex aspect-square size-8 items-center justify-center overflow-hidden rounded-md">
               <BrandLogo size="md" showWordmark={false} alt="" />
             </div>
-            <div className="grid flex-1 text-left text-sm leading-tight">
+            <div className="grid flex-1 text-start text-sm leading-tight">
               <span className="truncate font-serif-display text-base font-normal tracking-tight">
                 FitMyCV
               </span>

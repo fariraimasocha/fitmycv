@@ -40,7 +40,7 @@ function DemoPreview() {
           <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
           <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
           <span className="landing-browser-dot bg-[oklch(0.56_0.13_150)]" aria-hidden="true" />
-          <span className="ml-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-medium text-[var(--landing-ink-soft)]">
+          <span className="ms-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-medium text-[var(--landing-ink-soft)]">
             www.fitmycv.link
           </span>
         </div>
@@ -74,7 +74,7 @@ function CheckerBar() {
         <FilePdfIcon size={24} aria-hidden="true" />
       </span>
 
-      <span className="min-w-0 flex-1 text-center sm:text-left">
+      <span className="min-w-0 flex-1 text-center sm:text-start">
         <span className="block text-sm font-semibold text-[var(--landing-ink)] sm:text-base">
           {t("checkerTitle")}
         </span>
@@ -182,7 +182,7 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
         <div className="relative mt-20">
           <div
             aria-hidden="true"
-            className="absolute top-1/2 -left-4 -right-4 border-t border-[var(--landing-line)] sm:-left-8 sm:-right-8"
+            className="absolute top-1/2 -start-4 -end-4 border-t border-[var(--landing-line)] sm:-start-8 sm:-end-8"
           />
           <CheckerBar />
         </div>

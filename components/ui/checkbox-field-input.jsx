@@ -118,7 +118,7 @@ export const CheckboxFieldInput = forwardRef(function CheckboxFieldInput(
           <span className="block text-sm text-[var(--landing-ink)]">
             {label}
             {required ? (
-              <span className="ml-0.5 text-destructive" aria-hidden>
+              <span className="ms-0.5 text-destructive" aria-hidden>
                 *
               </span>
             ) : null}

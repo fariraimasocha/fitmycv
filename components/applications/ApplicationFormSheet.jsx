@@ -123,7 +123,7 @@ function TagsField({ id, value, suggestions, onChange }) {
           {value.map((tag) => (
             <span
               key={tag}
-              className="inline-flex h-6 items-center gap-1 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] pl-2 pr-1 text-xs font-medium text-muted-foreground"
+              className="inline-flex h-6 items-center gap-1 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-2 pe-1 text-xs font-medium text-muted-foreground"
             >
               {tag}
               <button

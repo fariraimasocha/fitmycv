@@ -28,24 +28,24 @@ export default function BlogCard({ post, priority = false }) {
 
           {/* Category pin, top-right. The two corners flare the surface out of
               the pin's left and bottom edges so it reads as a notch punched
-              into the image, not a chip sitting on top of it. `rounded-tr`
+              into the image, not a chip sitting on top of it. `rounded-se`
               matches the card radius so the pin isn't clipped by it. */}
-          <CutoutCardPin className="right-0 top-0 rounded-tr-[28px] rounded-bl-[20px] bg-[var(--landing-paper-soft)] pb-2.5 pl-3.5 pr-5 pt-3">
+          <CutoutCardPin className="end-0 top-0 rounded-se-[28px] rounded-es-[20px] bg-[var(--landing-paper-soft)] pb-2.5 ps-3.5 pe-5 pt-3">
             <span className="block rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-2.5 py-0.5 font-sans text-xs font-semibold text-[var(--landing-ink)]">
               {category}
             </span>
             <CutoutCorner
-              className={`absolute right-full top-0 -scale-y-100 ${SURFACE}`}
+              className={`absolute end-full top-0 -scale-y-100 ${SURFACE}`}
             />
             <CutoutCorner
-              className={`absolute right-0 top-full -scale-y-100 ${SURFACE}`}
+              className={`absolute end-0 top-full -scale-y-100 ${SURFACE}`}
             />
           </CutoutCardPin>
 
           {/* Reading time, bottom-left, notched into the media edge. The clock
               and label sit in their own pill inside the notch; without the
               surrounding padding the icon collides with the card border. */}
-          <CutoutCardInsetLabel className="bottom-0 left-0 rounded-tr-[20px] bg-[var(--landing-paper-soft)] pl-4 pr-4 pt-3">
+          <CutoutCardInsetLabel className="bottom-0 start-0 rounded-se-[20px] bg-[var(--landing-paper-soft)] ps-4 pe-4 pt-3">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-strong)] px-2.5 py-1">
               <ClockIcon
                 size={12}
@@ -58,10 +58,10 @@ export default function BlogCard({ post, priority = false }) {
               </span>
             </span>
             <CutoutCorner
-              className={`absolute bottom-0 left-full -scale-x-100 ${SURFACE}`}
+              className={`absolute bottom-0 start-full -scale-x-100 ${SURFACE}`}
             />
             <CutoutCorner
-              className={`absolute bottom-full left-0 -scale-x-100 ${SURFACE}`}
+              className={`absolute bottom-full start-0 -scale-x-100 ${SURFACE}`}
             />
           </CutoutCardInsetLabel>
         </CutoutCardMedia>
@@ -79,7 +79,7 @@ export default function BlogCard({ post, priority = false }) {
           <span className="font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">
             Read article
           </span>
-          <CutoutCardAction className="right-6">
+          <CutoutCardAction className="end-6">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)]">
               <ArrowRightIcon size={15} weight="bold" aria-hidden="true" />
             </span>

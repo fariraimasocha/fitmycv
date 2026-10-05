@@ -24,7 +24,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         }
       }}
       className={cn(
-        "dashboard-card group relative w-full cursor-pointer rounded-lg p-3 text-left outline-none transition-colors hover:border-[#ccc5bb] hover:bg-[#fdfcf9] focus-visible:ring-2 focus-visible:ring-ring/40",
+        "dashboard-card group relative w-full cursor-pointer rounded-lg p-3 text-start outline-none transition-colors hover:border-[#ccc5bb] hover:bg-[#fdfcf9] focus-visible:ring-2 focus-visible:ring-ring/40",
         dragging && "opacity-60"
       )}
     >
@@ -33,14 +33,14 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
           application={application}
           onEdit={onEdit}
           showOnHover
-          className="absolute top-2 right-2"
+          className="absolute top-2 end-2"
         />
       )}
       <div className="flex items-start gap-3">
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-xs font-semibold text-foreground">
           {initials(application.jobCompany)}
         </span>
-        <div className={cn("min-w-0 flex-1", onEdit && "pr-6")}>
+        <div className={cn("min-w-0 flex-1", onEdit && "pe-6")}>
           <p className="truncate text-sm font-semibold text-foreground">{application.jobTitle}</p>
           <p className="truncate text-xs text-muted-foreground">{application.jobCompany}</p>
         </div>
@@ -50,7 +50,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
             aria-label={t("needsFollowUp")}
             className={cn(
               "mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--landing-accent)] ring-2 ring-[var(--landing-accent-soft)]",
-              onEdit && "mr-6"
+              onEdit && "me-6"
             )}
           />
         )}
@@ -64,7 +64,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
             </span>
           )}
           {application.salary && (
-            <span className="ml-auto shrink-0 font-medium tabular-nums text-foreground">
+            <span className="ms-auto shrink-0 font-medium tabular-nums text-foreground">
               {application.salary}
             </span>
           )}

@@ -138,7 +138,7 @@ function Block({ block }) {
     const { head, rows } = block.table;
     return (
       <div className="landing-card mt-8 overflow-x-auto rounded-2xl">
-        <table className="w-full min-w-150 border-collapse text-left text-sm">
+        <table className="w-full min-w-150 border-collapse text-start text-sm">
           <thead>
             <tr className="border-b border-[var(--landing-line)] bg-[var(--landing-paper-strong)]">
               {head.map((cell) => (

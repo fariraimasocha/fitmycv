@@ -113,7 +113,7 @@ function Section({ icon, title, items }) {
   return (
     <div className="dashboard-card-pad">
       <SectionTitle icon={icon}>{title}</SectionTitle>
-      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-[var(--landing-ink-soft)]">
+      <ul className="mt-3 list-disc space-y-1 ps-5 text-sm leading-6 text-[var(--landing-ink-soft)]">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
@@ -149,13 +149,13 @@ function KeywordsSection({ keywords, referenceCV }) {
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="-mx-2 flex items-center gap-2 rounded-md px-2 py-1 text-left transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+        className="-mx-2 flex items-center gap-2 rounded-md px-2 py-1 text-start transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
       >
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
           <TagIcon size={14} aria-hidden="true" />
         </span>
         <span className="text-sm font-semibold text-foreground">{t("keyTerms")}</span>
-        <span className="ml-auto text-xs tabular-nums text-muted-foreground">
+        <span className="ms-auto text-xs tabular-nums text-muted-foreground">
           {hasCV ? t("inYourCv", { matched: matched.length, total: keywords.length }) : `${keywords.length}`}
         </span>
         {expanded ? (

@@ -122,7 +122,7 @@ function ScoreHeader({ report, preScore }) {
         <AnimatedNumber value={report.score} className={cn("text-4xl leading-none font-bold tabular-nums", tone.text)} />
         <span className="text-sm text-muted-foreground">{t("outOf100")}</span>
         {delta > 0 && (
-          <Badge variant="secondary" className="ml-auto bg-[#eef8f1] text-[var(--landing-success)]">
+          <Badge variant="secondary" className="ms-auto bg-[#eef8f1] text-[var(--landing-success)]">
             {t("upFrom", { delta, preScore })}
           </Badge>
         )}
@@ -151,7 +151,7 @@ function CategorySection({ category, findings }) {
   return (
     <AccordionItem value={category.key} className={LINE}>
       <AccordionTrigger className="hover:no-underline">
-        <span className="flex min-w-0 flex-1 items-center gap-2 pr-2">
+        <span className="flex min-w-0 flex-1 items-center gap-2 pe-2">
           <span className="min-w-0 truncate">{categoryText(t, category.key, "label", category.label)}</span>
           <Badge variant="secondary" className="shrink-0 tabular-nums">
             <span className={tone.text}>{category.score}</span>
@@ -187,7 +187,7 @@ function WritingSection({ tips }) {
   return (
     <AccordionItem value="content" className={LINE}>
       <AccordionTrigger className="hover:no-underline">
-        <span className="flex min-w-0 flex-1 items-center gap-2 pr-2">
+        <span className="flex min-w-0 flex-1 items-center gap-2 pe-2">
           <span className="min-w-0 truncate">{categoryText(t, "content", "label", CATEGORIES.content.label)}</span>
           <Badge variant="outline" className="shrink-0 font-normal">
             {t("notScored")}
@@ -347,7 +347,7 @@ function AiReviewResults({ review }) {
       {review.strengths.length > 0 && (
         <div className="space-y-2">
           <h5 className="text-sm font-semibold">{t("review.strengths")}</h5>
-          <ul className="list-outside list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+          <ul className="list-outside list-disc space-y-1 ps-5 text-sm text-muted-foreground">
             {review.strengths.map((strength) => (
               <li key={strength}>{strength}</li>
             ))}
@@ -373,7 +373,7 @@ function AiReviewResults({ review }) {
             </div>
           )}
           {review.jdAlignment.strengths.length > 0 && (
-            <ul className="list-outside list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+            <ul className="list-outside list-disc space-y-1 ps-5 text-sm text-muted-foreground">
               {review.jdAlignment.strengths.map((strength) => (
                 <li key={strength}>{strength}</li>
               ))}

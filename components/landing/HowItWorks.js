@@ -34,7 +34,7 @@ function StepVisual({ step }) {
             <span className="truncate text-sm text-[var(--landing-ink-soft)]">
               linkedin.com/jobs/view/…
             </span>
-            <span className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--landing-primary)] px-3 py-1.5 text-xs font-semibold text-white">
+            <span className="ms-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--landing-primary)] px-3 py-1.5 text-xs font-semibold text-white">
               <ClipboardTextIcon size={11} />
               {t("paste")}
             </span>
@@ -129,7 +129,7 @@ export default function HowItWorks({ lifetimePrice = "29.99" }) {
                     type="button"
                     onClick={() => setActive(index)}
                     aria-expanded={open}
-                    className="flex w-full cursor-pointer items-baseline gap-4 py-6 text-left"
+                    className="flex w-full cursor-pointer items-baseline gap-4 py-6 text-start"
                   >
                     <span className="font-outfit text-sm font-semibold text-[var(--landing-ink-inverse-soft)]">
                       {step.num}

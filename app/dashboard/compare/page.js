@@ -70,7 +70,7 @@ function OfferOption({ app, selected, disabled, onToggle }) {
       disabled={disabled}
       onClick={onToggle}
       className={cn(
-        "flex w-full items-start gap-2.5 rounded-md border px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 sm:items-center sm:gap-3",
+        "flex w-full items-start gap-2.5 rounded-md border px-3 py-2.5 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 sm:items-center sm:gap-3",
         selected
           ? "border-foreground bg-[var(--landing-primary-soft)]"
           : "border-[var(--landing-line)] bg-[var(--landing-surface)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]",
@@ -243,7 +243,7 @@ export default function ComparePage() {
                   <tr className="border-b border-[var(--landing-line)]">
                     <th
                       scope="col"
-                      className="sticky left-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-5"
+                      className="sticky start-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-2.5 text-start text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-5"
                     >
                       {t("dimension")}
                     </th>
@@ -251,7 +251,7 @@ export default function ComparePage() {
                       <th
                         key={c.id || c.company}
                         scope="col"
-                        className="min-w-40 px-4 py-2.5 text-right align-bottom"
+                        className="min-w-40 px-4 py-2.5 text-end align-bottom"
                       >
                         <span className="block truncate text-xs font-semibold text-foreground">
                           {c.company}
@@ -268,12 +268,12 @@ export default function ComparePage() {
                     <tr key={key} className="transition-colors hover:bg-[var(--landing-paper-soft)]">
                       <th
                         scope="row"
-                        className="sticky left-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-left text-xs font-medium text-muted-foreground sm:px-5"
+                        className="sticky start-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-start text-xs font-medium text-muted-foreground sm:px-5"
                       >
                         {t(`dimensions.${key}`)}
                       </th>
                       {comparisons.map((c) => (
-                        <td key={c.id || c.company} className="px-4 py-3 text-right align-top">
+                        <td key={c.id || c.company} className="px-4 py-3 text-end align-top">
                           {c.scores?.[key] ? (
                             <div className="flex flex-col items-end gap-1">
                               <ScoreChip score={c.scores[key].score} />
@@ -295,12 +295,12 @@ export default function ComparePage() {
                   <tr className="border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
                     <th
                       scope="row"
-                      className="sticky left-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-foreground sm:px-5"
+                      className="sticky start-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-start text-xs font-semibold uppercase tracking-wide text-foreground sm:px-5"
                     >
                       {t("total")}
                     </th>
                     {comparisons.map((c) => (
-                      <td key={c.id || c.company} className="px-4 py-3 text-right">
+                      <td key={c.id || c.company} className="px-4 py-3 text-end">
                         <span className="font-outfit text-lg font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                           {typeof c.totalScore === "number" ? c.totalScore.toFixed(1) : t("notAvailable")}
                         </span>

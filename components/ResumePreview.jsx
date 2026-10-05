@@ -27,7 +27,7 @@ function BulletList({ description }) {
   const items = description.split("\n").filter((l) => l.trim());
   if (items.length === 0) return null;
   return (
-    <ul className="mt-1 list-disc space-y-0.5 pl-4">
+    <ul className="mt-1 list-disc space-y-0.5 ps-4">
       {items.map((item, i) => (
         <li key={i}>{item.trim()}</li>
       ))}
@@ -425,7 +425,7 @@ function DashList({ description }) {
   const items = description.split("\n").filter((l) => l.trim());
   if (items.length === 0) return null;
   return (
-    <div className="mt-1 space-y-0.5 pl-2">
+    <div className="mt-1 space-y-0.5 ps-2">
       {items.map((item, i) => (
         <p key={i} className="text-[9px]">- {item.trim()}</p>
       ))}
@@ -461,7 +461,7 @@ function TechnicalPreview({ basics, work, education, skills }) {
               <div key={i} className="break-inside-avoid">
                 {group.category && <p className="font-bold">[{group.category}]</p>}
                 {(group.skills || []).map((skill, j) => (
-                  <p key={j} className="pl-2">- {skill}</p>
+                  <p key={j} className="ps-2">- {skill}</p>
                 ))}
               </div>
             ))}
@@ -800,7 +800,7 @@ function ExecutivePreview({ basics, work, education, skills }) {
                     {job.position && <span className="font-bold text-black">{job.position}</span>}
                     {job.company && <span className="italic text-gray-700">{job.position ? ", " : ""}{job.company}</span>}
                   </p>
-                  <div className="shrink-0 text-right text-xs text-gray-500">
+                  <div className="shrink-0 text-end text-xs text-gray-500">
                     {(job.startDate || job.endDate) && <p>{[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}</p>}
                     {job.location && <p>{job.location}</p>}
                   </div>
@@ -825,7 +825,7 @@ function ExecutivePreview({ basics, work, education, skills }) {
                   {edu.institution && <p className="text-xs italic text-gray-700">{edu.institution}</p>}
                 </div>
                 {(edu.startDate || edu.endDate) && (
-                  <p className="shrink-0 text-right text-xs text-gray-500">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
+                  <p className="shrink-0 text-end text-xs text-gray-500">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
                 )}
               </div>
             ))}
@@ -903,7 +903,7 @@ function CompactPreview({ basics, work, education, skills }) {
                   </p>
                 </div>
                 {job.description && (
-                  <ul className="list-disc pl-4">
+                  <ul className="list-disc ps-4">
                     {job.description.split("\n").filter((l) => l.trim()).map((l, j) => (
                       <li key={j}>{l.trim()}</li>
                     ))}
@@ -1101,7 +1101,7 @@ function ProfessionalPreview({ basics, work, education, skills }) {
                       <span className="italic">{job.company ? ", " : ""}{job.position}</span>
                     )}
                   </p>
-                  <div className="shrink-0 text-right text-xs text-gray-600">
+                  <div className="shrink-0 text-end text-xs text-gray-600">
                     {(job.startDate || job.endDate) && (
                       <p>{[job.startDate, job.endDate].filter(Boolean).join(DATE_SEP)}</p>
                     )}
@@ -1126,7 +1126,7 @@ function ProfessionalPreview({ basics, work, education, skills }) {
                   {edu.institution && <span className="italic">, {edu.institution}</span>}
                 </p>
                 {(edu.startDate || edu.endDate) && (
-                  <p className="shrink-0 text-right text-xs text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
+                  <p className="shrink-0 text-end text-xs text-gray-600">{[edu.startDate, edu.endDate].filter(Boolean).join(DATE_SEP)}</p>
                 )}
               </div>
             ))}
@@ -1594,7 +1594,7 @@ function ReziParagraphList({ description, style }) {
   if (!description) return null;
   const items = description.split("\n").filter((line) => line.trim());
   if (items.length === 0) return null;
-  const indentClass = style.indent ? "pl-4" : "";
+  const indentClass = style.indent ? "ps-4" : "";
 
   return (
     <div className={`space-y-0.5 ${indentClass}`}>
@@ -1620,7 +1620,7 @@ function ReziPreview({ basics, work, education, skills, style = { dividers: true
 
   const headerParts = [...contactParts, ...profileParts];
 
-  const bodyIndent = style.indent ? "pl-4" : "";
+  const bodyIndent = style.indent ? "ps-4" : "";
 
   return (
     <div className="space-y-4 text-black">
@@ -1869,8 +1869,11 @@ function renderTemplatePreview({ data, template, style, padding, Preview }) {
   // picker restyles all nineteen layouts without any of them knowing about it.
   // `fontFamily` is set explicitly because Tailwind's font utilities inside the
   // templates would otherwise win over a bare inherit.
+  // dir="auto" follows the CV's own text, so an English CV stays left to
+  // right inside the Arabic dashboard and an Arabic CV reads right to left.
   return (
     <div
+      dir="auto"
       data-resume-template={template}
       className={padding}
       style={{ ...getTemplateStyleVars(resolvedStyle), fontFamily: "var(--cv-font)" }}

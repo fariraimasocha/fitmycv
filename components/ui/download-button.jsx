@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const ICON_LAYER =
   "absolute inset-0 grid place-items-center transition-opacity duration-300 ease-out motion-reduce:transition-none";
 const LABEL_LAYER =
-  "col-start-1 row-start-1 whitespace-nowrap text-left transition-opacity ease-out motion-reduce:transition-none";
+  "col-start-1 row-start-1 whitespace-nowrap text-start transition-opacity ease-out motion-reduce:transition-none";
 
 /**
  * Download button with an idle -> downloading -> done phase animation.

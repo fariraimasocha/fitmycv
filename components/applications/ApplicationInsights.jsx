@@ -223,7 +223,7 @@ export function ApplicationInsights({ applications }) {
                       style={{ width: `${Math.max((row.count / maxSource) * 100, 3)}%` }}
                     />
                   </div>
-                  <span className="w-6 text-right tabular-nums text-muted-foreground">{row.count}</span>
+                  <span className="w-6 text-end tabular-nums text-muted-foreground">{row.count}</span>
                 </div>
               ))
             )}

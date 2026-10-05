@@ -77,7 +77,7 @@ export default function TemplatePicker({
         >
           <SquaresFourIcon size={16} aria-hidden="true" />
           <span className="truncate">{current.name}</span>
-          <CaretDownIcon size={14} aria-hidden="true" className="ml-auto shrink-0 opacity-60" />
+          <CaretDownIcon size={14} aria-hidden="true" className="ms-auto shrink-0 opacity-60" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-3xl">
@@ -104,14 +104,14 @@ export default function TemplatePicker({
                 key={tpl.id}
                 type="button"
                 onClick={() => handleSelect(tpl.id)}
-                className={`group relative flex flex-col gap-2 rounded-lg border p-2 text-left transition-colors ${
+                className={`group relative flex flex-col gap-2 rounded-lg border p-2 text-start transition-colors ${
                   selected
                     ? "border-primary ring-2 ring-primary"
                     : "border-border hover:border-primary/50"
                 }`}
               >
                 {selected && (
-                  <span className="absolute right-1 top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)]">
+                  <span className="absolute end-1 top-1 z-10 flex h-6 w-6 items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)]">
                     <CheckCircleIcon
                       size={16}
                       weight="fill"

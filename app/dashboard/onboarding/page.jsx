@@ -162,7 +162,7 @@ export default function OnboardingPage() {
           <button
             type="button"
             onClick={() => setStep((previous) => previous - 1)}
-            className={`-ml-1 shrink-0 rounded-md p-1 text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] ${
+            className={`-ms-1 shrink-0 rounded-md p-1 text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] ${
               canGoBack ? "cursor-pointer" : "invisible"
             }`}
             aria-label={t("back")}
@@ -195,7 +195,7 @@ export default function OnboardingPage() {
               <button
                 type="button"
                 onClick={skip}
-                className="ml-auto shrink-0 cursor-pointer sm:ml-0 text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+                className="ms-auto shrink-0 cursor-pointer sm:ms-0 text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
               >
                 {t("skip")}
               </button>

@@ -87,6 +87,11 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    // Next signup nurture email to send (lib/nurture-email.js), 6 = done.
+    // No default on purpose: legacy users have no value and never enter it.
+    nurtureStep: {
+      type: Number,
+    },
     // Drives the daily job digest. Defaults are opt-in; an existing user with
     // no jobPreferences is treated as emailDigest:true / remoteOnly:true.
     jobPreferences: {

@@ -3,6 +3,7 @@
 const JOBS = {
   "0 8 * * *": ["/api/cron/job-digest", "/api/cron/jobs-crawl"],
   "0 20 * * *": ["/api/cron/jobs-crawl"],
+  "0 * * * *": ["/api/cron/nurture"],
 };
 
 export default {

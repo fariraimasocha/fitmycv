@@ -3,7 +3,7 @@ main = "worker.js"
 compatibility_date = "2025-01-01"
 
 [triggers]
-crons = ["0 8 * * *", "0 20 * * *"]
+crons = ["0 8 * * *", "0 20 * * *", "0 * * * *"]
 
 [vars]
 # Must be the www host. The apex 308-redirects to it and the Authorization

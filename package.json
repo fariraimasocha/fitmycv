@@ -16,6 +16,7 @@
     "check:cv-patch": "node scripts/check-cv-patch.mjs",
     "check:sentences": "node scripts/check-sentences.mjs",
     "check:jobs": "node scripts/check-jobs.mjs",
+    "check:nurture": "node scripts/check-nurture.mjs",
     "announce": "node --env-file=.env scripts/send-announcement.mjs",
     "check:names": "node scripts/check-names.mjs",
     "check:preview": "node scripts/check-tailored-preview.mjs"

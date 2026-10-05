@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo, Suspense, useSyncExternalStore } from "react";
+import { useEffect, useMemo, Suspense, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
@@ -36,8 +36,9 @@ const WEEKS = 12;
 
 const noSubscribe = () => () => {};
 
-// The server renders in UTC and has no idea of the visitor's clock, so the
-// time-of-day greeting is read on the client only. Server HTML says "Hello".
+// The server renders in UTC and has no idea of the visitor's clock, so
+// anything that depends on local time is read on the client only. Server HTML
+// says "Hello", leaves the date and relative days blank, and counts no weeks.
 function getTimeOfDay() {
   const hour = new Date().getHours();
   if (hour < 12) return "morning";
@@ -54,10 +55,18 @@ function getFormattedDate(locale) {
   });
 }
 
-function formatRelativeDay(value, now, t, locale) {
-  const date = new Date(value);
-  const start = new Date(now);
+// Midnight today in the visitor's time zone. Stays the same number all day,
+// so useSyncExternalStore sees a stable snapshot.
+function getStartOfToday() {
+  const start = new Date();
   start.setHours(0, 0, 0, 0);
+  return start.getTime();
+}
+
+function formatRelativeDay(value, today, t, locale) {
+  if (today === null) return "";
+  const date = new Date(value);
+  const start = new Date(today);
   const day = new Date(date);
   day.setHours(0, 0, 0, 0);
   const days = Math.round((start - day) / 86400000);
@@ -95,11 +104,14 @@ function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
             {label}
           </span>
           <span className="block text-xs text-muted-foreground">
-            {typeof thisWeek === "number"
-              ? thisWeek > 0
-                ? t("thisWeek", { count: thisWeek })
-                : t("noneThisWeek")
-              : t("notAvailable")}
+            {/* null: the week is not known until the client renders. */}
+            {thisWeek === null
+              ? "\u00a0"
+              : typeof thisWeek === "number"
+                ? thisWeek > 0
+                  ? t("thisWeek", { count: thisWeek })
+                  : t("noneThisWeek")
+                : t("notAvailable")}
           </span>
         </span>
         <span className="font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
@@ -119,9 +131,13 @@ export default function DashboardHome() {
   const t = useTranslations("dashboard.home");
   const locale = useLocale();
   const { data: session } = useSession();
-  const [formattedDate] = useState(() => getFormattedDate(locale));
+  const formattedDate = useSyncExternalStore(
+    noSubscribe,
+    () => getFormattedDate(locale),
+    () => "\u00a0",
+  );
   const greeting = useSyncExternalStore(noSubscribe, getTimeOfDay, () => "default");
-  const [now] = useState(() => Date.now());
+  const today = useSyncExternalStore(noSubscribe, getStartOfToday, () => null);
   const firstName = session?.user?.name?.split(" ")[0];
   const isPremium = Boolean(session?.user?.isPremium);
 
@@ -207,14 +223,24 @@ export default function DashboardHome() {
   } = useMemo(() => {
     const cvs = tailoredCVs ?? [];
     const letters = cvs.filter((cv) => cv.hasCoverLetter);
+    if (today === null) {
+      const empty = new Array(WEEKS).fill(0);
+      return {
+        coverLetterCount: letters.length,
+        cvWeekly: empty,
+        letterWeekly: empty,
+        researchWeekly: empty,
+        weekStarts: [],
+      };
+    }
     return {
       coverLetterCount: letters.length,
-      cvWeekly: buildWeeklyCounts(cvs, WEEKS, now),
-      letterWeekly: buildWeeklyCounts(letters, WEEKS, now),
-      researchWeekly: buildWeeklyCounts(researches, WEEKS, now),
-      weekStarts: weekStartDates(WEEKS, now),
+      cvWeekly: buildWeeklyCounts(cvs, WEEKS, today),
+      letterWeekly: buildWeeklyCounts(letters, WEEKS, today),
+      researchWeekly: buildWeeklyCounts(researches, WEEKS, today),
+      weekStarts: weekStartDates(WEEKS, today),
     };
-  }, [tailoredCVs, researches, now]);
+  }, [tailoredCVs, researches, today]);
 
   const series = useMemo(
     () => [
@@ -275,7 +301,7 @@ export default function DashboardHome() {
               : t(`greetingNoName.${greeting}`)}
           </span>
         }
-        description={<span suppressHydrationWarning>{formattedDate}</span>}
+        description={formattedDate}
         actions={
           <>
             <Link href="/dashboard/resume" className="dashboard-secondary-btn">
@@ -326,21 +352,27 @@ export default function DashboardHome() {
                   icon={StackIcon}
                   label={t("totals.cvs")}
                   value={tailoredCount}
-                  thisWeek={cvWeekly.at(-1)}
+                  thisWeek={today === null ? null : cvWeekly.at(-1)}
                 />
                 <TotalRow
                   href="/dashboard/tailored"
                   icon={EnvelopeIcon}
                   label={t("totals.letters")}
                   value={coverLetterCount}
-                  thisWeek={letterWeekly.at(-1)}
+                  thisWeek={today === null ? null : letterWeekly.at(-1)}
                 />
                 <TotalRow
                   href="/dashboard/company-research"
                   icon={BuildingsIcon}
                   label={t("totals.research")}
                   value={researchKnown ? researches.length : t("totals.na")}
-                  thisWeek={researchKnown ? researchWeekly.at(-1) : undefined}
+                  thisWeek={
+                    !researchKnown
+                      ? undefined
+                      : today === null
+                        ? null
+                        : researchWeekly.at(-1)
+                  }
                 />
               </ul>
             </DashboardPanel>
@@ -384,7 +416,7 @@ export default function DashboardHome() {
                         </span>
                       )}
                       <span className="w-20 shrink-0 text-end text-xs tabular-nums text-muted-foreground">
-                        {formatRelativeDay(cv.createdAt, now, t, locale)}
+                        {formatRelativeDay(cv.createdAt, today, t, locale)}
                       </span>
                     </Link>
                   </li>
@@ -434,7 +466,7 @@ export default function DashboardHome() {
                         </span>
                         <span className="mt-0.5 block text-xs leading-5 break-words whitespace-normal text-muted-foreground">
                           {brief.jobTitle ||
-                            formatRelativeDay(brief.createdAt, now, t, locale)}
+                            formatRelativeDay(brief.createdAt, today, t, locale)}
                         </span>
                       </span>
                     </Link>

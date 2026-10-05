@@ -48,11 +48,13 @@ export function DashboardActivityChart({
   const delta = thisWeek - lastWeek;
   const total = counts.reduce((sum, n) => sum + n, 0);
 
+  // weekStarts is empty until the client knows the visitor's date.
   const data = counts.map((count, index) => {
     const start = weekStarts[index];
+    const label = start ? formatWeekLabel(start, locale) : "";
     return {
-      label: formatWeekLabel(start, locale),
-      week: t("weekOf", { date: formatWeekLabel(start, locale) }),
+      label,
+      week: t("weekOf", { date: label }),
       count,
     };
   });

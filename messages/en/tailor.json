@@ -18,7 +18,10 @@
       "parsing": "Sorting your experience into sections",
       "saving": "Getting your details ready",
       "complete": "Done. Check your details."
-    }
+    },
+    "pasteToggle": "Or paste your CV text",
+    "pasteLabel": "Your CV text",
+    "pastePlaceholder": "Paste your whole CV here, from your name to your last job."
   },
   "templatePicker": {
     "title": "Choose a template",

@@ -1,3 +1,5 @@
+import { extractResumeText } from "@/utils/extract-resume-client";
+
 const STAGES = [
   { id: "preparing", label: "Preparing your file", start: 0, end: 8 },
   { id: "uploading", label: "Uploading PDF", start: 8, end: 42 },
@@ -23,10 +25,20 @@ function mapUploadProgress(ratio) {
 }
 
 /**
- * Upload a resume PDF with staged progress callbacks.
- * Upload bytes use real XHR progress; server-side work advances through labeled stages.
+ * Read a CV and send its text for parsing, with staged progress callbacks.
+ * Pass `file` (a PDF read here in the browser) or `text` (pasted).
+ *
+ * ponytail: the PDF never leaves the browser. Posting the file to the Worker
+ * died mid-body for some users (stuck at 5%, status 0), and pdf.js burns
+ * Worker CPU. The browser already reads PDFs for the free tools.
  */
-export function uploadResumeWithProgress(file, onUpdate) {
+export async function uploadResumeWithProgress({ file, text }, onUpdate) {
+  onUpdate({ progress: 2, stage: "preparing", label: STAGES[0].label });
+  const rawText = text ?? (await extractResumeText(file));
+  return postText(rawText, onUpdate);
+}
+
+function postText(rawText, onUpdate) {
   return new Promise((resolve, reject) => {
     let progress = 0;
     let serverTimer = null;
@@ -69,11 +81,9 @@ export function uploadResumeWithProgress(file, onUpdate) {
 
     emit(2, "preparing");
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/api/resume/upload");
+    xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.upload.onprogress = (event) => {
       if (!event.lengthComputable) return;
@@ -113,8 +123,7 @@ export function uploadResumeWithProgress(file, onUpdate) {
       );
     };
 
-    // Above the route's own 60s ceiling, so a hung socket fails with a real
-    // message instead of spinning forever.
+    // A hung socket fails with a real message instead of spinning forever.
     xhr.timeout = 90000;
     xhr.ontimeout = () => {
       stopServerProgress();
@@ -127,7 +136,7 @@ export function uploadResumeWithProgress(file, onUpdate) {
     };
 
     emit(5, "preparing");
-    xhr.send(formData);
+    xhr.send(JSON.stringify({ text: rawText }));
   });
 }
 

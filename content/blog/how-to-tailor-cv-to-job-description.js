@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "Tailoring is not rewriting your CV from scratch. It is a repeatable, forty-minute edit, and this is the exact sequence, with a real before and after.",
   date: "2026-07-29",
-  updated: "2026-08-28",
+  updated: "2026-10-07",
   readingTime: 10,
   category: "Tailoring",
   tags: ["tailoring", "job description", "keywords", "resume"],
@@ -24,10 +24,17 @@ export const meta = {
     "job specific resume",
     "customise cv for job application",
     "match cv to job description",
+    "how to tailor a cv for job descriptions",
+    "tailoring resumes for job applications",
+    "how to tailor a resume for jobs",
   ],
 };
 
 export const faqs = [
+  {
+    q: "What does tailoring a resume for a job application mean?",
+    a: "It means changing the top of your CV for one posting: the summary, the order of your skills and the first bullets of your most relevant role, written in the posting's words. Your facts stay the same. For a side by side example, see [how to tailor a resume for a specific job](/blog/how-to-tailor-a-resume-for-a-specific-job), and for quick rules, the [12 tips for tailoring a CV](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
+  },
   {
     q: "How long should it take to tailor a CV to a job description?",
     a: "Working through it by hand, budget 20 to 40 minutes for a role you care about: ten minutes decoding the posting, ten rewriting the summary and top bullets, and the rest reordering and checking. It drops to about a minute if you let a tool read the posting and do the first pass for you.",

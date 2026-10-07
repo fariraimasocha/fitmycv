@@ -123,4 +123,5 @@ export const blocks = [
   },
 ];
 
-export default { meta, faqs, blocks };
+const post = { meta, faqs, blocks };
+export default post;

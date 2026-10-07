@@ -41,8 +41,12 @@ import tailorResumeForFree from "./how-to-tailor-resume-for-free";
 import tiredOfTailoring from "./tired-of-tailoring-resume-for-every-job";
 import cvFormatSouthAfrica from "./cv-format-south-africa";
 import cvFormatNigeria from "./cv-format-nigeria";
+import tailorForSpecificJob from "./how-to-tailor-a-resume-for-a-specific-job";
+import tailoringTips from "./tips-for-tailoring-a-cv-to-specific-jobs";
 
 export const POSTS = [
+  tailorForSpecificJob,
+  tailoringTips,
   tailorFromMasterResume,
   tailorResumeForFree,
   tiredOfTailoring,

@@ -14,6 +14,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
+import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
@@ -293,6 +294,17 @@ export default function KeywordChecker({ mode = "match" }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          const cvMissing = needsCv && cvText.trim().length < 40;
+          if (tooShort || cvMissing) {
+            toast.error(
+              tooShort && cvMissing
+                ? "Add your CV and the job description to continue."
+                : tooShort
+                  ? "Paste the full job description to continue."
+                  : "Add your CV to continue."
+            );
+            return;
+          }
           start();
         }}
         className="flex flex-col gap-5"
@@ -346,7 +358,7 @@ export default function KeywordChecker({ mode = "match" }) {
                   : "Reading the posting"
             }
             running={running}
-            disabled={tooShort || cvBusy || (needsCv && cvText.trim().length < 40)}
+            disabled={cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy

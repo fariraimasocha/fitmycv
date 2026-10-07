@@ -18,7 +18,10 @@
       "parsing": "正在将你的经历整理到各个部分",
       "saving": "正在准备你的信息",
       "complete": "完成。请检查你的信息。"
-    }
+    },
+    "pasteToggle": "或粘贴简历文本",
+    "pasteLabel": "你的简历文本",
+    "pastePlaceholder": "在这里粘贴完整简历，从姓名到最近一份工作。"
   },
   "templatePicker": {
     "title": "选择模板",

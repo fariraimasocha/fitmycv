@@ -1,12 +1,12 @@
 import { auth } from "@/lib/auth";
-import { extractPdfText } from "@/utils/pdf-parser";
+import { sanitizeExtractedText } from "@/utils/pdf-parser";
 import { parseResumeFromResponse } from "@/utils/resume-parser";
 import { chat, MODEL_FAST } from "@/lib/groq";
 
-const MAX_FILE_SIZE = 8 * 1024 * 1024; // 8MB
 const MIN_TEXT_LENGTH = 100;
+const MAX_TEXT_LENGTH = 50_000;
 
-const SYSTEM_PROMPT = `You are a resume parser. Given raw text extracted from a PDF resume, parse it into a structured JSON Resume format. Return ONLY valid JSON with no additional text.
+const SYSTEM_PROMPT = `You are a resume parser. Given the raw text of a resume, parse it into a structured JSON Resume format. Return ONLY valid JSON with no additional text.
 
 Use this exact schema:
 {
@@ -56,29 +56,25 @@ export async function POST(request) {
   }
 
   try {
-    const formData = await request.formData();
-    const file = formData.get("file");
-
-    if (!file) {
-      return Response.json({ error: "Choose a PDF to upload." }, { status: 400 });
+    // The browser reads the PDF (utils/upload-resume.js), so only text arrives.
+    const body = await request.json().catch(() => null);
+    if (typeof body?.text !== "string") {
+      return Response.json({ error: "Choose a PDF or paste your CV text." }, { status: 400 });
     }
 
-    if (file.type !== "application/pdf") {
-      return Response.json({ error: "Choose a PDF file." }, { status: 400 });
-    }
-
-    if (file.size > MAX_FILE_SIZE) {
-      return Response.json({ error: "Choose a PDF under 8MB." }, { status: 400 });
-    }
-
-    // Extract text from PDF
-    const arrayBuffer = await file.arrayBuffer();
-    const rawText = await extractPdfText(arrayBuffer);
+    const rawText = sanitizeExtractedText(body.text);
 
     if (rawText.length < MIN_TEXT_LENGTH) {
       return Response.json(
-        { error: "Couldn't read text from this PDF. It may be a scan or an image. Upload a PDF with selectable text." },
+        { error: "Couldn't read enough text from your CV. It may be a scan. Paste your CV text instead." },
         { status: 422 }
+      );
+    }
+
+    if (rawText.length > MAX_TEXT_LENGTH) {
+      return Response.json(
+        { error: "Your CV text is too long. Keep it under 50,000 characters." },
+        { status: 400 }
       );
     }
 

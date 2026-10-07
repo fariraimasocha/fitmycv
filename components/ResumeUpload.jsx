@@ -20,12 +20,45 @@ function formatFileSize(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+/** "Or paste your CV text": a link until opened, then a textarea. */
+function PasteFallback({ open, value, onChange, onOpen }) {
+  const t = useTranslations("tailor.upload");
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={onOpen}
+        className="text-xs font-medium text-[var(--landing-ink-soft)] underline underline-offset-4 hover:text-[var(--landing-ink)]"
+      >
+        {t("pasteToggle")}
+      </button>
+    );
+  }
+  return (
+    <div className="space-y-1.5">
+      <label htmlFor="resume-paste" className="text-sm font-medium text-[var(--landing-ink)]">
+        {t("pasteLabel")}
+      </label>
+      <textarea
+        id="resume-paste"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={8}
+        placeholder={t("pastePlaceholder")}
+        className="w-full rounded-lg border border-[var(--landing-line)] bg-white p-3 text-sm text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+      />
+    </div>
+  );
+}
+
 export default function ResumeUpload({ onParsed }) {
   const t = useTranslations("tailor.upload");
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [pasteOpen, setPasteOpen] = useState(false);
+  const [pastedText, setPastedText] = useState("");
   const [progressState, setProgressState] = useState({
     progress: 0,
     stage: "preparing",
@@ -71,8 +104,10 @@ export default function ResumeUpload({ onParsed }) {
     }
   };
 
+  const pasting = pasteOpen && pastedText.trim().length > 0;
+
   const handleUpload = async () => {
-    if (!file || isUploading) return;
+    if ((!file && !pasting) || isUploading) return;
 
     setIsUploading(true);
     setIsComplete(false);
@@ -83,12 +118,19 @@ export default function ResumeUpload({ onParsed }) {
     });
 
     try {
-      const result = await uploadResumeWithProgress(file, setProgressState);
+      const result = await uploadResumeWithProgress(
+        pasting ? { text: pastedText } : { file },
+        setProgressState
+      );
       setIsComplete(true);
-      trackEvent("resume_uploaded", { file_size_bytes: file.size });
+      trackEvent("resume_uploaded", pasting
+        ? { source: "paste", chars: pastedText.length }
+        : { source: "pdf", file_size_bytes: file.size });
       onParsed({ ...result.data, rawText: result.rawText });
     } catch (error) {
       toast.error(error.message || t("uploadError"));
+      // A scanned or odd PDF fails the same way every time, so offer paste.
+      setPasteOpen(true);
       setProgressState({
         progress: 0,
         stage: "preparing",
@@ -183,6 +225,15 @@ export default function ResumeUpload({ onParsed }) {
         </div>
       )}
 
+      {!isUploading && !isComplete && (
+        <PasteFallback
+          open={pasteOpen}
+          value={pastedText}
+          onChange={setPastedText}
+          onOpen={() => setPasteOpen(true)}
+        />
+      )}
+
       {isUploading && (
         <UploadProgress
           progress={progressState.progress}
@@ -205,7 +256,7 @@ export default function ResumeUpload({ onParsed }) {
           <button
             type="button"
             onClick={handleUpload}
-            disabled={!file}
+            disabled={!file && !pasting}
             className="dashboard-primary-btn w-full"
           >
             <UploadSimpleIcon size={16} aria-hidden="true" />

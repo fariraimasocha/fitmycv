@@ -18,7 +18,10 @@
       "parsing": "Organizando sua experiência em seções",
       "saving": "Preparando seus dados",
       "complete": "Pronto. Confira seus dados."
-    }
+    },
+    "pasteToggle": "Ou cole o texto do seu currículo",
+    "pasteLabel": "Texto do seu currículo",
+    "pastePlaceholder": "Cole aqui seu currículo completo, do seu nome até o último emprego."
   },
   "templatePicker": {
     "title": "Escolha um modelo",

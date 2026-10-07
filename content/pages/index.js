@@ -32,6 +32,11 @@ import { linkedinUrlForResume } from "./linkedin-url-for-resume";
 import { jobDescriptionToResumeBullets } from "./job-description-to-resume-bullets";
 import { resumeKeywordsHub } from "./resume-keywords-hub";
 import {
+  cvFormatChecker,
+  resumeWeakWordsChecker,
+  employmentGapExplanationGenerator,
+} from "./free-cv-tools";
+import {
   workdayResumeFormat,
   greenhouseAtsResume,
   leverAtsResume,
@@ -48,6 +53,9 @@ export const MARKETING_PAGES = [
   professionalSummaryGenerator,
   linkedinUrlForResume,
   jobDescriptionToResumeBullets,
+  cvFormatChecker,
+  resumeWeakWordsChecker,
+  employmentGapExplanationGenerator,
   resumeKeywordsHub,
   ...RESUME_KEYWORD_PAGES,
   atsResumeChecker,

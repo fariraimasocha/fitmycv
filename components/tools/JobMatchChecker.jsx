@@ -7,9 +7,10 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
+import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
+import { CtaCard } from "@/components/tools/HandoffCta";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
@@ -303,28 +304,7 @@ export default function JobMatchChecker() {
             </ol>
           </div>
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {ctaTitle}
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {ctaBody}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleTailorHandoff}
-              className="landing-primary-btn group shrink-0 font-outfit text-sm"
-            >
-              {ctaLabel}
-              <ArrowRightIcon
-                size={15}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </button>
-          </div>
+          <CtaCard title={ctaTitle} body={ctaBody} label={ctaLabel} onClick={handleTailorHandoff} />
         </div>
       ) : null}
     </div>

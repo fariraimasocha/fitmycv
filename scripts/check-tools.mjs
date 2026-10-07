@@ -31,6 +31,9 @@ const REGIONS = {
     "// pure-helpers:start",
     "// pure-helpers:end",
   ],
+  "components/tools/CvFormatChecker.jsx": ["// pure-region-start", "// pure-region-end"],
+  "components/tools/WeakWordsChecker.jsx": ["// pure-region-start", "// pure-region-end"],
+  "components/tools/GapExplainer.jsx": ["// pure-region-start", "// pure-region-end"],
 };
 
 /** Slices the marked region out of a component and imports it as a module. */
@@ -414,6 +417,73 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.equal(pastTense("plan"), "planned");
     assert.equal(pastTense("lead"), "led");
     assert.equal(pastTense("identify"), "identified");
+  });
+}
+
+// ------------------------------------------------------------ cv format
+{
+  const { checkCvFormat } = await loadRegion("components/tools/CvFormatChecker.jsx");
+  const cv = "Thandi Nkosi\nthandi@example.com\nID number: 9001015009087\nMarital status: Single\nCareer objective: to grow\nReferences available on request";
+  const ids = (country) => checkCvFormat(cv, country).checks.filter((c) => !c.ok).map((c) => c.id);
+
+  check("flags the SA ID number, marital status, objective and references line", () => {
+    const failed = ids("za");
+    for (const id of ["id", "personal", "objective", "references"]) assert.ok(failed.includes(id), failed.join(","));
+    assert.ok(!failed.includes("email"), "email was found");
+  });
+
+  check("asks Nigerian CVs for NYSC status", () => {
+    assert.ok(ids("ng").includes("nysc"));
+    assert.ok(!checkCvFormat(cv + "\nNYSC: completed 2021", "ng").checks.find((c) => c.id === "nysc").ok === false);
+  });
+
+  check("flags long CVs by page estimate", () => {
+    const long = "word ".repeat(1400);
+    assert.equal(checkCvFormat(long, "us").checks.find((c) => c.id === "length").ok, false);
+  });
+}
+
+// ------------------------------------------------------------ weak words
+{
+  const { findWeakWords } = await loadRegion("components/tools/WeakWordsChecker.jsx");
+
+  check("finds duty phrases and merges spelling variants", () => {
+    const { found } = findWeakWords("Responsible for payroll.\nA hard-working and hardworking team player.");
+    const phrases = found.map((f) => f.phrase);
+    assert.ok(phrases.includes("responsible for"), phrases.join(","));
+    assert.equal(found.filter((f) => f.fix.startsWith("Show it: a deadline")).length, 1);
+    assert.equal(found.find((f) => f.phrase === "hard-working").count, 2);
+  });
+
+  check("does not match inside other words", () => {
+    assert.equal(findWeakWords("Etcetera is fine, dynamically too").found.length, 0);
+  });
+
+  check("counts lines with numbers", () => {
+    const r = findWeakWords("Cut costs by 20 percent across three regional offices\nManaged the regional sales team across five offices");
+    assert.equal(r.lines, 2);
+    assert.equal(r.withNumbers, 1);
+  });
+}
+
+// ------------------------------------------------------------ gap explainer
+{
+  const { explainGap, monthsBetween } = await loadRegion("components/tools/GapExplainer.jsx");
+
+  check("counts months and rejects reversed dates", () => {
+    assert.equal(monthsBetween("2024-03", "2025-01"), 10);
+    assert.equal(monthsBetween("2025-01", "2024-03"), null);
+  });
+
+  check("builds the CV line with dates and what you did", () => {
+    const r = explainGap({ reason: "study", from: "2024-03", to: "2025-01", did: "completed a data course." });
+    assert.equal(r.cv, "Mar 2024 to Jan 2025. Full-time study. Completed a data course.");
+    assert.ok(r.answer.endsWith("I also completed a data course."), r.answer);
+    assert.equal(r.short, false);
+  });
+
+  check("says short gaps may not need explaining", () => {
+    assert.equal(explainGap({ reason: "travel", from: "2024-03", to: "2024-04" }).short, true);
   });
 }
 

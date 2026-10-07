@@ -14,6 +14,9 @@ import FileNameGenerator from "@/components/tools/FileNameGenerator";
 import SummaryGenerator from "@/components/tools/SummaryGenerator";
 import LinkedInUrlFormatter from "@/components/tools/LinkedInUrlFormatter";
 import DutiesToBullets from "@/components/tools/DutiesToBullets";
+import CvFormatChecker from "@/components/tools/CvFormatChecker";
+import WeakWordsChecker from "@/components/tools/WeakWordsChecker";
+import GapExplainer from "@/components/tools/GapExplainer";
 import JsonLd from "@/components/JsonLd";
 import {
   breadcrumbSchema,
@@ -32,6 +35,9 @@ const TOOL_COMPONENTS = {
   summary: SummaryGenerator,
   link: LinkedInUrlFormatter,
   duties: DutiesToBullets,
+  "cv-format": CvFormatChecker,
+  "weak-words": WeakWordsChecker,
+  gap: GapExplainer,
 };
 
 const PRODUCT_SLUGS = new Set([
@@ -45,6 +51,9 @@ const PRODUCT_SLUGS = new Set([
   "resume-optimizer",
   "ai-cover-letter-generator",
   "cover-letter-builder",
+  "cv-format-checker",
+  "resume-weak-words-checker",
+  "employment-gap-explanation-generator",
 ]);
 
 /**

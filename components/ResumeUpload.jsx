@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
@@ -13,6 +13,7 @@ import {
 import UploadProgress from "@/components/UploadProgress";
 import { uploadResumeWithProgress } from "@/utils/upload-resume";
 import { trackEvent } from "@/lib/analytics";
+import { takeCvHandoff } from "@/lib/ats-handoff";
 
 function formatFileSize(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -65,6 +66,18 @@ export default function ResumeUpload({ onParsed }) {
     label: "Preparing your file",
   });
   const inputRef = useRef(null);
+
+  // A free tool already read this visitor's CV: put it in the paste box so
+  // sign-up skips the PDF upload. Read after mount, the server has no storage.
+  useEffect(() => {
+    const handoff = takeCvHandoff();
+    if (!handoff) return;
+    /* eslint-disable react-hooks/set-state-in-effect -- one-time read of the sessionStorage handoff on mount */
+    setPastedText(handoff.cvText);
+    setPasteOpen(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
+    trackEvent("cv_handoff_consumed", { source: handoff.source ?? null, chars: handoff.cvText.length });
+  }, []);
 
   const openFilePicker = useCallback(() => {
     if (!isUploading) inputRef.current?.click();

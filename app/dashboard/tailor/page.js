@@ -388,7 +388,8 @@ function Tailor() {
     },
     onError: (error, input) => {
       // A blocked link is a dead end unless the paste box is one click away.
-      toast.error(error.message, {
+      // Why a link failed is our problem, not the user's. One plain message.
+      toast.error(input?.url ? t("errors.extract") : error.message, {
         action: input?.url
           ? { label: t("inputTabs.text"), onClick: () => setJobInputMode("text") }
           : undefined,

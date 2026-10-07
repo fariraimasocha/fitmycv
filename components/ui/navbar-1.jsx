@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import {
+  CalendarXIcon,
   CaretDownIcon,
+  GlobeHemisphereEastIcon,
   FileTextIcon,
   LayoutIcon,
   LinkedinLogoIcon,
@@ -17,6 +19,7 @@ import {
   TargetIcon,
   TextAlignLeftIcon,
   TextHOneIcon,
+  TextStrikethroughIcon,
   XIcon,
 } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
@@ -57,6 +60,9 @@ const TOOL_ICONS = {
   "/job-description-to-resume-bullets": ListChecksIcon,
   "/resume-file-name-generator": FileTextIcon,
   "/linkedin-url-for-resume": LinkedinLogoIcon,
+  "/cv-format-checker": GlobeHemisphereEastIcon,
+  "/resume-weak-words-checker": TextStrikethroughIcon,
+  "/employment-gap-explanation-generator": CalendarXIcon,
 };
 
 function ToolIcon({ href, size }) {

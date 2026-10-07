@@ -475,7 +475,11 @@
       "emptyDescription": "Start a thread above. Each one edits its own copy of a CV.",
       "emptyShort": "Your threads will show up here.",
       "newestFirst": "Newest first",
-      "countNewestFirst": "{count, plural, one {# thread} other {# threads}}, newest first"
+      "countNewestFirst": "{count, plural, one {# thread} other {# threads}}, newest first",
+      "proTitle": "The CV Agent is on Pro",
+      "proDescription": "Upgrade to edit your CV by chatting with the agent.",
+      "proAction": "See Pro plans",
+      "proShort": "The CV Agent is on Pro."
     },
     "resume": {
       "draftCv": "Draft CV",

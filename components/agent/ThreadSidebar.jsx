@@ -4,12 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowRightIcon,
   ChatCircleDotsIcon,
   ClockIcon,
+  CrownIcon,
   FileTextIcon,
   TrashIcon,
 } from "@phosphor-icons/react";
@@ -127,6 +129,16 @@ function RowSkeleton() {
   );
 }
 
+// pure-region-start
+/** Which state the thread list shows. A failed query has no threads, so it falls through to "empty". */
+function threadListView({ sessionLoading, isPremium, isLoading, count }) {
+  if (sessionLoading) return "loading";
+  if (!isPremium) return "upgrade";
+  if (isLoading) return "loading";
+  return count > 0 ? "list" : "empty";
+}
+// pure-region-end
+
 /**
  * Every thread, newest first. With `title` it renders as a full panel with a
  * header and count (the CV Agent start page). Without it, a bare divided list
@@ -140,9 +152,15 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
   const [now] = useState(() => Date.now());
   const framed = Boolean(title);
 
+  const { data: session, status } = useSession();
+  const isPremium = Boolean(session?.user?.isPremium);
+
+  // Threads are a Pro feature: the route answers free users with a 402, so
+  // the query only runs for Pro and free users get the upgrade state instead.
   const { data: threads, isLoading } = useQuery({
     queryKey: ["agent-threads"],
     queryFn: () => requestJson("/api/agent/threads"),
+    enabled: isPremium,
   });
 
   const remove = useMutation({
@@ -163,8 +181,34 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
   };
 
   const count = threads?.length ?? 0;
+  const view = threadListView({
+    sessionLoading: status === "loading",
+    isPremium,
+    isLoading,
+    count,
+  });
 
-  const list = isLoading ? (
+  if (view === "upgrade") {
+    return framed ? (
+      <DashboardEmptyState
+        compact
+        icon={CrownIcon}
+        title={t("proTitle")}
+        description={t("proDescription")}
+        actionLabel={t("proAction")}
+        actionHref="/dashboard/upgrade"
+        delay={delay}
+      />
+    ) : (
+      <div className="p-3">
+        <p className="rounded-md border border-dashed border-[var(--landing-line)] px-4 py-6 text-center text-sm text-muted-foreground">
+          {t("proShort")}
+        </p>
+      </div>
+    );
+  }
+
+  const list = view === "loading" ? (
     <ul aria-label={t("loading")} className="divide-y divide-[var(--landing-line)]">
       {[0, 1, 2].map((i) => (
         <RowSkeleton key={i} />
@@ -172,7 +216,7 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
     </ul>
   ) : (
     <ul className="divide-y divide-[var(--landing-line)]">
-      {threads.map((thread) => (
+      {(threads ?? []).map((thread) => (
         <ThreadRow
           key={thread._id}
           thread={thread}
@@ -186,7 +230,7 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
     </ul>
   );
 
-  if (!isLoading && count === 0) {
+  if (view === "empty") {
     return framed ? (
       <DashboardEmptyState
         compact
@@ -219,7 +263,7 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
         <DashboardPanelHeader
           title={title}
           description={
-            isLoading
+            view === "loading"
               ? t("newestFirst")
               : t("countNewestFirst", { count })
           }

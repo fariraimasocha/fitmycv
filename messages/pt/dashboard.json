@@ -475,7 +475,11 @@
       "emptyDescription": "Comece uma conversa acima. Cada uma edita sua própria cópia de um currículo.",
       "emptyShort": "Suas conversas vão aparecer aqui.",
       "newestFirst": "Mais recentes primeiro",
-      "countNewestFirst": "{count, plural, one {# conversa} other {# conversas}}, mais recentes primeiro"
+      "countNewestFirst": "{count, plural, one {# conversa} other {# conversas}}, mais recentes primeiro",
+      "proTitle": "O Agente de currículo está no Pro",
+      "proDescription": "Faça upgrade para editar seu currículo conversando com o agente.",
+      "proAction": "Ver planos Pro",
+      "proShort": "O Agente de currículo está no Pro."
     },
     "resume": {
       "draftCv": "Currículo em rascunho",

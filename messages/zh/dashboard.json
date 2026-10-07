@@ -475,7 +475,11 @@
       "emptyDescription": "在上方开始一个对话。每个对话都编辑各自的简历副本。",
       "emptyShort": "你的对话会显示在这里。",
       "newestFirst": "最新的在前",
-      "countNewestFirst": "{count, plural, one {# 个对话} other {# 个对话}}，最新的在前"
+      "countNewestFirst": "{count, plural, one {# 个对话} other {# 个对话}}，最新的在前",
+      "proTitle": "简历助手是 Pro 功能",
+      "proDescription": "升级后即可通过与助手对话来修改简历。",
+      "proAction": "查看 Pro 方案",
+      "proShort": "简历助手是 Pro 功能。"
     },
     "resume": {
       "draftCv": "草稿简历",

@@ -475,7 +475,11 @@
       "emptyDescription": "Inicia una conversación arriba. Cada una edita su propia copia de un CV.",
       "emptyShort": "Tus conversaciones aparecerán aquí.",
       "newestFirst": "Las más recientes primero",
-      "countNewestFirst": "{count, plural, one {# conversación} other {# conversaciones}}, las más recientes primero"
+      "countNewestFirst": "{count, plural, one {# conversación} other {# conversaciones}}, las más recientes primero",
+      "proTitle": "El Agente de CV es de Pro",
+      "proDescription": "Mejora tu plan para editar tu CV chateando con el agente.",
+      "proAction": "Ver planes Pro",
+      "proShort": "El Agente de CV es de Pro."
     },
     "resume": {
       "draftCv": "Borrador del CV",

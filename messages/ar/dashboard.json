@@ -475,7 +475,11 @@
       "emptyDescription": "ابدأ محادثة في الأعلى. كل محادثة تعدّل نسختها الخاصة من سيرة ذاتية.",
       "emptyShort": "ستظهر محادثاتك هنا.",
       "newestFirst": "الأحدث أولًا",
-      "countNewestFirst": "{count, plural, one {محادثة واحدة} two {محادثتان} few {# محادثات} many {# محادثة} other {# محادثة}}، الأحدث أولًا"
+      "countNewestFirst": "{count, plural, one {محادثة واحدة} two {محادثتان} few {# محادثات} many {# محادثة} other {# محادثة}}، الأحدث أولًا",
+      "proTitle": "وكيل السيرة الذاتية متاح في Pro",
+      "proDescription": "قم بالترقية لتعديل سيرتك الذاتية بالدردشة مع الوكيل.",
+      "proAction": "عرض خطط Pro",
+      "proShort": "وكيل السيرة الذاتية متاح في Pro."
     },
     "resume": {
       "draftCv": "مسودة السيرة الذاتية",

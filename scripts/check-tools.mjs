@@ -31,6 +31,10 @@ const REGIONS = {
     "// pure-helpers:start",
     "// pure-helpers:end",
   ],
+  "components/agent/ThreadSidebar.jsx": [
+    "// pure-region-start",
+    "// pure-region-end",
+  ],
 };
 
 /** Slices the marked region out of a component and imports it as a module. */
@@ -414,6 +418,28 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.equal(pastTense("plan"), "planned");
     assert.equal(pastTense("lead"), "led");
     assert.equal(pastTense("identify"), "identified");
+  });
+}
+
+// ------------------------------------------------------------ agent threads
+{
+  const { threadListView } = await loadRegion("components/agent/ThreadSidebar.jsx");
+  const view = (over) =>
+    threadListView({ sessionLoading: false, isPremium: true, isLoading: false, count: 0, ...over });
+
+  check("free users get the upgrade state, not a crash on a 402", () => {
+    // The 402 leaves no threads and no loading flag. That must never reach .map.
+    assert.equal(view({ isPremium: false }), "upgrade");
+  });
+
+  check("waits for the session before deciding", () => {
+    assert.equal(view({ sessionLoading: true, isPremium: false }), "loading");
+  });
+
+  check("a failed or empty query for Pro shows the empty state", () => {
+    assert.equal(view({}), "empty");
+    assert.equal(view({ isLoading: true }), "loading");
+    assert.equal(view({ count: 2 }), "list");
   });
 }
 

@@ -475,7 +475,11 @@
       "emptyDescription": "Démarrez une conversation ci-dessus. Chacune modifie sa propre copie d'un CV.",
       "emptyShort": "Vos conversations apparaîtront ici.",
       "newestFirst": "Les plus récentes d'abord",
-      "countNewestFirst": "{count, plural, one {# conversation} other {# conversations}}, les plus récentes d'abord"
+      "countNewestFirst": "{count, plural, one {# conversation} other {# conversations}}, les plus récentes d'abord",
+      "proTitle": "L'Agent CV fait partie de Pro",
+      "proDescription": "Passez à Pro pour modifier votre CV en discutant avec l'agent.",
+      "proAction": "Voir les offres Pro",
+      "proShort": "L'Agent CV fait partie de Pro."
     },
     "resume": {
       "draftCv": "Brouillon du CV",

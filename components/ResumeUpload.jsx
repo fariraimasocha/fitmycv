@@ -20,6 +20,37 @@ function formatFileSize(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+/** "Or paste your CV text": a link until opened, then a textarea. */
+function PasteFallback({ open, value, onChange, onOpen }) {
+  const t = useTranslations("tailor.upload");
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={onOpen}
+        className="text-xs font-medium text-[var(--landing-ink-soft)] underline underline-offset-4 hover:text-[var(--landing-ink)]"
+      >
+        {t("pasteToggle")}
+      </button>
+    );
+  }
+  return (
+    <div className="space-y-1.5">
+      <label htmlFor="resume-paste" className="text-sm font-medium text-[var(--landing-ink)]">
+        {t("pasteLabel")}
+      </label>
+      <textarea
+        id="resume-paste"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={8}
+        placeholder={t("pastePlaceholder")}
+        className="w-full rounded-lg border border-[var(--landing-line)] bg-white p-3 text-sm text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+      />
+    </div>
+  );
+}
+
 export default function ResumeUpload({ onParsed }) {
   const t = useTranslations("tailor.upload");
   const [file, setFile] = useState(null);
@@ -194,29 +225,14 @@ export default function ResumeUpload({ onParsed }) {
         </div>
       )}
 
-      {!isUploading && !isComplete && (pasteOpen ? (
-        <div className="space-y-1.5">
-          <label htmlFor="resume-paste" className="text-sm font-medium text-[var(--landing-ink)]">
-            {t("pasteLabel")}
-          </label>
-          <textarea
-            id="resume-paste"
-            value={pastedText}
-            onChange={(e) => setPastedText(e.target.value)}
-            rows={8}
-            placeholder={t("pastePlaceholder")}
-            className="w-full rounded-lg border border-[var(--landing-line)] bg-white p-3 text-sm text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-          />
-        </div>
-      ) : (
-        <button
-          type="button"
-          onClick={() => setPasteOpen(true)}
-          className="text-xs font-medium text-[var(--landing-ink-soft)] underline underline-offset-4 hover:text-[var(--landing-ink)]"
-        >
-          {t("pasteToggle")}
-        </button>
-      ))}
+      {!isUploading && !isComplete && (
+        <PasteFallback
+          open={pasteOpen}
+          value={pastedText}
+          onChange={setPastedText}
+          onOpen={() => setPasteOpen(true)}
+        />
+      )}
 
       {isUploading && (
         <UploadProgress

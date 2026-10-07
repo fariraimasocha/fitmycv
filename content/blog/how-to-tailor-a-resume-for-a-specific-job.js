@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 7,
   category: "Tailoring",
   tags: ["tailoring", "examples", "resume", "job description"],
-  image: "/blog/how-to-match-resume-to-job-description.jpg",
+  image: "/blog/how-to-tailor-a-resume-for-a-specific-job.jpg",
   imageAlt: "Flat illustration of one resume split into two versions for two job postings",
   keywords: [
     "how to tailor a resume for a specific job",

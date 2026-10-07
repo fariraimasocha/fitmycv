@@ -11,7 +11,7 @@ export const meta = {
   readingTime: 7,
   category: "Tailoring",
   tags: ["tailoring", "tips", "cv", "job applications"],
-  image: "/blog/how-much-should-you-tailor-your-resume.jpg",
+  image: "/blog/tips-for-tailoring-a-cv-to-specific-jobs.jpg",
   imageAlt: "Flat illustration of a CV with a checklist of tailoring tips beside it",
   keywords: [
     "tips for tailoring a cv to specific jobs",

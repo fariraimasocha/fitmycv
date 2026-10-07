@@ -82,6 +82,55 @@ function findWeakWords(text) {
 }
 // pure-region-end
 
+function WeakWordsResult({ result, cvText }) {
+  const total = result.found.reduce((n, f) => n + f.count, 0);
+  return (
+    <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+      <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+        {total === 0 ? "No weak words found" : `${total} weak ${total === 1 ? "word" : "words"} found`}
+      </p>
+      {result.lines > 0 ? (
+        <p className="mt-2 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
+          {result.withNumbers} of your {result.lines} longer lines have a number in them.
+          {result.withNumbers / result.lines < 0.3
+            ? " Add a count, a percentage or a time saved to more of them. Numbers are what a recruiter remembers."
+            : " Good. Numbers are what a recruiter remembers."}
+        </p>
+      ) : null}
+
+      {result.found.length ? (
+        <ul className="mt-6 flex flex-col gap-3">
+          {result.found.map((f) => (
+            <li
+              key={f.phrase}
+              className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
+            >
+              <p className="text-sm text-[var(--landing-ink)]">
+                <strong className="font-extrabold">&ldquo;{f.phrase}&rdquo;</strong>
+                <span className="ml-2 text-xs font-bold uppercase tracking-widest text-[var(--landing-ink-soft)]">
+                  {KIND_LABEL[f.kind]} · {f.count}×
+                </span>
+              </p>
+              {f.example ? (
+                <p className="mt-1 text-xs italic leading-5 text-[var(--landing-ink-soft)]">{f.example}</p>
+              ) : null}
+              <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink)]">{f.fix}</p>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <HandoffCta
+        title="Rewrite these for a real job"
+        body="FitMyCV rewrites your summary and top bullets against a job posting, in the posting's own words, using only what is already in your CV."
+        label="Rewrite my CV for a job"
+        source="weak_words"
+        cvText={cvText}
+      />
+    </div>
+  );
+}
+
 const KIND_LABEL = { duty: "Duty phrase", vague: "Vague verb", cliche: "Cliché" };
 
 export default function WeakWordsChecker() {
@@ -91,7 +140,6 @@ export default function WeakWordsChecker() {
   const tooShort = cvText.trim().length < 40;
 
   const result = useMemo(() => (ran && !tooShort ? findWeakWords(cvText) : null), [ran, tooShort, cvText]);
-  const total = result?.found.reduce((n, f) => n + f.count, 0) ?? 0;
 
   return (
     <div className="landing-card rounded-3xl p-6 sm:p-8">
@@ -127,51 +175,7 @@ export default function WeakWordsChecker() {
 
       {running ? <ToolProgress message="Reading your CV" lines={4} /> : null}
 
-      {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
-          <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-            {total === 0 ? "No weak words found" : `${total} weak ${total === 1 ? "word" : "words"} found`}
-          </p>
-          {result.lines > 0 ? (
-            <p className="mt-2 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-              {result.withNumbers} of your {result.lines} longer lines have a number in them.
-              {result.withNumbers / result.lines < 0.3
-                ? " Add a count, a percentage or a time saved to more of them. Numbers are what a recruiter remembers."
-                : " Good. Numbers are what a recruiter remembers."}
-            </p>
-          ) : null}
-
-          {result.found.length ? (
-            <ul className="mt-6 flex flex-col gap-3">
-              {result.found.map((f) => (
-                <li
-                  key={f.phrase}
-                  className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
-                >
-                  <p className="text-sm text-[var(--landing-ink)]">
-                    <strong className="font-extrabold">&ldquo;{f.phrase}&rdquo;</strong>
-                    <span className="ml-2 text-xs font-bold uppercase tracking-widest text-[var(--landing-ink-soft)]">
-                      {KIND_LABEL[f.kind]} · {f.count}×
-                    </span>
-                  </p>
-                  {f.example ? (
-                    <p className="mt-1 text-xs italic leading-5 text-[var(--landing-ink-soft)]">{f.example}</p>
-                  ) : null}
-                  <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink)]">{f.fix}</p>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          <HandoffCta
-            title="Rewrite these for a real job"
-            body="FitMyCV rewrites your summary and top bullets against a job posting, in the posting's own words, using only what is already in your CV."
-            label="Rewrite my CV for a job"
-            source="weak_words"
-            cvText={cvText}
-          />
-        </div>
-      ) : null}
+      {result ? <WeakWordsResult result={result} cvText={cvText} /> : null}
     </div>
   );
 }

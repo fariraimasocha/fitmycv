@@ -30,13 +30,18 @@ export default function HandoffCta({ title, body, label, source, cvText = "" }) 
     router.push(authUrl);
   };
 
+  return <CtaCard title={title} body={body} label={label} onClick={go} />;
+}
+
+/** The closing card shared by the free tools. */
+export function CtaCard({ title, body, label, onClick }) {
   return (
     <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">{title}</p>
         <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">{body}</p>
       </div>
-      <button type="button" onClick={go} className="landing-primary-btn group shrink-0 font-outfit text-sm">
+      <button type="button" onClick={onClick} className="landing-primary-btn group shrink-0 font-outfit text-sm">
         {label}
         <ArrowRightIcon
           size={15}

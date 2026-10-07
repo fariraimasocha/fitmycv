@@ -475,7 +475,11 @@
       "emptyDescription": "Starte oben eine Unterhaltung. Jede bearbeitet ihre eigene Kopie eines Lebenslaufs.",
       "emptyShort": "Hier erscheinen deine Unterhaltungen.",
       "newestFirst": "Neueste zuerst",
-      "countNewestFirst": "{count, plural, one {# Unterhaltung} other {# Unterhaltungen}}, neueste zuerst"
+      "countNewestFirst": "{count, plural, one {# Unterhaltung} other {# Unterhaltungen}}, neueste zuerst",
+      "proTitle": "Den Lebenslauf-Agent gibt es mit Pro",
+      "proDescription": "Upgrade, um deinen Lebenslauf im Chat mit dem Agent zu bearbeiten.",
+      "proAction": "Pro-Pläne ansehen",
+      "proShort": "Den Lebenslauf-Agent gibt es mit Pro."
     },
     "resume": {
       "draftCv": "Lebenslauf-Entwurf",

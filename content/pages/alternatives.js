@@ -143,6 +143,11 @@ export const jobscanAlternative = {
       href: "/blog/best-free-ats-resume-checkers-2026",
       body: "An honest look at the free checkers, including the ones we do not build.",
     },
+    {
+      label: "The Jobscan argument, written out",
+      href: "/blog/jobscan-alternative",
+      body: "The same comparison as a blog post: score versus rewrite.",
+    },
   ],
 };
 

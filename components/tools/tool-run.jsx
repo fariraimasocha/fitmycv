@@ -44,7 +44,7 @@ export function ToolSubmitButton({ label, busyLabel, running, disabled, ...rest 
       type="submit"
       disabled={disabled || running}
       aria-busy={running}
-      className="landing-primary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
+      className="landing-primary-btn w-full font-outfit text-sm sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
       {...rest}
     >
       {running ? (

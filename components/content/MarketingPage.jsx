@@ -87,7 +87,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
             below, so they only need a compact breadcrumb band here. */}
         <section
           className={`relative isolate overflow-hidden px-5 sm:px-10 lg:px-16 xl:px-24 ${
-            hideHero ? "pb-4 pt-24" : "pb-16 pt-32"
+            hideHero ? "pb-4 pt-24" : "pb-10 pt-24 sm:pb-16 sm:pt-32"
           }`}
         >
           {hideHero ? null : (
@@ -106,7 +106,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
             <nav
               aria-label="Breadcrumb"
               className={`flex flex-wrap items-center justify-center gap-1.5 text-xs font-bold text-[var(--landing-ink-soft)] ${
-                hideHero ? "mb-0" : "mb-8"
+                hideHero ? "mb-0" : "mb-6 sm:mb-8"
               }`}
             >
               <Link href="/" className="hover:text-[var(--landing-ink)]">
@@ -132,7 +132,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
               <h1
                 className="font-outfit mt-6 max-w-4xl font-medium text-[var(--landing-ink)]"
                 style={{
-                  fontSize: "clamp(2.25rem, 4.4vw, 3.4rem)",
+                  fontSize: "clamp(1.875rem, 4.4vw, 3.4rem)",
                   lineHeight: 1.15,
                   letterSpacing: "-0.01em",
                 }}
@@ -142,13 +142,13 @@ export default function MarketingPage({ page, children, hideHero = false }) {
             )}
 
             {hideHero ? null : (
-              <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
+              <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-[var(--landing-ink-soft)] sm:mt-7 sm:text-xl sm:leading-8">
                 {lede}
               </p>
             )}
 
             {!hideHero && ctas.length ? (
-              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className={`mt-9 flex-col items-center justify-center gap-3 sm:flex sm:flex-row ${tool ? "hidden" : "flex"}`}>
                 {ctas.map(({ label, href, variant = "primary" }) => (
                   <Link
                     key={href}
@@ -177,7 +177,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
         {/* Interactive tool */}
         {tool ? (
           <section id="tool" className="scroll-mt-24 px-5 pb-4 sm:px-10 lg:px-16 xl:px-24">
-            <div className="mx-auto w-full max-w-4xl">
+            <div className="mx-auto w-full max-w-3xl">
               {ToolComponent ? (
                 <ToolComponent />
               ) : (
@@ -207,7 +207,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
         {related.length ? (
           <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
             <div className="landing-container">
-              <h2 className="landing-heading font-outfit text-xl font-extrabold sm:text-2xl">
+              <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
                 Where to go next
               </h2>
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -285,6 +285,9 @@ function Tailor() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(input),
+        // Scrape plus parse finishes well inside this. Past it, show an error
+        // rather than leave the user watching a spinner.
+        signal: AbortSignal.timeout(90_000),
       });
 
       if (!res.ok) {
@@ -389,7 +392,7 @@ function Tailor() {
     onError: (error, input) => {
       // A blocked link is a dead end unless the paste box is one click away.
       // Why a link failed is our problem, not the user's. One plain message.
-      toast.error(input?.url ? t("errors.extract") : error.message, {
+      toast.error(input?.url || error.name === "TimeoutError" ? t("errors.extract") : error.message, {
         action: input?.url
           ? { label: t("inputTabs.text"), onClick: () => setJobInputMode("text") }
           : undefined,

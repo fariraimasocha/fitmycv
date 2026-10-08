@@ -28,9 +28,9 @@ export default function FaqSection({
         {faqs.map(({ q, a }) => (
           <details
             key={q}
-            className="landing-card group rounded-2xl px-6 py-5 [&_summary::-webkit-details-marker]:hidden"
+            className="landing-card group rounded-2xl [&_summary::-webkit-details-marker]:hidden"
           >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-outfit text-base font-extrabold text-[var(--landing-ink)]">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 font-outfit sm:px-6 text-base font-extrabold text-[var(--landing-ink)]">
               {q}
               <PlusIcon
                 size={18}
@@ -38,7 +38,7 @@ export default function FaqSection({
                 className="shrink-0 text-[var(--landing-primary-dark)] transition-transform duration-200 group-open:rotate-45"
               />
             </summary>
-            <p className="landing-copy mt-3 text-sm leading-7">{a}</p>
+            <p className="landing-copy -mt-2 px-5 pb-5 text-sm leading-7 sm:px-6">{a}</p>
           </details>
         ))}
       </div>

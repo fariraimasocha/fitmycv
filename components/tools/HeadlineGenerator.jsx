@@ -599,7 +599,7 @@ export default function HeadlineGenerator() {
   }
 
   return (
-    <div className="landing-card rounded-3xl p-6 sm:p-8">
+    <div className="landing-card rounded-3xl p-4 sm:p-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();

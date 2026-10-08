@@ -138,14 +138,14 @@ function Block({ block }) {
     const { head, rows } = block.table;
     return (
       <div className="landing-card mt-8 overflow-x-auto rounded-2xl">
-        <table className="w-full min-w-150 border-collapse text-start text-sm">
+        <table className="w-full hyphens-auto wrap-anywhere border-collapse text-start text-xs sm:text-sm">
           <thead>
             <tr className="border-b border-[var(--landing-line)] bg-[var(--landing-paper-strong)]">
               {head.map((cell) => (
                 <th
                   key={cell}
                   scope="col"
-                  className="px-5 py-4 font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink)]"
+                  className="px-2.5 py-3 font-outfit text-xs font-extrabold uppercase tracking-wide text-[var(--landing-ink)] sm:px-5 sm:py-4 sm:tracking-[0.12em]"
                 >
                   {cell}
                 </th>
@@ -160,8 +160,8 @@ function Block({ block }) {
                     key={j}
                     className={
                       j === 0
-                        ? "px-5 py-4 font-semibold text-[var(--landing-ink)]"
-                        : "px-5 py-4 leading-6 text-[var(--landing-ink-soft)]"
+                        ? "px-2.5 py-3 font-semibold text-[var(--landing-ink)] sm:px-5 sm:py-4"
+                        : "px-2.5 py-3 leading-5 text-[var(--landing-ink-soft)] sm:px-5 sm:py-4"
                     }
                   >
                     {inline(cell, `t-${i}-${j}`)}

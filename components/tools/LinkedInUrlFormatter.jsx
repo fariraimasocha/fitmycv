@@ -175,7 +175,7 @@ export default function LinkedInUrlFormatter() {
     : [];
 
   return (
-    <div className="landing-card rounded-3xl p-6 sm:p-8">
+    <div className="landing-card rounded-3xl p-4 sm:p-8">
       <div className="flex flex-col gap-2">
         <label
           htmlFor="linkedin-url"

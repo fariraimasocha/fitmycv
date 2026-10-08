@@ -193,7 +193,7 @@ export default function FileNameGenerator() {
   };
 
   return (
-    <div className="landing-card rounded-3xl p-6 sm:p-8">
+    <div className="landing-card rounded-3xl p-4 sm:p-8">
       <div className="grid gap-5 md:grid-cols-3">
         {FIELDS.map((field) => (
           <div key={field.key} className="flex flex-col gap-2">

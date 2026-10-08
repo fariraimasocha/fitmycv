@@ -244,7 +244,7 @@ export default function ResumeFileField({
         <button
           type="button"
           onClick={() => setPasteOpen(true)}
-          className="self-start font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+          className="-my-3 self-start py-3 font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
         >
           Or paste the text
         </button>

@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }) {
 
           {/* Cover */}
           <div className="px-5 sm:px-10 lg:px-16 xl:px-24">
-            <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-[28px] border border-[var(--landing-line)] bg-[var(--landing-paper-strong)] shadow-[var(--landing-shadow-sm)]">
+            <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-strong)] shadow-[var(--landing-shadow-sm)]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={meta.image}
@@ -169,7 +169,7 @@ export default async function BlogPostPage({ params }) {
         {related.length ? (
           <section className="landing-section">
             <div className="landing-container">
-              <h2 className="landing-heading font-outfit text-2xl font-extrabold sm:text-3xl">
+              <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
                 Keep reading
               </h2>
               <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">

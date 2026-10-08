@@ -151,6 +151,7 @@ function ScoreRing({ value }) {
 }
 
 const HIGH_MATCH_SCORE = 75;
+const MIN_JOB_CHARS = 40;
 
 function handoffCopy({ gapsMode, score }) {
   const high =
@@ -190,7 +191,7 @@ export default function KeywordChecker({ mode = "match" }) {
   const { running, ran, start, reset } = useToolRun();
 
   const result = useMemo(() => {
-    if (!ran || jobText.trim().length < 40) return null;
+    if (!ran || jobText.trim().length < MIN_JOB_CHARS) return null;
 
     const withCv = mode === "match" || mode === "gaps";
     const terms = extractTerms(jobText, withCv ? 24 : 30);
@@ -257,7 +258,8 @@ export default function KeywordChecker({ mode = "match" }) {
     });
   }, [ran, result, mode]);
 
-  const tooShort = jobText.trim().length < 40;
+  const jobChars = jobText.trim().length;
+  const tooShort = jobChars < MIN_JOB_CHARS;
 
   const cta = handoffCopy({
     gapsMode,
@@ -290,7 +292,7 @@ export default function KeywordChecker({ mode = "match" }) {
   };
 
   return (
-    <div className="landing-card rounded-3xl p-6 sm:p-8">
+    <div className="landing-card rounded-3xl p-4 sm:p-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -315,16 +317,35 @@ export default function KeywordChecker({ mode = "match" }) {
               htmlFor="job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description
+              Paste the job description{" "}
+              <span className="font-sans text-xs font-semibold text-[var(--landing-ink-soft)]">
+                (required)
+              </span>
             </label>
             <textarea
               id="job-text"
               value={jobText}
               onChange={(e) => setJobText(e.target.value)}
               rows={needsCv ? 10 : 12}
+              required
+              minLength={MIN_JOB_CHARS}
+              aria-describedby="job-text-count"
               placeholder="Paste the full text of the job posting here…"
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
+              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-base leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)] sm:text-sm"
             />
+            <p
+              id="job-text-count"
+              aria-live="polite"
+              className={`text-xs font-semibold tabular-nums ${
+                tooShort
+                  ? "text-[var(--landing-ink-soft)]"
+                  : "text-[var(--landing-primary-dark)]"
+              }`}
+            >
+              {tooShort
+                ? `${jobChars} of ${MIN_JOB_CHARS} characters. Paste the whole posting, not just the title.`
+                : "Job description added."}
+            </p>
           </div>
 
           {needsCv ? (

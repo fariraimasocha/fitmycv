@@ -43,8 +43,10 @@ import cvFormatSouthAfrica from "./cv-format-south-africa";
 import cvFormatNigeria from "./cv-format-nigeria";
 import tailorForSpecificJob from "./how-to-tailor-a-resume-for-a-specific-job";
 import tailoringTips from "./tips-for-tailoring-a-cv-to-specific-jobs";
+import jobscanAlternative from "./jobscan-alternative";
 
 export const POSTS = [
+  jobscanAlternative,
   tailorForSpecificJob,
   tailoringTips,
   tailorFromMasterResume,

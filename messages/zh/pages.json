@@ -86,15 +86,15 @@
   "upgradeModal": {
     "default": {
       "title": "获取 FitMyCV Pro",
-      "description": "一次性支付 ${price}，即可将简历和求职信下载为 PDF，还可使用公司调研、面试准备和求职申请跟踪。"
+      "description": "将简历和求职信下载为 PDF，还可使用公司调研、面试准备和求职申请跟踪。"
     },
     "download": {
       "title": "下载你的 PDF",
-      "description": "你的简历和求职信已准备好。一次性支付 ${price} 即可下载为 PDF。"
+      "description": "你的简历和求职信已准备好。升级到 Pro 即可下载为 PDF。"
     },
     "preTailor": {
       "title": "下载你的 PDF",
-      "description": "一次性支付 ${price}，即可将你的定制简历和求职信下载为 PDF。"
+      "description": "升级到 Pro 即可将你的定制简历和求职信下载为 PDF。"
     },
     "startMonth": "以 ${price} 开通一个月",
     "getLifetime": "以 ${price} 获取终身版",

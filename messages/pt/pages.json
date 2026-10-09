@@ -86,15 +86,15 @@
   "upgradeModal": {
     "default": {
       "title": "Tenha o FitMyCV Pro",
-      "description": "Pague ${price} uma vez para baixar seus currículos e cartas de apresentação em PDF, além de pesquisa da empresa, preparação para entrevistas e acompanhamento de candidaturas."
+      "description": "Baixe seus currículos e cartas de apresentação em PDF, além de pesquisa da empresa, preparação para entrevistas e acompanhamento de candidaturas."
     },
     "download": {
       "title": "Baixe seus PDFs",
-      "description": "Seu currículo e sua carta de apresentação estão prontos. Pague ${price} uma vez para baixá-los em PDF."
+      "description": "Seu currículo e sua carta de apresentação estão prontos. Assine o Pro para baixá-los em PDF."
     },
     "preTailor": {
       "title": "Baixe seus PDFs",
-      "description": "Pague ${price} uma vez para baixar seu currículo adaptado e sua carta de apresentação em PDF."
+      "description": "Assine o Pro para baixar seu currículo adaptado e sua carta de apresentação em PDF."
     },
     "startMonth": "Comece um mês por ${price}",
     "getLifetime": "Acesso vitalício por ${price}",

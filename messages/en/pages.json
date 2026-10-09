@@ -86,15 +86,15 @@
   "upgradeModal": {
     "default": {
       "title": "Get FitMyCV Pro",
-      "description": "Pay ${price} once to download your CVs and cover letters as PDFs, plus company research, interview prep and application tracking."
+      "description": "Download your CVs and cover letters as PDFs, plus company research, interview prep and application tracking."
     },
     "download": {
       "title": "Download your PDFs",
-      "description": "Your CV and cover letter are ready. Pay ${price} once to download them as PDFs."
+      "description": "Your CV and cover letter are ready. Upgrade to download them as PDFs."
     },
     "preTailor": {
       "title": "Download your PDFs",
-      "description": "Pay ${price} once to download your tailored CV and cover letter as PDFs."
+      "description": "Upgrade to download your tailored CV and cover letter as PDFs."
     },
     "startMonth": "Start a month for ${price}",
     "getLifetime": "Get lifetime for ${price}",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { CrownIcon, ArrowRightIcon } from "@phosphor-icons/react";
@@ -44,7 +44,7 @@ export default function UpgradePromptModal({
     if (open) {
       trackEvent("paywall_view", {
         context,
-        primary_plan: "lifetime",
+        primary_plan: "month",
         has_job: Boolean(job?.title),
       });
     }
@@ -60,14 +60,26 @@ export default function UpgradePromptModal({
     price: pricing.lifetime.price,
   });
 
+  // Full page load so a second click can't restart a slow redirect. See
+  // PricingCards for the same fix.
+  const [pendingPlan, setPendingPlan] = useState(null);
+
+  useEffect(() => {
+    const reset = (e) => e.persisted && setPendingPlan(null);
+    window.addEventListener("pageshow", reset);
+    return () => window.removeEventListener("pageshow", reset);
+  }, []);
+
   const startCheckout = (plan, source) => {
+    if (pendingPlan) return;
     trackEvent("checkout_start", {
       tier: pricing.tier,
       plan,
       source,
     });
     if (session?.user) {
-      router.push(`/api/polar/checkout?plan=${plan}`);
+      setPendingPlan(plan);
+      window.location.assign(`/api/polar/checkout?plan=${plan}`);
     } else {
       setPendingCheckout(true, plan);
       localeRouter.push("/auth");
@@ -91,7 +103,7 @@ export default function UpgradePromptModal({
 
         <PricingCards
           compact
-          primaryPlan="lifetime"
+          primaryPlan="month"
           pricing={pricing}
           tier={pricing.tier}
         />
@@ -99,17 +111,21 @@ export default function UpgradePromptModal({
         <div className="flex flex-col gap-2 pt-2">
           <button
             type="button"
-            onClick={() => startCheckout("lifetime", "paywall_primary")}
-            className="dashboard-primary-btn w-full"
+            onClick={() => startCheckout("month", "paywall_primary")}
+            disabled={Boolean(pendingPlan)}
+            aria-busy={pendingPlan === "month"}
+            className="dashboard-primary-btn w-full disabled:cursor-wait disabled:opacity-60"
           >
-            {t("getLifetime", { price: pricing.lifetime.price })}
+            {t("startMonth", { price: pricing.month.price })}
           </button>
           <button
             type="button"
-            onClick={() => startCheckout("month", "paywall_secondary")}
-            className="dashboard-secondary-btn w-full"
+            onClick={() => startCheckout("lifetime", "paywall_secondary")}
+            disabled={Boolean(pendingPlan)}
+            aria-busy={pendingPlan === "lifetime"}
+            className="dashboard-secondary-btn w-full disabled:cursor-wait disabled:opacity-60"
           >
-            {t("startMonth", { price: pricing.month.price })}
+            {t("getLifetime", { price: pricing.lifetime.price })}
           </button>
           <button
             type="button"

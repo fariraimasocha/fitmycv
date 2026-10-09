@@ -86,15 +86,15 @@
   "upgradeModal": {
     "default": {
       "title": "Hol dir FitMyCV Pro",
-      "description": "Zahle einmalig ${price}, um deine Lebensläufe und Anschreiben als PDF herunterzuladen, dazu Unternehmensrecherche, Interviewvorbereitung und Bewerbungsverwaltung."
+      "description": "Lade deine Lebensläufe und Anschreiben als PDF herunter, dazu Unternehmensrecherche, Interviewvorbereitung und Bewerbungsverwaltung."
     },
     "download": {
       "title": "Lade deine PDFs herunter",
-      "description": "Dein Lebenslauf und dein Anschreiben sind fertig. Zahle einmalig ${price}, um sie als PDF herunterzuladen."
+      "description": "Dein Lebenslauf und dein Anschreiben sind fertig. Wechsle zu Pro, um sie als PDF herunterzuladen."
     },
     "preTailor": {
       "title": "Lade deine PDFs herunter",
-      "description": "Zahle einmalig ${price}, um deinen angepassten Lebenslauf und dein Anschreiben als PDF herunterzuladen."
+      "description": "Wechsle zu Pro, um deinen angepassten Lebenslauf und dein Anschreiben als PDF herunterzuladen."
     },
     "startMonth": "Einen Monat für ${price} starten",
     "getLifetime": "Lebenslangen Zugang für ${price} holen",

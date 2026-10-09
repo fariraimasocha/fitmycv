@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
@@ -23,7 +22,6 @@ export default function PricingCards({
 }) {
   const t = useTranslations("pages.pricingCards");
   const { data: session } = useSession();
-  const router = useRouter();
   // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
   const localeRouter = useLocaleRouter();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
@@ -55,10 +53,24 @@ export default function PricingCards({
       .catch(() => {});
   }, [pricingProp, tierProp]);
 
+  // A full page load, not router.push. The route redirects to Polar after a
+  // slow API call, and router.push gave no feedback, so people clicked again
+  // and restarted it. The button stays disabled until the page unloads.
+  const [pendingPlan, setPendingPlan] = useState(null);
+
+  useEffect(() => {
+    // Back from Polar restores this page from bfcache with the button disabled.
+    const reset = (e) => e.persisted && setPendingPlan(null);
+    window.addEventListener("pageshow", reset);
+    return () => window.removeEventListener("pageshow", reset);
+  }, []);
+
   const handleCheckout = (plan) => {
+    if (pendingPlan) return;
     trackEvent("checkout_start", { tier, plan, source: "pricing_cards" });
     if (session?.user) {
-      router.push(`/api/polar/checkout?plan=${plan}`);
+      setPendingPlan(plan);
+      window.location.assign(`/api/polar/checkout?plan=${plan}`);
     } else {
       setPendingCheckout(true, plan);
       if (gate?.interceptAuth(null, "/auth")) return;
@@ -149,10 +161,12 @@ export default function PricingCards({
               <button
                 type="button"
                 onClick={() => handleCheckout(plan.id)}
+                disabled={Boolean(pendingPlan)}
+                aria-busy={pendingPlan === plan.id}
                 className={
                   highlighted
-                    ? "landing-primary-btn w-full cursor-pointer font-outfit text-sm"
-                    : "landing-secondary-btn w-full cursor-pointer font-outfit text-sm"
+                    ? "landing-primary-btn w-full cursor-pointer font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
+                    : "landing-secondary-btn w-full cursor-pointer font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
                 }
               >
                 {plan.cta}

@@ -115,7 +115,7 @@ const Navbar1 = () => {
             screen, down past the nav, and into the hero without a break. The
             pseudo-elements are absolutely positioned, so they are out of flow
             and never become flex items of this row. */}
-        <div className="landing-container landing-rules flex h-16 items-center justify-between gap-6 px-4 sm:px-8">
+        <div className="landing-container flex h-16 items-center justify-between gap-6 px-4 sm:px-8">
         <Link href="/" className="tap-target flex flex-row items-center">
           <BrandLogo size="md" priority wordmarkClassName="text-xl" />
         </Link>

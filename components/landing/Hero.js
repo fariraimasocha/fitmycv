@@ -137,8 +137,8 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
   };
 
   return (
-    <section id="hero" className="relative px-5 pb-20 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container landing-rules relative border-t border-[var(--landing-line)] px-4 pt-16 sm:px-8 sm:pt-24">
+    <section id="hero" className="relative px-5 pb-14 sm:px-10 lg:px-16 xl:px-24">
+      <div className="landing-container relative px-4 pt-12 sm:px-8 sm:pt-20">
         <div className="grid grid-cols-1 items-center gap-x-10 gap-y-10 lg:grid-cols-12">
           <div className="landing-rise lg:col-span-6">
             <p className="mb-4 font-sans text-sm font-semibold text-[var(--landing-ink-faint)]">
@@ -210,11 +210,7 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
           </div>
         </div>
 
-        <div className="relative mt-20">
-          <div
-            aria-hidden="true"
-            className="absolute top-1/2 -start-4 -end-4 border-t border-[var(--landing-line)] sm:-start-8 sm:-end-8"
-          />
+        <div className="relative mt-12">
           <CheckerBar />
         </div>
       </div>

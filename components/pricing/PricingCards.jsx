@@ -109,9 +109,9 @@ export default function PricingCards({
       : PRO_FEATURES;
 
   return (
-    <div className={`flex w-full flex-col gap-6 ${compact ? "" : "items-center"}`}>
+    <div className="flex w-full flex-col gap-6">
       {pricing.regionalNote ? (
-        <p className="text-center text-xs font-semibold text-[var(--landing-ink-soft)]">
+        <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
           {t("regionalNote")}
         </p>
       ) : null}
@@ -120,7 +120,7 @@ export default function PricingCards({
         className={`grid w-full gap-4 ${
           compact
             ? "grid-cols-1 sm:grid-cols-2"
-            : "order-2 max-w-3xl grid-cols-1 md:order-1 md:grid-cols-2"
+            : "order-2 grid-cols-1 md:order-1 md:grid-cols-2"
         }`}
       >
         {plans.map((plan) => {
@@ -130,7 +130,7 @@ export default function PricingCards({
               key={plan.id}
               className={`relative flex flex-col gap-5 rounded-2xl border p-6 sm:p-7 ${
                 highlighted
-                  ? "border-[var(--landing-line)] bg-white shadow-[var(--landing-shadow-sm)]"
+                  ? "border-[var(--landing-line)] border-t-4 border-t-[var(--landing-accent)] bg-white shadow-[var(--landing-shadow-sm)]"
                   : "border-[var(--landing-line)] bg-[var(--landing-surface)]"
               }`}
             >
@@ -177,8 +177,8 @@ export default function PricingCards({
       </div>
 
       {!compact && (
-        <div className="order-1 w-full max-w-3xl rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 sm:p-7 md:order-2">
-          <h3 className="text-center font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+        <div className="order-1 w-full rounded-2xl bg-[var(--landing-surface)] p-6 sm:p-7 md:order-2">
+          <h3 className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
             {t("includesTitle")}
           </h3>
           <ul className="mt-5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">

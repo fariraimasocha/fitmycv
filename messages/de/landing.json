@@ -107,33 +107,6 @@
     "eyebrow": "FAQ",
     "title": "Ehrliche Antworten."
   },
-  "resources": {
-    "title": "Alles andere auf der Website",
-    "body": "Kostenlose Tools und Ratgeber, ob du uns je einen Cent zahlst oder nicht.",
-    "open": "Öffnen",
-    "items": {
-      "tailor": {
-        "label": "Lebenslauf aus einem Stellenlink anpassen",
-        "body": "Der Kernablauf: URL einer Anzeige einfügen, angepassten Lebenslauf und Anschreiben erhalten."
-      },
-      "match": {
-        "label": "Lebenslauf-Stellen-Abgleich",
-        "body": "Füge einen Lebenslauf und eine Anzeige ein. Sieh die Übereinstimmung, fehlende Fähigkeiten und was du zuerst verbessern solltest."
-      },
-      "ats": {
-        "label": "Kostenloser ATS-Lebenslauf-Check",
-        "body": "Bewerte deinen Lebenslauf gegen eine Stellenbeschreibung und sieh, welche Begriffe dir fehlen."
-      },
-      "atsGuide": {
-        "label": "So schreibst du einen ATS-freundlichen Lebenslauf",
-        "body": "Formatierung, Schlüsselwörter und die Fehler, durch die Lebensläufe aussortiert werden, bevor ein Mensch sie liest."
-      },
-      "examples": {
-        "label": "Lebenslauf-Beispiele für vierzehn Berufe",
-        "body": "Ausformulierte Profile, Stichpunkte im Vorher-nachher-Vergleich und die Schlüsselwörter, die diese Anzeigen verwenden."
-      }
-    }
-  },
   "cta": {
     "title": "Bereit, nicht mehr übersehen zu werden?",
     "body": "Schließ dich Jobsuchenden an, die mit KI-angepassten Bewerbungen schneller zu Vorstellungsgesprächen kommen. Lebenslanger Zugang für ${price}.",

@@ -4,8 +4,6 @@ import {
   LockKeyIcon,
   ProhibitIcon,
   TrashSimpleIcon,
-  FilePdfIcon,
-  LinkIcon,
   CreditCardIcon,
 } from "@phosphor-icons/react/dist/ssr";
 
@@ -22,8 +20,6 @@ const SIGNALS = [
   { key: "yours", icon: LockKeyIcon },
   { key: "notShared", icon: ProhibitIcon },
   { key: "delete", icon: TrashSimpleIcon },
-  { key: "boards", icon: LinkIcon },
-  { key: "pdf", icon: FilePdfIcon },
   { key: "cancel", icon: CreditCardIcon },
 ];
 
@@ -46,16 +42,12 @@ export default function TrustSignals() {
           </p>
         </div>
 
-        {/* A ruled ledger rather than a card grid. ResourcesStrip below is
-            already a card grid, and two of those in one page read as the same
-            section twice. Rules also suit a list of commitments: it scans like
-            a policy, which is what it is. */}
-        <ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
+        {/* Only the privacy promises. Boards and PDF export are features, and
+            the job board strip and templates already show them. One row on
+            desktop, no rules: the icon chips separate the items. */}
+        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {SIGNALS.map(({ key, icon: Icon }) => (
-            <li
-              key={key}
-              className="flex items-start gap-4 border-t border-[var(--landing-line)] py-5"
-            >
+            <li key={key} className="flex items-start gap-3">
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
                 <Icon size={16} weight="bold" aria-hidden="true" />
               </span>
@@ -74,7 +66,7 @@ export default function TrustSignals() {
         {/* Methodology and provenance. Every claim above is either a property
             of the product or covered by a published policy, so link the
             policies rather than asking visitors to take our word for it. */}
-        <div className="mt-10 border-t border-[var(--landing-line)] pt-8">
+        <div className="mt-8 rounded-2xl bg-[var(--landing-paper-soft)] p-5 sm:p-6">
           <h3 className="font-outfit text-base font-bold text-[var(--landing-ink)]">
             {t("methodTitle")}
           </h3>

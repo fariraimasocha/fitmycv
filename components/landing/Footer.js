@@ -79,7 +79,7 @@ function FooterColumn({ heading, links }) {
   const t = useTranslations("landing.footer.links");
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mb-10 flex break-inside-avoid flex-col gap-4">
       <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">{heading}</h3>
       <ul className="flex flex-col gap-3">
         {links.map(({ key, label: plainLabel, href }) => {
@@ -121,7 +121,10 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col flex-wrap gap-8 sm:flex-row sm:gap-12 lg:gap-14">
+          {/* ponytail: CSS columns, not a grid. Free tools is three times longer
+              than the rest, so a grid row was as tall as it with gaps beside.
+              Columns stack the short groups under each other instead. */}
+          <div className="flex-1 columns-2 gap-x-8 sm:columns-3 lg:columns-4">
             {columns.map((column) => (
               <FooterColumn
                 key={column.key}

@@ -107,33 +107,6 @@
     "eyebrow": "FAQ",
     "title": "Des réponses franches."
   },
-  "resources": {
-    "title": "Tout le reste du site",
-    "body": "Des outils et des guides gratuits, que vous nous payiez un jour ou non.",
-    "open": "Ouvrir",
-    "items": {
-      "tailor": {
-        "label": "Adapter un CV à partir d'un lien d'offre",
-        "body": "Le parcours phare : collez l'URL d'une offre, obtenez un CV et une lettre de motivation adaptés."
-      },
-      "match": {
-        "label": "Vérificateur de correspondance CV et offre",
-        "body": "Collez un CV et une offre. Voyez la correspondance, les compétences manquantes et ce qu'il faut corriger en premier."
-      },
-      "ats": {
-        "label": "Vérificateur de CV ATS gratuit",
-        "body": "Évaluez votre CV par rapport à une description de poste et voyez les termes qui vous manquent."
-      },
-      "atsGuide": {
-        "label": "Comment rédiger un CV compatible ATS",
-        "body": "La mise en forme, les mots-clés et les erreurs qui font écarter un CV avant qu'un humain ne le lise."
-      },
-      "examples": {
-        "label": "Exemples de CV pour quatorze métiers",
-        "body": "Des résumés rédigés, des points avant et après, et les mots-clés utilisés dans ces offres."
-      }
-    }
-  },
   "cta": {
     "title": "Prêt à ne plus être ignoré ?",
     "body": "Rejoignez les candidats qui décrochent des entretiens plus vite grâce à des candidatures adaptées par IA. Accès à vie pour ${price}.",

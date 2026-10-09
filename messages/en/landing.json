@@ -107,33 +107,6 @@
     "eyebrow": "FAQ",
     "title": "Honest answers."
   },
-  "resources": {
-    "title": "Everything else on the site",
-    "body": "Free tools and guides, whether or not you ever pay us a penny.",
-    "open": "Open",
-    "items": {
-      "tailor": {
-        "label": "Tailor a CV from a job link",
-        "body": "The flagship flow: paste a posting URL, get a tailored CV and cover letter."
-      },
-      "match": {
-        "label": "Resume job match checker",
-        "body": "Paste a resume and a posting. See the match, missing skills, and what to fix first."
-      },
-      "ats": {
-        "label": "Free ATS resume checker",
-        "body": "Score your CV against a job description and see the terms you are missing."
-      },
-      "atsGuide": {
-        "label": "How to write an ATS-friendly resume",
-        "body": "Formatting, keywords, and the mistakes that get CVs filtered out before a human reads them."
-      },
-      "examples": {
-        "label": "Resume examples for fourteen jobs",
-        "body": "Worked summaries, before-and-after bullets, and the keywords those postings use."
-      }
-    }
-  },
   "cta": {
     "title": "Ready to stop being ignored?",
     "body": "Join job seekers landing interviews faster with AI-tailored applications. Lifetime access for ${price}.",

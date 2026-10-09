@@ -18,7 +18,7 @@ export default function UseCases() {
   return (
     <section id="examples" className="landing-section">
       <div className="landing-container">
-        <span className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-[var(--landing-ink-soft)]">
+        <span className="landing-eyebrow-plain">
           {t("eyebrow")}
         </span>
         <h2
@@ -31,11 +31,11 @@ export default function UseCases() {
           {t("intro")}
         </p>
 
-        <ul className="mt-10 grid gap-5">
+        <ul className="mt-8 grid gap-5 lg:grid-cols-3">
           {CASES.map((key) => (
             <li
               key={key}
-              className="grid gap-4 rounded-2xl border border-[var(--landing-line)] bg-white p-5 sm:p-6 md:grid-cols-2 md:gap-8"
+              className="flex flex-col gap-5 rounded-2xl bg-white p-5 shadow-[var(--landing-shadow-sm)] sm:p-6"
             >
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-[var(--landing-ink-soft)]">
@@ -59,10 +59,10 @@ export default function UseCases() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--landing-accent)]">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--landing-ink-soft)]">
                     {t("afterLabel")}
                   </p>
-                  <p className="mt-1 font-medium text-[var(--landing-ink)]">
+                  <p className="mt-1 border-s-3 border-[var(--landing-accent)] ps-3 font-medium text-[var(--landing-ink)]">
                     {t.rich(`cases.${key}.after`, highlight)}
                   </p>
                 </div>

@@ -7,7 +7,6 @@ import UseCases from "@/components/landing/UseCases";
 import TemplateStrip from "@/components/landing/TemplateStrip";
 import Testimonial from "@/components/landing/Testimonial";
 import TrustSignals from "@/components/landing/TrustSignals";
-import ResourcesStrip from "@/components/landing/ResourcesStrip";
 import Pricing from "@/components/landing/Pricing";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
@@ -79,7 +78,6 @@ export default async function Home({ params }) {
         <TrustSignals />
         <Pricing />
         <FounderFaqSection />
-        <ResourcesStrip />
         <CTABand lifetimePrice={pricing.lifetime.price} />
       </main>
       <StickyCtaBar />

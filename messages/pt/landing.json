@@ -107,33 +107,6 @@
     "eyebrow": "Perguntas frequentes",
     "title": "Respostas sinceras."
   },
-  "resources": {
-    "title": "Todo o resto do site",
-    "body": "Ferramentas e guias grátis, mesmo que você nunca nos pague um centavo.",
-    "open": "Abrir",
-    "items": {
-      "tailor": {
-        "label": "Adaptar um currículo a partir do link da vaga",
-        "body": "O fluxo principal: cole a URL de uma vaga e receba um currículo e uma carta de apresentação adaptados."
-      },
-      "match": {
-        "label": "Verificador de compatibilidade entre currículo e vaga",
-        "body": "Cole um currículo e uma vaga. Veja a compatibilidade, as habilidades que faltam e o que corrigir primeiro."
-      },
-      "ats": {
-        "label": "Verificador ATS de currículo grátis",
-        "body": "Avalie seu currículo em relação a uma descrição de vaga e veja os termos que faltam."
-      },
-      "atsGuide": {
-        "label": "Como escrever um currículo compatível com ATS",
-        "body": "Formatação, palavras-chave e os erros que fazem currículos serem filtrados antes que uma pessoa os leia."
-      },
-      "examples": {
-        "label": "Exemplos de currículo para catorze profissões",
-        "body": "Resumos prontos, tópicos de antes e depois e as palavras-chave que essas vagas usam."
-      }
-    }
-  },
   "cta": {
     "title": "Pronto para deixar de ser ignorado?",
     "body": "Junte-se a quem está conseguindo entrevistas mais rápido com candidaturas adaptadas por IA. Acesso vitalício por ${price}.",

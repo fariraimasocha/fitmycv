@@ -37,7 +37,7 @@ function ScoreArc({ value, label }) {
           cy={ARC_SIZE / 2}
           r={ARC_RADIUS}
           fill="none"
-          stroke="oklch(1 0 0 / 0.12)"
+          stroke="var(--landing-line)"
           strokeWidth={ARC_STROKE}
         />
         <circle
@@ -56,7 +56,7 @@ function ScoreArc({ value, label }) {
       </svg>
       <span
         aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center font-outfit text-2xl font-extrabold text-white"
+        className="absolute inset-0 flex items-center justify-center font-outfit text-2xl font-extrabold text-[var(--landing-ink)]"
       >
         {value}%
       </span>
@@ -69,7 +69,7 @@ function Term({ label, found }) {
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
         found
-          ? "bg-[oklch(1_0_0_/_0.1)] text-white"
+          ? "bg-[var(--landing-paper-soft)] text-[var(--landing-ink)]"
           : "bg-[var(--landing-accent-dark)] text-white"
       }`}
     >
@@ -93,13 +93,13 @@ export default function TheProblem() {
   const score = 47;
 
   return (
-    <section className="landing-dark-band landing-section">
+    <section className="landing-tinted-band landing-section">
       <div className="landing-container">
-        <span className="landing-dark-eyebrow">{t("eyebrow")}</span>
+        <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
 
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-12 lg:gap-14">
           <h2
-            className="font-outfit font-medium text-white lg:col-span-6"
+            className="font-outfit font-medium text-[var(--landing-ink)] lg:col-span-6"
             style={{
               fontSize: "clamp(2rem, 3.6vw, 3.4rem)",
               lineHeight: 1.15,
@@ -109,16 +109,16 @@ export default function TheProblem() {
             {t("title")}
           </h2>
 
-          <p className="text-lg leading-relaxed text-[var(--landing-ink-inverse-soft)] lg:col-span-5 lg:col-start-8">
+          <p className="text-lg leading-relaxed text-[var(--landing-ink-soft)] lg:col-span-5 lg:col-start-8">
             {t("body")}
           </p>
         </div>
 
         {/* The failure state, as the product would report it. */}
-        <div className="mt-14 overflow-hidden rounded-2xl border border-[oklch(1_0_0_/_0.12)] bg-[oklch(1_0_0_/_0.04)]">
-          <div className="flex items-center gap-3 border-b border-[oklch(1_0_0_/_0.12)] px-5 py-4">
-            <FileTextIcon size={18} className="text-white" aria-hidden="true" />
-            <span className="font-outfit text-sm font-bold text-white">
+        <div className="mt-10 overflow-hidden rounded-2xl bg-white shadow-[var(--landing-shadow-sm)]">
+          <div className="flex items-center gap-3 border-b border-[var(--landing-line)] px-5 py-4">
+            <FileTextIcon size={18} className="text-[var(--landing-ink)]" aria-hidden="true" />
+            <span className="font-outfit text-sm font-bold text-[var(--landing-ink)]">
               {t("cardTitle")}
             </span>
             <span className="ms-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-accent-dark)] px-3 py-1 text-xs font-semibold text-white">
@@ -131,17 +131,17 @@ export default function TheProblem() {
             <div className="flex items-center gap-5 lg:col-span-4">
               <ScoreArc value={score} label={t("scoreLabel", { value: score })} />
               <div>
-                <p className="font-outfit text-sm font-bold text-white">
+                <p className="font-outfit text-sm font-bold text-[var(--landing-ink)]">
                   {t("matchTitle")}
                 </p>
-                <p className="mt-1 text-sm text-[var(--landing-ink-inverse-soft)]">
+                <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
                   {t("matchBody")}
                 </p>
               </div>
             </div>
 
             <div className="lg:col-span-8">
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-[var(--landing-ink)]">
                 {t("missingTitle")}
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -155,17 +155,17 @@ export default function TheProblem() {
 
               <div className="mt-6">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-xs font-semibold text-[var(--landing-ink-inverse-soft)]">
+                  <span className="text-xs font-semibold text-[var(--landing-ink-soft)]">
                     {t("coverage")}
                   </span>
-                  <span className="font-outfit text-xs font-bold text-white">
+                  <span className="font-outfit text-xs font-bold text-[var(--landing-ink)]">
                     {t("coverageCount", {
                       found: PRESENT.length,
                       total: MISSING.length + PRESENT.length,
                     })}
                   </span>
                 </div>
-                <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[oklch(1_0_0_/_0.12)]">
+                <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[var(--landing-line)]">
                   <div
                     className="problem-bar h-full rounded-full bg-[var(--landing-accent)]"
                     style={{ width: "37%" }}
@@ -176,7 +176,7 @@ export default function TheProblem() {
           </div>
         </div>
 
-        <p className="mt-8 max-w-2xl text-base text-[var(--landing-ink-inverse-soft)]">
+        <p className="mt-8 max-w-2xl text-base text-[var(--landing-ink-soft)]">
           {t("footer")}
         </p>
       </div>

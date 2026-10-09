@@ -107,33 +107,6 @@
     "eyebrow": "Preguntas frecuentes",
     "title": "Respuestas sinceras."
   },
-  "resources": {
-    "title": "Todo lo demás del sitio",
-    "body": "Herramientas y guías gratuitas, nos pagues algún día o no.",
-    "open": "Abrir",
-    "items": {
-      "tailor": {
-        "label": "Adapta un CV a partir de un enlace de empleo",
-        "body": "El flujo principal: pega la URL de una oferta y recibe un CV y una carta de presentación adaptados."
-      },
-      "match": {
-        "label": "Verificador de coincidencia entre currículum y oferta",
-        "body": "Pega un currículum y una oferta. Mira la coincidencia, las habilidades que faltan y qué corregir primero."
-      },
-      "ats": {
-        "label": "Verificador ATS de currículum gratis",
-        "body": "Puntúa tu CV frente a una descripción de puesto y mira los términos que te faltan."
-      },
-      "atsGuide": {
-        "label": "Cómo escribir un currículum compatible con ATS",
-        "body": "Formato, palabras clave y los errores que hacen que un CV quede descartado antes de que lo lea una persona."
-      },
-      "examples": {
-        "label": "Ejemplos de currículum para catorce empleos",
-        "body": "Resúmenes resueltos, viñetas de antes y después, y las palabras clave que usan esas ofertas."
-      }
-    }
-  },
   "cta": {
     "title": "¿Listo para dejar de ser ignorado?",
     "body": "Únete a quienes buscan empleo y consiguen entrevistas más rápido con candidaturas adaptadas por IA. Acceso de por vida por ${price}.",

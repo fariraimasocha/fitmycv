@@ -242,45 +242,17 @@
   }
 
   .landing-section {
-    padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 6rem);
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 6rem);
   }
 
   .landing-section-tight {
-    padding: clamp(2.75rem, 6vw, 5rem) clamp(1.25rem, 4vw, 6rem);
+    padding: clamp(2.25rem, 4.5vw, 3.5rem) clamp(1.25rem, 4vw, 6rem);
   }
 
   .landing-container {
     width: 100%;
     max-width: 1180px;
     margin-inline: auto;
-  }
-
-  /* Editorial grid rules. Faint vertical hairlines at the content edges, the
-     way a print grid shows its margins. Drawn as pseudo-elements so they cost
-     no markup and never affect the layout they frame. */
-  .landing-rules {
-    position: relative;
-  }
-
-  .landing-rules::before,
-  .landing-rules::after {
-    content: "";
-    position: absolute;
-    /* -1px so the verticals meet the top border rather than starting just
-       under it and leaving a hairline gap at each corner. */
-    top: -1px;
-    bottom: 0;
-    width: 1px;
-    background: var(--landing-line);
-    pointer-events: none;
-  }
-
-  .landing-rules::before {
-    left: 0;
-  }
-
-  .landing-rules::after {
-    right: 0;
   }
 
   /* Full-bleed dark feature band. Hairlines and chips are white at low alpha
@@ -363,14 +335,13 @@
   /* Third ground. The page alternates cream, muted and tinted so no two
      neighbouring sections share a background, which is what made the lower
      half read as one long undifferentiated block. */
+  /* The ground change separates them, so no border on top of it. */
   .landing-tinted-band {
     background: var(--landing-paper-strong);
-    border-block: 1px solid var(--landing-line);
   }
 
   .landing-muted-band {
     background: var(--landing-paper-soft);
-    border-block: 1px solid var(--landing-line);
   }
 
   .font-serif-display {
@@ -1085,8 +1056,8 @@
   /* Template slider. The slide widths are fixed rather than fractional so the
      document inside can be scaled by an exact factor: the preview is a real
      640px resume shrunk with a transform, and a percentage width would leave
-     the scale guessing. Two slides fit the container at xl, with a sliver of
-     the third showing to say there is more. */
+     the scale guessing. One size everywhere: four slides fit the container
+     on desktop, so the band shows the range without each page filling it. */
   .template-slide {
     flex: 0 0 17.5rem;
     width: 17.5rem;
@@ -1095,28 +1066,6 @@
   .template-slide .template-doc {
     width: 40rem;
     transform: scale(0.4375);
-  }
-
-  @media (min-width: 768px) {
-    .template-slide {
-      flex-basis: 26rem;
-      width: 26rem;
-    }
-
-    .template-slide .template-doc {
-      transform: scale(0.65);
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .template-slide {
-      flex-basis: 32.5rem;
-      width: 32.5rem;
-    }
-
-    .template-slide .template-doc {
-      transform: scale(0.8125);
-    }
   }
 
   .template-doc {

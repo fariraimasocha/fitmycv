@@ -100,7 +100,7 @@ export default function TemplateStrip() {
             the DOM. The arrows only set scrollLeft. */}
         <ul
           ref={trackRef}
-          className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+          className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
         >
           {CARDS.map((template) => (
             <li key={template.id} className="template-slide snap-start">

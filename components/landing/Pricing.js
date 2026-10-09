@@ -9,27 +9,27 @@ export default async function Pricing() {
   return (
     <section
       id="pricing"
-      className="landing-section landing-muted-band flex flex-col items-center gap-10"
+      className="landing-section landing-muted-band flex flex-col gap-10"
     >
-      <div className="landing-container flex flex-col items-center gap-5">
-        <span className="landing-eyebrow">{t("eyebrow")}</span>
-        <h2 className="landing-section-title text-center text-3xl sm:text-4xl lg:text-5xl">
+      <div className="landing-container flex flex-col gap-4">
+        <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
+        <h2 className="landing-section-title text-3xl sm:text-4xl">
           {t("titleLine1")}
           <br />
           <span className="landing-accent-tail">{t("titleLine2")}</span>
         </h2>
-        <p className="landing-copy text-center text-lg">
+        <p className="landing-copy max-w-xl text-lg">
           {t("intro")}
         </p>
       </div>
 
       <div className="landing-container w-full">
         <PricingCards pricing={pricing} tier={tier} />
-        <p className="mx-auto mt-8 max-w-lg text-center text-xs text-[var(--landing-ink-soft)]">
+        <p className="mt-6 max-w-lg text-xs text-[var(--landing-ink-soft)]">
           {t("footnote")}
         </p>
         {tier === "standard" ? (
-          <p className="mx-auto mt-2 max-w-lg text-center text-xs text-[var(--landing-ink-soft)]">
+          <p className="mt-2 max-w-lg text-xs text-[var(--landing-ink-soft)]">
             {t("regionalAvailable")}
           </p>
         ) : null}

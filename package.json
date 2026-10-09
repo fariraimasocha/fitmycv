@@ -10,6 +10,7 @@
     "deploy": "node scripts/deploy-cloudflare.mjs",
     "lint": "eslint",
     "check:ats": "node scripts/check-ats-chars.mjs",
+    "check:ats-companies": "node scripts/check-ats-companies.mjs",
     "check:tools": "node scripts/check-tools.mjs",
     "check:ats-rules": "node scripts/check-ats-rules.mjs",
     "check:applications": "node scripts/check-applications.mjs",

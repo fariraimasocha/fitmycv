@@ -1282,6 +1282,24 @@
   .woot-widget-bubble {
     display: none !important;
   }
+
+  /* Job posting saver: print only the saved posting, not the page around it. */
+  body:has(.job-print-area) * {
+    visibility: hidden;
+  }
+
+  .job-print-area,
+  .job-print-area * {
+    visibility: visible;
+  }
+
+  .job-print-area {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

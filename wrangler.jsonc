@@ -21,6 +21,14 @@
 			"service": "fitmycv"
 		}
 	],
+	// Caps the public job posting saver (/api/tools/job-save) per IP.
+	"ratelimits": [
+		{
+			"name": "JOB_SAVE_LIMITER",
+			"namespace_id": "1001",
+			"simple": { "limit": 5, "period": 60 }
+		}
+	],
 	"observability": {
 		"enabled": true
 	}

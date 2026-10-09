@@ -17,6 +17,8 @@ import DutiesToBullets from "@/components/tools/DutiesToBullets";
 import CvFormatChecker from "@/components/tools/CvFormatChecker";
 import WeakWordsChecker from "@/components/tools/WeakWordsChecker";
 import GapExplainer from "@/components/tools/GapExplainer";
+import JobPostingSaver from "@/components/tools/JobPostingSaver";
+import AtsLookup from "@/components/tools/AtsLookup";
 import JsonLd from "@/components/JsonLd";
 import {
   breadcrumbSchema,
@@ -38,6 +40,8 @@ const TOOL_COMPONENTS = {
   "cv-format": CvFormatChecker,
   "weak-words": WeakWordsChecker,
   gap: GapExplainer,
+  "job-save": JobPostingSaver,
+  "ats-lookup": AtsLookup,
 };
 
 const PRODUCT_SLUGS = new Set([
@@ -54,6 +58,8 @@ const PRODUCT_SLUGS = new Set([
   "cv-format-checker",
   "resume-weak-words-checker",
   "employment-gap-explanation-generator",
+  "save-job-posting-as-pdf",
+  "ats",
 ]);
 
 /**

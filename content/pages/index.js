@@ -31,6 +31,7 @@ import { professionalSummaryGenerator } from "./professional-summary-generator";
 import { linkedinUrlForResume } from "./linkedin-url-for-resume";
 import { jobDescriptionToResumeBullets } from "./job-description-to-resume-bullets";
 import { resumeKeywordsHub } from "./resume-keywords-hub";
+import { saveJobPostingAsPdf } from "./job-tools";
 import {
   cvFormatChecker,
   resumeWeakWordsChecker,
@@ -46,6 +47,7 @@ import {
 
 export const MARKETING_PAGES = [
   resumeJobMatchChecker,
+  saveJobPostingAsPdf,
   missingResumeKeywords,
   resumeBulletRewriter,
   resumeHeadlineGenerator,

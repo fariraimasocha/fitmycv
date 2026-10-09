@@ -2,6 +2,7 @@ import { SITE_URL } from "@/lib/site";
 import { POSTS } from "@/content/blog";
 import { MARKETING_PAGES } from "@/content/pages";
 import { RESUME_EXAMPLES } from "@/content/resume-examples";
+import { ATS_COMPANIES } from "@/content/ats-companies";
 import { TRANSLATED_PATHS, localeAlternates } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 
@@ -25,6 +26,7 @@ export default function sitemap() {
     { path: "/jobs", changeFrequency: "daily", priority: 0.9 },
     { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
     { path: "/resume-examples", changeFrequency: "monthly", priority: 0.8 },
+    { path: "/ats", changeFrequency: "monthly", priority: 0.9 },
     { path: "/cv-examples", changeFrequency: "monthly", priority: 0.7 },
     { path: "/pricing", changeFrequency: "monthly", priority: 0.8 },
     { path: "/support", changeFrequency: "monthly", priority: 0.5 },
@@ -35,6 +37,7 @@ export default function sitemap() {
   // Landing pages carrying a primary keyword rank above the informational ones.
   const highIntent = new Set([
     "resume-job-match-checker",
+    "save-job-posting-as-pdf",
     "cv-format-checker",
     "resume-weak-words-checker",
     "employment-gap-explanation-generator",
@@ -70,7 +73,13 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  const routes = [...staticRoutes, ...marketingRoutes, ...exampleRoutes].map(
+  const atsRoutes = ATS_COMPANIES.map(({ slug }) => ({
+    path: `/ats/${slug}`,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  const routes = [...staticRoutes, ...marketingRoutes, ...exampleRoutes, ...atsRoutes].map(
     ({ path, changeFrequency, priority }) => ({
       url: `${SITE_URL}${path}`,
       lastModified,

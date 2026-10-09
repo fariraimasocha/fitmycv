@@ -7,7 +7,7 @@
 // that hold for every text-extraction parser. Both are useful. Neither is made
 // up. If you add a vendor, keep to those two.
 
-const UNIVERSAL_RULES = [
+export const UNIVERSAL_RULES = [
   "**One column.** A sidebar can interleave with the main column when the file is flattened to text, which scrambles your work history.",
   "**Nothing in the header or footer.** Contact details placed there are frequently dropped. Put your name, email and phone in the body of the first page.",
   "**Standard section headings.** Work Experience, Education, Skills. Not *Where I Have Made An Impact*.",

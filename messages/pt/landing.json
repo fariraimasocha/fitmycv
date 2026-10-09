@@ -10,16 +10,12 @@
   },
   "hero": {
     "videoLabel": "Demonstração do FitMyCV: cole um link de vaga e baixe um currículo adaptado",
-    "checkerTitle": "Ainda não quer se cadastrar? Avalie primeiro seu currículo para uma vaga.",
-    "checkerBody": "Grátis e privado. Seu currículo nunca sai do seu navegador.",
     "checkerCta": "Avaliar meu currículo",
-    "titleLead": "Currículo e carta de apresentação com IA.",
-    "titleMain": "Cole qualquer link de vaga. Receba um currículo <accent>feito para essa vaga</accent>.",
+    "titleMain": "cole qualquer link de vaga. receba um currículo <accent>feito</accent> para essa vaga.",
     "body": "Envie seu currículo uma vez. O FitMyCV lê o anúncio e reescreve seu currículo com as palavras que a vaga pede.",
     "tryFree": "Teste grátis",
     "previewFree": "Veja seu currículo adaptado grátis",
     "priceNote": "${price} uma vez para baixar os PDFs e se candidatar.",
-    "seeHow": "Veja como funciona",
     "soundOn": "Ativar som",
     "soundOff": "Silenciar"
   },
@@ -77,14 +73,6 @@
       "delete": {
         "title": "Apague tudo quando quiser",
         "body": "Remova seu currículo, seus documentos adaptados e sua conta pelo painel quando quiser."
-      },
-      "boards": {
-        "title": "Funciona com os principais sites de vagas",
-        "body": "Cole um link do LinkedIn, Indeed, Glassdoor ou da página de carreiras de uma empresa, sem copiar e colar o texto da vaga."
-      },
-      "pdf": {
-        "title": "Exportação em PDF compatível com ATS",
-        "body": "PDFs de coluna única, baseados em texto e com títulos padrão, para que os leitores de currículo os leiam do jeito que você escreveu."
       },
       "cancel": {
         "title": "Cancele quando quiser",
@@ -154,21 +142,6 @@
       "privacy": "Política de privacidade",
       "terms": "Termos e condições"
     }
-  },
-  "coverLetterDemo": {
-    "badge": "IA escrevendo ao vivo",
-    "titleLine1": "Veja sua carta de apresentação",
-    "titleLine2": "se escrever sozinha",
-    "body": "O FitMyCV lê a descrição da vaga e escreve uma carta de apresentação adaptada e profissional em segundos, com a sua voz.",
-    "complete": "Concluída",
-    "generating": "Gerando…",
-    "tailoredFor": "Adaptada para:",
-    "role": "Engenheiro de software sênior",
-    "at": "na",
-    "letterLabel": "Carta de apresentação sendo gerada",
-    "characters": "{count} / {total} caracteres",
-    "generateMine": "Gerar a minha",
-    "note": "Cada carta é única, escrita para combinar com a vaga, a empresa e a sua trajetória."
   },
   "webview": {
     "title": "Abra no seu navegador para entrar",

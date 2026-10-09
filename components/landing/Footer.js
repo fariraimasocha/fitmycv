@@ -107,7 +107,7 @@ export default function Footer() {
   const t = useTranslations("landing.footer");
 
   return (
-    <footer className="landing-muted-band px-5 py-12 sm:px-10 lg:px-16 xl:px-24">
+    <footer className="zen-footer landing-muted-band px-5 py-16 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container flex flex-col gap-12">
         {/* Top row */}
         <div className="flex flex-col sm:flex-row sm:justify-between w-full gap-10">

@@ -1,19 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import {
-  ArrowUpRightIcon,
   ArrowRightIcon,
-  PlayIcon,
-  FilePdfIcon,
   CheckCircleIcon,
   SpeakerHighIcon,
   SpeakerSlashIcon,
 } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
+import RevealWords from "@/components/landing/RevealWords";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
 function DemoPreview() {
@@ -52,8 +49,8 @@ function DemoPreview() {
   }, []);
 
   return (
-    <div className="landing-rise-4 relative mx-auto w-full">
-      <div className="overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-white shadow-[0_24px_60px_oklch(0.18_0.02_260_/_0.08)]">
+    <div className="zen-frame landing-rise-4 relative mx-auto w-full max-w-5xl rounded-4xl p-2 shadow-2xl sm:rounded-[48px] sm:p-4">
+      <div className="overflow-hidden rounded-3xl border border-[oklch(1_0_0_/_0.1)] bg-[var(--landing-surface)] sm:rounded-[36px]">
         <div className="landing-browser-bar">
           <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
           <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
@@ -79,7 +76,7 @@ function DemoPreview() {
             type="button"
             onClick={toggleSound}
             aria-pressed={!muted}
-            className="absolute bottom-3 start-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-ink)]/80 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-[var(--landing-ink)]"
+            className="absolute bottom-3 start-3 inline-flex min-h-9 items-center gap-1.5 rounded-full bg-[var(--landing-ink)]/80 px-3 py-1.5 text-xs font-semibold text-[var(--landing-on-primary)] backdrop-blur transition hover:bg-[var(--landing-ink)]"
           >
             {muted ? (
               <SpeakerSlashIcon size={14} aria-hidden="true" />
@@ -94,38 +91,6 @@ function DemoPreview() {
   );
 }
 
-function CheckerBar() {
-  const t = useTranslations("landing.hero");
-  return (
-    <Link
-      href="/ats-resume-checker"
-      className="landing-rise-3 group landing-lift relative mx-auto flex w-full max-w-3xl flex-col items-center gap-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 landing-shadow-lift sm:flex-row sm:gap-5"
-    >
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-faint)]">
-        <FilePdfIcon size={24} aria-hidden="true" />
-      </span>
-
-      <span className="min-w-0 flex-1 text-center sm:text-start">
-        <span className="block text-sm font-semibold text-[var(--landing-ink)] sm:text-base">
-          {t("checkerTitle")}
-        </span>
-        <span className="mt-0.5 block text-xs text-[var(--landing-ink-soft)] sm:text-sm">
-          {t("checkerBody")}
-        </span>
-      </span>
-
-      <span className="landing-secondary-btn landing-secondary-btn-sm font-outfit w-full shrink-0 sm:w-auto">
-        {t("checkerCta")}
-        <ArrowRightIcon
-          size={15}
-          aria-hidden="true"
-          className="transition-transform duration-300 group-hover:translate-x-0.5"
-        />
-      </span>
-    </Link>
-  );
-}
-
 export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
   const t = useTranslations("landing.hero");
   const router = useRouter();
@@ -137,84 +102,54 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
   };
 
   return (
-    <section id="hero" className="relative px-5 pb-14 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container relative px-4 pt-12 sm:px-8 sm:pt-20">
-        <div className="grid grid-cols-1 items-center gap-x-10 gap-y-10 lg:grid-cols-12">
-          <div className="landing-rise lg:col-span-6">
-            <p className="mb-4 font-sans text-sm font-semibold text-[var(--landing-ink-faint)]">
-              {t("titleLead")}
-            </p>
-            <h1
-              className="font-outfit font-medium text-[var(--landing-ink)]"
-              style={{
-                fontSize: "clamp(2.25rem, 3.4vw, 3.1rem)",
-                lineHeight: 1.15,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              {t.rich("titleMain", {
-                accent: (chunks) => (
-                  <span className="text-[var(--landing-accent)]">{chunks}</span>
-                ),
-              })}
-            </h1>
+    <section id="hero" className="relative px-5 pb-16 sm:px-10 lg:px-16 xl:px-24">
+      <div className="landing-container flex flex-col items-center pt-16 text-center sm:pt-24">
+        <RevealWords
+          as="h1"
+          onLoad
+          text={t.raw("titleMain")}
+          className="max-w-5xl font-serif-display text-[var(--landing-ink)]"
+          style={{
+            fontSize: "clamp(3.25rem, 8vw, 8rem)",
+            lineHeight: 0.95,
+            letterSpacing: "-0.01em",
+          }}
+        />
 
-            <p className="landing-rise-2 mt-6 text-lg leading-relaxed text-[var(--landing-ink-soft)]">
-              {t("body")}
-            </p>
+        <p className="landing-rise-2 mt-8 max-w-xl text-lg leading-relaxed text-[var(--landing-ink-soft)]">
+          {t("body")}
+        </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-4">
-              <button
-                type="button"
-                onClick={handleTryFree}
-                className="landing-primary-btn group font-outfit text-sm"
-              >
-                {t("tryFree")}
-                <ArrowUpRightIcon
-                  size={16}
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                />
-              </button>
-
-              <span className="flex flex-col gap-1 text-xs leading-5 text-[var(--landing-ink-soft)]">
-                <span className="flex items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)]">
-                  <CheckCircleIcon
-                    size={15}
-                    weight="fill"
-                    aria-hidden="true"
-                    className="text-[var(--landing-success)]"
-                  />
-                  {t("previewFree")}
-                </span>
-                <span>{t("priceNote", { price: lifetimePrice })}</span>
-              </span>
-            </div>
-
-            <NextLink
-              href="#how-it-works"
-              className="tap-target group mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
-            >
-              <PlayIcon size={14} weight="fill" aria-hidden="true" />
-              {t("seeHow")}
-              <ArrowRightIcon
-                size={14}
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
-              />
-            </NextLink>
-          </div>
-
-          <div className="lg:col-span-6">
-            <DemoPreview />
-          </div>
+        <div className="landing-rise-3 mt-8 flex flex-wrap items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={handleTryFree}
+            className="landing-primary-btn group rounded-xl px-7 py-3.5 font-outfit text-sm"
+          >
+            {t("tryFree")}
+            <ArrowRightIcon
+              size={16}
+              aria-hidden="true"
+              className="transition-transform duration-300 group-hover:translate-x-0.5"
+            />
+          </button>
+          <Link
+            href="/ats-resume-checker"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--landing-paper-soft)] px-7 py-3.5 font-outfit text-sm font-semibold text-[var(--landing-ink)] transition-colors hover:bg-[var(--landing-surface-elevated)]"
+          >
+            {t("checkerCta")}
+            <CheckCircleIcon size={16} weight="fill" aria-hidden="true" className="text-[var(--landing-accent)]" />
+          </Link>
         </div>
 
-        <div className="relative mt-12">
-          <CheckerBar />
+        <p className="landing-rise-3 mt-6 text-xs text-[var(--landing-ink-soft)]">
+          {t("previewFree")}. {t("priceNote", { price: lifetimePrice })}
+        </p>
+
+        <div className="mt-16 w-full sm:mt-20">
+          <DemoPreview />
         </div>
       </div>
-
     </section>
   );
 }

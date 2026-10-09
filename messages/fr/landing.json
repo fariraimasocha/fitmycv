@@ -10,16 +10,12 @@
   },
   "hero": {
     "videoLabel": "Démo de FitMyCV : collez le lien d'une offre et téléchargez un CV adapté",
-    "checkerTitle": "Pas prêt à vous inscrire ? Notez d'abord votre CV face à une offre.",
-    "checkerBody": "Gratuit et privé. Votre CV ne quitte jamais votre navigateur.",
     "checkerCta": "Évaluer mon CV",
-    "titleLead": "CV et lettres de motivation par IA.",
-    "titleMain": "Collez le lien d'une offre. Obtenez un CV <accent>conçu pour ce poste</accent>.",
+    "titleMain": "collez le lien d'une offre. obtenez un CV <accent>conçu</accent> pour ce poste.",
     "body": "Importez votre CV une seule fois. FitMyCV lit l'offre et réécrit votre CV avec les mots que ce poste demande.",
     "tryFree": "Essayer gratuitement",
     "previewFree": "Aperçu gratuit de votre CV adapté",
     "priceNote": "${price} une seule fois pour télécharger les PDF et postuler.",
-    "seeHow": "Voir comment ça marche",
     "soundOn": "Activer le son",
     "soundOff": "Couper le son"
   },
@@ -77,14 +73,6 @@
       "delete": {
         "title": "Supprimez tout, à tout moment",
         "body": "Supprimez votre CV, vos documents adaptés et votre compte depuis le tableau de bord quand vous le souhaitez."
-      },
-      "boards": {
-        "title": "Compatible avec les grands sites d'emploi",
-        "body": "Collez un lien LinkedIn, Indeed, Glassdoor ou d'une page carrières d'entreprise, sans copier-coller le texte de l'offre."
-      },
-      "pdf": {
-        "title": "Export PDF compatible ATS",
-        "body": "Des PDF en une colonne, au format texte, avec des titres standards, pour que les logiciels les lisent comme vous les avez écrits."
       },
       "cancel": {
         "title": "Résiliez quand vous voulez",
@@ -154,21 +142,6 @@
       "privacy": "Politique de confidentialité",
       "terms": "Conditions générales"
     }
-  },
-  "coverLetterDemo": {
-    "badge": "L'IA écrit en direct",
-    "titleLine1": "Regardez votre lettre de motivation",
-    "titleLine2": "s'écrire toute seule",
-    "body": "FitMyCV lit la description du poste et rédige en quelques secondes une lettre de motivation professionnelle et adaptée, avec votre style.",
-    "complete": "Terminé",
-    "generating": "Génération…",
-    "tailoredFor": "Adaptée pour :",
-    "role": "Ingénieur logiciel senior",
-    "at": "chez",
-    "letterLabel": "Lettre de motivation en cours de génération",
-    "characters": "{count} / {total} caractères",
-    "generateMine": "Générer la mienne",
-    "note": "Chaque lettre est unique, rédigée pour correspondre au poste, à l'entreprise et à votre parcours."
   },
   "webview": {
     "title": "Ouvrez votre navigateur pour vous connecter",

@@ -87,14 +87,6 @@ export default async function PricingPage({ params }) {
       <Header />
       <main>
         <section className="relative isolate overflow-hidden px-5 pb-12 pt-32 sm:px-10 lg:px-16 xl:px-24">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[480px] bg-[radial-gradient(circle_at_50%_18%,oklch(0.94_0.02_84_/_0.7),transparent_30rem)]"
-          />
           <div className="landing-container flex flex-col items-center text-center">
             <div className="landing-eyebrow">
               <div className="h-2 w-2 shrink-0 rounded-full bg-[var(--landing-primary)]" />

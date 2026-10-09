@@ -10,16 +10,12 @@
   },
   "hero": {
     "videoLabel": "FitMyCV demo: paste a job link and download a tailored CV",
-    "checkerTitle": "Not ready to sign up? Score your CV against a job first.",
-    "checkerBody": "Free and private. Your CV never leaves your browser.",
     "checkerCta": "Score my CV",
-    "titleLead": "AI CV and cover letters.",
-    "titleMain": "Paste any job link. Get a CV <accent>made for that role</accent>.",
+    "titleMain": "paste any job link. get a CV <accent>made</accent> for that role.",
     "body": "Upload your CV once. FitMyCV reads the listing and rewrites your CV in the words that role asks for.",
     "tryFree": "Try for free",
     "previewFree": "Preview your tailored CV free",
     "priceNote": "${price} once to download PDFs and apply.",
-    "seeHow": "See how it works",
     "soundOn": "Turn sound on",
     "soundOff": "Mute"
   },
@@ -77,14 +73,6 @@
       "delete": {
         "title": "Delete everything, any time",
         "body": "Remove your CV, your tailored documents, and your account from the dashboard whenever you want."
-      },
-      "boards": {
-        "title": "Works with the major boards",
-        "body": "Paste a link from LinkedIn, Indeed, Glassdoor, or a company careers page, with no copy-pasting job text."
-      },
-      "pdf": {
-        "title": "ATS-safe PDF export",
-        "body": "Single-column, text-based PDFs with standard headings, so parsers read them the way you wrote them."
       },
       "cancel": {
         "title": "Cancel whenever",
@@ -154,21 +142,6 @@
       "privacy": "Privacy Policy",
       "terms": "Terms & Conditions"
     }
-  },
-  "coverLetterDemo": {
-    "badge": "AI Writing Live",
-    "titleLine1": "Watch your cover letter",
-    "titleLine2": "write itself",
-    "body": "FitMyCV reads the job description and writes a tailored, professional cover letter in seconds, in your voice.",
-    "complete": "Complete",
-    "generating": "Generating…",
-    "tailoredFor": "Tailored for:",
-    "role": "Senior Software Engineer",
-    "at": "at",
-    "letterLabel": "Cover letter being generated",
-    "characters": "{count} / {total} characters",
-    "generateMine": "Generate mine",
-    "note": "Every letter is unique, written to match the exact job, company, and your background."
   },
   "webview": {
     "title": "Open in your browser to sign in",

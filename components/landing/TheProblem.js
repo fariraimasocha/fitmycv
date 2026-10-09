@@ -1,5 +1,6 @@
 import { XCircleIcon, CheckCircleIcon, FileTextIcon } from "@phosphor-icons/react/dist/ssr";
 import { useTranslations } from "next-intl";
+import RevealWords from "@/components/landing/RevealWords";
 
 // ponytail: the dashboard's ArcGauge and PillTrack animate on mount, which is
 // right where they are used (they mount in view when data lands) and wrong
@@ -69,8 +70,8 @@ function Term({ label, found }) {
     <span
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
         found
-          ? "bg-[var(--landing-paper-soft)] text-[var(--landing-ink)]"
-          : "bg-[var(--landing-accent-dark)] text-white"
+          ? "border border-[var(--landing-line)] text-[var(--landing-ink-soft)]"
+          : "border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] text-[var(--landing-accent)]"
       }`}
     >
       {found ? (
@@ -98,16 +99,10 @@ export default function TheProblem() {
         <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
 
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-12 lg:gap-14">
-          <h2
-            className="font-outfit font-medium text-[var(--landing-ink)] lg:col-span-6"
-            style={{
-              fontSize: "clamp(2rem, 3.6vw, 3.4rem)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {t("title")}
-          </h2>
+          <RevealWords
+            text={t("title")}
+            className="font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl lg:col-span-6"
+          />
 
           <p className="text-lg leading-relaxed text-[var(--landing-ink-soft)] lg:col-span-5 lg:col-start-8">
             {t("body")}
@@ -115,19 +110,19 @@ export default function TheProblem() {
         </div>
 
         {/* The failure state, as the product would report it. */}
-        <div className="mt-10 overflow-hidden rounded-2xl bg-white shadow-[var(--landing-shadow-sm)]">
-          <div className="flex items-center gap-3 border-b border-[var(--landing-line)] px-5 py-4">
+        <div className="bezel mt-10">
+          <div className="flex items-center gap-3 px-3.5 pb-2.5 pt-2">
             <FileTextIcon size={18} className="text-[var(--landing-ink)]" aria-hidden="true" />
             <span className="font-outfit text-sm font-bold text-[var(--landing-ink)]">
               {t("cardTitle")}
             </span>
-            <span className="ms-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-accent-dark)] px-3 py-1 text-xs font-semibold text-white">
+            <span className="tag-accent ms-auto">
               <XCircleIcon size={12} weight="fill" aria-hidden="true" />
               {t("filteredOut")}
             </span>
           </div>
 
-          <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-12 lg:gap-12">
+          <div className="bezel-inner grid gap-8 p-6 sm:p-8 lg:grid-cols-12 lg:gap-12">
             <div className="flex items-center gap-5 lg:col-span-4">
               <ScoreArc value={score} label={t("scoreLabel", { value: score })} />
               <div>

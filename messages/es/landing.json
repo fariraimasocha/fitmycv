@@ -10,16 +10,12 @@
   },
   "hero": {
     "videoLabel": "Demo de FitMyCV: pega el enlace de una oferta y descarga un CV adaptado",
-    "checkerTitle": "¿Aún no quieres registrarte? Puntúa primero tu CV frente a una oferta.",
-    "checkerBody": "Gratis y privado. Tu CV nunca sale de tu navegador.",
     "checkerCta": "Puntuar mi CV",
-    "titleLead": "CV y cartas de presentación con IA.",
-    "titleMain": "Pega el enlace de cualquier oferta. Recibe un CV <accent>hecho para ese puesto</accent>.",
+    "titleMain": "pega el enlace de cualquier oferta. recibe un CV <accent>hecho</accent> para ese puesto.",
     "body": "Sube tu CV una sola vez. FitMyCV lee la oferta y reescribe tu CV con las palabras que pide ese puesto.",
     "tryFree": "Pruébalo gratis",
     "previewFree": "Vista previa gratis de tu CV adaptado",
     "priceNote": "${price} un único pago para descargar los PDF y postularte.",
-    "seeHow": "Mira cómo funciona",
     "soundOn": "Activar sonido",
     "soundOff": "Silenciar"
   },
@@ -77,14 +73,6 @@
       "delete": {
         "title": "Borra todo cuando quieras",
         "body": "Elimina tu CV, tus documentos adaptados y tu cuenta desde el panel cuando quieras."
-      },
-      "boards": {
-        "title": "Funciona con los principales portales",
-        "body": "Pega un enlace de LinkedIn, Indeed, Glassdoor o de la página de empleo de una empresa, sin copiar y pegar el texto de la oferta."
-      },
-      "pdf": {
-        "title": "Exportación PDF compatible con ATS",
-        "body": "PDF de una sola columna, basados en texto y con encabezados estándar, para que los lectores automáticos los lean tal como los escribiste."
       },
       "cancel": {
         "title": "Cancela cuando quieras",
@@ -154,21 +142,6 @@
       "privacy": "Política de privacidad",
       "terms": "Términos y condiciones"
     }
-  },
-  "coverLetterDemo": {
-    "badge": "La IA escribe en directo",
-    "titleLine1": "Mira cómo tu carta de presentación",
-    "titleLine2": "se escribe sola",
-    "body": "FitMyCV lee la descripción del puesto y escribe en segundos una carta de presentación profesional y adaptada, con tu voz.",
-    "complete": "Completada",
-    "generating": "Generando…",
-    "tailoredFor": "Adaptada para:",
-    "role": "Ingeniero de software sénior",
-    "at": "en",
-    "letterLabel": "Carta de presentación en proceso de generación",
-    "characters": "{count} / {total} caracteres",
-    "generateMine": "Generar la mía",
-    "note": "Cada carta es única, escrita para encajar con el puesto exacto, la empresa y tu trayectoria."
   },
   "webview": {
     "title": "Abre tu navegador para iniciar sesión",

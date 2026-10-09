@@ -80,7 +80,7 @@ export default function BlogCard({ post, priority = false }) {
             Read article
           </span>
           <CutoutCardAction className="end-6">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] text-[oklch(0.99_0.006_84)]">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--landing-primary-dark)] text-[var(--landing-on-primary)]">
               <ArrowRightIcon size={15} weight="bold" aria-hidden="true" />
             </span>
           </CutoutCardAction>

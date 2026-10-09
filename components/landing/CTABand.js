@@ -3,6 +3,7 @@
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import RevealWords from "@/components/landing/RevealWords";
 
 import AuthLink from "@/components/landing/AuthLink";
 import { PRICING } from "@/lib/pricing";
@@ -13,9 +14,7 @@ export default function CTABand({ lifetimePrice = PRICING.lifetime.price }) {
   return (
     <section className="landing-dark-band landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-reveal landing-container flex flex-col items-center gap-8 py-10">
-        <h2 className="landing-section-title text-center text-3xl text-white sm:text-4xl lg:text-5xl">
-          {t("title")}
-        </h2>
+        <RevealWords text={t("title")} className="text-center font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl" />
         <p className="max-w-xl text-center text-base leading-relaxed text-[var(--landing-ink-inverse-soft)]">
           {t("body", { price: lifetimePrice })}
         </p>

@@ -177,7 +177,7 @@ function Block({ block }) {
 
   if (block.callout) {
     return (
-      <aside className="mt-8 flex gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.22)] bg-[oklch(0.92_0.06_174_/_0.35)] p-6">
+      <aside className="mt-8 flex gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6">
         <LightbulbIcon
           size={22}
           weight="fill"
@@ -251,7 +251,7 @@ function Block({ block }) {
       <div className="mt-8 flex flex-col gap-4">
         {block.steps.map(({ title, body }, i) => (
           <div key={title} className="landing-card flex gap-5 rounded-2xl p-6">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-dark)] font-outfit text-sm font-extrabold text-[oklch(0.99_0.006_84)]">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--landing-primary-dark)] font-outfit text-sm font-extrabold text-[var(--landing-on-primary)]">
               {i + 1}
             </span>
             <div>
@@ -271,7 +271,7 @@ function Block({ block }) {
   if (block.cta) {
     const { title, body, href, label } = block.cta;
     return (
-      <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[linear-gradient(135deg,oklch(0.92_0.06_174_/_0.5),oklch(0.997_0.006_84))] p-7 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             {title}

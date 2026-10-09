@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import RevealWords from "@/components/landing/RevealWords";
 import { Link } from "@/i18n/navigation";
 import {
   LockKeyIcon,
@@ -33,10 +34,8 @@ export default function TrustSignals() {
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-reveal landing-container">
         {/* Left-aligned, matching the hero's type system. */}
-        <div className="max-w-2xl">
-          <h2 className="landing-section-title text-2xl sm:text-3xl">
-            {t("title")}
-          </h2>
+        <div className="mx-auto max-w-2xl text-center">
+          <RevealWords text={t("title")} className="font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl" />
           <p className="landing-copy mt-4 text-base">
             {t("body")}
           </p>

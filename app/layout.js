@@ -1,4 +1,4 @@
-import { Geist_Mono, DM_Sans, Outfit, Instrument_Serif } from "next/font/google";
+import { Geist_Mono, DM_Sans, Outfit, Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
@@ -28,6 +28,12 @@ const outfit = Outfit({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+// Marketing pages only, through .landing-dark in globals.css.
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
 });
 
@@ -110,7 +116,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang={locale} dir={RTL_LOCALES.includes(locale) ? "rtl" : "ltr"}>
       <body
-        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${instrumentSerif.variable} ${bricolage.variable} antialiased`}
       >
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />

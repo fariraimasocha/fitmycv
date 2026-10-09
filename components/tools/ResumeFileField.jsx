@@ -160,7 +160,7 @@ export default function ResumeFileField({
           onDrop={handleDrop}
           className={`flex min-h-62 cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed px-4 py-8 text-center transition-colors ${
             dragActive
-              ? "border-[var(--landing-primary)] bg-[oklch(0.92_0.06_174_/_0.35)]"
+              ? "border-[var(--landing-primary)] bg-[var(--landing-accent-soft)]"
               : "border-[var(--landing-line)] bg-[var(--landing-paper)] hover:border-[var(--landing-primary)]"
           } ${reading ? "pointer-events-none opacity-70" : ""}`}
         >

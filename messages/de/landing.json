@@ -10,16 +10,12 @@
   },
   "hero": {
     "videoLabel": "FitMyCV-Demo: Stellenlink einfügen und einen angepassten Lebenslauf herunterladen",
-    "checkerTitle": "Noch keine Lust auf ein Konto? Bewerte deinen Lebenslauf zuerst gegen eine Stelle.",
-    "checkerBody": "Kostenlos und privat. Dein Lebenslauf verlässt nie deinen Browser.",
     "checkerCta": "Lebenslauf bewerten",
-    "titleLead": "Lebenslauf und Anschreiben mit KI.",
-    "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, <accent>der genau zu dieser Stelle passt</accent>.",
+    "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, der <accent>genau</accent> zu dieser Stelle passt.",
     "body": "Lade deinen Lebenslauf einmal hoch. FitMyCV liest die Anzeige und schreibt deinen Lebenslauf in den Worten um, die diese Stelle verlangt.",
     "tryFree": "Kostenlos testen",
     "previewFree": "Vorschau deines angepassten Lebenslaufs kostenlos",
     "priceNote": "Einmalig ${price}, um PDFs herunterzuladen und dich zu bewerben.",
-    "seeHow": "So funktioniert es",
     "soundOn": "Ton einschalten",
     "soundOff": "Stumm schalten"
   },
@@ -77,14 +73,6 @@
       "delete": {
         "title": "Alles löschen, jederzeit",
         "body": "Entferne deinen Lebenslauf, deine angepassten Dokumente und dein Konto im Dashboard, wann immer du willst."
-      },
-      "boards": {
-        "title": "Funktioniert mit den großen Jobbörsen",
-        "body": "Füge einen Link von LinkedIn, Indeed, Glassdoor oder einer Karriereseite ein, ohne den Anzeigentext zu kopieren."
-      },
-      "pdf": {
-        "title": "ATS-sicherer PDF-Export",
-        "body": "Einspaltige, textbasierte PDFs mit Standardüberschriften, damit Bewerbungssoftware sie so liest, wie du sie geschrieben hast."
       },
       "cancel": {
         "title": "Jederzeit kündbar",
@@ -154,21 +142,6 @@
       "privacy": "Datenschutzerklärung",
       "terms": "AGB"
     }
-  },
-  "coverLetterDemo": {
-    "badge": "KI schreibt live",
-    "titleLine1": "Sieh zu, wie sich dein Anschreiben",
-    "titleLine2": "selbst schreibt",
-    "body": "FitMyCV liest die Stellenbeschreibung und schreibt in Sekunden ein angepasstes, professionelles Anschreiben in deinem Ton.",
-    "complete": "Fertig",
-    "generating": "Wird erstellt…",
-    "tailoredFor": "Angepasst für:",
-    "role": "Senior Software Engineer",
-    "at": "bei",
-    "letterLabel": "Anschreiben wird erstellt",
-    "characters": "{count} / {total} Zeichen",
-    "generateMine": "Meins erstellen",
-    "note": "Jedes Anschreiben ist einzigartig und passt genau zur Stelle, zum Unternehmen und zu deinem Werdegang."
   },
   "webview": {
     "title": "Öffne deinen Browser, um dich anzumelden",

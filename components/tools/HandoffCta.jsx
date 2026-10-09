@@ -36,7 +36,7 @@ export default function HandoffCta({ title, body, label, source, cvText = "" }) 
 /** The closing card shared by the free tools. */
 export function CtaCard({ title, body, label, onClick }) {
   return (
-    <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">{title}</p>
         <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">{body}</p>

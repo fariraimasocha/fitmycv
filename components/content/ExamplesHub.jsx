@@ -34,14 +34,6 @@ export default function ExamplesHub({ hub }) {
       <Header />
       <main dir="ltr">
         <section className="relative isolate overflow-hidden px-5 pb-14 pt-32 sm:px-10 lg:px-16 xl:px-24">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_50%_16%,oklch(0.92_0.06_174_/_0.68),transparent_32rem)]"
-          />
           <div className="landing-container flex flex-col items-center text-center">
             <nav
               aria-label="Breadcrumb"

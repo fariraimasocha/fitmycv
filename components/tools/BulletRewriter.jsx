@@ -480,7 +480,7 @@ const EXAMPLE_BULLET = "Managed customer support tickets.";
 const EXAMPLE_JOB = `Customer Support Specialist. You will own the support queue, resolve customer tickets across email and chat, and keep first response time under two hours. We look for careful troubleshooting, clear written communication, and hands-on time with Zendesk. You will escalate bugs to the product team and keep the help centre documentation current. Support in a SaaS company is preferred.`;
 
 const SLOT_CLASS =
-  "rounded-md border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.55)] px-1.5 py-0.5 font-bold text-[var(--landing-primary-dark)]";
+  "rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-1.5 py-0.5 font-bold text-[var(--landing-primary-dark)]";
 
 /** Renders [slots] as obvious placeholders rather than text to paste as is. */
 function SlottedText({ text }) {
@@ -720,7 +720,7 @@ export default function BulletRewriter() {
             ))}
           </ul>
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
                 One bullet down. What about the rest?

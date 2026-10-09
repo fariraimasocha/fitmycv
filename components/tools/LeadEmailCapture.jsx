@@ -82,7 +82,7 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
           placeholder="you@email.com"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="h-control min-w-0 rounded-lg border border-[var(--landing-line)] bg-white px-4 text-sm sm:flex-1 text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
+          className="h-control min-w-0 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 text-sm sm:flex-1 text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
         />
         <button
           type="submit"

@@ -381,7 +381,7 @@ Assist with onboarding new customers
 Monitor customer satisfaction scores and prepare weekly reports`;
 
 const SLOT_CLASS =
-  "rounded-md border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.55)] px-1.5 py-0.5 font-bold text-[var(--landing-primary-dark)]";
+  "rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-1.5 py-0.5 font-bold text-[var(--landing-primary-dark)]";
 
 /** Renders [slots] as obvious placeholders rather than text to paste as is. */
 function SlottedText({ text }) {
@@ -556,7 +556,7 @@ export default function DutiesToBullets() {
             ))}
           </ol>
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[oklch(0.47_0.125_177_/_0.25)] bg-[oklch(0.92_0.06_174_/_0.4)] p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
                 Applying for a new job with these?

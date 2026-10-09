@@ -25,7 +25,7 @@ export default function Error({ error, reset }) {
   }, [error]);
 
   return (
-    <>
+    <div className="landing-root min-h-screen">
       <Header />
       <main className="flex min-h-[60vh] flex-col items-center justify-center px-5 py-24 text-center">
         <div className="landing-container flex flex-col items-center">
@@ -58,6 +58,6 @@ export default function Error({ error, reset }) {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
+import RevealWords from "@/components/landing/RevealWords";
 import { Link } from "@/i18n/navigation";
 import { ArrowRightIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 
@@ -67,12 +68,10 @@ export default function TemplateStrip() {
   return (
     <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-reveal landing-container">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col items-center gap-6 text-center">
           <div className="max-w-2xl">
             <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
-            <h2 className="landing-section-title mt-3 text-2xl sm:text-3xl">
-              {t("title")}
-            </h2>
+            <RevealWords text={t("title")} className="mt-3 font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl" />
             <p className="landing-copy mt-4 text-base">
               {t("body")}
             </p>

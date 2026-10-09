@@ -120,7 +120,7 @@ const Navbar1 = () => {
           <BrandLogo size="md" priority wordmarkClassName="text-xl" />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:gap-7 md:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {navLinks.map((item) => (
             <Link
               key={item.key}
@@ -168,7 +168,7 @@ const Navbar1 = () => {
           </DropdownMenu>
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <LanguagePicker />
           {session ? (
             <DropdownMenu>
@@ -176,7 +176,7 @@ const Navbar1 = () => {
                 <button type="button" className="focus:outline-none">
                   <Avatar className="h-8 w-8 cursor-pointer">
                     <AvatarImage src={session.user?.image} alt={session.user?.name} />
-                    <AvatarFallback className="bg-[var(--landing-primary)] text-xs font-semibold text-white">
+                    <AvatarFallback className="bg-[var(--landing-primary)] text-xs font-semibold text-[var(--landing-on-primary)]">
                       {getInitials(session.user?.name)}
                     </AvatarFallback>
                   </Avatar>
@@ -228,7 +228,7 @@ const Navbar1 = () => {
 
         <button
           type="button"
-          className="inline-flex size-control items-center justify-center rounded-lg text-[var(--landing-ink)] md:hidden"
+          className="inline-flex size-control items-center justify-center rounded-lg text-[var(--landing-ink)] lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? t("closeMenu") : t("openMenu")}
         >
@@ -241,7 +241,7 @@ const Navbar1 = () => {
           closed. The open state fades in with CSS; dropping framer-motion here
           takes ~44KB of JavaScript off every page that shows the header. */}
       {isOpen && (
-        <div className="landing-rise max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 md:hidden">
+        <div className="landing-rise max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 lg:hidden">
           <div className="flex flex-col gap-4">
             {navLinks.map((item) => (
               <Link

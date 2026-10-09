@@ -120,7 +120,7 @@ export default function PricingCards({
         className={`grid w-full gap-4 ${
           compact
             ? "grid-cols-1 sm:grid-cols-2"
-            : "order-2 grid-cols-1 md:order-1 md:grid-cols-2"
+            : "grid-cols-1 md:grid-cols-2"
         }`}
       >
         {plans.map((plan) => {
@@ -128,71 +128,69 @@ export default function PricingCards({
           return (
             <div
               key={plan.id}
-              className={`relative flex flex-col gap-5 rounded-2xl border p-6 sm:p-7 ${
-                highlighted
-                  ? "border-[var(--landing-line)] border-t-4 border-t-[var(--landing-accent)] bg-white shadow-[var(--landing-shadow-sm)]"
-                  : "border-[var(--landing-line)] bg-[var(--landing-surface)]"
-              }`}
+              className={`bezel flex flex-col ${highlighted ? "bezel-accent" : ""}`}
             >
-              {plan.badge && (
-                <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 py-1 text-xs font-semibold text-[var(--landing-ink)]">
-                  {plan.badge}
-                </span>
-              )}
+              <div className="bezel-inner flex flex-1 flex-col gap-8 p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex flex-col gap-1">
+                    <span className="font-outfit text-base font-semibold text-[var(--landing-ink)]">
+                      {plan.label}
+                    </span>
+                    <span className="text-sm text-[var(--landing-ink-soft)]">
+                      {plan.subline}
+                    </span>
+                  </div>
+                  {plan.badge ? <span className="tag-accent shrink-0">{plan.badge}</span> : null}
+                </div>
 
-              <div className="flex flex-col gap-1">
-                <span className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                  {plan.label}
-                </span>
-                <span className="text-sm text-[var(--landing-ink-soft)]">
-                  {plan.subline}
-                </span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="font-outfit text-5xl font-semibold leading-none tracking-tight tabular-nums text-[var(--landing-ink)]">
+                    ${plan.price}
+                  </span>
+                  <span className="text-sm text-[var(--landing-ink-soft)]">
+                    {plan.suffix}
+                  </span>
+                </div>
               </div>
 
-              <div className="flex items-end gap-1">
-                <span className="font-outfit text-4xl font-extrabold leading-none text-[var(--landing-ink)]">
-                  ${plan.price}
-                </span>
-                <span className="pb-1 text-sm font-semibold text-[var(--landing-ink-soft)]">
-                  {plan.suffix}
-                </span>
+              <div className="p-1.5 pt-2">
+                <button
+                  type="button"
+                  onClick={() => handleCheckout(plan.id)}
+                  disabled={Boolean(pendingPlan)}
+                  aria-busy={pendingPlan === plan.id}
+                  className={`w-full cursor-pointer rounded-xl font-outfit text-sm disabled:cursor-wait disabled:opacity-60 ${
+                    highlighted ? "landing-primary-btn" : "landing-secondary-btn"
+                  }`}
+                >
+                  {plan.cta}
+                </button>
               </div>
-
-              <button
-                type="button"
-                onClick={() => handleCheckout(plan.id)}
-                disabled={Boolean(pendingPlan)}
-                aria-busy={pendingPlan === plan.id}
-                className={
-                  highlighted
-                    ? "landing-primary-btn w-full cursor-pointer font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
-                    : "landing-secondary-btn w-full cursor-pointer font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
-                }
-              >
-                {plan.cta}
-              </button>
             </div>
           );
         })}
       </div>
 
       {!compact && (
-        <div className="order-1 w-full rounded-2xl bg-[var(--landing-surface)] p-6 sm:p-7 md:order-2">
-          <h3 className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+        <div className="bezel w-full">
+          <h3 className="flex items-center gap-1.5 px-4 pb-3 pt-2.5 font-outfit text-sm font-semibold text-[var(--landing-ink)]">
             {t("includesTitle")}
+            <span className="text-[var(--landing-accent)]">[{features.length}]</span>
           </h3>
-          <ul className="mt-5 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
+          <ul className="bezel-inner grid gap-x-8 gap-y-3 p-6 sm:grid-cols-2">
             {features.map((feature) => (
               <li
                 key={feature}
-                className="flex items-start gap-2.5 text-sm text-[var(--landing-ink-soft)]"
+                className="flex items-start gap-3 text-sm text-[var(--landing-ink-soft)]"
               >
-                <CheckIcon
-                  size={14}
-                  weight="bold"
-                  className="mt-0.5 shrink-0 text-[var(--landing-primary)]"
-                  aria-hidden="true"
-                />
+                <span className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)]">
+                  <CheckIcon
+                    size={10}
+                    weight="bold"
+                    className="text-[var(--landing-accent)]"
+                    aria-hidden="true"
+                  />
+                </span>
                 {feature}
               </li>
             ))}

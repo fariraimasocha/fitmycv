@@ -10,16 +10,12 @@
   },
   "hero": {
     "videoLabel": "FitMyCV 演示：粘贴职位链接，下载定制简历",
-    "checkerTitle": "还不想注册？先拿一个职位给你的简历打分。",
-    "checkerBody": "免费且私密。你的简历不会离开你的浏览器。",
     "checkerCta": "给我的简历评分",
-    "titleLead": "AI 简历和求职信。",
     "titleMain": "粘贴任意职位链接，获得一份<accent>为该职位打造</accent>的简历。",
     "body": "只需上传一次简历。FitMyCV 会读取职位信息，并用该职位要求的措辞改写你的简历。",
     "tryFree": "免费试用",
     "previewFree": "免费预览你的定制简历",
     "priceNote": "一次性支付 ${price}，即可下载 PDF 并投递。",
-    "seeHow": "了解使用方法",
     "soundOn": "打开声音",
     "soundOff": "静音"
   },
@@ -77,14 +73,6 @@
       "delete": {
         "title": "随时删除所有内容",
         "body": "你可以随时在控制台中删除你的简历、定制文件和账户。"
-      },
-      "boards": {
-        "title": "支持主流招聘网站",
-        "body": "粘贴来自 LinkedIn、Indeed、Glassdoor 或公司招聘页面的链接，无需复制粘贴职位文本。"
-      },
-      "pdf": {
-        "title": "适配 ATS 的 PDF 导出",
-        "body": "单栏、基于文本、使用标准标题的 PDF，让解析器按你写的方式读取。"
       },
       "cancel": {
         "title": "随时取消",
@@ -154,21 +142,6 @@
       "privacy": "隐私政策",
       "terms": "条款与条件"
     }
-  },
-  "coverLetterDemo": {
-    "badge": "AI 实时撰写",
-    "titleLine1": "看着你的求职信",
-    "titleLine2": "自动写成",
-    "body": "FitMyCV 会读取职位描述，几秒内用你的口吻写出一封专业的定制求职信。",
-    "complete": "完成",
-    "generating": "正在生成…",
-    "tailoredFor": "定制职位：",
-    "role": "高级软件工程师",
-    "at": "就职于",
-    "letterLabel": "正在生成的求职信",
-    "characters": "{count} / {total} 个字符",
-    "generateMine": "生成我的求职信",
-    "note": "每封求职信都独一无二，按照具体的职位、公司和你的背景撰写。"
   },
   "webview": {
     "title": "在浏览器中打开以登录",

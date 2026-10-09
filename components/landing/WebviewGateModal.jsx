@@ -75,8 +75,8 @@ export default function WebviewGateModal({
       <div
         className={
           fullScreen
-            ? "max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-white p-6 shadow-[var(--landing-shadow-sm)] sm:p-7"
-            : "max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-white p-6 shadow-[var(--landing-shadow-sm)]"
+            ? "max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 shadow-[var(--landing-shadow-sm)] sm:p-7"
+            : "max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 shadow-[var(--landing-shadow-sm)]"
         }
       >
         <div className="flex items-start justify-between gap-4">
@@ -158,7 +158,7 @@ export default function WebviewGateModal({
               </li>
             </ol>
           )}
-          <p className="mt-3 break-all rounded-lg bg-white px-3 py-2 text-xs text-[var(--landing-ink-soft)]">
+          <p className="mt-3 break-all rounded-lg bg-[var(--landing-surface)] px-3 py-2 text-xs text-[var(--landing-ink-soft)]">
             {urlToShare}
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function WebviewGateModal({
           <button
             type="button"
             onClick={handleContinueEmail}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--landing-line)] bg-white px-4 py-3 text-sm font-semibold text-[var(--landing-ink)] hover:bg-[var(--landing-paper-soft)]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 py-3 text-sm font-semibold text-[var(--landing-ink)] hover:bg-[var(--landing-paper-soft)]"
           >
             <EnvelopeSimpleIcon size={18} />
             {t("continueEmail")}

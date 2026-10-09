@@ -191,7 +191,7 @@ export default function AuthPage() {
         placeholder={t("emailPlaceholder")}
         value={email}
         onChange={(event) => setEmail(event.target.value)}
-        className="w-full rounded-lg border border-[var(--landing-line)] bg-white px-4 py-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
+        className="w-full rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 py-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]"
       />
       <motion.button
         type="submit"
@@ -222,7 +222,7 @@ export default function AuthPage() {
   return (
     <div className="landing-root flex min-h-screen items-center justify-center px-4">
       <motion.div
-        className="relative flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl border border-[var(--landing-line)] bg-white p-5 shadow-[var(--landing-shadow-sm)] sm:p-8"
+        className="relative flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 shadow-[var(--landing-shadow-sm)] sm:p-8"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
@@ -283,7 +283,7 @@ export default function AuthPage() {
               <button
                 type="button"
                 onClick={handleCopyLink}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-semibold text-[var(--landing-ink)] shadow-sm ring-1 ring-amber-200 hover:bg-amber-50"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--landing-surface)] px-4 py-2.5 text-sm font-semibold text-[var(--landing-ink)] shadow-sm ring-1 ring-amber-200 hover:bg-amber-50"
               >
                 <CopyIcon size={16} />
                 {t("webview.copyLink")}
@@ -292,7 +292,7 @@ export default function AuthPage() {
                 <button
                   type="button"
                   onClick={handleOpenExternal}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--landing-ink)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-black"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--landing-ink)] px-4 py-2.5 text-sm font-semibold text-[var(--landing-on-primary)] hover:bg-black"
                 >
                   <ArrowSquareOutIcon size={16} />
                   {t("webview.openChrome")}

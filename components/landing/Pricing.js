@@ -1,4 +1,5 @@
 import PricingCards from "@/components/pricing/PricingCards";
+import RevealWords from "@/components/landing/RevealWords";
 import { getTranslations } from "next-intl/server";
 import { getServerPricing } from "@/lib/server-pricing";
 
@@ -13,11 +14,10 @@ export default async function Pricing() {
     >
       <div className="landing-container flex flex-col gap-4">
         <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
-        <h2 className="landing-section-title text-3xl sm:text-4xl">
-          {t("titleLine1")}
-          <br />
-          <span className="landing-accent-tail">{t("titleLine2")}</span>
-        </h2>
+        <RevealWords
+          text={`${t("titleLine1")} <accent>${t("titleLine2")}</accent>`}
+          className="max-w-3xl font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl"
+        />
         <p className="landing-copy max-w-xl text-lg">
           {t("intro")}
         </p>

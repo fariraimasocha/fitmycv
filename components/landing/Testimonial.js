@@ -33,16 +33,9 @@ export default function Testimonial() {
         </h2>
 
         <figure className="flex w-full flex-col items-center gap-8">
-          {/* Quote with highlight */}
-          <div className="relative w-full">
-            <div
-              className="hidden sm:block absolute bg-[oklch(0.9_0.075_68)] rounded h-[30px] w-[45%] end-0 top-[3px]"
-              aria-hidden="true"
-            />
-            <blockquote className="relative z-10 w-full text-center font-serif-display text-xl leading-relaxed text-[var(--landing-ink)] sm:text-2xl">
-              {quote}
-            </blockquote>
-          </div>
+          <blockquote className="w-full text-center font-serif-display text-xl leading-relaxed text-[var(--landing-ink)] sm:text-2xl">
+            {quote}
+          </blockquote>
 
           <figcaption className="flex flex-row items-center gap-4">
             <Image

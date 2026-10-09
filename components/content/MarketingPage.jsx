@@ -96,18 +96,6 @@ export default function MarketingPage({ page, children, hideHero = false }) {
             hideHero ? "pb-4 pt-24" : "pb-10 pt-24 sm:pb-16 sm:pt-32"
           }`}
         >
-          {hideHero ? null : (
-            <>
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,oklch(0.997_0.006_84)_0%,oklch(0.994_0.008_84)_55%,transparent_100%)]"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_50%_16%,oklch(0.94_0.02_84_/_0.7),transparent_32rem)]"
-              />
-            </>
-          )}
           <div className="landing-container flex flex-col items-center text-center">
             <nav
               aria-label="Breadcrumb"

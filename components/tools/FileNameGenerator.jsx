@@ -11,67 +11,13 @@ import { useEffect, useMemo, useState } from "react";
 import { CheckIcon, CopyIcon, WarningIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
 
-// Keep the whole name, extension included, under 100 characters.
-const MAX_USER_LENGTH = 84;
+import { buildFileName, exceedsLimit } from "@/utils/pdf-filename";
 
 // Characters that Windows, macOS or Linux refuse inside a file name.
 const ILLEGAL = /[\\/:*?"<>|]/;
 const VERSION_WORDS = /\b(final|draft|updated|revised|latest|copy|version|v\d+)\b/i;
 const TYPED_EXTENSION = /\.(pdf|docx?|txt|rtf|pages|odt)\b/i;
 const ACCENTED = /[\u00c0-\u024f]/;
-
-const trimEdges = (value) => value.replace(/^[-_.]+|[-_.]+$/g, "");
-
-/**
- * Turns one field into a safe file name part. Capitalisation is left alone:
- * people spell their own names, and title casing over them gets it wrong.
- */
-export function sanitizePart(value, separator) {
-  return trimEdges(
-    String(value ?? "")
-      .normalize("NFKD") // "e" with an acute accent becomes "e" plus a mark
-      .replace(/[\u0300-\u036f]/g, "") // drop the mark, keep the letter
-      .replace(/[\\/:*?"<>|]/g, " ") // characters that break uploads
-      .replace(/[\u0000-\u001f\u007f]/g, " ") // control characters
-      .replace(/[^\p{L}\p{N}\s._-]/gu, " ") // punctuation, symbols, emoji
-      .replace(/\s+/g, separator) // whitespace runs collapse to one separator
-      .replace(/[-_]{2,}/g, separator)
-  );
-}
-
-/**
- * Joins the user's parts, caps the length, and always ends with Resume.pdf so
- * the file says what it is even when everything else is stripped away.
- */
-export function buildFileName(parts, separator = "-") {
-  let stem = parts
-    .map((part) => sanitizePart(part, separator))
-    .filter(Boolean)
-    .join(separator)
-    .replace(/[-_]{2,}/g, separator)
-    .replace(/\.{2,}/g, ".");
-
-  if (stem.length > MAX_USER_LENGTH) {
-    // ponytail: a very long name is cut at the last separator inside the cap,
-    // and mid word when there is no separator to cut at.
-    const cut = stem.slice(0, MAX_USER_LENGTH);
-    const lastSeparator = cut.lastIndexOf(separator);
-    stem = lastSeparator > 0 ? cut.slice(0, lastSeparator) : cut;
-  }
-
-  stem = trimEdges(stem);
-  return stem ? `${stem}${separator}Resume.pdf` : "Resume.pdf";
-}
-
-/** True when the parts are long enough that buildFileName has to cut them. */
-export function exceedsLimit(parts, separator = "-") {
-  return (
-    parts
-      .map((part) => sanitizePart(part, separator))
-      .filter(Boolean)
-      .join(separator).length > MAX_USER_LENGTH
-  );
-}
 
 /**
  * The live warnings. Each one is a thing the user typed that they can fix,

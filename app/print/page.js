@@ -84,7 +84,8 @@ export default function PrintPage() {
     if (status !== "ready" || !payload) return;
 
     const prevTitle = document.title;
-    document.title = (payload.filename || "Document.pdf").replace(/\.pdf$/i, "");
+    const fileTitle = (payload.filename || "Document.pdf").replace(/\.pdf$/i, "");
+    document.title = fileTitle;
 
     let cancelled = false;
     let raf1;
@@ -94,7 +95,11 @@ export default function PrintPage() {
       if (cancelled) return;
       raf1 = requestAnimationFrame(() => {
         raf2 = requestAnimationFrame(() => {
-          if (!cancelled) window.print();
+          if (cancelled) return;
+          // The browser names the PDF after document.title. Next can apply the
+          // site title after the first assignment above, so set it again here.
+          document.title = fileTitle;
+          window.print();
         });
       });
     });

@@ -252,7 +252,7 @@ export default function TailoredCVsPage() {
           skills: data.skills,
         },
         template: DEFAULT_TEMPLATE,
-        filename: buildPdfFilename(data.basics?.name, "cv"),
+        filename: buildPdfFilename(data.basics?.name, "cv", cv.jobTitle),
       });
       trackEvent("pdf_downloaded", {
         document_type: "cv",

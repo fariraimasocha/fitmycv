@@ -505,7 +505,7 @@ function Tailor() {
         data: previewData,
         template: selectedTemplate,
         style: selectedTemplateStyle,
-        filename: buildPdfFilename(previewData.basics?.name, "cv"),
+        filename: buildPdfFilename(previewData.basics?.name, "cv", jobData?.title),
       });
     } else {
       printDocument({
@@ -518,7 +518,7 @@ function Tailor() {
           jobTitle: jobData?.title,
           jobCompany: jobData?.company,
         },
-        filename: buildPdfFilename(tailorResult.tailoredCV.basics?.name, "cover-letter"),
+        filename: buildPdfFilename(tailorResult.tailoredCV.basics?.name, "cover-letter", jobData?.title),
       });
     }
     trackEvent("pdf_downloaded", {

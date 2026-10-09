@@ -74,9 +74,24 @@ const check = (name, fn) => {
   const end = source.indexOf("// ---- end of pure logic");
   assert.ok(end > 0, "FileNameGenerator: pure logic marker missing");
   const body = source.slice(0, end).replace(/^import[^\n]*\n/gm, "");
-  const { sanitizePart, buildFileName, findIssues } = await import(
+  const { findIssues } = await import(
     `data:text/javascript,${encodeURIComponent(body)}`
   );
+  const { sanitizePart, buildFileName, buildPdfFilename } = await import(
+    "../utils/pdf-filename.js"
+  );
+
+  check("names downloads after the person and the role", () => {
+    assert.equal(
+      buildPdfFilename("Farirai Masocha", "cv", "Software Engineer"),
+      "Farirai-Masocha-Software-Engineer-Resume.pdf"
+    );
+    assert.equal(
+      buildPdfFilename("Farirai Masocha", "cover-letter", "Software Engineer"),
+      "Farirai-Masocha-Software-Engineer-Cover-Letter.pdf"
+    );
+    assert.equal(buildPdfFilename("", "cv"), "Resume.pdf");
+  });
 
   check("strips characters that break uploads", () => {
     assert.equal(

@@ -650,7 +650,9 @@ function Tailor() {
         .catch(() => {})
         .finally(() => setInterviewPrepLoading(false));
     }
-    if (tabId === "why" && !whyThisRole && !whyLoading && tailorResult) {
+    // Free users get a 402 here, so opening the tab popped the paywall. They
+    // see a locked Write button instead and choose to click it.
+    if (tabId === "why" && session?.user?.isPremium && !whyThisRole && !whyLoading && tailorResult) {
       generateWhyThisRole();
     }
   };
@@ -1155,6 +1157,7 @@ function Tailor() {
               jobData={jobData}
               preScore={preAtsScore?.score}
               onApplyFix={handleApplyFix}
+              locked={!isPremium}
               applyingFix={applyingFix}
               appliedFixes={appliedFixes}
             />
@@ -1164,6 +1167,7 @@ function Tailor() {
               answer={whyThisRole?.answer ?? ""}
               question={whyThisRole?.question}
               isLoading={whyLoading}
+              locked={!isPremium}
               onGenerate={generateWhyThisRole}
               onSave={
                 savedId

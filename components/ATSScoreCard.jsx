@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import {
   ArrowRightIcon,
   CheckCircleIcon,
+  CrownIcon,
   MagicWandIcon,
   SparkleIcon,
   SpinnerGapIcon,
@@ -266,7 +267,7 @@ function JdCoverage({ coverage }) {
   );
 }
 
-function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes }) {
+function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes, locked }) {
   const t = useTranslations("tailor.ats");
   return (
     <div className={cn("space-y-3 p-3", CARD)}>
@@ -299,7 +300,7 @@ function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes }) {
                     aria-label={t("fixes.applyAria", { fix: rec })}
                     onClick={() => onApplyFix(rec)}
                   >
-                    {applying ? <SpinnerGapIcon className="animate-spin" /> : <MagicWandIcon />}
+                    {applying ? <SpinnerGapIcon className="animate-spin" /> : locked ? <CrownIcon aria-hidden="true" /> : <MagicWandIcon />}
                     {applying ? t("fixes.applying") : t("fixes.apply")}
                   </Button>
                 )
@@ -442,6 +443,7 @@ export default function ATSScoreCard({
   onApplyFix,
   applyingFix = null,
   appliedFixes = [],
+  locked = false,
 }) {
   const t = useTranslations("tailor.ats");
   if (isLoading) {
@@ -483,6 +485,7 @@ export default function ATSScoreCard({
           onApplyFix={onApplyFix}
           applyingFix={applyingFix}
           appliedFixes={appliedFixes}
+          locked={locked}
         />
       )}
       <AiReviewCard cv={cv} jobData={jobData} findings={findings} />

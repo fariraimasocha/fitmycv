@@ -7,6 +7,7 @@ import {
   ChatCenteredTextIcon,
   CopyIcon,
   ArrowsClockwiseIcon,
+  CrownIcon,
   FloppyDiskIcon,
   SpinnerGapIcon,
 } from "@phosphor-icons/react";
@@ -22,6 +23,7 @@ export default function WhyThisRoleCard({
   onGenerate,
   onSave,
   isSaving,
+  locked = false,
 }) {
   const t = useTranslations("tailor.whyThisRole");
   const defaultQuestion = t("defaultQuestion");
@@ -119,7 +121,11 @@ export default function WhyThisRoleCard({
                   </>
                 ) : (
                   <>
-                    <ArrowsClockwiseIcon size={16} aria-hidden="true" />
+                    {locked ? (
+                      <CrownIcon size={16} aria-hidden="true" />
+                    ) : (
+                      <ArrowsClockwiseIcon size={16} aria-hidden="true" />
+                    )}
                     {draft ? t("writeAgain") : t("write")}
                   </>
                 )}

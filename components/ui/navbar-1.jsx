@@ -144,7 +144,7 @@ const Navbar1 = () => {
             <DropdownMenuContent
               align="center"
               sideOffset={10}
-              className="grid w-176 max-w-[calc(100vw-2rem)] grid-cols-2 gap-1 rounded-xl border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-[var(--landing-ink)] shadow-lg"
+              className="landing-dark grid w-176 max-w-[calc(100vw-2rem)] grid-cols-2 gap-1 rounded-xl border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-[var(--landing-ink)] shadow-[var(--landing-shadow)]"
             >
               {FREE_TOOLS.map((tool) => (
                 <DropdownMenuItem key={tool.href} asChild>
@@ -169,7 +169,7 @@ const Navbar1 = () => {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <LanguagePicker />
+          <LanguagePicker menuClassName="landing-dark" />
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -182,7 +182,7 @@ const Navbar1 = () => {
                   </Avatar>
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end" className="landing-dark w-56">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">{session.user?.name}</p>
@@ -273,7 +273,7 @@ const Navbar1 = () => {
                 ))}
               </div>
             </div>
-            <LanguagePicker align="start" className="self-start" />
+            <LanguagePicker align="start" className="self-start" menuClassName="landing-dark" />
             {session ? (
               <Link href="/dashboard" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
                 {t("dashboard")}

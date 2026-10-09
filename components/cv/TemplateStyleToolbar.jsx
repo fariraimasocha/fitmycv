@@ -69,6 +69,7 @@ export default function TemplateStyleToolbar({
   template,
   sticky = false,
   className = "",
+  menuClassName = "",
 }) {
   const t = useTranslations("tailor.styleToolbar");
   const style = normalizeTemplateStyle(value);
@@ -126,7 +127,7 @@ export default function TemplateStyleToolbar({
               </span>
             </SelectValue>
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className={menuClassName}>
             {TEMPLATE_FONT_OPTIONS.map((option) => (
               <SelectItem key={option.id} value={option.id}>
                 {/* Each row previews its own face, so the choice is visible

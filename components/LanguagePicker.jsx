@@ -30,7 +30,7 @@ function saveLocaleCookie(locale) {
   document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=${YEAR}; samesite=lax`;
 }
 
-export default function LanguagePicker({ className, align = "end" }) {
+export default function LanguagePicker({ className, menuClassName, align = "end" }) {
   const t = useTranslations("header");
   const locale = useLocale();
   const pathname = usePathname();
@@ -62,7 +62,7 @@ export default function LanguagePicker({ className, align = "end" }) {
           <span className="uppercase">{locale}</span>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align={align} className="w-40">
+      <DropdownMenuContent align={align} className={cn("w-40", menuClassName)}>
         {routing.locales.map((code) => (
           <DropdownMenuItem
             key={code}

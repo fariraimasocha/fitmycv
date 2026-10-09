@@ -268,7 +268,7 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
           {/* No `template` here on purpose: this bar restyles all nineteen
               cards at once, so it must not disable its structure toggles
               based on whichever single card happens to be highlighted. */}
-          <TemplateStyleToolbar value={style} onChange={setStyle} sticky />
+          <TemplateStyleToolbar menuClassName="landing-dark" value={style} onChange={setStyle} sticky />
           <p className="mt-3 text-sm text-[var(--landing-ink-soft)]">
             Accent colour, font, and spacing apply to every preview below. Colour
             changes headings and dates, not the page background.
@@ -321,7 +321,7 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
 
           {openMeta ? (
             <>
-              <TemplateStyleToolbar value={style} onChange={setStyle} template={openMeta.id} />
+              <TemplateStyleToolbar menuClassName="landing-dark" value={style} onChange={setStyle} template={openMeta.id} />
 
               <div className="flex flex-wrap items-center gap-3">
                 <Link

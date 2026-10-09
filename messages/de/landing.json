@@ -10,8 +10,8 @@
   },
   "hero": {
     "videoLabel": "FitMyCV-Demo: Stellenlink einfügen und einen angepassten Lebenslauf herunterladen",
-    "checkerTitle": "Prüfe deinen Lebenslauf kostenlos gegen eine Stellenanzeige",
-    "checkerBody": "Keine Anmeldung. Deine Datei wird in deinem Browser gelesen.",
+    "checkerTitle": "Noch keine Lust auf ein Konto? Bewerte deinen Lebenslauf zuerst gegen eine Stelle.",
+    "checkerBody": "Kostenlos und privat. Dein Lebenslauf verlässt nie deinen Browser.",
     "checkerCta": "Lebenslauf bewerten",
     "titleLead": "Lebenslauf und Anschreiben mit KI.",
     "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, <accent>der genau zu dieser Stelle passt</accent>.",
@@ -19,7 +19,9 @@
     "tryFree": "Kostenlos testen",
     "previewFree": "Vorschau deines angepassten Lebenslaufs kostenlos",
     "priceNote": "Einmalig ${price}, um PDFs herunterzuladen und dich zu bewerben.",
-    "seeHow": "So funktioniert es"
+    "seeHow": "So funktioniert es",
+    "soundOn": "Ton einschalten",
+    "soundOff": "Stumm schalten"
   },
   "jobBoards": {
     "title": "Funktioniert mit jedem Stellenlink"
@@ -217,5 +219,34 @@
     "toastCopied": "Link kopiert. Füge ihn in Chrome oder Safari ein.",
     "toastCopyFailed": "Kopieren fehlgeschlagen. Halte den Link gedrückt, um ihn zu kopieren.",
     "toastOpening": "Wird in Chrome geöffnet. Wenn nichts passiert, nutze Link kopieren."
+  },
+  "useCases": {
+    "eyebrow": "Beispiele",
+    "title": "Gleiche Erfahrung. Für die Stelle geschrieben.",
+    "intro": "Drei Beispielzeilen aus einem Lebenslauf, vor und nachdem FitMyCV die Anzeige liest. Begriffe aus der Stelle sind markiert.",
+    "jobLabel": "Die Stelle",
+    "beforeLabel": "Dein Lebenslauf sagt",
+    "afterLabel": "Der angepasste Lebenslauf sagt",
+    "footnote": "Wir haben diese Beispiele geschrieben, um zu zeigen, wie die Anpassung funktioniert. Sie stammen nicht von echten Nutzern.",
+    "cases": {
+      "analyst": {
+        "role": "Datenanalyst, Handelskette",
+        "asks": "Verlangt <k>SQL</k> und <k>Dashboards</k> für <k>Filialleiter</k>.",
+        "before": "Habe jede Woche Verkaufszahlen mit SQL abgefragt und Diagramme für die Leiter jeder Region erstellt.",
+        "after": "Wöchentliche <k>SQL</k> Abfragen geschrieben und Verkaufs <k>Dashboards</k> für regionale <k>Filialleiter</k> gebaut."
+      },
+      "nurse": {
+        "role": "Pflegefachkraft, Notaufnahme",
+        "asks": "Verlangt <k>Ersteinschätzung</k> und <k>Dokumentation in der elektronischen Patientenakte</k>.",
+        "before": "Habe Patienten bei der Ankunft in der Notaufnahme gesehen, entschieden, wer zuerst behandelt wird, und Notizen im Kliniksystem geschrieben.",
+        "after": "<k>Ersteinschätzung</k> in der Notaufnahme übernommen und jeden Fall in der <k>elektronischen Patientenakte</k> dokumentiert."
+      },
+      "developer": {
+        "role": "Junior Frontend Entwickler, Fintech Startup",
+        "asks": "Verlangt <k>React</k> und <k>Unit Tests</k>.",
+        "before": "Habe mit React die Website einer Studierendengruppe gebaut und Tests geschrieben, damit Updates nichts kaputt machen.",
+        "after": "Eine <k>React</k> Website für eine Studierendengruppe gebaut und <k>Unit Tests</k> geschrieben, die Fehler vor jedem Release finden."
+      }
+    }
   }
 }

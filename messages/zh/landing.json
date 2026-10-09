@@ -10,8 +10,8 @@
   },
   "hero": {
     "videoLabel": "FitMyCV 演示：粘贴职位链接，下载定制简历",
-    "checkerTitle": "免费对照职位信息检查你的简历",
-    "checkerBody": "无需注册。你的文件只在你的浏览器中读取。",
+    "checkerTitle": "还不想注册？先拿一个职位给你的简历打分。",
+    "checkerBody": "免费且私密。你的简历不会离开你的浏览器。",
     "checkerCta": "给我的简历评分",
     "titleLead": "AI 简历和求职信。",
     "titleMain": "粘贴任意职位链接，获得一份<accent>为该职位打造</accent>的简历。",
@@ -19,7 +19,9 @@
     "tryFree": "免费试用",
     "previewFree": "免费预览你的定制简历",
     "priceNote": "一次性支付 ${price}，即可下载 PDF 并投递。",
-    "seeHow": "了解使用方法"
+    "seeHow": "了解使用方法",
+    "soundOn": "打开声音",
+    "soundOff": "静音"
   },
   "jobBoards": {
     "title": "支持任意职位链接"
@@ -217,5 +219,34 @@
     "toastCopied": "链接已复制，请粘贴到 Chrome 或 Safari 中。",
     "toastCopyFailed": "无法复制。长按链接即可复制。",
     "toastOpening": "正在用 Chrome 打开。如果没有反应，请使用“复制链接”。"
+  },
+  "useCases": {
+    "eyebrow": "示例",
+    "title": "同样的经历，为这份工作而写。",
+    "intro": "三行简历示例，展示 FitMyCV 读取职位前后的变化。职位要求的词已高亮。",
+    "jobLabel": "职位",
+    "beforeLabel": "你的简历写的是",
+    "afterLabel": "定制简历写的是",
+    "footnote": "这些示例由我们编写，用来说明定制如何运作，并非来自真实用户。",
+    "cases": {
+      "analyst": {
+        "role": "数据分析师，零售连锁",
+        "asks": "要求 <k>SQL</k> 和面向<k>门店经理</k>的<k>数据看板</k>。",
+        "before": "每周用 SQL 提取销售数据，并为各区域负责人制作图表。",
+        "after": "每周编写 <k>SQL</k> 查询，为各区域<k>门店经理</k>搭建销售<k>数据看板</k>。"
+      },
+      "nurse": {
+        "role": "注册护士，急诊科",
+        "asks": "要求<k>患者分诊</k>和<k>电子病历记录</k>。",
+        "before": "在急诊接待到达的患者，判断谁需要优先处理，并在医院系统里写记录。",
+        "after": "在急诊科负责<k>患者分诊</k>，并在<k>电子病历</k>中记录每个病例。"
+      },
+      "developer": {
+        "role": "初级前端开发，金融科技初创公司",
+        "asks": "要求 <k>React</k> 和<k>单元测试</k>。",
+        "before": "用 React 为学生社团做了网站，并写了测试，避免更新时出问题。",
+        "after": "用 <k>React</k> 为学生社团搭建网站，并编写<k>单元测试</k>，在每次发布前发现问题。"
+      }
+    }
   }
 }

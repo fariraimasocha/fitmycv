@@ -10,8 +10,8 @@
   },
   "hero": {
     "videoLabel": "Demo de FitMyCV: pega el enlace de una oferta y descarga un CV adaptado",
-    "checkerTitle": "Compara tu CV con una oferta de empleo, gratis",
-    "checkerBody": "Sin registro. Tu archivo se lee en tu navegador.",
+    "checkerTitle": "¿Aún no quieres registrarte? Puntúa primero tu CV frente a una oferta.",
+    "checkerBody": "Gratis y privado. Tu CV nunca sale de tu navegador.",
     "checkerCta": "Puntuar mi CV",
     "titleLead": "CV y cartas de presentación con IA.",
     "titleMain": "Pega el enlace de cualquier oferta. Recibe un CV <accent>hecho para ese puesto</accent>.",
@@ -19,7 +19,9 @@
     "tryFree": "Pruébalo gratis",
     "previewFree": "Vista previa gratis de tu CV adaptado",
     "priceNote": "${price} un único pago para descargar los PDF y postularte.",
-    "seeHow": "Mira cómo funciona"
+    "seeHow": "Mira cómo funciona",
+    "soundOn": "Activar sonido",
+    "soundOff": "Silenciar"
   },
   "jobBoards": {
     "title": "Funciona con cualquier enlace de empleo"
@@ -217,5 +219,34 @@
     "toastCopied": "Enlace copiado. Pégalo en Chrome o Safari.",
     "toastCopyFailed": "No se pudo copiar. Mantén pulsado el enlace para copiarlo.",
     "toastOpening": "Abriendo en Chrome. Si no pasa nada, usa Copiar enlace."
+  },
+  "useCases": {
+    "eyebrow": "Ejemplos",
+    "title": "La misma experiencia. Escrita para el puesto.",
+    "intro": "Tres líneas de CV de ejemplo, antes y después de que FitMyCV lea la oferta. Las palabras que pide el puesto están resaltadas.",
+    "jobLabel": "El puesto",
+    "beforeLabel": "Tu CV dice",
+    "afterLabel": "El CV adaptado dice",
+    "footnote": "Escribimos estos ejemplos para mostrar cómo funciona la adaptación. No son de usuarios reales.",
+    "cases": {
+      "analyst": {
+        "role": "Analista de datos, cadena de tiendas",
+        "asks": "Pide <k>SQL</k> y <k>paneles</k> para los <k>gerentes de tienda</k>.",
+        "before": "Sacaba las ventas de cada semana con SQL y hacía gráficos para los responsables de cada región.",
+        "after": "Escribí consultas <k>SQL</k> semanales y creé <k>paneles</k> de ventas para los <k>gerentes de tienda</k> regionales."
+      },
+      "nurse": {
+        "role": "Enfermero o enfermera, servicio de urgencias",
+        "asks": "Pide <k>triaje de pacientes</k> y <k>registro en la historia clínica electrónica</k>.",
+        "before": "Atendía a los pacientes al llegar a urgencias, decidía a quién atender primero y escribía las notas en el sistema del hospital.",
+        "after": "Hice el <k>triaje de pacientes</k> en urgencias y registré cada caso en la <k>historia clínica electrónica</k>."
+      },
+      "developer": {
+        "role": "Desarrollador frontend junior, startup fintech",
+        "asks": "Pide <k>React</k> y <k>pruebas unitarias</k>.",
+        "before": "Hice la web de una asociación de estudiantes con React y escribí pruebas para que las actualizaciones no rompieran nada.",
+        "after": "Creé un sitio en <k>React</k> para una asociación de estudiantes y escribí <k>pruebas unitarias</k> para detectar errores antes de cada versión."
+      }
+    }
   }
 }

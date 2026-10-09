@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -10,6 +10,8 @@ import {
   PlayIcon,
   FilePdfIcon,
   CheckCircleIcon,
+  SpeakerHighIcon,
+  SpeakerSlashIcon,
 } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
@@ -17,6 +19,22 @@ import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 function DemoPreview() {
   const t = useTranslations("landing.hero");
   const videoRef = useRef(null);
+  // Autoplay only works muted. The first unmute restarts the video so
+  // people hear the walkthrough from the start.
+  const [muted, setMuted] = useState(true);
+  const [heardSound, setHeardSound] = useState(false);
+
+  const toggleSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (muted && !heardSound) {
+      video.currentTime = 0;
+      setHeardSound(true);
+    }
+    video.muted = !muted;
+    if (muted) video.play().catch(() => {});
+    setMuted(!muted);
+  };
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -34,7 +52,7 @@ function DemoPreview() {
   }, []);
 
   return (
-    <div className="landing-rise-4 relative mx-auto mt-16 w-full">
+    <div className="landing-rise-4 relative mx-auto w-full">
       <div className="overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-white shadow-[0_24px_60px_oklch(0.18_0.02_260_/_0.08)]">
         <div className="landing-browser-bar">
           <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
@@ -57,6 +75,19 @@ function DemoPreview() {
             aria-label={t("videoLabel")}
             className="h-auto w-full"
           />
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-pressed={!muted}
+            className="absolute bottom-3 start-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--landing-ink)]/80 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-[var(--landing-ink)]"
+          >
+            {muted ? (
+              <SpeakerSlashIcon size={14} aria-hidden="true" />
+            ) : (
+              <SpeakerHighIcon size={14} aria-hidden="true" />
+            )}
+            {muted ? t("soundOn") : t("soundOff")}
+          </button>
         </div>
       </div>
     </div>
@@ -107,32 +138,28 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
 
   return (
     <section id="hero" className="relative px-5 pb-20 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container landing-rules relative border-t border-[var(--landing-line)] px-4 pt-24 sm:px-8 sm:pt-36">
-        <div className="grid grid-cols-1 items-start gap-x-8 gap-y-10 lg:grid-cols-12">
-          <div className="landing-rise lg:col-span-7">
+      <div className="landing-container landing-rules relative border-t border-[var(--landing-line)] px-4 pt-16 sm:px-8 sm:pt-24">
+        <div className="grid grid-cols-1 items-center gap-x-10 gap-y-10 lg:grid-cols-12">
+          <div className="landing-rise lg:col-span-6">
+            <p className="mb-4 font-sans text-sm font-semibold text-[var(--landing-ink-faint)]">
+              {t("titleLead")}
+            </p>
             <h1
               className="font-outfit font-medium text-[var(--landing-ink)]"
               style={{
-                fontSize: "clamp(2.25rem, 3.9vw, 3.6rem)",
+                fontSize: "clamp(2.25rem, 3.4vw, 3.1rem)",
                 lineHeight: 1.15,
                 letterSpacing: "-0.01em",
               }}
             >
-              <span className="block text-[var(--landing-ink-faint)]">
-                {t("titleLead")}
-              </span>
-              <span className="block">
-                {t.rich("titleMain", {
-                  accent: (chunks) => (
-                    <span className="text-[var(--landing-accent)]">{chunks}</span>
-                  ),
-                })}
-              </span>
+              {t.rich("titleMain", {
+                accent: (chunks) => (
+                  <span className="text-[var(--landing-accent)]">{chunks}</span>
+                ),
+              })}
             </h1>
-          </div>
 
-          <div className="landing-rise-2 lg:col-span-4 lg:col-start-9 lg:mt-24">
-            <p className="text-lg leading-relaxed text-[var(--landing-ink-soft)]">
+            <p className="landing-rise-2 mt-6 text-lg leading-relaxed text-[var(--landing-ink-soft)]">
               {t("body")}
             </p>
 
@@ -177,6 +204,10 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
               />
             </NextLink>
           </div>
+
+          <div className="lg:col-span-6">
+            <DemoPreview />
+          </div>
         </div>
 
         <div className="relative mt-20">
@@ -186,8 +217,6 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
           />
           <CheckerBar />
         </div>
-
-        <DemoPreview />
       </div>
 
     </section>

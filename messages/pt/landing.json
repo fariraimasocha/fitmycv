@@ -10,8 +10,8 @@
   },
   "hero": {
     "videoLabel": "Demonstração do FitMyCV: cole um link de vaga e baixe um currículo adaptado",
-    "checkerTitle": "Compare seu currículo com uma vaga, grátis",
-    "checkerBody": "Sem cadastro. Seu arquivo é lido no seu navegador.",
+    "checkerTitle": "Ainda não quer se cadastrar? Avalie primeiro seu currículo para uma vaga.",
+    "checkerBody": "Grátis e privado. Seu currículo nunca sai do seu navegador.",
     "checkerCta": "Avaliar meu currículo",
     "titleLead": "Currículo e carta de apresentação com IA.",
     "titleMain": "Cole qualquer link de vaga. Receba um currículo <accent>feito para essa vaga</accent>.",
@@ -19,7 +19,9 @@
     "tryFree": "Teste grátis",
     "previewFree": "Veja seu currículo adaptado grátis",
     "priceNote": "${price} uma vez para baixar os PDFs e se candidatar.",
-    "seeHow": "Veja como funciona"
+    "seeHow": "Veja como funciona",
+    "soundOn": "Ativar som",
+    "soundOff": "Silenciar"
   },
   "jobBoards": {
     "title": "Funciona com qualquer link de vaga"
@@ -217,5 +219,34 @@
     "toastCopied": "Link copiado. Cole no Chrome ou no Safari.",
     "toastCopyFailed": "Não foi possível copiar. Toque e segure o link para copiar.",
     "toastOpening": "Abrindo no Chrome. Se nada acontecer, use Copiar link."
+  },
+  "useCases": {
+    "eyebrow": "Exemplos",
+    "title": "A mesma experiência. Escrita para a vaga.",
+    "intro": "Três linhas de currículo como exemplo, antes e depois de o FitMyCV ler a vaga. As palavras que a vaga pede estão destacadas.",
+    "jobLabel": "A vaga",
+    "beforeLabel": "Seu currículo diz",
+    "afterLabel": "O currículo adaptado diz",
+    "footnote": "Escrevemos estes exemplos para mostrar como a adaptação funciona. Eles não são de usuários reais.",
+    "cases": {
+      "analyst": {
+        "role": "Analista de dados, rede de lojas",
+        "asks": "Pede <k>SQL</k> e <k>dashboards</k> para os <k>gerentes de loja</k>.",
+        "before": "Tirava os números de vendas toda semana com SQL e fazia gráficos para os responsáveis de cada região.",
+        "after": "Escrevi consultas <k>SQL</k> semanais e criei <k>dashboards</k> de vendas para os <k>gerentes de loja</k> regionais."
+      },
+      "nurse": {
+        "role": "Enfermeiro ou enfermeira, pronto-socorro",
+        "asks": "Pede <k>triagem de pacientes</k> e <k>registro no prontuário eletrônico</k>.",
+        "before": "Atendia os pacientes na chegada ao pronto-socorro, decidia quem precisava de cuidado primeiro e escrevia as notas no sistema do hospital.",
+        "after": "Fiz a <k>triagem de pacientes</k> no pronto-socorro e registrei cada caso no <k>prontuário eletrônico</k>."
+      },
+      "developer": {
+        "role": "Desenvolvedor frontend júnior, startup de fintech",
+        "asks": "Pede <k>React</k> e <k>testes unitários</k>.",
+        "before": "Fiz o site de uma associação de estudantes com React e escrevi testes para que as atualizações não quebrassem nada.",
+        "after": "Criei um site em <k>React</k> para uma associação de estudantes e escrevi <k>testes unitários</k> para pegar erros antes de cada versão."
+      }
+    }
   }
 }

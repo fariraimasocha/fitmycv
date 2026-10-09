@@ -3,6 +3,7 @@ import Hero from "@/components/landing/Hero";
 import JobBoardStrip from "@/components/landing/JobBoardStrip";
 import TheProblem from "@/components/landing/TheProblem";
 import HowItWorks from "@/components/landing/HowItWorks";
+import UseCases from "@/components/landing/UseCases";
 import TemplateStrip from "@/components/landing/TemplateStrip";
 import Testimonial from "@/components/landing/Testimonial";
 import TrustSignals from "@/components/landing/TrustSignals";
@@ -72,6 +73,7 @@ export default async function Home({ params }) {
         <JobBoardStrip />
         <TheProblem />
         <HowItWorks lifetimePrice={pricing.lifetime.price} />
+        <UseCases />
         <TemplateStrip />
         <Testimonial />
         <TrustSignals />

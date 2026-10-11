@@ -9,8 +9,16 @@
     "howToDescription": "Paste a job link, let FitMyCV rewrite your CV against the role's requirements, then download the CV and cover letter as PDFs."
   },
   "hero": {
+    "platformTitle": "From job link to interview, in one place",
+    "platform": {"tailor": "Tailored CV", "coverLetter": "Cover letter", "atsScore": "ATS score", "jobMatch": "Job match", "linkedin": "LinkedIn check", "jobs": "Job board"},
+    "linkLabel": "Job link",
+    "linkPlaceholder": "Paste any job link",
+    "tailorCta": "Tailor my CV free",
+    "linkError": "That is not a link. Paste the full address of the job posting.",
+    "notReady": "Not ready to sign up?",
+    "usedBy": "Used by over 1,800 job seekers",
     "videoLabel": "FitMyCV demo: paste a job link and download a tailored CV",
-    "checkerCta": "Score my CV",
+    "checkerCta": "Scan my CV for free",
     "titleMain": "paste any job link. get a CV <accent>made</accent> for that role.",
     "body": "Upload your CV once. FitMyCV reads the listing and rewrites your CV in the words that role asks for.",
     "tryFree": "Try for free",
@@ -56,7 +64,7 @@
     "seeAll": "See all templates"
   },
   "testimonial": {
-    "heading": "From a FitMyCV user"
+    "heading": "From people using FitMyCV"
   },
   "trust": {
     "title": "What you are handing over, and what happens to it",
@@ -97,12 +105,11 @@
   },
   "cta": {
     "title": "Ready to stop being ignored?",
-    "body": "Join job seekers landing interviews faster with AI-tailored applications. Lifetime access for ${price}.",
-    "tryFree": "Try for free",
+    "body": "Paste a job link and preview your tailored CV free. Lifetime access for ${price}.",
     "pricing": "View pricing"
   },
   "sticky": {
-    "cta": "Tailor my CV"
+    "cta": "Tailor my CV free"
   },
   "footer": {
     "tagline": "AI-powered CV tailoring. Land more interviews with less effort.",
@@ -133,6 +140,13 @@
       "jobscan": "Jobscan alternative",
       "teal": "Teal alternative",
       "kickresume": "Kickresume alternative",
+      "rezi": "Rezi alternative",
+      "resumeWorded": "Resume Worded alternative",
+      "visualcv": "VisualCV alternative",
+      "enhancv": "Enhancv alternative",
+      "huntr": "Huntr alternative",
+      "tailoredcv": "TailoredCV alternative",
+      "seekario": "Seekario alternative",
       "workday": "Workday resume format",
       "greenhouse": "Greenhouse ATS resume",
       "lever": "Lever ATS resume",

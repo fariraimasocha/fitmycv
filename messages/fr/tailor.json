@@ -80,6 +80,7 @@
     "downloadPdf": "Télécharger le PDF",
     "stats": {
       "checks": "Vérifications du CV",
+      "aimFor": "Visez 80 ou plus. C'est là que le score passe au vert.",
       "checksPassed": "{passed} sur {total} réussies",
       "checking": "Vérification",
       "positions": "Postes",
@@ -258,6 +259,8 @@
     "hideDetails": "Masquer les détails"
   },
   "jobRequirements": {
+    "atsVendor": "Cette offre passe par {name} pour trier les candidatures.",
+    "atsGuide": "Comment {name} lit votre CV",
     "fallbackTitle": "Offre d’emploi",
     "scoring": "Évaluation…",
     "requirements": "Exigences",
@@ -323,7 +326,7 @@
     "questions": "Questions à préparer",
     "talkingPoints": "Points clés à aborder"
   },
-  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "none": "ATS n.d." },
+  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "scoreFrom": "ATS {preScore} → {score}", "none": "ATS n.d." },
   "reorder": { "up": "Monter", "down": "Descendre" },
   "companyResearch": {
     "loading": "Recherche sur l’entreprise…",

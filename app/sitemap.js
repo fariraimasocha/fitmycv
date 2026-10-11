@@ -47,6 +47,7 @@ export default function sitemap() {
     "professional-summary-generator",
     "job-description-to-resume-bullets",
     "linkedin-url-for-resume",
+    "linkedin-profile-checker",
     "resume-keywords",
     "ats-resume-checker",
     "ai-cover-letter-generator",

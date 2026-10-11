@@ -528,6 +528,23 @@ Email jane@example.com, phone +44 7700 900123`;
   });
 }
 
+// ------------------------------------------------------- linkedin profile
+{
+  const { checkProfile } = await import("../lib/linkedin-check.js");
+  const JOB = `Data Analyst. You will build dashboards in Tableau and write SQL.
+    SQL is used daily. Tableau dashboards for finance. Python is a plus. SQL and Tableau.`;
+
+  check("finds terms per section and flags headline candidates", () => {
+    const r = checkProfile(JOB, { headline: "Data Analyst", about: "I write SQL every day.", skills: "Tableau" });
+    const sql = r.terms.find((t) => t.term === "sql");
+    assert.equal(sql.found.about, true);
+    assert.equal(sql.found.headline, false);
+    assert.ok(r.forHeadline.includes("sql"));
+    assert.ok(r.missing.includes("python"));
+    assert.ok(r.score > 0 && r.score < 100);
+  });
+}
+
 if (failures.length) {
   console.error(`\n${failures.length} check(s) failed:\n`);
   failures.forEach((f) => console.error(`  x ${f}`));

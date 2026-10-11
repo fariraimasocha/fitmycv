@@ -137,6 +137,7 @@ function ScoreHeader({ report, preScore }) {
       <p className="text-xs text-muted-foreground">
         {t("checksPassed", { passed: report.passedChecks, total: report.totalChecks })}
       </p>
+      {report.score < 80 && <p className="text-xs font-medium text-foreground">{t("aimFor")}</p>}
       {capTitle && (
         <p className="rounded-md bg-[var(--landing-paper-soft)] p-2 text-xs leading-normal text-muted-foreground">
           {t("capped", { title: capTitle })}

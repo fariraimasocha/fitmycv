@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Adapte seu currículo a qualquer link de vaga | FitMyCV",
-    "description": "Adapte seu currículo e sua carta de apresentação a qualquer link de vaga: correspondência de palavras-chave com IA, verificador ATS de currículo grátis, 19 modelos compatíveis com ATS e exportação em PDF com um clique.",
+    "description": "Adapte seu currículo e sua carta a qualquer vaga: palavras-chave com IA, verificador ATS grátis, 19 modelos compatíveis com ATS e exportação em PDF.",
     "ogTitle": "FitMyCV: adapte seu currículo a qualquer link de vaga em segundos",
     "ogAlt": "FitMyCV: consiga mais entrevistas com um currículo que combina com a vaga",
     "schemaName": "Adapte seu currículo a qualquer link de vaga",
@@ -9,8 +9,16 @@
     "howToDescription": "Cole um link de vaga, deixe o FitMyCV reescrever seu currículo com base nos requisitos da vaga e baixe o currículo e a carta de apresentação em PDF."
   },
   "hero": {
+    "platformTitle": "Do link da vaga à entrevista, em um só lugar",
+    "platform": {"tailor": "Currículo adaptado", "coverLetter": "Carta de apresentação", "atsScore": "Pontuação ATS", "jobMatch": "Compatibilidade", "linkedin": "Perfil do LinkedIn", "jobs": "Vagas"},
+    "linkLabel": "Link da vaga",
+    "linkPlaceholder": "Cole o link de uma vaga",
+    "tailorCta": "Adaptar meu currículo grátis",
+    "linkError": "Isso não é um link. Cole o endereço completo da vaga.",
+    "notReady": "Ainda não quer se cadastrar?",
+    "usedBy": "Usado por mais de 1.800 pessoas em busca de emprego",
     "videoLabel": "Demonstração do FitMyCV: cole um link de vaga e baixe um currículo adaptado",
-    "checkerCta": "Avaliar meu currículo",
+    "checkerCta": "Analisar meu currículo grátis",
     "titleMain": "cole qualquer link de vaga. receba um currículo <accent>feito</accent> para essa vaga.",
     "body": "Envie seu currículo uma vez. O FitMyCV lê o anúncio e reescreve seu currículo com as palavras que a vaga pede.",
     "tryFree": "Teste grátis",
@@ -97,12 +105,11 @@
   },
   "cta": {
     "title": "Pronto para deixar de ser ignorado?",
-    "body": "Junte-se a quem está conseguindo entrevistas mais rápido com candidaturas adaptadas por IA. Acesso vitalício por ${price}.",
-    "tryFree": "Teste grátis",
+    "body": "Cole o link de uma vaga e veja grátis seu currículo adaptado. Acesso vitalício por ${price}.",
     "pricing": "Ver preços"
   },
   "sticky": {
-    "cta": "Adaptar meu currículo"
+    "cta": "Adaptar meu currículo grátis"
   },
   "footer": {
     "tagline": "Adaptação de currículo com IA. Consiga mais entrevistas com menos esforço.",
@@ -133,6 +140,13 @@
       "jobscan": "Alternativa ao Jobscan",
       "teal": "Alternativa ao Teal",
       "kickresume": "Alternativa ao Kickresume",
+      "rezi": "Alternativa ao Rezi",
+      "resumeWorded": "Alternativa ao Resume Worded",
+      "visualcv": "Alternativa ao VisualCV",
+      "enhancv": "Alternativa ao Enhancv",
+      "huntr": "Alternativa ao Huntr",
+      "tailoredcv": "Alternativa ao TailoredCV",
+      "seekario": "Alternativa ao Seekario",
       "workday": "Formato de currículo para Workday",
       "greenhouse": "Currículo para o ATS Greenhouse",
       "lever": "Currículo para o ATS Lever",

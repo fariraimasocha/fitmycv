@@ -10,7 +10,7 @@ const PRICE_CHECKED = "September 2026";
 
 export const jobscanAlternative = {
   slug: "jobscan-alternative",
-  seoTitle: "Jobscan Alternative: Tailor the CV, Not Just Score It",
+  seoTitle: "Jobscan Alternative That Rewrites Your CV",
   description:
     "A Jobscan alternative that rewrites your CV instead of scoring it. Paste a job link, get a tailored CV and cover letter. One payment, no monthly fee.",
   keywords: [
@@ -153,7 +153,7 @@ export const jobscanAlternative = {
 
 export const tealAlternative = {
   slug: "teal-alternative",
-  seoTitle: "Teal Alternative: Tailoring First, Not Tracking First",
+  seoTitle: "Teal Alternative: Tailoring First",
   description:
     "A Teal alternative built around tailoring rather than tracking. Paste a job link and get a rewritten CV and cover letter, with no weekly billing.",
   keywords: [
@@ -266,7 +266,7 @@ export const tealAlternative = {
 
 export const kickresumeAlternative = {
   slug: "kickresume-alternative",
-  seoTitle: "Kickresume Alternative: Tailor the CV You Already Have",
+  seoTitle: "Kickresume Alternative: Tailor Your Own CV",
   description:
     "A Kickresume alternative for people who already have a CV. Paste a job link and get it rewritten for that role, with no watermark and no builder to learn.",
   keywords: [
@@ -487,7 +487,7 @@ export const huntrAlternative = {
 
 export const enhancvAlternative = {
   slug: "enhancv-alternative",
-  seoTitle: "Enhancv Alternative: Aimed at the Job, Not the Layout",
+  seoTitle: "Enhancv Alternative: Aimed at the Job",
   description:
     "An Enhancv alternative for people who need the CV to match the posting, not to look distinctive. Single column, parser safe, rewritten from a job link.",
   keywords: [
@@ -725,7 +725,7 @@ export const reziAlternative = {
 
 export const resumeWordedAlternative = {
   slug: "resume-worded-alternative",
-  seoTitle: "Resume Worded Alternative: The Rewrite, Not the Grade",
+  seoTitle: "Resume Worded Alternative: Get the Rewrite",
   description:
     "A Resume Worded alternative that returns the rewritten CV instead of a score and a to do list. Paste a job link, get a tailored CV and cover letter.",
   keywords: [
@@ -964,7 +964,7 @@ export const tailoredcvAlternative = {
 
 export const seekarioAlternative = {
   slug: "seekario-alternative",
-  seoTitle: "Seekario Alternative: The Rewrite Without the Credits",
+  seoTitle: "Seekario Alternative With No Credits",
   description:
     "A Seekario alternative for people who want unlimited tailoring without metering AI credits. One payment, no monthly plan, job link in and CV out.",
   keywords: [
@@ -1087,7 +1087,7 @@ export const seekarioAlternative = {
 
 export const visualcvAlternative = {
   slug: "visualcv-alternative",
-  seoTitle: "VisualCV Alternative: Per Application, Not Per Portfolio",
+  seoTitle: "VisualCV Alternative: One CV per Application",
   description:
     "A VisualCV alternative for people who need each application aimed rather than one hosted CV. Paste a job link, get a rewritten CV and cover letter.",
   keywords: [

@@ -283,7 +283,7 @@ export const leverAtsResume = {
 
 export const taleoResumeFormat = {
   slug: "taleo-resume-format",
-  seoTitle: "Taleo Resume Format: Formatting for an Older Parser",
+  seoTitle: "Taleo Resume Format for an Older Parser",
   description:
     "How to format a CV for Taleo: keep it plain, keep it literal, and match the posting's exact wording. Taleo is old, and it is unforgiving of clever layouts.",
   keywords: [

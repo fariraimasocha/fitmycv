@@ -17,6 +17,7 @@ import {
   XCircleIcon,
 } from "@phosphor-icons/react";
 import { GradeBadge } from "@/components/GradeBadge";
+import { detectAts } from "@/lib/ats-detect";
 
 function matchesKeyword(keyword, cvText) {
   const normalizedKeyword = normalizeSearchText(keyword);
@@ -38,8 +39,10 @@ function normalizeSearchText(value) {
  * The scraped posting as a flat card: title and meta up top, then one
  * hairline-divided section per list. The tailor action lives on the page.
  */
-export default function JobRequirementsCard({ data, referenceCV, matchGrade, matchLoading }) {
+export default function JobRequirementsCard({ data, jobUrl, referenceCV, matchGrade, matchLoading }) {
   const t = useTranslations("tailor.jobRequirements");
+  // Host match only: LinkedIn and Indeed links show nothing, which is honest.
+  const ats = detectAts(jobUrl);
   const meta = [
     data.company && { icon: BuildingsIcon, text: data.company },
     data.location && { icon: MapPinIcon, text: data.location },
@@ -63,6 +66,19 @@ export default function JobRequirementsCard({ data, referenceCV, matchGrade, mat
                 </span>
               ))}
             </div>
+          )}
+          {ats && (
+            <p className="mt-2 text-xs text-muted-foreground">
+              {t("atsVendor", { name: ats.name })}{" "}
+              <a
+                href={ats.guide}
+                target="_blank"
+                rel="noopener"
+                className="font-medium text-foreground underline underline-offset-2"
+              >
+                {t("atsGuide", { name: ats.name })}
+              </a>
+            </p>
           )}
         </div>
         {matchLoading ? (

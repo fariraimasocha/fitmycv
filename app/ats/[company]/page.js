@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
   const vendor = getAtsVendor(company.ats);
   return pageMetadata({
     absoluteTitle: `Which ATS Does ${company.name} Use? | FitMyCV`,
-    description: `${company.name} posts its jobs on ${vendor.name}. See the job board, and how to format your CV so ${vendor.name} reads it.`,
+    description: `${company.name} posts its jobs on ${vendor.name}. See ${company.name}'s job board, how ${vendor.name} reads your CV, and how to format your CV so it reads every section.`,
     path: `/ats/${company.slug}`,
     keywords: [
       `${company.name.toLowerCase()} ats`,

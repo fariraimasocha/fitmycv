@@ -2,7 +2,7 @@
   "pricingPage": {
     "meta": {
       "title": "Preços: acesso vitalício por ${lifetime}",
-      "description": "O FitMyCV Premium custa ${lifetime} vitalício ou ${month}/mês. Baixe currículos e cartas de apresentação adaptados sem limite a partir de qualquer link de vaga, com pontuação ATS.",
+      "description": "O FitMyCV Premium custa ${lifetime} vitalício ou ${month}/mês. Baixe sem limite currículos e cartas adaptados a cada vaga, com pontuação ATS.",
       "socialTitle": "Preços: currículos adaptados a partir de qualquer link de vaga | FitMyCV",
       "ogDescription": "Acesso vitalício por ${lifetime} ou ${month}/mês para currículos adaptados sem limite, cartas de apresentação, pontuação ATS e exportação em PDF.",
       "twitterDescription": "O Premium custa ${lifetime} vitalício ou ${month}/mês para currículos adaptados sem limite, cartas de apresentação, pontuação ATS e PDFs. Cancele o mensal quando quiser.",
@@ -45,6 +45,7 @@
     "titleLine2": "Seu para sempre.",
     "intro": "Um pagamento para acesso vitalício, ou assine por mês e cancele quando quiser.",
     "footnote": "Cerca de três meses do plano mensal, e seu para todas as buscas depois disso. Pagamento seguro pela Polar.",
+    "jobscanCompare": "Para comparar, o Jobscan Premium custa US$ 49,95 por mês (verificado em outubro de 2026).",
     "regionalAvailable": "Há preços regionais menores em alguns países."
   },
   "pricingCards": {
@@ -128,7 +129,7 @@
   "tailorCvFromJobLink": {
     "meta": {
       "title": "Adapte seu currículo à descrição da vaga a partir de qualquer link | FitMyCV",
-      "description": "Adapte seu currículo à descrição da vaga com IA. Cole um link do LinkedIn, Indeed, Glassdoor ou de uma página de carreiras, ou o texto, e receba um currículo e uma carta de apresentação."
+      "description": "Adapte seu currículo à vaga com IA. Cole um link do LinkedIn, Indeed ou de uma página de carreiras, ou o texto, e receba currículo e carta."
     },
     "eyebrow": "Adaptação de currículo com IA",
     "titleStart": "Adapte seu currículo à descrição da vaga,",

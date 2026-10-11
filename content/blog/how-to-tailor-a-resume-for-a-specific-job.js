@@ -1,7 +1,7 @@
 export const meta = {
   slug: "how-to-tailor-a-resume-for-a-specific-job",
   title: "How to Tailor a Resume for a Specific Job (One CV, Two Jobs)",
-  seoTitle: "How to Tailor a Resume for a Specific Job, With Examples",
+  seoTitle: "How to Tailor a Resume for a Specific Job",
   description:
     "How to tailor a resume for a specific job: one real CV tailored for two different postings, side by side. See exactly which lines change and which stay.",
   excerpt:

@@ -37,12 +37,14 @@ export function GradeBadge({ grade, className, size = "sm" }) {
   );
 }
 
-export function AtsScoreChip({ score, loading, className, onClick }) {
+export function AtsScoreChip({ score, preScore, loading, className, onClick }) {
   const t = useTranslations("tailor.atsChip");
   const label = loading
     ? t("loading")
     : typeof score === "number"
-      ? t("score", { score })
+      ? typeof preScore === "number" && score > preScore
+        ? t("scoreFrom", { preScore, score })
+        : t("score", { score })
       : t("none");
   const Comp = onClick ? "button" : "span";
   return (

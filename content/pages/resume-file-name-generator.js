@@ -4,7 +4,7 @@
 
 export const resumeFileNameGenerator = {
   slug: "resume-file-name-generator",
-  seoTitle: "Resume File Name Generator: What to Name Your Resume",
+  seoTitle: "Resume File Name Generator",
   description:
     "Get a clean, recruiter-friendly resume file name in seconds. Type your name and role, copy the result. Free, no login, nothing uploaded.",
   keywords: [

@@ -1,7 +1,7 @@
 export const meta = {
   slug: "cv-format-nigeria",
   title: "CV Format for Nigeria: What Employers Check in 2026",
-  seoTitle: "Nigerian CV Format: Length, NYSC and Personal Details",
+  seoTitle: "Nigerian CV Format: Length, NYSC and Details",
   description:
     "The Nigerian CV format explained: length, section order, how to show NYSC status, when to add state of origin or WAEC results, referees and file type.",
   excerpt:

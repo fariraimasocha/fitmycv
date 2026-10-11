@@ -108,6 +108,7 @@
     "downloadPdf": "Baixar PDF",
     "stats": {
       "checks": "Verificações do currículo",
+      "aimFor": "Mire em 80 ou mais. É aí que a pontuação fica verde.",
       "checksPassed": "{passed} de {total} aprovadas",
       "checking": "Verificando",
       "positions": "Cargos",
@@ -411,6 +412,8 @@
     "hideDetails": "Ocultar detalhes"
   },
   "jobRequirements": {
+    "atsVendor": "Esta vaga usa o {name} para triar candidaturas.",
+    "atsGuide": "Como o {name} lê seu currículo",
     "fallbackTitle": "Anúncio da vaga",
     "scoring": "Avaliando…",
     "requirements": "Requisitos",
@@ -485,6 +488,7 @@
   "atsChip": {
     "loading": "ATS…",
     "score": "ATS {score}",
+    "scoreFrom": "ATS {preScore} → {score}",
     "none": "ATS n/d"
   },
   "reorder": {

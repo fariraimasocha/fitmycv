@@ -1,7 +1,7 @@
 export const meta = {
   slug: "ats-resume-format",
   title: "ATS Resume Format: Two Columns, Tables, Icons and Photos Answered",
-  seoTitle: "ATS Resume Format: What Parsers Can and Cannot Read",
+  seoTitle: "ATS Resume Format: What Parsers Can Read",
   description:
     "Can an ATS read two column resumes, tables, text boxes, icons or a photo? A direct answer on each, what breaks a parse, and how to test your own file.",
   excerpt:

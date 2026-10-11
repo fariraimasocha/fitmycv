@@ -9,8 +9,16 @@
     "howToDescription": "粘贴职位链接，让 FitMyCV 按照职位要求改写你的简历，然后将简历和求职信下载为 PDF。"
   },
   "hero": {
+    "platformTitle": "从职位链接到面试，一站完成",
+    "platform": {"tailor": "定制简历", "coverLetter": "求职信", "atsScore": "ATS 评分", "jobMatch": "职位匹配", "linkedin": "LinkedIn 检查", "jobs": "职位列表"},
+    "linkLabel": "职位链接",
+    "linkPlaceholder": "粘贴任意职位链接",
+    "tailorCta": "免费定制我的简历",
+    "linkError": "这不是链接。请粘贴职位页面的完整地址。",
+    "notReady": "还不想注册？",
+    "usedBy": "已有超过 1,800 位求职者使用",
     "videoLabel": "FitMyCV 演示：粘贴职位链接，下载定制简历",
-    "checkerCta": "给我的简历评分",
+    "checkerCta": "免费扫描我的简历",
     "titleMain": "粘贴任意职位链接，获得一份<accent>为该职位打造</accent>的简历。",
     "body": "只需上传一次简历。FitMyCV 会读取职位信息，并用该职位要求的措辞改写你的简历。",
     "tryFree": "免费试用",
@@ -56,7 +64,7 @@
     "seeAll": "查看全部模板"
   },
   "testimonial": {
-    "heading": "来自一位 FitMyCV 用户"
+    "heading": "来自 FitMyCV 用户"
   },
   "trust": {
     "title": "你交给我们的是什么，以及它会如何被处理",
@@ -97,12 +105,11 @@
   },
   "cta": {
     "title": "不想再被忽视了吗？",
-    "body": "加入用 AI 定制求职材料、更快获得面试的求职者行列。终身访问仅需 ${price}。",
-    "tryFree": "免费试用",
+    "body": "粘贴职位链接，免费预览定制后的简历。终身使用仅需 ${price}。",
     "pricing": "查看价格"
   },
   "sticky": {
-    "cta": "定制我的简历"
+    "cta": "免费定制我的简历"
   },
   "footer": {
     "tagline": "AI 驱动的简历定制。花更少的力气，获得更多面试。",
@@ -133,6 +140,13 @@
       "jobscan": "Jobscan 替代方案",
       "teal": "Teal 替代方案",
       "kickresume": "Kickresume 替代方案",
+      "rezi": "Rezi 替代方案",
+      "resumeWorded": "Resume Worded 替代方案",
+      "visualcv": "VisualCV 替代方案",
+      "enhancv": "Enhancv 替代方案",
+      "huntr": "Huntr 替代方案",
+      "tailoredcv": "TailoredCV 替代方案",
+      "seekario": "Seekario 替代方案",
       "workday": "Workday 简历格式",
       "greenhouse": "Greenhouse ATS 简历",
       "lever": "Lever ATS 简历",

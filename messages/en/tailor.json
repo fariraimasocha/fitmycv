@@ -239,6 +239,7 @@
     "outOf100": "out of 100",
     "upFrom": "Up {delta} from {preScore}",
     "checksPassed": "{passed} of {total} checks passed",
+    "aimFor": "Aim for 80 or more. That is where the score turns green.",
     "checksPassedSentence": "{passed} of {total} checks passed.",
     "capped": "The score is capped because of a blocking problem: {title}",
     "toFix": "{count} to fix",
@@ -411,6 +412,8 @@
     "hideDetails": "Hide details"
   },
   "jobRequirements": {
+    "atsVendor": "This job uses {name} to screen applications.",
+    "atsGuide": "How {name} reads your CV",
     "fallbackTitle": "Job listing",
     "scoring": "Scoring…",
     "requirements": "Requirements",
@@ -485,6 +488,7 @@
   "atsChip": {
     "loading": "ATS…",
     "score": "ATS {score}",
+    "scoreFrom": "ATS {preScore} → {score}",
     "none": "ATS n/a"
   },
   "reorder": {

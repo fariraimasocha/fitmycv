@@ -3,7 +3,7 @@
 
 export const cvFormatChecker = {
   slug: "cv-format-checker",
-  seoTitle: "CV Format Checker: South Africa, Nigeria, India, UK and US",
+  seoTitle: "CV Format Checker: SA, Nigeria, India, UK, US",
   description:
     "Check your CV format for the country you are applying in. Length, personal details, ID number, NYSC and more. Free, no sign-in, your CV stays in your browser.",
   keywords: [
@@ -92,7 +92,7 @@ export const cvFormatChecker = {
 
 export const resumeWeakWordsChecker = {
   slug: "resume-weak-words-checker",
-  seoTitle: "Resume Weak Words Checker: Find Buzzwords and Clichés",
+  seoTitle: "Resume Weak Words Checker: Cut the Clichés",
   description:
     "Find the buzzwords, clichés and duty phrases in your resume, with what to write instead. Free, no sign-in, runs in your browser.",
   keywords: [
@@ -176,7 +176,7 @@ export const resumeWeakWordsChecker = {
 
 export const employmentGapExplanationGenerator = {
   slug: "employment-gap-explanation-generator",
-  seoTitle: "Employment Gap Explanation Generator: CV, Cover Letter, Interview",
+  seoTitle: "Employment Gap Explanation Generator",
   description:
     "Explain a gap in your employment in one honest line. Get the wording for your CV, your cover letter and the interview. Free, no sign-in.",
   keywords: [

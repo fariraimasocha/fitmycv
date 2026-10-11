@@ -1,7 +1,7 @@
 export const meta = {
   slug: "cv-format-south-africa",
   title: "CV Format for South Africa: What Recruiters Expect in 2026",
-  seoTitle: "South African CV Format: Layout, Length and Details",
+  seoTitle: "South African CV Format: Layout and Length",
   description:
     "The South African CV format explained: length, section order, which personal details to include under POPIA, references, matric, SAQA and file type.",
   excerpt:

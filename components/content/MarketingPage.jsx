@@ -19,6 +19,7 @@ import WeakWordsChecker from "@/components/tools/WeakWordsChecker";
 import GapExplainer from "@/components/tools/GapExplainer";
 import JobPostingSaver from "@/components/tools/JobPostingSaver";
 import AtsLookup from "@/components/tools/AtsLookup";
+import LinkedInProfileChecker from "@/components/tools/LinkedInProfileChecker";
 import JsonLd from "@/components/JsonLd";
 import {
   breadcrumbSchema,
@@ -42,6 +43,7 @@ const TOOL_COMPONENTS = {
   gap: GapExplainer,
   "job-save": JobPostingSaver,
   "ats-lookup": AtsLookup,
+  "linkedin-profile": LinkedInProfileChecker,
 };
 
 const PRODUCT_SLUGS = new Set([
@@ -49,6 +51,7 @@ const PRODUCT_SLUGS = new Set([
   "missing-resume-keywords",
   "resume-bullet-rewriter",
   "resume-headline-generator",
+  "linkedin-profile-checker",
   "resume-file-name-generator",
   "ats-resume-checker",
   "free-ats-keyword-checker",

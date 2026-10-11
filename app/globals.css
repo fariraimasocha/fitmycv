@@ -29,6 +29,21 @@
   animation-play-state: paused;
 }
 
+/* Quotes need reading time, so they move slower than the logo strip. */
+.landing-marquee-slow {
+  animation-duration: 80s;
+}
+
+.landing-marquee-track:focus-within {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-marquee-track {
+    animation: none;
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

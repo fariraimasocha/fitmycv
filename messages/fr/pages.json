@@ -2,7 +2,7 @@
   "pricingPage": {
     "meta": {
       "title": "Tarifs : accès à vie pour ${lifetime}",
-      "description": "FitMyCV Premium coûte ${lifetime} à vie ou ${month}/mois. Téléchargez autant de CV et de lettres de motivation adaptés que vous voulez depuis n'importe quelle offre, avec un score ATS.",
+      "description": "FitMyCV Premium coûte ${lifetime} à vie ou ${month}/mois. CV et lettres de motivation adaptés à chaque offre, en téléchargement illimité, avec score ATS.",
       "socialTitle": "Tarifs : des CV adaptés depuis n'importe quelle offre | FitMyCV",
       "ogDescription": "Accès à vie pour ${lifetime} ou ${month}/mois : CV adaptés et lettres de motivation illimités, score ATS et export PDF.",
       "twitterDescription": "Premium coûte ${lifetime} à vie ou ${month}/mois : CV adaptés, lettres de motivation, scores ATS et PDF illimités. L'abonnement mensuel se résilie à tout moment.",
@@ -45,6 +45,7 @@
     "titleLine2": "À vous pour de bon.",
     "intro": "Un seul paiement pour un accès à vie, ou passez au mensuel, résiliable à tout moment.",
     "footnote": "Environ trois mois d'abonnement mensuel, et c'est à vous pour toutes vos recherches suivantes. Paiement sécurisé via Polar.",
+    "jobscanCompare": "À titre de comparaison, Jobscan Premium est affiché à 49,95 $ par mois (vérifié en octobre 2026).",
     "regionalAvailable": "Des tarifs régionaux plus bas sont proposés dans certains pays."
   },
   "pricingCards": {
@@ -128,7 +129,7 @@
   "tailorCvFromJobLink": {
     "meta": {
       "title": "Adaptez votre CV à une offre d'emploi depuis n'importe quel lien | FitMyCV",
-      "description": "Adaptez votre CV à une offre d'emploi avec l'IA. Collez un lien LinkedIn, Indeed, Glassdoor ou d'une page carrières, ou le texte, et obtenez un CV et une lettre de motivation."
+      "description": "Adaptez votre CV à une offre avec l'IA. Collez un lien LinkedIn, Indeed ou d'une page carrières, ou le texte, et obtenez CV et lettre de motivation."
     },
     "eyebrow": "Adaptation de CV par IA",
     "titleStart": "Adaptez votre CV à une offre d'emploi,",

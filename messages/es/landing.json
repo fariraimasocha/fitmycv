@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Adapta tu CV a cualquier oferta de empleo | FitMyCV",
-    "description": "Adapta tu CV y tu carta de presentación a cualquier enlace de oferta: coincidencia de palabras clave con IA, un verificador ATS gratuito, 19 plantillas compatibles con ATS y exportación a PDF en un clic.",
+    "description": "Adapta tu CV y tu carta a cualquier oferta: palabras clave con IA, verificador ATS gratuito, 19 plantillas compatibles con ATS y exportación a PDF.",
     "ogTitle": "FitMyCV: adapta tu CV a cualquier oferta en segundos",
     "ogAlt": "FitMyCV: consigue más entrevistas con un CV que encaja",
     "schemaName": "Adapta tu CV a cualquier oferta de empleo",
@@ -9,8 +9,16 @@
     "howToDescription": "Pega el enlace de una oferta, deja que FitMyCV reescriba tu CV según los requisitos del puesto y descarga el CV y la carta de presentación en PDF."
   },
   "hero": {
+    "platformTitle": "Del enlace de la oferta a la entrevista, en un solo lugar",
+    "platform": {"tailor": "CV adaptado", "coverLetter": "Carta de presentación", "atsScore": "Puntuación ATS", "jobMatch": "Compatibilidad", "linkedin": "Perfil de LinkedIn", "jobs": "Ofertas de empleo"},
+    "linkLabel": "Enlace de la oferta",
+    "linkPlaceholder": "Pega el enlace de una oferta",
+    "tailorCta": "Adaptar mi CV gratis",
+    "linkError": "Eso no es un enlace. Pega la dirección completa de la oferta.",
+    "notReady": "¿Aún no quieres registrarte?",
+    "usedBy": "Más de 1.800 personas en busca de empleo lo usan",
     "videoLabel": "Demo de FitMyCV: pega el enlace de una oferta y descarga un CV adaptado",
-    "checkerCta": "Puntuar mi CV",
+    "checkerCta": "Analizar mi CV gratis",
     "titleMain": "pega el enlace de cualquier oferta. recibe un CV <accent>hecho</accent> para ese puesto.",
     "body": "Sube tu CV una sola vez. FitMyCV lee la oferta y reescribe tu CV con las palabras que pide ese puesto.",
     "tryFree": "Pruébalo gratis",
@@ -56,7 +64,7 @@
     "seeAll": "Ver todas las plantillas"
   },
   "testimonial": {
-    "heading": "De un usuario de FitMyCV"
+    "heading": "De quienes usan FitMyCV"
   },
   "trust": {
     "title": "Qué nos entregas y qué pasa con ello",
@@ -97,12 +105,11 @@
   },
   "cta": {
     "title": "¿Listo para dejar de ser ignorado?",
-    "body": "Únete a quienes buscan empleo y consiguen entrevistas más rápido con candidaturas adaptadas por IA. Acceso de por vida por ${price}.",
-    "tryFree": "Pruébalo gratis",
+    "body": "Pega el enlace de una oferta y previsualiza gratis tu CV adaptado. Acceso de por vida por ${price}.",
     "pricing": "Ver precios"
   },
   "sticky": {
-    "cta": "Adaptar mi CV"
+    "cta": "Adaptar mi CV gratis"
   },
   "footer": {
     "tagline": "Adaptación de CV con IA. Consigue más entrevistas con menos esfuerzo.",
@@ -133,6 +140,13 @@
       "jobscan": "Alternativa a Jobscan",
       "teal": "Alternativa a Teal",
       "kickresume": "Alternativa a Kickresume",
+      "rezi": "Alternativa a Rezi",
+      "resumeWorded": "Alternativa a Resume Worded",
+      "visualcv": "Alternativa a VisualCV",
+      "enhancv": "Alternativa a Enhancv",
+      "huntr": "Alternativa a Huntr",
+      "tailoredcv": "Alternativa a TailoredCV",
+      "seekario": "Alternativa a Seekario",
       "workday": "Formato de currículum para Workday",
       "greenhouse": "Currículum para el ATS Greenhouse",
       "lever": "Currículum para el ATS Lever",

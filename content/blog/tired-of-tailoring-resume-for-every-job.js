@@ -2,7 +2,7 @@
 export const meta = {
   slug: "tired-of-tailoring-resume-for-every-job",
   title: "Tired of Tailoring Your Resume for Every Job? Me Too.",
-  seoTitle: "Tired of Tailoring Your Resume for Every Job? Do This Instead",
+  seoTitle: "Tired of Tailoring Your Resume for Every Job?",
   description:
     "Tailoring every application is worth it, but not the way most people do it. Change the top third, keep the rest, and stop spending an hour per job.",
   excerpt:

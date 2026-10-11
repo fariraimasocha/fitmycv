@@ -1,7 +1,7 @@
 export const meta = {
   slug: "how-to-tailor-resume-for-free",
   title: "How to Tailor Your Resume for Free",
-  seoTitle: "How to Tailor Your Resume to a Job Description for Free",
+  seoTitle: "How to Tailor Your Resume for Free",
   description:
     "A zero cost way to tailor your resume for every application: find the keywords with free tools, rewrite with ChatGPT's free tier, then check the result.",
   excerpt:

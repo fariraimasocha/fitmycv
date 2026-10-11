@@ -80,6 +80,7 @@
     "downloadPdf": "PDF herunterladen",
     "stats": {
       "checks": "CV-Prüfungen",
+      "aimFor": "Ziel: 80 oder mehr. Ab da wird der Wert grün.",
       "checksPassed": "{passed} von {total} bestanden",
       "checking": "Wird geprüft",
       "positions": "Positionen",
@@ -258,6 +259,8 @@
     "hideDetails": "Details ausblenden"
   },
   "jobRequirements": {
+    "atsVendor": "Diese Stelle nutzt {name}, um Bewerbungen zu prüfen.",
+    "atsGuide": "Wie {name} deinen Lebenslauf liest",
     "fallbackTitle": "Stellenanzeige",
     "scoring": "Wird bewertet…",
     "requirements": "Anforderungen",
@@ -323,7 +326,7 @@
     "questions": "Fragen zur Vorbereitung",
     "talkingPoints": "Gesprächspunkte"
   },
-  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "none": "ATS k. A." },
+  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "scoreFrom": "ATS {preScore} → {score}", "none": "ATS k. A." },
   "reorder": { "up": "Nach oben", "down": "Nach unten" },
   "companyResearch": {
     "loading": "Unternehmen wird recherchiert…",

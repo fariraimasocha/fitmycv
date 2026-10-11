@@ -108,6 +108,7 @@
     "downloadPdf": "下载 PDF",
     "stats": {
       "checks": "简历检查",
+      "aimFor": "目标是 80 分或以上，分数会变成绿色。",
       "checksPassed": "已通过 {passed}/{total} 项",
       "checking": "正在检查",
       "positions": "职位",
@@ -411,6 +412,8 @@
     "hideDetails": "隐藏详情"
   },
   "jobRequirements": {
+    "atsVendor": "该职位使用 {name} 筛选申请。",
+    "atsGuide": "{name} 如何读取你的简历",
     "fallbackTitle": "职位信息",
     "scoring": "正在评分…",
     "requirements": "要求",
@@ -485,6 +488,7 @@
   "atsChip": {
     "loading": "ATS…",
     "score": "ATS {score}",
+    "scoreFrom": "ATS {preScore} → {score}",
     "none": "ATS 不适用"
   },
   "reorder": {

@@ -1,11 +1,10 @@
 "use client";
 
-import { ArrowUpRightIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import RevealWords from "@/components/landing/RevealWords";
 
-import AuthLink from "@/components/landing/AuthLink";
+import { JobLinkForm } from "@/components/landing/Hero";
 import { PRICING } from "@/lib/pricing";
 
 export default function CTABand({ lifetimePrice = PRICING.lifetime.price }) {
@@ -18,21 +17,13 @@ export default function CTABand({ lifetimePrice = PRICING.lifetime.price }) {
         <p className="max-w-xl text-center text-base leading-relaxed text-[var(--landing-ink-inverse-soft)]">
           {t("body", { price: lifetimePrice })}
         </p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <AuthLink
-            href="/auth"
-            className="landing-pill-btn landing-pill-solid font-outfit px-6 py-3 text-sm"
-          >
-            {t("tryFree")}
-            <ArrowUpRightIcon size={16} aria-hidden="true" />
-          </AuthLink>
-          <Link
-            href="#pricing"
-            className="landing-pill-btn landing-pill-ghost font-outfit px-6 py-3 text-sm"
-          >
-            {t("pricing")}
-          </Link>
-        </div>
+        <JobLinkForm id="cta-job-link" className="" />
+        <Link
+          href="#pricing"
+          className="font-outfit text-sm font-semibold text-[var(--landing-ink)] underline underline-offset-4"
+        >
+          {t("pricing")}
+        </Link>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Passe deinen Lebenslauf an jede Stellenanzeige an | FitMyCV",
-    "description": "Passe Lebenslauf und Anschreiben an jeden Stellenlink an: KI-Abgleich der Schlüsselwörter, ein kostenloser ATS-Check, 19 ATS-sichere Vorlagen und PDF-Export mit einem Klick.",
+    "description": "Passe Lebenslauf und Anschreiben an jeden Stellenlink an: KI-Schlüsselwörter, kostenloser ATS-Check, 19 ATS-sichere Vorlagen und PDF-Export.",
     "ogTitle": "FitMyCV: Passe deinen Lebenslauf in Sekunden an jede Stellenanzeige an",
     "ogAlt": "FitMyCV: Mehr Vorstellungsgespräche mit einem Lebenslauf, der passt",
     "schemaName": "Passe deinen Lebenslauf an jede Stellenanzeige an",
@@ -9,8 +9,16 @@
     "howToDescription": "Füge einen Stellenlink ein, lass FitMyCV deinen Lebenslauf passend zu den Anforderungen der Stelle umschreiben und lade dann Lebenslauf und Anschreiben als PDF herunter."
   },
   "hero": {
+    "platformTitle": "Vom Stellenlink bis zum Vorstellungsgespräch, an einem Ort",
+    "platform": {"tailor": "Angepasster Lebenslauf", "coverLetter": "Anschreiben", "atsScore": "ATS-Score", "jobMatch": "Job-Match", "linkedin": "LinkedIn-Check", "jobs": "Jobbörse"},
+    "linkLabel": "Link zur Stelle",
+    "linkPlaceholder": "Link zu einer Stelle einfügen",
+    "tailorCta": "Lebenslauf kostenlos anpassen",
+    "linkError": "Das ist kein Link. Füge die vollständige Adresse der Stellenanzeige ein.",
+    "notReady": "Noch nicht bereit für ein Konto?",
+    "usedBy": "Über 1.800 Jobsuchende nutzen es",
     "videoLabel": "FitMyCV-Demo: Stellenlink einfügen und einen angepassten Lebenslauf herunterladen",
-    "checkerCta": "Lebenslauf bewerten",
+    "checkerCta": "Lebenslauf kostenlos prüfen",
     "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, der <accent>genau</accent> zu dieser Stelle passt.",
     "body": "Lade deinen Lebenslauf einmal hoch. FitMyCV liest die Anzeige und schreibt deinen Lebenslauf in den Worten um, die diese Stelle verlangt.",
     "tryFree": "Kostenlos testen",
@@ -56,7 +64,7 @@
     "seeAll": "Alle Vorlagen ansehen"
   },
   "testimonial": {
-    "heading": "Von einem FitMyCV-Nutzer"
+    "heading": "Von Leuten, die FitMyCV nutzen"
   },
   "trust": {
     "title": "Was du uns anvertraust und was damit passiert",
@@ -97,12 +105,11 @@
   },
   "cta": {
     "title": "Bereit, nicht mehr übersehen zu werden?",
-    "body": "Schließ dich Jobsuchenden an, die mit KI-angepassten Bewerbungen schneller zu Vorstellungsgesprächen kommen. Lebenslanger Zugang für ${price}.",
-    "tryFree": "Kostenlos testen",
+    "body": "Füge einen Stellenlink ein und sieh dir deinen angepassten Lebenslauf kostenlos an. Lebenslanger Zugang für ${price}.",
     "pricing": "Preise ansehen"
   },
   "sticky": {
-    "cta": "Lebenslauf anpassen"
+    "cta": "Lebenslauf kostenlos anpassen"
   },
   "footer": {
     "tagline": "KI-gestützte Lebenslauf-Anpassung. Mehr Vorstellungsgespräche mit weniger Aufwand.",
@@ -133,6 +140,13 @@
       "jobscan": "Jobscan-Alternative",
       "teal": "Teal-Alternative",
       "kickresume": "Kickresume-Alternative",
+      "rezi": "Rezi-Alternative",
+      "resumeWorded": "Resume Worded-Alternative",
+      "visualcv": "VisualCV-Alternative",
+      "enhancv": "Enhancv-Alternative",
+      "huntr": "Huntr-Alternative",
+      "tailoredcv": "TailoredCV-Alternative",
+      "seekario": "Seekario-Alternative",
       "workday": "Lebenslauf-Format für Workday",
       "greenhouse": "Lebenslauf für das Greenhouse-ATS",
       "lever": "Lebenslauf für das Lever-ATS",

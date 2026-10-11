@@ -8,6 +8,7 @@ import {
   FileTextIcon,
   LayoutIcon,
   LinkedinLogoIcon,
+  IdentificationCardIcon,
   ListChecksIcon,
   ListIcon,
   ListMagnifyingGlassIcon,
@@ -60,6 +61,7 @@ const TOOL_ICONS = {
   "/job-description-to-resume-bullets": ListChecksIcon,
   "/resume-file-name-generator": FileTextIcon,
   "/linkedin-url-for-resume": LinkedinLogoIcon,
+  "/linkedin-profile-checker": IdentificationCardIcon,
   "/cv-format-checker": GlobeHemisphereEastIcon,
   "/resume-weak-words-checker": TextStrikethroughIcon,
   "/employment-gap-explanation-generator": CalendarXIcon,
@@ -220,7 +222,7 @@ const Navbar1 = () => {
                 href="/auth"
                 className="tap-target landing-primary-btn landing-primary-btn-sm font-outfit"
               >
-                {t("tryFree")}
+                {t("signUp")}
               </AuthLink>
             </>
           )}
@@ -285,7 +287,7 @@ const Navbar1 = () => {
                   className="landing-primary-btn landing-primary-btn-sm w-full"
                   onClick={() => setIsOpen(false)}
                 >
-                  {t("tryFree")}
+                  {t("signUp")}
                 </AuthLink>
                 <AuthLink
                   href="/auth"

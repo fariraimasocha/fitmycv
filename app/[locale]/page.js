@@ -18,9 +18,8 @@ import { faqSchema, howToSchema, localeAlternates } from "@/lib/seo";
 import {
   getSoftwareApplicationSchema,
   webPageSchema,
-  reviewSchema,
 } from "@/lib/structured-data";
-import { getHomeFaqs, getHomeSteps, getHomeTestimonial } from "@/content/pages/home";
+import { getHomeFaqs, getHomeSteps } from "@/content/pages/home";
 import { getServerPricing } from "@/lib/server-pricing";
 import { SITE_URL } from "@/lib/site";
 
@@ -42,6 +41,7 @@ export async function generateMetadata({ params }) {
     description: t("description"),
     alternates,
     openGraph: {
+      type: "website",
       url: `${SITE_URL}${alternates.canonical}`,
       title: t("ogTitle"),
       description: t("description"),
@@ -104,7 +104,6 @@ export default async function Home({ params }) {
         })}
       />
       <JsonLd data={getSoftwareApplicationSchema(pricing)} />
-      <JsonLd data={reviewSchema(getHomeTestimonial(locale))} />
     </div>
   );
 }

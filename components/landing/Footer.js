@@ -43,6 +43,13 @@ const columns = [
       { key: "jobscan", href: "/jobscan-alternative" },
       { key: "teal", href: "/teal-alternative" },
       { key: "kickresume", href: "/kickresume-alternative" },
+      { key: "rezi", href: "/rezi-alternative" },
+      { key: "resumeWorded", href: "/resume-worded-alternative" },
+      { key: "visualcv", href: "/visualcv-alternative" },
+      { key: "enhancv", href: "/enhancv-alternative" },
+      { key: "huntr", href: "/huntr-alternative" },
+      { key: "tailoredcv", href: "/tailoredcv-alternative" },
+      { key: "seekario", href: "/seekario-alternative" },
     ],
   },
   {

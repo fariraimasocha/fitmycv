@@ -58,6 +58,20 @@ export const HOME_TESTIMONIAL = {
   image: "/farai.jpeg",
 };
 
+// Quotes for the landing slider, kept in each person's own words. Roles are
+// left out unless the person gave one. Only HOME_TESTIMONIAL feeds the Review
+// schema.
+export const HOME_TESTIMONIALS = [
+  { author: "Tino", image: "/trusted/tino.jpeg", quote: "I was sending the same CV to every job and wondering why nobody called back. Now I paste the link and the CV actually talks about what they asked for." },
+  { author: "Portia", image: "/trusted/portia.jpeg", quote: "The cover letter was the part I hated most. It writes one off the same job post, I change a line or two and send it." },
+  { author: "Titus", image: "/trusted/titus.jpg", quote: "The match score showed me two things the job wanted that weren't on my CV. I had done both. I just never wrote them down." },
+  { author: "Winnie", image: "/trusted/winnie.jpeg", quote: "I still edit what it gives me. But starting from a CV that's mostly there beats starting from a blank page every time." },
+  { author: "Vitus", image: "/trusted/vitus.jpg", quote: "Applied to six jobs in one evening. Before this, one application took me most of a Sunday." },
+  { author: "Nobesuthu", image: "/trusted/nobesuthu.jpeg", quote: "It kept my experience as it was and just moved the right bits to the top for each job. That's all I wanted." },
+  { author: "Rejoice", image: "/trusted/rejoice.jpg", quote: "Small thing, but the PDFs come out named properly. Recruiters don't get 'CV final final 2.pdf' from me anymore." },
+  { author: "Arnome", image: "/trusted/arnome.jpeg", quote: "The interview prep is underrated. It pulled questions straight from the job post and I got asked two of them." },
+];
+
 // Translated versions of the FAQ and steps above. Same order,
 // same claims. English stays the source: edit it first, then these.
 const HOME_FAQS_TRANSLATED = {
@@ -163,3 +177,8 @@ export const getHomeTestimonial = (locale) => ({
   ...HOME_TESTIMONIAL,
   role: HOME_TESTIMONIAL_ROLE[locale] ?? HOME_TESTIMONIAL.role,
 });
+
+export const getHomeTestimonials = (locale) => [
+  getHomeTestimonial(locale),
+  ...HOME_TESTIMONIALS,
+];

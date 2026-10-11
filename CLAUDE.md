@@ -61,6 +61,9 @@ FitMyCV lets users upload a reference CV, paste a job listing URL, and receive a
 Copy means any text a user reads: page headings, body text, button labels, empty
 states, error messages, toasts, tooltips, alt text, and metadata.
 
+- **For voice-led copy (testimonials, founder notes, landing headlines, bios),
+  invoke the `writer` skill.** Use the user's approved language, and never
+  invent quotes or facts about real people.
 - **Before writing or editing copy, invoke the `ux-writing` skill.** It lives in
   `.agents/skills/ux-writing` and covers buttons, errors, empty states, forms,
   and tone. Do not write copy from instinct when the skill is right there.
@@ -74,6 +77,13 @@ states, error messages, toasts, tooltips, alt text, and metadata.
   second person. No marketing puffery.
 
 This applies to code comments and commit messages too, minus the skill step.
+
+## Building Features
+
+- **Invoke the `ponytail` skill before building.** Take the smallest change
+  that works: reuse what the repo already has (`lib/ats-detect.js`, the
+  `components/tools` pattern, existing score endpoints) before writing new
+  code, and add no dependency for what a few lines can do.
 
 ## React Hooks Rules
 

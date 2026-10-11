@@ -108,6 +108,7 @@
     "downloadPdf": "تنزيل PDF",
     "stats": {
       "checks": "فحوصات السيرة الذاتية",
+      "aimFor": "استهدف 80 أو أكثر. عندها تتحول النتيجة إلى اللون الأخضر.",
       "checksPassed": "اجتاز {passed} من {total}",
       "checking": "جارٍ الفحص",
       "positions": "المناصب",
@@ -411,6 +412,8 @@
     "hideDetails": "إخفاء التفاصيل"
   },
   "jobRequirements": {
+    "atsVendor": "تستخدم هذه الوظيفة {name} لفرز الطلبات.",
+    "atsGuide": "كيف يقرأ {name} سيرتك الذاتية",
     "fallbackTitle": "إعلان الوظيفة",
     "scoring": "جارٍ التقييم…",
     "requirements": "المتطلبات",
@@ -485,6 +488,7 @@
   "atsChip": {
     "loading": "ATS…",
     "score": "ATS {score}",
+    "scoreFrom": "ATS {preScore} → {score}",
     "none": "ATS غير متاح"
   },
   "reorder": {

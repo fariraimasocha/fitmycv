@@ -2,16 +2,45 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/i18n/navigation";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { Link } from "@/i18n/navigation";
 import {
   ArrowRightIcon,
-  CheckCircleIcon,
+  BriefcaseIcon,
+  ChartBarIcon,
+  EnvelopeSimpleIcon,
+  FileTextIcon,
+  LinkedinLogoIcon,
+  TargetIcon,
   SpeakerHighIcon,
   SpeakerSlashIcon,
 } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
 import RevealWords from "@/components/landing/RevealWords";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
+import { saveAtsHandoff } from "@/lib/ats-handoff";
+import { toUrl } from "@/lib/ats-detect";
+import { trackEvent } from "@/lib/analytics";
+
+// Each chip is a real feature with its own page, so "all in one" holds up.
+const PLATFORM_LINKS = [
+  { key: "tailor", href: "/tailor-cv-from-job-link", Icon: FileTextIcon },
+  { key: "coverLetter", href: "/ai-cover-letter-generator", Icon: EnvelopeSimpleIcon },
+  { key: "atsScore", href: "/ats-resume-checker", Icon: ChartBarIcon },
+  { key: "jobMatch", href: "/resume-job-match-checker", Icon: TargetIcon },
+  { key: "linkedin", href: "/linkedin-profile-checker", Icon: LinkedinLogoIcon },
+  { key: "jobs", href: "/jobs", Icon: BriefcaseIcon },
+];
+
+const TRUST_FACES = [
+  "/trusted/tino.jpeg",
+  "/trusted/portia.jpeg",
+  "/trusted/titus.jpg",
+  "/trusted/winnie.jpeg",
+  "/trusted/vitus.jpg",
+];
 
 function DemoPreview() {
   const t = useTranslations("landing.hero");
@@ -91,26 +120,90 @@ function DemoPreview() {
   );
 }
 
-export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
+// The headline says "paste any job link", so the hero takes one. The link
+// rides the existing ATS handoff (sessionStorage) through sign-in and
+// onboarding and is waiting in the tailor page's link field.
+export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 mt-8" }) {
   const t = useTranslations("landing.hero");
   const router = useRouter();
   const gate = useWebviewGate();
+  const { data: session } = useSession();
+  const [link, setLink] = useState("");
+  const [invalid, setInvalid] = useState(false);
 
-  const handleTryFree = (event) => {
-    if (gate?.interceptAuth(event, "/auth")) return;
-    router.push("/auth");
+  const submit = (event) => {
+    event.preventDefault();
+    const url = toUrl(link);
+    if (!url) {
+      setInvalid(true);
+      return;
+    }
+    saveAtsHandoff({ jobUrl: url.href, source: "hero" });
+    trackEvent("hero_link_submitted", { signed_in: Boolean(session?.user), host: url.hostname });
+    const dest = "/dashboard/tailor";
+    if (session?.user) {
+      router.push(dest);
+      return;
+    }
+    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
+    if (gate?.interceptAuth(null, authUrl)) return;
+    router.push(authUrl);
   };
 
   return (
+    <form onSubmit={submit} noValidate className={`w-full max-w-xl ${className}`}>
+      <label htmlFor={id} className="sr-only">
+        {t("linkLabel")}
+      </label>
+      <div className="flex flex-col gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-2 sm:flex-row">
+        <input
+          id={id}
+          type="url"
+          inputMode="url"
+          autoComplete="off"
+          value={link}
+          onChange={(e) => {
+            setLink(e.target.value);
+            setInvalid(false);
+          }}
+          placeholder={t("linkPlaceholder")}
+          aria-invalid={invalid || undefined}
+          aria-describedby={invalid ? `${id}-error` : undefined}
+          className="min-h-12 min-w-0 flex-1 rounded-xl bg-transparent px-4 text-base text-[var(--landing-ink)] placeholder:text-[var(--landing-ink-soft)] focus:outline-none"
+        />
+        <button
+          type="submit"
+          className="landing-primary-btn group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 font-outfit text-base font-bold"
+        >
+          {t("tailorCta")}
+          <ArrowRightIcon
+            size={18}
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100"
+          />
+        </button>
+      </div>
+      {invalid ? (
+        <p id={`${id}-error`} role="alert" className="mt-2 text-sm font-semibold text-[var(--landing-accent)]">
+          {t("linkError")}
+        </p>
+      ) : null}
+    </form>
+  );
+}
+
+export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
+  const t = useTranslations("landing.hero");
+  return (
     <section id="hero" className="relative px-5 pb-16 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container flex flex-col items-center pt-16 text-center sm:pt-24">
+      <div className="landing-container flex flex-col items-center pt-10 text-center sm:pt-14">
         <RevealWords
           as="h1"
           onLoad
           text={t.raw("titleMain")}
           className="max-w-5xl font-serif-display text-[var(--landing-ink)]"
           style={{
-            fontSize: "clamp(3.25rem, 8vw, 8rem)",
+            fontSize: "clamp(3rem, 6.75vw, 6.75rem)",
             lineHeight: 0.95,
             letterSpacing: "-0.01em",
           }}
@@ -120,33 +213,55 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
           {t("body")}
         </p>
 
-        <div className="landing-rise-3 mt-8 flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={handleTryFree}
-            className="landing-primary-btn group rounded-xl px-7 py-3.5 font-outfit text-sm"
-          >
-            {t("tryFree")}
-            <ArrowRightIcon
-              size={16}
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:translate-x-0.5"
-            />
-          </button>
+        <JobLinkForm />
+        <p className="landing-rise-3 mt-4 text-sm text-[var(--landing-ink-soft)]">
+          {t("notReady")}{" "}
           <Link
             href="/ats-resume-checker"
-            className="inline-flex items-center gap-2 rounded-xl bg-[var(--landing-paper-soft)] px-7 py-3.5 font-outfit text-sm font-semibold text-[var(--landing-ink)] transition-colors hover:bg-[var(--landing-surface-elevated)]"
+            className="font-semibold text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)]"
           >
             {t("checkerCta")}
-            <CheckCircleIcon size={16} weight="fill" aria-hidden="true" className="text-[var(--landing-accent)]" />
           </Link>
+        </p>
+
+        <div className="landing-rise-3 mt-8 flex items-center gap-3">
+          <div className="flex -space-x-2 rtl:space-x-reverse">
+            {TRUST_FACES.map((src) => (
+              <Image
+                key={src}
+                src={src}
+                alt=""
+                width={32}
+                height={32}
+                className="size-8 rounded-full object-cover ring-2 ring-[var(--landing-bg)]"
+              />
+            ))}
+          </div>
+          <p className="text-sm font-semibold text-[var(--landing-ink)]">{t("usedBy")}</p>
         </div>
 
-        <p className="landing-rise-3 mt-6 text-xs text-[var(--landing-ink-soft)]">
+        <p className="landing-rise-3 mt-3 text-xs text-[var(--landing-ink-soft)]">
           {t("previewFree")}. {t("priceNote", { price: lifetimePrice })}
         </p>
 
-        <div className="mt-16 w-full sm:mt-20">
+        <h2 className="landing-rise-3 mt-10 font-outfit text-2xl font-bold tracking-tight text-[var(--landing-ink)] sm:mt-12 sm:text-3xl">
+          {t("platformTitle")}
+        </h2>
+        <ul className="landing-rise-3 mt-6 flex max-w-5xl flex-wrap justify-center gap-2 sm:gap-3">
+          {PLATFORM_LINKS.map(({ key, href, Icon }) => (
+            <li key={key}>
+              <Link
+                href={href}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 font-outfit text-sm font-semibold text-[var(--landing-ink)] transition-colors hover:border-[var(--landing-ink-soft)] sm:text-base"
+              >
+                <Icon size={18} aria-hidden="true" className="text-[var(--landing-accent)]" />
+                {t(`platform.${key}`)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-10 w-full sm:mt-12">
           <DemoPreview />
         </div>
       </div>

@@ -216,8 +216,14 @@ function Tailor() {
   // mount, so the server render and the first client render agree.
   useEffect(() => {
     const handoff = takeAtsHandoff();
-    if (!handoff?.jobText) return;
     /* eslint-disable react-hooks/set-state-in-effect -- one-time read of the sessionStorage handoff on mount; the effect is what keeps SSR/hydration in sync */
+    if (handoff?.jobUrl) {
+      setJobInputMode("link");
+      setUrl(handoff.jobUrl);
+      trackEvent("hero_link_consumed", { source: handoff.source ?? null });
+      return;
+    }
+    if (!handoff?.jobText) return;
     setJobInputMode("text");
     setJobText(handoff.jobText);
     setEditingJob(true);
@@ -873,6 +879,7 @@ function Tailor() {
               {tailorResult && (
                 <AtsScoreChip
                   score={atsScore?.score}
+                    preScore={preAtsScore?.score}
                   loading={atsLoading}
                   onClick={() => handleTabChange("ats")}
                 />
@@ -953,6 +960,7 @@ function Tailor() {
               <Rise className="min-w-0 lg:col-span-7">
                 <JobRequirementsCard
                   data={jobData}
+                  jobUrl={jobInputMode === "link" ? url : ""}
                   referenceCV={cachedReferenceCV}
                   matchGrade={matchScore?.globalGrade}
                   matchLoading={matchScoreLoading}
@@ -1019,6 +1027,7 @@ function Tailor() {
                   <AtsScoreChip
                     className="self-start sm:self-center"
                     score={atsScore?.score}
+                    preScore={preAtsScore?.score}
                     loading={atsLoading}
                     onClick={() => handleTabChange("ats")}
                   />

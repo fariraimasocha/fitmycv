@@ -28,6 +28,9 @@ export default async function Pricing() {
         <p className="mt-6 max-w-lg text-xs text-[var(--landing-ink-soft)]">
           {t("footnote")}
         </p>
+        <p className="mt-2 max-w-lg text-xs text-[var(--landing-ink-soft)]">
+          {t("jobscanCompare")}
+        </p>
         {tier === "standard" ? (
           <p className="mt-2 max-w-lg text-xs text-[var(--landing-ink-soft)]">
             {t("regionalAvailable")}

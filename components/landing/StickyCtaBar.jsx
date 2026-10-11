@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import { ArrowUpIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
-import AuthLink from "@/components/landing/AuthLink";
 
 export default function StickyCtaBar() {
   const t = useTranslations("landing.sticky");
@@ -27,10 +26,15 @@ export default function StickyCtaBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[var(--landing-line)] bg-[var(--landing-bg)]/95 p-3 backdrop-blur-md md:hidden">
-      <AuthLink href="/auth" className="landing-primary-btn w-full text-sm">
+      {/* Back to the hero link field. focus() scrolls it into view. */}
+      <button
+        type="button"
+        onClick={() => document.getElementById("hero-job-link")?.focus()}
+        className="landing-primary-btn w-full text-sm"
+      >
         {t("cta")}
-        <ArrowUpRightIcon size={16} aria-hidden="true" />
-      </AuthLink>
+        <ArrowUpIcon size={16} aria-hidden="true" />
+      </button>
     </div>
   );
 }

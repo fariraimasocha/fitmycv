@@ -80,6 +80,7 @@
     "downloadPdf": "Descargar PDF",
     "stats": {
       "checks": "Comprobaciones del CV",
+      "aimFor": "Apunta a 80 o más. Ahí la puntuación se pone verde.",
       "checksPassed": "{passed} de {total} superadas",
       "checking": "Comprobando",
       "positions": "Puestos",
@@ -258,6 +259,8 @@
     "hideDetails": "Ocultar detalles"
   },
   "jobRequirements": {
+    "atsVendor": "Esta oferta usa {name} para filtrar candidaturas.",
+    "atsGuide": "Cómo lee {name} tu CV",
     "fallbackTitle": "Oferta de empleo",
     "scoring": "Puntuando…",
     "requirements": "Requisitos",
@@ -323,7 +326,7 @@
     "questions": "Preguntas para preparar",
     "talkingPoints": "Puntos clave"
   },
-  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "none": "ATS n/d" },
+  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "scoreFrom": "ATS {preScore} → {score}", "none": "ATS n/d" },
   "reorder": { "up": "Subir", "down": "Bajar" },
   "companyResearch": {
     "loading": "Investigando la empresa…",

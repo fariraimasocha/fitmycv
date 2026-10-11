@@ -2,7 +2,7 @@
   "pricingPage": {
     "meta": {
       "title": "Precios: acceso de por vida por ${lifetime}",
-      "description": "FitMyCV Premium cuesta ${lifetime} de por vida o ${month}/mes. Descarga CV y cartas de presentación adaptados sin límite desde cualquier enlace de empleo, con puntuación ATS.",
+      "description": "FitMyCV Premium cuesta ${lifetime} de por vida o ${month}/mes. Descarga sin límite CV y cartas adaptados a cada oferta, con puntuación ATS.",
       "socialTitle": "Precios: CV adaptados desde cualquier enlace de empleo | FitMyCV",
       "ogDescription": "Acceso de por vida por ${lifetime} o ${month}/mes para CV adaptados, cartas de presentación, puntuación ATS y exportación a PDF sin límite.",
       "twitterDescription": "Premium cuesta ${lifetime} de por vida o ${month}/mes para CV adaptados, cartas de presentación, puntuaciones ATS y PDF sin límite. Cancela el plan mensual cuando quieras.",
@@ -45,6 +45,7 @@
     "titleLine2": "Tuyo para siempre.",
     "intro": "Un solo pago para acceso de por vida, o paga cada mes y cancela cuando quieras.",
     "footnote": "Cuesta unos tres meses del plan mensual y es tuyo para todas tus búsquedas futuras. Pago seguro con Polar.",
+    "jobscanCompare": "Como referencia, Jobscan Premium cuesta 49,95 $ al mes (consultado en octubre de 2026).",
     "regionalAvailable": "Hay precios regionales más bajos en algunos países."
   },
   "pricingCards": {
@@ -128,7 +129,7 @@
   "tailorCvFromJobLink": {
     "meta": {
       "title": "Adapta tu CV a una oferta de empleo desde cualquier enlace | FitMyCV",
-      "description": "Adapta tu CV a una oferta de empleo con IA. Pega un enlace de LinkedIn, Indeed, Glassdoor o una página de empleo, o el texto, y obtén un CV y una carta de presentación."
+      "description": "Adapta tu CV a una oferta con IA. Pega un enlace de LinkedIn, Indeed o una página de empleo, o el texto, y obtén tu CV y carta de presentación."
     },
     "eyebrow": "Adaptación de CV con IA",
     "titleStart": "Adapta tu CV a una oferta de empleo,",

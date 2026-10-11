@@ -29,10 +29,10 @@ export default function Testimonial() {
         }}
       >
         <ul className="landing-marquee-track landing-marquee-slow flex w-max gap-4 px-4 md:gap-6">
-          {[...items, ...items].map((item, i) => (
+          {[0, 1].flatMap((copy) => items.map((item) => (
             <li
-              key={`${item.author}-${i}`}
-              aria-hidden={i >= items.length || undefined}
+              key={`${copy}-${item.author}`}
+              aria-hidden={copy === 1 || undefined}
               className="w-72 shrink-0 sm:w-80"
             >
               <figure className="landing-card flex h-full flex-col justify-between gap-6 rounded-2xl p-6">
@@ -60,7 +60,7 @@ export default function Testimonial() {
                 </figcaption>
               </figure>
             </li>
-          ))}
+          )))}
         </ul>
       </div>
     </section>

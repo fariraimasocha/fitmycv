@@ -1,15 +1,7 @@
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
-
-// Next already emits <meta name="robots" content="noindex"> for not-found.
-// declaring it here too would render the tag twice.
-export async function generateMetadata() {
-  const t = await getTranslations("errors.notFound");
-  return { title: t("metaTitle") };
-}
 
 // ponytail: hand-picked links rather than a search box. Most 404s that a real
 // person hits are near-miss slugs on the marketing, blog and examples routes,
@@ -21,7 +13,9 @@ const links = [
   { key: "pricing", href: "/pricing" },
 ];
 
-export default function NotFound() {
+// The 404 body, shared by global-not-found.js (unmatched URLs) and the
+// not-found.js files that catch notFound() inside each root layout.
+export default function NotFoundContent() {
   const t = useTranslations("errors.notFound");
 
   return (

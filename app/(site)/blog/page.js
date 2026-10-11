@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
@@ -42,6 +43,7 @@ const collectionSchema = (posts) => ({
 });
 
 export default function BlogIndexPage() {
+  setRequestLocale("en");
   const posts = listPosts();
 
   return (

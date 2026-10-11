@@ -9,6 +9,9 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   experimental: {
+    // Three root layouts (app/[locale], app/(site), app/(app)) leave no single
+    // layout for unmatched URLs, so app/global-not-found.js renders those.
+    globalNotFound: true,
     optimizePackageImports: [
       "@phosphor-icons/react",
       "radix-ui",

@@ -220,7 +220,7 @@ const Navbar1 = () => {
               </AuthLink>
               <AuthLink
                 href="/auth"
-                className="tap-target landing-primary-btn landing-primary-btn-sm font-outfit"
+                className="tap-target landing-primary-btn landing-primary-btn-sm min-h-9 py-1 font-outfit"
               >
                 {t("signUp")}
               </AuthLink>

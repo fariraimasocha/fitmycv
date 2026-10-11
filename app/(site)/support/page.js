@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import {
   EnvelopeSimpleIcon,
@@ -68,6 +69,7 @@ const HELP_LINKS = [
 ];
 
 export default function SupportPage() {
+  setRequestLocale("en");
   return (
     <div className="landing-root min-h-screen">
       <Header />

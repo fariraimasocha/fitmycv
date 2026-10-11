@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
@@ -64,6 +65,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function AtsCompanyPage({ params }) {
+  setRequestLocale("en");
   const { company: slug } = await params;
   const company = getAtsCompany(slug);
   if (!company) notFound();

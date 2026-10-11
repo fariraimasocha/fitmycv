@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import ExamplesHub from "@/components/content/ExamplesHub";
 import { pageMetadata } from "@/lib/seo";
 
@@ -120,5 +121,6 @@ const hub = {
 };
 
 export default function CvExamplesPage() {
+  setRequestLocale("en");
   return <ExamplesHub hub={hub} />;
 }

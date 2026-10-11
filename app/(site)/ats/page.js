@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 
 import MarketingPage from "@/components/content/MarketingPage";
@@ -20,6 +21,7 @@ const groups = ATS_VENDORS.map((vendor) => ({
 })).filter((g) => g.companies.length);
 
 export default function AtsLookupPage() {
+  setRequestLocale("en");
   return (
     <MarketingPage page={atsLookup}>
       <section className="px-5 pb-4 pt-14 sm:px-10 lg:px-16 xl:px-24">

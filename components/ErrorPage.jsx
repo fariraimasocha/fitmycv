@@ -8,8 +8,9 @@ import { Link } from "@/i18n/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
 
-// Catches render errors in any route below the root layout. Without this file
-// a thrown error shows Next's default error page instead of the site.
+// Catches render errors below each root layout; every route group re-exports
+// it as error.js. Without it a thrown error shows Next's default error page
+// instead of the site.
 export default function Error({ error, reset }) {
   const t = useTranslations("errors.page");
 

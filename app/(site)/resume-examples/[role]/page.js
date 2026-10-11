@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaretRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
@@ -74,6 +75,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ResumeExamplePage({ params }) {
+  setRequestLocale("en");
   const { role: slug } = await params;
   const example = getResumeExample(slug);
   const keywordsPage = example ? keywordsPageFor(example.slug) : null;

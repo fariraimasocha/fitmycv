@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
 import CTABand from "@/components/landing/CTABand";
@@ -44,6 +45,7 @@ export const metadata = {
 };
 
 export default function JobsPage() {
+  setRequestLocale("en");
   return (
     <div className="landing-root min-h-screen">
       <Header />

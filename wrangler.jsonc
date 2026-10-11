@@ -2,6 +2,10 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "fitmycv",
 	"main": ".open-next/worker.js",
+	// Copies the prerendered pages into the assets folder the static assets
+	// incremental cache reads (open-next.config.ts). Runs on every wrangler
+	// deploy, so it works whichever deploy command the build uses.
+	"build": { "command": "npx opennextjs-cloudflare populateCache local" },
 	"compatibility_date": "2026-09-01",
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
 	"assets": {

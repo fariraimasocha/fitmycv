@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaretRightIcon, ClockIcon } from "@phosphor-icons/react/dist/ssr";
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogPostPage({ params }) {
+  setRequestLocale("en");
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();

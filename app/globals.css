@@ -96,12 +96,6 @@
   --spacing-control-sm: var(--control-height-sm);
 }
 
-@media (min-width: 48rem) {
-  :root {
-    --control-height-sm: 2.25rem;
-  }
-}
-
 :root {
   --control-height: 2.75rem;
   /* Compact controls only on wider screens. On phones every control keeps the
@@ -193,6 +187,15 @@
   --landing-on-primary: #ffffff;
   --landing-shadow: 0 18px 45px oklch(0.18 0.02 260 / 0.08), 0 4px 12px oklch(0.18 0.02 260 / 0.05);
   --landing-shadow-sm: 0 8px 20px oklch(0.18 0.02 260 / 0.06), 0 2px 6px oklch(0.18 0.02 260 / 0.04);
+}
+
+/* Compact controls on wider screens. This has to come after the :root block
+   above: at equal specificity the later rule wins, and when it sat before it
+   the 2.75rem default always won, so sm controls were never compact. */
+@media (min-width: 48rem) {
+  :root {
+    --control-height-sm: 2.25rem;
+  }
 }
 
 .dark {

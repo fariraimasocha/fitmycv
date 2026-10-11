@@ -179,13 +179,13 @@ function PreferencesForm({ prefs }) {
               {titles.map((title) => (
                 <li
                   key={title}
-                  className="inline-flex h-8 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-2.5 pe-1 text-sm text-foreground"
+                  className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-3 pe-1 text-sm text-foreground"
                 >
                   <span className="max-w-60 truncate">{title}</span>
                   <button
                     type="button"
                     onClick={() => setTitles(titles.filter((x) => x !== title))}
-                    className="inline-flex h-6 w-6 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                    className="inline-flex h-6 w-6 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                     aria-label={t("removeTitle", { title })}
                   >
                     <XIcon size={12} weight="bold" aria-hidden="true" />

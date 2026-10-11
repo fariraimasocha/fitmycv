@@ -39,11 +39,11 @@ export function DashboardPageHeader({
             {meta}
           </div>
         )}
-        <h1 className="font-outfit text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">
+        <h1 className="font-serif-display text-3xl font-normal tracking-tight text-foreground sm:text-4xl">
           {title}
         </h1>
         {description && (
-          <div className="mt-1 max-w-xl text-sm leading-6 text-muted-foreground">
+          <div className="mt-1 max-w-2xl text-sm leading-6 text-pretty text-muted-foreground">
             {description}
           </div>
         )}

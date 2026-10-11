@@ -102,7 +102,7 @@ export default function DashboardShell({ children }) {
         <SidebarProvider className="dashboard-shell">
           <AppSidebar />
           <SidebarInset className="min-w-0 overflow-x-clip">
-            <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/90 px-3 backdrop-blur-md sm:h-16 sm:px-4">
+            <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 bg-[var(--landing-bg)]/85 shadow-[0_1px_0_var(--landing-line)] px-3 backdrop-blur-md sm:h-16 sm:px-4">
               <SidebarTrigger className="-ms-1 shrink-0 rounded-md hover:bg-[var(--landing-primary-soft)]" />
               <Separator orientation="vertical" className="me-1 h-4 shrink-0 bg-[var(--landing-line)] sm:me-2" />
               <div className="min-w-0 flex-1 overflow-hidden">

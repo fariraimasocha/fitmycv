@@ -400,7 +400,16 @@
     --landing-ink-deep: #262626;
     --landing-shadow: 0 18px 45px oklch(0 0 0 / 0.35), 0 4px 12px oklch(0 0 0 / 0.25);
     --landing-shadow-sm: 0 8px 20px oklch(0 0 0 / 0.3), 0 2px 6px oklch(0 0 0 / 0.2);
-    /* shadcn menus and selects read these, so they follow the theme too. */
+    /* shadcn primitives read these, so they follow the theme too. Without
+       them cards, outline buttons and inputs on /jobs stay light. */
+    --background: var(--landing-bg);
+    --foreground: var(--landing-ink);
+    --card: var(--landing-surface);
+    --card-foreground: var(--landing-ink);
+    --muted: var(--landing-paper-soft);
+    --input: var(--landing-line);
+    --primary: var(--landing-primary);
+    --primary-foreground: var(--landing-on-primary);
     --popover: var(--landing-surface);
     --popover-foreground: var(--landing-ink);
     --accent: var(--landing-paper-soft);
@@ -796,9 +805,9 @@
     border-radius: 999px;
   }
 
-  /* In-app dashboard — mirrors landing tokens. Visual language is flat and
-     border-led: hairline edges instead of shadows, sharp corners, medium
-     weights. The landing keeps its own softer treatment. */
+  /* In-app dashboard. Same light palette as before, with the landing's feel:
+     Bricolage type, softer corners, faint layered shadows that deepen on
+     hover, and buttons that lift. */
   .dashboard-page {
     width: 100%;
     min-width: 0;
@@ -806,15 +815,33 @@
     color: var(--landing-ink);
   }
 
-  /* Sharp radius scale scoped to the shell. Redeclared (not just --radius)
-     because :root-declared calc() chains don't re-evaluate on descendants. */
-  .dashboard-shell {
-    --radius: 0.5rem;
+  /* Radius scale and fonts for the shell. Redeclared (not just --radius)
+     because :root-declared calc() chains don't re-evaluate on descendants.
+     body:has() carries them to dialogs, sheets and menus, which portal out of
+     the shell. CV previews set their own font, so they are unaffected. */
+  .dashboard-shell,
+  body:has(.dashboard-shell) {
+    --font-outfit: var(--font-bricolage);
+    --font-sn-pro: var(--font-bricolage);
+    /* shadcn's primary and foreground are a blue-black; the landing's ink is
+       a warm #1a1a1a. */
+    --foreground: var(--landing-ink);
+    --primary: var(--landing-primary);
+    --primary-foreground: var(--landing-on-primary);
+    --radius: 0.875rem;
     --radius-sm: calc(var(--radius) - 3px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
     --radius-2xl: calc(var(--radius) + 8px);
+  }
+
+  /* Dialogs and sheets sit on white like the cards, not on the cream page.
+     Set as a variable on the element so it beats the bg-background utility. */
+  body:has(.dashboard-shell) [data-slot="dialog-content"],
+  body:has(.dashboard-shell) [data-slot="sheet-content"] {
+    --background: var(--landing-surface);
+    border-color: var(--landing-line);
   }
 
   /* Doubled specificity so these beat leftover shadow-* / rounded-* utilities
@@ -823,7 +850,19 @@
   .dashboard-shell .dashboard-card {
     border: 1px solid var(--landing-line);
     background: var(--landing-surface);
-    box-shadow: none;
+    box-shadow:
+      0 20px 20px oklch(0.18 0.02 260 / 0.02),
+      0 5px 11px oklch(0.18 0.02 260 / 0.03);
+    transition: box-shadow var(--dur-slow) var(--ease-out-quart);
+  }
+
+  /* Same as .landing-card: the pool of light deepens, the card stays put. */
+  .dashboard-page .dashboard-card:hover,
+  .dashboard-shell .dashboard-card:hover {
+    box-shadow:
+      0 46px 28px oklch(0.18 0.02 260 / 0.02),
+      0 20px 20px oklch(0.18 0.02 260 / 0.03),
+      0 5px 11px oklch(0.18 0.02 260 / 0.04);
   }
 
   /* Two padding recipes only: `card` for standalone blocks, `row` for list
@@ -854,6 +893,12 @@
     border-radius: var(--radius-md);
   }
 
+  .dashboard-page [data-slot="input"]:focus-visible,
+  .dashboard-page [data-slot="textarea"]:focus-visible {
+    border-color: var(--landing-accent);
+    box-shadow: 0 0 0 3px var(--landing-accent-soft);
+  }
+
   .dashboard-page [data-slot="input"] {
     height: var(--control-height);
   }
@@ -864,7 +909,7 @@
     overflow-x: auto;
     /* Outer radius = inner radius + the 0.25rem padding, so the track hugs
        the active tab's corners instead of bowing away from them. */
-    border-radius: calc(var(--radius-md) + 0.25rem);
+    border-radius: 999px;
     border: 1px solid var(--landing-line);
     background: var(--landing-surface);
     padding: 0.25rem;
@@ -883,7 +928,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.375rem;
-    border-radius: var(--radius-sm);
+    border-radius: 999px;
     /* Track padding (0.25rem) and border (1px) on both sides, so the whole
        tab bar is exactly one control tall. */
     height: calc(var(--control-height) - 0.5rem - 2px);
@@ -913,16 +958,20 @@
     border: 1px solid var(--landing-line);
     background: var(--landing-surface);
     border-radius: var(--radius-lg);
+    box-shadow: 0 2px 6px oklch(0.18 0.02 260 / 0.03);
     transition:
       border-color var(--dur) var(--ease-out-quart),
-      background var(--dur) var(--ease-out-quart);
+      background var(--dur) var(--ease-out-quart),
+      box-shadow var(--dur-slow) var(--ease-out-quart);
   }
 
   .dashboard-page .dashboard-list-row:hover,
   .dashboard-shell .dashboard-list-row:hover {
     border-color: #ccc5bb;
     background: #fdfcf9;
-    box-shadow: none;
+    box-shadow:
+      0 20px 20px oklch(0.18 0.02 260 / 0.02),
+      0 5px 11px oklch(0.18 0.02 260 / 0.04);
   }
 
   /* Two button recipes for the shell, both one control tall so any pair
@@ -938,10 +987,11 @@
     padding: 0 1rem;
     font-family: var(--font-outfit), sans-serif;
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1;
     white-space: nowrap;
     transition:
+      box-shadow var(--dur) var(--ease-out-quart),
       background var(--dur) var(--ease-out-quart),
       border-color var(--dur) var(--ease-out-quart),
       color var(--dur) var(--ease-out-quart),
@@ -955,19 +1005,27 @@
     font-size: 0.8125rem;
   }
 
-  .dashboard-primary-btn {
+  /* Same lift as .landing-primary-btn. The shadcn <Button> default variant
+     gets it too, so both kinds of primary button match inside the shell. */
+  .dashboard-primary-btn,
+  body:has(.dashboard-shell) [data-slot="button"][data-variant="default"] {
     background: var(--landing-primary);
     color: var(--landing-on-primary);
+    box-shadow: 0 4px 14px oklch(0.18 0.02 260 / 0.15);
   }
 
-  .dashboard-primary-btn:hover {
-    background: #000000;
+  .dashboard-primary-btn:hover:not(:disabled),
+  body:has(.dashboard-shell) [data-slot="button"][data-variant="default"]:hover:not(:disabled) {
+    background: #333333;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px oklch(0.18 0.02 260 / 0.18);
   }
 
   .dashboard-secondary-btn {
     border: 1px solid var(--landing-line);
     background: var(--landing-surface);
     color: var(--landing-ink);
+    box-shadow: 0 1px 2px oklch(0.18 0.02 260 / 0.04);
   }
 
   .dashboard-secondary-btn:hover {
@@ -977,14 +1035,17 @@
 
   .dashboard-primary-btn:active,
   .dashboard-secondary-btn:active {
-    transform: scale(0.98);
+    transform: translateY(0) scale(0.98);
   }
 
+  /* A disabled button can't be pressed, so it shouldn't look raised. */
   .dashboard-primary-btn:disabled,
-  .dashboard-secondary-btn:disabled {
+  .dashboard-secondary-btn:disabled,
+  body:has(.dashboard-shell) [data-slot="button"]:disabled {
     cursor: not-allowed;
     opacity: 0.5;
     transform: none;
+    box-shadow: none;
   }
 
   .dashboard-primary-btn:focus-visible,
@@ -997,7 +1058,9 @@
     background: var(--landing-accent-dark) !important;
     color: #ffffff !important;
     font-weight: 600;
-    box-shadow: none;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      0 4px 12px oklch(0.45 0.12 35 / 0.18);
   }
 
   .dashboard-nav-active:hover {

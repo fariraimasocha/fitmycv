@@ -796,7 +796,7 @@ function Tailor() {
                         type="button"
                         onClick={() => setUrl(item.url)}
                         title={item.url}
-                        className="inline-flex h-control-sm max-w-full items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-2.5 text-xs font-medium text-foreground transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+                        className="inline-flex h-control-sm max-w-full items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 text-xs font-medium text-foreground transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
                       >
                         <span className="truncate">{item.title || item.url}</span>
                       </button>

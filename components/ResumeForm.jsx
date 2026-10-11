@@ -316,9 +316,10 @@ export default function ResumeForm({
                     variant="ghost"
                     size="icon"
                     className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    aria-label={t("removeProfile", { index: index + 1 })}
                     onClick={() => removeProfile(index)}
                   >
-                    <TrashIcon size={16} />
+                    <TrashIcon size={16} aria-hidden="true" />
                   </Button>
                 </div>
               </div>
@@ -397,6 +398,7 @@ export default function ResumeForm({
                       variant="ghost"
                       size="icon-xs"
                       className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                      aria-label={t("removePosition", { index: index + 1 })}
                       onClick={() => removeWork(index)}
                     >
                       <TrashIcon size={14} />
@@ -514,6 +516,7 @@ export default function ResumeForm({
                       variant="ghost"
                       size="icon-xs"
                       className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                      aria-label={t("removeEducation", { index: index + 1 })}
                       onClick={() => removeEducation(index)}
                     >
                       <TrashIcon size={14} />

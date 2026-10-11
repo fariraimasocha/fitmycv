@@ -141,6 +141,11 @@
     "addCategoryButton": "Kategorie hinzufügen",
     "addCategory": "Kategorie hinzufügen",
     "addSkill": "Skill hinzufügen",
+    "removeSkill": "Skill entfernen",
+    "removeCategory": "Skill-Gruppe entfernen",
+    "skillRemoved": "Skill entfernt",
+    "categoryRemoved": "Skill-Gruppe entfernt",
+    "undo": "Rückgängig",
     "empty": {
       "profiles": "Füg die Profile hinzu, die Arbeitgeber sehen sollen.",
       "work": "Deine Positionen werden für jede Stelle neu geschrieben.",

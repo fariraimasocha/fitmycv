@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -32,26 +32,37 @@ export default function PricingCards({
   const tier = tierProp ?? pricingProp?.tier ?? fetched?.tier ?? "standard";
 
   useEffect(() => {
-    if (pricingProp) {
-      trackEvent("pricing_tier_viewed", {
-        tier: tierProp ?? pricingProp.tier,
-      });
-      return;
-    }
-
+    if (pricingProp) return;
     fetch("/api/pricing-tier")
       .then((res) => res.json())
       .then((data) => {
         if (data?.pricing) {
-          setFetched({ pricing: data.pricing, tier: data.tier ?? "standard" });
-          trackEvent("pricing_tier_viewed", {
-            tier: data.tier,
-            country: data.country,
-          });
+          setFetched({ pricing: data.pricing, tier: data.tier ?? "standard", country: data.country });
         }
       })
       .catch(() => {});
-  }, [pricingProp, tierProp]);
+  }, [pricingProp]);
+
+  // Sent once the cards are on screen, not on mount. The home page mounts
+  // them below the fold, so a mount event fired on every visit and said
+  // nothing about who looked at the prices.
+  const rootRef = useRef(null);
+  const tierReady = Boolean(pricingProp || fetched);
+  const country = fetched?.country;
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!tierReady || !el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        trackEvent("pricing_tier_viewed", { tier, ...(country ? { country } : {}) });
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [tierReady, tier, country]);
 
   // A full page load, not router.push. The route redirects to Polar after a
   // slow API call, and router.push gave no feedback, so people clicked again
@@ -109,7 +120,7 @@ export default function PricingCards({
       : PRO_FEATURES;
 
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div ref={rootRef} className="flex w-full flex-col gap-6">
       {pricing.regionalNote ? (
         <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
           {t("regionalNote")}

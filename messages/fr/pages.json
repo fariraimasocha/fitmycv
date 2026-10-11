@@ -97,10 +97,14 @@
       "title": "Téléchargez vos PDF",
       "description": "Passez à Pro pour télécharger votre CV adapté et votre lettre de motivation en PDF."
     },
-    "startMonth": "Commencer un mois pour ${price}",
     "getLifetime": "Accès à vie pour ${price}",
     "maybeLater": "Plus tard",
-    "seeEverything": "Tout ce que comprend Pro",
+    "lifetimeNote": "Un seul paiement, accès conservé. Sans abonnement.",
+    "orMonth": "Ou ${price} par mois, résiliable à tout moment",
+    "stats": {
+      "keywords": "{count, plural, one {# mot-clé de l'offre ajouté à votre CV} other {# mots-clés de l'offre ajoutés à votre CV}}",
+      "grade": "Note de correspondance pour ce poste : {grade}"
+    },
     "forJob": {
       "title": "Téléchargez votre CV pour {title}",
       "titleWithCompany": "Téléchargez votre CV pour {title} chez {company}"

@@ -48,12 +48,25 @@ if (!projectToken || !host) {
   // shows what would have been sent.
   const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
 
+  // "ResizeObserver loop completed with undelivered notifications" is a
+  // browser warning, not a bug. One session sent nine of them in a second and
+  // they were the only exceptions that day, which hides the real ones.
+  const isBrowserNoise = (event: { event: string; properties?: Record<string, unknown> } | null) => {
+    if (event?.event !== "$exception") return false;
+    const list = event.properties?.$exception_list;
+    return (
+      Array.isArray(list) &&
+      list.length > 0 &&
+      list.every((e) => typeof e?.value === "string" && e.value.startsWith("ResizeObserver loop"))
+    );
+  };
+
   posthog.init(projectToken, {
     api_host: host,
     defaults: "2026-01-30",
     capture_exceptions: true,
     debug: process.env.NODE_ENV === "development",
     disable_session_recording: isLocal,
-    before_send: (event) => (isLocal ? null : event),
+    before_send: (event) => (isLocal || isBrowserNoise(event) ? null : event),
   });
 }

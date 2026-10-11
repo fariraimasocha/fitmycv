@@ -178,6 +178,11 @@
     "addCategoryButton": "Adicionar categoria",
     "addCategory": "Adicionar categoria",
     "addSkill": "Adicionar habilidade",
+    "removeSkill": "Remover habilidade",
+    "removeCategory": "Remover grupo de habilidades",
+    "skillRemoved": "Habilidade removida",
+    "categoryRemoved": "Grupo de habilidades removido",
+    "undo": "Desfazer",
     "empty": {
       "profiles": "Adicione os perfis que você quer que os empregadores vejam.",
       "work": "Seus cargos são o que reescrevemos para cada vaga.",

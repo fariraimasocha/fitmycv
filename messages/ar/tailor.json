@@ -178,6 +178,11 @@
     "addCategoryButton": "أضف فئة",
     "addCategory": "أضف فئة",
     "addSkill": "أضف مهارة",
+    "removeSkill": "إزالة المهارة",
+    "removeCategory": "إزالة مجموعة المهارات",
+    "skillRemoved": "أُزيلت المهارة",
+    "categoryRemoved": "أُزيلت مجموعة المهارات",
+    "undo": "تراجع",
     "empty": {
       "profiles": "أضف الملفات الشخصية التي تريد أن يراها أصحاب العمل.",
       "work": "مناصبك هي ما يُعاد كتابته لكل وظيفة.",

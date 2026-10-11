@@ -141,6 +141,11 @@
     "addCategoryButton": "Ajouter une catégorie",
     "addCategory": "Ajouter une catégorie",
     "addSkill": "Ajouter une compétence",
+    "removeSkill": "Supprimer la compétence",
+    "removeCategory": "Supprimer le groupe de compétences",
+    "skillRemoved": "Compétence supprimée",
+    "categoryRemoved": "Groupe de compétences supprimé",
+    "undo": "Annuler",
     "empty": {
       "profiles": "Ajoutez les profils que vous voulez montrer aux employeurs.",
       "work": "Ce sont vos postes qui sont réécrits pour chaque offre.",

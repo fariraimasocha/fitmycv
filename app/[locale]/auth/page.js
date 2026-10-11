@@ -40,6 +40,20 @@ function usePendingPlan() {
   return useSyncExternalStore(useCheckoutStore.subscribe, pendingPlanSnapshot, () => null);
 }
 
+// The hero sends people here with their job link inside `next`. Naming the
+// site shows the link was kept, so sign-in reads as a step, not a detour.
+function jobHostSnapshot() {
+  try {
+    const next = new URLSearchParams(window.location.search).get("next");
+    const job = next && new URL(next, window.location.origin).searchParams.get("url");
+    return job ? new URL(job).hostname.replace(/^www\./, "") : null;
+  } catch {
+    return null;
+  }
+}
+
+const noSubscribe = () => () => {};
+
 export default function AuthPage() {
   const t = useTranslations("auth");
   const getPendingCheckout = useCheckoutStore((s) => s.getPendingCheckout);
@@ -57,6 +71,7 @@ export default function AuthPage() {
   const [sending, setSending] = useState(false);
   const [googlePending, setGooglePending] = useState(false);
   const pendingPlan = usePendingPlan();
+  const jobHost = useSyncExternalStore(noSubscribe, jobHostSnapshot, () => null);
   const pricing = useClientPricing();
   // Buyers came for checkout, so the one-click option leads. Google is
   // disabled in a webview, where email stays first.
@@ -237,14 +252,18 @@ export default function AuthPage() {
               ? t("checkoutIntent.titleMonth")
               : pendingPlan
                 ? t("checkoutIntent.titleLifetime")
-                : t("title")}
+                : jobHost
+                  ? t("jobIntent.title")
+                  : t("title")}
           </h1>
           <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
             {pendingPlan === "month"
               ? t("checkoutIntent.subtitleMonth", { price: pricing.month.price })
               : pendingPlan
                 ? t("checkoutIntent.subtitleLifetime", { price: pricing.lifetime.price })
-                : t("subtitle")}
+                : jobHost
+                  ? t("jobIntent.subtitle", { host: jobHost })
+                  : t("subtitle")}
           </p>
         </div>
 

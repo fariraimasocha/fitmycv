@@ -177,6 +177,11 @@
     "addCategoryButton": "Add Category",
     "addCategory": "Add category",
     "addSkill": "Add Skill",
+    "removeSkill": "Remove skill",
+    "removeCategory": "Remove skill group",
+    "skillRemoved": "Skill removed",
+    "categoryRemoved": "Skill group removed",
+    "undo": "Undo",
     "empty": {
       "profiles": "Add the profiles you want employers to see.",
       "work": "Your positions are what get rewritten for each job.",

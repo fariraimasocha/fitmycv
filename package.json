@@ -21,7 +21,8 @@
     "check:nurture": "node scripts/check-nurture.mjs",
     "announce": "node --env-file=.env scripts/send-announcement.mjs",
     "check:names": "node scripts/check-names.mjs",
-    "check:preview": "node scripts/check-tailored-preview.mjs"
+    "check:preview": "node scripts/check-tailored-preview.mjs",
+    "check:handoff": "node scripts/check-handoff.mjs"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.3",

@@ -97,10 +97,14 @@
       "title": "Descarga tus PDF",
       "description": "Pásate a Pro para descargar tu CV adaptado y tu carta de presentación en PDF."
     },
-    "startMonth": "Empezar un mes por ${price}",
     "getLifetime": "Acceso de por vida por ${price}",
     "maybeLater": "Quizá más tarde",
-    "seeEverything": "Ver todo lo que incluye Pro",
+    "lifetimeNote": "Pagas una vez y es tuyo. Sin suscripción.",
+    "orMonth": "O ${price} al mes, cancela cuando quieras",
+    "stats": {
+      "keywords": "{count, plural, one {# palabra clave de la oferta añadida a tu CV} other {# palabras clave de la oferta añadidas a tu CV}}",
+      "grade": "Nota de coincidencia con este puesto: {grade}"
+    },
     "forJob": {
       "title": "Descarga tu CV para {title}",
       "titleWithCompany": "Descarga tu CV para {title} en {company}"

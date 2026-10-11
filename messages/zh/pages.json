@@ -97,10 +97,14 @@
       "title": "下载你的 PDF",
       "description": "升级到 Pro 即可将你的定制简历和求职信下载为 PDF。"
     },
-    "startMonth": "以 ${price} 开通一个月",
     "getLifetime": "以 ${price} 获取终身版",
     "maybeLater": "以后再说",
-    "seeEverything": "查看 Pro 的全部内容",
+    "lifetimeNote": "一次付费，永久使用。无需订阅。",
+    "orMonth": "或每月 ${price}，随时取消",
+    "stats": {
+      "keywords": "已将 {count} 个职位关键词加入你的简历",
+      "grade": "与该职位的匹配等级：{grade}"
+    },
     "forJob": {
       "title": "下载你用于{title}的简历",
       "titleWithCompany": "下载你用于{company}{title}职位的简历"

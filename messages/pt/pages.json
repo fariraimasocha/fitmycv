@@ -97,10 +97,14 @@
       "title": "Baixe seus PDFs",
       "description": "Assine o Pro para baixar seu currículo adaptado e sua carta de apresentação em PDF."
     },
-    "startMonth": "Comece um mês por ${price}",
     "getLifetime": "Acesso vitalício por ${price}",
     "maybeLater": "Agora não",
-    "seeEverything": "Veja tudo o que o Pro inclui",
+    "lifetimeNote": "Pague uma vez e é seu. Sem assinatura.",
+    "orMonth": "Ou ${price} por mês, cancele quando quiser",
+    "stats": {
+      "keywords": "{count, plural, one {# palavra-chave da vaga adicionada ao seu currículo} other {# palavras-chave da vaga adicionadas ao seu currículo}}",
+      "grade": "Nota de compatibilidade com esta vaga: {grade}"
+    },
     "forJob": {
       "title": "Baixe seu currículo para {title}",
       "titleWithCompany": "Baixe seu currículo para {title} na {company}"

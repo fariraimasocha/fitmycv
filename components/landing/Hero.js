@@ -140,7 +140,9 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
     }
     saveAtsHandoff({ jobUrl: url.href, source: "hero" });
     trackEvent("hero_link_submitted", { signed_in: Boolean(session?.user), host: url.hostname });
-    const dest = "/dashboard/tailor";
+    // The link also rides in the URL. A magic link can open in a new tab,
+    // where the sessionStorage copy is gone.
+    const dest = `/dashboard/tailor?url=${encodeURIComponent(url.href)}`;
     if (session?.user) {
       router.push(dest);
       return;

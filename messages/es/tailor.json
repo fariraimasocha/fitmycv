@@ -141,6 +141,11 @@
     "addCategoryButton": "Añadir categoría",
     "addCategory": "Añadir categoría",
     "addSkill": "Añadir habilidad",
+    "removeSkill": "Quitar habilidad",
+    "removeCategory": "Quitar grupo de habilidades",
+    "skillRemoved": "Habilidad eliminada",
+    "categoryRemoved": "Grupo de habilidades eliminado",
+    "undo": "Deshacer",
     "empty": {
       "profiles": "Añade los perfiles que quieres que vean las empresas.",
       "work": "Tus puestos son lo que se reescribe para cada oferta.",

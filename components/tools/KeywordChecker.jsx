@@ -14,13 +14,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff } from "@/lib/ats-handoff";
+import { saveAtsHandoff, saveCvHandoff } from "@/lib/ats-handoff";
 import { trackEvent } from "@/lib/analytics";
 
 // Words that carry no signal when matching a CV against a posting. The second
@@ -189,6 +188,12 @@ export default function KeywordChecker({ mode = "match" }) {
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun();
+  // Shown under the button, not as a toast. Toasts in the corner were missed
+  // and the button looked like it did nothing.
+  const [formError, setFormError] = useState("");
+  // Runs started on this page. From the second one on, the result offers the
+  // rewrite more directly: someone iterating wants the fix, not another score.
+  const [runs, setRuns] = useState(0);
 
   const result = useMemo(() => {
     if (!ran || jobText.trim().length < MIN_JOB_CHARS) return null;
@@ -266,7 +271,7 @@ export default function KeywordChecker({ mode = "match" }) {
     score: typeof result?.score === "number" ? result.score : null,
   });
 
-  const handleTailorHandoff = () => {
+  const handleTailorHandoff = (placement) => {
     const text = jobText.trim();
     if (!text) return;
     const score =
@@ -280,33 +285,69 @@ export default function KeywordChecker({ mode = "match" }) {
       score,
       source: gapsMode ? "gaps" : matchMode ? "match" : "keywords",
       signed_in: Boolean(session?.user),
+      placement,
+      check_count: runs,
     });
     const dest = "/dashboard/tailor";
     if (session?.user) {
       router.push(dest);
       return;
     }
+    // New users skip the PDF upload: onboarding's paste box gets this CV.
+    if (cvText.trim()) saveCvHandoff(cvText, "ats_checker");
     const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
     if (gate?.interceptAuth(null, authUrl)) return;
     router.push(authUrl);
   };
 
+  // The next step sits beside the score, not only at the bottom of the
+  // results. People checking again and again never scrolled down to it.
+  const missingCount = result?.missing?.length ?? 0;
+  const repeatCheck = runs >= 2;
+  const topCta =
+    needsCv && result ? (
+      <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-md text-sm font-semibold leading-6 text-[var(--landing-ink)]">
+          {repeatCheck
+            ? `That is ${plural(runs, "check")} on this page. Let FitMyCV rewrite your CV for this job instead, using only the experience you already have.`
+            : missingCount
+              ? `${plural(missingCount, "keyword")} missing. FitMyCV rewrites your CV for this posting, using only the experience you already have.`
+              : "Your coverage is strong. Turn it into a CV written for this posting."}
+        </p>
+        <button
+          type="button"
+          onClick={() => handleTailorHandoff("top")}
+          className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+        >
+          {repeatCheck ? "Rewrite my CV for this job" : "Tailor my CV to this job"}
+          <ArrowRightIcon
+            size={15}
+            aria-hidden="true"
+            className="transition-transform duration-200 group-hover:translate-x-0.5"
+          />
+        </button>
+      </div>
+    ) : null;
+
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
       <form
+        noValidate
         onSubmit={(e) => {
           e.preventDefault();
           const cvMissing = needsCv && cvText.trim().length < 40;
           if (tooShort || cvMissing) {
-            toast.error(
+            setFormError(
               tooShort && cvMissing
-                ? "Add your CV and the job description to continue."
+                ? "Add your CV and the job description first."
                 : tooShort
-                  ? "Paste the full job description to continue."
-                  : "Add your CV to continue."
+                  ? "Paste the full job description first."
+                  : "Add your CV first."
             );
             return;
           }
+          setFormError("");
+          setRuns((n) => n + 1);
           start();
         }}
         className="flex flex-col gap-5"
@@ -325,7 +366,10 @@ export default function KeywordChecker({ mode = "match" }) {
             <textarea
               id="job-text"
               value={jobText}
-              onChange={(e) => setJobText(e.target.value)}
+              onChange={(e) => {
+                setJobText(e.target.value);
+                setFormError("");
+              }}
               rows={needsCv ? 10 : 12}
               required
               minLength={MIN_JOB_CHARS}
@@ -355,6 +399,7 @@ export default function KeywordChecker({ mode = "match" }) {
               value={cvText}
               onChange={(text) => {
                 setCvText(text);
+                setFormError("");
                 reset();
               }}
               onBusyChange={setCvBusy}
@@ -381,8 +426,15 @@ export default function KeywordChecker({ mode = "match" }) {
             running={running}
             disabled={cvBusy}
           />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
+          <p
+            role={formError ? "alert" : undefined}
+            className={`text-xs font-semibold ${
+              formError ? "text-[var(--landing-coral)]" : "text-[var(--landing-ink-soft)]"
+            }`}
+          >
+            {formError
+              ? formError
+              : cvBusy
               ? "Reading your CV"
               : running
                 ? "Working through the posting"
@@ -420,6 +472,7 @@ export default function KeywordChecker({ mode = "match" }) {
                   ? `This posting leans on ${result.terms.length} terms and your CV mentions ${result.covered.length} of them. The rest are below, ranked by how often the posting mentions each one. Add the ones you can honestly evidence.`
                   : `Your CV mentions all ${result.terms.length} terms this posting leans on. Check that each one sits inside a bullet with a result attached, not only in a skills list.`}
               </p>
+              {topCta}
 
               {result.missing.length ? (
                 <ol className="mt-6 grid gap-2 sm:grid-cols-2">
@@ -493,6 +546,7 @@ export default function KeywordChecker({ mode = "match" }) {
                   </p>
                 </div>
               </div>
+              {topCta}
 
               {result.missing.length ? (
                 <>
@@ -584,7 +638,7 @@ export default function KeywordChecker({ mode = "match" }) {
             </div>
             <button
               type="button"
-              onClick={handleTailorHandoff}
+              onClick={() => handleTailorHandoff("bottom")}
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
               {cta.cta}

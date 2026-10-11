@@ -178,6 +178,11 @@
     "addCategoryButton": "添加类别",
     "addCategory": "添加类别",
     "addSkill": "添加技能",
+    "removeSkill": "删除技能",
+    "removeCategory": "删除技能组",
+    "skillRemoved": "已删除技能",
+    "categoryRemoved": "已删除技能组",
+    "undo": "撤销",
     "empty": {
       "profiles": "添加你希望雇主看到的主页。",
       "work": "针对每个职位改写的就是你的这些工作经历。",

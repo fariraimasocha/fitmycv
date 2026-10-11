@@ -4,6 +4,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Loader from "@/components/Loader";
+import { saveAtsHandoff } from "@/lib/ats-handoff";
 
 const ONBOARDING_PATH = "/dashboard/onboarding";
 const JUST_COMPLETED_KEY = "onboardingJustCompleted";
@@ -54,9 +55,14 @@ export default function OnboardingGuard({ children }) {
 
   useEffect(() => {
     if (needsOnboarding) {
+      // A hero job link in the URL (a magic link opened in a new tab) would be
+      // lost here. Park it where the tailor page looks after onboarding.
+      const jobUrl =
+        pathname === "/dashboard/tailor" && new URLSearchParams(window.location.search).get("url");
+      if (jobUrl) saveAtsHandoff({ jobUrl, source: "hero" });
       router.replace(ONBOARDING_PATH);
     }
-  }, [needsOnboarding, router]);
+  }, [needsOnboarding, pathname, router]);
 
   // Once the refreshed JWT carries the completed state the flag has done its
   // job. Drop it so a later session in the same tab is guarded normally.

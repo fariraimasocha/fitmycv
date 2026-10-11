@@ -123,6 +123,7 @@ export default function ResumeForm({
   const {
     register,
     control,
+    getValues,
     handleSubmit,
     setFocus,
     reset,
@@ -163,6 +164,7 @@ export default function ResumeForm({
   const {
     fields: skillsFieldsList,
     append: appendSkill,
+    insert: insertSkill,
     remove: removeSkill,
     move: moveSkill,
   } = useFieldArray({ control, name: "skills" });
@@ -609,7 +611,16 @@ export default function ResumeForm({
                       variant="ghost"
                       size="icon-xs"
                       className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                      onClick={() => removeSkill(index)}
+                      aria-label={t("removeCategory")}
+                      onClick={() =>
+                        removeWithUndo({
+                          value: getValues(`skills.${index}`),
+                          remove: () => removeSkill(index),
+                          restore: (value) => insertSkill(index, value),
+                          message: t("categoryRemoved"),
+                          undo: t("undo"),
+                        })
+                      }
                     >
                       <TrashIcon size={14} />
                     </Button>
@@ -626,6 +637,7 @@ export default function ResumeForm({
                   <SkillsList
                     control={control}
                     register={register}
+                    getValues={getValues}
                     nestIndex={index}
                     t={t}
                   />
@@ -801,9 +813,15 @@ function SectionEmptyState({ children, actionLabel, onAction }) {
   );
 }
 
-function SkillsList({ control, register, nestIndex, t }) {
+// Remove now, offer it back. The remove buttons are small and sit side by
+// side, and a run of fast clicks used to take more than intended.
+function removeWithUndo({ value, remove, restore, message, undo }) {
+  remove();
+  toast(message, { action: { label: undo, onClick: () => restore(value) } });
+}
 
-  const { fields, append, remove, move } = useFieldArray({
+function SkillsList({ control, register, getValues, nestIndex, t }) {
+  const { fields, append, insert, remove, move } = useFieldArray({
     control,
     name: `skills.${nestIndex}.skills`,
   });
@@ -828,10 +846,19 @@ function SkillsList({ control, register, nestIndex, t }) {
               type="button"
               variant="ghost"
               size="icon-xs"
-              className="text-destructive"
-              onClick={() => remove(k)}
+              className="text-destructive hover:bg-destructive/10"
+              aria-label={t("removeSkill")}
+              onClick={() =>
+                removeWithUndo({
+                  value: getValues(`skills.${nestIndex}.skills.${k}`),
+                  remove: () => remove(k),
+                  restore: (value) => insert(k, value),
+                  message: t("skillRemoved"),
+                  undo: t("undo"),
+                })
+              }
             >
-              <XIcon size={12} />
+              <XIcon size={12} aria-hidden="true" />
             </Button>
           </div>
         ))}

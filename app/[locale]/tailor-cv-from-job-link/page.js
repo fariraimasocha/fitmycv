@@ -61,7 +61,7 @@ export async function generateMetadata({ params }) {
       "tailor resume from linkedin job link",
       "indeed resume matcher",
     ],
-    image: "/social-preview.jpg",
+    image: "/social-preview.jpg?v=2",
   });
   return { ...base, alternates };
 }

@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
   const t = await getTranslations({ locale, namespace: "landing.meta" });
   const alternates = localeAlternates(locale, "");
   const image = {
-    url: "/social-preview.jpg",
+    url: "/social-preview.jpg?v=2",
     width: 1200,
     height: 630,
     alt: t("ogAlt"),

@@ -19,7 +19,7 @@ import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff, saveCvHandoff } from "@/lib/ats-handoff";
+import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib/ats-handoff";
 import { trackEvent } from "@/lib/analytics";
 
 // Words that carry no signal when matching a CV against a posting. The second
@@ -195,6 +195,14 @@ export default function KeywordChecker({ mode = "match" }) {
   // rewrite more directly: someone iterating wants the fix, not another score.
   const [runs, setRuns] = useState(0);
 
+  // Someone who goes to sign-in and comes back should find the posting still
+  // pasted. Read after mount, the server has no storage.
+  useEffect(() => {
+    const draft = readJobDraft();
+    /* eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the sessionStorage draft on mount */
+    if (draft) setJobText(draft);
+  }, []);
+
   const result = useMemo(() => {
     if (!ran || jobText.trim().length < MIN_JOB_CHARS) return null;
 
@@ -368,6 +376,7 @@ export default function KeywordChecker({ mode = "match" }) {
               value={jobText}
               onChange={(e) => {
                 setJobText(e.target.value);
+                saveJobDraft(e.target.value);
                 setFormError("");
               }}
               rows={needsCv ? 10 : 12}

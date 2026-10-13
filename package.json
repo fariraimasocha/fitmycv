@@ -20,6 +20,7 @@
     "check:job-url": "node scripts/check-job-url.mjs",
     "check:nurture": "node scripts/check-nurture.mjs",
     "announce": "node --env-file=.env scripts/send-announcement.mjs",
+    "gsc": "node --env-file=.env scripts/gsc.mjs",
     "check:names": "node scripts/check-names.mjs",
     "check:preview": "node scripts/check-tailored-preview.mjs",
     "check:handoff": "node scripts/check-handoff.mjs"
@@ -54,6 +55,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@googleapis/searchconsole": "^11.0.1",
     "@opennextjs/cloudflare": "^1.20.6",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",

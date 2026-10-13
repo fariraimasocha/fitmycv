@@ -286,8 +286,9 @@ export const resumeOptimizer = {
     "Your CV is not broken. It is generic. FitMyCV rewrites the CV you already have against the specific posting you are applying to, so the right evidence leads and the right words are used.",
   ctas: [
     { label: "Optimize my CV", href: "/tailor-cv-from-job-link" },
-    { label: "Check my score first", href: "/ats-resume-checker", variant: "secondary" },
+    { label: "Check my score first", href: "#tool", variant: "secondary" },
   ],
+  tool: "match",
   faqs: [
     {
       q: "What does a resume optimizer actually do?",

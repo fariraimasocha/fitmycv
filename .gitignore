@@ -61,3 +61,6 @@ lib/*.mjs
 # Local editor/agent config. The skills live in .claude and .agents.
 .cursor/
 .agents/skills/*/dist/
+
+# Search Console service account key
+gsc-key.json

@@ -3,9 +3,11 @@ import { cookies, headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { createPolarClient } from "@/lib/polar";
 import { connectDB } from "@/utils/connect";
+import mongoose from "mongoose";
 import User from "@/models/User";
+import TailoredCV from "@/models/TailoredCV";
 import { appUrl } from "@/lib/site";
-import { getPolarProductId } from "@/lib/pricing";
+import { CHECKOUT_PLANS, getPolarProductId } from "@/lib/pricing";
 import {
   getPricingTier,
   resolveCountryFromHeaders,
@@ -46,7 +48,26 @@ export async function GET(request) {
 
     const { searchParams } = new URL(request.url);
     const planParam = searchParams.get("plan");
-    const plan = planParam === "month" ? "month" : "lifetime";
+    const plan = CHECKOUT_PLANS.includes(planParam) ? planParam : "lifetime";
+
+    // A single purchase is tied to one CV the buyer owns and has not unlocked.
+    let tailoredCvId = null;
+    if (plan === "single") {
+      const cvId = searchParams.get("cv");
+      const cv = mongoose.isValidObjectId(cvId)
+        ? await TailoredCV.findOne({ _id: cvId, userId: session.user.id })
+            .select("unlockedAt")
+            .lean()
+        : null;
+      if (!cv) {
+        return NextResponse.redirect(localAppUrl("/dashboard/tailored", request));
+      }
+      if (cv.unlockedAt) {
+        return NextResponse.redirect(localAppUrl(`/dashboard/tailored/${cvId}`, request));
+      }
+      tailoredCvId = String(cv._id);
+    }
+
     const tier = await resolveCheckoutTier();
     const productId = getPolarProductId(tier, plan);
 
@@ -60,14 +81,20 @@ export async function GET(request) {
     const datafastVisitorId = cookieStore.get("datafast_visitor_id")?.value;
     const datafastSessionId = cookieStore.get("datafast_session_id")?.value;
 
+    // A single purchase goes back to its CV, which waits for the webhook and
+    // then opens. Plans go through /payment/success, which waits for Pro.
+    const cvPath = tailoredCvId ? `/dashboard/tailored/${tailoredCvId}` : null;
+    const successUrl = cvPath
+      ? localAppUrl(`${cvPath}?unlock=pending`, request).toString()
+      : process.env.NODE_ENV === "production"
+        ? appUrl(`/payment/success?plan=${plan}`).toString()
+        : process.env.POLAR_SUCCESS_URL ||
+          localAppUrl(`/payment/success?plan=${plan}`, request).toString();
+
     const checkout = await polar.checkouts.create({
       products: [productId],
-      successUrl:
-        process.env.NODE_ENV === "production"
-          ? appUrl(`/payment/success?plan=${plan}`).toString()
-          : process.env.POLAR_SUCCESS_URL ||
-            localAppUrl(`/payment/success?plan=${plan}`, request).toString(),
-      returnUrl: localAppUrl("/dashboard/upgrade", request).toString(),
+      successUrl,
+      returnUrl: localAppUrl(cvPath ?? "/dashboard/upgrade", request).toString(),
       externalCustomerId: String(session.user.id),
       customerName: session.user.name || undefined,
       customerEmail: session.user.email,
@@ -76,6 +103,7 @@ export async function GET(request) {
         userId: String(session.user.id),
         pricingTier: tier,
         plan,
+        ...(tailoredCvId ? { tailoredCvId } : {}),
         ...(datafastVisitorId
           ? { datafast_visitor_id: datafastVisitorId }
           : {}),

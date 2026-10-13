@@ -100,6 +100,8 @@
     "getLifetime": "Acceso de por vida por ${price}",
     "maybeLater": "Quizá más tarde",
     "lifetimeNote": "Pagas una vez y es tuyo. Sin suscripción.",
+    "getSingle": "Desbloquear este CV por ${price}",
+    "singleNote": "Solo este CV y su carta de presentación. Un único pago.",
     "orMonth": "O ${price} al mes, cancela cuando quieras",
     "stats": {
       "keywords": "{count, plural, one {# palabra clave de la oferta añadida a tu CV} other {# palabras clave de la oferta añadidas a tu CV}}",

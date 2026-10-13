@@ -668,6 +668,12 @@
     }
   },
   "tailoredDetail": {
+    "unlock": {
+      "pending": "已收到付款。正在解锁你的简历…",
+      "slow": "已收到付款。解锁可能需要一分钟，此页面会自动更新。",
+      "done": "你的简历已解锁，随时可以下载。",
+      "stillWorking": "你的简历仍在解锁中，请稍后再试。"
+    },
     "documentTabs": {
       "cv": "定制简历",
       "letter": "求职信",

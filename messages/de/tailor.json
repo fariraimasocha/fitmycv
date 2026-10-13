@@ -444,6 +444,12 @@
     "noLetters": { "title": "Noch keine Anschreiben", "description": "Öffne einen angepassten Lebenslauf und schreib eines im Tab Anschreiben." }
   },
   "tailoredDetail": {
+    "unlock": {
+      "pending": "Zahlung erhalten. Dein Lebenslauf wird freigeschaltet…",
+      "slow": "Zahlung erhalten. Das Freischalten kann eine Minute dauern, und diese Seite aktualisiert sich von selbst.",
+      "done": "Dein Lebenslauf ist freigeschaltet. Du kannst ihn jederzeit herunterladen.",
+      "stillWorking": "Dein Lebenslauf wird noch freigeschaltet. Versuch es gleich noch einmal."
+    },
     "documentTabs": { "cv": "Angepasster CV", "letter": "Anschreiben", "why": "Warum diese Stelle" },
     "mobileTabs": { "edit": "Bearbeiten", "preview": "Vorschau", "ariaLabel": "Bearbeiten oder Vorschau" },
     "back": "Zurück zu den angepassten Lebensläufen",

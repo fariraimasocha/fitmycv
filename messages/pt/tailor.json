@@ -668,6 +668,12 @@
     }
   },
   "tailoredDetail": {
+    "unlock": {
+      "pending": "Pagamento recebido. Desbloqueando seu CV…",
+      "slow": "Pagamento recebido. O desbloqueio pode levar um minuto, e esta página se atualiza sozinha.",
+      "done": "Seu CV está desbloqueado. Baixe quando quiser.",
+      "stillWorking": "Seu CV ainda está sendo desbloqueado. Tente de novo em instantes."
+    },
     "documentTabs": {
       "cv": "Currículo adaptado",
       "letter": "Carta de apresentação",

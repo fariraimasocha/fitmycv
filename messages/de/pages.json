@@ -100,6 +100,8 @@
     "getLifetime": "Lebenslangen Zugang für ${price} holen",
     "maybeLater": "Vielleicht später",
     "lifetimeNote": "Einmal zahlen und behalten. Kein Abo.",
+    "getSingle": "Diesen Lebenslauf für ${price} freischalten",
+    "singleNote": "Nur dieser Lebenslauf und sein Anschreiben. Einmalige Zahlung.",
     "orMonth": "Oder ${price} im Monat, jederzeit kündbar",
     "stats": {
       "keywords": "{count, plural, one {# Keyword aus der Stelle in deinen Lebenslauf eingebaut} other {# Keywords aus der Stelle in deinen Lebenslauf eingebaut}}",

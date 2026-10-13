@@ -444,6 +444,12 @@
     "noLetters": { "title": "Pas encore de lettre de motivation", "description": "Ouvrez un CV adapté et rédigez-en une depuis l’onglet Lettre de motivation." }
   },
   "tailoredDetail": {
+    "unlock": {
+      "pending": "Paiement reçu. Déblocage de votre CV…",
+      "slow": "Paiement reçu. Le déblocage peut prendre une minute, et cette page se met à jour toute seule.",
+      "done": "Votre CV est débloqué. Téléchargez-le quand vous voulez.",
+      "stillWorking": "Votre CV est en cours de déblocage. Réessayez dans un instant."
+    },
     "documentTabs": { "cv": "CV adapté", "letter": "Lettre de motivation", "why": "Pourquoi ce poste" },
     "mobileTabs": { "edit": "Modifier", "preview": "Aperçu", "ariaLabel": "Modifier ou prévisualiser" },
     "back": "Retour aux CV adaptés",

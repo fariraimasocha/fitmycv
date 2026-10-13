@@ -55,6 +55,10 @@ const tailoredCVSchema = new mongoose.Schema(
     ],
     coverLetter: String,
     whyThisRole: String,
+    // Set by the Polar webhook when a free user buys this one CV. It opens the
+    // full CV and cover letter for this job only, never the rest of Pro.
+    unlockedAt: Date,
+    unlockOrderId: String,
   },
   { timestamps: true }
 );

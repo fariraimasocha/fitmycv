@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
@@ -18,6 +17,7 @@ import {
   PencilSimpleIcon,
   DownloadSimpleIcon,
   CrownIcon,
+  CircleNotchIcon,
   ChatCenteredTextIcon,
   BriefcaseIcon,
   TagIcon,
@@ -124,7 +124,11 @@ export default function TailoredCVDetailPage() {
   const t = useTranslations("tailor.tailoredDetail");
   const documentTabs = DOCUMENT_TABS.map((tab) => ({ ...tab, label: t(`documentTabs.${tab.id}`) }));
   const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
-  const { data: session } = useSession();
+  const router = useRouter();
+  // Back from buying this one CV. The webhook usually lands within seconds,
+  // so the page polls until the server stops sending the preview.
+  const unlockPending = useSearchParams().get("unlock") === "pending";
+  const [unlockSlow, setUnlockSlow] = useState(false);
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("cv");
   const [mobileTab, setMobileTab] = useState("edit");
@@ -145,7 +149,21 @@ export default function TailoredCVDetailPage() {
       const json = await res.json();
       return json.data;
     },
+    refetchInterval: (query) =>
+      unlockPending && query.state.data?.locked ? (unlockSlow ? 10000 : 2000) : false,
   });
+
+  useEffect(() => {
+    if (!unlockPending) return;
+    const timer = setTimeout(() => setUnlockSlow(true), 30000);
+    return () => clearTimeout(timer);
+  }, [unlockPending]);
+
+  useEffect(() => {
+    if (!unlockPending || !cv || cv.locked) return;
+    toast.success(t("unlock.done"));
+    router.replace(`/dashboard/tailored/${id}`, { scroll: false });
+  }, [unlockPending, cv, id, router, t]);
 
   useEffect(() => {
     if (cv?.jobTitle) setDetailLabel(cv.jobTitle);
@@ -304,13 +322,20 @@ export default function TailoredCVDetailPage() {
     );
   }
 
-  const isPremium = Boolean(session?.user?.isPremium);
+  // The server sends the full CV to Pro, or to whoever bought this one, and
+  // marks everything else `locked`. Gate on that, not on the session.
+  const unlocked = !cv.locked;
+  const unlocking = unlockPending && !unlocked;
   const hasCoverLetter = Boolean(cv.coverLetter && String(cv.coverLetter).trim());
   const hasWhyAnswer = Boolean(whyAnswer?.answer || cv.whyThisRole);
 
   const handleDownload = (tab) => {
     const documentType = tab === "cv" ? "cv" : "cover_letter";
-    if (!isPremium) {
+    if (unlocking) {
+      toast.info(t("unlock.stillWorking"));
+      return false;
+    }
+    if (!unlocked) {
       trackEvent("download_blocked", {
         document_type: documentType,
         template: selectedTemplate,
@@ -380,7 +405,7 @@ export default function TailoredCVDetailPage() {
             className="h-control px-4 font-medium"
             label={downloadLabel}
             idleIcon={
-              isPremium ? (
+              unlocked ? (
                 <DownloadSimpleIcon size={16} aria-hidden="true" />
               ) : (
                 <CrownIcon size={16} aria-hidden="true" />
@@ -390,6 +415,16 @@ export default function TailoredCVDetailPage() {
           />
         }
       />
+
+      {unlocking && (
+        <p
+          role="status"
+          className="flex items-center gap-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-3 text-sm font-medium text-[var(--landing-ink)]"
+        >
+          <CircleNotchIcon size={16} className="shrink-0 animate-spin" aria-hidden="true" />
+          {unlockSlow ? t("unlock.slow") : t("unlock.pending")}
+        </p>
+      )}
 
       <DashboardStatStrip
         columns={5}
@@ -477,7 +512,7 @@ export default function TailoredCVDetailPage() {
                 </div>
                 <div className="bg-white">
                   <PreviewUnlockGate
-                    locked={!isPremium}
+                    locked={!unlocked}
                     onUnlock={openDownloadPaywall}
                   >
                     <ScaledDocument>
@@ -496,12 +531,12 @@ export default function TailoredCVDetailPage() {
 
         {activeTab === "letter" && (
           <PreviewUnlockGate
-            locked={!isPremium}
+            locked={!unlocked}
             onUnlock={openDownloadPaywall}
           >
             <CoverLetterCard
               content={cv.coverLetter || ""}
-              editable={isPremium}
+              editable={unlocked}
               fontStack={getTemplateFontOption(selectedTemplateStyle.font).stack}
               onSave={(content) => coverLetterMutation.mutate(content)}
               isSaving={coverLetterMutation.isPending}
@@ -526,6 +561,7 @@ export default function TailoredCVDetailPage() {
         onClose={() => setShowUpgradeModal(false)}
         context={upgradeModalContext}
         job={cv ? { title: cv.jobTitle, company: cv.jobCompany } : null}
+        cvId={cv?.locked ? cv._id : null}
       />
     </DashboardPageShell>
   );

@@ -100,6 +100,8 @@
     "getLifetime": "以 ${price} 获取终身版",
     "maybeLater": "以后再说",
     "lifetimeNote": "一次付费，永久使用。无需订阅。",
+    "getSingle": "以 ${price} 解锁这份简历",
+    "singleNote": "仅限这份简历及其求职信。一次付费。",
     "orMonth": "或每月 ${price}，随时取消",
     "stats": {
       "keywords": "已将 {count} 个职位关键词加入你的简历",

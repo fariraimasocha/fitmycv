@@ -59,12 +59,6 @@ export async function PUT(request, { params }) {
   try {
     const body = await request.json();
 
-    // Free users only hold the preview, so saving it would wipe the full CV.
-    if (CONTENT_FIELDS.some((field) => body[field] !== undefined)) {
-      const paywallResponse = requirePremium(session);
-      if (paywallResponse) return paywallResponse;
-    }
-
     const update = {};
     for (const field of [...CONTENT_FIELDS, "jobTitle", "jobCompany"]) {
       if (body[field] !== undefined) update[field] = body[field];
@@ -76,6 +70,18 @@ export async function PUT(request, { params }) {
     }
 
     await connectDB();
+
+    // A locked viewer only holds the preview, so saving it would wipe the full
+    // CV. Pro, or this CV bought on its own, holds the whole thing.
+    if (CONTENT_FIELDS.some((field) => body[field] !== undefined) && !session.user.isPremium) {
+      const unlocked = await TailoredCV.exists({
+        _id: id,
+        userId: session.user.id,
+        unlockedAt: { $ne: null },
+      });
+      if (!unlocked) return requirePremium(session);
+    }
+
     const cv = await TailoredCV.findOneAndUpdate(
       { _id: id, userId: session.user.id },
       { $set: update },

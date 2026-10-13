@@ -100,6 +100,8 @@
     "getLifetime": "Get lifetime for ${price}",
     "maybeLater": "Maybe later",
     "lifetimeNote": "Pay once and keep it. No subscription.",
+    "getSingle": "Unlock this CV for ${price}",
+    "singleNote": "This CV and its cover letter only. One payment.",
     "orMonth": "Or ${price} a month, cancel anytime",
     "stats": {
       "keywords": "{count, plural, one {# job keyword added to your CV} other {# job keywords added to your CV}}",

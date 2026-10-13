@@ -1,6 +1,7 @@
 import { Webhooks } from "@polar-sh/nextjs";
 import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
+import TailoredCV from "@/models/TailoredCV";
 import { captureServerEvent } from "@/lib/posthog-server";
 
 async function resolveUser(data) {
@@ -33,16 +34,39 @@ async function resolveUser(data) {
 // Renewals are skipped so this counts first purchases only.
 async function capturePurchase(user, order) {
   if (order.billingReason === "subscription_cycle") return;
-  const plan =
-    order.metadata?.plan ?? (order.subscriptionId ? "month" : "lifetime");
+  const plan = isSingleOrder(order)
+    ? "single"
+    : order.metadata?.plan === "month" || order.subscriptionId
+      ? "month"
+      : "lifetime";
   await captureServerEvent(user._id, "purchase_complete", {
-    plan: plan === "month" ? "month" : "lifetime",
+    plan,
     order_id: order.id,
     tier: order.metadata?.pricingTier ?? null,
     revenue: order.totalAmount / 100,
     currency: order.currency,
     $insert_id: order.id,
   });
+}
+
+// A single purchase opens one CV and nothing else. It never grants Pro, and
+// its refund never takes Pro away from someone who also bought a plan.
+const isSingleOrder = (order) =>
+  order.metadata?.plan === "single" && Boolean(order.metadata?.tailoredCvId);
+
+async function unlockSingleCV(user, order) {
+  const cv = await TailoredCV.findOneAndUpdate(
+    { _id: order.metadata.tailoredCvId, userId: user._id },
+    { $set: { unlockedAt: new Date(), unlockOrderId: order.id } },
+    { new: true },
+  );
+  if (!cv) {
+    console.error(
+      `Single unlock: CV ${order.metadata.tailoredCvId} not found for user ${user._id} (order ${order.id})`,
+    );
+    return;
+  }
+  console.log(`CV ${cv._id} unlocked for user: ${user.email} (order ${order.id})`);
 }
 
 export const POST = Webhooks({
@@ -52,6 +76,16 @@ export const POST = Webhooks({
     const order = payload.data;
     const user = await resolveUser(order);
     if (!user) return;
+
+    if (isSingleOrder(order)) {
+      await unlockSingleCV(user, order);
+      if (order.customer?.id && !user.polarCustomerId) {
+        user.polarCustomerId = order.customer.id;
+        await user.save();
+      }
+      await capturePurchase(user, order);
+      return;
+    }
 
     user.isPremium = true;
     user.polarCustomerId = order.customer?.id || user.polarCustomerId || null;
@@ -69,6 +103,16 @@ export const POST = Webhooks({
     if (!user) return;
 
     const isFullRefund = order.refundedAmount >= order.totalAmount;
+
+    if (isSingleOrder(order)) {
+      if (!isFullRefund) return;
+      await TailoredCV.updateOne(
+        { unlockOrderId: order.id, userId: user._id },
+        { $unset: { unlockedAt: 1, unlockOrderId: 1 } },
+      );
+      console.log(`CV ${order.metadata.tailoredCvId} locked again (full refund on order ${order.id})`);
+      return;
+    }
 
     if (isFullRefund) {
       user.isPremium = false;

@@ -444,6 +444,12 @@
     "noLetters": { "title": "Aún no hay cartas de presentación", "description": "Abre un CV adaptado y redacta una desde la pestaña Carta de presentación." }
   },
   "tailoredDetail": {
+    "unlock": {
+      "pending": "Pago recibido. Desbloqueando tu CV…",
+      "slow": "Pago recibido. El desbloqueo puede tardar un minuto, y esta página se actualiza sola.",
+      "done": "Tu CV está desbloqueado. Descárgalo cuando quieras.",
+      "stillWorking": "Tu CV aún se está desbloqueando. Vuelve a intentarlo en un momento."
+    },
     "documentTabs": { "cv": "CV adaptado", "letter": "Carta de presentación", "why": "Por qué este puesto" },
     "mobileTabs": { "edit": "Editar", "preview": "Vista previa", "ariaLabel": "Editar o ver vista previa" },
     "back": "Volver a CV adaptados",

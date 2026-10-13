@@ -227,14 +227,14 @@ export default function TailoredCVsPage() {
   const handleDownloadClick = async (e, cv) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!session?.user?.isPremium) {
+    if (!session?.user?.isPremium && !cv.unlocked) {
       trackEvent("download_blocked", {
         document_type: "cv",
         template: DEFAULT_TEMPLATE,
         source: "tailored_list",
       });
       setUpgradeModalContext("download");
-      setPaywallJob({ title: cv.jobTitle, company: cv.jobCompany });
+      setPaywallJob({ title: cv.jobTitle, company: cv.jobCompany, cvId: cv._id });
       setShowUpgradeModal(true);
       return;
     }
@@ -358,6 +358,7 @@ export default function TailoredCVsPage() {
         onClose={() => setShowUpgradeModal(false)}
         context={upgradeModalContext}
         job={paywallJob}
+        cvId={paywallJob?.cvId}
       />
     </DashboardPageShell>
   );

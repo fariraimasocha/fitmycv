@@ -1217,6 +1217,7 @@ function Tailor() {
         onClose={() => setShowUpgradeModal(false)}
         context={upgradeModalContext}
         job={jobData}
+        cvId={savedId}
         stats={{
           keywordsAdded: tailorResult?.keywordsInjected?.length ?? 0,
           grade: matchScore?.globalGrade ?? null,

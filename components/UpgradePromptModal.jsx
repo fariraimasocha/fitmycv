@@ -31,6 +31,10 @@ export default function UpgradePromptModal({
   // What this tailor actually did, from the tailor page. Shown so the ask
   // comes after the proof. Both optional.
   stats = null,
+  // The saved CV behind this paywall. With it, the modal also sells that one
+  // CV on its own. Without it (the agent draft, signed-out visitors) there is
+  // nothing to unlock, so only the plans show.
+  cvId = null,
 }) {
   const t = useTranslations("pages.upgradeModal");
   // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
@@ -38,6 +42,7 @@ export default function UpgradePromptModal({
   const { data: session } = useSession();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
   const pricing = useClientPricing();
+  const offerSingle = Boolean(cvId && session?.user && pricing.single);
 
   useEffect(() => {
     if (open) {
@@ -46,9 +51,10 @@ export default function UpgradePromptModal({
         primary_plan: "lifetime",
         has_job: Boolean(job?.title),
         has_stats: Boolean(stats?.keywordsAdded || stats?.grade),
+        offers_single: offerSingle,
       });
     }
-  }, [open, context, job?.title, stats?.keywordsAdded, stats?.grade]);
+  }, [open, context, job?.title, stats?.keywordsAdded, stats?.grade, offerSingle]);
 
   const copyKey = COPY_KEYS[context] ?? COPY_KEYS.default;
   const title = job?.title
@@ -79,7 +85,9 @@ export default function UpgradePromptModal({
     });
     if (session?.user) {
       setPendingPlan(plan);
-      window.location.assign(`/api/polar/checkout?plan=${plan}`);
+      const query = new URLSearchParams({ plan });
+      if (plan === "single") query.set("cv", cvId);
+      window.location.assign(`/api/polar/checkout?${query}`);
     } else {
       setPendingCheckout(true, plan);
       localeRouter.push("/auth");
@@ -91,8 +99,9 @@ export default function UpgradePromptModal({
     stats?.grade ? t("stats.grade", { grade: stats.grade }) : null,
   ].filter(Boolean);
 
-  // One decision, not four. Lifetime leads because a job search is a few
-  // weeks, not a subscription. Monthly stays one tap away as a text link.
+  // Lifetime leads because a job search is a few weeks, not a subscription.
+  // This one CV sits second, for the visitor who needs one application today
+  // and would otherwise close the modal. Monthly stays a text link.
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
@@ -135,6 +144,20 @@ export default function UpgradePromptModal({
             {t("getLifetime", { price: pricing.lifetime.price })}
           </button>
           <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
+          {offerSingle && (
+            <>
+              <button
+                type="button"
+                onClick={() => startCheckout("single", "paywall_single")}
+                disabled={Boolean(pendingPlan)}
+                aria-busy={pendingPlan === "single"}
+                className="dashboard-secondary-btn mt-2 w-full disabled:cursor-wait disabled:opacity-60"
+              >
+                {t("getSingle", { price: pricing.single.price })}
+              </button>
+              <p className="text-xs text-[var(--landing-ink-soft)]">{t("singleNote")}</p>
+            </>
+          )}
           <button
             type="button"
             onClick={() => startCheckout("month", "paywall_secondary")}

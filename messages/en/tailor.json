@@ -668,6 +668,12 @@
     }
   },
   "tailoredDetail": {
+    "unlock": {
+      "pending": "Payment received. Unlocking your CV…",
+      "slow": "Payment received. Unlocking can take a minute, and this page updates by itself.",
+      "done": "Your CV is unlocked. Download it any time.",
+      "stillWorking": "Your CV is still unlocking. Try again in a moment."
+    },
     "documentTabs": {
       "cv": "Tailored CV",
       "letter": "Cover letter",

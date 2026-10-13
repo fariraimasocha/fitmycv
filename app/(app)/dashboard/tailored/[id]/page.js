@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
+import Loader from "@/components/Loader";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
@@ -119,12 +120,11 @@ function DetailSkeleton() {
   );
 }
 
-export default function TailoredCVDetailPage() {
+function TailoredCVDetail() {
   const { id } = useParams();
   const t = useTranslations("tailor.tailoredDetail");
   const documentTabs = DOCUMENT_TABS.map((tab) => ({ ...tab, label: t(`documentTabs.${tab.id}`) }));
   const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
-  const router = useRouter();
   // Back from buying this one CV. The webhook usually lands within seconds,
   // so the page polls until the server stops sending the preview.
   const unlockPending = useSearchParams().get("unlock") === "pending";
@@ -162,8 +162,10 @@ export default function TailoredCVDetailPage() {
   useEffect(() => {
     if (!unlockPending || !cv || cv.locked) return;
     toast.success(t("unlock.done"));
-    router.replace(`/dashboard/tailored/${id}`, { scroll: false });
-  }, [unlockPending, cv, id, router, t]);
+    // Drop ?unlock=pending so a refresh does not wait again. Next keeps
+    // useSearchParams in sync with the native history API.
+    window.history.replaceState(null, "", `/dashboard/tailored/${id}`);
+  }, [unlockPending, cv, id, t]);
 
   useEffect(() => {
     if (cv?.jobTitle) setDetailLabel(cv.jobTitle);
@@ -564,5 +566,14 @@ export default function TailoredCVDetailPage() {
         cvId={cv?.locked ? cv._id : null}
       />
     </DashboardPageShell>
+  );
+}
+
+// useSearchParams needs a Suspense boundary, same as the tailor page.
+export default function TailoredCVDetailPage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <TailoredCVDetail />
+    </Suspense>
   );
 }

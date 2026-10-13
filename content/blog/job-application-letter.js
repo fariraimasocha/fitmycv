@@ -1,9 +1,9 @@
 export const meta = {
   slug: "job-application-letter",
   title: "How to Write a Job Application Letter (Example and Template)",
-  seoTitle: "Job Application Letter: Example and Template",
+  seoTitle: "Job Application Letter: A Simple Sample to Copy",
   description:
-    "How to write a job application letter: how it differs from a cover letter, the structure, a worked example, and a template you can copy.",
+    "How to write an application letter for a job: a simple sample you can copy, the structure to follow, and how it differs from a cover letter.",
   excerpt:
     "An application letter asks for a specific job and proves you fit it in one page. Here is the structure, a full example, and a template to copy.",
   date: "2026-09-27",
@@ -61,6 +61,9 @@ export const blocks = [
       title: "The short version",
       body: "One page. Name the role in the first line. Spend the middle on two or three examples that match the posting's requirements, each with a result. Close by asking for an interview. Address it to a person when you can.",
     },
+  },
+  {
+    p: "Applying for a specific job right now? The [AI cover letter generator](/ai-cover-letter-generator) reads the posting and your CV and drafts the letter for that role. It works for application letters too.",
   },
 
   { h2: "Application letter or cover letter?" },

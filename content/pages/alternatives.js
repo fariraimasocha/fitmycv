@@ -7,6 +7,9 @@
 import { PRICING } from "@/lib/pricing";
 
 const PRICE_CHECKED = "September 2026";
+// Enhancv's plan amounts fail to render; only the "Starting from" headline shows.
+const ENHANCV_FROM = "16.50";
+const ENHANCV_CHECKED = "October 2026";
 
 export const jobscanAlternative = {
   slug: "jobscan-alternative",
@@ -487,10 +490,13 @@ export const huntrAlternative = {
 
 export const enhancvAlternative = {
   slug: "enhancv-alternative",
-  seoTitle: "Enhancv Alternative: Aimed at the Job",
-  description:
-    "An Enhancv alternative for people who need the CV to match the posting, not to look distinctive. Single column, parser safe, rewritten from a job link.",
+  seoTitle: "Enhancv Pricing and a Cheaper Alternative",
+  description: `Enhancv pricing starts from $${ENHANCV_FROM} a month. FitMyCV is $${PRICING.month.price} a month or $${PRICING.lifetime.price} once, and rewrites your CV to match each job link.`,
   keywords: [
+    "enhancv pricing",
+    "enhancv price",
+    "enhancv cost",
+    "how much is enhancv",
     "enhancv alternative",
     "enhancv alternatives",
     "enhancv competitor",
@@ -520,7 +526,7 @@ export const enhancvAlternative = {
     },
     {
       q: "How much does Enhancv cost compared to FitMyCV?",
-      a: `We could not quote an Enhancv figure honestly. When we checked in ${PRICE_CHECKED} their pricing page returned a calculation error instead of a price, so any number here would be a guess. Read it yourself at [enhancv.com/pricing](https://enhancv.com/pricing/). Ours is $${PRICING.month.price} a month or $${PRICING.lifetime.price} once, on [our pricing page](/pricing).`,
+      a: `Enhancv's pricing page says plans start from $${ENHANCV_FROM} a month. The individual plan amounts did not load when we checked in ${ENHANCV_CHECKED}, so read the full list at [enhancv.com/pricing](https://enhancv.com/pricing/). FitMyCV is $${PRICING.month.price} a month or $${PRICING.lifetime.price} once, on [our pricing page](/pricing).`,
     },
     {
       q: "Are your templates as good looking as Enhancv's?",
@@ -540,6 +546,24 @@ export const enhancvAlternative = {
       p: "The tradeoff is that distinctive usually means multi column, and multi column is where parsers fail. A sidebar can interleave with the main column when an applicant tracking system converts your PDF to text, and your work history arrives as nonsense. The recruiter never sees the design. They see the parse.",
     },
 
+    { h2: "Enhancv pricing compared" },
+    {
+      p: `Enhancv has a free plan that lasts 7 days and puts Enhancv branding on your CV. Paid Pro plans start from $${ENHANCV_FROM} a month. FitMyCV has no subscription you have to keep: pay monthly, or pay once and keep it.`,
+    },
+    {
+      table: {
+        head: ["", "Enhancv", "FitMyCV"],
+        rows: [
+          ["Lowest monthly price", `From $${ENHANCV_FROM}`, `$${PRICING.month.price}`],
+          ["Pay once", "Not listed", `$${PRICING.lifetime.price}`],
+          ["Free plan", "7 days, with branding", "Free ATS checker, no time limit"],
+        ],
+      },
+    },
+    {
+      p: `Enhancv figures checked ${ENHANCV_CHECKED} on [their pricing page](https://enhancv.com/pricing/). Prices change, so confirm there before you buy.`,
+    },
+
     { h2: "Side by side" },
     {
       table: {
@@ -556,7 +580,7 @@ export const enhancvAlternative = {
       },
     },
     {
-      p: `Feature detail checked ${PRICE_CHECKED} on [Enhancv's pricing page](https://enhancv.com/pricing/), which did not render a price at the time. Ours is on [our pricing page](/pricing).`,
+      p: `Feature detail checked ${ENHANCV_CHECKED} on [Enhancv's pricing page](https://enhancv.com/pricing/). Ours is on [our pricing page](/pricing).`,
     },
 
     { h2: "Why our layouts are deliberately boring" },

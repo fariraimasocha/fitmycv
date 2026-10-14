@@ -13,12 +13,10 @@ export default function PreviewUnlockGate({ locked, onUnlock, children }) {
 
   return (
     <div className="relative">
-      <div className="max-h-90 overflow-hidden" aria-hidden="true">
-        <div className="pointer-events-none select-none blur-[2.5px]">
-          {children}
-        </div>
+      <div className="max-h-120 overflow-hidden" aria-hidden="true">
+        <div className="pointer-events-none select-none">{children}</div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 top-20 flex flex-col items-center justify-end bg-linear-to-t from-white via-white/95 to-transparent px-4 pb-6 pt-20">
+      <div className="absolute inset-x-0 bottom-0 top-1/2 flex flex-col items-center justify-end bg-linear-to-t from-white via-white/95 to-transparent px-4 pb-6 pt-20 backdrop-blur-[2.5px]">
         <button
           type="button"
           onClick={onUnlock}

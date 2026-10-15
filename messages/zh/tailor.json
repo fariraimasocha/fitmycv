@@ -417,7 +417,12 @@
     "description": "你的简历与此职位信息的契合程度",
     "gaugeLabel": "匹配度评分：{score}/5",
     "showDetails": "显示详情",
-    "hideDetails": "隐藏详情"
+    "hideDetails": "隐藏详情",
+    "locked": {
+      "description": "职位匹配度是 Pro 功能。",
+      "upsell": "查看你的简历与此职位信息的契合程度，按简历匹配度、薪酬、文化和风险信号评分。",
+      "seePlans": "查看 Pro 方案"
+    }
   },
   "jobRequirements": {
     "atsVendor": "该职位使用 {name} 筛选申请。",

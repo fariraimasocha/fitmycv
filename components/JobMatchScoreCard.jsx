@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { GradeBadge, gradeChipClass } from "@/components/GradeBadge";
 import { DashboardPanelHeader } from "@/components/dashboard";
@@ -11,7 +12,9 @@ import {
   WarningCircleIcon,
   CaretDownIcon,
   CaretUpIcon,
+  LockSimpleIcon,
 } from "@phosphor-icons/react";
+import { trackEvent } from "@/lib/analytics";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { ArcGauge } from "@/components/charts/ArcGauge";
 import { PillTrack } from "@/components/charts/PillTrack";
@@ -101,9 +104,32 @@ function LoadingSkeleton() {
   );
 }
 
-export default function JobMatchScoreCard({ scoreData, isLoading }) {
+export default function JobMatchScoreCard({ scoreData, isLoading, locked = false }) {
   const [expanded, setExpanded] = useState(false);
   const t = useTranslations("tailor.jobMatch");
+
+  if (locked) {
+    return (
+      <section className="dashboard-card dashboard-card-pad rounded-lg">
+        <DashboardPanelHeader title={t("title")} description={t("locked.description")} />
+        <div className="mt-4 flex flex-col gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
+          <div className="flex items-start gap-3">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
+              <LockSimpleIcon size={17} aria-hidden="true" />
+            </span>
+            <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">{t("locked.upsell")}</p>
+          </div>
+          <Link
+            href="/dashboard/upgrade"
+            onClick={() => trackEvent("upgrade_clicked", { source: "job_match_card" })}
+            className="dashboard-primary-btn w-full text-sm"
+          >
+            {t("locked.seePlans")}
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   if (isLoading) {
     return (

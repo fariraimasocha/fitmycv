@@ -417,7 +417,12 @@
     "description": "Como seu currículo se encaixa nesta vaga",
     "gaugeLabel": "Pontuação de compatibilidade: {score} de 5",
     "showDetails": "Mostrar detalhes",
-    "hideDetails": "Ocultar detalhes"
+    "hideDetails": "Ocultar detalhes",
+    "locked": {
+      "description": "A compatibilidade com a vaga está no Pro.",
+      "upsell": "Veja como seu currículo se encaixa nesta vaga, com notas para compatibilidade do currículo, remuneração, cultura e sinais de alerta.",
+      "seePlans": "Ver planos Pro"
+    }
   },
   "jobRequirements": {
     "atsVendor": "Esta vaga usa o {name} para triar candidaturas.",

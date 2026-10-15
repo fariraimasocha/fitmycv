@@ -417,7 +417,12 @@
     "description": "How your CV fits this posting",
     "gaugeLabel": "Match score: {score} out of 5",
     "showDetails": "Show details",
-    "hideDetails": "Hide details"
+    "hideDetails": "Hide details",
+    "locked": {
+      "description": "The job match score is on Pro.",
+      "upsell": "See how your CV fits this posting, graded on CV match, compensation, culture and red flags.",
+      "seePlans": "See Pro plans"
+    }
   },
   "jobRequirements": {
     "atsVendor": "This job uses {name} to screen applications.",

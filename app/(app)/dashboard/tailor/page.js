@@ -329,8 +329,10 @@ function Tailor() {
         has_job_title: Boolean(result.data?.title),
       });
 
-      // Auto-trigger job match scoring + pre-ATS score in background
-      setMatchScoreLoading(true);
+      // Auto-trigger job match scoring + pre-ATS score in background. The match
+      // score is Pro only: free users get a 402, so they see a locked card instead.
+      const canScoreMatch = Boolean(session?.user?.isPremium);
+      setMatchScoreLoading(canScoreMatch);
       fetch("/api/resume")
         .then((res) => res.json())
         .then((cvData) => {
@@ -347,15 +349,17 @@ function Tailor() {
           setCachedReferenceCV(referenceCV);
 
           // Fire match score and pre-ATS score in parallel
-          const scorePromise = fetch("/api/job/score", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ referenceCV, jobData: result.data }),
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              if (res?.data) setMatchScore(res.data);
-            });
+          const scorePromise = canScoreMatch
+            ? fetch("/api/job/score", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ referenceCV, jobData: result.data }),
+              })
+                .then((res) => res.json())
+                .then((res) => {
+                  if (res?.data) setMatchScore(res.data);
+                })
+            : null;
 
           const preAtsPromise = fetch("/api/ats-score", {
             method: "POST",
@@ -1003,9 +1007,13 @@ function Tailor() {
                     </button>
                   </DashboardPanel>
                 )}
-                {(matchScoreLoading || matchScore) && (
+                {(!isPremium || matchScoreLoading || matchScore) && (
                   <Rise delay={0.1}>
-                    <JobMatchScoreCard scoreData={matchScore} isLoading={matchScoreLoading} />
+                    <JobMatchScoreCard
+                      scoreData={matchScore}
+                      isLoading={matchScoreLoading}
+                      locked={!isPremium}
+                    />
                   </Rise>
                 )}
               </div>

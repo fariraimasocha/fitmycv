@@ -264,7 +264,12 @@
     "description": "Wie gut dein Lebenslauf zu dieser Anzeige passt",
     "gaugeLabel": "Match-Wert: {score} von 5",
     "showDetails": "Details anzeigen",
-    "hideDetails": "Details ausblenden"
+    "hideDetails": "Details ausblenden",
+    "locked": {
+      "description": "Der Stellen-Match ist in Pro enthalten.",
+      "upsell": "Sieh, wie gut dein Lebenslauf zu dieser Anzeige passt, bewertet nach CV-Übereinstimmung, Vergütung, Kultur und Warnsignalen.",
+      "seePlans": "Pro-Tarife ansehen"
+    }
   },
   "jobRequirements": {
     "atsVendor": "Diese Stelle nutzt {name}, um Bewerbungen zu prüfen.",

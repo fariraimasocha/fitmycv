@@ -95,7 +95,7 @@ export const blocks = [
 
   { h2: "FitMyCV" },
   {
-    p: "Built for one bottleneck: a tailored CV and cover letter from a job URL. Upload once, paste LinkedIn, Indeed, Glassdoor, or a careers page, edit the draft, export a single-column PDF. It does not invent employers, dates, or metrics. It is the wrong tool if you have no CV yet.",
+    p: "An [AI resume tailor](/tailor-cv-from-job-link) built for one bottleneck: a tailored CV and cover letter from a job URL. Upload once, paste LinkedIn, Indeed, Glassdoor, or a careers page, edit the draft, export a single-column PDF. It does not invent employers, dates, or metrics. It is the wrong tool if you have no CV yet.",
   },
 
   { h2: "FastApply" },
@@ -123,7 +123,7 @@ export const blocks = [
     ol: [
       "**No CV yet?** A builder (see the [2026 builders post](/blog/best-ai-resume-builders-2026)), then come back.",
       "**CV exists, no responses?** Run the [free ATS checker](/ats-resume-checker) first. If the gap is vocabulary, tailor. If the gap is weak bullets, fix the writing before you pay for volume.",
-      "**You skip tailoring because it takes forty minutes?** A job-link tailor.",
+      "**You skip tailoring because it takes forty minutes?** A job-link tailor, or an [AI resume optimizer](/resume-optimizer) that rewrites the CV you already have.",
       "**You also need a CRM?** Teal, plus a tailor if Teal’s rewrite is too light.",
     ],
   },

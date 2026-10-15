@@ -2,7 +2,7 @@
 
 export const atsResumeChecker = {
   slug: "ats-resume-checker",
-  seoTitle: "Free ATS Resume Checker: No Sign-Up",
+  seoTitle: "Free ATS Resume Checker: No Login, No Sign-Up",
   description:
     "Free ATS resume checker, no login. Upload your CV and paste a job posting for a keyword match score. Your file is read in your browser. Unlimited checks.",
   keywords: [
@@ -18,9 +18,9 @@ export const atsResumeChecker = {
   ],
   eyebrow: "Free tool",
   breadcrumbName: "ATS resume checker",
-  h1: "Free ATS resume checker",
+  h1: "Free ATS resume checker, no login",
   lede:
-    "Free ATS resume checker, no sign-up. Upload your CV and paste a job description. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds.",
+    "No login, no sign-up. Upload your CV and paste a job description. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds.",
   ctas: [
     { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link" },
     { label: "Read the ATS guide", href: "/blog/ats-resume-guide", variant: "secondary" },
@@ -120,7 +120,7 @@ export const atsResumeChecker = {
       },
     },
     {
-      p: "Jobscan is the benchmark match rate. This page is the no-login diagnostic. If you want the rewrite as well, that is [tailoring from a job link](/tailor-cv-from-job-link). A longer comparison of free checkers is in [best free ATS resume checkers 2026](/blog/best-free-ats-resume-checkers-2026).",
+      p: "Jobscan is the benchmark match rate. This page is the no-login diagnostic. If you want the rewrite as well, use the [AI resume tailor](/tailor-cv-from-job-link) or the [AI resume optimizer](/resume-optimizer). A longer comparison of free checkers is in [best free ATS resume checkers 2026](/blog/best-free-ats-resume-checkers-2026).",
     },
 
     { h2: "Checker, or tailoring?" },
@@ -151,7 +151,7 @@ export const atsResumeChecker = {
       body: "A fit readout: skills, keywords, experience, and the first five things to fix.",
     },
     {
-      label: "Tailor a CV from a job link",
+      label: "AI resume tailor",
       href: "/tailor-cv-from-job-link",
       body: "Paste the posting URL and get a rewritten CV and cover letter in under a minute.",
     },
@@ -265,9 +265,9 @@ export const freeAtsKeywordChecker = {
 
 export const resumeOptimizer = {
   slug: "resume-optimizer",
-  seoTitle: "AI CV and Resume Optimizer for Any Job",
+  seoTitle: "AI Resume Optimizer: Rewrite Your CV for Any Job",
   description:
-    "An AI CV and resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
+    "An AI resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
   keywords: [
     "resume optimizer",
     "cv optimizer",
@@ -281,7 +281,7 @@ export const resumeOptimizer = {
   ],
   eyebrow: "CV optimizer",
   breadcrumbName: "CV and resume optimizer",
-  h1: "AI CV and resume optimizer",
+  h1: "AI resume optimizer",
   lede:
     "Your CV is not broken. It is generic. FitMyCV rewrites the CV you already have against the specific posting you are applying to, so the right evidence leads and the right words are used.",
   ctas: [
@@ -533,7 +533,7 @@ export const resumeJobMatchChecker = {
         "**Start with skills you already have under different words.** If the posting says GraphQL and you wrote API queries, use their term in a real bullet.",
         "**Move the matching roles up.** A five-year overlap buried in role three does less than a shorter overlap in the first two bullets.",
         "**Leave out skills you cannot defend.** A higher score that you cannot talk through is a wasted interview.",
-        "**Then rewrite, or let FitMyCV do it.** The [job-link tailoring flow](/tailor-cv-from-job-link) uses the same posting and your real experience.",
+        "**Then rewrite, or let FitMyCV do it.** The [AI resume tailor](/tailor-cv-from-job-link) uses the same posting and your real experience.",
       ],
     },
 
@@ -557,7 +557,7 @@ export const resumeJobMatchChecker = {
       },
     },
     {
-      p: "If you want the rewrite next, [tailor your CV to this job](/tailor-cv-from-job-link). If you only want missing keywords, use the [ATS resume checker](/ats-resume-checker).",
+      p: "If you want the rewrite next, use the [AI resume tailor](/tailor-cv-from-job-link) or the [AI resume optimizer](/resume-optimizer). If you only want missing keywords, use the [ATS resume checker](/ats-resume-checker).",
     },
   ],
   related: [

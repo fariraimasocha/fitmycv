@@ -47,6 +47,8 @@ export async function generateMetadata({ params }) {
     description: t("description"),
     path: alternates.canonical,
     keywords: [
+      "ai resume tailor",
+      "ai resume tailoring",
       "tailor cv to job description",
       "tailor cv to job description in seconds",
       "tailor resume to job description",

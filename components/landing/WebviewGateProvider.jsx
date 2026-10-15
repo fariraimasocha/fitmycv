@@ -1,20 +1,12 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  useSyncExternalStore,
-} from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { createContext, useCallback, useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 import WebviewGateModal from "@/components/landing/WebviewGateModal";
 import { shouldBlockLinkedInAuth } from "@/lib/webview";
 import { trackEvent } from "@/lib/analytics";
 
 const WebviewGateContext = createContext(null);
-const SEEN_KEY = "webview-gate-seen";
 
 function blocksAuth() {
   try {
@@ -24,41 +16,13 @@ function blocksAuth() {
   }
 }
 
-function markSeen() {
-  try {
-    sessionStorage.setItem(SEEN_KEY, "1");
-  } catch {}
-}
-
-// Read on every client render (false on the server), the same way
-// OnboardingGuard reads sessionStorage, so no effect has to copy it into state.
-function readAutoGate() {
-  if (!blocksAuth()) return false;
-  try {
-    return sessionStorage.getItem(SEEN_KEY) !== "1";
-  } catch {
-    return true;
-  }
-}
-const subscribe = () => () => {};
-
+// The gate opens only when someone in an in-app browser tries to sign in.
+// It used to open full screen on the first page load, and almost everyone
+// from LinkedIn left before seeing the site.
 export function WebviewGateProvider({ children }) {
   const router = useRouter();
-  const pathname = usePathname();
-  const [manualOpen, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [pendingUrl, setPendingUrl] = useState("/auth");
-  const [dismissed, setDismissed] = useState(false);
-
-  // Auto-show only once per session and not on the /auth page itself,
-  // which already has its own in-app warning. Normal Chrome/Safari with a
-  // linkedin.com referrer is not considered in-app (shouldBlock returns false).
-  const autoGate = useSyncExternalStore(subscribe, readAutoGate, () => false);
-  const autoOpen = autoGate && !dismissed && pathname !== "/auth";
-  const open = manualOpen || autoOpen;
-
-  useEffect(() => {
-    if (autoOpen) trackEvent("webview_gate_auto_shown", { pathname });
-  }, [autoOpen, pathname]);
 
   const interceptAuth = useCallback((event, href = "/auth") => {
     if (!blocksAuth()) return false;
@@ -69,32 +33,24 @@ export function WebviewGateProvider({ children }) {
     return true;
   }, []);
 
-  const handleClose = useCallback(() => {
-    setOpen(false);
-    setDismissed(true);
-    markSeen();
-  }, []);
+  const handleClose = useCallback(() => setOpen(false), []);
 
   const handleContinueWithEmail = useCallback(() => {
     setOpen(false);
-    setDismissed(true);
-    markSeen();
-    router.push(manualOpen ? pendingUrl : "/auth");
-  }, [router, manualOpen, pendingUrl]);
+    router.push(pendingUrl);
+  }, [router, pendingUrl]);
 
-  const target = manualOpen ? pendingUrl : "/auth";
   const targetUrl =
-    typeof window !== "undefined" ? `${window.location.origin}${target}` : target;
+    typeof window !== "undefined" ? `${window.location.origin}${pendingUrl}` : pendingUrl;
 
   return (
-    <WebviewGateContext.Provider value={{ interceptAuth, setOpen, open, pendingUrl: target }}>
+    <WebviewGateContext.Provider value={{ interceptAuth, setOpen, open, pendingUrl }}>
       {children}
       <WebviewGateModal
         open={open}
         onClose={handleClose}
         onContinueWithEmail={handleContinueWithEmail}
         targetUrl={targetUrl}
-        fullScreen={autoOpen && !manualOpen}
       />
     </WebviewGateContext.Provider>
   );

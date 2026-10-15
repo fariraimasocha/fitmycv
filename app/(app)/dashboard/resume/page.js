@@ -2,6 +2,8 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { peekAtsHandoff } from "@/lib/ats-handoff";
 import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
 import {
@@ -128,6 +130,7 @@ function UploadPanel({ onParsed, replacing }) {
 
 export default function MyResumePage() {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const [parsedData, setParsedData] = useState(null);
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [mobileTab, setMobileTab] = useState("edit");
@@ -377,6 +380,9 @@ export default function MyResumePage() {
             onSaved={() => {
               setParsedData(null);
               setMobileTab("edit");
+              // A job link from the homepage is still waiting. Take them to
+              // the tailor, where it is prefilled, now that the CV exists.
+              if (peekAtsHandoff()?.jobUrl) router.push("/dashboard/tailor");
             }}
           />
         </div>

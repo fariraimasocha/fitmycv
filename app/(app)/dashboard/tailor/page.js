@@ -170,7 +170,8 @@ function Tailor() {
   const searchParams = useSearchParams();
   // Prefilled when arriving from /jobs. That pool already holds the URL, so
   // the user never retypes it. Lazy initializer: read once, then it is theirs.
-  const [url, setUrl] = useState(() => searchParams.get("url") ?? "");
+  const [urlParam] = useState(() => searchParams.get("url"));
+  const [url, setUrl] = useState(urlParam ?? "");
   // Some boards block scraping, so a pasted description is the fallback.
   const [jobInputMode, setJobInputMode] = useState("link");
   const [jobText, setJobText] = useState("");
@@ -223,6 +224,12 @@ function Tailor() {
       trackEvent("hero_link_consumed", { source: handoff.source ?? null });
       return;
     }
+    // The link came in the URL only (a magic link opened in a new tab, or
+    // /jobs). It is already prefilled, so this just counts it.
+    if (!handoff && urlParam) {
+      trackEvent("hero_link_consumed", { source: "url_param" });
+      return;
+    }
     if (!handoff?.jobText) return;
     setJobInputMode("text");
     setJobText(handoff.jobText);
@@ -233,7 +240,7 @@ function Tailor() {
       source: handoff.source ?? null,
       chars: handoff.jobText.length,
     });
-  }, []);
+  }, [urlParam]);
 
   const { data: referenceCVRecord } = useQuery({
     queryKey: ["resume"],

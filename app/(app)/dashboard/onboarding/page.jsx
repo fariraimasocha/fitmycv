@@ -17,6 +17,7 @@ import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
 import { trackEvent } from "@/lib/analytics";
+import { peekAtsHandoff } from "@/lib/ats-handoff";
 
 // Onboarding is now just the CV upload (value first). The previous
 // 3-question wizard and the in-flow paywall have been removed per
@@ -101,14 +102,18 @@ export default function OnboardingPage() {
         } catch {}
 
         await update();
-        router.replace(destination);
+        // A homepage job link is waiting and the CV is saved, so the tailor
+        // can use it. Without a CV the tailor page errors, so keep the
+        // dashboard and let the resume page send them on after upload.
+        const jobWaiting = parsedCV && peekAtsHandoff()?.jobUrl;
+        router.replace(jobWaiting ? "/dashboard/tailor" : destination);
       } catch {
         toast.error(t("finishError"));
         setCompletionFailed(true);
         setFinishing(false);
       }
     },
-    [router, update, t],
+    [router, update, t, parsedCV],
   );
 
   // Skipping lands on /dashboard, not /dashboard/tailor: the tailor page

@@ -23,7 +23,6 @@ export default function WebviewGateModal({
   onClose,
   onContinueWithEmail,
   targetUrl,
-  fullScreen = false,
 }) {
   const t = useTranslations("landing.webview");
   const platform = platformOf(useUserAgent());
@@ -63,22 +62,12 @@ export default function WebviewGateModal({
 
   return (
     <div
-      className={
-        fullScreen
-          ? "fixed inset-0 z-50 flex items-center justify-center bg-[var(--landing-bg)] p-4 sm:p-6"
-          : "fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center"
-      }
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center"
       role="dialog"
       aria-modal="true"
       aria-labelledby="webview-gate-title"
     >
-      <div
-        className={
-          fullScreen
-            ? "max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 shadow-[var(--landing-shadow-sm)] sm:p-7"
-            : "max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 shadow-[var(--landing-shadow-sm)]"
-        }
-      >
+      <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 shadow-[var(--landing-shadow-sm)]">
         <div className="flex items-start justify-between gap-4">
           <h2
             id="webview-gate-title"

@@ -305,7 +305,7 @@ function Tailor() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || t("errors.extract"));
+        throw Object.assign(new Error(err.error || t("errors.extract")), { stage: err.stage });
       }
 
       return res.json();
@@ -403,6 +403,16 @@ function Tailor() {
       }, 100);
     },
     onError: (error, input) => {
+      if (input?.url) {
+        let host = null;
+        try {
+          host = new URL(input.url).hostname;
+        } catch {}
+        trackEvent("job_extract_failed", {
+          host,
+          stage: error.stage ?? (error.name === "TimeoutError" ? "timeout" : "request"),
+        });
+      }
       // A blocked link is a dead end unless the paste box is one click away.
       // Why a link failed is our problem, not the user's. One plain message.
       toast.error(input?.url || error.name === "TimeoutError" ? t("errors.extract") : error.message, {

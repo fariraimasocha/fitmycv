@@ -68,7 +68,7 @@ export async function POST(request) {
         ({ text: finalText } = await scrapeJobPage(url));
       } catch (error) {
         if (error instanceof JobPageError) {
-          return Response.json({ error: error.message }, { status: 422 });
+          return Response.json({ error: error.message, stage: error.stage }, { status: 422 });
         }
         throw error;
       }
@@ -87,7 +87,7 @@ export async function POST(request) {
 
     const responseText = completion.choices[0]?.message?.content;
     if (!responseText) {
-      return Response.json({ error: "Couldn't read that job listing. Paste the job description instead." }, { status: 500 });
+      return Response.json({ error: "Couldn't read that job listing. Paste the job description instead.", stage: "parse" }, { status: 500 });
     }
 
     // Step 3: Parse structured data

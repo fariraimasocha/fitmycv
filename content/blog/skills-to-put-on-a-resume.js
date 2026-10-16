@@ -3,7 +3,7 @@ export const meta = {
   title: "Skills to Put on a Resume: How to Choose Them, by Job",
   seoTitle: "Skills to Put on a Resume, by Job",
   description:
-    "Which skills to put on a resume, how to pick them from the job posting, where they go on the page, and keyword lists for 16 roles.",
+    "Which skills to put on a resume, how to pick them from the job posting, where they go on the page, and keyword lists for 17 roles.",
   excerpt:
     "The right skills for your resume are already written in the job posting. Here is how to find them, prove them, and place them where a recruiter looks.",
   date: "2026-09-27",
@@ -55,7 +55,7 @@ export const blocks = [
     p: "Most people write their skills section from memory. They list what they think they are good at, in their own words, and send the same list to every job. That is why a qualified CV can still miss: the recruiter searched for **the posting's words**, and the CV used different ones.",
   },
   {
-    p: "This guide shows you how to choose skills from the job itself, where to put them, and how to back each one up. At the end you will find keyword lists for 16 roles.",
+    p: "This guide shows you how to choose skills from the job itself, where to put them, and how to back each one up. At the end you will find keyword lists for 17 roles.",
   },
   {
     callout: {
@@ -145,6 +145,7 @@ export const blocks = [
         ["Financial analyst", "[Financial analyst resume keywords](/financial-analyst-resume-keywords)"],
         ["Accountant", "[Accountant resume keywords](/accountant-resume-keywords)"],
         ["Marketing manager", "[Marketing manager resume keywords](/marketing-manager-resume-keywords)"],
+        ["Sales", "[Sales resume keywords](/sales-resume-keywords)"],
         ["Sales manager", "[Sales manager resume keywords](/sales-manager-resume-keywords)"],
         ["Customer service", "[Customer service resume keywords](/customer-service-resume-keywords)"],
         ["HR manager", "[HR manager resume keywords](/hr-manager-resume-keywords)"],
@@ -155,7 +156,7 @@ export const blocks = [
     },
   },
   {
-    p: "All 16 lists are also on one page: [resume keywords by job](/resume-keywords).",
+    p: "All 17 lists are also on one page: [resume keywords by job](/resume-keywords).",
   },
 
   { h2: "Mistakes that cost interviews" },

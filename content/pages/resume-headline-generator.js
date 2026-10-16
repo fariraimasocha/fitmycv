@@ -4,7 +4,7 @@
 
 export const resumeHeadlineGenerator = {
   slug: "resume-headline-generator",
-  seoTitle: "Resume Headline Generator: Free Resume Title Ideas",
+  seoTitle: "Resume Headline and Title Generator: Free, No Login",
   description:
     "Upload your resume and paste a job description. Get five headlines built only from skills your CV shows. Free, no login, read in your browser.",
   keywords: [

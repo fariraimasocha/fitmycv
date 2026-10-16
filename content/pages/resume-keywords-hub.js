@@ -18,7 +18,7 @@ const GROUPS = [
   },
   {
     title: "Sales, marketing and customers",
-    slugs: ["marketing-manager", "sales-manager", "customer-service"],
+    slugs: ["marketing-manager", "sales", "sales-manager", "customer-service"],
   },
   {
     title: "People and operations",
@@ -47,9 +47,9 @@ const row = (slug) => {
 
 export const resumeKeywordsHub = {
   slug: "resume-keywords",
-  seoTitle: "Resume Keywords by Job: 16 Role Lists",
+  seoTitle: "Resume Keywords by Job: 17 Role Lists",
   description:
-    "Resume keywords for 16 jobs, grouped by where they belong on your CV, with worked examples. Pick your role, then check your CV free.",
+    "Resume keywords for 17 jobs, grouped by where they belong on your CV, with worked examples. Pick your role, then check your CV free.",
   keywords: [
     "resume keywords",
     "resume keywords list",

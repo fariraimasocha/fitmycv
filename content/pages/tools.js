@@ -265,9 +265,9 @@ export const freeAtsKeywordChecker = {
 
 export const resumeOptimizer = {
   slug: "resume-optimizer",
-  seoTitle: "AI Resume Optimizer: Rewrite Your CV for Any Job",
+  seoTitle: "AI CV and Resume Optimizer: Free Score, No Login",
   description:
-    "An AI resume optimizer that rewrites your CV against a specific job posting: keyword coverage, stronger bullets, and an ATS-safe PDF export.",
+    "Score your CV against a job posting for free, with no login. Then let AI rewrite it for that job: keyword coverage, stronger bullets, and an ATS-safe PDF.",
   keywords: [
     "resume optimizer",
     "cv optimizer",

@@ -1592,6 +1592,153 @@ const ROLES = [
     ],
   },
   {
+    // Searchers type "sales resume keywords", not "sales manager". Listed
+    // before sales-manager so that example page keeps linking to its own list.
+    slug: "sales",
+    role: "Sales",
+    plural: "sales reps",
+    examplePath: "/resume-examples/sales-manager",
+    seoTitle: "Sales Resume Keywords List: Reps and Outside Sales",
+    description:
+      "Sales resume keywords for reps, account executives, and inside and outside sales, grouped by where they belong on your CV. Free checker on the page.",
+    extraKeywords: [
+      "sales resume keywords",
+      "keywords for sales resume",
+      "resume keywords for sales",
+      "sales resume keywords list",
+      "sales keywords for resume",
+      "resume keywords for sales jobs",
+      "outside sales resume keywords",
+      "inside sales resume keywords",
+      "account executive resume keywords",
+      "sales representative resume keywords",
+    ],
+    lede:
+      "The terms sales rep and account executive postings repeat, grouped by where they belong on the page. A sales CV is read for one thing first: what you sold against what you were asked to sell.",
+    why:
+      "Sales postings are short on adjectives and long on numbers. They ask for **quota attainment**, a **pipeline** you built yourself, and a **CRM** named as a product, usually **Salesforce** or **HubSpot**. Then they name the motion: **prospecting** and **cold calling** for new business, **account management** and **upselling** for existing customers, **territory management** for outside sales. A CV that says 'strong communicator with a passion for sales' matches none of it.",
+    groups: [
+      {
+        title: "Numbers and targets",
+        note: "Read first. Give the quota next to the attainment, and the period next to both.",
+        terms: [
+          "quota attainment", "annual quota", "revenue closed",
+          "average deal size", "win rate", "sales cycle",
+          "pipeline generated", "new logos", "meetings booked",
+          "renewal rate", "upsell revenue",
+        ],
+      },
+      {
+        title: "Prospecting and pipeline",
+        note: "The new business half of the job. Name the channels you actually worked.",
+        terms: [
+          "prospecting", "lead generation", "cold calling", "cold email",
+          "outbound", "inbound", "lead qualification", "BANT",
+          "discovery calls", "appointment setting", "social selling",
+          "referrals",
+        ],
+      },
+      {
+        title: "Closing and accounts",
+        note: "What happens after the first meeting. These belong in bullets with a deal or a customer attached.",
+        terms: [
+          "product demos", "presentations", "objection handling",
+          "negotiation", "closing", "consultative selling",
+          "solution selling", "account management", "upselling",
+          "cross-selling", "customer retention", "B2B sales",
+        ],
+      },
+      {
+        title: "Outside and field sales",
+        note: "Only if you sold in person. Give the territory size and how many accounts you covered.",
+        terms: [
+          "territory management", "route planning", "field sales",
+          "client visits", "face-to-face selling", "key accounts",
+          "distributor relationships", "trade shows",
+        ],
+      },
+      {
+        title: "Systems",
+        note: "The CRM is often a stated requirement and is searched by name. List what you logged, forecast and prospected in.",
+        terms: [
+          "Salesforce", "HubSpot", "LinkedIn Sales Navigator", "Outreach",
+          "Salesloft", "Gong", "ZoomInfo", "Apollo", "Excel",
+        ],
+      },
+      {
+        title: "Verbs that carry evidence",
+        note: "Open bullets with these. Each one asks for a number after it.",
+        terms: [
+          "closed", "exceeded", "generated", "booked", "won", "opened",
+          "expanded", "renewed", "negotiated", "converted",
+        ],
+      },
+    ],
+    placement: [
+      {
+        title: "Summary: segment, quota and attainment",
+        body: "Two lines: what you sell, to whom, and how you did against target. **118% of a 900K quota selling to mid-market SaaS buyers** places you before the reader reaches your first job.",
+      },
+      {
+        title: "Skills block: CRM and prospecting tools",
+        body: "**Salesforce** or **HubSpot** by name, then **Sales Navigator**, your sequencing tool and any qualification method. This block is searched before it is read.",
+      },
+      {
+        title: "Bullets: one number per bullet",
+        body: "Revenue closed, meetings booked, win rate, deal size. A bullet without a number reads as a duty, and a sales reader skips duties.",
+      },
+      {
+        title: "Outside sales: the territory",
+        body: "Region, number of accounts, and how much of the week you spent on the road. Field roles are hired on whether you have covered ground like theirs.",
+      },
+    ],
+    evidence: [
+      {
+        title: "quota attainment",
+        context: "The first claims success. The second shows the target, the result and the period.",
+        before: "Consistently exceeded sales targets in a fast-paced environment.",
+        after:
+          "Closed 1.06M against a 900K annual quota in 2025 (118%), with an average deal size of 24K across 44 new logos.",
+      },
+      {
+        title: "prospecting",
+        context: "Prospecting counts when it turns into pipeline you can measure.",
+        before: "Responsible for prospecting and generating new leads.",
+        after:
+          "Built outbound sequences in Outreach and Sales Navigator that booked 15 discovery calls a month and generated 1.4M in qualified pipeline over two quarters.",
+      },
+    ],
+    jobExcerpt: {
+      title: "How the terms cluster in a real advert",
+      body: "\"You will own a territory of mid-market accounts, prospect new business through calls and email, run discovery and product demos, and close deals. A track record of quota attainment is essential. Experience with Salesforce and Sales Navigator is a plus.\"\n\nNine terms in three sentences, and most of them ask for a number. A CV that says 'results-driven sales professional' answers none of them.",
+    },
+    pitfalls: [
+      "**Attainment with no quota.** 118% of what? Give the base, or the percentage reads as a number picked to flatter.",
+      "**No period.** A strong quarter and a strong year are different claims. Say which.",
+      "**The CRM left out.** Salesforce and HubSpot are among the most searched terms in sales postings.",
+      "**Inside and outside sales mixed up.** If the posting is field sales, lead with territory and client visits. If it is inside sales, lead with calls, sequences and meetings booked.",
+      "**Adjectives instead of figures.** 'Driven', 'motivated' and 'target-oriented' take the space a number should fill.",
+    ],
+    faqs: [
+      {
+        q: "What keywords should a sales resume have?",
+        a: "The ones the posting uses, backed by numbers. Most sales postings ask for quota attainment, prospecting, pipeline, a named CRM, and either account management or territory management. Use the groups above as a checklist, then check against the real advert.",
+      },
+      {
+        q: "What is different about outside sales resume keywords?",
+        a: "Outside sales postings add territory management, client visits, route planning and key accounts. Give the size of the territory and the number of accounts you covered, because that is how a field sales manager judges fit.",
+      },
+      {
+        q: "What if I have never carried a quota?",
+        a: "Use the numbers you do have: calls made, meetings booked, leads qualified, customers kept. In retail or customer service, sales per shift or upsell rate count. A real activity number beats an invented revenue figure.",
+      },
+      {
+        q: "Should I list Salesforce if I only used it a little?",
+        a: "Yes, if you used it in the job. Say what you did in it, such as logging calls or keeping your pipeline current, so the reader knows how deep it goes.",
+      },
+    ],
+  },
+  {
     slug: "sales-manager",
     role: "Sales Manager",
     plural: "sales managers",
@@ -1604,7 +1751,6 @@ const ROLES = [
       "sales manager resume keywords",
       "ats keywords for sales manager resume",
       "sales manager resume skills",
-      "sales resume keywords",
       "sales leadership resume keywords",
       "account manager resume keywords",
     ],

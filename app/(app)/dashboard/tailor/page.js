@@ -488,8 +488,15 @@ function Tailor() {
       });
       toast.success(t("tailored"));
 
-      // Paywall stays on download. Free users can see that tailor worked,
-      // then unlock when they try to take the PDF.
+      // A finished CV is the natural moment to ask. Waiting on a Download
+      // click meant a third of free users who tailored never saw a price.
+      // The pause lets the preview render behind the modal first.
+      if (!session?.user?.isPremium) {
+        setTimeout(() => {
+          setUpgradeModalContext("tailored");
+          setShowUpgradeModal(true);
+        }, 1500);
+      }
     },
     onError: (error) => {
       if (error.code === "PREMIUM_REQUIRED") {

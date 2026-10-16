@@ -20,6 +20,8 @@ import { trackEvent } from "@/lib/analytics";
 const COPY_KEYS = {
   default: "default",
   download: "download",
+  // Opened when a free user's tailor finishes. Same copy as download.
+  tailored: "download",
   pre_tailor: "preTailor",
 };
 

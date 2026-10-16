@@ -264,7 +264,12 @@
     "description": "Cómo encaja tu CV en esta oferta",
     "gaugeLabel": "Puntuación de coincidencia: {score} de 5",
     "showDetails": "Mostrar detalles",
-    "hideDetails": "Ocultar detalles"
+    "hideDetails": "Ocultar detalles",
+    "locked": {
+      "description": "La coincidencia con la oferta está en Pro.",
+      "upsell": "Mira cómo encaja tu CV en esta oferta, con notas para coincidencia del CV, salario, cultura y señales de alerta.",
+      "seePlans": "Ver planes Pro"
+    }
   },
   "jobRequirements": {
     "atsVendor": "Esta oferta usa {name} para filtrar candidaturas.",

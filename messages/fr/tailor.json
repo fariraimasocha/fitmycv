@@ -264,7 +264,12 @@
     "description": "Comment votre CV correspond à cette offre",
     "gaugeLabel": "Score de correspondance : {score} sur 5",
     "showDetails": "Afficher les détails",
-    "hideDetails": "Masquer les détails"
+    "hideDetails": "Masquer les détails",
+    "locked": {
+      "description": "La correspondance avec l’offre est incluse dans Pro.",
+      "upsell": "Voyez comment votre CV correspond à cette offre, noté sur la correspondance du CV, la rémunération, la culture et les signaux d’alerte.",
+      "seePlans": "Voir les forfaits Pro"
+    }
   },
   "jobRequirements": {
     "atsVendor": "Cette offre passe par {name} pour trier les candidatures.",

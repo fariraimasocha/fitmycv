@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { DONE, OFFSETS, buildNurtureEmail, dueStep, shouldSkip } from "../lib/nurture-email.js";
+import { DONE, OFFSETS, buildNurtureEmail, checkoutReminderEmail, dueStep, shouldSkip } from "../lib/nurture-email.js";
 
 const assert = (c, m) => {
   if (!c) {
@@ -36,4 +36,19 @@ for (let step = 0; step < OFFSETS.length; step++) {
   assert(text.startsWith("Hi Arnold,"), `step ${step} greeting`);
   fs.writeFileSync(path.join(dir, `${step}.html`), `<!-- ${subject} -->\n${html}`);
 }
+// The abandoned checkout reminder goes back to the plan or CV they started on.
+const opts = { userName: "ARNOLD CHITSA", unsubscribeUrl: "https://www.fitmycv.link/api/unsubscribe?u=0&s=0" };
+const month = checkoutReminderEmail({ checkoutPlan: "month" });
+assert(month.cta[1] === "/api/polar/checkout?plan=month", "month reminder links to month checkout");
+const single = checkoutReminderEmail({ checkoutPlan: "single", checkoutCvId: "abc123" });
+assert(single.cta[1] === "/dashboard/tailored/abc123", "single reminder links to its CV");
+assert(checkoutReminderEmail({}).cta[1] === "/api/polar/checkout?plan=month", "no plan falls back to month");
+for (const [name, email] of [["month", month], ["single", single]]) {
+  const { subject, html, text } = buildNurtureEmail(email, opts);
+  assert(subject && html.includes(email.cta[1]), `${name} reminder renders its link`);
+  assert(text.startsWith("Hi Arnold,"), `${name} reminder greeting`);
+  assert(!/[–—]| -- /.test(text), `${name} reminder copy has a dash`);
+  fs.writeFileSync(path.join(dir, `reminder-${name}.html`), `<!-- ${subject} -->\n${html}`);
+}
+
 console.log(`ok. previews: open ${dir}/*.html`);

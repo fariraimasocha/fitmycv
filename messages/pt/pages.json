@@ -97,12 +97,12 @@
       "title": "Baixe seus PDFs",
       "description": "Assine o Pro para baixar seu currículo adaptado e sua carta de apresentação em PDF."
     },
-    "getLifetime": "Acesso vitalício por ${price}",
+    "getMonth": "Assine o Pro por ${price} por mês",
     "maybeLater": "Agora não",
-    "lifetimeNote": "Pague uma vez e é seu. Sem assinatura.",
+    "monthNote": "Cancele quando quiser.",
     "getSingle": "Desbloquear este CV por ${price}",
     "singleNote": "Apenas este CV e a carta de apresentação. Um único pagamento.",
-    "orMonth": "Ou ${price} por mês, cancele quando quiser",
+    "orLifetime": "Ou pague ${price} uma vez pelo acesso vitalício",
     "stats": {
       "keywords": "{count, plural, one {# palavra-chave da vaga adicionada ao seu currículo} other {# palavras-chave da vaga adicionadas ao seu currículo}}",
       "grade": "Nota de compatibilidade com esta vaga: {grade}"

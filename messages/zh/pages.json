@@ -97,12 +97,12 @@
       "title": "下载你的 PDF",
       "description": "升级到 Pro 即可将你的定制简历和求职信下载为 PDF。"
     },
-    "getLifetime": "以 ${price} 获取终身版",
+    "getMonth": "每月 ${price} 获取 Pro",
     "maybeLater": "以后再说",
-    "lifetimeNote": "一次付费，永久使用。无需订阅。",
+    "monthNote": "随时取消。",
     "getSingle": "以 ${price} 解锁这份简历",
     "singleNote": "仅限这份简历及其求职信。一次付费。",
-    "orMonth": "或每月 ${price}，随时取消",
+    "orLifetime": "或一次性支付 ${price} 获取终身版",
     "stats": {
       "keywords": "已将 {count} 个职位关键词加入你的简历",
       "grade": "与该职位的匹配等级：{grade}"

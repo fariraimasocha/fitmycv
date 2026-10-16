@@ -48,7 +48,7 @@ export default function UpgradePromptModal({
     if (open) {
       trackEvent("paywall_view", {
         context,
-        primary_plan: "lifetime",
+        primary_plan: "month",
         has_job: Boolean(job?.title),
         has_stats: Boolean(stats?.keywordsAdded || stats?.grade),
         offers_single: offerSingle,
@@ -99,9 +99,9 @@ export default function UpgradePromptModal({
     stats?.grade ? t("stats.grade", { grade: stats.grade }) : null,
   ].filter(Boolean);
 
-  // Lifetime leads because a job search is a few weeks, not a subscription.
-  // This one CV sits second, for the visitor who needs one application today
-  // and would otherwise close the modal. Monthly stays a text link.
+  // Monthly leads: in October every purchase was monthly and lifetime sold
+  // none. This one CV sits second, for the visitor who needs one application
+  // today and would otherwise close the modal. Lifetime stays a text link.
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
@@ -136,14 +136,14 @@ export default function UpgradePromptModal({
         <div className="flex flex-col items-center gap-2 pt-1">
           <button
             type="button"
-            onClick={() => startCheckout("lifetime", "paywall_primary")}
+            onClick={() => startCheckout("month", "paywall_primary")}
             disabled={Boolean(pendingPlan)}
-            aria-busy={pendingPlan === "lifetime"}
+            aria-busy={pendingPlan === "month"}
             className="dashboard-primary-btn w-full disabled:cursor-wait disabled:opacity-60"
           >
-            {t("getLifetime", { price: pricing.lifetime.price })}
+            {t("getMonth", { price: pricing.month.price })}
           </button>
-          <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
+          <p className="text-xs text-[var(--landing-ink-soft)]">{t("monthNote")}</p>
           {offerSingle && (
             <>
               <button
@@ -160,12 +160,12 @@ export default function UpgradePromptModal({
           )}
           <button
             type="button"
-            onClick={() => startCheckout("month", "paywall_secondary")}
+            onClick={() => startCheckout("lifetime", "paywall_secondary")}
             disabled={Boolean(pendingPlan)}
-            aria-busy={pendingPlan === "month"}
+            aria-busy={pendingPlan === "lifetime"}
             className="mt-2 text-sm font-medium text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)] disabled:cursor-wait disabled:opacity-60"
           >
-            {t("orMonth", { price: pricing.month.price })}
+            {t("orLifetime", { price: pricing.lifetime.price })}
           </button>
           <button
             type="button"

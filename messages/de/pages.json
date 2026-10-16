@@ -97,12 +97,12 @@
       "title": "Lade deine PDFs herunter",
       "description": "Wechsle zu Pro, um deinen angepassten Lebenslauf und dein Anschreiben als PDF herunterzuladen."
     },
-    "getLifetime": "Lebenslangen Zugang für ${price} holen",
+    "getMonth": "Pro für ${price} im Monat holen",
     "maybeLater": "Vielleicht später",
-    "lifetimeNote": "Einmal zahlen und behalten. Kein Abo.",
+    "monthNote": "Jederzeit kündbar.",
     "getSingle": "Diesen Lebenslauf für ${price} freischalten",
     "singleNote": "Nur dieser Lebenslauf und sein Anschreiben. Einmalige Zahlung.",
-    "orMonth": "Oder ${price} im Monat, jederzeit kündbar",
+    "orLifetime": "Oder einmal ${price} für lebenslangen Zugang zahlen",
     "stats": {
       "keywords": "{count, plural, one {# Keyword aus der Stelle in deinen Lebenslauf eingebaut} other {# Keywords aus der Stelle in deinen Lebenslauf eingebaut}}",
       "grade": "Match-Note für diese Stelle: {grade}"

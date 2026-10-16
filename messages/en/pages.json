@@ -97,12 +97,12 @@
       "title": "Download your PDFs",
       "description": "Upgrade to download your tailored CV and cover letter as PDFs."
     },
-    "getLifetime": "Get lifetime for ${price}",
+    "getMonth": "Get Pro for ${price} a month",
     "maybeLater": "Maybe later",
-    "lifetimeNote": "Pay once and keep it. No subscription.",
+    "monthNote": "Cancel anytime.",
     "getSingle": "Unlock this CV for ${price}",
     "singleNote": "This CV and its cover letter only. One payment.",
-    "orMonth": "Or ${price} a month, cancel anytime",
+    "orLifetime": "Or pay ${price} once for lifetime",
     "stats": {
       "keywords": "{count, plural, one {# job keyword added to your CV} other {# job keywords added to your CV}}",
       "grade": "Match grade for this job: {grade}"

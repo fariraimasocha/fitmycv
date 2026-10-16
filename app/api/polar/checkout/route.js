@@ -91,6 +91,14 @@ export async function GET(request) {
         : process.env.POLAR_SUCCESS_URL ||
           localAppUrl(`/payment/success?plan=${plan}`, request).toString();
 
+    await User.updateOne(
+      { _id: session.user.id },
+      {
+        $set: { checkoutStartedAt: new Date(), checkoutPlan: plan, checkoutCvId: tailoredCvId },
+        $unset: { checkoutReminderSentAt: 1 },
+      },
+    );
+
     const checkout = await polar.checkouts.create({
       products: [productId],
       successUrl,

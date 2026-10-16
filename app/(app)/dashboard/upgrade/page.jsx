@@ -65,7 +65,7 @@ export default function UpgradePage() {
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         {/* compact: the "Everything in Pro" list below already covers PRO_FEATURES */}
-        <PricingCards compact />
+        <PricingCards compact primaryPlan="month" />
       </motion.div>
 
       <DashboardPanel delay={0.1}>

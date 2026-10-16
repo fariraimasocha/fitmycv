@@ -92,6 +92,13 @@ const userSchema = new mongoose.Schema(
     nurtureStep: {
       type: Number,
     },
+    // Last Polar checkout this user opened, for the one reminder the nurture
+    // cron sends if they have not paid 2 hours later. A new checkout clears
+    // checkoutReminderSentAt, so each attempt can earn one reminder.
+    checkoutStartedAt: { type: Date },
+    checkoutPlan: { type: String },
+    checkoutCvId: { type: mongoose.Schema.Types.ObjectId, ref: "TailoredCV" },
+    checkoutReminderSentAt: { type: Date },
     // Drives the daily job digest. Defaults are opt-in; an existing user with
     // no jobPreferences is treated as emailDigest:true / remoteOnly:true.
     jobPreferences: {

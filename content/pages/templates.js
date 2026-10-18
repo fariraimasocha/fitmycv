@@ -252,9 +252,9 @@ export const resumeTemplates = {
 
 export const googleDocsCvTemplate = {
   slug: "google-docs-cv-template",
-  seoTitle: "ATS-Friendly Google Docs CV Template",
+  seoTitle: "CV Template for Google Docs: Free and ATS-Friendly",
   description:
-    "How to build an ATS-friendly CV in Google Docs: the structure to use, which built-in templates to avoid, and the correct export settings.",
+    "Build a free CV template in Google Docs in ten minutes. The section order, margins and fonts to use, which built-in templates break ATS parsing, and how to export it.",
   keywords: [
     "google docs cv template",
     "google docs resume template",

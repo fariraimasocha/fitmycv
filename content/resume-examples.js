@@ -182,6 +182,9 @@ export const RESUME_EXAMPLES = [
   {
     slug: "operations-manager",
     role: "Operations Manager",
+    seoTitle: "Operations Manager Resume Example and CV (2026)",
+    seoDescription:
+      "An operations manager resume example for a 3 site, 85 person operation. Before and after bullets with headcount, budget and on-time rates, plus a summary and keywords to copy.",
     seniority: "Mid to senior",
     blurb:
       "Operations, logistics and service delivery roles, where scale and cost are the whole argument.",

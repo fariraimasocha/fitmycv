@@ -102,10 +102,11 @@ export default function OnboardingPage() {
         } catch {}
 
         await update();
-        // A homepage job link is waiting and the CV is saved, so the tailor
-        // can use it. Without a CV the tailor page errors, so keep the
-        // dashboard and let the resume page send them on after upload.
-        const jobWaiting = parsedCV && peekAtsHandoff()?.jobUrl;
+        // A job is waiting (a homepage link or text from a free checker) and
+        // the CV is saved, so the tailor can use it. Without a CV the tailor
+        // page errors, so keep the dashboard and let the resume page send
+        // them on after upload.
+        const jobWaiting = parsedCV && peekAtsHandoff();
         router.replace(jobWaiting ? "/dashboard/tailor" : destination);
       } catch {
         toast.error(t("finishError"));

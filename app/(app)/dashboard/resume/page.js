@@ -380,9 +380,10 @@ export default function MyResumePage() {
             onSaved={() => {
               setParsedData(null);
               setMobileTab("edit");
-              // A job link from the homepage is still waiting. Take them to
-              // the tailor, where it is prefilled, now that the CV exists.
-              if (peekAtsHandoff()?.jobUrl) router.push("/dashboard/tailor");
+              // A job from the homepage or a free checker is still waiting.
+              // Take them to the tailor, where it is prefilled, now that the
+              // CV exists.
+              if (peekAtsHandoff()) router.push("/dashboard/tailor");
             }}
           />
         </div>

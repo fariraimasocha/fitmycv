@@ -2,7 +2,9 @@
 # Weekly SEO run. launchd starts it every Monday (~/Library/LaunchAgents/link.fitmycv.seo-weekly.plist).
 # Works in a throwaway worktree from origin/main, so your checkout is never touched.
 set -euo pipefail
-export PATH="/opt/homebrew/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
+# launchd gives a bare PATH. ponytail: newest nvm Node, pin it if you keep several.
+NODE_BIN="$HOME/.nvm/versions/node/$(ls "$HOME/.nvm/versions/node" | sort -V | tail -1)/bin"
+export PATH="$NODE_BIN:$HOME/Library/pnpm:/opt/homebrew/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
 
 REPO="${0:A:h:h}"
 DATE=$(date +%Y-%m-%d)

@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "Five checkers, five different free tiers. What each one actually scores, whether you need an account, and which to use before you pay Jobscan.",
   date: "2026-08-28",
-  updated: "2026-08-28",
+  updated: "2026-10-20",
   readingTime: 8,
   category: "Comparisons",
   tags: ["comparison", "ats", "tools", "resume"],
@@ -26,7 +26,7 @@ export const meta = {
 export const faqs = [
   {
     q: "What is the best free ATS resume checker in 2026?",
-    a: "It depends what you need the score for. Use a no-signup, in-browser checker like FitMyCV when you want a job-description keyword gap without uploading a file. Use Jobscan’s five free scans when you want the industry-standard match rate to compare against. Use Teal if you already track applications there. There is no single winner because these tools measure different things.",
+    a: "It depends what you need the score for. Use a no-signup, in-browser checker like FitMyCV when you want a job-description keyword gap without uploading a file. Use Jobscan’s free scans (about five a month when we checked in August 2026) when you want the industry-standard match rate to compare against. Use Teal if you already track applications there. There is no single winner because these tools measure different things.",
   },
   {
     q: "Is Jobscan’s ATS checker free?",
@@ -48,7 +48,10 @@ export const faqs = [
 
 export const blocks = [
   {
-    p: "“Best free ATS resume checker” is usually a comparison of paywalls, not of scoring science. Jobscan set the category. A wave of no-signup tools now copy the same promise: paste a job description, get a match score, do not upload anything. We make one of those tools, so read the FitMyCV row with that in mind. The table is about what you can actually do without paying.",
+    p: "The best free ATS resume checker is the one you can run on the posting in front of you without paying or signing up. FitMyCV and ATSGrader need no account. Jobscan gives the benchmark match rate, but only a few free scans a month. Teal suits you if you already track jobs there. Resume Worded is better for writing feedback than for keyword matching.",
+  },
+  {
+    p: "“Best free” is mostly a comparison of paywalls, not of scoring science. Jobscan set the category, and most free checkers now copy its promise: paste a job description, get a match score. We make FitMyCV, so read its row with that in mind. The table compares what each tool lets you do without paying.",
   },
   {
     p: "Prices and free limits below were checked in August 2026. They move. Confirm on the vendor’s site before you decide.",
@@ -114,7 +117,7 @@ export const blocks = [
     p: "Jobscan is still the name people mean when they say ATS checker. Paste a resume and a job listing, get a match rate, see missing hard skills. The free tier is enough to learn the format. The paid plan is priced for people who scan every application.",
   },
   {
-    p: "Use Jobscan when you want a second opinion against the category default. Do not treat a 80% Jobscan score as an interview guarantee. Keyword coverage gets you surfaced; the bullets earn the call.",
+    p: "Use Jobscan when you want a second opinion against the category default. Do not treat an 80% Jobscan score as an interview guarantee. Keyword coverage gets you surfaced; the bullets earn the call.",
   },
 
   { h2: "Teal, ATSGrader, and Resume Worded" },
@@ -153,7 +156,7 @@ export const blocks = [
       "**Paste the full posting**, including requirements behind a toggle.",
       "**Only add missing keywords you can evidence.** A skills-list dump raises the score and fails the interview.",
       "**Fix layout if paste-out is scrambled.** That is a parse problem, not a keyword problem. See the [ATS-friendly resume guide](/blog/ats-resume-guide).",
-      "**Re-run once.** Two honest passes usually move a 40 into the 70s. Chasing 95 is how people start inventing tools.",
+      "**Re-run once.** Stop when the only missing terms left are ones you cannot back up. Chasing 95 is how people start inventing tools.",
     ],
   },
   {

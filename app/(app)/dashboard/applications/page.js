@@ -30,6 +30,8 @@ import { ApplicationInsights } from "@/components/applications/ApplicationInsigh
 import { ApplicationTable } from "@/components/applications/ApplicationTable";
 import {
   DashboardEmptyState,
+  DashboardLoadError,
+  ProGate,
   DashboardPageHeader,
   DashboardPageShell,
   DashboardStatStrip,
@@ -41,6 +43,7 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { computeInsights } from "@/lib/applications";
+import { showStageMoment } from "@/components/applications/stage-moment";
 import { requestJson } from "@/lib/request-json";
 import { cn } from "@/lib/utils";
 
@@ -178,6 +181,7 @@ function PageSkeleton() {
 function ApplicationsTracker() {
   const t = useTranslations("dashboard.applications");
   const tDashboard = useTranslations("dashboard");
+  const tMoments = useTranslations("dashboard.stageMoments");
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
@@ -193,10 +197,11 @@ function ApplicationsTracker() {
   const [editing, setEditing] = useState(null);
   const [selectedId, setSelectedId] = useState(() => searchParams.get("applicationId"));
 
-  const { data: applications = [], isLoading } = useQuery({
+  const applicationsQuery = useQuery({
     queryKey: LIST_KEY,
     queryFn: () => requestJson("/api/applications?archived=all"),
   });
+  const { data: applications = [], isLoading } = applicationsQuery;
 
   const move = useMutation({
     mutationFn: ({ id, status }) => requestJson(`/api/applications/${id}`, { method: "PUT", body: { status } }),
@@ -211,9 +216,11 @@ function ApplicationsTracker() {
       if (context?.previous) queryClient.setQueryData(LIST_KEY, context.previous);
       toast.error(t("moveError"));
     },
-    onSuccess: (_data, { status }) => {
+    onSuccess: (_data, { status, firstOffer }) => {
       trackEvent("application_status_changed", { status });
-      toast.success(t("moved", { stage: tDashboard(`stages.${status}`) }));
+      if (!showStageMoment({ status, t: tMoments, router, firstOffer })) {
+        toast.success(t("moved", { stage: tDashboard(`stages.${status}`) }));
+      }
     },
     onSettled: () => queryClient.invalidateQueries({ queryKey: ["applications"] }),
   });
@@ -239,6 +246,14 @@ function ApplicationsTracker() {
   }, [applications, search, tags, sort, archived]);
 
   if (isLoading) return <PageSkeleton />;
+  if (applicationsQuery.isError && !applicationsQuery.data) {
+    return (
+      <DashboardPageShell width="full">
+        <DashboardPageHeader title={t("title")} description={t("description")} />
+        <DashboardLoadError query={applicationsQuery} />
+      </DashboardPageShell>
+    );
+  }
 
   const archivedCount = applications.length - active.length;
   const isEmpty = applications.length === 0;
@@ -435,7 +450,7 @@ function ApplicationsTracker() {
                 applications={filtered}
                 onOpen={(app) => setSelectedId(app._id)}
                 onEdit={setEditing}
-                onMove={(id, status) => move.mutate({ id, status })}
+                onMove={(id, status) => move.mutate({ id, status, firstOffer: status === "offer" && insights.offers === 0 })}
               />
             ) : view === "table" ? (
               <ApplicationTable applications={filtered} onOpen={(app) => setSelectedId(app._id)} onEdit={setEditing} />
@@ -464,8 +479,10 @@ function ApplicationsTracker() {
 
 export default function ApplicationsPage() {
   return (
-    <Suspense fallback={<PageSkeleton />}>
-      <ApplicationsTracker />
-    </Suspense>
+    <ProGate feature="applications" namespace="dashboard.applications">
+      <Suspense fallback={<PageSkeleton />}>
+        <ApplicationsTracker />
+      </Suspense>
+    </ProGate>
   );
 }

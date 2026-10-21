@@ -16,7 +16,7 @@
     "tailorCta": "Adaptar mi CV gratis",
     "linkError": "Eso no es un enlace. Pega la dirección completa de la oferta.",
     "notReady": "¿Aún no quieres registrarte?",
-    "usedBy": "Más de 1.800 personas en busca de empleo lo usan",
+    "usedBy": "Más de {count, number} personas se han registrado",
     "videoLabel": "Demo de FitMyCV: pega el enlace de una oferta y descarga un CV adaptado",
     "checkerCta": "Analizar mi CV gratis",
     "titleMain": "pega el enlace de cualquier oferta. recibe un CV <accent>hecho</accent> para ese puesto.",
@@ -84,7 +84,7 @@
       },
       "cancel": {
         "title": "Cancela cuando quieras",
-        "body": "Sin contrato y sin un proceso de cancelación contra el que pelear. El acceso dura hasta el final del periodo que pagaste."
+        "body": "El plan mensual no tiene contrato ni un proceso de cancelación contra el que pelear. El acceso dura hasta el final del mes que pagaste."
       }
     },
     "methodTitle": "Cómo funciona la adaptación",

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -305,14 +306,23 @@ export default function MyResumePage() {
               <ArrowCounterClockwiseIcon size={16} aria-hidden="true" />
               {isDraft ? t("uploadDifferent") : t("replaceCv")}
             </button>
+            {/* A saved CV's next step is tailoring it, so that is the one
+                primary button. Download stays, one rank down. In a draft,
+                Save in the sticky bar is the primary action. */}
             <button
               type="button"
               onClick={handleDownload}
-              className="dashboard-primary-btn"
+              className="dashboard-secondary-btn"
             >
               <DownloadSimpleIcon size={16} aria-hidden="true" />
               {t("downloadPdf")}
             </button>
+            {!isDraft && savedCV && (
+              <Link href="/dashboard/tailor" className="dashboard-primary-btn">
+                <SparkleIcon size={16} aria-hidden="true" />
+                {t("tailorToJob")}
+              </Link>
+            )}
           </>
         }
       />
@@ -377,6 +387,7 @@ export default function MyResumePage() {
             rawText={source?.rawText}
             isDraft={isDraft}
             onValuesChange={handleValuesChange}
+            savedAction={{ label: t("tailorToJob"), onClick: () => router.push("/dashboard/tailor") }}
             onSaved={() => {
               setParsedData(null);
               setMobileTab("edit");

@@ -144,8 +144,10 @@ export default function MarketingPage({ page, children, hideHero = false }) {
               </p>
             )}
 
-            {!hideHero && ctas.length ? (
-              <div className={`mt-9 flex-col items-center justify-center gap-3 sm:flex sm:flex-row ${tool ? "hidden" : "flex"}`}>
+            {/* On a tool page the tool is the action. Its result hands off to
+                the tailor, so a CTA here would only compete with it. */}
+            {!hideHero && !tool && ctas.length ? (
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 {ctas.map(({ label, href, variant = "primary" }) => (
                   <Link
                     key={href}

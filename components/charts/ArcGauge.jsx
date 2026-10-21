@@ -9,6 +9,7 @@ export function ArcGauge({
   size = 96,
   strokeWidth,
   color = "var(--landing-accent)",
+  trackClassName = "text-muted/20",
   label,
   children,
   className,
@@ -44,7 +45,7 @@ export function ArcGauge({
           fill="none"
           stroke="currentColor"
           strokeWidth={stroke}
-          className="text-muted/20"
+          className={trackClassName}
         />
         {reduce ? (
           <circle

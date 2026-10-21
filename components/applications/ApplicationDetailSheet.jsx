@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { showStageMoment } from "@/components/applications/stage-moment";
 import {
   ArrowRightIcon,
   ArrowSquareOutIcon,
@@ -389,6 +391,8 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
 export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
   const t = useTranslations("dashboard.appComponents.detail");
   const tDashboard = useTranslations("dashboard");
+  const tMoments = useTranslations("dashboard.stageMoments");
+  const router = useRouter();
   const locale = useLocale();
   const queryClient = useQueryClient();
   const [confirm, confirmDialog] = useConfirm();
@@ -406,8 +410,10 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
 
   const update = useMutation({
     mutationFn: ({ body }) => requestJson(`/api/applications/${id}`, { method: "PUT", body }),
-    onSuccess: (_data, { then }) => {
+    onSuccess: (_data, { body, then }) => {
       invalidate();
+      // A move here used to be silent. Interview and Offer get their moment.
+      if (body?.status) showStageMoment({ status: body.status, t: tMoments, router });
       then?.();
     },
     onError: (error) => toast.error(error.message),

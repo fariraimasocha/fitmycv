@@ -109,7 +109,7 @@ function NothingHere({ children }) {
   );
 }
 
-function ScoreHeader({ report, preScore }) {
+function ScoreHeader({ report, preScore, checking = false, fixGain = 0 }) {
   const t = useTranslations("tailor.ats");
   const tone = scoreTone(report.score);
   const capCode = report.cappedBy?.[0];
@@ -122,16 +122,33 @@ function ScoreHeader({ report, preScore }) {
       <div className="flex items-baseline gap-2">
         <AnimatedNumber value={report.score} className={cn("text-4xl leading-none font-bold tabular-nums", tone.text)} />
         <span className="text-sm text-muted-foreground">{t("outOf100")}</span>
-        {delta > 0 && (
-          <Badge variant="secondary" className="ms-auto bg-[#eef8f1] text-[var(--landing-success)]">
-            {t("upFrom", { delta, preScore })}
+        {checking ? (
+          <span className="ms-auto text-xs text-muted-foreground" aria-live="polite">
+            {t("checking")}
+          </span>
+        ) : fixGain > 0 ? (
+          // The last applied fix raised the score: name the win, then let the
+          // number above count up to it.
+          <Badge
+            key={report.score}
+            variant="secondary"
+            className="landing-rise ms-auto bg-[#eef8f1] text-[var(--landing-success)]"
+            aria-live="polite"
+          >
+            {t("fixGain", { delta: fixGain })}
           </Badge>
+        ) : (
+          delta > 0 && (
+            <Badge variant="secondary" className="ms-auto bg-[#eef8f1] text-[var(--landing-success)]">
+              {t("upFrom", { delta, preScore })}
+            </Badge>
+          )
         )}
       </div>
       <div className="h-1.5 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]">
         <div
-          className={cn("h-full rounded-full transition-[width] duration-300", tone.bar)}
-          style={{ width: `${report.score}%` }}
+          className={cn("h-full origin-left rounded-full transition-transform duration-500 ease-out motion-reduce:transition-none rtl:origin-right", tone.bar)}
+          style={{ transform: `scaleX(${report.score / 100})` }}
         />
       </div>
       <p className="text-xs text-muted-foreground">
@@ -295,7 +312,7 @@ function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes, loc
                   <Button
                     size="sm"
                     variant="outline"
-                    className="h-7 shrink-0 px-2 text-xs"
+                    className="h-control-sm shrink-0 px-3 text-xs sm:h-7 sm:px-2"
                     disabled={Boolean(applyingFix)}
                     aria-busy={applying}
                     aria-label={t("fixes.applyAria", { fix: rec })}
@@ -445,9 +462,12 @@ export default function ATSScoreCard({
   applyingFix = null,
   appliedFixes = [],
   locked = false,
+  fixGain = 0,
 }) {
   const t = useTranslations("tailor.ats");
-  if (isLoading) {
+  // Skeleton on the first check only. A rescore after a fix keeps the old
+  // report on screen, so the score counts from old to new instead of from 0.
+  if (isLoading && !atsData) {
     return (
       <div className={cn("space-y-3 p-3", CARD)}>
         <p className="text-sm font-medium">{t("checking")}</p>
@@ -472,7 +492,7 @@ export default function ATSScoreCard({
 
   return (
     <div className="space-y-4">
-      <ScoreHeader report={atsData} preScore={preScore} />
+      <ScoreHeader report={atsData} preScore={preScore} checking={isLoading} fixGain={fixGain} />
       <Accordion type="multiple" defaultValue={openCategories} className={cn("rounded-md border px-3", LINE)}>
         {categories.map((category) => (
           <CategorySection key={category.key} category={category} findings={inCategory(category.key)} />

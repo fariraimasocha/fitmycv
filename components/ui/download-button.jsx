@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLineDownIcon, CheckIcon, SpinnerGapIcon } from "@phosphor-icons/react";
 
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
 
@@ -15,7 +16,8 @@ const LABEL_LAYER =
 /**
  * Download button with an idle -> downloading -> done phase animation.
  * `onDownload` may return false to cancel the animation (e.g. we showed an
- * upgrade modal instead of downloading).
+ * upgrade modal instead of downloading), or the failure reason printDocument
+ * returns ("blocked", "storage") to show an error instead of "Downloaded".
  */
 export function DownloadButton({
   className,
@@ -44,7 +46,12 @@ export function DownloadButton({
 
   const handleClick = () => {
     if (phase !== "idle") return;
-    if (onDownload?.() === false) return;
+    const result = onDownload?.();
+    if (result === false) return;
+    if (result === "blocked" || result === "storage") {
+      toast.error(t(`errors.${result}`));
+      return;
+    }
 
     setPhase("downloading");
     schedule(() => {

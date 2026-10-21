@@ -346,8 +346,9 @@ function TailoredCVDetail() {
       setShowUpgradeModal(true);
       return false;
     }
+    let printed;
     if (tab === "cv") {
-      printDocument({
+      printed = printDocument({
         kind: "cv",
         data: previewData,
         template: selectedTemplate,
@@ -355,7 +356,7 @@ function TailoredCVDetail() {
         filename: buildPdfFilename(previewData.basics?.name, "cv", cv.jobTitle),
       });
     } else {
-      printDocument({
+      printed = printDocument({
         kind: "cover-letter",
         content: cv.coverLetter || "",
         template: selectedTemplate,
@@ -368,6 +369,8 @@ function TailoredCVDetail() {
         filename: buildPdfFilename(cv.basics?.name, "cover-letter", cv.jobTitle),
       });
     }
+    // A blocked pop-up or full storage: DownloadButton shows why.
+    if (printed !== true) return printed;
     trackEvent("pdf_downloaded", {
       document_type: documentType,
       template: selectedTemplate,

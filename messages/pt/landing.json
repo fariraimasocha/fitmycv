@@ -16,7 +16,7 @@
     "tailorCta": "Adaptar meu currículo grátis",
     "linkError": "Isso não é um link. Cole o endereço completo da vaga.",
     "notReady": "Ainda não quer se cadastrar?",
-    "usedBy": "Usado por mais de 1.800 pessoas em busca de emprego",
+    "usedBy": "Mais de {count, number} pessoas já se cadastraram",
     "videoLabel": "Demonstração do FitMyCV: cole um link de vaga e baixe um currículo adaptado",
     "checkerCta": "Analisar meu currículo grátis",
     "titleMain": "cole qualquer link de vaga. receba um currículo <accent>feito</accent> para essa vaga.",
@@ -84,7 +84,7 @@
       },
       "cancel": {
         "title": "Cancele quando quiser",
-        "body": "Sem contrato e sem um processo de cancelamento complicado. O acesso vai até o fim do período que você pagou."
+        "body": "O plano mensal não tem contrato nem um processo de cancelamento complicado. O acesso vai até o fim do mês que você pagou."
       }
     },
     "methodTitle": "Como a adaptação funciona",

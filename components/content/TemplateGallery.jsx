@@ -180,13 +180,21 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
   const handleSelect = (id) => setSelected(id);
 
   const handleDownload = (template) => {
-    printDocument({
+    const printed = printDocument({
       kind: "cv",
       filename: `FitMyCV - ${template.name} template.pdf`,
       data: SAMPLE_CV,
       template: template.id,
       style,
     });
+    if (printed !== true) {
+      toast.error(
+        printed === "blocked"
+          ? "Your browser blocked the PDF tab. Allow pop-ups for this site and try again."
+          : "Couldn't prepare the PDF. Try again in a normal browser window.",
+      );
+      return;
+    }
     toast.success("Opening the print dialog", {
       description: "Choose Save as PDF. The sample text is there for you to replace.",
     });

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { DashboardPanel } from "./DashboardPanel";
+import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 
 /**
  * A row of small facts with an icon each, split by hairlines. Used under a
@@ -47,7 +48,9 @@ export function DashboardStatStrip({ items, columns = items.length, className, d
             <div className="min-w-0">
               <dt className="text-xs text-muted-foreground">{item.label}</dt>
               <dd className="truncate text-sm font-semibold tabular-nums text-foreground">
-                {item.value}
+                {/* Numbers count to their new value, so a move to Interview
+                    or Offer visibly lands. Text values (rates, "n/a") stay as is. */}
+                {typeof item.value === "number" ? <AnimatedNumber value={item.value} /> : item.value}
               </dd>
             </div>
           </div>

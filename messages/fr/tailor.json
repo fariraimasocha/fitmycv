@@ -58,6 +58,7 @@
     }
   },
   "resume": {
+    "tailorToJob": "Adapter à une offre",
     "uploadPanel": {
       "title": "Comment ça marche",
       "steps": {
@@ -183,6 +184,7 @@
     "impact": { "high": "Impact élevé", "medium": "Impact moyen", "low": "Impact faible" },
     "outOf100": "sur 100",
     "upFrom": "+{delta} par rapport à {preScore}",
+    "fixGain": "{delta} points de plus avec cette correction",
     "checksPassed": "{passed} vérifications réussies sur {total}",
     "checksPassedSentence": "{passed} vérifications réussies sur {total}.",
     "capped": "Le score est plafonné à cause d’un problème bloquant : {title}",
@@ -362,7 +364,7 @@
   },
   "editorToolbar": { "viewMode": "Mode d’affichage du CV", "edit": "Modifier", "preview": "Aperçu", "replace": "Remplacer le CV" },
   "previewActions": { "download": "Télécharger le PDF" },
-  "downloadButton": { "label": "Télécharger le PDF", "downloading": "Préparation du PDF…", "done": "Téléchargé" },
+  "downloadButton": { "errors": {"blocked": "Votre navigateur a bloqué l'onglet du PDF. Autorisez les fenêtres pop-up pour ce site et réessayez.", "storage": "Impossible de préparer votre PDF. Réessayez dans une fenêtre de navigation normale."}, "label": "Télécharger le PDF", "downloading": "Préparation du PDF…", "done": "Téléchargé" },
   "tailorPage": {
     "steps": {
       "job": { "title": "Ajoutez l’offre", "body": "Collez un lien ou la description." },
@@ -383,6 +385,10 @@
       "noUrl": "Saisissez d’abord l’URL de l’offre."
     },
     "tailored": "CV adapté",
+    "addedToApplications": "Nous avons ajouté ce poste à vos candidatures pour que vous puissiez le suivre.",
+    "openApplications": "Ouvrir les candidatures",
+    "uploadCv": "Importer un CV",
+    "contactSupport": "Contacter le support",
     "fixApplied": "Appliqué à votre CV",
     "answerSaved": "Réponse enregistrée",
     "summary": {
@@ -411,12 +417,18 @@
     "details": { "title": "Exigences de l’offre et correspondance", "fallback": "Tiré de l’offre que vous avez ajoutée", "hide": "Masquer les détails", "show": "Afficher les détails" },
     "cta": {
       "title": "Adaptez votre CV à ce poste",
+      "elapsed": "En cours depuis {seconds} s.",
       "pending": "Réécriture de votre CV autour de ces exigences et rédaction d’une lettre de motivation.",
       "description": "Nous réécrivons votre CV autour de ces exigences et rédigeons une lettre de motivation pour l’accompagner."
     },
     "result": {
       "sectionsAria": "Sections du CV adapté",
       "linkedin": "Rédiger un message LinkedIn",
+      "peakKeywords": "{count, plural, one {# mot-clé} other {# mots-clés}} de l'offre ajoutés.",
+      "peakScore": "Le score ATS est passé de {preScore} à <score></score>.",
+      "nextLetter": "Votre lettre de motivation pour ce poste est prête aussi.",
+      "viewLetter": "Voir la lettre",
+      "nextApplications": "Ce poste est dans vos candidatures. Faites-le avancer quand vous avez des nouvelles.",
       "downloadPdf": "Télécharger le PDF",
       "downloadLetter": "Télécharger la lettre",
       "saveTailored": "Enregistrer le CV adapté",
@@ -435,6 +447,7 @@
     "delete": "Supprimer {title}",
     "deleteError": "Impossible de supprimer ce CV. Réessayez.",
     "deleted": "CV supprimé",
+    "undo": "Annuler",
     "loadError": "Impossible de charger ce CV. Réessayez.",
     "downloadError": "Impossible de télécharger le PDF. Réessayez.",
     "loading": "Chargement des CV adaptés",

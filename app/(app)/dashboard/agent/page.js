@@ -12,11 +12,12 @@ import {
   DashboardPageShell,
   DashboardPanel,
   DashboardPanelHeader,
+  ProGate,
 } from "@/components/dashboard";
 import { ThreadList } from "@/components/agent/ThreadSidebar";
 import { requestJson } from "@/lib/request-json";
 
-export default function AgentPage() {
+function AgentStart() {
   const t = useTranslations("dashboard.agent.page");
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -96,5 +97,13 @@ export default function AgentPage() {
 
       <ThreadList title={t("yourThreads")} delay={0.1} />
     </DashboardPageShell>
+  );
+}
+
+export default function AgentPage() {
+  return (
+    <ProGate feature="agent" namespace="dashboard.agent.page">
+      <AgentStart />
+    </ProGate>
   );
 }

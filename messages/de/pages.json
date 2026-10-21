@@ -9,7 +9,7 @@
       "imageAlt": "FitMyCV Preise: Passe deinen Lebenslauf an jeden Joblink an"
     },
     "eyebrow": "Preise",
-    "title": "Ein Plan. Unbegrenzt angepasste Bewerbungen.",
+    "title": "Einmal zahlen oder monatlich. Unbegrenzt angepasste Bewerbungen.",
     "priceOnce": "${price} einmalig",
     "or": "oder",
     "priceMonthly": "${price}/Monat",
@@ -44,7 +44,7 @@
     "titleLine1": "Weniger als eine Stunde bei einem Freelancer.",
     "titleLine2": "Und es gehört dir.",
     "intro": "Einmal zahlen für lebenslangen Zugang, oder monatlich, jederzeit kündbar.",
-    "footnote": "Etwa drei Monate im Monatsabo, und danach gehört es dir für jede weitere Jobsuche. Sichere Bezahlung über Polar.",
+    "footnote": "Etwa {months} Monate im Monatsabo, und danach gehört es dir für jede weitere Jobsuche. Sichere Bezahlung über Polar.",
     "jobscanCompare": "Zum Vergleich: Jobscan Premium kostet 49,95 $ pro Monat (Stand Oktober 2026).",
     "regionalAvailable": "In ausgewählten Ländern gibt es niedrigere regionale Preise."
   },

@@ -668,7 +668,8 @@
     "emptyTitle": "Suas vagas salvas vão aparecer aqui",
     "emptyDescription": "Toque em Salvar em uma vaga no seu e-mail diário de vagas compatíveis e ela aparece nesta página.",
     "allTitle": "Todas as vagas salvas",
-    "jobCount": "{count, plural, one {# vaga} other {# vagas}}"
+    "jobCount": "{count, plural, one {# vaga} other {# vagas}}",
+    "browseJobs": "Ver vagas"
   },
   "storyBank": {
     "title": "Banco de histórias",
@@ -839,6 +840,47 @@
       "f9": "Aplique cada recomendação de ATS ao seu currículo",
       "f10": "Rascunhos de respostas para perguntas de formulários de candidatura",
       "f11": "Mensagens de conexão no LinkedIn e para quem enviá-las"
+    },
+    "checkoutFailedTitle": "O checkout não começou",
+    "checkoutFailedDescription": "Nada foi cobrado. Escolha um plano abaixo para tentar de novo.",
+    "contactSupport": "Falar com o suporte"
+  },
+  "proGate": {
+    "action": "Ver planos Pro",
+    "applications": {
+      "title": "Candidaturas estão no Pro",
+      "description": "Faça upgrade para acompanhar cada vaga de salva até oferta e ver sua taxa de resposta."
+    },
+    "storyBank": {
+      "title": "O banco de histórias está no Pro",
+      "description": "Faça upgrade para salvar respostas STAR da preparação para entrevistas e reutilizá-las em cada entrevista."
+    },
+    "compare": {
+      "title": "Comparar ofertas está no Pro",
+      "description": "Faça upgrade para comparar de 2 a 4 candidaturas lado a lado."
+    },
+    "companyResearch": {
+      "title": "Pesquisa de empresas está no Pro",
+      "description": "Faça upgrade para receber um resumo de cada empresa antes de se candidatar."
+    },
+    "agent": {
+      "title": "O agente de CV está no Pro",
+      "description": "Faça upgrade para editar seu CV conversando com o agente."
     }
+  },
+  "loadError": {
+    "title": "Não foi possível carregar esta lista",
+    "description": "Verifique sua conexão e tente de novo. Nada foi apagado.",
+    "tryAgain": "Tentar de novo",
+    "retrying": "Tentando de novo…"
+  },
+  "stageMoments": {
+    "interviewTitle": "Fase de entrevista. Muito bem.",
+    "interviewBody": "Ensaie suas histórias STAR antes da conversa.",
+    "interviewAction": "Abrir banco de histórias",
+    "firstOfferTitle": "Sua primeira oferta. Parabéns.",
+    "offerTitle": "Movida para Oferta",
+    "offerBody": "Compare com suas outras candidaturas antes de responder.",
+    "offerAction": "Comparar ofertas"
   }
 }

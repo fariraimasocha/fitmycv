@@ -72,9 +72,10 @@ export function ApplicationActionsMenu({ application, onEdit, showOnHover, class
             variant="ghost"
             aria-label={t("menuLabel")}
             className={cn(
-              "size-6 rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground",
+              "tap-target size-6 rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground",
+              // Touch screens have no hover, so the menu must not hide there.
               showOnHover &&
-                "opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100"
+                "opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100 [@media(hover:none)]:opacity-100"
             )}
           >
             <DotsThreeVerticalIcon size={16} aria-hidden="true" />

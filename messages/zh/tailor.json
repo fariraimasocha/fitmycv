@@ -58,6 +58,7 @@
     }
   },
   "resume": {
+    "tailorToJob": "针对职位定制",
     "uploadPanel": {
       "title": "使用方法",
       "steps": {
@@ -247,6 +248,7 @@
     },
     "outOf100": "/100",
     "upFrom": "比 {preScore} 提高了 {delta}",
+    "fixGain": "此项修改提升了 {delta} 分",
     "checksPassed": "已通过 {passed}/{total} 项检查",
     "checksPassedSentence": "已通过 {passed}/{total} 项检查。",
     "capped": "由于存在阻断问题，分数受到上限限制：{title}",
@@ -544,6 +546,7 @@
     "download": "下载 PDF"
   },
   "downloadButton": {
+    "errors": {"blocked": "浏览器拦截了 PDF 标签页。请允许此网站的弹出窗口后重试。", "storage": "无法准备你的 PDF。请在普通浏览器窗口中重试。"},
     "label": "下载 PDF",
     "downloading": "正在准备 PDF…",
     "done": "已下载"
@@ -629,18 +632,28 @@
     },
     "cta": {
       "title": "为这个职位定制你的简历",
+      "elapsed": "已处理 {seconds} 秒。",
       "pending": "正在围绕这些要求改写你的简历，并撰写求职信。",
       "description": "我们会围绕这些要求改写你的简历，并撰写一封配套的求职信。"
     },
     "result": {
       "sectionsAria": "定制简历的各个部分",
       "linkedin": "撰写 LinkedIn 消息",
+      "peakKeywords": "已加入职位描述中的 {count} 个关键词。",
+      "peakScore": "ATS 分数从 {preScore} 提升到 <score></score>。",
+      "nextLetter": "这个职位的求职信也已准备好。",
+      "viewLetter": "查看求职信",
+      "nextApplications": "这个职位已在求职申请中。收到回复后更新它的阶段。",
       "downloadPdf": "下载 PDF",
       "downloadLetter": "下载求职信",
       "saveTailored": "保存定制简历",
       "liveUpdates": "随输入实时更新",
       "keywordsAdded": "从职位信息中添加的关键词"
-    }
+    },
+    "addedToApplications": "我们已将此职位添加到求职申请中，方便你跟踪。",
+    "openApplications": "打开求职申请",
+    "uploadCv": "上传简历",
+    "contactSupport": "联系客服"
   },
   "tailoredList": {
     "title": "定制简历",
@@ -653,6 +666,7 @@
     "delete": "删除{title}",
     "deleteError": "无法删除这份简历，请重试。",
     "deleted": "简历已删除",
+    "undo": "撤销",
     "loadError": "无法加载这份简历，请重试。",
     "downloadError": "无法下载 PDF，请重试。",
     "loading": "正在加载定制简历",

@@ -20,6 +20,7 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardEmptyState,
+  ProGate,
   DashboardStatStrip,
 } from "@/components/dashboard";
 
@@ -86,7 +87,7 @@ function BriefRow({ brief, index }) {
   );
 }
 
-export default function CompanyResearchPage() {
+function CompanyResearch() {
   const t = useTranslations("dashboard.companyResearch.list");
   const {
     data: briefs,
@@ -188,5 +189,13 @@ export default function CompanyResearchPage() {
         </>
       )}
     </DashboardPageShell>
+  );
+}
+
+export default function CompanyResearchPage() {
+  return (
+    <ProGate feature="companyResearch" namespace="dashboard.companyResearch.list">
+      <CompanyResearch />
+    </ProGate>
   );
 }

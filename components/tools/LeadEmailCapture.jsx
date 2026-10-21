@@ -9,6 +9,8 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [saved, setSaved] = useState(false);
+  // The API sends one email per address, ever, and says so with `duplicate`.
+  const [duplicate, setDuplicate] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +41,12 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
 
       trackEvent("lead_captured", { source: "ats_checker" });
       setSaved(true);
-      toast.success("Sent. Check your inbox for your score and next steps.");
+      setDuplicate(Boolean(data.duplicate));
+      if (data.duplicate) {
+        toast.success("This address already has your first score. We send it once.");
+      } else {
+        toast.success("Sent. Check your inbox for your score and next steps.");
+      }
     } catch {
       toast.error("Could not save your email.");
     } finally {
@@ -51,10 +58,12 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
     return (
       <div className="mt-8 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-5">
         <p className="text-sm font-semibold text-[var(--landing-ink)]">
-          Check your inbox
+          {duplicate ? "Already sent" : "Check your inbox"}
         </p>
         <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
-          We emailed your score and a link to fix the gaps.
+          {duplicate
+            ? "We already emailed this address its first score. We send it once."
+            : "We emailed your score and a link to fix the gaps."}
         </p>
       </div>
     );

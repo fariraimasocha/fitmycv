@@ -85,6 +85,23 @@ This applies to code comments and commit messages too, minus the skill step.
   `components/tools` pattern, existing score endpoints) before writing new
   code, and add no dependency for what a few lines can do.
 
+## Designing UX
+
+The skills live in `.claude/skills/`. Invoke the matching skill before you design or review a flow, a screen state or an interaction.
+
+- **`peak-end-moments`:** for core flows, success screens, completion
+  states, onboarding and wait screens. Pick one peak, design the ending, and
+  fix the low points.
+- **`behavior-design`:** for AI wait states, first-run screens, primary
+  actions, dashboards, and progress or streak UI. Covers feedback loops,
+  Hick's law, Fitts's law, social proof and open loops.
+- **`emotional-design`:** for confirmation moments, small wins, polish in
+  high-stakes flows, first impressions, and tactile charts and cards.
+
+All three follow the copy rules above. Celebrate only what the data shows,
+never invent activity numbers, use no dark patterns, respect
+`useReducedMotion()`, and never add motion inside the CV document itself.
+
 ## React Hooks Rules
 
 - **Always include all referenced variables in dependency arrays.** Every variable used inside `useEffect`, `useMemo`, or `useCallback` must appear in its dependency array. Missing deps cause stale closure bugs and lint errors.

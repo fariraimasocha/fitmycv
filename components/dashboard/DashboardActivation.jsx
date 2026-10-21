@@ -33,16 +33,19 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
             <div className="flex items-center gap-2.5">
               {steps.length > 2 && (
                 <span className="flex gap-1" aria-hidden="true">
+                  {/* Done segments fill in one after another, so progress
+                      reads as something you built, not a static count. */}
                   {steps.map((step, index) => (
-                    <span
-                      key={step.key}
-                      className={cn(
-                        "h-0.5 w-6 rounded-full",
-                        index < doneCount
-                          ? "bg-[var(--landing-accent)]"
-                          : "bg-border",
+                    <span key={step.key} className="h-0.5 w-6 overflow-hidden rounded-full bg-border">
+                      {index < doneCount && (
+                        <motion.span
+                          className="block h-full origin-left rounded-full bg-[var(--landing-accent)] rtl:origin-right"
+                          initial={reduceMotion ? false : { scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: 0.35, delay: delay + 0.15 + index * 0.1, ease: [0.25, 1, 0.5, 1] }}
+                        />
                       )}
-                    />
+                    </span>
                   ))}
                 </span>
               )}

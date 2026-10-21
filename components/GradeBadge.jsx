@@ -53,7 +53,7 @@ export function AtsScoreChip({ score, preScore, loading, className, onClick }) {
       onClick={onClick}
       className={cn(
         "inline-flex items-center rounded-sm border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-semibold text-[var(--landing-ink)]",
-        onClick && "transition-colors hover:border-[var(--landing-ink)]",
+        onClick && "min-h-control-sm transition-colors hover:border-[var(--landing-ink)] sm:min-h-0",
         className
       )}
     >

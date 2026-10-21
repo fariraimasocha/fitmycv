@@ -58,6 +58,7 @@
     }
   },
   "resume": {
+    "tailorToJob": "Adaptar para uma vaga",
     "uploadPanel": {
       "title": "Como funciona",
       "steps": {
@@ -247,6 +248,7 @@
     },
     "outOf100": "de 100",
     "upFrom": "Subiu {delta} de {preScore}",
+    "fixGain": "{delta} pontos a mais com esta correção",
     "checksPassed": "{passed} de {total} verificações aprovadas",
     "checksPassedSentence": "{passed} de {total} verificações aprovadas.",
     "capped": "A pontuação está limitada por causa de um problema que bloqueia: {title}",
@@ -544,6 +546,7 @@
     "download": "Baixar PDF"
   },
   "downloadButton": {
+    "errors": {"blocked": "Seu navegador bloqueou a aba do PDF. Permita pop-ups para este site e tente de novo.", "storage": "Não foi possível preparar seu PDF. Tente de novo em uma janela normal do navegador."},
     "label": "Baixar PDF",
     "downloading": "Preparando o PDF…",
     "done": "Baixado"
@@ -629,18 +632,28 @@
     },
     "cta": {
       "title": "Adapte seu currículo para esta vaga",
+      "elapsed": "Trabalhando há {seconds} s.",
       "pending": "Reescrevendo seu currículo com base nesses requisitos e escrevendo uma carta de apresentação.",
       "description": "Reescrevemos seu currículo com base nesses requisitos e escrevemos uma carta de apresentação para acompanhá-lo."
     },
     "result": {
       "sectionsAria": "Seções do currículo adaptado",
       "linkedin": "Escrever mensagem para o LinkedIn",
+      "peakKeywords": "{count, plural, one {# palavra-chave} other {# palavras-chave}} da vaga adicionadas.",
+      "peakScore": "A pontuação ATS foi de {preScore} para <score></score>.",
+      "nextLetter": "Sua carta de apresentação para esta vaga também está pronta.",
+      "viewLetter": "Ver carta",
+      "nextApplications": "Esta vaga está em Candidaturas. Avance-a quando tiver retorno.",
       "downloadPdf": "Baixar PDF",
       "downloadLetter": "Baixar carta de apresentação",
       "saveTailored": "Salvar currículo adaptado",
       "liveUpdates": "Atualiza enquanto você digita",
       "keywordsAdded": "Palavras-chave adicionadas a partir do anúncio"
-    }
+    },
+    "addedToApplications": "Adicionamos esta vaga às Candidaturas para você acompanhar.",
+    "openApplications": "Abrir candidaturas",
+    "uploadCv": "Enviar CV",
+    "contactSupport": "Falar com o suporte"
   },
   "tailoredList": {
     "title": "Currículos adaptados",
@@ -653,6 +666,7 @@
     "delete": "Excluir {title}",
     "deleteError": "Não foi possível excluir este currículo. Tente de novo.",
     "deleted": "Currículo excluído",
+    "undo": "Desfazer",
     "loadError": "Não foi possível carregar este currículo. Tente de novo.",
     "downloadError": "Não foi possível baixar o PDF. Tente de novo.",
     "loading": "Carregando currículos adaptados",

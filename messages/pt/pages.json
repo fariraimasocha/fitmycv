@@ -9,7 +9,7 @@
       "imageAlt": "Preços do FitMyCV: adapte seu currículo a partir de qualquer link de vaga"
     },
     "eyebrow": "Preços",
-    "title": "Um plano. Candidaturas adaptadas sem limite.",
+    "title": "Pague uma vez ou por mês. Candidaturas adaptadas sem limite.",
     "priceOnce": "${price} uma vez",
     "or": "ou",
     "priceMonthly": "${price}/mês",
@@ -44,7 +44,7 @@
     "titleLine1": "Menos que uma hora de um freelancer.",
     "titleLine2": "Seu para sempre.",
     "intro": "Um pagamento para acesso vitalício, ou assine por mês e cancele quando quiser.",
-    "footnote": "Cerca de três meses do plano mensal, e seu para todas as buscas depois disso. Pagamento seguro pela Polar.",
+    "footnote": "Cerca de {months} meses do plano mensal, e seu para todas as buscas depois disso. Pagamento seguro pela Polar.",
     "jobscanCompare": "Para comparar, o Jobscan Premium custa US$ 49,95 por mês (verificado em outubro de 2026).",
     "regionalAvailable": "Há preços regionais menores em alguns países."
   },

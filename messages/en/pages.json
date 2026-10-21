@@ -9,7 +9,7 @@
       "imageAlt": "FitMyCV pricing: tailor your CV from any job link"
     },
     "eyebrow": "Pricing",
-    "title": "One plan. Unlimited tailored applications.",
+    "title": "Pay once or monthly. Unlimited tailored applications.",
     "priceOnce": "${price} once",
     "or": "or",
     "priceMonthly": "${price}/mo",
@@ -44,7 +44,7 @@
     "titleLine1": "Less than an hour of a freelancer.",
     "titleLine2": "Yours for good.",
     "intro": "One payment for lifetime access, or go monthly, cancel anytime.",
-    "footnote": "About three months of monthly, and yours for every search after. Secure checkout via Polar.",
+    "footnote": "About {months} months of monthly, and yours for every search after. Secure checkout via Polar.",
     "jobscanCompare": "For comparison, Jobscan Premium lists at $49.95 a month (checked October 2026).",
     "regionalAvailable": "Lower regional pricing is available in select countries."
   },

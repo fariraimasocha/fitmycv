@@ -668,7 +668,8 @@
     "emptyTitle": "Your saved jobs will appear here",
     "emptyDescription": "Press Save on a role in your daily job-match email and it shows up on this page.",
     "allTitle": "All saved jobs",
-    "jobCount": "{count, plural, one {# job} other {# jobs}}"
+    "jobCount": "{count, plural, one {# job} other {# jobs}}",
+    "browseJobs": "Browse jobs"
   },
   "storyBank": {
     "title": "Story bank",
@@ -839,6 +840,47 @@
       "f9": "Apply each ATS recommendation to your CV",
       "f10": "Draft answers for application form questions",
       "f11": "LinkedIn connection messages, and who to send them to"
+    },
+    "checkoutFailedTitle": "Checkout didn't start",
+    "checkoutFailedDescription": "Nothing was charged. Pick a plan below to try again.",
+    "contactSupport": "Contact support"
+  },
+  "proGate": {
+    "action": "See Pro plans",
+    "applications": {
+      "title": "Applications are on Pro",
+      "description": "Upgrade to track every role from saved to offer and see your response rate."
+    },
+    "storyBank": {
+      "title": "The story bank is on Pro",
+      "description": "Upgrade to save STAR answers from interview prep and reuse them in every interview."
+    },
+    "compare": {
+      "title": "Comparing offers is on Pro",
+      "description": "Upgrade to compare 2 to 4 applications side by side."
+    },
+    "companyResearch": {
+      "title": "Company research is on Pro",
+      "description": "Upgrade to get a brief on each company before you apply."
+    },
+    "agent": {
+      "title": "The CV Agent is on Pro",
+      "description": "Upgrade to edit your CV by chatting with the agent."
     }
+  },
+  "loadError": {
+    "title": "Couldn't load this list",
+    "description": "Check your connection and try again. Nothing was deleted.",
+    "tryAgain": "Try again",
+    "retrying": "Retrying…"
+  },
+  "stageMoments": {
+    "interviewTitle": "Interview stage. Nice work.",
+    "interviewBody": "Rehearse your STAR stories before the call.",
+    "interviewAction": "Open story bank",
+    "firstOfferTitle": "Your first offer. Congratulations.",
+    "offerTitle": "Moved to Offer",
+    "offerBody": "Put it side by side with your other applications before you answer.",
+    "offerAction": "Compare offers"
   }
 }

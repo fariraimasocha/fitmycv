@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useState, useRef, useSyncExternalStore } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
@@ -29,7 +29,9 @@ import {
   ListChecksIcon,
   CaretDownIcon,
   CaretUpIcon,
+  CheckCircleIcon,
 } from "@phosphor-icons/react";
+import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { DownloadButton } from "@/components/ui/download-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -48,6 +50,7 @@ import UpgradePromptModal from "@/components/UpgradePromptModal";
 import PreviewUnlockGate from "@/components/PreviewUnlockGate";
 import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import { printDocument } from "@/utils/print-document";
+import { openSupport } from "@/lib/open-support";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
 import { getTemplateFontOption, normalizeTemplateStyle } from "@/utils/cv-templates/style";
@@ -168,6 +171,7 @@ function Tailor() {
   const resultTabs = RESULT_TABS.map((tab) => ({ ...tab, label: t(`resultTabs.${tab.id}`) }));
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
+  const router = useRouter();
   // Prefilled when arriving from /jobs. That pool already holds the URL, so
   // the user never retypes it. Lazy initializer: read once, then it is theirs.
   const [urlParam] = useState(() => searchParams.get("url"));
@@ -204,8 +208,12 @@ function Tailor() {
   const [whyLoading, setWhyLoading] = useState(false);
   const [applyingFix, setApplyingFix] = useState(null);
   const [appliedFixes, setAppliedFixes] = useState([]);
+  // Points the last applied ATS fix added, shown on the score card.
+  const [fixGain, setFixGain] = useState(0);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [upgradeModalContext, setUpgradeModalContext] = useState("default");
+  const upgradeTimerRef = useRef(null);
+  useEffect(() => () => clearTimeout(upgradeTimerRef.current), []);
   const recentUrls = useSyncExternalStore(
     subscribeRecentJobUrls,
     getRecentJobUrls,
@@ -308,7 +316,16 @@ function Tailor() {
         throw Object.assign(new Error(err.error || t("errors.extract")), { stage: err.stage });
       }
 
-      return res.json();
+      const result = await res.json();
+      // A login wall or cookie banner parses into an empty job. Tailoring
+      // against nothing wastes the user's time, so treat it as a failed read
+      // and offer the paste box instead.
+      const job = result.data ?? {};
+      const found = [job.requirements, job.responsibilities, job.qualifications].some((list) => list?.length);
+      if (!job.title && !found) {
+        throw Object.assign(new Error(t("errors.shortText")), { stage: "empty" });
+      }
+      return result;
     },
     onSuccess: (result) => {
       setJobData(result.data);
@@ -431,12 +448,17 @@ function Tailor() {
   // has not re-rendered yet.
   const tailorMutation = useMutation({
     mutationFn: async (job) => {
+      // A dropped connection, a timeout or an HTML error page from the
+      // worker all become the same plain message, never "Failed to fetch".
+      const failed = () => Object.assign(new Error(t("errors.tailor")), { support: true });
+
       // Fetch reference CV first
-      const cvRes = await fetch("/api/resume");
-      const cvData = await cvRes.json();
+      const cvRes = await fetch("/api/resume").catch(() => null);
+      if (!cvRes) throw failed();
+      const cvData = await cvRes.json().catch(() => ({}));
 
       if (!cvData.data) {
-        throw new Error(t("errors.noCv"));
+        throw Object.assign(new Error(t("errors.noCv")), { code: "NO_CV" });
       }
 
       const referenceCV = {
@@ -459,16 +481,20 @@ function Tailor() {
           matchScore: matchScore?.globalScore,
           matchGrade: matchScore?.globalGrade,
         }),
-      });
+        // ponytail: generous ceiling. The route allows Groq 60s plus a retry.
+        signal: AbortSignal.timeout(150_000),
+      }).catch(() => null);
+      if (!res) throw failed();
 
-      if (!res.ok) {
-        const err = await res.json();
-        const error = new Error(err.error || t("errors.tailor"));
-        error.code = err.code;
+      const body = await res.json().catch(() => null);
+      if (!res.ok || !body) {
+        const error = body?.error ? new Error(body.error) : failed();
+        error.code = body?.code;
+        error.support = true;
         throw error;
       }
 
-      return res.json();
+      return body;
     },
     onSuccess: (result) => {
       setTailorResult(result.data);
@@ -482,20 +508,32 @@ function Tailor() {
       setActiveTab("cv");
       setWhyThisRole(null);
       setAppliedFixes([]);
+      setFixGain(0);
       trackEvent("cv_tailored", {
         is_premium: Boolean(session?.user?.isPremium),
         has_cover_letter: Boolean(result.data?.coverLetter),
       });
-      toast.success(t("tailored"));
+      // The route files every tailored CV under Applications, a Pro page.
+      if (session?.user?.isPremium) {
+        toast.success(t("tailored"), {
+          description: t("addedToApplications"),
+          action: { label: t("openApplications"), onClick: () => router.push("/dashboard/applications") },
+        });
+      } else {
+        toast.success(t("tailored"));
+      }
 
       // A finished CV is the natural moment to ask. Waiting on a Download
       // click meant a third of free users who tailored never saw a price.
-      // The pause lets the preview render behind the modal first.
+      // But the result is the peak of this flow, so it gets six seconds on
+      // screen first. A Download click before then opens the modal sooner
+      // (handleDownload clears this timer).
       if (!session?.user?.isPremium) {
-        setTimeout(() => {
+        clearTimeout(upgradeTimerRef.current);
+        upgradeTimerRef.current = setTimeout(() => {
           setUpgradeModalContext("tailored");
           setShowUpgradeModal(true);
-        }, 1500);
+        }, 6000);
       }
     },
     onError: (error) => {
@@ -504,9 +542,34 @@ function Tailor() {
         setShowUpgradeModal(true);
         return;
       }
-      toast.error(error.message);
+      if (error.code === "NO_CV") {
+        toast.error(error.message, {
+          action: { label: t("uploadCv"), onClick: () => router.push("/dashboard/resume") },
+        });
+        return;
+      }
+      toast.error(error.message, {
+        action: error.support ? { label: t("contactSupport"), onClick: openSupport } : undefined,
+      });
     },
   });
+
+  // Reading the job and tailoring are long AI calls with no real progress to
+  // report, so count the seconds instead. A ticking number shows the page is
+  // still working. Reading chains into tailoring, so one count spans both.
+  const working = extractMutation.isPending || tailorMutation.isPending;
+  const [tailorSeconds, setTailorSeconds] = useState(0);
+  useEffect(() => {
+    if (!working) return;
+    const started = Date.now();
+    const id = setInterval(() => setTailorSeconds(Math.round((Date.now() - started) / 1000)), 1000);
+    return () => {
+      clearInterval(id);
+      setTailorSeconds(0);
+    };
+  }, [working]);
+  const elapsedBadge =
+    tailorSeconds > 0 ? <span className="tabular-nums opacity-70">{tailorSeconds}s</span> : null;
 
   const handleValuesChange = useCallback((values) => {
     setLiveValues(values);
@@ -529,12 +592,14 @@ function Tailor() {
         document_type: documentType,
         template: selectedTemplate,
       });
+      clearTimeout(upgradeTimerRef.current);
       setUpgradeModalContext("download");
       setShowUpgradeModal(true);
       return false;
     }
+    let printed;
     if (tab === "cv") {
-      printDocument({
+      printed = printDocument({
         kind: "cv",
         data: previewData,
         template: selectedTemplate,
@@ -542,7 +607,7 @@ function Tailor() {
         filename: buildPdfFilename(previewData.basics?.name, "cv", jobData?.title),
       });
     } else {
-      printDocument({
+      printed = printDocument({
         kind: "cover-letter",
         content: tailorResult.coverLetter || "",
         template: selectedTemplate,
@@ -555,10 +620,25 @@ function Tailor() {
         filename: buildPdfFilename(tailorResult.tailoredCV.basics?.name, "cover-letter", jobData?.title),
       });
     }
+    // A blocked pop-up or full storage: DownloadButton shows why.
+    if (printed !== true) return printed;
     trackEvent("pdf_downloaded", {
       document_type: documentType,
       template: selectedTemplate,
     });
+    // The end of this flow: point at the one thing left to do, a few
+    // seconds after the print tab takes focus.
+    if (tab === "cv" && tailorResult.coverLetter) {
+      toast(t("result.nextLetter"), {
+        duration: 8000,
+        action: { label: t("result.viewLetter"), onClick: () => setActiveTab("letter") },
+      });
+    } else {
+      toast(t("result.nextApplications"), {
+        duration: 8000,
+        action: { label: t("openApplications"), onClick: () => router.push("/dashboard/applications") },
+      });
+    }
   };
 
   const persistTailoredCV = (patch) => {
@@ -572,7 +652,7 @@ function Tailor() {
       .catch(() => {});
   };
 
-  const runAtsScore = (cv) => {
+  const runAtsScore = (cv, scoreBefore) => {
     setAtsLoading(true);
     fetch("/api/ats-score", {
       method: "POST",
@@ -581,7 +661,14 @@ function Tailor() {
     })
       .then((res) => res.json())
       .then((ats) => {
-        if (ats.data) setAtsScore(ats.data);
+        if (ats.data) {
+          setAtsScore(ats.data);
+          setFixGain(
+            typeof scoreBefore === "number" && ats.data.score > scoreBefore
+              ? ats.data.score - scoreBefore
+              : 0,
+          );
+        }
       })
       .catch(() => {})
       .finally(() => setAtsLoading(false));
@@ -651,7 +738,7 @@ function Tailor() {
         education: updated.education,
         skills: updated.skills,
       });
-      runAtsScore(updated);
+      runAtsScore(updated, atsScore?.score);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -709,6 +796,7 @@ function Tailor() {
   };
 
   function startTailor(job = jobData) {
+    clearTimeout(upgradeTimerRef.current);
     trackEvent("tailor_started", {
       is_premium: Boolean(session?.user?.isPremium),
       has_match_score: Boolean(matchScore),
@@ -803,6 +891,7 @@ function Tailor() {
                       <>
                         <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
                         {t("form.reading")}
+                        {elapsedBadge}
                       </>
                     ) : (
                       <>
@@ -859,6 +948,7 @@ function Tailor() {
                       <>
                         <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
                         {t("form.reading")}
+                        {elapsedBadge}
                       </>
                     ) : (
                       <>
@@ -935,6 +1025,7 @@ function Tailor() {
                     <>
                       <SpinnerGapIcon size={14} className="animate-spin" aria-hidden="true" />
                       {t("tailoring")}
+                      {elapsedBadge}
                     </>
                   ) : (
                     <>
@@ -1000,7 +1091,9 @@ function Tailor() {
                     <DashboardPanelHeader
                       title={t("cta.title")}
                       description={
-                        tailorMutation.isPending ? t("cta.pending") : t("cta.description")
+                        tailorMutation.isPending
+                          ? `${t("cta.pending")} ${t("cta.elapsed", { seconds: tailorSeconds })}`
+                          : t("cta.description")
                       }
                     />
                     <button
@@ -1042,6 +1135,25 @@ function Tailor() {
       {/* Step 3: the result. Editor left, preview right, the same as My CV. */}
       {tailorResult && (
         <Rise className="flex flex-col gap-3">
+          {/* The peak of this flow: what tailoring actually changed, in real
+              numbers from the tailor response and the two ATS runs. */}
+          {(tailorResult.keywordsInjected?.length > 0 ||
+            (typeof preAtsScore?.score === "number" && atsScore?.score > preAtsScore.score)) && (
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-medium text-[var(--landing-ink)]">
+              <CheckCircleIcon size={18} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
+              {tailorResult.keywordsInjected?.length > 0 && (
+                <span>{t("result.peakKeywords", { count: tailorResult.keywordsInjected.length })}</span>
+              )}
+              {typeof preAtsScore?.score === "number" && atsScore?.score > preAtsScore.score && (
+                <span>
+                  {t.rich("result.peakScore", {
+                    preScore: preAtsScore.score,
+                    score: () => <AnimatedNumber value={atsScore.score} className="font-bold text-[var(--landing-success)]" />,
+                  })}
+                </span>
+              )}
+            </p>
+          )}
           {/* One row on desktop: the buttons stretch to the tab bar's height so
               all three share a top, bottom and centre line. */}
           <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch lg:justify-between">
@@ -1100,7 +1212,9 @@ function Tailor() {
                 >
                   {savedId && (
                     <ResumeForm
-                      key={savedId}
+                      // ResumeForm reads initialData once, so remount after an
+                      // ATS fix or the form would save its stale values over it.
+                      key={`${savedId}-${appliedFixes.length}`}
                       initialData={tailorResult.tailoredCV}
                       saveEndpoint={`/api/tailored-cv/${savedId}`}
                       saveMethod="PUT"
@@ -1201,6 +1315,7 @@ function Tailor() {
               locked={!isPremium}
               applyingFix={applyingFix}
               appliedFixes={appliedFixes}
+              fixGain={fixGain}
             />
           )}
           {activeTab === "why" && (

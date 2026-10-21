@@ -26,6 +26,7 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardEmptyState,
+  DashboardLoadError,
   DashboardFilterPills,
 } from "@/components/dashboard";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
@@ -84,7 +85,7 @@ function RowSkeleton() {
   );
 }
 
-function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDelete }) {
+function TailoredCVRow({ cv, index, onDownload, onDelete }) {
   const reduceMotion = useReducedMotion();
   const t = useTranslations("tailor.tailoredList");
   const title = cv.jobTitle || t("untitled");
@@ -135,20 +136,11 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
         </RowAction>
 
         <RowAction
-          label={confirming ? t("confirmDelete") : t("delete", { title })}
-          force={confirming}
-          disabled={deletePending}
+          label={t("delete", { title })}
           onClick={onDelete}
-          className={cn(
-            "hover:bg-destructive/10 hover:text-destructive",
-            confirming && "bg-destructive/10 text-destructive"
-          )}
+          className="hover:bg-destructive/10 hover:text-destructive"
         >
-          {confirming ? (
-            <CheckIcon size={16} weight="bold" aria-hidden="true" />
-          ) : (
-            <TrashIcon size={16} aria-hidden="true" />
-          )}
+          <TrashIcon size={16} aria-hidden="true" />
         </RowAction>
 
         <ArrowRightIcon
@@ -162,7 +154,8 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
 }
 
 export default function TailoredCVsPage() {
-  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  // Rows deleted in this session but still inside their Undo window.
+  const [hiddenIds, setHiddenIds] = useState([]);
   const t = useTranslations("tailor.tailoredList");
   const PAGE_TITLE = t("title");
   const PAGE_DESCRIPTION = t("description");
@@ -173,7 +166,7 @@ export default function TailoredCVsPage() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
-  const { data: cvs, isLoading } = useQuery({
+  const cvsQuery = useQuery({
     queryKey: ["tailored-cvs"],
     queryFn: async () => {
       const res = await fetch("/api/tailored-cv");
@@ -182,6 +175,7 @@ export default function TailoredCVsPage() {
       return json.data;
     },
   });
+  const { data: cvs, isLoading } = cvsQuery;
 
   const { data: referenceCV } = useQuery({
     queryKey: ["resume"],
@@ -203,22 +197,19 @@ export default function TailoredCVsPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
-      toast.success(t("deleted"));
-      setConfirmDeleteId(null);
     },
-    onError: (error) => {
+    onError: (error, id) => {
       toast.error(error.message);
-      setConfirmDeleteId(null);
+      setHiddenIds((ids) => ids.filter((hidden) => hidden !== id));
     },
   });
 
-  const sorted = useMemo(
-    () =>
-      [...(cvs ?? [])].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-      ),
-    [cvs],
-  );
+  const sorted = useMemo(() => {
+    const hidden = new Set(hiddenIds);
+    return (cvs ?? [])
+      .filter((cv) => !hidden.has(cv._id))
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }, [cvs, hiddenIds]);
   const withLetter = useMemo(
     () => sorted.filter((cv) => cv.hasCoverLetter),
     [sorted],
@@ -268,11 +259,27 @@ export default function TailoredCVsPage() {
   const handleTrashClick = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
-    if (confirmDeleteId === id) {
+    // Hide the row now and delete once the toast closes, so Undo is a
+    // real undo. Closing the tab inside the window keeps the CV, the safe
+    // way to fail.
+    setHiddenIds((ids) => [...ids, id]);
+    let settled = false;
+    const commit = () => {
+      if (settled) return;
+      settled = true;
       deleteMutation.mutate(id);
-    } else {
-      setConfirmDeleteId(id);
-    }
+    };
+    toast(t("deleted"), {
+      action: {
+        label: t("undo"),
+        onClick: () => {
+          settled = true;
+          setHiddenIds((ids) => ids.filter((hidden) => hidden !== id));
+        },
+      },
+      onAutoClose: commit,
+      onDismiss: commit,
+    });
   };
 
   if (isLoading) {
@@ -293,7 +300,8 @@ export default function TailoredCVsPage() {
     );
   }
 
-  const isEmpty = !cvs || cvs.length === 0;
+  const loadFailed = cvsQuery.isError && !cvs;
+  const isEmpty = !loadFailed && sorted.length === 0;
 
   return (
     <DashboardPageShell width="wide">
@@ -310,7 +318,9 @@ export default function TailoredCVsPage() {
         }
       />
 
-      {isEmpty ? (
+      {loadFailed ? (
+        <DashboardLoadError query={cvsQuery} />
+      ) : isEmpty ? (
         <DashboardEmptyState
           icon={FileTextIcon}
           title={t("empty.title")}
@@ -344,8 +354,6 @@ export default function TailoredCVsPage() {
                   key={cv._id}
                   cv={cv}
                   index={index}
-                  confirming={confirmDeleteId === cv._id}
-                  deletePending={deleteMutation.isPending}
                   onDownload={(e) => handleDownloadClick(e, cv)}
                   onDelete={(e) => handleTrashClick(e, cv._id)}
                 />

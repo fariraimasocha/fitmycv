@@ -24,6 +24,7 @@ import {
   DashboardPanel,
   DashboardPanelHeader,
   DashboardEmptyState,
+  DashboardLoadError,
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
@@ -172,7 +173,7 @@ function SavedJobs() {
     else if (saved === "0") toast.error(t("saveError"));
   }, [searchParams, t]);
 
-  const { data: items, isLoading } = useQuery({
+  const itemsQuery = useQuery({
     queryKey: ["saved-jobs"],
     queryFn: async () => {
       const res = await fetch("/api/saved-jobs");
@@ -181,6 +182,7 @@ function SavedJobs() {
     },
     enabled: isPremium,
   });
+  const { data: items, isLoading } = itemsQuery;
 
   const remove = useMutation({
     mutationFn: async (id) => {
@@ -234,11 +236,15 @@ function SavedJobs() {
     <DashboardPageShell>
       <SavedPageHeader />
 
-      {count === 0 ? (
+      {itemsQuery.isError && !items ? (
+        <DashboardLoadError query={itemsQuery} />
+      ) : count === 0 ? (
         <DashboardEmptyState
           icon={BookmarkSimpleIcon}
           title={t("emptyTitle")}
           description={t("emptyDescription")}
+          actionLabel={t("browseJobs")}
+          actionHref="/jobs"
         />
       ) : (
         <DashboardPanel pad={false} as="section">

@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import TailoredCV from "@/models/TailoredCV";
+import Application from "@/models/Application";
 import { requirePremium } from "@/lib/paywall";
 import { httpUrl, tailoredForViewer } from "@/lib/tailored-preview";
 
@@ -44,6 +45,13 @@ export async function DELETE(request, { params }) {
   if (!cv) {
     return Response.json({ error: "Not found" }, { status: 404 });
   }
+
+  // The application stays in the tracker, but its "documents sent" link
+  // would now open a not-found page.
+  await Application.updateMany(
+    { userId: session.user.id, tailoredCVId: cv._id },
+    { $unset: { tailoredCVId: 1 } },
+  );
 
   return Response.json({ success: true });
 }

@@ -218,9 +218,11 @@ const Navbar1 = () => {
               >
                 {t("login")}
               </AuthLink>
+              {/* Secondary on purpose: the hero's job link form is the one
+                  primary action above the fold. */}
               <AuthLink
                 href="/auth"
-                className="tap-target landing-primary-btn landing-primary-btn-sm font-outfit"
+                className="tap-target landing-secondary-btn landing-secondary-btn-sm font-outfit"
               >
                 {t("signUp")}
               </AuthLink>

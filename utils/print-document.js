@@ -18,17 +18,23 @@ export const PRINT_KEY_PREFIX = "fitmycv:print:";
  *                                       "cover-letter" it sets the matching font).
  * @param {string} [payload.content]    Letter body (kind "cover-letter").
  * @param {object} [payload.meta]       { name, jobTitle, jobCompany } (cover letter).
+ * @returns {true|"storage"|"blocked"} true once the print tab opened. A
+ *   DownloadButton shows the matching error when its onDownload returns a reason.
  */
 export function printDocument(payload) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined") return "storage";
 
   const token = crypto.randomUUID();
   try {
     window.localStorage.setItem(PRINT_KEY_PREFIX + token, JSON.stringify(payload));
   } catch {
     // localStorage unavailable (private mode / quota), nothing useful to print.
-    return;
+    return "storage";
   }
 
-  window.open(`/print?k=${token}`, "_blank");
+  if (!window.open(`/print?k=${token}`, "_blank")) {
+    window.localStorage.removeItem(PRINT_KEY_PREFIX + token);
+    return "blocked";
+  }
+  return true;
 }

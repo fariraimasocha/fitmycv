@@ -668,7 +668,8 @@
     "emptyTitle": "你保存的职位会显示在这里",
     "emptyDescription": "在每日职位推荐邮件中点按某个职位的“保存”，它就会出现在此页面。",
     "allTitle": "所有已保存的职位",
-    "jobCount": "{count, plural, one {# 个职位} other {# 个职位}}"
+    "jobCount": "{count, plural, one {# 个职位} other {# 个职位}}",
+    "browseJobs": "浏览职位"
   },
   "storyBank": {
     "title": "故事库",
@@ -839,6 +840,47 @@
       "f9": "将每条 ATS 建议应用到你的简历",
       "f10": "为申请表中的问题起草回答",
       "f11": "LinkedIn 联系消息，以及该发给谁"
+    },
+    "checkoutFailedTitle": "结账未能开始",
+    "checkoutFailedDescription": "没有扣费。请在下方选择方案重试。",
+    "contactSupport": "联系客服"
+  },
+  "proGate": {
+    "action": "查看 Pro 方案",
+    "applications": {
+      "title": "求职申请是 Pro 功能",
+      "description": "升级后可跟踪每个职位从收藏到录用的全过程，并查看你的回复率。"
+    },
+    "storyBank": {
+      "title": "故事库是 Pro 功能",
+      "description": "升级后可保存面试准备中的 STAR 回答，并在每次面试中重复使用。"
+    },
+    "compare": {
+      "title": "比较录用通知是 Pro 功能",
+      "description": "升级后可并排比较 2 到 4 个申请。"
+    },
+    "companyResearch": {
+      "title": "公司调研是 Pro 功能",
+      "description": "升级后可在申请前获得每家公司的简报。"
+    },
+    "agent": {
+      "title": "简历助手是 Pro 功能",
+      "description": "升级后可通过与助手聊天来编辑你的简历。"
     }
+  },
+  "loadError": {
+    "title": "无法加载此列表",
+    "description": "请检查网络连接后重试。没有任何内容被删除。",
+    "tryAgain": "重试",
+    "retrying": "正在重试…"
+  },
+  "stageMoments": {
+    "interviewTitle": "进入面试阶段，干得好。",
+    "interviewBody": "面试前排练你的 STAR 故事。",
+    "interviewAction": "打开故事库",
+    "firstOfferTitle": "你的第一个录用通知，恭喜。",
+    "offerTitle": "已移至录用",
+    "offerBody": "回复前，先和你的其他申请并排比较。",
+    "offerAction": "比较录用通知"
   }
 }

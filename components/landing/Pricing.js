@@ -26,7 +26,11 @@ export default async function Pricing() {
       <div className="landing-container w-full">
         <PricingCards pricing={pricing} tier={tier} />
         <p className="mt-6 max-w-lg text-xs text-[var(--landing-ink-soft)]">
-          {t("footnote")}
+          {/* Worked out from the real prices, so it holds for every tier:
+              3 months on standard, 2 on regional. */}
+          {t("footnote", {
+            months: Math.round(Number(pricing.lifetime.price) / Number(pricing.month.price)),
+          })}
         </p>
         <p className="mt-2 max-w-lg text-xs text-[var(--landing-ink-soft)]">
           {t("jobscanCompare")}

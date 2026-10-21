@@ -668,7 +668,8 @@
     "emptyTitle": "Vos offres enregistrées apparaîtront ici",
     "emptyDescription": "Appuyez sur Enregistrer pour un poste dans votre e-mail quotidien d'offres et il s'affichera sur cette page.",
     "allTitle": "Toutes les offres enregistrées",
-    "jobCount": "{count, plural, one {# offre} other {# offres}}"
+    "jobCount": "{count, plural, one {# offre} other {# offres}}",
+    "browseJobs": "Voir les offres"
   },
   "storyBank": {
     "title": "Banque d'histoires",
@@ -839,6 +840,47 @@
       "f9": "Appliquez chaque recommandation ATS à votre CV",
       "f10": "Brouillons de réponses aux questions des formulaires de candidature",
       "f11": "Messages de connexion LinkedIn, et à qui les envoyer"
+    },
+    "checkoutFailedTitle": "Le paiement n'a pas démarré",
+    "checkoutFailedDescription": "Rien n'a été débité. Choisissez une offre ci-dessous pour réessayer.",
+    "contactSupport": "Contacter le support"
+  },
+  "proGate": {
+    "action": "Voir les offres Pro",
+    "applications": {
+      "title": "Les candidatures font partie de Pro",
+      "description": "Passez à Pro pour suivre chaque poste de l'enregistrement à l'offre et voir votre taux de réponse."
+    },
+    "storyBank": {
+      "title": "La banque d'histoires fait partie de Pro",
+      "description": "Passez à Pro pour enregistrer des réponses STAR issues de la préparation aux entretiens et les réutiliser à chaque entretien."
+    },
+    "compare": {
+      "title": "La comparaison d'offres fait partie de Pro",
+      "description": "Passez à Pro pour comparer 2 à 4 candidatures côte à côte."
+    },
+    "companyResearch": {
+      "title": "La recherche d'entreprise fait partie de Pro",
+      "description": "Passez à Pro pour recevoir une fiche sur chaque entreprise avant de postuler."
+    },
+    "agent": {
+      "title": "L'agent CV fait partie de Pro",
+      "description": "Passez à Pro pour modifier votre CV en discutant avec l'agent."
     }
+  },
+  "loadError": {
+    "title": "Impossible de charger cette liste",
+    "description": "Vérifiez votre connexion et réessayez. Rien n'a été supprimé.",
+    "tryAgain": "Réessayer",
+    "retrying": "Nouvel essai…"
+  },
+  "stageMoments": {
+    "interviewTitle": "Étape entretien. Bravo.",
+    "interviewBody": "Répétez vos histoires STAR avant l'appel.",
+    "interviewAction": "Ouvrir la banque d'histoires",
+    "firstOfferTitle": "Votre première offre. Félicitations.",
+    "offerTitle": "Déplacée vers Offre",
+    "offerBody": "Comparez-la à vos autres candidatures avant de répondre.",
+    "offerAction": "Comparer les offres"
   }
 }

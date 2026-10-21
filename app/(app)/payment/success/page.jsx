@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { motion, useReducedMotion } from "motion/react";
+import { openSupport } from "@/lib/open-support";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
@@ -11,8 +13,11 @@ export default function PaymentSuccessPage() {
   const { update } = useSession();
   const router = useRouter();
   const redirected = useRef(false);
+  const redirectTimer = useRef(null);
+  useEffect(() => () => clearTimeout(redirectTimer.current), []);
+  const reduceMotion = useReducedMotion();
 
-  const { data } = useQuery({
+  const { data, isError, isFetching, dataUpdateCount, refetch } = useQuery({
     queryKey: ["premium-status"],
     queryFn: async () => {
       const res = await fetch(PREMIUM_STATUS_ENDPOINT, {
@@ -31,6 +36,9 @@ export default function PaymentSuccessPage() {
   });
 
   const isPremiumConfirmed = !!data?.isPremium;
+  // Polling stops after 10 checks (about 20 seconds). Past that, say so and
+  // hand the user a way forward instead of "Activating Pro…" forever.
+  const gaveUp = !isPremiumConfirmed && (isError || dataUpdateCount >= 10);
   const [sessionUpdating, setSessionUpdating] = useState(false);
 
   useEffect(() => {
@@ -38,7 +46,11 @@ export default function PaymentSuccessPage() {
 
     redirected.current = true;
     setSessionUpdating(true);
-    update().then(() => router.push("/dashboard"));
+    // Hold "Pro is on" on screen for a beat. It is the moment they paid
+    // for, so it should be seen, not flashed past on the way to a redirect.
+    update().then(() => {
+      redirectTimer.current = setTimeout(() => router.push("/dashboard"), 1200);
+    });
   }, [isPremiumConfirmed, update, router]);
 
   return (
@@ -69,14 +81,51 @@ export default function PaymentSuccessPage() {
         </p>
 
         <p className="text-[var(--landing-ink-soft)] mb-6">
-          Pro lets you download your tailored CVs and cover letters as
-          PDFs.
+          Pro unlocks PDF downloads, job match scores, company research,
+          interview prep and more.
         </p>
 
         {isPremiumConfirmed ? (
-          <p className="text-sm text-[var(--landing-ink-soft)]">
-            {sessionUpdating ? "Pro is on. Loading your account…" : "Taking you to your dashboard…"}
-          </p>
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            role="status"
+            className="rounded-lg bg-[var(--landing-success-soft)] px-4 py-3"
+          >
+            <p className="font-semibold text-[var(--landing-success)]">Pro is on</p>
+            <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
+              {sessionUpdating ? "Taking you to your dashboard…" : "Loading your account…"}
+            </p>
+          </motion.div>
+        ) : gaveUp ? (
+          <div role="alert">
+            <p className="text-sm text-[var(--landing-ink-soft)] mb-4">
+              Your payment went through. Pro is taking longer than usual to
+              switch on. Check again in a minute, or message us and we will
+              sort it out.
+            </p>
+            <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                onClick={() => refetch()}
+                disabled={isFetching}
+                className="dashboard-primary-btn"
+              >
+                {isFetching ? "Checking…" : "Check again"}
+              </button>
+              <button type="button" onClick={openSupport} className="dashboard-secondary-btn">
+                Contact support
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={() => router.push("/dashboard")}
+              className="dashboard-secondary-btn mt-4"
+            >
+              Go to dashboard
+            </button>
+          </div>
         ) : (
           <div>
             <p className="text-sm text-[var(--landing-ink-soft)] mb-4">
@@ -84,9 +133,10 @@ export default function PaymentSuccessPage() {
             </p>
             <button
               onClick={() => router.push("/dashboard")}
-              className="text-xs text-[var(--landing-ink-faint)] underline"
+              type="button"
+              className="dashboard-secondary-btn"
             >
-              Taking too long? Skip to dashboard
+              Skip to dashboard
             </button>
           </div>
         )}

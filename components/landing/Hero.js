@@ -194,7 +194,7 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
   );
 }
 
-export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
+export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount = null }) {
   const t = useTranslations("landing.hero");
   return (
     <section id="hero" className="relative px-5 pb-16 sm:px-10 lg:px-16 xl:px-24">
@@ -239,12 +239,21 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
               />
             ))}
           </div>
-          <p className="text-sm font-semibold text-[var(--landing-ink)]">{t("usedBy")}</p>
+          {/* A real, rounded-down account count, or no number at all. */}
+          {userCount ? (
+            <p className="text-sm font-semibold text-[var(--landing-ink)]">{t("usedBy", { count: userCount })}</p>
+          ) : null}
         </div>
 
         <p className="landing-rise-3 mt-3 text-xs text-[var(--landing-ink-soft)]">
           {t("previewFree")}. {t("priceNote", { price: lifetimePrice })}
         </p>
+
+        {/* The demo shows the real output, so it comes before the platform
+            chips: one action and the result above the fold. */}
+        <div className="mt-10 w-full sm:mt-12">
+          <DemoPreview />
+        </div>
 
         <h2 className="landing-rise-3 mt-10 font-outfit text-2xl font-bold tracking-tight text-[var(--landing-ink)] sm:mt-12 sm:text-3xl">
           {t("platformTitle")}
@@ -262,10 +271,6 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
             </li>
           ))}
         </ul>
-
-        <div className="mt-10 w-full sm:mt-12">
-          <DemoPreview />
-        </div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { ArrowLeftIcon, CheckIcon } from "@phosphor-icons/react";
+import { ArrowLeftIcon, CheckIcon, WarningCircleIcon } from "@phosphor-icons/react";
 import Loader from "@/components/Loader";
 import {
   DashboardPageShell,
@@ -15,6 +15,7 @@ import {
   DashboardPanelHeader,
 } from "@/components/dashboard";
 import PricingCards from "@/components/pricing/PricingCards";
+import { openSupport } from "@/lib/open-support";
 import { PRO_FEATURES } from "@/lib/pro-features";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
@@ -25,6 +26,14 @@ export default function UpgradePage() {
   const router = useRouter();
   const reduceMotion = useReducedMotion();
   const [checking, setChecking] = useState(true);
+  // The checkout route sends people back here with ?error=checkout_failed
+  // when Polar refuses to start a session. Read once; the page shows the
+  // loader until the premium check finishes, so server and client match.
+  const [checkoutFailed] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("error") === "checkout_failed",
+  );
 
   useEffect(() => {
     async function checkPremiumStatus() {
@@ -58,6 +67,22 @@ export default function UpgradePage() {
           </Link>
         }
       />
+
+      {checkoutFailed && (
+        <div
+          role="alert"
+          className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 sm:flex-row sm:items-center"
+        >
+          <WarningCircleIcon size={20} className="shrink-0 text-[var(--landing-accent-dark)]" aria-hidden="true" />
+          <div className="flex-1 text-sm">
+            <p className="font-semibold text-[var(--landing-ink)]">{t("checkoutFailedTitle")}</p>
+            <p className="text-[var(--landing-ink-soft)]">{t("checkoutFailedDescription")}</p>
+          </div>
+          <button type="button" onClick={openSupport} className="dashboard-secondary-btn">
+            {t("contactSupport")}
+          </button>
+        </div>
+      )}
 
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: 10 }}

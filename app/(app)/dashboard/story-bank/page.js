@@ -30,6 +30,8 @@ import {
   DashboardPanel,
   DashboardPanelHeader,
   DashboardEmptyState,
+  DashboardLoadError,
+  ProGate,
   DashboardStatStrip,
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
@@ -318,11 +320,11 @@ function AddStoryDialog({ open, onOpenChange }) {
   );
 }
 
-export default function StoryBankPage() {
+function StoryBank() {
   const t = useTranslations("dashboard.storyBank");
   const [addOpen, setAddOpen] = useState(false);
 
-  const { data: stories, isLoading } = useQuery({
+  const storiesQuery = useQuery({
     queryKey: ["story-bank"],
     queryFn: async () => {
       const res = await fetch("/api/story-bank");
@@ -331,6 +333,7 @@ export default function StoryBankPage() {
       return json.data;
     },
   });
+  const { data: stories, isLoading } = storiesQuery;
 
   const list = useMemo(() => (Array.isArray(stories) ? stories : []), [stories]);
 
@@ -395,7 +398,9 @@ export default function StoryBankPage() {
         actions={count > 0 ? addButton : undefined}
       />
 
-      {count === 0 ? (
+      {storiesQuery.isError && !stories ? (
+        <DashboardLoadError query={storiesQuery} />
+      ) : count === 0 ? (
         <DashboardEmptyState
           icon={BookOpenIcon}
           title={t("emptyTitle")}
@@ -446,5 +451,13 @@ export default function StoryBankPage() {
 
       <AddStoryDialog open={addOpen} onOpenChange={setAddOpen} />
     </DashboardPageShell>
+  );
+}
+
+export default function StoryBankPage() {
+  return (
+    <ProGate feature="storyBank" namespace="dashboard.storyBank">
+      <StoryBank />
+    </ProGate>
   );
 }

@@ -671,8 +671,11 @@
     box-shadow: 0 4px 14px oklch(0.18 0.02 260 / 0.15);
   }
 
+  /* Hover moves the fill a step toward its own text colour: lighter on the
+     dark light-theme button, darker on the cream dark-theme one. A fixed
+     #333 made the dark theme's dark label vanish. */
   .landing-primary-btn:hover {
-    background: #333333;
+    background: color-mix(in oklch, var(--landing-primary) 84%, var(--landing-on-primary));
     transform: translateY(-1px);
     box-shadow: 0 8px 20px oklch(0.18 0.02 260 / 0.18);
   }
@@ -1016,7 +1019,7 @@
 
   .dashboard-primary-btn:hover:not(:disabled),
   body:has(.dashboard-shell) [data-slot="button"][data-variant="default"]:hover:not(:disabled) {
-    background: #333333;
+    background: color-mix(in oklch, var(--landing-primary) 84%, var(--landing-on-primary));
     transform: translateY(-1px);
     box-shadow: 0 8px 20px oklch(0.18 0.02 260 / 0.18);
   }
@@ -1034,7 +1037,8 @@
   }
 
   .dashboard-primary-btn:active,
-  .dashboard-secondary-btn:active {
+  .dashboard-secondary-btn:active,
+  body:has(.dashboard-shell) [data-slot="button"][data-variant="default"]:active:not(:disabled) {
     transform: translateY(0) scale(0.98);
   }
 
@@ -1277,6 +1281,16 @@
     transform: none;
   }
 
+  /* Touch screens have no hover, and iOS doesn't focus a tapped button, so
+     the template actions would never show. Keep them up. */
+  @media (hover: none) {
+    .landing-scrim,
+    .landing-scrim-item {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   .landing-scrim-item:nth-child(2) {
     transition-delay: 40ms;
   }
@@ -1316,8 +1330,10 @@
     color: #1a1a1a;
   }
 
+  /* Fixed light grey, like the fixed text: --landing-paper-strong turns
+     dark on the dark theme and hid the label. */
   .landing-pill-solid:hover {
-    background: var(--landing-paper-strong);
+    background: #ebe8e1;
   }
 
   .landing-pill-ghost {

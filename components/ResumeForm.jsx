@@ -91,6 +91,8 @@ export default function ResumeForm({
   queryKey = ["resume"],
   saveButtonLabel,
   onSaved,
+  // Optional sonner action on the "saved" toast, the obvious next step.
+  savedAction,
   // Fires with the current form values and the live check report on every
   // change, so a parent can drive a preview without owning the form.
   onValuesChange,
@@ -191,7 +193,7 @@ export default function ResumeForm({
       return res.json();
     },
     onSuccess: (_result, data) => {
-      toast.success(t("saved"));
+      toast.success(t("saved"), savedAction ? { action: savedAction } : undefined);
       queryClient.invalidateQueries({ queryKey });
       // Saved values become the new baseline, so the dirty flag clears.
       reset(data);

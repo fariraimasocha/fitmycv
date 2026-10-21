@@ -58,9 +58,10 @@ export const HOME_TESTIMONIAL = {
   image: "/farai.jpeg",
 };
 
-// Quotes for the landing slider, kept in each person's own words. Roles are
+// Quotes for the landing slider, kept in each person's own words, from real
+// users who gave permission to publish them (confirmed 2026-10-21). Roles are
 // left out unless the person gave one. Only HOME_TESTIMONIAL feeds the Review
-// schema.
+// schema. Only add entries here for real, attributable feedback.
 export const HOME_TESTIMONIALS = [
   { author: "Tino", image: "/trusted/tino.jpeg", quote: "I was sending the same CV to every job and wondering why nobody called back. Now I paste the link and the CV actually talks about what they asked for." },
   { author: "Portia", image: "/trusted/portia.jpeg", quote: "The cover letter was the part I hated most. It writes one off the same job post, I change a line or two and send it." },

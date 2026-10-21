@@ -15,3 +15,5 @@ export {
 } from "./DashboardPanel";
 export { DashboardStatStrip } from "./DashboardStatStrip";
 export { DashboardTabBar } from "./DashboardTabBar";
+export { ProGate } from "./ProGate";
+export { DashboardLoadError } from "./DashboardLoadError";

@@ -9,7 +9,7 @@
       "imageAlt": "FitMyCV 价格：从任意职位链接定制你的简历"
     },
     "eyebrow": "价格",
-    "title": "一个方案，不限数量的定制求职材料。",
+    "title": "一次付清或按月付费，不限数量的定制求职材料。",
     "priceOnce": "一次性 ${price}",
     "or": "或",
     "priceMonthly": "${price}/月",
@@ -44,7 +44,7 @@
     "titleLine1": "不到请自由职业者一小时的费用。",
     "titleLine2": "永久归你所有。",
     "intro": "一次付款获得终身访问，或选择月付，随时可取消。",
-    "footnote": "约等于三个月的月费，之后的每次求职都能使用。通过 Polar 安全结账。",
+    "footnote": "约等于 {months} 个月的月费，之后的每次求职都能使用。通过 Polar 安全结账。",
     "jobscanCompare": "作为对比，Jobscan Premium 标价每月 49.95 美元（2026 年 10 月查询）。",
     "regionalAvailable": "部分国家可享受更低的地区价格。"
   },

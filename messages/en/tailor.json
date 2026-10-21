@@ -58,6 +58,7 @@
     }
   },
   "resume": {
+    "tailorToJob": "Tailor to a job",
     "uploadPanel": {
       "title": "How it works",
       "steps": {
@@ -246,6 +247,7 @@
     },
     "outOf100": "out of 100",
     "upFrom": "Up {delta} from {preScore}",
+    "fixGain": "Up {delta} points from this fix",
     "checksPassed": "{passed} of {total} checks passed",
     "aimFor": "Aim for 80 or more. That is where the score turns green.",
     "checksPassedSentence": "{passed} of {total} checks passed.",
@@ -544,6 +546,7 @@
     "download": "Download PDF"
   },
   "downloadButton": {
+    "errors": {"blocked": "Your browser blocked the PDF tab. Allow pop-ups for this site and try again.", "storage": "Couldn't prepare your PDF. Try again in a normal browser window."},
     "label": "Download PDF",
     "downloading": "Preparing PDF…",
     "done": "Downloaded"
@@ -629,18 +632,28 @@
     },
     "cta": {
       "title": "Tailor your CV for this role",
+      "elapsed": "Working for {seconds}s.",
       "pending": "Rewriting your CV around these requirements and writing a cover letter.",
       "description": "We rewrite your CV around these requirements and write a cover letter to go with it."
     },
     "result": {
       "sectionsAria": "Tailored CV sections",
       "linkedin": "Write LinkedIn message",
+      "peakKeywords": "{count, plural, one {# keyword} other {# keywords}} from the posting added.",
+      "peakScore": "ATS score went from {preScore} to <score></score>.",
+      "nextLetter": "Your cover letter for this role is ready too.",
+      "viewLetter": "View cover letter",
+      "nextApplications": "This role is in Applications. Move it along as you hear back.",
       "downloadPdf": "Download PDF",
       "downloadLetter": "Download cover letter",
       "saveTailored": "Save tailored CV",
       "liveUpdates": "Updates as you type",
       "keywordsAdded": "Keywords added from the posting"
-    }
+    },
+    "addedToApplications": "We added this role to Applications so you can track it.",
+    "openApplications": "Open Applications",
+    "uploadCv": "Upload CV",
+    "contactSupport": "Contact support"
   },
   "tailoredList": {
     "title": "Tailored CVs",
@@ -653,6 +666,7 @@
     "delete": "Delete {title}",
     "deleteError": "Couldn't delete this CV. Try again.",
     "deleted": "CV deleted",
+    "undo": "Undo",
     "loadError": "Couldn't load this CV. Try again.",
     "downloadError": "Couldn't download the PDF. Try again.",
     "loading": "Loading tailored CVs",

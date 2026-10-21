@@ -16,7 +16,7 @@
     "tailorCta": "Lebenslauf kostenlos anpassen",
     "linkError": "Das ist kein Link. Füge die vollständige Adresse der Stellenanzeige ein.",
     "notReady": "Noch nicht bereit für ein Konto?",
-    "usedBy": "Über 1.800 Jobsuchende nutzen es",
+    "usedBy": "{count, number}+ Menschen haben sich angemeldet",
     "videoLabel": "FitMyCV-Demo: Stellenlink einfügen und einen angepassten Lebenslauf herunterladen",
     "checkerCta": "Lebenslauf kostenlos prüfen",
     "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, der <accent>genau</accent> zu dieser Stelle passt.",
@@ -84,7 +84,7 @@
       },
       "cancel": {
         "title": "Jederzeit kündbar",
-        "body": "Kein Vertrag und kein mühsamer Kündigungsprozess. Der Zugang läuft bis zum Ende des bezahlten Zeitraums."
+        "body": "Das Monatsabo hat keinen Vertrag und keinen mühsamen Kündigungsprozess. Der Zugang läuft bis zum Ende des bezahlten Monats."
       }
     },
     "methodTitle": "So funktioniert die Anpassung",

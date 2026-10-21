@@ -21,6 +21,7 @@ import {
 } from "@/lib/structured-data";
 import { getHomeFaqs, getHomeSteps } from "@/content/pages/home";
 import { getServerPricing } from "@/lib/server-pricing";
+import { getUserCount } from "@/lib/user-count";
 import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({ params }) {
@@ -59,16 +60,17 @@ export async function generateMetadata({ params }) {
 export default async function Home({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [{ pricing }, t] = await Promise.all([
+  const [{ pricing }, t, userCount] = await Promise.all([
     getServerPricing(),
     getTranslations({ locale, namespace: "landing.meta" }),
+    getUserCount(),
   ]);
 
   return (
     <div className="landing-root min-h-screen">
       <Header />
       <main>
-        <Hero lifetimePrice={pricing.lifetime.price} />
+        <Hero lifetimePrice={pricing.lifetime.price} userCount={userCount} />
         <JobBoardStrip />
         <TheProblem />
         <HowItWorks lifetimePrice={pricing.lifetime.price} />

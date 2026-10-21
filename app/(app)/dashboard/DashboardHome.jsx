@@ -519,7 +519,12 @@ export default function DashboardHome() {
               <FileTextIcon size={16} aria-hidden="true" />
               {t("myCv")}
             </Link>
-            <Link href="/dashboard/tailor" className="dashboard-primary-btn">
+            {/* While the checklist shows, its "Now" step is the one primary
+                action. A second filled button here would compete with it. */}
+            <Link
+              href="/dashboard/tailor"
+              className={showActivation ? "dashboard-secondary-btn" : "dashboard-primary-btn"}
+            >
               <PlusIcon size={16} weight="bold" aria-hidden="true" />
               {t("tailorMyCv")}
             </Link>

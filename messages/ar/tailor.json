@@ -58,6 +58,7 @@
     }
   },
   "resume": {
+    "tailorToJob": "خصصها لوظيفة",
     "uploadPanel": {
       "title": "كيف يعمل",
       "steps": {
@@ -247,6 +248,7 @@
     },
     "outOf100": "من 100",
     "upFrom": "ارتفعت {delta} عن {preScore}",
+    "fixGain": "زيادة {delta} نقطة بفضل هذا الإصلاح",
     "checksPassed": "اجتاز {passed} من {total} فحوصات",
     "checksPassedSentence": "اجتاز {passed} من {total} فحوصات.",
     "capped": "الدرجة محدودة بسبب مشكلة معيقة: {title}",
@@ -544,6 +546,7 @@
     "download": "تنزيل PDF"
   },
   "downloadButton": {
+    "errors": {"blocked": "حظر متصفحك علامة تبويب PDF. اسمح بالنوافذ المنبثقة لهذا الموقع وحاول مرة أخرى.", "storage": "تعذر تجهيز ملف PDF. حاول مرة أخرى في نافذة متصفح عادية."},
     "label": "تنزيل PDF",
     "downloading": "جارٍ تجهيز ملف PDF…",
     "done": "تم التنزيل"
@@ -629,18 +632,28 @@
     },
     "cta": {
       "title": "خصّص سيرتك الذاتية لهذه الوظيفة",
+      "elapsed": "جارٍ العمل منذ {seconds} ث.",
       "pending": "جارٍ إعادة كتابة سيرتك الذاتية حول هذه المتطلبات وكتابة خطاب تقديم.",
       "description": "نعيد كتابة سيرتك الذاتية حول هذه المتطلبات ونكتب خطاب تقديم يرافقها."
     },
     "result": {
       "sectionsAria": "أقسام السيرة الذاتية المخصصة",
       "linkedin": "اكتب رسالة LinkedIn",
+      "peakKeywords": "أُضيفت {count} من الكلمات المفتاحية من الإعلان.",
+      "peakScore": "ارتفعت درجة ATS من {preScore} إلى <score></score>.",
+      "nextLetter": "خطاب التقديم لهذه الوظيفة جاهز أيضًا.",
+      "viewLetter": "عرض الخطاب",
+      "nextApplications": "هذه الوظيفة في الطلبات. حدّث مرحلتها عندما يصلك رد.",
       "downloadPdf": "تنزيل PDF",
       "downloadLetter": "نزّل خطاب التقديم",
       "saveTailored": "احفظ السيرة الذاتية المخصصة",
       "liveUpdates": "تتحدث أثناء الكتابة",
       "keywordsAdded": "كلمات مفتاحية أُضيفت من الإعلان"
-    }
+    },
+    "addedToApplications": "أضفنا هذه الوظيفة إلى الطلبات لتتمكن من متابعتها.",
+    "openApplications": "فتح الطلبات",
+    "uploadCv": "رفع السيرة الذاتية",
+    "contactSupport": "تواصل مع الدعم"
   },
   "tailoredList": {
     "title": "السير الذاتية المخصصة",
@@ -653,6 +666,7 @@
     "delete": "احذف {title}",
     "deleteError": "تعذّر حذف هذه السيرة الذاتية. حاول مرة أخرى.",
     "deleted": "حُذفت السيرة الذاتية",
+    "undo": "تراجع",
     "loadError": "تعذّر تحميل هذه السيرة الذاتية. حاول مرة أخرى.",
     "downloadError": "تعذّر تنزيل ملف PDF. حاول مرة أخرى.",
     "loading": "جارٍ تحميل السير الذاتية المخصصة",

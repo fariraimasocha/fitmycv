@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import {
   DashboardEmptyState,
+  DashboardLoadError,
   DashboardPanel,
   DashboardPanelHeader,
 } from "@/components/dashboard";
@@ -130,11 +131,12 @@ function RowSkeleton() {
 }
 
 // pure-region-start
-/** Which state the thread list shows. A failed query has no threads, so it falls through to "empty". */
-function threadListView({ sessionLoading, isPremium, isLoading, count }) {
+/** Which state the thread list shows. A failed load is "error", never "empty". */
+function threadListView({ sessionLoading, isPremium, isLoading, isError, hasData, count }) {
   if (sessionLoading) return "loading";
   if (!isPremium) return "upgrade";
   if (isLoading) return "loading";
+  if (isError && !hasData) return "error";
   return count > 0 ? "list" : "empty";
 }
 // pure-region-end
@@ -157,11 +159,12 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
 
   // Threads are a Pro feature: the route answers free users with a 402, so
   // the query only runs for Pro and free users get the upgrade state instead.
-  const { data: threads, isLoading } = useQuery({
+  const threadsQuery = useQuery({
     queryKey: ["agent-threads"],
     queryFn: () => requestJson("/api/agent/threads"),
     enabled: isPremium,
   });
+  const { data: threads, isLoading, isError } = threadsQuery;
 
   const remove = useMutation({
     mutationFn: (threadId) => requestJson(`/api/agent/threads/${threadId}`, { method: "DELETE" }),
@@ -185,8 +188,12 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
     sessionLoading: status === "loading",
     isPremium,
     isLoading,
+    isError,
+    hasData: threads !== undefined,
     count,
   });
+
+  if (view === "error") return <DashboardLoadError query={threadsQuery} compact />;
 
   if (view === "upgrade") {
     return framed ? (

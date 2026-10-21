@@ -18,6 +18,7 @@ import {
   DashboardPanel,
   DashboardPanelHeader,
   DashboardEmptyState,
+  ProGate,
 } from "@/components/dashboard";
 import { initials } from "@/lib/applications";
 import { trackEvent } from "@/lib/analytics";
@@ -121,7 +122,7 @@ function SelectionSkeleton() {
   );
 }
 
-export default function ComparePage() {
+function Compare() {
   const t = useTranslations("dashboard.compare");
   const [selectedIds, setSelectedIds] = useState([]);
   const [comparisonResult, setComparisonResult] = useState(null);
@@ -359,5 +360,13 @@ export default function ComparePage() {
         </div>
       )}
     </DashboardPageShell>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <ProGate feature="compare" namespace="dashboard.compare">
+      <Compare />
+    </ProGate>
   );
 }

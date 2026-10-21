@@ -138,7 +138,10 @@ export default function PrintPage() {
   return (
     <div className="print-root">
       <style>{PRINT_CSS}</style>
-      <div className="no-print fixed end-4 top-4 z-50 flex gap-2">
+      <div className="no-print fixed end-4 top-4 z-50 flex items-center gap-2">
+        <p className="hidden rounded-full bg-white px-3 py-2 text-xs text-gray-600 shadow sm:block">
+          In the print dialog, set the destination to Save as PDF.
+        </p>
         <button
           onClick={() => window.print()}
           className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white shadow"

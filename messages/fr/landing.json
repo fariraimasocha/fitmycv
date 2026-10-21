@@ -16,7 +16,7 @@
     "tailorCta": "Adapter mon CV gratuitement",
     "linkError": "Ce n'est pas un lien. Collez l'adresse complète de l'offre.",
     "notReady": "Pas prêt à vous inscrire ?",
-    "usedBy": "Utilisé par plus de 1 800 candidats",
+    "usedBy": "Plus de {count, number} personnes se sont inscrites",
     "videoLabel": "Démo de FitMyCV : collez le lien d'une offre et téléchargez un CV adapté",
     "checkerCta": "Analyser mon CV gratuitement",
     "titleMain": "collez le lien d'une offre. obtenez un CV <accent>conçu</accent> pour ce poste.",
@@ -84,7 +84,7 @@
       },
       "cancel": {
         "title": "Résiliez quand vous voulez",
-        "body": "Aucun contrat et aucun parcours de résiliation à affronter. L'accès reste actif jusqu'à la fin de la période payée."
+        "body": "La formule mensuelle n'a aucun contrat ni parcours de résiliation à affronter. L'accès reste actif jusqu'à la fin du mois payé."
       }
     },
     "methodTitle": "Comment fonctionne l'adaptation",

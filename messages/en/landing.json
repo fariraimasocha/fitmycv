@@ -16,7 +16,7 @@
     "tailorCta": "Tailor my CV free",
     "linkError": "That is not a link. Paste the full address of the job posting.",
     "notReady": "Not ready to sign up?",
-    "usedBy": "Used by over 1,800 job seekers",
+    "usedBy": "{count, number}+ people have signed up",
     "videoLabel": "FitMyCV demo: paste a job link and download a tailored CV",
     "checkerCta": "Scan my CV for free",
     "titleMain": "paste any job link. get a CV <accent>made</accent> for that role.",
@@ -84,7 +84,7 @@
       },
       "cancel": {
         "title": "Cancel whenever",
-        "body": "No contract and no cancellation flow to fight. Access runs to the end of the period you paid for."
+        "body": "Monthly plans have no contract and no cancellation flow to fight. Access runs to the end of the month you paid for."
       }
     },
     "methodTitle": "How the tailoring works",

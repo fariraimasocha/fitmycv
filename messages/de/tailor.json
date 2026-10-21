@@ -58,6 +58,7 @@
     }
   },
   "resume": {
+    "tailorToJob": "Für eine Stelle anpassen",
     "uploadPanel": {
       "title": "So funktioniert es",
       "steps": {
@@ -183,6 +184,7 @@
     "impact": { "high": "Hohe Wirkung", "medium": "Mittlere Wirkung", "low": "Geringe Wirkung" },
     "outOf100": "von 100",
     "upFrom": "{delta} mehr als {preScore}",
+    "fixGain": "{delta} Punkte mehr durch diese Korrektur",
     "checksPassed": "{passed} von {total} Prüfungen bestanden",
     "checksPassedSentence": "{passed} von {total} Prüfungen bestanden.",
     "capped": "Die Punktzahl ist wegen eines blockierenden Problems gedeckelt: {title}",
@@ -362,7 +364,7 @@
   },
   "editorToolbar": { "viewMode": "Ansicht des Lebenslaufs", "edit": "Bearbeiten", "preview": "Vorschau", "replace": "Lebenslauf ersetzen" },
   "previewActions": { "download": "PDF herunterladen" },
-  "downloadButton": { "label": "PDF herunterladen", "downloading": "PDF wird vorbereitet…", "done": "Heruntergeladen" },
+  "downloadButton": { "errors": {"blocked": "Dein Browser hat den PDF-Tab blockiert. Erlaube Pop-ups für diese Seite und versuche es erneut.", "storage": "Dein PDF konnte nicht vorbereitet werden. Versuche es in einem normalen Browserfenster erneut."}, "label": "PDF herunterladen", "downloading": "PDF wird vorbereitet…", "done": "Heruntergeladen" },
   "tailorPage": {
     "steps": {
       "job": { "title": "Stelle hinzufügen", "body": "Füg einen Link oder die Beschreibung ein." },
@@ -383,6 +385,10 @@
       "noUrl": "Gib zuerst eine URL zur Stelle ein."
     },
     "tailored": "Lebenslauf angepasst",
+    "addedToApplications": "Wir haben diese Stelle zu deinen Bewerbungen hinzugefügt, damit du sie verfolgen kannst.",
+    "openApplications": "Bewerbungen öffnen",
+    "uploadCv": "Lebenslauf hochladen",
+    "contactSupport": "Support kontaktieren",
     "fixApplied": "Auf deinen Lebenslauf angewendet",
     "answerSaved": "Antwort gespeichert",
     "summary": {
@@ -411,12 +417,18 @@
     "details": { "title": "Anforderungen und Match", "fallback": "Aus der Anzeige, die du hinzugefügt hast", "hide": "Details ausblenden", "show": "Details anzeigen" },
     "cta": {
       "title": "Passe deinen Lebenslauf an diese Stelle an",
+      "elapsed": "Läuft seit {seconds} s.",
       "pending": "Dein Lebenslauf wird um diese Anforderungen herum neu geschrieben und ein Anschreiben verfasst.",
       "description": "Wir schreiben deinen Lebenslauf um diese Anforderungen herum neu und verfassen ein passendes Anschreiben dazu."
     },
     "result": {
       "sectionsAria": "Bereiche des angepassten Lebenslaufs",
       "linkedin": "LinkedIn-Nachricht schreiben",
+      "peakKeywords": "{count, plural, one {# Schlüsselwort} other {# Schlüsselwörter}} aus der Anzeige ergänzt.",
+      "peakScore": "ATS-Score von {preScore} auf <score></score> gestiegen.",
+      "nextLetter": "Dein Anschreiben für diese Stelle ist auch fertig.",
+      "viewLetter": "Anschreiben ansehen",
+      "nextApplications": "Diese Stelle ist in deinen Bewerbungen. Verschiebe sie, sobald du etwas hörst.",
       "downloadPdf": "PDF herunterladen",
       "downloadLetter": "Anschreiben herunterladen",
       "saveTailored": "Angepassten Lebenslauf speichern",
@@ -435,6 +447,7 @@
     "delete": "{title} löschen",
     "deleteError": "Dieser Lebenslauf konnte nicht gelöscht werden. Versuch es erneut.",
     "deleted": "Lebenslauf gelöscht",
+    "undo": "Rückgängig",
     "loadError": "Dieser Lebenslauf konnte nicht geladen werden. Versuch es erneut.",
     "downloadError": "Das PDF konnte nicht heruntergeladen werden. Versuch es erneut.",
     "loading": "Angepasste Lebensläufe werden geladen",

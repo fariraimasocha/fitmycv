@@ -17,6 +17,8 @@ import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
+import { ArcGauge } from "@/components/charts/ArcGauge";
+import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib/ats-handoff";
@@ -120,6 +122,9 @@ function extractTerms(text, limit) {
   return kept;
 }
 
+// The score is the peak of this tool, so it fills and counts up instead of
+// appearing static. ArcGauge and AnimatedNumber both fall back to the final
+// value under reduced motion.
 function ScoreRing({ value }) {
   const tone =
     value >= 75
@@ -129,23 +134,21 @@ function ScoreRing({ value }) {
         : "var(--landing-coral)";
 
   return (
-    <div
-      className="relative flex h-28 w-28 shrink-0 items-center justify-center rounded-full"
-      style={{
-        background: `conic-gradient(${tone} ${value * 3.6}deg, oklch(0.905 0.02 83) 0deg)`,
-      }}
-      role="img"
-      aria-label={`Keyword match score: ${value} percent`}
+    <ArcGauge
+      value={value}
+      size={112}
+      strokeWidth={9}
+      color={tone}
+      label={`Keyword match score: ${value} percent`}
+      trackClassName="text-[var(--landing-line)]"
     >
-      <div className="flex h-22 w-22 flex-col items-center justify-center rounded-full bg-[var(--landing-paper-soft)]">
-        <span className="font-outfit text-2xl font-extrabold text-[var(--landing-ink)]">
-          {value}%
-        </span>
-        <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
-          match
-        </span>
-      </div>
-    </div>
+      <span className="font-outfit text-2xl font-extrabold text-[var(--landing-ink)]">
+        <AnimatedNumber value={value} />%
+      </span>
+      <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
+        match
+      </span>
+    </ArcGauge>
   );
 }
 
@@ -270,6 +273,15 @@ export default function KeywordChecker({ mode = "match" }) {
       ...(result.missing ? { missing_count: result.missing.length } : {}),
     });
   }, [ran, result, mode]);
+
+  // On a phone the result renders below the fold, so the reveal would go
+  // unseen. Bring it up once per run, not on every live rescore.
+  const resultRef = useRef(null);
+  useEffect(() => {
+    if (!ran || !window.matchMedia("(max-width: 639px)").matches) return;
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    resultRef.current?.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
+  }, [ran]);
 
   const jobChars = jobText.trim().length;
   const tooShort = jobChars < MIN_JOB_CHARS;
@@ -468,7 +480,7 @@ export default function KeywordChecker({ mode = "match" }) {
       ) : null}
 
       {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div ref={resultRef} className="landing-rise mt-8 scroll-mt-24 border-t border-[var(--landing-line)] pt-8">
           {gapsMode ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -603,10 +615,6 @@ export default function KeywordChecker({ mode = "match" }) {
                   ))}
               </ul>
 
-              <LeadEmailCapture
-                score={result.score}
-                missingKeywordCount={result.missing.length}
-              />
             </>
           ) : (
             <>
@@ -658,6 +666,15 @@ export default function KeywordChecker({ mode = "match" }) {
               />
             </button>
           </div>
+
+          {/* The tailor is the one next step. The emailed copy is a quieter
+              option underneath it, not a second ending above it. */}
+          {gapsMode ? (
+            <LeadEmailCapture
+              score={result.score}
+              missingKeywordCount={result.missing.length}
+            />
+          ) : null}
         </div>
       ) : null}
     </div>

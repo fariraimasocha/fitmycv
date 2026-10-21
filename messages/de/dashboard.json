@@ -668,7 +668,8 @@
     "emptyTitle": "Hier erscheinen deine gespeicherten Jobs",
     "emptyDescription": "Tippe in deiner täglichen Job-E-Mail bei einer Stelle auf Speichern, dann erscheint sie auf dieser Seite.",
     "allTitle": "Alle gespeicherten Jobs",
-    "jobCount": "{count, plural, one {# Job} other {# Jobs}}"
+    "jobCount": "{count, plural, one {# Job} other {# Jobs}}",
+    "browseJobs": "Jobs ansehen"
   },
   "storyBank": {
     "title": "Story-Sammlung",
@@ -839,6 +840,47 @@
       "f9": "Jede ATS-Empfehlung auf deinen Lebenslauf anwenden",
       "f10": "Antwortentwürfe für Fragen in Bewerbungsformularen",
       "f11": "LinkedIn-Kontaktnachrichten und an wen du sie schickst"
+    },
+    "checkoutFailedTitle": "Der Checkout ist nicht gestartet",
+    "checkoutFailedDescription": "Es wurde nichts berechnet. Wähle unten einen Plan, um es erneut zu versuchen.",
+    "contactSupport": "Support kontaktieren"
+  },
+  "proGate": {
+    "action": "Pro-Pläne ansehen",
+    "applications": {
+      "title": "Bewerbungen gibt es mit Pro",
+      "description": "Upgrade, um jede Stelle vom Merken bis zum Angebot zu verfolgen und deine Antwortquote zu sehen."
+    },
+    "storyBank": {
+      "title": "Die Story-Bank gibt es mit Pro",
+      "description": "Upgrade, um STAR-Antworten aus der Interviewvorbereitung zu speichern und in jedem Interview wiederzuverwenden."
+    },
+    "compare": {
+      "title": "Angebote vergleichen gibt es mit Pro",
+      "description": "Upgrade, um 2 bis 4 Bewerbungen nebeneinander zu vergleichen."
+    },
+    "companyResearch": {
+      "title": "Firmenrecherche gibt es mit Pro",
+      "description": "Upgrade, um vor der Bewerbung ein Briefing zu jeder Firma zu bekommen."
+    },
+    "agent": {
+      "title": "Der CV-Agent gibt es mit Pro",
+      "description": "Upgrade, um deinen Lebenslauf im Chat mit dem Agenten zu bearbeiten."
     }
+  },
+  "loadError": {
+    "title": "Diese Liste konnte nicht geladen werden",
+    "description": "Prüfe deine Verbindung und versuche es erneut. Es wurde nichts gelöscht.",
+    "tryAgain": "Erneut versuchen",
+    "retrying": "Wird erneut versucht…"
+  },
+  "stageMoments": {
+    "interviewTitle": "Interviewphase. Gut gemacht.",
+    "interviewBody": "Übe deine STAR-Geschichten vor dem Gespräch.",
+    "interviewAction": "Story-Bank öffnen",
+    "firstOfferTitle": "Dein erstes Angebot. Glückwunsch.",
+    "offerTitle": "Zu Angebot verschoben",
+    "offerBody": "Vergleiche es mit deinen anderen Bewerbungen, bevor du antwortest.",
+    "offerAction": "Angebote vergleichen"
   }
 }

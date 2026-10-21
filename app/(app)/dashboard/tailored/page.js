@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import {
@@ -89,7 +90,7 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
   const title = cv.jobTitle || t("untitled");
 
   return (
-    <motion.li
+    <m.li
       initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: Math.min(index, 6) * 0.03 }}
@@ -156,7 +157,7 @@ function TailoredCVRow({ cv, index, confirming, deletePending, onDownload, onDel
           aria-hidden="true"
         />
       </div>
-    </motion.li>
+    </m.li>
   );
 }
 

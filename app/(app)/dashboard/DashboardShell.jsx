@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { LazyMotion, domAnimation } from "motion/react";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
@@ -120,7 +121,8 @@ export default function DashboardShell({ children }) {
               </div>
             </header>
             <main className="min-w-0 flex-1 overflow-x-clip bg-[var(--landing-bg)]">
-              {children}
+              {/* Lets pages use the smaller m.* components from motion/react-m. */}
+              <LazyMotion features={domAnimation}>{children}</LazyMotion>
             </main>
           </SidebarInset>
         </SidebarProvider>

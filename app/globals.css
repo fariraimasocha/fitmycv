@@ -1385,6 +1385,34 @@
   }
 }
 
+/* CV style toolbar (utils/cv-templates/style.js), applied to every layout.
+   Unlayered, so it beats the hard-coded Tailwind colours and rules inside each
+   template. The Rezi family reads dividers and indent itself, so it is left
+   out of those two rules. */
+[data-resume-template]:not([data-cv-color="black"]) h2 {
+  color: var(--cv-accent);
+  border-color: var(--cv-accent);
+}
+
+[data-resume-template]:not([data-cv-color="black"]) h2 + .h-px {
+  background: var(--cv-accent);
+}
+
+[data-cv-dividers="false"]:not([data-resume-template^="rezi"]) h2 {
+  border-width: 0;
+}
+
+[data-cv-dividers="false"]:not([data-resume-template^="rezi"]) h2 + .h-px {
+  display: none;
+}
+
+/* Indent the body of each section under its heading. Works whether a template
+   wraps each section in its own element or lists headings and content flat. */
+[data-cv-indent="true"]:not([data-resume-template^="rezi"])
+  :is(h2, div:has(> h2)) ~ :not(h2, div:has(> h2)) {
+  padding-inline-start: 1rem;
+}
+
 @media print {
   .woot-widget-holder,
   .woot--bubble-holder,

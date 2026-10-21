@@ -1865,8 +1865,10 @@ function renderTemplatePreview({ data, template, style, padding, Preview }) {
   const { basics, work, education, skills } = data;
   const resolvedStyle = normalizeTemplateStyle(style ?? getTemplateDefaultStyle(template));
 
-  // The font and accent reach the document as inherited CSS variables, so the
-  // picker restyles all nineteen layouts without any of them knowing about it.
+  // The font and accent reach the document as inherited CSS variables, and the
+  // data-cv-* attributes drive the accent, divider and indent rules in
+  // globals.css, so the picker restyles all nineteen layouts without any of
+  // them knowing about it.
   // `fontFamily` is set explicitly because Tailwind's font utilities inside the
   // templates would otherwise win over a bare inherit.
   // dir="auto" follows the CV's own text, so an English CV stays left to
@@ -1875,6 +1877,9 @@ function renderTemplatePreview({ data, template, style, padding, Preview }) {
     <div
       dir="auto"
       data-resume-template={template}
+      data-cv-color={resolvedStyle.color}
+      data-cv-dividers={resolvedStyle.dividers}
+      data-cv-indent={resolvedStyle.indent}
       className={padding}
       style={{ ...getTemplateStyleVars(resolvedStyle), fontFamily: "var(--cv-font)" }}
     >

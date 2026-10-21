@@ -92,7 +92,6 @@ export default function TemplatePicker({
           <TemplateStyleToolbar
             value={resolvedStyle}
             onChange={onStyleChange}
-            template={value}
           />
         ) : null}
 

@@ -1,4 +1,20 @@
-import { Geist_Mono, DM_Sans, Outfit, Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
+import {
+  Geist_Mono,
+  DM_Sans,
+  Outfit,
+  Instrument_Serif,
+  Bricolage_Grotesque,
+  Merriweather,
+  Source_Sans_3,
+  Inter,
+  Lato,
+  Roboto,
+  Open_Sans,
+  Carlito,
+  EB_Garamond,
+  Lora,
+  Libre_Baskerville,
+} from "next/font/google";
 import "@/app/globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import AuthProvider from "@/components/providers/auth-provider";
@@ -41,6 +57,74 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
+// CV body fonts for the template font picker (utils/cv-templates/style.js).
+// preload: false, so a page only downloads a face once a CV actually uses it.
+const merriweather = Merriweather({
+  variable: "--font-merriweather",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const lato = Lato({
+  variable: "--font-lato",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const roboto = Roboto({
+  variable: "--font-roboto",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const carlito = Carlito({
+  variable: "--font-carlito",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const garamond = EB_Garamond({
+  variable: "--font-garamond",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const baskerville = Libre_Baskerville({
+  variable: "--font-baskerville",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+const cvFontVariables = [
+  merriweather, sourceSans, inter, lato, roboto, openSans, carlito, garamond, lora, baskerville,
+].map((font) => font.variable).join(" ");
+
 // <html>, fonts and providers for every root layout. The public layouts pass
 // no session, so they read nothing per request and can be prerendered; the
 // session then loads in the browser. Only app/(app) passes one, because the
@@ -49,7 +133,7 @@ export default function RootShell({ locale, messages, session, children }) {
   return (
     <html lang={locale} dir={RTL_LOCALES.includes(locale) ? "rtl" : "ltr"}>
       <body
-        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${instrumentSerif.variable} ${bricolage.variable} antialiased`}
+        className={`${dmSans.variable} ${outfit.variable} ${geistMono.variable} ${instrumentSerif.variable} ${bricolage.variable} ${cvFontVariables} antialiased`}
       >
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />

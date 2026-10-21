@@ -265,13 +265,10 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
             travels within its own parent's box, so wrapping the bar alone
             would let it scroll away immediately. */}
         <div className="mt-6">
-          {/* No `template` here on purpose: this bar restyles all nineteen
-              cards at once, so it must not disable its structure toggles
-              based on whichever single card happens to be highlighted. */}
           <TemplateStyleToolbar menuClassName="landing-dark" value={style} onChange={setStyle} sticky />
           <p className="mt-3 text-sm text-[var(--landing-ink-soft)]">
-            Accent colour, font, and spacing apply to every preview below. Colour
-            changes headings and dates, not the page background.
+            Accent colour, font, dividers, and indent apply to every preview below.
+            Colour changes the section headings, not the page background.
           </p>
 
           {/* Says what the filter did. aria-live so a screen reader hears the
@@ -321,7 +318,7 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
 
           {openMeta ? (
             <>
-              <TemplateStyleToolbar menuClassName="landing-dark" value={style} onChange={setStyle} template={openMeta.id} />
+              <TemplateStyleToolbar menuClassName="landing-dark" value={style} onChange={setStyle} />
 
               <div className="flex flex-wrap items-center gap-3">
                 <Link

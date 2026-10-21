@@ -15,7 +15,6 @@ import {
   TEMPLATE_FONT_OPTIONS,
   getTemplateFontOption,
   normalizeTemplateStyle,
-  supportsStructureToggles,
 } from "@/utils/cv-templates/style";
 
 export { DEFAULT_TEMPLATE_STYLE };
@@ -29,7 +28,7 @@ function GroupLabel({ icon: Icon, children }) {
   );
 }
 
-function StyleToggle({ icon, label, checked, onChange, disabled }) {
+function StyleToggle({ icon, label, checked, onChange }) {
   return (
     <div className="flex items-center gap-2.5">
       <GroupLabel icon={icon}>{label}</GroupLabel>
@@ -38,10 +37,9 @@ function StyleToggle({ icon, label, checked, onChange, disabled }) {
         role="switch"
         aria-checked={checked}
         aria-label={label}
-        disabled={disabled}
         onClick={() => onChange(!checked)}
         data-on={checked}
-        className="landing-switch tap-target cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-ink)] focus-visible:ring-offset-2"
+        className="landing-switch tap-target cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-ink)] focus-visible:ring-offset-2"
       >
         <span />
       </button>
@@ -59,25 +57,17 @@ function Divider() {
  * `sticky` parks the bar under the site header while the previews it controls
  * scroll past. A sticky element only travels within its own parent, so the
  * caller must put the bar and those previews in the same wrapper.
- *
- * `template` disables the two structural toggles on layouts that ignore them.
- * Omit it where the bar drives more than one template at once.
+
  */
 export default function TemplateStyleToolbar({
   value,
   onChange,
-  template,
   sticky = false,
   className = "",
   menuClassName = "",
 }) {
   const t = useTranslations("tailor.styleToolbar");
   const style = normalizeTemplateStyle(value);
-
-  // A toggle that changes nothing is worse than no toggle, so the two
-  // structural switches disable themselves on layouts that draw neither rules
-  // nor hanging bullets. The stored value is kept either way.
-  const structural = template === undefined || supportsStructureToggles(template);
 
   const update = (patch) => onChange(normalizeTemplateStyle({ ...style, ...patch }));
 
@@ -145,7 +135,6 @@ export default function TemplateStyleToolbar({
         icon={MinusIcon}
         label={t("dividers")}
         checked={style.dividers}
-        disabled={!structural}
         onChange={(dividers) => update({ dividers })}
       />
 
@@ -155,7 +144,6 @@ export default function TemplateStyleToolbar({
         icon={TextIndentIcon}
         label={t("indent")}
         checked={style.indent}
-        disabled={!structural}
         onChange={(indent) => update({ indent })}
       />
     </div>

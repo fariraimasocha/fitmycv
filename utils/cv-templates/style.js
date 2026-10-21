@@ -1,9 +1,9 @@
 // Per-document styling that sits on top of a template: accent colour, body
 // font, section dividers and bullet indent.
 //
-// Colour and font apply to EVERY template. Dividers and indent only change
-// layouts that draw rules and hanging bullets (the Rezi family); elsewhere
-// they are stored but inert, so switching template never loses the setting.
+// All four apply to EVERY template. Font and accent arrive as CSS variables;
+// the Rezi family reads dividers and indent itself, and every other layout
+// gets them from the data-cv-* rules in app/globals.css.
 
 export const TEMPLATE_COLOR_OPTIONS = [
   { id: "black", label: "Black", accent: "#1a1a1a", swatch: "#1a1a1a" },
@@ -14,45 +14,29 @@ export const TEMPLATE_COLOR_OPTIONS = [
   { id: "burgundy", label: "Burgundy", accent: "#9f1239", swatch: "#be123c" },
 ];
 
-// Every face here is loaded in app/layout.js as a CSS variable, except the two
-// system stacks, which cost nothing and are what a conservative recruiter's
-// eye reads as a "normal" document.
+// Recruiter-safe faces, sans first, then serif. The var(--font-*) faces are
+// loaded in components/RootShell.jsx without preload, so only a face a CV uses
+// is downloaded. The system stacks cost nothing. Calibri ships with Windows and
+// Office; elsewhere Carlito, its metric-compatible twin, stands in.
+// Ids are stored on saved CVs, so never rename or remove one.
 export const TEMPLATE_FONT_OPTIONS = [
-  {
-    id: "merriweather",
-    label: "Merriweather",
-    stack: "var(--font-merriweather), Georgia, serif",
-  },
-  {
-    id: "source-sans",
-    label: "Source Sans",
-    stack: "var(--font-source-sans), system-ui, sans-serif",
-  },
-  {
-    id: "dm-sans",
-    label: "DM Sans",
-    stack: "var(--font-sn-pro), system-ui, sans-serif",
-  },
-  {
-    id: "instrument-serif",
-    label: "Instrument Serif",
-    stack: "var(--font-serif), Georgia, serif",
-  },
-  {
-    id: "times",
-    label: "Times New Roman",
-    stack: '"Times New Roman", Times, serif',
-  },
-  {
-    id: "arial",
-    label: "Arial",
-    stack: "Arial, Helvetica, sans-serif",
-  },
-  {
-    id: "mono",
-    label: "Mono",
-    stack: "var(--font-geist-mono), ui-monospace, monospace",
-  },
+  { id: "calibri", label: "Calibri", stack: "Calibri, var(--font-carlito), Arial, sans-serif" },
+  { id: "arial", label: "Arial", stack: "Arial, Helvetica, sans-serif" },
+  { id: "helvetica", label: "Helvetica", stack: '"Helvetica Neue", Helvetica, Arial, sans-serif' },
+  { id: "inter", label: "Inter", stack: "var(--font-inter), system-ui, sans-serif" },
+  { id: "lato", label: "Lato", stack: "var(--font-lato), system-ui, sans-serif" },
+  { id: "roboto", label: "Roboto", stack: "var(--font-roboto), system-ui, sans-serif" },
+  { id: "open-sans", label: "Open Sans", stack: "var(--font-open-sans), system-ui, sans-serif" },
+  { id: "source-sans", label: "Source Sans", stack: "var(--font-source-sans), system-ui, sans-serif" },
+  { id: "dm-sans", label: "DM Sans", stack: "var(--font-sn-pro), system-ui, sans-serif" },
+  { id: "georgia", label: "Georgia", stack: "Georgia, serif" },
+  { id: "garamond", label: "Garamond", stack: "var(--font-garamond), Garamond, Georgia, serif" },
+  { id: "times", label: "Times New Roman", stack: '"Times New Roman", Times, serif' },
+  { id: "merriweather", label: "Merriweather", stack: "var(--font-merriweather), Georgia, serif" },
+  { id: "lora", label: "Lora", stack: "var(--font-lora), Georgia, serif" },
+  { id: "baskerville", label: "Libre Baskerville", stack: "var(--font-baskerville), Baskerville, Georgia, serif" },
+  { id: "instrument-serif", label: "Instrument Serif", stack: "var(--font-serif), Georgia, serif" },
+  { id: "mono", label: "Mono", stack: "var(--font-geist-mono), ui-monospace, monospace" },
 ];
 
 export const DEFAULT_TEMPLATE_STYLE = {
@@ -61,21 +45,6 @@ export const DEFAULT_TEMPLATE_STYLE = {
   dividers: true,
   indent: false,
 };
-
-// Layouts that read `dividers` and `indent`. Everything else ignores them.
-export const RULED_TEMPLATE_IDS = ["rezi", "rezi-simple", "rezi-modern"];
-
-export function isReziTemplate(template) {
-  return RULED_TEMPLATE_IDS.includes(template);
-}
-
-// Kept as the old name for callers that only want to know whether the two
-// structural toggles do anything for this template.
-export const REZI_TEMPLATE_IDS = RULED_TEMPLATE_IDS;
-
-export function supportsStructureToggles(template) {
-  return RULED_TEMPLATE_IDS.includes(template);
-}
 
 export function normalizeTemplateStyle(style = {}) {
   const colorIds = TEMPLATE_COLOR_OPTIONS.map((option) => option.id);

@@ -31,7 +31,7 @@ export default async function DashboardPage() {
         isPremium ? listApplications(userId) : null,
       ]);
       queryClient.setQueryData(["tailored-cvs"], asJson(tailoredCVs));
-      queryClient.setQueryData(["reference-cv"], asJson(referenceCV ?? null));
+      queryClient.setQueryData(["resume"], asJson(referenceCV ?? null));
       if (isPremium) {
         queryClient.setQueryData(["company-research"], asJson(research));
         queryClient.setQueryData(["applications"], asJson(applications));

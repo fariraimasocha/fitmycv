@@ -46,8 +46,14 @@ function PostHogIdentity() {
 export default function AuthProvider({ session, children }) {
   // Focus refetches hit /api/auth/session (and the DB) on every tab switch.
   // Checkout and upgrade call update() themselves.
+  // The interval writes the refreshed token back to the cookie before the
+  // 5 minute jwt refresh window ends, so auth() elsewhere skips the DB.
   return (
-    <SessionProvider session={session} refetchOnWindowFocus={false}>
+    <SessionProvider
+      session={session}
+      refetchInterval={4 * 60}
+      refetchOnWindowFocus={false}
+    >
       <PostHogIdentity />
       {children}
     </SessionProvider>

@@ -177,7 +177,7 @@ export default function DashboardHome() {
   });
 
   const { data: referenceCV, isLoading: referenceCVLoading } = useQuery({
-    queryKey: ["reference-cv"],
+    queryKey: ["resume"],
     queryFn: async () => {
       const res = await fetch("/api/resume");
       if (!res.ok) throw new Error("Couldn't load this page. Refresh and try again.");

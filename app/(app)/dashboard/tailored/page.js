@@ -183,7 +183,7 @@ export default function TailoredCVsPage() {
   });
 
   const { data: referenceCV } = useQuery({
-    queryKey: ["reference-cv"],
+    queryKey: ["resume"],
     // Same key and shape as the dashboard home. This used to call
     // /api/reference-cv, which does not exist, so the empty state always
     // said to upload a CV.

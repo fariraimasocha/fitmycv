@@ -35,5 +35,7 @@
 	],
 	"observability": {
 		"enabled": true
-	}
+	},
+	// Runs the Worker near MongoDB Atlas, since every request opens a new connection.
+	"placement": { "mode": "smart" }
 }

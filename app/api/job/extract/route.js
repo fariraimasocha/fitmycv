@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { parseJobFromResponse } from "@/utils/job-parser";
 import { chat, MODEL_FAST } from "@/lib/groq";
 import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
+import { groqRateLimited, tooManyRequests } from "@/lib/rate-limit";
 
 // Same cap as the scraper, so a pasted posting and a crawled one cost the same.
 const MIN_PASTED_CHARS = 150;
@@ -43,6 +44,7 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
+  if (await groqRateLimited(session.user.id)) return tooManyRequests();
 
   try {
     const { url, text } = await request.json();

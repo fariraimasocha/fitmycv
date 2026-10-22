@@ -3,6 +3,7 @@ import { connectDB } from "@/utils/connect";
 import User from "@/models/User";
 import TailoredCV from "@/models/TailoredCV";
 import { captureServerEvent } from "@/lib/posthog-server";
+import { ownsGrant } from "@/lib/polar";
 
 async function resolveUser(data) {
   await connectDB();
@@ -115,6 +116,11 @@ export const POST = Webhooks({
     }
 
     if (isFullRefund) {
+      const grant = { subscriptionId: order.subscriptionId, metadataUserId: order.metadata?.userId };
+      if (!ownsGrant(user, grant)) {
+        console.error(`Refund on order ${order.id} does not match Pro for user ${user._id}. Left unchanged.`);
+        return;
+      }
       user.isPremium = false;
       user.premiumRevokedAt = new Date();
       user.polarSubscriptionId = null;
@@ -193,6 +199,10 @@ export const POST = Webhooks({
     const subscription = payload.data;
     const user = await resolveUser(subscription);
     if (!user) return;
+    if (!ownsGrant(user, { subscriptionId: subscription.id })) {
+      console.error(`Revoked subscription ${subscription.id} is not the one on user ${user._id}. Left unchanged.`);
+      return;
+    }
 
     user.isPremium = false;
     user.premiumRevokedAt = new Date();

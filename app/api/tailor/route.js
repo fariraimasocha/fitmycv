@@ -8,6 +8,11 @@ import { atsReport } from "@/lib/ats/score";
 import { httpUrl, tailoredForViewer } from "@/lib/tailored-preview";
 import { chat, MODEL_SMART } from "@/lib/groq";
 import { relevanceNotes } from "@/lib/jev";
+import { groqRateLimited, tooManyRequests } from "@/lib/rate-limit";
+
+// The CV text cap on /api/resume/upload is 50k, and its parsed JSON plus the
+// job fits well inside this. Anything bigger is not a real CV and job.
+const MAX_INPUT_CHARS = 100_000;
 
 const SYSTEM_PROMPT = `You are an expert CV tailoring assistant and career coach. Given a reference CV (JSON) and job requirements, you will:
 
@@ -109,6 +114,7 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
+  if (await groqRateLimited(session.user.id)) return tooManyRequests();
 
   try {
     const { referenceCV, jobData, jobUrl, matchScore, matchGrade } = await request.json();
@@ -117,6 +123,12 @@ export async function POST(request) {
       return Response.json(
         { error: "Upload your CV and add a job first." },
         { status: 400 },
+      );
+    }
+    if (JSON.stringify({ referenceCV, jobData }).length > MAX_INPUT_CHARS) {
+      return Response.json(
+        { error: "Your CV and job description are too long. Shorten them and try again." },
+        { status: 413 },
       );
     }
 

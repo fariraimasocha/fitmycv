@@ -1,5 +1,5 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
+import { isRateLimited } from "@/lib/rate-limit";
 
 // Public on purpose: the free job posting saver runs signed out. Every call
 // costs an Exa request, so the Workers rate limit binding (JOB_SAVE_LIMITER in
@@ -8,19 +8,6 @@ import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
 // ponytail: add model cleanup only if people complain the saved text is noisy.
 
 const MAX_URL_CHARS = 2000;
-
-async function isRateLimited(request) {
-  let limiter;
-  try {
-    limiter = getCloudflareContext().env?.JOB_SAVE_LIMITER;
-  } catch {
-    return false; // next dev has no Workers context.
-  }
-  if (!limiter) return false;
-  const key = request.headers.get("cf-connecting-ip") || "unknown";
-  const { success } = await limiter.limit({ key });
-  return !success;
-}
 
 function validUrl(value) {
   if (typeof value !== "string" || !value.trim() || value.length > MAX_URL_CHARS) return null;
@@ -47,7 +34,7 @@ export async function POST(request) {
     );
   }
 
-  if (await isRateLimited(request)) {
+  if (await isRateLimited("JOB_SAVE_LIMITER", request.headers.get("cf-connecting-ip") || "unknown")) {
     return Response.json(
       { error: "You saved a lot of postings in a short time. Wait a minute and try again." },
       { status: 429 }

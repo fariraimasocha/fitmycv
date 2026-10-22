@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { sanitizeExtractedText } from "@/utils/pdf-parser";
 import { parseResumeFromResponse } from "@/utils/resume-parser";
 import { chat, MODEL_FAST } from "@/lib/groq";
+import { groqRateLimited, tooManyRequests } from "@/lib/rate-limit";
 
 const MIN_TEXT_LENGTH = 100;
 const MAX_TEXT_LENGTH = 50_000;
@@ -54,6 +55,7 @@ export async function POST(request) {
   if (!session?.user?.id) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
+  if (await groqRateLimited(session.user.id)) return tooManyRequests();
 
   try {
     // The browser reads the PDF (utils/upload-resume.js), so only text arrives.

@@ -24,7 +24,8 @@
     "seo:data": "node --env-file=.env scripts/seo-weekly-data.mjs",
     "check:names": "node scripts/check-names.mjs",
     "check:preview": "node scripts/check-tailored-preview.mjs",
-    "check:handoff": "node scripts/check-handoff.mjs"
+    "check:handoff": "node scripts/check-handoff.mjs",
+    "check:polar-revoke": "node scripts/check-polar-revoke.mjs"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.3",

@@ -1,9 +1,9 @@
 export const meta = {
   slug: "cv-format-south-africa",
   title: "CV Format for South Africa: What Recruiters Expect in 2026",
-  seoTitle: "South African CV Format: Layout and Length",
+  seoTitle: "South African CV Format (2026): Length, ID, Race and Referees",
   description:
-    "The South African CV format explained: length, section order, which personal details to include under POPIA, references, matric, SAQA and file type.",
+    "What to keep from the old South African CV format and what to drop: two pages, no ID number, race or photo, then matric, SAQA, referees and PDF.",
   excerpt:
     "South African CVs have their own habits: driver's licence codes, languages, matric results and named referees. Here is what to keep, what to drop, and why your ID number stays off the page.",
   date: "2026-10-07",

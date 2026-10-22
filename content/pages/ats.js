@@ -136,7 +136,7 @@ export const workdayResumeFormat = {
 
 export const greenhouseAtsResume = {
   slug: "greenhouse-ats-resume",
-  seoTitle: "Greenhouse ATS: How to Format Your Resume",
+  seoTitle: "Greenhouse Resume Format: Columns, Parsing and PDF Tips",
   description:
     "How to format a CV for Greenhouse job applications: single column, parser safe headings, and why the PDF you attach is the one a human reads.",
   keywords: [

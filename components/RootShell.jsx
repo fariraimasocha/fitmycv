@@ -28,20 +28,26 @@ import ChatwootWidget from "@/components/ChatwootWidget";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import { WebviewGateProvider } from "@/components/landing/WebviewGateProvider";
 
+// The marketing and dashboard shells use Bricolage in place of DM Sans and
+// Outfit, so these three load only when a page uses them. Their preloads
+// slowed the CSS that must load before the homepage can paint.
 const dmSans = DM_Sans({
   variable: "--font-sn-pro",
   subsets: ["latin"],
+  preload: false,
 });
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  preload: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Marketing pages only, through .landing-dark in globals.css.

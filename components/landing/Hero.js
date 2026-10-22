@@ -211,7 +211,9 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
           }}
         />
 
-        <p className="landing-rise-2 mt-8 max-w-xl text-lg leading-relaxed text-[var(--landing-ink-soft)]">
+        {/* No entrance fade. On phones this is the largest paint, and Chrome
+            counts a fade from opacity 0 late. */}
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--landing-ink-soft)]">
           {t("body")}
         </p>
 

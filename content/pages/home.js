@@ -71,6 +71,8 @@ export const HOME_TESTIMONIALS = [
   { author: "Nobesuthu", image: "/trusted/nobesuthu.jpeg", quote: "It kept my experience as it was and just moved the right bits to the top for each job. That's all I wanted." },
   { author: "Rejoice", image: "/trusted/rejoice.jpg", quote: "Small thing, but the PDFs come out named properly. Recruiters don't get 'CV final final 2.pdf' from me anymore." },
   { author: "Arnome", image: "/trusted/arnome.jpeg", quote: "The interview prep is underrated. It pulled questions straight from the job post and I got asked two of them." },
+  { author: "Jane", image: "/trusted/jane.jpeg", quote: "I use FitMyCV and it's really fast. It saves me a lot of time." },
+  { author: "Jack", image: "/trusted/jack.jpeg", quote: "FitMyCV helped me get interviews faster." },
 ];
 
 // Translated versions of the FAQ and steps above. Same order,

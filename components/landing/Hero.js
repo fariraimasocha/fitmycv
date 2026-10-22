@@ -222,6 +222,16 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
         </p>
 
         <JobLinkForm />
+        <p className="landing-rise-3 mt-3 text-xs text-[var(--landing-ink-soft)]">
+          {t("previewFree")}. {t("priceNote", { price: lifetimePrice })} {t("notReady")}{" "}
+          <Link
+            href="/ats-resume-checker"
+            className="font-semibold text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)]"
+          >
+            {t("checkerCta")}
+          </Link>
+        </p>
+
         {/* One proof row: the faces, one real quote, and a real, rounded-down
             account count (or no number at all). */}
         <div className="landing-rise-3 mt-6 flex max-w-2xl flex-col items-center gap-4 sm:flex-row sm:text-start">
@@ -252,16 +262,6 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
             ) : null}
           </div>
         </div>
-
-        <p className="landing-rise-3 mt-4 text-xs text-[var(--landing-ink-soft)]">
-          {t("previewFree")}. {t("priceNote", { price: lifetimePrice })} {t("notReady")}{" "}
-          <Link
-            href="/ats-resume-checker"
-            className="font-semibold text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)]"
-          >
-            {t("checkerCta")}
-          </Link>
-        </p>
 
         {/* The demo shows the real output, so it comes before the platform
             chips: one action and the result above the fold. */}

@@ -20,7 +20,7 @@
     "videoLabel": "FitMyCV demo: paste a job link and download a tailored CV",
     "checkerCta": "Scan my CV for free",
     "titleMain": "paste any job link. get a CV <accent>made</accent> for that role.",
-    "body": "Upload your CV once. FitMyCV reads the listing and rewrites your CV in the words that role asks for.",
+    "body": "Upload your CV once. FitMyCV reads the listing and rewrites your CV in the words that role asks for. Those are the words screening software looks for.",
     "tryFree": "Try for free",
     "previewFree": "Preview your tailored CV free",
     "priceNote": "${price} once to download PDFs and apply.",

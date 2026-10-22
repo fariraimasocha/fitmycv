@@ -20,7 +20,7 @@
     "videoLabel": "Demo de FitMyCV: pega el enlace de una oferta y descarga un CV adaptado",
     "checkerCta": "Analizar mi CV gratis",
     "titleMain": "pega el enlace de cualquier oferta. recibe un CV <accent>hecho</accent> para ese puesto.",
-    "body": "Sube tu CV una sola vez. FitMyCV lee la oferta y reescribe tu CV con las palabras que pide ese puesto.",
+    "body": "Sube tu CV una sola vez. FitMyCV lee la oferta y reescribe tu CV con las palabras que pide ese puesto. Son las palabras que busca el software de selección.",
     "tryFree": "Pruébalo gratis",
     "previewFree": "Vista previa gratis de tu CV adaptado",
     "priceNote": "${price} un único pago para descargar los PDF y postularte.",

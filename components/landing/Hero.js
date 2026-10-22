@@ -23,6 +23,7 @@ import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { toUrl } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
+import { HOME_TESTIMONIALS } from "@/content/pages/home";
 
 // Each chip is a real feature with its own page, so "all in one" holds up.
 const PLATFORM_LINKS = [
@@ -35,12 +36,17 @@ const PLATFORM_LINKS = [
 ];
 
 const TRUST_FACES = [
-  "/trusted/tino.jpeg",
+  "/trusted/jane.jpeg",
   "/trusted/portia.jpeg",
-  "/trusted/titus.jpg",
+  "/trusted/jack.jpeg",
   "/trusted/winnie.jpeg",
   "/trusted/vitus.jpg",
 ];
+
+// One real quote with a concrete outcome, right under the CTA.
+const HERO_PROOF = HOME_TESTIMONIALS.find((item) => item.author === "Vitus");
+// Break after the first sentence so the quote always sits on two lines.
+const HERO_PROOF_LINES = HERO_PROOF?.quote.split(/(?<=\.) /, 2) ?? [];
 
 function DemoPreview() {
   const t = useTranslations("landing.hero");
@@ -216,37 +222,45 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
         </p>
 
         <JobLinkForm />
-        <p className="landing-rise-3 mt-4 text-sm text-[var(--landing-ink-soft)]">
-          {t("notReady")}{" "}
+        {/* One proof row: the faces, one real quote, and a real, rounded-down
+            account count (or no number at all). */}
+        <div className="landing-rise-3 mt-6 flex max-w-2xl flex-col items-center gap-4 sm:flex-row sm:text-start">
+          <div className="flex shrink-0 -space-x-2 rtl:space-x-reverse">
+            {TRUST_FACES.map((src) => (
+              <Image
+                key={src}
+                src={src}
+                alt=""
+                width={48}
+                height={48}
+                className="size-12 rounded-full object-cover ring-2 ring-[var(--landing-bg)]"
+              />
+            ))}
+          </div>
+          <div className="text-xs leading-4">
+            {HERO_PROOF ? (
+              <figure className="text-[var(--landing-ink)] sm:whitespace-nowrap">
+                <blockquote className="inline">
+                  <span className="block">“{HERO_PROOF_LINES[0]}</span>
+                  {HERO_PROOF_LINES[1]}”
+                </blockquote>{" "}
+                <figcaption className="inline font-semibold">{HERO_PROOF.author}</figcaption>
+              </figure>
+            ) : null}
+            {userCount ? (
+              <p className="text-xs leading-4 text-[var(--landing-ink-soft)]">{t("usedBy", { count: userCount })}</p>
+            ) : null}
+          </div>
+        </div>
+
+        <p className="landing-rise-3 mt-4 text-xs text-[var(--landing-ink-soft)]">
+          {t("previewFree")}. {t("priceNote", { price: lifetimePrice })} {t("notReady")}{" "}
           <Link
             href="/ats-resume-checker"
             className="font-semibold text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)]"
           >
             {t("checkerCta")}
           </Link>
-        </p>
-
-        <div className="landing-rise-3 mt-8 flex items-center gap-3">
-          <div className="flex -space-x-2 rtl:space-x-reverse">
-            {TRUST_FACES.map((src) => (
-              <Image
-                key={src}
-                src={src}
-                alt=""
-                width={32}
-                height={32}
-                className="size-8 rounded-full object-cover ring-2 ring-[var(--landing-bg)]"
-              />
-            ))}
-          </div>
-          {/* A real, rounded-down account count, or no number at all. */}
-          {userCount ? (
-            <p className="text-sm font-semibold text-[var(--landing-ink)]">{t("usedBy", { count: userCount })}</p>
-          ) : null}
-        </div>
-
-        <p className="landing-rise-3 mt-3 text-xs text-[var(--landing-ink-soft)]">
-          {t("previewFree")}. {t("priceNote", { price: lifetimePrice })}
         </p>
 
         {/* The demo shows the real output, so it comes before the platform

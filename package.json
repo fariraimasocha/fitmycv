@@ -8,6 +8,7 @@
     "start": "next start",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "node scripts/deploy-cloudflare.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "lint": "eslint",
     "check:ats": "node scripts/check-ats-chars.mjs",
     "check:ats-companies": "node scripts/check-ats-companies.mjs",

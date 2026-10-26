@@ -1,4 +1,6 @@
+import { withDualmark } from "@dualmark/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
+import { SITE_URL } from "./lib/site.js";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.js");
 
@@ -68,4 +70,6 @@ const nextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withDualmark(withNextIntl(nextConfig), {
+  siteUrl: SITE_URL,
+});

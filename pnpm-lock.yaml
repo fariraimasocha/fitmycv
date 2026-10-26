@@ -33,6 +33,15 @@ importers:
       '@dnd-kit/core':
         specifier: ^6.3.1
         version: 6.3.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@dualmark/converters':
+        specifier: ^0.11.0
+        version: 0.11.0
+      '@dualmark/core':
+        specifier: ^0.11.0
+        version: 0.11.0
+      '@dualmark/nextjs':
+        specifier: ^0.11.0
+        version: 0.11.0(next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.7.1(@standard-schema/spec@1.1.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-hook-form@7.85.0(react@19.2.3))(zod@4.4.3)
@@ -615,6 +624,20 @@ packages:
 
   '@dotenvx/primitives@0.8.0':
     resolution: {integrity: sha512-VYJy0uhFm9zTJ1TxBaW/pA8bjbOM/OttaNMwZ1RHG4JKyRG7DhSdiqD1ipQoAyoD22olUtxbP78W9xY3Wd11bg==}
+
+  '@dualmark/converters@0.11.0':
+    resolution: {integrity: sha512-K0zqj1bPCMfEEFh7ouuy0Jrei+lfqh8x5IYW6ydO2efdxWt8OMBDnLG3wmoz7d4+BdowsCAqRsPF593+tlDG8A==}
+    engines: {node: '>=22.12.0'}
+
+  '@dualmark/core@0.11.0':
+    resolution: {integrity: sha512-cymOrjE6JZShtPB6uv3cw0uJXd+wq4dNUnT7Li7C3coCMTA+uJvIbl1/iNkenBOF5yL3f4bOxLwUH+t40vO+Pg==}
+    engines: {node: '>=22.12.0'}
+
+  '@dualmark/nextjs@0.11.0':
+    resolution: {integrity: sha512-0SDNpgKXkHNqCmsA7/LNgjV36iNrCUkB7KYEje0LV00QVta6Jb9m3cT+4VaLfkq9zesYP0F+9G/z7akyKPtDCQ==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      next: '>=14.0.0'
 
   '@ecies/ciphers@0.2.6':
     resolution: {integrity: sha512-patgsRPKGkhhoBjETV4XxD0En4ui5fbX0hzayqI3M8tvNMGUoUvmyYAIWwlxBc1KX5cturfqByYdj5bYGRpN9g==}
@@ -6700,6 +6723,18 @@ snapshots:
       yocto-spinner: 1.2.2
 
   '@dotenvx/primitives@0.8.0': {}
+
+  '@dualmark/converters@0.11.0':
+    dependencies:
+      '@dualmark/core': 0.11.0
+
+  '@dualmark/core@0.11.0': {}
+
+  '@dualmark/nextjs@0.11.0(next@16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+    dependencies:
+      '@dualmark/converters': 0.11.0
+      '@dualmark/core': 0.11.0
+      next: 16.2.4(@babel/core@7.29.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
 
   '@ecies/ciphers@0.2.6(@noble/ciphers@1.3.0)':
     dependencies:

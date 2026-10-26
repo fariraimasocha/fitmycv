@@ -18,7 +18,12 @@ function PostHogIdentity() {
     }
 
     if (status !== "authenticated" || !user?.id) {
-      if (status === "unauthenticated" && identifiedUserId.current) {
+      // signOut reloads the page, so the ref is empty by then. PostHog's own
+      // stored state still says identified, so check that too.
+      if (
+        status === "unauthenticated" &&
+        (identifiedUserId.current || posthog.get_property("$user_state") === "identified")
+      ) {
         posthog.reset();
         identifiedUserId.current = null;
       }

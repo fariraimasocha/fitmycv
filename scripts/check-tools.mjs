@@ -34,6 +34,7 @@ const REGIONS = {
   "components/tools/CvFormatChecker.jsx": ["// pure-region-start", "// pure-region-end"],
   "components/tools/WeakWordsChecker.jsx": ["// pure-region-start", "// pure-region-end"],
   "components/tools/GapExplainer.jsx": ["// pure-region-start", "// pure-region-end"],
+  "components/tools/ApplicationLetterGenerator.jsx": ["// pure-region-start", "// pure-region-end"],
   "components/agent/ThreadSidebar.jsx": [
     "// pure-region-start",
     "// pure-region-end",
@@ -503,6 +504,31 @@ Email jane@example.com, phone +44 7700 900123`;
 
   check("says short gaps may not need explaining", () => {
     assert.equal(explainGap({ reason: "travel", from: "2024-03", to: "2024-04" }).short, true);
+  });
+}
+
+// ------------------------------------------------------ application letter
+{
+  const { buildLetter } = await loadRegion("components/tools/ApplicationLetterGenerator.jsx");
+  const base = { name: "Tendai Moyo", role: "Accounts Assistant", company: "Swift Freight", background: "an AP clerk." };
+
+  check("waits for the required fields", () => {
+    assert.equal(buildLetter({ ...base, company: " " }), null);
+  });
+
+  check("writes a minimal letter with no empty paragraphs", () => {
+    assert.equal(
+      buildLetter(base),
+      "Dear Hiring Manager,\n\nI am applying for the Accounts Assistant role. I am an AP clerk.\n\nMy CV is attached. I would welcome the chance to discuss the role.\n\nKind regards,\nTendai Moyo"
+    );
+  });
+
+  check("keeps evidence only when both halves are filled, and signs off to a name", () => {
+    const l = buildLetter({ ...base, recipient: "Ms Dube", req1: "Excel", proof1: "I built our tracker", req2: "SAP" });
+    assert.ok(l.startsWith("Dear Ms Dube,"), l);
+    assert.ok(l.includes("Your posting asks for Excel. I built our tracker."), l);
+    assert.ok(!l.includes("SAP"), l);
+    assert.ok(l.includes("Yours sincerely,\nTendai Moyo"), l);
   });
 }
 

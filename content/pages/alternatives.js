@@ -13,9 +13,9 @@ const ENHANCV_CHECKED = "October 2026";
 
 export const jobscanAlternative = {
   slug: "jobscan-alternative",
-  seoTitle: "Jobscan Alternative That Rewrites Your CV",
+  seoTitle: "Jobscan Alternative: Free ATS Check, Then a Rewritten CV",
   description:
-    "A Jobscan alternative that rewrites your CV instead of scoring it. Paste a job link, get a tailored CV and cover letter. One payment, no monthly fee.",
+    "A Jobscan alternative with a free ATS check and no scan limit. Then paste the job link and get the CV rewritten, plus a cover letter. Pay once or monthly.",
   keywords: [
     "jobscan alternative",
     "jobscan alternatives",

@@ -5,7 +5,7 @@
 
 export const linkedinUrlForResume = {
   slug: "linkedin-url-for-resume",
-  seoTitle: "LinkedIn URL for Resume: Clean Your CV Link",
+  seoTitle: "How to Add Your LinkedIn URL to Your Resume",
   description:
     "Paste your LinkedIn profile link and get a clean version for your CV, plus the full link to put behind it. Free, no login, nothing uploaded.",
   keywords: [

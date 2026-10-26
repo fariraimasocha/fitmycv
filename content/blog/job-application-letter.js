@@ -1,9 +1,9 @@
 export const meta = {
   slug: "job-application-letter",
   title: "How to Write a Job Application Letter (Example and Template)",
-  seoTitle: "Application Letter for a Job: Example and Template",
+  seoTitle: "Job Application Letter: A Simple Example to Copy",
   description:
-    "A full application letter for a job and a fill-in template to copy. One page, 250 to 400 words, and how it differs from a cover letter.",
+    "A simple application letter for a job, written out in full, plus a template with blanks to fill in. One page, 250 to 400 words. Copy it and make it yours.",
   excerpt:
     "An application letter asks for a specific job and proves you fit it in one page. Here is the structure, a full example, and a template to copy.",
   date: "2026-09-27",

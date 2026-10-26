@@ -42,6 +42,17 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // AEO Spec md.vary: markdown twins must advertise that the
+        // representation depends on Accept. Next overwrites Vary on
+        // prerendered RSC responses, so this is a second layer for .md URLs.
+        source: "/index.md",
+        headers: [{ key: "Vary", value: "Accept" }],
+      },
+      {
+        source: "/:path*.md",
+        headers: [{ key: "Vary", value: "Accept" }],
+      },
+      {
         source: "/(.*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },

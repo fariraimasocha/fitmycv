@@ -25,7 +25,11 @@
     "previewFree": "Veja seu currículo adaptado grátis",
     "priceNote": "${price} uma vez para baixar os PDFs e se candidatar.",
     "soundOn": "Ativar som",
-    "soundOff": "Silenciar"
+    "soundOff": "Silenciar",
+    "previewLoading": "Lendo a vaga…",
+    "previewTitle": "A vaga em {host} pede estes termos",
+    "previewBody": "Entre para adaptar seu currículo a esta vaga. Seu link está salvo.",
+    "previewCta": "Entrar e adaptar meu currículo"
   },
   "jobBoards": {
     "title": "Funciona com qualquer link de vaga"

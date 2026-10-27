@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { useClientPricing } from "@/components/pricing/PricingCards";
 import { trackEvent } from "@/lib/analytics";
+import { SHOW_MONTHLY } from "@/lib/pricing";
 
 // Keys in messages/<locale>/pages.json under upgradeModal.
 const COPY_KEYS = {
@@ -45,18 +46,19 @@ export default function UpgradePromptModal({
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
   const pricing = useClientPricing();
   const offerSingle = Boolean(cvId && session?.user && pricing.single);
+  const primaryPlan = SHOW_MONTHLY ? "month" : offerSingle ? "single" : "lifetime";
 
   useEffect(() => {
     if (open) {
       trackEvent("paywall_view", {
         context,
-        primary_plan: "month",
+        primary_plan: primaryPlan,
         has_job: Boolean(job?.title),
         has_stats: Boolean(stats?.keywordsAdded || stats?.grade),
         offers_single: offerSingle,
       });
     }
-  }, [open, context, job?.title, stats?.keywordsAdded, stats?.grade, offerSingle]);
+  }, [open, context, job?.title, stats?.keywordsAdded, stats?.grade, offerSingle, primaryPlan]);
 
   const copyKey = COPY_KEYS[context] ?? COPY_KEYS.default;
   const title = job?.title
@@ -135,6 +137,41 @@ export default function UpgradePromptModal({
           </ul>
         )}
 
+        {!SHOW_MONTHLY ? (
+          <div className="flex flex-col items-center gap-2 pt-1">
+            {offerSingle && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => startCheckout("single", "paywall_primary")}
+                  disabled={Boolean(pendingPlan)}
+                  aria-busy={pendingPlan === "single"}
+                  className="dashboard-primary-btn w-full disabled:cursor-wait disabled:opacity-60"
+                >
+                  {t("getSingle", { price: pricing.single.price })}
+                </button>
+                <p className="text-xs text-[var(--landing-ink-soft)]">{t("singleNote")}</p>
+              </>
+            )}
+            <button
+              type="button"
+              onClick={() => startCheckout("lifetime", offerSingle ? "paywall_secondary" : "paywall_primary")}
+              disabled={Boolean(pendingPlan)}
+              aria-busy={pendingPlan === "lifetime"}
+              className={`${offerSingle ? "dashboard-secondary-btn mt-2" : "dashboard-primary-btn"} w-full disabled:cursor-wait disabled:opacity-60`}
+            >
+              {t("getLifetime", { price: pricing.lifetime.price })}
+            </button>
+            <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-sm text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
+            >
+              {t("maybeLater")}
+            </button>
+          </div>
+        ) : (
         <div className="flex flex-col items-center gap-2 pt-1">
           <button
             type="button"
@@ -177,6 +214,7 @@ export default function UpgradePromptModal({
             {t("maybeLater")}
           </button>
         </div>
+        )}
       </DialogContent>
     </Dialog>
   );

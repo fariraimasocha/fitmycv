@@ -430,6 +430,7 @@
       "viewLetter": "Ver carta",
       "nextApplications": "Este puesto está en Candidaturas. Muévelo cuando tengas noticias.",
       "downloadPdf": "Descargar PDF",
+      "downloadFrom": "Descarga desde ${price}",
       "downloadLetter": "Descargar carta de presentación",
       "saveTailored": "Guardar CV adaptado",
       "liveUpdates": "Se actualiza mientras escribes",

@@ -25,7 +25,11 @@
     "previewFree": "Vorschau deines angepassten Lebenslaufs kostenlos",
     "priceNote": "Einmalig ${price}, um PDFs herunterzuladen und dich zu bewerben.",
     "soundOn": "Ton einschalten",
-    "soundOff": "Stumm schalten"
+    "soundOff": "Stumm schalten",
+    "previewLoading": "Stelle wird gelesen…",
+    "previewTitle": "Die Stelle auf {host} verlangt diese Begriffe",
+    "previewBody": "Melde dich an, um deinen Lebenslauf an diese Stelle anzupassen. Dein Link ist gespeichert.",
+    "previewCta": "Anmelden und Lebenslauf anpassen"
   },
   "jobBoards": {
     "title": "Funktioniert mit jedem Stellenlink"

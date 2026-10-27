@@ -645,6 +645,7 @@
       "viewLetter": "عرض الخطاب",
       "nextApplications": "هذه الوظيفة في الطلبات. حدّث مرحلتها عندما يصلك رد.",
       "downloadPdf": "تنزيل PDF",
+      "downloadFrom": "التنزيل من ${price}",
       "downloadLetter": "نزّل خطاب التقديم",
       "saveTailored": "احفظ السيرة الذاتية المخصصة",
       "liveUpdates": "تتحدث أثناء الكتابة",

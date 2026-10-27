@@ -430,6 +430,7 @@
       "viewLetter": "Anschreiben ansehen",
       "nextApplications": "Diese Stelle ist in deinen Bewerbungen. Verschiebe sie, sobald du etwas hörst.",
       "downloadPdf": "PDF herunterladen",
+      "downloadFrom": "Download ab ${price}",
       "downloadLetter": "Anschreiben herunterladen",
       "saveTailored": "Angepassten Lebenslauf speichern",
       "liveUpdates": "Aktualisiert sich beim Tippen",

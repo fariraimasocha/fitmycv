@@ -5,6 +5,7 @@ import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
 import { getServerPricing } from "@/lib/server-pricing";
+import { SHOW_MONTHLY } from "@/lib/pricing";
 import { getTranslations } from "next-intl/server";
 import { localeAlternates } from "@/lib/seo";
 
@@ -100,10 +101,14 @@ export default async function PricingPage({ params }) {
             </h1>
             <p className="mt-5 font-outfit text-lg font-extrabold text-[var(--landing-ink)] sm:text-xl">
               {t("priceOnce", { price: pricing.lifetime.price })}
-              <span className="mx-2 font-normal text-[var(--landing-ink-soft)]">
-                {t("or")}
-              </span>
-              {t("priceMonthly", { price: pricing.month.price })}
+              {SHOW_MONTHLY ? (
+                <>
+                  <span className="mx-2 font-normal text-[var(--landing-ink-soft)]">
+                    {t("or")}
+                  </span>
+                  {t("priceMonthly", { price: pricing.month.price })}
+                </>
+              ) : null}
             </p>
             <p className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
               {t("intro")}

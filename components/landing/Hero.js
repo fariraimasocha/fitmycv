@@ -22,6 +22,7 @@ import RevealWords from "@/components/landing/RevealWords";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { toUrl } from "@/lib/ats-detect";
+import { extractTerms } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";
 import { HOME_TESTIMONIALS } from "@/content/pages/home";
 
@@ -126,8 +127,30 @@ function DemoPreview() {
   );
 }
 
+// Scrapes the posting through the public job saver (Exa, rate limited per IP,
+// no model call) and ranks its terms in the browser. Returns [] on any
+// failure so the caller can fall back to sign-in.
+async function fetchJobTerms(jobUrl) {
+  try {
+    const res = await fetch("/api/tools/job-save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: jobUrl }),
+    });
+    if (!res.ok) {
+      trackEvent("hero_preview_failed", { status: res.status });
+      return [];
+    }
+    const { text } = await res.json();
+    return extractTerms(text || "", 8).map((item) => item.term);
+  } catch {
+    trackEvent("hero_preview_failed", { status: 0 });
+    return [];
+  }
+}
+
 // The headline says "paste any job link", so the hero takes one. The link
-// rides the existing ATS handoff (sessionStorage) through sign-in and
+// rides the existing ATS handoff (localStorage) through sign-in and
 // onboarding and is waiting in the tailor page's link field.
 export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 mt-8" }) {
   const t = useTranslations("landing.hero");
@@ -136,9 +159,17 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
   const { data: session } = useSession();
   const [link, setLink] = useState("");
   const [invalid, setInvalid] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
 
-  const submit = (event) => {
+  const goToAuth = (authUrl) => {
+    if (gate?.interceptAuth(null, authUrl)) return;
+    router.push(authUrl);
+  };
+
+  const submit = async (event) => {
     event.preventDefault();
+    if (loading) return;
     const url = toUrl(link);
     if (!url) {
       setInvalid(true);
@@ -147,15 +178,25 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
     saveAtsHandoff({ jobUrl: url.href, source: "hero" });
     trackEvent("hero_link_submitted", { signed_in: Boolean(session?.user), host: url.hostname });
     // The link also rides in the URL. A magic link can open in a new tab,
-    // where the sessionStorage copy is gone.
+    // where the localStorage copy may have expired.
     const dest = `/dashboard/tailor?url=${encodeURIComponent(url.href)}`;
     if (session?.user) {
       router.push(dest);
       return;
     }
     const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
-    if (gate?.interceptAuth(null, authUrl)) return;
-    router.push(authUrl);
+    // Signed-out visitors get the job's keywords back before the sign-in ask.
+    // Half of them used to leave at /auth with nothing for their link. Any
+    // failure falls through to the old straight-to-auth path.
+    setLoading(true);
+    const terms = await fetchJobTerms(url.href);
+    setLoading(false);
+    if (!terms.length) {
+      goToAuth(authUrl);
+      return;
+    }
+    trackEvent("hero_preview_shown", { host: url.hostname, terms: terms.length });
+    setPreview({ host: url.hostname.replace(/^www\./, ""), terms, authUrl });
   };
 
   return (
@@ -173,6 +214,7 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
           onChange={(e) => {
             setLink(e.target.value);
             setInvalid(false);
+            setPreview(null);
           }}
           placeholder={t("linkPlaceholder")}
           aria-invalid={invalid || undefined}
@@ -181,9 +223,11 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
         />
         <button
           type="submit"
-          className="landing-primary-btn group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 font-outfit text-base font-bold"
+          disabled={loading}
+          aria-busy={loading || undefined}
+          className="landing-primary-btn group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 font-outfit text-base font-bold disabled:opacity-70"
         >
-          {t("tailorCta")}
+          {loading ? t("previewLoading") : t("tailorCta")}
           <ArrowRightIcon
             size={18}
             aria-hidden="true"
@@ -195,6 +239,32 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
         <p id={`${id}-error`} role="alert" className="mt-2 text-sm font-semibold text-[var(--landing-accent)]">
           {t("linkError")}
         </p>
+      ) : null}
+      {preview ? (
+        <div role="status" className="mt-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 text-left">
+          <p className="font-outfit text-base font-bold text-[var(--landing-ink)]">
+            {t("previewTitle", { host: preview.host })}
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {preview.terms.map((term) => (
+              <li
+                key={term}
+                className="rounded-full border border-[var(--landing-line)] px-3 py-1 text-sm text-[var(--landing-ink)]"
+              >
+                {term}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-sm text-[var(--landing-ink-soft)]">{t("previewBody")}</p>
+          <button
+            type="button"
+            onClick={() => goToAuth(preview.authUrl)}
+            className="landing-primary-btn mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl px-6 font-outfit text-base font-bold sm:w-auto"
+          >
+            {t("previewCta")}
+            <ArrowRightIcon size={18} aria-hidden="true" className="rtl:-scale-x-100" />
+          </button>
+        </div>
       ) : null}
     </form>
   );

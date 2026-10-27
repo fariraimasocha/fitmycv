@@ -645,6 +645,7 @@
       "viewLetter": "View cover letter",
       "nextApplications": "This role is in Applications. Move it along as you hear back.",
       "downloadPdf": "Download PDF",
+      "downloadFrom": "Download from ${price}",
       "downloadLetter": "Download cover letter",
       "saveTailored": "Save tailored CV",
       "liveUpdates": "Updates as you type",

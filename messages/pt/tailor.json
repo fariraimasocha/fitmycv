@@ -645,6 +645,7 @@
       "viewLetter": "Ver carta",
       "nextApplications": "Esta vaga está em Candidaturas. Avance-a quando tiver retorno.",
       "downloadPdf": "Baixar PDF",
+      "downloadFrom": "Download a partir de ${price}",
       "downloadLetter": "Baixar carta de apresentação",
       "saveTailored": "Salvar currículo adaptado",
       "liveUpdates": "Atualiza enquanto você digita",

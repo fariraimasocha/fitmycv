@@ -47,6 +47,7 @@ import InterviewPrepCard from "@/components/InterviewPrepCard";
 import WhyThisRoleCard from "@/components/WhyThisRoleCard";
 import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
+import { useClientPricing } from "@/components/pricing/PricingCards";
 import PreviewUnlockGate from "@/components/PreviewUnlockGate";
 import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import { printDocument } from "@/utils/print-document";
@@ -212,8 +213,7 @@ function Tailor() {
   const [fixGain, setFixGain] = useState(0);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [upgradeModalContext, setUpgradeModalContext] = useState("default");
-  const upgradeTimerRef = useRef(null);
-  useEffect(() => () => clearTimeout(upgradeTimerRef.current), []);
+  const pricing = useClientPricing();
   const recentUrls = useSyncExternalStore(
     subscribeRecentJobUrls,
     getRecentJobUrls,
@@ -523,18 +523,10 @@ function Tailor() {
         toast.success(t("tailored"));
       }
 
-      // A finished CV is the natural moment to ask. Waiting on a Download
-      // click meant a third of free users who tailored never saw a price.
-      // But the result is the peak of this flow, so it gets six seconds on
-      // screen first. A Download click before then opens the modal sooner
-      // (handleDownload clears this timer).
-      if (!session?.user?.isPremium) {
-        clearTimeout(upgradeTimerRef.current);
-        upgradeTimerRef.current = setTimeout(() => {
-          setUpgradeModalContext("tailored");
-          setShowUpgradeModal(true);
-        }, 6000);
-      }
+      // No popup after tailoring. The result is the peak of this flow, and
+      // on Oct 27 2026 the auto-opened paywall reached 7 people who tailored
+      // a CV and none started checkout from it. The price sits under Download instead and
+      // the modal opens when someone actually asks for the PDF.
     },
     onError: (error) => {
       if (error.code === "PREMIUM_REQUIRED") {
@@ -592,7 +584,6 @@ function Tailor() {
         document_type: documentType,
         template: selectedTemplate,
       });
-      clearTimeout(upgradeTimerRef.current);
       setUpgradeModalContext("download");
       setShowUpgradeModal(true);
       return false;
@@ -796,7 +787,6 @@ function Tailor() {
   };
 
   function startTailor(job = jobData) {
-    clearTimeout(upgradeTimerRef.current);
     trackEvent("tailor_started", {
       is_premium: Boolean(session?.user?.isPremium),
       has_match_score: Boolean(matchScore),
@@ -1190,6 +1180,11 @@ function Tailor() {
                   idleIcon={downloadIcon}
                   onDownload={() => handleDownload(activeTab)}
                 />
+                {!isPremium && pricing.single ? (
+                  <span className="self-center text-xs text-muted-foreground">
+                    {t("result.downloadFrom", { price: pricing.single.price })}
+                  </span>
+                ) : null}
               </div>
             )}
           </div>

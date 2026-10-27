@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
-import { PRICING } from "@/lib/pricing";
+import { PRICING, SHOW_MONTHLY } from "@/lib/pricing";
 import { trackEvent } from "@/lib/analytics";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
@@ -91,8 +91,9 @@ export default function PricingCards({
 
   // Callers can pick which plan leads. Lifetime is the default everywhere.
   const highlightId = primaryPlan ?? defaultPlan;
-  const ordered =
-    highlightId === "month"
+  const ordered = !SHOW_MONTHLY
+    ? [pricing.lifetime]
+    : highlightId === "month"
       ? [pricing.month, pricing.lifetime]
       : [pricing.lifetime, pricing.month];
   const plans = ordered.map((plan) => ({
@@ -102,8 +103,9 @@ export default function PricingCards({
     suffix: t(`plans.${plan.id}.suffix`),
     cta: t(`plans.${plan.id}.cta`),
     highlight: plan.id === highlightId,
+    // A badge only means something next to another plan.
     badge:
-      plan.id === highlightId
+      ordered.length > 1 && plan.id === highlightId
         ? plan.id === "month"
           ? t("badges.startHere")
           : t("badges.bestValue")
@@ -119,6 +121,76 @@ export default function PricingCards({
       ? translatedFeatures
       : PRO_FEATURES;
 
+  const checkIcon = (
+    <span className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)]">
+      <CheckIcon size={10} weight="bold" className="text-[var(--landing-accent)]" aria-hidden="true" />
+    </span>
+  );
+
+  // One plan on sale: price, button and feature list stack in one centered
+  // card at every width, the same as on a phone.
+  if (plans.length === 1 && !compact) {
+    const plan = plans[0];
+    return (
+      <div ref={rootRef} className="mx-auto flex w-full max-w-md flex-col gap-6">
+        {pricing.regionalNote ? (
+          <p className="text-center text-xs font-semibold text-[var(--landing-ink-soft)]">{t("regionalNote")}</p>
+        ) : null}
+        <div className="bezel bezel-accent w-full">
+          <div className="bezel-inner flex flex-col gap-8 p-6 sm:p-8">
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-1">
+                <span className="font-outfit text-base font-semibold text-[var(--landing-ink)]">{plan.label}</span>
+                <span className="text-sm text-[var(--landing-ink-soft)]">{plan.subline}</span>
+              </div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-outfit text-6xl font-semibold leading-none tracking-tight tabular-nums text-[var(--landing-ink)]">
+                  ${plan.price}
+                </span>
+                <span className="text-sm text-[var(--landing-ink-soft)]">{plan.suffix}</span>
+              </div>
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleCheckout(plan.id)}
+                  disabled={Boolean(pendingPlan)}
+                  aria-busy={pendingPlan === plan.id}
+                  className="landing-primary-btn w-full cursor-pointer rounded-xl font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
+                >
+                  {plan.cta}
+                </button>
+                <p className="text-center text-xs text-[var(--landing-ink-soft)]">{t("secureCheckout")}</p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 border-t border-[var(--landing-line)] pt-8">
+              <h3 className="flex items-center gap-1.5 font-outfit text-sm font-semibold text-[var(--landing-ink)]">
+                {t("includesTitleOne")}
+                <span className="text-[var(--landing-accent)]">[{features.length}]</span>
+              </h3>
+              <ul className="flex flex-col gap-3">
+                {features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm text-[var(--landing-ink-soft)]">
+                    {checkIcon}
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {onSkip && (
+          <button
+            type="button"
+            onClick={onSkip}
+            className="mx-auto text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+          >
+            {skipLabel ?? t("continueFree")}
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div ref={rootRef} className="flex w-full flex-col gap-6">
       {pricing.regionalNote ? (
@@ -129,9 +201,11 @@ export default function PricingCards({
 
       <div
         className={`grid w-full gap-4 ${
-          compact
-            ? "grid-cols-1 sm:grid-cols-2"
-            : "grid-cols-1 md:grid-cols-2"
+          plans.length === 1
+            ? "max-w-md grid-cols-1"
+            : compact
+              ? "grid-cols-1 sm:grid-cols-2"
+              : "grid-cols-1 md:grid-cols-2"
         }`}
       >
         {plans.map((plan) => {
@@ -194,14 +268,7 @@ export default function PricingCards({
                 key={feature}
                 className="flex items-start gap-3 text-sm text-[var(--landing-ink-soft)]"
               >
-                <span className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)]">
-                  <CheckIcon
-                    size={10}
-                    weight="bold"
-                    className="text-[var(--landing-accent)]"
-                    aria-hidden="true"
-                  />
-                </span>
+                {checkIcon}
                 {feature}
               </li>
             ))}

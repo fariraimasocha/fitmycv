@@ -25,7 +25,11 @@
     "previewFree": "免费预览你的定制简历",
     "priceNote": "一次性支付 ${price}，即可下载 PDF 并投递。",
     "soundOn": "打开声音",
-    "soundOff": "静音"
+    "soundOff": "静音",
+    "previewLoading": "正在读取职位…",
+    "previewTitle": "{host} 上的这个职位要求这些关键词",
+    "previewBody": "登录即可根据此职位定制你的简历。你的链接已保存。",
+    "previewCta": "登录并定制我的简历"
   },
   "jobBoards": {
     "title": "支持任意职位链接"

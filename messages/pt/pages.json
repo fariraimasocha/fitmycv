@@ -44,6 +44,7 @@
     "titleLine1": "Menos que uma hora de um freelancer.",
     "titleLine2": "Seu para sempre.",
     "intro": "Um pagamento para acesso vitalício, ou assine por mês e cancele quando quiser.",
+    "introOnce": "Um pagamento. Todos os recursos, para sempre.",
     "footnote": "Cerca de {months} meses do plano mensal, e seu para todas as buscas depois disso. Pagamento seguro pela Polar.",
     "jobscanCompare": "Para comparar, o Jobscan Premium custa US$ 49,95 por mês (verificado em outubro de 2026).",
     "regionalAvailable": "Há preços regionais menores em alguns países."
@@ -69,6 +70,8 @@
     },
     "regionalNote": "Preço para a sua região",
     "includesTitle": "Os dois planos incluem tudo",
+    "includesTitleOne": "Tudo incluído",
+    "secureCheckout": "Pagamento seguro via Polar.",
     "features": [
       "Baixe cada currículo adaptado em PDF",
       "Pontuação de compatibilidade para cada vaga que você adicionar",
@@ -103,6 +106,8 @@
     "getSingle": "Desbloquear este CV por ${price}",
     "singleNote": "Apenas este CV e a carta de apresentação. Um único pagamento.",
     "orLifetime": "Ou pague ${price} uma vez pelo acesso vitalício",
+    "getLifetime": "Acesso vitalício por ${price}",
+    "lifetimeNote": "Pague uma vez. Todos os currículos e cartas, para sempre.",
     "stats": {
       "keywords": "{count, plural, one {# palavra-chave da vaga adicionada ao seu currículo} other {# palavras-chave da vaga adicionadas ao seu currículo}}",
       "grade": "Nota de compatibilidade com esta vaga: {grade}"

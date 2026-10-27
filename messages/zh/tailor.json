@@ -645,6 +645,7 @@
       "viewLetter": "查看求职信",
       "nextApplications": "这个职位已在求职申请中。收到回复后更新它的阶段。",
       "downloadPdf": "下载 PDF",
+      "downloadFrom": "下载低至 ${price}",
       "downloadLetter": "下载求职信",
       "saveTailored": "保存定制简历",
       "liveUpdates": "随输入实时更新",

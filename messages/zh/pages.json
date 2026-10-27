@@ -44,6 +44,7 @@
     "titleLine1": "不到请自由职业者一小时的费用。",
     "titleLine2": "永久归你所有。",
     "intro": "一次付款获得终身访问，或选择月付，随时可取消。",
+    "introOnce": "一次付费，所有功能永久可用。",
     "footnote": "约等于 {months} 个月的月费，之后的每次求职都能使用。通过 Polar 安全结账。",
     "jobscanCompare": "作为对比，Jobscan Premium 标价每月 49.95 美元（2026 年 10 月查询）。",
     "regionalAvailable": "部分国家可享受更低的地区价格。"
@@ -69,6 +70,8 @@
     },
     "regionalNote": "你所在地区的价格",
     "includesTitle": "两个方案都包含全部功能",
+    "includesTitleOne": "全部功能",
+    "secureCheckout": "通过 Polar 安全支付。",
     "features": [
       "将每份定制简历下载为 PDF",
       "为你添加的每个职位提供匹配度评分",
@@ -103,6 +106,8 @@
     "getSingle": "以 ${price} 解锁这份简历",
     "singleNote": "仅限这份简历及其求职信。一次付费。",
     "orLifetime": "或一次性支付 ${price} 获取终身版",
+    "getLifetime": "${price} 获取终身版",
+    "lifetimeNote": "一次付费，所有简历和求职信永久可用。",
     "stats": {
       "keywords": "已将 {count} 个职位关键词加入你的简历",
       "grade": "与该职位的匹配等级：{grade}"

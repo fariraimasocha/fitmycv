@@ -430,6 +430,7 @@
       "viewLetter": "Voir la lettre",
       "nextApplications": "Ce poste est dans vos candidatures. Faites-le avancer quand vous avez des nouvelles.",
       "downloadPdf": "Télécharger le PDF",
+      "downloadFrom": "Téléchargement dès ${price}",
       "downloadLetter": "Télécharger la lettre",
       "saveTailored": "Enregistrer le CV adapté",
       "liveUpdates": "Mis à jour pendant la saisie",

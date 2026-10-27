@@ -213,6 +213,7 @@ export function ResumePane({ draft, template, style }) {
         open={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
         context="download"
+        cvId={draft?._id}
       />
     </section>
   );

@@ -25,7 +25,11 @@
     "previewFree": "Preview your tailored CV free",
     "priceNote": "${price} once to download PDFs and apply.",
     "soundOn": "Turn sound on",
-    "soundOff": "Mute"
+    "soundOff": "Mute",
+    "previewLoading": "Reading the job…",
+    "previewTitle": "The job on {host} asks for these",
+    "previewBody": "Sign in to tailor your CV to this job. Your link is saved.",
+    "previewCta": "Sign in to tailor my CV"
   },
   "jobBoards": {
     "title": "Works with any job link"

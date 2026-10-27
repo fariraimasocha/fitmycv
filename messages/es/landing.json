@@ -25,7 +25,11 @@
     "previewFree": "Vista previa gratis de tu CV adaptado",
     "priceNote": "${price} un único pago para descargar los PDF y postularte.",
     "soundOn": "Activar sonido",
-    "soundOff": "Silenciar"
+    "soundOff": "Silenciar",
+    "previewLoading": "Leyendo la oferta…",
+    "previewTitle": "La oferta en {host} pide estos términos",
+    "previewBody": "Inicia sesión para adaptar tu CV a esta oferta. Tu enlace está guardado.",
+    "previewCta": "Iniciar sesión y adaptar mi CV"
   },
   "jobBoards": {
     "title": "Funciona con cualquier enlace de empleo"

@@ -44,6 +44,7 @@
     "titleLine1": "Less than an hour of a freelancer.",
     "titleLine2": "Yours for good.",
     "intro": "One payment for lifetime access, or go monthly, cancel anytime.",
+    "introOnce": "One payment. Every feature, for good.",
     "footnote": "About {months} months of monthly, and yours for every search after. Secure checkout via Polar.",
     "jobscanCompare": "For comparison, Jobscan Premium lists at $49.95 a month (checked October 2026).",
     "regionalAvailable": "Lower regional pricing is available in select countries."
@@ -69,6 +70,8 @@
     },
     "regionalNote": "Pricing for your region",
     "includesTitle": "Both plans include everything",
+    "includesTitleOne": "Everything included",
+    "secureCheckout": "Secure checkout via Polar.",
     "features": [
       "Download every tailored CV as a PDF",
       "Job match score for every job you add",
@@ -103,6 +106,8 @@
     "getSingle": "Unlock this CV for ${price}",
     "singleNote": "This CV and its cover letter only. One payment.",
     "orLifetime": "Or pay ${price} once for lifetime",
+    "getLifetime": "Get lifetime for ${price}",
+    "lifetimeNote": "Pay once. Every CV and cover letter, forever.",
     "stats": {
       "keywords": "{count, plural, one {# job keyword added to your CV} other {# job keywords added to your CV}}",
       "grade": "Match grade for this job: {grade}"

@@ -7,7 +7,7 @@
   "saveError": "Impossible d’enregistrer votre CV. Vérifiez votre connexion et réessayez.",
   "upload": {
     "eyebrow": "Votre CV",
-    "title": "{hasName, select, yes {{name}, importez votre CV pour que nous puissions tout adapter à votre profil.} other {Importez votre CV pour que nous puissions tout adapter à votre profil.}}",
+    "title": "{hasName, select, yes {{name}, importez votre CV. Nous l'utilisons pour adapter chaque candidature.} other {Importez votre CV. Nous l'utilisons pour adapter chaque candidature.}}",
     "privacy": "Vous seul pouvez voir votre CV. Notre fournisseur d’IA le lit pour rédiger vos candidatures.",
     "editLater": "Vous pourrez modifier ces informations plus tard dans Mon CV."
   },

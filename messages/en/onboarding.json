@@ -7,7 +7,7 @@
   "saveError": "Couldn't save your CV. Check your connection and try again.",
   "upload": {
     "eyebrow": "Your CV",
-    "title": "{hasName, select, yes {{name}, upload your CV so we can tailor everything to you.} other {Upload your CV so we can tailor everything to you.}}",
+    "title": "{hasName, select, yes {{name}, upload your CV. We use it to tailor each job application.} other {Upload your CV. We use it to tailor each job application.}}",
     "privacy": "Only you can see your CV. Our AI provider reads it to write your applications.",
     "editLater": "You can edit these details on My CV later."
   },

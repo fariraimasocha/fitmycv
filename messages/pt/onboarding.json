@@ -7,7 +7,7 @@
   "saveError": "Não foi possível salvar seu currículo. Verifique sua conexão e tente de novo.",
   "upload": {
     "eyebrow": "Seu currículo",
-    "title": "{hasName, select, yes {{name}, envie seu currículo para adaptarmos tudo a você.} other {Envie seu currículo para adaptarmos tudo a você.}}",
+    "title": "{hasName, select, yes {{name}, envie seu currículo. Nós o usamos para adaptar cada candidatura.} other {Envie seu currículo. Nós o usamos para adaptar cada candidatura.}}",
     "privacy": "Só você pode ver seu currículo. Nosso provedor de IA o lê para escrever suas candidaturas.",
     "editLater": "Você pode editar esses dados depois em Meu currículo."
   },

@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import ReferenceCV from "@/models/ReferenceCV";
 import { getReferenceCV } from "@/lib/dashboard-data";
-import { TEMPLATE_IDS, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
+import { DEFAULT_TEMPLATE, TEMPLATE_IDS, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
 import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 
 export async function GET() {
@@ -60,7 +60,7 @@ export async function PATCH(request) {
 
     if (templateStyle !== undefined) {
       update.templateStyle = normalizeTemplateStyle({
-        ...getTemplateDefaultStyle(template || "classic"),
+        ...getTemplateDefaultStyle(template || DEFAULT_TEMPLATE),
         ...templateStyle,
       });
     }

@@ -196,7 +196,7 @@ export function getTemplatesInCategory(categoryId) {
 
 export const TEMPLATE_IDS = TEMPLATE_METADATA.map((t) => t.id);
 
-export const DEFAULT_TEMPLATE = "classic";
+export const DEFAULT_TEMPLATE = "modern";
 
 export function getTemplateName(template) {
   return (

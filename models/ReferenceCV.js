@@ -49,10 +49,10 @@ const referenceCVSchema = new mongoose.Schema(
       },
     ],
     rawText: String,
-    template: { type: String, default: "classic" },
+    template: { type: String, default: "modern" },
     templateStyle: {
       color: { type: String, default: "black" },
-      font: { type: String, default: "merriweather" },
+      font: { type: String, default: "dm-sans" },
       dividers: { type: Boolean, default: true },
       indent: { type: Boolean, default: false },
     },

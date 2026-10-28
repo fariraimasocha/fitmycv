@@ -20,6 +20,8 @@ import GapExplainer from "@/components/tools/GapExplainer";
 import JobPostingSaver from "@/components/tools/JobPostingSaver";
 import AtsLookup from "@/components/tools/AtsLookup";
 import LinkedInProfileChecker from "@/components/tools/LinkedInProfileChecker";
+import LetterFromCvGenerator from "@/components/tools/LetterFromCvGenerator";
+import KeywordsGenerator from "@/components/tools/KeywordsGenerator";
 import JsonLd from "@/components/JsonLd";
 import {
   breadcrumbSchema,
@@ -44,6 +46,8 @@ const TOOL_COMPONENTS = {
   "job-save": JobPostingSaver,
   "ats-lookup": AtsLookup,
   "linkedin-profile": LinkedInProfileChecker,
+  "letter-from-cv": LetterFromCvGenerator,
+  "keywords-generator": KeywordsGenerator,
 };
 
 const PRODUCT_SLUGS = new Set([
@@ -54,6 +58,9 @@ const PRODUCT_SLUGS = new Set([
   "linkedin-profile-checker",
   "resume-file-name-generator",
   "ats-resume-checker",
+  "cv-checker",
+  "job-application-letter-generator",
+  "resume-keywords-generator",
   "free-ats-keyword-checker",
   "resume-optimizer",
   "ai-cover-letter-generator",
@@ -78,6 +85,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
     lede,
     ctas = [],
     tool,
+    toolProps,
     blocks = [],
     faqs = [],
     faqHeading,
@@ -178,7 +186,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
           <section id="tool" className="scroll-mt-24 px-5 pb-4 sm:px-10 lg:px-16 xl:px-24">
             <div className="mx-auto w-full max-w-3xl">
               {ToolComponent ? (
-                <ToolComponent />
+                <ToolComponent {...toolProps} />
               ) : (
                 <KeywordChecker mode={tool} />
               )}

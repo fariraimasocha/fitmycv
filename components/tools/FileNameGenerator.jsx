@@ -193,13 +193,13 @@ export default function FileNameGenerator() {
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <span
-                    className={`font-mono text-sm font-bold break-all ${
+                    className={`text-sm ${
                       option.fileName
-                        ? "text-[var(--landing-ink)]"
-                        : "text-[var(--landing-ink-soft)]"
+                        ? "font-mono font-bold break-all text-[var(--landing-ink)]"
+                        : "font-semibold text-[var(--landing-ink-soft)]"
                     }`}
                   >
-                    {option.fileName || "Firstname-Lastname-Role-Company-Resume.pdf"}
+                    {option.fileName || "With the company name"}
                   </span>
                   {option.badge ? (
                     <span className="rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-2.5 py-1 font-outfit text-xs font-extrabold text-[var(--landing-ink)]">

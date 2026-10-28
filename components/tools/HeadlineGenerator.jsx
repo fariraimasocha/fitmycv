@@ -25,6 +25,7 @@ import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import { notCompanyTerm } from "@/lib/keywords";
 
 // pure-helpers:start
 
@@ -34,7 +35,7 @@ import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/t
 const STOP_WORDS = new Set(
   `a about above after again against all also am an and any are as at be because been before being below between both but by can cannot could did do does doing down during each few for from further had has have having he her here hers herself him himself his how i if in into is it its itself just me more most my myself no nor not now of off on once only or other our ours ourselves out over own same she should so some such than that the their theirs them themselves then there these they this those through to too under until up very was we were what when where which while who whom why will with you your yours yourself yourselves
 
-   ability able across additional advantage apply applicant applicants bonus build built candidate candidates career company culture description desirable duties employment ensure ensuring environment essential etc excellent experience familiar familiarity fast focus following friendly get getting good great growing help including involved job join key like looking love make making must need needs new nice offer opportunity part passionate people plus position preferred proven provide ran range required requirement requirements responsibilities responsibility role roles run running skill skills strong take team teams understanding using want well work working world would years`
+   ability able across additional advantage apply applicant applicants bonus build built candidate candidates career company culture description desirable duties employment ensure ensuring environment essential etc excellent experience familiar familiarity fast focus following friendly get getting good great growing help including involved job join key like looking love make making must need needs new nice offer opportunity part passionate people plus position preferred proven provide ran range required requirement requirements responsibilities responsibility role roles run running skill skills strong take team teams understanding using want well work working world would years hiring hire seeking reports head senior junior write someone know every day location`
     .split(/\s+/)
     .filter(Boolean)
 );
@@ -64,7 +65,8 @@ function stem(word) {
   return word;
 }
 
-const isContent = (word) => word && !STOP_WORDS.has(word);
+// A token with no letters ("4+", "2026") is never a keyword.
+const isContent = (word) => word && /[a-z]/.test(word) && !STOP_WORDS.has(word);
 
 /**
  * Ranks the terms a posting leans on. Unigrams score by frequency; bigrams are
@@ -220,6 +222,9 @@ function preferredCasing(term, text) {
     }
   }
   if (best && /[A-Z]/.test(best.slice(1))) return best;
+  // A short lowercase term with no vowels is a brand written that way ("dbt",
+  // "npm"), not a word. Keep it as the posting writes it.
+  if (best && /^[b-df-hj-np-tv-z]{2,4}$/.test(best)) return best;
   return titleCase(term);
 }
 
@@ -581,7 +586,13 @@ export default function HeadlineGenerator() {
 
   const result = useMemo(() => {
     if (!ran || jobTooShort || resumeTooShort) return null;
-    return generateHeadlines(jobText, resumeText, currentYear);
+    const keep = notCompanyTerm(jobText);
+    const out = generateHeadlines(jobText, resumeText, currentYear);
+    return {
+      ...out,
+      matched: out.matched.filter((item) => keep(item.term)),
+      missing: out.missing.filter((item) => keep(item.term)),
+    };
   }, [ran, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
 
   async function copyHeadline(id, text) {

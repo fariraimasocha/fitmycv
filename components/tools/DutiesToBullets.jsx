@@ -160,8 +160,14 @@ const IRREGULAR_PAST = {
   write: "wrote",
 };
 
+// Everyday verbs that follow "and" in a duty ("and talking to suppliers").
+// Only ever put into the past tense there, never used to open a bullet.
+const LATER_VERBS = new Set(
+  "talk speak call phone email chase contact attend travel meet greet welcome deal keep send take give sort count load pack cook follow help assist handle support work".split(" ")
+);
+
 // Short verbs that double their last consonant in the past tense.
-const DOUBLING = new Set(["plan", "ship", "map", "log", "scan", "chat", "stop", "drop"]);
+const DOUBLING = new Set(["plan", "ship", "map", "log", "scan", "chat", "stop", "drop", "travel"]);
 
 /** Past tense of a base verb. Covers the regular rules plus the list above. */
 function pastTense(verb) {
@@ -270,9 +276,17 @@ function topicFamily(text) {
  * strong verbs followed by more words, so "support queue" nouns stay put.
  */
 function pastTenseLaterVerbs(text) {
-  return text.replace(/\b(and|then)\s+([a-z]+)(?=\s+\S)/gi, (match, joiner, word) =>
-    STRONG_VERBS.has(word.toLowerCase()) ? `${joiner} ${pastTense(word)}` : match
-  );
+  return text.replace(/\b(and|then)\s+([a-z]+)(?=\s+\S)/gi, (match, joiner, word) => {
+    const lower = word.toLowerCase();
+    if (STRONG_VERBS.has(lower)) return `${joiner} ${pastTense(word)}`;
+    // "and preparing reports" becomes "and prepared reports", for verbs we know.
+    if (!lower.endsWith("ing")) return match;
+    const lemma = verbLemma(lower);
+    if (lemma && STRONG_VERBS.has(lemma)) return `${joiner} ${pastTense(lemma)}`;
+    const stem = lower.slice(0, -3);
+    const everyday = [stem, `${stem}e`, stem.slice(0, -1)].find((base) => LATER_VERBS.has(base));
+    return everyday ? `${joiner} ${pastTense(everyday)}` : match;
+  });
 }
 
 /**

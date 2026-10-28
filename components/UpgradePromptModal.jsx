@@ -16,6 +16,7 @@ import {
 import { useClientPricing } from "@/components/pricing/PricingCards";
 import { trackEvent } from "@/lib/analytics";
 import { SHOW_MONTHLY } from "@/lib/pricing";
+import LifetimeSpots from "@/components/pricing/LifetimeSpots";
 
 // Keys in messages/<locale>/pages.json under upgradeModal.
 const COPY_KEYS = {
@@ -163,6 +164,7 @@ export default function UpgradePromptModal({
               {t("getLifetime", { price: pricing.lifetime.price })}
             </button>
             <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
+            <LifetimeSpots />
             <button
               type="button"
               onClick={onClose}

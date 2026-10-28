@@ -19,10 +19,6 @@ const REGIONS = {
     "// pure-helpers:start",
     "// pure-helpers:end",
   ],
-  "components/tools/SummaryGenerator.jsx": [
-    "// pure-helpers:start",
-    "// pure-helpers:end",
-  ],
   "components/tools/LinkedInUrlFormatter.jsx": [
     "// pure-helpers:start",
     "// pure-helpers:end",
@@ -35,6 +31,7 @@ const REGIONS = {
   "components/tools/WeakWordsChecker.jsx": ["// pure-region-start", "// pure-region-end"],
   "components/tools/GapExplainer.jsx": ["// pure-region-start", "// pure-region-end"],
   "components/tools/ApplicationLetterGenerator.jsx": ["// pure-region-start", "// pure-region-end"],
+  "components/tools/LetterFromCvGenerator.jsx": ["// pure-region-start", "// pure-region-end"],
   "components/agent/ThreadSidebar.jsx": [
     "// pure-region-start",
     "// pure-region-end",
@@ -111,6 +108,8 @@ const check = (name, fn) => {
 
   check("leaves the user's capitalisation alone", () => {
     assert.equal(sanitizePart("van der Berg", "-"), "van-der-Berg");
+    assert.equal(sanitizePart("O'Brien", "-"), "OBrien");
+    assert.equal(sanitizePart("O\u2019Neill", "-"), "ONeill");
   });
 
   check("never emits an empty stem", () => {
@@ -203,8 +202,14 @@ const check = (name, fn) => {
 
 // ----------------------------------------------------------------- headlines
 {
-  const { extractRoleTitle, generateHeadlines, findYearsOfExperience } =
+  const { extractRoleTitle, generateHeadlines, findYearsOfExperience, preferredCasing } =
     await loadRegion("components/tools/HeadlineGenerator.jsx");
+
+  check("headline casing keeps lowercase brands and title-cases words", () => {
+    assert.equal(preferredCasing("dbt", "Use dbt and Snowflake."), "dbt");
+    assert.equal(preferredCasing("dashboards", "Build dashboards."), "Dashboards");
+    assert.equal(preferredCasing("sql", "Write SQL."), "SQL");
+  });
 
   const JOB = `Senior Backend Engineer. We are hiring a Senior Backend Engineer to
     own our payments platform. You will write Go, run services on Kubernetes, and
@@ -251,9 +256,7 @@ const check = (name, fn) => {
 
 // ---------------------------------------------------------------- summaries
 {
-  const { generateSummaries, findResultLines } = await loadRegion(
-    "components/tools/SummaryGenerator.jsx"
-  );
+  const { generateSummaries, findResultLines } = await import("../lib/summary-helpers.js");
 
   const JOB = `Senior Data Analyst
 We are hiring a Senior Data Analyst to join our fintech team.
@@ -406,6 +409,17 @@ Email jane@example.com, phone +44 7700 900123`;
 
   check("puts an advert duty into the past tense", () => {
     assert.match(dutyToBullet("You will develop and maintain internal dashboards").bullet, /^Developed and maintained internal dashboards/);
+    const gerund = dutyToBullet("Responsible for managing the sales report and preparing invoices").bullet;
+    assert.ok(gerund.includes("and prepared invoices") && !gerund.includes("preparing"), gerund);
+    for (const [duty, want] of [
+      ["Responsible for managing the monthly sales report and talking to suppliers", "and talked to suppliers"],
+      ["Managing the front desk and greeting visitors", "and greeted visitors"],
+      ["Running the shop floor and dealing with complaints", "and dealt with complaints"],
+      ["Handling stock and travelling to branches", "and travelled to branches"],
+    ]) {
+      const b = dutyToBullet(duty).bullet;
+      assert.ok(b.includes(want), b);
+    }
     assert.match(dutyToBullet("Monitor satisfaction scores and prepare weekly reports").bullet, /^Monitored satisfaction scores and prepared weekly reports/);
   });
 
@@ -460,6 +474,9 @@ Email jane@example.com, phone +44 7700 900123`;
   check("flags long CVs by page estimate", () => {
     const long = "word ".repeat(1400);
     assert.equal(checkCvFormat(long, "us").checks.find((c) => c.id === "length").ok, false);
+    const other = checkCvFormat(cv + "\nMarital status: married", "other").checks;
+    assert.equal(other.find((c) => c.id === "personal").ok, false);
+    assert.ok(!other.some((c) => ["id", "nysc"].includes(c.id)));
   });
 }
 
@@ -568,6 +585,56 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.ok(r.forHeadline.includes("sql"));
     assert.ok(r.missing.includes("python"));
     assert.ok(r.score > 0 && r.score < 100);
+  });
+}
+
+{
+  const { buildLetters } = await loadRegion("components/tools/LetterFromCvGenerator.jsx");
+
+  check("application letter names the role, company and a CV result", () => {
+    const [full, short] = buildLetters({
+      title: "Data Analyst",
+      company: "Acme",
+      name: "Ann Lee",
+      years: 5,
+      skills: ["SQL", "Tableau"],
+      results: ["Cut report time by 40%.", "Built 12 dashboards."],
+    });
+    assert.ok(full.text.includes("the Data Analyst position at Acme."), full.text);
+    assert.ok(full.text.includes("I use SQL and Tableau"), full.text);
+    assert.ok(full.text.includes("Cut report time by 40%."));
+    assert.ok(full.text.includes("Built 12 dashboards."));
+    assert.ok(!short.text.includes("Built 12 dashboards."));
+    assert.ok(full.text.endsWith("Ann Lee"));
+  });
+
+  check("application letter leaves a slot instead of inventing a result", () => {
+    const [full] = buildLetters({ title: "Nurse", company: "", name: "", years: null, skills: [], results: [] });
+    assert.ok(full.text.includes("[Add one result"), full.text);
+    assert.ok(full.text.includes("the Nurse position."));
+    assert.ok(full.text.includes("help your team"));
+    assert.ok(full.text.endsWith("[Your name]"));
+  });
+}
+
+{
+  const { companyWords, extractTerms } = await import("../lib/keywords.js");
+
+  check("keeps the company name, filler and numbers out of a posting's keywords", () => {
+    const job = "Senior Data Analyst\nAcme Retail is hiring a Senior Data Analyst. Write SQL and build Tableau dashboards. 4+ years SQL. Reports to the Head of Data.";
+    assert.deepEqual([...companyWords(job)], ["acme", "retail"]);
+    const terms = extractTerms(job, 20).map((t) => t.term);
+    for (const noise of ["acme", "hiring", "write", "4+", "reports", "head", "senior data"]) assert.ok(!terms.includes(noise), noise);
+    for (const keep of ["data analyst", "sql", "tableau"]) assert.ok(terms.includes(keep), keep);
+    const placed = "Software Engineer. Location: Cape Town. Join our team in London. Work with clients in South Africa. Must know Go, Kubernetes and Java.";
+    const placedTerms = extractTerms(placed, 20).map((t) => t.term);
+    for (const place of ["cape", "town", "london", "south", "africa", "location"]) assert.ok(!placedTerms.includes(place), place);
+    for (const keep of ["go", "kubernetes", "java"]) assert.ok(placedTerms.includes(keep), keep);
+    const unmarked = extractTerms("Accountant. Work with clients in Durban and Nairobi. Know Excel, Sage and IFRS.", 12).map((t) => t.term);
+    for (const place of ["durban", "nairobi"]) assert.ok(!unmarked.includes(place), place);
+    for (const keep of ["excel", "sage", "ifrs"]) assert.ok(unmarked.includes(keep), keep);
+    // A title on the line above never joins the company name.
+    assert.ok(!companyWords(job).has("analyst"));
   });
 }
 

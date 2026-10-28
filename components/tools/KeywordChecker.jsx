@@ -421,7 +421,7 @@ export default function KeywordChecker({ mode = "match" }) {
                           Mentioned {count}x
                         </span>
                         <span className="sr-only">
-                          Mentioned {count} times in the job description
+                          Mentioned {plural(count, "time")} in the job description
                         </span>
                       </span>
                     </li>

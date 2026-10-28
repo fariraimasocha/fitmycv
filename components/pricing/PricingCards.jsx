@@ -8,6 +8,7 @@ import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
 import { PRICING, SHOW_MONTHLY } from "@/lib/pricing";
+import LifetimeSpots from "@/components/pricing/LifetimeSpots";
 import { trackEvent } from "@/lib/analytics";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
@@ -149,6 +150,7 @@ export default function PricingCards({
                 </span>
                 <span className="text-sm text-[var(--landing-ink-soft)]">{plan.suffix}</span>
               </div>
+              {plan.id === "lifetime" ? <LifetimeSpots className="-mt-3" /> : null}
               <div className="flex flex-col gap-2">
                 <button
                   type="button"
@@ -236,6 +238,7 @@ export default function PricingCards({
                     {plan.suffix}
                   </span>
                 </div>
+                {plan.id === "lifetime" ? <LifetimeSpots className="mt-2" /> : null}
               </div>
 
               <div className="p-1.5 pt-2">

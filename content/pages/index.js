@@ -34,6 +34,11 @@ import { jobDescriptionToResumeBullets } from "./job-description-to-resume-bulle
 import { resumeKeywordsHub } from "./resume-keywords-hub";
 import { saveJobPostingAsPdf } from "./job-tools";
 import {
+  cvChecker,
+  jobApplicationLetterGenerator,
+  resumeKeywordsGenerator,
+} from "./more-free-tools";
+import {
   cvFormatChecker,
   resumeWeakWordsChecker,
   employmentGapExplanationGenerator,
@@ -61,6 +66,9 @@ export const MARKETING_PAGES = [
   resumeWeakWordsChecker,
   employmentGapExplanationGenerator,
   resumeKeywordsHub,
+  cvChecker,
+  jobApplicationLetterGenerator,
+  resumeKeywordsGenerator,
   ...RESUME_KEYWORD_PAGES,
   atsResumeChecker,
   freeAtsKeywordChecker,

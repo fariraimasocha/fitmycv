@@ -19,6 +19,9 @@ const COUNTRIES = {
   in: { name: "India", maxPages: 2, personal: "ifAsked" },
   uk: { name: "the UK", maxPages: 2, personal: "drop" },
   us: { name: "the US", maxPages: 2, personal: "drop" },
+  // ponytail: no country rules, only the checks that hold anywhere. Add a
+  // country above once its rules are written.
+  other: { name: "your country", maxPages: 2, personal: "general" },
 };
 
 // ponytail: word count over a typical single column page. A crude page
@@ -74,6 +77,15 @@ function checkCvFormat(text, country) {
       marital
         ? `Remove marital status. Add date of birth or state of origin only when the posting asks for them.`
         : "Fine. Add date of birth only when the posting asks for it."
+    );
+  } else if (c.personal === "general") {
+    add(
+      "personal",
+      !marital,
+      "Personal details",
+      marital
+        ? "Remove marital status. It has nothing to do with the job."
+        : "Fine. Add date of birth or a photo only if employers in your country expect them."
     );
   } else {
     add(
@@ -186,6 +198,7 @@ export default function CvFormatChecker() {
             <option value="in">India</option>
             <option value="uk">United Kingdom</option>
             <option value="us">United States</option>
+            <option value="other">Another country</option>
           </select>
         </div>
 
@@ -222,6 +235,9 @@ export default function CvFormatChecker() {
               : `${result.issues} ${result.issues === 1 ? "thing" : "things"} to fix for ${COUNTRIES[country].name}`}
           </p>
           <p className="mt-2 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
+            {country === "other"
+              ? "These checks hold in most countries. Rules for one country, like an ID number or a declaration, are not checked. "
+              : ""}
             This checks the text only. It cannot see a photo, columns or fonts. Leave the photo off unless the posting asks for one.
           </p>
           <ul className="mt-6 flex flex-col gap-3">

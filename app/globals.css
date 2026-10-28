@@ -1466,6 +1466,22 @@
   }
 }
 
+/* Native select arrows sit flush on the right edge and ignore padding, so the
+   free tools draw their own. Unlayered so the reserved right padding beats a
+   p-3 utility on the element. */
+.landing-root select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.75rem;
+}
+.landing-root select:focus-visible {
+  outline: 2px solid var(--landing-primary);
+  outline-offset: 2px;
+}
+
 /* iOS Safari zooms the page when a field under 16px gets focus, and the zoom
    stays after typing. Unlayered so it beats text-sm on any field, phones only. */
 @media (max-width: 47.99rem) {

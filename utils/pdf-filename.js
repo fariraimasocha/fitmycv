@@ -20,6 +20,7 @@ export function sanitizePart(value, separator) {
       .replace(/[\u0300-\u036f]/g, "") // drop the mark, keep the letter
       .replace(/[\\/:*?"<>|]/g, " ") // characters that break uploads
       .replace(/[\u0000-\u001f\u007f]/g, " ") // control characters
+      .replace(/['’]/g, "") // O'Brien becomes OBrien, not O-Brien
       .replace(/[^\p{L}\p{N}\s._-]/gu, " ") // punctuation, symbols, emoji
       .replace(/\s+/g, separator) // whitespace runs collapse to one separator
       .replace(/[-_]{2,}/g, separator)

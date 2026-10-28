@@ -4,9 +4,9 @@
 
 export const resumeFileNameGenerator = {
   slug: "resume-file-name-generator",
-  seoTitle: "Resume File Name Generator",
+  seoTitle: "How to Name a Resume File: Examples and Generator",
   description:
-    "Get a clean, recruiter-friendly resume file name in seconds. Type your name and role, copy the result. Free, no login, nothing uploaded.",
+    "Name your resume First-Last-Role-Resume.pdf. See good and bad CV file name examples, then type your name and role to get yours. Free, no login.",
   keywords: [
     "resume file name generator",
     "resume file name",
@@ -20,12 +20,14 @@ export const resumeFileNameGenerator = {
     "resume name example",
     "resume name ideas",
     "naming resume file",
+    "cv file name examples",
+    "cv naming convention",
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Resume file name generator",
   h1: "Resume file name generator: what to name your resume",
   lede:
-    "Type your name and the role you are applying for. Get a clean file name a recruiter can find again, with the characters that break uploads stripped out. Copy it, rename your file, apply.",
+    "Use your name, the role and the word Resume, joined by hyphens, saved as PDF: Farirai-Masocha-Software-Engineer-Resume.pdf. Type yours below and the tool strips the characters that break uploads.",
   ctas: [
     { label: "Name my file", href: "#tool" },
     {

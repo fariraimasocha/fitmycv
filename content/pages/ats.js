@@ -36,7 +36,7 @@ const relatedCore = [
 
 export const workdayResumeFormat = {
   slug: "workday-resume-format",
-  seoTitle: "Workday CV and Resume Format: What It Reads",
+  seoTitle: "Workday CV Format: How Workday Reads Your Resume",
   description:
     "How to format a CV for Workday: single column, standard headings, Month YYYY dates, and why you still have to type your skills in by hand.",
   keywords: [
@@ -208,7 +208,7 @@ export const greenhouseAtsResume = {
 
 export const leverAtsResume = {
   slug: "lever-ats-resume",
-  seoTitle: "Lever ATS: How to Format Your Resume",
+  seoTitle: "Lever ATS Resume Format: How Lever Parses Your CV",
   description:
     "How to format a CV for Lever applications: single column, clean parsing, and why your parsed profile matters as much as the file you attached.",
   keywords: [

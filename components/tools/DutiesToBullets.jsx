@@ -166,6 +166,12 @@ const LATER_VERBS = new Set(
   "talk speak call phone email chase contact attend travel meet greet welcome deal keep send take give sort count load pack cook follow help assist handle support work".split(" ")
 );
 
+// -ing words that are just as often a noun: "training materials", "marketing
+// campaigns". Changed to the past tense only when an object follows.
+const NOUN_GERUNDS = new Set(
+  "training marketing planning reporting testing accounting budgeting scheduling recruiting onboarding engineering programming catering nursing coaching mentoring consulting advertising banking billing pricing purchasing packaging processing printing publishing editing staffing ordering monitoring forecasting".split(" ")
+);
+
 // Short verbs that double their last consonant in the past tense.
 const DOUBLING = new Set(["plan", "ship", "map", "log", "scan", "chat", "stop", "drop", "travel"]);
 
@@ -271,6 +277,19 @@ function topicFamily(text) {
 }
 
 /**
+ * The base verb behind an -ing form by spelling rules: "shopping" is "shop",
+ * "writing" is "write", "visiting" is "visit".
+ * ponytail: spelling rules, not a dictionary. A short stem like "edit" would
+ * gain an "e", which is why known verbs are matched before this runs.
+ */
+function gerundBase(word) {
+  const stem = word.slice(0, -3);
+  if (/([b-df-hj-np-tv-z])\1$/.test(stem) && !/(ll|ss|zz|ff)$/.test(stem)) return stem.slice(0, -1);
+  if (stem.length <= 4 && /[^aeiou][aeiou][^aeiouwxy]$/.test(stem)) return `${stem}e`;
+  return stem;
+}
+
+/**
  * Puts later base form verbs into the past tense too: "Monitor scores and
  * prepare reports" becomes "Monitored scores and prepared reports". Only
  * strong verbs followed by more words, so "support queue" nouns stay put.
@@ -281,12 +300,25 @@ function pastTenseLaterVerbs(text) {
     if (STRONG_VERBS.has(lower)) return `${joiner} ${pastTense(word)}`;
     // "and preparing reports" becomes "and prepared reports", for verbs we know.
     if (!lower.endsWith("ing")) return match;
+    // "training", "marketing" and friends are nouns as often as verbs. They
+    // are left here and only change below, when an object follows them.
+    if (NOUN_GERUNDS.has(lower)) return match;
     const lemma = verbLemma(lower);
     if (lemma && STRONG_VERBS.has(lemma)) return `${joiner} ${pastTense(lemma)}`;
     const stem = lower.slice(0, -3);
     const everyday = [stem, `${stem}e`, stem.slice(0, -1)].find((base) => LATER_VERBS.has(base));
     return everyday ? `${joiner} ${pastTense(everyday)}` : match;
-  });
+  }).replace(
+    // Any other verb, when the next word opens an object: "and filing all
+    // invoices" is a verb, "and training materials" is a noun and stays.
+    /\b(and|then)\s+([a-z]{4,}ing)(?=\s+(?:the|a|an|all|new|our|their|every|each|to|with|for|on|up|out|customer|customers|client|clients|staff|stock)\b)/gi,
+    (match, joiner, word) => {
+      const stem = word.toLowerCase().slice(0, -3);
+      // "wrapping" already doubles the p, so the past tense does too: "wrapped".
+      const doubled = /([b-df-hj-np-tv-z])\1$/.test(stem) && !/(ll|ss|zz|ff)$/.test(stem);
+      return `${joiner} ${doubled ? `${stem}ed` : pastTense(gerundBase(word.toLowerCase()))}`;
+    }
+  );
 }
 
 /**

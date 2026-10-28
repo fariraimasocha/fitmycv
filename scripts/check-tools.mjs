@@ -416,10 +416,18 @@ Email jane@example.com, phone +44 7700 900123`;
       ["Managing the front desk and greeting visitors", "and greeted visitors"],
       ["Running the shop floor and dealing with complaints", "and dealt with complaints"],
       ["Handling stock and travelling to branches", "and travelled to branches"],
+      ["Managing the office and filing all invoices", "and filed all invoices"],
+      ["Running the till and wrapping the orders", "and wrapped the orders"],
+      ["Running the till and pricing new stock", "and priced new stock"],
+      ["Running the ward and training new staff", "and trained new staff"],
+      ["Managing the budget and planning the rota", "and planned the rota"],
     ]) {
       const b = dutyToBullet(duty).bullet;
       assert.ok(b.includes(want), b);
     }
+    // A noun after "and" is left alone.
+    const noun = dutyToBullet("Responsible for onboarding and training materials").bullet;
+    assert.ok(noun.includes("training materials"), noun);
     assert.match(dutyToBullet("Monitor satisfaction scores and prepare weekly reports").bullet, /^Monitored satisfaction scores and prepared weekly reports/);
   });
 
@@ -622,7 +630,7 @@ Email jane@example.com, phone +44 7700 900123`;
 
   check("keeps the company name, filler and numbers out of a posting's keywords", () => {
     const job = "Senior Data Analyst\nAcme Retail is hiring a Senior Data Analyst. Write SQL and build Tableau dashboards. 4+ years SQL. Reports to the Head of Data.";
-    assert.deepEqual([...companyWords(job)], ["acme", "retail"]);
+    assert.deepEqual([...companyWords(job)].filter((w) => !w.endsWith("-based")), ["acme", "retail"]);
     const terms = extractTerms(job, 20).map((t) => t.term);
     for (const noise of ["acme", "hiring", "write", "4+", "reports", "head", "senior data"]) assert.ok(!terms.includes(noise), noise);
     for (const keep of ["data analyst", "sql", "tableau"]) assert.ok(terms.includes(keep), keep);
@@ -633,6 +641,9 @@ Email jane@example.com, phone +44 7700 900123`;
     const unmarked = extractTerms("Accountant. Work with clients in Durban and Nairobi. Know Excel, Sage and IFRS.", 12).map((t) => t.term);
     for (const place of ["durban", "nairobi"]) assert.ok(!unmarked.includes(place), place);
     for (const keep of ["excel", "sage", "ifrs"]) assert.ok(unmarked.includes(keep), keep);
+    const towns = extractTerms("Sales Rep. Visit clients in Polokwane, Tzaneen and Mokopane. A Gweru-based team. Travel to Kitwe monthly. Experience in Sage and Pastel. Know Salesforce.", 20).map((t) => t.term);
+    for (const place of ["polokwane", "tzaneen", "mokopane", "gweru", "gweru-based", "kitwe"]) assert.ok(!towns.includes(place), place);
+    for (const keep of ["sage", "pastel", "salesforce"]) assert.ok(towns.includes(keep), keep);
     // A title on the line above never joins the company name.
     assert.ok(!companyWords(job).has("analyst"));
   });

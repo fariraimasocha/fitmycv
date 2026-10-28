@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "An application letter asks for a specific job and proves you fit it in one page. Here is the structure, a full example, and a template to copy.",
   date: "2026-09-27",
-  updated: "2026-09-27",
+  updated: "2026-10-26",
   readingTime: 7,
   category: "Cover Letters",
   series: "cover-letters",
@@ -23,6 +23,8 @@ export const meta = {
     "work letters",
     "how to write an application letter",
     "application letter example",
+    "application letter generator",
+    "simple job application letter",
   ],
 };
 
@@ -63,7 +65,7 @@ export const blocks = [
     },
   },
   {
-    p: "Applying for a specific job right now? The [AI cover letter generator](/ai-cover-letter-generator) reads the posting and your CV and drafts the letter for that role. It works for application letters too.",
+    p: "Want it written for you? Fill in the [free application letter generator](#free-application-letter-generator) below and copy the result. To draft from the posting and your CV instead, use the [AI cover letter generator](/ai-cover-letter-generator). It works for application letters too.",
   },
 
   { h2: "Application letter or cover letter?" },
@@ -124,6 +126,12 @@ export const blocks = [
   {
     p: "Notice what it does. The role is named in the first line. Each requirement from the posting gets a specific answer with a number. The 'why this company' part is one sentence with a real detail. There is no line that could be pasted into a letter for a different job.",
   },
+
+  { h2: "Free application letter generator" },
+  {
+    p: "Fill in the boxes and get the template below written out as a full letter. Leave out anything you cannot back up and that part drops out. Nothing you type leaves this page.",
+  },
+  { tool: "application-letter" },
 
   { h2: "A template you can copy" },
   {

@@ -6,6 +6,11 @@ import {
   XIcon,
 } from "@phosphor-icons/react/dist/ssr";
 
+import ApplicationLetterGenerator from "@/components/tools/ApplicationLetterGenerator";
+
+// Free tools a post can embed with { tool: "<key>" }.
+const TOOLS = { "application-letter": ApplicationLetterGenerator };
+
 // Renderer for the structured long-form content in `content/`. Content is data,
 // not JSX, so a post is a plain object a non-React editor can safely change.
 //
@@ -74,6 +79,11 @@ export function slugifyHeading(text) {
 }
 
 function Block({ block }) {
+  if (block.tool) {
+    const Tool = TOOLS[block.tool];
+    return Tool ? <Tool /> : null;
+  }
+
   if (block.h2) {
     return (
       <h2

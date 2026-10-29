@@ -3,11 +3,14 @@ import { isCronRequest } from "@/lib/sign";
 import { sendEmail } from "@/lib/email";
 import {
   DONE,
+  PAYWALL_AFTER,
+  PAYWALL_UNTIL,
   REMINDER_AFTER,
   REMINDER_UNTIL,
   checkoutReminderMessage,
   dueStep,
   nurtureMessage,
+  paywallReminderMessage,
   shouldSkip,
 } from "@/lib/nurture-email";
 import User from "@/models/User";
@@ -61,8 +64,9 @@ export async function GET(request) {
   }
 
   const reminders = await sendCheckoutReminders(errors);
+  const paywallReminders = await sendPaywallReminders(errors);
 
-  return Response.json({ sent, skipped, reminders, errors, total: users.length });
+  return Response.json({ sent, skipped, reminders, paywallReminders, errors, total: users.length });
 }
 
 // One email to anyone who opened a Polar checkout 2 to 48 hours ago and has
@@ -103,4 +107,57 @@ async function sendCheckoutReminders(errors) {
     }
   }
   return reminders;
+}
+
+// One email to a free user who tailored a CV 1 to 48 hours ago, hit the
+// paywall and never opened checkout. Anyone who opened checkout after that CV
+// gets the checkout reminder above instead, never both.
+async function sendPaywallReminders(errors) {
+  const now = Date.now();
+  const cvs = await TailoredCV.find({
+    createdAt: { $lte: new Date(now - PAYWALL_AFTER), $gte: new Date(now - PAYWALL_UNTIL) },
+    unlockedAt: { $exists: false },
+  })
+    .sort({ createdAt: -1 })
+    .select("userId jobTitle jobCompany createdAt")
+    .lean();
+
+  // Newest CV per user.
+  const latest = new Map();
+  for (const cv of cvs) {
+    const id = String(cv.userId);
+    if (!latest.has(id)) latest.set(id, cv);
+  }
+  if (!latest.size) return 0;
+
+  const users = await User.find({
+    _id: { $in: [...latest.keys()] },
+    paywallReminderSentAt: { $exists: false },
+    isPremium: { $ne: true },
+    marketingEmails: { $ne: false },
+  })
+    .select("email name checkoutStartedAt")
+    .lean();
+
+  let sent = 0;
+  for (const user of users) {
+    const cv = latest.get(String(user._id));
+    if (user.checkoutStartedAt && user.checkoutStartedAt >= cv.createdAt) continue;
+
+    const claimed = await User.updateOne(
+      { _id: user._id, paywallReminderSentAt: { $exists: false } },
+      { $set: { paywallReminderSentAt: new Date() } },
+    );
+    if (claimed.modifiedCount === 0) continue;
+
+    try {
+      await sendEmail(paywallReminderMessage(user, cv));
+      sent++;
+    } catch (err) {
+      await User.updateOne({ _id: user._id }, { $unset: { paywallReminderSentAt: 1 } });
+      console.error(`Paywall reminder failed for ${user.email}:`, err);
+      errors.push({ email: user.email, step: "paywall_reminder", error: err.message });
+    }
+  }
+  return sent;
 }

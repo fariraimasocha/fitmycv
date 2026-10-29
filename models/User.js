@@ -99,6 +99,8 @@ const userSchema = new mongoose.Schema(
     checkoutPlan: { type: String },
     checkoutCvId: { type: mongoose.Schema.Types.ObjectId, ref: "TailoredCV" },
     checkoutReminderSentAt: { type: Date },
+    // The one "your CV is saved" email after a paywall with no checkout.
+    paywallReminderSentAt: { type: Date },
     // Drives the daily job digest. Defaults are opt-in; an existing user with
     // no jobPreferences is treated as emailDigest:true / remoteOnly:true.
     jobPreferences: {

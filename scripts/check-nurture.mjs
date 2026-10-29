@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { DONE, OFFSETS, buildNurtureEmail, checkoutReminderEmail, dueStep, shouldSkip } from "../lib/nurture-email.js";
+import { DONE, OFFSETS, PAYWALL_DISCOUNT_CODE, buildNurtureEmail, checkoutReminderEmail, dueStep, paywallReminderEmail, shouldSkip } from "../lib/nurture-email.js";
 
 const assert = (c, m) => {
   if (!c) {
@@ -42,7 +42,22 @@ const month = checkoutReminderEmail({ checkoutPlan: "month" });
 assert(month.cta[1] === "/api/polar/checkout?plan=month", "month reminder links to month checkout");
 const single = checkoutReminderEmail({ checkoutPlan: "single", checkoutCvId: "abc123" });
 assert(single.cta[1] === "/dashboard/tailored/abc123", "single reminder links to its CV");
-assert(checkoutReminderEmail({}).cta[1] === "/api/polar/checkout?plan=month", "no plan falls back to month");
+assert(checkoutReminderEmail({}).cta[1] === "/api/polar/checkout?plan=lifetime", "no plan falls back to lifetime");
+
+// The paywall follow-up names the job, links to that CV and carries the code.
+const withJob = paywallReminderEmail({}, { _id: "cv1", jobTitle: "Accountant", jobCompany: "Delta" });
+assert(withJob.cta[1] === "/dashboard/tailored/cv1", "paywall email links to its CV");
+assert(withJob.subject.includes("Accountant at Delta"), "paywall email names the job");
+const noJob = paywallReminderEmail({}, { _id: "cv2" });
+assert(noJob.subject === "Your tailored CV is saved" && !/undefined|null/.test(JSON.stringify(noJob)), "paywall email without a job");
+for (const [name, email] of [["paywall-job", withJob], ["paywall-nojob", noJob]]) {
+  const { subject, html, text } = buildNurtureEmail(email, opts);
+  assert(text.includes(PAYWALL_DISCOUNT_CODE) && html.includes(PAYWALL_DISCOUNT_CODE), `${name} shows the code`);
+  assert(text.includes("40%") && html.includes("40%"), `${name} says 40%`);
+  assert(!/[–—]| -- /.test(text + subject), `${name} copy has a dash`);
+  assert(text.startsWith("Hi Arnold,"), `${name} greeting`);
+  fs.writeFileSync(path.join(dir, `${name}.html`), `<!-- ${subject} -->\n${html}`);
+}
 for (const [name, email] of [["month", month], ["single", single]]) {
   const { subject, html, text } = buildNurtureEmail(email, opts);
   assert(subject && html.includes(email.cta[1]), `${name} reminder renders its link`);

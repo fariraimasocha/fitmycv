@@ -134,9 +134,6 @@ export default function PricingCards({
     const plan = plans[0];
     return (
       <div ref={rootRef} className="mx-auto flex w-full max-w-md flex-col gap-6">
-        {pricing.regionalNote ? (
-          <p className="text-center text-xs font-semibold text-[var(--landing-ink-soft)]">{t("regionalNote")}</p>
-        ) : null}
         <div className="bezel bezel-accent w-full">
           <div className="bezel-inner flex flex-col gap-8 p-6 sm:p-8">
             <div className="flex flex-col gap-6">
@@ -195,12 +192,6 @@ export default function PricingCards({
 
   return (
     <div ref={rootRef} className="flex w-full flex-col gap-6">
-      {pricing.regionalNote ? (
-        <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-          {t("regionalNote")}
-        </p>
-      ) : null}
-
       <div
         className={`grid w-full gap-4 ${
           plans.length === 1

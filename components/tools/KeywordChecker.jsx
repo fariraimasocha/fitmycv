@@ -278,7 +278,7 @@ export default function KeywordChecker({ mode = "match" }) {
         className="flex flex-col gap-5"
       >
         <div className={needsCv ? "grid gap-5 md:grid-cols-2" : ""}>
-          <div className="flex flex-col gap-2">
+          <div className="flex min-w-0 flex-col gap-2">
             <label
               htmlFor="job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
@@ -301,7 +301,7 @@ export default function KeywordChecker({ mode = "match" }) {
               minLength={MIN_JOB_CHARS}
               aria-describedby="job-text-count"
               placeholder="Paste the full text of the job posting here…"
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-base leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)] sm:text-sm"
+              className="min-w-0 w-full max-w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-base leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)] sm:text-sm"
             />
             <p
               id="job-text-count"

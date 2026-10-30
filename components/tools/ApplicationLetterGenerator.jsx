@@ -163,7 +163,7 @@ export default function ApplicationLetterGenerator() {
                 <CopyIcon size={16} aria-hidden="true" />
               </button>
             </div>
-            <p className="mt-1.5 whitespace-pre-line text-sm leading-6 text-[var(--landing-ink)]">{letter}</p>
+            <p className="mt-1.5 whitespace-pre-line break-words text-sm leading-6 text-[var(--landing-ink)]">{letter}</p>
           </div>
           <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
             Read it out loud once and change anything that does not sound like you.

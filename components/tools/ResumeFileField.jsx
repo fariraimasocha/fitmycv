@@ -18,7 +18,7 @@ function formatFileSize(bytes) {
 }
 
 const textareaClassName =
-  "w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]";
+  "min-w-0 w-full max-w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]";
 
 export default function ResumeFileField({
   id,
@@ -105,7 +105,7 @@ export default function ResumeFileField({
   const showTextarea = hasFile || pasteOpen || value.trim().length > 0;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex min-w-0 flex-col gap-2">
       <label
         htmlFor={showTextarea ? fieldId : fileInputId}
         className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"

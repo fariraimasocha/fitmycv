@@ -228,7 +228,7 @@ function LetterResult({ result, copiedId, onCopy, onCloseGaps }) {
                     {copiedId === letter.id ? "Copied" : "Copy"}
                   </button>
                 </div>
-                <p className="whitespace-pre-line text-sm font-semibold leading-7 text-[var(--landing-ink)]">
+                <p className="whitespace-pre-line break-words text-sm font-semibold leading-7 text-[var(--landing-ink)]">
                   {letter.text}
                 </p>
               </li>
@@ -299,7 +299,7 @@ function LetterExample() {
         Yours is built from the advert you paste and the results your CV already
         shows. It takes this shape.
       </p>
-      <p className="mt-5 whitespace-pre-line rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 text-sm font-semibold leading-7 text-[var(--landing-ink)]">
+      <p className="mt-5 whitespace-pre-line break-words rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 text-sm font-semibold leading-7 text-[var(--landing-ink)]">
         {EXAMPLE_LETTER}
       </p>
     </div>

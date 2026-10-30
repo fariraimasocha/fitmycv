@@ -258,6 +258,10 @@
   .landing-root {
     background: var(--landing-bg);
     color: var(--landing-ink);
+    /* Backstop against horizontal page scroll, same guard as .dashboard-page.
+       clip, not hidden, so sticky descendants keep working. */
+    min-width: 0;
+    overflow-x: clip;
   }
 
   /* Zen closes the dark page on a cream band. Re-scoping the tokens turns

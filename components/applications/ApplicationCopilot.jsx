@@ -243,7 +243,7 @@ export function ApplicationCopilot({ application }) {
               </button>
             </div>
           </div>
-          <p className="max-h-40 overflow-y-auto text-xs leading-relaxed whitespace-pre-wrap text-muted-foreground">
+          <p className="max-h-40 overflow-y-auto text-xs leading-relaxed break-words whitespace-pre-wrap text-muted-foreground">
             {draft.text}
           </p>
         </div>

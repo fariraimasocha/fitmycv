@@ -110,7 +110,7 @@ export default function CoverLetterCard({
               .split(/\n\s*\n/)
               .filter((paragraph) => paragraph.trim())
               .map((paragraph, i) => (
-                <p key={`${i}-${paragraph.slice(0, 24)}`} className="mb-5 whitespace-pre-line last:mb-0">
+                <p key={`${i}-${paragraph.slice(0, 24)}`} className="mb-5 whitespace-pre-line break-words last:mb-0">
                   {paragraph.trim()}
                 </p>
               ))}

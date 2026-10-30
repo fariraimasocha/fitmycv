@@ -91,7 +91,8 @@ export default function UpgradePromptModal({
     if (session?.user) {
       setPendingPlan(plan);
       const query = new URLSearchParams({ plan });
-      if (plan === "single") query.set("cv", cvId);
+      // Lifetime sends the CV too, so leaving Polar lands back on it.
+      if (cvId) query.set("cv", cvId);
       window.location.assign(`/api/polar/checkout?${query}`);
     } else {
       setPendingCheckout(true, plan);

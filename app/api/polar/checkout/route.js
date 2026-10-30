@@ -50,15 +50,17 @@ export async function GET(request) {
     const planParam = searchParams.get("plan");
     const plan = CHECKOUT_PLANS.includes(planParam) ? planParam : "lifetime";
 
-    // A single purchase is tied to one CV the buyer owns and has not unlocked.
+    // ?cv= names the CV the buyer was looking at. Leaving Polar goes back to
+    // it, for any plan. A single purchase also unlocks it, so it must exist
+    // and still be locked.
+    const cvId = searchParams.get("cv");
+    const cv = mongoose.isValidObjectId(cvId)
+      ? await TailoredCV.findOne({ _id: cvId, userId: session.user.id })
+          .select("unlockedAt")
+          .lean()
+      : null;
     let tailoredCvId = null;
     if (plan === "single") {
-      const cvId = searchParams.get("cv");
-      const cv = mongoose.isValidObjectId(cvId)
-        ? await TailoredCV.findOne({ _id: cvId, userId: session.user.id })
-            .select("unlockedAt")
-            .lean()
-        : null;
       if (!cv) {
         return NextResponse.redirect(localAppUrl("/dashboard/tailored", request));
       }
@@ -67,6 +69,7 @@ export async function GET(request) {
       }
       tailoredCvId = String(cv._id);
     }
+    const returnPath = cv ? `/dashboard/tailored/${cv._id}` : "/dashboard/upgrade";
 
     const tier = await resolveCheckoutTier();
     const productId = getPolarProductId(tier, plan);
@@ -102,7 +105,7 @@ export async function GET(request) {
     const checkout = await polar.checkouts.create({
       products: [productId],
       successUrl,
-      returnUrl: localAppUrl(cvPath ?? "/dashboard/upgrade", request).toString(),
+      returnUrl: localAppUrl(returnPath, request).toString(),
       externalCustomerId: String(session.user.id),
       customerName: session.user.name || undefined,
       customerEmail: session.user.email,

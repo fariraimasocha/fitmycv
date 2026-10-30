@@ -190,41 +190,16 @@ export default function PricingCards({
     );
   }
 
-  // One plan inside a page that lists the features itself (/dashboard/upgrade):
-  // one full-width card, price on the left and the button on the right, so it
-  // lines up with the header and the panel below. Stacks on a phone.
+  // One plan inside a page that lists the features itself (/dashboard/upgrade).
   if (plans.length === 1) {
-    const plan = plans[0];
     return (
-      <div ref={rootRef} className="bezel bezel-accent w-full">
-        <div className="bezel-inner flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1">
-              <span className="font-outfit text-base font-semibold text-[var(--landing-ink)]">{plan.label}</span>
-              <span className="text-sm text-[var(--landing-ink-soft)]">{plan.subline}</span>
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="font-outfit text-5xl font-semibold leading-none tracking-tight tabular-nums text-[var(--landing-ink)]">
-                ${plan.price}
-              </span>
-              <span className="text-sm text-[var(--landing-ink-soft)]">{plan.suffix}</span>
-            </div>
-            {plan.id === "lifetime" ? <LifetimeSpots /> : null}
-          </div>
-          <div className="flex flex-col gap-2 sm:w-60 sm:shrink-0">
-            <button
-              type="button"
-              onClick={() => handleCheckout(plan.id)}
-              disabled={Boolean(pendingPlan)}
-              aria-busy={pendingPlan === plan.id}
-              className="landing-primary-btn w-full cursor-pointer rounded-xl font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
-            >
-              {plan.cta}
-            </button>
-            <p className="text-center text-xs text-[var(--landing-ink-soft)]">{t("secureCheckout")}</p>
-          </div>
-        </div>
-      </div>
+      <OnePlanRow
+        plan={plans[0]}
+        rootRef={rootRef}
+        pendingPlan={pendingPlan}
+        onCheckout={handleCheckout}
+        secureLabel={t("secureCheckout")}
+      />
     );
   }
 
@@ -313,6 +288,42 @@ export default function PricingCards({
           {skipLabel ?? t("continueFree")}
         </button>
       )}
+    </div>
+  );
+}
+
+// One full-width card: price on the left, button on the right, so it lines up
+// with the page header and the panel below. Stacks on a phone.
+function OnePlanRow({ plan, rootRef, pendingPlan, onCheckout, secureLabel }) {
+  return (
+    <div ref={rootRef} className="bezel bezel-accent w-full">
+      <div className="bezel-inner flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="font-outfit text-base font-semibold text-[var(--landing-ink)]">{plan.label}</span>
+            <span className="text-sm text-[var(--landing-ink-soft)]">{plan.subline}</span>
+          </div>
+          <div className="flex items-baseline gap-1.5">
+            <span className="font-outfit text-5xl font-semibold leading-none tracking-tight tabular-nums text-[var(--landing-ink)]">
+              ${plan.price}
+            </span>
+            <span className="text-sm text-[var(--landing-ink-soft)]">{plan.suffix}</span>
+          </div>
+          {plan.id === "lifetime" ? <LifetimeSpots /> : null}
+        </div>
+        <div className="flex flex-col gap-2 sm:w-60 sm:shrink-0">
+          <button
+            type="button"
+            onClick={() => onCheckout(plan.id)}
+            disabled={Boolean(pendingPlan)}
+            aria-busy={pendingPlan === plan.id}
+            className="landing-primary-btn w-full cursor-pointer rounded-xl font-outfit text-sm disabled:cursor-wait disabled:opacity-60"
+          >
+            {plan.cta}
+          </button>
+          <p className="text-center text-xs text-[var(--landing-ink-soft)]">{secureLabel}</p>
+        </div>
+      </div>
     </div>
   );
 }

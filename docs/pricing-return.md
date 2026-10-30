@@ -35,8 +35,8 @@ Set it to `true` and every pricing surface goes back to the layout described und
 
 | Tier | Monthly | Lifetime | One CV |
 |---|---|---|---|
-| standard | $9.99 | $29.99 | $4.99 |
-| africa | $6.99 | $16.99 | $2.99 |
+| standard | $9.99 | $29.99 | $5.99 |
+| africa | $6.99 | $16.99 | $3.99 |
 
 The Africa tier covers the countries in `PPP_COUNTRY_CODES` in `lib/pricing-region.js`. The country comes from a header (`x-vercel-ip-country` or `cf-ipcountry`).
 

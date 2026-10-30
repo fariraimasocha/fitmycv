@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import TemplateStyleToolbar from "@/components/cv/TemplateStyleToolbar";
 import { ResumeTemplate } from "@/components/ResumePreview";
+import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import {
   TEMPLATE_METADATA,
   DEFAULT_TEMPLATE,
@@ -35,11 +36,14 @@ const BADGE_KEYS = {
 };
 
 function TemplateThumbnail({ template, data, style }) {
+  // The grid cell width follows the dialog width, so the document is scaled
+  // to the measured cell instead of by a fixed factor. A fixed scale assumed
+  // a 211px cell and cut the preview on every other viewport.
   return (
     <div className="relative aspect-3/4 w-full overflow-hidden rounded-md border border-border bg-white">
-      <div className="pointer-events-none absolute inset-0 w-160 origin-top-left scale-33 select-none">
+      <ScaledDocument docWidth={640} className="pointer-events-none select-none">
         <ResumeTemplate data={data} template={template} style={style} />
-      </div>
+      </ScaledDocument>
     </div>
   );
 }

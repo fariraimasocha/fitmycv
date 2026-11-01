@@ -14,7 +14,9 @@ function languageUrls(path) {
 }
 
 export default function sitemap() {
-  const lastModified = new Date();
+  // ponytail: one date for every non-blog page. Bump it when those pages really change,
+  // or give pages their own dates if they start changing independently.
+  const lastModified = new Date("2026-11-01");
 
   const staticRoutes = [
     { path: "", changeFrequency: "weekly", priority: 1 },

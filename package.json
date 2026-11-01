@@ -23,6 +23,7 @@
     "announce": "node --env-file=.env scripts/send-announcement.mjs",
     "gsc": "node --env-file=.env scripts/gsc.mjs",
     "seo:data": "node --env-file=.env scripts/seo-weekly-data.mjs",
+    "gsc:index": "node --env-file=.env scripts/gsc-index.mjs",
     "check:names": "node scripts/check-names.mjs",
     "check:preview": "node scripts/check-tailored-preview.mjs",
     "check:handoff": "node scripts/check-handoff.mjs",

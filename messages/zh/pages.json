@@ -138,22 +138,6 @@
     "button": "解锁下载",
     "body": "已准备好。解锁下载即可保存为 PDF。"
   },
-  "feedback": {
-    "title": "发送反馈",
-    "description": "分享你的想法，帮助我们改进 FitMyCV。",
-    "typeLabel": "类型",
-    "types": {
-      "general": "一般",
-      "bug": "问题",
-      "featureRequest": "功能建议"
-    },
-    "messageLabel": "内容",
-    "messagePlaceholder": "告诉我们你的想法…",
-    "submit": "发送反馈",
-    "sending": "正在发送…",
-    "sent": "谢谢，你的反馈已发送。",
-    "sendError": "无法发送你的反馈，请重试。"
-  },
   "tailorCvFromJobLink": {
     "meta": {
       "title": "从任意链接根据职位描述定制你的简历 | FitMyCV",

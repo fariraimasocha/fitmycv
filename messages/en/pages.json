@@ -138,22 +138,6 @@
     "button": "Unlock to download",
     "body": "It's ready. Unlock downloads to save it as a PDF."
   },
-  "feedback": {
-    "title": "Send feedback",
-    "description": "Help us improve FitMyCV by sharing your thoughts.",
-    "typeLabel": "Type",
-    "types": {
-      "general": "General",
-      "bug": "Bug",
-      "featureRequest": "Feature request"
-    },
-    "messageLabel": "Message",
-    "messagePlaceholder": "Tell us what you think…",
-    "submit": "Send feedback",
-    "sending": "Sending…",
-    "sent": "Thanks. Your feedback is sent.",
-    "sendError": "Couldn't send your feedback. Try again."
-  },
   "tailorCvFromJobLink": {
     "meta": {
       "title": "AI Resume Tailor: Tailor Your CV to a Job Description | FitMyCV",

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation } from "motion/react";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
@@ -16,8 +15,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { AppSidebar } from "@/components/app-sidebar";
 import OnboardingGuard from "@/components/OnboardingGuard";
-import FeedbackModal from "@/components/FeedbackModal";
-import { ChatCircleDotsIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 
@@ -88,8 +85,6 @@ function DashboardBreadcrumb() {
 // nav from the landing page this left useSession() undefined until a hard
 // reload, and unmounting it wiped the root provider's state on the way out.
 export default function DashboardShell({ children }) {
-  const t = useTranslations("dashboard.shell");
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const pathname = usePathname();
   const isOnboarding = pathname === "/dashboard/onboarding";
 
@@ -109,16 +104,6 @@ export default function DashboardShell({ children }) {
               <div className="min-w-0 flex-1 overflow-hidden">
                 <DashboardBreadcrumb />
               </div>
-              <div className="ms-auto flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setFeedbackOpen(true)}
-                  className="dashboard-secondary-btn dashboard-secondary-btn-sm text-muted-foreground hover:text-foreground"
-                >
-                  <ChatCircleDotsIcon size={16} aria-hidden="true" />
-                  <span className="hidden sm:inline">{t("feedback")}</span>
-                </button>
-              </div>
             </header>
             <main className="min-w-0 flex-1 overflow-x-clip bg-[var(--landing-bg)]">
               {/* Lets pages use the smaller m.* components from motion/react-m. */}
@@ -127,7 +112,6 @@ export default function DashboardShell({ children }) {
           </SidebarInset>
         </SidebarProvider>
       </TooltipProvider>
-      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
     </OnboardingGuard>
   );
 }

@@ -960,6 +960,28 @@
     color: var(--landing-ink);
   }
 
+  /* Phones: a hidden-scrollbar strip hid the last tab and nobody swiped to
+     it. Split the width evenly so every tab shows, and drop icons for room. */
+  @media (max-width: 639.98px) {
+    .dashboard-tab-pills {
+      display: flex;
+      overflow: visible;
+    }
+
+    .dashboard-tab-pill {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dashboard-tab-pill > svg {
+      display: none;
+    }
+  }
+
   .dashboard-page .dashboard-list-row,
   .dashboard-shell .dashboard-list-row {
     border: 1px solid var(--landing-line);

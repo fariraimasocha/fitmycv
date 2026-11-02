@@ -138,22 +138,6 @@
     "button": "Débloquer le téléchargement",
     "body": "C'est prêt. Débloquez les téléchargements pour l'enregistrer en PDF."
   },
-  "feedback": {
-    "title": "Envoyer un avis",
-    "description": "Aidez-nous à améliorer FitMyCV en partageant votre avis.",
-    "typeLabel": "Type",
-    "types": {
-      "general": "Général",
-      "bug": "Bug",
-      "featureRequest": "Suggestion de fonctionnalité"
-    },
-    "messageLabel": "Message",
-    "messagePlaceholder": "Dites-nous ce que vous en pensez…",
-    "submit": "Envoyer l'avis",
-    "sending": "Envoi…",
-    "sent": "Merci. Votre avis a été envoyé.",
-    "sendError": "Impossible d'envoyer votre avis. Réessayez."
-  },
   "tailorCvFromJobLink": {
     "meta": {
       "title": "Adaptez votre CV à une offre d'emploi depuis n'importe quel lien | FitMyCV",

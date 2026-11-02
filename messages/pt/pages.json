@@ -138,22 +138,6 @@
     "button": "Desbloquear para baixar",
     "body": "Está pronto. Desbloqueie os downloads para salvar em PDF."
   },
-  "feedback": {
-    "title": "Enviar feedback",
-    "description": "Ajude a melhorar o FitMyCV contando o que você acha.",
-    "typeLabel": "Tipo",
-    "types": {
-      "general": "Geral",
-      "bug": "Bug",
-      "featureRequest": "Sugestão de recurso"
-    },
-    "messageLabel": "Mensagem",
-    "messagePlaceholder": "Conte o que você acha…",
-    "submit": "Enviar feedback",
-    "sending": "Enviando…",
-    "sent": "Obrigado. Seu feedback foi enviado.",
-    "sendError": "Não foi possível enviar seu feedback. Tente de novo."
-  },
   "tailorCvFromJobLink": {
     "meta": {
       "title": "Adapte seu currículo à descrição da vaga a partir de qualquer link | FitMyCV",

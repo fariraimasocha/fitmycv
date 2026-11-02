@@ -138,22 +138,6 @@
     "button": "افتح القفل للتنزيل",
     "body": "المستند جاهز. افتح التنزيلات لحفظه بصيغة PDF."
   },
-  "feedback": {
-    "title": "أرسل ملاحظاتك",
-    "description": "ساعدنا على تحسين FitMyCV بمشاركة رأيك.",
-    "typeLabel": "النوع",
-    "types": {
-      "general": "عام",
-      "bug": "خلل",
-      "featureRequest": "طلب ميزة"
-    },
-    "messageLabel": "الرسالة",
-    "messagePlaceholder": "أخبرنا برأيك…",
-    "submit": "أرسل ملاحظاتك",
-    "sending": "جارٍ الإرسال…",
-    "sent": "شكرًا. أُرسلت ملاحظاتك.",
-    "sendError": "تعذّر إرسال ملاحظاتك. حاول مرة أخرى."
-  },
   "tailorCvFromJobLink": {
     "meta": {
       "title": "خصّص سيرتك الذاتية لوصف وظيفي من أي رابط | FitMyCV",

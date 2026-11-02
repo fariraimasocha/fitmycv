@@ -138,22 +138,6 @@
     "button": "Zum Herunterladen freischalten",
     "body": "Fertig. Schalte Downloads frei, um das Dokument als PDF zu speichern."
   },
-  "feedback": {
-    "title": "Feedback senden",
-    "description": "Hilf uns, FitMyCV zu verbessern, und teile deine Gedanken mit uns.",
-    "typeLabel": "Art",
-    "types": {
-      "general": "Allgemein",
-      "bug": "Fehler",
-      "featureRequest": "Funktionswunsch"
-    },
-    "messageLabel": "Nachricht",
-    "messagePlaceholder": "Sag uns, was du denkst…",
-    "submit": "Feedback senden",
-    "sending": "Wird gesendet…",
-    "sent": "Danke. Dein Feedback wurde gesendet.",
-    "sendError": "Dein Feedback konnte nicht gesendet werden. Versuch es noch einmal."
-  },
   "tailorCvFromJobLink": {
     "meta": {
       "title": "Lebenslauf an eine Stellenanzeige anpassen, aus jedem Link | FitMyCV",

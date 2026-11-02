@@ -4,6 +4,7 @@ import User from "@/models/User";
 import TailoredCV from "@/models/TailoredCV";
 import { captureServerEvent } from "@/lib/posthog-server";
 import { ownsGrant } from "@/lib/polar";
+import { grantPurchase } from "@/lib/grant-purchase";
 
 async function resolveUser(data) {
   await connectDB();
@@ -55,21 +56,6 @@ async function capturePurchase(user, order) {
 const isSingleOrder = (order) =>
   order.metadata?.plan === "single" && Boolean(order.metadata?.tailoredCvId);
 
-async function unlockSingleCV(user, order) {
-  const cv = await TailoredCV.findOneAndUpdate(
-    { _id: order.metadata.tailoredCvId, userId: user._id },
-    { $set: { unlockedAt: new Date(), unlockOrderId: order.id } },
-    { new: true },
-  );
-  if (!cv) {
-    console.error(
-      `Single unlock: CV ${order.metadata.tailoredCvId} not found for user ${user._id} (order ${order.id})`,
-    );
-    return;
-  }
-  console.log(`CV ${cv._id} unlocked for user: ${user.email} (order ${order.id})`);
-}
-
 export const POST = Webhooks({
   webhookSecret: process.env.POLAR_WEBHOOK_SECRET,
 
@@ -78,24 +64,18 @@ export const POST = Webhooks({
     const user = await resolveUser(order);
     if (!user) return;
 
-    if (isSingleOrder(order)) {
-      await unlockSingleCV(user, order);
-      if (order.customer?.id && !user.polarCustomerId) {
-        user.polarCustomerId = order.customer.id;
-        await user.save();
-      }
-      await capturePurchase(user, order);
-      return;
+    const single = isSingleOrder(order);
+    if (order.customer?.id && (!single || !user.polarCustomerId)) {
+      user.polarCustomerId = order.customer.id;
+      // Single orders save it here. Pro orders save it in grantPurchase.
+      if (single) await user.save();
     }
-
-    user.isPremium = true;
-    user.polarCustomerId = order.customer?.id || user.polarCustomerId || null;
-    user.premiumActivatedAt = new Date();
-    user.premiumRevokedAt = null;
-    await user.save();
+    await grantPurchase(user, {
+      plan: single ? "single" : order.metadata?.plan,
+      tailoredCvId: order.metadata?.tailoredCvId,
+      orderId: order.id,
+    });
     await capturePurchase(user, order);
-
-    console.log(`Premium activated for user: ${user.email} (order.paid)`);
   },
 
   onOrderRefunded: async (payload) => {

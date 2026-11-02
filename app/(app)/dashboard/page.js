@@ -20,6 +20,8 @@ const asJson = (value) => JSON.parse(JSON.stringify(value));
 export default async function DashboardPage({ searchParams }) {
   // Sign-up from a pricing page lands here first, then goes on to checkout.
   const { checkout, plan } = await searchParams;
+  // EcoCash needs a phone number, so it goes to the upgrade card instead.
+  if (checkout === "pending" && plan === "ecocash") redirect("/dashboard/upgrade");
   if (checkout === "pending") {
     redirect(`/api/polar/checkout?plan=${encodeURIComponent(plan ?? "lifetime")}`);
   }

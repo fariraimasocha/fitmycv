@@ -5,7 +5,7 @@ import { getServerPricing } from "@/lib/server-pricing";
 import { SHOW_MONTHLY } from "@/lib/pricing";
 
 export default async function Pricing() {
-  const { pricing, tier } = await getServerPricing();
+  const { pricing, tier, country } = await getServerPricing();
   const t = await getTranslations("pages.pricing");
 
   return (
@@ -27,7 +27,7 @@ export default async function Pricing() {
       </div>
 
       <div className="landing-container w-full">
-        <PricingCards pricing={pricing} tier={tier} />
+        <PricingCards pricing={pricing} tier={tier} country={country} />
         {SHOW_MONTHLY ? (
         <p className="mt-6 max-w-lg text-xs text-[var(--landing-ink-soft)]">
           {/* Worked out from the real prices, so it holds for every tier:

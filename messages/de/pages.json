@@ -84,7 +84,25 @@
       "Antwortentwürfe für Fragen in Bewerbungsformularen",
       "LinkedIn-Kontaktnachrichten, und an wen du sie schickst"
     ],
-    "continueFree": "Kostenlos weiter"
+    "continueFree": "Kostenlos weiter",
+    "ecocash": {
+      "pay": "Mit EcoCash ${price} bezahlen",
+      "paySingle": "Diesen Lebenslauf für ${price} mit EcoCash freischalten",
+      "payLifetime": "Lebenslang für ${price} mit EcoCash",
+      "phoneLabel": "EcoCash-Nummer",
+      "note": "Wir senden eine Zahlungsanfrage an diese Nummer. Bestätige sie mit deiner EcoCash-PIN.",
+      "cardInstead": "Stattdessen mit Karte zahlen",
+      "waitingTitle": "Schau auf dein Handy",
+      "waitingBody": "Gib auf {phone} deine EcoCash-PIN ein, um ${price} zu bestätigen.",
+      "checking": "Warte auf die Bestätigung von EcoCash.",
+      "slow": "EcoCash hat noch nicht geantwortet. Wenn du bestätigt hast, prüfe erneut. Wenn keine Anfrage kam, versuche es noch einmal.",
+      "checkAgain": "Erneut prüfen",
+      "tryAgain": "Noch einmal versuchen",
+      "failed": "Die Zahlung ist nicht durchgegangen. Prüfe dein EcoCash-Guthaben und versuche es noch einmal.",
+      "paidTitle": "Zahlung erhalten",
+      "paidLifetime": "Pro wird für dich aktiviert.",
+      "paidSingle": "Dein Lebenslauf wird geöffnet."
+    }
   },
   "upgradeModal": {
     "default": {

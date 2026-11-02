@@ -84,7 +84,25 @@
       "Borradores de respuestas para las preguntas de los formularios de solicitud",
       "Mensajes de conexión para LinkedIn, y a quién enviarlos"
     ],
-    "continueFree": "Seguir gratis"
+    "continueFree": "Seguir gratis",
+    "ecocash": {
+      "pay": "Pagar ${price} con EcoCash",
+      "paySingle": "Desbloquear este CV por ${price} con EcoCash",
+      "payLifetime": "Acceso de por vida por ${price} con EcoCash",
+      "phoneLabel": "Número de EcoCash",
+      "note": "Enviamos una solicitud de pago a este número. Apruébala con tu PIN de EcoCash.",
+      "cardInstead": "Pagar con tarjeta",
+      "waitingTitle": "Revisa tu teléfono",
+      "waitingBody": "Introduce tu PIN de EcoCash en el {phone} para aprobar ${price}.",
+      "checking": "Esperando la confirmación de EcoCash.",
+      "slow": "EcoCash aún no responde. Si lo aprobaste, vuelve a comprobar. Si no llegó la solicitud, inténtalo de nuevo.",
+      "checkAgain": "Comprobar de nuevo",
+      "tryAgain": "Intentar de nuevo",
+      "failed": "El pago no se completó. Revisa tu saldo de EcoCash e inténtalo de nuevo.",
+      "paidTitle": "Pago recibido",
+      "paidLifetime": "Activando Pro para ti.",
+      "paidSingle": "Abriendo tu CV."
+    }
   },
   "upgradeModal": {
     "default": {

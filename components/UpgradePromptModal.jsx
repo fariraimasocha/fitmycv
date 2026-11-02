@@ -13,7 +13,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { useClientPricing } from "@/components/pricing/PricingCards";
+import { useClientPricingWithCountry } from "@/components/pricing/PricingCards";
+import EcocashCheckout from "@/components/pricing/EcocashCheckout";
 import { trackEvent } from "@/lib/analytics";
 import { SHOW_MONTHLY } from "@/lib/pricing";
 import LifetimeSpots from "@/components/pricing/LifetimeSpots";
@@ -41,11 +42,15 @@ export default function UpgradePromptModal({
   cvId = null,
 }) {
   const t = useTranslations("pages.upgradeModal");
+  const tEco = useTranslations("pages.pricingCards.ecocash");
   // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
   const localeRouter = useLocaleRouter();
   const { data: session } = useSession();
   const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
-  const pricing = useClientPricing();
+  const { pricing, country } = useClientPricingWithCountry();
+  // Zimbabwe pays with EcoCash first. The card link brings Polar back.
+  const [cardInstead, setCardInstead] = useState(false);
+  const ecocash = country === "zw" && !cardInstead;
   const offerSingle = Boolean(cvId && session?.user && pricing.single);
   const primaryPlan = SHOW_MONTHLY ? "month" : offerSingle ? "single" : "lifetime";
 
@@ -139,7 +144,36 @@ export default function UpgradePromptModal({
           </ul>
         )}
 
-        {!SHOW_MONTHLY ? (
+        {!SHOW_MONTHLY && ecocash ? (
+          <div className="flex flex-col items-center gap-2 pt-1">
+            <EcocashCheckout
+              variant="dashboard"
+              cvId={offerSingle ? cvId : null}
+              source="paywall"
+              options={[
+                ...(offerSingle
+                  ? [{ plan: "single", price: pricing.single.price, label: tEco("paySingle", { price: pricing.single.price }) }]
+                  : []),
+                { plan: "lifetime", price: pricing.lifetime.price, label: tEco("payLifetime", { price: pricing.lifetime.price }) },
+              ]}
+            />
+            <button
+              type="button"
+              onClick={() => setCardInstead(true)}
+              className="text-xs font-medium text-[var(--landing-ink-soft)] underline underline-offset-4 hover:text-[var(--landing-ink)]"
+            >
+              {tEco("cardInstead")}
+            </button>
+            <LifetimeSpots />
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-sm text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
+            >
+              {t("maybeLater")}
+            </button>
+          </div>
+        ) : !SHOW_MONTHLY ? (
           <div className="flex flex-col items-center gap-2 pt-1">
             {offerSingle && (
               <>

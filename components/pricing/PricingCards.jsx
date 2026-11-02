@@ -9,6 +9,7 @@ import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
 import { PRICING, SHOW_MONTHLY } from "@/lib/pricing";
 import LifetimeSpots from "@/components/pricing/LifetimeSpots";
+import EcocashCheckout from "@/components/pricing/EcocashCheckout";
 import { trackEvent } from "@/lib/analytics";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
@@ -19,6 +20,7 @@ export default function PricingCards({
   skipLabel,
   pricing: pricingProp,
   tier: tierProp,
+  country: countryProp,
   primaryPlan,
 }) {
   const t = useTranslations("pages.pricingCards");
@@ -49,7 +51,10 @@ export default function PricingCards({
   // nothing about who looked at the prices.
   const rootRef = useRef(null);
   const tierReady = Boolean(pricingProp || fetched);
-  const country = fetched?.country;
+  const country = countryProp ?? fetched?.country;
+  // Zimbabwe pays with EcoCash first. The card link brings Polar back.
+  const [cardInstead, setCardInstead] = useState(false);
+  const ecocash = country === "zw" && !cardInstead;
   useEffect(() => {
     const el = rootRef.current;
     if (!tierReady || !el) return;
@@ -148,6 +153,9 @@ export default function PricingCards({
                 <span className="text-sm text-[var(--landing-ink-soft)]">{plan.suffix}</span>
               </div>
               {plan.id === "lifetime" ? <LifetimeSpots className="-mt-3" /> : null}
+              {ecocash ? (
+                <EcocashPay plan={plan} t={t} onCard={() => setCardInstead(true)} />
+              ) : (
               <div className="flex flex-col gap-2">
                 <button
                   type="button"
@@ -160,6 +168,7 @@ export default function PricingCards({
                 </button>
                 <p className="text-center text-xs text-[var(--landing-ink-soft)]">{t("secureCheckout")}</p>
               </div>
+              )}
             </div>
             <div className="flex flex-col gap-4 border-t border-[var(--landing-line)] pt-8">
               <h3 className="flex items-center gap-1.5 font-outfit text-sm font-semibold text-[var(--landing-ink)]">
@@ -199,6 +208,7 @@ export default function PricingCards({
         pendingPlan={pendingPlan}
         onCheckout={handleCheckout}
         secureLabel={t("secureCheckout")}
+        ecocash={ecocash ? <EcocashPay plan={plans[0]} t={t} onCard={() => setCardInstead(true)} /> : null}
       />
     );
   }
@@ -294,7 +304,7 @@ export default function PricingCards({
 
 // One full-width card: price on the left, button on the right, so it lines up
 // with the page header and the panel below. Stacks on a phone.
-function OnePlanRow({ plan, rootRef, pendingPlan, onCheckout, secureLabel }) {
+function OnePlanRow({ plan, rootRef, pendingPlan, onCheckout, secureLabel, ecocash }) {
   return (
     <div ref={rootRef} className="bezel bezel-accent w-full">
       <div className="bezel-inner flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
@@ -311,6 +321,7 @@ function OnePlanRow({ plan, rootRef, pendingPlan, onCheckout, secureLabel }) {
           </div>
           {plan.id === "lifetime" ? <LifetimeSpots /> : null}
         </div>
+        {ecocash ? <div className="sm:w-72 sm:shrink-0">{ecocash}</div> : (
         <div className="flex flex-col gap-2 sm:w-60 sm:shrink-0">
           <button
             type="button"
@@ -323,23 +334,49 @@ function OnePlanRow({ plan, rootRef, pendingPlan, onCheckout, secureLabel }) {
           </button>
           <p className="text-center text-xs text-[var(--landing-ink-soft)]">{secureLabel}</p>
         </div>
+        )}
       </div>
     </div>
   );
 }
 
+// The lifetime card for Zimbabwe: EcoCash first, card one tap away.
+function EcocashPay({ plan, t, onCard }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <EcocashCheckout
+        options={[{ plan: plan.id, price: plan.price, label: t("ecocash.pay", { price: plan.price }) }]}
+        source="pricing_cards"
+      />
+      <button
+        type="button"
+        onClick={onCard}
+        className="mx-auto text-xs font-medium text-[var(--landing-ink-soft)] underline underline-offset-4 hover:text-[var(--landing-ink)]"
+      >
+        {t("ecocash.cardInstead")}
+      </button>
+    </div>
+  );
+}
+
 export function useClientPricing(initialPricing) {
-  const [pricing, setPricing] = useState(initialPricing ?? PRICING);
+  return useClientPricingWithCountry(initialPricing).pricing;
+}
+
+// Same fetch, plus the visitor's country ("zw" turns on EcoCash).
+export function useClientPricingWithCountry(initialPricing) {
+  const [state, setState] = useState({ pricing: initialPricing ?? PRICING, country: null });
 
   useEffect(() => {
-    if (initialPricing) return;
     fetch("/api/pricing-tier")
       .then((res) => res.json())
       .then((data) => {
-        if (data?.pricing) setPricing(data.pricing);
+        if (data?.pricing) {
+          setState({ pricing: initialPricing ?? data.pricing, country: data.country ?? null });
+        }
       })
       .catch(() => {});
   }, [initialPricing]);
 
-  return pricing;
+  return state;
 }

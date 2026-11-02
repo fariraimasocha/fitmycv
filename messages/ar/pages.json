@@ -84,7 +84,25 @@
       "مسودات إجابات لأسئلة نماذج التقديم",
       "رسائل تواصل على LinkedIn، ولمن ترسلها"
     ],
-    "continueFree": "تابع مجانًا"
+    "continueFree": "تابع مجانًا",
+    "ecocash": {
+      "pay": "ادفع ${price} عبر EcoCash",
+      "paySingle": "افتح هذه السيرة الذاتية مقابل ${price} عبر EcoCash",
+      "payLifetime": "اشتراك مدى الحياة مقابل ${price} عبر EcoCash",
+      "phoneLabel": "رقم EcoCash",
+      "note": "نرسل طلب دفع إلى هذا الرقم. وافق عليه برمز PIN الخاص بـ EcoCash.",
+      "cardInstead": "الدفع بالبطاقة بدلا من ذلك",
+      "waitingTitle": "تحقق من هاتفك",
+      "waitingBody": "أدخل رمز PIN الخاص بـ EcoCash على {phone} للموافقة على ${price}.",
+      "checking": "بانتظار تأكيد EcoCash.",
+      "slow": "لم يصل رد من EcoCash بعد. إذا وافقت، تحقق مرة أخرى. إذا لم يصلك الطلب، حاول مرة أخرى.",
+      "checkAgain": "تحقق مرة أخرى",
+      "tryAgain": "حاول مرة أخرى",
+      "failed": "لم تكتمل عملية الدفع. تحقق من رصيد EcoCash وحاول مرة أخرى.",
+      "paidTitle": "تم استلام الدفع",
+      "paidLifetime": "نفعّل Pro لك الآن.",
+      "paidSingle": "نفتح سيرتك الذاتية الآن."
+    }
   },
   "upgradeModal": {
     "default": {

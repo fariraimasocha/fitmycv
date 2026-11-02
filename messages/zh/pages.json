@@ -84,7 +84,25 @@
       "为申请表中的问题起草回答",
       "LinkedIn 联系消息，以及该发给谁"
     ],
-    "continueFree": "继续免费使用"
+    "continueFree": "继续免费使用",
+    "ecocash": {
+      "pay": "使用 EcoCash 支付 ${price}",
+      "paySingle": "使用 EcoCash 以 ${price} 解锁这份简历",
+      "payLifetime": "使用 EcoCash 以 ${price} 获取终身版",
+      "phoneLabel": "EcoCash 号码",
+      "note": "我们会向此号码发送付款请求。请用你的 EcoCash PIN 确认。",
+      "cardInstead": "改用银行卡支付",
+      "waitingTitle": "请查看手机",
+      "waitingBody": "在 {phone} 上输入 EcoCash PIN 以确认支付 ${price}。",
+      "checking": "正在等待 EcoCash 确认。",
+      "slow": "EcoCash 尚未回复。如果你已确认，请再次检查。如果没有收到请求，请重试。",
+      "checkAgain": "再次检查",
+      "tryAgain": "重试",
+      "failed": "付款未成功。请检查 EcoCash 余额后重试。",
+      "paidTitle": "已收到付款",
+      "paidLifetime": "正在为你开通 Pro。",
+      "paidSingle": "正在打开你的简历。"
+    }
   },
   "upgradeModal": {
     "default": {

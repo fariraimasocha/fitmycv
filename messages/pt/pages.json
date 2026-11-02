@@ -84,7 +84,25 @@
       "Rascunhos de respostas para perguntas de formulários de candidatura",
       "Mensagens de conexão no LinkedIn e para quem enviá-las"
     ],
-    "continueFree": "Continuar grátis"
+    "continueFree": "Continuar grátis",
+    "ecocash": {
+      "pay": "Pagar ${price} com EcoCash",
+      "paySingle": "Desbloquear este CV por ${price} com EcoCash",
+      "payLifetime": "Acesso vitalício por ${price} com EcoCash",
+      "phoneLabel": "Número EcoCash",
+      "note": "Enviamos um pedido de pagamento para este número. Aprove com o seu PIN EcoCash.",
+      "cardInstead": "Pagar com cartão",
+      "waitingTitle": "Verifique o seu telemóvel",
+      "waitingBody": "Introduza o seu PIN EcoCash no {phone} para aprovar ${price}.",
+      "checking": "À espera da confirmação da EcoCash.",
+      "slow": "A EcoCash ainda não respondeu. Se aprovou, verifique de novo. Se o pedido não chegou, tente de novo.",
+      "checkAgain": "Verificar de novo",
+      "tryAgain": "Tentar de novo",
+      "failed": "O pagamento não foi concluído. Verifique o seu saldo EcoCash e tente de novo.",
+      "paidTitle": "Pagamento recebido",
+      "paidLifetime": "A ativar o Pro para si.",
+      "paidSingle": "A abrir o seu CV."
+    }
   },
   "upgradeModal": {
     "default": {

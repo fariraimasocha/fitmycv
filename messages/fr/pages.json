@@ -84,7 +84,25 @@
       "Brouillons de réponses aux questions des formulaires de candidature",
       "Messages de connexion LinkedIn, et à qui les envoyer"
     ],
-    "continueFree": "Continuer gratuitement"
+    "continueFree": "Continuer gratuitement",
+    "ecocash": {
+      "pay": "Payer ${price} avec EcoCash",
+      "paySingle": "Débloquer ce CV pour ${price} avec EcoCash",
+      "payLifetime": "Accès à vie pour ${price} avec EcoCash",
+      "phoneLabel": "Numéro EcoCash",
+      "note": "Nous envoyons une demande de paiement à ce numéro. Validez-la avec votre code PIN EcoCash.",
+      "cardInstead": "Payer par carte",
+      "waitingTitle": "Regardez votre téléphone",
+      "waitingBody": "Saisissez votre code PIN EcoCash sur le {phone} pour valider ${price}.",
+      "checking": "En attente de la confirmation d'EcoCash.",
+      "slow": "Pas encore de réponse d'EcoCash. Si vous avez validé, vérifiez à nouveau. Si rien n'est arrivé, réessayez.",
+      "checkAgain": "Vérifier à nouveau",
+      "tryAgain": "Réessayer",
+      "failed": "Le paiement n'a pas abouti. Vérifiez votre solde EcoCash et réessayez.",
+      "paidTitle": "Paiement reçu",
+      "paidLifetime": "Nous activons Pro pour vous.",
+      "paidSingle": "Ouverture de votre CV."
+    }
   },
   "upgradeModal": {
     "default": {

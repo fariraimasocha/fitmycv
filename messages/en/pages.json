@@ -84,7 +84,25 @@
       "Draft answers for application form questions",
       "LinkedIn connection messages, and who to send them to"
     ],
-    "continueFree": "Continue free"
+    "continueFree": "Continue free",
+    "ecocash": {
+      "pay": "Pay ${price} with EcoCash",
+      "paySingle": "Unlock this CV for ${price} with EcoCash",
+      "payLifetime": "Get lifetime for ${price} with EcoCash",
+      "phoneLabel": "EcoCash number",
+      "note": "We send a payment prompt to this number. Approve it with your EcoCash PIN.",
+      "cardInstead": "Pay with card instead",
+      "waitingTitle": "Check your phone",
+      "waitingBody": "Enter your EcoCash PIN on {phone} to approve ${price}.",
+      "checking": "Waiting for EcoCash to confirm.",
+      "slow": "No reply from EcoCash yet. If you approved it, check again. If no prompt came, try again.",
+      "checkAgain": "Check again",
+      "tryAgain": "Try again",
+      "failed": "The payment didn't go through. Check your EcoCash balance and try again.",
+      "paidTitle": "Payment received",
+      "paidLifetime": "Turning on Pro for you now.",
+      "paidSingle": "Opening your CV now."
+    }
   },
   "upgradeModal": {
     "default": {

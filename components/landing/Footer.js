@@ -184,6 +184,14 @@ export default function Footer() {
                     height="40"
                   />
                 </a>
+                <a href="https://saascity.io" target="_blank" rel="noopener">
+                  <img
+                    src="https://saascity.io/badges/featured-dark.svg"
+                    alt="Featured on SaaSCity"
+                    width="150"
+                    height="54"
+                  />
+                </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
             </div>

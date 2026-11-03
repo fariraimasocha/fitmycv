@@ -192,6 +192,14 @@ export default function Footer() {
                     height="54"
                   />
                 </a>
+                <a href="https://startupfa.me/s/fitmycv?utm_source=fitmycv.link" target="_blank" rel="noopener">
+                  <img
+                    src="https://startupfa.me/badges/featured-badge.webp"
+                    alt="FitMyCV - Featured on Startup Fame"
+                    width="171"
+                    height="54"
+                  />
+                </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
             </div>

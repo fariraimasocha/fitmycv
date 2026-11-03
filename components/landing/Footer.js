@@ -130,15 +130,26 @@ export default function Footer() {
               <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">
                 {t("headings.featuredOn")}
               </h3>
-              <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="noopener noreferrer">
-                {/* eslint-disable-next-line @next/next/no-img-element -- external badge SVG */}
-                <img
-                  src="https://findly.tools/badges/findly-tools-badge-light.svg"
-                  alt="Featured on Findly.tools"
-                  width="175"
-                  height="55"
-                />
-              </a>
+              {/* eslint-disable @next/next/no-img-element -- external badge images */}
+              <div className="flex flex-wrap items-center gap-3">
+                <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="https://findly.tools/badges/findly-tools-badge-light.svg"
+                    alt="Featured on Findly.tools"
+                    width="175"
+                    height="55"
+                  />
+                </a>
+                <a href="https://nicklaunches.com/products/fitmycv/" target="_blank" rel="noopener">
+                  <img
+                    src="https://nicklaunches.com/badges/featured.png"
+                    alt="FitMyCV on Nick Launches"
+                    width="244"
+                    height="56"
+                  />
+                </a>
+              </div>
+              {/* eslint-enable @next/next/no-img-element */}
             </div>
           </div>
 

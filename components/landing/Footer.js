@@ -166,6 +166,16 @@ export default function Footer() {
                     className="h-12 w-auto"
                   />
                 </a>
+                <a href="https://peerpush.com/p/fitmycv" target="_blank" rel="noopener">
+                  <img
+                    src="https://peerpush.com/p/fitmycv/badge.png"
+                    alt="FitMyCV on PeerPush"
+                    width="230"
+                    height="65"
+                    loading="lazy"
+                    className="h-auto w-57.5"
+                  />
+                </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
             </div>

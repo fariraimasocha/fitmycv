@@ -274,7 +274,7 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
   const t = useTranslations("landing.hero");
   return (
     <section id="hero" className="relative px-5 pb-16 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container flex flex-col items-center pt-10 text-center sm:pt-14">
+      <div className="landing-container flex flex-col items-center pt-20 text-center sm:pt-32">
         <RevealWords
           as="h1"
           onLoad

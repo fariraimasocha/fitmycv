@@ -20,7 +20,7 @@ export function DashboardTabBar({ tabs, activeTab, onTabChange, className, ariaL
           className="dashboard-tab-pill"
         >
           {tab.icon}
-          {tab.label}
+          <span>{tab.label}</span>
         </button>
       ))}
     </div>

@@ -961,19 +961,25 @@
   }
 
   /* Phones: a hidden-scrollbar strip hid the last tab and nobody swiped to
-     it. Split the width evenly so every tab shows, and drop icons for room. */
+     it. Equal slices clipped labels once a bar had six tabs, so wrap into
+     a grid instead: three short tabs stay on one row, six take two. */
   @media (max-width: 639.98px) {
     .dashboard-tab-pills {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
       overflow: visible;
+      border-radius: 1.25rem;
     }
 
     .dashboard-tab-pill {
-      flex: 1 1 0;
       min-width: 0;
       padding: 0 0.5rem;
-      white-space: nowrap;
+    }
+
+    .dashboard-tab-pill > span {
+      min-width: 0;
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
     }
 

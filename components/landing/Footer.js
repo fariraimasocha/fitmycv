@@ -134,7 +134,7 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-3">
                 <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="noopener noreferrer">
                   <img
-                    src="https://findly.tools/badges/findly-tools-badge-light.svg"
+                    src="https://findly.tools/badges/findly-tools-badge-dark.svg"
                     alt="Featured on Findly.tools"
                     width="175"
                     height="55"
@@ -146,6 +146,13 @@ export default function Footer() {
                     alt="FitMyCV on Nick Launches"
                     width="244"
                     height="56"
+                  />
+                </a>
+                <a href="https://ufind.best/products/tailor-your-cv-to-any-job-link" target="_blank" rel="noopener">
+                  <img
+                    src="https://ufind.best/badges/ufind-best-badge-dark.svg"
+                    alt="Featured on ufind.best"
+                    width="150"
                   />
                 </a>
               </div>

@@ -1,7 +1,9 @@
 import { auth } from "@/lib/auth";
 import { connectDB } from "@/utils/connect";
 import ReferenceCV from "@/models/ReferenceCV";
-import { searchJobs, buildQueriesFromCV } from "@/lib/jsearch";
+import User from "@/models/User";
+import { searchJobs, buildQueries } from "@/lib/jsearch";
+import { COUNTRY_CODES } from "@/lib/countries";
 
 export async function GET(request) {
   const session = await auth();
@@ -11,9 +13,16 @@ export async function GET(request) {
 
   const { searchParams } = new URL(request.url);
   const manualQuery = searchParams.get("query");
+  const countryParam = searchParams.get("country")?.toLowerCase();
 
   try {
     await connectDB();
+
+    // Same market and remote setting as the email digest. Without a country
+    // JSearch defaults to the US, so everyone saw US listings.
+    const user = await User.findById(session.user.id).select("jobPreferences").lean();
+    const prefs = user?.jobPreferences ?? {};
+    const country = COUNTRY_CODES.has(countryParam) ? countryParam : prefs.country || "us";
 
     let queries = [];
 
@@ -21,7 +30,7 @@ export async function GET(request) {
       queries = [manualQuery];
     } else {
       const cv = await ReferenceCV.findOne({ userId: session.user.id }).lean();
-      queries = buildQueriesFromCV(cv);
+      queries = buildQueries(cv, prefs);
       if (queries.length === 0) {
         return Response.json(
           { error: "Upload your CV to see matching jobs, or search by job title." },
@@ -31,7 +40,9 @@ export async function GET(request) {
     }
 
     const results = await Promise.all(
-      queries.map((q) => searchJobs(q, { date_posted: "week", remote_jobs_only: true }))
+      queries.map((q) =>
+        searchJobs(q, { date_posted: "week", remote_jobs_only: prefs.remoteOnly !== false, country })
+      )
     );
 
     const seen = new Set();
@@ -44,7 +55,7 @@ export async function GET(request) {
       })
       .slice(0, 10);
 
-    return Response.json({ queries, jobs, count: jobs.length });
+    return Response.json({ queries, country, jobs, count: jobs.length });
   } catch (error) {
     console.error("Jobs API error:", error);
     return Response.json({ error: "Couldn't load jobs. Refresh the page." }, { status: 500 });

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Adapte seu currículo a qualquer link de vaga | FitMyCV",
-    "description": "Adapte seu currículo e sua carta a qualquer vaga: palavras-chave com IA, verificador ATS grátis, 19 modelos compatíveis com ATS e exportação em PDF.",
+    "description": "Adapte seu currículo e sua carta a qualquer vaga: palavras-chave com IA, verificador ATS grátis, 24 modelos compatíveis com ATS e exportação em PDF.",
     "ogTitle": "FitMyCV: adapte seu currículo a qualquer link de vaga em segundos",
     "ogAlt": "FitMyCV: consiga mais entrevistas com um currículo que combina com a vaga",
     "schemaName": "Adapte seu currículo a qualquer link de vaga",
@@ -30,6 +30,14 @@
     "previewTitle": "A vaga em {host} pede estes termos",
     "previewBody": "Entre para adaptar seu currículo a esta vaga. Seu link está salvo.",
     "previewCta": "Entrar e adaptar meu currículo"
+  },
+  "stats": {
+    "heading": "FitMyCV até agora",
+    "tailored": "CVs adaptados",
+    "people": "Pessoas cadastradas",
+    "templates": "Modelos compatíveis com ATS",
+    "atsGuides": "Guias ATS por empresa",
+    "freeTools": "Ferramentas grátis"
   },
   "jobBoards": {
     "title": "Funciona com qualquer link de vaga"
@@ -61,7 +69,7 @@
   },
   "templates": {
     "eyebrow": "Modelos",
-    "title": "Dezenove layouts, todos feitos para passar por um leitor de currículos",
+    "title": "Vinte e quatro layouts, todos feitos para passar por um leitor de currículos",
     "body": "Coluna única, títulos padrão e nenhum gráfico que se embaralha na extração. Mude a cor e a fonte de qualquer um deles.",
     "prev": "Modelos anteriores",
     "next": "Próximos modelos",

@@ -13,6 +13,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
@@ -25,12 +26,11 @@ import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib
 import { trackEvent } from "@/lib/analytics";
 import { extractTerms, stem, tokenize } from "@/lib/keywords";
 
-const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
-
 // The score is the peak of this tool, so it fills and counts up instead of
 // appearing static. ArcGauge and AnimatedNumber both fall back to the final
 // value under reduced motion.
 function ScoreRing({ value }) {
+  const t = useTranslations("pages.tools.keywordChecker");
   const tone =
     value >= 75
       ? "var(--landing-success)"
@@ -44,14 +44,14 @@ function ScoreRing({ value }) {
       size={112}
       strokeWidth={9}
       color={tone}
-      label={`Keyword match score: ${value} percent`}
+      label={t("scoreLabel", { value })}
       trackClassName="text-[var(--landing-line)]"
     >
       <span className="font-outfit text-2xl font-extrabold text-[var(--landing-ink)]">
         <AnimatedNumber value={value} />%
       </span>
       <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
-        match
+        {t("scoreUnit")}
       </span>
     </ArcGauge>
   );
@@ -60,28 +60,10 @@ function ScoreRing({ value }) {
 const HIGH_MATCH_SCORE = 75;
 const MIN_JOB_CHARS = 40;
 
-function handoffCopy({ gapsMode, score }) {
-  const high =
-    typeof score === "number" ? score >= HIGH_MATCH_SCORE : false;
-  if (high) {
-    return {
-      title: "Lock this match into a tailored CV",
-      body: "Your keyword coverage is strong. Keep this posting and rewrite your CV against it, using the experience you already have.",
-      cta: "Tailor my CV",
-    };
-  }
-  if (gapsMode) {
-    return {
-      title: "Close these gaps",
-      body: "Keep this posting and FitMyCV works the missing terms into your bullets, using the experience you already have.",
-      cta: "Close these gaps",
-    };
-  }
-  return {
-    title: "Close these gaps",
-    body: "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.",
-    cta: "Close these gaps",
-  };
+// Returns the message key of the bottom handoff card.
+function handoffKey({ gapsMode, score }) {
+  if (typeof score === "number" && score >= HIGH_MATCH_SCORE) return "handoffHigh";
+  return gapsMode ? "handoffGaps" : "handoffMatch";
 }
 
 export default function KeywordChecker({ mode = "match" }) {
@@ -89,6 +71,7 @@ export default function KeywordChecker({ mode = "match" }) {
   const gapsMode = mode === "gaps";
   // Both scoring modes need the CV as well as the posting.
   const needsCv = matchMode || gapsMode;
+  const t = useTranslations("pages.tools.keywordChecker");
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
@@ -191,7 +174,7 @@ export default function KeywordChecker({ mode = "match" }) {
   const jobChars = jobText.trim().length;
   const tooShort = jobChars < MIN_JOB_CHARS;
 
-  const cta = handoffCopy({
+  const ctaKey = handoffKey({
     gapsMode,
     score: typeof result?.score === "number" ? result.score : null,
   });
@@ -234,17 +217,17 @@ export default function KeywordChecker({ mode = "match" }) {
       <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-md text-sm font-semibold leading-6 text-[var(--landing-ink)]">
           {repeatCheck
-            ? `That is ${plural(runs, "check")} on this page. Let FitMyCV rewrite your CV for this job instead, using only the experience you already have.`
+            ? t("topRepeat", { count: runs })
             : missingCount
-              ? `${plural(missingCount, "keyword")} missing. FitMyCV rewrites your CV for this posting, using only the experience you already have.`
-              : "Your coverage is strong. Turn it into a CV written for this posting."}
+              ? t("topMissing", { count: missingCount })
+              : t("topStrong")}
         </p>
         <button
           type="button"
           onClick={() => handleTailorHandoff("top")}
           className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
         >
-          {repeatCheck ? "Rewrite my CV for this job" : "Tailor my CV to this job"}
+          {repeatCheck ? t("topCtaRepeat") : t("topCta")}
           <ArrowRightIcon
             size={15}
             aria-hidden="true"
@@ -264,10 +247,10 @@ export default function KeywordChecker({ mode = "match" }) {
           if (tooShort || cvMissing) {
             setFormError(
               tooShort && cvMissing
-                ? "Add your CV and the job description first."
+                ? t("errorBoth")
                 : tooShort
-                  ? "Paste the full job description first."
-                  : "Add your CV first."
+                  ? t("errorJob")
+                  : t("errorCv")
             );
             return;
           }
@@ -283,9 +266,9 @@ export default function KeywordChecker({ mode = "match" }) {
               htmlFor="job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description{" "}
+              {t("jobLabel")}{" "}
               <span className="font-sans text-xs font-semibold text-[var(--landing-ink-soft)]">
-                (required)
+                {t("required")}
               </span>
             </label>
             <textarea
@@ -300,7 +283,7 @@ export default function KeywordChecker({ mode = "match" }) {
               required
               minLength={MIN_JOB_CHARS}
               aria-describedby="job-text-count"
-              placeholder="Paste the full text of the job posting here…"
+              placeholder={t("jobPlaceholder")}
               className="min-w-0 w-full max-w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-base leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)] sm:text-sm"
             />
             <p
@@ -313,15 +296,15 @@ export default function KeywordChecker({ mode = "match" }) {
               }`}
             >
               {tooShort
-                ? `${jobChars} of ${MIN_JOB_CHARS} characters. Paste the whole posting, not just the title.`
-                : "Job description added."}
+                ? t("jobTooShort", { count: jobChars, min: MIN_JOB_CHARS })
+                : t("jobAdded")}
             </p>
           </div>
 
           {needsCv ? (
             <ResumeFileField
               id="cv-text"
-              label="Your CV"
+              label={t("cvLabel")}
               value={cvText}
               onChange={(text) => {
                 setCvText(text);
@@ -337,17 +320,17 @@ export default function KeywordChecker({ mode = "match" }) {
           <ToolSubmitButton
             label={
               gapsMode
-                ? "Find missing keywords"
+                ? t("submitGaps")
                 : matchMode
-                  ? "Score my CV"
-                  : "Extract keywords"
+                  ? t("submitMatch")
+                  : t("submitKeywords")
             }
             busyLabel={
               gapsMode
-                ? "Finding your gaps"
+                ? t("busyGaps")
                 : matchMode
-                  ? "Scoring your CV"
-                  : "Reading the posting"
+                  ? t("busyMatch")
+                  : t("busyKeywords")
             }
             running={running}
             disabled={cvBusy}
@@ -361,12 +344,12 @@ export default function KeywordChecker({ mode = "match" }) {
             {formError
               ? formError
               : cvBusy
-              ? "Reading your CV"
+              ? t("readingCv")
               : running
-                ? "Working through the posting"
+                ? t("working")
                 : needsCv
-                ? "Your CV is read in this tab. Nothing is stored."
-                : "Runs entirely in your browser. Nothing is stored."}
+                ? t("privacyCv")
+                : t("privacy")}
           </p>
         </div>
       </form>
@@ -375,10 +358,10 @@ export default function KeywordChecker({ mode = "match" }) {
         <ToolProgress
           message={
             gapsMode
-              ? "Finding your gaps"
+              ? t("busyGaps")
               : matchMode
-                ? "Scoring your CV"
-                : "Reading the posting"
+                ? t("busyMatch")
+                : t("busyKeywords")
           }
           lines={5}
         />
@@ -390,13 +373,13 @@ export default function KeywordChecker({ mode = "match" }) {
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                 {result.missing.length
-                  ? `${plural(result.missing.length, "keyword")} missing from your CV`
-                  : "Nothing missing from your CV"}
+                  ? t("gapsMissingTitle", { count: result.missing.length })
+                  : t("gapsNoneTitle")}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
                 {result.missing.length
-                  ? `This posting leans on ${result.terms.length} terms and your CV mentions ${result.covered.length} of them. The rest are below, ranked by how often the posting mentions each one. Add the ones you can honestly evidence.`
-                  : `Your CV mentions all ${result.terms.length} terms this posting leans on. Check that each one sits inside a bullet with a result attached, not only in a skills list.`}
+                  ? t("gapsMissingBody", { total: result.terms.length, covered: result.covered.length })
+                  : t("gapsNoneBody", { total: result.terms.length })}
               </p>
               {topCta}
 
@@ -418,10 +401,10 @@ export default function KeywordChecker({ mode = "match" }) {
                       </span>
                       <span className="shrink-0 font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)]">
                         <span aria-hidden="true" className="tabular-nums">
-                          Mentioned {count}x
+                          {t("mentionedShort", { count })}
                         </span>
                         <span className="sr-only">
-                          Mentioned {plural(count, "time")} in the job description
+                          {t("mentionedLong", { count })}
                         </span>
                       </span>
                     </li>
@@ -432,7 +415,7 @@ export default function KeywordChecker({ mode = "match" }) {
               {result.covered.length ? (
                 <details className="mt-8 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4">
                   <summary className="cursor-pointer rounded-lg font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2">
-                    Already covered ({result.covered.length})
+                    {t("alreadyCoveredCount", { count: result.covered.length })}
                   </summary>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {result.covered.map(({ term }) => (
@@ -460,15 +443,15 @@ export default function KeywordChecker({ mode = "match" }) {
                 <div>
                   <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                     {result.score >= 75
-                      ? "Strong keyword coverage"
+                      ? t("scoreStrong")
                       : result.score >= 50
-                        ? "Partial coverage. Worth a tailoring pass"
-                        : "Weak coverage for this posting"}
+                        ? t("scorePartial")
+                        : t("scoreWeak")}
                   </p>
                   <p className="mt-2 max-w-lg text-sm leading-7 text-[var(--landing-ink-soft)]">
                     {result.missing.length
-                      ? `Your CV covers ${result.terms.length - result.missing.length} of the ${result.terms.length} terms this posting leans on. The ones below are missing. Add the ones you can honestly evidence.`
-                      : "Your CV mentions every significant term in this posting. Check that each one appears inside a bullet with a result attached, not only in a skills list."}
+                      ? t("matchMissingBody", { covered: result.terms.length - result.missing.length, total: result.terms.length })
+                      : t("matchNoneBody")}
                   </p>
                 </div>
               </div>
@@ -477,7 +460,7 @@ export default function KeywordChecker({ mode = "match" }) {
               {result.missing.length ? (
                 <>
                   <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                    Missing from your CV
+                    {t("missingHeading")}
                   </p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {result.missing.map(({ term }) => (
@@ -499,7 +482,7 @@ export default function KeywordChecker({ mode = "match" }) {
               ) : null}
 
               <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                Already covered
+                {t("coveredHeading")}
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {result.terms
@@ -524,12 +507,10 @@ export default function KeywordChecker({ mode = "match" }) {
           ) : (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                The {result.terms.length} terms this posting leans on
+                {t("keywordsTitle", { count: result.terms.length })}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Ranked by how much weight the posting gives them. Work down the
-                list and make sure each one you can honestly claim appears in a
-                bullet on your CV with a result attached.
+                {t("keywordsBody")}
               </p>
               <ol className="mt-6 grid gap-2 sm:grid-cols-2">
                 {result.terms.map(({ term }, i) => (
@@ -552,10 +533,10 @@ export default function KeywordChecker({ mode = "match" }) {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {cta.title}
+                {t(`${ctaKey}.title`)}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {cta.body}
+                {t(`${ctaKey}.body`)}
               </p>
             </div>
             <button
@@ -563,7 +544,7 @@ export default function KeywordChecker({ mode = "match" }) {
               onClick={() => handleTailorHandoff("bottom")}
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              {cta.cta}
+              {t(`${ctaKey}.cta`)}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"

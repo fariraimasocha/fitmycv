@@ -15,7 +15,8 @@ import { pageMetadata } from "@/lib/seo";
 // but the logged sentinel drowned out real errors.
 
 export function generateStaticParams() {
-  return MARKETING_PAGES.map(({ slug }) => ({ slug }));
+  // Translated pages have their own static route, which wins over this one.
+  return MARKETING_PAGES.filter(({ slug }) => slug !== "ats-resume-checker").map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {

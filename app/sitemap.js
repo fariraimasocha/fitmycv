@@ -99,7 +99,7 @@ export default function sitemap() {
 
   // Each translated page also gets its own entry per language.
   const localizedRoutes = routing.locales.filter((l) => l !== routing.defaultLocale).flatMap((locale) =>
-    staticRoutes
+    [...staticRoutes, ...marketingRoutes]
       .filter(({ path }) => TRANSLATED_PATHS.includes(path))
       .map(({ path, changeFrequency, priority }) => ({
         url: `${SITE_URL}${localeAlternates(locale, path).canonical}`,

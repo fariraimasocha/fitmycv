@@ -1,0 +1,224 @@
+{
+  "seoTitle": "Lebenslauf ATS-Check kostenlos: ohne Login, ohne Anmeldung",
+  "description": "Kostenloser ATS-Check für deinen Lebenslauf, ohne Login. Lade ihn hoch, füge eine Stellenanzeige ein, erhalte deinen Keyword-Score. Unbegrenzt prüfen.",
+  "keywords": [
+    "lebenslauf ats check kostenlos",
+    "lebenslauf prüfen ats",
+    "ats lebenslauf test",
+    "lebenslauf keywords prüfen",
+    "ats check lebenslauf",
+    "lebenslauf ats check ohne anmeldung",
+    "lebenslauf mit stellenanzeige abgleichen",
+    "ats scanner lebenslauf",
+    "ats konformer lebenslauf",
+    "lebenslauf check kostenlos"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lebenslauf ATS-Check",
+  "h1": "Kostenloser ATS-Check für deinen Lebenslauf, ohne Login",
+  "lede": "Kein Login, keine Anmeldung. Lade deinen Lebenslauf hoch und füge eine Stellenbeschreibung ein. In etwa zehn Sekunden siehst du deinen Keyword-Score und genau die Begriffe, die die Anzeige erwartet und die in deinem Lebenslauf nie vorkommen.",
+  "howTo": {
+    "name": "So prüfst du deinen Lebenslauf auf ATS-Tauglichkeit",
+    "description": "Bewerte deinen Lebenslauf gegen eine bestimmte Stellenanzeige und finde die geforderten Keywords, die ihm fehlen.",
+    "steps": [
+      {
+        "name": "Stellenbeschreibung einfügen",
+        "text": "Kopiere den vollständigen Text der Anzeige, auf die du dich bewirbst, und füge ihn in das Feld für die Stellenbeschreibung ein."
+      },
+      {
+        "name": "Lebenslauf hochladen",
+        "text": "Zieh das PDF hinein. Wir lesen den Text aus, du musst nichts kopieren. Wenn der ausgelesene Text durcheinander ist, wird dein Layout auch in einem echten ATS durcheinandergeraten."
+      },
+      {
+        "name": "Score und Lücken lesen",
+        "text": "Der Check liefert einen gewichteten Keyword-Score und die Begriffe, auf die die Anzeige setzt und die dein Lebenslauf nie erwähnt. Ergänze die, die du ehrlich belegen kannst."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Was ist ein ATS-Check für den Lebenslauf?",
+      "a": "Ein ATS-Check vergleicht deinen Lebenslauf mit einer bestimmten Stellenbeschreibung und zeigt, wie viel vom wichtigen Vokabular der Anzeige dein Lebenslauf tatsächlich enthält. Er ist eine Diagnose: Er zeigt dir die Lücke zwischen dem, was der Arbeitgeber verlangt, und dem, was in deinem Lebenslauf steht."
+    },
+    {
+      "q": "Ist dieser ATS-Check wirklich kostenlos?",
+      "a": "Ja, und ohne Anmeldung. Der ganze Check läuft in deinem Browser, mit dem JavaScript der Seite. Es gibt also kein Konto und kein Nutzungslimit."
+    },
+    {
+      "q": "Wird mein Lebenslauf irgendwo hochgeladen oder gespeichert?",
+      "a": "Das PDF wird in diesem Tab gelesen. Die Datei wird nie an einen Server geschickt, und nichts wird gespeichert. Schließ den Tab, und alles ist weg."
+    },
+    {
+      "q": "Was ist ein guter ATS-Score?",
+      "a": "Als Faustregel: Ab 75 % deckst du das Kernvokabular der Anzeige ab. Zwischen 50 und 75 % lohnen sich die zwanzig Minuten für eine Anpassung. Unter 50 % ist dein Lebenslauf meist zu allgemein, oder die Stelle ist für dich wirklich ein großer Schritt. Sieh den Score als Signal, nicht als Note."
+    },
+    {
+      "q": "Soll ich jedes fehlende Keyword in meinen Lebenslauf aufnehmen?",
+      "a": "Nur die, die du ehrlich belegen kannst. Bring jedes in einem Stichpunkt unter, der zeigt, dass du es genutzt hast und was dabei herauskam, nicht als weiteren Eintrag in einer Skill-Liste. Wer Tools angibt, die er nie genutzt hat, verschiebt die Absage nur ins Vorstellungsgespräch."
+    },
+    {
+      "q": "Warum schneidet mein Lebenslauf schlecht ab, obwohl ich für die Stelle qualifiziert bin?",
+      "a": "Meist aus einem von drei Gründen: Du beschreibst dieselbe Arbeit mit anderen Worten als die Anzeige, du schreibst eine Abkürzung aus, die die Anzeige abkürzt (oder umgekehrt), oder deine wichtigsten Belege stehen in einer älteren Stelle weiter unten auf der Seite. Alle drei behebst du durch Anpassen, nicht durch mehr Erfahrung."
+    },
+    {
+      "q": "Garantiert ein hoher Score ein Vorstellungsgespräch?",
+      "a": "Nein. Die Keyword-Abdeckung sorgt dafür, dass dein Lebenslauf in der Suche eines Recruiters auftaucht. Den Anruf holen dir deine Stichpunkte. Sobald der Score gut aussieht, steck deine restliche Mühe darein, dass jeder Stichpunkt eine konkrete Handlung und eine Zahl enthält."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Was dieser Check tatsächlich misst"
+    },
+    {
+      "p": "Er zieht die Begriffe heraus, auf die die Stellenbeschreibung setzt: einzelne Wörter und Wortpaare, gewichtet danach, wie oft und wie prominent sie vorkommen. Dann prüft er, welche davon irgendwo im Text deines Lebenslaufs stehen. Der Score ist der gewichtete Anteil der abgedeckten Begriffe."
+    },
+    {
+      "p": "Das ist bewusst eng gefasst. Er sagt dir etwas über die **Überschneidung im Vokabular**, und die entscheidet, ob dich die Keyword-Suche eines Recruiters findet. Deinen Schreibstil, dein Layout oder deine Erfahrung bewertet er nicht."
+    },
+    {
+      "callout": {
+        "title": "Den Auslese-Test gibt es gratis dazu",
+        "body": "Wenn wir dein PDF lesen, sieh dir den Text an, der dabei herauskommt. Wenn Abschnitte in falscher Reihenfolge landen oder Inhalte fehlen, liest genau das auch ein Bewerbermanagementsystem (ATS) aus deiner Datei. Das ist ein Layout-Problem, kein Keyword-Problem."
+      }
+    },
+    {
+      "h2": "Was du bei einem niedrigen Score tust"
+    },
+    {
+      "ol": [
+        "**Prüf zuerst das Vokabular.** Wenn die Anzeige *Stakeholder-Management* sagt und du *Leute auf dem Laufenden halten* geschrieben hast, beschreibst du dieselbe Arbeit mit Worten, nach denen niemand sucht.",
+        "**Schreib Abkürzungen auf beide Arten.** Schreib „Suchmaschinenoptimierung (SEO)“, damit eine wörtliche Suche nach beiden Formen dich findet.",
+        "**Zieh die passenden Belege nach oben.** Ein perfekter Treffer, der in deiner dritten Stelle vergraben ist, bringt weniger als ein teilweiser Treffer in deinen ersten zwei Stichpunkten.",
+        "**Bring Keywords in Stichpunkten unter, nicht nur in einer Skill-Liste.** Eine Skill-Liste ist eine Behauptung. Ein Stichpunkt mit einer Zahl ist ein Beleg.",
+        "**Dann starte den Check neu.** Zwei oder drei Durchgänge bringen 40 % meist in den Bereich um 70, ohne dass du etwas erfindest."
+      ]
+    },
+    {
+      "h2": "Kein Login, nichts gespeichert, unbegrenzt prüfen"
+    },
+    {
+      "p": "Der ganze Check läuft in deinem Browser, mit dem JavaScript der Seite. Keine Kontopflicht, keine E-Mail-Abfrage, keine Datei, die an einen Server geht. Schließ den Tab, und der Text ist weg. Das unterscheidet diese Seite von Checks, bei denen du dich für zwei kostenlose Scans anmelden musst."
+    },
+    {
+      "h2": "Dieser Check, Jobscan oder eine komplette Überarbeitung"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Dieser Check",
+          "Jobscan",
+          "Anpassung über einen Joblink"
+        ],
+        "rows": [
+          [
+            "Konto nötig",
+            "Nein",
+            "Ja",
+            "Ja"
+          ],
+          [
+            "Schickt deine Datei an einen Server",
+            "Nein",
+            "Ja",
+            "Ja, in dein Konto"
+          ],
+          [
+            "Abgleich mit der Stellenbeschreibung",
+            "Ja",
+            "Ja",
+            "Ja"
+          ],
+          [
+            "Schreibt den Lebenslauf um",
+            "Nein",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Kostenloses Limit",
+            "Unbegrenzt",
+            "Einige Scans pro Monat",
+            "Kostenpflichtige Erstellungen"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Jobscan ist der Maßstab für die Match-Rate. Diese Seite ist die Diagnose ohne Login. Wenn du auch die Überarbeitung willst, nutze die [Lebenslauf-Anpassung mit KI](/de/tailor-cv-from-job-link) oder den [KI-Lebenslauf-Optimierer](/resume-optimizer). Einen ausführlicheren Vergleich kostenloser Checks findest du unter [die besten kostenlosen ATS-Lebenslauf-Checker 2026](/blog/best-free-ats-resume-checkers-2026)."
+    },
+    {
+      "h2": "Check oder Anpassung?"
+    },
+    {
+      "p": "Diese Seite stellt eine Diagnose. Sie schreibt nichts um. Der Unterschied zählt, denn das Umschreiben kostet zwanzig bis vierzig Minuten pro Stelle. Deshalb hören die meisten nach einem Dutzend Bewerbungen auf, ihren Lebenslauf anzupassen."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Dieser Check",
+          "Anpassung über einen Joblink"
+        ],
+        "rows": [
+          [
+            "Sagt dir, was fehlt",
+            "Ja",
+            "Ja"
+          ],
+          [
+            "Schreibt dein Profil und deine Stichpunkte um",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Schreibt ein passendes Anschreiben",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Liest eine Job-URL direkt",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Konto nötig",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Exportiert ein formatiertes PDF",
+            "Nein",
+            "Ja"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Wenn du dir das manuelle Umschreiben sparen willst, [passe deinen Lebenslauf über den Joblink an](/de/tailor-cv-from-job-link). Das Tool liest die Anzeige für dich und erstellt direkt den umgeschriebenen Lebenslauf und das Anschreiben. Die [Schritt-für-Schritt-Anleitung zur Anpassung](/blog/how-to-tailor-cv-to-job-description) erklärt die manuelle Methode vollständig, falls du es lieber selbst machst."
+    }
+  ],
+  "related": [
+    {
+      "label": "Lebenslauf-Stellen-Abgleich",
+      "href": "/resume-job-match-checker",
+      "body": "Eine Passungsanalyse: Skills, Keywords, Erfahrung und die ersten fünf Dinge, die du beheben solltest."
+    },
+    {
+      "label": "Lebenslauf-Anpassung mit KI",
+      "href": "/de/tailor-cv-from-job-link",
+      "body": "Füge die URL der Anzeige ein und erhalte in unter einer Minute einen umgeschriebenen Lebenslauf und ein Anschreiben."
+    },
+    {
+      "label": "Der komplette Leitfaden zum ATS-Lebenslauf",
+      "href": "/blog/ats-resume-guide",
+      "body": "Formatierung, Keywords, Dateitypen und die Fehler, durch die Lebensläufe aussortiert werden."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

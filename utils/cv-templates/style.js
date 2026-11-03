@@ -30,6 +30,7 @@ export const TEMPLATE_FONT_OPTIONS = [
   { id: "source-sans", label: "Source Sans", stack: "var(--font-source-sans), system-ui, sans-serif" },
   { id: "dm-sans", label: "DM Sans", stack: "var(--font-sn-pro), system-ui, sans-serif" },
   { id: "georgia", label: "Georgia", stack: "Georgia, serif" },
+  { id: "charter", label: "Charter", stack: 'Charter, "Bitstream Charter", var(--font-charis), Georgia, serif' },
   { id: "garamond", label: "Garamond", stack: "var(--font-garamond), Garamond, Georgia, serif" },
   { id: "times", label: "Times New Roman", stack: '"Times New Roman", Times, serif' },
   { id: "merriweather", label: "Merriweather", stack: "var(--font-merriweather), Georgia, serif" },
@@ -75,7 +76,7 @@ export function getTemplateFontOption(fontId) {
 /**
  * CSS custom properties the template components read. Setting them on the
  * wrapper means a colour or font change is a single style recalculation, with
- * no re-render of the document tree and no class churn in nineteen layouts.
+ * no re-render of the document tree and no class churn in twenty-four layouts.
  */
 export function getTemplateStyleVars(style = DEFAULT_TEMPLATE_STYLE) {
   const resolved = normalizeTemplateStyle(style);

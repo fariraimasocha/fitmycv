@@ -54,7 +54,12 @@
       "scholar": "Títulos em versaletes com linhas, em serifa. O visual de currículo de engenharia em LaTeX.",
       "rezi": "Layout com serifa do Rezi de 2026. Títulos com linhas, cargo primeiro e conquistas em parágrafos.",
       "rezi-simple": "Layout limpo do Rezi sem serifa e com poucas linhas. Bom para finanças, direito e governo.",
-      "rezi-modern": "Layout do Rezi com títulos em destaque e espaçamento menor para vagas de tecnologia e produto."
+      "rezi-modern": "Layout do Rezi com títulos em destaque e espaçamento menor para vagas de tecnologia e produto.",
+      "charter": "Serif Charter com títulos em versalete sublinhados. Formação primeiro, cargo acima da empresa.",
+      "ruled": "Sans serif compacta com linhas grossas entre as seções. Habilidades antes da experiência.",
+      "studio": "Serif com o cargo em frente ao seu nome. Experiência à esquerda, formação e habilidades à direita.",
+      "ledger": "O currículo em tabela clássico do Word. Cada seção em uma caixa, as datas em coluna própria.",
+      "crisp": "Sans serif limpa, contato com ícones e uma barra curta sob cada título."
     }
   },
   "resume": {
@@ -546,7 +551,10 @@
     "download": "Baixar PDF"
   },
   "downloadButton": {
-    "errors": {"blocked": "Seu navegador bloqueou a aba do PDF. Permita pop-ups para este site e tente de novo.", "storage": "Não foi possível preparar seu PDF. Tente de novo em uma janela normal do navegador."},
+    "errors": {
+      "blocked": "Seu navegador bloqueou a aba do PDF. Permita pop-ups para este site e tente de novo.",
+      "storage": "Não foi possível preparar seu PDF. Tente de novo em uma janela normal do navegador."
+    },
     "label": "Baixar PDF",
     "downloading": "Preparando o PDF…",
     "done": "Baixado"

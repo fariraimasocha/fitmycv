@@ -77,7 +77,7 @@ const PRODUCT_SLUGS = new Set([
  * Every page gets the same hero, prose column, FAQ block, internal-link rail,
  * and schema stack, so a new landing page is a content file, not a layout.
  */
-export default function MarketingPage({ page, children, hideHero = false }) {
+export default function MarketingPage({ page, children, hideHero = false, locale = "en" }) {
   const {
     slug,
     eyebrow,
@@ -92,14 +92,21 @@ export default function MarketingPage({ page, children, hideHero = false }) {
     related = [],
     howTo,
     breadcrumbName,
+    ui = {},
   } = page;
+
+  // Translated pages pass their locale and labels. English keeps its URLs.
+  const prefix = locale === "en" ? "" : `/${locale}`;
+  const homePath = prefix || "/";
+  const pagePath = `${prefix}/${slug}`;
 
   const ToolComponent = tool ? TOOL_COMPONENTS[tool] : null;
 
   return (
     <div className="landing-root min-h-screen">
       <Header />
-      <main dir="ltr">
+      {/* English content under /ar stays left to right. A translated page follows <html dir>. */}
+      <main dir={locale === "en" ? "ltr" : undefined}>
         {/* Hero. Template pages hide the headline and pass it to the gallery
             below, so they only need a compact breadcrumb band here. */}
         <section
@@ -114,8 +121,8 @@ export default function MarketingPage({ page, children, hideHero = false }) {
                 hideHero ? "mb-0" : "mb-6 sm:mb-8"
               }`}
             >
-              <Link href="/" className="hover:text-[var(--landing-ink)]">
-                Home
+              <Link href={homePath} className="hover:text-[var(--landing-ink)]">
+                {ui.home || "Home"}
               </Link>
               <CaretRightIcon size={11} aria-hidden="true" />
               <span className="text-[var(--landing-ink)]">
@@ -207,7 +214,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
         ) : null}
 
         {faqs.length ? (
-          <FaqSection faqs={faqs} heading={faqHeading || "Frequently asked questions"} />
+          <FaqSection faqs={faqs} heading={faqHeading || ui.faqHeading || "Frequently asked questions"} />
         ) : null}
 
         {/* Internal-link rail, every page links out to at least two others. */}
@@ -215,7 +222,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
           <section className="landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24">
             <div className="landing-container">
               <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
-                Where to go next
+                {ui.related || "Where to go next"}
               </h2>
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map(({ label, href, body }) => (
@@ -231,7 +238,7 @@ export default function MarketingPage({ page, children, hideHero = false }) {
                       {body}
                     </span>
                     <span className="mt-1 inline-flex items-center gap-1.5 font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-primary-dark)]">
-                      Open
+                      {ui.open || "Open"}
                       <ArrowRightIcon
                         size={12}
                         weight="bold"
@@ -257,8 +264,8 @@ export default function MarketingPage({ page, children, hideHero = false }) {
       ) : null}
       <JsonLd
         data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: breadcrumbName || h1, path: `/${slug}` },
+          { name: ui.home || "Home", path: homePath },
+          { name: breadcrumbName || h1, path: pagePath },
         ])}
       />
     </div>

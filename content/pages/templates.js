@@ -1,12 +1,12 @@
-// Template landing pages. These describe the 19 layouts the app actually
+// Template landing pages. These describe the 24 layouts the app actually
 // ships (utils/cv-templates/metadata.js) rather than offering downloads we do
 // not have. The CTA sends people into the product where the templates exist.
 
 export const cvTemplates = {
   slug: "cv-templates",
-  seoTitle: "Free ATS-Friendly CV Templates (19 Layouts)",
+  seoTitle: "Free ATS-Friendly CV Templates (24 Layouts)",
   description:
-    "19 ATS-friendly CV templates that parse cleanly: single column, standard headings, no graphics. Drop your content in and export a recruiter-ready PDF.",
+    "24 ATS-friendly CV templates that parse cleanly: single column, standard headings, no graphics. Drop your content in and export a recruiter-ready PDF.",
   keywords: [
     "cv template",
     "free cv template",
@@ -19,7 +19,7 @@ export const cvTemplates = {
   breadcrumbName: "CV templates",
   h1: "ATS-friendly CV templates",
   lede:
-    "19 layouts, all single-column and built to survive parsing. Choose one, drop your content in, and export a clean PDF. No design software and no sidebar that scrambles on extraction.",
+    "24 layouts, all single-column and built to survive parsing. Choose one, drop your content in, and export a clean PDF. No design software and no sidebar that scrambles on extraction.",
   ctas: [
     { label: "Use a template", href: "/auth" },
     { label: "How to write a CV", href: "/how-to-write-a-resume", variant: "secondary" },
@@ -32,7 +32,7 @@ export const cvTemplates = {
     },
     {
       q: "Are these CV templates free?",
-      a: "Creating an account and building your CV in any of the 19 layouts is free, and so is tailoring it to a job posting: you get the rewritten CV and the cover letter on screen without paying. The paid plan is what adds the match score and the ATS score, and lets you download the result as a PDF.",
+      a: "Creating an account and building your CV in any of the 24 layouts is free, and so is tailoring it to a job posting: you get the rewritten CV and the cover letter on screen without paying. The paid plan is what adds the match score and the ATS score, and lets you download the result as a PDF.",
     },
     {
       q: "Why do the templates not have colours and sidebars?",
@@ -149,7 +149,7 @@ export const resumeTemplates = {
   breadcrumbName: "Resume templates",
   h1: "ATS resume templates",
   lede:
-    "19 layouts that parse cleanly, with US resume conventions built in: one page where it should be one page, reverse-chronological, and no design flourish that costs you a field.",
+    "24 layouts that parse cleanly, with US resume conventions built in: one page where it should be one page, reverse-chronological, and no design flourish that costs you a field.",
   ctas: [
     { label: "Use a template", href: "/auth" },
     { label: "Resume tips", href: "/resume-tips", variant: "secondary" },
@@ -178,7 +178,7 @@ export const resumeTemplates = {
     },
     {
       q: "Are these templates really free?",
-      a: "Building your resume in any of the 19 layouts is free with an account, and so is tailoring it to a specific job posting. The paid plan is what lets you export the tailored version as a PDF.",
+      a: "Building your resume in any of the 24 layouts is free with an account, and so is tailoring it to a specific job posting. The paid plan is what lets you export the tailored version as a PDF.",
     },
   ],
   blocks: [
@@ -389,7 +389,7 @@ export const googleDocsCvTemplate = {
         rows: [
           ["Build a master CV", "Yes", "Yes"],
           ["Free", "Yes", "Free to build; paid to tailor"],
-          ["Switch layout without retyping", "No", "Yes, 19 templates"],
+          ["Switch layout without retyping", "No", "Yes, 24 templates"],
           ["Read a job posting URL", "No", "Yes"],
           ["Rewrite bullets against a posting", "No", "Yes"],
           ["Matching cover letter", "No", "Yes"],
@@ -397,14 +397,14 @@ export const googleDocsCvTemplate = {
       },
     },
     {
-      p: "If the Google Docs route is enough for you, the structure above is all you need. If the per-application editing is what is stopping you, the [CV templates](/cv-templates) page covers the 19 built-in layouts and [tailoring from a job link](/tailor-cv-from-job-link) covers the part Docs cannot do.",
+      p: "If the Google Docs route is enough for you, the structure above is all you need. If the per-application editing is what is stopping you, the [CV templates](/cv-templates) page covers the 24 built-in layouts and [tailoring from a job link](/tailor-cv-from-job-link) covers the part Docs cannot do.",
     },
   ],
   related: [
     {
       label: "CV templates",
       href: "/cv-templates",
-      body: "19 ATS-safe layouts with no setup and no table traps.",
+      body: "24 ATS-safe layouts with no setup and no table traps.",
     },
     {
       label: "How to write a resume",

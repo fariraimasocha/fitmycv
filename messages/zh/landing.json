@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "根据任意职位链接定制你的简历 | FitMyCV",
-    "description": "根据任意职位链接定制你的简历和求职信：AI 关键词匹配、免费 ATS 简历检查器、19 款适配 ATS 的模板，以及一键导出 PDF。",
+    "description": "根据任意职位链接定制你的简历和求职信：AI 关键词匹配、免费 ATS 简历检查器、24 款适配 ATS 的模板，以及一键导出 PDF。",
     "ogTitle": "FitMyCV：几秒内根据任意职位链接定制你的简历",
     "ogAlt": "FitMyCV：用一份契合职位的简历获得更多面试机会",
     "schemaName": "根据任意职位链接定制你的简历",
@@ -30,6 +30,14 @@
     "previewTitle": "{host} 上的这个职位要求这些关键词",
     "previewBody": "登录即可根据此职位定制你的简历。你的链接已保存。",
     "previewCta": "登录并定制我的简历"
+  },
+  "stats": {
+    "heading": "FitMyCV 至今",
+    "tailored": "已定制简历",
+    "people": "已注册用户",
+    "templates": "ATS 安全模板",
+    "atsGuides": "企业 ATS 指南",
+    "freeTools": "免费工具"
   },
   "jobBoards": {
     "title": "支持任意职位链接"
@@ -61,7 +69,7 @@
   },
   "templates": {
     "eyebrow": "模板",
-    "title": "十九款版式，全部经得起解析器的考验",
+    "title": "二十四款版式，全部经得起解析器的考验",
     "body": "单栏布局，标准标题，没有会在提取时错乱的图形。每一款都可以更改颜色和字体。",
     "prev": "上一组模板",
     "next": "下一组模板",

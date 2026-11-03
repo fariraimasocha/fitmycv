@@ -54,7 +54,12 @@
       "scholar": "Titres soulignés en petites capitales et en serif. Le style LaTeX des CV d’ingénieurs.",
       "rezi": "La mise en page serif de Rezi en 2026. Titres soulignés, poste en premier, réalisations en paragraphes.",
       "rezi-simple": "Mise en page Rezi sans serif et épurée, avec peu de filets. Adaptée à la finance, au droit et au secteur public.",
-      "rezi-modern": "Mise en page Rezi avec titres colorés et espacement resserré, pour les postes tech et produit."
+      "rezi-modern": "Mise en page Rezi avec titres colorés et espacement resserré, pour les postes tech et produit.",
+      "charter": "Serif Charter et titres en petites capitales soulignés. Formation en tête, poste au-dessus de l'entreprise.",
+      "ruled": "Sans serif dense, filets épais entre les sections. Compétences avant l'expérience.",
+      "studio": "Serif avec l'intitulé du poste face à votre nom. Expérience à gauche, formation et compétences à droite.",
+      "ledger": "Le CV tableau classique de Word. Chaque section dans un cadre, les dates dans leur propre colonne.",
+      "crisp": "Sans serif épurée, coordonnées avec icônes et un court trait sous chaque titre."
     }
   },
   "resume": {

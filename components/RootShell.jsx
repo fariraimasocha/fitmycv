@@ -14,6 +14,7 @@ import {
   EB_Garamond,
   Lora,
   Libre_Baskerville,
+  Charis_SIL,
 } from "next/font/google";
 import "@/app/globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
@@ -127,8 +128,16 @@ const baskerville = Libre_Baskerville({
   style: ["normal", "italic"],
   preload: false,
 });
+// Charter's open twin, for readers whose device has no Charter installed.
+const charis = Charis_SIL({
+  variable: "--font-charis",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  preload: false,
+});
 const cvFontVariables = [
-  merriweather, sourceSans, inter, lato, roboto, openSans, carlito, garamond, lora, baskerville,
+  merriweather, sourceSans, inter, lato, roboto, openSans, carlito, garamond, lora, baskerville, charis,
 ].map((font) => font.variable).join(" ");
 
 // <html>, fonts and providers for every root layout. The public layouts pass

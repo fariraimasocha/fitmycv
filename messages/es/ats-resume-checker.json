@@ -1,0 +1,223 @@
+{
+  "seoTitle": "Verificador ATS de CV gratis: sin registro ni login",
+  "description": "Verificador ATS de CV gratis y sin registro. Sube tu CV, pega la oferta y obtén tu puntuación de palabras clave. Tu archivo se lee en tu navegador.",
+  "keywords": [
+    "verificador ats de cv gratis",
+    "comprobar cv ats",
+    "analizar cv con ats",
+    "test ats cv",
+    "verificador ats cv gratis sin registro",
+    "comprobar cv con oferta de empleo",
+    "cv compatible con ats",
+    "escáner ats cv",
+    "palabras clave cv ats"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Verificador ATS de CV",
+  "h1": "Verificador ATS de CV gratis, sin registro",
+  "lede": "Sin login y sin registro. Sube tu CV y pega la descripción de la oferta. En unos diez segundos ves tu puntuación de coincidencia de palabras clave y los términos exactos que la oferta espera y que tu CV nunca menciona.",
+  "howTo": {
+    "name": "Cómo comprobar tu CV con un ATS",
+    "description": "Puntúa tu CV frente a una oferta concreta y encuentra las palabras clave necesarias que le faltan.",
+    "steps": [
+      {
+        "name": "Pega la descripción de la oferta",
+        "text": "Copia el texto completo de la oferta a la que te postulas y pégalo en el cuadro de la descripción."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "Suelta el PDF. Extraemos el texto para que no tengas que copiarlo. Si el texto extraído sale desordenado, tu diseño también se desordenará en un ATS real."
+      },
+      {
+        "name": "Lee la puntuación y lo que falta",
+        "text": "El verificador te da una puntuación ponderada de coincidencia de palabras clave y los términos en los que se apoya la oferta que tu CV nunca menciona. Añade los que puedas demostrar con honestidad."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Qué es un verificador ATS de CV?",
+      "a": "Un verificador ATS de CV compara tu CV con una oferta concreta y te dice qué parte del vocabulario importante de la oferta contiene de verdad tu CV. Es un diagnóstico: te muestra la distancia entre lo que pide la empresa y lo que dice tu CV."
+    },
+    {
+      "q": "¿De verdad es gratis este verificador ATS?",
+      "a": "Sí, y no hace falta registrarse. Toda la comprobación se ejecuta en tu navegador con JavaScript en la página, así que no hay cuenta ni límite de uso."
+    },
+    {
+      "q": "¿Mi CV se sube o se guarda en algún sitio?",
+      "a": "El PDF se lee en esta pestaña. El archivo nunca se envía a un servidor y no se guarda nada. Cierra la pestaña y desaparece."
+    },
+    {
+      "q": "¿Qué es una buena puntuación ATS?",
+      "a": "Como regla general, un 75% o más significa que cubres el vocabulario principal de la oferta. Entre un 50 y un 75% significa que vale la pena dedicar veinte minutos a adaptarlo. Por debajo del 50% suele significar que tu CV es genérico o que el puesto te queda grande de verdad. Tómalo como una señal, no como una nota."
+    },
+    {
+      "q": "¿Debo añadir a mi CV todas las palabras clave que faltan?",
+      "a": "Solo las que puedas demostrar con honestidad. Añade cada una dentro de un punto que muestre cómo la usaste y qué resultado obtuviste, no como otra entrada en una lista de habilidades. Si dices que dominas herramientas que nunca has usado, solo trasladas el rechazo a la entrevista."
+    },
+    {
+      "q": "¿Por qué mi CV puntúa mal si estoy cualificado para el puesto?",
+      "a": "Suele haber una de tres razones: describes el mismo trabajo con otras palabras que la oferta, escribes completa una sigla que la oferta abrevia (o al revés), o tu experiencia más relevante está en un puesto antiguo, más abajo en la página. Las tres se resuelven adaptando el CV, no sumando experiencia."
+    },
+    {
+      "q": "¿Una puntuación alta garantiza una entrevista?",
+      "a": "No. Cubrir las palabras clave hace que tu CV aparezca en la búsqueda de un reclutador. Los puntos de tu experiencia son los que consiguen la llamada. Cuando la puntuación se vea bien, dedica el resto del esfuerzo a que cada punto tenga una acción concreta y una cifra."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué mide de verdad este verificador"
+    },
+    {
+      "p": "Extrae los términos en los que se apoya la oferta: palabras sueltas y frases de dos palabras, ponderadas según cuántas veces aparecen y lo destacadas que están. Después comprueba cuáles aparecen en cualquier parte del texto de tu CV. La puntuación es la proporción ponderada que cubres."
+    },
+    {
+      "p": "Es un análisis limitado a propósito. Te informa de la **coincidencia de vocabulario**, que es lo que decide si la búsqueda por palabras clave de un reclutador te encuentra. No juzga tu redacción, tu diseño ni tu experiencia."
+    },
+    {
+      "callout": {
+        "title": "La prueba de extracción va incluida",
+        "body": "Cuando leemos tu PDF, mira el texto que sale. Si las secciones aparecen desordenadas o falta contenido, eso es exactamente lo que un sistema de seguimiento de candidatos extraerá de tu archivo. Es un problema de diseño, no de palabras clave."
+      }
+    },
+    {
+      "h2": "Qué hacer con una puntuación baja"
+    },
+    {
+      "ol": [
+        "**Revisa primero el vocabulario.** Si la oferta dice *gestión de stakeholders* y tú escribiste *mantener informada a la gente*, describes el mismo trabajo con palabras que nadie busca.",
+        "**Escribe las siglas de las dos formas.** Pon \"optimización para motores de búsqueda (SEO)\" para que una búsqueda literal de cualquiera de las dos te encuentre.",
+        "**Sube la experiencia relevante.** Una coincidencia perfecta enterrada en tu tercer puesto aporta menos que una coincidencia parcial en tus dos primeros puntos.",
+        "**Pon las palabras clave dentro de los puntos, no solo en una lista de habilidades.** Una lista de habilidades es una afirmación. Un punto con una cifra es una prueba.",
+        "**Después vuelve a hacer la comprobación.** Con dos o tres pasadas, un 40% suele subir a más de 70 sin inventar nada."
+      ]
+    },
+    {
+      "h2": "Sin login, sin guardar nada, comprobaciones ilimitadas"
+    },
+    {
+      "p": "Toda la comprobación se ejecuta en tu navegador con JavaScript en la página. No hay muro de cuenta, no te pedimos el email y ningún archivo se envía a un servidor. Cierra la pestaña y el texto desaparece. Esa es la diferencia entre esta página y los verificadores que te piden registrarte para dos análisis gratis."
+    },
+    {
+      "h2": "Este verificador vs Jobscan vs una reescritura completa"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Este verificador",
+          "Jobscan",
+          "Adaptar desde un enlace de empleo"
+        ],
+        "rows": [
+          [
+            "Necesita una cuenta",
+            "No",
+            "Sí",
+            "Sí"
+          ],
+          [
+            "Envía tu archivo a un servidor",
+            "No",
+            "Sí",
+            "Sí, a tu cuenta"
+          ],
+          [
+            "Comparación con la oferta",
+            "Sí",
+            "Sí",
+            "Sí"
+          ],
+          [
+            "Reescribe el CV",
+            "No",
+            "No",
+            "Sí"
+          ],
+          [
+            "Límite gratis",
+            "Ilimitado",
+            "Unos pocos análisis al mes",
+            "Generaciones de pago"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Jobscan es la referencia en tasa de coincidencia. Esta página es el diagnóstico sin login. Si también quieres la reescritura, usa el [adaptador de CV con IA](/es/tailor-cv-from-job-link) o el [optimizador de CV con IA](/resume-optimizer). Tienes una comparación más larga de verificadores gratis en [los mejores verificadores ATS gratis de 2026](/blog/best-free-ats-resume-checkers-2026)."
+    },
+    {
+      "h2": "¿Verificar o adaptar?"
+    },
+    {
+      "p": "Esta página diagnostica. No reescribe. La diferencia importa, porque la reescritura es la parte que lleva entre veinte y cuarenta minutos por puesto. Por eso la mayoría deja de adaptar su CV después de una docena de candidaturas."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Este verificador",
+          "Adaptar desde un enlace de empleo"
+        ],
+        "rows": [
+          [
+            "Te dice lo que falta",
+            "Sí",
+            "Sí"
+          ],
+          [
+            "Reescribe tu resumen y tus puntos",
+            "No",
+            "Sí"
+          ],
+          [
+            "Escribe una carta de presentación a juego",
+            "No",
+            "Sí"
+          ],
+          [
+            "Lee directamente la URL de una oferta",
+            "No",
+            "Sí"
+          ],
+          [
+            "Necesita una cuenta",
+            "No",
+            "Sí"
+          ],
+          [
+            "Exporta un PDF con formato",
+            "No",
+            "Sí"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Si prefieres saltarte la reescritura manual, [adapta tu CV desde el enlace de la oferta](/es/tailor-cv-from-job-link). Lee la oferta por ti y genera directamente el CV reescrito y la carta de presentación. La [guía paso a paso para adaptar tu CV](/blog/how-to-tailor-cv-to-job-description) explica el método manual completo si prefieres hacerlo tú."
+    }
+  ],
+  "related": [
+    {
+      "label": "Comparador de CV y oferta",
+      "href": "/resume-job-match-checker",
+      "body": "Un informe de encaje: habilidades, palabras clave, experiencia y las cinco primeras cosas que corregir."
+    },
+    {
+      "label": "Adaptador de CV con IA",
+      "href": "/es/tailor-cv-from-job-link",
+      "body": "Pega la URL de la oferta y obtén un CV reescrito y una carta de presentación en menos de un minuto."
+    },
+    {
+      "label": "La guía completa del CV para ATS",
+      "href": "/blog/ats-resume-guide",
+      "body": "Formato, palabras clave, tipos de archivo y los errores que hacen que se descarten los CV."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

@@ -54,7 +54,12 @@
       "scholar": "Überschriften mit Linie in Kapitälchen und Serifenschrift. Der LaTeX-Look für Ingenieurslebensläufe.",
       "rezi": "Das Serifen-Layout von Rezi aus 2026. Überschriften mit Linie, Rolle zuerst, Erfolge als Absätze.",
       "rezi-simple": "Klares Rezi-Layout ohne Serifen mit wenigen Linien. Passend für Finanzen, Recht und öffentlichen Dienst.",
-      "rezi-modern": "Rezi-Layout mit farbigen Überschriften und engeren Abständen für Tech- und Produktrollen."
+      "rezi-modern": "Rezi-Layout mit farbigen Überschriften und engeren Abständen für Tech- und Produktrollen.",
+      "charter": "Charter Serif mit unterstrichenen Kapitälchen-Überschriften. Ausbildung zuerst, Position über dem Unternehmen.",
+      "ruled": "Kompakte Sans Serif mit kräftigen Linien zwischen den Abschnitten. Kenntnisse vor der Berufserfahrung.",
+      "studio": "Serif mit der Berufsbezeichnung gegenüber deinem Namen. Erfahrung links, Ausbildung und Kenntnisse rechts.",
+      "ledger": "Der klassische Word-Tabellenlebenslauf. Jeder Abschnitt in einem Rahmen, Daten in einer eigenen Spalte.",
+      "crisp": "Klare Sans Serif mit Kontaktzeile samt Icons und einem kurzen Balken unter jeder Überschrift."
     }
   },
   "resume": {

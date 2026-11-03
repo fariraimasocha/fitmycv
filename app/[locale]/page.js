@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
+import StatsStrip from "@/components/landing/StatsStrip";
 import JobBoardStrip from "@/components/landing/JobBoardStrip";
 import TheProblem from "@/components/landing/TheProblem";
 import HowItWorks from "@/components/landing/HowItWorks";
@@ -21,7 +22,7 @@ import {
 } from "@/lib/structured-data";
 import { getHomeFaqs, getHomeSteps } from "@/content/pages/home";
 import { getServerPricing } from "@/lib/server-pricing";
-import { getUserCount } from "@/lib/user-count";
+import { getLandingStats } from "@/lib/landing-stats";
 import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({ params }) {
@@ -60,22 +61,23 @@ export async function generateMetadata({ params }) {
 export default async function Home({ params }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [{ pricing }, t, userCount] = await Promise.all([
+  const [{ pricing }, t, stats] = await Promise.all([
     getServerPricing(),
     getTranslations({ locale, namespace: "landing.meta" }),
-    getUserCount(),
+    getLandingStats(),
   ]);
 
   return (
     <div className="landing-root min-h-screen">
       <Header />
       <main>
-        <Hero lifetimePrice={pricing.lifetime.price} userCount={userCount} />
+        <Hero lifetimePrice={pricing.lifetime.price} userCount={stats.users} />
         <JobBoardStrip />
         <TheProblem />
         <HowItWorks lifetimePrice={pricing.lifetime.price} />
         <UseCases />
         <TemplateStrip />
+        <StatsStrip users={stats.users} tailored={stats.tailored} />
         <Testimonial />
         <TrustSignals />
         <Pricing />

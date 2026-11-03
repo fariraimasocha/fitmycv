@@ -1,0 +1,224 @@
+{
+  "seoTitle": "Test CV ATS gratuit : sans compte, sans inscription",
+  "description": "Test CV ATS gratuit, sans compte. Importez votre CV, collez une offre et obtenez un score de mots-clés. Fichier lu dans votre navigateur. Tests illimités.",
+  "keywords": [
+    "test cv ats gratuit",
+    "vérificateur cv ats",
+    "analyse cv ats",
+    "cv compatible ats",
+    "tester son cv ats",
+    "test cv ats gratuit sans inscription",
+    "comparer cv et offre d'emploi",
+    "score ats cv",
+    "mots-clés cv ats",
+    "logiciel ats cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Test CV ATS",
+  "h1": "Test CV ATS gratuit, sans compte",
+  "lede": "Sans compte, sans inscription. Importez votre CV et collez une offre d'emploi. Vous voyez votre score de correspondance des mots-clés et les termes précis que l'offre attend et que votre CV ne mentionne jamais, en une dizaine de secondes.",
+  "howTo": {
+    "name": "Comment tester votre CV face à un ATS",
+    "description": "Évaluez votre CV face à une offre précise et repérez les mots-clés requis qui lui manquent.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Copiez le texte complet de l'offre à laquelle vous postulez et collez-le dans le champ prévu pour l'offre."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Nous en extrayons le texte, vous n'avez rien à copier. Si le texte extrait est dans le désordre, votre mise en page sera aussi mélangée dans un vrai ATS."
+      },
+      {
+        "name": "Lisez le score et les manques",
+        "text": "L'outil renvoie un score pondéré de correspondance des mots-clés, avec les termes sur lesquels l'offre insiste et que votre CV ne mentionne jamais. Ajoutez ceux que vous pouvez honnêtement prouver."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Qu'est-ce qu'un vérificateur de CV ATS ?",
+      "a": "Un vérificateur de CV ATS compare votre CV à une offre d'emploi précise et indique quelle part du vocabulaire important de l'offre votre CV contient vraiment. C'est un diagnostic : il montre l'écart entre ce que l'employeur demande et ce que dit votre CV."
+    },
+    {
+      "q": "Ce test ATS est-il vraiment gratuit ?",
+      "a": "Oui, et sans inscription. Tout le test tourne dans votre navigateur, avec le JavaScript de la page. Il n'y a donc ni compte ni limite d'utilisation."
+    },
+    {
+      "q": "Mon CV est-il envoyé ou stocké quelque part ?",
+      "a": "Le PDF est lu dans cet onglet. Le fichier n'est jamais envoyé à un serveur et rien n'est stocké. Fermez l'onglet et tout disparaît."
+    },
+    {
+      "q": "Qu'est-ce qu'un bon score ATS ?",
+      "a": "En règle générale, 75 % et plus signifie que vous couvrez le vocabulaire de base de l'offre. Entre 50 et 75 %, une adaptation vaut bien vingt minutes. Sous 50 %, votre CV est souvent trop générique, ou le poste est vraiment ambitieux pour vous. Voyez-le comme un signal, pas comme une note."
+    },
+    {
+      "q": "Dois-je ajouter chaque mot-clé manquant à mon CV ?",
+      "a": "Seulement ceux que vous pouvez honnêtement prouver. Placez chacun dans une puce qui montre que vous l'avez utilisé et ce que cela a donné, pas comme une ligne de plus dans une liste de compétences. Citer des outils que vous n'avez jamais utilisés ne fait que repousser le refus à l'entretien."
+    },
+    {
+      "q": "Pourquoi mon CV obtient-il un mauvais score alors que j'ai le profil ?",
+      "a": "En général pour l'une de trois raisons : vous décrivez le même travail avec d'autres mots que l'offre, vous écrivez en toutes lettres un sigle que l'offre abrège (ou l'inverse), ou vos preuves les plus utiles se trouvent dans un ancien poste, plus bas dans la page. Dans les trois cas, la solution est d'adapter le CV, pas d'ajouter de l'expérience."
+    },
+    {
+      "q": "Un score élevé garantit-il un entretien ?",
+      "a": "Non. La couverture des mots-clés fait ressortir votre CV dans la recherche d'un recruteur. Ce sont vos puces qui décrochent l'appel. Une fois le score correct, consacrez le reste de vos efforts à donner à chaque puce une action précise et un chiffre."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Ce que mesure vraiment cet outil"
+    },
+    {
+      "p": "Il extrait les termes sur lesquels l'offre insiste : mots seuls et expressions de deux mots, pondérés selon leur fréquence et leur place dans le texte. Il vérifie ensuite lesquels apparaissent quelque part dans le texte de votre CV. Le score est la part pondérée des termes couverts."
+    },
+    {
+      "p": "C'est volontairement limité. Il vous renseigne sur le **recoupement du vocabulaire**, ce qui décide si la recherche par mots-clés d'un recruteur vous fait ressortir. Il ne juge ni votre style, ni votre mise en page, ni votre expérience."
+    },
+    {
+      "callout": {
+        "title": "Le test d'extraction est offert",
+        "body": "Quand nous lisons votre PDF, regardez le texte qui en sort. Si des sections arrivent dans le désordre ou si du contenu manque, c'est exactement ce qu'un logiciel de recrutement (ATS) extraira de votre fichier. C'est un problème de mise en page, pas de mots-clés."
+      }
+    },
+    {
+      "h2": "Que faire avec un score faible"
+    },
+    {
+      "ol": [
+        "**Vérifiez d'abord le vocabulaire.** Si l'offre dit *gestion des parties prenantes* et que vous avez écrit *tenir les gens informés*, vous décrivez le même travail avec des mots que personne ne recherche.",
+        "**Écrivez les sigles des deux façons.** Écrivez « référencement naturel (SEO) » pour qu'une recherche littérale sur l'une ou l'autre forme vous trouve.",
+        "**Remontez les preuves utiles.** Une correspondance parfaite enfouie dans votre troisième poste pèse moins qu'une correspondance partielle dans vos deux premières puces.",
+        "**Placez les mots-clés dans vos puces, pas seulement dans une liste de compétences.** Une liste de compétences est une affirmation. Une puce avec un chiffre est une preuve.",
+        "**Puis relancez le test.** Deux ou trois passages font souvent passer un 40 % dans les 70, sans rien inventer."
+      ]
+    },
+    {
+      "h2": "Sans compte, rien de stocké, tests illimités"
+    },
+    {
+      "p": "Tout le test tourne dans votre navigateur, avec le JavaScript de la page. Pas de compte obligatoire, pas d'e-mail demandé, aucun fichier envoyé à un serveur. Fermez l'onglet et le texte disparaît. C'est la différence entre cette page et les outils qui vous demandent de vous inscrire pour deux analyses gratuites."
+    },
+    {
+      "h2": "Cet outil, Jobscan ou une réécriture complète"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Cet outil",
+          "Jobscan",
+          "Adaptation depuis un lien d'offre"
+        ],
+        "rows": [
+          [
+            "Compte nécessaire",
+            "Non",
+            "Oui",
+            "Oui"
+          ],
+          [
+            "Envoie votre fichier à un serveur",
+            "Non",
+            "Oui",
+            "Oui, vers votre compte"
+          ],
+          [
+            "Comparaison avec l'offre",
+            "Oui",
+            "Oui",
+            "Oui"
+          ],
+          [
+            "Réécrit le CV",
+            "Non",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Limite gratuite",
+            "Illimité",
+            "Quelques analyses par mois",
+            "Générations payantes"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Jobscan est la référence du taux de correspondance. Cette page est le diagnostic sans compte. Si vous voulez aussi la réécriture, utilisez l'[adaptation de CV par IA](/fr/tailor-cv-from-job-link) ou l'[optimiseur de CV par IA](/resume-optimizer). Une comparaison plus complète des outils gratuits se trouve dans [les meilleurs vérificateurs de CV ATS gratuits en 2026](/blog/best-free-ats-resume-checkers-2026)."
+    },
+    {
+      "h2": "Test ou adaptation ?"
+    },
+    {
+      "p": "Cette page diagnostique. Elle ne réécrit pas. La différence compte, car la réécriture prend vingt à quarante minutes par poste. C'est pour cela que la plupart des gens arrêtent d'adapter leur CV après une douzaine de candidatures."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Cet outil",
+          "Adaptation depuis un lien d'offre"
+        ],
+        "rows": [
+          [
+            "Vous dit ce qui manque",
+            "Oui",
+            "Oui"
+          ],
+          [
+            "Réécrit votre résumé et vos puces",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Rédige une lettre de motivation assortie",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Lit directement l'URL d'une offre",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Compte nécessaire",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Exporte un PDF mis en forme",
+            "Non",
+            "Oui"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Si vous préférez éviter la réécriture manuelle, [adaptez votre CV depuis le lien de l'offre](/fr/tailor-cv-from-job-link). L'outil lit l'offre pour vous et produit directement le CV réécrit et la lettre de motivation. Le [guide d'adaptation pas à pas](/blog/how-to-tailor-cv-to-job-description) détaille la méthode manuelle si vous préférez le faire vous-même."
+    }
+  ],
+  "related": [
+    {
+      "label": "Comparateur CV et offre",
+      "href": "/resume-job-match-checker",
+      "body": "Un bilan d'adéquation : compétences, mots-clés, expérience et les cinq premières choses à corriger."
+    },
+    {
+      "label": "Adaptation de CV par IA",
+      "href": "/fr/tailor-cv-from-job-link",
+      "body": "Collez l'URL de l'offre et obtenez un CV réécrit et une lettre de motivation en moins d'une minute."
+    },
+    {
+      "label": "Le guide complet du CV ATS",
+      "href": "/blog/ats-resume-guide",
+      "body": "Mise en page, mots-clés, types de fichiers et les erreurs qui font écarter un CV."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

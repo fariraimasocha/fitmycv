@@ -54,7 +54,12 @@
       "scholar": "Small-caps ruled headings in serif. The LaTeX engineering-resume look.",
       "rezi": "Rezi's 2026 serif layout. Ruled headings, role-first entries, paragraph achievements.",
       "rezi-simple": "Clean sans-serif Rezi layout with minimal rules. Finance, law, and government friendly.",
-      "rezi-modern": "Rezi layout with accent headings and tighter spacing for tech and product roles."
+      "rezi-modern": "Rezi layout with accent headings and tighter spacing for tech and product roles.",
+      "charter": "Charter serif with small-caps ruled headings. Education first, role over company.",
+      "ruled": "Dense sans serif with heavy rules between sections. Skills before experience.",
+      "studio": "Serif with the job title opposite your name. Experience left, education and skills right.",
+      "ledger": "The classic Word table resume. Each section in a ruled box, dates in their own column.",
+      "crisp": "Clean sans serif with an icon contact row and a short bar under each heading."
     }
   },
   "resume": {
@@ -546,7 +551,10 @@
     "download": "Download PDF"
   },
   "downloadButton": {
-    "errors": {"blocked": "Your browser blocked the PDF tab. Allow pop-ups for this site and try again.", "storage": "Couldn't prepare your PDF. Try again in a normal browser window."},
+    "errors": {
+      "blocked": "Your browser blocked the PDF tab. Allow pop-ups for this site and try again.",
+      "storage": "Couldn't prepare your PDF. Try again in a normal browser window."
+    },
     "label": "Download PDF",
     "downloading": "Preparing PDF…",
     "done": "Downloaded"

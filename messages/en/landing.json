@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tailor Your CV to Any Job Link | FitMyCV",
-    "description": "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 19 ATS-safe templates, and one-click PDF export.",
+    "description": "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 24 ATS-safe templates, and one-click PDF export.",
     "ogTitle": "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
     "ogAlt": "FitMyCV: Land more interviews with a CV that fits",
     "schemaName": "Tailor Your CV to Any Job Link",
@@ -30,6 +30,14 @@
     "previewTitle": "The job on {host} asks for these",
     "previewBody": "Sign in to tailor your CV to this job. Your link is saved.",
     "previewCta": "Sign in to tailor my CV"
+  },
+  "stats": {
+    "heading": "FitMyCV so far",
+    "tailored": "CVs tailored",
+    "people": "People signed up",
+    "templates": "ATS-safe templates",
+    "atsGuides": "Company ATS guides",
+    "freeTools": "Free tools"
   },
   "jobBoards": {
     "title": "Works with any job link"
@@ -61,7 +69,7 @@
   },
   "templates": {
     "eyebrow": "Templates",
-    "title": "Nineteen layouts, all built to survive a parser",
+    "title": "Twenty-four layouts, all built to survive a parser",
     "body": "Single column, standard headings, no graphics that scramble on extraction. Change the colour and the font on any of them.",
     "prev": "Previous templates",
     "next": "Next templates",

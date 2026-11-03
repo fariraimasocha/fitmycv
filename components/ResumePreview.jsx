@@ -1818,6 +1818,547 @@ function ScholarPreview({ basics, work, education, skills }) {
   );
 }
 
+// ── Charter: Charter serif, small-caps ruled headings (LaTeX "v2" look) ──
+// Role over company, dates and places right aligned, education first.
+
+function CharterSectionHeading({ children }) {
+  return (
+    <h2
+      className="mb-1.5 border-b border-black pb-0.5 text-base font-normal text-black"
+      style={{ fontVariant: "small-caps" }}
+    >
+      {children}
+    </h2>
+  );
+}
+
+function CharterPreview({ basics, work, education, skills }) {
+  const contactParts = [
+    basics.phone,
+    basics.email,
+    ...(basics.profiles || [])
+      .filter((profile) => profile.url || profile.network)
+      .map((profile) => profile.url || profile.network),
+    basics.location,
+  ].filter(Boolean);
+
+  return (
+    <div className="space-y-3 text-black">
+      <div className="text-center">
+        {basics.name && (
+          <p className="text-3xl font-bold" style={{ fontVariant: "small-caps" }}>
+            {basics.name}
+          </p>
+        )}
+        {contactParts.length > 0 && (
+          <p className="mt-1 text-xs">
+            {contactParts.map((part, i) => (
+              <span key={i}>
+                {i > 0 && <span className="mx-1">|</span>}
+                <span className={part === basics.location ? "whitespace-nowrap" : "underline"}>{part}</span>
+              </span>
+            ))}
+          </p>
+        )}
+      </div>
+
+      {basics.summary && (
+        <div>
+          <CharterSectionHeading>Summary</CharterSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <CharterSectionHeading>Education</CharterSectionHeading>
+          <div className="space-y-1.5 ps-0.5">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {edu.institution && <p className="text-sm font-bold">{edu.institution}</p>}
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 text-sm">
+                      {edu.startDate}{edu.startDate && edu.endDate ? DATE_SEP : ""}{edu.endDate}
+                    </p>
+                  )}
+                </div>
+                {(edu.degree || edu.fieldOfStudy) && (
+                  <p className="text-xs italic">
+                    {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <CharterSectionHeading>Experience</CharterSectionHeading>
+          <div className="space-y-2 ps-0.5">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid">
+                <div className="flex items-start justify-between gap-4">
+                  {job.position && <p className="text-sm font-bold">{job.position}</p>}
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 text-sm">
+                      {job.startDate}{job.startDate && job.endDate ? DATE_SEP : ""}{job.endDate}
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-start justify-between gap-4">
+                  {job.company && <p className="text-xs italic">{job.company}</p>}
+                  {job.location && <p className="shrink-0 text-xs italic">{job.location}</p>}
+                </div>
+                <div className="text-xs leading-snug">
+                  <BulletList description={job.description} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <CharterSectionHeading>Technical Skills</CharterSectionHeading>
+          <div className="space-y-0.5 ps-0.5">
+            {skills.map((group, i) => (
+              <p key={i} className="text-xs leading-relaxed">
+                {group.category && <span className="font-bold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Ruled: compact sans with heavy rules between sections (LaTeX "v3" look) ──
+// Split header, centered caps headings, skills before experience.
+
+function RuledSectionHeading({ children }) {
+  return (
+    <h2 className="mb-1 border-t-2 border-black pt-1.5 text-center text-xs font-bold uppercase text-black">
+      {children}
+    </h2>
+  );
+}
+
+function RuledBulletList({ description }) {
+  if (!description) return null;
+  const items = description.split("\n").filter((l) => l.trim());
+  if (items.length === 0) return null;
+  return (
+    <ul className="mt-0.5 space-y-0.5 ps-7" style={{ listStyleType: "circle" }}>
+      {items.map((item, i) => (
+        <li key={i}>{item.trim()}</li>
+      ))}
+    </ul>
+  );
+}
+
+function RuledPreview({ basics, work, education, skills }) {
+  const profiles = (basics.profiles || []).filter((profile) => profile.url || profile.network);
+
+  return (
+    <div className="space-y-2 text-black">
+      <div className="flex items-start justify-between gap-6">
+        <div className="min-w-0">
+          {basics.name && <p className="text-base font-bold">{basics.name}</p>}
+          {profiles.length > 0 && (
+            <p className="text-xs text-blue-700">
+              {profiles.map((profile, i) => (
+                <span key={i}>
+                  {i > 0 && <span className="mx-1 font-bold text-black">|</span>}
+                  {profile.url || profile.network}
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
+        <div className="shrink-0 text-end text-xs">
+          {basics.email && <p>Email: {basics.email}</p>}
+          {basics.phone && <p className="mt-0.5">Mobile: {basics.phone}</p>}
+          {basics.location && <p className="mt-0.5">{basics.location}</p>}
+        </div>
+      </div>
+
+      {basics.summary && (
+        <div>
+          <RuledSectionHeading>Summary</RuledSectionHeading>
+          <p className="text-xs leading-snug whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <RuledSectionHeading>Education</RuledSectionHeading>
+          <div className="space-y-1">
+            {education.map((edu, i) => (
+              <div key={i} className="break-inside-avoid text-xs">
+                <div className="flex items-start justify-between gap-4">
+                  {edu.institution && <p className="font-bold">{edu.institution}</p>}
+                  {(edu.startDate || edu.endDate) && (
+                    <p className="shrink-0 font-bold">
+                      {edu.startDate}{edu.startDate && edu.endDate ? DATE_SEP : ""}{edu.endDate}
+                    </p>
+                  )}
+                </div>
+                {(edu.degree || edu.fieldOfStudy) && (
+                  <p>{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <RuledSectionHeading>Technical Skills</RuledSectionHeading>
+          <ul className="list-disc space-y-0.5 ps-4 text-xs leading-snug">
+            {skills.map((group, i) => (
+              <li key={i}>
+                {group.category && <span className="font-bold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <RuledSectionHeading>Experience</RuledSectionHeading>
+          <div className="space-y-1.5">
+            {work.map((job, i) => (
+              <div key={i} className="break-inside-avoid text-xs leading-snug">
+                <div className="flex items-start justify-between gap-4">
+                  <p className="font-bold">
+                    {[job.position, job.company].filter(Boolean).join(META_SEP)}
+                  </p>
+                  {(job.startDate || job.endDate) && (
+                    <p className="shrink-0 font-bold">
+                      {job.startDate}{job.startDate && job.endDate ? DATE_SEP : ""}{job.endDate}
+                    </p>
+                  )}
+                </div>
+                {job.location && <p>{job.location}</p>}
+                <RuledBulletList description={job.description} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Shared by the three layouts below: "Mar 2022 - Present", or one date alone.
+const dateRange = ({ startDate, endDate }) =>
+  [startDate, endDate].filter(Boolean).join(DATE_SEP);
+
+// ── Studio: serif, title opposite the name, two columns under the profile ──
+
+function StudioSectionHeading({ children }) {
+  return (
+    <div className="mb-3 flex items-center gap-6">
+      <h2 className="shrink-0 text-xl font-bold text-gray-900">{children}</h2>
+      <div className="h-px flex-1 bg-gray-300" />
+    </div>
+  );
+}
+
+function StudioPreview({ basics, work, education, skills }) {
+  const contactParts = [
+    basics.location,
+    basics.phone,
+    basics.email,
+    ...(basics.profiles || [])
+      .filter((profile) => profile.url || profile.network)
+      .map((profile) => profile.url || profile.network),
+  ].filter(Boolean);
+
+  return (
+    <div className="text-gray-900">
+      <div className="flex items-end justify-between gap-6 pb-3">
+        {basics.name && <p className="text-4xl font-bold leading-none">{basics.name}</p>}
+        {basics.label && <p className="shrink-0 text-base">{basics.label}</p>}
+      </div>
+      {contactParts.length > 0 && (
+        <p className="border-y border-gray-300 py-2 text-center text-xs">
+          {contactParts.join(CONTACT_SEP)}
+        </p>
+      )}
+
+      {basics.summary && (
+        <div className="pt-5 pb-4">
+          <StudioSectionHeading>Profile</StudioSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      <div className="grid grid-cols-5 border-t border-gray-300">
+        <div className="col-span-3 space-y-5 pt-5 pe-6">
+          {work?.length > 0 && (
+            <div>
+              <StudioSectionHeading>Professional Experience</StudioSectionHeading>
+              <div className="space-y-4">
+                {work.map((job, i) => (
+                  <div key={i} className="break-inside-avoid text-xs">
+                    {job.position && <p className="font-bold">{job.position}</p>}
+                    <p className="mt-1">
+                      {[[job.company, job.location].filter(Boolean).join(", "), dateRange(job)]
+                        .filter(Boolean)
+                        .join(DATE_SEP)}
+                    </p>
+                    <div className="leading-relaxed">
+                      <BulletList description={job.description} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="col-span-2 space-y-5 border-s border-gray-300 pt-5 ps-6">
+          {education?.length > 0 && (
+            <div>
+              <StudioSectionHeading>Education</StudioSectionHeading>
+              <div className="space-y-3">
+                {education.map((edu, i) => (
+                  <div key={i} className="break-inside-avoid text-xs leading-relaxed">
+                    {(edu.degree || edu.fieldOfStudy) && (
+                      <p className="font-bold">
+                        {[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}
+                      </p>
+                    )}
+                    {edu.institution && <p>{edu.institution}</p>}
+                    {dateRange(edu) && <p>{dateRange(edu)}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {skills?.length > 0 && (
+            <div>
+              <StudioSectionHeading>Skills</StudioSectionHeading>
+              <div className="space-y-1">
+                {skills.map((group, i) => (
+                  <p key={i} className="text-xs leading-relaxed">
+                    {group.category && <span className="font-bold">{group.category}: </span>}
+                    <span>{(group.skills || []).join(", ")}</span>
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Ledger: the classic Word table resume, every section in a ruled box ──
+
+function LedgerSectionHeading({ children }) {
+  return (
+    <h2 className="border-b border-black px-1 py-0.5 text-lg font-bold text-black">
+      {children}
+    </h2>
+  );
+}
+
+// One table row: the entry on the left, place and dates in the right cell.
+function LedgerRow({ children, aside }) {
+  return (
+    <div className="flex break-inside-avoid border-b border-black last:border-b-0">
+      <div className="min-w-0 flex-1 px-1 py-1.5">{children}</div>
+      <div className="w-36 shrink-0 border-s border-black px-1 py-1.5 text-end">{aside}</div>
+    </div>
+  );
+}
+
+function LedgerPreview({ basics, work, education, skills }) {
+  const contactParts = [
+    basics.location,
+    basics.phone,
+    basics.email,
+    ...(basics.profiles || [])
+      .filter((profile) => profile.url || profile.network)
+      .map((profile) => profile.url || profile.network),
+  ].filter(Boolean);
+
+  return (
+    <div className="text-xs text-black">
+      <div className="mb-3 text-center">
+        {basics.name && <p className="text-3xl font-bold">{basics.name}</p>}
+        {contactParts.length > 0 && <p className="mt-1">{contactParts.join(CONTACT_SEP)}</p>}
+      </div>
+
+      <div className="border border-black">
+        {basics.summary && (
+          <div className="border-b border-black">
+            <LedgerSectionHeading>Summary</LedgerSectionHeading>
+            <p className="px-1 py-1.5 leading-relaxed whitespace-pre-line">{basics.summary}</p>
+          </div>
+        )}
+
+        {education?.length > 0 && (
+          <div className="border-b border-black">
+            <LedgerSectionHeading>Education</LedgerSectionHeading>
+            {education.map((edu, i) => (
+              <LedgerRow key={i} aside={dateRange(edu)}>
+                {edu.institution && <p className="font-bold uppercase">{edu.institution}</p>}
+                {(edu.degree || edu.fieldOfStudy) && (
+                  <p>{[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ")}</p>
+                )}
+              </LedgerRow>
+            ))}
+          </div>
+        )}
+
+        {work?.length > 0 && (
+          <div className="border-b border-black">
+            <LedgerSectionHeading>Experience</LedgerSectionHeading>
+            {work.map((job, i) => (
+              <LedgerRow
+                key={i}
+                aside={
+                  <>
+                    {job.location && <p>{job.location}</p>}
+                    {dateRange(job) && <p>{dateRange(job)}</p>}
+                  </>
+                }
+              >
+                {job.position && <p className="font-bold uppercase">{job.position}</p>}
+                {job.company && <p>{job.company}</p>}
+                <BulletList description={job.description} />
+              </LedgerRow>
+            ))}
+          </div>
+        )}
+
+        {skills?.length > 0 && (
+          <div>
+            <LedgerSectionHeading>Skills</LedgerSectionHeading>
+            <div className="space-y-0.5 px-1 py-1.5">
+              {skills.map((group, i) => (
+                <p key={i}>
+                  {group.category && <span className="font-bold">{group.category}: </span>}
+                  <span>{(group.skills || []).join(", ")}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Crisp: modern sans, icon contact row, short bar under each heading ──
+
+function CrispSectionHeading({ children }) {
+  return (
+    <div className="mb-2">
+      <h2 className="text-sm font-bold uppercase tracking-wide text-gray-900">{children}</h2>
+      {/* .h-px keeps the dividers toggle and accent colour working; 2px is the bar. */}
+      <div className="h-px mt-1 w-10 bg-gray-900" style={{ height: 2 }} />
+    </div>
+  );
+}
+
+function CrispEntry({ title, subtitle, dates, description }) {
+  return (
+    <div className="break-inside-avoid text-xs">
+      <div className="flex items-start justify-between gap-4">
+        {title && <p className="font-bold">{title}</p>}
+        {dates && <p className="shrink-0 font-semibold">{dates}</p>}
+      </div>
+      {subtitle && <p className="italic text-gray-600">{subtitle}</p>}
+      <div className="leading-relaxed">
+        <BulletList description={description} />
+      </div>
+    </div>
+  );
+}
+
+function CrispPreview({ basics, work, education, skills }) {
+  return (
+    <div className="space-y-4 text-gray-900">
+      <div className="border-b border-gray-300 pb-4">
+        {basics.name && (
+          <p className="text-3xl font-bold uppercase tracking-wide">{basics.name}</p>
+        )}
+        {basics.label && <p className="mt-1 text-sm text-gray-600">{basics.label}</p>}
+        <ContactWithIcons basics={basics} className="mt-2 text-xs text-gray-700" />
+      </div>
+
+      {basics.summary && (
+        <div>
+          <CrispSectionHeading>Profile</CrispSectionHeading>
+          <p className="text-xs leading-relaxed whitespace-pre-line">{basics.summary}</p>
+        </div>
+      )}
+
+      {work?.length > 0 && (
+        <div>
+          <CrispSectionHeading>Experience</CrispSectionHeading>
+          <div className="space-y-3">
+            {work.map((job, i) => (
+              <CrispEntry
+                key={i}
+                title={job.position}
+                subtitle={[job.company, job.location].filter(Boolean).join(META_SEP)}
+                dates={dateRange(job)}
+                description={job.description}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {education?.length > 0 && (
+        <div>
+          <CrispSectionHeading>Education</CrispSectionHeading>
+          <div className="space-y-2">
+            {education.map((edu, i) => (
+              <CrispEntry
+                key={i}
+                title={[edu.degree, edu.fieldOfStudy].filter(Boolean).join(" in ") || edu.institution}
+                subtitle={edu.degree || edu.fieldOfStudy ? edu.institution : ""}
+                dates={dateRange(edu)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {skills?.length > 0 && (
+        <div>
+          <CrispSectionHeading>Skills</CrispSectionHeading>
+          <div className="space-y-0.5">
+            {skills.map((group, i) => (
+              <p key={i} className="text-xs leading-relaxed">
+                {group.category && <span className="font-bold">{group.category}: </span>}
+                <span>{(group.skills || []).join(", ")}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Router ───────────────────────────────────────────────
 
 const PREVIEWS = {
@@ -1840,6 +2381,11 @@ const PREVIEWS = {
   rezi: ReziPreview,
   "rezi-simple": ReziPreview,
   "rezi-modern": ReziPreview,
+  charter: CharterPreview,
+  ruled: RuledPreview,
+  studio: StudioPreview,
+  ledger: LedgerPreview,
+  crisp: CrispPreview,
 };
 
 const PADDING = {
@@ -1859,6 +2405,11 @@ const PADDING = {
   rezi: "px-8 py-6 sm:px-10",
   "rezi-simple": "px-8 py-6 sm:px-10",
   "rezi-modern": "px-8 py-6 sm:px-10",
+  charter: "px-8 py-6 sm:px-10",
+  ruled: "px-8 py-5 sm:px-10",
+  studio: "p-8 sm:p-10",
+  ledger: "px-6 py-6 sm:px-8",
+  crisp: "p-8 sm:p-10",
 };
 
 function renderTemplatePreview({ data, template, style, padding, Preview }) {
@@ -1867,7 +2418,7 @@ function renderTemplatePreview({ data, template, style, padding, Preview }) {
 
   // The font and accent reach the document as inherited CSS variables, and the
   // data-cv-* attributes drive the accent, divider and indent rules in
-  // globals.css, so the picker restyles all nineteen layouts without any of
+  // globals.css, so the picker restyles all twenty-four layouts without any of
   // them knowing about it.
   // `fontFamily` is set explicitly because Tailwind's font utilities inside the
   // templates would otherwise win over a bare inherit.

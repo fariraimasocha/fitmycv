@@ -8,6 +8,7 @@ import {
   XIcon,
 } from "@phosphor-icons/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 import { extractResumeText, validateResumeFile } from "@/utils/extract-resume-client";
 
@@ -22,12 +23,13 @@ const textareaClassName =
 
 export default function ResumeFileField({
   id,
-  label = "Your CV",
+  label,
   value,
   onChange,
   onBusyChange,
   rows = 10,
 }) {
+  const t = useTranslations("pages.tools.resumeFile");
   const generatedId = useId();
   const fieldId = id || generatedId;
   const fileInputId = `${fieldId}-file`;
@@ -67,12 +69,12 @@ export default function ResumeFileField({
         setFileSize(file.size);
         setPasteOpen(false);
         onChange(text);
-        toast.success("CV text ready");
+        toast.success(t("ready"));
       } catch (caught) {
         const message =
           caught instanceof Error
             ? caught.message
-            : "Could not read this PDF. Try another file, or paste the text.";
+            : t("readFailed");
         setError(message);
         toast.error(message);
       } finally {
@@ -80,7 +82,7 @@ export default function ResumeFileField({
         if (inputRef.current) inputRef.current.value = "";
       }
     },
-    [onChange, setBusy]
+    [onChange, setBusy, t]
   );
 
   const handleDrop = (event) => {
@@ -110,7 +112,7 @@ export default function ResumeFileField({
         htmlFor={showTextarea ? fieldId : fileInputId}
         className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
       >
-        {label}
+        {label ?? t("label")}
       </label>
 
       {hasFile ? (
@@ -128,7 +130,7 @@ export default function ResumeFileField({
             <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
               {formatFileSize(fileSize)}
               {value.trim()
-                ? `, ${value.trim().length.toLocaleString()} characters ready`
+                ? t("charsReady", { count: value.trim().length })
                 : ""}
             </p>
           </div>
@@ -136,7 +138,7 @@ export default function ResumeFileField({
             type="button"
             onClick={clearFile}
             className="rounded-lg p-1.5 text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
-            aria-label="Remove CV file"
+            aria-label={t("remove")}
           >
             <XIcon size={16} aria-hidden="true" />
           </button>
@@ -172,16 +174,16 @@ export default function ResumeFileField({
             )}
           </span>
           <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            {reading ? "Reading your CV" : "Drop your CV PDF here"}
+            {reading ? t("reading") : t("drop")}
           </p>
           <p className="mt-1 text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {reading ? "Pulling the text out of the file" : "or choose a file"}
+            {reading ? t("readingHint") : t("choose")}
           </p>
           {reading ? (
             <span
               role="status"
               aria-live="polite"
-              aria-label="Reading your CV"
+              aria-label={t("reading")}
               className="tool-progress-track mt-4 h-1 w-40 max-w-full"
             >
               <span />
@@ -201,7 +203,7 @@ export default function ResumeFileField({
           if (selected) readFile(selected);
         }}
         className="sr-only"
-        aria-label={hasFile ? "Replace CV file" : "Upload your CV"}
+        aria-label={hasFile ? t("replaceAria") : t("uploadAria")}
         aria-describedby={`${hintId}${error ? ` ${errorId}` : ""}`}
       />
 
@@ -213,15 +215,15 @@ export default function ResumeFileField({
             disabled={reading}
             className="font-outfit text-xs font-extrabold text-[var(--landing-primary-dark)] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:opacity-45"
           >
-            Replace file
+            {t("replace")}
           </button>
           <p id={hintId} className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            Review the text below. That is what the checker will read.
+            {t("reviewHint")}
           </p>
         </div>
       ) : (
         <p id={hintId} className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-          PDF, up to 8MB. Read in this tab, never stored.
+          {t("fileHint")}
         </p>
       )}
 
@@ -237,7 +239,7 @@ export default function ResumeFileField({
           value={value}
           onChange={(event) => onChange(event.target.value)}
           rows={rows}
-          placeholder="The extracted text appears here. Edit it if a line looks wrong."
+          placeholder={t("textPlaceholder")}
           className={textareaClassName}
         />
       ) : (
@@ -246,7 +248,7 @@ export default function ResumeFileField({
           onClick={() => setPasteOpen(true)}
           className="-my-3 self-start py-3 font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
         >
-          Or paste the text
+          {t("paste")}
         </button>
       )}
     </div>

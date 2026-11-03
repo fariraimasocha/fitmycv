@@ -1,0 +1,223 @@
+{
+  "seoTitle": "Verificador de currículo ATS grátis, sem login",
+  "description": "Verificador de currículo ATS grátis e sem cadastro. Envie seu currículo, cole a vaga e veja sua pontuação de palavras-chave. Lido no seu navegador.",
+  "keywords": [
+    "verificador de currículo ats grátis",
+    "analisar currículo ats",
+    "teste ats currículo",
+    "verificador de currículo ats",
+    "currículo ats grátis sem cadastro",
+    "comparar currículo com a vaga",
+    "currículo compatível com ats",
+    "scanner ats currículo",
+    "palavras-chave currículo ats"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Verificador de currículo ATS",
+  "h1": "Verificador de currículo ATS grátis, sem login",
+  "lede": "Sem login e sem cadastro. Envie seu currículo e cole a descrição da vaga. Em cerca de dez segundos, você vê sua pontuação de correspondência de palavras-chave e os termos exatos que a vaga espera e que seu currículo nunca menciona.",
+  "howTo": {
+    "name": "Como testar seu currículo em um ATS",
+    "description": "Avalie seu currículo em relação a uma vaga específica e encontre as palavras-chave exigidas que estão faltando.",
+    "steps": [
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "Copie o texto completo da vaga para a qual você está se candidatando e cole no campo da descrição."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Solte o PDF. Nós extraímos o texto para você não precisar copiar. Se o texto extraído sair fora de ordem, seu layout também vai se embaralhar em um ATS de verdade."
+      },
+      {
+        "name": "Leia a pontuação e o que falta",
+        "text": "O verificador mostra uma pontuação ponderada de correspondência de palavras-chave e os termos em que a vaga se apoia que seu currículo nunca menciona. Adicione os que você consegue comprovar com honestidade."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "O que é um verificador de currículo ATS?",
+      "a": "Um verificador de currículo ATS compara seu currículo com uma descrição de vaga específica e mostra quanto do vocabulário importante da vaga seu currículo realmente contém. É um diagnóstico: mostra a distância entre o que o empregador pediu e o que seu currículo diz."
+    },
+    {
+      "q": "Este verificador ATS é grátis mesmo?",
+      "a": "Sim, e não precisa de cadastro. Toda a verificação roda no seu navegador, com JavaScript na própria página, então não há conta nem limite de uso."
+    },
+    {
+      "q": "Meu currículo é enviado ou guardado em algum lugar?",
+      "a": "O PDF é lido nesta aba. O arquivo nunca é enviado a um servidor e nada é guardado. Feche a aba e ele some."
+    },
+    {
+      "q": "Qual é uma boa pontuação ATS?",
+      "a": "Como regra geral, 75% ou mais significa que você cobre o vocabulário principal da vaga. De 50 a 75% significa que vale a pena gastar vinte minutos adaptando. Abaixo de 50% costuma significar que seu currículo está genérico ou que a vaga é realmente um passo grande para você. Trate como um sinal, não como uma nota."
+    },
+    {
+      "q": "Devo adicionar ao currículo todas as palavras-chave que faltam?",
+      "a": "Só as que você consegue comprovar com honestidade. Coloque cada uma dentro de um tópico que mostre como você a usou e qual foi o resultado, e não como mais um item numa lista de habilidades. Dizer que domina ferramentas que nunca usou só leva a rejeição para a entrevista."
+    },
+    {
+      "q": "Por que meu currículo pontua mal se tenho qualificação para a vaga?",
+      "a": "Normalmente por um de três motivos: você descreve o mesmo trabalho com palavras diferentes das da vaga, escreve por extenso uma sigla que a vaga abrevia (ou o contrário), ou sua experiência mais relevante está em um cargo antigo, mais para baixo na página. Os três se resolvem adaptando o currículo, não somando experiência."
+    },
+    {
+      "q": "Uma pontuação alta garante uma entrevista?",
+      "a": "Não. Cobrir as palavras-chave faz seu currículo aparecer na busca do recrutador. São os tópicos da sua experiência que conquistam a ligação. Quando a pontuação estiver boa, use o resto do esforço para garantir que cada tópico tenha uma ação específica e um número."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que este verificador realmente mede"
+    },
+    {
+      "p": "Ele extrai os termos em que a descrição da vaga se apoia: palavras soltas e expressões de duas palavras, ponderadas pela frequência e pelo destaque com que aparecem. Depois, verifica quais delas aparecem em qualquer parte do texto do seu currículo. A pontuação é a proporção ponderada que você cobre."
+    },
+    {
+      "p": "Isso é limitado de propósito. Mostra a **sobreposição de vocabulário**, que é o que decide se a busca por palavras-chave de um recrutador encontra você. Não avalia sua escrita, seu layout nem sua experiência."
+    },
+    {
+      "callout": {
+        "title": "O teste de extração vem junto",
+        "body": "Quando lemos seu PDF, olhe o texto que sai. Se as seções aparecem fora de ordem ou falta conteúdo, é exatamente isso que um sistema de rastreamento de candidatos vai extrair do seu arquivo. É um problema de layout, não de palavras-chave."
+      }
+    },
+    {
+      "h2": "O que fazer com uma pontuação baixa"
+    },
+    {
+      "ol": [
+        "**Confira o vocabulário primeiro.** Se a vaga diz *gestão de stakeholders* e você escreveu *manter as pessoas informadas*, você descreve o mesmo trabalho com palavras que ninguém busca.",
+        "**Escreva as siglas das duas formas.** Escreva \"otimização para mecanismos de busca (SEO)\" para que uma busca literal por qualquer uma das formas encontre você.",
+        "**Suba a experiência relevante.** Uma correspondência perfeita enterrada no seu terceiro cargo vale menos que uma correspondência parcial nos seus dois primeiros tópicos.",
+        "**Coloque as palavras-chave dentro dos tópicos, não só numa lista de habilidades.** Uma lista de habilidades é uma afirmação. Um tópico com um número é uma prova.",
+        "**Depois, faça a verificação de novo.** Duas ou três rodadas costumam levar um 40% para a faixa dos 70 sem inventar nada."
+      ]
+    },
+    {
+      "h2": "Sem login, nada guardado, verificações ilimitadas"
+    },
+    {
+      "p": "Toda a verificação roda no seu navegador, com JavaScript na própria página. Não há barreira de conta, não pedimos seu e-mail e nenhum arquivo é enviado a um servidor. Feche a aba e o texto some. Essa é a diferença entre esta página e os verificadores que pedem cadastro para duas análises grátis."
+    },
+    {
+      "h2": "Este verificador vs Jobscan vs uma reescrita completa"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Este verificador",
+          "Jobscan",
+          "Adaptação pelo link da vaga"
+        ],
+        "rows": [
+          [
+            "Precisa de conta",
+            "Não",
+            "Sim",
+            "Sim"
+          ],
+          [
+            "Envia seu arquivo a um servidor",
+            "Não",
+            "Sim",
+            "Sim, para a sua conta"
+          ],
+          [
+            "Comparação com a descrição da vaga",
+            "Sim",
+            "Sim",
+            "Sim"
+          ],
+          [
+            "Reescreve o currículo",
+            "Não",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Limite grátis",
+            "Ilimitado",
+            "Poucas análises por mês",
+            "Gerações pagas"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "O Jobscan é a referência em taxa de correspondência. Esta página é o diagnóstico sem login. Se você também quer a reescrita, use o [adaptador de currículo com IA](/pt/tailor-cv-from-job-link) ou o [otimizador de currículo com IA](/resume-optimizer). Há uma comparação mais longa de verificadores grátis em [os melhores verificadores de currículo ATS grátis de 2026](/blog/best-free-ats-resume-checkers-2026)."
+    },
+    {
+      "h2": "Verificar ou adaptar?"
+    },
+    {
+      "p": "Esta página faz o diagnóstico. Ela não reescreve. Essa diferença importa, porque a reescrita é a parte que leva de vinte a quarenta minutos por vaga. É por isso que a maioria das pessoas para de adaptar o currículo depois de umas doze candidaturas."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Este verificador",
+          "Adaptação pelo link da vaga"
+        ],
+        "rows": [
+          [
+            "Mostra o que está faltando",
+            "Sim",
+            "Sim"
+          ],
+          [
+            "Reescreve seu resumo e seus tópicos",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Escreve uma carta de apresentação que combina",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Lê a URL da vaga diretamente",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Precisa de conta",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Exporta um PDF formatado",
+            "Não",
+            "Sim"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Se você prefere pular a reescrita manual, [adapte seu currículo a partir do link da vaga](/pt/tailor-cv-from-job-link). Ele lê a vaga por você e gera diretamente o currículo reescrito e a carta de apresentação. O [guia passo a passo para adaptar o currículo](/blog/how-to-tailor-cv-to-job-description) explica o método manual completo, se você preferir fazer sozinho."
+    }
+  ],
+  "related": [
+    {
+      "label": "Comparador de currículo e vaga",
+      "href": "/resume-job-match-checker",
+      "body": "Uma leitura de compatibilidade: habilidades, palavras-chave, experiência e as cinco primeiras coisas para corrigir."
+    },
+    {
+      "label": "Adaptador de currículo com IA",
+      "href": "/pt/tailor-cv-from-job-link",
+      "body": "Cole a URL da vaga e receba um currículo reescrito e uma carta de apresentação em menos de um minuto."
+    },
+    {
+      "label": "O guia completo de currículo para ATS",
+      "href": "/blog/ats-resume-guide",
+      "body": "Formatação, palavras-chave, tipos de arquivo e os erros que fazem currículos serem filtrados."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

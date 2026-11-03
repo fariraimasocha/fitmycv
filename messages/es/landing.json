@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Adapta tu CV a cualquier oferta de empleo | FitMyCV",
-    "description": "Adapta tu CV y tu carta a cualquier oferta: palabras clave con IA, verificador ATS gratuito, 19 plantillas compatibles con ATS y exportación a PDF.",
+    "description": "Adapta tu CV y tu carta a cualquier oferta: palabras clave con IA, verificador ATS gratuito, 24 plantillas compatibles con ATS y exportación a PDF.",
     "ogTitle": "FitMyCV: adapta tu CV a cualquier oferta en segundos",
     "ogAlt": "FitMyCV: consigue más entrevistas con un CV que encaja",
     "schemaName": "Adapta tu CV a cualquier oferta de empleo",
@@ -30,6 +30,14 @@
     "previewTitle": "La oferta en {host} pide estos términos",
     "previewBody": "Inicia sesión para adaptar tu CV a esta oferta. Tu enlace está guardado.",
     "previewCta": "Iniciar sesión y adaptar mi CV"
+  },
+  "stats": {
+    "heading": "FitMyCV hasta ahora",
+    "tailored": "CVs adaptados",
+    "people": "Personas registradas",
+    "templates": "Plantillas compatibles con ATS",
+    "atsGuides": "Guías ATS por empresa",
+    "freeTools": "Herramientas gratis"
   },
   "jobBoards": {
     "title": "Funciona con cualquier enlace de empleo"
@@ -61,7 +69,7 @@
   },
   "templates": {
     "eyebrow": "Plantillas",
-    "title": "Diecinueve diseños, todos pensados para superar a los lectores automáticos",
+    "title": "Veinticuatro diseños, todos pensados para superar a los lectores automáticos",
     "body": "Una sola columna, encabezados estándar y ningún gráfico que se desordene al extraer el texto. Cambia el color y la fuente de cualquiera de ellos.",
     "prev": "Plantillas anteriores",
     "next": "Plantillas siguientes",

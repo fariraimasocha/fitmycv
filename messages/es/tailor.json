@@ -54,7 +54,12 @@
       "scholar": "Encabezados con línea en versalitas y serif. El estilo LaTeX de los CV de ingeniería.",
       "rezi": "El diseño serif de Rezi de 2026. Encabezados con línea, puesto primero, logros en párrafos.",
       "rezi-simple": "Diseño Rezi limpio sin serif y con pocas líneas. Apto para finanzas, derecho y sector público.",
-      "rezi-modern": "Diseño Rezi con encabezados en color y espaciado más ajustado para puestos tech y de producto."
+      "rezi-modern": "Diseño Rezi con encabezados en color y espaciado más ajustado para puestos tech y de producto.",
+      "charter": "Serif Charter con títulos en versalitas subrayados. Formación primero, puesto sobre la empresa.",
+      "ruled": "Sans serif compacta con líneas gruesas entre secciones. Habilidades antes de la experiencia.",
+      "studio": "Serif con el puesto frente a tu nombre. Experiencia a la izquierda, formación y habilidades a la derecha.",
+      "ledger": "El CV en tabla clásico de Word. Cada sección en un recuadro, las fechas en su propia columna.",
+      "crisp": "Sans serif limpia, contacto con iconos y una barra corta bajo cada título."
     }
   },
   "resume": {

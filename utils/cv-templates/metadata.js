@@ -23,13 +23,18 @@ export const TEMPLATE_DEFAULT_STYLES = {
   rezi: { color: "blue", font: "merriweather", dividers: true, indent: false },
   "rezi-simple": { color: "black", font: "source-sans", dividers: false, indent: false },
   "rezi-modern": { color: "teal", font: "source-sans", dividers: true, indent: true },
+  charter: { color: "black", font: "charter", dividers: true, indent: false },
+  ruled: { color: "black", font: "helvetica", dividers: true, indent: false },
+  studio: { color: "black", font: "times", dividers: true, indent: false },
+  ledger: { color: "black", font: "times", dividers: true, indent: false },
+  crisp: { color: "black", font: "inter", dividers: true, indent: false },
 };
 
 export function getTemplateDefaultStyle(template) {
   return normalizeTemplateStyle(TEMPLATE_DEFAULT_STYLES[template] || DEFAULT_TEMPLATE_STYLE);
 }
 
-// ponytail: marketing copy hardcodes this list's length ("19 templates") in
+// ponytail: marketing copy hardcodes this list's length ("24 templates") in
 // app/page.js, components/content/TemplateGallery.jsx,
 // content/pages/templates.js and content/pages/guides.js. Add a template here,
 // update those. `grep -rn "16 .*\(template\|theme\|layout\)" app components content`
@@ -151,6 +156,36 @@ export const TEMPLATE_METADATA = [
     description: "Rezi layout with accent headings and tighter spacing for tech and product roles.",
     category: "rezi",
   },
+  {
+    id: "charter",
+    name: "Charter",
+    badge: "ATS-safe",
+    description: "Charter serif with small-caps ruled headings. Education first, role over company.",
+  },
+  {
+    id: "ruled",
+    name: "Ruled",
+    badge: "Compact",
+    description: "Dense sans serif with heavy rules between sections. Skills before experience.",
+  },
+  {
+    id: "studio",
+    name: "Studio",
+    badge: "Two-column",
+    description: "Serif with the job title opposite your name. Experience left, education and skills right.",
+  },
+  {
+    id: "ledger",
+    name: "Ledger",
+    badge: "Table",
+    description: "The classic Word table resume. Each section in a ruled box, dates in their own column.",
+  },
+  {
+    id: "crisp",
+    name: "Crisp",
+    badge: "ATS-safe",
+    description: "Clean sans serif with an icon contact row and a short bar under each heading.",
+  },
 ];
 
 // Gallery grouping. Every template belongs to exactly one group, so the tab
@@ -176,7 +211,12 @@ const CATEGORY_BY_TEMPLATE = {
   elegant: "modern",
   rezi: "modern",
   "rezi-modern": "modern",
+  charter: "simple",
   compact: "compact",
+  ruled: "compact",
+  studio: "specialist",
+  ledger: "specialist",
+  crisp: "modern",
   executive: "compact",
   technical: "compact",
   scholar: "compact",

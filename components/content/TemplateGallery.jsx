@@ -53,6 +53,11 @@ const NOTES = {
   rezi: "Ruled headings with role-first entries and paragraph achievements.",
   "rezi-simple": "Minimal layout for conservative industries.",
   "rezi-modern": "Accent headings and tighter spacing for tech and product roles.",
+  charter: "Charter serif and small-caps headings, with education ahead of experience.",
+  ruled: "Heavy rules and centred caps headings. Fits a long history on one page.",
+  studio: "Two columns under a full-width profile. Pick it when a human screens first.",
+  ledger: "A ruled table with dates in their own column, like the classic Word template.",
+  crisp: "Modern and airy, with an icon contact row and bold role lines.",
 };
 
 const CATEGORY_ICONS = {
@@ -307,9 +312,10 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
         </div>
 
         <p className="mt-8 text-sm text-[var(--landing-ink-soft)]">
-          Eighteen of the nineteen are single column with standard headings, so
-          your content survives extraction. Sidebar is the exception, and it is
-          labelled: two columns read well to a person and badly to a parser.
+          Twenty-two of the twenty-four are single column with standard headings,
+          so your content survives extraction. Sidebar and Studio are the
+          exceptions, and they are labelled: two columns read well to a person
+          and badly to a parser.
         </p>
       </div>
 

@@ -13,7 +13,7 @@ import {
 } from "@/utils/cv-templates/metadata";
 import { SAMPLE_CV } from "@/utils/cv-templates/sample-cv";
 
-// Six of the nineteen. The full gallery renders every layout as a real
+// Six of the twenty-four. The full gallery renders every layout as a real
 // document, which is the right trade on a page someone opened to browse
 // templates and the wrong one on a homepage: this band exists to show they
 // are real, then send you to the gallery.

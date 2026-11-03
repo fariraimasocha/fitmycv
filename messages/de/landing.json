@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Passe deinen Lebenslauf an jede Stellenanzeige an | FitMyCV",
-    "description": "Passe Lebenslauf und Anschreiben an jeden Stellenlink an: KI-Schlüsselwörter, kostenloser ATS-Check, 19 ATS-sichere Vorlagen und PDF-Export.",
+    "description": "Passe Lebenslauf und Anschreiben an jeden Stellenlink an: KI-Schlüsselwörter, kostenloser ATS-Check, 24 ATS-sichere Vorlagen und PDF-Export.",
     "ogTitle": "FitMyCV: Passe deinen Lebenslauf in Sekunden an jede Stellenanzeige an",
     "ogAlt": "FitMyCV: Mehr Vorstellungsgespräche mit einem Lebenslauf, der passt",
     "schemaName": "Passe deinen Lebenslauf an jede Stellenanzeige an",
@@ -30,6 +30,14 @@
     "previewTitle": "Die Stelle auf {host} verlangt diese Begriffe",
     "previewBody": "Melde dich an, um deinen Lebenslauf an diese Stelle anzupassen. Dein Link ist gespeichert.",
     "previewCta": "Anmelden und Lebenslauf anpassen"
+  },
+  "stats": {
+    "heading": "FitMyCV bisher",
+    "tailored": "Angepasste CVs",
+    "people": "Registrierte Nutzer",
+    "templates": "ATS-sichere Vorlagen",
+    "atsGuides": "Unternehmens-ATS-Guides",
+    "freeTools": "Kostenlose Tools"
   },
   "jobBoards": {
     "title": "Funktioniert mit jedem Stellenlink"
@@ -61,7 +69,7 @@
   },
   "templates": {
     "eyebrow": "Vorlagen",
-    "title": "Neunzehn Layouts, alle so gebaut, dass Bewerbungssoftware sie lesen kann",
+    "title": "Vierundzwanzig Layouts, alle so gebaut, dass Bewerbungssoftware sie lesen kann",
     "body": "Einspaltig, Standardüberschriften, keine Grafiken, die beim Auslesen durcheinandergeraten. Ändere bei jeder Vorlage Farbe und Schrift.",
     "prev": "Vorherige Vorlagen",
     "next": "Nächste Vorlagen",

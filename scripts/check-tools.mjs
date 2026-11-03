@@ -647,6 +647,21 @@ Email jane@example.com, phone +44 7700 900123`;
     // A title on the line above never joins the company name.
     assert.ok(!companyWords(job).has("analyst"));
   });
+
+  check("reads accented words and drops filler in Spanish, French, German and Portuguese postings", () => {
+    const postings = {
+      es: ["Buscamos un analista con experiencia en gestión de proyectos y análisis de datos. Gestión de proyectos con Excel y SQL.", ["gestión", "análisis", "excel", "sql"]],
+      fr: ["Nous recherchons un comptable. Expérience de la comptabilité générale et de la paie avec Sage. Comptabilité générale exigée.", ["comptabilité", "paie", "sage"]],
+      de: ["Wir suchen eine Fachkraft für Buchhaltung mit Erfahrung in DATEV und SAP. Kenntnisse der Buchhaltung und Lohnabrechnung. Sehr gute Excel-Kenntnisse.", ["buchhaltung", "datev", "sap", "lohnabrechnung"]],
+      pt: ["Procuramos um analista com experiência em análise de dados e SQL. Conhecimento de Power BI e análise de dados.", ["análise", "sql", "power"]],
+    };
+    const filler = ["de", "la", "en", "con", "un", "et", "des", "und", "mit", "für", "sehr", "gute", "em", "com", "experiencia", "expérience", "erfahrung", "experiência"];
+    for (const [lang, [text, keep]] of Object.entries(postings)) {
+      const terms = extractTerms(text, 20).map((t) => t.term);
+      for (const word of filler) assert.ok(!terms.includes(word), `${lang}: ${word}`);
+      for (const word of keep) assert.ok(terms.some((t) => t.split(" ").includes(word)), `${lang}: ${word} in ${terms}`);
+    }
+  });
 }
 
 if (failures.length) {

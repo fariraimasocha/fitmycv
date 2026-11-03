@@ -142,7 +142,7 @@ export default function Footer() {
                 </a>
                 <a href="https://nicklaunches.com/products/fitmycv/" target="_blank" rel="noopener">
                   <img
-                    src="https://nicklaunches.com/badges/featured.png"
+                    src="https://nicklaunches.com/badges/featured-dark.png"
                     alt="FitMyCV on Nick Launches"
                     width="244"
                     height="56"

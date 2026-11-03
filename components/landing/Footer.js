@@ -155,6 +155,17 @@ export default function Footer() {
                     width="150"
                   />
                 </a>
+                <a
+                  href="https://saasearch.io/product/fitmycv?utm_source=badge&utm_medium=referral&utm_campaign=featured_badge&ref=saasearch"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    src="https://saasearch.io/api/badge/fitmycv?theme=dark"
+                    alt="Featured on SaaSearch"
+                    className="h-12 w-auto"
+                  />
+                </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
             </div>

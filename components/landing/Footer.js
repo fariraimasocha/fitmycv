@@ -176,6 +176,14 @@ export default function Footer() {
                     className="h-auto w-57.5"
                   />
                 </a>
+                <a href="https://twelve.tools" target="_blank" rel="noopener">
+                  <img
+                    src="https://twelve.tools/badge2-dark.svg"
+                    alt="Featured on Twelve Tools"
+                    width="148"
+                    height="40"
+                  />
+                </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
             </div>

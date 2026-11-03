@@ -200,6 +200,14 @@ export default function Footer() {
                     height="54"
                   />
                 </a>
+                <a href="https://dofollow.tools" target="_blank" rel="noopener">
+                  <img
+                    src="https://dofollow.tools/badge/badge_dark.svg"
+                    alt="Featured on Dofollow.Tools"
+                    width="200"
+                    height="54"
+                  />
+                </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
             </div>

@@ -126,6 +126,20 @@ export default function Footer() {
             <p className="font-sans text-sm text-[var(--landing-ink-soft)] leading-relaxed max-w-[260px]">
               {t("tagline")}
             </p>
+            <div className="flex flex-col gap-3 pt-2">
+              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">
+                {t("headings.featuredOn")}
+              </h3>
+              <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="noopener noreferrer">
+                {/* eslint-disable-next-line @next/next/no-img-element -- external badge SVG */}
+                <img
+                  src="https://findly.tools/badges/findly-tools-badge-light.svg"
+                  alt="Featured on Findly.tools"
+                  width="175"
+                  height="55"
+                />
+              </a>
+            </div>
           </div>
 
           {/* ponytail: CSS columns, not a grid. Free tools is three times longer

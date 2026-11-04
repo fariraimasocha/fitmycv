@@ -1144,10 +1144,10 @@ function Tailor() {
               )}
             </p>
           )}
-          {/* One row on desktop: the buttons stretch to the tab bar's height so
-              all three share a top, bottom and centre line. */}
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch lg:justify-between">
-            <div className="flex min-w-0 items-center">
+          {/* One row when everything fits at full width. When it does not, the
+              actions wrap below the tabs instead of squeezing them. */}
+          <div className="flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:items-center lg:justify-between">
+            <div className="flex min-w-0 max-w-full items-center">
               <DashboardTabBar
                 tabs={resultTabs}
                 activeTab={activeTab}
@@ -1156,7 +1156,7 @@ function Tailor() {
               />
             </div>
             {(activeTab === "cv" || activeTab === "letter") && (
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+              <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
                 {activeTab === "cv" && (
                   <AtsScoreChip
                     className="self-start sm:self-center"

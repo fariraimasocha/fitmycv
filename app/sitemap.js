@@ -65,6 +65,7 @@ export default function sitemap() {
     "tailoredcv-alternative",
     "seekario-alternative",
     "visualcv-alternative",
+    "fastapply-alternative",
   ]);
 
   const marketingRoutes = MARKETING_PAGES.map(({ slug }) => ({

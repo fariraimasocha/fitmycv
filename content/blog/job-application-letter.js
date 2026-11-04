@@ -1,13 +1,13 @@
 export const meta = {
   slug: "job-application-letter",
   title: "How to Write a Job Application Letter (Example and Template)",
-  seoTitle: "Job Application Letter: A Simple Example to Copy",
+  seoTitle: "Application Letter for a Job: Simple Example and Template",
   description:
-    "A simple application letter for a job, written out in full, plus a template with blanks to fill in. One page, 250 to 400 words. Copy it and make it yours.",
+    "How to write an application letter for a job: a simple example in English to copy, a template with blanks, and a free generator. One page, 250 to 400 words.",
   excerpt:
     "An application letter asks for a specific job and proves you fit it in one page. Here is the structure, a full example, and a template to copy.",
   date: "2026-09-27",
-  updated: "2026-10-26",
+  updated: "2026-11-04",
   readingTime: 7,
   category: "Cover Letters",
   series: "cover-letters",
@@ -25,6 +25,11 @@ export const meta = {
     "application letter example",
     "application letter generator",
     "simple job application letter",
+    "application letter for a job",
+    "how to write application letter for a job",
+    "application letter for employment",
+    "example job application letter in english",
+    "job application letter sample",
   ],
 };
 
@@ -56,7 +61,21 @@ export const blocks = [
     p: "A job application letter has one job: get the reader to open your CV with a reason to say yes. It names the role, proves you fit it with two or three specific examples, and asks for an interview. Everything else is optional.",
   },
   {
-    p: "This guide covers how it differs from a cover letter, the structure that works, a full example, and a template you can copy.",
+    p: "Start with the simple example below. After it come the structure behind it, a template with blanks, and a free generator that writes the letter for you.",
+  },
+
+  { h2: "A simple job application letter example" },
+  {
+    p: "Target role: Accounts Assistant at a logistics company. The posting asks for accounts payable experience, reconciliations, Excel, and attention to detail.",
+  },
+  {
+    callout: {
+      title: "Example application letter",
+      body: "Dear Ms Dube,\n\nI am applying for the Accounts Assistant role advertised on your careers page. I have spent two years in accounts payable at a wholesale distributor, where I process around 400 supplier invoices a month.\n\nYour posting asks for reconciliation experience. Each month I reconcile supplier statements against our ledger, and last year I cleared a backlog of 60 unmatched items in three weeks by setting up a simple tracker in Excel. I also prepare the weekly payment run, which means checking every invoice against its purchase order before it goes for approval.\n\nI would like to work in logistics because I already see how freight costs drive our own margins, and your team handles accounts for a fleet across four countries, which is the scale I want to learn at.\n\nMy CV is attached. I would welcome the chance to discuss how I can support your finance team.\n\nYours sincerely,\nTendai Moyo",
+    },
+  },
+  {
+    p: "Notice what it does. The role is named in the first line. Each requirement from the posting gets a specific answer with a number. The 'why this company' part is one sentence with a real detail. There is no line that could be pasted into a letter for a different job.",
   },
   {
     callout: {
@@ -87,7 +106,7 @@ export const blocks = [
     p: "If a posting asks for an application letter, follow its instructions on format first. Everything below works for both.",
   },
 
-  { h2: "The structure" },
+  { h2: "How to write an application letter for a job" },
   {
     steps: [
       {
@@ -111,20 +130,6 @@ export const blocks = [
         body: "Say you would like to discuss the role, mention your CV is attached, and sign off with 'Yours sincerely' if you used a name, or 'Kind regards'.",
       },
     ],
-  },
-
-  { h2: "A worked example" },
-  {
-    p: "Target role: Accounts Assistant at a logistics company. The posting asks for accounts payable experience, reconciliations, Excel, and attention to detail.",
-  },
-  {
-    callout: {
-      title: "Example application letter",
-      body: "Dear Ms Dube,\n\nI am applying for the Accounts Assistant role advertised on your careers page. I have spent two years in accounts payable at a wholesale distributor, where I process around 400 supplier invoices a month.\n\nYour posting asks for reconciliation experience. Each month I reconcile supplier statements against our ledger, and last year I cleared a backlog of 60 unmatched items in three weeks by setting up a simple tracker in Excel. I also prepare the weekly payment run, which means checking every invoice against its purchase order before it goes for approval.\n\nI would like to work in logistics because I already see how freight costs drive our own margins, and your team handles accounts for a fleet across four countries, which is the scale I want to learn at.\n\nMy CV is attached. I would welcome the chance to discuss how I can support your finance team.\n\nYours sincerely,\nTendai Moyo",
-    },
-  },
-  {
-    p: "Notice what it does. The role is named in the first line. Each requirement from the posting gets a specific answer with a number. The 'why this company' part is one sentence with a real detail. There is no line that could be pasted into a letter for a different job.",
   },
 
   { h2: "Free application letter generator" },

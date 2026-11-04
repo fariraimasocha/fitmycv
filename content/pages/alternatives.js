@@ -1222,3 +1222,127 @@ export const visualcvAlternative = {
     },
   ],
 };
+
+// FastApply's page shows two sets of monthly prices: the 90 day sprint divided
+// by three, and the plain monthly price. We quote the plain monthly one.
+const FASTAPPLY_CHECKED = "November 2026";
+
+export const fastapplyAlternative = {
+  slug: "fastapply-alternative",
+  seoTitle: "FastApply Alternative: Fewer Applications, Each One Tailored",
+  description:
+    "A FastApply alternative for people who would rather send ten tailored applications than five hundred automatic ones. Paste a job link, get a CV and cover letter.",
+  keywords: [
+    "fastapply alternative",
+    "fastapply alternatives",
+    "fastapply competitor",
+    "cheaper than fastapply",
+    "fastapply vs fitmycv",
+    "free fastapply alternative",
+    "auto apply alternative",
+    "ai job application tool alternative",
+  ],
+  eyebrow: "Comparison",
+  breadcrumbName: "FastApply alternative",
+  h1: "A FastApply alternative for applying with care",
+  lede:
+    "FastApply sends applications for you, hundreds a month, across job boards. FitMyCV does not apply to anything. It rewrites your CV for one posting and writes the matching letter, and you send it yourself. If you want volume, FastApply is built for that. If you want each application to fit the job, read on.",
+  ctas: [
+    { label: "Tailor my CV", href: "/tailor-cv-from-job-link" },
+    { label: "Check my CV free first", href: "/ats-resume-checker", variant: "secondary" },
+  ],
+  faqs: [
+    {
+      q: "What is the best FastApply alternative?",
+      a: "It depends on what you want automated. If you want software to find jobs and submit applications while you sleep, look at other auto apply tools, because FitMyCV does not do that. If you want the CV and letter rewritten for each role you choose, FitMyCV does that from a job link.",
+    },
+    {
+      q: "Is there a free FastApply alternative?",
+      a: "Our free ATS resume checker has no scan limit and no account, because the matching runs in your browser. It scores your CV against a posting and shows the keyword gaps. The rewrite itself is paid.",
+    },
+    {
+      q: "How much does FastApply cost compared to FitMyCV?",
+      a: `As of ${FASTAPPLY_CHECKED}, FastApply Starter lists $14 a month for 200 applications. A tailored CV and cover letter for each job is an add-on, listed at $7 a month on Starter, so about $21 a month in total. FitMyCV is $${PRICING.month.price} a month or $${PRICING.lifetime.price} once for lifetime access. Check both pages before deciding, since these change.`,
+    },
+    {
+      q: "Does FitMyCV apply to jobs for me?",
+      a: "No. You pick the job, paste the link, and get a tailored CV and cover letter to send yourself. There is no auto apply and no browser extension that fills in forms.",
+    },
+    {
+      q: "Does FastApply tailor my CV for each job?",
+      a: "Only with the AI tailoring add-on. Without it, FastApply's pricing page says it submits the CV you uploaded. With it, each job gets a tailored CV and cover letter.",
+    },
+  ],
+  blocks: [
+    { h2: "Volume or fit" },
+    {
+      p: "FastApply is built to send more applications. Its Apply for Me feature runs on its servers, watches job boards for new roles, and applies to the ones above your match score, even when your laptop is closed. Plans go from 200 to 2,000 applications a month.",
+    },
+    {
+      p: "FitMyCV is built the other way round. You choose the roles worth applying to, and each one gets a CV rewritten against that posting, using your real experience and your real numbers.",
+    },
+
+    { h2: "Side by side" },
+    {
+      table: {
+        head: ["", "FastApply", "FitMyCV"],
+        rows: [
+          ["Applies to jobs for you", "Yes, on paid plans", "No"],
+          ["Applications a month", "200 to 2,000, by plan", "You send them yourself"],
+          ["Tailored CV per job", "Paid add-on", "Yes, the core product"],
+          ["Cover letter per job", "Paid add-on", "Yes, from the tailored CV"],
+          ["Reads a job URL", "Yes", "Yes"],
+          ["Cheapest plan with tailoring", "About $21 a month", `$${PRICING.month.price} a month`],
+          ["One time payment option", "90 day sprint only, not lifetime", `Yes, $${PRICING.lifetime.price} lifetime`],
+        ],
+      },
+    },
+    {
+      p: `Checked ${FASTAPPLY_CHECKED}. Confirm on [FastApply's pricing page](https://fastapply.co/pricing) and [ours](/pricing).`,
+    },
+
+    { h2: "Where FastApply is genuinely better" },
+    {
+      p: "If your search is a numbers game, such as entry level roles with hundreds of openings, automation saves hours of form filling. FastApply covers more than 20 job boards and applicant tracking systems, including Workday, Greenhouse and Lever, and it keeps applying while you do something else. We do nothing like that.",
+    },
+    {
+      p: "There is also a free plan with no card required, so you can see how it behaves before paying.",
+    },
+
+    { h2: "Where volume stops working" },
+    {
+      p: "Recruiters read applications against one posting at a time. A CV that was not changed for the role reads like one sent to five hundred companies, because it was. Sending more of them does not fix that.",
+    },
+    {
+      p: "If you are applying a lot and hearing nothing back, the problem is usually fit, not volume. Fewer applications, each one aimed at the role, is the other way to run a search.",
+    },
+    {
+      callout: {
+        title: "The honest version",
+        body: "If you want hundreds of applications sent without lifting a finger, FastApply is worth trying and this page is not for you. If you would rather send ten applications you are proud of, that is the job FitMyCV does.",
+      },
+    },
+
+    { h2: "If you want to test the difference" },
+    {
+      p: "Run your current CV through the [free ATS resume checker](/ats-resume-checker) against a real posting. It shows the keyword gaps without an account. If the gaps look like the reason you are not hearing back, [tailoring from the job link](/tailor-cv-from-job-link) is the fix.",
+    },
+  ],
+  related: [
+    {
+      label: "Best AI resume tailoring tools",
+      href: "/blog/best-ai-resume-tailoring-tools-2026",
+      body: "FitMyCV, FastApply, MatchCV, Teal and Rezi compared.",
+    },
+    {
+      label: "Huntr alternative",
+      href: "/huntr-alternative",
+      body: "A tracker with tailoring attached, compared the same way.",
+    },
+    {
+      label: "Free ATS resume checker",
+      href: "/ats-resume-checker",
+      body: "Score your CV against a posting with no account and no limit.",
+    },
+  ],
+};

@@ -100,7 +100,7 @@ export const blocks = [
 
   { h2: "FastApply" },
   {
-    p: "FastApply is aimed at people who want to send more applications, not write a better one. If the product you need is “apply faster”, it may fit. If the product you need is “this CV actually matches this posting”, treat it as a different category. High volume without a constrained rewrite is how generic CVs scale.",
+    p: "FastApply is aimed at people who want to send more applications, not write a better one. If the product you need is “apply faster”, it may fit. If the product you need is “this CV actually matches this posting”, treat it as a different category. High volume without a constrained rewrite is how generic CVs scale. The [FastApply alternative](/fastapply-alternative) page compares prices and features side by side.",
   },
 
   { h2: "MatchCV" },

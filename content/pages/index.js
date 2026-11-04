@@ -21,6 +21,7 @@ import {
   tailoredcvAlternative,
   seekarioAlternative,
   visualcvAlternative,
+  fastapplyAlternative,
 } from "./alternatives";
 import { RESUME_KEYWORD_PAGES } from "@/content/resume-keywords";
 import { missingResumeKeywords } from "./missing-resume-keywords";
@@ -90,6 +91,7 @@ export const MARKETING_PAGES = [
   tailoredcvAlternative,
   seekarioAlternative,
   visualcvAlternative,
+  fastapplyAlternative,
   workdayResumeFormat,
   greenhouseAtsResume,
   leverAtsResume,

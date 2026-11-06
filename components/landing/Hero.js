@@ -98,7 +98,7 @@ function DemoPreview() {
         <div className="relative overflow-hidden">
           <video
             ref={videoRef}
-            src="/fitmycv-demo.mp4"
+            src="/new-fitmycv-demo.mp4"
             poster="/hero-new.png"
             autoPlay
             loop

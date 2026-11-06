@@ -182,9 +182,17 @@ export const RESUME_EXAMPLES = [
   {
     slug: "operations-manager",
     role: "Operations Manager",
+    updated: "2026-11-06",
     seoTitle: "Operations Manager Resume Example and CV (2026)",
     seoDescription:
       "An operations manager resume example for a 3 site, 85 person operation. Before and after bullets with headcount, budget and on-time rates, plus a summary and keywords to copy.",
+    seoKeywords: [
+      "operations manager resume example",
+      "operations manager resume",
+      "operations manager cv",
+      "operations manager resume sample",
+      "resume examples for operations manager",
+    ],
     seniority: "Mid to senior",
     blurb:
       "Operations, logistics and service delivery roles, where scale and cost are the whole argument.",
@@ -208,6 +216,21 @@ export const RESUME_EXAMPLES = [
         after:
           "Rebuilt the safety induction and near miss reporting after an audit finding, cutting reportable incidents from 11 to 3 a year across the 3 sites.",
       },
+      {
+        before: "Managed the operations budget.",
+        after:
+          "Own a 4.2M annual operating budget across the 3 sites, closing the last two years within 1% of plan while absorbing a 6% rise in carrier rates.",
+      },
+      {
+        before: "Implemented a new warehouse management system.",
+        after:
+          "Led the rollout of a new WMS across 3 sites in 10 weeks, training 85 staff and cutting picking errors from 1.2% to 0.4% of orders.",
+      },
+      {
+        before: "Hired and trained new staff.",
+        after:
+          "Rebuilt seasonal hiring around a 2 day onboarding plan, filling 30 peak roles in 4 weeks and cutting first month leavers from 1 in 3 to 1 in 8.",
+      },
     ],
     skills: [
       "Operations: capacity planning, process improvement, Lean, Six Sigma, continuous improvement",
@@ -225,10 +248,35 @@ export const RESUME_EXAMPLES = [
       "health and safety",
     ],
     tip: "Scale first, in every bullet. Headcount, sites, volume, budget. Without them a reader cannot tell a shift supervisor from a regional manager, and will assume the smaller of the two.",
+    faqs: [
+      {
+        q: "What should an operations manager put at the top of a resume?",
+        a: "A summary that gives the scale of what you run, meaning sites, headcount and budget, plus one result with a number, such as on-time rate or cost per unit. A reader decides from those three lines whether your operation looks like theirs.",
+      },
+      {
+        q: "Which metrics belong on an operations manager resume?",
+        a: "The ones your operation is judged on: on-time or in-full rates, cost per unit, throughput, error rates, safety incidents, headcount and budget. Pick the two or three the posting mentions and put them in your top bullets.",
+      },
+      {
+        q: "Is an operations manager CV different from a resume?",
+        a: "Only in name and length. The UK, Europe and most of Africa say CV and accept two pages. The US says resume and expects it shorter. The summary and bullet shape on this page work for both.",
+      },
+    ],
   },
   {
     slug: "sales-manager",
     role: "Sales Manager",
+    updated: "2026-11-06",
+    seoTitle: "Sales Manager Resume Example and CV (2026)",
+    seoDescription:
+      "A sales manager resume example for a team of 8 carrying a 6.4M quota. Before and after bullets with quota, attainment and deal size, plus a summary and keywords to copy.",
+    seoKeywords: [
+      "sales manager resume example",
+      "sales manager resume",
+      "sales manager cv",
+      "sales manager cv example",
+      "resume examples for sales manager",
+    ],
     seniority: "Mid to senior",
     blurb:
       "Sales leadership roles, where quota attainment and team performance carry the CV.",
@@ -252,6 +300,21 @@ export const RESUME_EXAMPLES = [
         after:
           "Introduced weekly deal reviews and a MEDDIC qualification standard, taking 3 underperforming reps above quota within two quarters and cutting slipped deals by a third.",
       },
+      {
+        before: "Hired new sales staff.",
+        after:
+          "Hired 4 account executives in 2025 and built a 30 day ramp plan, bringing new hires to a first closed deal in 47 days instead of 90.",
+      },
+      {
+        before: "Prepared sales forecasts for leadership.",
+        after:
+          "Own the weekly regional forecast, landing within 5% of the committed number in 7 of the last 8 quarters.",
+      },
+      {
+        before: "Worked with marketing on lead generation.",
+        after:
+          "Agreed a shared lead definition with marketing and cut inbound follow-up time from 2 days to 4 hours, lifting meeting conversion from 18% to 27%.",
+      },
     ],
     skills: [
       "Sales: pipeline management, forecasting, territory planning, MEDDIC, solution selling",
@@ -269,6 +332,20 @@ export const RESUME_EXAMPLES = [
       "territory management",
     ],
     tip: "Give the quota and the attainment together. 112% means nothing without the number it was measured against, and a reader who has to guess will guess low.",
+    faqs: [
+      {
+        q: "What should a sales manager put at the top of a resume?",
+        a: "Team size, quota and attainment, for example a team of 8 carrying a 6.4M quota at 112%. Those three numbers tell a hiring manager how big the job was and how well you did it.",
+      },
+      {
+        q: "How do I show team results and my own on one CV?",
+        a: "Lead with the team: quota, attainment and how many reps finished above target. Then add one or two bullets on what you changed, such as a coaching routine or a qualification standard, and the result it produced.",
+      },
+      {
+        q: "Should a sales manager CV name the CRM?",
+        a: "Yes. Postings name Salesforce, HubSpot or Gong as products, and recruiters search for those exact words. Put the CRM in a bullet that shows what you did with it, not only in the skills list.",
+      },
+    ],
   },
   {
     slug: "software-engineer",

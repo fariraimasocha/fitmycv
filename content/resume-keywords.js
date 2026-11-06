@@ -1616,7 +1616,7 @@ const ROLES = [
     lede:
       "The terms sales rep and account executive postings repeat, grouped by where they belong on the page. A sales CV is read for one thing first: what you sold against what you were asked to sell.",
     why:
-      "Sales postings are short on adjectives and long on numbers. They ask for **quota attainment**, a **pipeline** you built yourself, and a **CRM** named as a product, usually **Salesforce** or **HubSpot**. Then they name the motion: **prospecting** and **cold calling** for new business, **account management** and **upselling** for existing customers, **territory management** for outside sales. A CV that says 'strong communicator with a passion for sales' matches none of it.",
+      "Sales postings are short on adjectives and long on numbers. They ask for **quota attainment**, a **pipeline** you built yourself, and a **CRM** named as a product, usually **Salesforce** or **HubSpot**. Then they name the motion: **prospecting** and **cold calling** for new business, **account management** and **upselling** for existing customers, **territory management** for outside sales. A CV that says 'strong communicator with a passion for sales' matches none of it. Leading a team? The [sales manager resume keywords](/sales-manager-resume-keywords) list covers quota attainment, forecasting and pipeline management.",
     groups: [
       {
         title: "Numbers and targets",
@@ -1757,7 +1757,7 @@ const ROLES = [
     lede:
       "The terms sales leadership postings repeat, grouped by where they belong on the page. In sales the numbers are the argument. A manager CV without a quota and an attainment figure reads as a CV hiding one.",
     why:
-      "Sales manager adverts are built around a small set of numbers and the systems that track them. **Quota attainment**, **pipeline management** and **forecasting** appear in most of them, next to a CRM named as a product: **Salesforce** or **HubSpot**. The second half of the advert is leadership: **coaching**, **hiring**, **territory planning**, a qualification method like **MEDDIC**. A CV that says 'grew revenue and led a team' matches almost none of that, even when the person has done all of it.",
+      "Sales manager adverts are built around a small set of numbers and the systems that track them. **Quota attainment**, **pipeline management** and **forecasting** appear in most of them, next to a CRM named as a product: **Salesforce** or **HubSpot**. The second half of the advert is leadership: **coaching**, **hiring**, **territory planning**, a qualification method like **MEDDIC**. A CV that says 'grew revenue and led a team' matches almost none of that, even when the person has done all of it. Applying for a rep or account executive role instead? Use the [sales resume keywords list](/sales-resume-keywords).",
     groups: [
       {
         title: "Numbers and targets",

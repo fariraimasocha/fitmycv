@@ -13,9 +13,9 @@ const ENHANCV_CHECKED = "October 2026";
 
 export const jobscanAlternative = {
   slug: "jobscan-alternative",
-  seoTitle: "Jobscan Alternative: Free ATS Check, Then a Rewritten CV",
+  seoTitle: "Jobscan Alternative With Unlimited Free ATS Scans",
   description:
-    "A Jobscan alternative with a free ATS check and no scan limit. Then paste the job link and get the CV rewritten, plus a cover letter. Pay once or monthly.",
+    "Scan your CV against any job posting for free, with no scan limit and no account. Then paste the job link to get it rewritten, plus a cover letter.",
   keywords: [
     "jobscan alternative",
     "jobscan alternatives",
@@ -269,9 +269,9 @@ export const tealAlternative = {
 
 export const kickresumeAlternative = {
   slug: "kickresume-alternative",
-  seoTitle: "Kickresume Alternative: Tailor Your Own CV",
+  seoTitle: "Kickresume Alternative With No Watermark, Ever",
   description:
-    "A Kickresume alternative for people who already have a CV. Paste a job link and get it rewritten for that role, with no watermark and no builder to learn.",
+    "Already have a CV? Paste a job link and FitMyCV rewrites it for that role. No watermark on any export, 24 single column themes, and a free ATS check.",
   keywords: [
     "kickresume alternative",
     "kickresume alternatives",
@@ -1111,9 +1111,9 @@ export const seekarioAlternative = {
 
 export const visualcvAlternative = {
   slug: "visualcv-alternative",
-  seoTitle: "VisualCV Alternative: One CV per Application",
+  seoTitle: "VisualCV Alternative: Rewrite Your CV for Each Job",
   description:
-    "A VisualCV alternative for people who need each application aimed rather than one hosted CV. Paste a job link, get a rewritten CV and cover letter.",
+    "VisualCV hosts one CV. FitMyCV rewrites yours for each job: paste the link, get a tailored CV and cover letter. Unlimited free ATS checks, or pay once.",
   keywords: [
     "visualcv alternative",
     "visualcv alternatives",

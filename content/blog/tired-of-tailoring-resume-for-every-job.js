@@ -111,7 +111,7 @@ export const blocks = [
     p: "I've shipped apps nobody used. I've shipped apps 3 people paid for. I've shipped apps that just… sat there. Still building. Still looking for the one.",
   },
   {
-    p: "FitMyCV exists because tailoring is the most boring part of a job search and the part that matters most. If it saves you the hour, use it. If you'd rather do it by hand, the top third is all you need.",
+    p: "FitMyCV exists because tailoring is the most boring part of a job search and the part that matters most. If it saves you the hour, [use the resume tailor](/tailor-cv-from-job-link). If you'd rather do it by hand, the top third is all you need.",
   },
   {
     cta: {

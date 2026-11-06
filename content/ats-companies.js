@@ -5,6 +5,9 @@
 // Only add a company after opening its board and seeing live postings. A
 // company that runs its own hiring system gets no page: no page beats a
 // false claim.
+//
+// Optional `extra` adds a title, description, keywords and blocks for a company
+// whose searchers want more than the ATS answer (GSC shows "target resume").
 
 export const ATS_CHECKED_ON = "2026-10-09";
 
@@ -55,7 +58,34 @@ export const ATS_COMPANIES = [
   { slug: "spotify", name: "Spotify", ats: "lever", evidenceUrl: "https://jobs.lever.co/spotify" },
   { slug: "stripe", name: "Stripe", ats: "greenhouse", evidenceUrl: "https://job-boards.greenhouse.io/stripe" },
   { slug: "supabase", name: "Supabase", ats: "ashby", evidenceUrl: "https://jobs.ashbyhq.com/supabase" },
-  { slug: "target", name: "Target", ats: "workday", evidenceUrl: "https://target.wd5.myworkdayjobs.com/targetcareers" },
+  {
+    slug: "target",
+    name: "Target",
+    ats: "workday",
+    evidenceUrl: "https://target.wd5.myworkdayjobs.com/targetcareers",
+    extra: {
+      title: "Target Resume Tips: Which ATS Does Target Use?",
+      description:
+        "Target posts its jobs on Workday. How to write a resume for a Target job so Workday reads it, with examples for store, customer service and first job applications.",
+      keywords: ["target resume", "target team member resume", "resume for target", "target resume examples"],
+      blocks: [
+        { h2: "Writing a resume for a Target job" },
+        {
+          p: "Use the words from the posting you are applying to, not a generic list. If it mentions guest service, stocking or the checkout, put those words inside bullets that show what you did and how often.",
+        },
+        {
+          p: "Store and hourly roles can run through a different hiring flow from office jobs, so paste the exact job link into the [ATS lookup](/ats) before you format anything.",
+        },
+        {
+          ul: [
+            "**Store and guest service roles:** see the [customer service resume example](/resume-examples/customer-service-representative) and the [customer service resume keywords](/customer-service-resume-keywords).",
+            "**First job or no work history:** the [first job resume example](/resume-examples/first-job) shows how to use school, volunteering and part-time work.",
+            "**Management roles:** the [operations manager resume example](/resume-examples/operations-manager) covers multi-site and distribution management.",
+          ],
+        },
+      ],
+    },
+  },
   { slug: "twilio", name: "Twilio", ats: "greenhouse", evidenceUrl: "https://job-boards.greenhouse.io/twilio" },
   { slug: "ubisoft", name: "Ubisoft", ats: "smartrecruiters", evidenceUrl: "https://jobs.smartrecruiters.com/Ubisoft2" },
   { slug: "unilever", name: "Unilever", ats: "workday", evidenceUrl: "https://unilever.wd3.myworkdayjobs.com/Unilever_Experienced_Professionals" },

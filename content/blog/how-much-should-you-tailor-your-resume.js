@@ -122,7 +122,7 @@ export const blocks = [
 
   { h2: "Does any of this actually work?" },
   {
-    p: "The public evidence is thinner than most articles imply, and we went through it honestly in [does tailoring your resume actually work](/blog/does-tailoring-your-resume-actually-work). Short version: the strongest field experiment was about cover letters, and the mechanism that matters most is simply that recruiters search their system by keyword.",
+    p: "The public evidence is thinner than most articles imply, and we went through it honestly in [does tailoring your resume actually work](/blog/does-tailoring-your-resume-actually-work). Short version: the strongest field experiment was about cover letters, and the mechanism that matters most is simply that recruiters search their system by keyword. When it is worth doing, the [resume tailor](/tailor-cv-from-job-link) handles the top third from a job link.",
   },
   {
     cta: {

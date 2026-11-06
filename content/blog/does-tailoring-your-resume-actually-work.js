@@ -113,7 +113,7 @@ export const blocks = [
 
   { h2: "So how much should you do?" },
   {
-    p: "Enough to cover the posting's real vocabulary with experience you actually have, and no more. Optimising past that point produces a CV written for a parser and read by nobody. We work through the stopping point in [how much you should tailor your resume](/blog/how-much-should-you-tailor-your-resume).",
+    p: "Enough to cover the posting's real vocabulary with experience you actually have, and no more. Optimising past that point produces a CV written for a parser and read by nobody. We work through the stopping point in [how much you should tailor your resume](/blog/how-much-should-you-tailor-your-resume). When the gaps are worth closing, the [resume tailor](/tailor-cv-from-job-link) rewrites your summary and top bullets from the job link.",
   },
   {
     cta: {

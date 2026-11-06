@@ -1,9 +1,9 @@
 export const meta = {
   slug: "chatgpt-prompts-to-tailor-resume",
   title: "How to Tailor a Resume to a Job Description Using ChatGPT",
-  seoTitle: "ChatGPT Prompts to Tailor Your Resume",
+  seoTitle: "4 ChatGPT Prompts to Tailor Your Resume to a Job",
   description:
-    "Copy-paste ChatGPT and Claude prompts to tailor your resume to a job without inventing experience. Gap analysis first, then summary, then bullets.",
+    "Four copy and paste ChatGPT prompts to tailor your resume to a job description: gap analysis, summary, bullets and a sceptic pass. No invented experience.",
   excerpt:
     "The prompt that works is not “rewrite my resume”. It is a two-pass: compare first, then edit only what you can evidence. Here are the prompts, and when a job-link tool is faster.",
   date: "2026-08-28",

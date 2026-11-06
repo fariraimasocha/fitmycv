@@ -52,14 +52,17 @@ export async function generateMetadata({ params }) {
   if (!company) return {};
   const vendor = getAtsVendor(company.ats);
   return pageMetadata({
-    absoluteTitle: `Which ATS Does ${company.name} Use? | FitMyCV`,
-    description: `${company.name} posts its jobs on ${vendor.name}. See ${company.name}'s job board, how ${vendor.name} reads your CV, and how to format your CV so it reads every section.`,
+    absoluteTitle: `${company.extra?.title ?? `Which ATS Does ${company.name} Use?`} | FitMyCV`,
+    description:
+      company.extra?.description ??
+      `${company.name} posts its jobs on ${vendor.name}. See ${company.name}'s job board, how ${vendor.name} reads your CV, and how to format your CV so it reads every section.`,
     path: `/ats/${company.slug}`,
     keywords: [
       `${company.name.toLowerCase()} ats`,
       `what ats does ${company.name.toLowerCase()} use`,
       `${company.name.toLowerCase()} applicant tracking system`,
       `${company.name.toLowerCase()} ${vendor.name.toLowerCase()}`,
+      ...(company.extra?.keywords ?? []),
     ],
   });
 }
@@ -147,6 +150,12 @@ export default async function AtsCompanyPage({ params }) {
                 ]}
               />
             </div>
+
+            {company.extra?.blocks ? (
+              <div>
+                <Blocks blocks={company.extra.blocks} />
+              </div>
+            ) : null}
 
             <div className="flex flex-col gap-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
               <div>

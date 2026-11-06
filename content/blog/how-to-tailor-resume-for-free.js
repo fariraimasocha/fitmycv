@@ -177,7 +177,7 @@ export const blocks = [
     p: "Free accounts can tailor and see a preview: the full summary, the first line of each role, and the first paragraph of the cover letter. The full documents need a paid plan. That is $9.99 a month or $29.99 lifetime. In South Africa, Zimbabwe, Kenya, Nigeria and Uganda it is $6.99 a month or $16.99 lifetime.",
   },
   {
-    p: "If you apply rarely, keep using the free workflow. If you apply often, try the [job-link tailor](/tailor-cv-from-job-link) on one real posting and compare it with what you would have done by hand. For a longer side by side, read [FitMyCV vs ChatGPT for resume tailoring](/blog/fitmycv-vs-chatgpt-resume-tailoring). If you are not sure tailoring is worth the effort at all, start with [does tailoring your resume actually work](/blog/does-tailoring-your-resume-actually-work). For the manual method without any AI, see the [step by step tailoring guide](/blog/how-to-tailor-cv-to-job-description).",
+    p: "If you apply rarely, keep using the free workflow. If you apply often, try the [resume tailor that reads the job link](/tailor-cv-from-job-link) on one real posting and compare it with what you would have done by hand. For a longer side by side, read [FitMyCV vs ChatGPT for resume tailoring](/blog/fitmycv-vs-chatgpt-resume-tailoring). If you are not sure tailoring is worth the effort at all, start with [does tailoring your resume actually work](/blog/does-tailoring-your-resume-actually-work). For the manual method without any AI, see the [step by step tailoring guide](/blog/how-to-tailor-cv-to-job-description).",
   },
 
   { h2: "A quick checklist before you send" },

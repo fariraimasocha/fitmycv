@@ -25,7 +25,7 @@ export const resumeFileNameGenerator = {
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Resume file name generator",
-  h1: "Resume file name generator: what to name your resume",
+  h1: "How to name a resume file: examples and a free generator",
   lede:
     "Use your name, the role and the word Resume, joined by hyphens, saved as PDF: Farirai-Masocha-Software-Engineer-Resume.pdf. Type yours below and the tool strips the characters that break uploads.",
   ctas: [
@@ -68,6 +68,10 @@ export const resumeFileNameGenerator = {
     {
       q: "Should I include the company name?",
       a: "Include it when you are applying to more than one role at the same employer, or emailing a named contact directly. Leave it out when you are applying broadly, because the risk is real: sending a file named for one company to a different company is a hard mistake to explain.",
+    },
+    {
+      q: "What should I name my cover letter file?",
+      a: "Use the same pattern and end with Cover-Letter instead of Resume: Farirai-Masocha-Software-Engineer-Cover-Letter.pdf. Matching names tell a recruiter the two files belong to the same application.",
     },
     {
       q: "Should I put the date in the file name?",

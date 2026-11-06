@@ -208,9 +208,9 @@ export const greenhouseAtsResume = {
 
 export const leverAtsResume = {
   slug: "lever-ats-resume",
-  seoTitle: "Lever ATS Resume Format: How Lever Parses Your CV",
+  seoTitle: "Lever ATS Resume: Parsing Rules and a Free CV Check",
   description:
-    "How to format a CV for Lever applications: single column, clean parsing, and why your parsed profile matters as much as the file you attached.",
+    "How Lever turns your CV into a candidate profile: single column, selectable PDF text, standard headings. Then check your CV against the posting for free.",
   keywords: [
     "lever ats resume",
     "lever ats",

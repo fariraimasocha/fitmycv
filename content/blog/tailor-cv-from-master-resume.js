@@ -210,7 +210,7 @@ export const blocks = [
     p: "The master resume method is free and it works. The cost is time. If you want to do it with zero spend from start to finish, read [how to tailor your resume for free](/blog/how-to-tailor-resume-for-free) for a full workflow using free tools and ChatGPT's free tier.",
   },
   {
-    p: "FitMyCV does the same job from a job link. You upload your CV once, which works best if you upload your long master. Then you paste a job link or the job description, and you get a tailored CV and a cover letter you can download as a PDF. It only works from what is in your CV, so the master rule still applies: keep it complete and true.",
+    p: "[FitMyCV's resume tailor](/tailor-cv-from-job-link) does the same job from a job link. You upload your CV once, which works best if you upload your long master. Then you paste a job link or the job description, and you get a tailored CV and a cover letter you can download as a PDF. It only works from what is in your CV, so the master rule still applies: keep it complete and true.",
   },
   {
     p: "Free accounts can tailor and see a preview: the full summary, the first line of each role, and the first paragraph of the cover letter. The full document needs a paid plan, which is $9.99 a month or $29.99 lifetime. If you want to compare doing this in a chat window instead, see [FitMyCV vs ChatGPT](/blog/fitmycv-vs-chatgpt-resume-tailoring), and for the manual method in full, the [step by step tailoring guide](/blog/how-to-tailor-cv-to-job-description).",

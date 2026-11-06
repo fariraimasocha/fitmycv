@@ -3,7 +3,7 @@ export const meta = {
   title: "CV Format for South Africa: What Recruiters Expect in 2026",
   seoTitle: "South African CV Format (2026): Length, ID, Race and Referees",
   description:
-    "What to keep from the old South African CV format and what to drop: two pages, no ID number, race or photo, then matric, SAQA, referees and PDF.",
+    "South African CV format for 2026: two pages, matric, SAQA and referees. Leave off your ID number and race. Employment equity forms ask for race, not your CV.",
   excerpt:
     "South African CVs have their own habits: driver's licence codes, languages, matric results and named referees. Here is what to keep, what to drop, and why your ID number stays off the page.",
   date: "2026-10-07",

@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useMemo, useState } from "react";
+import { Plot } from "@lucasmarkes/hairline/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -315,6 +316,7 @@ function ApplicationsTracker() {
       {isEmpty ? (
         <DashboardEmptyState
           icon={KanbanIcon}
+          figure={Plot}
           title={t("emptyTitle")}
           description={t("emptyDescription")}
           actionLabel={t("addApplication")}

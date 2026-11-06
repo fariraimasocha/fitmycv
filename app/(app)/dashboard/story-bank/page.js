@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
+import { Stack } from "@lucasmarkes/hairline/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
@@ -403,6 +404,7 @@ function StoryBank() {
       ) : count === 0 ? (
         <DashboardEmptyState
           icon={BookOpenIcon}
+          figure={Stack}
           title={t("emptyTitle")}
           description={t("emptyDescription")}
           actionLabel={t("addStory")}

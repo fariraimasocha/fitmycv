@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Cabinet } from "@lucasmarkes/hairline/react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -323,6 +324,7 @@ export default function TailoredCVsPage() {
       ) : isEmpty ? (
         <DashboardEmptyState
           icon={FileTextIcon}
+          figure={Cabinet}
           title={t("empty.title")}
           description={
             hasReferenceCV ? t("empty.withCv") : t("empty.noCv")

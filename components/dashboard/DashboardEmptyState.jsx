@@ -10,9 +10,12 @@ import { cn } from "@/lib/utils";
  *
  * `secondaryLabel` + `secondaryHref` adds a quieter second route.
  * `compact` fits inside a panel rather than filling the page.
+ * `figure` is a hairline component shown in place of `icon`. Use it only on
+ * first-run empty states, not on errors or filter misses.
  */
 export function DashboardEmptyState({
   icon: Icon,
+  figure: Figure,
   title,
   description,
   actionLabel,
@@ -71,7 +74,12 @@ export function DashboardEmptyState({
         )}
       >
         <div className="mx-auto flex max-w-sm flex-col items-center gap-4 text-center">
-          {Icon && (
+          {Figure ? (
+            <Figure
+              aria-hidden="true"
+              className="w-full max-w-48 [--hairline-plate:var(--landing-surface)]"
+            />
+          ) : Icon && (
             <span className="landing-inset-edge flex h-12 w-12 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
               <Icon size={22} aria-hidden="true" />
             </span>

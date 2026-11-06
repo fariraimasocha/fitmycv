@@ -72,6 +72,7 @@ import {
 } from "@/lib/recent-job-urls";
 import { takeAtsHandoff } from "@/lib/ats-handoff";
 import Loader from "@/components/Loader";
+import { Rebuild } from "@lucasmarkes/hairline/react";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -1086,6 +1087,15 @@ function Tailor() {
                           : t("cta.description")
                       }
                     />
+                    {/* ponytail: one figure for the whole request; tailor has no real stages to map more onto. */}
+                    {tailorMutation.isPending && (
+                      <Rebuild
+                        play
+                        intensity={0.6}
+                        aria-hidden="true"
+                        className="mx-auto mt-4 w-full max-w-56 [--hairline-plate:var(--landing-surface)]"
+                      />
+                    )}
                     <button
                       type="button"
                       onClick={handleTailor}

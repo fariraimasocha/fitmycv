@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { Loupe } from "@lucasmarkes/hairline/react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
@@ -155,6 +156,7 @@ function CompanyResearch() {
       ) : !hasBriefs ? (
         <DashboardEmptyState
           icon={BinocularsIcon}
+          figure={Loupe}
           title={t("emptyTitle")}
           description={t("emptyDescription")}
           actionLabel={t("addJob")}

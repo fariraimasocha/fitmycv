@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import { Drawer } from "@lucasmarkes/hairline/react";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -241,6 +242,7 @@ function SavedJobs() {
       ) : count === 0 ? (
         <DashboardEmptyState
           icon={BookmarkSimpleIcon}
+          figure={Drawer}
           title={t("emptyTitle")}
           description={t("emptyDescription")}
           actionLabel={t("browseJobs")}

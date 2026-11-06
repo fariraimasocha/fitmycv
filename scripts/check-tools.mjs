@@ -479,6 +479,12 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.ok(!checkCvFormat(cv + "\nNYSC: completed 2021", "ng").checks.find((c) => c.id === "nysc").ok === false);
   });
 
+  check("flags the ID number on Kenyan CVs, and only there", () => {
+    assert.ok(ids("ke").includes("id"));
+    assert.ok(checkCvFormat("Wanjiru Kamau\nwanjiru@example.com", "ke").checks.find((c) => c.id === "id").ok);
+    assert.ok(!checkCvFormat(cv, "ke").checks.find((c) => c.id === "personal").fix.includes("state of origin"));
+  });
+
   check("flags long CVs by page estimate", () => {
     const long = "word ".repeat(1400);
     assert.equal(checkCvFormat(long, "us").checks.find((c) => c.id === "length").ok, false);

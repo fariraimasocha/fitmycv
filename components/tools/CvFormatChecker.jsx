@@ -16,6 +16,7 @@ import { trackEvent } from "@/lib/analytics";
 const COUNTRIES = {
   za: { name: "South Africa", maxPages: 2, personal: "keep" },
   ng: { name: "Nigeria", maxPages: 2, personal: "ifAsked" },
+  ke: { name: "Kenya", maxPages: 2, personal: "ifAsked" },
   in: { name: "India", maxPages: 2, personal: "ifAsked" },
   uk: { name: "the UK", maxPages: 2, personal: "drop" },
   us: { name: "the US", maxPages: 2, personal: "drop" },
@@ -75,7 +76,7 @@ function checkCvFormat(text, country) {
       !marital,
       "Personal details",
       marital
-        ? `Remove marital status. Add date of birth or state of origin only when the posting asks for them.`
+        ? `Remove marital status. Add date of birth${country === "ng" ? " or state of origin" : ""} only when the posting asks for it.`
         : "Fine. Add date of birth only when the posting asks for it."
     );
   } else if (c.personal === "general") {
@@ -122,6 +123,18 @@ function checkCvFormat(text, country) {
     );
   }
 
+  if (country === "ke") {
+    const idNumber = has(text, /\b(national )?id (number|no\.?)|\bid\s*:\s*\d{7,8}\b/i);
+    add(
+      "id",
+      !idNumber,
+      "ID number",
+      idNumber
+        ? "Remove your ID number. Give it on the application form or when an employer asks. It is personal data under the Data Protection Act 2019."
+        : "Not on your CV. Give it on the application form when asked."
+    );
+  }
+
   const objective = has(text, /career objective|\bobjective\s*:|^\s*objective\s*$/im);
   add(
     "objective",
@@ -138,7 +151,7 @@ function checkCvFormat(text, country) {
     !onRequest,
     "References line",
     onRequest
-      ? `Delete "references available on request". Employers assume it.${country === "za" || country === "ng" ? " Or list two referees with phone numbers, which is common here." : ""}`
+      ? `Delete "references available on request". Employers assume it.${["za", "ng", "ke"].includes(country) ? " Or list two referees with phone numbers, which is common here." : ""}`
       : "No filler references line."
   );
 
@@ -195,6 +208,7 @@ export default function CvFormatChecker() {
           >
             <option value="za">South Africa</option>
             <option value="ng">Nigeria</option>
+            <option value="ke">Kenya</option>
             <option value="in">India</option>
             <option value="uk">United Kingdom</option>
             <option value="us">United States</option>

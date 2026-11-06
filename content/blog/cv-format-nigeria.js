@@ -237,7 +237,7 @@ export const blocks = [
     p: "If you want this done for you, FitMyCV reads a job link or pasted description and rewrites your CV to match it, then writes a cover letter. You download both as PDFs. Try it with [tailor CV from a job link](/tailor-cv-from-job-link). In Nigeria it costs $6.99 a month or $16.99 for lifetime access. Free accounts see a preview of the tailored CV. The full document needs a paid plan.",
   },
   {
-    p: "Applying to South African employers too? The [CV format for South Africa](/blog/cv-format-south-africa) has different rules on length and personal details. Our [CV templates](/cv-templates) give you a clean layout to start from.",
+    p: "Applying to South African or Kenyan employers too? The [CV format for South Africa](/blog/cv-format-south-africa) and the [CV format for Kenya](/blog/cv-format-kenya) have different rules on length and personal details. Our [CV templates](/cv-templates) give you a clean layout to start from.",
   },
 
   { h2: "Sample Nigerian CV outline" },

@@ -3,13 +3,14 @@
 
 export const cvFormatChecker = {
   slug: "cv-format-checker",
-  seoTitle: "CV Format Checker: SA, Nigeria, India, UK, US",
+  seoTitle: "CV Format Checker: SA, Nigeria, Kenya, India, UK, US",
   description:
     "Check your CV format for the country you are applying in. Length, personal details, ID number, NYSC and more. Free, no sign-in, your CV stays in your browser.",
   keywords: [
     "cv format checker",
     "cv format south africa",
     "cv format nigeria",
+    "cv format kenya",
     "resume format india",
     "uk cv format",
     "check my cv format",
@@ -20,7 +21,7 @@ export const cvFormatChecker = {
   ],
   eyebrow: "Free tool",
   breadcrumbName: "CV format checker",
-  h1: "CV format checker for South Africa, Nigeria, India, the UK and the US",
+  h1: "CV format checker for South Africa, Nigeria, Kenya, India, the UK and the US",
   lede:
     "A CV that is right in Lagos can be wrong in London. Pick the country you are applying in, add your CV, and see what to cut, add or move. It runs in your browser. Nothing is uploaded.",
   ctas: [
@@ -65,14 +66,14 @@ export const cvFormatChecker = {
       ul: [
         "**Length** against what employers in that country expect.",
         "**Personal details** such as date of birth, marital status and religion, which help in some countries and hurt in others.",
-        "**ID number** for South Africa, and **NYSC status** for Nigeria.",
+        "**ID number** for South Africa and Kenya, and **NYSC status** for Nigeria.",
         "**A career objective** where a professional summary works better.",
         "**Filler lines** like \"references available on request\" and the Indian \"I hereby declare\" line.",
       ],
     },
     { h2: "Country guides" },
     {
-      p: "For the full picture, read [CV format in South Africa](/blog/cv-format-south-africa) and [CV format in Nigeria](/blog/cv-format-nigeria).",
+      p: "For the full picture, read [CV format in South Africa](/blog/cv-format-south-africa), [CV format in Nigeria](/blog/cv-format-nigeria) and [CV format in Kenya](/blog/cv-format-kenya).",
     },
     {
       cta: {

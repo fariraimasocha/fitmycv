@@ -2,6 +2,7 @@
 
 import { CheckCircleIcon, CircleIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
+import { Format, Loupe } from "@lucasmarkes/hairline/react";
 import { UPLOAD_STAGES } from "@/utils/upload-resume";
 
 export default function UploadProgress({ progress, stage }) {
@@ -10,9 +11,18 @@ export default function UploadProgress({ progress, stage }) {
   const stageIndex = UPLOAD_STAGES.findIndex((s) => s.id === stage);
   const activeIndex =
     stage === "complete" ? UPLOAD_STAGES.length : Math.max(stageIndex, 0);
+  // ponytail: two figures, not five. Only "preparing" (pdf.js in the browser)
+  // is real work on its own; the later stages are a timer over one request.
+  const Figure = stage === "preparing" ? Loupe : Format;
 
   return (
     <div className="space-y-4 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5">
+      <Figure
+        play={stage !== "complete"}
+        intensity={0.6}
+        aria-hidden="true"
+        className="mx-auto w-full max-w-40 [--hairline-plate:var(--landing-surface)]"
+      />
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-sm font-semibold text-[var(--landing-ink)]">{label}</p>

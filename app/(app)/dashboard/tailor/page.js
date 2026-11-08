@@ -48,6 +48,7 @@ import WhyThisRoleCard from "@/components/WhyThisRoleCard";
 import LinkedInOutreachModal from "@/components/LinkedInOutreachModal";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
 import { useClientPricing } from "@/components/pricing/PricingCards";
+import { SHOW_SINGLE } from "@/lib/pricing";
 import PreviewUnlockGate from "@/components/PreviewUnlockGate";
 import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import { printDocument } from "@/utils/print-document";
@@ -1190,7 +1191,7 @@ function Tailor() {
                   idleIcon={downloadIcon}
                   onDownload={() => handleDownload(activeTab)}
                 />
-                {!isPremium && pricing.single ? (
+                {!isPremium && SHOW_SINGLE && pricing.single ? (
                   <span className="self-center text-xs text-muted-foreground">
                     {t("result.downloadFrom", { price: pricing.single.price })}
                   </span>

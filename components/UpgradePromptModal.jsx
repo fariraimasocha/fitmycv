@@ -16,7 +16,7 @@ import {
 import { useClientPricingWithCountry } from "@/components/pricing/PricingCards";
 import EcocashCheckout from "@/components/pricing/EcocashCheckout";
 import { trackEvent } from "@/lib/analytics";
-import { SHOW_MONTHLY } from "@/lib/pricing";
+import { SHOW_MONTHLY, SHOW_SINGLE } from "@/lib/pricing";
 import LifetimeSpots from "@/components/pricing/LifetimeSpots";
 
 // Keys in messages/<locale>/pages.json under upgradeModal.
@@ -51,7 +51,7 @@ export default function UpgradePromptModal({
   // Zimbabwe pays with EcoCash first. The card link brings Polar back.
   const [cardInstead, setCardInstead] = useState(false);
   const ecocash = country === "zw" && !cardInstead;
-  const offerSingle = Boolean(cvId && session?.user && pricing.single);
+  const offerSingle = Boolean(SHOW_SINGLE && cvId && session?.user && pricing.single);
   const primaryPlan = SHOW_MONTHLY ? "month" : offerSingle ? "single" : "lifetime";
 
   useEffect(() => {

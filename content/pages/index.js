@@ -29,6 +29,8 @@ import { resumeBulletRewriter } from "./resume-bullet-rewriter";
 import { resumeHeadlineGenerator } from "./resume-headline-generator";
 import { resumeFileNameGenerator } from "./resume-file-name-generator";
 import { professionalSummaryGenerator } from "./professional-summary-generator";
+import { interviewQuestionsFromJobDescription } from "./interview-questions-from-job-description";
+import { resumeSkillsGenerator } from "./resume-skills-generator";
 import { linkedinUrlForResume } from "./linkedin-url-for-resume";
 import { linkedinProfileChecker } from "./linkedin-profile-checker";
 import { jobDescriptionToResumeBullets } from "./job-description-to-resume-bullets";
@@ -60,6 +62,8 @@ export const MARKETING_PAGES = [
   resumeHeadlineGenerator,
   resumeFileNameGenerator,
   professionalSummaryGenerator,
+  interviewQuestionsFromJobDescription,
+  resumeSkillsGenerator,
   linkedinUrlForResume,
   linkedinProfileChecker,
   jobDescriptionToResumeBullets,

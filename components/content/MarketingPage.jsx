@@ -8,6 +8,8 @@ import Blocks from "@/components/content/Blocks";
 import FaqSection from "@/components/content/FaqSection";
 import KeywordChecker from "@/components/tools/KeywordChecker";
 import JobMatchChecker from "@/components/tools/JobMatchChecker";
+import InterviewQuestionsGenerator from "@/components/tools/InterviewQuestionsGenerator";
+import SkillsSectionGenerator from "@/components/tools/SkillsSectionGenerator";
 import BulletRewriter from "@/components/tools/BulletRewriter";
 import HeadlineGenerator from "@/components/tools/HeadlineGenerator";
 import FileNameGenerator from "@/components/tools/FileNameGenerator";
@@ -48,6 +50,8 @@ const TOOL_COMPONENTS = {
   "linkedin-profile": LinkedInProfileChecker,
   "letter-from-cv": LetterFromCvGenerator,
   "keywords-generator": KeywordsGenerator,
+  interview: InterviewQuestionsGenerator,
+  skills: SkillsSectionGenerator,
 };
 
 const PRODUCT_SLUGS = new Set([

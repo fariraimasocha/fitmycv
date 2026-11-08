@@ -86,7 +86,7 @@ function visitorRequest(request) {
 // Dualmark runs first so `.md` twins, Accept: text/markdown, and AI crawlers
 // never hit next-intl or the dashboard guard. HTML responses keep Dualmark's
 // Link and Vary headers after auth/intl finish.
-export default auth(async (authRequest) => {
+const handler = auth(async (authRequest) => {
   const request = visitorRequest(authRequest);
   const dualmarkResponse = await dualmark(request);
 
@@ -108,6 +108,18 @@ export default auth(async (authRequest) => {
     : intlMiddleware(request);
   return applyGeoCookies(request, copyNegotiationHeaders(dualmarkResponse, response));
 });
+
+// Plain http on the live hosts goes to https before Auth.js rewrites the origin.
+// ponytail: Cloudflare's "Always Use HTTPS" zone setting does this at the edge; drop this once it is on.
+export default function proxy(request, event) {
+  const host = request.headers.get("host") ?? "";
+  const proto = request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol.slice(0, -1);
+  if (proto === "http" && host.endsWith("fitmycv.link")) {
+    const { pathname, search } = request.nextUrl;
+    return NextResponse.redirect(`https://${host}${pathname}${search}`, 308);
+  }
+  return handler(request, event);
+}
 
 export const config = {
   matcher: ["/((?!api/|_next/static|_next/image|_next/|favicon.ico|md/).*)"],

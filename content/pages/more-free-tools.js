@@ -69,7 +69,21 @@ export const cvChecker = {
   blocks: [
     { h2: "What the CV checker looks at" },
     {
-      p: "It pulls the words and two word phrases the advert repeats, weighted by how often they appear, and checks which of them are in your CV. The score is the share it finds. It checks wording, not your writing or your layout.",
+      p: "It pulls the 24 words and two word phrases the advert leans on most and checks which of them are in your CV. A phrase the advert repeats counts for more than a single word. The score is the weighted share it finds. It checks wording, not your writing or your layout.",
+    },
+    {
+      p: "A phrase counts as found when every word in it appears somewhere in your CV. Plurals and common endings are matched, so \"reports\" counts for \"reporting\". Different word forms are not, so \"managed\" does not count for \"management\". Where it is true, use the advert's own word.",
+    },
+    { h2: "What a CV checker cannot tell you" },
+    {
+      ul: [
+        "Whether your bullets are well written. It sees the words, not how strong the sentences are.",
+        "Whether a recruiter will shortlist you. Matching the advert's terms helps, but it is not a promise.",
+        "How a specific employer's system ranks CVs. Each system is set up by the employer, and no outside tool can see that setup.",
+      ],
+    },
+    {
+      p: "It can tell you one layout fact. If the text it reads from your PDF comes out jumbled or empty, an applicant tracking system will struggle with it too. Use the [CV format checker](/cv-format-checker) to check the layout for the country you are applying in.",
     },
     { h2: "Why a qualified CV can score low" },
     {
@@ -82,10 +96,21 @@ export const cvChecker = {
     {
       p: "All three are fixed by tailoring the CV to the advert, not by adding experience. The [guide to tailoring a CV to a job description](/blog/how-to-tailor-cv-to-job-description) covers how to do it yourself.",
     },
+    { h2: "What to do after you check your CV" },
+    {
+      ul: [
+        "Go through the missing terms. Keep the ones you have really done and skip the rest.",
+        "Add each one to a bullet that shows what you did and what changed.",
+        "Edit the CV text in the box and check again.",
+      ],
+    },
+    {
+      p: "If you would rather not rewrite it by hand, press Close these gaps under your score. FitMyCV keeps the advert and rewrites your CV and cover letter for it, using the experience you already have. If you have the link to the job ad, you can also [tailor your CV from the job link](/tailor-cv-from-job-link).",
+    },
   ],
   related: [
+    { label: "Tailor CV from a job link", href: "/tailor-cv-from-job-link", body: "Paste the job link and get a CV and cover letter written for it." },
     { label: "ATS resume checker", href: "/ats-resume-checker", body: "The same check, with a comparison to Jobscan." },
-    { label: "CV format checker", href: "/cv-format-checker", body: "Check your CV for the country you are applying in." },
     { label: "Job application letter generator", href: "/job-application-letter-generator", body: "A letter built from the advert and your CV." },
   ],
 };

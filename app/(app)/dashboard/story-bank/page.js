@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import {
   BookOpenIcon,
   BriefcaseIcon,
-  CaretDownIcon,
+  CaretRightIcon,
   ListChecksIcon,
   PlusIcon,
   SpinnerGapIcon,
@@ -75,7 +75,7 @@ function applicationKey(use) {
 
 function TagPill({ children }) {
   return (
-    <span className="inline-flex h-6 shrink-0 items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-1.5 text-xs font-medium text-[var(--landing-ink-soft)]">
+    <span className="inline-flex h-6 shrink-0 items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-[var(--landing-ink-soft)]">
       {children}
     </span>
   );
@@ -116,8 +116,18 @@ function StoryRow({ story, index }) {
           expanded && "bg-[var(--landing-paper-soft)]"
         )}
       >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-          <BookOpenIcon size={18} aria-hidden="true" />
+        {/* Teal accordion: the chevron leads, pointing right when closed. */}
+        <span
+          aria-hidden="true"
+          className="flex size-8 shrink-0 items-center justify-center rounded-md text-[var(--landing-ink-soft)] transition-colors group-hover:text-foreground"
+        >
+          <CaretRightIcon
+            size={16}
+            className={cn(
+              "transition-transform duration-200 motion-reduce:transition-none rtl:-scale-x-100",
+              expanded && "rotate-90 rtl:-rotate-90",
+            )}
+          />
         </span>
         <span className="min-w-0 flex-1">
           <span className="block truncate text-sm font-semibold text-foreground">{title}</span>
@@ -142,21 +152,12 @@ function StoryRow({ story, index }) {
             {hiddenTags > 0 && <TagPill>+{hiddenTags}</TagPill>}
           </span>
         )}
-        <span
-          aria-hidden="true"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-[var(--landing-ink-soft)] transition-colors group-hover:bg-[var(--landing-primary-soft)] group-hover:text-foreground"
-        >
-          <CaretDownIcon
-            size={14}
-            className={cn("transition-transform duration-200", expanded && "rotate-180")}
-          />
-        </span>
       </button>
 
       {expanded && (
         <div
           id={panelId}
-          className="dashboard-row-pad space-y-3.5 border-t border-[var(--landing-line)] pt-3.5"
+          className="dashboard-row-pad space-y-3.5 border-t border-[var(--landing-line)] pt-3.5 sm:ps-15"
         >
           {star.length === 0 && !story.reflection && (
             <p className="text-sm text-muted-foreground">{t("titleOnly")}</p>
@@ -186,12 +187,11 @@ function StoryRow({ story, index }) {
 function RowSkeleton() {
   return (
     <li className="dashboard-row-pad flex items-center gap-3">
-      <span className="tool-skeleton h-10 w-10 shrink-0 rounded-md" />
+      <span className="tool-skeleton size-8 shrink-0 rounded-md" />
       <span className="flex min-w-0 flex-1 flex-col gap-1.5">
         <span className="tool-skeleton h-3.5 w-1/2 rounded-sm" />
         <span className="tool-skeleton h-3 w-1/3 rounded-sm" />
       </span>
-      <span className="tool-skeleton h-8 w-8 shrink-0 rounded-md" />
     </li>
   );
 }
@@ -268,7 +268,7 @@ function AddStoryDialog({ open, onOpenChange }) {
               placeholder={t("titlePlaceholder")}
               required
               autoFocus
-              className="h-10 border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
+              className="h-control border-[var(--landing-line)] bg-[var(--landing-bg)] shadow-none"
             />
           </div>
           {STORY_FIELDS.map((field) => (
@@ -361,13 +361,13 @@ function StoryBank() {
 
   if (isLoading) {
     return (
-      <DashboardPageShell width="narrow">
+      <DashboardPageShell>
         <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardPanel pad={false} delay={0.05} aria-hidden="true">
           <div className="grid grid-cols-2 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
             {[0, 1, 2].map((i) => (
               <div key={i} className="flex items-center gap-3 px-4 py-3 sm:px-5">
-                <span className="tool-skeleton h-8 w-8 shrink-0 rounded-md" />
+                <span className="tool-skeleton size-9 shrink-0 rounded-md" />
                 <span className="flex flex-1 flex-col gap-1.5">
                   <span className="tool-skeleton h-3 w-1/2 rounded-sm" />
                   <span className="tool-skeleton h-3.5 w-1/3 rounded-sm" />
@@ -377,7 +377,7 @@ function StoryBank() {
           </div>
         </DashboardPanel>
         <DashboardPanel pad={false} delay={0.1} aria-label={t("loadingStories")}>
-          <div className="border-b border-[var(--landing-line)] px-3 py-3 sm:px-4">
+          <div className="dashboard-row-pad border-b border-[var(--landing-line)]">
             <span className="tool-skeleton block h-3.5 w-28 rounded-sm" />
             <span className="tool-skeleton mt-1.5 block h-3 w-40 rounded-sm" />
           </div>
@@ -392,7 +392,7 @@ function StoryBank() {
   }
 
   return (
-    <DashboardPageShell width="narrow">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={t("title")}
         description={t("description")}
@@ -440,7 +440,7 @@ function StoryBank() {
             <DashboardPanelHeader
               title={t("savedStories")}
               description={t("savedStoriesDescription", { count })}
-              className="border-b border-[var(--landing-line)] px-3 py-3 sm:px-4"
+              className="dashboard-row-pad border-b border-[var(--landing-line)]"
             />
             <ul className="divide-y divide-[var(--landing-line)]">
               {list.map((story, i) => (

@@ -23,7 +23,7 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardPanel,
-  DashboardPanelHeader,
+  DashboardSectionTitle,
   DashboardEmptyState,
   DashboardLoadError,
 } from "@/components/dashboard";
@@ -70,7 +70,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
   const title = job.title || t("untitledRole");
 
   return (
-    <li className="group flex flex-col gap-3 px-4 py-3 transition-colors hover:bg-[var(--landing-paper-soft)] sm:flex-row sm:items-center sm:px-5">
+    <li className="group flex flex-col gap-3 px-4 py-4 transition-colors hover:bg-[var(--landing-paper-soft)] sm:flex-row sm:items-center sm:px-5">
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-sm font-semibold text-foreground">
           {job.logo ? (
@@ -114,7 +114,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
             className="dashboard-secondary-btn dashboard-secondary-btn-sm flex-1 sm:flex-none"
           >
             {t("apply")}
-            <ArrowSquareOutIcon size={14} aria-hidden="true" />
+            <ArrowSquareOutIcon size={16} aria-hidden="true" />
           </a>
         )}
         <RowAction
@@ -122,7 +122,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
           disabled={removing}
           onClick={() => onRemove(item._id)}
           className={cn(
-            "h-9 w-9 hover:bg-destructive/10 hover:text-destructive",
+            "size-control hover:bg-destructive/10 hover:text-destructive",
             confirming && "bg-destructive/10 text-destructive"
           )}
         >
@@ -139,20 +139,17 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
 
 function ListSkeleton() {
   return (
-    <div className="dashboard-card overflow-hidden rounded-lg">
-      <div className="flex flex-col gap-1.5 border-b border-[var(--landing-line)] px-4 py-4 sm:px-5">
-        <div className="tool-skeleton h-3.5 w-28 rounded-sm" />
-        <div className="tool-skeleton h-3 w-16 rounded-sm" />
-      </div>
-      <ul className="divide-y divide-[var(--landing-line)]">
+    <div className="flex flex-col gap-3">
+      <div className="tool-skeleton h-5 w-32 rounded-sm" />
+      <ul className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
         {[0, 1, 2, 3].map((i) => (
-          <li key={i} className="flex items-center gap-3 px-4 py-3 sm:px-5">
+          <li key={i} className="flex items-center gap-3 px-4 py-4 sm:px-5">
             <div className="tool-skeleton h-10 w-10 rounded-md" />
             <div className="flex flex-1 flex-col gap-1.5">
               <div className="tool-skeleton h-3.5 w-1/2 rounded-sm" />
               <div className="tool-skeleton h-3 w-1/3 rounded-sm" />
             </div>
-            <div className="tool-skeleton h-9 w-20 rounded-md" />
+            <div className="tool-skeleton h-control w-20 rounded-md" />
           </li>
         ))}
       </ul>
@@ -249,25 +246,30 @@ function SavedJobs() {
           actionHref="/jobs"
         />
       ) : (
-        <DashboardPanel pad={false} as="section">
-          <div className="border-b border-[var(--landing-line)] px-4 py-4 sm:px-5">
-            <DashboardPanelHeader
-              title={t("allTitle")}
-              description={t("jobCount", { count })}
-            />
-          </div>
-          <ul className="divide-y divide-[var(--landing-line)]">
-            {items.map((item) => (
-              <SavedJobRow
-                key={item._id}
-                item={item}
-                confirming={confirmRemoveId === item._id}
-                onRemove={handleRemove}
-                removing={remove.isPending}
-              />
-            ))}
-          </ul>
-        </DashboardPanel>
+        <section className="flex flex-col gap-3">
+          {/* Teal section row: title left, count right, then one divided list. */}
+          <DashboardSectionTitle
+            title={t("allTitle")}
+            action={
+              <span className="text-sm tabular-nums text-muted-foreground">
+                {t("jobCount", { count })}
+              </span>
+            }
+          />
+          <DashboardPanel pad={false} as="div">
+            <ul className="divide-y divide-[var(--landing-line)]">
+              {items.map((item) => (
+                <SavedJobRow
+                  key={item._id}
+                  item={item}
+                  confirming={confirmRemoveId === item._id}
+                  onRemove={handleRemove}
+                  removing={remove.isPending}
+                />
+              ))}
+            </ul>
+          </DashboardPanel>
+        </section>
       )}
     </DashboardPageShell>
   );

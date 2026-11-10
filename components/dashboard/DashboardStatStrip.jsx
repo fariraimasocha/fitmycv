@@ -34,7 +34,7 @@ export function DashboardStatStrip({ items, columns = items.length, className, d
             {item.icon && (
               <span
                 className={cn(
-                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-md",
+                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-md",
                   item.tone === "accent" &&
                     "bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]",
                   item.tone === "success" &&

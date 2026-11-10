@@ -3,7 +3,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { getHomeTestimonials } from "@/content/pages/home";
 
-// ponytail: CSS marquee (same track as JobBoardStrip), no carousel lib. The
+// ponytail: CSS marquee (the landing-marquee track), no carousel lib. The
 // list renders twice so the loop is seamless; the copy is hidden from readers.
 export default function Testimonial() {
   const t = useTranslations("landing.testimonial");

@@ -9,8 +9,6 @@
     "howToDescription": "Collez le lien d'une offre, laissez FitMyCV réécrire votre CV selon les exigences du poste, puis téléchargez le CV et la lettre de motivation en PDF."
   },
   "hero": {
-    "platformTitle": "Du lien de l'offre à l'entretien, au même endroit",
-    "platform": {"tailor": "CV adapté", "coverLetter": "Lettre de motivation", "atsScore": "Score ATS", "jobMatch": "Correspondance", "linkedin": "Profil LinkedIn", "jobs": "Offres d'emploi"},
     "linkLabel": "Lien de l'offre",
     "linkPlaceholder": "Collez le lien d'une offre",
     "tailorCta": "Adapter mon CV gratuitement",
@@ -40,9 +38,6 @@
     "templates": "Modèles compatibles ATS",
     "atsGuides": "Guides ATS par entreprise",
     "freeTools": "Outils gratuits"
-  },
-  "jobBoards": {
-    "title": "Fonctionne avec n'importe quel lien d'offre"
   },
   "problem": {
     "eyebrow": "Le problème",
@@ -97,8 +92,8 @@
         "body": "Supprimez votre CV, vos documents adaptés et votre compte depuis le tableau de bord quand vous le souhaitez."
       },
       "cancel": {
-        "title": "Résiliez quand vous voulez",
-        "body": "La formule mensuelle n'a aucun contrat ni parcours de résiliation à affronter. L'accès reste actif jusqu'à la fin du mois payé."
+        "title": "Un seul paiement, sans renouvellement",
+        "body": "L'accès à vie se règle en un seul paiement. Aucun abonnement à renouveler, rien à résilier."
       }
     },
     "methodTitle": "Comment fonctionne l'adaptation",
@@ -126,7 +121,7 @@
     "cta": "Adapter mon CV gratuitement"
   },
   "footer": {
-    "tagline": "L'adaptation de CV par IA. Décrochez plus d'entretiens avec moins d'effort.",
+    "tagline": "FitMyCV adapte votre CV et votre lettre de motivation au lien d'offre que vous collez.",
     "rights": "2026 FitMyCV. Tous droits réservés.",
     "headings": {
       "product": "Produit",
@@ -221,6 +216,60 @@
         "asks": "Demande <k>React</k> et des <k>tests unitaires</k>.",
         "before": "J'ai créé le site d'une association étudiante avec React et écrit des tests pour que les mises à jour ne cassent rien.",
         "after": "Site <k>React</k> pour une association étudiante, avec des <k>tests unitaires</k> pour détecter les bugs avant chaque mise en ligne."
+      }
+    }
+  },
+  "suite": {
+    "eyebrow": "Ce que vous obtenez",
+    "title": "Un lien d'offre. Un CV, une lettre et un suivi.",
+    "rows": {
+      "link": {
+        "label": "Lien d'offre",
+        "title": "Collez le lien de l'offre",
+        "body": "FitMyCV lit l'annonce à ce lien et en extrait les exigences, les compétences et les mots-clés. Si un site bloque la lecture, collez plutôt la description.",
+        "cta": "Comment fonctionne l'adaptation par lien",
+        "alt": "La page Adapter le CV avec un lien d'offre LinkedIn collé"
+      },
+      "cv": {
+        "label": "CV adapté",
+        "title": "Votre CV, réécrit pour ce poste",
+        "body": "Chaque ligne vient du CV que vous avez importé, reformulée avec les mots de l'offre. Les vérifications du CV tournent pendant que vous modifiez et indiquent si les logiciels de tri peuvent le lire.",
+        "cta": "Vérifiez votre CV gratuitement",
+        "alt": "Un CV adapté dans l'éditeur, avec les vérifications et un aperçu en direct"
+      },
+      "letter": {
+        "label": "Lettre de motivation",
+        "title": "Une lettre pour la même offre",
+        "body": "Rédigée à partir de votre CV adapté et de l'annonce. Modifiez n'importe quelle ligne, puis téléchargez-la en PDF.",
+        "cta": "Voir le générateur de lettres",
+        "alt": "Une lettre de motivation pour un poste d'ingénieur QA"
+      },
+      "tracker": {
+        "label": "Candidatures",
+        "title": "Suivez chaque candidature",
+        "body": "Faites passer chaque poste d'enregistré à postulé puis à offre. Chaque carte garde le CV créé pour ce poste.",
+        "cta": "Commencer avec un lien",
+        "alt": "Le tableau des candidatures avec des postes enregistrés et postulés"
+      }
+    },
+    "freeTitle": "Outils gratuits, sans inscription",
+    "freeBody": "Essayez-les avant de créer un compte.",
+    "free": {
+      "ats": {
+        "title": "Vérificateur de CV ATS",
+        "body": "Voyez quels termes requis manquent à votre CV."
+      },
+      "match": {
+        "title": "Correspondance CV et offre",
+        "body": "Notez votre CV par rapport à une offre d'emploi."
+      },
+      "linkedin": {
+        "title": "Vérificateur de profil LinkedIn",
+        "body": "Voyez quels termes de l'offre votre titre, votre résumé et vos compétences couvrent."
+      },
+      "jobs": {
+        "title": "Offres d'emploi",
+        "body": "Des postes à distance repris des pages carrières des entreprises."
       }
     }
   }

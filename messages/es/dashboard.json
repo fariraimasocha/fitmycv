@@ -13,21 +13,22 @@
       "compare": "Comparar ofertas",
       "saved": "Empleos guardados",
       "preferences": "Preferencias",
-      "agent": "Agente de CV"
+      "agent": "Agente de CV",
+      "jobs": "Buscar empleo",
+      "tools": "Todas las herramientas"
     },
     "fallback": {
       "detail": "Detalle",
       "brief": "Informe",
       "thread": "Conversación"
     },
-    "dashboard": "Panel"
+    "dashboard": "Panel",
+    "backTo": "Volver a {page}"
   },
   "sidebar": {
     "groups": {
-      "overview": "Resumen",
-      "cvToolkit": "Herramientas de CV",
-      "jobSearch": "Búsqueda de empleo",
-      "settings": "Ajustes"
+      "cv": "Herramientas de CV",
+      "jobs": "Búsqueda de empleo"
     },
     "items": {
       "home": "Inicio",
@@ -41,7 +42,8 @@
       "saved": "Empleos guardados",
       "companyResearch": "Investigación de empresas",
       "compare": "Comparar ofertas",
-      "preferences": "Preferencias"
+      "preferences": "Preferencias",
+      "tools": "Todas las herramientas"
     },
     "upgrade": "Pásate a Pro",
     "profile": "Perfil",
@@ -105,6 +107,15 @@
       "unnamed": "Empresa sin nombre",
       "empty": "Añade una oferta en Adaptar CV y recibe un informe sobre la empresa que aparece en el anuncio.",
       "cta": "Ver investigación de empresas"
+    },
+    "proBanner": {
+      "title": "Saca más partido a FitMyCV con Pro",
+      "perks": {
+        "pdf": "Descargas en PDF",
+        "research": "Investigación de empresas",
+        "matches": "Ofertas diarias para ti"
+      },
+      "action": "Pasar a Pro"
     }
   },
   "activation": {
@@ -112,6 +123,7 @@
     "progress": "{done} de {total}",
     "now": "AHORA",
     "next": "DESPUÉS",
+    "done": "Hecho",
     "steps": {
       "resume": {
         "title": "Añade tu CV",
@@ -881,5 +893,9 @@
     "offerTitle": "Movida a Oferta",
     "offerBody": "Compárala con tus otras candidaturas antes de responder.",
     "offerAction": "Comparar ofertas"
+  },
+  "jobs": {
+    "title": "Buscar empleo",
+    "description": "Puestos remotos tomados de las páginas de empleo de las empresas dos veces al día."
   }
 }

@@ -24,7 +24,7 @@ export default function DashboardError({ error, reset }) {
   }, [error]);
 
   return (
-    <DashboardPageShell width="narrow">
+    <DashboardPageShell>
       <DashboardEmptyState
         icon={WarningCircleIcon}
         title={t("title")}

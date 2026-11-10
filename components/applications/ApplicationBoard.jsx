@@ -42,28 +42,26 @@ function Column({ stage, applications, onOpen, onEdit }) {
   return (
     <section
       aria-label={t("appComponents.board.columnLabel", { stage: label, count: applications.length })}
-      className="flex w-72 shrink-0 flex-col gap-2"
+      className={cn(
+        "flex w-72 shrink-0 flex-col overflow-hidden rounded-lg border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] transition-colors",
+        isOver && "border-[var(--landing-ink-soft)] bg-[var(--landing-primary-soft)]"
+      )}
     >
-      {/* Header sits above the tray so every column's cards share one top edge. */}
-      <div className="flex h-8 items-center gap-2 px-1">
+      {/* One header recipe for every column, so the trays share one top edge. */}
+      <div className="flex h-11 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3">
         <span
           className="h-2 w-2 shrink-0 rounded-full"
           style={{ background: stage.color }}
           aria-hidden="true"
         />
-        <span className="truncate text-xs font-semibold uppercase tracking-wide text-foreground">
-          {label}
-        </span>
-        <span className="ms-auto text-xs font-medium tabular-nums text-muted-foreground">
+        <span className="truncate text-sm font-semibold text-foreground">{label}</span>
+        <span className="ms-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] px-1.5 text-xs font-medium tabular-nums text-muted-foreground">
           {applications.length}
         </span>
       </div>
       <div
         ref={setNodeRef}
-        className={cn(
-          "flex min-h-32 flex-1 flex-col gap-2 overflow-y-auto rounded-lg bg-[var(--landing-paper-soft)] p-2 transition-colors lg:max-h-[calc(100dvh-24rem)]",
-          isOver && "bg-[var(--landing-primary-soft)] ring-1 ring-inset ring-[var(--landing-line)]"
-        )}
+        className="flex min-h-40 flex-1 flex-col gap-2 overflow-y-auto p-2 lg:max-h-[calc(100dvh-24rem)]"
       >
         {shown.map((app) => (
           <DraggableCard key={app._id} application={app} onOpen={() => onOpen(app)} onEdit={onEdit} />

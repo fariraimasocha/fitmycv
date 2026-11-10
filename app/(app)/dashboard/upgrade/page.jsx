@@ -12,7 +12,7 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardPanel,
-  DashboardPanelHeader,
+  DashboardSectionTitle,
 } from "@/components/dashboard";
 import PricingCards from "@/components/pricing/PricingCards";
 import { openSupport } from "@/lib/open-support";
@@ -56,7 +56,7 @@ export default function UpgradePage() {
   if (checking) return <Loader />;
 
   return (
-    <DashboardPageShell width="narrow">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={t("title")}
         description={t("description")}
@@ -71,7 +71,7 @@ export default function UpgradePage() {
       {checkoutFailed && (
         <div
           role="alert"
-          className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 sm:flex-row sm:items-center"
+          className="flex flex-col gap-3 rounded-lg border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 sm:flex-row sm:items-center"
         >
           <WarningCircleIcon size={20} className="shrink-0 text-[var(--landing-accent-dark)]" aria-hidden="true" />
           <div className="flex-1 text-sm">
@@ -93,27 +93,29 @@ export default function UpgradePage() {
         <PricingCards compact primaryPlan="month" />
       </motion.div>
 
-      <DashboardPanel delay={0.1}>
-        <DashboardPanelHeader
+      <section className="flex flex-col gap-3">
+        <DashboardSectionTitle
           title={t("everythingTitle")}
           description={t("everythingDescription")}
         />
-        <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
-          {/* features.fN follows the order of PRO_FEATURES. Lines without a
-              translation fall back to the English text. */}
-          {PRO_FEATURES.map((feature, i) => (
-            <li
-              key={feature}
-              className="flex items-start gap-2 text-sm leading-5 text-muted-foreground"
-            >
-              <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
-                <CheckIcon size={10} weight="bold" aria-hidden="true" />
-              </span>
-              {t.has(`features.f${i + 1}`) ? t(`features.f${i + 1}`) : feature}
-            </li>
-          ))}
-        </ul>
-      </DashboardPanel>
+        <DashboardPanel delay={0.1}>
+          <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+            {/* features.fN follows the order of PRO_FEATURES. Lines without a
+                translation fall back to the English text. */}
+            {PRO_FEATURES.map((feature, i) => (
+              <li
+                key={feature}
+                className="flex items-start gap-2.5 text-sm leading-6 text-foreground"
+              >
+                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
+                  <CheckIcon size={12} weight="bold" aria-hidden="true" />
+                </span>
+                {t.has(`features.f${i + 1}`) ? t(`features.f${i + 1}`) : feature}
+              </li>
+            ))}
+          </ul>
+        </DashboardPanel>
+      </section>
     </DashboardPageShell>
   );
 }

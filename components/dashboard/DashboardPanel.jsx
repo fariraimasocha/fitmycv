@@ -67,7 +67,7 @@ export function DashboardPanelHeader({
       {...props}
     >
       <div className="min-w-0">
-        <h2 className="font-outfit text-sm font-semibold text-foreground">{title}</h2>
+        <h2 className="font-outfit text-base font-semibold text-foreground">{title}</h2>
         {description && (
           <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
         )}

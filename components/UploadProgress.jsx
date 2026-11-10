@@ -16,7 +16,8 @@ export default function UploadProgress({ progress, stage }) {
   const Figure = stage === "preparing" ? Loupe : Format;
 
   return (
-    <div className="space-y-4 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5">
+    // Sits inside the caller's panel, so no card of its own.
+    <div className="space-y-4">
       <Figure
         play={stage !== "complete"}
         intensity={0.6}
@@ -39,7 +40,7 @@ export default function UploadProgress({ progress, stage }) {
       </div>
 
       <div
-        className="h-2 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]"
+        className="h-1.5 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]"
         role="progressbar"
         aria-valuenow={Math.round(progress)}
         aria-valuemin={0}
@@ -52,7 +53,7 @@ export default function UploadProgress({ progress, stage }) {
         />
       </div>
 
-      <ul className="space-y-2">
+      <ul className="divide-y divide-[var(--landing-line)] border-t border-[var(--landing-line)]">
         {UPLOAD_STAGES.map((item, index) => {
           const done = stage === "complete" || index < activeIndex;
           const active = stage !== "complete" && index === activeIndex;
@@ -60,7 +61,7 @@ export default function UploadProgress({ progress, stage }) {
           return (
             <li
               key={item.id}
-              className={`flex items-center gap-2.5 text-sm ${
+              className={`flex items-center gap-2.5 py-2.5 text-sm ${
                 active
                   ? "font-semibold text-[var(--landing-ink)]"
                   : done

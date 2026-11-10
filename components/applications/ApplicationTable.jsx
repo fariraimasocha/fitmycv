@@ -6,7 +6,6 @@ import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
 import { ArchiveIcon, ArrowRightIcon, CaretLeftIcon, CaretRightIcon, TagIcon, TrashIcon } from "@phosphor-icons/react";
 import { ApplicationActionsMenu } from "@/components/applications/ApplicationActionsMenu";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
@@ -38,10 +37,13 @@ const appliedOn = (app, locale, fallback) => {
     : fallback;
 };
 
-// Bulk bar buttons sit on a dark strip, so they use a light fill instead of
-// the shell's outline recipe.
-const BULK_BTN =
-  "inline-flex h-8 items-center gap-1.5 rounded-md bg-background/15 px-2.5 text-xs font-medium text-background transition-colors hover:bg-background/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/40 disabled:opacity-50";
+// The bulk bar is a soft tinted strip, so its buttons use the shell's quiet
+// outline recipe like every other toolbar.
+const BULK_BTN = "dashboard-secondary-btn dashboard-secondary-btn-sm";
+const AVATAR =
+  "flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold text-foreground";
+const PAGE_BTN =
+  "dashboard-secondary-btn dashboard-secondary-btn-sm size-control-sm px-0";
 
 function AddTagPopover({ onAdd }) {
   const t = useTranslations("dashboard.appComponents.table");
@@ -58,7 +60,7 @@ function AddTagPopover({ onAdd }) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <button type="button" className={BULK_BTN}>
-          <TagIcon size={14} aria-hidden="true" />
+          <TagIcon size={16} aria-hidden="true" />
           {t("addTag")}
         </button>
       </PopoverTrigger>
@@ -101,7 +103,7 @@ function TagList({ tags = [] }) {
       {tags.slice(0, 2).map((tag) => (
         <span
           key={tag}
-          className="inline-flex h-5 items-center rounded-sm bg-[var(--landing-paper-soft)] px-1.5 text-[11px] font-medium text-muted-foreground"
+          className="inline-flex h-6 items-center rounded-full bg-[var(--landing-paper-soft)] px-1.5 text-xs font-medium text-muted-foreground"
         >
           {tag}
         </span>
@@ -171,13 +173,13 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
   return (
     <div className="flex flex-col gap-3">
       {selected.size > 0 && (
-        <div className="flex flex-wrap items-center gap-2 rounded-md bg-foreground px-3 py-2 text-background">
+        <div className="flex flex-wrap items-center gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] px-3 py-2">
           <span className="text-sm font-semibold tabular-nums">{t("selected", { count: selected.size })}</span>
-          <span className="mx-1 h-4 w-px bg-background/25" aria-hidden="true" />
+          <span className="mx-1 h-4 w-px bg-[var(--landing-line)]" aria-hidden="true" />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button type="button" className={BULK_BTN}>
-                <ArrowRightIcon size={14} aria-hidden="true" />
+                <ArrowRightIcon size={16} aria-hidden="true" />
                 {t("moveStage")}
               </button>
             </DropdownMenuTrigger>
@@ -192,20 +194,20 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
           </DropdownMenu>
           <AddTagPopover onAdd={(tag) => bulk.mutate({ ids, addTags: [tag] })} />
           <button type="button" className={BULK_BTN} onClick={() => bulk.mutate({ ids, archived: true })}>
-            <ArchiveIcon size={14} aria-hidden="true" />
+            <ArchiveIcon size={16} aria-hidden="true" />
             {t("archive")}
           </button>
           <button
             type="button"
-            className={cn(BULK_BTN, "hover:bg-destructive hover:text-white")}
+            className={cn(BULK_BTN, "hover:border-destructive hover:text-destructive")}
             onClick={() => void deleteSelected()}
           >
-            <TrashIcon size={14} aria-hidden="true" />
+            <TrashIcon size={16} aria-hidden="true" />
             {t("delete")}
           </button>
           <button
             type="button"
-            className={cn(BULK_BTN, "ms-auto bg-transparent")}
+            className={cn(BULK_BTN, "ms-auto border-transparent bg-transparent")}
             onClick={() => setSelection(new Set())}
           >
             {t("clear")}
@@ -216,8 +218,8 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
       {/* Desktop: full table. Mobile: stacked rows instead of a wide horizontal scroll. */}
       <div className="dashboard-card overflow-auto rounded-lg max-sm:hidden">
         <table className="w-full min-w-225 border-collapse text-sm">
-          <thead className="sticky top-0 z-10 bg-[var(--landing-paper-soft)]">
-            <tr className="[&>th]:h-10 [&>th]:px-3 [&>th]:text-left [&>th]:text-xs [&>th]:font-medium [&>th]:tracking-wide [&>th]:whitespace-nowrap [&>th]:text-muted-foreground [&>th]:uppercase">
+          <thead className="sticky top-0 z-10 bg-[var(--landing-surface)]">
+            <tr className="[&>th]:h-11 [&>th]:px-3 [&>th]:text-start [&>th]:text-xs [&>th]:font-medium [&>th]:whitespace-nowrap [&>th]:text-muted-foreground">
               <th className="w-10">
                 <Checkbox
                   checked={allChecked ? true : someChecked ? "indeterminate" : false}
@@ -228,10 +230,10 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
               <th>{t("columns.companyRole")}</th>
               <th>{t("columns.stage")}</th>
               <th>{t("columns.location")}</th>
-              <th className="text-right!">{t("columns.salary")}</th>
+              <th className="text-end!">{t("columns.salary")}</th>
               <th>{t("columns.tags")}</th>
               <th>{t("columns.source")}</th>
-              <th className="text-right!">{t("columns.applied")}</th>
+              <th className="text-end!">{t("columns.applied")}</th>
               <th className="w-10">
                 <span className="sr-only">{t("columns.actions")}</span>
               </th>
@@ -246,20 +248,20 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                   selected.has(app._id) && "bg-[var(--landing-primary-soft)]"
                 )}
               >
-                <td className="px-3 py-2.5">
+                <td className="px-3 py-3">
                   <Checkbox
                     checked={selected.has(app._id)}
                     onCheckedChange={() => toggleOne(app._id)}
                     aria-label={t("selectRow", { company: app.jobCompany })}
                   />
                 </td>
-                <td className="px-3 py-2.5">
+                <td className="px-3 py-3">
                   <button
                     type="button"
                     className="group flex max-w-full items-center gap-2.5 rounded-sm text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                     onClick={() => onOpen(app)}
                   >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-[10px] font-semibold text-foreground">
+                    <span className={AVATAR}>
                       {initials(app.jobCompany)}
                     </span>
                     <span className="min-w-0">
@@ -270,25 +272,25 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                     </span>
                   </button>
                 </td>
-                <td className="px-3 py-2.5 whitespace-nowrap">
+                <td className="px-3 py-3 whitespace-nowrap">
                   <StageLabel status={app.status} />
                 </td>
-                <td className="max-w-40 truncate px-3 py-2.5 text-muted-foreground">{app.location || t("notSet")}</td>
-                <td className="px-3 py-2.5 text-end whitespace-nowrap tabular-nums">
+                <td className="max-w-40 truncate px-3 py-3 text-muted-foreground">{app.location || t("notSet")}</td>
+                <td className="px-3 py-3 text-end whitespace-nowrap tabular-nums">
                   {app.salary ? (
                     <span className="font-medium text-foreground">{app.salary}</span>
                   ) : (
                     <span className="text-muted-foreground">{t("notSet")}</span>
                   )}
                 </td>
-                <td className="px-3 py-2.5">
+                <td className="px-3 py-3">
                   <TagList tags={app.tags} />
                 </td>
-                <td className="px-3 py-2.5 whitespace-nowrap text-muted-foreground">{app.source || t("notSet")}</td>
-                <td className="px-3 py-2.5 text-end whitespace-nowrap tabular-nums text-muted-foreground">
+                <td className="px-3 py-3 whitespace-nowrap text-muted-foreground">{app.source || t("notSet")}</td>
+                <td className="px-3 py-3 text-end whitespace-nowrap tabular-nums text-muted-foreground">
                   {appliedOn(app, locale, t("notSet"))}
                 </td>
-                <td className="px-1 py-2.5">
+                <td className="px-1 py-3">
                   <ApplicationActionsMenu application={app} onEdit={onEdit} />
                 </td>
               </tr>
@@ -297,12 +299,12 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
         </table>
       </div>
 
-      <ul className="flex flex-col gap-2 sm:hidden">
+      <ul className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg sm:hidden">
         {rows.map((app) => (
           <li
             key={app._id}
             className={cn(
-              "dashboard-list-row dashboard-row-pad flex items-center gap-3",
+              "dashboard-row-pad flex items-center gap-3",
               selected.has(app._id) && "bg-[var(--landing-primary-soft)]"
             )}
           >
@@ -316,7 +318,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
               className="flex min-w-0 flex-1 items-center gap-3 rounded-sm text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
               onClick={() => onOpen(app)}
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-xs font-semibold text-foreground">
+              <span className={AVATAR}>
                 {initials(app.jobCompany)}
               </span>
               <span className="min-w-0 flex-1">
@@ -340,30 +342,28 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
           {t("showing", { shown: rows.length, total: applications.length })}
         </span>
         {pageCount > 1 && (
-          <div className="ms-auto flex items-center gap-1.5">
-            <Button
-              size="icon-sm"
-              variant="outline"
+          <div className="ms-auto flex items-center gap-2">
+            <button
+              type="button"
               aria-label={t("previousPage")}
               disabled={safePage === 0}
-              className="rounded-md border-[var(--landing-line)] shadow-none hover:bg-[var(--landing-paper-soft)]"
+              className={PAGE_BTN}
               onClick={() => setPage(safePage - 1)}
             >
-              <CaretLeftIcon size={14} aria-hidden="true" />
-            </Button>
+              <CaretLeftIcon size={16} aria-hidden="true" />
+            </button>
             <span className="tabular-nums">
               {safePage + 1} / {pageCount}
             </span>
-            <Button
-              size="icon-sm"
-              variant="outline"
+            <button
+              type="button"
               aria-label={t("nextPage")}
               disabled={safePage >= pageCount - 1}
-              className="rounded-md border-[var(--landing-line)] shadow-none hover:bg-[var(--landing-paper-soft)]"
+              className={PAGE_BTN}
               onClick={() => setPage(safePage + 1)}
             >
-              <CaretRightIcon size={14} aria-hidden="true" />
-            </Button>
+              <CaretRightIcon size={16} aria-hidden="true" />
+            </button>
           </div>
         )}
       </div>

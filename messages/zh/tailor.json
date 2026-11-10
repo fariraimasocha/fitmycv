@@ -624,7 +624,11 @@
       "textPlaceholder": "粘贴完整的职位信息，包括要求和职责",
       "minChars": "请至少粘贴 {min} 个字符，以便有足够的内容可用。",
       "chars": "{count} 个字符",
-      "keepJob": "保留当前职位"
+      "keepJob": "保留当前职位",
+      "heading": "你要申请哪个职位？",
+      "subheading": "我们会针对该职位改写你的简历，并写一封匹配的求职信。",
+      "linkHint": "如果招聘网站屏蔽了链接，请改为粘贴职位描述。",
+      "recentTitle": "最近的职位"
     },
     "bar": {
       "fallbackTitle": "职位信息",
@@ -672,6 +676,12 @@
     "coverLetter": "求职信",
     "download": "下载{title}",
     "confirmDelete": "再次点击以删除",
+    "noLetter": "暂无求职信",
+    "search": "按职位或公司搜索",
+    "noMatches": {
+      "title": "没有符合搜索条件的简历",
+      "description": "试试其他职位或公司名称。"
+    },
     "delete": "删除{title}",
     "deleteError": "无法删除这份简历，请重试。",
     "deleted": "简历已删除",

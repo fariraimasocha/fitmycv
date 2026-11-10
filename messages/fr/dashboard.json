@@ -13,21 +13,22 @@
       "compare": "Comparer les offres",
       "saved": "Offres enregistrées",
       "preferences": "Préférences",
-      "agent": "Agent CV"
+      "agent": "Agent CV",
+      "jobs": "Trouver un emploi",
+      "tools": "Tous les outils"
     },
     "fallback": {
       "detail": "Détail",
       "brief": "Fiche",
       "thread": "Conversation"
     },
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "backTo": "Retour à {page}"
   },
   "sidebar": {
     "groups": {
-      "overview": "Vue d'ensemble",
-      "cvToolkit": "Outils CV",
-      "jobSearch": "Recherche d'emploi",
-      "settings": "Paramètres"
+      "cv": "Outils CV",
+      "jobs": "Recherche d'emploi"
     },
     "items": {
       "home": "Accueil",
@@ -41,7 +42,8 @@
       "saved": "Offres enregistrées",
       "companyResearch": "Recherche d'entreprise",
       "compare": "Comparer les offres",
-      "preferences": "Préférences"
+      "preferences": "Préférences",
+      "tools": "Tous les outils"
     },
     "upgrade": "Passer à Pro",
     "profile": "Profil",
@@ -105,6 +107,15 @@
       "unnamed": "Entreprise sans nom",
       "empty": "Ajoutez une offre dans Adapter le CV et recevez une fiche sur l'entreprise citée dans l'annonce.",
       "cta": "Voir la recherche d'entreprise"
+    },
+    "proBanner": {
+      "title": "Tirez plus de FitMyCV avec Pro",
+      "perks": {
+        "pdf": "Téléchargements PDF",
+        "research": "Recherche d'entreprise",
+        "matches": "Offres quotidiennes pour vous"
+      },
+      "action": "Passer à Pro"
     }
   },
   "activation": {
@@ -112,6 +123,7 @@
     "progress": "{done} sur {total}",
     "now": "MAINTENANT",
     "next": "ENSUITE",
+    "done": "Terminé",
     "steps": {
       "resume": {
         "title": "Ajoutez votre CV",
@@ -881,5 +893,9 @@
     "offerTitle": "Déplacée vers Offre",
     "offerBody": "Comparez-la à vos autres candidatures avant de répondre.",
     "offerAction": "Comparer les offres"
+  },
+  "jobs": {
+    "title": "Trouver un emploi",
+    "description": "Des postes à distance repris des pages carrières des entreprises deux fois par jour."
   }
 }

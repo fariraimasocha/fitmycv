@@ -12,15 +12,16 @@ import { useTranslations } from "next-intl";
 import {
   BuildingsIcon,
   CalendarIcon,
-  CheckIcon,
   CheckCircleIcon,
+  EnvelopeSimpleIcon,
   FileTextIcon,
+  MagnifyingGlassIcon,
   TrashIcon,
-  ArrowRightIcon,
   PlusIcon,
   DownloadSimpleIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import FormattedDate from "@/components/FormattedDate";
 import {
@@ -39,6 +40,7 @@ import { cn } from "@/lib/utils";
 import { requestJson } from "@/lib/request-json";
 
 const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
+const GRID = "grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3";
 
 /**
  * Row action button. Hidden until the row is hovered on pointer devices.
@@ -73,20 +75,22 @@ function RowAction({ label, onClick, disabled, force, className, children }) {
   );
 }
 
-function RowSkeleton() {
+function CardSkeleton() {
   return (
-    <div className="dashboard-list-row dashboard-row-pad flex items-center gap-3">
-      <div className="tool-skeleton h-10 w-10 shrink-0 rounded-md" />
-      <div className="min-w-0 flex-1 space-y-2">
-        <div className="tool-skeleton h-3.5 w-1/2 rounded-sm" />
-        <div className="tool-skeleton h-3 w-1/3 rounded-sm" />
+    <div className="dashboard-card flex min-h-36 flex-col gap-3 rounded-lg p-5">
+      <div className="tool-skeleton h-4 w-2/3 rounded-sm" />
+      <div className="tool-skeleton h-3 w-1/3 rounded-sm" />
+      <div className="mt-auto space-y-2">
+        <div className="tool-skeleton h-3 w-1/2 rounded-sm" />
+        <div className="tool-skeleton h-3 w-2/5 rounded-sm" />
       </div>
-      <div className="tool-skeleton h-3.5 w-3.5 rounded-sm" />
     </div>
   );
 }
 
-function TailoredCVRow({ cv, index, onDownload, onDelete }) {
+// Teal's resume card: title on top, quiet actions top right that appear on
+// hover, meta lines at the bottom. The whole card opens the CV.
+function TailoredCVCard({ cv, index, onDownload, onDelete }) {
   const reduceMotion = useReducedMotion();
   const t = useTranslations("tailor.tailoredList");
   const title = cv.jobTitle || t("untitled");
@@ -96,59 +100,59 @@ function TailoredCVRow({ cv, index, onDownload, onDelete }) {
       initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: Math.min(index, 6) * 0.03 }}
+      className="min-w-0"
     >
-      <div className="dashboard-list-row dashboard-row-pad group relative flex items-center gap-3 focus-within:border-[var(--landing-ink)]">
-        {/* Stretched link: the whole row navigates, but the action buttons
+      <div className="dashboard-list-row group relative flex h-full min-h-36 flex-col gap-4 rounded-lg p-5 focus-within:border-[var(--landing-ink)]">
+        {/* Stretched link: the whole card navigates, but the action buttons
             stay siblings rather than children of an anchor. */}
         <Link
           href={`/dashboard/tailored/${cv._id}`}
           aria-label={t("open", { title })}
           className="absolute inset-0 z-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
         />
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-sm font-semibold text-foreground">
-          {(cv.jobCompany?.[0] ?? cv.jobTitle?.[0] ?? "?").toUpperCase()}
-        </span>
-        <div className="pointer-events-none relative z-10 min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-foreground group-hover:underline">
-            {title}
-          </p>
-          <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-muted-foreground">
+        <div className="flex items-start gap-2">
+          <div className="pointer-events-none relative z-10 min-w-0 flex-1">
+            <p className="line-clamp-2 font-outfit text-base font-semibold leading-6 text-foreground group-hover:underline">
+              {title}
+            </p>
             {cv.jobCompany && (
-              <span className="inline-flex min-w-0 items-center gap-1">
-                <BuildingsIcon size={12} className="shrink-0" aria-hidden="true" />
+              <p className="mt-0.5 flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground">
+                <BuildingsIcon size={14} className="shrink-0" aria-hidden="true" />
                 <span className="truncate">{cv.jobCompany}</span>
-              </span>
+              </p>
             )}
-            <span className="inline-flex items-center gap-1 tabular-nums">
-              <CalendarIcon size={12} className="shrink-0" aria-hidden="true" />
-              <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />
-            </span>
-            {cv.hasCoverLetter && (
-              <span className="inline-flex items-center gap-1 font-medium text-[var(--landing-success)]">
-                <CheckCircleIcon size={12} weight="fill" aria-hidden="true" />
-                {t("coverLetter")}
-              </span>
-            )}
+          </div>
+          <div className="-me-2 -mt-1 flex shrink-0 items-center">
+            <RowAction label={t("download", { title })} onClick={onDownload}>
+              <DownloadSimpleIcon size={16} aria-hidden="true" />
+            </RowAction>
+            <RowAction
+              label={t("delete", { title })}
+              onClick={onDelete}
+              className="hover:bg-destructive/10 hover:text-destructive"
+            >
+              <TrashIcon size={16} aria-hidden="true" />
+            </RowAction>
           </div>
         </div>
 
-        <RowAction label={t("download", { title })} onClick={onDownload}>
-          <DownloadSimpleIcon size={16} aria-hidden="true" />
-        </RowAction>
-
-        <RowAction
-          label={t("delete", { title })}
-          onClick={onDelete}
-          className="hover:bg-destructive/10 hover:text-destructive"
-        >
-          <TrashIcon size={16} aria-hidden="true" />
-        </RowAction>
-
-        <ArrowRightIcon
-          size={14}
-          className="shrink-0 text-muted-foreground/70 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground"
-          aria-hidden="true"
-        />
+        <div className="pointer-events-none relative z-10 mt-auto flex flex-col gap-1 text-xs text-muted-foreground">
+          {cv.hasCoverLetter ? (
+            <span className="inline-flex items-center gap-1.5 font-medium text-[var(--landing-success)]">
+              <CheckCircleIcon size={14} weight="fill" aria-hidden="true" />
+              {t("coverLetter")}
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1.5">
+              <EnvelopeSimpleIcon size={14} aria-hidden="true" />
+              {t("noLetter")}
+            </span>
+          )}
+          <span className="inline-flex items-center gap-1.5 tabular-nums">
+            <CalendarIcon size={14} className="shrink-0" aria-hidden="true" />
+            <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />
+          </span>
+        </div>
       </div>
     </m.li>
   );
@@ -164,6 +168,7 @@ export default function TailoredCVsPage() {
   const [upgradeModalContext, setUpgradeModalContext] = useState("default");
   const [paywallJob, setPaywallJob] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
   const { data: session } = useSession();
   const queryClient = useQueryClient();
 
@@ -215,7 +220,14 @@ export default function TailoredCVsPage() {
     () => sorted.filter((cv) => cv.hasCoverLetter),
     [sorted],
   );
-  const visible = filter === "letter" ? withLetter : sorted;
+  const query = search.trim().toLowerCase();
+  const visible = useMemo(() => {
+    const base = filter === "letter" ? withLetter : sorted;
+    if (!query) return base;
+    return base.filter((cv) =>
+      `${cv.jobTitle ?? ""} ${cv.jobCompany ?? ""}`.toLowerCase().includes(query),
+    );
+  }, [filter, withLetter, sorted, query]);
 
   const handleDownloadClick = async (e, cv) => {
     e.preventDefault();
@@ -285,14 +297,17 @@ export default function TailoredCVsPage() {
 
   if (isLoading) {
     return (
-      <DashboardPageShell width="wide">
+      <DashboardPageShell>
         <DashboardPageHeader title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
-        <div className="flex flex-col gap-3">
-          <div className="tool-skeleton h-9 w-56 rounded-md" />
-          <ul className="flex flex-col gap-2" aria-busy="true" aria-label={t("loading")}>
-            {[0, 1, 2, 3, 4].map((i) => (
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="tool-skeleton h-control w-56 rounded-md" />
+            <div className="tool-skeleton h-control w-full rounded-md sm:w-64" />
+          </div>
+          <ul className={GRID} aria-busy="true" aria-label={t("loading")}>
+            {[0, 1, 2, 3, 4, 5].map((i) => (
               <li key={i}>
-                <RowSkeleton />
+                <CardSkeleton />
               </li>
             ))}
           </ul>
@@ -305,7 +320,7 @@ export default function TailoredCVsPage() {
   const isEmpty = !loadFailed && sorted.length === 0;
 
   return (
-    <DashboardPageShell width="wide">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={PAGE_TITLE}
         description={PAGE_DESCRIPTION}
@@ -333,26 +348,52 @@ export default function TailoredCVsPage() {
           actionHref={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
         />
       ) : (
-        <div className="flex flex-col gap-3">
-          <DashboardFilterPills
-            tabs={[
-              { key: "all", label: t("filters.all"), count: sorted.length },
-              { key: "letter", label: t("filters.letter"), count: withLetter.length },
-            ]}
-            activeKey={filter}
-            onChange={setFilter}
-          />
-          {visible.length === 0 ? (
-            <DashboardEmptyState
-              compact
-              icon={CheckCircleIcon}
-              title={t("noLetters.title")}
-              description={t("noLetters.description")}
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <DashboardFilterPills
+              tabs={[
+                { key: "all", label: t("filters.all"), count: sorted.length },
+                { key: "letter", label: t("filters.letter"), count: withLetter.length },
+              ]}
+              activeKey={filter}
+              onChange={setFilter}
             />
+            <div className="relative w-full sm:w-64">
+              <MagnifyingGlassIcon
+                size={16}
+                className="pointer-events-none absolute start-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                aria-hidden="true"
+              />
+              <Input
+                type="search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                aria-label={t("search")}
+                placeholder={t("search")}
+                className="h-control ps-9"
+              />
+            </div>
+          </div>
+          {visible.length === 0 ? (
+            query ? (
+              <DashboardEmptyState
+                compact
+                icon={MagnifyingGlassIcon}
+                title={t("noMatches.title")}
+                description={t("noMatches.description")}
+              />
+            ) : (
+              <DashboardEmptyState
+                compact
+                icon={CheckCircleIcon}
+                title={t("noLetters.title")}
+                description={t("noLetters.description")}
+              />
+            )
           ) : (
-            <ul className="flex flex-col gap-2">
+            <ul className={GRID}>
               {visible.map((cv, index) => (
-                <TailoredCVRow
+                <TailoredCVCard
                   key={cv._id}
                   cv={cv}
                   index={index}

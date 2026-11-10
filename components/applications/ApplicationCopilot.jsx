@@ -67,7 +67,7 @@ function ActionRow({ icon, title, description, disabled, pending, onClick, href 
   );
   const body = (
     <>
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
         {pending ? <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" /> : icon}
       </span>
       <span className="min-w-0 flex-1">
@@ -145,7 +145,7 @@ export function ApplicationCopilot({ application }) {
             onClick={() => run.mutate("match")}
             className="flex w-full items-center gap-3 rounded-md border border-dashed border-[var(--landing-accent-line)] p-2.5 text-start transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-60"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
               {pendingKind === "match" ? (
                 <SpinnerGapIcon size={20} className="animate-spin" aria-hidden="true" />
               ) : (

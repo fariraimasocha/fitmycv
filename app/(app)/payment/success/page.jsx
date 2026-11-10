@@ -72,7 +72,7 @@ export default function PaymentSuccessPage() {
           </svg>
         </div>
 
-        <h1 className="text-2xl font-bold text-[var(--landing-ink)] mb-2">
+        <h1 className="mb-2 font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)]">
           Payment successful
         </h1>
 

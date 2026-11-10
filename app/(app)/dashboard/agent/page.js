@@ -4,9 +4,19 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { ArrowRightIcon, SpinnerGapIcon } from "@phosphor-icons/react";
+import {
+  ArrowRightIcon,
+  MagicWandIcon,
+  SpinnerGapIcon,
+} from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   DashboardPageHeader,
   DashboardPageShell,
@@ -28,10 +38,13 @@ function AgentStart() {
     queryFn: () => requestJson("/api/tailored-cv"),
   });
   // Drafts are copies already; starting from one would stack copies.
-  const sources = tailored.filter((cv) => !cv.jobTitle?.startsWith("Agent draft"));
+  const sources = tailored.filter(
+    (cv) => !cv.jobTitle?.startsWith("Agent draft"),
+  );
 
   const start = useMutation({
-    mutationFn: () => requestJson("/api/agent/threads", { method: "POST", body: { sourceId } }),
+    mutationFn: () =>
+      requestJson("/api/agent/threads", { method: "POST", body: { sourceId } }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["agent-threads"] });
       queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
@@ -41,58 +54,79 @@ function AgentStart() {
   });
 
   return (
-    <DashboardPageShell width="narrow">
-      <DashboardPageHeader
-        title={t("title")}
-        description={t("description")}
-      />
+    <DashboardPageShell>
+      <DashboardPageHeader title={t("title")} description={t("description")} />
 
+      {/* Teal checklist row: tinted round icon, title and one line, then the
+          action. The form sits right of the text on wide screens. */}
       <DashboardPanel delay={0.05} aria-label={t("startTitle")}>
-        <DashboardPanelHeader title={t("startTitle")} description={t("startDescription")} />
-        <form
-          className="mt-4 flex flex-col gap-2 sm:flex-row"
-          onSubmit={(event) => {
-            event.preventDefault();
-            if (!start.isPending) start.mutate();
-          }}
-        >
-          <Select value={sourceId} onValueChange={setSourceId} disabled={isLoadingCvs}>
-            <SelectTrigger
-              aria-label={t("cvSelectLabel")}
-              className="w-full min-w-0 bg-[var(--landing-surface)] shadow-none data-[size=default]:h-control sm:flex-1"
-            >
-              <SelectValue placeholder={t("choosePlaceholder")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="reference">{t("myCv")}</SelectItem>
-              {sources.map((cv) => (
-                <SelectItem key={cv._id} value={cv._id}>
-                  {cv.jobCompany
-                    ? t("cvAtCompany", { title: cv.jobTitle || t("tailoredCv"), company: cv.jobCompany })
-                    : cv.jobTitle || t("tailoredCv")}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <button
-            type="submit"
-            disabled={start.isPending || isLoadingCvs}
-            aria-busy={start.isPending}
-            className="dashboard-primary-btn w-full sm:w-auto"
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6">
+          <div className="flex min-w-0 flex-1 items-start gap-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+              <MagicWandIcon size={20} aria-hidden="true" />
+            </span>
+            <DashboardPanelHeader
+              className="min-w-0 flex-1"
+              title={t("startTitle")}
+              description={t("startDescription")}
+            />
+          </div>
+          <form
+            className="flex flex-col gap-2 sm:flex-row lg:w-md lg:shrink-0"
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (!start.isPending) start.mutate();
+            }}
           >
-            {start.isPending ? (
-              <>
-                <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                {t("starting")}
-              </>
-            ) : (
-              <>
-                {t("startThread")}
-                <ArrowRightIcon size={16} aria-hidden="true" />
-              </>
-            )}
-          </button>
-        </form>
+            <Select
+              value={sourceId}
+              onValueChange={setSourceId}
+              disabled={isLoadingCvs}
+            >
+              <SelectTrigger
+                aria-label={t("cvSelectLabel")}
+                className="w-full min-w-0 bg-[var(--landing-surface)] shadow-none data-[size=default]:h-control sm:flex-1"
+              >
+                <SelectValue placeholder={t("choosePlaceholder")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="reference">{t("myCv")}</SelectItem>
+                {sources.map((cv) => (
+                  <SelectItem key={cv._id} value={cv._id}>
+                    {cv.jobCompany
+                      ? t("cvAtCompany", {
+                          title: cv.jobTitle || t("tailoredCv"),
+                          company: cv.jobCompany,
+                        })
+                      : cv.jobTitle || t("tailoredCv")}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <button
+              type="submit"
+              disabled={start.isPending || isLoadingCvs}
+              aria-busy={start.isPending}
+              className="dashboard-primary-btn w-full sm:w-auto"
+            >
+              {start.isPending ? (
+                <>
+                  <SpinnerGapIcon
+                    size={16}
+                    className="animate-spin"
+                    aria-hidden="true"
+                  />
+                  {t("starting")}
+                </>
+              ) : (
+                <>
+                  {t("startThread")}
+                  <ArrowRightIcon size={16} aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </form>
+        </div>
       </DashboardPanel>
 
       <ThreadList title={t("yourThreads")} delay={0.1} />

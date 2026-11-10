@@ -59,7 +59,7 @@ const currentStageAnchorId = (history, status) =>
 function Section({ title, children }) {
   return (
     <section className="flex flex-col gap-2">
-      <h3 className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">{title}</h3>
+      <h3 className="font-outfit text-sm font-semibold text-foreground">{title}</h3>
       {children}
     </section>
   );
@@ -107,7 +107,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
     <div className="flex flex-col gap-2">
       {contacts.map((contact, i) => (
         <div key={contact._id ?? `${contact.name}-${i}`} className="group flex items-center gap-3 text-sm">
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold text-foreground">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold text-foreground">
             {contact.name.slice(0, 2).toUpperCase()}
           </span>
           <div className="min-w-0 flex-1">
@@ -131,7 +131,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
             )}
           </div>
           {contact.kind && (
-            <span className="inline-flex h-6 items-center rounded-md border border-[var(--landing-line)] px-2 text-[11px] font-medium text-muted-foreground">
+            <span className="inline-flex h-6 items-center rounded-full border border-[var(--landing-line)] px-2 text-xs font-medium text-muted-foreground">
               {contact.kind}
             </span>
           )}
@@ -312,7 +312,7 @@ function ApplicationTimeline({ application, pending, onAddNote, onUpdateEntry, o
                   <div className="flex shrink-0 items-center gap-1">
                     <button
                       type="button"
-                      className="inline-flex h-7 items-center rounded-md border border-[var(--landing-line)] px-2 text-xs tabular-nums text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                      className="inline-flex h-control-sm items-center rounded-md border border-[var(--landing-line)] px-2 text-xs tabular-nums text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                       onClick={() => {
                         setEditingDate(entry);
                         setDateDraft(dateInputValue(entry.date));
@@ -482,13 +482,13 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
                 onClick={() => save({ status: nextStage.key })}
               >
                 {t("moveToStage", { stage: tDashboard(`stages.${nextStage.key}`) })}
-                <ArrowRightIcon size={14} aria-hidden="true" />
+                <ArrowRightIcon size={16} aria-hidden="true" />
               </button>
             )}
           </div>
         </SheetHeader>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto px-4 py-4 [&>*]:shrink-0">
+        <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-4 py-5 [&>*]:shrink-0">
           <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
             <Fact label={t("salary")} value={current.salary} />
             <Fact label={t("source")} value={current.source} />
@@ -502,7 +502,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--landing-accent-dark)] hover:underline"
             >
-              <ArrowSquareOutIcon size={14} aria-hidden="true" />
+              <ArrowSquareOutIcon size={16} aria-hidden="true" />
               {t("openPosting")}
             </a>
           )}
@@ -519,7 +519,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
                 href={`/dashboard/tailored/${current.tailoredCVId}`}
                 className="dashboard-list-row group flex items-center gap-3 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] font-outfit text-[10px] font-semibold text-[var(--landing-accent-dark)]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] font-outfit text-xs font-semibold text-[var(--landing-accent-dark)]">
                   CV
                 </span>
                 <span className="min-w-0 flex-1 truncate text-sm font-medium text-foreground">

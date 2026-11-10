@@ -37,7 +37,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         />
       )}
       <div className="flex items-start gap-3">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-xs font-semibold text-foreground">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold text-foreground">
           {initials(application.jobCompany)}
         </span>
         <div className={cn("min-w-0 flex-1", onEdit && "pe-6")}>
@@ -56,7 +56,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         )}
       </div>
       {(application.location || application.salary) && (
-        <div className="mt-2.5 flex items-center gap-x-2 text-xs text-muted-foreground">
+        <div className="mt-3 flex items-center gap-x-2 text-xs text-muted-foreground">
           {application.location && (
             <span className="inline-flex min-w-0 items-center gap-1">
               <MapPinIcon size={12} className="shrink-0" aria-hidden="true" />
@@ -71,15 +71,15 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         </div>
       )}
       {(application.tailoredCVId || application.source) && (
-        <div className="mt-2.5 flex flex-wrap gap-1.5">
+        <div className="mt-3 flex flex-wrap gap-1.5">
           {application.tailoredCVId && (
-            <span className="inline-flex h-6 items-center gap-1 rounded-md bg-[var(--landing-paper-soft)] px-2 text-[11px] font-medium text-muted-foreground">
+            <span className="inline-flex h-6 items-center gap-1 rounded-full bg-[var(--landing-paper-soft)] px-2 text-xs font-medium text-muted-foreground">
               <FileTextIcon size={12} aria-hidden="true" />
               {t("cvLinked")}
             </span>
           )}
           {application.source && (
-            <span className="inline-flex h-6 items-center rounded-md border border-[var(--landing-line)] px-2 text-[11px] font-medium text-muted-foreground">
+            <span className="inline-flex h-6 items-center rounded-full border border-[var(--landing-line)] px-2 text-xs font-medium text-muted-foreground">
               {application.source}
             </span>
           )}

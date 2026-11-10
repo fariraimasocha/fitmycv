@@ -16,10 +16,11 @@ import {
   LightbulbIcon,
 } from "@phosphor-icons/react";
 import FormattedDate from "@/components/FormattedDate";
+import { cn } from "@/lib/utils";
 
 function InfoBadge({ children }) {
   return (
-    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+    <span className="inline-flex h-6 items-center rounded-full border border-[var(--landing-line)] px-2.5 text-xs font-medium text-muted-foreground">
       {children}
     </span>
   );
@@ -27,9 +28,32 @@ function InfoBadge({ children }) {
 
 function CultureChip({ signal }) {
   return (
-    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+    <span className="inline-flex h-6 items-center rounded-full bg-[var(--landing-accent-soft)] px-2.5 text-xs font-medium text-[var(--landing-accent-dark)]">
       {signal}
     </span>
+  );
+}
+
+// A brief section: tinted round icon and title, then the body. The card puts a
+// hairline between sections, so each one carries its own padding.
+function Section({ icon: Icon, title, tone, children }) {
+  return (
+    <section className="dashboard-card-pad flex flex-col gap-3">
+      <h3 className="flex items-center gap-2.5 font-outfit text-sm font-semibold text-foreground">
+        <span
+          className={cn(
+            "flex size-7 shrink-0 items-center justify-center rounded-full",
+            tone === "success"
+              ? "bg-[var(--landing-success-soft)] text-[var(--landing-success)]"
+              : "bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]"
+          )}
+        >
+          <Icon size={16} aria-hidden="true" />
+        </span>
+        {title}
+      </h3>
+      {children}
+    </section>
   );
 }
 
@@ -77,15 +101,34 @@ export default function CompanyResearchCard({ brief, isLoading }) {
     );
   }
 
+  const bulletList = (items, tone = "accent") => (
+    <ul className="flex flex-col gap-2">
+      {items.map((item, i) => (
+        <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+          <span
+            aria-hidden="true"
+            className={cn(
+              "mt-2.5 size-1.5 shrink-0 rounded-full",
+              tone === "success" ? "bg-[var(--landing-success)]" : "bg-[var(--landing-accent)]"
+            )}
+          />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-      <CardHeader className="dashboard-card-pad">
-        <CardTitle className="flex items-start justify-between gap-3">
-          <span className="flex items-center gap-2 text-base">
-            <BuildingsIcon size={18} className="text-muted-foreground" />
-            {brief.companyName}
+      <CardHeader className="dashboard-card-pad border-b border-[var(--landing-line)]">
+        <CardTitle className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span className="flex min-w-0 items-center gap-3 font-outfit text-base font-semibold">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
+              <BuildingsIcon size={18} aria-hidden="true" />
+            </span>
+            <span className="truncate">{brief.companyName}</span>
           </span>
-          <div className="flex flex-wrap gap-1.5 justify-end">
+          <div className="flex flex-wrap gap-1.5 sm:justify-end">
             {brief.fundingStage && brief.fundingStage !== "Unknown" && (
               <InfoBadge>{brief.fundingStage}</InfoBadge>
             )}
@@ -95,89 +138,49 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="dashboard-card-pad space-y-6 pt-0">
-        {/* Mission */}
+      {/* One hairline between sections, the way Teal splits its editor panels. */}
+      <CardContent className="divide-y divide-[var(--landing-line)] p-0">
         {brief.mission && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <TargetIcon size={15} />
-              {t("mission")}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed italic border-s-2 border-muted ps-3">
+          <Section icon={TargetIcon} title={t("mission")}>
+            <p className="border-s-2 border-[var(--landing-line)] ps-3 text-sm italic leading-6 text-muted-foreground">
               &ldquo;{brief.mission}&rdquo;
             </p>
-          </div>
+          </Section>
         )}
 
-        {/* Executive Summary */}
         {brief.summary && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <ArticleIcon size={15} />
-              {t("summary")}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {brief.summary}
-            </p>
-          </div>
+          <Section icon={ArticleIcon} title={t("summary")}>
+            <p className="text-sm leading-6 text-muted-foreground">{brief.summary}</p>
+          </Section>
         )}
 
-        {/* Culture Signals */}
         {brief.cultureSignals?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <UsersThreeIcon size={15} />
-              {t("culture")}
-            </h3>
+          <Section icon={UsersThreeIcon} title={t("culture")}>
             <div className="flex flex-wrap gap-1.5">
               {brief.cultureSignals.map((signal, i) => (
                 <CultureChip key={i} signal={signal} />
               ))}
             </div>
-          </div>
+          </Section>
         )}
 
-        {/* Tech Strategy */}
         {brief.techStrategy && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <LightningIcon size={15} />
-              {t("tech")}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {brief.techStrategy}
-            </p>
-          </div>
+          <Section icon={LightningIcon} title={t("tech")}>
+            <p className="text-sm leading-6 text-muted-foreground">{brief.techStrategy}</p>
+          </Section>
         )}
 
-        {/* Challenges */}
         {brief.challenges?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <WarningIcon size={15} />
-              {t("challenges")}
-            </h3>
-            <ul className="space-y-1.5">
-              {brief.challenges.map((challenge, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-[var(--landing-accent-dark)]">*</span>
-                  {challenge}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Section icon={WarningIcon} title={t("challenges")}>
+            {bulletList(brief.challenges)}
+          </Section>
         )}
 
-        {/* Competitors */}
         {brief.competitors?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <SwordIcon size={15} />
-              {t("competitors")}
-            </h3>
-            <ul className="space-y-2">
+          <Section icon={SwordIcon} title={t("competitors")}>
+            <ul className="flex flex-col gap-2">
               {brief.competitors.map((comp, i) => (
-                <li key={i} className="text-sm">
+                <li key={i} className="text-sm leading-6">
                   <span className="font-medium text-foreground">{comp.name}</span>
                   {comp.differentiation && (
                     <span className="text-muted-foreground">: {comp.differentiation}</span>
@@ -185,46 +188,29 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                 </li>
               ))}
             </ul>
-          </div>
+          </Section>
         )}
 
-        {/* Positioning Tips */}
         {brief.positioningTips?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold text-[var(--landing-success)]">
-              <LightbulbIcon size={15} weight="fill" />
-              {t("positioning")}
-            </h3>
-            <ul className="space-y-1.5">
-              {brief.positioningTips.map((tip, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-0.5 shrink-0 text-[var(--landing-success)]">*</span>
-                  {tip}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Section icon={LightbulbIcon} title={t("positioning")} tone="success">
+            {bulletList(brief.positioningTips, "success")}
+          </Section>
         )}
 
-        {/* Recent News */}
         {brief.recentNews?.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="flex items-center gap-2 text-sm font-semibold">
-              <NewspaperIcon size={15} />
-              {t("news")}
-            </h3>
-            <ul className="space-y-3">
+          <Section icon={NewspaperIcon} title={t("news")}>
+            <ul className="flex flex-col gap-4">
               {brief.recentNews.map((item, i) => (
-                <li key={i} className="space-y-0.5">
+                <li key={i} className="flex flex-col gap-0.5">
                   {item.url ? (
                     <a
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-start gap-1 text-sm font-medium text-[var(--landing-ink)] hover:underline"
+                      className="inline-flex items-start gap-1.5 text-sm font-medium text-[var(--landing-ink)] hover:underline"
                     >
                       <span>{item.title}</span>
-                      <ArrowSquareOutIcon size={12} className="mt-0.5 shrink-0" />
+                      <ArrowSquareOutIcon size={14} className="mt-0.5 shrink-0" aria-hidden="true" />
                     </a>
                   ) : (
                     <p className="text-sm font-medium">{item.title}</p>
@@ -241,12 +227,12 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                     />
                   )}
                   {item.snippet && (
-                    <p className="text-sm text-muted-foreground">{item.snippet}</p>
+                    <p className="text-sm leading-6 text-muted-foreground">{item.snippet}</p>
                   )}
                 </li>
               ))}
             </ul>
-          </div>
+          </Section>
         )}
       </CardContent>
     </Card>

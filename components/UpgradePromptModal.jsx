@@ -115,7 +115,7 @@ export default function UpgradePromptModal({
   // today and would otherwise close the modal. Lifetime stays a text link.
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="rounded-md border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
+      <DialogContent className="rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
         <DialogHeader>
           <div className="mb-1 flex items-center gap-2">
             <CrownIcon className="size-5 shrink-0 text-[var(--landing-accent)]" aria-hidden="true" />

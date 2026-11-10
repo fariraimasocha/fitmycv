@@ -96,14 +96,14 @@ function UploadPanel({ onParsed, replacing }) {
   return (
     <div className="grid items-start gap-4 lg:grid-cols-12">
       <DashboardPanel delay={0.05} className="lg:col-span-5">
-        <h2 className="font-outfit text-sm font-semibold text-foreground">
+        <h2 className="font-outfit text-base font-semibold text-foreground">
           {t("title")}
         </h2>
-        <ol className="mt-4 flex flex-col gap-4">
+        <ol className="mt-2 flex flex-col divide-y divide-[var(--landing-line)]">
           {UPLOAD_STEPS.map((step) => (
-            <li key={step.key} className="flex gap-3">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-                <step.icon size={16} aria-hidden="true" />
+            <li key={step.key} className="flex gap-3 py-4 last:pb-0">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
+                <step.icon size={18} aria-hidden="true" />
               </span>
               <div>
                 <p className="text-sm font-medium text-foreground">
@@ -245,21 +245,23 @@ export default function MyResumePage() {
   if (showUploadForm || (!savedCV && !parsedData)) {
     const replacing = Boolean(savedCV);
     return (
-      <DashboardPageShell width="full">
-        {replacing && (
-          <button
-            type="button"
-            onClick={() => setShowUploadForm(false)}
-            className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeftIcon size={16} aria-hidden="true" />
-            {t("backToCv")}
-          </button>
-        )}
+      <DashboardPageShell>
         <DashboardPageHeader
           title={replacing ? t("replace.title") : t("upload.title")}
           description={
             replacing ? t("replace.description") : t("upload.description")
+          }
+          actions={
+            replacing && (
+              <button
+                type="button"
+                onClick={() => setShowUploadForm(false)}
+                className="dashboard-secondary-btn"
+              >
+                <ArrowLeftIcon size={16} className="rtl:-scale-x-100" aria-hidden="true" />
+                {t("backToCv")}
+              </button>
+            )
           }
         />
         <UploadPanel onParsed={handleParsed} replacing={replacing} />
@@ -276,7 +278,7 @@ export default function MyResumePage() {
   );
 
   return (
-    <DashboardPageShell width="full">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={isDraft ? t("review.title") : t("saved.title")}
         description={

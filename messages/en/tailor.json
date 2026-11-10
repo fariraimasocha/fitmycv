@@ -624,7 +624,11 @@
       "textPlaceholder": "Paste the full posting, including the requirements and responsibilities",
       "minChars": "Paste at least {min} characters so there is enough to work from.",
       "chars": "{count} characters",
-      "keepJob": "Keep the current job"
+      "keepJob": "Keep the current job",
+      "heading": "Which job are you applying for?",
+      "subheading": "We rewrite your CV for the role and write a cover letter to match.",
+      "linkHint": "If the job board blocks the link, paste the description instead.",
+      "recentTitle": "Recent jobs"
     },
     "bar": {
       "fallbackTitle": "Job listing",
@@ -672,6 +676,12 @@
     "coverLetter": "Cover letter",
     "download": "Download {title}",
     "confirmDelete": "Click again to delete",
+    "noLetter": "No cover letter",
+    "search": "Search by role or company",
+    "noMatches": {
+      "title": "No CVs match your search",
+      "description": "Try another role or company name."
+    },
     "delete": "Delete {title}",
     "deleteError": "Couldn't delete this CV. Try again.",
     "deleted": "CV deleted",

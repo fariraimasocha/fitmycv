@@ -2,50 +2,21 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { motion, useReducedMotion } from "motion/react";
-import { ArrowRightIcon, KanbanIcon, LockSimpleIcon } from "@phosphor-icons/react";
-import { Card, CardContent } from "@/components/ui/card";
+import { KanbanIcon, LockSimpleIcon } from "@phosphor-icons/react";
+import { DashboardPanel, DashboardPanelHeader } from "./DashboardPanel";
 import { computeInsights } from "@/lib/applications";
-import { cn } from "@/lib/utils";
 
-function CardFrame({ children, className, delay }) {
-  const reduceMotion = useReducedMotion();
+// Teal's empty row: round tinted icon, one line, a quiet action below.
+function EmptyNote({ icon: Icon, children, action }) {
   return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay }}
-      className={cn("min-w-0", className)}
-    >
-      <Card className="dashboard-card h-full gap-0 rounded-lg py-0">
-        <CardContent className="dashboard-card-pad flex h-full flex-col">
-          {children}
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-}
-
-function Header({ title, description, href, linkLabel }) {
-  return (
-    <div className="flex items-start justify-between gap-3">
-      <div>
-        <h2 className="font-outfit text-sm font-semibold text-foreground">
-          {title}
-        </h2>
-        {description && (
-          <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
-        )}
+    <div className="mt-4 flex flex-1 flex-col justify-between gap-4 border-t border-[var(--landing-line)] pt-4">
+      <div className="flex items-start gap-3">
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-[var(--landing-ink-soft)]">
+          <Icon size={20} aria-hidden="true" />
+        </span>
+        <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">{children}</p>
       </div>
-      {href && (
-        <Link
-          href={href}
-          className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
-        >
-          {linkLabel}
-          <ArrowRightIcon size={12} weight="bold" aria-hidden="true" />
-        </Link>
-      )}
+      {action}
     </div>
   );
 }
@@ -60,25 +31,19 @@ export function DashboardPipelineCard({
   const t = useTranslations("dashboard");
   if (!isPremium) {
     return (
-      <CardFrame className={className} delay={delay}>
-        <Header title={t("pipeline.title")} description={t("pipeline.proOnly")} />
-        <div className="mt-4 flex flex-1 flex-col justify-between gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
-          <div className="flex items-start gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
-              <LockSimpleIcon size={17} aria-hidden="true" />
-            </span>
-            <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-              {t("pipeline.upsell")}
-            </p>
-          </div>
-          <Link
-            href="/dashboard/upgrade"
-            className="dashboard-primary-btn w-full text-sm"
-          >
-            {t("pipeline.seePlans")}
-          </Link>
-        </div>
-      </CardFrame>
+      <DashboardPanel className={className} delay={delay}>
+        <DashboardPanelHeader title={t("pipeline.title")} description={t("pipeline.proOnly")} />
+        <EmptyNote
+          icon={LockSimpleIcon}
+          action={
+            <Link href="/dashboard/upgrade" className="dashboard-secondary-btn w-full">
+              {t("pipeline.seePlans")}
+            </Link>
+          }
+        >
+          {t("pipeline.upsell")}
+        </EmptyNote>
+      </DashboardPanel>
     );
   }
 
@@ -89,8 +54,8 @@ export function DashboardPipelineCard({
   const shown = stages.filter((s) => s.count > 0);
 
   return (
-    <CardFrame className={className} delay={delay}>
-      <Header
+    <DashboardPanel className={className} delay={delay}>
+      <DashboardPanelHeader
         title={t("pipeline.title")}
         description={
           insights.total > 0
@@ -108,23 +73,19 @@ export function DashboardPipelineCard({
           <div className="tool-skeleton h-4 w-1/2 rounded-sm" />
         </div>
       ) : insights.total === 0 ? (
-        <div className="mt-4 flex flex-1 flex-col items-start justify-between gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
-          <div className="flex items-start gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
-              <KanbanIcon size={17} aria-hidden="true" />
-            </span>
-            <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-              {t("pipeline.empty")}
-            </p>
-          </div>
-          <Link
-            href="/dashboard/applications"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
-          >
-            {t("pipeline.openPipeline")}
-            <ArrowRightIcon size={14} weight="bold" aria-hidden="true" />
-          </Link>
-        </div>
+        <EmptyNote
+          icon={KanbanIcon}
+          action={
+            <Link
+              href="/dashboard/applications"
+              className="dashboard-secondary-btn dashboard-secondary-btn-sm self-start"
+            >
+              {t("pipeline.openPipeline")}
+            </Link>
+          }
+        >
+          {t("pipeline.empty")}
+        </EmptyNote>
       ) : (
         <>
           {/* One bar, split by stage. Colors come from lib/applications so
@@ -169,25 +130,25 @@ export function DashboardPipelineCard({
           <dl className="mt-auto grid grid-cols-3 gap-3 border-t border-[var(--landing-line)] pt-4">
             <div>
               <dt className="text-xs text-muted-foreground">{t("pipeline.applied")}</dt>
-              <dd className="font-outfit text-lg font-semibold leading-tight tabular-nums text-foreground">
+              <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                 {insights.applied}
               </dd>
             </div>
             <div>
               <dt className="text-xs text-muted-foreground">{t("pipeline.interviews")}</dt>
-              <dd className="font-outfit text-lg font-semibold leading-tight tabular-nums text-foreground">
+              <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                 {insights.interviews}
               </dd>
             </div>
             <div>
               <dt className="text-xs text-muted-foreground">{t("pipeline.responseRate")}</dt>
-              <dd className="font-outfit text-lg font-semibold leading-tight tabular-nums text-foreground">
+              <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                 {insights.applied > 0 ? `${insights.responseRate}%` : t("pipeline.na")}
               </dd>
             </div>
           </dl>
         </>
       )}
-    </CardFrame>
+    </DashboardPanel>
   );
 }

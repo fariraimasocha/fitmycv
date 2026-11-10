@@ -67,19 +67,47 @@
     "uploadPanel": {
       "title": "So funktioniert es",
       "steps": {
-        "upload": { "title": "PDF hochladen", "body": "Eine Datei, bis zu 8 MB." },
-        "read": { "title": "Wir lesen die Angaben", "body": "Erfahrung, Ausbildung, Skills und Kontaktdaten, in bearbeitbaren Feldern." },
-        "review": { "title": "Du prüfst und speicherst", "body": "Korrigier, was nicht stimmt. Gespeichert wird erst, wenn du speicherst." }
+        "upload": {
+          "title": "PDF hochladen",
+          "body": "Eine Datei, bis zu 8 MB."
+        },
+        "read": {
+          "title": "Wir lesen die Angaben",
+          "body": "Erfahrung, Ausbildung, Skills und Kontaktdaten, in bearbeitbaren Feldern."
+        },
+        "review": {
+          "title": "Du prüfst und speicherst",
+          "body": "Korrigier, was nicht stimmt. Gespeichert wird erst, wenn du speicherst."
+        }
       },
       "replacingNote": "Dein aktueller Lebenslauf bleibt, bis du den neuen speicherst. Vorlage und Stil werden übernommen."
     },
-    "tabs": { "edit": "Bearbeiten", "preview": "Vorschau", "ariaLabel": "Bearbeiten oder Vorschau" },
-    "templateSaveError": { "title": "Deine Vorlage konnte nicht gespeichert werden", "description": "Deine Änderung ist noch zu sehen. Prüf deine Verbindung und versuch es erneut." },
+    "tabs": {
+      "edit": "Bearbeiten",
+      "preview": "Vorschau",
+      "ariaLabel": "Bearbeiten oder Vorschau"
+    },
+    "templateSaveError": {
+      "title": "Deine Vorlage konnte nicht gespeichert werden",
+      "description": "Deine Änderung ist noch zu sehen. Prüf deine Verbindung und versuch es erneut."
+    },
     "backToCv": "Zurück zu meinem Lebenslauf",
-    "replace": { "title": "Lebenslauf ersetzen", "description": "Lade ein neues PDF hoch. Du kannst die Angaben prüfen, bevor sich etwas ändert." },
-    "upload": { "title": "Lebenslauf hochladen", "description": "Lade deinen Lebenslauf als PDF hoch. Jede angepasste Bewerbung baut darauf auf." },
-    "review": { "title": "Lebenslauf prüfen", "description": "Das haben wir aus deinem PDF gelesen. Korrigier, was nicht stimmt, und speichere dann." },
-    "saved": { "title": "Mein Lebenslauf", "description": "Jeder angepasste Lebenslauf und jedes Anschreiben baut auf diesem Lebenslauf auf." },
+    "replace": {
+      "title": "Lebenslauf ersetzen",
+      "description": "Lade ein neues PDF hoch. Du kannst die Angaben prüfen, bevor sich etwas ändert."
+    },
+    "upload": {
+      "title": "Lebenslauf hochladen",
+      "description": "Lade deinen Lebenslauf als PDF hoch. Jede angepasste Bewerbung baut darauf auf."
+    },
+    "review": {
+      "title": "Lebenslauf prüfen",
+      "description": "Das haben wir aus deinem PDF gelesen. Korrigier, was nicht stimmt, und speichere dann."
+    },
+    "saved": {
+      "title": "Mein Lebenslauf",
+      "description": "Jeder angepasste Lebenslauf und jedes Anschreiben baut auf diesem Lebenslauf auf."
+    },
     "discard": "Verwerfen und gespeicherten Lebenslauf behalten",
     "uploadDifferent": "Anderes PDF hochladen",
     "replaceCv": "Lebenslauf ersetzen",
@@ -106,12 +134,21 @@
     }
   },
   "resumeForm": {
-    "errors": { "nameRequired": "Name ist erforderlich", "emailInvalid": "Gib eine E-Mail-Adresse wie name@beispiel.de ein" },
+    "errors": {
+      "nameRequired": "Name ist erforderlich",
+      "emailInvalid": "Gib eine E-Mail-Adresse wie name@beispiel.de ein"
+    },
     "saveError": "Deine Änderungen konnten nicht gespeichert werden. Versuch es erneut.",
     "saved": "Lebenslauf gespeichert",
     "save": "Lebenslauf speichern",
     "saving": "Wird gespeichert...",
-    "sections": { "personal": "Persönliche Angaben", "profiles": "Online-Profile", "work": "Berufserfahrung", "education": "Ausbildung", "skills": "Skills" },
+    "sections": {
+      "personal": "Persönliche Angaben",
+      "profiles": "Online-Profile",
+      "work": "Berufserfahrung",
+      "education": "Ausbildung",
+      "skills": "Skills"
+    },
     "fields": {
       "fullNameRequired": "Vollständiger Name *",
       "headline": "Berufsbezeichnung oder Headline",
@@ -164,9 +201,23 @@
     "positionN": "Position {index}",
     "educationN": "Ausbildung {index}",
     "categoryN": "Kategorie {index}",
-    "status": { "unsaved": "Nicht gespeicherte Änderungen", "notSaved": "Noch nicht gespeichert", "allSaved": "Alle Änderungen gespeichert" },
+    "status": {
+      "unsaved": "Nicht gespeicherte Änderungen",
+      "notSaved": "Noch nicht gespeichert",
+      "allSaved": "Alle Änderungen gespeichert"
+    },
     "location": {
-      "fields": { "name": "Vollständiger Name", "email": "E-Mail", "phone": "Telefon", "location": "Ort", "summary": "Profil", "startDate": "Startdatum", "endDate": "Enddatum", "description": "Beschreibung", "url": "URL" },
+      "fields": {
+        "name": "Vollständiger Name",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "location": "Ort",
+        "summary": "Profil",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum",
+        "description": "Beschreibung",
+        "url": "URL"
+      },
       "profileUrl": "Profil {index}, URL",
       "personal": "Persönliche Angaben, {field}",
       "position": "Position {index}, {field}",
@@ -182,11 +233,24 @@
   },
   "ats": {
     "severity": {
-      "blocker": { "label": "Blocker", "count": "{count} {count, plural, one {Blocker} other {Blocker}}" },
-      "warning": { "label": "Warnung", "count": "{count} {count, plural, one {Warnung} other {Warnungen}}" },
-      "tip": { "label": "Tipp", "count": "{count} {count, plural, one {Tipp} other {Tipps}}" }
+      "blocker": {
+        "label": "Blocker",
+        "count": "{count} {count, plural, one {Blocker} other {Blocker}}"
+      },
+      "warning": {
+        "label": "Warnung",
+        "count": "{count} {count, plural, one {Warnung} other {Warnungen}}"
+      },
+      "tip": {
+        "label": "Tipp",
+        "count": "{count} {count, plural, one {Tipp} other {Tipps}}"
+      }
     },
-    "impact": { "high": "Hohe Wirkung", "medium": "Mittlere Wirkung", "low": "Geringe Wirkung" },
+    "impact": {
+      "high": "Hohe Wirkung",
+      "medium": "Mittlere Wirkung",
+      "low": "Geringe Wirkung"
+    },
     "outOf100": "von 100",
     "upFrom": "{delta} mehr als {preScore}",
     "fixGain": "{delta} Punkte mehr durch diese Korrektur",
@@ -233,39 +297,128 @@
     "empty": "Dein ATS-Check erscheint hier, nachdem du deinen Lebenslauf angepasst hast.",
     "footer": "Hier wird geprüft, ob Software die Angaben in deinem Lebenslauf lesen kann: Kontaktdaten, Abschnitte und Daten. Ob eine Bewerbung abgelehnt wird, sagt das nicht voraus, und kein Tool kann das.",
     "categories": {
-      "contact": { "label": "Kontaktdaten", "description": "Ob ein Recruiter dich erreichen kann." },
-      "sections": { "label": "Abschnitte", "description": "Ob dein Lebenslauf die Abschnitte hat, die Software erwartet." },
-      "dates": { "label": "Daten", "description": "Ob sich dein Werdegang nachvollziehen lässt." },
-      "content": { "label": "Text", "description": "Tipps für die Person, die ihn liest. Nichts davon beeinflusst die Punktzahl." }
+      "contact": {
+        "label": "Kontaktdaten",
+        "description": "Ob ein Recruiter dich erreichen kann."
+      },
+      "sections": {
+        "label": "Abschnitte",
+        "description": "Ob dein Lebenslauf die Abschnitte hat, die Software erwartet."
+      },
+      "dates": {
+        "label": "Daten",
+        "description": "Ob sich dein Werdegang nachvollziehen lässt."
+      },
+      "content": {
+        "label": "Text",
+        "description": "Tipps für die Person, die ihn liest. Nichts davon beeinflusst die Punktzahl."
+      }
     },
     "findings": {
-      "MISSING_NAME": { "title": "Dein Lebenslauf hat keinen Namen.", "action": "Füg deinen vollständigen Namen unter Persönliche Angaben hinzu." },
-      "MISSING_EMAIL": { "title": "Dein Lebenslauf hat keine E-Mail-Adresse.", "action": "Füg eine E-Mail-Adresse hinzu, damit Recruiter dich erreichen können." },
-      "MALFORMED_EMAIL": { "title": "Diese E-Mail-Adresse hat kein Standardformat.", "action": "Verwende eine einfache Adresse wie name@beispiel.de, ohne zusätzlichen Text." },
-      "MISSING_PHONE": { "title": "Dein Lebenslauf hat keine Telefonnummer.", "action": "Füg eine mit Ländervorwahl hinzu. Manche Bewerbungsformulare fragen danach." },
-      "MISSING_LOCATION": { "title": "Dein Lebenslauf hat keinen Ort.", "action": "Füg mindestens eine Stadt und ein Land hinzu." },
-      "MALFORMED_URL": { "title": "Diesem Link fehlt https://.", "action": "Schreib die vollständige Adresse, inklusive https://." },
-      "NO_EXPERIENCE": { "title": "Dein Lebenslauf zeigt keine Berufserfahrung.", "action": "Füg eine Position hinzu, oder zeig mit Projekten und Ehrenamt einen ähnlichen Werdegang." },
-      "MISSING_DESCRIPTION": { "title": "Diese Position hat keine Beschreibung.", "action": "Beschreib, was du gemacht hast. Eine leere Rolle liefert keine Keywords für den Abgleich." },
-      "NO_SKILLS": { "title": "Dein Lebenslauf nennt keine Skills.", "action": "Füg die Tools und Methoden hinzu, die du nutzt." },
-      "NO_EDUCATION": { "title": "Dein Lebenslauf hat keine Ausbildung.", "action": "Gib an, wo du studiert hast, oder einen relevanten Kurs oder ein Zertifikat." },
-      "NO_SUMMARY": { "title": "Dein Lebenslauf hat kein Profil.", "action": "Füg oben zwei oder drei Zeilen hinzu, die beschreiben, was du machst." },
-      "MISSING_DATES": { "title": "Dieser Eintrag hat kein Startdatum.", "action": "Füg ein Datum wie Mar 2022 hinzu, damit er in deinem Werdegang erscheint." },
-      "MISSING_END_DATE": { "title": "Diese Position hat kein Enddatum.", "action": "Schreib Present, wenn du noch dort arbeitest, oder füg den Monat deines Ausscheidens hinzu." },
-      "UNPARSEABLE_DATE": { "title": "Dieses Datum ist in einer Form geschrieben, die Software eventuell nicht lesen kann.", "action": "Verwende eine Form wie Mar 2022, 2022-03 oder 2022." },
-      "REVERSED_PERIOD": { "title": "Dieser Eintrag endet, bevor er beginnt.", "action": "Tausch Start- und Enddatum." },
-      "FUTURE_DATE": { "title": "Dieses Datum liegt in der Zukunft.", "action": "Korrigier das Jahr, oder schreib Present für laufende Tätigkeiten." },
-      "MIXED_DATE_FORMATS": { "title": "Deine Daten bei den Positionen sind unterschiedlich geschrieben.", "action": "Wähl ein Format und verwende es für jede Position." },
-      "NO_QUANTIFIED_IMPACT": { "title": "Nur wenige deiner Stichpunkte enthalten eine Zahl.", "action": "Füg Zahlen hinzu, wo du sie hast: Mengen, Prozente, Zeiträume, Teamgrößen." },
-      "WEAK_OPENERS": { "title": "Viele Stichpunkte beginnen mit Füllwörtern wie „Responsible for“.", "action": "Beginn jeden mit dem, was du getan hast: aufgebaut, geleitet, gesenkt, migriert." },
-      "FIRST_PERSON_PRONOUNS": { "title": "Dein Lebenslauf verwendet „I“ und „my“.", "action": "Lass die Pronomen weg und beginn mit dem Verb." },
-      "LONG_BULLETS": { "title": "Einige Stichpunkte sind zu lang.", "action": "Halte jeden bei etwa zwei Zeilen." },
-      "EMPLOYMENT_GAP": { "title": "Zwischen zwei Positionen liegt eine Lücke von mehr als sechs Monaten.", "action": "Eine Lücke ist in Ordnung. Füg nur dann eine kurze Zeile dazu hinzu, wenn du möchtest." }
+      "MISSING_NAME": {
+        "title": "Dein Lebenslauf hat keinen Namen.",
+        "action": "Füg deinen vollständigen Namen unter Persönliche Angaben hinzu."
+      },
+      "MISSING_EMAIL": {
+        "title": "Dein Lebenslauf hat keine E-Mail-Adresse.",
+        "action": "Füg eine E-Mail-Adresse hinzu, damit Recruiter dich erreichen können."
+      },
+      "MALFORMED_EMAIL": {
+        "title": "Diese E-Mail-Adresse hat kein Standardformat.",
+        "action": "Verwende eine einfache Adresse wie name@beispiel.de, ohne zusätzlichen Text."
+      },
+      "MISSING_PHONE": {
+        "title": "Dein Lebenslauf hat keine Telefonnummer.",
+        "action": "Füg eine mit Ländervorwahl hinzu. Manche Bewerbungsformulare fragen danach."
+      },
+      "MISSING_LOCATION": {
+        "title": "Dein Lebenslauf hat keinen Ort.",
+        "action": "Füg mindestens eine Stadt und ein Land hinzu."
+      },
+      "MALFORMED_URL": {
+        "title": "Diesem Link fehlt https://.",
+        "action": "Schreib die vollständige Adresse, inklusive https://."
+      },
+      "NO_EXPERIENCE": {
+        "title": "Dein Lebenslauf zeigt keine Berufserfahrung.",
+        "action": "Füg eine Position hinzu, oder zeig mit Projekten und Ehrenamt einen ähnlichen Werdegang."
+      },
+      "MISSING_DESCRIPTION": {
+        "title": "Diese Position hat keine Beschreibung.",
+        "action": "Beschreib, was du gemacht hast. Eine leere Rolle liefert keine Keywords für den Abgleich."
+      },
+      "NO_SKILLS": {
+        "title": "Dein Lebenslauf nennt keine Skills.",
+        "action": "Füg die Tools und Methoden hinzu, die du nutzt."
+      },
+      "NO_EDUCATION": {
+        "title": "Dein Lebenslauf hat keine Ausbildung.",
+        "action": "Gib an, wo du studiert hast, oder einen relevanten Kurs oder ein Zertifikat."
+      },
+      "NO_SUMMARY": {
+        "title": "Dein Lebenslauf hat kein Profil.",
+        "action": "Füg oben zwei oder drei Zeilen hinzu, die beschreiben, was du machst."
+      },
+      "MISSING_DATES": {
+        "title": "Dieser Eintrag hat kein Startdatum.",
+        "action": "Füg ein Datum wie Mar 2022 hinzu, damit er in deinem Werdegang erscheint."
+      },
+      "MISSING_END_DATE": {
+        "title": "Diese Position hat kein Enddatum.",
+        "action": "Schreib Present, wenn du noch dort arbeitest, oder füg den Monat deines Ausscheidens hinzu."
+      },
+      "UNPARSEABLE_DATE": {
+        "title": "Dieses Datum ist in einer Form geschrieben, die Software eventuell nicht lesen kann.",
+        "action": "Verwende eine Form wie Mar 2022, 2022-03 oder 2022."
+      },
+      "REVERSED_PERIOD": {
+        "title": "Dieser Eintrag endet, bevor er beginnt.",
+        "action": "Tausch Start- und Enddatum."
+      },
+      "FUTURE_DATE": {
+        "title": "Dieses Datum liegt in der Zukunft.",
+        "action": "Korrigier das Jahr, oder schreib Present für laufende Tätigkeiten."
+      },
+      "MIXED_DATE_FORMATS": {
+        "title": "Deine Daten bei den Positionen sind unterschiedlich geschrieben.",
+        "action": "Wähl ein Format und verwende es für jede Position."
+      },
+      "NO_QUANTIFIED_IMPACT": {
+        "title": "Nur wenige deiner Stichpunkte enthalten eine Zahl.",
+        "action": "Füg Zahlen hinzu, wo du sie hast: Mengen, Prozente, Zeiträume, Teamgrößen."
+      },
+      "WEAK_OPENERS": {
+        "title": "Viele Stichpunkte beginnen mit Füllwörtern wie „Responsible for“.",
+        "action": "Beginn jeden mit dem, was du getan hast: aufgebaut, geleitet, gesenkt, migriert."
+      },
+      "FIRST_PERSON_PRONOUNS": {
+        "title": "Dein Lebenslauf verwendet „I“ und „my“.",
+        "action": "Lass die Pronomen weg und beginn mit dem Verb."
+      },
+      "LONG_BULLETS": {
+        "title": "Einige Stichpunkte sind zu lang.",
+        "action": "Halte jeden bei etwa zwei Zeilen."
+      },
+      "EMPLOYMENT_GAP": {
+        "title": "Zwischen zwei Positionen liegt eine Lücke von mehr als sechs Monaten.",
+        "action": "Eine Lücke ist in Ordnung. Füg nur dann eine kurze Zeile dazu hinzu, wenn du möchtest."
+      }
     }
   },
   "jobMatch": {
-    "levels": { "excellent": "Hervorragende Übereinstimmung", "strong": "Starke Übereinstimmung", "good": "Gute Übereinstimmung", "fair": "Mittlere Übereinstimmung", "weak": "Schwache Übereinstimmung" },
-    "dimensions": { "cvMatch": "CV-Übereinstimmung", "compensation": "Vergütung", "cultureSignals": "Kultur", "redFlags": "Warnsignale" },
+    "levels": {
+      "excellent": "Hervorragende Übereinstimmung",
+      "strong": "Starke Übereinstimmung",
+      "good": "Gute Übereinstimmung",
+      "fair": "Mittlere Übereinstimmung",
+      "weak": "Schwache Übereinstimmung"
+    },
+    "dimensions": {
+      "cvMatch": "CV-Übereinstimmung",
+      "compensation": "Vergütung",
+      "cultureSignals": "Kultur",
+      "redFlags": "Warnsignale"
+    },
     "title": "Stellen-Match",
     "scoring": "Dein Lebenslauf wird mit dieser Anzeige abgeglichen",
     "description": "Wie gut dein Lebenslauf zu dieser Anzeige passt",
@@ -332,7 +485,13 @@
     "save": "Antwort speichern"
   },
   "interviewPrep": {
-    "star": { "situation": "Situation", "task": "Aufgabe", "action": "Handlung", "result": "Ergebnis", "reflection": "Reflexion" },
+    "star": {
+      "situation": "Situation",
+      "task": "Aufgabe",
+      "action": "Handlung",
+      "result": "Ergebnis",
+      "reflection": "Reflexion"
+    },
     "starStory": "STAR-Beispiel",
     "saveToBank": "In der Beispielsammlung speichern",
     "title": "Interviewvorbereitung",
@@ -346,8 +505,16 @@
     "questions": "Fragen zur Vorbereitung",
     "talkingPoints": "Gesprächspunkte"
   },
-  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "scoreFrom": "ATS {preScore} → {score}", "none": "ATS k. A." },
-  "reorder": { "up": "Nach oben", "down": "Nach unten" },
+  "atsChip": {
+    "loading": "ATS…",
+    "score": "ATS {score}",
+    "scoreFrom": "ATS {preScore} → {score}",
+    "none": "ATS k. A."
+  },
+  "reorder": {
+    "up": "Nach oben",
+    "down": "Nach unten"
+  },
   "companyResearch": {
     "loading": "Unternehmen wird recherchiert…",
     "empty": "Mit Pro erscheint hier ein Überblick über das Unternehmen, wenn die Anzeige es nennt.",
@@ -365,20 +532,65 @@
     "font": "Schrift",
     "dividers": "Trennlinien",
     "indent": "Einzug",
-    "colors": { "black": "Schwarz", "rust": "Rost", "blue": "Blau", "teal": "Petrol", "purple": "Lila", "burgundy": "Bordeaux" }
+    "colors": {
+      "black": "Schwarz",
+      "rust": "Rost",
+      "blue": "Blau",
+      "teal": "Petrol",
+      "purple": "Lila",
+      "burgundy": "Bordeaux"
+    }
   },
-  "editorToolbar": { "viewMode": "Ansicht des Lebenslaufs", "edit": "Bearbeiten", "preview": "Vorschau", "replace": "Lebenslauf ersetzen" },
-  "previewActions": { "download": "PDF herunterladen" },
-  "downloadButton": { "errors": {"blocked": "Dein Browser hat den PDF-Tab blockiert. Erlaube Pop-ups für diese Seite und versuche es erneut.", "storage": "Dein PDF konnte nicht vorbereitet werden. Versuche es in einem normalen Browserfenster erneut."}, "label": "PDF herunterladen", "downloading": "PDF wird vorbereitet…", "done": "Heruntergeladen" },
+  "editorToolbar": {
+    "viewMode": "Ansicht des Lebenslaufs",
+    "edit": "Bearbeiten",
+    "preview": "Vorschau",
+    "replace": "Lebenslauf ersetzen"
+  },
+  "previewActions": {
+    "download": "PDF herunterladen"
+  },
+  "downloadButton": {
+    "errors": {
+      "blocked": "Dein Browser hat den PDF-Tab blockiert. Erlaube Pop-ups für diese Seite und versuche es erneut.",
+      "storage": "Dein PDF konnte nicht vorbereitet werden. Versuche es in einem normalen Browserfenster erneut."
+    },
+    "label": "PDF herunterladen",
+    "downloading": "PDF wird vorbereitet…",
+    "done": "Heruntergeladen"
+  },
   "tailorPage": {
     "steps": {
-      "job": { "title": "Stelle hinzufügen", "body": "Füg einen Link oder die Beschreibung ein." },
-      "tailor": { "title": "Wir passen deinen Lebenslauf an", "body": "Für die Stelle neu geschrieben, mit Anschreiben." },
-      "review": { "title": "Prüfen und herunterladen", "body": "Lebenslauf bearbeiten, ATS-Wert prüfen, herunterladen." }
+      "job": {
+        "title": "Stelle hinzufügen",
+        "body": "Füg einen Link oder die Beschreibung ein."
+      },
+      "tailor": {
+        "title": "Wir passen deinen Lebenslauf an",
+        "body": "Für die Stelle neu geschrieben, mit Anschreiben."
+      },
+      "review": {
+        "title": "Prüfen und herunterladen",
+        "body": "Lebenslauf bearbeiten, ATS-Wert prüfen, herunterladen."
+      }
     },
-    "inputTabs": { "link": "Link zur Stelle", "text": "Beschreibung einfügen" },
-    "mobileTabs": { "edit": "Bearbeiten", "preview": "Vorschau", "ariaLabel": "Bearbeiten oder Vorschau" },
-    "resultTabs": { "cv": "Angepasster CV", "letter": "Anschreiben", "ats": "ATS-Wert", "why": "Warum diese Stelle", "research": "Recherche", "interview": "Interview" },
+    "inputTabs": {
+      "link": "Link zur Stelle",
+      "text": "Beschreibung einfügen"
+    },
+    "mobileTabs": {
+      "edit": "Bearbeiten",
+      "preview": "Vorschau",
+      "ariaLabel": "Bearbeiten oder Vorschau"
+    },
+    "resultTabs": {
+      "cv": "Angepasster CV",
+      "letter": "Anschreiben",
+      "ats": "ATS-Wert",
+      "why": "Warum diese Stelle",
+      "research": "Recherche",
+      "interview": "Interview"
+    },
     "errors": {
       "extract": "Diese Stellenanzeige konnte nicht gelesen werden. Füg stattdessen die Stellenbeschreibung ein.",
       "save": "Dein angepasster Lebenslauf konnte nicht gespeichert werden. Versuch es erneut.",
@@ -416,10 +628,24 @@
       "textPlaceholder": "Füg die vollständige Anzeige ein, inklusive Anforderungen und Aufgaben",
       "minChars": "Füg mindestens {min} Zeichen ein, damit genug Material da ist.",
       "chars": "{count} Zeichen",
-      "keepJob": "Aktuelle Stelle behalten"
+      "keepJob": "Aktuelle Stelle behalten",
+      "heading": "Auf welchen Job bewirbst du dich?",
+      "subheading": "Wir schreiben deinen Lebenslauf für die Stelle um und passend dazu ein Anschreiben.",
+      "linkHint": "Blockiert die Jobbörse den Link, füge stattdessen die Beschreibung ein.",
+      "recentTitle": "Letzte Jobs"
     },
-    "bar": { "fallbackTitle": "Stellenanzeige", "pasted": "Eingefügte Beschreibung", "scoring": "Wird bewertet…", "changeJob": "Stelle ändern" },
-    "details": { "title": "Anforderungen und Match", "fallback": "Aus der Anzeige, die du hinzugefügt hast", "hide": "Details ausblenden", "show": "Details anzeigen" },
+    "bar": {
+      "fallbackTitle": "Stellenanzeige",
+      "pasted": "Eingefügte Beschreibung",
+      "scoring": "Wird bewertet…",
+      "changeJob": "Stelle ändern"
+    },
+    "details": {
+      "title": "Anforderungen und Match",
+      "fallback": "Aus der Anzeige, die du hinzugefügt hast",
+      "hide": "Details ausblenden",
+      "show": "Details anzeigen"
+    },
     "cta": {
       "title": "Passe deinen Lebenslauf an diese Stelle an",
       "elapsed": "Läuft seit {seconds} s.",
@@ -450,6 +676,12 @@
     "coverLetter": "Anschreiben",
     "download": "{title} herunterladen",
     "confirmDelete": "Zum Löschen erneut klicken",
+    "noLetter": "Kein Anschreiben",
+    "search": "Nach Rolle oder Firma suchen",
+    "noMatches": {
+      "title": "Kein Lebenslauf passt zu deiner Suche",
+      "description": "Versuche eine andere Rolle oder Firma."
+    },
     "delete": "{title} löschen",
     "deleteError": "Dieser Lebenslauf konnte nicht gelöscht werden. Versuch es erneut.",
     "deleted": "Lebenslauf gelöscht",
@@ -464,8 +696,14 @@
       "noCv": "Lade zuerst deinen Lebenslauf hoch. Füg dann einen Link oder eine Stellenbeschreibung ein, und wir schreiben ihn für diese Stelle neu.",
       "upload": "Lebenslauf hochladen"
     },
-    "filters": { "all": "Alle", "letter": "Mit Anschreiben" },
-    "noLetters": { "title": "Noch keine Anschreiben", "description": "Öffne einen angepassten Lebenslauf und schreib eines im Tab Anschreiben." }
+    "filters": {
+      "all": "Alle",
+      "letter": "Mit Anschreiben"
+    },
+    "noLetters": {
+      "title": "Noch keine Anschreiben",
+      "description": "Öffne einen angepassten Lebenslauf und schreib eines im Tab Anschreiben."
+    }
   },
   "tailoredDetail": {
     "unlock": {
@@ -474,18 +712,38 @@
       "done": "Dein Lebenslauf ist freigeschaltet. Du kannst ihn jederzeit herunterladen.",
       "stillWorking": "Dein Lebenslauf wird noch freigeschaltet. Versuch es gleich noch einmal."
     },
-    "documentTabs": { "cv": "Angepasster CV", "letter": "Anschreiben", "why": "Warum diese Stelle" },
-    "mobileTabs": { "edit": "Bearbeiten", "preview": "Vorschau", "ariaLabel": "Bearbeiten oder Vorschau" },
+    "documentTabs": {
+      "cv": "Angepasster CV",
+      "letter": "Anschreiben",
+      "why": "Warum diese Stelle"
+    },
+    "mobileTabs": {
+      "edit": "Bearbeiten",
+      "preview": "Vorschau",
+      "ariaLabel": "Bearbeiten oder Vorschau"
+    },
     "back": "Zurück zu den angepassten Lebensläufen",
     "saveError": "Deine Änderungen konnten nicht gespeichert werden. Versuch es erneut.",
     "answerSaved": "Antwort gespeichert",
     "whyError": "Es konnte keine Antwort geschrieben werden. Versuch es erneut.",
     "letterSaved": "Anschreiben gespeichert",
-    "notFound": { "title": "Wir konnten diesen angepassten Lebenslauf nicht finden", "description": "Er wurde vielleicht gelöscht. Deine anderen angepassten Lebensläufe sind weiterhin in der Liste." },
+    "notFound": {
+      "title": "Wir konnten diesen angepassten Lebenslauf nicht finden",
+      "description": "Er wurde vielleicht gelöscht. Deine anderen angepassten Lebensläufe sind weiterhin in der Liste."
+    },
     "downloadLetter": "Anschreiben herunterladen",
     "downloadPdf": "PDF herunterladen",
     "untitled": "Stelle ohne Titel",
-    "stats": { "tailored": "Angepasst", "positions": "Positionen", "skillGroups": "Skill-Gruppen", "coverLetter": "Anschreiben", "written": "Geschrieben", "notYet": "Noch nicht", "whyThisRole": "Warum diese Stelle", "answered": "Beantwortet" },
+    "stats": {
+      "tailored": "Angepasst",
+      "positions": "Positionen",
+      "skillGroups": "Skill-Gruppen",
+      "coverLetter": "Anschreiben",
+      "written": "Geschrieben",
+      "notYet": "Noch nicht",
+      "whyThisRole": "Warum diese Stelle",
+      "answered": "Beantwortet"
+    },
     "sectionsAria": "Bereiche des angepassten Dokuments",
     "saveTailored": "Angepassten Lebenslauf speichern",
     "liveUpdates": "Aktualisiert sich beim Tippen"

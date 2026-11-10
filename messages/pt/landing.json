@@ -9,8 +9,6 @@
     "howToDescription": "Cole um link de vaga, deixe o FitMyCV reescrever seu currículo com base nos requisitos da vaga e baixe o currículo e a carta de apresentação em PDF."
   },
   "hero": {
-    "platformTitle": "Do link da vaga à entrevista, em um só lugar",
-    "platform": {"tailor": "Currículo adaptado", "coverLetter": "Carta de apresentação", "atsScore": "Pontuação ATS", "jobMatch": "Compatibilidade", "linkedin": "Perfil do LinkedIn", "jobs": "Vagas"},
     "linkLabel": "Link da vaga",
     "linkPlaceholder": "Cole o link de uma vaga",
     "tailorCta": "Adaptar meu currículo grátis",
@@ -40,9 +38,6 @@
     "templates": "Modelos compatíveis com ATS",
     "atsGuides": "Guias ATS por empresa",
     "freeTools": "Ferramentas grátis"
-  },
-  "jobBoards": {
-    "title": "Funciona com qualquer link de vaga"
   },
   "problem": {
     "eyebrow": "O problema",
@@ -97,8 +92,8 @@
         "body": "Remova seu currículo, seus documentos adaptados e sua conta pelo painel quando quiser."
       },
       "cancel": {
-        "title": "Cancele quando quiser",
-        "body": "O plano mensal não tem contrato nem um processo de cancelamento complicado. O acesso vai até o fim do mês que você pagou."
+        "title": "Pague uma vez, sem renovação",
+        "body": "O acesso vitalício é um único pagamento. Não há assinatura para renovar nem nada para cancelar."
       }
     },
     "methodTitle": "Como a adaptação funciona",
@@ -126,7 +121,7 @@
     "cta": "Adaptar meu currículo grátis"
   },
   "footer": {
-    "tagline": "Adaptação de currículo com IA. Consiga mais entrevistas com menos esforço.",
+    "tagline": "O FitMyCV adapta seu currículo e sua carta de apresentação ao link da vaga que você cola.",
     "rights": "2026 FitMyCV. Todos os direitos reservados.",
     "headings": {
       "product": "Produto",
@@ -221,6 +216,60 @@
         "asks": "Pede <k>React</k> e <k>testes unitários</k>.",
         "before": "Fiz o site de uma associação de estudantes com React e escrevi testes para que as atualizações não quebrassem nada.",
         "after": "Criei um site em <k>React</k> para uma associação de estudantes e escrevi <k>testes unitários</k> para pegar erros antes de cada versão."
+      }
+    }
+  },
+  "suite": {
+    "eyebrow": "O que você recebe",
+    "title": "Um link de vaga. Um currículo, uma carta e um acompanhamento.",
+    "rows": {
+      "link": {
+        "label": "Link da vaga",
+        "title": "Cole o link da vaga",
+        "body": "O FitMyCV lê o anúncio nesse link e extrai requisitos, habilidades e palavras-chave. Se um site bloquear, cole a descrição.",
+        "cta": "Como funciona adaptar por link",
+        "alt": "A página Adaptar currículo com um link de vaga do LinkedIn colado"
+      },
+      "cv": {
+        "label": "Currículo adaptado",
+        "title": "Seu currículo, reescrito para a vaga",
+        "body": "Cada linha vem do currículo que você enviou, reescrita com as palavras da vaga. As verificações rodam enquanto você edita e mostram se o software de triagem consegue lê-lo.",
+        "cta": "Verifique seu currículo grátis",
+        "alt": "Um currículo adaptado no editor, com verificações e prévia ao vivo"
+      },
+      "letter": {
+        "label": "Carta de apresentação",
+        "title": "Uma carta para a mesma vaga",
+        "body": "Escrita a partir do seu currículo adaptado e do anúncio. Edite qualquer linha e baixe em PDF.",
+        "cta": "Ver o gerador de cartas",
+        "alt": "Uma carta de apresentação para uma vaga de engenheiro de QA"
+      },
+      "tracker": {
+        "label": "Candidaturas",
+        "title": "Acompanhe cada candidatura",
+        "body": "Leve cada vaga de salva a candidatada e a oferta. Cada cartão guarda o currículo que você fez para ela.",
+        "cta": "Comece com um link",
+        "alt": "O quadro de candidaturas com vagas salvas e candidatadas"
+      }
+    },
+    "freeTitle": "Ferramentas grátis, sem cadastro",
+    "freeBody": "Experimente antes de criar uma conta.",
+    "free": {
+      "ats": {
+        "title": "Verificador de currículo ATS",
+        "body": "Veja quais termos exigidos faltam no seu currículo."
+      },
+      "match": {
+        "title": "Compatibilidade com a vaga",
+        "body": "Pontue seu currículo em relação a uma descrição de vaga."
+      },
+      "linkedin": {
+        "title": "Verificador de perfil do LinkedIn",
+        "body": "Veja quais termos da vaga seu título, seu Sobre e suas competências cobrem."
+      },
+      "jobs": {
+        "title": "Vagas",
+        "body": "Vagas remotas tiradas das páginas de carreira das empresas."
       }
     }
   }

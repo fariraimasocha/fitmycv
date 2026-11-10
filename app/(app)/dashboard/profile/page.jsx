@@ -31,7 +31,6 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardPanel,
-  DashboardPanelHeader,
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 import { dateLocale } from "@/i18n/routing";
@@ -71,12 +70,38 @@ function PlanBadge({ isPremium, status }) {
   );
 }
 
-function Field({ label, children, className }) {
+// Teal settings pattern: one panel, a titled group per topic, and rows with
+// the label on the left and the value or control on the right from sm up.
+function SettingsGroup({ title, description, aside, children }) {
   return (
-    <div className={cn("min-w-0", className)}>
-      <dt className="text-xs text-muted-foreground">{label}</dt>
-      <dd className="mt-1 truncate text-sm font-medium text-foreground">{children}</dd>
+    <section>
+      <div className="flex items-start justify-between gap-3 px-4 pt-5 pb-1 sm:px-6">
+        <div className="min-w-0">
+          <h2 className="font-outfit text-base font-semibold text-foreground">{title}</h2>
+          {description && (
+            <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+          )}
+        </div>
+        {aside}
+      </div>
+      <div className="divide-y divide-[var(--landing-line)]">{children}</div>
+    </section>
+  );
+}
+
+function SettingsRow({ label, children, className }) {
+  return (
+    <div className={cn("grid gap-2 px-4 py-4 sm:grid-cols-3 sm:gap-6 sm:px-6", className)}>
+      <dt className="text-sm font-medium text-foreground">{label}</dt>
+      <dd className="min-w-0 text-sm text-foreground sm:col-span-2">{children}</dd>
     </div>
+  );
+}
+
+// The row that holds a group's one action, aligned with the value column.
+function ActionRow({ children }) {
+  return (
+    <div className="flex px-4 py-4 sm:justify-end sm:px-6">{children}</div>
   );
 }
 
@@ -161,101 +186,92 @@ export default function ProfilePage() {
   };
 
   return (
-    <DashboardPageShell width="narrow">
+    <DashboardPageShell>
       <DashboardPageHeader title={t("title")} description={t("description")} />
 
-      <DashboardPanel delay={0.05}>
-        <DashboardPanelHeader
-          title={t("account")}
-          description={t("accountDescription")}
-        />
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex min-w-0 items-center gap-3">
-            <Avatar className="size-12 rounded-md ring-1 ring-[var(--landing-line)]">
-              <AvatarImage src={user.image} alt="" className="rounded-md" />
-              <AvatarFallback className="rounded-md bg-[var(--landing-primary-soft)] font-outfit text-base font-semibold text-foreground">
-                {initials}
-              </AvatarFallback>
-            </Avatar>
-            <div className="min-w-0">
-              <p className="truncate font-outfit text-base font-semibold text-foreground">
-                {user.name ?? t("notSet")}
-              </p>
-              <p className="truncate text-sm text-muted-foreground">
-                {user.email ?? t("notSet")}
-              </p>
+      <DashboardPanel pad={false} delay={0.05} bodyClassName="divide-y divide-[var(--landing-line)]">
+        <SettingsGroup title={t("account")} description={t("accountDescription")}>
+          <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="flex min-w-0 items-center gap-3">
+              <Avatar className="size-12 ring-1 ring-[var(--landing-line)]">
+                <AvatarImage src={user.image} alt="" />
+                <AvatarFallback className="bg-[var(--landing-primary-soft)] font-outfit text-base font-semibold text-foreground">
+                  {initials}
+                </AvatarFallback>
+              </Avatar>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-foreground">
+                  {user.name ?? t("notSet")}
+                </p>
+                <p className="truncate text-sm text-muted-foreground">
+                  {user.email ?? t("notSet")}
+                </p>
+              </div>
             </div>
+            <span className="inline-flex h-6 w-fit shrink-0 items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-foreground">
+              <GoogleLogoIcon size={14} weight="bold" aria-hidden="true" />
+              {t("signedInWithGoogle")}
+            </span>
           </div>
-          <span className="inline-flex h-8 w-fit shrink-0 items-center gap-1.5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-foreground">
-            <GoogleLogoIcon size={14} weight="bold" aria-hidden="true" />
-            {t("signedInWithGoogle")}
-          </span>
-        </div>
-      </DashboardPanel>
+        </SettingsGroup>
 
-      <DashboardPanel delay={0.1}>
-        <DashboardPanelHeader
+        <SettingsGroup
           title={t("plan")}
           description={isPremium ? t("planDescriptionPro") : t("planDescriptionFree")}
-          action={<PlanBadge isPremium={isPremium} status={subscriptionStatus} />}
-        />
-        {isPremium && (
-          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-            <Field label={t("status")}>
-              <span className="capitalize text-[var(--landing-success)]">
-                {!subscriptionStatus
-                  ? t("statuses.active")
-                  : KNOWN_STATUSES.includes(subscriptionStatus)
-                    ? t(`statuses.${subscriptionStatus}`)
-                    : subscriptionStatus}
-              </span>
-            </Field>
-            {periodEnd && (
-              <Field label={subscriptionStatus === "canceled" ? t("accessUntil") : t("renewsOn")}>
-                <span className="tabular-nums">{periodEnd}</span>
-              </Field>
+          aside={<PlanBadge isPremium={isPremium} status={subscriptionStatus} />}
+        >
+          <dl className="divide-y divide-[var(--landing-line)]">
+            {isPremium && (
+              <SettingsRow label={t("status")}>
+                <span className="font-medium capitalize text-[var(--landing-success)]">
+                  {!subscriptionStatus
+                    ? t("statuses.active")
+                    : KNOWN_STATUSES.includes(subscriptionStatus)
+                      ? t(`statuses.${subscriptionStatus}`)
+                      : subscriptionStatus}
+                </span>
+              </SettingsRow>
             )}
+            {isPremium && periodEnd && (
+              <SettingsRow label={subscriptionStatus === "canceled" ? t("accessUntil") : t("renewsOn")}>
+                <span className="font-medium tabular-nums">{periodEnd}</span>
+              </SettingsRow>
+            )}
+            <SettingsRow label={isPremium ? t("includedInPlan") : t("includedInPro")}>
+              <ul className="flex flex-col gap-2">
+                {PRO_FEATURES.map((feature) => (
+                  <li key={feature} className="flex items-center gap-2 text-muted-foreground">
+                    <CheckCircleIcon
+                      size={16}
+                      weight={isPremium ? "fill" : "regular"}
+                      className={cn(
+                        "shrink-0",
+                        isPremium ? "text-[var(--landing-success)]" : "text-muted-foreground",
+                      )}
+                      aria-hidden="true"
+                    />
+                    {t(`features.${feature}`)}
+                  </li>
+                ))}
+              </ul>
+            </SettingsRow>
           </dl>
-        )}
-        <p className="mt-4 border-t border-[var(--landing-line)] pt-4 text-xs text-muted-foreground">
-          {isPremium ? t("includedInPlan") : t("includedInPro")}
-        </p>
-        <ul className="mt-2 flex flex-col gap-2">
-          {PRO_FEATURES.map((feature) => (
-            <li
-              key={feature}
-              className="flex items-center gap-2 text-sm text-muted-foreground"
-            >
-              <CheckCircleIcon
-                size={16}
-                weight={isPremium ? "fill" : "regular"}
-                className={cn(
-                  "shrink-0",
-                  isPremium ? "text-[var(--landing-success)]" : "text-muted-foreground",
-                )}
-                aria-hidden="true"
-              />
-              {t(`features.${feature}`)}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-5">
-          {isPremium ? (
-            <Link href="/api/polar/portal" className="dashboard-secondary-btn w-full sm:w-auto">
-              <ArrowSquareOutIcon size={16} aria-hidden="true" />
-              {t("manageBilling")}
-            </Link>
-          ) : (
-            <Link href="/dashboard/upgrade" className="dashboard-primary-btn w-full sm:w-auto">
-              <CrownIcon size={16} aria-hidden="true" />
-              {t("upgrade")}
-            </Link>
-          )}
-        </div>
-      </DashboardPanel>
+          <ActionRow>
+            {isPremium ? (
+              <Link href="/api/polar/portal" className="dashboard-secondary-btn w-full sm:w-auto">
+                <ArrowSquareOutIcon size={16} aria-hidden="true" />
+                {t("manageBilling")}
+              </Link>
+            ) : (
+              <Link href="/dashboard/upgrade" className="dashboard-primary-btn w-full sm:w-auto">
+                <CrownIcon size={16} aria-hidden="true" />
+                {t("upgrade")}
+              </Link>
+            )}
+          </ActionRow>
+        </SettingsGroup>
 
-      <DashboardPanel delay={0.15}>
-        <DashboardPanelHeader
+        <SettingsGroup
           title={
             <span className="inline-flex items-center gap-1.5 text-destructive">
               <WarningCircleIcon size={16} weight="fill" aria-hidden="true" />
@@ -263,34 +279,34 @@ export default function ProfilePage() {
             </span>
           }
           description={t("deleteDescription")}
-        />
-        <div className="mt-4 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
-          <p className="text-sm font-medium text-foreground">{t("whatGetsDeleted")}</p>
-          <ul className="mt-2 list-disc space-y-1 ps-5 text-sm text-muted-foreground">
-            <li>{t("deletedItems.profile")}</li>
-            <li>{t("deletedItems.cvs")}</li>
-            <li>{t("deletedItems.applications")}</li>
-            <li>{t("deletedItems.subscription")}</li>
-          </ul>
-          {isPremium && (
-            <p className="mt-3 text-sm font-medium text-destructive">
-              {t("activePlanWarning")}
-            </p>
-          )}
-        </div>
-        <div className="mt-5">
-          <button
-            type="button"
-            onClick={() => {
-              setDeleteConfirm("");
-              setDeleteOpen(true);
-            }}
-            className="dashboard-secondary-btn w-full text-destructive hover:border-destructive/40 hover:bg-destructive/10 sm:w-auto"
-          >
-            <TrashIcon size={16} aria-hidden="true" />
-            {t("deleteAccount")}
-          </button>
-        </div>
+        >
+          <dl>
+            <SettingsRow label={t("whatGetsDeleted")}>
+              <ul className="list-disc space-y-1 ps-5 text-muted-foreground">
+                <li>{t("deletedItems.profile")}</li>
+                <li>{t("deletedItems.cvs")}</li>
+                <li>{t("deletedItems.applications")}</li>
+                <li>{t("deletedItems.subscription")}</li>
+              </ul>
+              {isPremium && (
+                <p className="mt-3 font-medium text-destructive">{t("activePlanWarning")}</p>
+              )}
+            </SettingsRow>
+          </dl>
+          <ActionRow>
+            <button
+              type="button"
+              onClick={() => {
+                setDeleteConfirm("");
+                setDeleteOpen(true);
+              }}
+              className="dashboard-secondary-btn w-full text-destructive hover:border-destructive/40 hover:bg-destructive/10 sm:w-auto"
+            >
+              <TrashIcon size={16} aria-hidden="true" />
+              {t("deleteAccount")}
+            </button>
+          </ActionRow>
+        </SettingsGroup>
       </DashboardPanel>
 
       <Dialog

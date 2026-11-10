@@ -91,7 +91,7 @@ export function FindingRow({ finding, location, onJump }) {
         </code>
       )}
       {location && onJump && (
-        <Button type="button" size="sm" variant="ghost" className="h-7 gap-1.5 px-2 text-xs" onClick={onJump}>
+        <Button type="button" size="sm" variant="ghost" className="gap-1.5 text-xs" onClick={onJump}>
           {location}
           <ArrowRightIcon />
         </Button>
@@ -245,7 +245,7 @@ function JdCoverage({ coverage }) {
   return (
     <div className={cn("space-y-3 p-3", CARD)}>
       <div className="space-y-1">
-        <p className="text-sm leading-none font-medium">
+        <p className="text-sm leading-none font-semibold text-foreground">
           {t("coverage.found", { matched: coverage.matchedCount, total: coverage.total })}
         </p>
         <p className="text-xs leading-normal text-muted-foreground">
@@ -290,7 +290,7 @@ function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes, loc
   return (
     <div className={cn("space-y-3 p-3", CARD)}>
       <div className="space-y-1">
-        <p className="text-sm leading-none font-medium">{t("fixes.title")}</p>
+        <p className="text-sm leading-none font-semibold text-foreground">{t("fixes.title")}</p>
         <p className="text-xs leading-normal text-muted-foreground">
           {t("fixes.description")}
         </p>
@@ -312,7 +312,7 @@ function FixesCard({ recommendations, onApplyFix, applyingFix, appliedFixes, loc
                   <Button
                     size="sm"
                     variant="outline"
-                    className="h-control-sm shrink-0 px-3 text-xs sm:h-7 sm:px-2"
+                    className="h-control-sm shrink-0 px-3 text-xs"
                     disabled={Boolean(applyingFix)}
                     aria-busy={applying}
                     aria-label={t("fixes.applyAria", { fix: rec })}
@@ -430,10 +430,10 @@ function AiReviewCard({ cv, jobData, findings }) {
   });
 
   return (
-    <div className={cn("space-y-3 rounded-md border p-4", LINE)}>
+    <div className={cn("space-y-3 p-3", CARD)}>
       <div className="flex items-center gap-2">
         <SparkleIcon className="size-4 shrink-0 text-[var(--landing-accent)]" />
-        <h4 className="text-sm font-semibold">{t("review.title")}</h4>
+        <h4 className="text-sm font-semibold text-foreground">{t("review.title")}</h4>
       </div>
       <p className="text-sm leading-normal text-muted-foreground">
         {t("review.description")}
@@ -470,7 +470,7 @@ export default function ATSScoreCard({
   if (isLoading && !atsData) {
     return (
       <div className={cn("space-y-3 p-3", CARD)}>
-        <p className="text-sm font-medium">{t("checking")}</p>
+        <p className="text-sm font-semibold text-foreground">{t("checking")}</p>
         <Skeleton className="h-10 w-24" />
         <Skeleton className="h-1.5 w-full rounded-full" />
         <Skeleton className="h-24 w-full" />

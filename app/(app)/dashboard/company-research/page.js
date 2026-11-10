@@ -23,17 +23,26 @@ import {
   DashboardEmptyState,
   ProGate,
   DashboardStatStrip,
+  DashboardPanel,
 } from "@/components/dashboard";
 
 const DATE_FORMAT = { day: "numeric", month: "short", year: "numeric" };
 
 function LoadingRows() {
   return (
-    <div className="space-y-2" aria-hidden="true">
-      <div className="tool-skeleton h-14 rounded-lg" />
-      {[0, 1, 2, 3, 4].map((i) => (
-        <div key={i} className="tool-skeleton h-16 rounded-lg" />
-      ))}
+    <div className="flex flex-col gap-4" aria-hidden="true">
+      <div className="tool-skeleton h-16 rounded-lg" />
+      <div className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <div key={i} className="flex items-center gap-3 px-4 py-4 sm:px-5">
+            <div className="tool-skeleton size-9 rounded-full" />
+            <div className="flex flex-1 flex-col gap-1.5">
+              <div className="tool-skeleton h-3.5 w-1/3 rounded-sm" />
+              <div className="tool-skeleton h-3 w-1/4 rounded-sm" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -45,15 +54,15 @@ function BriefRow({ brief, index }) {
 
   return (
     <motion.li
-      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={reduceMotion ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.3) }}
     >
       <Link
         href={`/dashboard/company-research/${brief._id}`}
-        className="dashboard-list-row dashboard-row-pad group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+        className="group flex items-center gap-3 px-4 py-4 transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40 sm:px-5"
       >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] font-outfit text-sm font-semibold text-foreground">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold text-foreground">
           {(name[0] ?? "?").toUpperCase()}
         </span>
         <span className="min-w-0 flex-1">
@@ -79,7 +88,7 @@ function BriefRow({ brief, index }) {
           )}
         </span>
         <ArrowRightIcon
-          size={14}
+          size={16}
           className="shrink-0 text-muted-foreground/70 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground"
           aria-hidden="true"
         />
@@ -128,7 +137,7 @@ function CompanyResearch() {
   const newest = sorted[0];
 
   return (
-    <DashboardPageShell width="wide">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={t("title")}
         description={t("description")}
@@ -183,11 +192,13 @@ function CompanyResearch() {
               },
             ]}
           />
-          <ul className="space-y-2">
-            {sorted.map((brief, index) => (
-              <BriefRow key={brief._id} brief={brief} index={index} />
-            ))}
-          </ul>
+          <DashboardPanel pad={false} as="div" delay={0.05}>
+            <ul className="divide-y divide-[var(--landing-line)]">
+              {sorted.map((brief, index) => (
+                <BriefRow key={brief._id} brief={brief} index={index} />
+              ))}
+            </ul>
+          </DashboardPanel>
         </>
       )}
     </DashboardPageShell>

@@ -15,6 +15,9 @@ import {
   WarningCircleIcon,
   CheckCircleIcon,
   MagnifyingGlassIcon,
+  DownloadSimpleIcon,
+  BinocularsIcon,
+  CalendarCheckIcon,
 } from "@phosphor-icons/react";
 import {
   DashboardPageShell,
@@ -85,8 +88,8 @@ function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
         href={href}
         className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
       >
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-          <Icon size={17} aria-hidden="true" />
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
+          <Icon size={18} aria-hidden="true" />
         </span>
         <span className="min-w-0 flex-1">
           <span className="block text-sm font-medium text-foreground">
@@ -108,7 +111,7 @@ function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
         </span>
         <ArrowRightIcon
           size={14}
-          className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
+          className="text-muted-foreground transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
           aria-hidden="true"
         />
       </Link>
@@ -233,8 +236,8 @@ function RecentCVsPanel({ cvs, today }) {
               href={`/dashboard/tailored/${cv._id}`}
               className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
-                <FileTextIcon size={17} aria-hidden="true" />
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+                <FileTextIcon size={18} aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-medium text-foreground">
@@ -276,34 +279,38 @@ function ResearchPanel({ briefs, today }) {
         linkLabel={t("viewAll")}
       />
       {hasBriefs ? (
-        <ul className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-3 flex flex-col divide-y divide-[var(--landing-line)]">
           {briefs.map((brief) => (
             <li key={brief._id}>
               <Link
                 href={`/dashboard/company-research/${brief._id}`}
-                className="dashboard-list-row group flex h-full flex-col gap-3 p-3.5"
+                className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-                  <BuildingsIcon size={17} aria-hidden="true" />
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
+                  <BuildingsIcon size={18} aria-hidden="true" />
                 </span>
-                <span className="min-w-0">
+                <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-medium text-foreground">
                     {brief.companyName || t("research.unnamed")}
                   </span>
-                  <span className="mt-0.5 block text-xs leading-5 break-words whitespace-normal text-muted-foreground">
-                    {brief.jobTitle ||
-                      formatRelativeDay(brief.createdAt, today, t, locale)}
-                  </span>
+                  {brief.jobTitle && (
+                    <span className="block truncate text-xs text-muted-foreground">
+                      {brief.jobTitle}
+                    </span>
+                  )}
+                </span>
+                <span className="w-20 shrink-0 text-end text-xs tabular-nums text-muted-foreground">
+                  {formatRelativeDay(brief.createdAt, today, t, locale)}
                 </span>
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <div className="mt-4 flex flex-col items-start gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
-              <MagnifyingGlassIcon size={17} aria-hidden="true" />
+        <div className="mt-4 flex flex-col items-start gap-4 border-t border-[var(--landing-line)] pt-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-[var(--landing-ink-soft)]">
+              <MagnifyingGlassIcon size={20} aria-hidden="true" />
             </span>
             <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
               {t("research.empty")}
@@ -486,6 +493,37 @@ function DashboardContent({ data, today, isPremium }) {
   );
 }
 
+// Teal's top band: one line on what Pro adds and one button. Free users only,
+// and the three perks are all on the upgrade page's feature list.
+const PRO_PERKS = [
+  { key: "pdf", icon: DownloadSimpleIcon },
+  { key: "research", icon: BinocularsIcon },
+  { key: "matches", icon: CalendarCheckIcon },
+];
+
+function ProBanner() {
+  const t = useTranslations("dashboard.home.proBanner");
+  return (
+    <div className="flex flex-col gap-4 rounded-lg bg-[var(--landing-ink)] px-5 py-4 text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+      <p className="font-outfit text-base font-medium">{t("title")}</p>
+      <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--landing-ink-inverse-soft)]">
+        {PRO_PERKS.map(({ key, icon: Icon }) => (
+          <li key={key} className="flex items-center gap-2">
+            <Icon size={18} aria-hidden="true" className="text-white" />
+            {t(`perks.${key}`)}
+          </li>
+        ))}
+      </ul>
+      <Link
+        href="/dashboard/upgrade"
+        className="inline-flex h-10 shrink-0 items-center justify-center self-start rounded-md bg-white px-4 text-sm font-medium text-[var(--landing-ink)] transition-colors hover:bg-[var(--landing-primary-soft)] lg:self-auto"
+      >
+        {t("action")}
+      </Link>
+    </div>
+  );
+}
+
 export default function DashboardHome() {
   const t = useTranslations("dashboard.home");
   const locale = useLocale();
@@ -503,8 +541,9 @@ export default function DashboardHome() {
   const { activationSteps, showActivation } = data;
 
   return (
-    <DashboardPageShell width="full">
-      <DashboardPageHeader
+    <DashboardPageShell>
+      {session?.user && !isPremium && <ProBanner />}
+      <DashboardPageHeader inline
         title={
           <span suppressHydrationWarning>
             {firstName

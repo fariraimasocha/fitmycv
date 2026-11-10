@@ -5,14 +5,9 @@ import { LazyMotion, domAnimation } from "motion/react";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import Link from "next/link";
+import { ArrowLeftIcon } from "@phosphor-icons/react";
+import { TOPBAR_ACTIONS_ID } from "@/components/dashboard/DashboardPageHeader";
 import { AppSidebar } from "@/components/app-sidebar";
 import OnboardingGuard from "@/components/OnboardingGuard";
 import { useTranslations } from "next-intl";
@@ -31,8 +26,10 @@ const PATH_LABELS = {
   "/dashboard/story-bank": "storyBank",
   "/dashboard/compare": "compare",
   "/dashboard/saved": "saved",
+  "/dashboard/jobs": "jobs",
   "/dashboard/preferences": "preferences",
   "/dashboard/agent": "agent",
+  "/dashboard/tools": "tools",
 };
 
 // Detail pages read "Parent > item", with the item title from the breadcrumb store.
@@ -49,33 +46,27 @@ function DashboardBreadcrumb() {
   const detailLabel = useBreadcrumbStore((s) => s.detailLabel);
   const parent = DETAIL_PARENTS.find((p) => pathname.startsWith(`${p.base}/`));
 
+  // Teal-style app bar: a back button and the item name on detail pages, the
+  // page name everywhere else. The page body no longer repeats it.
   if (parent) {
     return (
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink href={parent.base}>{t(`pages.${parent.label}`)}</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem className="min-w-0">
-            <BreadcrumbPage className="truncate">{detailLabel || t(`fallback.${parent.fallback}`)}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="flex min-w-0 items-center gap-3">
+        <Link
+          href={parent.base}
+          aria-label={t("backTo", { page: t(`pages.${parent.label}`) })}
+          className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
+        >
+          <ArrowLeftIcon size={16} aria-hidden="true" className="rtl:-scale-x-100" />
+        </Link>
+        <p className="truncate font-outfit text-base font-semibold text-[var(--landing-ink)]">
+          {detailLabel || t(`fallback.${parent.fallback}`)}
+        </p>
+      </div>
     );
   }
 
   const label = PATH_LABELS[pathname] ? t(`pages.${PATH_LABELS[pathname]}`) : t("dashboard");
-
-  return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem className="min-w-0">
-          <BreadcrumbPage className="truncate">{label}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
+  return <p className="truncate font-outfit text-base font-semibold text-[var(--landing-ink)]">{label}</p>;
 }
 
 // The session provider lives once, in app/layout.js. Mounting a second one here
@@ -98,14 +89,17 @@ export default function DashboardShell({ children }) {
         <SidebarProvider className="dashboard-shell">
           <AppSidebar />
           <SidebarInset className="min-w-0 overflow-x-clip">
-            <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 bg-[var(--landing-bg)]/85 shadow-[0_1px_0_var(--landing-line)] px-3 backdrop-blur-md sm:h-16 sm:px-4">
-              <SidebarTrigger className="-ms-1 shrink-0 rounded-md hover:bg-[var(--landing-primary-soft)]" />
-              <Separator orientation="vertical" className="me-1 h-4 shrink-0 bg-[var(--landing-line)] sm:me-2" />
+            <header className="sticky top-0 z-20 flex h-14 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 sm:h-16 sm:px-6">
+              {/* Desktop toggles from the sidebar header, like Teal. Phones need one here. */}
+              <SidebarTrigger className="-ms-1 shrink-0 rounded-md hover:bg-[var(--landing-primary-soft)] md:hidden" />
+              <Separator orientation="vertical" className="me-1 h-4 shrink-0 bg-[var(--landing-line)] md:hidden" />
               <div className="min-w-0 flex-1 overflow-hidden">
                 <DashboardBreadcrumb />
               </div>
+              {/* Page actions portal in here from DashboardPageHeader. */}
+              <div id={TOPBAR_ACTIONS_ID} className="hidden shrink-0 items-center gap-2 sm:flex" />
             </header>
-            <main className="min-w-0 flex-1 overflow-x-clip bg-[var(--landing-bg)]">
+            <main className="min-w-0 flex-1 overflow-x-clip bg-[var(--landing-surface)]">
               {/* Lets pages use the smaller m.* components from motion/react-m. */}
               <LazyMotion features={domAnimation}>{children}</LazyMotion>
             </main>

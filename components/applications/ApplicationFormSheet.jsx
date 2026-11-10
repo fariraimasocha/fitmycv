@@ -123,7 +123,7 @@ function TagsField({ id, value, suggestions, onChange }) {
           {value.map((tag) => (
             <span
               key={tag}
-              className="inline-flex h-6 items-center gap-1 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-2 pe-1 text-xs font-medium text-muted-foreground"
+              className="inline-flex h-6 items-center gap-1 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-2 pe-1 text-xs font-medium text-muted-foreground"
             >
               {tag}
               <button
@@ -276,7 +276,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                   onPaste={(event) => runAutofill(event.clipboardData.getData("text"))}
                 />
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-[11px] text-muted-foreground">
+                  <p className="text-xs text-muted-foreground">
                     {autofill.isPending ? t("reading") : t("autofillHint")}
                   </p>
                   <button
@@ -340,7 +340,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
             </Field>
             <Field label={t("stage")} htmlFor={field("stage")}>
               <Select value={form.status} onValueChange={(value) => set("status", value)}>
-                <SelectTrigger id={field("stage")} className="w-full">
+                <SelectTrigger id={field("stage")} className="w-full data-[size=default]:h-control">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -386,12 +386,12 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 value={form.stageEnteredAt}
                 onChange={(e) => set("stageEnteredAt", e.target.value)}
               />
-              <p className="text-[11px] text-muted-foreground">{t("stageDateHint")}</p>
+              <p className="text-xs text-muted-foreground">{t("stageDateHint")}</p>
             </Field>
           )}
           <Field label={t("cv")} htmlFor={field("cv")}>
             <Select value={form.tailoredCVId || NO_CV} onValueChange={(value) => set("tailoredCVId", value === NO_CV ? "" : value)}>
-              <SelectTrigger id={field("cv")} className="w-full">
+              <SelectTrigger id={field("cv")} className="w-full data-[size=default]:h-control">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -405,7 +405,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application, allTags 
                 ))}
               </SelectContent>
             </Select>
-            <p className="text-[11px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               {t("cvHint")}
             </p>
           </Field>

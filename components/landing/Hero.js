@@ -8,12 +8,6 @@ import { useSession } from "next-auth/react";
 import { Link } from "@/i18n/navigation";
 import {
   ArrowRightIcon,
-  BriefcaseIcon,
-  ChartBarIcon,
-  EnvelopeSimpleIcon,
-  FileTextIcon,
-  LinkedinLogoIcon,
-  TargetIcon,
   SpeakerHighIcon,
   SpeakerSlashIcon,
 } from "@phosphor-icons/react";
@@ -25,16 +19,6 @@ import { toUrl } from "@/lib/ats-detect";
 import { extractTerms } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";
 import { HOME_TESTIMONIALS } from "@/content/pages/home";
-
-// Each chip is a real feature with its own page, so "all in one" holds up.
-const PLATFORM_LINKS = [
-  { key: "tailor", href: "/tailor-cv-from-job-link", Icon: FileTextIcon },
-  { key: "coverLetter", href: "/ai-cover-letter-generator", Icon: EnvelopeSimpleIcon },
-  { key: "atsScore", href: "/ats-resume-checker", Icon: ChartBarIcon },
-  { key: "jobMatch", href: "/resume-job-match-checker", Icon: TargetIcon },
-  { key: "linkedin", href: "/linkedin-profile-checker", Icon: LinkedinLogoIcon },
-  { key: "jobs", href: "/jobs", Icon: BriefcaseIcon },
-];
 
 const TRUST_FACES = [
   "/trusted/jane.jpeg",
@@ -344,28 +328,12 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
           </div>
         </div>
 
-        {/* The demo shows the real output, so it comes before the platform
-            chips: one action and the result above the fold. */}
+        {/* The demo shows the real output: one action and the result above
+            the fold. The product sections below carry the feature list. */}
         <div className="mt-10 w-full sm:mt-12">
           <DemoPreview />
         </div>
 
-        <h2 className="landing-rise-3 mt-10 font-outfit text-2xl font-bold tracking-tight text-[var(--landing-ink)] sm:mt-12 sm:text-3xl">
-          {t("platformTitle")}
-        </h2>
-        <ul className="landing-rise-3 mt-6 flex max-w-5xl flex-wrap justify-center gap-2 sm:gap-3">
-          {PLATFORM_LINKS.map(({ key, href, Icon }) => (
-            <li key={key}>
-              <Link
-                href={href}
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] px-4 font-outfit text-sm font-semibold text-[var(--landing-ink)] transition-colors hover:border-[var(--landing-ink-soft)] sm:text-base"
-              >
-                <Icon size={18} aria-hidden="true" className="text-[var(--landing-accent)]" />
-                {t(`platform.${key}`)}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

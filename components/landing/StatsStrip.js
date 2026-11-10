@@ -30,7 +30,7 @@ function buildItems({ tailored, users, format, t }) {
 }
 
 /**
- * Dark traction band above the testimonial, with the other proof. Layout mirrors the Teal-style three-up
+ * Dark traction band straight under the hero. Layout mirrors the Teal-style three-up
  * strip. Every number is either a live DB count (rounded down) or a product
  * fact from the repo. No interview rates or "companies hired at" claims.
  */

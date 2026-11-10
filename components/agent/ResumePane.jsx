@@ -46,7 +46,7 @@ function ToolbarButton({ label, children, ...props }) {
           size="icon-sm"
           variant="ghost"
           aria-label={label}
-          className="size-7 text-muted-foreground hover:text-foreground"
+          className="size-8 rounded-md text-muted-foreground hover:bg-[var(--landing-paper-soft)] hover:text-foreground"
           {...props}
         >
           {children}
@@ -115,8 +115,8 @@ export function ResumePane({ draft, template, style }) {
 
   return (
     <section aria-label={t("draftCv")} className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
-      <div className="flex h-12 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3">
-        <div className="flex h-9 items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-0.5">
+      <div className="flex h-16 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 sm:px-4">
+        <div className="flex h-control items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-0.5">
           <ToolbarButton
             label={t("zoomOut")}
             disabled={!draft || zoom <= MIN_ZOOM}
@@ -131,7 +131,7 @@ export function ResumePane({ draft, template, style }) {
                 disabled={!draft}
                 onClick={() => setUserZoom(null)}
                 aria-label={t("zoomFit", { percent: zoomPercent })}
-                className="h-7 min-w-12 rounded-md px-1 text-xs font-medium text-muted-foreground tabular-nums transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground disabled:opacity-50"
+                className="h-8 min-w-12 rounded-md px-1 text-xs font-medium text-muted-foreground tabular-nums transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground disabled:opacity-50"
               >
                 {zoomPercent}%
               </button>
@@ -150,7 +150,7 @@ export function ResumePane({ draft, template, style }) {
           {draft && (
             <Link
               href={`/dashboard/tailored/${draft._id}`}
-              className="dashboard-secondary-btn dashboard-secondary-btn-sm"
+              className="dashboard-secondary-btn"
             >
               <PencilSimpleIcon size={16} aria-hidden="true" />
               {t("edit")}
@@ -159,7 +159,7 @@ export function ResumePane({ draft, template, style }) {
           <button
             type="button"
             disabled={!draft}
-            className="dashboard-primary-btn dashboard-primary-btn-sm"
+            className="dashboard-primary-btn"
             onClick={handleDownload}
           >
             {isPremium ? (
@@ -195,7 +195,7 @@ export function ResumePane({ draft, template, style }) {
         ) : (
           <div className="flex h-full items-center justify-center p-6">
             <div className="flex max-w-xs flex-col items-center text-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground landing-inset-edge">
+              <span className="flex size-12 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
                 <FileDashedIcon size={22} aria-hidden="true" />
               </span>
               <p className="mt-4 font-outfit text-base font-semibold tracking-[-0.01em] text-foreground">

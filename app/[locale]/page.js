@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
 import StatsStrip from "@/components/landing/StatsStrip";
-import JobBoardStrip from "@/components/landing/JobBoardStrip";
+import ProductSuite from "@/components/landing/ProductSuite";
 import TheProblem from "@/components/landing/TheProblem";
 import HowItWorks from "@/components/landing/HowItWorks";
 import UseCases from "@/components/landing/UseCases";
@@ -72,13 +72,14 @@ export default async function Home({ params }) {
       <Header />
       <main>
         <Hero lifetimePrice={pricing.lifetime.price} userCount={stats.users} />
-        <JobBoardStrip />
+        {/* Proof straight under the hero, then problem, method, product. */}
+        <StatsStrip users={stats.users} tailored={stats.tailored} />
         <TheProblem />
         <HowItWorks lifetimePrice={pricing.lifetime.price} />
+        <ProductSuite />
         <UseCases />
-        <TemplateStrip />
-        <StatsStrip users={stats.users} tailored={stats.tailored} />
         <Testimonial />
+        <TemplateStrip />
         <TrustSignals />
         <Pricing />
         <FounderFaqSection />

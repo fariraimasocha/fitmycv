@@ -28,16 +28,48 @@ import {
   DashboardPageShell,
   DashboardPageHeader,
   DashboardPanel,
-  DashboardPanelHeader,
   DashboardEmptyState,
 } from "@/components/dashboard";
 import { cn } from "@/lib/utils";
 
 const MAX_TITLES = 10;
 
+// Teal settings pattern: one panel, a titled group per topic, and rows with
+// the label on the left and the control on the right from sm up. Phones stack.
+function SettingsGroup({ title, description, aside, children }) {
+  return (
+    <section>
+      <div className="flex items-start justify-between gap-3 px-4 pt-5 pb-1 sm:px-6">
+        <div className="min-w-0">
+          <h2 className="font-outfit text-base font-semibold text-foreground">{title}</h2>
+          {description && (
+            <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+          )}
+        </div>
+        {aside}
+      </div>
+      <div className="divide-y divide-[var(--landing-line)]">{children}</div>
+    </section>
+  );
+}
+
+function SettingsRow({ label, htmlFor, hint, children }) {
+  return (
+    <div className="grid gap-2 px-4 py-4 sm:grid-cols-3 sm:gap-6 sm:px-6">
+      <div className="min-w-0 sm:pt-2.5">
+        <Label htmlFor={htmlFor} className="text-sm font-medium">
+          {label}
+        </Label>
+        {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
+      </div>
+      <div className="min-w-0 sm:col-span-2">{children}</div>
+    </div>
+  );
+}
+
 function ToggleRow({ id, checked, onChange, label, description }) {
   return (
-    <div className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+    <div className="flex min-h-16 items-center justify-between gap-4 px-4 py-4 sm:px-6">
       <div className="min-w-0">
         <Label htmlFor={id} className="cursor-pointer text-sm font-medium">
           {label}
@@ -53,10 +85,9 @@ function ToggleRow({ id, checked, onChange, label, description }) {
 
 function LoadingPanels() {
   return (
-    <div className="space-y-6" aria-hidden="true">
-      <div className="tool-skeleton h-44 rounded-lg" />
-      <div className="tool-skeleton h-32 rounded-lg" />
-      <div className="tool-skeleton h-36 rounded-lg" />
+    <div className="flex flex-col gap-4" aria-hidden="true">
+      <div className="tool-skeleton h-96 rounded-lg" />
+      <div className="tool-skeleton h-14 rounded-lg" />
     </div>
   );
 }
@@ -128,89 +159,77 @@ function PreferencesForm({ prefs }) {
   const atLimit = titles.length >= MAX_TITLES;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <DashboardPanel delay={0.05}>
-        <DashboardPanelHeader
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <DashboardPanel pad={false} delay={0.05} bodyClassName="divide-y divide-[var(--landing-line)]">
+        <SettingsGroup
           title={t("targetRoles")}
           description={t("targetRolesDescription")}
-          action={
-            <span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+          aside={
+            <span className="shrink-0 pt-1 text-xs tabular-nums text-muted-foreground">
               {t("titleCount", { count: titles.length, max: MAX_TITLES })}
             </span>
           }
-        />
-        <div className="mt-4 grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="title-input" className="text-sm font-medium">
-              {t("jobTitle")}
-            </Label>
-            <div className="flex gap-2">
-              <Input
-                id="title-input"
-                value={titleInput}
-                onChange={(e) => setTitleInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    addTitle();
-                  }
-                }}
-                placeholder={t("jobTitlePlaceholder")}
-                disabled={atLimit}
-                className="h-9"
-              />
-              <button
-                type="button"
-                onClick={addTitle}
-                disabled={atLimit || !titleInput.trim()}
-                className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
-              >
-                {t("addTitle")}
-              </button>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {atLimit
-                ? t("limitReached")
-                : t("addTitleHint")}
-            </p>
-          </div>
-          {titles.length > 0 && (
-            <ul className="flex flex-wrap gap-2">
-              {titles.map((title) => (
-                <li
-                  key={title}
-                  className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-3 pe-1 text-sm text-foreground"
+        >
+          <SettingsRow
+            label={t("jobTitle")}
+            htmlFor="title-input"
+            hint={atLimit ? t("limitReached") : t("addTitleHint")}
+          >
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2">
+                <Input
+                  id="title-input"
+                  value={titleInput}
+                  onChange={(e) => setTitleInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      addTitle();
+                    }
+                  }}
+                  placeholder={t("jobTitlePlaceholder")}
+                  disabled={atLimit}
+                  className="h-control"
+                />
+                <button
+                  type="button"
+                  onClick={addTitle}
+                  disabled={atLimit || !titleInput.trim()}
+                  className="dashboard-secondary-btn shrink-0"
                 >
-                  <span className="max-w-60 truncate">{title}</span>
-                  <button
-                    type="button"
-                    onClick={() => setTitles(titles.filter((x) => x !== title))}
-                    className="inline-flex h-6 w-6 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-                    aria-label={t("removeTitle", { title })}
-                  >
-                    <XIcon size={12} weight="bold" aria-hidden="true" />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </DashboardPanel>
+                  {t("addTitle")}
+                </button>
+              </div>
+              {titles.length > 0 && (
+                <ul className="flex flex-wrap gap-2">
+                  {titles.map((title) => (
+                    <li
+                      key={title}
+                      className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-3 pe-1 text-sm text-foreground"
+                    >
+                      <span className="max-w-60 truncate">{title}</span>
+                      <button
+                        type="button"
+                        onClick={() => setTitles(titles.filter((x) => x !== title))}
+                        className="inline-flex size-6 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                        aria-label={t("removeTitle", { title })}
+                      >
+                        <XIcon size={12} weight="bold" aria-hidden="true" />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </SettingsRow>
+        </SettingsGroup>
 
-      <DashboardPanel delay={0.1}>
-        <DashboardPanelHeader
-          title={t("jobMarket")}
-          description={t("jobMarketDescription")}
-        />
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div className="grid gap-2">
-            <Label htmlFor="country" className="text-sm font-medium">
-              {t("country")}
-            </Label>
+        <SettingsGroup title={t("jobMarket")} description={t("jobMarketDescription")}>
+          <SettingsRow label={t("country")} htmlFor="country" hint={t("countryHint")}>
             <Select value={country} onValueChange={setCountry}>
               <SelectTrigger
                 id="country"
-                className="h-control w-full border-[var(--landing-line)] bg-[var(--landing-surface)]"
+                className="h-control w-full border-[var(--landing-line)] bg-[var(--landing-surface)] data-[size=default]:h-control sm:max-w-sm"
               >
                 <SelectValue />
               </SelectTrigger>
@@ -222,19 +241,10 @@ function PreferencesForm({ prefs }) {
                 ))}
               </SelectContent>
             </Select>
-            <p className="text-xs text-muted-foreground">
-              {t("countryHint")}
-            </p>
-          </div>
-        </div>
-      </DashboardPanel>
+          </SettingsRow>
+        </SettingsGroup>
 
-      <DashboardPanel delay={0.15}>
-        <DashboardPanelHeader
-          title={t("email")}
-          description={t("emailDescription")}
-        />
-        <div className="mt-4 divide-y divide-[var(--landing-line)]">
+        <SettingsGroup title={t("email")} description={t("emailDescription")}>
           <ToggleRow
             id="emailDigest"
             checked={emailDigest}
@@ -249,7 +259,7 @@ function PreferencesForm({ prefs }) {
             label={t("remoteOnly")}
             description={t("remoteOnlyDescription")}
           />
-        </div>
+        </SettingsGroup>
       </DashboardPanel>
 
       <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-3 py-2.5 backdrop-blur-md sm:bottom-4 sm:px-4">
@@ -320,7 +330,7 @@ export default function PreferencesPage() {
 
   if (!isPremium) {
     return (
-      <DashboardPageShell width="narrow">
+      <DashboardPageShell>
         <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardEmptyState
           icon={CrownIcon}
@@ -337,7 +347,7 @@ export default function PreferencesPage() {
 
   if (isLoading) {
     return (
-      <DashboardPageShell width="narrow">
+      <DashboardPageShell>
         <DashboardPageHeader title={t("title")} description={t("description")} />
         <LoadingPanels />
       </DashboardPageShell>
@@ -346,7 +356,7 @@ export default function PreferencesPage() {
 
   if (isError) {
     return (
-      <DashboardPageShell width="narrow">
+      <DashboardPageShell>
         <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardEmptyState
           icon={WarningCircleIcon}
@@ -361,7 +371,7 @@ export default function PreferencesPage() {
   }
 
   return (
-    <DashboardPageShell width="narrow">
+    <DashboardPageShell>
       <DashboardPageHeader title={t("title")} description={t("description")} />
       <PreferencesForm prefs={prefs} />
     </DashboardPageShell>

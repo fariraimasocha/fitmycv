@@ -9,7 +9,6 @@ import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import {
-  ArrowLeftIcon,
   FileTextIcon,
   EnvelopeSimpleIcon,
   BuildingsIcon,
@@ -53,14 +52,14 @@ const DATE_FORMAT = { month: "short", day: "numeric", year: "numeric" };
 
 // Tab labels live in messages under tailor.tailoredDetail.
 const DOCUMENT_TABS = [
-  { id: "cv", icon: <FileTextIcon size={14} aria-hidden="true" /> },
-  { id: "letter", icon: <EnvelopeSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "why", icon: <ChatCenteredTextIcon size={14} aria-hidden="true" /> },
+  { id: "cv", icon: <FileTextIcon size={16} aria-hidden="true" /> },
+  { id: "letter", icon: <EnvelopeSimpleIcon size={16} aria-hidden="true" /> },
+  { id: "why", icon: <ChatCenteredTextIcon size={16} aria-hidden="true" /> },
 ];
 
 const MOBILE_TABS = [
-  { id: "edit", icon: <PencilSimpleIcon size={14} aria-hidden="true" /> },
-  { id: "preview", icon: <EyeIcon size={14} aria-hidden="true" /> },
+  { id: "edit", icon: <PencilSimpleIcon size={16} aria-hidden="true" /> },
+  { id: "preview", icon: <EyeIcon size={16} aria-hidden="true" /> },
 ];
 
 function buildResumeData(source) {
@@ -86,32 +85,14 @@ function Rise({ children, delay = 0, className }) {
   );
 }
 
-function BackLink() {
-  const t = useTranslations("tailor.tailoredDetail");
-  return (
-    <Link
-      href="/dashboard/tailored"
-      className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-    >
-      <ArrowLeftIcon size={16} aria-hidden="true" />
-      {t("back")}
-    </Link>
-  );
-}
-
 function DetailSkeleton() {
   return (
-    <DashboardPageShell width="full">
-      <BackLink />
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" aria-busy="true">
-        <div className="min-w-0 flex-1 space-y-2">
-          <div className="tool-skeleton h-8 w-2/3 max-w-sm rounded-md" />
-          <div className="tool-skeleton h-4 w-1/2 max-w-xs rounded-sm" />
-        </div>
-        <div className="tool-skeleton h-10 w-full rounded-md sm:w-36" />
-      </div>
+    <DashboardPageShell>
+      <div className="tool-skeleton h-4 w-1/2 max-w-xs rounded-sm" aria-busy="true" />
       <div className="tool-skeleton h-16 w-full rounded-lg" />
-      <div className="tool-skeleton h-9 w-72 rounded-md" />
+      <div className="border-b border-[var(--landing-line)] pb-3">
+        <div className="tool-skeleton h-control w-80 max-w-full rounded-md" />
+      </div>
       <div className="grid items-start gap-4 lg:grid-cols-12">
         <div className="tool-skeleton h-96 rounded-lg lg:col-span-7" />
         <div className="tool-skeleton h-96 rounded-lg lg:col-span-5" />
@@ -311,8 +292,7 @@ function TailoredCVDetail() {
 
   if (!cv) {
     return (
-      <DashboardPageShell width="full">
-        <BackLink />
+      <DashboardPageShell>
         <DashboardEmptyState
           icon={WarningCircleIcon}
           title={t("notFound.title")}
@@ -386,8 +366,7 @@ function TailoredCVDetail() {
   const downloadLabel = activeTab === "letter" ? t("downloadLetter") : t("downloadPdf");
 
   return (
-    <DashboardPageShell width="full">
-      <BackLink />
+    <DashboardPageShell>
 
       <DashboardPageHeader
         title={cv.jobTitle || t("untitled")}
@@ -432,13 +411,8 @@ function TailoredCVDetail() {
       )}
 
       <DashboardStatStrip
-        columns={5}
+        columns={4}
         items={[
-          {
-            icon: CalendarIcon,
-            label: t("stats.tailored"),
-            value: <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />,
-          },
           { icon: BriefcaseIcon, label: t("stats.positions"), value: resumeData.work.length },
           { icon: TagIcon, label: t("stats.skillGroups"), value: resumeData.skills.length },
           {
@@ -456,8 +430,8 @@ function TailoredCVDetail() {
         ]}
       />
 
-      <Rise delay={0.1} className="flex flex-col gap-3">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <Rise delay={0.1} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 border-b border-[var(--landing-line)] pb-3 sm:flex-row sm:items-center sm:justify-between">
           <DashboardTabBar
             tabs={documentTabs}
             activeTab={activeTab}
@@ -501,7 +475,7 @@ function TailoredCVDetail() {
               )}
             >
               <aside className="dashboard-card overflow-hidden rounded-lg lg:sticky lg:top-20">
-                <div className="flex items-center justify-between gap-3 border-b border-[var(--landing-line)] px-3 py-3">
+                <div className="flex items-center justify-between gap-3 border-b border-[var(--landing-line)] px-4 py-3">
                   <div className="w-48 min-w-0 shrink-0 sm:w-56">
                     <TemplatePicker
                       value={selectedTemplate}

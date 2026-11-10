@@ -67,10 +67,10 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
       />
       <span
         className={cn(
-          "flex h-10 w-10 shrink-0 items-center justify-center rounded-md",
+          "flex size-9 shrink-0 items-center justify-center rounded-full",
           active
             ? "bg-[var(--landing-ink)] text-white"
-            : "border border-[var(--landing-line)] text-foreground"
+            : "bg-[var(--landing-primary-soft)] text-foreground"
         )}
       >
         <ChatCircleDotsIcon size={18} aria-hidden="true" />
@@ -121,7 +121,7 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
 function RowSkeleton() {
   return (
     <li className="dashboard-row-pad flex items-center gap-3">
-      <span className="tool-skeleton h-10 w-10 shrink-0 rounded-md" />
+      <span className="tool-skeleton size-9 shrink-0 rounded-full" />
       <span className="flex min-w-0 flex-1 flex-col gap-1.5">
         <span className="tool-skeleton h-3.5 w-2/5 rounded-sm" />
         <span className="tool-skeleton h-3 w-3/5 rounded-sm" />
@@ -274,7 +274,7 @@ export function ThreadList({ activeThreadId = null, onNavigate, title, delay = 0
               ? t("newestFirst")
               : t("countNewestFirst", { count })
           }
-          className="border-b border-[var(--landing-line)] px-3 py-3 sm:px-4"
+          className="dashboard-row-pad border-b border-[var(--landing-line)]"
         />
         {list}
       </DashboardPanel>

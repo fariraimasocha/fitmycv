@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
 import {
-  ArrowLeftIcon,
   ArrowSquareOutIcon,
   BinocularsIcon,
   BriefcaseIcon,
@@ -29,27 +28,11 @@ import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 const LIST_HREF = "/dashboard/company-research";
 const DATE_FORMAT = { day: "numeric", month: "short", year: "numeric" };
 
-function BackLink() {
-  const t = useTranslations("dashboard.companyResearch.detail");
-  return (
-    <Link
-      href={LIST_HREF}
-      className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-    >
-      <ArrowLeftIcon size={16} aria-hidden="true" />
-      {t("back")}
-    </Link>
-  );
-}
-
 function LoadingBrief() {
   return (
-    <div className="space-y-6" aria-hidden="true">
-      <div className="space-y-2">
-        <div className="tool-skeleton h-8 w-64 max-w-full rounded-md" />
-        <div className="tool-skeleton h-4 w-40 max-w-full rounded-md" />
-      </div>
-      <div className="tool-skeleton h-14 rounded-lg" />
+    <div className="flex flex-col gap-5" aria-hidden="true">
+      <div className="tool-skeleton h-4 w-56 max-w-full rounded-sm" />
+      <div className="tool-skeleton h-16 rounded-lg" />
       <div className="tool-skeleton h-96 rounded-lg" />
     </div>
   );
@@ -96,8 +79,7 @@ export default function CompanyResearchDetailPage() {
 
   if (isLoading) {
     return (
-      <DashboardPageShell width="narrow">
-        <BackLink />
+      <DashboardPageShell>
         <LoadingBrief />
       </DashboardPageShell>
     );
@@ -105,8 +87,7 @@ export default function CompanyResearchDetailPage() {
 
   if (isError) {
     return (
-      <DashboardPageShell width="narrow">
-        <BackLink />
+      <DashboardPageShell>
         <DashboardEmptyState
           icon={WarningCircleIcon}
           title={t("errorTitle")}
@@ -123,8 +104,7 @@ export default function CompanyResearchDetailPage() {
 
   if (!brief) {
     return (
-      <DashboardPageShell width="narrow">
-        <BackLink />
+      <DashboardPageShell>
         <DashboardEmptyState
           icon={BinocularsIcon}
           title={t("notAvailableTitle")}
@@ -140,9 +120,7 @@ export default function CompanyResearchDetailPage() {
   const tipsCount = brief.positioningTips?.length ?? 0;
 
   return (
-    <DashboardPageShell width="narrow">
-      <BackLink />
-
+    <DashboardPageShell>
       <DashboardPageHeader
         title={brief.companyName || t("unnamed")}
         description={

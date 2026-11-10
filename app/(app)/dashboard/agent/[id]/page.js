@@ -46,9 +46,9 @@ import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 // screen and a Chat / Draft switch picks one. Both stay mounted, so switching
 // never loses the composer text or the preview zoom.
 
-// Every control in the header bar is 2.25rem tall so the row reads as one line.
+// Every control in the header bar is one control tall so the row reads as one line.
 const HEADER_ICON_BTN =
-  "size-9 shrink-0 rounded-md text-[var(--landing-ink-soft)] hover:bg-[var(--landing-primary-soft)] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40";
+  "size-control shrink-0 rounded-md text-[var(--landing-ink-soft)] hover:bg-[var(--landing-primary-soft)] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40";
 
 const DECISION_TOAST = {
   apply: "decisionApply",
@@ -140,7 +140,7 @@ export default function AgentThreadPage() {
 
   if (!thread) {
     return (
-      <DashboardPageShell width="narrow">
+      <DashboardPageShell>
         <DashboardEmptyState
           icon={ChatCircleDotsIcon}
           title={t("notFoundTitle")}
@@ -160,7 +160,7 @@ export default function AgentThreadPage() {
   const paneTabs = [
     {
       id: "chat",
-      icon: <ChatCircleDotsIcon size={14} aria-hidden="true" />,
+      icon: <ChatCircleDotsIcon size={16} aria-hidden="true" />,
       label: (
         <span className="inline-flex items-center gap-1.5">
           {t("chat")}
@@ -173,7 +173,7 @@ export default function AgentThreadPage() {
         </span>
       ),
     },
-    { id: "draft", icon: <FileTextIcon size={14} aria-hidden="true" />, label: t("draft") },
+    { id: "draft", icon: <FileTextIcon size={16} aria-hidden="true" />, label: t("draft") },
   ];
 
   const handleDelete = async () => {
@@ -198,23 +198,28 @@ export default function AgentThreadPage() {
   return (
     <div className="flex h-[calc(100dvh-3.5rem)] min-w-0 flex-col overflow-hidden bg-[var(--landing-bg)] sm:h-[calc(100dvh-4rem)]">
       <header className="shrink-0 border-b border-[var(--landing-line)] bg-[var(--landing-surface)]">
-        <div className="flex h-14 items-center gap-2 px-3 sm:px-4">
+        <div className="flex h-16 items-center gap-2 px-3 sm:px-4">
           <button
             type="button"
             aria-label={t("showThreads")}
             onClick={() => setThreadsOpen(true)}
-            className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0 px-2.5 sm:px-3.5"
+            className="dashboard-secondary-btn shrink-0 px-3"
           >
             <ListIcon size={16} aria-hidden="true" />
             <span className="hidden sm:inline">{t("threads")}</span>
           </button>
+          {/* The thread title already sits in the shell top bar, so the
+              heading here is for screen readers and the bar shows the source. */}
           <div className="min-w-0 flex-1 px-1">
-            <h1 className="truncate font-outfit text-sm font-semibold text-foreground">{thread.title}</h1>
-            <p className="truncate text-xs text-muted-foreground">
-              {t("editingCopyOf", { source: thread.sourceLabel || t("yourCv") })}
+            <h1 className="sr-only">{thread.title}</h1>
+            <p className="flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground">
+              <FileTextIcon size={16} className="shrink-0" aria-hidden="true" />
+              <span className="truncate">
+                {t("editingCopyOf", { source: thread.sourceLabel || t("yourCv") })}
+              </span>
             </p>
           </div>
-          <label className="hidden h-9 shrink-0 cursor-pointer items-center gap-2 rounded-md border border-[var(--landing-line)] px-3 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground md:flex">
+          <label className="hidden h-control shrink-0 cursor-pointer items-center gap-2 rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground md:flex">
             <Switch
               checked={thread.reviewEdits}
               disabled={review.isPending}

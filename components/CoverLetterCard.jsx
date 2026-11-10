@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import {
-  EnvelopeSimpleIcon,
   PencilSimpleIcon,
   XIcon,
   FloppyDiskIcon,
@@ -35,12 +34,9 @@ export default function CoverLetterCard({
 
   return (
     <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
-      <div className="dashboard-card-pad flex items-start gap-3 border-b border-[var(--landing-line)]">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-          <EnvelopeSimpleIcon size={17} aria-hidden="true" />
-        </span>
+      <div className="dashboard-card-pad border-b border-[var(--landing-line)]">
         <DashboardPanelHeader
-          className="min-w-0 flex-1 items-center"
+          className="sm:items-center"
           title={t("title")}
           description={content ? t("descriptionWritten") : t("descriptionEmpty")}
           action={

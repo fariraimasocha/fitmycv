@@ -4,7 +4,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import {
-  XIcon,
   CopyIcon,
   ArrowsClockwiseIcon,
   LinkedinLogoIcon,
@@ -12,6 +11,7 @@ import {
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export default function LinkedInOutreachModal({
   open,
@@ -73,24 +73,18 @@ export default function LinkedInOutreachModal({
   const overLimit = charCount > 300;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-md max-h-[85vh] overflow-y-auto rounded-2xl bg-background border shadow-xl">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b px-4 py-3">
-          <div className="flex items-center gap-2">
-            <LinkedinLogoIcon size={18} weight="fill" className="text-blue-600" />
-            <h2 className="text-sm font-semibold">{t("title")}</h2>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <XIcon size={18} />
-          </button>
-        </div>
+    // A real Dialog: focus trap, Escape to close, and the same 8px card as
+    // every other modal in the app.
+    <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent className="max-h-[85vh] gap-0 overflow-y-auto p-0 sm:max-w-md">
+        <DialogHeader className="border-b border-[var(--landing-line)] px-4 py-3">
+          <DialogTitle className="flex items-center gap-2 text-sm font-semibold">
+            <LinkedinLogoIcon size={18} weight="fill" className="text-blue-600" aria-hidden="true" />
+            {t("title")}
+          </DialogTitle>
+        </DialogHeader>
 
-        {/* Body */}
-        <div className="p-4 space-y-4">
+        <div className="space-y-4 p-4">
           {loading ? (
             <div className="space-y-3">
               <Skeleton className="h-24 w-full" />
@@ -105,8 +99,9 @@ export default function LinkedInOutreachModal({
                   {allMessages.map((_, i) => (
                     <button
                       key={i}
+                      type="button"
                       onClick={() => selectMessage(i)}
-                      className={`rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
+                      className={`rounded-sm px-2.5 py-1 text-xs font-medium transition-colors ${
                         activeIndex === i
                           ? "bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]"
                           : "text-[var(--landing-ink-soft)] hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
@@ -124,7 +119,7 @@ export default function LinkedInOutreachModal({
                   value={editedMessage}
                   onChange={(e) => setEditedMessage(e.target.value)}
                   rows={4}
-                  className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                 />
                 <div
                   className={`absolute bottom-2 end-2 text-xs font-medium tabular-nums ${
@@ -181,7 +176,7 @@ export default function LinkedInOutreachModal({
             </>
           ) : null}
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

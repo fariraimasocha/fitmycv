@@ -51,14 +51,16 @@ export function NavUser() {
     : "U"
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className="px-2">
       {!user.isPremium && (
         <SidebarMenuItem>
+          {/* Default size on purpose: size="lg" drops the padding to 0 when the
+              rail collapses, so the crown sat in the corner with the label
+              spilling out beside it. */}
           <SidebarMenuButton
             asChild
-            size="lg"
             tooltip={t("upgrade")}
-            className="h-10 rounded-md bg-[var(--landing-ink)] font-outfit font-medium text-white hover:bg-black hover:text-white"
+            className="mb-1 h-10 gap-3 rounded-lg bg-[var(--landing-ink)] px-2.5 font-semibold text-white hover:bg-black hover:text-white active:bg-black active:text-white [&>svg]:size-5 group-data-[collapsible=icon]:p-1.5!"
           >
             <Link href="/dashboard/upgrade">
               <CrownIcon weight="fill" aria-hidden="true" />
@@ -72,7 +74,7 @@ export function NavUser() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="rounded-md hover:bg-[var(--landing-primary-soft)] data-[state=open]:bg-[var(--landing-primary-soft)]"
+              className="rounded-lg hover:bg-[var(--landing-primary-soft)] data-[state=open]:bg-[var(--landing-primary-soft)]"
             >
               <Avatar className="h-8 w-8 rounded-md">
                 <AvatarImage src={user.image} alt={user.name} />
@@ -81,7 +83,7 @@ export function NavUser() {
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-start text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate font-semibold">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
               <CaretUpDownIcon className="ms-auto size-4" />
@@ -95,7 +97,7 @@ export function NavUser() {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
+                <Avatar className="h-8 w-8 rounded-md">
                   <AvatarImage src={user.image} alt={user.name} />
                   <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
                 </Avatar>

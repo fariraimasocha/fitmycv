@@ -624,7 +624,11 @@
       "textPlaceholder": "Cole o anúncio completo, incluindo os requisitos e as responsabilidades",
       "minChars": "Cole pelo menos {min} caracteres para termos material suficiente.",
       "chars": "{count} caracteres",
-      "keepJob": "Manter a vaga atual"
+      "keepJob": "Manter a vaga atual",
+      "heading": "Para qual vaga você está se candidatando?",
+      "subheading": "Reescrevemos seu currículo para a vaga e criamos uma carta de apresentação combinando.",
+      "linkHint": "Se o site bloquear o link, cole a descrição.",
+      "recentTitle": "Vagas recentes"
     },
     "bar": {
       "fallbackTitle": "Anúncio da vaga",
@@ -672,6 +676,12 @@
     "coverLetter": "Carta de apresentação",
     "download": "Baixar {title}",
     "confirmDelete": "Clique de novo para excluir",
+    "noLetter": "Sem carta de apresentação",
+    "search": "Buscar por cargo ou empresa",
+    "noMatches": {
+      "title": "Nenhum CV corresponde à sua busca",
+      "description": "Tente outro cargo ou empresa."
+    },
     "delete": "Excluir {title}",
     "deleteError": "Não foi possível excluir este currículo. Tente de novo.",
     "deleted": "Currículo excluído",

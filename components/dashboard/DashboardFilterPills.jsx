@@ -2,40 +2,27 @@
 
 import { cn } from "@/lib/utils";
 
+// Same track and tab recipe as DashboardTabBar, so every tab row in the app
+// looks the same. Takes key/activeKey/onChange because its callers filter lists.
 export function DashboardFilterPills({ tabs, activeKey, onChange, className }) {
   return (
-    <div
-      className={cn(
-        "flex w-full max-w-full items-center overflow-x-auto rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:inline-flex sm:w-fit [&::-webkit-scrollbar]:hidden",
-        className
-      )}
-      role="tablist"
-    >
+    <div role="tablist" className={cn("dashboard-tab-pills w-full sm:w-auto sm:self-start", className)}>
       {tabs.map((tab) => (
         <button
           key={tab.key}
           type="button"
           role="tab"
           aria-selected={activeKey === tab.key}
+          data-active={activeKey === tab.key}
           onClick={() => onChange(tab.key)}
-          className={cn(
-            "inline-flex shrink-0 items-center gap-1.5 rounded-sm px-3 py-1.5 text-xs font-medium transition-colors sm:px-3.5",
-            activeKey === tab.key
-              ? "bg-foreground text-background"
-              : "text-muted-foreground hover:text-foreground"
-          )}
+          className="dashboard-tab-pill"
         >
-          {tab.label}
-          {typeof tab.count === "number" && (
-            <span
-              className={cn(
-                "tabular-nums",
-                activeKey === tab.key ? "opacity-80" : "opacity-60"
-              )}
-            >
-              {tab.count}
-            </span>
-          )}
+          <span>
+            {tab.label}
+            {typeof tab.count === "number" && (
+              <span className="ms-1.5 tabular-nums opacity-70">{tab.count}</span>
+            )}
+          </span>
         </button>
       ))}
     </div>

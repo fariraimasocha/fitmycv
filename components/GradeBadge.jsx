@@ -26,7 +26,7 @@ export function GradeBadge({ grade, className, size = "sm" }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-sm font-semibold",
+        "inline-flex items-center rounded-full font-semibold",
         size === "md" ? "px-3 py-1 text-sm" : "px-2.5 py-0.5 text-xs",
         gradeChipClass(grade),
         className
@@ -52,7 +52,7 @@ export function AtsScoreChip({ score, preScore, loading, className, onClick }) {
       type={onClick ? "button" : undefined}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center whitespace-nowrap rounded-sm border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-semibold tabular-nums text-[var(--landing-ink)]",
+        "inline-flex items-center whitespace-nowrap rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-semibold tabular-nums text-[var(--landing-ink)]",
         onClick && "min-h-control-sm transition-colors hover:border-[var(--landing-ink)] sm:min-h-0",
         className
       )}

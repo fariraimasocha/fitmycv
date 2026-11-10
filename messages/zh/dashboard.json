@@ -13,21 +13,22 @@
       "compare": "比较录用通知",
       "saved": "已保存的职位",
       "preferences": "偏好设置",
-      "agent": "简历助手"
+      "agent": "简历助手",
+      "jobs": "查找职位",
+      "tools": "全部工具"
     },
     "fallback": {
       "detail": "详情",
       "brief": "简报",
       "thread": "对话"
     },
-    "dashboard": "控制台"
+    "dashboard": "控制台",
+    "backTo": "返回{page}"
   },
   "sidebar": {
     "groups": {
-      "overview": "概览",
-      "cvToolkit": "简历工具箱",
-      "jobSearch": "求职",
-      "settings": "设置"
+      "cv": "简历工具",
+      "jobs": "求职"
     },
     "items": {
       "home": "主页",
@@ -41,7 +42,8 @@
       "saved": "已保存的职位",
       "companyResearch": "公司调研",
       "compare": "比较录用通知",
-      "preferences": "偏好设置"
+      "preferences": "偏好设置",
+      "tools": "全部工具"
     },
     "upgrade": "升级到 Pro",
     "profile": "个人资料",
@@ -105,6 +107,15 @@
       "unnamed": "未命名公司",
       "empty": "在“定制简历”中添加职位，即可获得职位信息中所提公司的简报。",
       "cta": "查看公司调研"
+    },
+    "proBanner": {
+      "title": "升级 Pro，用好 FitMyCV",
+      "perks": {
+        "pdf": "PDF 下载",
+        "research": "公司调研",
+        "matches": "每日职位匹配"
+      },
+      "action": "升级到 Pro"
     }
   },
   "activation": {
@@ -112,6 +123,7 @@
     "progress": "{done}/{total}",
     "now": "当前",
     "next": "下一步",
+    "done": "已完成",
     "steps": {
       "resume": {
         "title": "添加你的简历",
@@ -881,5 +893,9 @@
     "offerTitle": "已移至录用",
     "offerBody": "回复前，先和你的其他申请并排比较。",
     "offerAction": "比较录用通知"
+  },
+  "jobs": {
+    "title": "查找职位",
+    "description": "每天两次从公司招聘页面获取的远程职位。"
   }
 }

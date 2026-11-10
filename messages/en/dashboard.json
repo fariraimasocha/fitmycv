@@ -13,21 +13,22 @@
       "compare": "Compare offers",
       "saved": "Saved jobs",
       "preferences": "Preferences",
-      "agent": "CV agent"
+      "agent": "CV agent",
+      "jobs": "Find jobs",
+      "tools": "All tools"
     },
     "fallback": {
       "detail": "Detail",
       "brief": "Brief",
       "thread": "Thread"
     },
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "backTo": "Back to {page}"
   },
   "sidebar": {
     "groups": {
-      "overview": "Overview",
-      "cvToolkit": "CV toolkit",
-      "jobSearch": "Job search",
-      "settings": "Settings"
+      "cv": "CV tools",
+      "jobs": "Job search"
     },
     "items": {
       "home": "Home",
@@ -41,7 +42,8 @@
       "saved": "Saved jobs",
       "companyResearch": "Company research",
       "compare": "Compare offers",
-      "preferences": "Preferences"
+      "preferences": "Preferences",
+      "tools": "All tools"
     },
     "upgrade": "Upgrade to Pro",
     "profile": "Profile",
@@ -105,6 +107,15 @@
       "unnamed": "Unnamed company",
       "empty": "Add a job on Tailor CV and get a brief on the company named in the posting.",
       "cta": "See company research"
+    },
+    "proBanner": {
+      "title": "Get more from FitMyCV with Pro",
+      "perks": {
+        "pdf": "PDF downloads",
+        "research": "Company research",
+        "matches": "Daily job matches"
+      },
+      "action": "Upgrade to Pro"
     }
   },
   "activation": {
@@ -112,6 +123,7 @@
     "progress": "{done} of {total}",
     "now": "NOW",
     "next": "NEXT",
+    "done": "Done",
     "steps": {
       "resume": {
         "title": "Add your CV",
@@ -881,5 +893,9 @@
     "offerTitle": "Moved to Offer",
     "offerBody": "Put it side by side with your other applications before you answer.",
     "offerAction": "Compare offers"
+  },
+  "jobs": {
+    "title": "Find jobs",
+    "description": "Remote roles pulled from company career pages twice a day."
   }
 }

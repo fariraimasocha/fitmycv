@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import {
@@ -46,7 +46,7 @@ function PasteFallback({ open, value, onChange, onOpen }) {
         onChange={(e) => onChange(e.target.value)}
         rows={8}
         placeholder={t("pastePlaceholder")}
-        className="w-full rounded-lg border border-[var(--landing-line)] bg-white p-3 text-sm text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+        className="w-full rounded-md border border-[var(--landing-line)] bg-white p-3 text-sm text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
       />
     </div>
   );
@@ -54,6 +54,7 @@ function PasteFallback({ open, value, onChange, onOpen }) {
 
 export default function ResumeUpload({ onParsed }) {
   const t = useTranslations("tailor.upload");
+  const reduceMotion = useReducedMotion();
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -163,8 +164,8 @@ export default function ResumeUpload({ onParsed }) {
   return (
     <motion.div
       className="space-y-4"
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       {!isUploading && !isComplete && (
@@ -182,23 +183,20 @@ export default function ResumeUpload({ onParsed }) {
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
-          className={`relative flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 transition-colors sm:p-10 ${
+          className={`relative flex min-h-60 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed p-6 text-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)] sm:p-10 ${
             dragActive
               ? "border-[var(--landing-accent)] bg-[var(--landing-primary-soft)]"
               : "border-[var(--landing-line)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]"
           }`}
         >
-          <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
-            <UploadSimpleIcon
-              size={20}
-              aria-hidden="true"
-            />
+          <span className="mb-4 flex size-14 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+            <UploadSimpleIcon size={26} aria-hidden="true" />
           </span>
-          <p className="text-sm font-medium text-[var(--landing-ink)]">
+          <p className="font-outfit text-base font-medium text-[var(--landing-ink)]">
             {t("dropHere")}
           </p>
           <p className="mt-1 text-xs text-[var(--landing-ink-soft)]">{t("or")}</p>
-          <span className="mt-3 text-sm font-medium text-[var(--landing-ink)] underline-offset-2 hover:underline">
+          <span className="dashboard-secondary-btn dashboard-secondary-btn-sm mt-3">
             {t("browse")}
           </span>
           <input
@@ -217,8 +215,10 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {file && !isUploading && !isComplete && (
-        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
-          <FileTextIcon size={24} className="shrink-0 text-[var(--landing-accent)]" />
+        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] px-4 py-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
+            <FileTextIcon size={20} aria-hidden="true" />
+          </span>
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium text-[var(--landing-ink)]">
               {file.name}
@@ -230,7 +230,7 @@ export default function ResumeUpload({ onParsed }) {
           <button
             type="button"
             onClick={removeFile}
-            className="rounded-lg p-1.5 text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
+            className="flex size-control-sm shrink-0 items-center justify-center rounded-md text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)] focus-visible:outline-2 focus-visible:outline-[var(--landing-ink)]"
             aria-label={t("removeFile")}
           >
             <XIcon size={16} aria-hidden="true" />
@@ -255,8 +255,8 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {isComplete && (
-        <div className="flex items-center gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-success-soft)] p-4 text-[var(--landing-success)]">
-          <CheckCircleIcon size={22} weight="fill" aria-hidden="true" />
+        <div className="flex items-center gap-3 rounded-lg bg-[var(--landing-success-soft)] px-4 py-3 text-[var(--landing-success)]">
+          <CheckCircleIcon size={22} weight="fill" className="shrink-0" aria-hidden="true" />
           <div>
             <p className="text-sm font-semibold">{t("doneTitle")}</p>
             <p className="text-xs opacity-80">{t("doneBody")}</p>
@@ -265,17 +265,15 @@ export default function ResumeUpload({ onParsed }) {
       )}
 
       {!isUploading && !isComplete && (
-        <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-          <button
-            type="button"
-            onClick={handleUpload}
-            disabled={!file && !pasting}
-            className="dashboard-primary-btn w-full"
-          >
-            <UploadSimpleIcon size={16} aria-hidden="true" />
-            {t("submit")}
-          </button>
-        </motion.div>
+        <button
+          type="button"
+          onClick={handleUpload}
+          disabled={!file && !pasting}
+          className="dashboard-primary-btn w-full"
+        >
+          <UploadSimpleIcon size={16} aria-hidden="true" />
+          {t("submit")}
+        </button>
       )}
     </motion.div>
   );

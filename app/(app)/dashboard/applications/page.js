@@ -53,9 +53,9 @@ import { cn } from "@/lib/utils";
 const SORT_OPTIONS = ["updated", "applied", "company", "role"];
 
 const VIEWS = [
-  { id: "board", icon: <KanbanIcon size={14} aria-hidden="true" /> },
-  { id: "table", icon: <RowsIcon size={14} aria-hidden="true" /> },
-  { id: "insights", icon: <ChartBarIcon size={14} aria-hidden="true" /> },
+  { id: "board", icon: <KanbanIcon size={16} aria-hidden="true" /> },
+  { id: "table", icon: <RowsIcon size={16} aria-hidden="true" /> },
+  { id: "insights", icon: <ChartBarIcon size={16} aria-hidden="true" /> },
 ];
 
 const LIST_KEY = ["applications", "list"];
@@ -69,7 +69,7 @@ const COMPARE = {
 };
 
 // Toolbar controls share one height with the view tabs and the -sm buttons.
-const CONTROL = "h-9";
+const CONTROL = "h-control";
 const SECONDARY_SM = "dashboard-secondary-btn dashboard-secondary-btn-sm";
 
 function Rise({ children, delay = 0, className }) {
@@ -153,7 +153,7 @@ function ArchivedToggle({ archived, count, onToggle, className }) {
 function PageSkeleton() {
   const t = useTranslations("dashboard.applications");
   return (
-    <DashboardPageShell width="full">
+    <DashboardPageShell>
       <DashboardPageHeader title={t("title")} description={t("description")} />
       <div className="dashboard-card grid grid-cols-2 divide-y divide-[var(--landing-line)] rounded-lg sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-5">
         {[0, 1, 2, 3, 4].map((i) => (
@@ -166,13 +166,10 @@ function PageSkeleton() {
           </div>
         ))}
       </div>
-      <div className="tool-skeleton h-9 w-56 rounded-md" />
+      <div className="tool-skeleton h-control w-56 rounded-md" />
       <div className="flex gap-3 overflow-hidden">
         {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="flex w-72 shrink-0 flex-col gap-2">
-            <div className="tool-skeleton h-8 rounded-md" />
-            <div className="tool-skeleton h-48 rounded-lg" />
-          </div>
+          <div key={i} className="tool-skeleton h-56 w-72 shrink-0 rounded-lg" />
         ))}
       </div>
     </DashboardPageShell>
@@ -249,7 +246,7 @@ function ApplicationsTracker() {
   if (isLoading) return <PageSkeleton />;
   if (applicationsQuery.isError && !applicationsQuery.data) {
     return (
-      <DashboardPageShell width="full">
+      <DashboardPageShell>
         <DashboardPageHeader title={t("title")} description={t("description")} />
         <DashboardLoadError query={applicationsQuery} />
       </DashboardPageShell>
@@ -293,7 +290,7 @@ function ApplicationsTracker() {
   ];
 
   return (
-    <DashboardPageShell width="full">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={t("title")}
         description={t("description")}
@@ -328,7 +325,7 @@ function ApplicationsTracker() {
         <>
           <DashboardStatStrip items={stats} columns={5} />
 
-          <Rise delay={0.1} className="flex flex-col gap-3">
+          <Rise delay={0.1} className="flex flex-col gap-4">
             {/* View tabs left, filters right. Search grows, everything else keeps its width. */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <DashboardTabBar
@@ -340,7 +337,7 @@ function ApplicationsTracker() {
 
               {view !== "insights" && (
                 <div className="flex items-center gap-2">
-                  <div className="relative min-w-0 flex-1 sm:w-56 sm:flex-none">
+                  <div className="relative min-w-0 flex-1 sm:w-64 sm:flex-none">
                     <MagnifyingGlassIcon
                       size={16}
                       className="pointer-events-none absolute top-1/2 start-3 -translate-y-1/2 text-muted-foreground"
@@ -371,7 +368,7 @@ function ApplicationsTracker() {
                           {tags.length ? t("tagCount", { count: tags.length }) : t("tags")}
                         </button>
                       </PopoverTrigger>
-                      <PopoverContent align="end" className="w-60 rounded-lg border-[var(--landing-line)] p-2 shadow-none">
+                      <PopoverContent align="end" className="w-60 p-2">
                         <TagChecklist allTags={allTags} tags={tags} onChange={setTags} />
                         {tags.length > 0 && (
                           <button
@@ -404,7 +401,7 @@ function ApplicationsTracker() {
                         type="button"
                         aria-label={t("filters")}
                         aria-pressed={filtersActive}
-                        className={cn(SECONDARY_SM, "relative w-9 shrink-0 px-0 sm:hidden")}
+                        className={cn(SECONDARY_SM, "relative size-control shrink-0 px-0 sm:hidden")}
                       >
                         <FunnelIcon size={16} aria-hidden="true" />
                         {filtersActive && (
@@ -412,7 +409,7 @@ function ApplicationsTracker() {
                         )}
                       </button>
                     </PopoverTrigger>
-                    <PopoverContent align="end" className="flex w-64 flex-col gap-3 rounded-lg border-[var(--landing-line)] p-3 shadow-none">
+                    <PopoverContent align="end" className="flex w-64 flex-col gap-3 p-3">
                       {allTags.length > 0 && (
                         <div className="flex flex-col gap-1.5">
                           <Label className="text-xs text-muted-foreground">{t("tags")}</Label>

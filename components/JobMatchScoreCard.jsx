@@ -72,7 +72,7 @@ function DimensionRow({ dimKey, dimension }) {
         <Icon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
         <span className="text-xs text-muted-foreground">{t(`dimensions.${dimKey}`)}</span>
         <span
-          className={`ms-auto inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
+          className={`ms-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
         >
           {dimension.grade}
         </span>
@@ -104,15 +104,26 @@ function LoadingSkeleton() {
   );
 }
 
+// Same frame as the other result cards: header row over a hairline, then body.
+function CardFrame({ title, description, action, children }) {
+  return (
+    <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+      <div className="dashboard-card-pad border-b border-[var(--landing-line)]">
+        <DashboardPanelHeader title={title} description={description} action={action} />
+      </div>
+      <div className="dashboard-card-pad">{children}</div>
+    </section>
+  );
+}
+
 export default function JobMatchScoreCard({ scoreData, isLoading, locked = false }) {
   const [expanded, setExpanded] = useState(false);
   const t = useTranslations("tailor.jobMatch");
 
   if (locked) {
     return (
-      <section className="dashboard-card dashboard-card-pad rounded-lg">
-        <DashboardPanelHeader title={t("title")} description={t("locked.description")} />
-        <div className="mt-4 flex flex-col gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
+      <CardFrame title={t("title")} description={t("locked.description")}>
+        <div className="flex flex-col gap-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
           <div className="flex items-start gap-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-surface)] text-[var(--landing-ink-soft)] landing-inset-edge">
               <LockSimpleIcon size={17} aria-hidden="true" />
@@ -127,21 +138,15 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
             {t("locked.seePlans")}
           </Link>
         </div>
-      </section>
+      </CardFrame>
     );
   }
 
   if (isLoading) {
     return (
-      <section className="dashboard-card dashboard-card-pad rounded-lg">
-        <DashboardPanelHeader
-          title={t("title")}
-          description={t("scoring")}
-        />
-        <div className="mt-4">
-          <LoadingSkeleton />
-        </div>
-      </section>
+      <CardFrame title={t("title")} description={t("scoring")}>
+        <LoadingSkeleton />
+      </CardFrame>
     );
   }
 
@@ -152,13 +157,12 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
   const label = t(`levels.${globalScoreLabel(globalScore)}`);
 
   return (
-    <section className="dashboard-card dashboard-card-pad rounded-lg">
-      <DashboardPanelHeader
-        title={t("title")}
-        description={t("description")}
-        action={<GradeBadge grade={globalGrade} size="md" className="shrink-0" />}
-      />
-      <div className="mt-4 space-y-4">
+    <CardFrame
+      title={t("title")}
+      description={t("description")}
+      action={<GradeBadge grade={globalGrade} className="shrink-0" />}
+    >
+      <div className="space-y-4">
         <div className="flex items-center gap-4">
           <ArcGauge
             value={globalScore}
@@ -195,7 +199,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
           type="button"
           onClick={() => setExpanded(!expanded)}
           aria-expanded={expanded}
-          className="-mx-2 flex items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+          className="flex min-h-control-sm w-full items-center justify-center gap-1 rounded-md px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-[var(--landing-paper-soft)] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
         >
           <span className="relative inline-grid">
             <span className="invisible col-start-1 row-start-1">{t("showDetails")}</span>
@@ -218,14 +222,14 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
               return (
                 <div key={key} className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-foreground">{t(`dimensions.${key}`)}</span>
+                    <span className="text-sm font-semibold text-foreground">{t(`dimensions.${key}`)}</span>
                     <span
-                      className={`rounded-sm px-1.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dim.grade)}`}
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dim.grade)}`}
                     >
                       {dim.grade}
                     </span>
                   </div>
-                  <p className="text-xs leading-relaxed text-muted-foreground">
+                  <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
                     {dim.reasoning}
                   </p>
                 </div>
@@ -234,6 +238,6 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
           </div>
         )}
       </div>
-    </section>
+    </CardFrame>
   );
 }

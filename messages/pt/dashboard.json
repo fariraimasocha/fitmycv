@@ -13,21 +13,22 @@
       "compare": "Comparar ofertas",
       "saved": "Vagas salvas",
       "preferences": "Preferências",
-      "agent": "Agente de currículo"
+      "agent": "Agente de currículo",
+      "jobs": "Encontrar vagas",
+      "tools": "Todas as ferramentas"
     },
     "fallback": {
       "detail": "Detalhe",
       "brief": "Resumo",
       "thread": "Conversa"
     },
-    "dashboard": "Painel"
+    "dashboard": "Painel",
+    "backTo": "Voltar para {page}"
   },
   "sidebar": {
     "groups": {
-      "overview": "Visão geral",
-      "cvToolkit": "Ferramentas de currículo",
-      "jobSearch": "Busca de emprego",
-      "settings": "Configurações"
+      "cv": "Ferramentas de CV",
+      "jobs": "Busca de emprego"
     },
     "items": {
       "home": "Início",
@@ -41,7 +42,8 @@
       "saved": "Vagas salvas",
       "companyResearch": "Pesquisa de empresas",
       "compare": "Comparar ofertas",
-      "preferences": "Preferências"
+      "preferences": "Preferências",
+      "tools": "Todas as ferramentas"
     },
     "upgrade": "Assine o Pro",
     "profile": "Perfil",
@@ -105,6 +107,15 @@
       "unnamed": "Empresa sem nome",
       "empty": "Adicione uma vaga em Adaptar currículo e receba um resumo sobre a empresa citada no anúncio.",
       "cta": "Ver pesquisa de empresas"
+    },
+    "proBanner": {
+      "title": "Aproveite mais o FitMyCV com o Pro",
+      "perks": {
+        "pdf": "Downloads em PDF",
+        "research": "Pesquisa de empresas",
+        "matches": "Vagas diárias para você"
+      },
+      "action": "Mudar para o Pro"
     }
   },
   "activation": {
@@ -112,6 +123,7 @@
     "progress": "{done} de {total}",
     "now": "AGORA",
     "next": "DEPOIS",
+    "done": "Concluído",
     "steps": {
       "resume": {
         "title": "Adicione seu currículo",
@@ -881,5 +893,9 @@
     "offerTitle": "Movida para Oferta",
     "offerBody": "Compare com suas outras candidaturas antes de responder.",
     "offerAction": "Comparar ofertas"
+  },
+  "jobs": {
+    "title": "Encontrar vagas",
+    "description": "Vagas remotas tiradas das páginas de carreira das empresas duas vezes por dia."
   }
 }

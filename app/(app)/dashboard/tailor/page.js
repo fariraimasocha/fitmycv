@@ -10,7 +10,6 @@ import { useTranslations } from "next-intl";
 import {
   SpinnerGapIcon,
   LinkIcon,
-  TextAlignLeftIcon,
   FileTextIcon,
   EnvelopeSimpleIcon,
   DownloadSimpleIcon,
@@ -25,6 +24,7 @@ import {
   ChatCenteredTextIcon,
   CheckIcon,
   BriefcaseIcon,
+  ArrowRightIcon,
   ClockCounterClockwiseIcon,
   ListChecksIcon,
   CaretDownIcon,
@@ -122,47 +122,54 @@ function Rise({ children, delay = 0, className }) {
   );
 }
 
-/** Three cells, one per step. Done steps tick, the current one is inked. */
+function hostOf(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+/** A quiet stepper: numbered dots joined by a hairline. Done steps tick. */
 function StepRail({ current }) {
   const t = useTranslations("tailor.tailorPage.steps");
   return (
-    <DashboardPanel pad={false} delay={0.05}>
-      <ol className="grid grid-cols-1 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-        {STEPS.map((step, index) => {
-          const number = index + 1;
-          const state = number < current ? "done" : number === current ? "current" : "next";
-          return (
-            <li
-              key={step}
-              aria-current={state === "current" ? "step" : undefined}
-              className="flex items-center gap-3 px-4 py-3 sm:px-5"
+    <ol className="flex items-center gap-2 sm:gap-3">
+      {STEPS.map((step, index) => {
+        const number = index + 1;
+        const state = number < current ? "done" : number === current ? "current" : "next";
+        return (
+          <li
+            key={step}
+            aria-current={state === "current" ? "step" : undefined}
+            className="flex min-w-0 items-center gap-2 sm:gap-3 [&:not(:last-child)]:flex-1"
+          >
+            <span
+              className={cn(
+                "flex size-7 shrink-0 items-center justify-center rounded-full font-outfit text-xs font-semibold tabular-nums",
+                state === "done" && "bg-[var(--landing-success-soft)] text-[var(--landing-success)]",
+                state === "current" && "bg-[var(--landing-ink)] text-white",
+                state === "next" && "border border-[var(--landing-line)] text-muted-foreground",
+              )}
             >
-              <span
-                className={cn(
-                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-md font-outfit text-sm font-semibold tabular-nums",
-                  state === "done" && "bg-[var(--landing-success-soft)] text-[var(--landing-success)]",
-                  state === "current" && "bg-[var(--landing-ink)] text-white",
-                  state === "next" && "landing-inset-edge bg-[var(--landing-paper-soft)] text-muted-foreground",
-                )}
-              >
-                {state === "done" ? <CheckIcon size={16} weight="bold" aria-hidden="true" /> : number}
-              </span>
-              <span className="min-w-0">
-                <span
-                  className={cn(
-                    "block truncate text-sm font-semibold",
-                    state === "next" ? "text-muted-foreground" : "text-foreground",
-                  )}
-                >
-                  {t(`${step}.title`)}
-                </span>
-                <span className="block truncate text-xs text-muted-foreground">{t(`${step}.body`)}</span>
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-    </DashboardPanel>
+              {state === "done" ? <CheckIcon size={14} weight="bold" aria-hidden="true" /> : number}
+            </span>
+            {/* Phones show only the current label, so the row never wraps. */}
+            <span
+              className={cn(
+                "truncate text-sm",
+                state === "current" ? "font-medium text-foreground" : "hidden text-muted-foreground sm:inline",
+              )}
+            >
+              {t(`${step}.title`)}
+            </span>
+            {number < STEPS.length && (
+              <span aria-hidden="true" className="h-px min-w-4 flex-1 bg-[var(--landing-line)]" />
+            )}
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 
@@ -826,43 +833,42 @@ function Tailor() {
   );
 
   return (
-    <DashboardPageShell width="full">
+    <DashboardPageShell>
       <DashboardPageHeader
         title={t("title")}
-        description={t("description")}
+        description={jobData ? t("description") : undefined}
       />
 
-      <StepRail current={currentStep} />
+      {!showJobForm && <StepRail current={currentStep} />}
 
       {/* Step 1: the job, as a form or as a summary bar once it is in. */}
       {showJobForm ? (
-        <DashboardPanel delay={0.1}>
-          <div className="flex items-start gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-              {jobInputMode === "link" ? (
-                <LinkIcon size={17} aria-hidden="true" />
-              ) : (
-                <TextAlignLeftIcon size={17} aria-hidden="true" />
-              )}
-            </span>
-            <DashboardPanelHeader
-              className="min-w-0 flex-1"
-              title={jobInputMode === "link" ? t("form.linkTitle") : t("form.textTitle")}
-              description={
-                jobInputMode === "link" ? t("form.linkDescription") : t("form.textDescription")
-              }
+        // Teal's "start from job description": one narrow column, one question,
+        // one button. The wide two-column layout only starts once a job is in.
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 sm:pt-4">
+          <StepRail current={currentStep} />
+
+          <DashboardPanel delay={0.1} bodyClassName="sm:p-8">
+            <h2 className="font-outfit text-2xl font-semibold tracking-tight text-foreground text-balance">
+              {t("form.heading")}
+            </h2>
+            <p className="mt-1 text-sm leading-6 text-muted-foreground">{t("form.subheading")}</p>
+
+            <DashboardFilterPills
+              className="mt-6 grid w-full grid-cols-2 sm:w-full [&>button]:justify-center"
+              tabs={jobInputTabs}
+              activeKey={jobInputMode}
+              onChange={setJobInputMode}
             />
-          </div>
-          <DashboardFilterPills
-            className="mt-4"
-            tabs={jobInputTabs}
-            activeKey={jobInputMode}
-            onChange={setJobInputMode}
-          />
-          <form onSubmit={handleExtract} className="mt-3 flex flex-col gap-3">
-            {jobInputMode === "link" ? (
-              <>
-                <div className="flex flex-col gap-2 sm:flex-row">
+
+            <form onSubmit={handleExtract} className="mt-4 flex flex-col gap-3">
+              {jobInputMode === "link" ? (
+                <div className="relative">
+                  <LinkIcon
+                    size={18}
+                    className="pointer-events-none absolute start-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                   <Input
                     type="url"
                     placeholder="https://www.linkedin.com/jobs/view/…"
@@ -871,50 +877,11 @@ function Tailor() {
                     aria-label={t("form.urlAria")}
                     autoComplete="url"
                     spellCheck={false}
-                    className="min-w-0 text-sm sm:flex-1"
+                    autoFocus
+                    className="w-full ps-10 text-base sm:text-sm"
                   />
-                  <button
-                    type="submit"
-                    disabled={extractDisabled}
-                    aria-busy={extractMutation.isPending}
-                    className="dashboard-primary-btn w-full sm:w-auto"
-                  >
-                    {extractMutation.isPending ? (
-                      <>
-                        <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                        {t("form.reading")}
-                        {elapsedBadge}
-                      </>
-                    ) : (
-                      <>
-                        <SparkleIcon size={16} aria-hidden="true" />
-                        {t("tailorCta")}
-                      </>
-                    )}
-                  </button>
                 </div>
-                {recentUrls.length > 0 && !jobData && (
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <ClockCounterClockwiseIcon size={12} aria-hidden="true" />
-                      {t("form.recent")}
-                    </span>
-                    {recentUrls.map((item) => (
-                      <button
-                        key={item.url}
-                        type="button"
-                        onClick={() => setUrl(item.url)}
-                        title={item.url}
-                        className="inline-flex h-control-sm max-w-full items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 text-xs font-medium text-foreground transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
-                      >
-                        <span className="truncate">{item.title || item.url}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </>
-            ) : (
-              <>
+              ) : (
                 <Textarea
                   value={jobText}
                   onChange={(e) => setJobText(e.target.value)}
@@ -922,54 +889,90 @@ function Tailor() {
                   placeholder={t("form.textPlaceholder")}
                   rows={8}
                   maxLength={15000}
-                  className="min-h-40 text-sm"
+                  className="min-h-48 text-sm"
                 />
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="text-xs tabular-nums text-muted-foreground">
-                    {jobText.trim().length < MIN_JOB_TEXT_CHARS
-                      ? t("form.minChars", { min: MIN_JOB_TEXT_CHARS })
-                      : t("form.chars", { count: jobText.trim().length })}
-                  </p>
-                  <button
-                    type="submit"
-                    disabled={extractDisabled}
-                    aria-busy={extractMutation.isPending}
-                    className="dashboard-primary-btn w-full sm:w-auto"
-                  >
-                    {extractMutation.isPending ? (
-                      <>
-                        <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
-                        {t("form.reading")}
-                        {elapsedBadge}
-                      </>
-                    ) : (
-                      <>
-                        <SparkleIcon size={16} aria-hidden="true" />
-                        {t("tailorCta")}
-                      </>
-                    )}
-                  </button>
-                </div>
-              </>
-            )}
-            {jobData && (
+              )}
+
+              <p className="text-xs leading-5 tabular-nums text-muted-foreground">
+                {jobInputMode === "link"
+                  ? t("form.linkHint")
+                  : jobText.trim().length < MIN_JOB_TEXT_CHARS
+                    ? t("form.minChars", { min: MIN_JOB_TEXT_CHARS })
+                    : t("form.chars", { count: jobText.trim().length })}
+              </p>
+
               <button
-                type="button"
-                onClick={() => setEditingJob(false)}
-                className="dashboard-secondary-btn dashboard-secondary-btn-sm self-start"
+                type="submit"
+                disabled={extractDisabled}
+                aria-busy={extractMutation.isPending}
+                className="dashboard-primary-btn mt-1 w-full"
               >
-                {t("form.keepJob")}
+                {extractMutation.isPending ? (
+                  <>
+                    <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
+                    {t("form.reading")}
+                    {elapsedBadge}
+                  </>
+                ) : (
+                  <>
+                    <SparkleIcon size={16} aria-hidden="true" />
+                    {t("tailorCta")}
+                  </>
+                )}
               </button>
-            )}
-          </form>
-        </DashboardPanel>
+
+              {jobData && (
+                <button
+                  type="button"
+                  onClick={() => setEditingJob(false)}
+                  className="dashboard-secondary-btn w-full"
+                >
+                  {t("form.keepJob")}
+                </button>
+              )}
+            </form>
+          </DashboardPanel>
+
+          {/* Recent links as rows, like Teal's recent resumes. One click fills the field. */}
+          {jobInputMode === "link" && recentUrls.length > 0 && !jobData && (
+            <section className="flex flex-col gap-2">
+              <h3 className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+                <ClockCounterClockwiseIcon size={16} aria-hidden="true" />
+                {t("form.recentTitle")}
+              </h3>
+              <ul className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
+                {recentUrls.map((item) => (
+                  <li key={item.url}>
+                    <button
+                      type="button"
+                      onClick={() => setUrl(item.url)}
+                      title={item.url}
+                      className="flex w-full items-center gap-3 px-4 py-3 text-start transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+                    >
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
+                        <BriefcaseIcon size={16} aria-hidden="true" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-medium text-foreground">
+                          {item.title || item.url}
+                        </span>
+                        <span className="block truncate text-xs text-muted-foreground">{hostOf(item.url)}</span>
+                      </span>
+                      <ArrowRightIcon size={16} className="shrink-0 text-muted-foreground rtl:-scale-x-100" aria-hidden="true" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
       ) : (
         /* Rides along while you scroll so the job, its grade and the primary
            action stay in view under a long requirements list. */
         <div className="sticky top-14 z-10 -mx-3 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/95 px-3 py-2 backdrop-blur-md sm:top-16 sm:-mx-6 sm:px-6">
           <div className="flex items-center gap-3">
-            <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground sm:flex">
-              <BriefcaseIcon size={17} aria-hidden="true" />
+            <span className="hidden size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground sm:flex">
+              <BriefcaseIcon size={18} aria-hidden="true" />
             </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-foreground">
@@ -1038,8 +1041,8 @@ function Tailor() {
           {tailorResult && (
             <DashboardPanel pad={false}>
               <div className="dashboard-row-pad flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-                  <ListChecksIcon size={17} aria-hidden="true" />
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
+                  <ListChecksIcon size={18} aria-hidden="true" />
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-foreground">
@@ -1283,7 +1286,7 @@ function Tailor() {
                             <li
                               key={`${k.keyword}-${i}`}
                               title={k.location}
-                              className="inline-flex cursor-help items-center rounded-md border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
+                              className="inline-flex cursor-help items-center rounded-full border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
                             >
                               {k.keyword}
                             </li>

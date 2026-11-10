@@ -9,8 +9,6 @@
     "howToDescription": "Paste a job link, let FitMyCV rewrite your CV against the role's requirements, then download the CV and cover letter as PDFs."
   },
   "hero": {
-    "platformTitle": "From job link to interview, in one place",
-    "platform": {"tailor": "Tailored CV", "coverLetter": "Cover letter", "atsScore": "ATS score", "jobMatch": "Job match", "linkedin": "LinkedIn check", "jobs": "Job board"},
     "linkLabel": "Job link",
     "linkPlaceholder": "Paste any job link",
     "tailorCta": "Tailor my CV free",
@@ -40,9 +38,6 @@
     "templates": "ATS-safe templates",
     "atsGuides": "Company ATS guides",
     "freeTools": "Free tools"
-  },
-  "jobBoards": {
-    "title": "Works with any job link"
   },
   "problem": {
     "eyebrow": "The problem",
@@ -97,8 +92,8 @@
         "body": "Remove your CV, your tailored documents, and your account from the dashboard whenever you want."
       },
       "cancel": {
-        "title": "Cancel whenever",
-        "body": "Monthly plans have no contract and no cancellation flow to fight. Access runs to the end of the month you paid for."
+        "title": "Pay once, no renewal",
+        "body": "Lifetime access is one payment. There is no subscription to renew and nothing to cancel."
       }
     },
     "methodTitle": "How the tailoring works",
@@ -126,7 +121,7 @@
     "cta": "Tailor my CV free"
   },
   "footer": {
-    "tagline": "AI-powered CV tailoring. Land more interviews with less effort.",
+    "tagline": "FitMyCV tailors your CV and cover letter to the job link you paste.",
     "rights": "2026 FitMyCV. All rights reserved.",
     "headings": {
       "product": "Product",
@@ -221,6 +216,60 @@
         "asks": "Asks for <k>React</k> and <k>unit testing</k>.",
         "before": "Built a student society website with React and wrote tests so updates did not break it.",
         "after": "Built a <k>React</k> site for a student society and wrote <k>unit tests</k> to catch bugs before each release."
+      }
+    }
+  },
+  "suite": {
+    "eyebrow": "What you get",
+    "title": "One job link. A CV, a cover letter and a tracker.",
+    "rows": {
+      "link": {
+        "label": "Job link",
+        "title": "Paste the job link",
+        "body": "FitMyCV reads the listing at the link and pulls out its requirements, skills and keywords. If a job board blocks it, paste the description instead.",
+        "cta": "How tailoring from a link works",
+        "alt": "The Tailor CV page with a LinkedIn job link pasted in"
+      },
+      "cv": {
+        "label": "Tailored CV",
+        "title": "Your CV, rewritten for that role",
+        "body": "Every line comes from the CV you uploaded, reworded in the job's language. CV checks run as you edit and show whether screening software can read it.",
+        "cta": "Check your CV free",
+        "alt": "A tailored CV in the editor, with CV checks and a live preview"
+      },
+      "letter": {
+        "label": "Cover letter",
+        "title": "A cover letter for the same job",
+        "body": "Written from your tailored CV and the posting. Edit any line, then download it as a PDF.",
+        "cta": "See the cover letter generator",
+        "alt": "A cover letter written for a QA engineer role"
+      },
+      "tracker": {
+        "label": "Applications",
+        "title": "Track every application",
+        "body": "Move each role from saved to applied to offer. Each card keeps the CV you made for it.",
+        "cta": "Start with a job link",
+        "alt": "The applications board with saved and applied roles"
+      }
+    },
+    "freeTitle": "Free tools, no sign-in",
+    "freeBody": "Try these before you make an account.",
+    "free": {
+      "ats": {
+        "title": "ATS resume checker",
+        "body": "See which required terms your CV is missing."
+      },
+      "match": {
+        "title": "Resume job match checker",
+        "body": "Score your resume against a job description."
+      },
+      "linkedin": {
+        "title": "LinkedIn profile checker",
+        "body": "See which job terms your headline, About and skills cover."
+      },
+      "jobs": {
+        "title": "Job board",
+        "body": "Remote roles pulled from company career pages."
       }
     }
   }

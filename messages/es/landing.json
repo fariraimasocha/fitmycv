@@ -9,8 +9,6 @@
     "howToDescription": "Pega el enlace de una oferta, deja que FitMyCV reescriba tu CV según los requisitos del puesto y descarga el CV y la carta de presentación en PDF."
   },
   "hero": {
-    "platformTitle": "Del enlace de la oferta a la entrevista, en un solo lugar",
-    "platform": {"tailor": "CV adaptado", "coverLetter": "Carta de presentación", "atsScore": "Puntuación ATS", "jobMatch": "Compatibilidad", "linkedin": "Perfil de LinkedIn", "jobs": "Ofertas de empleo"},
     "linkLabel": "Enlace de la oferta",
     "linkPlaceholder": "Pega el enlace de una oferta",
     "tailorCta": "Adaptar mi CV gratis",
@@ -40,9 +38,6 @@
     "templates": "Plantillas compatibles con ATS",
     "atsGuides": "Guías ATS por empresa",
     "freeTools": "Herramientas gratis"
-  },
-  "jobBoards": {
-    "title": "Funciona con cualquier enlace de empleo"
   },
   "problem": {
     "eyebrow": "El problema",
@@ -97,8 +92,8 @@
         "body": "Elimina tu CV, tus documentos adaptados y tu cuenta desde el panel cuando quieras."
       },
       "cancel": {
-        "title": "Cancela cuando quieras",
-        "body": "El plan mensual no tiene contrato ni un proceso de cancelación contra el que pelear. El acceso dura hasta el final del mes que pagaste."
+        "title": "Un solo pago, sin renovación",
+        "body": "El acceso de por vida es un único pago. No hay suscripción que renovar ni nada que cancelar."
       }
     },
     "methodTitle": "Cómo funciona la adaptación",
@@ -126,7 +121,7 @@
     "cta": "Adaptar mi CV gratis"
   },
   "footer": {
-    "tagline": "Adaptación de CV con IA. Consigue más entrevistas con menos esfuerzo.",
+    "tagline": "FitMyCV adapta tu CV y tu carta de presentación al enlace de la oferta que pegas.",
     "rights": "2026 FitMyCV. Todos los derechos reservados.",
     "headings": {
       "product": "Producto",
@@ -221,6 +216,60 @@
         "asks": "Pide <k>React</k> y <k>pruebas unitarias</k>.",
         "before": "Hice la web de una asociación de estudiantes con React y escribí pruebas para que las actualizaciones no rompieran nada.",
         "after": "Creé un sitio en <k>React</k> para una asociación de estudiantes y escribí <k>pruebas unitarias</k> para detectar errores antes de cada versión."
+      }
+    }
+  },
+  "suite": {
+    "eyebrow": "Lo que obtienes",
+    "title": "Un enlace de oferta. Un CV, una carta y un seguimiento.",
+    "rows": {
+      "link": {
+        "label": "Enlace de oferta",
+        "title": "Pega el enlace de la oferta",
+        "body": "FitMyCV lee la oferta en ese enlace y extrae sus requisitos, habilidades y palabras clave. Si un portal lo bloquea, pega la descripción.",
+        "cta": "Cómo funciona adaptar desde un enlace",
+        "alt": "La página Adaptar CV con un enlace de oferta de LinkedIn pegado"
+      },
+      "cv": {
+        "label": "CV adaptado",
+        "title": "Tu CV, reescrito para ese puesto",
+        "body": "Cada línea sale del CV que subiste, redactada con las palabras de la oferta. Las comprobaciones del CV se ejecutan mientras editas y muestran si el software de selección puede leerlo.",
+        "cta": "Revisa tu CV gratis",
+        "alt": "Un CV adaptado en el editor, con comprobaciones y vista previa en vivo"
+      },
+      "letter": {
+        "label": "Carta de presentación",
+        "title": "Una carta para la misma oferta",
+        "body": "Escrita a partir de tu CV adaptado y la oferta. Edita cualquier línea y descárgala en PDF.",
+        "cta": "Ver el generador de cartas",
+        "alt": "Una carta de presentación para un puesto de ingeniero QA"
+      },
+      "tracker": {
+        "label": "Candidaturas",
+        "title": "Sigue cada candidatura",
+        "body": "Mueve cada puesto de guardado a postulado y a oferta. Cada tarjeta guarda el CV que hiciste para él.",
+        "cta": "Empieza con un enlace",
+        "alt": "El tablero de candidaturas con puestos guardados y postulados"
+      }
+    },
+    "freeTitle": "Herramientas gratis, sin registro",
+    "freeBody": "Pruébalas antes de crear una cuenta.",
+    "free": {
+      "ats": {
+        "title": "Revisor de CV para ATS",
+        "body": "Mira qué términos requeridos le faltan a tu CV."
+      },
+      "match": {
+        "title": "Coincidencia de CV y oferta",
+        "body": "Puntúa tu CV frente a una oferta de empleo."
+      },
+      "linkedin": {
+        "title": "Revisor de perfil de LinkedIn",
+        "body": "Mira qué términos de la oferta cubren tu titular, tu extracto y tus habilidades."
+      },
+      "jobs": {
+        "title": "Bolsa de empleo",
+        "body": "Puestos remotos tomados de las páginas de empleo de las empresas."
       }
     }
   }

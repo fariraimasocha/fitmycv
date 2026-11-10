@@ -187,7 +187,7 @@ function KeywordsSection({ keywords, referenceCV }) {
               {matched.map((kw) => (
                 <li
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-md border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
+                  className="inline-flex items-center gap-1 rounded-full border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
                 >
                   <CheckCircleIcon size={12} weight="fill" aria-hidden="true" />
                   {kw}
@@ -196,7 +196,7 @@ function KeywordsSection({ keywords, referenceCV }) {
               {missing.map((kw) => (
                 <li
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-accent-dark)]"
+                  className="inline-flex items-center gap-1 rounded-full border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-accent-dark)]"
                 >
                   <XCircleIcon size={12} weight="fill" aria-hidden="true" />
                   {kw}
@@ -207,7 +207,7 @@ function KeywordsSection({ keywords, referenceCV }) {
             keywords.map((kw) => (
               <li
                 key={kw}
-                className="inline-flex items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2 py-0.5 text-xs font-medium text-muted-foreground"
+                className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2 py-0.5 text-xs font-medium text-muted-foreground"
               >
                 {kw}
               </li>

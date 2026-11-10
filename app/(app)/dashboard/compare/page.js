@@ -17,6 +17,7 @@ import {
   DashboardPageHeader,
   DashboardPanel,
   DashboardPanelHeader,
+  DashboardSectionTitle,
   DashboardEmptyState,
   ProGate,
 } from "@/components/dashboard";
@@ -52,7 +53,7 @@ function ScoreChip({ score }) {
   return (
     <span
       className={cn(
-        "inline-flex h-6 min-w-12 items-center justify-center rounded-md px-2 text-xs font-semibold tabular-nums",
+        "inline-flex h-6 min-w-12 items-center justify-center rounded-full px-2 text-xs font-semibold tabular-nums",
         scoreTone(score)
       )}
     >
@@ -61,62 +62,73 @@ function ScoreChip({ score }) {
   );
 }
 
+// One row of the checklist. The whole row is the hit target, the square on the
+// left shows the state, and the hairline list keeps every row the same height.
 function OfferOption({ app, selected, disabled, onToggle }) {
   const t = useTranslations("dashboard.compare");
   return (
-    <button
-      type="button"
-      role="checkbox"
-      aria-checked={selected}
-      disabled={disabled}
-      onClick={onToggle}
-      className={cn(
-        "flex w-full items-start gap-2.5 rounded-md border px-3 py-2.5 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 sm:items-center sm:gap-3",
-        selected
-          ? "border-foreground bg-[var(--landing-primary-soft)]"
-          : "border-[var(--landing-line)] bg-[var(--landing-surface)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]",
-        disabled && "cursor-not-allowed opacity-40 hover:border-[var(--landing-line)] hover:bg-[var(--landing-surface)]"
-      )}
-    >
-      <span
+    <li>
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={selected}
+        disabled={disabled}
+        onClick={onToggle}
         className={cn(
-          "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border transition-colors sm:mt-0",
-          selected ? "border-foreground bg-foreground text-background" : "border-[var(--landing-line)] bg-[var(--landing-surface)]"
+          "flex min-h-16 w-full items-center gap-3 px-4 py-3 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40 sm:px-5",
+          selected ? "bg-[var(--landing-primary-soft)]" : "hover:bg-[var(--landing-paper-soft)]",
+          disabled && "cursor-not-allowed opacity-40 hover:bg-transparent"
         )}
-        aria-hidden="true"
       >
-        {selected && <CheckIcon size={12} weight="bold" />}
-      </span>
-      <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-xs font-semibold text-foreground sm:flex">
-        {initials(app.jobCompany)}
-      </span>
-      <span className="min-w-0 flex-1">
-        <span className="block text-sm font-semibold leading-snug break-words whitespace-normal text-foreground">
-          {app.jobTitle || t("untitledRole")}
+        <span
+          className={cn(
+            "flex size-5 shrink-0 items-center justify-center rounded-sm border transition-colors",
+            selected
+              ? "border-foreground bg-foreground text-background"
+              : "border-[var(--landing-ink-faint)] bg-[var(--landing-surface)]"
+          )}
+          aria-hidden="true"
+        >
+          {selected && <CheckIcon size={12} weight="bold" />}
         </span>
-        <span className="mt-0.5 block truncate text-xs text-muted-foreground">{app.jobCompany || t("companyNotSet")}</span>
-      </span>
-      {app.matchGrade && (
-        <span className="shrink-0 text-xs font-medium tabular-nums text-muted-foreground">{app.matchGrade}</span>
-      )}
-    </button>
+        <span className="hidden size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-surface)] font-outfit text-xs font-semibold text-foreground ring-1 ring-inset ring-[var(--landing-line)] sm:flex">
+          {initials(app.jobCompany)}
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-semibold text-foreground">
+            {app.jobTitle || t("untitledRole")}
+          </span>
+          <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+            {app.jobCompany || t("companyNotSet")}
+          </span>
+        </span>
+        {app.matchGrade && (
+          <span className="inline-flex h-6 shrink-0 items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] px-2 text-xs font-medium tabular-nums text-muted-foreground">
+            {app.matchGrade}
+          </span>
+        )}
+      </button>
+    </li>
   );
 }
 
 function SelectionSkeleton() {
   return (
-    <div className="dashboard-card rounded-lg dashboard-card-pad">
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col gap-1.5">
-          <div className="tool-skeleton h-3.5 w-32 rounded-sm" />
-          <div className="tool-skeleton h-3 w-20 rounded-sm" />
-        </div>
-        <div className="tool-skeleton h-9 w-32 rounded-md" />
-      </div>
-      <div className="mt-4 grid gap-2 sm:grid-cols-2">
+    <div className="flex flex-col gap-3">
+      <div className="tool-skeleton h-5 w-40 rounded-sm" />
+      <div className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
         {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="tool-skeleton h-14 rounded-md" />
+          <div key={i} className="flex min-h-16 items-center gap-3 px-4 sm:px-5">
+            <div className="tool-skeleton size-5 rounded-sm" />
+            <div className="flex flex-1 flex-col gap-1.5">
+              <div className="tool-skeleton h-3.5 w-1/3 rounded-sm" />
+              <div className="tool-skeleton h-3 w-1/4 rounded-sm" />
+            </div>
+          </div>
         ))}
+        <div className="flex items-center justify-end px-4 py-3 sm:px-5">
+          <div className="tool-skeleton h-control w-40 rounded-md" />
+        </div>
       </div>
     </div>
   );
@@ -166,7 +178,7 @@ function Compare() {
 
   if (isLoading) {
     return (
-      <DashboardPageShell width="wide">
+      <DashboardPageShell>
         <DashboardPageHeader title={t("title")} description={t("description")} />
         <SelectionSkeleton />
       </DashboardPageShell>
@@ -179,7 +191,7 @@ function Compare() {
   const comparisons = comparisonResult?.comparisons ?? [];
 
   return (
-    <DashboardPageShell width="wide">
+    <DashboardPageShell>
       <DashboardPageHeader title={t("title")} description={t("description")} />
 
       {apps.length === 0 ? (
@@ -191,16 +203,34 @@ function Compare() {
           actionHref="/dashboard/applications"
         />
       ) : (
-        <DashboardPanel delay={0.05}>
-          <DashboardPanelHeader
-            title={t("selectTitle")}
-            description={t("selectedCount", { count: selectedCount, max: MAX_SELECTED })}
-            action={
+        <section className="flex flex-col gap-3">
+          <DashboardSectionTitle title={t("selectTitle")} />
+          <DashboardPanel pad={false} as="div" delay={0.05}>
+            <ul aria-label={t("selectTitle")} className="divide-y divide-[var(--landing-line)]">
+              {apps.map((app) => {
+                const isSelected = selectedIds.includes(app._id);
+                const disabled = !isSelected && selectedCount >= MAX_SELECTED;
+                return (
+                  <OfferOption
+                    key={app._id}
+                    app={app}
+                    selected={isSelected}
+                    disabled={disabled}
+                    onToggle={() => !disabled && toggleSelect(app._id)}
+                  />
+                );
+              })}
+            </ul>
+            {/* The one primary action sits under the list, next to the running count. */}
+            <div className="flex flex-col gap-3 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+              <p aria-live="polite" className="text-sm tabular-nums text-muted-foreground">
+                {t("selectedCount", { count: selectedCount, max: MAX_SELECTED })}
+              </p>
               <button
                 type="button"
                 onClick={() => compareMutation.mutate()}
                 disabled={!canCompare}
-                className="dashboard-primary-btn dashboard-primary-btn-sm shrink-0"
+                className="dashboard-primary-btn w-full sm:w-auto"
               >
                 {compareMutation.isPending ? (
                   <SpinnerGapIcon size={16} className="animate-spin" aria-hidden="true" />
@@ -209,24 +239,9 @@ function Compare() {
                 )}
                 {compareMutation.isPending ? t("comparing") : t("compareSelected")}
               </button>
-            }
-          />
-          <div className="mt-4 grid gap-2 sm:grid-cols-2">
-            {apps.map((app) => {
-              const isSelected = selectedIds.includes(app._id);
-              const disabled = !isSelected && selectedCount >= MAX_SELECTED;
-              return (
-                <OfferOption
-                  key={app._id}
-                  app={app}
-                  selected={isSelected}
-                  disabled={disabled}
-                  onToggle={() => !disabled && toggleSelect(app._id)}
-                />
-              );
-            })}
-          </div>
-        </DashboardPanel>
+            </div>
+          </DashboardPanel>
+        </section>
       )}
 
       {comparisonResult && (
@@ -244,7 +259,7 @@ function Compare() {
                   <tr className="border-b border-[var(--landing-line)]">
                     <th
                       scope="col"
-                      className="sticky start-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-2.5 text-start text-xs font-medium uppercase tracking-wide text-muted-foreground sm:px-5"
+                      className="sticky start-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-3 text-start text-xs font-medium text-muted-foreground sm:px-5"
                     >
                       {t("dimension")}
                     </th>
@@ -252,9 +267,9 @@ function Compare() {
                       <th
                         key={c.id || c.company}
                         scope="col"
-                        className="min-w-40 px-4 py-2.5 text-end align-bottom"
+                        className="min-w-40 px-4 py-3 text-end align-bottom"
                       >
-                        <span className="block truncate text-xs font-semibold text-foreground">
+                        <span className="block truncate text-sm font-semibold text-foreground">
                           {c.company}
                         </span>
                         <span className="block truncate text-xs font-normal text-muted-foreground">
@@ -269,7 +284,7 @@ function Compare() {
                     <tr key={key} className="transition-colors hover:bg-[var(--landing-paper-soft)]">
                       <th
                         scope="row"
-                        className="sticky start-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-start text-xs font-medium text-muted-foreground sm:px-5"
+                        className="sticky start-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-start text-sm font-medium text-foreground sm:px-5"
                       >
                         {t(`dimensions.${key}`)}
                       </th>
@@ -296,7 +311,7 @@ function Compare() {
                   <tr className="border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
                     <th
                       scope="row"
-                      className="sticky start-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-start text-xs font-semibold uppercase tracking-wide text-foreground sm:px-5"
+                      className="sticky start-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-start text-sm font-semibold text-foreground sm:px-5"
                     >
                       {t("total")}
                     </th>
@@ -320,7 +335,7 @@ function Compare() {
             {comparisonResult.recommendation && (
               <DashboardPanel delay={0.1}>
                 <div className="flex items-start gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
                     <LightbulbIcon size={16} weight="fill" aria-hidden="true" />
                   </span>
                   <div className="min-w-0">
@@ -336,7 +351,7 @@ function Compare() {
             {comparisonResult.tradeoffs?.length > 0 && (
               <DashboardPanel delay={0.15}>
                 <div className="flex items-start gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
                     <ArrowsLeftRightIcon size={16} aria-hidden="true" />
                   </span>
                   <div className="min-w-0">

@@ -22,14 +22,14 @@ function StoryAccordion({ story, index, onSave }) {
   const t = useTranslations("tailor.interviewPrep");
 
   return (
-    <li className="rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)]">
+    <li>
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-start transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+        className="flex min-h-control w-full items-center gap-3 px-3 py-2.5 text-start transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
       >
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold tabular-nums text-foreground">
+        <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold tabular-nums text-foreground">
           {index + 1}
         </span>
         <span className="min-w-0 flex-1">
@@ -100,16 +100,23 @@ function SectionTitle({ icon: Icon, tone, children }) {
   );
 }
 
+// Same frame as the other result cards: header row over a hairline, then body.
+function CardHeader({ description }) {
+  const t = useTranslations("tailor.interviewPrep");
+  return (
+    <div className="dashboard-card-pad border-b border-[var(--landing-line)]">
+      <DashboardPanelHeader title={t("title")} description={description} />
+    </div>
+  );
+}
+
 export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCompany }) {
   const t = useTranslations("tailor.interviewPrep");
   if (isLoading) {
     return (
-      <section className="dashboard-card dashboard-card-pad rounded-lg">
-        <DashboardPanelHeader
-          title={t("title")}
-          description={t("loading")}
-        />
-        <div className="mt-4">
+      <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+        <CardHeader description={t("loading")} />
+        <div className="dashboard-card-pad">
           <LoadingSkeleton />
         </div>
       </section>
@@ -118,14 +125,13 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
 
   if (!prepData) {
     return (
-      <section className="dashboard-card dashboard-card-pad rounded-lg">
-        <DashboardPanelHeader
-          title={t("title")}
-          description={t("emptyDescription")}
-        />
-        <p className="mt-4 rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
-          {t("empty")}
-        </p>
+      <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
+        <CardHeader description={t("emptyDescription")} />
+        <div className="dashboard-card-pad">
+          <p className="rounded-md border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
+            {t("empty")}
+          </p>
+        </div>
       </section>
     );
   }
@@ -159,17 +165,12 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
 
   return (
     <section className="dashboard-card flex flex-col overflow-hidden rounded-lg">
-      <div className="dashboard-card-pad border-b border-[var(--landing-line)]">
-        <DashboardPanelHeader
-          title={t("title")}
-          description={t("description")}
-        />
-      </div>
+      <CardHeader description={t("description")} />
       <div className="divide-y divide-[var(--landing-line)]">
         {stories?.length > 0 && (
           <div className="dashboard-card-pad">
             <SectionTitle icon={ChatTeardropDotsIcon}>{t("starStories")}</SectionTitle>
-            <ul className="mt-3 flex flex-col gap-2">
+            <ul className="mt-3 divide-y divide-[var(--landing-line)] overflow-hidden rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)]">
               {stories.map((story, i) => (
                 <StoryAccordion key={i} story={story} index={i} onSave={handleSaveStory} />
               ))}

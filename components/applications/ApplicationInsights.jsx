@@ -191,8 +191,8 @@ export function ApplicationInsights({ applications }) {
           <div className="mt-4 flex items-end gap-2">
             {timeline.map((bucket) => (
               <div key={bucket.label} className="flex flex-1 flex-col items-center gap-1">
-                <div className="flex h-28 w-full flex-col justify-end">
-                  <span className="mb-1 text-center text-[10px] tabular-nums text-muted-foreground">
+                <div className="flex h-32 w-full flex-col justify-end">
+                  <span className="mb-1 text-center text-xs tabular-nums text-muted-foreground">
                     {bucket.count || ""}
                   </span>
                   <div
@@ -200,7 +200,7 @@ export function ApplicationInsights({ applications }) {
                     style={{ height: `${bucket.count ? Math.max((bucket.count / maxWeek) * 100, 8) : 0}%` }}
                   />
                 </div>
-                <span className="text-[10px] tabular-nums text-muted-foreground">{bucket.label}</span>
+                <span className="text-xs tabular-nums text-muted-foreground">{bucket.label}</span>
               </div>
             ))}
           </div>

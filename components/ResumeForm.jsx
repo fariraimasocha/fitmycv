@@ -5,7 +5,7 @@ import { useForm, useFieldArray, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import {
@@ -15,14 +15,14 @@ import {
   SpinnerGapIcon,
   XIcon,
   ListChecksIcon,
-  CaretDownIcon,
+  CaretRightIcon,
+  CheckIcon,
   CheckCircleIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ItemReorderControls from "@/components/ItemReorderControls";
 import { FindingRow, SEVERITY_ORDER, SeverityCount } from "@/components/ATSScoreCard";
 import { checkCv } from "@/lib/ats/rules";
@@ -103,6 +103,7 @@ export default function ResumeForm({
 }) {
   const queryClient = useQueryClient();
   const t = useTranslations("tailor.resumeForm");
+  const reduceMotion = useReducedMotion();
 
   const form = useForm({
     resolver: zodResolver(resumeSchema),
@@ -142,13 +143,46 @@ export default function ResumeForm({
     onValuesChange?.(values, report);
   }, [values, report, onValuesChange]);
 
+  // Accordion state. A fresh upload opens every section so the whole parse
+  // can be checked; a saved CV opens the two sections people edit most.
+  const [openSections, setOpenSections] = useState(() =>
+    isDraft
+      ? { personal: true, profiles: true, work: true, education: true, skills: true }
+      : { personal: true, profiles: false, work: true, education: false, skills: false },
+  );
+  const toggleSection = (id) =>
+    setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
+  const openSection = (id) =>
+    setOpenSections((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
+
   // Field paths ("work.2.startDate") get focus; section paths ("skills") scroll.
+  // The section opens first, since a hidden field cannot take focus.
   const goToFinding = (path) => {
-    if (path.includes(".")) {
-      setFocus(path);
-    } else {
-      document.getElementById(`cv-section-${path}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    openSection(sectionOfPath(path));
+    requestAnimationFrame(() => {
+      if (path.includes(".")) {
+        setFocus(path);
+      } else {
+        document.getElementById(`cv-section-${path}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  };
+
+  const addProfile = () => {
+    openSection("profiles");
+    appendProfile({ network: "", url: "" });
+  };
+  const addWork = () => {
+    openSection("work");
+    appendWork({ company: "", position: "", location: "", startDate: "", endDate: "", description: "" });
+  };
+  const addEducation = () => {
+    openSection("education");
+    appendEducation({ institution: "", degree: "", fieldOfStudy: "", startDate: "", endDate: "" });
+  };
+  const addSkillGroup = () => {
+    openSection("skills");
+    appendSkill({ category: "", skills: [] });
   };
 
   const {
@@ -208,416 +242,252 @@ export default function ResumeForm({
     saveMutation.mutate(data);
   };
 
+  const work = values?.work ?? [];
+  const education = values?.education ?? [];
+  const skills = values?.skills ?? [];
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {showChecks && <CvChecks report={report} onSelect={goToFinding} t={t} />}
 
-      {/* Personal Info */}
+      {/* One panel, one row per section, hairlines between. Bodies stay
+          mounted when closed so every field keeps its registered value. */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0 }}
+        transition={{ duration: 0.3 }}
+        className="dashboard-card divide-y divide-[var(--landing-line)] rounded-lg"
       >
-        <Card className="dashboard-card rounded-lg py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">{t("sections.personal")}</CardTitle>
-          </CardHeader>
-          <CardContent className="dashboard-card-pad grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="name">{t("fields.fullNameRequired")}</Label>
+        <FormSection
+          id="personal"
+          title={t("sections.personal")}
+          open={openSections.personal}
+          onToggle={() => toggleSection("personal")}
+        >
+          <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2">
+            <Field label={t("fields.fullNameRequired")} htmlFor="name">
               <Input id="name" {...register("basics.name")} />
               {errors.basics?.name && (
-                <p className="text-destructive text-sm">
+                <p className="text-sm text-destructive">
                   {t(`errors.${errors.basics.name.message}`)}
                 </p>
               )}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="label">{t("fields.headline")}</Label>
+            </Field>
+            <Field label={t("fields.headline")} htmlFor="label">
               <Input id="label" {...register("basics.label")} />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">{t("fields.email")}</Label>
+            </Field>
+            <Field label={t("fields.email")} htmlFor="email">
               <Input id="email" type="email" {...register("basics.email")} />
               {errors.basics?.email && (
-                <p className="text-destructive text-sm">
+                <p className="text-sm text-destructive">
                   {t(`errors.${errors.basics.email.message}`)}
                 </p>
               )}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">{t("fields.phone")}</Label>
+            </Field>
+            <Field label={t("fields.phone")} htmlFor="phone">
               <Input id="phone" {...register("basics.phone")} />
-            </div>
-            <div className="sm:col-span-2 space-y-2">
-              <Label htmlFor="location">{t("fields.location")}</Label>
+            </Field>
+            <Field label={t("fields.location")} htmlFor="location" className="sm:col-span-2">
               <Input id="location" {...register("basics.location")} />
-            </div>
-            <div className="sm:col-span-2 space-y-2">
-              <Label htmlFor="summary">{t("fields.summary")}</Label>
+            </Field>
+            <Field label={t("fields.summary")} htmlFor="summary" className="sm:col-span-2">
               <Textarea id="summary" rows={4} {...register("basics.summary")} />
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
+            </Field>
+          </div>
+        </FormSection>
 
-      {/* Online Profiles */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.05 }}
-      >
-        <Card className="dashboard-card rounded-lg py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">{t("sections.profiles")}</CardTitle>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="rounded-md border-border"
-              onClick={() => appendProfile({ network: "", url: "" })}
-            >
-              <PlusIcon size={14} />
-              {t("addProfileButton")}
-            </Button>
-          </CardHeader>
-          <CardContent className="dashboard-card-pad space-y-4">
-            {profilesFieldsList.length === 0 && (
-              <SectionEmptyState
-                actionLabel={t("addProfile")}
-                onAction={() => appendProfile({ network: "", url: "" })}
-              >
-                {t("empty.profiles")}
-              </SectionEmptyState>
-            )}
-            {profilesFieldsList.map((field, index) => (
-              <div key={field.id} className="flex flex-col gap-3 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-end">
-                <div className="flex-1 space-y-2">
-                  <Label>{t("fields.network")}</Label>
-                  <Input
-                    placeholder={t("placeholders.network")}
-                    {...register(`basics.profiles.${index}.network`)}
-                  />
-                </div>
-                <div className="flex-1 space-y-2">
-                  <Label>{t("fields.url")}</Label>
-                  <Input
-                    placeholder="https://..."
-                    {...register(`basics.profiles.${index}.url`)}
-                  />
-                </div>
-                <div className="flex items-center gap-1 shrink-0">
-                  <ItemReorderControls
-                    index={index}
-                    totalCount={profilesFieldsList.length}
-                    onMoveUp={() => moveProfile(index, index - 1)}
-                    onMoveDown={() => moveProfile(index, index + 1)}
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                    aria-label={t("removeProfile", { index: index + 1 })}
-                    onClick={() => removeProfile(index)}
-                  >
-                    <TrashIcon size={16} aria-hidden="true" />
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* Work Experience */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
-        id="cv-section-work"
-        className="scroll-mt-20"
-      >
-        <Card className="dashboard-card rounded-lg py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">{t("sections.work")}</CardTitle>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="rounded-md border-border"
-              onClick={() =>
-                appendWork({
-                  company: "",
-                  position: "",
-                  location: "",
-                  startDate: "",
-                  endDate: "",
-                  description: "",
-                })
-              }
-            >
-              <PlusIcon size={14} />
-              {t("addPositionButton")}
-            </Button>
-          </CardHeader>
-          <CardContent className="dashboard-card-pad space-y-4">
-            {workFieldsList.length === 0 && (
-              <SectionEmptyState
-                actionLabel={t("addPosition")}
-                onAction={() =>
-                  appendWork({
-                    company: "",
-                    position: "",
-                    location: "",
-                    startDate: "",
-                    endDate: "",
-                    description: "",
-                  })
-                }
-              >
-                {t("empty.work")}
-              </SectionEmptyState>
-            )}
-            {workFieldsList.map((field, index) => (
-              <div
-                key={field.id}
-                className="space-y-4 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:p-5"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-foreground">
-                    {t("positionN", { index: index + 1 })}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    <ItemReorderControls
-                      index={index}
-                      totalCount={workFieldsList.length}
-                      onMoveUp={() => moveWork(index, index - 1)}
-                      onMoveDown={() => moveWork(index, index + 1)}
-                    />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon-xs"
-                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                      aria-label={t("removePosition", { index: index + 1 })}
-                      onClick={() => removeWork(index)}
-                    >
-                      <TrashIcon size={14} />
-                    </Button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label>{t("fields.company")}</Label>
-                    <Input {...register(`work.${index}.company`)} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>{t("fields.position")}</Label>
-                    <Input {...register(`work.${index}.position`)} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>{t("fields.location")}</Label>
-                    <Input {...register(`work.${index}.location`)} />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-2">
-                      <Label>{t("fields.startDate")}</Label>
-                      <Input
-                        placeholder={t("placeholders.yearMonth")}
-                        {...register(`work.${index}.startDate`)}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label>{t("fields.endDate")}</Label>
-                      <Input
-                        placeholder={t("placeholders.endDate")}
-                        {...register(`work.${index}.endDate`)}
-                      />
-                    </div>
-                  </div>
-                  <div className="sm:col-span-2 space-y-2">
-                    <Label>{t("fields.description")}</Label>
-                    <Textarea
-                      rows={3}
-                      {...register(`work.${index}.description`)}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* Education */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.15 }}
-        id="cv-section-education"
-        className="scroll-mt-20"
-      >
-        <Card className="dashboard-card rounded-lg py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">{t("sections.education")}</CardTitle>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="rounded-md border-border"
-              onClick={() =>
-                appendEducation({
-                  institution: "",
-                  degree: "",
-                  fieldOfStudy: "",
-                  startDate: "",
-                  endDate: "",
-                })
-              }
-            >
-              <PlusIcon size={14} />
-              {t("addEducationButton")}
-            </Button>
-          </CardHeader>
-          <CardContent className="dashboard-card-pad space-y-4">
-            {educationFieldsList.length === 0 && (
-              <SectionEmptyState
-                actionLabel={t("addEducation")}
-                onAction={() =>
-                  appendEducation({
-                    institution: "",
-                    degree: "",
-                    fieldOfStudy: "",
-                    startDate: "",
-                    endDate: "",
-                  })
-                }
-              >
-                {t("empty.education")}
-              </SectionEmptyState>
-            )}
-            {educationFieldsList.map((field, index) => (
-              <div
-                key={field.id}
-                className="space-y-4 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:p-5"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-foreground">
-                    {t("educationN", { index: index + 1 })}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    <ItemReorderControls
-                      index={index}
-                      totalCount={educationFieldsList.length}
-                      onMoveUp={() => moveEducation(index, index - 1)}
-                      onMoveDown={() => moveEducation(index, index + 1)}
-                    />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon-xs"
-                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                      aria-label={t("removeEducation", { index: index + 1 })}
-                      onClick={() => removeEducation(index)}
-                    >
-                      <TrashIcon size={14} />
-                    </Button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label>{t("fields.institution")}</Label>
-                    <Input {...register(`education.${index}.institution`)} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>{t("fields.degree")}</Label>
+        <FormSection
+          id="profiles"
+          title={t("sections.profiles")}
+          count={profilesFieldsList.length}
+          open={openSections.profiles}
+          onToggle={() => toggleSection("profiles")}
+          action={<AddIconButton label={t("addProfile")} onClick={addProfile} />}
+        >
+          {profilesFieldsList.length === 0 ? (
+            <SectionEmptyState actionLabel={t("addProfile")} onAction={addProfile}>
+              {t("empty.profiles")}
+            </SectionEmptyState>
+          ) : (
+            <div className="divide-y divide-[var(--landing-line)]">
+              {profilesFieldsList.map((field, index) => (
+                <div
+                  key={field.id}
+                  className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-end"
+                >
+                  <Field label={t("fields.network")} className="flex-1">
                     <Input
-                      placeholder={t("placeholders.degree")}
-                      {...register(`education.${index}.degree`)}
+                      placeholder={t("placeholders.network")}
+                      {...register(`basics.profiles.${index}.network`)}
                     />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>{t("fields.fieldOfStudy")}</Label>
-                    <Input {...register(`education.${index}.fieldOfStudy`)} />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-2">
-                      <Label>{t("fields.startDate")}</Label>
-                      <Input
-                        placeholder={t("placeholders.yearMonth")}
-                        {...register(`education.${index}.startDate`)}
-                      />
+                  </Field>
+                  <Field label={t("fields.url")} className="flex-1">
+                    <Input
+                      placeholder="https://..."
+                      {...register(`basics.profiles.${index}.url`)}
+                    />
+                  </Field>
+                  <ItemActions
+                    index={index}
+                    total={profilesFieldsList.length}
+                    onMove={moveProfile}
+                    removeLabel={t("removeProfile", { index: index + 1 })}
+                    onRemove={() => removeProfile(index)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </FormSection>
+
+        <FormSection
+          id="work"
+          title={t("sections.work")}
+          count={workFieldsList.length}
+          open={openSections.work}
+          onToggle={() => toggleSection("work")}
+          action={<AddIconButton label={t("addPosition")} onClick={addWork} />}
+        >
+          {workFieldsList.length === 0 ? (
+            <SectionEmptyState actionLabel={t("addPosition")} onAction={addWork}>
+              {t("empty.work")}
+            </SectionEmptyState>
+          ) : (
+            <div className="divide-y divide-[var(--landing-line)]">
+              {workFieldsList.map((field, index) => (
+                <div key={field.id} className="space-y-4 py-5 first:pt-0 last:pb-0">
+                  <ItemHeader
+                    title={
+                      [work[index]?.company, work[index]?.position].filter(Boolean).join(", ") ||
+                      t("positionN", { index: index + 1 })
+                    }
+                  >
+                    <ItemActions
+                      index={index}
+                      total={workFieldsList.length}
+                      onMove={moveWork}
+                      removeLabel={t("removePosition", { index: index + 1 })}
+                      onRemove={() => removeWork(index)}
+                    />
+                  </ItemHeader>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label={t("fields.company")}>
+                      <Input {...register(`work.${index}.company`)} />
+                    </Field>
+                    <Field label={t("fields.position")}>
+                      <Input {...register(`work.${index}.position`)} />
+                    </Field>
+                    <Field label={t("fields.location")}>
+                      <Input {...register(`work.${index}.location`)} />
+                    </Field>
+                    <div className="grid grid-cols-2 gap-3">
+                      <Field label={t("fields.startDate")}>
+                        <Input
+                          placeholder={t("placeholders.yearMonth")}
+                          {...register(`work.${index}.startDate`)}
+                        />
+                      </Field>
+                      <Field label={t("fields.endDate")}>
+                        <Input
+                          placeholder={t("placeholders.endDate")}
+                          {...register(`work.${index}.endDate`)}
+                        />
+                      </Field>
                     </div>
-                    <div className="space-y-2">
-                      <Label>{t("fields.endDate")}</Label>
+                    <Field label={t("fields.description")} className="sm:col-span-2">
+                      <Textarea rows={3} {...register(`work.${index}.description`)} />
+                    </Field>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </FormSection>
+
+        <FormSection
+          id="education"
+          title={t("sections.education")}
+          count={educationFieldsList.length}
+          open={openSections.education}
+          onToggle={() => toggleSection("education")}
+          action={<AddIconButton label={t("addEducation")} onClick={addEducation} />}
+        >
+          {educationFieldsList.length === 0 ? (
+            <SectionEmptyState actionLabel={t("addEducation")} onAction={addEducation}>
+              {t("empty.education")}
+            </SectionEmptyState>
+          ) : (
+            <div className="divide-y divide-[var(--landing-line)]">
+              {educationFieldsList.map((field, index) => (
+                <div key={field.id} className="space-y-4 py-5 first:pt-0 last:pb-0">
+                  <ItemHeader
+                    title={education[index]?.institution || t("educationN", { index: index + 1 })}
+                  >
+                    <ItemActions
+                      index={index}
+                      total={educationFieldsList.length}
+                      onMove={moveEducation}
+                      removeLabel={t("removeEducation", { index: index + 1 })}
+                      onRemove={() => removeEducation(index)}
+                    />
+                  </ItemHeader>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label={t("fields.institution")}>
+                      <Input {...register(`education.${index}.institution`)} />
+                    </Field>
+                    <Field label={t("fields.degree")}>
                       <Input
-                        placeholder={t("placeholders.yearMonth")}
-                        {...register(`education.${index}.endDate`)}
+                        placeholder={t("placeholders.degree")}
+                        {...register(`education.${index}.degree`)}
                       />
+                    </Field>
+                    <Field label={t("fields.fieldOfStudy")}>
+                      <Input {...register(`education.${index}.fieldOfStudy`)} />
+                    </Field>
+                    <div className="grid grid-cols-2 gap-3">
+                      <Field label={t("fields.startDate")}>
+                        <Input
+                          placeholder={t("placeholders.yearMonth")}
+                          {...register(`education.${index}.startDate`)}
+                        />
+                      </Field>
+                      <Field label={t("fields.endDate")}>
+                        <Input
+                          placeholder={t("placeholders.yearMonth")}
+                          {...register(`education.${index}.endDate`)}
+                        />
+                      </Field>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </motion.div>
+              ))}
+            </div>
+          )}
+        </FormSection>
 
-      {/* Skills */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-        id="cv-section-skills"
-        className="scroll-mt-20"
-      >
-        <Card className="dashboard-card rounded-lg py-0 gap-0">
-          <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 border-b border-border/60 dashboard-card-pad">
-            <CardTitle className="text-base font-semibold">{t("sections.skills")}</CardTitle>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="rounded-md border-border"
-              onClick={() => appendSkill({ category: "", skills: [] })}
-            >
-              <PlusIcon size={14} />
-              {t("addCategoryButton")}
-            </Button>
-          </CardHeader>
-          <CardContent className="dashboard-card-pad space-y-4">
-            {skillsFieldsList.length === 0 && (
-              <SectionEmptyState
-                actionLabel={t("addCategory")}
-                onAction={() => appendSkill({ category: "", skills: [] })}
-              >
-                {t("empty.skills")}
-              </SectionEmptyState>
-            )}
-            {skillsFieldsList.map((field, index) => (
-              <div
-                key={field.id}
-                className="space-y-4 rounded-xl border border-border/60 bg-[var(--landing-paper-soft)] p-4 sm:p-5"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-foreground">
-                    {t("categoryN", { index: index + 1 })}
-                  </p>
-                  <div className="flex items-center gap-1">
-                    <ItemReorderControls
+        <FormSection
+          id="skills"
+          title={t("sections.skills")}
+          count={skillsFieldsList.length}
+          open={openSections.skills}
+          onToggle={() => toggleSection("skills")}
+          action={<AddIconButton label={t("addCategory")} onClick={addSkillGroup} />}
+        >
+          {skillsFieldsList.length === 0 ? (
+            <SectionEmptyState actionLabel={t("addCategory")} onAction={addSkillGroup}>
+              {t("empty.skills")}
+            </SectionEmptyState>
+          ) : (
+            <div className="divide-y divide-[var(--landing-line)]">
+              {skillsFieldsList.map((field, index) => (
+                <div key={field.id} className="space-y-4 py-5 first:pt-0 last:pb-0">
+                  <ItemHeader title={skills[index]?.category || t("categoryN", { index: index + 1 })}>
+                    <ItemActions
                       index={index}
-                      totalCount={skillsFieldsList.length}
-                      onMoveUp={() => moveSkill(index, index - 1)}
-                      onMoveDown={() => moveSkill(index, index + 1)}
-                    />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon-xs"
-                      className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                      aria-label={t("removeCategory")}
-                      onClick={() =>
+                      total={skillsFieldsList.length}
+                      onMove={moveSkill}
+                      removeLabel={t("removeCategory")}
+                      onRemove={() =>
                         removeWithUndo({
                           value: getValues(`skills.${index}`),
                           remove: () => removeSkill(index),
@@ -626,19 +496,14 @@ export default function ResumeForm({
                           undo: t("undo"),
                         })
                       }
-                    >
-                      <TrashIcon size={14} />
-                    </Button>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label>{t("fields.categoryName")}</Label>
+                    />
+                  </ItemHeader>
+                  <Field label={t("fields.categoryName")}>
                     <Input
                       placeholder={t("placeholders.category")}
                       {...register(`skills.${index}.category`)}
                     />
-                  </div>
+                  </Field>
                   <SkillsList
                     control={control}
                     register={register}
@@ -647,13 +512,14 @@ export default function ResumeForm({
                     t={t}
                   />
                 </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+              ))}
+            </div>
+          )}
+        </FormSection>
       </motion.div>
 
-      <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-3 py-2.5 shadow-[var(--landing-shadow-sm)] backdrop-blur-md sm:bottom-4 sm:px-4">
+      {/* Quiet save bar: hairline, no shadow. Status left, one button right. */}
+      <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-4 py-2 backdrop-blur-md sm:bottom-4">
         <p
           className={cn(
             "flex items-center gap-1.5 text-xs font-medium",
@@ -672,13 +538,17 @@ export default function ResumeForm({
               {isDirty ? t("status.unsaved") : t("status.notSaved")}
             </>
           ) : (
-            t("status.allSaved")
+            <>
+              <CheckIcon size={14} aria-hidden="true" />
+              {t("status.allSaved")}
+            </>
           )}
         </p>
-        <Button
+        <button
           type="submit"
           disabled={saveMutation.isPending}
-          className="rounded-md bg-foreground px-6 font-outfit font-semibold text-background hover:opacity-90"
+          aria-busy={saveMutation.isPending}
+          className="dashboard-primary-btn dashboard-primary-btn-sm"
         >
           {saveMutation.isPending ? (
             <>
@@ -691,9 +561,116 @@ export default function ResumeForm({
               {saveButtonLabel ?? t("save")}
             </>
           )}
-        </Button>
+        </button>
       </div>
     </form>
+  );
+}
+
+// Which accordion section a finding path lives in.
+function sectionOfPath(path) {
+  const [section, second] = path.split(".");
+  if (section === "basics") return second === "profiles" ? "profiles" : "personal";
+  return section;
+}
+
+// Teal's accordion row: chevron, label, count, trailing action icons.
+function FormSection({ id, title, count, open, onToggle, action, children }) {
+  const bodyId = `cv-body-${id}`;
+  return (
+    <section id={`cv-section-${id}`} className="scroll-mt-20">
+      <div className="flex items-center gap-1 pe-2 sm:pe-3">
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={open}
+          aria-controls={bodyId}
+          className="flex min-h-14 min-w-0 flex-1 items-center gap-3 rounded-lg ps-4 text-start transition-colors hover:text-[var(--landing-ink)] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--landing-ink)] sm:ps-6"
+        >
+          <CaretRightIcon
+            size={16}
+            weight="bold"
+            className={cn(
+              "shrink-0 text-muted-foreground transition-transform rtl:-scale-x-100",
+              open && "rotate-90",
+            )}
+            aria-hidden="true"
+          />
+          <span className="truncate font-outfit text-base font-medium text-foreground">
+            {title}
+          </span>
+          {count > 0 && (
+            <span className="rounded-full bg-[var(--landing-paper-soft)] px-2 py-0.5 text-xs font-medium tabular-nums text-muted-foreground">
+              {count}
+            </span>
+          )}
+        </button>
+        {action}
+      </div>
+      <div id={bodyId} hidden={!open} className="px-4 pb-6 sm:px-6">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function AddIconButton({ label, onClick }) {
+  return (
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon-sm"
+      className="shrink-0 text-muted-foreground hover:text-foreground"
+      aria-label={label}
+      title={label}
+      onClick={onClick}
+    >
+      <PlusIcon size={16} aria-hidden="true" />
+    </Button>
+  );
+}
+
+function Field({ label, htmlFor, className, children }) {
+  return (
+    <div className={cn("min-w-0 space-y-1.5", className)}>
+      <Label htmlFor={htmlFor} className="text-xs font-medium text-muted-foreground">
+        {label}
+      </Label>
+      {children}
+    </div>
+  );
+}
+
+function ItemHeader({ title, children }) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <p className="min-w-0 truncate text-sm font-semibold text-foreground">{title}</p>
+      {children}
+    </div>
+  );
+}
+
+function ItemActions({ index, total, onMove, removeLabel, onRemove }) {
+  return (
+    <div className="flex shrink-0 items-center gap-0.5">
+      <ItemReorderControls
+        index={index}
+        totalCount={total}
+        onMoveUp={() => onMove(index, index - 1)}
+        onMoveDown={() => onMove(index, index + 1)}
+      />
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-sm"
+        className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+        aria-label={removeLabel}
+        title={removeLabel}
+        onClick={onRemove}
+      >
+        <TrashIcon size={16} aria-hidden="true" />
+      </Button>
+    </div>
   );
 }
 
@@ -741,20 +718,23 @@ function CvChecks({ report, onSelect, t }) {
 
   return (
     <details className="dashboard-card group rounded-lg">
-      <summary className="dashboard-card-pad flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden">
-        <span className="flex items-center gap-2 text-base font-semibold">
-          <ListChecksIcon size={18} aria-hidden="true" />
-          {t("checks.title")}
+      <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-lg px-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--landing-ink)] sm:px-6 [&::-webkit-details-marker]:hidden">
+        <CaretRightIcon
+          size={16}
+          weight="bold"
+          className="shrink-0 text-muted-foreground transition-transform group-open:rotate-90 rtl:-scale-x-100"
+          aria-hidden="true"
+        />
+        <span className="flex min-w-0 flex-1 items-center gap-2 font-outfit text-base font-medium text-foreground">
+          <ListChecksIcon size={18} className="shrink-0" aria-hidden="true" />
+          <span className="truncate">{t("checks.title")}</span>
         </span>
-        <span className="flex items-center gap-3 text-sm text-muted-foreground">
-          <span className="tabular-nums">
-            {t("checks.passed", { passed: report.passedChecks, total: report.totalChecks })}
-          </span>
-          <CaretDownIcon size={14} className="transition-transform group-open:rotate-180" aria-hidden="true" />
+        <span className="shrink-0 text-xs font-medium tabular-nums text-muted-foreground">
+          {t("checks.passed", { passed: report.passedChecks, total: report.totalChecks })}
         </span>
       </summary>
-      <div className="dashboard-card-pad space-y-3 border-t border-border/60">
-        <div className="space-y-3 rounded-md border border-border bg-card p-3">
+      <div className="space-y-3 border-t border-[var(--landing-line)] px-4 py-4 sm:px-6">
+        <div className="space-y-3">
           <p className="text-xs leading-normal text-muted-foreground">
             {t("checks.intro")}
           </p>
@@ -778,8 +758,8 @@ function CvChecks({ report, onSelect, t }) {
           )}
         </div>
         {report.findings.length === 0 ? (
-          <div className="flex items-center gap-3 rounded-md border border-dashed border-border p-3">
-            <CheckCircleIcon className="size-5 shrink-0 text-[var(--landing-success)]" />
+          <div className="flex items-center gap-3 rounded-md bg-[var(--landing-success-soft)] p-3">
+            <CheckCircleIcon weight="fill" aria-hidden="true" className="size-5 shrink-0 text-[var(--landing-success)]" />
             <p className="text-sm leading-normal text-muted-foreground">{t("checks.allPassed")}</p>
           </div>
         ) : (
@@ -802,18 +782,16 @@ function CvChecks({ report, onSelect, t }) {
 // An empty section should carry the action, not describe the absence.
 function SectionEmptyState({ children, actionLabel, onAction }) {
   return (
-    <div className="flex flex-col items-start gap-3 py-2">
+    <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm text-muted-foreground">{children}</p>
-      <Button
+      <button
         type="button"
-        variant="outline"
-        size="sm"
-        className="rounded-md border-border"
+        className="dashboard-secondary-btn dashboard-secondary-btn-sm shrink-0"
         onClick={onAction}
       >
-        <PlusIcon size={14} />
+        <PlusIcon size={16} aria-hidden="true" />
         {actionLabel}
-      </Button>
+      </button>
     </div>
   );
 }
@@ -832,12 +810,13 @@ function SkillsList({ control, register, getValues, nestIndex, t }) {
   });
 
   return (
-    <div className="space-y-2">
-      <Label>{t("sections.skills")}</Label>
+    <div className="space-y-1.5">
+      <Label className="text-xs font-medium text-muted-foreground">{t("sections.skills")}</Label>
       <div className="flex flex-wrap gap-2">
         {fields.map((field, k) => (
-          <div key={field.id} className="flex items-center gap-1">
+          <div key={field.id} className="flex items-center gap-0.5">
             <Input
+              aria-label={t("sections.skills")}
               className="h-control-sm w-36"
               {...register(`skills.${nestIndex}.skills.${k}`)}
             />
@@ -851,7 +830,7 @@ function SkillsList({ control, register, getValues, nestIndex, t }) {
               type="button"
               variant="ghost"
               size="icon-xs"
-              className="text-destructive hover:bg-destructive/10"
+              className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
               aria-label={t("removeSkill")}
               onClick={() =>
                 removeWithUndo({
@@ -868,16 +847,14 @@ function SkillsList({ control, register, getValues, nestIndex, t }) {
           </div>
         ))}
       </div>
-      <Button
+      <button
         type="button"
-        variant="outline"
-        size="xs"
-        className="rounded-full"
+        className="dashboard-secondary-btn dashboard-secondary-btn-sm"
         onClick={() => append("")}
       >
-        <PlusIcon size={12} />
+        <PlusIcon size={16} aria-hidden="true" />
         {t("addSkill")}
-      </Button>
+      </button>
     </div>
   );
 }

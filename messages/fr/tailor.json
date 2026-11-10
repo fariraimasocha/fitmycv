@@ -67,19 +67,47 @@
     "uploadPanel": {
       "title": "Comment ça marche",
       "steps": {
-        "upload": { "title": "Importez un PDF", "body": "Un seul fichier, jusqu’à 8 Mo." },
-        "read": { "title": "Nous lisons les informations", "body": "Expérience, formation, compétences et coordonnées, dans des champs modifiables." },
-        "review": { "title": "Vous vérifiez et enregistrez", "body": "Corrigez ce qui ne va pas. Rien n’est stocké tant que vous n’enregistrez pas." }
+        "upload": {
+          "title": "Importez un PDF",
+          "body": "Un seul fichier, jusqu’à 8 Mo."
+        },
+        "read": {
+          "title": "Nous lisons les informations",
+          "body": "Expérience, formation, compétences et coordonnées, dans des champs modifiables."
+        },
+        "review": {
+          "title": "Vous vérifiez et enregistrez",
+          "body": "Corrigez ce qui ne va pas. Rien n’est stocké tant que vous n’enregistrez pas."
+        }
       },
       "replacingNote": "Votre CV actuel reste en place jusqu’à ce que vous enregistriez le nouveau. Son modèle et son style sont conservés."
     },
-    "tabs": { "edit": "Modifier", "preview": "Aperçu", "ariaLabel": "Modifier ou prévisualiser" },
-    "templateSaveError": { "title": "Impossible d’enregistrer votre modèle", "description": "Votre modification est toujours à l’écran. Vérifiez votre connexion et réessayez." },
+    "tabs": {
+      "edit": "Modifier",
+      "preview": "Aperçu",
+      "ariaLabel": "Modifier ou prévisualiser"
+    },
+    "templateSaveError": {
+      "title": "Impossible d’enregistrer votre modèle",
+      "description": "Votre modification est toujours à l’écran. Vérifiez votre connexion et réessayez."
+    },
     "backToCv": "Retour à mon CV",
-    "replace": { "title": "Remplacer votre CV", "description": "Importez un nouveau PDF. Vous pourrez vérifier les informations avant tout changement." },
-    "upload": { "title": "Importer votre CV", "description": "Importez votre CV en PDF. Chaque candidature adaptée part de lui." },
-    "review": { "title": "Vérifier votre CV", "description": "Nous avons lu ceci dans votre PDF. Corrigez ce qui ne va pas, puis enregistrez." },
-    "saved": { "title": "Mon CV", "description": "Chaque CV adapté et chaque lettre de motivation partent de ce CV." },
+    "replace": {
+      "title": "Remplacer votre CV",
+      "description": "Importez un nouveau PDF. Vous pourrez vérifier les informations avant tout changement."
+    },
+    "upload": {
+      "title": "Importer votre CV",
+      "description": "Importez votre CV en PDF. Chaque candidature adaptée part de lui."
+    },
+    "review": {
+      "title": "Vérifier votre CV",
+      "description": "Nous avons lu ceci dans votre PDF. Corrigez ce qui ne va pas, puis enregistrez."
+    },
+    "saved": {
+      "title": "Mon CV",
+      "description": "Chaque CV adapté et chaque lettre de motivation partent de ce CV."
+    },
     "discard": "Annuler et garder le CV enregistré",
     "uploadDifferent": "Importer un autre PDF",
     "replaceCv": "Remplacer le CV",
@@ -106,12 +134,21 @@
     }
   },
   "resumeForm": {
-    "errors": { "nameRequired": "Le nom est obligatoire", "emailInvalid": "Saisissez une adresse e-mail comme nom@exemple.com" },
+    "errors": {
+      "nameRequired": "Le nom est obligatoire",
+      "emailInvalid": "Saisissez une adresse e-mail comme nom@exemple.com"
+    },
     "saveError": "Impossible d’enregistrer vos modifications. Réessayez.",
     "saved": "CV enregistré",
     "save": "Enregistrer le CV",
     "saving": "Enregistrement...",
-    "sections": { "personal": "Informations personnelles", "profiles": "Profils en ligne", "work": "Expérience professionnelle", "education": "Formation", "skills": "Compétences" },
+    "sections": {
+      "personal": "Informations personnelles",
+      "profiles": "Profils en ligne",
+      "work": "Expérience professionnelle",
+      "education": "Formation",
+      "skills": "Compétences"
+    },
     "fields": {
       "fullNameRequired": "Nom complet *",
       "headline": "Intitulé de poste ou accroche",
@@ -164,9 +201,23 @@
     "positionN": "Poste {index}",
     "educationN": "Formation {index}",
     "categoryN": "Catégorie {index}",
-    "status": { "unsaved": "Modifications non enregistrées", "notSaved": "Pas encore enregistré", "allSaved": "Toutes les modifications sont enregistrées" },
+    "status": {
+      "unsaved": "Modifications non enregistrées",
+      "notSaved": "Pas encore enregistré",
+      "allSaved": "Toutes les modifications sont enregistrées"
+    },
     "location": {
-      "fields": { "name": "Nom complet", "email": "E-mail", "phone": "Téléphone", "location": "Lieu", "summary": "Résumé", "startDate": "Date de début", "endDate": "Date de fin", "description": "Description", "url": "URL" },
+      "fields": {
+        "name": "Nom complet",
+        "email": "E-mail",
+        "phone": "Téléphone",
+        "location": "Lieu",
+        "summary": "Résumé",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "description": "Description",
+        "url": "URL"
+      },
       "profileUrl": "Profil {index}, URL",
       "personal": "Informations personnelles, {field}",
       "position": "Poste {index}, {field}",
@@ -182,11 +233,24 @@
   },
   "ats": {
     "severity": {
-      "blocker": { "label": "Bloquant", "count": "{count} {count, plural, one {bloquant} other {bloquants}}" },
-      "warning": { "label": "Avertissement", "count": "{count} {count, plural, one {avertissement} other {avertissements}}" },
-      "tip": { "label": "Conseil", "count": "{count} {count, plural, one {conseil} other {conseils}}" }
+      "blocker": {
+        "label": "Bloquant",
+        "count": "{count} {count, plural, one {bloquant} other {bloquants}}"
+      },
+      "warning": {
+        "label": "Avertissement",
+        "count": "{count} {count, plural, one {avertissement} other {avertissements}}"
+      },
+      "tip": {
+        "label": "Conseil",
+        "count": "{count} {count, plural, one {conseil} other {conseils}}"
+      }
     },
-    "impact": { "high": "Impact élevé", "medium": "Impact moyen", "low": "Impact faible" },
+    "impact": {
+      "high": "Impact élevé",
+      "medium": "Impact moyen",
+      "low": "Impact faible"
+    },
     "outOf100": "sur 100",
     "upFrom": "+{delta} par rapport à {preScore}",
     "fixGain": "{delta} points de plus avec cette correction",
@@ -233,39 +297,128 @@
     "empty": "Votre vérification ATS apparaîtra ici une fois votre CV adapté.",
     "footer": "Ceci vérifie si un logiciel peut lire les informations de votre CV : coordonnées, sections et dates. Cela ne prédit pas si une candidature sera rejetée, et aucun outil ne le peut.",
     "categories": {
-      "contact": { "label": "Coordonnées", "description": "Si un recruteur peut vous joindre." },
-      "sections": { "label": "Sections", "description": "Si votre CV contient les sections qu’un logiciel s’attend à trouver." },
-      "dates": { "label": "Dates", "description": "Si votre parcours peut être reconstitué." },
-      "content": { "label": "Rédaction", "description": "Des conseils pour la personne qui le lit. Rien de tout cela n’affecte le score." }
+      "contact": {
+        "label": "Coordonnées",
+        "description": "Si un recruteur peut vous joindre."
+      },
+      "sections": {
+        "label": "Sections",
+        "description": "Si votre CV contient les sections qu’un logiciel s’attend à trouver."
+      },
+      "dates": {
+        "label": "Dates",
+        "description": "Si votre parcours peut être reconstitué."
+      },
+      "content": {
+        "label": "Rédaction",
+        "description": "Des conseils pour la personne qui le lit. Rien de tout cela n’affecte le score."
+      }
     },
     "findings": {
-      "MISSING_NAME": { "title": "Votre CV n’a pas de nom.", "action": "Ajoutez votre nom complet dans Informations personnelles." },
-      "MISSING_EMAIL": { "title": "Votre CV n’a pas d’adresse e-mail.", "action": "Ajoutez une adresse e-mail pour que les recruteurs puissent vous joindre." },
-      "MALFORMED_EMAIL": { "title": "Cette adresse e-mail n’est pas dans un format standard.", "action": "Utilisez une adresse simple comme nom@exemple.com, sans texte en plus." },
-      "MISSING_PHONE": { "title": "Votre CV n’a pas de numéro de téléphone.", "action": "Ajoutez-en un avec l’indicatif du pays. Certains formulaires de candidature le demandent." },
-      "MISSING_LOCATION": { "title": "Votre CV n’indique pas de lieu.", "action": "Ajoutez au moins une ville et un pays." },
-      "MALFORMED_URL": { "title": "Il manque https:// à ce lien.", "action": "Écrivez l’adresse complète, avec https://." },
-      "NO_EXPERIENCE": { "title": "Votre CV ne montre aucune expérience professionnelle.", "action": "Ajoutez un poste, ou utilisez des projets et du bénévolat pour montrer un parcours similaire." },
-      "MISSING_DESCRIPTION": { "title": "Ce poste n’a pas de description.", "action": "Décrivez ce que vous avez fait. Un poste vide n’apporte aucun mot-clé pour la correspondance." },
-      "NO_SKILLS": { "title": "Votre CV ne liste aucune compétence.", "action": "Ajoutez les outils et méthodes que vous utilisez." },
-      "NO_EDUCATION": { "title": "Votre CV n’indique aucune formation.", "action": "Ajoutez où vous avez étudié, ou un cours ou certificat pertinent." },
-      "NO_SUMMARY": { "title": "Votre CV n’a pas de résumé.", "action": "Ajoutez deux ou trois lignes en haut pour décrire ce que vous faites." },
-      "MISSING_DATES": { "title": "Cette entrée n’a pas de date de début.", "action": "Ajoutez une date comme Mar 2022 pour qu’elle figure dans votre chronologie." },
-      "MISSING_END_DATE": { "title": "Ce poste n’a pas de date de fin.", "action": "Écrivez Present si vous y travaillez encore, ou ajoutez le mois de votre départ." },
-      "UNPARSEABLE_DATE": { "title": "Cette date est écrite dans un format qu’un logiciel risque de ne pas lire.", "action": "Utilisez un format comme Mar 2022, 2022-03 ou 2022." },
-      "REVERSED_PERIOD": { "title": "Cette entrée se termine avant de commencer.", "action": "Inversez les dates de début et de fin." },
-      "FUTURE_DATE": { "title": "Cette date est dans le futur.", "action": "Corrigez l’année, ou écrivez Present pour un poste en cours." },
-      "MIXED_DATE_FORMATS": { "title": "Les dates de vos postes sont écrites de façons différentes.", "action": "Choisissez un format et utilisez-le pour chaque poste." },
-      "NO_QUANTIFIED_IMPACT": { "title": "Peu de vos puces contiennent un chiffre.", "action": "Ajoutez des chiffres quand vous en avez : volumes, pourcentages, durées, tailles d’équipe." },
-      "WEAK_OPENERS": { "title": "Beaucoup de puces commencent par une formule creuse comme « Responsible for ».", "action": "Commencez chacune par ce que vous avez fait : conçu, dirigé, réduit, migré." },
-      "FIRST_PERSON_PRONOUNS": { "title": "Votre CV utilise « I » et « my ».", "action": "Supprimez les pronoms et commencez par le verbe." },
-      "LONG_BULLETS": { "title": "Certaines puces sont trop longues.", "action": "Limitez chacune à environ deux lignes." },
-      "EMPLOYMENT_GAP": { "title": "Il y a un écart de plus de six mois entre deux postes.", "action": "Un écart n’est pas un problème. Ajoutez une courte ligne à ce sujet seulement si vous le souhaitez." }
+      "MISSING_NAME": {
+        "title": "Votre CV n’a pas de nom.",
+        "action": "Ajoutez votre nom complet dans Informations personnelles."
+      },
+      "MISSING_EMAIL": {
+        "title": "Votre CV n’a pas d’adresse e-mail.",
+        "action": "Ajoutez une adresse e-mail pour que les recruteurs puissent vous joindre."
+      },
+      "MALFORMED_EMAIL": {
+        "title": "Cette adresse e-mail n’est pas dans un format standard.",
+        "action": "Utilisez une adresse simple comme nom@exemple.com, sans texte en plus."
+      },
+      "MISSING_PHONE": {
+        "title": "Votre CV n’a pas de numéro de téléphone.",
+        "action": "Ajoutez-en un avec l’indicatif du pays. Certains formulaires de candidature le demandent."
+      },
+      "MISSING_LOCATION": {
+        "title": "Votre CV n’indique pas de lieu.",
+        "action": "Ajoutez au moins une ville et un pays."
+      },
+      "MALFORMED_URL": {
+        "title": "Il manque https:// à ce lien.",
+        "action": "Écrivez l’adresse complète, avec https://."
+      },
+      "NO_EXPERIENCE": {
+        "title": "Votre CV ne montre aucune expérience professionnelle.",
+        "action": "Ajoutez un poste, ou utilisez des projets et du bénévolat pour montrer un parcours similaire."
+      },
+      "MISSING_DESCRIPTION": {
+        "title": "Ce poste n’a pas de description.",
+        "action": "Décrivez ce que vous avez fait. Un poste vide n’apporte aucun mot-clé pour la correspondance."
+      },
+      "NO_SKILLS": {
+        "title": "Votre CV ne liste aucune compétence.",
+        "action": "Ajoutez les outils et méthodes que vous utilisez."
+      },
+      "NO_EDUCATION": {
+        "title": "Votre CV n’indique aucune formation.",
+        "action": "Ajoutez où vous avez étudié, ou un cours ou certificat pertinent."
+      },
+      "NO_SUMMARY": {
+        "title": "Votre CV n’a pas de résumé.",
+        "action": "Ajoutez deux ou trois lignes en haut pour décrire ce que vous faites."
+      },
+      "MISSING_DATES": {
+        "title": "Cette entrée n’a pas de date de début.",
+        "action": "Ajoutez une date comme Mar 2022 pour qu’elle figure dans votre chronologie."
+      },
+      "MISSING_END_DATE": {
+        "title": "Ce poste n’a pas de date de fin.",
+        "action": "Écrivez Present si vous y travaillez encore, ou ajoutez le mois de votre départ."
+      },
+      "UNPARSEABLE_DATE": {
+        "title": "Cette date est écrite dans un format qu’un logiciel risque de ne pas lire.",
+        "action": "Utilisez un format comme Mar 2022, 2022-03 ou 2022."
+      },
+      "REVERSED_PERIOD": {
+        "title": "Cette entrée se termine avant de commencer.",
+        "action": "Inversez les dates de début et de fin."
+      },
+      "FUTURE_DATE": {
+        "title": "Cette date est dans le futur.",
+        "action": "Corrigez l’année, ou écrivez Present pour un poste en cours."
+      },
+      "MIXED_DATE_FORMATS": {
+        "title": "Les dates de vos postes sont écrites de façons différentes.",
+        "action": "Choisissez un format et utilisez-le pour chaque poste."
+      },
+      "NO_QUANTIFIED_IMPACT": {
+        "title": "Peu de vos puces contiennent un chiffre.",
+        "action": "Ajoutez des chiffres quand vous en avez : volumes, pourcentages, durées, tailles d’équipe."
+      },
+      "WEAK_OPENERS": {
+        "title": "Beaucoup de puces commencent par une formule creuse comme « Responsible for ».",
+        "action": "Commencez chacune par ce que vous avez fait : conçu, dirigé, réduit, migré."
+      },
+      "FIRST_PERSON_PRONOUNS": {
+        "title": "Votre CV utilise « I » et « my ».",
+        "action": "Supprimez les pronoms et commencez par le verbe."
+      },
+      "LONG_BULLETS": {
+        "title": "Certaines puces sont trop longues.",
+        "action": "Limitez chacune à environ deux lignes."
+      },
+      "EMPLOYMENT_GAP": {
+        "title": "Il y a un écart de plus de six mois entre deux postes.",
+        "action": "Un écart n’est pas un problème. Ajoutez une courte ligne à ce sujet seulement si vous le souhaitez."
+      }
     }
   },
   "jobMatch": {
-    "levels": { "excellent": "Excellente correspondance", "strong": "Forte correspondance", "good": "Bonne correspondance", "fair": "Correspondance moyenne", "weak": "Faible correspondance" },
-    "dimensions": { "cvMatch": "Correspondance du CV", "compensation": "Rémunération", "cultureSignals": "Culture", "redFlags": "Signaux d’alerte" },
+    "levels": {
+      "excellent": "Excellente correspondance",
+      "strong": "Forte correspondance",
+      "good": "Bonne correspondance",
+      "fair": "Correspondance moyenne",
+      "weak": "Faible correspondance"
+    },
+    "dimensions": {
+      "cvMatch": "Correspondance du CV",
+      "compensation": "Rémunération",
+      "cultureSignals": "Culture",
+      "redFlags": "Signaux d’alerte"
+    },
     "title": "Correspondance avec l’offre",
     "scoring": "Évaluation de votre CV par rapport à cette offre",
     "description": "Comment votre CV correspond à cette offre",
@@ -332,7 +485,13 @@
     "save": "Enregistrer la réponse"
   },
   "interviewPrep": {
-    "star": { "situation": "Situation", "task": "Tâche", "action": "Action", "result": "Résultat", "reflection": "Réflexion" },
+    "star": {
+      "situation": "Situation",
+      "task": "Tâche",
+      "action": "Action",
+      "result": "Résultat",
+      "reflection": "Réflexion"
+    },
     "starStory": "Exemple STAR",
     "saveToBank": "Enregistrer dans la banque d’exemples",
     "title": "Préparation à l’entretien",
@@ -346,8 +505,16 @@
     "questions": "Questions à préparer",
     "talkingPoints": "Points clés à aborder"
   },
-  "atsChip": { "loading": "ATS…", "score": "ATS {score}", "scoreFrom": "ATS {preScore} → {score}", "none": "ATS n.d." },
-  "reorder": { "up": "Monter", "down": "Descendre" },
+  "atsChip": {
+    "loading": "ATS…",
+    "score": "ATS {score}",
+    "scoreFrom": "ATS {preScore} → {score}",
+    "none": "ATS n.d."
+  },
+  "reorder": {
+    "up": "Monter",
+    "down": "Descendre"
+  },
   "companyResearch": {
     "loading": "Recherche sur l’entreprise…",
     "empty": "Avec Pro, une fiche sur l’entreprise apparaît ici quand l’offre la nomme.",
@@ -365,20 +532,65 @@
     "font": "Police",
     "dividers": "Séparateurs",
     "indent": "Retrait",
-    "colors": { "black": "Noir", "rust": "Rouille", "blue": "Bleu", "teal": "Bleu canard", "purple": "Violet", "burgundy": "Bordeaux" }
+    "colors": {
+      "black": "Noir",
+      "rust": "Rouille",
+      "blue": "Bleu",
+      "teal": "Bleu canard",
+      "purple": "Violet",
+      "burgundy": "Bordeaux"
+    }
   },
-  "editorToolbar": { "viewMode": "Mode d’affichage du CV", "edit": "Modifier", "preview": "Aperçu", "replace": "Remplacer le CV" },
-  "previewActions": { "download": "Télécharger le PDF" },
-  "downloadButton": { "errors": {"blocked": "Votre navigateur a bloqué l'onglet du PDF. Autorisez les fenêtres pop-up pour ce site et réessayez.", "storage": "Impossible de préparer votre PDF. Réessayez dans une fenêtre de navigation normale."}, "label": "Télécharger le PDF", "downloading": "Préparation du PDF…", "done": "Téléchargé" },
+  "editorToolbar": {
+    "viewMode": "Mode d’affichage du CV",
+    "edit": "Modifier",
+    "preview": "Aperçu",
+    "replace": "Remplacer le CV"
+  },
+  "previewActions": {
+    "download": "Télécharger le PDF"
+  },
+  "downloadButton": {
+    "errors": {
+      "blocked": "Votre navigateur a bloqué l'onglet du PDF. Autorisez les fenêtres pop-up pour ce site et réessayez.",
+      "storage": "Impossible de préparer votre PDF. Réessayez dans une fenêtre de navigation normale."
+    },
+    "label": "Télécharger le PDF",
+    "downloading": "Préparation du PDF…",
+    "done": "Téléchargé"
+  },
   "tailorPage": {
     "steps": {
-      "job": { "title": "Ajoutez l’offre", "body": "Collez un lien ou la description." },
-      "tailor": { "title": "Nous adaptons votre CV", "body": "Réécrit pour le poste, avec une lettre de motivation." },
-      "review": { "title": "Vérifiez et téléchargez", "body": "Modifiez le CV, consultez le score ATS, téléchargez." }
+      "job": {
+        "title": "Ajoutez l’offre",
+        "body": "Collez un lien ou la description."
+      },
+      "tailor": {
+        "title": "Nous adaptons votre CV",
+        "body": "Réécrit pour le poste, avec une lettre de motivation."
+      },
+      "review": {
+        "title": "Vérifiez et téléchargez",
+        "body": "Modifiez le CV, consultez le score ATS, téléchargez."
+      }
     },
-    "inputTabs": { "link": "Lien de l’offre", "text": "Coller la description" },
-    "mobileTabs": { "edit": "Modifier", "preview": "Aperçu", "ariaLabel": "Modifier ou prévisualiser" },
-    "resultTabs": { "cv": "CV adapté", "letter": "Lettre de motivation", "ats": "Score ATS", "why": "Pourquoi ce poste", "research": "Recherche", "interview": "Entretien" },
+    "inputTabs": {
+      "link": "Lien de l’offre",
+      "text": "Coller la description"
+    },
+    "mobileTabs": {
+      "edit": "Modifier",
+      "preview": "Aperçu",
+      "ariaLabel": "Modifier ou prévisualiser"
+    },
+    "resultTabs": {
+      "cv": "CV adapté",
+      "letter": "Lettre de motivation",
+      "ats": "Score ATS",
+      "why": "Pourquoi ce poste",
+      "research": "Recherche",
+      "interview": "Entretien"
+    },
     "errors": {
       "extract": "Impossible de lire cette offre. Collez plutôt la description du poste.",
       "save": "Impossible d’enregistrer votre CV adapté. Réessayez.",
@@ -416,10 +628,24 @@
       "textPlaceholder": "Collez l’annonce complète, avec les exigences et les responsabilités",
       "minChars": "Collez au moins {min} caractères pour qu’il y ait assez de matière.",
       "chars": "{count} caractères",
-      "keepJob": "Garder l’offre actuelle"
+      "keepJob": "Garder l’offre actuelle",
+      "heading": "Pour quel poste postulez-vous ?",
+      "subheading": "Nous réécrivons votre CV pour le poste et rédigeons une lettre de motivation assortie.",
+      "linkHint": "Si le site bloque le lien, collez plutôt la description.",
+      "recentTitle": "Offres récentes"
     },
-    "bar": { "fallbackTitle": "Offre d’emploi", "pasted": "Description collée", "scoring": "Évaluation…", "changeJob": "Changer d’offre" },
-    "details": { "title": "Exigences de l’offre et correspondance", "fallback": "Tiré de l’offre que vous avez ajoutée", "hide": "Masquer les détails", "show": "Afficher les détails" },
+    "bar": {
+      "fallbackTitle": "Offre d’emploi",
+      "pasted": "Description collée",
+      "scoring": "Évaluation…",
+      "changeJob": "Changer d’offre"
+    },
+    "details": {
+      "title": "Exigences de l’offre et correspondance",
+      "fallback": "Tiré de l’offre que vous avez ajoutée",
+      "hide": "Masquer les détails",
+      "show": "Afficher les détails"
+    },
     "cta": {
       "title": "Adaptez votre CV à ce poste",
       "elapsed": "En cours depuis {seconds} s.",
@@ -450,6 +676,12 @@
     "coverLetter": "Lettre de motivation",
     "download": "Télécharger {title}",
     "confirmDelete": "Cliquez à nouveau pour supprimer",
+    "noLetter": "Pas de lettre de motivation",
+    "search": "Rechercher par poste ou entreprise",
+    "noMatches": {
+      "title": "Aucun CV ne correspond à votre recherche",
+      "description": "Essayez un autre poste ou nom d'entreprise."
+    },
     "delete": "Supprimer {title}",
     "deleteError": "Impossible de supprimer ce CV. Réessayez.",
     "deleted": "CV supprimé",
@@ -464,8 +696,14 @@
       "noCv": "Importez d’abord votre CV. Collez ensuite le lien ou la description d’une offre et nous le réécrivons pour ce poste.",
       "upload": "Importer votre CV"
     },
-    "filters": { "all": "Tous", "letter": "Avec lettre de motivation" },
-    "noLetters": { "title": "Pas encore de lettre de motivation", "description": "Ouvrez un CV adapté et rédigez-en une depuis l’onglet Lettre de motivation." }
+    "filters": {
+      "all": "Tous",
+      "letter": "Avec lettre de motivation"
+    },
+    "noLetters": {
+      "title": "Pas encore de lettre de motivation",
+      "description": "Ouvrez un CV adapté et rédigez-en une depuis l’onglet Lettre de motivation."
+    }
   },
   "tailoredDetail": {
     "unlock": {
@@ -474,18 +712,38 @@
       "done": "Votre CV est débloqué. Téléchargez-le quand vous voulez.",
       "stillWorking": "Votre CV est en cours de déblocage. Réessayez dans un instant."
     },
-    "documentTabs": { "cv": "CV adapté", "letter": "Lettre de motivation", "why": "Pourquoi ce poste" },
-    "mobileTabs": { "edit": "Modifier", "preview": "Aperçu", "ariaLabel": "Modifier ou prévisualiser" },
+    "documentTabs": {
+      "cv": "CV adapté",
+      "letter": "Lettre de motivation",
+      "why": "Pourquoi ce poste"
+    },
+    "mobileTabs": {
+      "edit": "Modifier",
+      "preview": "Aperçu",
+      "ariaLabel": "Modifier ou prévisualiser"
+    },
     "back": "Retour aux CV adaptés",
     "saveError": "Impossible d’enregistrer vos modifications. Réessayez.",
     "answerSaved": "Réponse enregistrée",
     "whyError": "Impossible de rédiger une réponse. Réessayez.",
     "letterSaved": "Lettre de motivation enregistrée",
-    "notFound": { "title": "Nous n’avons pas trouvé ce CV adapté", "description": "Il a peut-être été supprimé. Vos autres CV adaptés sont toujours dans la liste." },
+    "notFound": {
+      "title": "Nous n’avons pas trouvé ce CV adapté",
+      "description": "Il a peut-être été supprimé. Vos autres CV adaptés sont toujours dans la liste."
+    },
     "downloadLetter": "Télécharger la lettre",
     "downloadPdf": "Télécharger le PDF",
     "untitled": "Poste sans titre",
-    "stats": { "tailored": "Adapté le", "positions": "Postes", "skillGroups": "Groupes de compétences", "coverLetter": "Lettre de motivation", "written": "Rédigée", "notYet": "Pas encore", "whyThisRole": "Pourquoi ce poste", "answered": "Répondu" },
+    "stats": {
+      "tailored": "Adapté le",
+      "positions": "Postes",
+      "skillGroups": "Groupes de compétences",
+      "coverLetter": "Lettre de motivation",
+      "written": "Rédigée",
+      "notYet": "Pas encore",
+      "whyThisRole": "Pourquoi ce poste",
+      "answered": "Répondu"
+    },
     "sectionsAria": "Sections du document adapté",
     "saveTailored": "Enregistrer le CV adapté",
     "liveUpdates": "Mis à jour pendant la saisie"

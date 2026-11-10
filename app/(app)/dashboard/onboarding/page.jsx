@@ -221,7 +221,7 @@ export default function OnboardingPage() {
             {onPayoff ? (
               <>
                 <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">{t("payoff.eyebrow")}</span>
-                <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight text-[var(--landing-ink)] sm:text-3xl">
+                <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)]">
                   {t("payoff.title", { hasName: firstName ? "yes" : "no", name: firstName ?? "" })}
                 </h1>
 
@@ -309,7 +309,7 @@ export default function OnboardingPage() {
             ) : (
               <>
                 <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">{t("upload.eyebrow")}</span>
-                <h1 className="mt-4 font-outfit text-3xl font-semibold leading-tight text-[var(--landing-ink)] sm:text-4xl">
+                <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)]">
                   {t("upload.title", { hasName: firstName ? "yes" : "no", name: firstName ?? "" })}
                 </h1>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">

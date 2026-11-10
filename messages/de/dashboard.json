@@ -13,21 +13,22 @@
       "compare": "Angebote vergleichen",
       "saved": "Gespeicherte Jobs",
       "preferences": "Einstellungen",
-      "agent": "Lebenslauf-Agent"
+      "agent": "Lebenslauf-Agent",
+      "jobs": "Jobs finden",
+      "tools": "Alle Tools"
     },
     "fallback": {
       "detail": "Details",
       "brief": "Briefing",
       "thread": "Unterhaltung"
     },
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "backTo": "Zurück zu {page}"
   },
   "sidebar": {
     "groups": {
-      "overview": "Übersicht",
-      "cvToolkit": "Lebenslauf-Tools",
-      "jobSearch": "Jobsuche",
-      "settings": "Einstellungen"
+      "cv": "CV-Tools",
+      "jobs": "Jobsuche"
     },
     "items": {
       "home": "Startseite",
@@ -41,7 +42,8 @@
       "saved": "Gespeicherte Jobs",
       "companyResearch": "Unternehmensrecherche",
       "compare": "Angebote vergleichen",
-      "preferences": "Einstellungen"
+      "preferences": "Einstellungen",
+      "tools": "Alle Tools"
     },
     "upgrade": "Auf Pro upgraden",
     "profile": "Profil",
@@ -105,6 +107,15 @@
       "unnamed": "Unbenanntes Unternehmen",
       "empty": "Füge unter Lebenslauf anpassen einen Job hinzu und erhalte ein Briefing zum Unternehmen aus der Anzeige.",
       "cta": "Unternehmensrecherche ansehen"
+    },
+    "proBanner": {
+      "title": "Mehr aus FitMyCV holen mit Pro",
+      "perks": {
+        "pdf": "PDF-Downloads",
+        "research": "Unternehmensrecherche",
+        "matches": "Tägliche Job-Matches"
+      },
+      "action": "Auf Pro upgraden"
     }
   },
   "activation": {
@@ -112,6 +123,7 @@
     "progress": "{done} von {total}",
     "now": "JETZT",
     "next": "DANACH",
+    "done": "Erledigt",
     "steps": {
       "resume": {
         "title": "Lebenslauf hinzufügen",
@@ -881,5 +893,9 @@
     "offerTitle": "Zu Angebot verschoben",
     "offerBody": "Vergleiche es mit deinen anderen Bewerbungen, bevor du antwortest.",
     "offerAction": "Angebote vergleichen"
+  },
+  "jobs": {
+    "title": "Jobs finden",
+    "description": "Remote-Stellen, zweimal täglich von den Karriereseiten der Unternehmen geholt."
   }
 }

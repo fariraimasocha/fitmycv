@@ -24,6 +24,8 @@
     "tryFree": "Try for free",
     "previewFree": "Preview your tailored CV free",
     "priceNote": "${price} once to download PDFs and apply.",
+    "lifetimeTag": "Lifetime",
+    "lifetimeBadge": "Pay ${price} once. Keep it for life.",
     "soundOn": "Turn sound on",
     "soundOff": "Mute",
     "previewLoading": "Reading the job…",

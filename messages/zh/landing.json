@@ -24,6 +24,8 @@
     "tryFree": "免费试用",
     "previewFree": "免费预览你的定制简历",
     "priceNote": "一次性支付 ${price}，即可下载 PDF 并投递。",
+    "lifetimeTag": "终身",
+    "lifetimeBadge": "一次性支付 ${price}，永久使用。",
     "soundOn": "打开声音",
     "soundOff": "静音",
     "previewLoading": "正在读取职位…",

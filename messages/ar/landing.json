@@ -24,6 +24,8 @@
     "tryFree": "جرّبه مجانًا",
     "previewFree": "عاين سيرتك الذاتية المخصصة مجانًا",
     "priceNote": "${price} مرة واحدة لتنزيل ملفات PDF والتقديم.",
+    "lifetimeTag": "مدى الحياة",
+    "lifetimeBadge": "ادفع ${price} مرة واحدة واحتفظ به مدى الحياة.",
     "soundOn": "تشغيل الصوت",
     "soundOff": "كتم الصوت",
     "previewLoading": "جارٍ قراءة الوظيفة…",

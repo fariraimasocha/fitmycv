@@ -275,6 +275,15 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount
   return (
     <section id="hero" className="relative px-5 pb-16 sm:px-10 lg:px-16 xl:px-24">
       <div className="landing-container flex flex-col items-center pt-20 text-center sm:pt-32">
+        <Link
+          href="/pricing"
+          className="landing-rise-1 -mt-8 mb-6 inline-flex sm:-mt-12 items-center gap-2 rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] py-1 ps-1 pe-3 text-xs text-[var(--landing-ink)] shadow-sm transition-colors hover:border-[var(--landing-ink-soft)] sm:text-sm"
+        >
+          <span className="rounded-full bg-[var(--landing-accent-soft)] px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-[var(--landing-accent)]">
+            {t("lifetimeTag")}
+          </span>
+          <span className="tabular-nums">{t("lifetimeBadge", { price: lifetimePrice })}</span>
+        </Link>
         <RevealWords
           as="h1"
           onLoad

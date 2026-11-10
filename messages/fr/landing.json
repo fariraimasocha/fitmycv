@@ -24,6 +24,8 @@
     "tryFree": "Essayer gratuitement",
     "previewFree": "Aperçu gratuit de votre CV adapté",
     "priceNote": "${price} une seule fois pour télécharger les PDF et postuler.",
+    "lifetimeTag": "À vie",
+    "lifetimeBadge": "Payez ${price} une fois. Gardez-le à vie.",
     "soundOn": "Activer le son",
     "soundOff": "Couper le son",
     "previewLoading": "Lecture de l’offre…",

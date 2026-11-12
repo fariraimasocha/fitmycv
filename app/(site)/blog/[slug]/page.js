@@ -12,6 +12,7 @@ import FaqSection from "@/components/content/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import FormattedDate from "@/components/FormattedDate";
 import { POSTS, getPost, relatedPosts } from "@/content/blog";
+import { AUTHOR } from "@/lib/site";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -90,13 +91,26 @@ export default async function BlogPostPage({ params }) {
               </p>
 
               <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--landing-line)] pt-5 text-sm font-semibold text-[var(--landing-ink-soft)]">
-                <span>FitMyCV Team</span>
+                <span>
+                  By{" "}
+                  <Link
+                    href={AUTHOR.path}
+                    rel="author"
+                    className="text-[var(--landing-ink)] underline underline-offset-4"
+                  >
+                    {AUTHOR.name}
+                  </Link>
+                  , {AUTHOR.role.charAt(0).toLowerCase() + AUTHOR.role.slice(1)}
+                </span>
                 <span aria-hidden="true">·</span>
-                <FormattedDate
-                  date={meta.date}
-                  locale="en-GB"
-                  options={{ day: "numeric", month: "long", year: "numeric" }}
-                />
+                <span>
+                  {meta.updated && meta.updated !== meta.date ? "Updated " : ""}
+                  <FormattedDate
+                    date={meta.updated || meta.date}
+                    locale="en-GB"
+                    options={{ day: "numeric", month: "long", year: "numeric" }}
+                  />
+                </span>
                 <span aria-hidden="true">·</span>
                 <span className="inline-flex items-center gap-1.5">
                   <ClockIcon size={14} weight="bold" aria-hidden="true" />
@@ -147,6 +161,16 @@ export default async function BlogPostPage({ params }) {
               ) : null}
 
               <Blocks blocks={blocks} />
+
+              <aside className="mt-14 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-6">
+                <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
+                  <Link href={AUTHOR.path} rel="author" className="underline-offset-4 hover:underline">
+                    {AUTHOR.name}
+                  </Link>
+                </p>
+                <p className="mt-1 text-sm font-bold text-[var(--landing-ink-soft)]">{AUTHOR.short}</p>
+                <p className="mt-3 text-sm leading-7 text-[var(--landing-ink-soft)]">{AUTHOR.origin}</p>
+              </aside>
             </div>
           </section>
         </article>
@@ -187,6 +211,7 @@ export default async function BlogPostPage({ params }) {
           image: meta.image,
           datePublished: meta.date,
           dateModified: meta.updated || meta.date,
+          author: AUTHOR,
         })}
       />
       <JsonLd data={faqSchema(faqs)} />

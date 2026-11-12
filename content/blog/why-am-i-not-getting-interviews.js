@@ -159,7 +159,7 @@ export const blocks = [
     p: "Once a stage is fixed, confirm it with a small block of applications before you scale up. Volume is the right lever exactly once the earlier stages pass. Before that, more volume just scales the leak.",
   },
 
-  { h2: "Tailoring is the highest-leverage fix" },
+  { h2: "Tailoring is the fix that helps most" },
   {
     p: "For most people who are hearing nothing, the leak is stage two, and the single change that moves it is tailoring each application to the posting. The problem is arithmetic. Done by hand, tailoring takes 30 to 40 minutes per role, and almost everyone abandons it after a dozen applications and reverts to a generic CV.",
   },

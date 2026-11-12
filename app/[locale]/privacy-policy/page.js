@@ -27,7 +27,7 @@ export const metadata = {
   },
 };
 
-const LAST_UPDATED = "June 14, 2026";
+const LAST_UPDATED = "November 12, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -107,6 +107,13 @@ export default function PrivacyPolicyPage() {
                 <Bullet>
                   To analyze and improve the performance and reliability of the
                   app.
+                </Bullet>
+                <Bullet>
+                  To publish anonymised, aggregate statistics, such as the
+                  average match score before and after tailoring. We only
+                  publish counts and averages across at least 20 CVs. We never
+                  publish a single CV, a name, a company you applied to, or
+                  anything that could identify you.
                 </Bullet>
               </ul>
             </Section>

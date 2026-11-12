@@ -184,7 +184,7 @@ export const blocks = [
   {
     ul: [
       "**Best line-level writing feedback.** It is specific about which bullets are vague and why.",
-      "Strong at pushing you to quantify, which is the single highest-leverage CV edit.",
+      "Strong at pushing you to quantify, the CV edit that helps most.",
       "Useful free tools for a first pass.",
     ],
   },

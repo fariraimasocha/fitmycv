@@ -49,7 +49,7 @@ export const faqs = [
   },
   {
     q: "Should I tailor my cover letter as well?",
-    a: "Yes, and it is higher leverage than most people expect, because a cover letter can address the specific gap or pivot your CV cannot explain on its own. It should reference the actual role, the company, and one concrete reason you fit, not a template with the company name swapped in.",
+    a: "Yes, and it does more than most people expect, because a cover letter can address the specific gap or pivot your CV cannot explain on its own. It should reference the actual role, the company, and one concrete reason you fit, not a template with the company name swapped in.",
   },
   {
     q: "How do I tailor a CV when I am changing industries?",
@@ -110,7 +110,7 @@ export const blocks = [
       context:
         "Target role: Senior Product Manager, B2B SaaS. Posting emphasises pricing, cross-functional leadership, and usage-based billing.",
       before:
-        "Experienced product professional with a track record of delivering great products in fast-paced environments. Passionate about user-centric design and collaborating with cross-functional teams.",
+        "Experienced product professional with a track record of delivering great products in fast-paced environments. Passionate about user-centric design and collaborating with cross-functional teams.", // copy-ok: quoted as the bad example
       after:
         "Senior Product Manager with 7 years in B2B SaaS, focused on pricing and monetisation. Led the move to usage-based billing at Northwind, lifting net revenue retention from 104% to 121%. Works day to day with engineering, sales, and finance to ship pricing changes without breaking revenue reporting.",
     },

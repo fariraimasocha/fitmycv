@@ -128,7 +128,7 @@ export const BLOCKS = [
       context:
         "The posting leads with pricing, monetisation, and cross-functional work. The original summary was written for a generic product role.",
       before:
-        "Experienced product professional with a track record of delivering great products in fast-paced environments. Passionate about user-centric design and collaborating with cross-functional teams.",
+        "Experienced product professional with a track record of delivering great products in fast-paced environments. Passionate about user-centric design and collaborating with cross-functional teams.", // copy-ok: quoted as the bad example
       after:
         "Senior Product Manager with 7 years in B2B SaaS, focused on pricing and monetisation. Led the move to usage-based billing at Northwind, lifting net revenue retention from 104% to 121%. Works day to day with engineering, sales, and finance to ship pricing changes without breaking revenue reporting.",
     },

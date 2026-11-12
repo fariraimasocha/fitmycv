@@ -339,7 +339,7 @@ export const taleoResumeFormat = {
 
     { h2: "Wording is doing more work than usual" },
     {
-      p: "High volume employers filter. That is not a conspiracy, it is arithmetic: four hundred applications and one recruiter. If the posting uses a specific term for the thing you do, use their term.",
+      p: "High volume employers filter because of arithmetic: four hundred applications and one recruiter. If the posting uses a specific term for the thing you do, use their term.",
     },
     {
       p: "The honest version of this advice has a limit attached. Add terms you can defend in an interview, and no others. A filter you passed by keyword stuffing hands you a conversation you cannot survive.",
@@ -417,7 +417,7 @@ export const icimsResumeFormat = {
       p: "iCIMS is used at scale, which means volume, which means search. Your application is found by someone typing terms into a box. Use the terms the posting uses, in bullets, with evidence attached.",
     },
     {
-      p: "That is not a trick, it is how being findable works. The [ATS resume guide](/blog/ats-resume-guide) explains what recruiters actually search on and what they never see.",
+      p: "That is how being findable works. The [ATS resume guide](/blog/ats-resume-guide) explains what recruiters actually search on and what they never see.",
     },
 
     { h2: "Do the tailoring once, not per screen" },

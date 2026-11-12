@@ -43,7 +43,7 @@ export const faqs = [
   },
   {
     q: "Do I need a different summary for each job?",
-    a: "For roles you genuinely want, yes. The summary is the fastest, highest-leverage thing to tailor, because it sits in the most-read part of the page. Swap in the target title, the domain, and the one or two results that best match each posting, so the recruiter sees the fit instantly.",
+    a: "For roles you genuinely want, yes. The summary is the fastest thing to tailor and pays off most, because it sits in the most-read part of the page. Swap in the target title, the domain, and the one or two results that best match each posting, so the recruiter sees the fit instantly.",
   },
 ];
 
@@ -130,7 +130,7 @@ export const blocks = [
 
   { h2: "Match the summary to the posting" },
   {
-    p: "Because the summary lives in the most-read part of the CV, it is the single highest-leverage thing to tailor. The title you name, the domain you lead with, and the results you choose should all shift toward what a specific posting emphasises. A summary aimed at everyone speaks to no one.",
+    p: "Because the summary lives in the most-read part of the CV, it is the first thing worth tailoring. The title you name, the domain you lead with, and the results you choose should all shift toward what a specific posting emphasises. A summary aimed at everyone speaks to no one.",
   },
   {
     p: "FitMyCV rewrites your summary for each role automatically. You paste the job link, and it reads the posting's core requirements and language and rewrites your summary to name that title and lead with the results that match, then aligns the rest of the CV and drafts a cover letter to go with it. The facts stay yours. The emphasis moves to fit the role. For the full editing sequence, see our guide on tailoring a CV to a job description, and the how to write a resume guide for the sections beneath the summary.",

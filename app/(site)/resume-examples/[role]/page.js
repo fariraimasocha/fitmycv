@@ -184,8 +184,8 @@ function TailoringDemo({ tailoring, role }) {
             Do this with your own CV
           </p>
           <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Paste a job link. FitMyCV rewrites your CV in that posting&apos;s words,
-            working only from what your CV already says.
+            Paste a job link. FitMyCV rewrites your CV in that posting&apos;s words.
+            Read every line before you send it, and cut anything that is not true of you.
           </p>
         </div>
         <Link href="/tailor-cv-from-job-link" className="landing-primary-btn shrink-0 font-outfit text-sm">

@@ -25,9 +25,13 @@ const checkedLabel = new Date(`${checkedOn}T00:00:00Z`).toLocaleDateString("en-G
 });
 
 // Vendors by company count, largest first.
-const vendors = Object.entries(
-  found.reduce((acc, c) => ({ ...acc, [c.ats]: (acc[c.ats] ?? 0) + 1 }), {})
-)
+const countBy = (rows) => {
+  const counts = {};
+  for (const r of rows) counts[r.ats] = (counts[r.ats] ?? 0) + 1;
+  return counts;
+};
+
+const vendors = Object.entries(countBy(found))
   .map(([id, count]) => ({ ...getAtsVendor(id), count }))
   .sort((a, b) => b.count - a.count);
 const top = vendors[0];
@@ -40,7 +44,7 @@ const sectors = Object.entries(
   }, {})
 )
   .map(([sector, rows]) => {
-    const counts = rows.filter((r) => r.ats).reduce((acc, r) => ({ ...acc, [r.ats]: (acc[r.ats] ?? 0) + 1 }), {});
+    const counts = countBy(rows.filter((r) => r.ats));
     const [leaderId, leaderCount] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0] ?? [];
     return { sector, total: rows.length, leader: leaderId ? getAtsVendor(leaderId) : null, leaderCount };
   })

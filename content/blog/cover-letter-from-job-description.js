@@ -35,7 +35,7 @@ export const faqs = [
   },
   {
     q: "How do I tailor a cover letter to a job description without sounding generic?",
-    a: "Quote the posting's vocabulary only where it is true of you, and attach a number. “I am passionate about customer success” is generic. “Your posting leads with reducing churn; I took a 40-account book from 11% to 6%” is tailored.",
+    a: "Quote the posting's vocabulary only where it is true of you, and attach a number. “I am passionate about customer success” is generic. “Your posting leads with reducing churn; I took a 40-account book from 11% to 6%” is tailored.", // copy-ok: quoted as the bad example
   },
   {
     q: "Should the cover letter repeat the resume?",

@@ -132,7 +132,7 @@ export default function Footer() {
               </h3>
               {/* eslint-disable @next/next/no-img-element -- external badge images */}
               <div className="flex flex-wrap items-center gap-3">
-                <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="noopener noreferrer">
+                <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="nofollow noopener noreferrer">
                   <img
                     src="https://findly.tools/badges/findly-tools-badge-dark.svg"
                     alt="Featured on Findly.tools"
@@ -140,7 +140,7 @@ export default function Footer() {
                     height="55"
                   />
                 </a>
-                <a href="https://nicklaunches.com/products/fitmycv/" target="_blank" rel="noopener">
+                <a href="https://nicklaunches.com/products/fitmycv/" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://nicklaunches.com/badges/featured-dark.png"
                     alt="FitMyCV on Nick Launches"
@@ -148,7 +148,7 @@ export default function Footer() {
                     height="56"
                   />
                 </a>
-                <a href="https://ufind.best/products/tailor-your-cv-to-any-job-link" target="_blank" rel="noopener">
+                <a href="https://ufind.best/products/tailor-your-cv-to-any-job-link" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://ufind.best/badges/ufind-best-badge-dark.svg"
                     alt="Featured on ufind.best"
@@ -158,7 +158,7 @@ export default function Footer() {
                 <a
                   href="https://saasearch.io/product/fitmycv?utm_source=badge&utm_medium=referral&utm_campaign=featured_badge&ref=saasearch"
                   target="_blank"
-                  rel="noopener"
+                  rel="nofollow noopener"
                 >
                   <img
                     src="https://saasearch.io/api/badge/fitmycv?theme=dark"
@@ -166,7 +166,7 @@ export default function Footer() {
                     className="h-12 w-auto"
                   />
                 </a>
-                <a href="https://peerpush.com/p/fitmycv" target="_blank" rel="noopener">
+                <a href="https://peerpush.com/p/fitmycv" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://peerpush.com/p/fitmycv/badge.png"
                     alt="FitMyCV on PeerPush"
@@ -176,7 +176,7 @@ export default function Footer() {
                     className="h-auto w-57.5"
                   />
                 </a>
-                <a href="https://twelve.tools" target="_blank" rel="noopener">
+                <a href="https://twelve.tools" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://twelve.tools/badge2-dark.svg"
                     alt="Featured on Twelve Tools"
@@ -184,7 +184,7 @@ export default function Footer() {
                     height="40"
                   />
                 </a>
-                <a href="https://saascity.io" target="_blank" rel="noopener">
+                <a href="https://saascity.io" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://saascity.io/badges/featured-dark.svg"
                     alt="Featured on SaaSCity"
@@ -192,7 +192,7 @@ export default function Footer() {
                     height="54"
                   />
                 </a>
-                <a href="https://startupfa.me/s/fitmycv?utm_source=fitmycv.link" target="_blank" rel="noopener">
+                <a href="https://startupfa.me/s/fitmycv?utm_source=fitmycv.link" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://startupfa.me/badges/featured-badge.webp"
                     alt="FitMyCV - Featured on Startup Fame"
@@ -200,7 +200,7 @@ export default function Footer() {
                     height="54"
                   />
                 </a>
-                <a href="https://dofollow.tools" target="_blank" rel="noopener">
+                <a href="https://dofollow.tools" target="_blank" rel="nofollow noopener">
                   <img
                     src="https://dofollow.tools/badge/badge_dark.svg"
                     alt="Featured on Dofollow.Tools"

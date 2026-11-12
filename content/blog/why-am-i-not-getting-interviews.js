@@ -1,5 +1,7 @@
 export const meta = {
   slug: "why-am-i-not-getting-interviews",
+  // Out of Google, Nov 2026 triage: under 10 impressions in 90 days. Under 10 impressions in 90 days.
+  noindex: true,
   title: "Why Am I Not Getting Interviews? A Job Search Diagnostic",
   seoTitle: "Why Am I Not Getting Interviews? (Diagnostic)",
   description:

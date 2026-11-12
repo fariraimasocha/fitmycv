@@ -100,9 +100,13 @@ export function getPost(slug) {
   return POSTS_BY_SLUG[slug] ?? null;
 }
 
+// Posts flagged noindex stay reachable at their URL but drop out of the
+// sitemap, the hub and the related rail, so no internal link points Google at them.
+export const INDEXED_POSTS = POSTS.filter((post) => !post.meta.noindex);
+
 /** Newest first, for the hub grid. */
 export function listPosts() {
-  return [...POSTS].sort(
+  return [...INDEXED_POSTS].sort(
     (a, b) => new Date(b.meta.date) - new Date(a.meta.date)
   );
 }
@@ -124,7 +128,7 @@ export function relatedPosts(slug, limit = 3) {
     return value;
   };
 
-  return POSTS.filter((post) => post.meta.slug !== slug)
+  return INDEXED_POSTS.filter((post) => post.meta.slug !== slug)
     .sort((a, b) => score(b) - score(a))
     .slice(0, limit);
 }

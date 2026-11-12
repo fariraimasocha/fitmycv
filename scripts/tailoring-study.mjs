@@ -12,6 +12,7 @@
 import { createRequire } from "node:module";
 import { scoreResumeJobMatch } from "../lib/resume-job-match.js";
 import { cvToText, jobToText } from "../lib/ats/rules.js";
+import { keepClaimedSkills } from "../lib/skill-guard.js";
 
 const mongoose = createRequire(import.meta.url)("mongoose");
 const MIN_GROUP = 20;
@@ -62,7 +63,9 @@ for (const t of tailored) {
   const job = jobToText(t.jobData);
   if (job.length < 200) continue; // too little posting text to score
   const before = scoreResumeJobMatch(job, cvToText(ref));
-  const after = scoreResumeJobMatch(job, cvToText(t));
+  // Score the CV as the tailor now saves it: skills the original never
+  // claimed are dropped by lib/skill-guard.js, so they cannot inflate "after".
+  const after = scoreResumeJobMatch(job, cvToText({ ...t, skills: keepClaimedSkills(t.skills, ref).skills }));
   pairs.push({
     family: familyOf(t.jobData.title),
     before: before.overall,
@@ -106,6 +109,7 @@ console.log(
       generatedOn: new Date().toISOString().slice(0, 10),
       method: {
         scorer: "lib/resume-job-match.js (the free job match checker)",
+        afterScoredWith: "lib/skill-guard.js applied, so unclaimed skills do not count",
         tailoredWithPosting: tailored.length,
         skippedNoReferenceCv: skippedNoRef,
         skippedReferenceUpdatedAfter: skippedReupload,

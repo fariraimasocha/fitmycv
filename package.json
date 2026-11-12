@@ -14,6 +14,7 @@
     "check:ats-companies": "node scripts/check-ats-companies.mjs",
     "check:ats-study": "node scripts/check-ats-study.mjs",
     "check:copy": "node scripts/check-copy-tells.mjs",
+    "check:skill-guard": "node scripts/check-skill-guard.mjs",
     "check:tools": "node scripts/check-tools.mjs",
     "check:ats-rules": "node scripts/check-ats-rules.mjs",
     "check:applications": "node scripts/check-applications.mjs",

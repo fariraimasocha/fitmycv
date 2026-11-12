@@ -1,5 +1,7 @@
 export const meta = {
   slug: "ats-resume-format",
+  // Out of Google, Nov 2026 triage: overlaps /blog/ats-resume-guide. Under 10 impressions in 90 days.
+  noindex: true,
   title: "ATS Resume Format: Two Columns, Tables, Icons and Photos Answered",
   seoTitle: "ATS Resume Format: What Parsers Can Read",
   description:

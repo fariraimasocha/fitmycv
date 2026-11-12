@@ -9,6 +9,7 @@ import { httpUrl, tailoredForViewer } from "@/lib/tailored-preview";
 import { chat, MODEL_SMART } from "@/lib/groq";
 import { relevanceNotes } from "@/lib/jev";
 import { groqRateLimited, tooManyRequests } from "@/lib/rate-limit";
+import { keepClaimedSkills } from "@/lib/skill-guard";
 
 // The CV text cap on /api/resume/upload is 50k, and its parsed JSON plus the
 // job fits well inside this. Anything bigger is not a real CV and job.
@@ -211,7 +212,18 @@ Please tailor the CV for this specific role and generate a cover letter that cle
       );
     }
 
-    const { tailoredCV, coverLetter, keywordsInjected } = parsed;
+    const { tailoredCV, coverLetter } = parsed;
+
+    // The prompt forbids skills the candidate never claimed, but the model
+    // still adds some (Excel, TypeScript...). Drop them before anything is saved,
+    // and stop reporting them as keywords we added to the skills section.
+    const guarded = keepClaimedSkills(tailoredCV.skills, referenceCV);
+    tailoredCV.skills = guarded.skills;
+    const dropped = new Set(guarded.dropped.map((s) => String(s).toLowerCase()));
+    const keywordsInjected = parsed.keywordsInjected.filter(
+      (k) => !(dropped.has(k.keyword.toLowerCase()) && /skill/i.test(k.location)),
+    );
+    if (dropped.size) console.warn(`Tailor dropped ${dropped.size} unclaimed skill(s)`);
 
     // Guard against the model silently dropping work roles.
     const expectedRoles = (referenceCV.work || []).length;

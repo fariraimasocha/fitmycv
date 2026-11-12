@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-to-find-resume-keyword-gaps",
+  // Out of Google, Nov 2026 triage: overlaps /missing-resume-keywords. Under 10 impressions in 90 days.
+  noindex: true,
   title: "How to Find the Keyword Gaps in Your Resume",
   seoTitle: "How to Find Resume Keyword Gaps",
   description:

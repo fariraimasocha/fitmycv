@@ -4,7 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
-import { POSTS } from "@/content/blog";
+import { INDEXED_POSTS } from "@/content/blog";
 import { AUTHOR, SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -15,7 +15,7 @@ export const metadata = pageMetadata({
 });
 
 // Newest first, so the page shows what is being written now.
-const posts = [...POSTS].sort((a, b) => (b.meta.date > a.meta.date ? 1 : -1));
+const posts = [...INDEXED_POSTS].sort((a, b) => (b.meta.date > a.meta.date ? 1 : -1));
 
 export default function AuthorPage() {
   setRequestLocale("en");

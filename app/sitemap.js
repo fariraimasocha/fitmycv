@@ -1,5 +1,5 @@
 import { SITE_URL } from "@/lib/site";
-import { POSTS } from "@/content/blog";
+import { INDEXED_POSTS } from "@/content/blog";
 import { MARKETING_PAGES } from "@/content/pages";
 import { RESUME_EXAMPLES } from "@/content/resume-examples";
 import { ATS_COMPANIES } from "@/content/ats-companies";
@@ -114,7 +114,7 @@ export default function sitemap() {
   );
 
   // Posts carry their own lastModified so a content refresh is a real signal.
-  const postRoutes = POSTS.map(({ meta }) => ({
+  const postRoutes = INDEXED_POSTS.map(({ meta }) => ({
     url: `${SITE_URL}/blog/${meta.slug}`,
     lastModified: new Date(meta.updated || meta.date),
     changeFrequency: "monthly",

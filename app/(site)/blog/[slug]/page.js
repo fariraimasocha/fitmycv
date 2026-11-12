@@ -42,6 +42,7 @@ export async function generateMetadata({ params }) {
     type: "article",
     publishedTime: meta.date,
     modifiedTime: meta.updated || meta.date,
+    noindex: meta.noindex,
   });
 }
 

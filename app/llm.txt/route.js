@@ -2,7 +2,7 @@
 // assistants. Built from the same content registries as the sitemap, so new
 // blog posts, marketing pages, and resume examples appear automatically.
 import { SITE_URL } from "@/lib/site";
-import { POSTS } from "@/content/blog";
+import { INDEXED_POSTS } from "@/content/blog";
 import { MARKETING_PAGES } from "@/content/pages";
 import { RESUME_EXAMPLES } from "@/content/resume-examples";
 import { PRICING } from "@/lib/pricing";
@@ -22,7 +22,7 @@ export function GET() {
     link(`/resume-examples/${example.slug}`, `${example.role} resume example`, example.blurb)
   );
 
-  const blogLinks = POSTS.map((post) =>
+  const blogLinks = INDEXED_POSTS.map((post) =>
     link(`/blog/${post.meta.slug}`, post.meta.title, post.meta.description)
   );
 

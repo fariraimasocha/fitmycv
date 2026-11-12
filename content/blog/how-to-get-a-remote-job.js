@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-to-get-a-remote-job",
+  // Out of Google, Nov 2026 triage: off topic for a CV tool. Under 10 impressions in 90 days.
+  noindex: true,
   title: "How to Get a Remote Job in 2026 (A Practical Guide)",
   seoTitle: "How to Get a Remote Job in 2026",
   description:

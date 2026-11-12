@@ -29,6 +29,7 @@ export default function sitemap() {
     { path: "/blog", changeFrequency: "weekly", priority: 0.8 },
     { path: "/resume-examples", changeFrequency: "monthly", priority: 0.8 },
     { path: "/ats", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/ats-market-share", changeFrequency: "monthly", priority: 0.8 },
     { path: "/cv-examples", changeFrequency: "monthly", priority: 0.7 },
     { path: "/pricing", changeFrequency: "monthly", priority: 0.8 },
     { path: "/support", changeFrequency: "monthly", priority: 0.5 },

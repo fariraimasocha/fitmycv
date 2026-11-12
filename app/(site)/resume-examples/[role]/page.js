@@ -10,6 +10,9 @@ import FaqSection from "@/components/content/FaqSection";
 import JsonLd from "@/components/JsonLd";
 import { RESUME_EXAMPLES, getResumeExample } from "@/content/resume-examples";
 import { keywordsPageFor } from "@/content/resume-keywords";
+import { getExampleCvs } from "@/content/example-cvs";
+import { ResumeTemplate } from "@/components/ResumePreview";
+import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -43,6 +46,154 @@ function faqsFor({ role }) {
       a: "Use the structure, not the sentences. A CV that is a copied example describes someone else's career, and interviews expose that immediately. Copy the shape of the bullets (verb, specific action, measurable result) and fill them with your own work.",
     },
   ];
+}
+
+// The text the match checker would read off the CV.
+function cvText(cv) {
+  return [
+    cv.basics.label,
+    cv.basics.summary,
+    ...cv.work.flatMap((w) => [w.position, w.company, w.description]),
+    ...cv.skills.flatMap((s) => [s.category, ...s.skills]),
+  ].join("\n");
+}
+
+// The CV stays white in both themes: it is a document, not page chrome.
+function CvDocument({ data, template, label }) {
+  return (
+    <figure
+      aria-label={label}
+      className="overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-white text-gray-900 shadow-sm"
+    >
+      <ResumeTemplate data={data} template={template} />
+    </figure>
+  );
+}
+
+function FullCvs({ cvs }) {
+  return cvs.map((cv) => (
+    <div key={cv.id} id={cv.id} className="scroll-mt-28">
+      <h2 className="landing-section-title text-2xl sm:text-3xl">{cv.heading}</h2>
+      <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">{cv.note}</p>
+      <div className="mt-5">
+        <CvDocument data={cv.data} template={cv.template} label={cv.heading} />
+      </div>
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <Link href={`/auth?template=${cv.template}`} className="landing-primary-btn font-outfit text-sm">
+          Build my CV with this template
+        </Link>
+        <Link
+          href="/tailor-cv-from-job-link"
+          className="text-sm font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+        >
+          Or tailor the CV you have
+        </Link>
+      </div>
+    </div>
+  ));
+}
+
+function TailoringDemo({ tailoring, role }) {
+  const { posting, before, after, template, changes } = tailoring;
+  const scoreBefore = scoreResumeJobMatch(posting.text, cvText(before));
+  const scoreAfter = scoreResumeJobMatch(posting.text, cvText(after));
+  const missingAfter = new Set(scoreAfter.keywords.missing.map((k) => k.term));
+  const gained = scoreBefore.keywords.missing.map((k) => k.term).filter((t) => !missingAfter.has(t));
+
+  const scores = [
+    { label: "Match score", before: scoreBefore.overall, after: scoreAfter.overall },
+    { label: "Posting keywords covered", before: `${scoreBefore.keywords.score}%`, after: `${scoreAfter.keywords.score}%` },
+  ];
+
+  return (
+    <div id="tailored" className="scroll-mt-28">
+      <h2 className="landing-section-title text-2xl sm:text-3xl">
+        The same CV, tailored to a job ad
+      </h2>
+      <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
+        One CV does not fit every posting. Below is the first {role.toLowerCase()} CV on
+        this page, tailored to the job ad underneath. The facts stay the same. The words
+        and the order change to match what this employer asked for.
+      </p>
+
+      <div className="landing-card mt-6 rounded-2xl p-6">
+        <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+          Example job ad, written for this page
+        </p>
+        <p className="mt-2 font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+          {posting.title}, {posting.company}
+        </p>
+        <ul className="mt-4 flex flex-col gap-2">
+          {posting.asks.map((ask) => (
+            <li key={ask} className="flex gap-2 text-sm leading-6 text-[var(--landing-ink)]">
+              <CheckIcon size={15} weight="bold" aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-primary)]" />
+              {ask}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        {scores.map((s) => (
+          <div key={s.label} className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-5">
+            <p className="text-sm font-bold text-[var(--landing-ink-soft)]">{s.label}</p>
+            <p className="mt-2 font-outfit text-3xl font-extrabold tabular-nums text-[var(--landing-ink)]">
+              {s.before}
+              <span className="mx-2 text-lg text-[var(--landing-ink-soft)]" aria-label="to">
+                to
+              </span>
+              <span className="text-[var(--landing-success)]">{s.after}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-sm leading-6 text-[var(--landing-ink-soft)]">
+        Both scores come from our free{" "}
+        <Link
+          href="/resume-job-match-checker"
+          className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+        >
+          resume job match checker
+        </Link>
+        , run on this ad.
+        {gained.length ? ` Posting words the tailored CV now uses: ${gained.join(", ")}.` : ""}
+      </p>
+
+      <h3 className="mt-8 font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+        What changed
+      </h3>
+      <ul className="mt-3 flex flex-col gap-2">
+        {changes.map((change) => (
+          <li key={change} className="flex gap-2 text-base leading-7 text-[var(--landing-ink-soft)]">
+            <CheckIcon size={15} weight="bold" aria-hidden="true" className="mt-1.5 shrink-0 text-[var(--landing-success)]" />
+            {change}
+          </li>
+        ))}
+      </ul>
+
+      <h3 className="mt-8 font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+        The tailored CV
+      </h3>
+      <div className="mt-4">
+        <CvDocument data={after} template={template} label={`${role} CV tailored to ${posting.title}`} />
+      </div>
+
+      <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+            Do this with your own CV
+          </p>
+          <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
+            Paste a job link. FitMyCV rewrites your CV in that posting&apos;s words,
+            working only from what your CV already says.
+          </p>
+        </div>
+        <Link href="/tailor-cv-from-job-link" className="landing-primary-btn shrink-0 font-outfit text-sm">
+          Tailor my CV to a job
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export async function generateMetadata({ params }) {
@@ -80,6 +231,15 @@ export default async function ResumeExamplePage({ params }) {
   const example = getResumeExample(slug);
   const keywordsPage = example ? keywordsPageFor(example.slug) : null;
   if (!example) notFound();
+  const full = getExampleCvs(example.slug);
+  const updated = example.updated
+    ? new Date(`${example.updated}T00:00:00Z`).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC",
+      })
+    : null;
 
   const faqs = [...(example.faqs || []), ...faqsFor(example)];
   const others = RESUME_EXAMPLES.filter((item) => item.slug !== slug).slice(0, 3);
@@ -112,16 +272,39 @@ export default async function ResumeExamplePage({ params }) {
               className="font-serif-display mt-6 font-normal leading-[1.04] tracking-tight text-[var(--landing-ink)]"
               style={{ fontSize: "clamp(32px, 4.4vw, 52px)" }}
             >
-              {example.role} resume example
+              {full ? `${example.role} CV examples` : `${example.role} resume example`}
             </h1>
             <p className="mt-6 text-lg font-semibold leading-8 text-[var(--landing-ink-soft)]">
               {example.intro}
             </p>
+            {updated ? (
+              <p className="mt-4 text-sm font-bold text-[var(--landing-ink-soft)]">
+                Updated {updated}
+              </p>
+            ) : null}
+            {full ? (
+              <nav aria-label="On this page" className="mt-6 flex flex-wrap gap-2">
+                {[...full.cvs.map((cv) => [cv.id, cv.heading]), ...(full.tailoring ? [["tailored", "Tailored to a job ad"]] : [])].map(
+                  ([id, label]) => (
+                    <a
+                      key={id}
+                      href={`#${id}`}
+                      className="rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3.5 py-1.5 text-xs font-bold text-[var(--landing-ink)] hover:border-[var(--landing-ink-soft)]"
+                    >
+                      {label}
+                    </a>
+                  )
+                )}
+              </nav>
+            ) : null}
           </div>
         </section>
 
         <section className="px-5 pb-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-12">
+            {full ? <FullCvs cvs={full.cvs} /> : null}
+            {full?.tailoring ? <TailoringDemo tailoring={full.tailoring} role={example.role} /> : null}
+
             {/* Summary */}
             <div>
               <h2 className="landing-section-title text-2xl sm:text-3xl">

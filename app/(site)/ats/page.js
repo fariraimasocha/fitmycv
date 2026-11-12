@@ -31,6 +31,13 @@ export default function AtsLookupPage() {
             Each company below has a job board on the hiring system&apos;s own website. Open one to see the board
             and what it means for your CV.
           </p>
+          <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">
+            For every company in the S&amp;P 500, see{" "}
+            <Link href="/ats-market-share" className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4">
+              which ATS S&amp;P 500 companies use
+            </Link>
+            .
+          </p>
           <div className="mt-8 flex flex-col gap-8">
             {groups.map(({ vendor, companies }) => (
               <div key={vendor.id}>

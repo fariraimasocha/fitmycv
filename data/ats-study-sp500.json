@@ -1,0 +1,4115 @@
+{
+ "checkedOn": "2026-11-12",
+ "companies": [
+  {
+   "ticker": "MMM",
+   "name": "3M",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://3m.wd1.myworkdayjobs.com/Search",
+   "others": []
+  },
+  {
+   "ticker": "AOS",
+   "name": "A. O. Smith",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ABT",
+   "name": "Abbott Laboratories",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers",
+   "others": []
+  },
+  {
+   "ticker": "ABBV",
+   "name": "AbbVie",
+   "sector": "Health Care",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/AbbVie",
+   "others": []
+  },
+  {
+   "ticker": "ACN",
+   "name": "Accenture",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://accenture.wd103.myworkdayjobs.com/AccentureCareers",
+   "others": [
+    {
+     "ats": "breezy",
+     "url": "https://accenture.breezy.hr/"
+    }
+   ]
+  },
+  {
+   "ticker": "ADBE",
+   "name": "Adobe Inc.",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://adobe.wd5.myworkdayjobs.com/external_experienced",
+   "others": []
+  },
+  {
+   "ticker": "AMD",
+   "name": "Advanced Micro Devices",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AES",
+   "name": "AES Corporation",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://aes.wd1.myworkdayjobs.com/AES_US",
+   "others": []
+  },
+  {
+   "ticker": "AFL",
+   "name": "Aflac",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "A",
+   "name": "Agilent Technologies",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://agilent.wd5.myworkdayjobs.com/Agilent_Careers",
+   "others": []
+  },
+  {
+   "ticker": "APD",
+   "name": "Air Products",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://airproducts.wd5.myworkdayjobs.com/en-US/AP0001",
+   "others": []
+  },
+  {
+   "ticker": "ABNB",
+   "name": "Airbnb",
+   "sector": "Consumer Discretionary",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/airbnb/jobs/8242235",
+   "others": []
+  },
+  {
+   "ticker": "AKAM",
+   "name": "Akamai Technologies",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs?lastSelectedFacet=POSTING_DATES&selectedPostingDatesFacet=30&urlHash=b5P9",
+   "others": []
+  },
+  {
+   "ticker": "ALB",
+   "name": "Albemarle Corporation",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://albemarle.wd5.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "ARE",
+   "name": "Alexandria Real Estate Equities",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ALGN",
+   "name": "Align Technology",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ALLE",
+   "name": "Allegion",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://allegion.wd5.myworkdayjobs.com/careers",
+   "others": []
+  },
+  {
+   "ticker": "LNT",
+   "name": "Alliant Energy",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://alliantenergy.wd1.myworkdayjobs.com/alliant?locations=0edb73b0cd4310016a2ece59bc980000",
+   "others": []
+  },
+  {
+   "ticker": "ALL",
+   "name": "Allstate",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://allstate.wd5.myworkdayjobs.com/allstate_careers",
+   "others": []
+  },
+  {
+   "ticker": "GOOGL",
+   "name": "Alphabet Inc. (Class A)",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MO",
+   "name": "Altria",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AMZN",
+   "name": "Amazon",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AMCR",
+   "name": "Amcor",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://amcor.wd5.myworkdayjobs.com/Amcor_External_Career_Site",
+   "others": []
+  },
+  {
+   "ticker": "AEE",
+   "name": "Ameren",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://ameren.wd1.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "AEP",
+   "name": "American Electric Power",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AXP",
+   "name": "American Express",
+   "sector": "Financials",
+   "ats": "oracle",
+   "evidenceUrl": "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+   "others": []
+  },
+  {
+   "ticker": "AIG",
+   "name": "American International Group",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AMT",
+   "name": "American Tower",
+   "sector": "Real Estate",
+   "ats": "oracle",
+   "evidenceUrl": "https://hdsn.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/AFRICA",
+   "others": []
+  },
+  {
+   "ticker": "AWK",
+   "name": "American Water Works",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AMP",
+   "name": "Ameriprise Financial",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://ameriprise.wd5.myworkdayjobs.com/Ameriprise",
+   "others": []
+  },
+  {
+   "ticker": "AME",
+   "name": "Ametek",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AMGN",
+   "name": "Amgen",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://amgen.wd1.myworkdayjobs.com/Careers",
+   "others": []
+  },
+  {
+   "ticker": "APH",
+   "name": "Amphenol",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ADI",
+   "name": "Analog Devices",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://analogdevices.wd1.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "AON",
+   "name": "Aon plc",
+   "sector": "Financials",
+   "ats": "icims",
+   "evidenceUrl": "https://us-careers-aon.icims.com/",
+   "others": [
+    {
+     "ats": "teamtailor",
+     "url": "https://aon.teamtailor.com/jobs"
+    }
+   ]
+  },
+  {
+   "ticker": "APA",
+   "name": "APA Corporation",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://apa.wd105.myworkdayjobs.com/en-US/APA-Careers/job/Mathematical-Optimisation-Specialist_JR5189",
+   "others": []
+  },
+  {
+   "ticker": "APO",
+   "name": "Apollo Global Management",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://athene.wd5.myworkdayjobs.com/Apollo_Careers",
+   "others": []
+  },
+  {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AMAT",
+   "name": "Applied Materials",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "APP",
+   "name": "AppLovin",
+   "sector": "Communication Services",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/applovin/jobs/4681661006",
+   "others": []
+  },
+  {
+   "ticker": "APTV",
+   "name": "Aptiv",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://aptiv.wd5.myworkdayjobs.com/en-US/APTIV_CAREERS",
+   "others": []
+  },
+  {
+   "ticker": "ACGL",
+   "name": "Arch Capital Group",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ADM",
+   "name": "Archer Daniels Midland",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ARES",
+   "name": "Ares Management",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ANET",
+   "name": "Arista Networks",
+   "sector": "Information Technology",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/aristanetworks",
+   "others": []
+  },
+  {
+   "ticker": "AJG",
+   "name": "Arthur J. Gallagher & Co.",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AIZ",
+   "name": "Assurant",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://assurant.wd1.myworkdayjobs.com/en-US/assurant_careers",
+   "others": []
+  },
+  {
+   "ticker": "T",
+   "name": "AT&T",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://att.wd1.myworkdayjobs.com/en-US/ATTGeneral/job/Installation-Technician_R-125530",
+   "others": [
+    {
+     "ats": "breezy",
+     "url": "https://at-t.breezy.hr/"
+    }
+   ]
+  },
+  {
+   "ticker": "ATO",
+   "name": "Atmos Energy",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://atmosenergy.wd108.myworkdayjobs.com/External_Career_Site",
+   "others": []
+  },
+  {
+   "ticker": "ADSK",
+   "name": "Autodesk",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://autodesk.wd1.myworkdayjobs.com/Ext",
+   "others": []
+  },
+  {
+   "ticker": "ADP",
+   "name": "Automatic Data Processing",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "AZO",
+   "name": "AutoZone",
+   "sector": "Consumer Discretionary",
+   "ats": "oracle",
+   "evidenceUrl": "https://egud.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/",
+   "others": []
+  },
+  {
+   "ticker": "AVY",
+   "name": "Avery Dennison",
+   "sector": "Materials",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/averydennison",
+   "others": []
+  },
+  {
+   "ticker": "AXON",
+   "name": "Axon Enterprise",
+   "sector": "Industrials",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/axon/jobs/7814826003",
+   "others": [
+    {
+     "ats": "smartrecruiters",
+     "url": "https://careers.smartrecruiters.com/AxonEnterprise"
+    }
+   ]
+  },
+  {
+   "ticker": "BKR",
+   "name": "Baker Hughes",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://bakerhughes.wd5.myworkdayjobs.com/BakerHughes",
+   "others": []
+  },
+  {
+   "ticker": "BALL",
+   "name": "Ball Corporation",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BAC",
+   "name": "Bank of America",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BAX",
+   "name": "Baxter International",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://baxter.wd1.myworkdayjobs.com/en-US/baxter",
+   "others": []
+  },
+  {
+   "ticker": "BDX",
+   "name": "Becton Dickinson",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BRK.B",
+   "name": "Berkshire Hathaway",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BBY",
+   "name": "Best Buy",
+   "sector": "Consumer Discretionary",
+   "ats": "oracle",
+   "evidenceUrl": "https://eczy.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/40676",
+   "others": []
+  },
+  {
+   "ticker": "TECH",
+   "name": "Bio-Techne",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://biotechne.wd5.myworkdayjobs.com/Biotechne",
+   "others": []
+  },
+  {
+   "ticker": "BIIB",
+   "name": "Biogen",
+   "sector": "Health Care",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/Biogen",
+   "others": []
+  },
+  {
+   "ticker": "BLK",
+   "name": "BlackRock",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional",
+   "others": []
+  },
+  {
+   "ticker": "BX",
+   "name": "Blackstone Inc.",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://blackstone.wd1.myworkdayjobs.com/Blackstone_Careers",
+   "others": []
+  },
+  {
+   "ticker": "XYZ",
+   "name": "Block, Inc.",
+   "sector": "Financials",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/block?error=true",
+   "others": []
+  },
+  {
+   "ticker": "BE",
+   "name": "Bloom Energy",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://bloomenergy.wd1.myworkdayjobs.com/BloomEnergyCareers",
+   "others": []
+  },
+  {
+   "ticker": "BNY",
+   "name": "BNY Mellon",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BA",
+   "name": "Boeing",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://boeing.wd1.myworkdayjobs.com/EXTERNAL_CAREERS",
+   "others": []
+  },
+  {
+   "ticker": "BKNG",
+   "name": "Booking Holdings",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BSX",
+   "name": "Boston Scientific",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BMY",
+   "name": "Bristol Myers Squibb",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://bristolmyerssquibb.wd5.myworkdayjobs.com/en-US/BMS",
+   "others": []
+  },
+  {
+   "ticker": "AVGO",
+   "name": "Broadcom",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://broadcom.wd1.myworkdayjobs.com/en-US/External_Career/job/Forward-Deployed-Engineer---Kubernetes_R027412",
+   "others": []
+  },
+  {
+   "ticker": "BR",
+   "name": "Broadridge Financial Solutions",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://broadridge.wd5.myworkdayjobs.com/Careers",
+   "others": []
+  },
+  {
+   "ticker": "BRO",
+   "name": "Brown & Brown",
+   "sector": "Financials",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/BrownBrown",
+   "others": []
+  },
+  {
+   "ticker": "BF.B",
+   "name": "Brown–Forman",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "BG",
+   "name": "Bunge Global",
+   "sector": "Consumer Staples",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career5.successfactors.eu/careers?company=Bunge",
+   "others": []
+  },
+  {
+   "ticker": "BXP",
+   "name": "BXP, Inc.",
+   "sector": "Real Estate",
+   "ats": "oracle",
+   "evidenceUrl": "https://edxn.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_4001",
+   "others": []
+  },
+  {
+   "ticker": "CHRW",
+   "name": "C.H. Robinson",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CDNS",
+   "name": "Cadence Design Systems",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://cadence.wd1.myworkdayjobs.com/External_Careers",
+   "others": []
+  },
+  {
+   "ticker": "CPT",
+   "name": "Camden Property Trust",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "COF",
+   "name": "Capital One",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://capitalone.wd12.myworkdayjobs.com/Capital_One",
+   "others": []
+  },
+  {
+   "ticker": "CAH",
+   "name": "Cardinal Health",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://cardinalhealth.wd1.myworkdayjobs.com/en-US/EXT",
+   "others": []
+  },
+  {
+   "ticker": "CCL",
+   "name": "Carnival Corporation",
+   "sector": "Consumer Discretionary",
+   "ats": "oracle",
+   "evidenceUrl": "https://eicl.fa.em5.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CORP/jobs?lastSelectedFacet=POSTING_DATES&selectedPostingDatesFacet=30utm_medium",
+   "others": []
+  },
+  {
+   "ticker": "CARR",
+   "name": "Carrier Global",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://carrier.wd5.myworkdayjobs.com/en-US/jobs/job/Lead-PLC-SCADA-Engineer_30204884",
+   "others": []
+  },
+  {
+   "ticker": "CVNA",
+   "name": "Carvana",
+   "sector": "Consumer Discretionary",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://boards.greenhouse.io/carvana/jobs/7811625",
+   "others": []
+  },
+  {
+   "ticker": "CASY",
+   "name": "Casey's",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CAT",
+   "name": "Caterpillar Inc.",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CBOE",
+   "name": "Cboe Global Markets",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://cboe.wd1.myworkdayjobs.com/External_Career_CBOE",
+   "others": []
+  },
+  {
+   "ticker": "CBRE",
+   "name": "CBRE Group",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CDW",
+   "name": "CDW Corporation",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://cdw.wd5.myworkdayjobs.com/Careers",
+   "others": [
+    {
+     "ats": "jobvite",
+     "url": "https://jobs.jobvite.com/cdw"
+    }
+   ]
+  },
+  {
+   "ticker": "COR",
+   "name": "Cencora",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CNC",
+   "name": "Centene Corporation",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://centene.wd5.myworkdayjobs.com/Centene_External",
+   "others": []
+  },
+  {
+   "ticker": "CNP",
+   "name": "CenterPoint Energy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CF",
+   "name": "CF Industries",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CRL",
+   "name": "Charles River Laboratories",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SCHW",
+   "name": "Charles Schwab Corporation",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CHTR",
+   "name": "Charter Communications",
+   "sector": "Communication Services",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-charter.icims.com/jobs/login?loginOnly=1",
+   "others": []
+  },
+  {
+   "ticker": "CVX",
+   "name": "Chevron Corporation",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://chevron.wd5.myworkdayjobs.com/en-US/jobs",
+   "others": []
+  },
+  {
+   "ticker": "CMG",
+   "name": "Chipotle Mexican Grill",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://chipotle.wd5.myworkdayjobs.com/ChipotleCareers",
+   "others": [
+    {
+     "ats": "taleo",
+     "url": "https://chipotle.taleo.net/careersection/crew/moresearch.ftl?lang=en"
+    }
+   ]
+  },
+  {
+   "ticker": "CB",
+   "name": "Chubb Limited",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CHD",
+   "name": "Church & Dwight",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://churchdwight.wd1.myworkdayjobs.com/chdcareers",
+   "others": []
+  },
+  {
+   "ticker": "CIEN",
+   "name": "Ciena",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://ciena.wd5.myworkdayjobs.com/Careers",
+   "others": []
+  },
+  {
+   "ticker": "CI",
+   "name": "Cigna",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://cigna.wd5.myworkdayjobs.com/cignacareers",
+   "others": []
+  },
+  {
+   "ticker": "CINF",
+   "name": "Cincinnati Financial",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CTAS",
+   "name": "Cintas",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CSCO",
+   "name": "Cisco",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://cisco.wd5.myworkdayjobs.com/Cisco_Careers",
+   "others": []
+  },
+  {
+   "ticker": "C",
+   "name": "Citigroup",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CFG",
+   "name": "Citizens Financial Group",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CLX",
+   "name": "Clorox",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://clorox.wd1.myworkdayjobs.com/Clorox",
+   "others": []
+  },
+  {
+   "ticker": "CME",
+   "name": "CME Group",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://cmegroup.wd1.myworkdayjobs.com/cme_careers",
+   "others": []
+  },
+  {
+   "ticker": "CMS",
+   "name": "CMS Energy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "KO",
+   "name": "Coca-Cola Company (The)",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://coke.wd1.myworkdayjobs.com/coca-cola-careers",
+   "others": []
+  },
+  {
+   "ticker": "CTSH",
+   "name": "Cognizant",
+   "sector": "Information Technology",
+   "ats": "taleo",
+   "evidenceUrl": "https://cognizant.taleo.net/careersection/naukri/jobsearch.ftl",
+   "others": []
+  },
+  {
+   "ticker": "COHR",
+   "name": "Coherent Corp.",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://hcwp.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1",
+   "others": []
+  },
+  {
+   "ticker": "COIN",
+   "name": "Coinbase",
+   "sector": "Financials",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/coinbase/jobs/8198059",
+   "others": []
+  },
+  {
+   "ticker": "CL",
+   "name": "Colgate-Palmolive",
+   "sector": "Consumer Staples",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career4.successfactors.com/careers?company=colgate",
+   "others": []
+  },
+  {
+   "ticker": "CMCSA",
+   "name": "Comcast",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://comcast.wd115.myworkdayjobs.com/Comcast_Careers",
+   "others": []
+  },
+  {
+   "ticker": "FIX",
+   "name": "Comfort Systems USA",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://comfortsystemsusa.wd1.myworkdayjobs.com/Corpcareers",
+   "others": []
+  },
+  {
+   "ticker": "COP",
+   "name": "ConocoPhillips",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://conocophillips.wd1.myworkdayjobs.com/External/",
+   "others": []
+  },
+  {
+   "ticker": "ED",
+   "name": "Consolidated Edison",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "STZ",
+   "name": "Constellation Brands",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CEG",
+   "name": "Constellation Energy",
+   "sector": "Utilities",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-constellationenergy.icims.com/jobs",
+   "others": []
+  },
+  {
+   "ticker": "COO",
+   "name": "Cooper Companies (The)",
+   "sector": "Health Care",
+   "ats": "oracle",
+   "evidenceUrl": "https://hcjy.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1",
+   "others": []
+  },
+  {
+   "ticker": "CPRT",
+   "name": "Copart",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://copart.wd12.myworkdayjobs.com/Copart",
+   "others": []
+  },
+  {
+   "ticker": "GLW",
+   "name": "Corning Inc.",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CPAY",
+   "name": "Corpay",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://corpay.wd103.myworkdayjobs.com/Ext_001",
+   "others": []
+  },
+  {
+   "ticker": "CSGP",
+   "name": "CoStar Group",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://costar.wd1.myworkdayjobs.com/CoStarCareers",
+   "others": []
+  },
+  {
+   "ticker": "COST",
+   "name": "Costco",
+   "sector": "Consumer Staples",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-costco.icims.com/",
+   "others": []
+  },
+  {
+   "ticker": "CRH",
+   "name": "CRH plc",
+   "sector": "Materials",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career2.successfactors.eu/career?_s.crb=zIiVMNFHnPTlyKtQZDRdnzDPR7w%3D&company=CRH&jobPipeline=Direct&lang=en_US&login_ns=register&navBarLevel=MY_PROFILE&requestParams=&site=",
+   "others": []
+  },
+  {
+   "ticker": "CRWD",
+   "name": "CrowdStrike",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers",
+   "others": []
+  },
+  {
+   "ticker": "CCI",
+   "name": "Crown Castle",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CSX",
+   "name": "CSX Corporation",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://fa-eowa-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CSXCareers/pages/17001",
+   "others": []
+  },
+  {
+   "ticker": "CMI",
+   "name": "Cummins",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://fa-espx-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+   "others": []
+  },
+  {
+   "ticker": "CVS",
+   "name": "CVS Health",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers",
+   "others": []
+  },
+  {
+   "ticker": "DHR",
+   "name": "Danaher Corporation",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://danaher.wd1.myworkdayjobs.com/DanaherJobs",
+   "others": []
+  },
+  {
+   "ticker": "DRI",
+   "name": "Darden Restaurants",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DDOG",
+   "name": "Datadog",
+   "sector": "Information Technology",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/datadog/jobs/7815616",
+   "others": []
+  },
+  {
+   "ticker": "DVA",
+   "name": "DaVita",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://davita.wd1.myworkdayjobs.com/DKC_External",
+   "others": []
+  },
+  {
+   "ticker": "DECK",
+   "name": "Deckers Brands",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://deckers.wd5.myworkdayjobs.com/Deckers-Brands",
+   "others": []
+  },
+  {
+   "ticker": "DE",
+   "name": "Deere & Company",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DELL",
+   "name": "Dell Technologies",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://iawmqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/careers/jobs?mode=location",
+   "others": [
+    {
+     "ats": "workday",
+     "url": "https://dell.wd1.myworkdayjobs.com/External"
+    }
+   ]
+  },
+  {
+   "ticker": "DAL",
+   "name": "Delta Air Lines",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DVN",
+   "name": "Devon Energy",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://devonenergy.wd5.myworkdayjobs.com/en-US/Careers/job/Staff-Geologist_R26458",
+   "others": []
+  },
+  {
+   "ticker": "DXCM",
+   "name": "Dexcom",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://dexcom.wd1.myworkdayjobs.com/en-US/Dexcom",
+   "others": []
+  },
+  {
+   "ticker": "FANG",
+   "name": "Diamondback Energy",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://diamondbackenergy.wd12.myworkdayjobs.com/DBE",
+   "others": []
+  },
+  {
+   "ticker": "DLR",
+   "name": "Digital Realty",
+   "sector": "Real Estate",
+   "ats": "oracle",
+   "evidenceUrl": "https://hdep.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX",
+   "others": []
+  },
+  {
+   "ticker": "DG",
+   "name": "Dollar General",
+   "sector": "Consumer Staples",
+   "ats": "oracle",
+   "evidenceUrl": "https://ibxwjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+   "others": []
+  },
+  {
+   "ticker": "DLTR",
+   "name": "Dollar Tree",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://dollartree.wd5.myworkdayjobs.com/dollartreeus",
+   "others": []
+  },
+  {
+   "ticker": "D",
+   "name": "Dominion Energy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DPZ",
+   "name": "Domino's",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DASH",
+   "name": "DoorDash",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DOV",
+   "name": "Dover Corporation",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://dover.wd103.myworkdayjobs.com/Dover",
+   "others": []
+  },
+  {
+   "ticker": "DOW",
+   "name": "Dow Inc.",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://dow.wd1.myworkdayjobs.com/en-US/ExternalCareers",
+   "others": []
+  },
+  {
+   "ticker": "DHI",
+   "name": "D. R. Horton",
+   "sector": "Consumer Discretionary",
+   "ats": "taleo",
+   "evidenceUrl": "https://drhorton.taleo.net/careersection/2/jobsearch.ftl?lang=en",
+   "others": []
+  },
+  {
+   "ticker": "DTE",
+   "name": "DTE Energy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "DUK",
+   "name": "Duke Energy",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://dukeenergy.wd1.myworkdayjobs.com/Search",
+   "others": []
+  },
+  {
+   "ticker": "DD",
+   "name": "DuPont",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://dupont.wd5.myworkdayjobs.com/Jobs",
+   "others": []
+  },
+  {
+   "ticker": "ETN",
+   "name": "Eaton Corporation",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EBAY",
+   "name": "eBay Inc.",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/MTS-2--Software-Engineer_R0077231",
+   "others": [
+    {
+     "ats": "smartrecruiters",
+     "url": "https://careers.smartrecruiters.com/eBay"
+    }
+   ]
+  },
+  {
+   "ticker": "ECHO",
+   "name": "EchoStar",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ECL",
+   "name": "Ecolab",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://ecolab.wd1.myworkdayjobs.com/en-US/Ecolab_External/job/Global-Procurement-Category-Manager---Raw-Materials_R00308257-1",
+   "others": []
+  },
+  {
+   "ticker": "EIX",
+   "name": "Edison International",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EW",
+   "name": "Edwards Lifesciences",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://edwards.wd5.myworkdayjobs.com/EdwardsCareers",
+   "others": []
+  },
+  {
+   "ticker": "ELV",
+   "name": "Elevance Health",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://elevancehealth.wd1.myworkdayjobs.com/ANT",
+   "others": []
+  },
+  {
+   "ticker": "EME",
+   "name": "Emcor|| Industrials",
+   "sector": "Construction & Engineering",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EMR",
+   "name": "Emerson Electric",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ETR",
+   "name": "Entergy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EOG",
+   "name": "EOG Resources",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EQT",
+   "name": "EQT Corporation",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EFX",
+   "name": "Equifax",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://equifax.wd5.myworkdayjobs.com/en-US/External/job/Data-Scientist_J00179316",
+   "others": []
+  },
+  {
+   "ticker": "EQIX",
+   "name": "Equinix",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://equinix.wd1.myworkdayjobs.com/en-US/External/job/Staff-Engineer--Product-Software_JR-164438",
+   "others": []
+  },
+  {
+   "ticker": "ERIE",
+   "name": "Erie Indemnity",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ESS",
+   "name": "Essex Property Trust",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://essex.wd5.myworkdayjobs.com/en-US/essexcareers/job/Investment-Management-Analyst_R9338",
+   "others": []
+  },
+  {
+   "ticker": "EL",
+   "name": "Estée Lauder Companies (The)",
+   "sector": "Consumer Staples",
+   "ats": "oracle",
+   "evidenceUrl": "https://ekeq.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_3001/jobs/preview/N132727/apply/email",
+   "others": []
+  },
+  {
+   "ticker": "EG",
+   "name": "Everest Group",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EVRG",
+   "name": "Evergy",
+   "sector": "Utilities",
+   "ats": "taleo",
+   "evidenceUrl": "https://evergy.taleo.net/careersection/evergy_external_career_section/joblist.ftl",
+   "others": []
+  },
+  {
+   "ticker": "P",
+   "name": "Everpure",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ES",
+   "name": "Eversource Energy",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://eversource.wd1.myworkdayjobs.com/ExternalSite",
+   "others": []
+  },
+  {
+   "ticker": "EXC",
+   "name": "Exelon",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EXE",
+   "name": "Expand Energy",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "EXPE",
+   "name": "Expedia Group",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://expedia.wd108.myworkdayjobs.com/search",
+   "others": []
+  },
+  {
+   "ticker": "EXPD",
+   "name": "Expeditors International",
+   "sector": "Industrials",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/Expeditors",
+   "others": [
+    {
+     "ats": "workable",
+     "url": "https://apply.workable.com/expeditors/"
+    }
+   ]
+  },
+  {
+   "ticker": "EXR",
+   "name": "Extra Space Storage",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "XOM",
+   "name": "ExxonMobil",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FFIV",
+   "name": "F5, Inc.",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FDS",
+   "name": "FactSet",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://factset.wd108.myworkdayjobs.com/FactSetCareers",
+   "others": []
+  },
+  {
+   "ticker": "FICO",
+   "name": "Fair Isaac",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FAST",
+   "name": "Fastenal",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FRT",
+   "name": "Federal Realty Investment Trust",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FDX",
+   "name": "FedEx",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://fedex.wd1.myworkdayjobs.com/FXE-EU_External",
+   "others": []
+  },
+  {
+   "ticker": "FDXF",
+   "name": "FedEx Freight",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FERG",
+   "name": "Ferguson Enterprises",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://ferguson.wd1.myworkdayjobs.com/Ferguson_Experienced",
+   "others": []
+  },
+  {
+   "ticker": "FIS",
+   "name": "Fidelity National Information Services",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FITB",
+   "name": "Fifth Third Bancorp",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FSLR",
+   "name": "First Solar",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://fa-esbv-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1",
+   "others": []
+  },
+  {
+   "ticker": "FE",
+   "name": "FirstEnergy",
+   "sector": "Utilities",
+   "ats": "oracle",
+   "evidenceUrl": "https://fa-etjd-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/FirstEnergyCareers/jobs",
+   "others": []
+  },
+  {
+   "ticker": "FISV",
+   "name": "Fiserv",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://fiserv.wd5.myworkdayjobs.com/en-US/EXT",
+   "others": []
+  },
+  {
+   "ticker": "FLEX",
+   "name": "Flex Ltd.",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "F",
+   "name": "Ford Motor Company",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FTNT",
+   "name": "Fortinet",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://evpq.fa.us8.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+   "others": []
+  },
+  {
+   "ticker": "FTV",
+   "name": "Fortive",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://ejta.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2001",
+   "others": []
+  },
+  {
+   "ticker": "FOXA",
+   "name": "Fox Corporation (Class A)",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://fox.wd1.myworkdayjobs.com/Domestic",
+   "others": []
+  },
+  {
+   "ticker": "BEN",
+   "name": "Franklin Resources",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "FCX",
+   "name": "Freeport-McMoRan",
+   "sector": "Materials",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://jobs.smartrecruiters.com/freeport-mcmoran/743999692419550",
+   "others": []
+  },
+  {
+   "ticker": "GRMN",
+   "name": "Garmin",
+   "sector": "Consumer Discretionary",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-garmin.icims.com/jobs/login?loginOnly=1",
+   "others": []
+  },
+  {
+   "ticker": "IT",
+   "name": "Gartner",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://gartner.wd5.myworkdayjobs.com/en-US/ext",
+   "others": []
+  },
+  {
+   "ticker": "GE",
+   "name": "GE Aerospace",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite",
+   "others": []
+  },
+  {
+   "ticker": "GEHC",
+   "name": "GE HealthCare",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "GEV",
+   "name": "GE Vernova",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://gevernova.wd5.myworkdayjobs.com/Vernova_ExternalSite",
+   "others": []
+  },
+  {
+   "ticker": "GEN",
+   "name": "Gen Digital",
+   "sector": "Information Technology",
+   "ats": "ashby",
+   "evidenceUrl": "https://jobs.ashbyhq.com/gen-digital",
+   "others": []
+  },
+  {
+   "ticker": "GNRC",
+   "name": "Generac",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://generac.wd5.myworkdayjobs.com/ExternalCareers",
+   "others": []
+  },
+  {
+   "ticker": "GD",
+   "name": "General Dynamics",
+   "sector": "Industrials",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-generaldynamics.icims.com/jobs/intro",
+   "others": []
+  },
+  {
+   "ticker": "GIS",
+   "name": "General Mills",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "GM",
+   "name": "General Motors",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM",
+   "others": []
+  },
+  {
+   "ticker": "GPC",
+   "name": "Genuine Parts Company",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "GILD",
+   "name": "Gilead Sciences",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://gilead.wd1.myworkdayjobs.com/en-US/gileadcareers",
+   "others": [
+    {
+     "ats": "workable",
+     "url": "https://apply.workable.com/gilead-sciences/?lng=en"
+    }
+   ]
+  },
+  {
+   "ticker": "GPN",
+   "name": "Global Payments",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "GL",
+   "name": "Globe Life",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://globelife.wd5.myworkdayjobs.com/Globe-Life-Careers",
+   "others": [
+    {
+     "ats": "workable",
+     "url": "https://apply.workable.com/globelife/"
+    }
+   ]
+  },
+  {
+   "ticker": "GDDY",
+   "name": "GoDaddy",
+   "sector": "Information Technology",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/godaddy/jobs/4408869003",
+   "others": []
+  },
+  {
+   "ticker": "GS",
+   "name": "Goldman Sachs",
+   "sector": "Financials",
+   "ats": "oracle",
+   "evidenceUrl": "https://hdpc.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/GS/job/185121",
+   "others": []
+  },
+  {
+   "ticker": "HAL",
+   "name": "Halliburton",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HIG",
+   "name": "Hartford (The)",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HAS",
+   "name": "Hasbro",
+   "sector": "Consumer Discretionary",
+   "ats": "greenhouse",
+   "evidenceUrl": "http://job-boards.greenhouse.io/hasbro",
+   "others": []
+  },
+  {
+   "ticker": "HCA",
+   "name": "HCA Healthcare",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://hcahealthcare.wd3.myworkdayjobs.com/en-US/hcacareers/job/Healthcare-Assistant---Oncology-_0054548",
+   "others": []
+  },
+  {
+   "ticker": "DOC",
+   "name": "Healthpeak Properties",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HSIC",
+   "name": "Henry Schein",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://henryschein.wd1.myworkdayjobs.com/en-US/External_Careers",
+   "others": []
+  },
+  {
+   "ticker": "HSY",
+   "name": "Hershey Company (The)",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HPE",
+   "name": "Hewlett Packard Enterprise",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HLT",
+   "name": "Hilton Worldwide",
+   "sector": "Consumer Discretionary",
+   "ats": "taleo",
+   "evidenceUrl": "https://hilton.taleo.net/careersection/hww_cs_internal_global/moresearch.ftl",
+   "others": []
+  },
+  {
+   "ticker": "HD",
+   "name": "Home Depot (The)",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://homedepot.wd5.myworkdayjobs.com/en-US/CareerDepot/job/Operations-Assistant-Store-Manager-in-Training_Req197638-1",
+   "others": []
+  },
+  {
+   "ticker": "HONA",
+   "name": "Honeywell Aerospace",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HON",
+   "name": "Honeywell Technologies",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://ibqbjb.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/Honeywell/jobs",
+   "others": []
+  },
+  {
+   "ticker": "HRL",
+   "name": "Hormel Foods",
+   "sector": "Consumer Staples",
+   "ats": "oracle",
+   "evidenceUrl": "https://ekkh.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2002/jobs",
+   "others": []
+  },
+  {
+   "ticker": "HST",
+   "name": "Host Hotels & Resorts",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "HWM",
+   "name": "Howmet Aerospace",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://fa-exty-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+   "others": []
+  },
+  {
+   "ticker": "HPQ",
+   "name": "HP Inc.",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://hp.wd5.myworkdayjobs.com/en-US/EXTEU-AC-CareerSite/job/Printhead-Mechanical-Designer_3170599",
+   "others": [
+    {
+     "ats": "greenhouse",
+     "url": "https://job-boards.greenhouse.io/hp/jobs/6238460004"
+    }
+   ]
+  },
+  {
+   "ticker": "HUBB",
+   "name": "Hubbell Incorporated",
+   "sector": "Industrials",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career4.successfactors.com/careers?career_ns=job_listing_summary&company=Hubbell",
+   "others": []
+  },
+  {
+   "ticker": "HUM",
+   "name": "Humana",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://humana.wd5.myworkdayjobs.com/CenterWell_External_Career_Site",
+   "others": []
+  },
+  {
+   "ticker": "HBAN",
+   "name": "Huntington Bancshares",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://huntington.wd12.myworkdayjobs.com/HNBcareers",
+   "others": []
+  },
+  {
+   "ticker": "HII",
+   "name": "Huntington Ingalls Industries",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "IBM",
+   "name": "IBM",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "IEX",
+   "name": "IDEX Corporation",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://idexcorp.wd5.myworkdayjobs.com/IDEX_Careers",
+   "others": []
+  },
+  {
+   "ticker": "IDXX",
+   "name": "Idexx Laboratories",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://idexx.wd115.myworkdayjobs.com/IDEXX",
+   "others": []
+  },
+  {
+   "ticker": "ITW",
+   "name": "Illinois Tool Works",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ILMN",
+   "name": "Illumina, Inc.",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://illumina.wd1.myworkdayjobs.com/illumina-careers",
+   "others": []
+  },
+  {
+   "ticker": "INCY",
+   "name": "Incyte",
+   "sector": "Health Care",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-incyte.icims.com/jobs/6475/login",
+   "others": [
+    {
+     "ats": "workable",
+     "url": "https://apply.workable.com/incyte/"
+    }
+   ]
+  },
+  {
+   "ticker": "IR",
+   "name": "Ingersoll Rand",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PODD",
+   "name": "Insulet Corporation",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://insulet.wd5.myworkdayjobs.com/insuletcareers",
+   "others": []
+  },
+  {
+   "ticker": "INTC",
+   "name": "Intel",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://intel.wd1.myworkdayjobs.com/External/page/6fe59b941a151001692baf2c8f030000?wapkw=careers",
+   "others": []
+  },
+  {
+   "ticker": "IBKR",
+   "name": "Interactive Brokers",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ICE",
+   "name": "Intercontinental Exchange",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "IFF",
+   "name": "International Flavors & Fragrances",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "IP",
+   "name": "International Paper",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "INTU",
+   "name": "Intuit",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ISRG",
+   "name": "Intuitive Surgical",
+   "sector": "Health Care",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/intuitive",
+   "others": [
+    {
+     "ats": "workday",
+     "url": "https://intuitive.wd1.myworkdayjobs.com/irtc_careers"
+    }
+   ]
+  },
+  {
+   "ticker": "IVZ",
+   "name": "Invesco",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://invesco.wd1.myworkdayjobs.com/IVZ",
+   "others": []
+  },
+  {
+   "ticker": "INVH",
+   "name": "Invitation Homes",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://invitationhomes.wd503.myworkdayjobs.com/INVH",
+   "others": []
+  },
+  {
+   "ticker": "IQV",
+   "name": "IQVIA",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://iqvia.wd1.myworkdayjobs.com/IQVIA",
+   "others": [
+    {
+     "ats": "breezy",
+     "url": "https://iqvia.breezy.hr/"
+    }
+   ]
+  },
+  {
+   "ticker": "IRM",
+   "name": "Iron Mountain",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://ironmountain.wd5.myworkdayjobs.com/iron-mountain-jobs",
+   "others": []
+  },
+  {
+   "ticker": "JBHT",
+   "name": "J.B. Hunt",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "JBL",
+   "name": "Jabil",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://jabil.wd5.myworkdayjobs.com/Jabil_Careers",
+   "others": []
+  },
+  {
+   "ticker": "JKHY",
+   "name": "Jack Henry & Associates",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "J",
+   "name": "Jacobs Solutions",
+   "sector": "Industrials",
+   "ats": "taleo",
+   "evidenceUrl": "https://jacobs.taleo.net/careersection/jobsearch.ftl",
+   "others": []
+  },
+  {
+   "ticker": "JNJ",
+   "name": "Johnson & Johnson",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "JCI",
+   "name": "Johnson Controls",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "JPM",
+   "name": "JPMorgan Chase",
+   "sector": "Financials",
+   "ats": "oracle",
+   "evidenceUrl": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001",
+   "others": []
+  },
+  {
+   "ticker": "KDP",
+   "name": "Keurig Dr Pepper",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "KEY",
+   "name": "KeyCorp",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "KEYS",
+   "name": "Keysight Technologies",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "KMB",
+   "name": "Kimberly-Clark",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://kimberlyclark.wd1.myworkdayjobs.com/en-US/GLOBAL",
+   "others": []
+  },
+  {
+   "ticker": "KIM",
+   "name": "Kimco Realty",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://kimcorealty.wd503.myworkdayjobs.com/KimcoCareers",
+   "others": []
+  },
+  {
+   "ticker": "KMI",
+   "name": "Kinder Morgan",
+   "sector": "Energy",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-kindermorgan.icims.com/jobs/5707/login",
+   "others": []
+  },
+  {
+   "ticker": "KKR",
+   "name": "KKR & Co.",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "KLAC",
+   "name": "KLA Corporation",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://kla.wd1.myworkdayjobs.com/Search",
+   "others": []
+  },
+  {
+   "ticker": "KHC",
+   "name": "Kraft Heinz",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://heinz.wd1.myworkdayjobs.com/KraftHeinz_Careers/1/refreshFacet/318c8bb6f553100021d223d9780d30be",
+   "others": []
+  },
+  {
+   "ticker": "KR",
+   "name": "Kroger",
+   "sector": "Consumer Staples",
+   "ats": "oracle",
+   "evidenceUrl": "https://eluq.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2001/jobs",
+   "others": []
+  },
+  {
+   "ticker": "LHX",
+   "name": "L3Harris",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LH",
+   "name": "Labcorp",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://labcorp.wd1.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "LRCX",
+   "name": "Lam Research",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LVS",
+   "name": "Las Vegas Sands",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LDOS",
+   "name": "Leidos",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://leidos.wd5.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "LEN",
+   "name": "Lennar",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://lennar.wd1.myworkdayjobs.com/en-US/Early_Careers/job/Future-Builder---Cloud-Engineer_R26_0000004283",
+   "others": []
+  },
+  {
+   "ticker": "LII",
+   "name": "Lennox International",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LLY",
+   "name": "Lilly (Eli)",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://lilly.wd115.myworkdayjobs.com/LLY",
+   "others": []
+  },
+  {
+   "ticker": "LIN",
+   "name": "Linde plc",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LYV",
+   "name": "Live Nation Entertainment",
+   "sector": "Communication Services",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/livenationentertainment",
+   "others": []
+  },
+  {
+   "ticker": "LMT",
+   "name": "Lockheed Martin",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "L",
+   "name": "Loews Corporation",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LOW",
+   "name": "Lowe's",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://lowes.wd5.myworkdayjobs.com/LWS_External_CS/login",
+   "others": [
+    {
+     "ats": "oracle",
+     "url": "https://ebgj.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/Pella-Careers/job/254087"
+    }
+   ]
+  },
+  {
+   "ticker": "LULU",
+   "name": "Lululemon Athletica",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "LITE",
+   "name": "Lumentum",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://lumentum.wd5.myworkdayjobs.com/en-US/LITE/job/New-Product-Engineer_20261589",
+   "others": []
+  },
+  {
+   "ticker": "LYB",
+   "name": "LyondellBasell",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MTB",
+   "name": "M&T Bank",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MPC",
+   "name": "Marathon Petroleum",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MAR",
+   "name": "Marriott International",
+   "sector": "Consumer Discretionary",
+   "ats": "oracle",
+   "evidenceUrl": "https://ejwl.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/jobs",
+   "others": []
+  },
+  {
+   "ticker": "MRSH",
+   "name": "Marsh McLennan",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MLM",
+   "name": "Martin Marietta Materials",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MRVL",
+   "name": "Marvell Technology",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers",
+   "others": []
+  },
+  {
+   "ticker": "MAS",
+   "name": "Masco",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://masco.wd1.myworkdayjobs.com/DeltaFaucet/",
+   "others": []
+  },
+  {
+   "ticker": "MA",
+   "name": "Mastercard",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://mastercard.wd1.myworkdayjobs.com/en-US/CorporateCareers",
+   "others": []
+  },
+  {
+   "ticker": "MKC",
+   "name": "McCormick & Company",
+   "sector": "Consumer Staples",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career4.successfactors.com/career?company=McCormick",
+   "others": []
+  },
+  {
+   "ticker": "MCD",
+   "name": "McDonald's",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MCK",
+   "name": "McKesson",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://mckesson.wd3.myworkdayjobs.com/en-US/External_Careers",
+   "others": []
+  },
+  {
+   "ticker": "MDT",
+   "name": "Medtronic",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers",
+   "others": []
+  },
+  {
+   "ticker": "MRK",
+   "name": "Merck & Co.",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "META",
+   "name": "Meta Platforms",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MET",
+   "name": "MetLife",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MTD",
+   "name": "Mettler Toledo",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MGM",
+   "name": "MGM Resorts",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://mgmresorts.wd5.myworkdayjobs.com/en-US/MGMCareers/job/Digital-Software-Engineer-Associate_280074-1",
+   "others": []
+  },
+  {
+   "ticker": "MCHP",
+   "name": "Microchip Technology",
+   "sector": "Information Technology",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/Microchip",
+   "others": []
+  },
+  {
+   "ticker": "MU",
+   "name": "Micron Technology",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://micron.wd1.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "MSFT",
+   "name": "Microsoft",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MAA",
+   "name": "Mid-America Apartment Communities",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MRNA",
+   "name": "Moderna",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MDLZ",
+   "name": "Mondelez International",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MPWR",
+   "name": "Monolithic Power Systems",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MNST",
+   "name": "Monster Beverage",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MCO",
+   "name": "Moody's Corporation",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MS",
+   "name": "Morgan Stanley",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "MOS",
+   "name": "Mosaic Company (The)",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://mosaic.wd5.myworkdayjobs.com/mosaic",
+   "others": []
+  },
+  {
+   "ticker": "MSI",
+   "name": "Motorola Solutions",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers",
+   "others": []
+  },
+  {
+   "ticker": "MSCI",
+   "name": "MSCI",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NDAQ",
+   "name": "Nasdaq, Inc.",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site",
+   "others": [
+    {
+     "ats": "greenhouse",
+     "url": "https://job-boards.greenhouse.io/nasdaq?error=true"
+    }
+   ]
+  },
+  {
+   "ticker": "NTAP",
+   "name": "NetApp",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NFLX",
+   "name": "Netflix",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://netflix.wd108.myworkdayjobs.com/en-US/Netflix/job/Software-Engineer-5---Model-Development-and-Management--AI-Platform_JR42292",
+   "others": []
+  },
+  {
+   "ticker": "NEM",
+   "name": "Newmont",
+   "sector": "Materials",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career4.successfactors.com/sfcareer/jobreqcareer?company=Newmont&jobId=44183",
+   "others": []
+  },
+  {
+   "ticker": "NWSA",
+   "name": "News Corp (Class A)",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NEE",
+   "name": "NextEra Energy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NKE",
+   "name": "Nike, Inc.",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://nike.wd1.myworkdayjobs.com/en-US/nke/job/Software-Engineer_R-96465",
+   "others": []
+  },
+  {
+   "ticker": "NI",
+   "name": "NiSource",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://nisource.wd1.myworkdayjobs.com/NiSource",
+   "others": []
+  },
+  {
+   "ticker": "NDSN",
+   "name": "Nordson Corporation",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NSC",
+   "name": "Norfolk Southern",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NTRS",
+   "name": "Northern Trust",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://ntrs.wd1.myworkdayjobs.com/northerntrust",
+   "others": []
+  },
+  {
+   "ticker": "NOC",
+   "name": "Northrop Grumman",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NCLH",
+   "name": "Norwegian Cruise Line Holdings",
+   "sector": "Consumer Discretionary",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/NorwegianCruiseLine",
+   "others": []
+  },
+  {
+   "ticker": "NRG",
+   "name": "NRG Energy",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NUE",
+   "name": "Nucor",
+   "sector": "Materials",
+   "ats": "oracle",
+   "evidenceUrl": "https://ejdf.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/1535",
+   "others": []
+  },
+  {
+   "ticker": "NVDA",
+   "name": "Nvidia",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite",
+   "others": []
+  },
+  {
+   "ticker": "NVR",
+   "name": "NVR, Inc.",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NXPI",
+   "name": "NXP Semiconductors",
+   "sector": "Information Technology",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/NXPSemiconductors",
+   "others": []
+  },
+  {
+   "ticker": "ORLY",
+   "name": "O'Reilly Automotive",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "OXY",
+   "name": "Occidental Petroleum",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "OKTA",
+   "name": "Okta, Inc.",
+   "sector": "Information Technology",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/okta?error=true",
+   "others": []
+  },
+  {
+   "ticker": "ODFL",
+   "name": "Old Dominion",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "OMC",
+   "name": "Omnicom Group",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ON",
+   "name": "ON Semiconductor",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "OKE",
+   "name": "Oneok",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://oneok.wd1.myworkdayjobs.com/ONEOK",
+   "others": []
+  },
+  {
+   "ticker": "ORCL",
+   "name": "Oracle Corporation",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://eeho.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/jobsearch",
+   "others": [
+    {
+     "ats": "taleo",
+     "url": "https://oracle.taleo.net/careersection/2/jobsearch.ftl?lang=ja"
+    }
+   ]
+  },
+  {
+   "ticker": "OTIS",
+   "name": "Otis Worldwide",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://otis.wd504.myworkdayjobs.com/REC_Ext_Gateway",
+   "others": []
+  },
+  {
+   "ticker": "PCAR",
+   "name": "Paccar",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PKG",
+   "name": "Packaging Corporation of America",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PLTR",
+   "name": "Palantir Technologies",
+   "sector": "Information Technology",
+   "ats": "lever",
+   "evidenceUrl": "https://jobs.lever.co/palantir/",
+   "others": [
+    {
+     "ats": "smartrecruiters",
+     "url": "https://careers.smartrecruiters.com/palantir"
+    }
+   ]
+  },
+  {
+   "ticker": "PANW",
+   "name": "Palo Alto Networks",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Principal-Software-Engineer--Cloud-Platform-and-AI-Engineering-_JR-023714-1",
+   "others": []
+  },
+  {
+   "ticker": "PH",
+   "name": "Parker Hannifin",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PAYX",
+   "name": "Paychex",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PYPL",
+   "name": "PayPal",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://paypal.wd1.myworkdayjobs.com/jobs",
+   "others": []
+  },
+  {
+   "ticker": "PNR",
+   "name": "Pentair",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://pentair.wd5.myworkdayjobs.com/Pentair_Careers",
+   "others": []
+  },
+  {
+   "ticker": "PEP",
+   "name": "PepsiCo",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PFE",
+   "name": "Pfizer",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://pfizer.wd1.myworkdayjobs.com/PfizerCareers",
+   "others": []
+  },
+  {
+   "ticker": "PCG",
+   "name": "PG&E Corporation",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PM",
+   "name": "Philip Morris International",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PSX",
+   "name": "Phillips 66",
+   "sector": "Energy",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career4.successfactors.com/career?career_company=Phillips66&company=Phillips66&lang=en_US&loginFlowRequired=true&site=",
+   "others": []
+  },
+  {
+   "ticker": "PNW",
+   "name": "Pinnacle West Capital",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://pinnacle.wd1.myworkdayjobs.com/en-US/Pinnacle/job/Project-Engineer---Leadership-Development-Program_R1911",
+   "others": []
+  },
+  {
+   "ticker": "PNC",
+   "name": "PNC Financial Services",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PPG",
+   "name": "PPG Industries",
+   "sector": "Materials",
+   "ats": "workday",
+   "evidenceUrl": "https://ppg.wd5.myworkdayjobs.com/en-US/PPG_CAREERS/job/R-D-Team-Lead_JR2613788",
+   "others": []
+  },
+  {
+   "ticker": "PPL",
+   "name": "PPL Corporation",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PFG",
+   "name": "Principal Financial Group",
+   "sector": "Financials",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-principal.icims.com/jobs/login?loginOnly=1",
+   "others": []
+  },
+  {
+   "ticker": "PG",
+   "name": "Procter & Gamble",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://pg.wd5.myworkdayjobs.com/1000",
+   "others": []
+  },
+  {
+   "ticker": "PGR",
+   "name": "Progressive Corporation",
+   "sector": "Financials",
+   "ats": "taleo",
+   "evidenceUrl": "https://progressive.taleo.net/careersection/5/jobsearch.ftl?lang=en",
+   "others": []
+  },
+  {
+   "ticker": "PLD",
+   "name": "Prologis",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://prologis.wd5.myworkdayjobs.com/Prologis_External_Careers",
+   "others": []
+  },
+  {
+   "ticker": "PRU",
+   "name": "Prudential Financial",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://prudential.wd3.myworkdayjobs.com/prudential",
+   "others": []
+  },
+  {
+   "ticker": "PTC",
+   "name": "PTC Inc.",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://ptc.wd1.myworkdayjobs.com/PTC",
+   "others": []
+  },
+  {
+   "ticker": "PEG",
+   "name": "Public Service Enterprise Group",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "PSA",
+   "name": "Public Storage",
+   "sector": "Real Estate",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/Publicstorage",
+   "others": []
+  },
+  {
+   "ticker": "PHM",
+   "name": "PulteGroup",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://pultegroup.wd1.myworkdayjobs.com/PGI",
+   "others": []
+  },
+  {
+   "ticker": "Q",
+   "name": "Qnity Electronics",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://qnity.wd503.myworkdayjobs.com/Jobs",
+   "others": []
+  },
+  {
+   "ticker": "QCOM",
+   "name": "Qualcomm",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://qualcomm.wd12.myworkdayjobs.com/en-US/External/job/Embedded-NPU-Software-Engineer--Staff_3085347",
+   "others": []
+  },
+  {
+   "ticker": "PWR",
+   "name": "Quanta Services",
+   "sector": "Industrials",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-quanta.icims.com/jobs/intro",
+   "others": []
+  },
+  {
+   "ticker": "DGX",
+   "name": "Quest Diagnostics",
+   "sector": "Health Care",
+   "ats": "oracle",
+   "evidenceUrl": "https://hdox.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+   "others": [
+    {
+     "ats": "icims",
+     "url": "https://careers-questdiagnostics.icims.com/jobs/89209/principal-software-engineer/job"
+    }
+   ]
+  },
+  {
+   "ticker": "RL",
+   "name": "Ralph Lauren Corporation",
+   "sector": "Consumer Discretionary",
+   "ats": "oracle",
+   "evidenceUrl": "https://ebwh.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/93410/",
+   "others": []
+  },
+  {
+   "ticker": "RJF",
+   "name": "Raymond James Financial",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "RDDT",
+   "name": "Reddit",
+   "sector": "Communication Services",
+   "ats": "greenhouse",
+   "evidenceUrl": "http://job-boards.greenhouse.io/reddit",
+   "others": []
+  },
+  {
+   "ticker": "O",
+   "name": "Realty Income",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://realtyincome.wd108.myworkdayjobs.com/realty_income_careers",
+   "others": [
+    {
+     "ats": "jobvite",
+     "url": "https://jobs.jobvite.com/realtyincome/job/oRVMvfwN"
+    }
+   ]
+  },
+  {
+   "ticker": "REG",
+   "name": "Regency Centers",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "REGN",
+   "name": "Regeneron Pharmaceuticals",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://regeneron.wd1.myworkdayjobs.com/Careers",
+   "others": []
+  },
+  {
+   "ticker": "RF",
+   "name": "Regions Financial Corporation",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://regions.wd5.myworkdayjobs.com/Regions_Careers/login",
+   "others": []
+  },
+  {
+   "ticker": "RSG",
+   "name": "Republic Services",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://republic.wd5.myworkdayjobs.com/Republic",
+   "others": []
+  },
+  {
+   "ticker": "RMD",
+   "name": "ResMed",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://resmed.wd3.myworkdayjobs.com/en-US/ResMed_External_Careers/job/Product-Manager_JR_054580-1",
+   "others": []
+  },
+  {
+   "ticker": "RVTY",
+   "name": "Revvity",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://revvity.wd103.myworkdayjobs.com/en-GB/External",
+   "others": []
+  },
+  {
+   "ticker": "HOOD",
+   "name": "Robinhood Markets",
+   "sector": "Financials",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://boards.greenhouse.io/robinhood/jobs/8257655?gh_jid=8257655&t=gh_src%3D",
+   "others": []
+  },
+  {
+   "ticker": "ROK",
+   "name": "Rockwell Automation",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation",
+   "others": []
+  },
+  {
+   "ticker": "ROL",
+   "name": "Rollins, Inc.",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ROP",
+   "name": "Roper Technologies",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ROST",
+   "name": "Ross Stores",
+   "sector": "Consumer Discretionary",
+   "ats": "taleo",
+   "evidenceUrl": "https://rossstores.taleo.net/careersection/rstrcs2/jobsearch.ftl",
+   "others": []
+  },
+  {
+   "ticker": "RCL",
+   "name": "Royal Caribbean Group",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "RTX",
+   "name": "RTX Corporation",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SPGI",
+   "name": "S&P Global",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "CRM",
+   "name": "Salesforce",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://salesforce.wd12.myworkdayjobs.com/External_Career_Site",
+   "others": []
+  },
+  {
+   "ticker": "SNDK",
+   "name": "Sandisk",
+   "sector": "Information Technology",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/Sandisk?page=1&search=",
+   "others": []
+  },
+  {
+   "ticker": "SBAC",
+   "name": "SBA Communications",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://sbasite.wd5.myworkdayjobs.com/SBA_Communications_Careers",
+   "others": []
+  },
+  {
+   "ticker": "SLB",
+   "name": "Schlumberger",
+   "sector": "Energy",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career2.successfactors.eu/career?career_job_req_id=20860&career_ns=job_listing&company=Schlumberger",
+   "others": []
+  },
+  {
+   "ticker": "STX",
+   "name": "Seagate Technology",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SRE",
+   "name": "Sempra",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "NOW",
+   "name": "ServiceNow",
+   "sector": "Information Technology",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/servicenow",
+   "others": []
+  },
+  {
+   "ticker": "SHW",
+   "name": "Sherwin-Williams",
+   "sector": "Materials",
+   "ats": "oracle",
+   "evidenceUrl": "https://ejhp.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2/jobs",
+   "others": []
+  },
+  {
+   "ticker": "SPG",
+   "name": "Simon Property Group",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://simon.wd1.myworkdayjobs.com/Simon",
+   "others": []
+  },
+  {
+   "ticker": "SKYD",
+   "name": "Skydance",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SWKS",
+   "name": "Skyworks Solutions",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SJM",
+   "name": "J.M. Smucker Company (The)",
+   "sector": "Consumer Staples",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SW",
+   "name": "Smurfit Westrock",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SNA",
+   "name": "Snap-on",
+   "sector": "Industrials",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-snapon.icims.com/jobs/intro",
+   "others": []
+  },
+  {
+   "ticker": "SOLV",
+   "name": "Solventum",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SO",
+   "name": "Southern Company",
+   "sector": "Utilities",
+   "ats": "oracle",
+   "evidenceUrl": "https://emje.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/SouthernCompanyJobs/jobs",
+   "others": []
+  },
+  {
+   "ticker": "LUV",
+   "name": "Southwest Airlines",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SWK",
+   "name": "Stanley Black & Decker",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SBUX",
+   "name": "Starbucks",
+   "sector": "Consumer Discretionary",
+   "ats": "taleo",
+   "evidenceUrl": "https://starbucks.taleo.net/careersection/1000222/jobsearch.ftl?iniurl.src=CWS-11700",
+   "others": []
+  },
+  {
+   "ticker": "STT",
+   "name": "State Street Corporation",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://statestreet.wd1.myworkdayjobs.com/Global",
+   "others": []
+  },
+  {
+   "ticker": "STLD",
+   "name": "Steel Dynamics",
+   "sector": "Materials",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-steeldynamics.icims.com/",
+   "others": []
+  },
+  {
+   "ticker": "STE",
+   "name": "Steris",
+   "sector": "Health Care",
+   "ats": "oracle",
+   "evidenceUrl": "https://eiqg.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/166666",
+   "others": []
+  },
+  {
+   "ticker": "SYK",
+   "name": "Stryker Corporation",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers",
+   "others": []
+  },
+  {
+   "ticker": "SMCI",
+   "name": "Supermicro",
+   "sector": "Information Technology",
+   "ats": "successfactors",
+   "evidenceUrl": "https://career4.successfactors.com/career?career_job_req_id=25941&career_ns=job_listing&company=supermicro",
+   "others": []
+  },
+  {
+   "ticker": "SYF",
+   "name": "Synchrony Financial",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://synchronyfinancial.wd5.myworkdayjobs.com/University",
+   "others": []
+  },
+  {
+   "ticker": "SNPS",
+   "name": "Synopsys",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "SYY",
+   "name": "Sysco",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://sysco.wd5.myworkdayjobs.com/syscocareers",
+   "others": []
+  },
+  {
+   "ticker": "TMUS",
+   "name": "T-Mobile US",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TROW",
+   "name": "T. Rowe Price",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://troweprice.wd5.myworkdayjobs.com/TRowePrice",
+   "others": []
+  },
+  {
+   "ticker": "TTWO",
+   "name": "Take-Two Interactive",
+   "sector": "Communication Services",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TPR",
+   "name": "Tapestry, Inc.",
+   "sector": "Consumer Discretionary",
+   "ats": "workday",
+   "evidenceUrl": "https://tapestry.wd108.myworkdayjobs.com/Tapestry_Careers",
+   "others": []
+  },
+  {
+   "ticker": "TRGP",
+   "name": "Targa Resources",
+   "sector": "Energy",
+   "ats": "taleo",
+   "evidenceUrl": "https://targaresources.taleo.net/careersection/ex/jobdetail.ftl?job=260541&lang=en&media_id=106225&src=US_Diversity_Network",
+   "others": []
+  },
+  {
+   "ticker": "TGT",
+   "name": "Target Corporation",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://target.wd5.myworkdayjobs.com/en-US/targetcareers",
+   "others": []
+  },
+  {
+   "ticker": "TEL",
+   "name": "TE Connectivity",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TDY",
+   "name": "Teledyne Technologies",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TER",
+   "name": "Teradyne",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TSLA",
+   "name": "Tesla, Inc.",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TXN",
+   "name": "Texas Instruments",
+   "sector": "Information Technology",
+   "ats": "oracle",
+   "evidenceUrl": "https://edbz.fa.us2.oraclecloud.com/hcmUI/CandidateExperience",
+   "others": []
+  },
+  {
+   "ticker": "TPL",
+   "name": "Texas Pacific Land Corporation",
+   "sector": "Energy",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TXT",
+   "name": "Textron",
+   "sector": "Industrials",
+   "ats": "taleo",
+   "evidenceUrl": "https://textron.taleo.net/careersection/tabbu/moresearch.ftl",
+   "others": []
+  },
+  {
+   "ticker": "TMO",
+   "name": "Thermo Fisher Scientific",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TJX",
+   "name": "TJX Companies",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TKO",
+   "name": "TKO Group Holdings",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://wwecorp.wd5.myworkdayjobs.com/TKO",
+   "others": []
+  },
+  {
+   "ticker": "TSCO",
+   "name": "Tractor Supply",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TT",
+   "name": "Trane Technologies",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TDG",
+   "name": "TransDigm Group",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TRV",
+   "name": "Travelers Companies (The)",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://travelers.wd5.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "TRMB",
+   "name": "Trimble Inc.",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://trimble.wd1.myworkdayjobs.com/TrimbleCareers",
+   "others": []
+  },
+  {
+   "ticker": "TFC",
+   "name": "Truist Financial",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://truist.wd1.myworkdayjobs.com/Careers",
+   "others": []
+  },
+  {
+   "ticker": "TWLO",
+   "name": "Twilio",
+   "sector": "Information Technology",
+   "ats": "greenhouse",
+   "evidenceUrl": "http://job-boards.greenhouse.io/twilio",
+   "others": []
+  },
+  {
+   "ticker": "TYL",
+   "name": "Tyler Technologies",
+   "sector": "Information Technology",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "TSN",
+   "name": "Tyson Foods",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://tysonfoods.wd5.myworkdayjobs.com/TSN",
+   "others": []
+  },
+  {
+   "ticker": "USB",
+   "name": "U.S. Bancorp",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "UBER",
+   "name": "Uber",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://iaziqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/UberCareers/jobs",
+   "others": []
+  },
+  {
+   "ticker": "UDR",
+   "name": "UDR, Inc.",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ULTA",
+   "name": "Ulta Beauty",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "UNP",
+   "name": "Union Pacific Corporation",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "UAL",
+   "name": "United Airlines Holdings",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "UPS",
+   "name": "United Parcel Service",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "URI",
+   "name": "United Rentals",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "UNH",
+   "name": "UnitedHealth Group",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "UHS",
+   "name": "Universal Health Services",
+   "sector": "Health Care",
+   "ats": "icims",
+   "evidenceUrl": "https://careers-universalhealthservices.icims.com/jobs/intro",
+   "others": []
+  },
+  {
+   "ticker": "VLO",
+   "name": "Valero Energy",
+   "sector": "Energy",
+   "ats": "taleo",
+   "evidenceUrl": "https://valero.taleo.net/careersection/2/jobsearch.ftl?lang=en",
+   "others": []
+  },
+  {
+   "ticker": "VEEV",
+   "name": "Veeva Systems",
+   "sector": "Health Care",
+   "ats": "lever",
+   "evidenceUrl": "https://jobs.lever.co/veeva/0287a2b0-5972-4bff-89c2-36e2a36dc4a8",
+   "others": []
+  },
+  {
+   "ticker": "VTR",
+   "name": "Ventas",
+   "sector": "Real Estate",
+   "ats": "workday",
+   "evidenceUrl": "https://ventas.wd503.myworkdayjobs.com/ventas_careers",
+   "others": []
+  },
+  {
+   "ticker": "VLTO",
+   "name": "Veralto",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://veralto.wd1.myworkdayjobs.com/VeraltoCorporateJobs",
+   "others": []
+  },
+  {
+   "ticker": "VRSN",
+   "name": "Verisign",
+   "sector": "Information Technology",
+   "ats": "greenhouse",
+   "evidenceUrl": "https://job-boards.greenhouse.io/verisign",
+   "others": []
+  },
+  {
+   "ticker": "VRSK",
+   "name": "Verisk Analytics",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "VZ",
+   "name": "Verizon",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://verizon.wd12.myworkdayjobs.com/verizon-careers/userHome",
+   "others": []
+  },
+  {
+   "ticker": "VRTX",
+   "name": "Vertex Pharmaceuticals",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://vrtx.wd501.myworkdayjobs.com/Vertex_Careers",
+   "others": []
+  },
+  {
+   "ticker": "VRT",
+   "name": "Vertiv",
+   "sector": "Industrials",
+   "ats": "oracle",
+   "evidenceUrl": "https://egup.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX",
+   "others": []
+  },
+  {
+   "ticker": "VTRS",
+   "name": "Viatris",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://viatris.wd5.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "VICI",
+   "name": "Vici Properties",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "V",
+   "name": "Visa Inc.",
+   "sector": "Financials",
+   "ats": "workday",
+   "evidenceUrl": "https://visa.wd5.myworkdayjobs.com/Visa",
+   "others": [
+    {
+     "ats": "smartrecruiters",
+     "url": "https://careers.smartrecruiters.com/Visa/hiring-process"
+    }
+   ]
+  },
+  {
+   "ticker": "VST",
+   "name": "Vistra Corp.",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://vst.wd5.myworkdayjobs.com/vistra_careers",
+   "others": []
+  },
+  {
+   "ticker": "VMRK",
+   "name": "Vivmark Residential",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "VMC",
+   "name": "Vulcan Materials Company",
+   "sector": "Materials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "VYLR",
+   "name": "Vylor",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://vylor.wd115.myworkdayjobs.com/en-US/Vylor/job/Sorghum-Breeding-Scientist_349062W",
+   "others": []
+  },
+  {
+   "ticker": "WRB",
+   "name": "W. R. Berkley Corporation",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "GWW",
+   "name": "W. W. Grainger",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WAB",
+   "name": "Wabtec",
+   "sector": "Industrials",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/wabtec",
+   "others": []
+  },
+  {
+   "ticker": "WMT",
+   "name": "Walmart",
+   "sector": "Consumer Staples",
+   "ats": "workday",
+   "evidenceUrl": "https://walmart.wd504.myworkdayjobs.com/WalmartExternal",
+   "others": []
+  },
+  {
+   "ticker": "DIS",
+   "name": "Walt Disney Company (The)",
+   "sector": "Communication Services",
+   "ats": "workday",
+   "evidenceUrl": "https://disney.wd5.myworkdayjobs.com/disneycareer",
+   "others": []
+  },
+  {
+   "ticker": "WM",
+   "name": "Waste Management",
+   "sector": "Industrials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WAT",
+   "name": "Waters Corporation",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WEC",
+   "name": "WEC Energy Group",
+   "sector": "Utilities",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WFC",
+   "name": "Wells Fargo",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WELL",
+   "name": "Welltower",
+   "sector": "Real Estate",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WST",
+   "name": "West Pharmaceutical Services",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WDC",
+   "name": "Western Digital",
+   "sector": "Information Technology",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/westerndigital",
+   "others": []
+  },
+  {
+   "ticker": "WY",
+   "name": "Weyerhaeuser",
+   "sector": "Real Estate",
+   "ats": "taleo",
+   "evidenceUrl": "https://weyerhaeuser.taleo.net/careersection/10000/joblist.ftl",
+   "others": []
+  },
+  {
+   "ticker": "WSM",
+   "name": "Williams-Sonoma, Inc.",
+   "sector": "Consumer Discretionary",
+   "ats": "oracle",
+   "evidenceUrl": "https://ehac.fa.us6.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1",
+   "others": []
+  },
+  {
+   "ticker": "WMB",
+   "name": "Williams Companies",
+   "sector": "Energy",
+   "ats": "workday",
+   "evidenceUrl": "https://williams.wd5.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "WTW",
+   "name": "Willis Towers Watson",
+   "sector": "Financials",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "WDAY",
+   "name": "Workday, Inc.",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://workday.wd5.myworkdayjobs.com/en-US/Workday",
+   "others": []
+  },
+  {
+   "ticker": "WYNN",
+   "name": "Wynn Resorts",
+   "sector": "Consumer Discretionary",
+   "ats": "smartrecruiters",
+   "evidenceUrl": "https://careers.smartrecruiters.com/WynnResorts/?location=Las+Vegas%2C+NV%2C+US",
+   "others": []
+  },
+  {
+   "ticker": "XEL",
+   "name": "Xcel Energy",
+   "sector": "Utilities",
+   "ats": "workday",
+   "evidenceUrl": "https://xcelenergy.wd1.myworkdayjobs.com/External",
+   "others": []
+  },
+  {
+   "ticker": "XYL",
+   "name": "Xylem Inc.",
+   "sector": "Industrials",
+   "ats": "workday",
+   "evidenceUrl": "https://xylem.wd5.myworkdayjobs.com/en-US/xylem-careers/job/Account-Specialist_R51393",
+   "others": []
+  },
+  {
+   "ticker": "YUM",
+   "name": "Yum! Brands",
+   "sector": "Consumer Discretionary",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ZBRA",
+   "name": "Zebra Technologies",
+   "sector": "Information Technology",
+   "ats": "workday",
+   "evidenceUrl": "https://zebra.wd501.myworkdayjobs.com/en-US/Zebra_careers/jobs?jobFamilyGroup=281a47809d0e100122c06ac3b01a0000",
+   "others": []
+  },
+  {
+   "ticker": "ZBH",
+   "name": "Zimmer Biomet",
+   "sector": "Health Care",
+   "ats": null,
+   "evidenceUrl": null,
+   "others": []
+  },
+  {
+   "ticker": "ZTS",
+   "name": "Zoetis",
+   "sector": "Health Care",
+   "ats": "workday",
+   "evidenceUrl": "https://zoetis.wd5.myworkdayjobs.com/zoetis",
+   "others": []
+  }
+ ]
+}

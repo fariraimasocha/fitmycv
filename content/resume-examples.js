@@ -266,11 +266,13 @@ export const RESUME_EXAMPLES = [
   {
     slug: "sales-manager",
     role: "Sales Manager",
-    updated: "2026-11-06",
-    seoTitle: "Sales Manager Resume Example and CV (2026)",
+    updated: "2026-11-12",
+    seoTitle: "Sales Manager CV Examples: 3 Full CVs (2026)",
     seoDescription:
-      "A sales manager resume example for a team of 8 carrying a 6.4M quota. Before and after bullets with quota, attainment and deal size, plus a summary and keywords to copy.",
+      "Three full sales manager CV examples: B2B software, first-time manager and field sales. Plus one CV tailored to an example job ad, with its match score before and after.",
     seoKeywords: [
+      "sales manager cv examples",
+      "cv for sales manager",
       "sales manager resume example",
       "sales manager resume",
       "sales manager cv",

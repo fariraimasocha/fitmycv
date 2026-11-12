@@ -36,7 +36,7 @@ function PasteFallback({ open, value, onChange, onOpen }) {
     );
   }
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2">
       <label htmlFor="resume-paste" className="text-sm font-medium text-[var(--landing-ink)]">
         {t("pasteLabel")}
       </label>
@@ -183,10 +183,10 @@ export default function ResumeUpload({ onParsed }) {
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
-          className={`relative flex min-h-60 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed p-6 text-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)] sm:p-10 ${
+          className={`relative flex min-h-60 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed p-6 text-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)] sm:p-8 ${
             dragActive
               ? "border-[var(--landing-accent)] bg-[var(--landing-primary-soft)]"
-              : "border-[var(--landing-line)] hover:border-[#ccc5bb] hover:bg-[var(--landing-paper-soft)]"
+              : "border-[var(--landing-line)] hover:border-[var(--dash-muted)] hover:bg-[var(--landing-paper-soft)]"
           }`}
         >
           <span className="mb-4 flex size-14 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">

@@ -6,14 +6,10 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import {
-  StackIcon,
-  BuildingsIcon,
-  EnvelopeIcon,
+  EnvelopeSimpleIcon,
   PlusIcon,
-  ArrowRightIcon,
   FileTextIcon,
   WarningCircleIcon,
-  CheckCircleIcon,
   MagnifyingGlassIcon,
   DownloadSimpleIcon,
   BinocularsIcon,
@@ -80,45 +76,6 @@ function formatRelativeDay(value, today, t, locale) {
   return date.toLocaleDateString(dateLocale(locale), { day: "numeric", month: "short" });
 }
 
-function TotalRow({ href, icon: Icon, label, value, thisWeek }) {
-  const t = useTranslations("dashboard.home");
-  return (
-    <li>
-      <Link
-        href={href}
-        className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
-      >
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
-          <Icon size={18} aria-hidden="true" />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block text-sm font-medium text-foreground">
-            {label}
-          </span>
-          <span className="block text-xs text-muted-foreground">
-            {/* null: the week is not known until the client renders. */}
-            {thisWeek === null
-              ? "\u00a0"
-              : typeof thisWeek === "number"
-                ? thisWeek > 0
-                  ? t("thisWeek", { count: thisWeek })
-                  : t("noneThisWeek")
-                : t("notAvailable")}
-          </span>
-        </span>
-        <span className="font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
-          {value}
-        </span>
-        <ArrowRightIcon
-          size={14}
-          className="text-muted-foreground transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"
-          aria-hidden="true"
-        />
-      </Link>
-    </li>
-  );
-}
-
 const LOAD_ERROR = "Couldn't load this page. Refresh and try again.";
 
 async function fetchData(url) {
@@ -172,52 +129,6 @@ function useWeeklyStats(tailoredCVs, researches, today) {
   }, [tailoredCVs, researches, today]);
 }
 
-// null this-week counts mean the client has not rendered yet. A null
-// researchCount means research could not be loaded.
-function TotalsPanel({
-  today,
-  tailoredCount,
-  coverLetterCount,
-  researchCount,
-  cvWeekly,
-  letterWeekly,
-  researchWeekly,
-}) {
-  const t = useTranslations("dashboard.home");
-  const thisWeek = (weekly) => (today === null ? null : weekly.at(-1));
-  return (
-    <DashboardPanel delay={0.1} className="lg:col-span-4">
-      <DashboardPanelHeader
-        title={t("totals.title")}
-        description={t("totals.description")}
-      />
-      <ul className="mt-3 flex flex-1 flex-col divide-y divide-[var(--landing-line)]">
-        <TotalRow
-          href="/dashboard/tailored"
-          icon={StackIcon}
-          label={t("totals.cvs")}
-          value={tailoredCount}
-          thisWeek={thisWeek(cvWeekly)}
-        />
-        <TotalRow
-          href="/dashboard/tailored"
-          icon={EnvelopeIcon}
-          label={t("totals.letters")}
-          value={coverLetterCount}
-          thisWeek={thisWeek(letterWeekly)}
-        />
-        <TotalRow
-          href="/dashboard/company-research"
-          icon={BuildingsIcon}
-          label={t("totals.research")}
-          value={researchCount ?? t("totals.na")}
-          thisWeek={researchCount === null ? undefined : thisWeek(researchWeekly)}
-        />
-      </ul>
-    </DashboardPanel>
-  );
-}
-
 function RecentCVsPanel({ cvs, today }) {
   const t = useTranslations("dashboard.home");
   const locale = useLocale();
@@ -229,31 +140,32 @@ function RecentCVsPanel({ cvs, today }) {
         href="/dashboard/tailored"
         linkLabel={t("viewAll")}
       />
-      <ul className="mt-3 flex flex-col divide-y divide-[var(--landing-line)]">
+      <ul className="mt-3 flex flex-col divide-y divide-dash-line">
         {cvs.map((cv) => (
           <li key={cv._id}>
             <Link
               href={`/dashboard/tailored/${cv._id}`}
-              className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
+              className="group flex items-center gap-3 py-3"
             >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
-                <FileTextIcon size={18} aria-hidden="true" />
-              </span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium text-foreground">
+                <span className="block truncate text-sm font-medium text-dash-ink group-hover:underline">
                   {cv.jobTitle || t("untitledRole")}
                 </span>
-                <span className="block truncate text-xs text-muted-foreground">
+                <span className="mt-1 block truncate text-xs text-dash-muted">
                   {cv.jobCompany || t("companyNotSet")}
                 </span>
               </span>
+              {/* An icon, not a badge: nearly every row has a letter, and the
+                  repeated green label was the loudest thing in the list. */}
               {cv.hasCoverLetter && (
-                <span className="hidden items-center gap-1 text-xs font-medium text-[var(--landing-success)] sm:inline-flex">
-                  <CheckCircleIcon size={14} weight="fill" aria-hidden="true" />
-                  {t("coverLetter")}
-                </span>
+                <EnvelopeSimpleIcon
+                  size={16}
+                  className="hidden shrink-0 text-dash-muted sm:block"
+                  role="img"
+                  aria-label={t("coverLetter")}
+                />
               )}
-              <span className="w-20 shrink-0 text-end text-xs tabular-nums text-muted-foreground">
+              <span className="w-20 shrink-0 text-end text-xs tabular-nums text-dash-muted">
                 {formatRelativeDay(cv.createdAt, today, t, locale)}
               </span>
             </Link>
@@ -279,27 +191,24 @@ function ResearchPanel({ briefs, today }) {
         linkLabel={t("viewAll")}
       />
       {hasBriefs ? (
-        <ul className="mt-3 flex flex-col divide-y divide-[var(--landing-line)]">
+        <ul className="mt-3 flex flex-col divide-y divide-dash-line">
           {briefs.map((brief) => (
             <li key={brief._id}>
               <Link
                 href={`/dashboard/company-research/${brief._id}`}
-                className="group -mx-2 flex items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-[var(--landing-paper-soft)]"
+                className="group flex items-center gap-3 py-3"
               >
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
-                  <BuildingsIcon size={18} aria-hidden="true" />
-                </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-medium text-foreground">
+                  <span className="block truncate text-sm font-medium text-dash-ink group-hover:underline">
                     {brief.companyName || t("research.unnamed")}
                   </span>
                   {brief.jobTitle && (
-                    <span className="block truncate text-xs text-muted-foreground">
+                    <span className="mt-1 block truncate text-xs text-dash-muted">
                       {brief.jobTitle}
                     </span>
                   )}
                 </span>
-                <span className="w-20 shrink-0 text-end text-xs tabular-nums text-muted-foreground">
+                <span className="w-20 shrink-0 text-end text-xs tabular-nums text-dash-muted">
                   {formatRelativeDay(brief.createdAt, today, t, locale)}
                 </span>
               </Link>
@@ -307,12 +216,10 @@ function ResearchPanel({ briefs, today }) {
           ))}
         </ul>
       ) : (
-        <div className="mt-4 flex flex-col items-start gap-4 border-t border-[var(--landing-line)] pt-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-[var(--landing-ink-soft)]">
-              <MagnifyingGlassIcon size={20} aria-hidden="true" />
-            </span>
-            <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+        <div className="mt-4 flex flex-col items-start gap-4 border-t border-dash-line pt-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3 text-dash-muted">
+            <MagnifyingGlassIcon size={20} aria-hidden="true" className="shrink-0" />
+            <p className="text-sm leading-6">
               {t("research.empty")}
             </p>
           </div>
@@ -423,15 +330,26 @@ function useDashboardData(isPremium, today) {
 
 function DashboardContent({ data, today, isPremium }) {
   const t = useTranslations("dashboard.home");
-  const { tailoredQuery, stats } = data;
+  const { tailoredQuery, stats, tailoredCount, researchCount } = data;
 
+  // The all-time totals ride on the chart, so there is no separate Totals card.
   const series = useMemo(
     () => [
-      { id: "cvs", label: t("series.cvs"), counts: stats.cvWeekly },
-      { id: "letters", label: t("series.letters"), counts: stats.letterWeekly },
-      { id: "research", label: t("series.research"), counts: stats.researchWeekly },
+      { id: "cvs", label: t("series.cvs"), counts: stats.cvWeekly, total: tailoredCount },
+      {
+        id: "letters",
+        label: t("series.letters"),
+        counts: stats.letterWeekly,
+        total: stats.coverLetterCount,
+      },
+      {
+        id: "research",
+        label: t("series.research"),
+        counts: stats.researchWeekly,
+        total: researchCount ?? t("totals.na"),
+      },
     ],
-    [stats, t],
+    [stats, t, tailoredCount, researchCount],
   );
 
   if (tailoredQuery.isLoading) {
@@ -454,28 +372,12 @@ function DashboardContent({ data, today, isPremium }) {
   if (data.isFirstUse) return null;
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Row 1: the chart carries the story, totals sit beside it. */}
-      <div className="grid items-stretch gap-4 lg:grid-cols-12">
-        <DashboardActivityChart
-          series={series}
-          weekStarts={stats.weekStarts}
-          delay={0.05}
-          className="lg:col-span-8"
-        />
-        <TotalsPanel
-          today={today}
-          tailoredCount={data.tailoredCount}
-          coverLetterCount={stats.coverLetterCount}
-          researchCount={data.researchCount}
-          cvWeekly={stats.cvWeekly}
-          letterWeekly={stats.letterWeekly}
-          researchWeekly={stats.researchWeekly}
-        />
-      </div>
+    <div className="flex flex-col gap-4 lg:gap-6">
+      {/* Row 1: the chart carries the story and the totals. */}
+      <DashboardActivityChart series={series} weekStarts={stats.weekStarts} delay={0.05} />
 
       {/* Row 2: what you made recently, and where applications stand. */}
-      <div className="grid items-stretch gap-4 lg:grid-cols-12">
+      <div className="grid items-stretch gap-4 lg:grid-cols-12 lg:gap-6">
         <RecentCVsPanel cvs={data.recentCVs} today={today} />
 
         <DashboardPipelineCard
@@ -504,19 +406,19 @@ const PRO_PERKS = [
 function ProBanner() {
   const t = useTranslations("dashboard.home.proBanner");
   return (
-    <div className="flex flex-col gap-4 rounded-lg bg-[var(--landing-ink)] px-5 py-4 text-white sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+    <div className="flex flex-col gap-4 rounded-lg bg-dash-ink px-4 py-4 text-dash-surface sm:px-8 lg:flex-row lg:items-center lg:justify-between">
       <p className="font-outfit text-base font-medium">{t("title")}</p>
-      <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--landing-ink-inverse-soft)]">
+      <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
         {PRO_PERKS.map(({ key, icon: Icon }) => (
           <li key={key} className="flex items-center gap-2">
-            <Icon size={18} aria-hidden="true" className="text-white" />
+            <Icon size={16} aria-hidden="true" />
             {t(`perks.${key}`)}
           </li>
         ))}
       </ul>
       <Link
         href="/dashboard/upgrade"
-        className="inline-flex h-10 shrink-0 items-center justify-center self-start rounded-md bg-white px-4 text-sm font-medium text-[var(--landing-ink)] transition-colors hover:bg-[var(--landing-primary-soft)] lg:self-auto"
+        className="inline-flex h-10 shrink-0 items-center justify-center self-start rounded-md bg-dash-surface px-4 text-sm font-medium text-dash-ink transition-colors hover:bg-dash-line lg:self-auto"
       >
         {t("action")}
       </Link>

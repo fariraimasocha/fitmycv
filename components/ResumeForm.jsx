@@ -355,7 +355,7 @@ export default function ResumeForm({
           ) : (
             <div className="divide-y divide-[var(--landing-line)]">
               {workFieldsList.map((field, index) => (
-                <div key={field.id} className="space-y-4 py-5 first:pt-0 last:pb-0">
+                <div key={field.id} className="space-y-4 py-4 first:pt-0 last:pb-0">
                   <ItemHeader
                     title={
                       [work[index]?.company, work[index]?.position].filter(Boolean).join(", ") ||
@@ -419,7 +419,7 @@ export default function ResumeForm({
           ) : (
             <div className="divide-y divide-[var(--landing-line)]">
               {educationFieldsList.map((field, index) => (
-                <div key={field.id} className="space-y-4 py-5 first:pt-0 last:pb-0">
+                <div key={field.id} className="space-y-4 py-4 first:pt-0 last:pb-0">
                   <ItemHeader
                     title={education[index]?.institution || t("educationN", { index: index + 1 })}
                   >
@@ -480,7 +480,7 @@ export default function ResumeForm({
           ) : (
             <div className="divide-y divide-[var(--landing-line)]">
               {skillsFieldsList.map((field, index) => (
-                <div key={field.id} className="space-y-4 py-5 first:pt-0 last:pb-0">
+                <div key={field.id} className="space-y-4 py-4 first:pt-0 last:pb-0">
                   <ItemHeader title={skills[index]?.category || t("categoryN", { index: index + 1 })}>
                     <ItemActions
                       index={index}
@@ -522,7 +522,7 @@ export default function ResumeForm({
       <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-4 py-2 backdrop-blur-md sm:bottom-4">
         <p
           className={cn(
-            "flex items-center gap-1.5 text-xs font-medium",
+            "flex items-center gap-2 text-xs font-medium",
             isDirty || isDraft
               ? "text-[var(--landing-accent-dark)]"
               : "text-muted-foreground",
@@ -600,7 +600,7 @@ function FormSection({ id, title, count, open, onToggle, action, children }) {
             {title}
           </span>
           {count > 0 && (
-            <span className="rounded-full bg-[var(--landing-paper-soft)] px-2 py-0.5 text-xs font-medium tabular-nums text-muted-foreground">
+            <span className="rounded-full bg-[var(--landing-paper-soft)] px-2 py-1 text-xs font-medium tabular-nums text-muted-foreground">
               {count}
             </span>
           )}
@@ -632,7 +632,7 @@ function AddIconButton({ label, onClick }) {
 
 function Field({ label, htmlFor, className, children }) {
   return (
-    <div className={cn("min-w-0 space-y-1.5", className)}>
+    <div className={cn("min-w-0 space-y-2", className)}>
       <Label htmlFor={htmlFor} className="text-xs font-medium text-muted-foreground">
         {label}
       </Label>
@@ -652,7 +652,7 @@ function ItemHeader({ title, children }) {
 
 function ItemActions({ index, total, onMove, removeLabel, onRemove }) {
   return (
-    <div className="flex shrink-0 items-center gap-0.5">
+    <div className="flex shrink-0 items-center gap-1">
       <ItemReorderControls
         index={index}
         totalCount={total}
@@ -810,11 +810,11 @@ function SkillsList({ control, register, getValues, nestIndex, t }) {
   });
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2">
       <Label className="text-xs font-medium text-muted-foreground">{t("sections.skills")}</Label>
       <div className="flex flex-wrap gap-2">
         {fields.map((field, k) => (
-          <div key={field.id} className="flex items-center gap-0.5">
+          <div key={field.id} className="flex items-center gap-1">
             <Input
               aria-label={t("sections.skills")}
               className="h-control-sm w-36"

@@ -49,7 +49,8 @@ export function DashboardPageHeader({
             <div className="mt-1 max-w-2xl text-sm leading-6 text-pretty text-muted-foreground">{description}</div>
           )}
         </div>
-        {trailing && <Actions>{trailing}</Actions>}
+        {/* Side by side on phones too, so two buttons take one row, not two. */}
+        {trailing && <Actions className="grid grid-cols-2 sm:flex">{trailing}</Actions>}
       </motion.div>
     );
   }

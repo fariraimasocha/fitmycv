@@ -27,7 +27,7 @@ function StoryAccordion({ story, index, onSave }) {
         type="button"
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="flex min-h-control w-full items-center gap-3 px-3 py-2.5 text-start transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
+        className="flex min-h-control w-full items-center gap-3 px-3 py-3 text-start transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]"
       >
         <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] font-outfit text-xs font-semibold tabular-nums text-foreground">
           {index + 1}
@@ -50,7 +50,7 @@ function StoryAccordion({ story, index, onSave }) {
             story[key] ? (
               <div key={key}>
                 <p className="text-xs font-medium text-muted-foreground">{t(`star.${key}`)}</p>
-                <p className="mt-0.5 text-sm leading-6 text-foreground">{story[key]}</p>
+                <p className="mt-1 text-sm leading-6 text-foreground">{story[key]}</p>
               </div>
             ) : null,
           )}
@@ -210,7 +210,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
                   <CheckIcon
                     size={14}
                     weight="bold"
-                    className="mt-1.5 shrink-0 text-[var(--landing-success)]"
+                    className="mt-2 shrink-0 text-[var(--landing-success)]"
                     aria-hidden="true"
                   />
                   {point}

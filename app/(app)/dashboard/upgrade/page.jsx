@@ -105,9 +105,9 @@ export default function UpgradePage() {
             {PRO_FEATURES.map((feature, i) => (
               <li
                 key={feature}
-                className="flex items-start gap-2.5 text-sm leading-6 text-foreground"
+                className="flex items-start gap-3 text-sm leading-6 text-foreground"
               >
-                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
+                <span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
                   <CheckIcon size={12} weight="bold" aria-hidden="true" />
                 </span>
                 {t.has(`features.f${i + 1}`) ? t(`features.f${i + 1}`) : feature}

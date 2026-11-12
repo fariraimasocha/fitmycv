@@ -14,11 +14,13 @@ import { computeInsights, computeTimeline } from "@/lib/applications";
 
 // The flow chart draws with literal colors so the exported PNG matches the
 // screen. FitMyCV's ink and accent ramp stand in for Reactive Resume's palette.
+// The five dashboard tokens as literals: this SVG is also drawn to a PNG,
+// where CSS variables do not resolve.
 const FLOW_BG = "#1a1a1a";
-const FLOW_COLORS = ["#d6cfc4", "#e0b9a8", "#d98b6e", "#c05a3f", "#7cc49a"];
-const FLOW_REJECTED = "#e8836f";
-const FLOW_TEXT = "#faf8f5";
-const FLOW_MUTED = "#a39e94";
+const FLOW_COLORS = ["#f2f2f2", "#f2f2f2", "#b4513a", "#b4513a", "#ffffff"];
+const FLOW_REJECTED = "#b4513a";
+const FLOW_TEXT = "#ffffff";
+const FLOW_MUTED = "#f2f2f2";
 
 function PipelineFlow({ insights, delay }) {
   const t = useTranslations("dashboard.appComponents.insights");
@@ -89,14 +91,6 @@ function PipelineFlow({ insights, delay }) {
         role="img"
         aria-label={t("flowLabel")}
       >
-        <defs>
-          {bars.slice(0, -1).map((bar, i) => (
-            <linearGradient key={`grad-${bar.key}`} id={`flow-grad-${i}`} x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor={bar.color} />
-              <stop offset="100%" stopColor={bars[i + 1].color} />
-            </linearGradient>
-          ))}
-        </defs>
         <rect x={0} y={0} width={W} height={H} rx={8} fill={FLOW_BG} />
         <text x={padX} y={40} fontSize={17} fontWeight={700} fill={FLOW_TEXT}>
           {t("chartTitle")}
@@ -120,7 +114,7 @@ function PipelineFlow({ insights, delay }) {
             <path
               key={`band-${bar.key}`}
               d={`M${bar.cx},${bar.yTop} C${mid},${bar.yTop} ${mid},${next.yTop} ${next.cx},${next.yTop} L${next.cx},${next.yTop + next.h} C${mid},${next.yTop + next.h} ${mid},${bar.yTop + bar.h} ${bar.cx},${bar.yTop + bar.h} Z`}
-              fill={`url(#flow-grad-${i})`}
+              fill={bar.color}
               opacity={0.32}
             />
           );
@@ -171,7 +165,7 @@ export function ApplicationInsights({ applications }) {
   if (insights.total === 0) {
     return (
       <DashboardPanel>
-        <p className="py-10 text-center text-sm text-muted-foreground">
+        <p className="py-8 text-center text-sm text-muted-foreground">
           {t("empty")}
         </p>
       </DashboardPanel>

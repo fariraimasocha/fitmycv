@@ -75,7 +75,7 @@ function applicationKey(use) {
 
 function TagPill({ children }) {
   return (
-    <span className="inline-flex h-6 shrink-0 items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-[var(--landing-ink-soft)]">
+    <span className="inline-flex h-6 shrink-0 items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 text-xs font-medium text-[var(--landing-ink-soft)]">
       {children}
     </span>
   );
@@ -87,7 +87,7 @@ function StarRow({ label, value }) {
       <p className="text-xs font-semibold uppercase tracking-wider text-[var(--landing-accent-dark)] sm:pt-1">
         {label}
       </p>
-      <p className="mt-0.5 text-sm leading-6 whitespace-pre-wrap text-foreground sm:mt-0">{value}</p>
+      <p className="mt-1 text-sm leading-6 whitespace-pre-wrap text-foreground sm:mt-0">{value}</p>
     </div>
   );
 }
@@ -131,7 +131,7 @@ function StoryRow({ story, index }) {
         </span>
         <span className="min-w-0 flex-1">
           <span className="block truncate text-sm font-semibold text-foreground">{title}</span>
-          <span className="mt-0.5 flex min-w-0 items-center gap-x-2 text-xs text-muted-foreground">
+          <span className="mt-1 flex min-w-0 items-center gap-x-2 text-xs text-muted-foreground">
             {meta && (
               <span className="inline-flex min-w-0 items-center gap-1">
                 <BriefcaseIcon size={12} className="shrink-0" aria-hidden="true" />
@@ -157,7 +157,7 @@ function StoryRow({ story, index }) {
       {expanded && (
         <div
           id={panelId}
-          className="dashboard-row-pad space-y-3.5 border-t border-[var(--landing-line)] pt-3.5 sm:ps-15"
+          className="dashboard-row-pad space-y-4 border-t border-[var(--landing-line)] pt-4 sm:ps-15"
         >
           {star.length === 0 && !story.reflection && (
             <p className="text-sm text-muted-foreground">{t("titleOnly")}</p>
@@ -166,12 +166,12 @@ function StoryRow({ story, index }) {
             <StarRow key={key} label={t(`fields.${key}.label`)} value={story[key]} />
           ))}
           {story.reflection && (
-            <div className={cn(star.length > 0 && "border-t border-[var(--landing-line)] pt-3.5")}>
+            <div className={cn(star.length > 0 && "border-t border-[var(--landing-line)] pt-4")}>
               <StarRow label={t("fields.reflection.label")} value={story.reflection} />
             </div>
           )}
           {tags.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1 border-t border-[var(--landing-line)] pt-3.5 sm:hidden">
+            <div className="flex flex-wrap items-center gap-1 border-t border-[var(--landing-line)] pt-4 sm:hidden">
               <TagIcon size={12} className="me-1 text-muted-foreground" aria-hidden="true" />
               {tags.map((tag) => (
                 <TagPill key={tag}>{tag}</TagPill>
@@ -188,7 +188,7 @@ function RowSkeleton() {
   return (
     <li className="dashboard-row-pad flex items-center gap-3">
       <span className="tool-skeleton size-8 shrink-0 rounded-md" />
-      <span className="flex min-w-0 flex-1 flex-col gap-1.5">
+      <span className="flex min-w-0 flex-1 flex-col gap-2">
         <span className="tool-skeleton h-3.5 w-1/2 rounded-sm" />
         <span className="tool-skeleton h-3 w-1/3 rounded-sm" />
       </span>
@@ -259,7 +259,7 @@ function AddStoryDialog({ open, onOpenChange }) {
             if (canSave) save.mutate(form);
           }}
         >
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2">
             <Label htmlFor={`${formId}-title`}>{t("titleLabel")}</Label>
             <Input
               id={`${formId}-title`}
@@ -272,7 +272,7 @@ function AddStoryDialog({ open, onOpenChange }) {
             />
           </div>
           {STORY_FIELDS.map((field) => (
-            <div key={field} className="flex flex-col gap-1.5">
+            <div key={field} className="flex flex-col gap-2">
               <Label htmlFor={`${formId}-${field}`}>{t(`fields.${field}.label`)}</Label>
               <Textarea
                 id={`${formId}-${field}`}
@@ -284,7 +284,7 @@ function AddStoryDialog({ open, onOpenChange }) {
               <p className="text-xs text-muted-foreground">{t(`fields.${field}.hint`)}</p>
             </div>
           ))}
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2">
             <Label htmlFor={`${formId}-tags`}>{t("tagsLabel")}</Label>
             <Input
               id={`${formId}-tags`}
@@ -366,9 +366,9 @@ function StoryBank() {
         <DashboardPanel pad={false} delay={0.05} aria-hidden="true">
           <div className="grid grid-cols-2 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
             {[0, 1, 2].map((i) => (
-              <div key={i} className="flex items-center gap-3 px-4 py-3 sm:px-5">
+              <div key={i} className="flex items-center gap-3 px-4 py-3 sm:px-4">
                 <span className="tool-skeleton size-9 shrink-0 rounded-md" />
-                <span className="flex flex-1 flex-col gap-1.5">
+                <span className="flex flex-1 flex-col gap-2">
                   <span className="tool-skeleton h-3 w-1/2 rounded-sm" />
                   <span className="tool-skeleton h-3.5 w-1/3 rounded-sm" />
                 </span>
@@ -379,7 +379,7 @@ function StoryBank() {
         <DashboardPanel pad={false} delay={0.1} aria-label={t("loadingStories")}>
           <div className="dashboard-row-pad border-b border-[var(--landing-line)]">
             <span className="tool-skeleton block h-3.5 w-28 rounded-sm" />
-            <span className="tool-skeleton mt-1.5 block h-3 w-40 rounded-sm" />
+            <span className="tool-skeleton mt-2 block h-3 w-40 rounded-sm" />
           </div>
           <ul className="divide-y divide-[var(--landing-line)]">
             {[0, 1, 2].map((i) => (

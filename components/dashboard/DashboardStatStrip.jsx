@@ -25,12 +25,14 @@ export function DashboardStatStrip({ items, columns = items.length, className, d
     <DashboardPanel pad={false} className={className} delay={delay}>
       <dl
         className={cn(
-          "grid grid-cols-2 divide-y divide-[var(--landing-line)] sm:grid-cols-3 sm:divide-y-0 sm:divide-x",
+          // Phones: a rule above each row after the first. divide-y put one
+          // above the top-right cell too, so the lines did not meet.
+          "grid grid-cols-2 border-[var(--dash-line)] divide-[var(--dash-line)] max-sm:[&>*:nth-child(n+3)]:border-t sm:grid-cols-3 sm:divide-x",
           lgCols,
         )}
       >
         {items.map((item) => (
-          <div key={item.label} className="flex items-center gap-3 px-4 py-3 sm:px-5">
+          <div key={item.label} className="flex items-center gap-3 px-4 py-3 sm:px-4">
             {item.icon && (
               <span
                 className={cn(

@@ -161,7 +161,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="dashboard-shell min-h-screen bg-[var(--landing-bg)] text-[var(--landing-ink)]">
-      <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-5 py-8 sm:px-8">
+      <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-4 py-8 sm:px-8">
         <header className="flex items-center gap-3">
           {/* The slot keeps its layout box on every step so the logo never
               shifts. visibility, not `hidden`. display:none would still jump. */}
@@ -209,7 +209,7 @@ export default function OnboardingPage() {
           )}
         </header>
 
-        <section className="flex flex-1 flex-col pt-16 pb-10 sm:pt-24">
+        <section className="flex flex-1 flex-col pt-8 pb-8 sm:pt-24">
           {/* keyed so each step remounts and animates in; no exit animation.
               AnimatePresence mode="wait" deadlocks the swap here */}
           <motion.div
@@ -226,14 +226,14 @@ export default function OnboardingPage() {
                 </h1>
 
                 {facts.length > 0 && (
-                  <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-4">
+                  <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
                     {facts.map((fact) => (
                       <div key={fact.key}>
                         <dt className="sr-only">{t(`payoff.facts.${fact.key}`, { count: fact.count })}</dt>
-                        <dd className="font-outfit text-4xl font-semibold text-[var(--landing-accent)]">
+                        <dd className="font-outfit text-2xl font-semibold text-[var(--landing-accent)]">
                           {fact.value}
                         </dd>
-                        <p className="mt-0.5 text-xs text-[var(--landing-ink-soft)]">
+                        <p className="mt-1 text-xs text-[var(--landing-ink-soft)]">
                           {t(`payoff.facts.${fact.key}`, { count: fact.count })}
                         </p>
                       </div>
@@ -241,14 +241,14 @@ export default function OnboardingPage() {
                   </dl>
                 )}
 
-                <p className="mt-7 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
+                <p className="mt-8 text-sm leading-relaxed text-[var(--landing-ink-soft)] sm:text-base">
                   {t("payoff.intro")}
                 </p>
 
                 <ol className="mt-6 divide-y divide-[var(--landing-line)] border-y border-[var(--landing-line)]">
                   {plan.map((item, index) => (
                     <li key={item.key} className="flex gap-4 py-4">
-                      <span className="pt-0.5">
+                      <span className="pt-1">
                         {item.done ? (
                           <CheckIcon
                             size={14}
@@ -273,7 +273,7 @@ export default function OnboardingPage() {
                           {t(`plan.${item.key}.title`)}
                         </span>
                         {!item.done && (
-                          <span className="mt-0.5 block text-sm text-[var(--landing-ink-soft)]">
+                          <span className="mt-1 block text-sm text-[var(--landing-ink-soft)]">
                             {t(`plan.${item.key}.description`)}
                           </span>
                         )}
@@ -282,7 +282,7 @@ export default function OnboardingPage() {
                   ))}
                 </ol>
 
-                <div className="mt-7 flex flex-col items-center gap-4 sm:flex-row">
+                <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
                   <button
                     type="button"
                     onClick={() =>
@@ -316,7 +316,7 @@ export default function OnboardingPage() {
                   {t("upload.privacy")}
                 </p>
 
-                <div className="mt-7 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-5 sm:p-6">
+                <div className="mt-8 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 sm:p-6">
                   <ResumeUpload onParsed={onParsed} />
                 </div>
 
@@ -324,7 +324,7 @@ export default function OnboardingPage() {
                   <button
                     type="button"
                     onClick={() => saveCV.mutate(pendingCV)}
-                    className="dashboard-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
+                    className="dashboard-primary-btn mt-4 w-full cursor-pointer text-sm sm:w-fit"
                   >
                     {t("tryAgain")}
                   </button>
@@ -336,7 +336,7 @@ export default function OnboardingPage() {
                     onClick={() =>
                       completeOnboarding("/dashboard/tailor", answers)
                     }
-                    className="dashboard-primary-btn mt-5 w-full cursor-pointer text-sm sm:w-fit"
+                    className="dashboard-primary-btn mt-4 w-full cursor-pointer text-sm sm:w-fit"
                   >
                     {t("continueToTailoring")}
                     <ArrowRightIcon
@@ -347,7 +347,7 @@ export default function OnboardingPage() {
                   </button>
                 )}
 
-                <p className="mt-5 text-xs leading-5 text-[var(--landing-ink-soft)]">
+                <p className="mt-4 text-xs leading-5 text-[var(--landing-ink-soft)]">
                   {t("upload.editLater")}
                 </p>
               </>

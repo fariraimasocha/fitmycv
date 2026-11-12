@@ -155,7 +155,8 @@
     "chooseSeries": "Choisir ce qu'affiche le graphique",
     "thisWeek": "Cette semaine",
     "vsLastWeek": "vs semaine dernière",
-    "totalInRange": "Total sur la période"
+    "totalInRange": "Total sur la période",
+    "allTime": "Au total"
   },
   "pipeline": {
     "title": "Candidatures",

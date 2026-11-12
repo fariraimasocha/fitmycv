@@ -155,7 +155,8 @@
     "chooseSeries": "Choose what the chart shows",
     "thisWeek": "This week",
     "vsLastWeek": "vs last week",
-    "totalInRange": "Total in range"
+    "totalInRange": "Total in range",
+    "allTime": "All time"
   },
   "pipeline": {
     "title": "Applications",

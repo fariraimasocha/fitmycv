@@ -79,7 +79,7 @@ export default function LinkedInOutreachModal({
       <DialogContent className="max-h-[85vh] gap-0 overflow-y-auto p-0 sm:max-w-md">
         <DialogHeader className="border-b border-[var(--landing-line)] px-4 py-3">
           <DialogTitle className="flex items-center gap-2 text-sm font-semibold">
-            <LinkedinLogoIcon size={18} weight="fill" className="text-blue-600" aria-hidden="true" />
+            <LinkedinLogoIcon size={18} weight="fill" className="text-[var(--dash-ink)]" aria-hidden="true" />
             {t("title")}
           </DialogTitle>
         </DialogHeader>
@@ -101,7 +101,7 @@ export default function LinkedInOutreachModal({
                       key={i}
                       type="button"
                       onClick={() => selectMessage(i)}
-                      className={`rounded-sm px-2.5 py-1 text-xs font-medium transition-colors ${
+                      className={`rounded-sm px-3 py-1 text-xs font-medium transition-colors ${
                         activeIndex === i
                           ? "bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]"
                           : "text-[var(--landing-ink-soft)] hover:bg-[var(--landing-paper-soft)] hover:text-[var(--landing-ink)]"
@@ -147,7 +147,7 @@ export default function LinkedInOutreachModal({
                     {data.targetRoles.map((role) => (
                       <span
                         key={role}
-                        className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
+                        className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]"
                       >
                         {role}
                       </span>

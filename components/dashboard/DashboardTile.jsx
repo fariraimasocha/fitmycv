@@ -23,7 +23,7 @@ export function DashboardTile({ href, onClick, icon: Icon, label, description, t
     </>
   );
   const cls = cn(
-    "dashboard-card flex min-h-40 flex-col items-center justify-center gap-4 rounded-lg p-5 text-center transition-colors hover:border-stone-300 hover:bg-stone-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]",
+    "dashboard-card flex min-h-40 flex-col items-center justify-center gap-4 rounded-lg p-4 text-center transition-colors hover:border-[var(--dash-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-ink)]",
     className,
   );
   if (href) {

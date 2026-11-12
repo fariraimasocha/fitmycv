@@ -40,7 +40,7 @@ export function NavMain({ groups }) {
                   isActive={isActive}
                   asChild
                   className={cn(
-                    "h-10 gap-3 rounded-lg px-2.5 text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-primary-soft)] hover:text-[var(--landing-ink)] [&>svg]:size-5 group-data-[collapsible=icon]:p-1.5!",
+                    "h-10 gap-3 rounded-lg px-3 text-sm font-semibold text-[var(--landing-ink-soft)] transition-colors hover:bg-[var(--landing-primary-soft)] hover:text-[var(--landing-ink)] [&>svg]:size-5 group-data-[collapsible=icon]:p-1.5!",
                     isActive && "dashboard-nav-active"
                   )}
                 >

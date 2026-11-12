@@ -73,7 +73,7 @@ export function AppSidebar({ ...props }) {
             size="md"
             alt=""
             className="group-data-[collapsible=icon]:[&>span]:hidden"
-            wordmarkClassName="text-xl"
+            wordmarkClassName="text-2xl"
           />
         </Link>
         <SidebarTrigger className="hidden size-8 shrink-0 rounded-md text-[var(--landing-ink-soft)] hover:bg-[var(--landing-primary-soft)] md:inline-flex md:group-data-[collapsible=icon]:sr-only md:group-data-[collapsible=icon]:group-hover/header:not-sr-only md:group-data-[collapsible=icon]:group-focus-within/header:not-sr-only" />
@@ -86,7 +86,7 @@ export function AppSidebar({ ...props }) {
         <NavUser />
         <LanguagePicker
           align="start"
-          className="mx-2 h-9 rounded-md px-2.5 text-xs text-muted-foreground hover:bg-[var(--landing-primary-soft)] hover:text-foreground group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:[&>span]:hidden"
+          className="mx-2 h-9 rounded-md px-3 text-xs text-muted-foreground hover:bg-[var(--landing-primary-soft)] hover:text-foreground group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:[&>span]:hidden"
         />
       </SidebarFooter>
       <SidebarRail />

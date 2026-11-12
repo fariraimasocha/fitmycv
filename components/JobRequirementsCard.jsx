@@ -129,7 +129,7 @@ function Section({ icon, title, items }) {
   return (
     <div className="dashboard-card-pad">
       <SectionTitle icon={icon}>{title}</SectionTitle>
-      <ul className="mt-3 list-disc space-y-1 ps-5 text-sm leading-6 text-[var(--landing-ink-soft)]">
+      <ul className="mt-3 list-disc space-y-1 ps-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
         {items.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
@@ -181,13 +181,13 @@ function KeywordsSection({ keywords, referenceCV }) {
         )}
       </button>
       {expanded && (
-        <ul className="mt-3 flex flex-wrap gap-1.5">
+        <ul className="mt-3 flex flex-wrap gap-2">
           {hasCV ? (
             <>
               {matched.map((kw) => (
                 <li
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-full border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
+                  className="inline-flex items-center gap-1 rounded-full border border-[var(--dash-line)] bg-[var(--landing-success-soft)] px-2 py-1 text-xs font-medium text-[var(--landing-success)]"
                 >
                   <CheckCircleIcon size={12} weight="fill" aria-hidden="true" />
                   {kw}
@@ -196,7 +196,7 @@ function KeywordsSection({ keywords, referenceCV }) {
               {missing.map((kw) => (
                 <li
                   key={kw}
-                  className="inline-flex items-center gap-1 rounded-full border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-accent-dark)]"
+                  className="inline-flex items-center gap-1 rounded-full border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-2 py-1 text-xs font-medium text-[var(--landing-accent-dark)]"
                 >
                   <XCircleIcon size={12} weight="fill" aria-hidden="true" />
                   {kw}
@@ -207,7 +207,7 @@ function KeywordsSection({ keywords, referenceCV }) {
             keywords.map((kw) => (
               <li
                 key={kw}
-                className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2 py-0.5 text-xs font-medium text-muted-foreground"
+                className="inline-flex items-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2 py-1 text-xs font-medium text-muted-foreground"
               >
                 {kw}
               </li>

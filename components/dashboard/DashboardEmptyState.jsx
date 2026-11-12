@@ -70,7 +70,7 @@ export function DashboardEmptyState({
       <div
         className={cn(
           "dashboard-card rounded-lg",
-          compact ? "px-5 py-8" : "px-6 py-12 sm:py-16",
+          compact ? "px-4 py-8" : "px-6 py-8 sm:py-8",
         )}
       >
         <div className="mx-auto flex max-w-sm flex-col items-center gap-4 text-center">

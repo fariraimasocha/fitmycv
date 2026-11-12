@@ -373,12 +373,12 @@ function TailoredCVDetail() {
         description={
           <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {cv.jobCompany && (
-              <span className="inline-flex items-center gap-1.5">
+              <span className="inline-flex items-center gap-2">
                 <BuildingsIcon size={14} aria-hidden="true" />
                 {cv.jobCompany}
               </span>
             )}
-            <span className="inline-flex items-center gap-1.5 tabular-nums">
+            <span className="inline-flex items-center gap-2 tabular-nums">
               <CalendarIcon size={14} aria-hidden="true" />
               <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />
             </span>

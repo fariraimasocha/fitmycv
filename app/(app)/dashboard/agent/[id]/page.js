@@ -162,7 +162,7 @@ export default function AgentThreadPage() {
       id: "chat",
       icon: <ChatCircleDotsIcon size={16} aria-hidden="true" />,
       label: (
-        <span className="inline-flex items-center gap-1.5">
+        <span className="inline-flex items-center gap-2">
           {t("chat")}
           {pendingCount > 0 && (
             <span className="inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-[var(--landing-accent)] px-1 text-xs leading-none text-white tabular-nums">
@@ -212,7 +212,7 @@ export default function AgentThreadPage() {
               heading here is for screen readers and the bar shows the source. */}
           <div className="min-w-0 flex-1 px-1">
             <h1 className="sr-only">{thread.title}</h1>
-            <p className="flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground">
+            <p className="flex min-w-0 items-center gap-2 text-sm text-muted-foreground">
               <FileTextIcon size={16} className="shrink-0" aria-hidden="true" />
               <span className="truncate">
                 {t("editingCopyOf", { source: thread.sourceLabel || t("yourCv") })}
@@ -260,7 +260,7 @@ export default function AgentThreadPage() {
           </DropdownMenu>
         </div>
 
-        <div className="px-3 pb-2.5 lg:hidden">
+        <div className="px-3 pb-3 lg:hidden">
           <DashboardTabBar
             ariaLabel={t("paneSwitch")}
             tabs={paneTabs}

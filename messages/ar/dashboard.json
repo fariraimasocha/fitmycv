@@ -155,7 +155,8 @@
     "chooseSeries": "اختر ما يعرضه الرسم البياني",
     "thisWeek": "هذا الأسبوع",
     "vsLastWeek": "مقارنة بالأسبوع الماضي",
-    "totalInRange": "الإجمالي في النطاق"
+    "totalInRange": "الإجمالي في النطاق",
+    "allTime": "الإجمالي"
   },
   "pipeline": {
     "title": "الطلبات",

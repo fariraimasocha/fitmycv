@@ -34,7 +34,7 @@ export default function UploadProgress({ progress, stage }) {
             })}
           </p>
         </div>
-        <span className="font-outfit text-lg font-semibold text-[var(--landing-ink)]">
+        <span className="font-outfit text-base font-semibold text-[var(--landing-ink)]">
           {Math.round(progress)}%
         </span>
       </div>
@@ -61,7 +61,7 @@ export default function UploadProgress({ progress, stage }) {
           return (
             <li
               key={item.id}
-              className={`flex items-center gap-2.5 py-2.5 text-sm ${
+              className={`flex items-center gap-3 py-3 text-sm ${
                 active
                   ? "font-semibold text-[var(--landing-ink)]"
                   : done

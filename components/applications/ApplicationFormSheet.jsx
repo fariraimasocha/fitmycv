@@ -78,7 +78,7 @@ function toForm(app) {
 
 function Field({ label, required, htmlFor, children }) {
   return (
-    <div className="grid gap-1.5">
+    <div className="grid gap-2">
       <Label htmlFor={htmlFor} className="text-xs text-muted-foreground">
         {label}
         {required && <span className="text-destructive"> *</span>}
@@ -119,7 +119,7 @@ function TagsField({ id, value, suggestions, onChange }) {
         ))}
       </datalist>
       {value.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-2">
           {value.map((tag) => (
             <span
               key={tag}

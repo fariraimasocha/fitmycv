@@ -12,7 +12,6 @@ import {
 import { DashboardTabBar } from "./DashboardTabBar";
 import { DashboardPanel } from "./DashboardPanel";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
-import { cn } from "@/lib/utils";
 import { dateLocale } from "@/i18n/routing";
 
 function formatWeekLabel(date, locale) {
@@ -25,7 +24,8 @@ function formatWeekLabel(date, locale) {
 
 /**
  * One chart, several series. `series` is a list of
- * { id, label, counts } where counts lines up with `weekStarts`.
+ * { id, label, counts, total } where counts lines up with `weekStarts` and
+ * total is the all-time count.
  */
 export function DashboardActivityChart({
   series,
@@ -37,7 +37,7 @@ export function DashboardActivityChart({
   const locale = useLocale();
   const reduceMotion = useReducedMotion();
   const chartConfig = {
-    count: { label: t("count"), color: "var(--landing-accent)" },
+    count: { label: t("count"), color: "var(--dash-accent)" },
   };
   const [activeId, setActiveId] = useState(series[0]?.id);
   const active = series.find((s) => s.id === activeId) ?? series[0];
@@ -46,7 +46,6 @@ export function DashboardActivityChart({
   const thisWeek = counts.at(-1) ?? 0;
   const lastWeek = counts.at(-2) ?? 0;
   const delta = thisWeek - lastWeek;
-  const total = counts.reduce((sum, n) => sum + n, 0);
 
   // weekStarts is empty until the client knows the visitor's date.
   const data = counts.map((count, index) => {
@@ -63,10 +62,10 @@ export function DashboardActivityChart({
     <DashboardPanel className={className} delay={delay}>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="font-outfit text-sm font-semibold text-foreground">
+          <h2 className="font-outfit text-base font-semibold text-dash-ink">
             {t("title")}
           </h2>
-          <p className="mt-0.5 text-xs text-muted-foreground">
+          <p className="mt-1 text-xs text-dash-muted">
             {t("lastWeeks", { count: counts.length })}
           </p>
         </div>
@@ -78,67 +77,34 @@ export function DashboardActivityChart({
         />
       </div>
 
-      <dl className="mt-5 grid grid-cols-3 divide-x divide-[var(--landing-line)]">
-        <div className="pe-4">
-          <dt className="text-xs font-medium text-muted-foreground">{t("thisWeek")}</dt>
-          <dd className="mt-1">
-            <AnimatedNumber
-              value={thisWeek}
-              className="font-outfit text-2xl font-semibold leading-none tracking-[-0.02em] text-foreground"
-            />
-          </dd>
-        </div>
-        <div className="px-4">
-          <dt className="text-xs font-medium text-muted-foreground">{t("vsLastWeek")}</dt>
-          <dd
-            className={cn(
-              "mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em]",
-              delta > 0
-                ? "text-[var(--landing-success)]"
-                : delta < 0
-                  ? "text-[var(--landing-accent-dark)]"
-                  : "text-foreground",
-            )}
-          >
-            {delta > 0 ? `+${delta}` : delta}
-          </dd>
-        </div>
-        <div className="ps-4">
-          <dt className="text-xs font-medium text-muted-foreground">{t("totalInRange")}</dt>
-          <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
-            {total}
-          </dd>
-        </div>
+      <dl className="mt-6 grid grid-cols-3 divide-x divide-dash-line sm:max-w-lg">
+        {[
+          [t("thisWeek"), <AnimatedNumber key="n" value={thisWeek} />],
+          [t("vsLastWeek"), delta > 0 ? `+${delta}` : delta],
+          [t("allTime"), active?.total ?? 0],
+        ].map(([label, value], i) => (
+          <div key={label} className={i === 0 ? "pe-4" : "px-4"}>
+            <dt className="text-xs text-dash-muted">{label}</dt>
+            <dd className="mt-1 font-outfit text-2xl font-semibold leading-none tabular-nums text-dash-ink">
+              {value}
+            </dd>
+          </div>
+        ))}
       </dl>
 
       <ChartContainer
         id={`activity-${active?.id}`}
         config={chartConfig}
-        className="mt-4 h-52 w-full"
+        className="mt-6 h-52 w-full"
       >
         <AreaChart
           accessibilityLayer
           data={data}
           margin={{ top: 8, right: 8, bottom: 0, left: 8 }}
         >
-          <defs>
-            <linearGradient id="activity-fill" x1="0" x2="0" y1="0" y2="1">
-              <stop
-                offset="0%"
-                stopColor="var(--color-count)"
-                stopOpacity={0.28}
-              />
-              <stop
-                offset="100%"
-                stopColor="var(--color-count)"
-                stopOpacity={0}
-              />
-            </linearGradient>
-          </defs>
           <CartesianGrid
             vertical={false}
-            stroke="var(--landing-line)"
-            strokeDasharray="3 3"
+            stroke="var(--dash-line)"
           />
           <XAxis
             dataKey="label"
@@ -146,11 +112,11 @@ export function DashboardActivityChart({
             axisLine={false}
             tickMargin={10}
             minTickGap={28}
-            tick={{ fontSize: 11 }}
+            tick={{ fontSize: 12, fill: "var(--dash-muted)" }}
           />
           <YAxis hide domain={[0, "dataMax + 1"]} allowDecimals={false} />
           <ChartTooltip
-            cursor={{ stroke: "var(--landing-line)" }}
+            cursor={{ stroke: "var(--dash-line)" }}
             content={
               <ChartTooltipContent
                 indicator="line"
@@ -173,7 +139,7 @@ export function DashboardActivityChart({
             dataKey="count"
             stroke="var(--color-count)"
             strokeWidth={2}
-            fill="url(#activity-fill)"
+            fill="none"
             dot={false}
             activeDot={{ r: 4, strokeWidth: 0 }}
             isAnimationActive={!reduceMotion}

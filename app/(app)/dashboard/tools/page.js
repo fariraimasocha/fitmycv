@@ -47,7 +47,7 @@ export default function ToolsPage() {
     <DashboardPageShell>
       {SECTIONS.map((section) => (
         <section key={section.key} className="space-y-3">
-          <h2 className="font-outfit text-lg font-medium text-[var(--landing-ink)]">
+          <h2 className="font-outfit text-base font-medium text-[var(--landing-ink)]">
             {t(`groups.${section.key}`)}
           </h2>
           <DashboardTileGrid className="lg:grid-cols-5">

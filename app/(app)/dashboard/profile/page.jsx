@@ -51,20 +51,20 @@ function PlanBadge({ isPremium, status }) {
   const t = useTranslations("dashboard.profile");
   if (!isPremium) {
     return (
-      <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-muted-foreground">
+      <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-paper-soft)] px-3 text-xs font-medium text-muted-foreground">
         {t("planFree")}
       </span>
     );
   }
   if (status === "canceled") {
     return (
-      <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-accent-soft)] px-2.5 text-xs font-medium text-[var(--landing-accent-dark)]">
+      <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-accent-soft)] px-3 text-xs font-medium text-[var(--landing-accent-dark)]">
         {t("planCancelling")}
       </span>
     );
   }
   return (
-    <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-success-soft)] px-2.5 text-xs font-medium text-[var(--landing-success)]">
+    <span className="inline-flex h-6 shrink-0 items-center rounded-full bg-[var(--landing-success-soft)] px-3 text-xs font-medium text-[var(--landing-success)]">
       {t("planPro")}
     </span>
   );
@@ -75,11 +75,11 @@ function PlanBadge({ isPremium, status }) {
 function SettingsGroup({ title, description, aside, children }) {
   return (
     <section>
-      <div className="flex items-start justify-between gap-3 px-4 pt-5 pb-1 sm:px-6">
+      <div className="flex items-start justify-between gap-3 px-4 pt-4 pb-1 sm:px-6">
         <div className="min-w-0">
           <h2 className="font-outfit text-base font-semibold text-foreground">{title}</h2>
           {description && (
-            <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{description}</p>
           )}
         </div>
         {aside}
@@ -208,7 +208,7 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
-            <span className="inline-flex h-6 w-fit shrink-0 items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 text-xs font-medium text-foreground">
+            <span className="inline-flex h-6 w-fit shrink-0 items-center gap-2 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 text-xs font-medium text-foreground">
               <GoogleLogoIcon size={14} weight="bold" aria-hidden="true" />
               {t("signedInWithGoogle")}
             </span>
@@ -273,7 +273,7 @@ export default function ProfilePage() {
 
         <SettingsGroup
           title={
-            <span className="inline-flex items-center gap-1.5 text-destructive">
+            <span className="inline-flex items-center gap-2 text-destructive">
               <WarningCircleIcon size={16} weight="fill" aria-hidden="true" />
               {t("deleteAccount")}
             </span>
@@ -282,7 +282,7 @@ export default function ProfilePage() {
         >
           <dl>
             <SettingsRow label={t("whatGetsDeleted")}>
-              <ul className="list-disc space-y-1 ps-5 text-muted-foreground">
+              <ul className="list-disc space-y-1 ps-4 text-muted-foreground">
                 <li>{t("deletedItems.profile")}</li>
                 <li>{t("deletedItems.cvs")}</li>
                 <li>{t("deletedItems.applications")}</li>

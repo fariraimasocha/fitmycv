@@ -34,9 +34,9 @@ function LoadingRows() {
       <div className="tool-skeleton h-16 rounded-lg" />
       <div className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
         {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i} className="flex items-center gap-3 px-4 py-4 sm:px-5">
+          <div key={i} className="flex items-center gap-3 px-4 py-4 sm:px-4">
             <div className="tool-skeleton size-9 rounded-full" />
-            <div className="flex flex-1 flex-col gap-1.5">
+            <div className="flex flex-1 flex-col gap-2">
               <div className="tool-skeleton h-3.5 w-1/3 rounded-sm" />
               <div className="tool-skeleton h-3 w-1/4 rounded-sm" />
             </div>
@@ -60,7 +60,7 @@ function BriefRow({ brief, index }) {
     >
       <Link
         href={`/dashboard/company-research/${brief._id}`}
-        className="group flex items-center gap-3 px-4 py-4 transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40 sm:px-5"
+        className="group flex items-center gap-3 px-4 py-4 transition-colors hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40 sm:px-4"
       >
         <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] font-outfit text-sm font-semibold text-foreground">
           {(name[0] ?? "?").toUpperCase()}
@@ -69,7 +69,7 @@ function BriefRow({ brief, index }) {
           <span className="block truncate text-sm font-semibold text-foreground">
             {name}
           </span>
-          <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
+          <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
             {brief.jobTitle && (
               <span className="inline-flex min-w-0 max-w-full items-center gap-1">
                 <BriefcaseIcon size={12} className="shrink-0" aria-hidden="true" />

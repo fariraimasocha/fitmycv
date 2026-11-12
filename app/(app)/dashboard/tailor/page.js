@@ -878,7 +878,7 @@ function Tailor() {
                     autoComplete="url"
                     spellCheck={false}
                     autoFocus
-                    className="w-full ps-10 text-base sm:text-sm"
+                    className="w-full ps-8 text-base sm:text-sm"
                   />
                 </div>
               ) : (
@@ -936,7 +936,7 @@ function Tailor() {
           {/* Recent links as rows, like Teal's recent resumes. One click fills the field. */}
           {jobInputMode === "link" && recentUrls.length > 0 && !jobData && (
             <section className="flex flex-col gap-2">
-              <h3 className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
+              <h3 className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                 <ClockCounterClockwiseIcon size={16} aria-hidden="true" />
                 {t("form.recentTitle")}
               </h3>
@@ -1281,12 +1281,12 @@ function Tailor() {
                         <p className="text-xs font-medium text-muted-foreground">
                           {t("result.keywordsAdded")}
                         </p>
-                        <ul className="mt-2 flex flex-wrap gap-1.5">
+                        <ul className="mt-2 flex flex-wrap gap-2">
                           {tailorResult.keywordsInjected.map((k, i) => (
                             <li
                               key={`${k.keyword}-${i}`}
                               title={k.location}
-                              className="inline-flex cursor-help items-center rounded-full border border-[#c8e6d4] bg-[var(--landing-success-soft)] px-2 py-0.5 text-xs font-medium text-[var(--landing-success)]"
+                              className="inline-flex cursor-help items-center rounded-full border border-[var(--dash-line)] bg-[var(--landing-success-soft)] px-2 py-1 text-xs font-medium text-[var(--landing-success)]"
                             >
                               {k.keyword}
                             </li>

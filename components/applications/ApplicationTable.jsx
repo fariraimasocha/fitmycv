@@ -88,7 +88,7 @@ function StageLabel({ status }) {
   const t = useTranslations("dashboard");
   const stage = STAGE_BY_KEY[status];
   return (
-    <span className="inline-flex items-center gap-1.5">
+    <span className="inline-flex items-center gap-2">
       <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: stage?.color }} aria-hidden="true" />
       {stage ? t(`stages.${status}`) : status}
     </span>
@@ -103,7 +103,7 @@ function TagList({ tags = [] }) {
       {tags.slice(0, 2).map((tag) => (
         <span
           key={tag}
-          className="inline-flex h-6 items-center rounded-full bg-[var(--landing-paper-soft)] px-1.5 text-xs font-medium text-muted-foreground"
+          className="inline-flex h-6 items-center rounded-full bg-[var(--landing-paper-soft)] px-2 text-xs font-medium text-muted-foreground"
         >
           {tag}
         </span>
@@ -258,7 +258,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
                 <td className="px-3 py-3">
                   <button
                     type="button"
-                    className="group flex max-w-full items-center gap-2.5 rounded-sm text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                    className="group flex max-w-full items-center gap-3 rounded-sm text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                     onClick={() => onOpen(app)}
                   >
                     <span className={AVATAR}>
@@ -324,7 +324,7 @@ export function ApplicationTable({ applications, onOpen, onEdit }) {
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-semibold text-foreground">{app.jobTitle}</span>
                 <span className="block truncate text-xs text-muted-foreground">{app.jobCompany}</span>
-                <span className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
+                <span className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
                   <StageLabel status={app.status} />
                   {app.salary && (
                     <span className="truncate font-medium tabular-nums text-foreground">{app.salary}</span>

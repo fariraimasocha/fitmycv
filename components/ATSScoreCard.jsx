@@ -27,22 +27,22 @@ const CARD = cn("rounded-md border bg-[var(--landing-surface)]", LINE);
 
 function scoreTone(score) {
   if (score >= 80) return { text: "text-[var(--landing-success)]", bar: "bg-[var(--landing-success)]" };
-  if (score >= 60) return { text: "text-amber-600", bar: "bg-amber-600" };
+  if (score >= 60) return { text: "text-[var(--dash-muted)]", bar: "bg-[var(--dash-muted)]" };
   return { text: "text-[var(--landing-accent)]", bar: "bg-[var(--landing-accent)]" };
 }
 
 // Labels live in messages under tailor.ats.severity.<key>.
 const SEVERITY = {
   blocker: { dot: "bg-[var(--landing-accent)]" },
-  warning: { dot: "bg-amber-500" },
-  tip: { dot: "bg-sky-600" },
+  warning: { dot: "bg-[var(--dash-accent)]" },
+  tip: { dot: "bg-[var(--dash-muted)]" },
 };
 
 export const SEVERITY_ORDER = ["blocker", "warning", "tip"];
 
 const IMPACT = {
   high: { dot: "bg-[var(--landing-accent)]" },
-  medium: { dot: "bg-amber-500" },
+  medium: { dot: "bg-[var(--dash-muted)]" },
   low: { dot: "bg-[var(--landing-success)]" },
 };
 
@@ -62,7 +62,7 @@ export function SeverityCount({ severity, count }) {
   const t = useTranslations("tailor.ats");
   const { dot } = SEVERITY[severity];
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+    <span className="inline-flex items-center gap-2 text-xs text-muted-foreground">
       <span className={cn("size-2 shrink-0 rounded-full", dot)} aria-hidden="true" />
       {t(`severity.${severity}.count`, { count })}
     </span>
@@ -76,7 +76,7 @@ export function FindingRow({ finding, location, onJump }) {
   return (
     <li className={cn("space-y-2 p-3", CARD)}>
       <div className="flex items-start gap-2">
-        <span className={cn("mt-1.5 size-2 shrink-0 rounded-full", severity.dot)} aria-hidden="true" />
+        <span className={cn("mt-2 size-2 shrink-0 rounded-full", severity.dot)} aria-hidden="true" />
         <div className="min-w-0 flex-1 space-y-1">
           <p className="text-sm leading-snug font-medium">{findingText(t, finding, "title")}</p>
           <p className="text-xs leading-normal text-muted-foreground">{findingText(t, finding, "action")}</p>
@@ -86,12 +86,12 @@ export function FindingRow({ finding, location, onJump }) {
         </Badge>
       </div>
       {finding.value && (
-        <code className="block min-w-0 truncate rounded bg-[var(--landing-paper-strong)] px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+        <code className="block min-w-0 truncate rounded bg-[var(--landing-paper-strong)] px-2 py-1 font-mono text-xs text-muted-foreground">
           {finding.value}
         </code>
       )}
       {location && onJump && (
-        <Button type="button" size="sm" variant="ghost" className="gap-1.5 text-xs" onClick={onJump}>
+        <Button type="button" size="sm" variant="ghost" className="gap-2 text-xs" onClick={onJump}>
           {location}
           <ArrowRightIcon />
         </Button>
@@ -102,7 +102,7 @@ export function FindingRow({ finding, location, onJump }) {
 
 function NothingHere({ children }) {
   return (
-    <div className={cn("flex items-center gap-2 rounded-md border border-dashed p-2.5", LINE)}>
+    <div className={cn("flex items-center gap-2 rounded-md border border-dashed p-3", LINE)}>
       <CheckCircleIcon className="size-4 shrink-0 text-[var(--landing-success)]" />
       <span className="text-xs leading-normal text-muted-foreground">{children}</span>
     </div>
@@ -120,7 +120,7 @@ function ScoreHeader({ report, preScore, checking = false, fixGain = 0 }) {
   return (
     <div className={cn("space-y-3 p-3", CARD)}>
       <div className="flex items-baseline gap-2">
-        <AnimatedNumber value={report.score} className={cn("text-4xl leading-none font-bold tabular-nums", tone.text)} />
+        <AnimatedNumber value={report.score} className={cn("text-2xl leading-none font-bold tabular-nums", tone.text)} />
         <span className="text-sm text-muted-foreground">{t("outOf100")}</span>
         {checking ? (
           <span className="ms-auto text-xs text-muted-foreground" aria-live="polite">
@@ -132,14 +132,14 @@ function ScoreHeader({ report, preScore, checking = false, fixGain = 0 }) {
           <Badge
             key={report.score}
             variant="secondary"
-            className="landing-rise ms-auto bg-[#eef8f1] text-[var(--landing-success)]"
+            className="landing-rise ms-auto bg-[var(--dash-surface)] text-[var(--landing-success)]"
             aria-live="polite"
           >
             {t("fixGain", { delta: fixGain })}
           </Badge>
         ) : (
           delta > 0 && (
-            <Badge variant="secondary" className="ms-auto bg-[#eef8f1] text-[var(--landing-success)]">
+            <Badge variant="secondary" className="ms-auto bg-[var(--dash-surface)] text-[var(--landing-success)]">
               {t("upFrom", { delta, preScore })}
             </Badge>
           )
@@ -253,9 +253,9 @@ function JdCoverage({ coverage }) {
         </p>
       </div>
       {missing.length > 0 && (
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <p className="text-xs font-medium text-muted-foreground">{t("coverage.missing")}</p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {missing.map((term) => (
               <Badge key={term} variant="outline" className="font-normal">
                 {term}
@@ -265,9 +265,9 @@ function JdCoverage({ coverage }) {
         </div>
       )}
       {matched.length > 0 && (
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <p className="text-xs font-medium text-muted-foreground">{t("coverage.matched")}</p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {matched.map((term) => (
               <Badge key={term} variant="secondary" className="font-normal">
                 {term}
@@ -344,7 +344,7 @@ function AiReviewResults({ review }) {
               <li key={`${suggestion.section ?? ""}:${suggestion.issue}`} className={cn("space-y-2 p-3", CARD)}>
                 <div className="flex items-start gap-2">
                   <span
-                    className={cn("mt-1.5 size-2 shrink-0 rounded-full", IMPACT[suggestion.impact].dot)}
+                    className={cn("mt-2 size-2 shrink-0 rounded-full", IMPACT[suggestion.impact].dot)}
                     aria-hidden="true"
                   />
                   <p className="min-w-0 flex-1 text-sm leading-snug">{suggestion.issue}</p>
@@ -366,7 +366,7 @@ function AiReviewResults({ review }) {
       {review.strengths.length > 0 && (
         <div className="space-y-2">
           <h5 className="text-sm font-semibold">{t("review.strengths")}</h5>
-          <ul className="list-outside list-disc space-y-1 ps-5 text-sm text-muted-foreground">
+          <ul className="list-outside list-disc space-y-1 ps-4 text-sm text-muted-foreground">
             {review.strengths.map((strength) => (
               <li key={strength}>{strength}</li>
             ))}
@@ -380,9 +380,9 @@ function AiReviewResults({ review }) {
             <p className="text-sm leading-normal text-muted-foreground">{review.jdAlignment.verdict}</p>
           )}
           {review.jdAlignment.missingConcepts.length > 0 && (
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               <p className="text-xs font-medium text-muted-foreground">{t("review.notShown")}</p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {review.jdAlignment.missingConcepts.map((concept) => (
                   <Badge key={concept} variant="outline" className="font-normal">
                     {concept}
@@ -392,7 +392,7 @@ function AiReviewResults({ review }) {
             </div>
           )}
           {review.jdAlignment.strengths.length > 0 && (
-            <ul className="list-outside list-disc space-y-1 ps-5 text-sm text-muted-foreground">
+            <ul className="list-outside list-disc space-y-1 ps-4 text-sm text-muted-foreground">
               {review.jdAlignment.strengths.map((strength) => (
                 <li key={strength}>{strength}</li>
               ))}

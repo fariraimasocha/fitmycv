@@ -109,7 +109,7 @@ function UploadPanel({ onParsed, replacing }) {
                 <p className="text-sm font-medium text-foreground">
                   {t(`steps.${step.key}.title`)}
                 </p>
-                <p className="mt-0.5 text-sm leading-6 text-muted-foreground">
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">
                   {t(`steps.${step.key}.body`)}
                 </p>
               </div>
@@ -117,7 +117,7 @@ function UploadPanel({ onParsed, replacing }) {
           ))}
         </ol>
         {replacing && (
-          <p className="mt-5 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-2.5 text-xs leading-5 text-[var(--landing-ink-soft)]">
+          <p className="mt-4 rounded-md border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-3 text-xs leading-5 text-[var(--landing-ink-soft)]">
             {t("replacingNote")}
           </p>
         )}

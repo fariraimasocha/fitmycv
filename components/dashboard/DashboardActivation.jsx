@@ -97,7 +97,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                   >
                     {t(`steps.${step.key}.title`)}
                   </p>
-                  <p className="mt-0.5 text-sm leading-6 text-muted-foreground">
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
                     {t(`steps.${step.key}.description`)}
                   </p>
                 </div>
@@ -105,7 +105,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
 
               <div className="ps-13 sm:ps-0">
                 {step.done ? (
-                  <span className="inline-flex h-control-sm items-center gap-1.5 rounded-full bg-[var(--landing-success-soft)] px-3 text-sm font-medium text-[var(--landing-success)]">
+                  <span className="inline-flex h-control-sm items-center gap-2 rounded-full bg-[var(--landing-success-soft)] px-3 text-sm font-medium text-[var(--landing-success)]">
                     {t("done")}
                     <CheckIcon size={14} weight="bold" aria-hidden="true" />
                   </span>

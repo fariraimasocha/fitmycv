@@ -47,6 +47,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* The dashboard's five colors, set on .dashboard-shell below. */
+  --color-dash-ink: var(--dash-ink);
+  --color-dash-muted: var(--dash-muted);
+  --color-dash-line: var(--dash-line);
+  --color-dash-surface: var(--dash-surface);
+  --color-dash-accent: var(--dash-accent);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sn-pro);
@@ -861,6 +867,92 @@
     border-color: var(--landing-line);
   }
 
+  /* The dashboard uses five colors and nothing else. Spacing is 4, 8, 12,
+     16, 24 and 32px; type is 12, 14, 16 and 24px. Every older landing and
+     shadcn color points at one of the five here, so pages that still name
+     --landing-success or bg-muted land on the same palette. body:has()
+     carries it to dialogs and menus, which portal out of the shell. */
+  .dashboard-shell,
+  body:has(.dashboard-shell) {
+    --dash-ink: #1a1a1a;
+    --dash-muted: #5c5c5c;
+    /* Neutral, not warm: as a fill (active nav, tabs, chips) the beige read muddy. */
+    --dash-line: #f2f2f2;
+    --dash-surface: #ffffff;
+    /* 5.0:1 on white, so it is safe for small text as well as graphics. */
+    --dash-accent: #b4513a;
+
+    --landing-ink: var(--dash-ink);
+    --landing-ink-deep: var(--dash-ink);
+    --landing-primary: var(--dash-ink);
+    --landing-primary-dark: var(--dash-ink);
+    --landing-success: var(--dash-ink);
+    --landing-ink-soft: var(--dash-muted);
+    --landing-ink-faint: var(--dash-muted);
+    --landing-line: var(--dash-line);
+    --landing-accent-line: var(--dash-line);
+    --landing-paper-strong: var(--dash-line);
+    --landing-primary-soft: var(--dash-line);
+    /* Tinted chips all share the line fill, so every icon chip looks the same. */
+    --landing-accent-soft: var(--dash-line);
+    --landing-success-soft: var(--dash-line);
+    --landing-bg: var(--dash-surface);
+    --landing-paper: var(--dash-surface);
+    --landing-paper-soft: var(--dash-surface);
+    --landing-surface: var(--dash-surface);
+    --landing-surface-elevated: var(--dash-surface);
+    --landing-on-primary: var(--dash-surface);
+    --landing-ink-inverse-soft: var(--dash-surface);
+    --landing-accent: var(--dash-accent);
+    --landing-accent-dark: var(--dash-accent);
+    --landing-coral: var(--dash-accent);
+
+    --background: var(--dash-surface);
+    --foreground: var(--dash-ink);
+    --card: var(--dash-surface);
+    --card-foreground: var(--dash-ink);
+    --popover: var(--dash-surface);
+    --popover-foreground: var(--dash-ink);
+    --primary: var(--dash-ink);
+    --primary-foreground: var(--dash-surface);
+    --secondary: var(--dash-line);
+    --secondary-foreground: var(--dash-ink);
+    --muted: var(--dash-line);
+    --muted-foreground: var(--dash-muted);
+    --accent: var(--dash-line);
+    --accent-foreground: var(--dash-ink);
+    --destructive: var(--dash-accent);
+    --border: var(--dash-line);
+    --input: var(--dash-line);
+    /* Focus is ink: an accent ring read as an error on a focused field. */
+    --ring: var(--dash-ink);
+    --chart-1: var(--dash-accent);
+    --chart-2: var(--dash-ink);
+    --chart-3: var(--dash-muted);
+    --chart-4: var(--dash-line);
+    --chart-5: var(--dash-accent);
+    --sidebar: var(--dash-surface);
+    --sidebar-foreground: var(--dash-ink);
+    --sidebar-primary: var(--dash-ink);
+    --sidebar-primary-foreground: var(--dash-surface);
+    --sidebar-accent: var(--dash-line);
+    --sidebar-accent-foreground: var(--dash-ink);
+    --sidebar-border: var(--dash-line);
+    --sidebar-ring: var(--dash-ink);
+    /* Flat: no shadows anywhere in the shell. */
+    --landing-shadow: none;
+    --landing-shadow-sm: none;
+  }
+
+  /* The sidebar is white like the page, split by a line-grey edge. */
+  .dashboard-shell [data-slot="sidebar-container"] {
+    border-color: var(--dash-line);
+  }
+
+  .dashboard-shell .dashboard-tab-pill[data-active="false"]:hover {
+    background: transparent;
+  }
+
   /* Doubled specificity so these beat leftover shadow-* / rounded-* utilities
      on shadcn Card bases inside dashboard pages. */
   .dashboard-page .dashboard-card,
@@ -1002,8 +1094,8 @@
 
   .dashboard-page .dashboard-list-row:hover,
   .dashboard-shell .dashboard-list-row:hover {
-    border-color: #ccc5bb;
-    background: #fdfcf9;
+    border-color: var(--dash-muted);
+    background: var(--dash-surface);
   }
 
   /* Two button recipes for the shell, both one control tall so any pair
@@ -1042,14 +1134,14 @@
   body:has(.dashboard-shell) [data-slot="button"][data-variant="default"] {
     background: var(--landing-primary);
     color: var(--landing-on-primary);
-    box-shadow: 0 4px 14px oklch(0.18 0.02 260 / 0.15);
+    box-shadow: none;
   }
 
   .dashboard-primary-btn:hover:not(:disabled),
   body:has(.dashboard-shell) [data-slot="button"][data-variant="default"]:hover:not(:disabled) {
     background: color-mix(in oklch, var(--landing-primary) 84%, var(--landing-on-primary));
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px oklch(0.18 0.02 260 / 0.18);
+    box-shadow: none;
   }
 
   .dashboard-secondary-btn {
@@ -1059,7 +1151,7 @@
   }
 
   .dashboard-secondary-btn:hover {
-    border-color: #ccc5bb;
+    border-color: var(--dash-muted);
     background: var(--landing-paper-soft);
   }
 

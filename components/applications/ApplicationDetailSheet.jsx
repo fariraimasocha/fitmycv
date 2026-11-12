@@ -70,7 +70,7 @@ function Fact({ label, value }) {
   return (
     <div>
       <dt className="text-xs text-muted-foreground">{label}</dt>
-      <dd className="mt-0.5 font-medium">{value || t("notSet")}</dd>
+      <dd className="mt-1 font-medium">{value || t("notSet")}</dd>
     </div>
   );
 }
@@ -147,7 +147,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
         </div>
       ))}
       {adding ? (
-        <div className="flex flex-col gap-2 rounded-md border border-[var(--landing-line)] p-2.5">
+        <div className="flex flex-col gap-2 rounded-md border border-[var(--landing-line)] p-3">
           <Input
             value={draft.name}
             placeholder={t("name")}
@@ -219,7 +219,7 @@ function ContactsEditor({ contacts, pending, onChange }) {
         <button
           type="button"
           onClick={() => setAdding(true)}
-          className="flex items-center gap-1.5 self-start text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+          className="flex items-center gap-2 self-start text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           <PlusIcon size={14} aria-hidden="true" />
           {t("addContact")}
@@ -455,7 +455,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               {t("edit")}
             </button>
           </div>
-          <div className="flex gap-1.5">
+          <div className="flex gap-2">
             {STAGES.map((stage, i) => (
               <span
                 key={stage.key}
@@ -488,7 +488,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
           </div>
         </SheetHeader>
 
-        <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-4 py-5 [&>*]:shrink-0">
+        <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-4 py-4 [&>*]:shrink-0">
           <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
             <Fact label={t("salary")} value={current.salary} />
             <Fact label={t("source")} value={current.source} />
@@ -500,7 +500,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
               href={current.jobUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--landing-accent-dark)] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[var(--landing-accent-dark)] hover:underline"
             >
               <ArrowSquareOutIcon size={16} aria-hidden="true" />
               {t("openPosting")}
@@ -517,7 +517,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
             {current.tailoredCVId ? (
               <Link
                 href={`/dashboard/tailored/${current.tailoredCVId}`}
-                className="dashboard-list-row group flex items-center gap-3 px-3 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                className="dashboard-list-row group flex items-center gap-3 px-3 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] font-outfit text-xs font-semibold text-[var(--landing-accent-dark)]">
                   CV
@@ -549,7 +549,7 @@ export function ApplicationDetailSheet({ application, onOpenChange, onEdit }) {
 
           {current.followUpDate && (
             <Section title={t("followUp")}>
-              <div className="rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-2.5 text-sm text-foreground">
+              <div className="rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-3 text-sm text-foreground">
                 <span className="font-medium tabular-nums">{formatDate(current.followUpDate, locale, t("notSet"))}</span>
                 {current.followUpNote ? `: ${current.followUpNote}` : ""}
               </div>

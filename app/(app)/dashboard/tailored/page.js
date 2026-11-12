@@ -77,7 +77,7 @@ function RowAction({ label, onClick, disabled, force, className, children }) {
 
 function CardSkeleton() {
   return (
-    <div className="dashboard-card flex min-h-36 flex-col gap-3 rounded-lg p-5">
+    <div className="dashboard-card flex min-h-36 flex-col gap-3 rounded-lg p-4">
       <div className="tool-skeleton h-4 w-2/3 rounded-sm" />
       <div className="tool-skeleton h-3 w-1/3 rounded-sm" />
       <div className="mt-auto space-y-2">
@@ -102,7 +102,7 @@ function TailoredCVCard({ cv, index, onDownload, onDelete }) {
       transition={{ duration: 0.3, delay: Math.min(index, 6) * 0.03 }}
       className="min-w-0"
     >
-      <div className="dashboard-list-row group relative flex h-full min-h-36 flex-col gap-4 rounded-lg p-5 focus-within:border-[var(--landing-ink)]">
+      <div className="dashboard-list-row group relative flex h-full min-h-36 flex-col gap-4 rounded-lg p-4 focus-within:border-[var(--landing-ink)]">
         {/* Stretched link: the whole card navigates, but the action buttons
             stay siblings rather than children of an anchor. */}
         <Link
@@ -116,7 +116,7 @@ function TailoredCVCard({ cv, index, onDownload, onDelete }) {
               {title}
             </p>
             {cv.jobCompany && (
-              <p className="mt-0.5 flex min-w-0 items-center gap-1.5 text-sm text-muted-foreground">
+              <p className="mt-1 flex min-w-0 items-center gap-2 text-sm text-muted-foreground">
                 <BuildingsIcon size={14} className="shrink-0" aria-hidden="true" />
                 <span className="truncate">{cv.jobCompany}</span>
               </p>
@@ -138,17 +138,17 @@ function TailoredCVCard({ cv, index, onDownload, onDelete }) {
 
         <div className="pointer-events-none relative z-10 mt-auto flex flex-col gap-1 text-xs text-muted-foreground">
           {cv.hasCoverLetter ? (
-            <span className="inline-flex items-center gap-1.5 font-medium text-[var(--landing-success)]">
+            <span className="inline-flex items-center gap-2 font-medium text-[var(--landing-success)]">
               <CheckCircleIcon size={14} weight="fill" aria-hidden="true" />
               {t("coverLetter")}
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1.5">
+            <span className="inline-flex items-center gap-2">
               <EnvelopeSimpleIcon size={14} aria-hidden="true" />
               {t("noLetter")}
             </span>
           )}
-          <span className="inline-flex items-center gap-1.5 tabular-nums">
+          <span className="inline-flex items-center gap-2 tabular-nums">
             <CalendarIcon size={14} className="shrink-0" aria-hidden="true" />
             <FormattedDate date={cv.createdAt} options={DATE_FORMAT} />
           </span>
@@ -370,7 +370,7 @@ export default function TailoredCVsPage() {
                 onChange={(event) => setSearch(event.target.value)}
                 aria-label={t("search")}
                 placeholder={t("search")}
-                className="h-control ps-9"
+                className="h-control ps-8"
               />
             </div>
           </div>

@@ -16,7 +16,7 @@ export default function PreviewUnlockGate({ locked, onUnlock, children }) {
       <div className="max-h-120 overflow-hidden" aria-hidden="true">
         <div className="pointer-events-none select-none">{children}</div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 top-1/2 flex flex-col items-center justify-end bg-linear-to-t from-white via-white/95 to-transparent px-4 pb-6 pt-20 backdrop-blur-[2.5px]">
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-end border-t border-[var(--dash-line)] bg-[var(--dash-surface)] px-4 py-6">
         <button
           type="button"
           onClick={onUnlock}

@@ -70,7 +70,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
   const title = job.title || t("untitledRole");
 
   return (
-    <li className="group flex flex-col gap-3 px-4 py-4 transition-colors hover:bg-[var(--landing-paper-soft)] sm:flex-row sm:items-center sm:px-5">
+    <li className="group flex flex-col gap-3 px-4 py-4 transition-colors hover:bg-[var(--landing-paper-soft)] sm:flex-row sm:items-center sm:px-4">
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] font-outfit text-sm font-semibold text-foreground">
           {job.logo ? (
@@ -82,7 +82,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
         </span>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-foreground">{title}</p>
-          <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
             {job.company && (
               <span className="inline-flex min-w-0 items-center gap-1">
                 <BuildingsIcon size={12} aria-hidden="true" />
@@ -143,9 +143,9 @@ function ListSkeleton() {
       <div className="tool-skeleton h-5 w-32 rounded-sm" />
       <ul className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
         {[0, 1, 2, 3].map((i) => (
-          <li key={i} className="flex items-center gap-3 px-4 py-4 sm:px-5">
+          <li key={i} className="flex items-center gap-3 px-4 py-4 sm:px-4">
             <div className="tool-skeleton h-10 w-10 rounded-md" />
-            <div className="flex flex-1 flex-col gap-1.5">
+            <div className="flex flex-1 flex-col gap-2">
               <div className="tool-skeleton h-3.5 w-1/2 rounded-sm" />
               <div className="tool-skeleton h-3 w-1/3 rounded-sm" />
             </div>

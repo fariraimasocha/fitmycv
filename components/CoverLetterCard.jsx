@@ -99,14 +99,14 @@ export default function CoverLetterCard({
           // Shown as the page it becomes, in the CV's font, so what you read
           // here is what the PDF looks like.
           <article
-            className="mx-auto max-w-2xl rounded-md border border-[var(--landing-line)] bg-white px-5 py-7 text-base leading-7 text-foreground sm:px-12 sm:py-12"
+            className="mx-auto max-w-2xl rounded-md border border-[var(--landing-line)] bg-white px-4 py-8 text-base leading-7 text-foreground sm:px-8 sm:py-8"
             style={fontStack ? { fontFamily: fontStack } : undefined}
           >
             {content
               .split(/\n\s*\n/)
               .filter((paragraph) => paragraph.trim())
               .map((paragraph, i) => (
-                <p key={`${i}-${paragraph.slice(0, 24)}`} className="mb-5 whitespace-pre-line break-words last:mb-0">
+                <p key={`${i}-${paragraph.slice(0, 24)}`} className="mb-4 whitespace-pre-line break-words last:mb-0">
                   {paragraph.trim()}
                 </p>
               ))}

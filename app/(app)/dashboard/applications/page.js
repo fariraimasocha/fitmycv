@@ -88,11 +88,11 @@ function Rise({ children, delay = 0, className }) {
 
 function TagChecklist({ allTags, tags, onChange }) {
   return (
-    <div className="flex max-h-64 flex-col gap-0.5 overflow-y-auto">
+    <div className="flex max-h-64 flex-col gap-1 overflow-y-auto">
       {allTags.map((tag) => (
         <label
           key={tag}
-          className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-[var(--landing-paper-soft)]"
+          className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-[var(--landing-paper-soft)]"
         >
           <Checkbox
             checked={tags.includes(tag)}
@@ -157,9 +157,9 @@ function PageSkeleton() {
       <DashboardPageHeader title={t("title")} description={t("description")} />
       <div className="dashboard-card grid grid-cols-2 divide-y divide-[var(--landing-line)] rounded-lg sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-5">
         {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i} className="flex items-center gap-3 px-4 py-3 sm:px-5">
+          <div key={i} className="flex items-center gap-3 px-4 py-3 sm:px-4">
             <div className="tool-skeleton h-8 w-8 rounded-md" />
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-2">
               <div className="tool-skeleton h-3 w-16 rounded-sm" />
               <div className="tool-skeleton h-3.5 w-8 rounded-sm" />
             </div>
@@ -348,7 +348,7 @@ function ApplicationsTracker() {
                       aria-label={t("searchLabel")}
                       placeholder={t("searchPlaceholder")}
                       onChange={(event) => setSearch(event.target.value)}
-                      className={cn(CONTROL, "ps-9")}
+                      className={cn(CONTROL, "ps-8")}
                     />
                   </div>
 
@@ -411,12 +411,12 @@ function ApplicationsTracker() {
                     </PopoverTrigger>
                     <PopoverContent align="end" className="flex w-64 flex-col gap-3 p-3">
                       {allTags.length > 0 && (
-                        <div className="flex flex-col gap-1.5">
+                        <div className="flex flex-col gap-2">
                           <Label className="text-xs text-muted-foreground">{t("tags")}</Label>
                           <TagChecklist allTags={allTags} tags={tags} onChange={setTags} />
                         </div>
                       )}
-                      <div className="flex flex-col gap-1.5">
+                      <div className="flex flex-col gap-2">
                         <Label className="text-xs text-muted-foreground">{t("sortBy")}</Label>
                         <SortSelect sort={sort} onChange={setSort} className="w-full" />
                       </div>

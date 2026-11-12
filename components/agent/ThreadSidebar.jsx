@@ -77,7 +77,7 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
       </span>
       <div className="pointer-events-none relative z-10 min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-foreground">{thread.title}</p>
-        <div className="mt-0.5 flex min-w-0 items-center gap-x-2 text-xs text-muted-foreground">
+        <div className="mt-1 flex min-w-0 items-center gap-x-2 text-xs text-muted-foreground">
           {thread.sourceLabel && (
             <span className="inline-flex min-w-0 items-center gap-1">
               <FileTextIcon size={12} className="shrink-0" aria-hidden="true" />
@@ -122,7 +122,7 @@ function RowSkeleton() {
   return (
     <li className="dashboard-row-pad flex items-center gap-3">
       <span className="tool-skeleton size-9 shrink-0 rounded-full" />
-      <span className="flex min-w-0 flex-1 flex-col gap-1.5">
+      <span className="flex min-w-0 flex-1 flex-col gap-2">
         <span className="tool-skeleton h-3.5 w-2/5 rounded-sm" />
         <span className="tool-skeleton h-3 w-3/5 rounded-sm" />
       </span>

@@ -12,7 +12,7 @@ export default function DashboardJobsPage() {
   return (
     <DashboardPageShell>
       <DashboardPageHeader title={t("title")} description={t("description")} />
-      <JobsBrowser className="flex flex-col gap-5" />
+      <JobsBrowser className="flex flex-col gap-4" />
     </DashboardPageShell>
   );
 }

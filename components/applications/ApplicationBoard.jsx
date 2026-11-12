@@ -55,7 +55,7 @@ function Column({ stage, applications, onOpen, onEdit }) {
           aria-hidden="true"
         />
         <span className="truncate text-sm font-semibold text-foreground">{label}</span>
-        <span className="ms-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] px-1.5 text-xs font-medium tabular-nums text-muted-foreground">
+        <span className="ms-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] px-2 text-xs font-medium tabular-nums text-muted-foreground">
           {applications.length}
         </span>
       </div>

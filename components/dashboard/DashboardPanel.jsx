@@ -69,7 +69,7 @@ export function DashboardPanelHeader({
       <div className="min-w-0">
         <h2 className="font-outfit text-base font-semibold text-foreground">{title}</h2>
         {description && (
-          <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{description}</p>
         )}
       </div>
       {action}
@@ -98,7 +98,7 @@ export function DashboardSectionTitle({ title, description, action, className })
           {title}
         </h2>
         {description && (
-          <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{description}</p>
         )}
       </div>
       {action}

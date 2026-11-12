@@ -155,7 +155,8 @@
     "chooseSeries": "Wähle, was das Diagramm zeigt",
     "thisWeek": "Diese Woche",
     "vsLastWeek": "ggü. Vorwoche",
-    "totalInRange": "Gesamt im Zeitraum"
+    "totalInRange": "Gesamt im Zeitraum",
+    "allTime": "Insgesamt"
   },
   "pipeline": {
     "title": "Bewerbungen",

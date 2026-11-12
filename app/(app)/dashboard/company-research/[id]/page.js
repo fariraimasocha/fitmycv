@@ -30,7 +30,7 @@ const DATE_FORMAT = { day: "numeric", month: "short", year: "numeric" };
 
 function LoadingBrief() {
   return (
-    <div className="flex flex-col gap-5" aria-hidden="true">
+    <div className="flex flex-col gap-4" aria-hidden="true">
       <div className="tool-skeleton h-4 w-56 max-w-full rounded-sm" />
       <div className="tool-skeleton h-16 rounded-lg" />
       <div className="tool-skeleton h-96 rounded-lg" />

@@ -139,7 +139,7 @@ export default function TemplatePicker({
                     )}
                   </div>
                   {tpl.description && (
-                    <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">
+                    <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">
                       {t.has(`descriptions.${tpl.id}`)
                         ? t(`descriptions.${tpl.id}`)
                         : tpl.description}

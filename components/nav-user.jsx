@@ -60,7 +60,7 @@ export function NavUser() {
           <SidebarMenuButton
             asChild
             tooltip={t("upgrade")}
-            className="mb-1 h-10 gap-3 rounded-lg bg-[var(--landing-ink)] px-2.5 font-semibold text-white hover:bg-black hover:text-white active:bg-black active:text-white [&>svg]:size-5 group-data-[collapsible=icon]:p-1.5!"
+            className="mb-1 h-10 gap-3 rounded-lg bg-[var(--landing-ink)] px-3 font-semibold text-white hover:bg-black hover:text-white active:bg-black active:text-white [&>svg]:size-5 group-data-[collapsible=icon]:p-1.5!"
           >
             <Link href="/dashboard/upgrade">
               <CrownIcon weight="fill" aria-hidden="true" />
@@ -96,7 +96,7 @@ export function NavUser() {
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+              <div className="flex items-center gap-2 px-1 py-2 text-start text-sm">
                 <Avatar className="h-8 w-8 rounded-md">
                   <AvatarImage src={user.image} alt={user.name} />
                   <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>

@@ -75,7 +75,7 @@ function OfferOption({ app, selected, disabled, onToggle }) {
         disabled={disabled}
         onClick={onToggle}
         className={cn(
-          "flex min-h-16 w-full items-center gap-3 px-4 py-3 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40 sm:px-5",
+          "flex min-h-16 w-full items-center gap-3 px-4 py-3 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/40 sm:px-4",
           selected ? "bg-[var(--landing-primary-soft)]" : "hover:bg-[var(--landing-paper-soft)]",
           disabled && "cursor-not-allowed opacity-40 hover:bg-transparent"
         )}
@@ -98,7 +98,7 @@ function OfferOption({ app, selected, disabled, onToggle }) {
           <span className="block truncate text-sm font-semibold text-foreground">
             {app.jobTitle || t("untitledRole")}
           </span>
-          <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+          <span className="mt-1 block truncate text-xs text-muted-foreground">
             {app.jobCompany || t("companyNotSet")}
           </span>
         </span>
@@ -118,15 +118,15 @@ function SelectionSkeleton() {
       <div className="tool-skeleton h-5 w-40 rounded-sm" />
       <div className="dashboard-card divide-y divide-[var(--landing-line)] overflow-hidden rounded-lg">
         {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="flex min-h-16 items-center gap-3 px-4 sm:px-5">
+          <div key={i} className="flex min-h-16 items-center gap-3 px-4 sm:px-4">
             <div className="tool-skeleton size-5 rounded-sm" />
-            <div className="flex flex-1 flex-col gap-1.5">
+            <div className="flex flex-1 flex-col gap-2">
               <div className="tool-skeleton h-3.5 w-1/3 rounded-sm" />
               <div className="tool-skeleton h-3 w-1/4 rounded-sm" />
             </div>
           </div>
         ))}
-        <div className="flex items-center justify-end px-4 py-3 sm:px-5">
+        <div className="flex items-center justify-end px-4 py-3 sm:px-4">
           <div className="tool-skeleton h-control w-40 rounded-md" />
         </div>
       </div>
@@ -222,7 +222,7 @@ function Compare() {
               })}
             </ul>
             {/* The one primary action sits under the list, next to the running count. */}
-            <div className="flex flex-col gap-3 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+            <div className="flex flex-col gap-3 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-4">
               <p aria-live="polite" className="text-sm tabular-nums text-muted-foreground">
                 {t("selectedCount", { count: selectedCount, max: MAX_SELECTED })}
               </p>
@@ -247,7 +247,7 @@ function Compare() {
       {comparisonResult && (
         <div className="flex flex-col gap-4">
           <DashboardPanel pad={false} delay={0.05}>
-            <div className="border-b border-[var(--landing-line)] px-4 py-4 sm:px-5">
+            <div className="border-b border-[var(--landing-line)] px-4 py-4 sm:px-4">
               <DashboardPanelHeader
                 title={t("matrixTitle")}
                 description={t("matrixDescription")}
@@ -259,7 +259,7 @@ function Compare() {
                   <tr className="border-b border-[var(--landing-line)]">
                     <th
                       scope="col"
-                      className="sticky start-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-3 text-start text-xs font-medium text-muted-foreground sm:px-5"
+                      className="sticky start-0 z-10 w-40 bg-[var(--landing-surface)] px-4 py-3 text-start text-xs font-medium text-muted-foreground sm:px-4"
                     >
                       {t("dimension")}
                     </th>
@@ -284,7 +284,7 @@ function Compare() {
                     <tr key={key} className="transition-colors hover:bg-[var(--landing-paper-soft)]">
                       <th
                         scope="row"
-                        className="sticky start-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-start text-sm font-medium text-foreground sm:px-5"
+                        className="sticky start-0 z-10 bg-[var(--landing-surface)] px-4 py-3 text-start text-sm font-medium text-foreground sm:px-4"
                       >
                         {t(`dimensions.${key}`)}
                       </th>
@@ -311,13 +311,13 @@ function Compare() {
                   <tr className="border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)]">
                     <th
                       scope="row"
-                      className="sticky start-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-start text-sm font-semibold text-foreground sm:px-5"
+                      className="sticky start-0 z-10 bg-[var(--landing-paper-soft)] px-4 py-3 text-start text-sm font-semibold text-foreground sm:px-4"
                     >
                       {t("total")}
                     </th>
                     {comparisons.map((c) => (
                       <td key={c.id || c.company} className="px-4 py-3 text-end">
-                        <span className="font-outfit text-lg font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
+                        <span className="font-outfit text-base font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground">
                           {typeof c.totalScore === "number" ? c.totalScore.toFixed(1) : t("notAvailable")}
                         </span>
                         {typeof c.totalScore === "number" && (
@@ -340,7 +340,7 @@ function Compare() {
                   </span>
                   <div className="min-w-0">
                     <h2 className="font-outfit text-sm font-semibold text-foreground">{t("recommendation")}</h2>
-                    <p className="mt-1.5 text-sm leading-6 text-muted-foreground">
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
                       {comparisonResult.recommendation}
                     </p>
                   </div>
@@ -356,11 +356,11 @@ function Compare() {
                   </span>
                   <div className="min-w-0">
                     <h2 className="font-outfit text-sm font-semibold text-foreground">{t("keyTradeoffs")}</h2>
-                    <ul className="mt-1.5 flex flex-col gap-2">
+                    <ul className="mt-2 flex flex-col gap-2">
                       {comparisonResult.tradeoffs.map((tradeoff, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+                        <li key={i} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
                           <span
-                            className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--landing-accent)]"
+                            className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--landing-accent)]"
                             aria-hidden="true"
                           />
                           <span className="min-w-0">{tradeoff}</span>

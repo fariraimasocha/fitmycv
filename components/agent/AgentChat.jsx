@@ -131,7 +131,7 @@ function Bubble({ role, at, now, pending, children }) {
     <div className={cn("flex flex-col gap-1", isUser ? "items-end" : "items-start")}>
       <div
         className={cn(
-          "max-w-5/6 rounded-lg border border-[var(--landing-line)] px-3.5 py-2.5 text-sm leading-6 break-words whitespace-pre-wrap text-foreground",
+          "max-w-5/6 rounded-lg border border-[var(--landing-line)] px-4 py-3 text-sm leading-6 break-words whitespace-pre-wrap text-foreground",
           isUser ? "bg-[var(--landing-paper-soft)]" : "bg-[var(--landing-surface)]",
           pending && "opacity-70"
         )}
@@ -164,15 +164,15 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
 
   return (
     <div className="overflow-hidden rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]">
-      <div className="flex items-start justify-between gap-3 px-4 pt-3.5 pb-3">
+      <div className="flex items-start justify-between gap-3 px-4 pt-4 pb-3">
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-foreground">{proposal.title}</p>
-          {proposal.summary && <p className="mt-0.5 text-sm leading-5 text-muted-foreground">{proposal.summary}</p>}
+          {proposal.summary && <p className="mt-1 text-sm leading-5 text-muted-foreground">{proposal.summary}</p>}
         </div>
         {pill && (
           <span
             className={cn(
-              "inline-flex shrink-0 items-center rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap",
+              "inline-flex shrink-0 items-center rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap",
               pill.className
             )}
           >
@@ -186,7 +186,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
           // Before values and entry names only hold while the draft still matches the proposal.
           const before = pending && op.op !== "add" ? getAtPath(draft, op.path) : undefined;
           return (
-            <li key={`${op.op}-${op.path}-${i}`} className="space-y-1.5">
+            <li key={`${op.op}-${op.path}-${i}`} className="space-y-2">
               <p className="text-xs font-medium text-muted-foreground">{describePath(op.path, pending ? draft : null, t)}</p>
               {before !== undefined && (
                 <p className="text-sm leading-6 break-words whitespace-pre-wrap text-muted-foreground line-through decoration-muted-foreground/40">
@@ -206,7 +206,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
       </ul>
 
       {pending && (
-        <div className="flex items-center gap-2 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-2.5">
+        <div className="flex items-center gap-2 border-t border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-4 py-3">
           <button
             type="button"
             disabled={busy}
@@ -227,7 +227,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
         </div>
       )}
       {proposal.canRestore && (
-        <div className="border-t border-[var(--landing-line)] px-2 py-1.5">
+        <div className="border-t border-[var(--landing-line)] px-2 py-2">
           <Button
             size="sm"
             variant="ghost"
@@ -250,7 +250,7 @@ function QuestionCard({ question, answer, disabled, onAnswer }) {
     <div className="rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4">
       <p className="text-sm leading-6 font-medium text-foreground">{question.question}</p>
       {answer !== null ? (
-        <p className="mt-1.5 text-sm text-muted-foreground">{t("answered", { answer })}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{t("answered", { answer })}</p>
       ) : (
         <>
           {question.choices?.length > 0 && (
@@ -320,19 +320,19 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
   return (
     <section aria-label={t("chatLabel")} className="flex h-full min-h-0 flex-col bg-[var(--landing-bg)]">
       <div ref={scrollRef} className="@container min-h-0 flex-1 overflow-y-auto overscroll-contain">
-        <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col gap-4 px-4 py-5">
+        <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col gap-4 px-4 py-4">
           {messages.length === 0 && !sending && (
             <div className="flex flex-1 flex-col justify-center py-6">
               <span className="flex size-12 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
                 <SparkleIcon size={22} aria-hidden="true" />
               </span>
-              <h2 className="mt-4 font-outfit text-lg font-semibold tracking-[-0.02em] text-foreground">
+              <h2 className="mt-4 font-outfit text-base font-semibold tracking-[-0.02em] text-foreground">
                 {t("emptyTitle")}
               </h2>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
                 {t("emptyDescription", { source: thread.sourceLabel || t("yourCv") })}
               </p>
-              <div className="mt-5 grid gap-2 @md:grid-cols-2">
+              <div className="mt-4 grid gap-2 @md:grid-cols-2">
                 {SUGGESTIONS.map((s) => (
                   <button
                     key={s.key}
@@ -352,7 +352,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                     </span>
                     <span className="min-w-0">
                       <span className="block text-sm font-medium text-foreground">{t(`suggestions.${s.key}.label`)}</span>
-                      <span className="mt-0.5 block text-xs leading-5 text-muted-foreground">{t(`suggestions.${s.key}.description`)}</span>
+                      <span className="mt-1 block text-xs leading-5 text-muted-foreground">{t(`suggestions.${s.key}.description`)}</span>
                     </span>
                   </button>
                 ))}
@@ -410,7 +410,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
               <Bubble role="user" pending>
                 {sendingText}
               </Bubble>
-              <div role="status" className="flex items-center gap-2.5 text-sm text-muted-foreground">
+              <div role="status" className="flex items-center gap-3 text-sm text-muted-foreground">
                 <span className="flex gap-1" aria-hidden="true">
                   {[0, 1, 2].map((i) => (
                     <span
@@ -436,7 +436,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
         className="shrink-0 border-t border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-4"
       >
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-end gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-1.5 ps-3 transition-colors focus-within:border-[var(--landing-ink)]">
+          <div className="flex items-end gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-2 ps-3 transition-colors focus-within:border-[var(--landing-ink)]">
             <Textarea
               ref={composerRef}
               rows={1}
@@ -461,7 +461,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
               <ArrowUpIcon size={16} weight="bold" aria-hidden="true" />
             </button>
           </div>
-          <p className="mt-1.5 hidden px-1 text-xs text-muted-foreground sm:block">
+          <p className="mt-2 hidden px-1 text-xs text-muted-foreground sm:block">
             {t("hint")}
           </p>
         </div>

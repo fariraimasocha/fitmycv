@@ -20,7 +20,7 @@ export function DashboardFilterPills({ tabs, activeKey, onChange, className }) {
           <span>
             {tab.label}
             {typeof tab.count === "number" && (
-              <span className="ms-1.5 tabular-nums opacity-70">{tab.count}</span>
+              <span className="ms-2 tabular-nums opacity-70">{tab.count}</span>
             )}
           </span>
         </button>

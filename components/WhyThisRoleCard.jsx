@@ -55,7 +55,7 @@ export default function WhyThisRoleCard({
       </div>
       <div className="dashboard-card-pad flex flex-col gap-4">
         {onGenerate && (
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2">
             <label
               htmlFor="why-this-role-question"
               className="text-xs font-medium text-[var(--landing-ink-soft)]"

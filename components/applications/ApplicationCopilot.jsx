@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 
 function band(score) {
   if (score >= 75) return { color: "var(--landing-success)", labelKey: "strong" };
-  if (score >= 50) return { color: "#b7791f", labelKey: "some" };
+  if (score >= 50) return { color: "var(--dash-muted)", labelKey: "some" };
   return { color: "var(--landing-accent)", labelKey: "low" };
 }
 
@@ -126,16 +126,16 @@ export function ApplicationCopilot({ application }) {
 
   return (
     <section className="overflow-hidden rounded-lg border border-[var(--landing-accent-line)]/50 bg-[var(--landing-accent-soft)]/40">
-      <header className="flex items-center gap-2 px-3.5 pt-3">
+      <header className="flex items-center gap-2 px-4 pt-3">
         <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-[var(--landing-accent)] text-white">
           <SparkleIcon weight="fill" size={12} aria-hidden="true" />
         </span>
         <span className="font-outfit text-sm font-semibold text-foreground">{t("title")}</span>
       </header>
 
-      <div className="px-3.5 py-3">
+      <div className="px-4 py-3">
         {!canScore ? (
-          <p className="rounded-md bg-[var(--landing-paper-soft)] p-2.5 text-xs leading-5 text-muted-foreground">
+          <p className="rounded-md bg-[var(--landing-paper-soft)] p-3 text-xs leading-5 text-muted-foreground">
             {t("cannotScore")}
           </p>
         ) : score == null ? (
@@ -143,7 +143,7 @@ export function ApplicationCopilot({ application }) {
             type="button"
             disabled={run.isPending}
             onClick={() => run.mutate("match")}
-            className="flex w-full items-center gap-3 rounded-md border border-dashed border-[var(--landing-accent-line)] p-2.5 text-start transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-60"
+            className="flex w-full items-center gap-3 rounded-md border border-dashed border-[var(--landing-accent-line)] p-3 text-start transition-colors hover:bg-[var(--landing-accent-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40 disabled:opacity-60"
           >
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
               {pendingKind === "match" ? (
@@ -160,7 +160,7 @@ export function ApplicationCopilot({ application }) {
             </span>
           </button>
         ) : (
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-4">
             <div className="relative flex items-center justify-center">
               <FitRing score={score} />
               <span className="absolute font-outfit text-base font-semibold tabular-nums tracking-[-0.02em]">{score}</span>
@@ -186,7 +186,7 @@ export function ApplicationCopilot({ application }) {
                 </button>
               </div>
               {gaps.length > 0 && (
-                <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{t("gaps", { gaps: gaps.slice(0, 3).join(", ") })}</p>
+                <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{t("gaps", { gaps: gaps.slice(0, 3).join(", ") })}</p>
               )}
             </div>
           </div>
@@ -221,7 +221,7 @@ export function ApplicationCopilot({ application }) {
 
       {draft && (
         <div className="border-t border-[var(--landing-accent-line)]/40 bg-[var(--landing-surface)]/60 p-3">
-          <div className="mb-1.5 flex items-center justify-between gap-3">
+          <div className="mb-2 flex items-center justify-between gap-3">
             <span className="text-xs font-semibold text-foreground">
               {draft.kind === "cover-letter" ? t("coverDraft") : t("followUpDraft")}
             </span>

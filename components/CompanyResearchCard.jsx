@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 
 function InfoBadge({ children }) {
   return (
-    <span className="inline-flex h-6 items-center rounded-full border border-[var(--landing-line)] px-2.5 text-xs font-medium text-muted-foreground">
+    <span className="inline-flex h-6 items-center rounded-full border border-[var(--landing-line)] px-3 text-xs font-medium text-muted-foreground">
       {children}
     </span>
   );
@@ -28,7 +28,7 @@ function InfoBadge({ children }) {
 
 function CultureChip({ signal }) {
   return (
-    <span className="inline-flex h-6 items-center rounded-full bg-[var(--landing-accent-soft)] px-2.5 text-xs font-medium text-[var(--landing-accent-dark)]">
+    <span className="inline-flex h-6 items-center rounded-full bg-[var(--landing-accent-soft)] px-3 text-xs font-medium text-[var(--landing-accent-dark)]">
       {signal}
     </span>
   );
@@ -39,7 +39,7 @@ function CultureChip({ signal }) {
 function Section({ icon: Icon, title, tone, children }) {
   return (
     <section className="dashboard-card-pad flex flex-col gap-3">
-      <h3 className="flex items-center gap-2.5 font-outfit text-sm font-semibold text-foreground">
+      <h3 className="flex items-center gap-3 font-outfit text-sm font-semibold text-foreground">
         <span
           className={cn(
             "flex size-7 shrink-0 items-center justify-center rounded-full",
@@ -94,7 +94,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
   if (!brief) {
     return (
       <Card className="dashboard-card rounded-lg border-[var(--landing-line)] py-0 gap-0">
-        <CardContent className="py-10 text-center text-muted-foreground text-sm">
+        <CardContent className="py-8 text-center text-muted-foreground text-sm">
           {t("empty")}
         </CardContent>
       </Card>
@@ -104,11 +104,11 @@ export default function CompanyResearchCard({ brief, isLoading }) {
   const bulletList = (items, tone = "accent") => (
     <ul className="flex flex-col gap-2">
       {items.map((item, i) => (
-        <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-muted-foreground">
+        <li key={i} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
           <span
             aria-hidden="true"
             className={cn(
-              "mt-2.5 size-1.5 shrink-0 rounded-full",
+              "mt-3 size-1.5 shrink-0 rounded-full",
               tone === "success" ? "bg-[var(--landing-success)]" : "bg-[var(--landing-accent)]"
             )}
           />
@@ -128,7 +128,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
             </span>
             <span className="truncate">{brief.companyName}</span>
           </span>
-          <div className="flex flex-wrap gap-1.5 sm:justify-end">
+          <div className="flex flex-wrap gap-2 sm:justify-end">
             {brief.fundingStage && brief.fundingStage !== "Unknown" && (
               <InfoBadge>{brief.fundingStage}</InfoBadge>
             )}
@@ -156,7 +156,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
 
         {brief.cultureSignals?.length > 0 && (
           <Section icon={UsersThreeIcon} title={t("culture")}>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2">
               {brief.cultureSignals.map((signal, i) => (
                 <CultureChip key={i} signal={signal} />
               ))}
@@ -201,16 +201,16 @@ export default function CompanyResearchCard({ brief, isLoading }) {
           <Section icon={NewspaperIcon} title={t("news")}>
             <ul className="flex flex-col gap-4">
               {brief.recentNews.map((item, i) => (
-                <li key={i} className="flex flex-col gap-0.5">
+                <li key={i} className="flex flex-col gap-1">
                   {item.url ? (
                     <a
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-start gap-1.5 text-sm font-medium text-[var(--landing-ink)] hover:underline"
+                      className="inline-flex items-start gap-2 text-sm font-medium text-[var(--landing-ink)] hover:underline"
                     >
                       <span>{item.title}</span>
-                      <ArrowSquareOutIcon size={14} className="mt-0.5 shrink-0" aria-hidden="true" />
+                      <ArrowSquareOutIcon size={14} className="mt-1 shrink-0" aria-hidden="true" />
                     </a>
                   ) : (
                     <p className="text-sm font-medium">{item.title}</p>

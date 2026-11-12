@@ -155,7 +155,8 @@
     "chooseSeries": "选择图表显示的内容",
     "thisWeek": "本周",
     "vsLastWeek": "与上周相比",
-    "totalInRange": "区间总计"
+    "totalInRange": "区间总计",
+    "allTime": "累计"
   },
   "pipeline": {
     "title": "求职申请",

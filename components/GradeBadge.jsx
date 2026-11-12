@@ -10,7 +10,7 @@ export function gradeChipClass(grade) {
   // which does not survive being read at chip size.
   const letter = String(grade).charAt(0);
   if (letter === "A") {
-    return "border border-[#c8e6d4] bg-[#eef8f1] text-[var(--landing-success)]";
+    return "border border-[var(--dash-ink)] bg-[var(--dash-surface)] text-[var(--landing-success)]";
   }
   if (letter === "B") {
     return "border border-[var(--landing-line)] bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]";
@@ -18,7 +18,7 @@ export function gradeChipClass(grade) {
   if (letter === "C") {
     return "border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] text-[var(--landing-ink-soft)]";
   }
-  return "border border-[#f0d4cc] bg-[#fdf3ef] text-[var(--landing-accent)]";
+  return "border border-[var(--dash-accent)] bg-[var(--dash-surface)] text-[var(--landing-accent)]";
 }
 
 export function GradeBadge({ grade, className, size = "sm" }) {
@@ -27,7 +27,7 @@ export function GradeBadge({ grade, className, size = "sm" }) {
     <span
       className={cn(
         "inline-flex items-center rounded-full font-semibold",
-        size === "md" ? "px-3 py-1 text-sm" : "px-2.5 py-0.5 text-xs",
+        size === "md" ? "px-3 py-1 text-sm" : "px-3 py-1 text-xs",
         gradeChipClass(grade),
         className
       )}
@@ -52,7 +52,7 @@ export function AtsScoreChip({ score, preScore, loading, className, onClick }) {
       type={onClick ? "button" : undefined}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center whitespace-nowrap rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-0.5 text-xs font-semibold tabular-nums text-[var(--landing-ink)]",
+        "inline-flex items-center whitespace-nowrap rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-1 text-xs font-semibold tabular-nums text-[var(--landing-ink)]",
         onClick && "min-h-control-sm transition-colors hover:border-[var(--landing-ink)] sm:min-h-0",
         className
       )}

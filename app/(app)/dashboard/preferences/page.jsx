@@ -39,11 +39,11 @@ const MAX_TITLES = 10;
 function SettingsGroup({ title, description, aside, children }) {
   return (
     <section>
-      <div className="flex items-start justify-between gap-3 px-4 pt-5 pb-1 sm:px-6">
+      <div className="flex items-start justify-between gap-3 px-4 pt-4 pb-1 sm:px-6">
         <div className="min-w-0">
           <h2 className="font-outfit text-base font-semibold text-foreground">{title}</h2>
           {description && (
-            <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{description}</p>
           )}
         </div>
         {aside}
@@ -56,7 +56,7 @@ function SettingsGroup({ title, description, aside, children }) {
 function SettingsRow({ label, htmlFor, hint, children }) {
   return (
     <div className="grid gap-2 px-4 py-4 sm:grid-cols-3 sm:gap-6 sm:px-6">
-      <div className="min-w-0 sm:pt-2.5">
+      <div className="min-w-0 sm:pt-3">
         <Label htmlFor={htmlFor} className="text-sm font-medium">
           {label}
         </Label>
@@ -205,7 +205,7 @@ function PreferencesForm({ prefs }) {
                   {titles.map((title) => (
                     <li
                       key={title}
-                      className="inline-flex h-8 items-center gap-1.5 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-3 pe-1 text-sm text-foreground"
+                      className="inline-flex h-8 items-center gap-2 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] ps-3 pe-1 text-sm text-foreground"
                     >
                       <span className="max-w-60 truncate">{title}</span>
                       <button
@@ -262,10 +262,10 @@ function PreferencesForm({ prefs }) {
         </SettingsGroup>
       </DashboardPanel>
 
-      <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-3 py-2.5 backdrop-blur-md sm:bottom-4 sm:px-4">
+      <div className="sticky bottom-3 z-10 flex items-center justify-between gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)]/95 px-3 py-3 backdrop-blur-md sm:bottom-4 sm:px-4">
         <p
           className={cn(
-            "flex items-center gap-1.5 text-xs font-medium",
+            "flex items-center gap-2 text-xs font-medium",
             isDirty ? "text-[var(--landing-accent-dark)]" : "text-muted-foreground",
           )}
           aria-live="polite"

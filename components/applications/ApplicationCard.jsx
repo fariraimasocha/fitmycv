@@ -24,7 +24,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         }
       }}
       className={cn(
-        "dashboard-card group relative w-full cursor-pointer rounded-lg p-3 text-start outline-none transition-colors hover:border-[#ccc5bb] hover:bg-[#fdfcf9] focus-visible:ring-2 focus-visible:ring-ring/40",
+        "dashboard-card group relative w-full cursor-pointer rounded-lg p-3 text-start outline-none transition-colors hover:border-[var(--dash-muted)] focus-visible:ring-2 focus-visible:ring-ring/40",
         dragging && "opacity-60"
       )}
     >
@@ -49,7 +49,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
             title={t("needsFollowUp")}
             aria-label={t("needsFollowUp")}
             className={cn(
-              "mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--landing-accent)] ring-2 ring-[var(--landing-accent-soft)]",
+              "mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--landing-accent)] ring-2 ring-[var(--landing-accent-soft)]",
               onEdit && "me-6"
             )}
           />
@@ -71,7 +71,7 @@ export function ApplicationCard({ application, onClick, onEdit, dragging }) {
         </div>
       )}
       {(application.tailoredCVId || application.source) && (
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <div className="mt-3 flex flex-wrap gap-2">
           {application.tailoredCVId && (
             <span className="inline-flex h-6 items-center gap-1 rounded-full bg-[var(--landing-paper-soft)] px-2 text-xs font-medium text-muted-foreground">
               <FileTextIcon size={12} aria-hidden="true" />

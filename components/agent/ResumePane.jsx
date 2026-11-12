@@ -116,7 +116,7 @@ export function ResumePane({ draft, template, style }) {
   return (
     <section aria-label={t("draftCv")} className="flex h-full min-h-0 flex-col bg-[var(--landing-paper-strong)]">
       <div className="flex h-16 shrink-0 items-center gap-2 border-b border-[var(--landing-line)] bg-[var(--landing-surface)] px-3 sm:px-4">
-        <div className="flex h-control items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-0.5">
+        <div className="flex h-control items-center rounded-md border border-[var(--landing-line)] bg-[var(--landing-surface)] px-1">
           <ToolbarButton
             label={t("zoomOut")}
             disabled={!draft || zoom <= MIN_ZOOM}

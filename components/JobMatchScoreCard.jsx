@@ -67,12 +67,12 @@ function DimensionRow({ dimKey, dimension }) {
   const percent = gradeToPercent(dimension.grade);
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2">
       <div className="flex items-center gap-2">
         <Icon size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
         <span className="text-xs text-muted-foreground">{t(`dimensions.${dimKey}`)}</span>
         <span
-          className={`ms-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
+          className={`ms-auto inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tabular-nums ${gradeChipClass(dimension.grade)}`}
         >
           {dimension.grade}
         </span>
@@ -175,7 +175,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
             <AnimatedNumber
               value={globalScore}
               decimals={1}
-              className="text-center font-outfit text-xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground"
+              className="text-center font-outfit text-2xl font-semibold leading-none tabular-nums tracking-[-0.02em] text-foreground"
             />
             <span className="text-xs text-muted-foreground">/5</span>
           </ArcGauge>
@@ -224,7 +224,7 @@ export default function JobMatchScoreCard({ scoreData, isLoading, locked = false
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold text-foreground">{t(`dimensions.${key}`)}</span>
                     <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold tabular-nums ${gradeChipClass(dim.grade)}`}
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tabular-nums ${gradeChipClass(dim.grade)}`}
                     >
                       {dim.grade}
                     </span>

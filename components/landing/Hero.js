@@ -183,14 +183,11 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
     // Signed-out visitors get the job's keywords back before the sign-in ask.
     // Half of them used to leave at /auth with nothing for their link. Any
     // failure falls through to the old straight-to-auth path.
-    let terms;
-    if (hasText) {
-      terms = extractTerms(jobText, 8).map((item) => item.term);
-    } else {
-      setLoading(true);
-      terms = await fetchJobTerms(url.href);
-      setLoading(false);
-    }
+    setLoading(true);
+    const terms = hasText
+      ? extractTerms(jobText, 8).map((item) => item.term)
+      : await fetchJobTerms(url.href);
+    setLoading(false);
     if (!terms.length) {
       goToAuth(authUrl);
       return;

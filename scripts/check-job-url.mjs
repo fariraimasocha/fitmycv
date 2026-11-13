@@ -2,7 +2,8 @@
 // The LinkedIn URL shapes people paste. Each must reach the guest API, which
 // is the only LinkedIn path that works (lib/job-extract.js).
 import assert from "node:assert/strict";
-import { linkedinJobId, normalizeJobUrl } from "../lib/job-extract.js";
+import { textAfterLink, toUrl } from "../lib/ats-detect.js";
+import { linkedinJobId, normalizeJobUrl, scrapeJobPage } from "../lib/job-extract.js";
 
 const id = (url) => linkedinJobId(normalizeJobUrl(url));
 
@@ -13,5 +14,21 @@ assert.equal(id("https://za.linkedin.com/jobs/view/hr-officer-at-sasol-401234567
 assert.equal(id("https://www.linkedin.com/jobs/collections/recommended/?currentJobId=4012345678"), "4012345678");
 assert.equal(id("https://www.linkedin.com/in/someone/"), null);
 assert.equal(id("https://boards.greenhouse.io/acme/jobs/4512"), null);
+
+// A job description pasted after the link is not part of the link.
+const pasted = "https://boards.greenhouse.io/acme/jobs/4512 Senior Developer\nWe build things.";
+assert.equal(toUrl(pasted).href, "https://boards.greenhouse.io/acme/jobs/4512");
+assert.equal(textAfterLink(pasted), "Senior Developer\nWe build things.");
+assert.equal(textAfterLink("https://boards.greenhouse.io/acme/jobs/4512"), "");
+
+// Indeed links fail before any network call, on every regional host.
+globalThis.fetch = () => assert.fail("Indeed links must not reach the network");
+for (const link of [
+  "https://ma.indeed.com/viewjob?jk=abc123",
+  "https://mx.indeed.com/jobs?q=dev&vjk=abc123",
+  "https://www.indeed.com/viewjob?jk=abc123 Senior Developer",
+]) {
+  await assert.rejects(scrapeJobPage(link), { stage: "indeed" });
+}
 
 console.log("All job URL checks passed.");

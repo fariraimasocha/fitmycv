@@ -72,6 +72,7 @@ import {
   subscribeRecentJobUrls,
 } from "@/lib/recent-job-urls";
 import { takeAtsHandoff } from "@/lib/ats-handoff";
+import { textAfterLink } from "@/lib/ats-detect";
 import Loader from "@/components/Loader";
 import { Rebuild } from "@lucasmarkes/hairline/react";
 import { trackEvent } from "@/lib/analytics";
@@ -790,6 +791,16 @@ function Tailor() {
     }
     if (!url.trim()) {
       toast.error(t("errors.noUrl"));
+      return;
+    }
+    // A description pasted after the link is the job itself. Move it to the
+    // paste box and read it, so the link does not have to be crawled.
+    const pastedText = textAfterLink(url);
+    if (pastedText.length >= MIN_JOB_TEXT_CHARS) {
+      setUrl(url.trim().split(/\s/, 1)[0]);
+      setJobInputMode("text");
+      setJobText(pastedText);
+      extractMutation.mutate({ text: pastedText });
       return;
     }
     extractMutation.mutate({ url: url.trim() });

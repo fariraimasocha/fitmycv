@@ -15,7 +15,7 @@ import { PRICING } from "@/lib/pricing";
 import RevealWords from "@/components/landing/RevealWords";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
-import { toUrl } from "@/lib/ats-detect";
+import { textAfterLink, toUrl } from "@/lib/ats-detect";
 import { extractTerms } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";
 import { HOME_TESTIMONIALS } from "@/content/pages/home";
@@ -27,6 +27,9 @@ const TRUST_FACES = [
   "/trusted/winnie.jpeg",
   "/trusted/vitus.jpg",
 ];
+
+// Same floor as /api/job/extract for a pasted description.
+const MIN_JOB_TEXT_CHARS = 150;
 
 // One real quote with a concrete outcome, right under the CTA.
 const HERO_PROOF = HOME_TESTIMONIALS.find((item) => item.author === "Vitus");
@@ -159,8 +162,16 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
       setInvalid(true);
       return;
     }
-    saveAtsHandoff({ jobUrl: url.href, source: "hero" });
-    trackEvent("hero_link_submitted", { signed_in: Boolean(session?.user), host: url.hostname });
+    // A description pasted after the link goes in as text, so the tailor
+    // page does not have to read the link.
+    const jobText = textAfterLink(link);
+    const hasText = jobText.length >= MIN_JOB_TEXT_CHARS;
+    saveAtsHandoff(hasText ? { jobText, source: "hero" } : { jobUrl: url.href, source: "hero" });
+    trackEvent("hero_link_submitted", {
+      signed_in: Boolean(session?.user),
+      host: url.hostname,
+      with_text: hasText,
+    });
     // The link also rides in the URL. A magic link can open in a new tab,
     // where the localStorage copy may have expired.
     const dest = `/dashboard/tailor?url=${encodeURIComponent(url.href)}`;
@@ -172,9 +183,14 @@ export function JobLinkForm({ id = "hero-job-link", className = "landing-rise-3 
     // Signed-out visitors get the job's keywords back before the sign-in ask.
     // Half of them used to leave at /auth with nothing for their link. Any
     // failure falls through to the old straight-to-auth path.
-    setLoading(true);
-    const terms = await fetchJobTerms(url.href);
-    setLoading(false);
+    let terms;
+    if (hasText) {
+      terms = extractTerms(jobText, 8).map((item) => item.term);
+    } else {
+      setLoading(true);
+      terms = await fetchJobTerms(url.href);
+      setLoading(false);
+    }
     if (!terms.length) {
       goToAuth(authUrl);
       return;

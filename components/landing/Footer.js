@@ -138,6 +138,7 @@ export default function Footer() {
                     alt="Featured on Findly.tools"
                     width="175"
                     height="55"
+                    loading="lazy"
                   />
                 </a>
                 <a href="https://nicklaunches.com/products/fitmycv/" target="_blank" rel="nofollow noopener">
@@ -146,6 +147,7 @@ export default function Footer() {
                     alt="FitMyCV on Nick Launches"
                     width="244"
                     height="56"
+                    loading="lazy"
                   />
                 </a>
                 <a href="https://ufind.best/products/tailor-your-cv-to-any-job-link" target="_blank" rel="nofollow noopener">
@@ -153,6 +155,7 @@ export default function Footer() {
                     src="https://ufind.best/badges/ufind-best-badge-dark.svg"
                     alt="Featured on ufind.best"
                     width="150"
+                    loading="lazy"
                   />
                 </a>
                 <a
@@ -164,6 +167,7 @@ export default function Footer() {
                     src="https://saasearch.io/api/badge/fitmycv?theme=dark"
                     alt="Featured on SaaSearch"
                     className="h-12 w-auto"
+                    loading="lazy"
                   />
                 </a>
                 <a href="https://peerpush.com/p/fitmycv" target="_blank" rel="nofollow noopener">
@@ -182,6 +186,7 @@ export default function Footer() {
                     alt="Featured on Twelve Tools"
                     width="148"
                     height="40"
+                    loading="lazy"
                   />
                 </a>
                 <a href="https://saascity.io" target="_blank" rel="nofollow noopener">
@@ -190,6 +195,7 @@ export default function Footer() {
                     alt="Featured on SaaSCity"
                     width="150"
                     height="54"
+                    loading="lazy"
                   />
                 </a>
                 <a href="https://startupfa.me/s/fitmycv?utm_source=fitmycv.link" target="_blank" rel="nofollow noopener">
@@ -198,6 +204,7 @@ export default function Footer() {
                     alt="FitMyCV - Featured on Startup Fame"
                     width="171"
                     height="54"
+                    loading="lazy"
                   />
                 </a>
                 <a href="https://dofollow.tools" target="_blank" rel="nofollow noopener">
@@ -206,6 +213,7 @@ export default function Footer() {
                     alt="Featured on Dofollow.Tools"
                     width="200"
                     height="54"
+                    loading="lazy"
                   />
                 </a>
               </div>

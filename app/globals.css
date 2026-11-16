@@ -867,6 +867,12 @@
     border-color: var(--landing-line);
   }
 
+  /* The backdrop dims with the warm ink, not black, so the page stays cream. */
+  body:has(.dashboard-shell) [data-slot="dialog-overlay"],
+  body:has(.dashboard-shell) [data-slot="sheet-overlay"] {
+    background: color-mix(in oklab, var(--dash-ink) 45%, transparent);
+  }
+
   /* The dashboard uses five colors and nothing else. Spacing is 4, 8, 12,
      16, 24 and 32px; type is 12, 14, 16 and 24px. Every older landing and
      shadcn color points at one of the five here, so pages that still name
@@ -874,8 +880,11 @@
      carries it to dialogs and menus, which portal out of the shell. */
   .dashboard-shell,
   body:has(.dashboard-shell) {
-    --dash-ink: #1a1a1a;
-    --dash-muted: #5c5c5c;
+    /* Ink and muted sit on the cream hue too, so text, dark buttons and every
+       translucent ink (hover borders, overlays) read warm, not grey.
+       Muted is 6.2:1 on the page and 5.1:1 on line-coloured fills. */
+    --dash-ink: #1f1d17;
+    --dash-muted: #5b584c;
     /* The cream hue again, a step below the sidebar: page 0.953, sidebar
        0.923, line 0.885. Lines and fills (tabs, chips) read as the same family. */
     --dash-line: oklch(0.885 0.024 100);
@@ -1526,6 +1535,26 @@
   .landing-switch[data-on="true"] > span {
     transform: translateX(1.125rem);
   }
+
+  /* In the dashboard the knob is cream and shadows use the warm ink, not
+     white and blue, so the toolbar matches the page. */
+  body:has(.dashboard-shell) .landing-switch > span {
+    background: var(--dash-surface);
+    box-shadow: 0 1px 3px color-mix(in oklab, var(--dash-ink) 25%, transparent);
+  }
+  /* The dashboard is flat, so the style toolbar drops its lift shadow. */
+  body:has(.dashboard-shell) .landing-shadow-lift {
+    box-shadow: none;
+  }
+  body:has(.dashboard-shell) .landing-swatch {
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--dash-ink) 12%, transparent);
+  }
+  body:has(.dashboard-shell) .landing-swatch[data-selected="true"] {
+    box-shadow:
+      inset 0 0 0 1px color-mix(in oklab, var(--dash-ink) 12%, transparent),
+      0 0 0 2px var(--dash-surface),
+      0 0 0 4px var(--dash-ink);
+  }
 }
 
 /* CV style toolbar (utils/cv-templates/style.js), applied to every layout.
@@ -1617,4 +1646,15 @@
   select {
     font-size: 16px;
   }
+}
+
+/* A disabled dark button faded to 50% reads as khaki on the cream. Inside the
+   dashboard it takes the line fill and muted text (5.1:1) instead, so it is
+   clearly off and still on the palette. Unlayered, so it beats the bg-primary
+   and opacity utilities. */
+.dashboard-primary-btn:disabled,
+body:has(.dashboard-shell) [data-slot="button"]:is(:not([data-variant]), [data-variant="default"]):disabled {
+  background: var(--dash-line);
+  color: var(--dash-muted);
+  opacity: 1;
 }

@@ -109,8 +109,8 @@ export default function TemplatePicker({
                 onClick={() => handleSelect(tpl.id)}
                 className={`group relative flex flex-col gap-2 rounded-lg border p-2 text-start transition-colors ${
                   selected
-                    ? "border-primary ring-2 ring-primary"
-                    : "border-border hover:border-primary/50"
+                    ? "border-primary ring-1 ring-primary"
+                    : "border-border hover:border-primary/40"
                 }`}
               >
                 {selected && (

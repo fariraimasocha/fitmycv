@@ -30,8 +30,9 @@ const normalize = (s) =>
 // A quote only counts if it is really in the CV. Anything the model made up
 // becomes "missing", so a tick on screen always has the user's own words under it.
 function verify(list, items, cvNorm) {
+  const byIndex = new Map((Array.isArray(list) ? list : []).map((r) => [Number(r?.i), r]));
   return items.map((_, i) => {
-    const row = Array.isArray(list) ? list.find((r) => Number(r?.i) === i) : null;
+    const row = byIndex.get(i);
     const status = STATUSES.has(row?.status) ? row.status : "missing";
     const quote = String(row?.quote ?? "")
       .replace(/^[\s•·▪*\-–—]+/, "")

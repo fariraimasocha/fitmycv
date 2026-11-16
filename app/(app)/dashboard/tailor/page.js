@@ -409,7 +409,7 @@ function Tailor() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ referenceCV, jobData: result.data }),
           })
-            .then((res) => res.json())
+            .then((res) => (res.ok ? res.json() : null))
             .then((res) => {
               if (!res?.data) return;
               setEvidence(res.data);

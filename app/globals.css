@@ -876,9 +876,9 @@
   body:has(.dashboard-shell) {
     --dash-ink: #1a1a1a;
     --dash-muted: #5c5c5c;
-    /* A shade darker than the cream, so lines and fills (active nav, tabs,
-       chips) show as clearly as #f2f2f2 did on white. */
-    --dash-line: #e6e3d4;
+    /* The cream hue again, a step below the sidebar: page 0.953, sidebar
+       0.923, line 0.885. Lines and fills (tabs, chips) read as the same family. */
+    --dash-line: oklch(0.885 0.024 100);
     /* The cream of the landing CTA. CV and cover letter previews stay white:
        they are the paper. */
     --dash-surface: #f2f0e3;

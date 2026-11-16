@@ -934,11 +934,13 @@
     --chart-3: var(--dash-muted);
     --chart-4: var(--dash-line);
     --chart-5: var(--dash-accent);
-    --sidebar: var(--dash-surface);
+    /* The cream at 90%, mixed toward ink, so the sidebar sits a shade back. */
+    --sidebar: color-mix(in srgb, var(--dash-surface) 90%, var(--dash-ink));
     --sidebar-foreground: var(--dash-ink);
     --sidebar-primary: var(--dash-ink);
     --sidebar-primary-foreground: var(--dash-surface);
-    --sidebar-accent: var(--dash-line);
+    /* The active item takes the page cream, so it reads as joined to the page. */
+    --sidebar-accent: var(--dash-surface);
     --sidebar-accent-foreground: var(--dash-ink);
     --sidebar-border: var(--dash-line);
     --sidebar-ring: var(--dash-ink);
@@ -947,7 +949,7 @@
     --landing-shadow-sm: none;
   }
 
-  /* The sidebar is cream like the page, split by a line edge. */
+  /* The sidebar is a shade darker than the page, split by a line edge. */
   .dashboard-shell [data-slot="sidebar-container"] {
     border-color: var(--dash-line);
   }

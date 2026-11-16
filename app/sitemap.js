@@ -3,7 +3,7 @@ import { INDEXED_POSTS } from "@/content/blog";
 import { MARKETING_PAGES } from "@/content/pages";
 import { RESUME_EXAMPLES } from "@/content/resume-examples";
 import { ATS_COMPANIES } from "@/content/ats-companies";
-import { TRANSLATED_PATHS, localeAlternates } from "@/lib/seo";
+import { NOINDEX_PATHS, TRANSLATED_PATHS, localeAlternates } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 
 function languageUrls(path) {
@@ -121,5 +121,7 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...routes, ...localizedRoutes, ...postRoutes];
+  return [...routes, ...localizedRoutes, ...postRoutes].filter(
+    ({ url }) => !NOINDEX_PATHS.has(url.slice(SITE_URL.length))
+  );
 }

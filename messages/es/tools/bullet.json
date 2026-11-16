@@ -1,0 +1,76 @@
+{
+  "englishOnly": "Esta herramienta reescribe logros escritos en inglés. Sus verbos, plantillas y comprobaciones solo funcionan con texto en inglés, así que las nuevas versiones salen en inglés.",
+  "bulletLabel": "Pega un logro o una línea de tu CV",
+  "bulletPlaceholder": "Managed customer support tickets.",
+  "bulletHint": "Funciona mejor con una línea cada vez.",
+  "jobLabel": "Pega la oferta de empleo (opcional)",
+  "jobPlaceholder": "Pega la oferta para ver qué términos podrías incluir…",
+  "jobHint": "Déjalo vacío para solo reescribir la línea.",
+  "submit": "Reescribir esta línea",
+  "busy": "Reescribiendo tu línea",
+  "example": "Probar un ejemplo",
+  "privacy": "Funciona por completo en tu navegador. No se sube ni se guarda nada.",
+  "resultTitle": "Tres formas de reescribirla",
+  "resultBody": "Cada una empieza con un verbo de acción y marca dónde va un número. Los huecos resaltados los rellenas tú. La herramienta no conoce tus cifras, así que elige números que puedas defender en una entrevista.",
+  "fixTitle": "Qué corregir en el original",
+  "notes": {
+    "opener": "Empieza con «{opener}», que describe una función. Empieza mejor con un verbo de acción.",
+    "verbOk": "Empieza con un verbo de acción. Mantenlo y añade las cifras.",
+    "number": "Tiene un número. Comprueba que sea el que le importa a quien contrata.",
+    "noNumber": "No hay ningún número. Añade cuántos, con qué frecuencia, cuánto dinero o cuánto más rápido.",
+    "long": "{count} palabras. Bájala a menos de 25 para que quepa en dos líneas.",
+    "pronoun": "Usa «{word}». Quita los pronombres de las líneas del CV y empieza con el verbo.",
+    "vague": "«{word}» esconde la cantidad. Sustitúyelo por la cifra real.",
+    "fullStop": "Termina con punto. Usa el mismo final en todas las líneas.",
+    "noFullStop": "No termina con punto. Está bien, siempre que las demás líneas hagan lo mismo."
+  },
+  "termsTitle": "Términos de la oferta que podrías incluir",
+  "termsBody": "La oferta insiste en estos términos y tu línea no los menciona. Añade solo los que de verdad hiciste.",
+  "termsTooShort": "Pega más texto de la oferta para ver qué términos le faltan a esta línea. Con una o dos frases no basta para ordenarlos.",
+  "verbsTitle": "Verbos de acción para {family}",
+  "verbsSwap": "Usa el que describa con más precisión lo que hiciste.",
+  "families": {
+    "ownership": {
+      "label": "responsabilidad y liderazgo",
+      "hint": "Describes algo que estaba a tu cargo o que dirigías."
+    },
+    "support": {
+      "label": "atención a clientes y personas",
+      "hint": "Describes un trabajo que hiciste para clientes o compañeros."
+    },
+    "delivery": {
+      "label": "crear y lanzar",
+      "hint": "Describes algo que ayudaste a crear o lanzar."
+    },
+    "process": {
+      "label": "procesos y eficiencia",
+      "hint": "Describes un proceso que mantuviste en marcha o mejoraste."
+    },
+    "analysis": {
+      "label": "datos y análisis",
+      "hint": "Describes algo que mediste o investigaste."
+    },
+    "general": {
+      "label": "cualquier tipo de trabajo",
+      "hint": "Ninguna familia destaca, así que estos sirven para todo."
+    }
+  },
+  "ctaTitle": "Una línea lista. ¿Y el resto?",
+  "ctaBody": "Pega el enlace de la oferta y FitMyCV reescribe cada línea según esa oferta, manteniendo tu experiencia real y tus cifras reales.",
+  "ctaLabel": "Adaptar mi CV",
+  "previewTitle": "Qué recibes",
+  "preview": {
+    "rewrites": {
+      "title": "Tres versiones",
+      "body": "Cada una empieza con un verbo de acción y marca dónde va tu número."
+    },
+    "read": {
+      "title": "Un diagnóstico del original",
+      "body": "Inicio débil, número que falta, pronombres, longitud. Una línea por punto."
+    },
+    "verbs": {
+      "title": "Un banco de verbos",
+      "body": "Verbos de acción para el tipo de trabajo que describe esta línea."
+    }
+  }
+}

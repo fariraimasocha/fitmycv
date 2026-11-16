@@ -1,0 +1,193 @@
+{
+  "seoTitle": "Comparar CV con oferta de empleo: gratis, sin registro",
+  "description": "Sube tu CV y pega una oferta de empleo. Ve tu puntuación de coincidencia, las palabras clave que faltan y las cinco primeras correcciones. Gratis y sin registro.",
+  "keywords": [
+    "comparar cv con oferta de empleo",
+    "comparador de cv y oferta",
+    "coincidencia cv oferta",
+    "analizar cv con oferta de trabajo",
+    "cv vs descripción del puesto",
+    "palabras clave que faltan en el cv",
+    "puntuación de coincidencia cv",
+    "adaptar cv a oferta",
+    "compatibilidad cv puesto"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Comparador de CV y oferta",
+  "h1": "Compara tu CV con una oferta de empleo",
+  "lede": "Sube tu CV y pega la oferta. Ve tu puntuación de coincidencia, las competencias que ya cubres, lo que falta y las cinco primeras cosas que corregir antes de postular.",
+  "howTo": {
+    "name": "Cómo comparar tu CV con una oferta de empleo",
+    "description": "Compara tu CV con una oferta concreta y ve las brechas de competencias, palabras clave y experiencia.",
+    "steps": [
+      {
+        "name": "Sube tu CV",
+        "text": "Suelta el PDF. Extraemos el texto para que no tengas que copiarlo."
+      },
+      {
+        "name": "Pega la oferta",
+        "text": "Copia la oferta completa a la que postulas y pégala en el campo de la descripción."
+      },
+      {
+        "name": "Lee la coincidencia y las brechas",
+        "text": "Obtienes una puntuación global, competencias fuertes y que faltan, puntuaciones de experiencia, competencias y palabras clave, y cinco correcciones concretas."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Qué significa la puntuación de coincidencia?",
+      "a": "Es una puntuación de cobertura entre tu CV y la oferta: competencias nombradas, palabras clave de la oferta y una señal ligera de experiencia sacada de los años y el nivel. Toma el 75 % o más como buena cobertura, entre 50 y 75 % como señal de que vale la pena adaptar el CV, y menos del 50 % como un CV genérico o un puesto de verdad ambicioso. No predice que te llamen a entrevista."
+    },
+    {
+      "q": "¿Funciona con un CV en español?",
+      "a": "No. Está hecha para inglés. Su lista de competencias, sus palabras clave y sus señales de experiencia leen palabras en inglés, y sus consejos citan los términos en inglés de la oferta. Con un CV y una oferta en español, la puntuación no es fiable. Úsala para candidaturas en inglés."
+    },
+    {
+      "q": "¿Este comparador es gratis?",
+      "a": "Sí. Sin registro y sin límite de uso. Toda la comparación se hace en tu navegador y no se guarda nada."
+    },
+    {
+      "q": "¿Se sube o se guarda mi CV?",
+      "a": "El PDF se lee en esta pestaña. El archivo nunca se envía a un servidor. Cierra la pestaña y desaparece."
+    },
+    {
+      "q": "¿En qué se diferencia del verificador de CV ATS?",
+      "a": "El verificador de CV ATS da una sola puntuación de coincidencia de palabras clave. Esta página divide el resultado en experiencia, competencias y palabras clave, lista las competencias fuertes y las que faltan, y te da cinco cosas que mejorar. Usa esta página para saber cuánto encajas, y el verificador ATS si solo quieres los términos que faltan."
+    },
+    {
+      "q": "¿Debo añadir a mi CV todas las competencias que faltan?",
+      "a": "Solo las que puedas demostrar con honestidad. Pon cada una en un punto que muestre que la usaste y qué pasó. Decir que usas herramientas que nunca has tocado solo traslada el rechazo a la entrevista."
+    },
+    {
+      "q": "¿Qué miden las puntuaciones de experiencia, competencias y palabras clave?",
+      "a": "Las competencias son herramientas y métodos con nombre que leemos en ambos textos, como React o gestión de proyectos. Las palabras clave son los demás términos en los que insiste la oferta. La experiencia busca años, palabras de nivel y nombres de puesto. Si la oferta no menciona años, esa parte no baja la puntuación."
+    },
+    {
+      "q": "¿Una puntuación alta garantiza una entrevista?",
+      "a": "No. La cobertura ayuda a que un reclutador te encuentre. Lo que consigue la llamada son tus puntos. Cuando la puntuación esté bien, dedica el resto del tiempo a poner una cifra a cada logro."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué mide este comparador"
+    },
+    {
+      "p": "Compara el CV que subes con la oferta que pegas. Obtienes una coincidencia global y tres partes: las competencias que compartís, las palabras clave en las que insiste la oferta y una señal ligera de experiencia sacada de los años y el nivel."
+    },
+    {
+      "p": "Es limitado a propósito. Te dice cuánto se solapan dos documentos. No te clasifica dentro de Workday, Greenhouse o Lever, y no juzga cómo escribes. Lee inglés, así que sirve para candidaturas en inglés."
+    },
+    {
+      "callout": {
+        "title": "No es otro verificador ATS",
+        "body": "El [verificador de CV ATS](/es/ats-resume-checker) sigue siendo el diagnóstico de palabras clave. Esta página responde otra pregunta: ¿encaja este CV con este puesto y qué debo corregir primero?"
+      }
+    },
+    {
+      "h2": "Cómo leer el resultado"
+    },
+    {
+      "ol": [
+        "**Coincidencias fuertes**: competencias con nombre que aparecen en ambos textos. Mantenlas en puntos con un resultado.",
+        "**Faltan o son débiles**: competencias que la oferta nombra y tu CV nunca menciona. Añade solo las que puedas demostrar.",
+        "**Las puntuaciones de experiencia, competencias y palabras clave** muestran qué parte de la brecha es vocabulario y qué parte es alcance.",
+        "**Las 5 cosas que mejorar** son el orden de trabajo. Corrige esas cinco y vuelve a comparar."
+      ]
+    },
+    {
+      "h2": "Qué hacer tras una coincidencia baja"
+    },
+    {
+      "ol": [
+        "**Empieza por competencias que ya tienes con otras palabras.** Si la oferta dice GraphQL y tú escribiste consultas de API, usa su término en un punto real.",
+        "**Sube los puestos que encajan.** Cinco años de experiencia afín escondidos en tu tercer puesto pesan menos que una experiencia más corta en tus dos primeros puntos.",
+        "**Deja fuera lo que no puedas defender.** Una puntuación más alta que no sabes explicar es una entrevista perdida.",
+        "**Luego reescribe, o deja que lo haga FitMyCV.** La [adaptación de CV con IA](/es/tailor-cv-from-job-link) usa la misma oferta y tu experiencia real."
+      ]
+    },
+    {
+      "h2": "Sin registro, sin guardar nada, comparaciones ilimitadas"
+    },
+    {
+      "p": "La comparación se hace en tu navegador. Sin muro de registro, sin pedirte el correo y sin enviar ningún archivo a un servidor. Cierra la pestaña y el texto desaparece."
+    },
+    {
+      "h2": "¿Comparador o reescritura completa?"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Este comparador",
+          "Verificador de CV ATS",
+          "Adaptación desde el enlace de la oferta"
+        ],
+        "rows": [
+          [
+            "Necesita cuenta",
+            "No",
+            "No",
+            "Sí"
+          ],
+          [
+            "Envía tu archivo a un servidor",
+            "No",
+            "No",
+            "Sí, a tu cuenta"
+          ],
+          [
+            "Puntuación global de coincidencia",
+            "Sí",
+            "Solo palabras clave",
+            "Sí"
+          ],
+          [
+            "Competencias y palabras clave por separado",
+            "Sí",
+            "No",
+            "Sí"
+          ],
+          [
+            "Correcciones prioritarias",
+            "Sí",
+            "Términos que faltan",
+            "CV reescrito"
+          ],
+          [
+            "Reescribe el CV",
+            "No",
+            "No",
+            "Sí"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Si quieres la reescritura, usa la [adaptación de CV con IA](/es/tailor-cv-from-job-link) o el [optimizador de CV con IA](/resume-optimizer). Si solo quieres las palabras clave que faltan, usa el [verificador de CV ATS](/es/ats-resume-checker)."
+    }
+  ],
+  "related": [
+    {
+      "label": "Adaptar mi CV a este puesto",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Pega la URL de la oferta y obtén un CV reescrito y una carta de presentación."
+    },
+    {
+      "label": "Verificador de CV ATS",
+      "href": "/ats-resume-checker",
+      "body": "Una puntuación de palabras clave y los términos que tu CV nunca menciona."
+    },
+    {
+      "label": "Cómo adaptar un CV a una oferta",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "El método manual si prefieres reescribir los puntos tú (en inglés)."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

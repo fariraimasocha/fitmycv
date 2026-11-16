@@ -1,0 +1,75 @@
+{
+  "seoTitle": "LinkedIn-Profil-Check für eine Stellenanzeige",
+  "description": "Füge deine LinkedIn-Überschrift, deine Info und deine Kenntnisse neben eine englische Stellenanzeige ein. Sieh, welche Begriffe jeder Abschnitt abdeckt. Kostenlos, ohne Login.",
+  "keywords": [
+    "linkedin profil check",
+    "linkedin profil optimieren",
+    "linkedin profil keywords",
+    "linkedin profil für stellenanzeige optimieren",
+    "linkedin überschrift",
+    "linkedin profil analyse kostenlos",
+    "linkedin profil bewerten"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "LinkedIn-Profil-Check",
+  "h1": "Prüfe dein LinkedIn-Profil gegen eine Stellenanzeige",
+  "lede": "Füge eine Stellenanzeige und deine Überschrift, deine Info und deine Kenntnisse ein. Sieh, welche Hauptbegriffe der Anzeige jeder Abschnitt abdeckt, welche in deine Überschrift gehören und welche gar nicht in deinem Profil stehen. Das Tool liest englischen Text.",
+  "howTo": {
+    "name": "So prüfst du ein LinkedIn-Profil gegen eine Stellenanzeige",
+    "description": "Vergleiche die Abschnitte eines LinkedIn-Profils mit den Begriffen einer Stellenanzeige.",
+    "steps": [
+      {
+        "name": "Füge die Stellenanzeige ein",
+        "text": "Nimm die ganze Anzeige, mit den Anforderungen. Das Tool sortiert die Begriffe, die sie am häufigsten wiederholt."
+      },
+      {
+        "name": "Füge deine Überschrift, deine Info und deine Kenntnisse ein",
+        "text": "Kopiere sie aus deinem eigenen Profil. Es wird nichts von LinkedIn abgerufen und nichts gespeichert."
+      },
+      {
+        "name": "Schließe die Lücken, die du belegen kannst",
+        "text": "Übernimm Begriffe, die schon in deinem Profil stehen, in deine Überschrift. Ergänze fehlende nur dort, wo deine Erfahrung sie trägt."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Funktioniert der Check mit einem deutschen Profil?",
+      "a": "Nein. Der Check liest englischen Text. Umlaute und ß werden übergangen, ein Wort wie „Größe“ zerfällt also in Teile, und häufige Wörter wie „und“ oder „mit“ zählen als Begriffe. Wenn du dich auf Englisch bewirbst, füge die englische Anzeige und die englische Fassung deines Profils ein."
+    },
+    {
+      "q": "Warum Text einfügen statt einen Profillink?",
+      "a": "LinkedIn-Profile automatisch auszulesen verstößt gegen die Nutzungsbedingungen von LinkedIn, und eine eingefügte Kopie ist ohnehin das, was du bearbeitest. Außerdem läuft der Check in deinem Browser, und nichts verlässt diesen Tab."
+    },
+    {
+      "q": "Wie wird der Score berechnet?",
+      "a": "Das Tool nimmt die 15 Begriffe, die die Anzeige am häufigsten wiederholt, und prüft, ob jeder davon in deiner Überschrift, deiner Info oder deinen Kenntnissen vorkommt. Der Score ist der Anteil dieser Begriffe, die irgendwo in deinem Profil stehen. Es ist ein Keyword-Check, kein Urteil darüber, wie sich das Profil liest."
+    },
+    {
+      "q": "Warum zählt die Überschrift am meisten?",
+      "a": "Sie ist die Zeile unter deinem Namen in den LinkedIn-Suchergebnissen und neben jedem Kommentar, den du schreibst. Steht ein Begriff schon in deiner Info oder deinen Kenntnissen, ist die Überschrift der einfachste Ort, um ihn sichtbar zu machen."
+    },
+    {
+      "q": "Soll ich jeden fehlenden Begriff ergänzen?",
+      "a": "Nein. Ergänze die, die deine Erfahrung belegt. Wenn dich ein Recruiter nach einer Fähigkeit fragt, die du angegeben hast und nicht beherrschst, ist das schlimmer als eine Lücke."
+    },
+    {
+      "q": "Ist das dasselbe wie den Lebenslauf zu prüfen?",
+      "a": "Nein. Dein Lebenslauf geht an einen Arbeitgeber, dein Profil sieht jeder, der sucht. Nutze dieses Tool für das Profil und den kostenlosen ATS-Check oder das Anpassungstool für den Lebenslauf."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Was der Check prüft"
+    },
+    {
+      "p": "Drei Abschnitte: deine Überschrift, deine Info und deine Kenntnisse. **Für jeden Begriff, auf den die Anzeige setzt, siehst du, welcher Abschnitt ihn erwähnt.** Begriffe, die in deinem Profil, aber nicht in deiner Überschrift stehen, kommen zuerst, weil sie am schnellsten zu beheben sind."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

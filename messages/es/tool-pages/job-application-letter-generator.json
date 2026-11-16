@@ -1,0 +1,99 @@
+{
+  "seoTitle": "Generador de carta de presentación en inglés: gratis",
+  "description": "Pega la oferta y sube tu CV en inglés. Obtén una carta de presentación sencilla en inglés con tus competencias y resultados reales. Gratis, sin registro.",
+  "keywords": [
+    "carta de presentación en inglés",
+    "generador de carta de presentación en inglés",
+    "cover letter en inglés",
+    "carta de presentación en inglés ejemplo",
+    "cover letter ejemplo",
+    "carta para solicitar empleo en inglés",
+    "plantilla cover letter"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Carta de presentación en inglés",
+  "h1": "Generador de carta de presentación en inglés",
+  "lede": "Pega la oferta y sube tu CV, ambos en inglés. Obtén una carta completa y una corta, hechas solo con las competencias y los resultados que tu CV ya muestra. Sin registro, sin guardar nada.",
+  "howTo": {
+    "name": "Cómo escribir una carta de presentación en inglés",
+    "description": "Crea una carta sencilla en inglés a partir de la oferta y de tu propio CV.",
+    "steps": [
+      {
+        "name": "Pega la oferta",
+        "text": "La herramienta lee el nombre del puesto y los términos que la oferta repite."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "El texto se lee en tu navegador. Una competencia que no está en tu CV nunca aparece en la carta."
+      },
+      {
+        "name": "Revísala y envíala",
+        "text": "Añade el nombre de la empresa y el tuyo, revisa cada afirmación y copia la carta en tu correo o en un documento."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿En qué idioma se escribe la carta?",
+      "a": "En inglés. La herramienta rellena una plantilla de carta en inglés y lee puestos y competencias en inglés. Sirve para candidaturas en inglés, con una oferta y un CV en inglés. No escribe cartas en español."
+    },
+    {
+      "q": "¿Qué es una carta de presentación?",
+      "a": "Es una carta breve que dice a qué puesto postulas, por qué encajas y pide una entrevista. En inglés se llama cover letter o application letter."
+    },
+    {
+      "q": "¿Qué extensión debe tener?",
+      "a": "Tres o cuatro párrafos cortos, menos de una página. La versión corta de esta página sirve para un correo o un cuadro pequeño de un formulario."
+    },
+    {
+      "q": "¿El generador se inventa algo?",
+      "a": "No. El puesto viene de la oferta, cada competencia aparece tanto en la oferta como en tu CV, y cada resultado es una línea copiada de tu CV. Si tu CV no tiene un resultado con cifra, la carta deja un hueco para que lo rellenes."
+    },
+    {
+      "q": "¿Se guarda mi CV?",
+      "a": "No. La carta se crea en tu navegador y no se envía nada."
+    },
+    {
+      "q": "¿A quién dirijo la carta?",
+      "a": "Usa el nombre de la persona responsable de la selección si la oferta lo da. Si no, «Dear Hiring Manager» está bien."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "La estructura de una carta sencilla"
+    },
+    {
+      "ol": [
+        "**Di el puesto.** Nombra el puesto y la empresa en la primera línea.",
+        "**Muestra que encajas.** Nombra las competencias que pide la oferta y que has usado, y da un resultado con una cifra.",
+        "**Pide la entrevista.** Una línea y luego da las gracias."
+      ]
+    },
+    {
+      "p": "Para más ejemplos y un formato que puedes copiar, lee la [guía de la carta de presentación](/blog/job-application-letter). Para enviarla por correo, mira [cómo enviar una candidatura por correo](/blog/how-to-email-a-job-application). Ambas guías están en inglés."
+    }
+  ],
+  "related": [
+    {
+      "label": "Guía de la carta de presentación",
+      "href": "/blog/job-application-letter",
+      "body": "Formato, ejemplos y qué evitar (en inglés)."
+    },
+    {
+      "label": "Verificador de CV",
+      "href": "/cv-checker",
+      "body": "Ve qué términos de la oferta le faltan a tu CV."
+    },
+    {
+      "label": "Generador de resumen profesional",
+      "href": "/professional-summary-generator",
+      "body": "Tres resúmenes de CV hechos con una oferta y tu CV."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

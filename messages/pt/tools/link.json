@@ -1,0 +1,50 @@
+{
+  "label": "O link do seu perfil do LinkedIn",
+  "placeholder": "https://www.linkedin.com/in/seu-nome",
+  "hint": "Cole o endereço da sua página de perfil. O link é limpo enquanto você digita. Nada é enviado nem armazenado.",
+  "exampleHeading": "Veja o que você recebe",
+  "resultHeading": "Seus links para o currículo",
+  "exampleBadge": "Exemplo",
+  "exampleIntro": "Cole seu próprio link acima para limpar. Este exemplo vem de um link de país bagunçado, com texto de rastreamento.",
+  "resultIntro": "Copie a forma curta para o currículo e coloque a forma completa por trás como hiperlink.",
+  "shortBadge": "Para o currículo",
+  "shortNote": "Digite como texto visível na sua linha de contato. É curta e fácil de ler.",
+  "fullNote": "Use como hiperlink por trás desse texto, para que um clique abra seu perfil.",
+  "copy": "Copiar",
+  "copiedButton": "Copiado",
+  "copyAria": "Copiar o link {link}",
+  "copied": "Link copiado",
+  "copyBlocked": "Este navegador bloqueia a cópia. Selecione o link e copie.",
+  "previewHeading": "Como fica no cabeçalho do currículo",
+  "previewLine": "Seu Nome | Cidade, País | voce@email.com",
+  "removed": "Removido: {items}.",
+  "listSeparator": ", ",
+  "removedItem": {
+    "mobile": "o prefixo de celular m.",
+    "country": "o prefixo de país {prefix}.",
+    "tracking": "o texto de rastreamento depois do ?",
+    "fragment": "o fragmento #",
+    "path": "a parte de idioma ou de página depois do seu nome",
+    "slash": "a barra no final"
+  },
+  "issuesHeading": "Vale a pena corrigir",
+  "issue": {
+    "autoSuffix": "Seu link termina com uma sequência de números ou letras que o LinkedIn adicionou. Uma URL personalizada só com seu nome fica melhor no currículo. Os passos estão mais abaixo.",
+    "oddCharacters": "Seu link tem caracteres que não são letras sem acento, números ou hifens. Alguns leitores de PDF e sistemas de recrutamento quebram o link nesses caracteres. Uma URL personalizada resolve.",
+    "tooShort": "Esse identificador é muito curto. Confira se você copiou o endereço completo do seu perfil."
+  },
+  "notLink": "Isso não parece um link. Cole o endereço da sua página de perfil.",
+  "notLinkedIn": "Esse não é um link do LinkedIn. Cole o endereço da sua página de perfil do LinkedIn.",
+  "noHandle": "O link para depois de /in/. Copie o endereço completo da sua página de perfil.",
+  "notProfile": {
+    "company": "Essa é uma página de empresa. Cole o link do seu próprio perfil, o que tem /in/.",
+    "school": "Essa é uma página de instituição de ensino. Cole o link do seu próprio perfil, o que tem /in/.",
+    "showcase": "Essa é uma página de produto. Cole o link do seu próprio perfil, o que tem /in/.",
+    "posts": "Esse é o link de uma publicação. Cole o link do seu próprio perfil, o que tem /in/.",
+    "feed": "Esse é o link do seu feed ou de uma publicação. Cole o link do seu perfil, o que tem /in/.",
+    "jobs": "Essa é uma vaga de emprego. Cole o link do seu próprio perfil, o que tem /in/.",
+    "pulse": "Esse é o link de um artigo. Cole o link do seu próprio perfil, o que tem /in/.",
+    "pub": "Esse é um link de perfil no formato antigo. Abra seu perfil e copie o endereço do navegador, que agora usa /in/.",
+    "other": "Esse link não leva a um perfil. Links de perfil têm /in/ seguido do seu nome."
+  }
+}

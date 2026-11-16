@@ -230,7 +230,25 @@
       "missingHeading": "你的简历缺少",
       "coveredHeading": "已覆盖",
       "keywordsTitle": "这个职位看重的 {count} 个词汇",
-      "keywordsBody": "按职位信息给予的权重排序。从上往下逐个检查，确保你能如实声称的每个词都出现在简历中带有结果的要点里。"
+      "keywordsBody": "按职位信息给予的权重排序。从上往下逐个检查，确保你能如实声称的每个词都出现在简历中带有结果的要点里。",
+      "leadEmail": {
+        "title": "把这次得分和补缺链接发到我的邮箱",
+        "body": "可选。无需账户。",
+        "emailLabel": "邮箱地址",
+        "placeholder": "you@email.com",
+        "send": "发送",
+        "sending": "正在发送...",
+        "emailRequired": "请输入你的邮箱地址。",
+        "invalidEmail": "请输入有效的邮箱地址。",
+        "tooMany": "请求过多。请一分钟后再试。",
+        "saveError": "无法保存你的邮箱。请重试。",
+        "sentToast": "已发送。请查看收件箱中的得分和后续步骤。",
+        "duplicateToast": "这个地址已经收到过第一次得分。我们只发送一次。",
+        "sentTitle": "请查看收件箱",
+        "sentBody": "我们已把你的得分和补缺链接发到你的邮箱。",
+        "duplicateTitle": "已发送过",
+        "duplicateBody": "我们已经向这个地址发送过第一次得分。我们只发送一次。"
+      }
     },
     "resumeFile": {
       "label": "你的简历",

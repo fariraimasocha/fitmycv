@@ -1,0 +1,99 @@
+{
+  "seoTitle": "Gerador de carta de apresentação em inglês: grátis",
+  "description": "Cole a vaga e envie seu currículo em inglês. Receba uma carta de candidatura simples em inglês, com suas habilidades e resultados reais. Grátis, sem login.",
+  "keywords": [
+    "carta de apresentação em inglês",
+    "gerador de carta de apresentação em inglês",
+    "cover letter em inglês",
+    "carta de apresentação em inglês exemplo",
+    "modelo de cover letter",
+    "carta de candidatura em inglês",
+    "como fazer cover letter em inglês"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Carta de apresentação em inglês",
+  "h1": "Gerador de carta de apresentação em inglês",
+  "lede": "Cole a vaga e envie seu currículo, ambos em inglês. Receba uma carta completa e uma curta, montadas só com as habilidades e os resultados que seu currículo já mostra. Sem login, nada armazenado.",
+  "howTo": {
+    "name": "Como escrever uma carta de candidatura em inglês",
+    "description": "Monte uma carta simples em inglês a partir da vaga e do seu próprio currículo.",
+    "steps": [
+      {
+        "name": "Cole a vaga",
+        "text": "A ferramenta lê o cargo e os termos que a vaga repete."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "O texto é lido no seu navegador. Uma habilidade que não está no seu currículo nunca aparece na carta."
+      },
+      {
+        "name": "Revise e envie",
+        "text": "Inclua o nome da empresa e o seu, confira cada afirmação e copie a carta para o seu e-mail ou um documento."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Em que idioma a carta é escrita?",
+      "a": "Em inglês. A ferramenta preenche um modelo de carta em inglês e lê cargos e habilidades em inglês. Ela serve para candidaturas em inglês, com uma vaga e um currículo escritos em inglês. Ela não gera carta em português."
+    },
+    {
+      "q": "O que é uma carta de candidatura?",
+      "a": "É uma carta curta que diz a qual vaga você está se candidatando, por que você combina com ela e pede uma entrevista. Em muitos países, é o mesmo que uma carta de apresentação (cover letter)."
+    },
+    {
+      "q": "Qual deve ser o tamanho da carta?",
+      "a": "Três ou quatro parágrafos curtos, menos de uma página. A versão curta desta página é para um e-mail ou um campo pequeno de formulário."
+    },
+    {
+      "q": "O gerador inventa alguma coisa?",
+      "a": "Não. O cargo vem da vaga, cada habilidade aparece na vaga e no seu currículo, e cada resultado é uma linha copiada do seu currículo. Se seu currículo não tem resultado com número, a carta deixa um espaço para você preencher."
+    },
+    {
+      "q": "Meu currículo é armazenado?",
+      "a": "Não. A carta é montada no seu navegador e nada é enviado."
+    },
+    {
+      "q": "Para quem devo endereçar a carta?",
+      "a": "Use o nome do responsável pela contratação se a vaga informar. Se não, \"Dear Hiring Manager\" serve."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "A estrutura de uma carta de candidatura simples"
+    },
+    {
+      "ol": [
+        "**Diga qual é a vaga.** Cite o cargo e a empresa na primeira linha.",
+        "**Mostre que você combina.** Cite as habilidades pedidas na vaga que você já usou e dê um resultado com número.",
+        "**Peça a entrevista.** Uma linha, depois agradeça."
+      ]
+    },
+    {
+      "p": "Para mais exemplos e um formato para copiar, leia o [guia de carta de candidatura](/blog/job-application-letter). Para enviar por e-mail, veja [como enviar uma candidatura por e-mail](/blog/how-to-email-a-job-application). Os dois guias estão em inglês."
+    }
+  ],
+  "related": [
+    {
+      "label": "Guia de carta de candidatura",
+      "href": "/blog/job-application-letter",
+      "body": "Formato, exemplos e o que deixar de fora (em inglês)."
+    },
+    {
+      "label": "Verificador de currículo",
+      "href": "/cv-checker",
+      "body": "Veja quais termos da vaga faltam no seu currículo."
+    },
+    {
+      "label": "Gerador de resumo profissional",
+      "href": "/professional-summary-generator",
+      "body": "Três resumos de currículo montados a partir de uma vaga e do seu currículo."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

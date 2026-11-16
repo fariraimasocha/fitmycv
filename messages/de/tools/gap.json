@@ -1,0 +1,36 @@
+{
+  "englishOnly": "Die Sätze, die dieses Tool schreibt, sind auf Englisch, für einen Lebenslauf und ein Anschreiben auf Englisch.",
+  "reasonLabel": "Warum waren Sie weg?",
+  "reasons": {
+    "caregiving": "Pflege eines Familienmitglieds",
+    "parenting": "Kindererziehung",
+    "health": "Gesundheit oder Genesung",
+    "layoff": "Kündigung und Jobsuche",
+    "study": "Studium oder Weiterbildung",
+    "freelance": "Freiberuflich oder eigenes Unternehmen",
+    "relocation": "Umzug in ein anderes Land oder eine andere Stadt",
+    "travel": "Reisen"
+  },
+  "fromLabel": "Beginn der Lücke",
+  "toLabel": "Ende der Lücke",
+  "didLabel": "Was Sie in der Zeit gemacht haben (optional, auf Englisch)",
+  "didPlaceholder": "Completed a Google Data Analytics certificate",
+  "submit": "Meine Lücke erklären",
+  "busy": "Ihre Sätze werden geschrieben",
+  "datesError": "Der Endmonat muss nach dem Startmonat liegen.",
+  "privacy": "Nichts, was Sie eingeben, verlässt diesen Tab.",
+  "shortTitle": "Das brauchen Sie vielleicht gar nicht.",
+  "shortBody": "Eine Lücke unter 3 Monaten muss selten erklärt werden. Geben Sie im Lebenslauf nur Jahre an, dann fällt sie nicht auf.",
+  "cvTitle": "Im Lebenslauf",
+  "letterTitle": "Im Anschreiben",
+  "answerTitle": "Im Vorstellungsgespräch",
+  "copyCv": "Satz für den Lebenslauf kopieren",
+  "copyLetter": "Satz für das Anschreiben kopieren",
+  "copyAnswer": "Antwort für das Vorstellungsgespräch kopieren",
+  "copied": "Kopiert",
+  "handoff": {
+    "title": "Lücke erklärt. Jetzt passen Sie den Rest an.",
+    "body": "FitMyCV schreibt Ihren Lebenslauf und Ihr Anschreiben für eine bestimmte Stellenanzeige um. So ist die Lücke nur eine Zeile, und Ihre Erfahrung spricht für Sie.",
+    "label": "Lebenslauf an einen Job anpassen"
+  }
+}

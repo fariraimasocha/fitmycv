@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Verificador de palavras-chave ATS grátis para vagas",
+  "description": "Cole uma descrição de vaga e receba a lista ordenada de palavras-chave pelas quais um sistema de recrutamento (ATS) vai indexá-la. Grátis, sem cadastro, tudo no seu navegador.",
+  "keywords": [
+    "palavras-chave para currículo",
+    "verificador de palavras-chave ats",
+    "palavras-chave da vaga",
+    "extrair palavras-chave da descrição da vaga",
+    "palavras-chave ats",
+    "currículo ats palavras-chave",
+    "encontrar palavras-chave para currículo"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Verificador de palavras-chave ATS",
+  "h1": "Verificador de palavras-chave ATS grátis",
+  "lede": "Cole qualquer descrição de vaga e receba a lista ordenada dos termos em que ela realmente se apoia: o vocabulário que um recrutador vai usar na busca e que um ATS vai indexar. Sem conta, sem e-mail, sem limite.",
+  "faqs": [
+    {
+      "q": "Como encontro as palavras-chave de uma descrição de vaga?",
+      "a": "Cole a vaga completa no campo acima. A ferramenta ordena palavras soltas e expressões de duas palavras pelo peso que a vaga dá a elas. Os termos no topo são os que se repetem no resumo, nas responsabilidades e nos requisitos."
+    },
+    {
+      "q": "Quais palavras-chave mais importam em um currículo?",
+      "a": "O cargo exato, ferramentas e tecnologias citadas pelo nome, certificações e qualquer expressão que apareça em mais de uma seção da vaga. É isso que os recrutadores digitam na busca, e esses termos são comparados como texto literal, não pelo significado."
+    },
+    {
+      "q": "Quantas palavras-chave devo incluir?",
+      "a": "Cubra os termos que você pode comprovar com honestidade e pare aí. Metas de densidade de palavras-chave não servem para nada. Repetir um termo dez vezes não vale mais que citá-lo uma vez em um tópico com resultado, e fica ruim para a pessoa que lê no final."
+    },
+    {
+      "q": "Preciso informar meu e-mail para ver os resultados?",
+      "a": "Não. A lista completa aparece na hora e a extração roda no seu navegador. Nada é enviado, então não há nada para desbloquear."
+    },
+    {
+      "q": "Qual a diferença para o verificador de currículo ATS?",
+      "a": "Esta página só precisa da descrição da vaga e mostra o que ela pede. O verificador de currículo ATS também usa seu currículo e pontua quanto desse vocabulário você já cobre, além do que falta."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Por que extrair as palavras-chave é o primeiro passo"
+    },
+    {
+      "p": "Antes de reescrever um único tópico, você precisa saber o que o empregador realmente pede: não o nome do cargo, mas os termos específicos que pesam. As vagas escondem isso. Um requisito citado uma vez em uma lista importa bem menos que uma expressão repetida no resumo, nas responsabilidades e nos requisitos."
+    },
+    {
+      "p": "Ordenar os termos deixa isso visível em poucos segundos, em vez de duas leituras atentas."
+    },
+    {
+      "h2": "Como usar a lista"
+    },
+    {
+      "steps": [
+        {
+          "title": "Separe em sim, em parte e não",
+          "body": "Divida os termos entre o que você comprova com segurança, o que comprova só em parte e o que não pode afirmar. O primeiro grupo guia sua reescrita. O terceiro diz se a vaga combina de verdade com você."
+        },
+        {
+          "title": "Coloque os principais termos no seu resumo",
+          "body": "Tudo o que estiver entre os cinco primeiros vai no seu resumo profissional, com prova, e não escondido no terceiro tópico do seu segundo emprego."
+        },
+        {
+          "title": "Prove cada termo em um tópico",
+          "body": "Uma lista de competências é uma afirmação. Um tópico que cita a ferramenta, a ação e o número é uma prova. Busque fazer cada termo importante aparecer pelo menos uma vez como prova."
+        },
+        {
+          "title": "Pontue o resultado",
+          "body": "Depois de reescrever, passe o currículo e a vaga pelo [verificador de currículo ATS](/ats-resume-checker) para confirmar que a diferença realmente diminuiu."
+        }
+      ]
+    },
+    {
+      "h2": "O que esta ferramenta não consegue fazer"
+    },
+    {
+      "p": "É um método baseado em frequência e expressões, não um modelo de linguagem. Ele mostra muito bem no que uma vaga insiste, mas não consegue dizer se *gerenciar um P&L* e *ser dono do orçamento* significam a mesma coisa no seu setor. Use seu julgamento com sinônimos e leia o [guia de currículo ATS](/blog/ats-resume-guide) (em inglês) para entender como a correspondência de palavras-chave funciona em um sistema real."
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de currículo ATS",
+      "href": "/ats-resume-checker",
+      "body": "Adicione seu currículo e receba uma pontuação de correspondência com os termos que faltam."
+    },
+    {
+      "label": "Como adaptar seu currículo",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "O método passo a passo, com um exemplo completo de antes e depois (em inglês)."
+    },
+    {
+      "label": "Verbos de ação para currículo por setor",
+      "href": "/blog/cv-action-verbs-tech",
+      "body": "Listas de verbos para tecnologia, marketing, finanças, saúde e vendas (em inglês)."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

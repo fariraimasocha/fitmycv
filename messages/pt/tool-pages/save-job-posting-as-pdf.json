@@ -1,0 +1,91 @@
+{
+  "seoTitle": "Salvar vaga de emprego em PDF: grátis, sem login",
+  "description": "Cole o link de uma vaga do LinkedIn ou da página de carreiras de uma empresa e guarde a vaga completa em PDF antes que ela saia do ar. Grátis, sem cadastro.",
+  "keywords": [
+    "salvar vaga em pdf",
+    "salvar vaga do linkedin",
+    "baixar descrição da vaga linkedin",
+    "descrição da vaga em pdf",
+    "salvar vaga de emprego",
+    "guardar descrição da vaga"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Salvar vaga em PDF",
+  "h1": "Salve uma vaga de emprego em PDF",
+  "lede": "Cole o link da vaga. Lemos o anúncio e entregamos o texto completo para você salvar em PDF ou copiar, e assim ainda tê-lo quando a vaga sair do ar.",
+  "howTo": {
+    "name": "Como salvar uma vaga de emprego em PDF",
+    "description": "Guarde uma cópia da descrição da vaga antes que o anúncio seja removido.",
+    "steps": [
+      {
+        "name": "Copie o link da vaga",
+        "text": "Abra a vaga e copie o endereço da barra do navegador. Um link de vaga do LinkedIn funciona, assim como o link da página de carreiras de uma empresa ou de um site de vagas."
+      },
+      {
+        "name": "Cole e salve",
+        "text": "A ferramenta lê a página e mostra o texto da vaga com o link e a data em que você salvou."
+      },
+      {
+        "name": "Baixe o PDF",
+        "text": "Clique em Salvar como PDF e escolha Salvar como PDF como destino na janela de impressão. Só a vaga é impressa."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Por que salvar uma vaga?",
+      "a": "As empresas tiram o anúncio do ar quando a vaga é preenchida, muitas vezes antes da sua entrevista. A descrição é o melhor guia do que vão perguntar, então guarde uma cópia no dia em que se candidatar."
+    },
+    {
+      "q": "Funciona com vagas do LinkedIn?",
+      "a": "Sim, para links públicos como linkedin.com/jobs/view/ seguido de um número. Se o LinkedIn não mostrar a vaga sem login, a ferramenta avisa e você pode salvar a página pelo seu próprio navegador."
+    },
+    {
+      "q": "E se a vaga já tiver sido encerrada?",
+      "a": "Aí a página geralmente já saiu do ar e não sobra nada para ler. Salve as vagas quando se candidatar, não quando a entrevista for marcada."
+    },
+    {
+      "q": "Vocês armazenam as vagas que eu salvo?",
+      "a": "Não. A página é lida uma vez para mostrar o texto. Nada é salvo em uma conta ou em um banco de dados."
+    },
+    {
+      "q": "Por que o texto salvo parece tão simples?",
+      "a": "A ferramenta guarda as palavras da vaga, não o layout do site, logos ou botões. Assim o PDF fica fácil de ler e de pesquisar depois."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que fazer com uma vaga salva"
+    },
+    {
+      "ul": [
+        "**Antes da entrevista,** releia as responsabilidades e ligue cada uma a uma história do seu próprio trabalho.",
+        "**Ao escrever a carta de apresentação,** use as palavras da própria vaga para as habilidades que ela pede.",
+        "**Depois de uma proposta,** compare a vaga oferecida com a que foi anunciada."
+      ]
+    }
+  ],
+  "related": [
+    {
+      "label": "Qual ATS uma empresa usa?",
+      "href": "/ats",
+      "body": "Cole o link de uma vaga e veja o sistema de recrutamento por trás dela."
+    },
+    {
+      "label": "Comparador de currículo e vaga",
+      "href": "/resume-job-match-checker",
+      "body": "Compare seu currículo com a vaga que você acabou de salvar."
+    },
+    {
+      "label": "Verificador de palavras-chave ATS",
+      "href": "/free-ats-keyword-checker",
+      "body": "Destaque os termos em que a vaga insiste."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

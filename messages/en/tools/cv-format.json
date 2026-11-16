@@ -1,0 +1,120 @@
+{
+  "countryLabel": "Country you are applying in",
+  "countryOption": {
+    "za": "South Africa",
+    "ng": "Nigeria",
+    "ke": "Kenya",
+    "in": "India",
+    "uk": "United Kingdom",
+    "us": "United States",
+    "other": "Another country"
+  },
+  "countryName": {
+    "za": "South Africa",
+    "ng": "Nigeria",
+    "ke": "Kenya",
+    "in": "India",
+    "uk": "the UK",
+    "us": "the US",
+    "other": "your country"
+  },
+  "countryIn": {
+    "za": "in South Africa",
+    "ng": "in Nigeria",
+    "ke": "in Kenya",
+    "in": "in India",
+    "uk": "in the UK",
+    "us": "in the US",
+    "other": "in your country"
+  },
+  "countryFor": {
+    "za": "for South Africa",
+    "ng": "for Nigeria",
+    "ke": "for Kenya",
+    "in": "for India",
+    "uk": "for the UK",
+    "us": "for the US",
+    "other": "for your country"
+  },
+  "englishOnly": "The checks look for English wording, such as \"date of birth\" or \"career objective\", so they work on a CV written in English. Length and email checks work in any language.",
+  "submit": "Check my CV format",
+  "busy": "Checking your CV",
+  "readingCv": "Reading your CV",
+  "privacy": "Your CV is read in this tab. Nothing is stored.",
+  "fits": "Your CV fits {country}",
+  "toFix": "{count, plural, one {# thing} other {# things}} to fix {for}",
+  "otherNote": "These checks hold in most countries. Rules for one country, like an ID number or a declaration, are not checked.",
+  "textOnly": "This checks the text only. It cannot see a photo, columns or fonts. Leave the photo off unless the posting asks for one.",
+  "pass": "Pass",
+  "fail": "Fix",
+  "length": {
+    "title": "About {pages, plural, one {# page} other {# pages}} long",
+    "ok": "Within the {max} pages most employers {in} expect.",
+    "fix": "Cut to {max} pages {for}. Trim roles older than 10 years to one line each."
+  },
+  "email": {
+    "title": "Email address",
+    "ok": "Found. Use a plain firstname.lastname style address.",
+    "fix": "No email found. Put it at the top, next to your phone number."
+  },
+  "personal": {
+    "title": "Personal details",
+    "drop": {
+      "ok": "None found. Good, employers {in} do not expect them.",
+      "fix": "Remove date of birth, marital status, gender, religion and nationality. Employers {in} do not expect them and they invite bias."
+    },
+    "ifAsked": {
+      "ok": "Fine. Add date of birth only when the posting asks for it.",
+      "fix": "Remove marital status. Add date of birth only when the posting asks for it."
+    },
+    "ifAskedNg": {
+      "ok": "Fine. Add date of birth only when the posting asks for it.",
+      "fix": "Remove marital status. Add date of birth or state of origin only when the posting asks for it."
+    },
+    "general": {
+      "ok": "Fine. Add date of birth or a photo only if employers in your country expect them.",
+      "fix": "Remove marital status. It has nothing to do with the job."
+    },
+    "keep": {
+      "ok": "Fine. Nationality or work permit status and a driver's licence are worth listing in South Africa.",
+      "fix": "Remove marital status. It has nothing to do with the job."
+    }
+  },
+  "id": {
+    "title": "ID number",
+    "za": {
+      "ok": "Not on your CV. Share it only when an employer asks.",
+      "fix": "Remove your ID number. Share it when an employer asks, usually at offer stage. It is personal information under POPIA."
+    },
+    "ke": {
+      "ok": "Not on your CV. Give it on the application form when asked.",
+      "fix": "Remove your ID number. Give it on the application form or when an employer asks. It is personal data under the Data Protection Act 2019."
+    }
+  },
+  "nysc": {
+    "title": "NYSC status",
+    "ok": "Found. Employers check it, so keep the year you finished or your exemption.",
+    "fix": "Add your NYSC status: completed with the year, exempted, or currently serving."
+  },
+  "objective": {
+    "title": "Career objective",
+    "ok": "No objective statement. Good.",
+    "fix": "Replace the objective with a three line professional summary about what you offer, not what you want."
+  },
+  "references": {
+    "title": "References line",
+    "ok": "No filler references line.",
+    "fix": "Delete \"references available on request\". Employers assume it.",
+    "fixReferees": "Delete \"references available on request\". Employers assume it. Or list two referees with phone numbers, which is common here."
+  },
+  "declaration": {
+    "title": "Declaration",
+    "ok": "No declaration line. Fine for private sector roles.",
+    "fix": "Drop the \"I hereby declare\" line unless the posting asks for it. Private sector recruiters skip it."
+  },
+  "cta": {
+    "title": "Format fixed. Now fit it to the job.",
+    "body": "FitMyCV takes this CV and a job link, then rewrites your summary and top bullets for that posting, with a matching cover letter.",
+    "label": "Tailor my CV to a job"
+  }
+}

@@ -8,30 +8,25 @@
 // helpers between the markers are checked by scripts/check-tools.mjs.
 
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { CheckIcon, CopyIcon, WarningIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
 
 // pure-helpers:start
 
-// Path starts that are LinkedIn pages but not a personal profile.
-const NOT_PROFILE = {
-  company: "That is a company page. Paste the link to your own profile, the one with /in/ in it.",
-  school: "That is a school page. Paste the link to your own profile, the one with /in/ in it.",
-  showcase: "That is a showcase page. Paste the link to your own profile, the one with /in/ in it.",
-  posts: "That is a link to a post. Paste the link to your own profile, the one with /in/ in it.",
-  feed: "That is a link to your feed or a post. Paste the link to your profile, the one with /in/ in it.",
-  jobs: "That is a job listing. Paste the link to your own profile, the one with /in/ in it.",
-  pulse: "That is a link to an article. Paste the link to your own profile, the one with /in/ in it.",
-  pub: "That is an old style profile link. Open your profile and copy the address from the browser, which now uses /in/.",
-};
+// Path starts that are LinkedIn pages but not a personal profile. Each one
+// has its own message under `notProfile` in messages/<locale>/tools/link.json.
+const NOT_PROFILE = new Set(["company", "school", "showcase", "posts", "feed", "jobs", "pulse", "pub"]);
 
 // LinkedIn adds a run of digits or hex to a handle when you never picked one.
 const AUTO_SUFFIX = /-(?=[0-9a-f]*\d)[0-9a-f]{5,}$|-\d{3,}$/i;
 
 /**
  * Parses whatever the user pasted into a LinkedIn profile handle.
- * Returns { handle, removed } on success or { error } when it is not a
- * profile link. `removed` lists what was stripped, so the tool can say so.
+ * Returns { handle, removed, prefix } on success or { error } when it is not
+ * a profile link. `removed` lists message keys for what was stripped, so the
+ * tool can say so, and `prefix` is the country subdomain when one went.
+ * `error` is a message key, or "" for empty input.
  */
 function parseLinkedInUrl(input) {
   let text = String(input ?? "")
@@ -41,7 +36,7 @@ function parseLinkedInUrl(input) {
 
   // A bare handle, like the part after /in/.
   if (/^[\p{L}\p{N}_-]+$/u.test(text) && !/^linkedin$/i.test(text)) {
-    return { handle: text, removed: [] };
+    return { handle: text, removed: [], prefix: "" };
   }
 
   if (/^\/?in\//i.test(text)) text = `linkedin.com/${text.replace(/^\//, "")}`;
@@ -51,29 +46,30 @@ function parseLinkedInUrl(input) {
   try {
     url = new URL(text);
   } catch {
-    return { error: "That does not look like a link. Paste the address from your profile page." };
+    return { error: "notLink" };
   }
 
   const host = url.hostname.toLowerCase();
   if (host !== "linkedin.com" && !host.endsWith(".linkedin.com")) {
-    return { error: "That is not a LinkedIn link. Paste the address from your LinkedIn profile page." };
+    return { error: "notLinkedIn" };
   }
 
   const removed = [];
   const sub = host.slice(0, -"linkedin.com".length).replace(/\.$/, "");
-  if (sub === "m" || sub === "mobile") removed.push("the mobile m. prefix");
-  else if (sub && sub !== "www") removed.push(`the ${sub}. country prefix`);
-  if (url.search) removed.push("the tracking text after the ?");
-  if (url.hash) removed.push("the # fragment");
+  const prefix = sub && sub !== "www" && sub !== "m" && sub !== "mobile" ? sub : "";
+  if (sub === "m" || sub === "mobile") removed.push("mobile");
+  else if (prefix) removed.push("country");
+  if (url.search) removed.push("tracking");
+  if (url.hash) removed.push("fragment");
 
   const segments = url.pathname.split("/").filter(Boolean);
   const first = (segments[0] || "").toLowerCase();
   if (first !== "in") {
-    if (NOT_PROFILE[first]) return { error: NOT_PROFILE[first] };
-    return { error: "That link does not point at a profile. Profile links have /in/ followed by your name." };
+    if (NOT_PROFILE.has(first)) return { error: `notProfile.${first}` };
+    return { error: "notProfile.other" };
   }
   if (!segments[1]) {
-    return { error: "The link stops after /in/. Copy the full address from your profile page." };
+    return { error: "noHandle" };
   }
 
   let handle = segments[1];
@@ -82,10 +78,10 @@ function parseLinkedInUrl(input) {
   } catch {
     // A malformed escape is left as typed and flagged by findLinkIssues.
   }
-  if (segments.length > 2) removed.push("the language or page part after your name");
-  if (url.pathname.endsWith("/")) removed.push("the trailing slash");
+  if (segments.length > 2) removed.push("path");
+  if (url.pathname.endsWith("/")) removed.push("slash");
 
-  return { handle, removed };
+  return { handle, removed, prefix };
 }
 
 /** The short form for the printed CV and the full form for the hyperlink. */
@@ -97,22 +93,12 @@ function formatLinks(handle) {
   };
 }
 
-/** Things about the handle itself that are worth the user fixing. */
+/** Message keys for things about the handle that are worth the user fixing. */
 function findLinkIssues(handle) {
   const issues = [];
-  if (AUTO_SUFFIX.test(handle)) {
-    issues.push(
-      "Your link ends in a string of numbers or letters that LinkedIn added. A custom URL with just your name reads better on a CV. The steps are below."
-    );
-  }
-  if (/[^A-Za-z0-9-]/.test(handle)) {
-    issues.push(
-      "Your link has characters other than letters, numbers and hyphens. Some PDF readers and applicant tracking systems break the link at those. A custom URL fixes it."
-    );
-  }
-  if (handle.length < 3) {
-    issues.push("That handle is very short. Check you copied the whole address from your profile.");
-  }
+  if (AUTO_SUFFIX.test(handle)) issues.push("autoSuffix");
+  if (/[^A-Za-z0-9-]/.test(handle)) issues.push("oddCharacters");
+  if (handle.length < 3) issues.push("tooShort");
   return issues;
 }
 
@@ -121,6 +107,7 @@ function findLinkIssues(handle) {
 const EXAMPLE = "https://uk.linkedin.com/in/farirai-masocha-4b2a19c3?originalSubdomain=zw";
 
 export default function LinkedInUrlFormatter() {
+  const t = useTranslations("tools.link");
   const [value, setValue] = useState("");
   const [copied, setCopied] = useState("");
   const [copyError, setCopyError] = useState("");
@@ -133,6 +120,7 @@ export default function LinkedInUrlFormatter() {
       isExample,
       ...formatLinks(parsed.handle),
       removed: parsed.removed,
+      prefix: parsed.prefix,
       issues: findLinkIssues(parsed.handle),
     };
   }, [value]);
@@ -145,16 +133,16 @@ export default function LinkedInUrlFormatter() {
 
   const handleCopy = async (key, text) => {
     if (!navigator?.clipboard?.writeText) {
-      setCopyError("Copy is blocked in this browser. Select the link and copy it.");
+      setCopyError(t("copyBlocked"));
       return;
     }
     try {
       await navigator.clipboard.writeText(text);
       setCopyError("");
       setCopied(key);
-      toast.success("Link copied");
+      toast.success(t("copied"));
     } catch {
-      setCopyError("Copy is blocked in this browser. Select the link and copy it.");
+      setCopyError(t("copyBlocked"));
     }
   };
 
@@ -163,13 +151,13 @@ export default function LinkedInUrlFormatter() {
         {
           key: "short",
           text: result.short,
-          badge: "For the CV",
-          note: "Type this as the visible text in your contact line. It is short and easy to read.",
+          badge: t("shortBadge"),
+          note: t("shortNote"),
         },
         {
           key: "full",
           text: result.full,
-          note: "Use this as the hyperlink behind that text, so a click opens your profile.",
+          note: t("fullNote"),
         },
       ]
     : [];
@@ -181,7 +169,7 @@ export default function LinkedInUrlFormatter() {
           htmlFor="linkedin-url"
           className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
         >
-          Your LinkedIn profile link
+          {t("label")}
         </label>
         <input
           id="linkedin-url"
@@ -192,7 +180,7 @@ export default function LinkedInUrlFormatter() {
             setValue(event.target.value);
             setCopyError("");
           }}
-          placeholder="https://www.linkedin.com/in/your-name"
+          placeholder={t("placeholder")}
           autoComplete="off"
           spellCheck={false}
           className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
@@ -200,18 +188,17 @@ export default function LinkedInUrlFormatter() {
       </div>
 
       <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
-        Paste the address from your profile page. The link is cleaned as you type.
-        Nothing is uploaded or stored.
+        {t("hint")}
       </p>
 
       <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
         <div className="flex flex-wrap items-baseline gap-3">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-            {result.isExample ? "Here is what you get" : "Your CV links"}
+            {result.isExample ? t("exampleHeading") : t("resultHeading")}
           </p>
           {result.isExample ? (
             <span className="rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 py-1 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-              Example
+              {t("exampleBadge")}
             </span>
           ) : null}
         </div>
@@ -224,14 +211,14 @@ export default function LinkedInUrlFormatter() {
               aria-hidden="true"
               className="mt-1 shrink-0 text-[var(--landing-accent)]"
             />
-            {result.error}
+            {t(result.error)}
           </p>
         ) : (
           <>
             <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
               {result.isExample
-                ? "Paste your own link above to clean it. This example comes from a messy country link with tracking text."
-                : "Copy the short form into your CV and put the full form behind it as the hyperlink."}
+                ? t("exampleIntro")
+                : t("resultIntro")}
             </p>
 
             <ul className="mt-6 flex flex-col gap-3">
@@ -260,7 +247,7 @@ export default function LinkedInUrlFormatter() {
                     <button
                       type="button"
                       onClick={() => handleCopy(option.key, option.text)}
-                      aria-label={`Copy link ${option.text}`}
+                      aria-label={t("copyAria", { link: option.text })}
                       className="landing-secondary-btn landing-secondary-btn-sm shrink-0 font-outfit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
                     >
                       {copied === option.key ? (
@@ -271,12 +258,12 @@ export default function LinkedInUrlFormatter() {
                             aria-hidden="true"
                             className="text-[var(--landing-success)]"
                           />
-                          Copied
+                          {t("copiedButton")}
                         </>
                       ) : (
                         <>
                           <CopyIcon size={14} weight="bold" aria-hidden="true" />
-                          Copy
+                          {t("copy")}
                         </>
                       )}
                     </button>
@@ -287,10 +274,10 @@ export default function LinkedInUrlFormatter() {
 
             <div className="mt-6 rounded-2xl border border-dashed border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-4">
               <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                How it looks in your CV header
+                {t("previewHeading")}
               </p>
               <p className="mt-2 break-all text-sm leading-6 text-[var(--landing-ink)]">
-                Your Name | City, Country | you@email.com |{" "}
+                {t("previewLine")} |{" "}
                 <span className="font-semibold underline decoration-[var(--landing-line)] underline-offset-4">
                   {result.short}
                 </span>
@@ -299,14 +286,18 @@ export default function LinkedInUrlFormatter() {
 
             {result.removed?.length && !result.isExample ? (
               <p className="mt-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Removed {result.removed.join(", ")}.
+                {t("removed", {
+                  items: result.removed
+                    .map((key) => t(`removedItem.${key}`, { prefix: result.prefix }))
+                    .join(t("listSeparator")),
+                })}
               </p>
             ) : null}
 
             {result.issues?.length ? (
               <div className="mt-8">
                 <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                  Worth fixing
+                  {t("issuesHeading")}
                 </p>
                 <ul className="mt-3 flex flex-col gap-2">
                   {result.issues.map((issue) => (
@@ -320,7 +311,7 @@ export default function LinkedInUrlFormatter() {
                         aria-hidden="true"
                         className="mt-1 shrink-0 text-[var(--landing-accent)]"
                       />
-                      {issue}
+                      {t(`issue.${issue}`)}
                     </li>
                   ))}
                 </ul>
@@ -330,7 +321,7 @@ export default function LinkedInUrlFormatter() {
         )}
 
         <p aria-live="polite" className="sr-only">
-          {copied ? "Link copied" : ""}
+          {copied ? t("copied") : ""}
         </p>
         {copyError ? (
           <p className="mt-4 text-sm font-semibold text-[var(--landing-coral)]">{copyError}</p>

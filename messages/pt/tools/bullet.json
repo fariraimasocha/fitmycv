@@ -1,0 +1,76 @@
+{
+  "englishOnly": "Esta ferramenta reescreve tópicos escritos em inglês. Os verbos, os modelos e as verificações só funcionam com texto em inglês, então as novas versões saem em inglês.",
+  "bulletLabel": "Cole um tópico do seu currículo",
+  "bulletPlaceholder": "Managed customer support tickets.",
+  "bulletHint": "Funciona melhor com um tópico de cada vez.",
+  "jobLabel": "Cole a descrição da vaga (opcional)",
+  "jobPlaceholder": "Cole o anúncio para ver quais termos dele você poderia incluir…",
+  "jobHint": "Deixe em branco para só reescrever o tópico.",
+  "submit": "Reescrever este tópico",
+  "busy": "Reescrevendo seu tópico",
+  "example": "Testar um exemplo",
+  "privacy": "Roda inteiro no seu navegador. Nada é enviado nem armazenado.",
+  "resultTitle": "Três formas de reescrever",
+  "resultBody": "Cada uma começa com um verbo de ação e marca onde entra um número. Os espaços destacados são para você preencher. A ferramenta não conhece seus números, então escolha valores que você consiga defender na entrevista.",
+  "fixTitle": "O que corrigir no original",
+  "notes": {
+    "opener": "Começa com \"{opener}\", que descreve uma tarefa. Comece com um verbo de ação.",
+    "verbOk": "Começa com um verbo de ação. Mantenha e acrescente os números.",
+    "number": "Tem um número. Confira se é o que interessa a quem vai contratar.",
+    "noNumber": "Nenhum número. Diga quantos, com que frequência, quanto ou quanto mais rápido.",
+    "long": "{count} palavras. Corte para menos de 25 para caber em duas linhas.",
+    "pronoun": "Usa \"{word}\". Tire os pronomes dos tópicos do currículo e comece pelo verbo.",
+    "vague": "\"{word}\" esconde a quantidade. Troque pelo número real.",
+    "fullStop": "Termina com ponto final. Use o mesmo final em todos os tópicos.",
+    "noFullStop": "Sem ponto final. Tudo bem, desde que todos os outros tópicos sigam o mesmo padrão."
+  },
+  "termsTitle": "Termos do anúncio que você poderia incluir",
+  "termsBody": "O anúncio insiste nesses termos e seu tópico nunca os menciona. Inclua só os que você realmente fez.",
+  "termsTooShort": "Cole mais do anúncio para ver quais termos faltam neste tópico. Uma ou duas linhas não bastam para ordenar.",
+  "verbsTitle": "Verbos de ação para {family}",
+  "verbsSwap": "Use o que for mais preciso.",
+  "families": {
+    "ownership": {
+      "label": "responsabilidade e liderança",
+      "hint": "Você está descrevendo algo que comandou ou pelo qual respondeu."
+    },
+    "support": {
+      "label": "atendimento a clientes e pessoas",
+      "hint": "Você está descrevendo um trabalho feito para clientes ou colegas."
+    },
+    "delivery": {
+      "label": "criação e entrega",
+      "hint": "Você está descrevendo algo que ajudou a construir ou lançar."
+    },
+    "process": {
+      "label": "processos e eficiência",
+      "hint": "Você está descrevendo um processo que manteve funcionando ou melhorou."
+    },
+    "analysis": {
+      "label": "dados e análise",
+      "hint": "Você está descrevendo algo que mediu ou investigou."
+    },
+    "general": {
+      "label": "qualquer área",
+      "hint": "Nenhum grupo se destacou, então estes servem para tudo."
+    }
+  },
+  "ctaTitle": "Um tópico pronto. E o resto?",
+  "ctaBody": "Cole o link da vaga e o FitMyCV reescreve cada tópico com base nesse anúncio, mantendo sua experiência real e seus números reais.",
+  "ctaLabel": "Adaptar meu currículo",
+  "previewTitle": "O que você recebe",
+  "preview": {
+    "rewrites": {
+      "title": "Três novas versões",
+      "body": "Cada uma começa com um verbo de ação e marca onde entra o seu número."
+    },
+    "read": {
+      "title": "Uma análise do original",
+      "body": "Início fraco, número ausente, pronomes, tamanho. Uma linha para cada."
+    },
+    "verbs": {
+      "title": "Um banco de verbos",
+      "body": "Verbos de ação para o tipo de trabalho que este tópico descreve."
+    }
+  }
+}

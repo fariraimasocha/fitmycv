@@ -1,0 +1,92 @@
+{
+  "seoTitle": "Enregistrer une offre d'emploi en PDF : gratuit, sans compte",
+  "description": "Collez le lien d'une offre LinkedIn ou d'une page carrières et gardez l'offre complète en PDF avant qu'elle ne disparaisse. Gratuit, sans inscription.",
+  "keywords": [
+    "enregistrer offre d'emploi en pdf",
+    "télécharger offre d'emploi linkedin",
+    "sauvegarder offre linkedin",
+    "offre d'emploi pdf",
+    "garder une offre d'emploi",
+    "fiche de poste pdf",
+    "conserver une annonce d'emploi"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Offre d'emploi en PDF",
+  "h1": "Enregistrez une offre d'emploi en PDF",
+  "lede": "Collez le lien de l'offre. Nous lisons l'annonce et vous donnons son texte complet à enregistrer en PDF ou à copier, pour l'avoir encore quand elle sera retirée.",
+  "howTo": {
+    "name": "Comment enregistrer une offre d'emploi en PDF",
+    "description": "Gardez une copie d'une offre avant qu'elle ne soit retirée.",
+    "steps": [
+      {
+        "name": "Copiez le lien de l'offre",
+        "text": "Ouvrez l'offre et copiez l'adresse dans la barre du navigateur. Un lien LinkedIn fonctionne, tout comme le lien d'une page carrières ou d'un site d'emploi."
+      },
+      {
+        "name": "Collez-le et enregistrez",
+        "text": "L'outil lit la page et affiche le texte de l'offre avec le lien et la date d'enregistrement."
+      },
+      {
+        "name": "Téléchargez le PDF",
+        "text": "Cliquez sur Enregistrer en PDF et choisissez Enregistrer au format PDF comme destination dans la fenêtre d'impression. Seule l'offre est imprimée."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Pourquoi enregistrer une offre d'emploi ?",
+      "a": "Les employeurs retirent l'annonce quand le poste est pourvu, souvent avant votre entretien. Le descriptif est le meilleur guide des questions qu'on vous posera : gardez-en une copie le jour où vous postulez."
+    },
+    {
+      "q": "Est-ce que ça marche avec les offres LinkedIn ?",
+      "a": "Oui, pour les liens publics comme linkedin.com/jobs/view/ suivi d'un numéro. Si LinkedIn n'affiche pas l'offre sans connexion, l'outil vous le dit et vous pouvez enregistrer la page depuis votre propre navigateur."
+    },
+    {
+      "q": "Et si l'offre est déjà close ?",
+      "a": "La page a alors souvent disparu et il n'y a plus rien à lire. Enregistrez les offres quand vous postulez, pas quand l'entretien est fixé."
+    },
+    {
+      "q": "Stockez-vous les offres que j'enregistre ?",
+      "a": "Non. La page est lue une fois pour vous montrer son texte. Rien n'est enregistré dans un compte ni dans une base de données."
+    },
+    {
+      "q": "Pourquoi le texte enregistré est-il si simple ?",
+      "a": "L'outil garde les mots de l'offre, pas la mise en page du site, ses logos ou ses boutons. Le PDF est ainsi facile à lire et à fouiller plus tard."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Que faire d'une offre enregistrée"
+    },
+    {
+      "ul": [
+        "**Avant l'entretien,** relisez les missions et associez chacune à une situation tirée de votre propre travail.",
+        "**Quand vous écrivez la lettre de motivation,** reprenez les mots de l'offre pour les compétences demandées.",
+        "**Après une proposition,** comparez le poste proposé avec celui de l'annonce."
+      ]
+    }
+  ],
+  "related": [
+    {
+      "label": "Quel ATS utilise une entreprise ?",
+      "href": "/ats",
+      "body": "Collez un lien d'offre et voyez le logiciel de recrutement derrière."
+    },
+    {
+      "label": "Comparateur CV et offre",
+      "href": "/resume-job-match-checker",
+      "body": "Comparez votre CV à l'offre que vous venez d'enregistrer."
+    },
+    {
+      "label": "Vérificateur de mots-clés ATS",
+      "href": "/free-ats-keyword-checker",
+      "body": "Faites ressortir les termes sur lesquels l'offre insiste."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

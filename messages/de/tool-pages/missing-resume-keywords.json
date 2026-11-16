@@ -1,0 +1,222 @@
+{
+  "seoTitle": "Fehlende Keywords im Lebenslauf finden: kostenloses Tool",
+  "description": "Lade deinen Lebenslauf hoch und füge eine Stellenanzeige ein. Du siehst, welche Keywords deinem Lebenslauf fehlen und wie oft die Anzeige jedes nutzt. Kostenlos, gelesen in deinem Browser.",
+  "keywords": [
+    "fehlende keywords lebenslauf",
+    "lebenslauf keywords finden",
+    "keywords aus stellenanzeige",
+    "lebenslauf mit stellenanzeige vergleichen",
+    "stellenanzeige keywords",
+    "keyword analyse lebenslauf",
+    "lebenslauf keywords prüfen",
+    "ats keywords lebenslauf"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Fehlende Keywords",
+  "h1": "Finde die Keywords, die deinem Lebenslauf fehlen",
+  "lede": "Lade deinen Lebenslauf hoch und füge eine Stellenanzeige ein. Du erhältst die Begriffe, die die Anzeige verlangt und die dein Lebenslauf nie erwähnt, sortiert danach, wie oft die Anzeige jeden nennt. Ohne Anmeldung, und nichts verlässt deinen Browser.",
+  "howTo": {
+    "name": "So findest du die Keywords, die deinem Lebenslauf fehlen",
+    "description": "Gleiche eine Stellenanzeige mit deinem Lebenslauf ab und liste die Begriffe der Anzeige auf, die dein Lebenslauf nie erwähnt.",
+    "steps": [
+      {
+        "name": "Füge die Stellenanzeige ein",
+        "text": "Kopiere die ganze Anzeige mit Aufgaben und Anforderungen und füge sie in das erste Feld ein. Ein Teil des Textes ergibt nur einen Teil der Lückenliste."
+      },
+      {
+        "name": "Lade deinen Lebenslauf hoch",
+        "text": "Zieh die PDF hinein. Wir holen den Text heraus, du musst nichts kopieren. Kenntnisse, Stichpunkte und Profil werden alle gelesen."
+      },
+      {
+        "name": "Arbeite die Lückenliste ab",
+        "text": "Bei jedem fehlenden Begriff steht, wie oft die Anzeige ihn nennt. Fang oben an und ergänze die, die du ehrlich belegen kannst, in einem Stichpunkt mit Ergebnis."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Wie finde ich die Keywords, die meinem Lebenslauf fehlen?",
+      "a": "Füge die Stellenanzeige ein und lade deinen Lebenslauf im Tool oben hoch. Es zieht die Begriffe heraus, auf die die Anzeige setzt, sucht jeden im Text deines Lebenslaufs und listet die auf, die dein Lebenslauf nie erwähnt. Der ganze Abgleich läuft in deinem Browser und dauert ein paar Sekunden."
+    },
+    {
+      "q": "Was ist eine Keyword-Lücke im Lebenslauf?",
+      "a": "Ein Begriff, den der Arbeitgeber verwendet und dein Lebenslauf nicht. Meist ist es ein Wortproblem, kein Erfahrungsproblem. Du hast die Arbeit gemacht, sie aber mit anderen Worten beschrieben als die Person, die die Anzeige geschrieben hat. Ein Recruiter, der nach ihren Worten sucht, findet dich deshalb nie."
+    },
+    {
+      "q": "Was bedeutet \"4x genannt\" neben einem Keyword?",
+      "a": "Es ist die Zahl, wie oft genau dieser Begriff in der eingefügten Anzeige vorkommt. Nichts wird gewichtet oder geschätzt. Ein Begriff, der viermal genannt wird, wiederholt sich in Zusammenfassung, Aufgaben und Anforderungen. Das heißt meist, dass er ein echtes Muss ist und kein Plus."
+    },
+    {
+      "q": "Soll ich jedes fehlende Keyword in den Lebenslauf schreiben?",
+      "a": "Nein. Ergänze nur die, die du ehrlich belegen kannst, jedes in einem Stichpunkt, der sagt, was du getan hast und was dabei herauskam. Ein Tool zu nennen, das du nie benutzt hast, verschiebt die Absage von der Lebenslauf-Sichtung ins Vorstellungsgespräch, und dort ist sie schlimmer."
+    },
+    {
+      "q": "Was ist der Unterschied zum kostenlosen ATS-Keyword-Checker?",
+      "a": "Der Keyword-Checker listet, was die Stelle verlangt. Diese Seite listet, was deinem Lebenslauf fehlt. Der Checker braucht nur die Anzeige und gibt dir eine sortierte Wortliste zum Schreiben. Diese Seite braucht auch deinen Lebenslauf und zieht ab, was du schon abdeckst, sodass nur die Lücken bleiben."
+    },
+    {
+      "q": "Wird mein Lebenslauf hochgeladen oder gespeichert?",
+      "a": "Die PDF wird in diesem Tab gelesen. Die Datei wird nie an einen Server geschickt, und nichts wird gespeichert. Schließ den Tab und alles ist weg."
+    },
+    {
+      "q": "Warum gilt ein Begriff als fehlend, obwohl er in meinem Lebenslauf steht?",
+      "a": "Meist wegen Schreibweise oder Form. Die Anzeige kürzt vielleicht ab, was du ausschreibst, oder nutzt einen Plural, einen Bindestrich oder eine andere Zeitform. Prüfe die genaue Form in deinem Lebenslauf und übernimm die der Anzeige, wo das ehrlich ist. Beide Formen einmal zu schreiben, etwa \"Suchmaschinenoptimierung (SEO)\", löst die meisten dieser Fälle."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Was als fehlendes Keyword zählt"
+    },
+    {
+      "p": "Ein fehlendes Keyword ist ein Begriff, auf den die Anzeige setzt und der nirgends im Text deines Lebenslaufs vorkommt. Das Tool zieht einzelne Wörter und wiederholte Zwei-Wort-Ausdrücke aus der Anzeige, sucht jeden in deinem Lebenslauf und zeigt dir den Rest."
+    },
+    {
+      "p": "Die Zahl neben jedem Begriff ist die ehrliche Zählung, wie oft die Anzeige ihn nennt. Das ist die ganze Sortierung. Ein Begriff, der viermal in Zusammenfassung, Aufgaben und Anforderungen steht, ist ein echtes Muss. Ein Begriff, der einmal vorkommt, ist vielleicht ein Plus, das du ohne Nachteil weglassen kannst."
+    },
+    {
+      "callout": {
+        "title": "Lücken, keine Note",
+        "body": "Diese Seite gibt bewusst keinen Score. Ein Prozentwert sagt dir, wie du abgeschnitten hast. Eine Liste fehlender Begriffe sagt dir, was als Nächstes zu tun ist, und nur das hilft, wenn die Bewerbungsfrist in zwanzig Minuten endet."
+      }
+    },
+    {
+      "h2": "Keyword-Auswertung, Lückensuche oder kompletter Check?"
+    },
+    {
+      "p": "Drei ähnliche Aufgaben, drei verschiedene Antworten. Wähle die, die zu deiner eigentlichen Frage passt."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Diese Seite",
+          "Keyword-Auswertung",
+          "ATS-Check für den Lebenslauf"
+        ],
+        "rows": [
+          [
+            "Die Frage, die es beantwortet",
+            "Was fehlt meinem Lebenslauf?",
+            "Was verlangt diese Stelle?",
+            "Wie gut passe ich insgesamt?"
+          ],
+          [
+            "Braucht die Stellenanzeige",
+            "Ja",
+            "Ja",
+            "Ja"
+          ],
+          [
+            "Braucht deinen Lebenslauf",
+            "Ja",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Gibt einen Match-Score",
+            "Nein",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Listet fehlende Begriffe mit Anzahl der Nennungen",
+            "Ja",
+            "Nein",
+            "Nein"
+          ],
+          [
+            "Schreibt deinen Lebenslauf um",
+            "Nein",
+            "Nein",
+            "Nein"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Wenn du den Lebenslauf noch nicht geschrieben hast, fang mit der [Keyword-Auswertung für Stellenanzeigen](/free-ats-keyword-checker) an. Sie sortiert, was die Anzeige verlangt. Wenn du eine einzige Zahl über mehrere Fassungen verfolgen willst, nutze den [ATS-Check für den Lebenslauf](/ats-resume-checker). Wenn du schon einen Lebenslauf und eine konkrete Anzeige vor dir hast, bleib hier."
+    },
+    {
+      "h2": "Was du mit jedem fehlenden Keyword machst"
+    },
+    {
+      "p": "Arbeite die Liste vom meistgenannten Begriff an ab. Stell dir bei jedem dieselben vier Fragen."
+    },
+    {
+      "ol": [
+        "**Kann ich es belegen?** Wenn du die Arbeit gemacht hast, gehört der Begriff in den Lebenslauf. Wenn nicht, überspring ihn. Eine Lücke, die du nicht ehrlich füllen kannst, ist eine Information über die Stelle, keine Aufgabe.",
+        "**Sage ich es schon mit anderen Worten?** Wenn die Anzeige *Stakeholder-Management* sagt und dein Stichpunkt *Geschäftsleitung auf dem Laufenden gehalten*, beschreibst du dieselbe Arbeit mit Worten, nach denen niemand sucht. Ändere die Worte, nicht die Arbeit.",
+        "**Ist es ein Abkürzungsproblem?** Schreib beide Formen einmal, etwa \"Continuous Integration (CI)\", damit eine wörtliche Suche nach jeder Form dich findet.",
+        "**Wo gehört es hin?** In einen Stichpunkt, mit Handlung und Zahl. Eine Liste von Fähigkeiten ist eine Behauptung. Ein Stichpunkt, der Tool und Ergebnis nennt, ist ein Beleg, und genau das will der Mensch, der nach dem Filter liest."
+      ]
+    },
+    {
+      "p": "Lade dann den überarbeiteten Lebenslauf wieder hoch und prüfe erneut. Zwei oder drei Durchgänge leeren meist den Großteil der Liste, ohne etwas zu erfinden. Die [vollständige Anpassungsmethode](/blog/how-to-tailor-cv-to-job-description) (auf Englisch) zeigt denselben Ablauf mit einem Vorher-nachher-Beispiel."
+    },
+    {
+      "h2": "Warum die Anzahl der Nennungen bestimmt, was du zuerst angehst"
+    },
+    {
+      "p": "Stellenanzeigen sind nicht flach. Dieselbe Anforderung steht in der Zusammenfassung, dann bei den Aufgaben und noch einmal bei den Muss-Kriterien, während wirklich Optionales einmal in einem Stichpunkt weit unten vorkommt. Das Zählen der Nennungen macht diese Rangfolge sichtbar, ohne die Anzeige dreimal zu lesen."
+    },
+    {
+      "steps": [
+        {
+          "title": "Dreimal oder öfter genannt",
+          "body": "Behandle es als Muss. Wenn du es belegen kannst, gehört es in dein Kurzprofil und in mindestens einen Stichpunkt deiner aktuellen Stelle."
+        },
+        {
+          "title": "Zweimal genannt",
+          "body": "Einen Stichpunkt wert, wenn du den Beleg hast. Hier liegen die meisten schnellen Gewinne, denn diese Begriffe sind echte Anforderungen, die man beim ersten Lesen leicht übersieht."
+        },
+        {
+          "title": "Einmal genannt",
+          "body": "Optional. Nimm es in deine Kenntnisse auf, wenn es stimmt, und bau dafür nichts um."
+        }
+      ]
+    },
+    {
+      "h2": "Was diese Lückenanalyse dir nicht sagen kann"
+    },
+    {
+      "p": "Es ist eine Methode auf Basis von Häufigkeit und Ausdrücken, kein Sprachmodell. Sie vergleicht Zeichenketten. Sie kann dir nicht sagen, dass *GuV-Verantwortung* und *Budgetverantwortung* in deiner Branche dasselbe bedeuten, und sie erkennt keine Anforderung, die die Anzeige nur andeutet. Entscheide bei Synonymen selbst."
+    },
+    {
+      "p": "Zum Layout sagt sie auch nichts. Wenn der Text deines Lebenslaufs durcheinander oder unvollständig herauskommt, zieht ein echtes Bewerbermanagementsystem (ATS) dasselbe Durcheinander heraus, und daran ändert keine Keyword-Arbeit etwas. Der [ATS-Leitfaden für Lebensläufe](/blog/ats-resume-guide) (auf Englisch) erklärt die Formatregeln, die dem allem zugrunde liegen."
+    },
+    {
+      "p": "Und sie schreibt nichts um. Eine Keyword-Lücke von Hand zu schließen dauert zwanzig bis vierzig Minuten pro Stelle. Deshalb hören die meisten nach einem Dutzend Bewerbungen auf, ihren Lebenslauf anzupassen. Wenn du das lieber nicht selbst machst, erklärt der [Lebenslauf-Optimierer](/resume-optimizer) (auf Englisch), was eine automatische Überarbeitung ändert und was sie so lässt."
+    },
+    {
+      "cta": {
+        "title": "Schließe die Lücken, ohne von Hand umzuschreiben",
+        "body": "Füge den Link zur Stelle ein und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben für diese Anzeige um, mit der Erfahrung, die du schon hast.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Kostenloser ATS-Keyword-Checker",
+      "href": "/free-ats-keyword-checker",
+      "body": "Du hast nur die Anzeige? Hol dir vor dem Schreiben die sortierte Liste der Begriffe, auf die sie setzt."
+    },
+    {
+      "label": "ATS-Check für den Lebenslauf",
+      "href": "/ats-resume-checker",
+      "body": "Du willst eine Zahl über mehrere Fassungen verfolgen? Bewerte deinen Lebenslauf anhand der Anzeige."
+    },
+    {
+      "label": "Lebenslauf aus einem Stellenlink anpassen",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Füge die URL der Anzeige ein und erhalte in unter einer Minute einen überarbeiteten Lebenslauf und ein Anschreiben."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

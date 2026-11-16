@@ -1,0 +1,91 @@
+{
+  "seoTitle": "Guardar una oferta de empleo en PDF: gratis, sin registro",
+  "description": "Pega el enlace de una oferta de LinkedIn o de la web de empleo de una empresa y guarda la oferta completa en PDF antes de que la retiren. Gratis, sin registro.",
+  "keywords": [
+    "guardar oferta de empleo en pdf",
+    "descargar oferta de linkedin",
+    "guardar oferta de linkedin",
+    "oferta de empleo pdf",
+    "guardar descripción del puesto",
+    "conservar oferta de trabajo"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Oferta de empleo en PDF",
+  "h1": "Guarda una oferta de empleo en PDF",
+  "lede": "Pega el enlace de la oferta. Leemos el anuncio y te damos su texto completo para guardarlo en PDF o copiarlo, así lo tienes cuando lo retiren.",
+  "howTo": {
+    "name": "Cómo guardar una oferta de empleo en PDF",
+    "description": "Guarda una copia de la descripción del puesto antes de que retiren el anuncio.",
+    "steps": [
+      {
+        "name": "Copia el enlace",
+        "text": "Abre la oferta y copia la dirección de la barra del navegador. Sirve un enlace de LinkedIn, y también el de la web de empleo de una empresa o de un portal."
+      },
+      {
+        "name": "Pégalo y guarda",
+        "text": "La herramienta lee la página y muestra el texto de la oferta con el enlace y la fecha en que la guardaste."
+      },
+      {
+        "name": "Descarga el PDF",
+        "text": "Pulsa Guardar como PDF y elige Guardar como PDF como destino en la ventana de impresión. Solo se imprime la oferta."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Para qué guardar una oferta?",
+      "a": "Las empresas retiran el anuncio cuando cierran el puesto, a menudo antes de tu entrevista. La descripción es la mejor guía de lo que te van a preguntar, así que guarda una copia el día que postulas."
+    },
+    {
+      "q": "¿Funciona con ofertas de LinkedIn?",
+      "a": "Sí, con enlaces públicos como linkedin.com/jobs/view/ seguido de un número. Si LinkedIn no muestra la oferta sin iniciar sesión, la herramienta te lo dice y puedes guardar la página desde tu propio navegador."
+    },
+    {
+      "q": "¿Y si la oferta ya cerró?",
+      "a": "Entonces la página suele haber desaparecido y no queda nada que leer. Guarda las ofertas al postular, no cuando te den fecha de entrevista."
+    },
+    {
+      "q": "¿Guardáis las ofertas que guardo?",
+      "a": "No. La página se lee una vez para mostrarte su texto. No se guarda nada en una cuenta ni en una base de datos."
+    },
+    {
+      "q": "¿Por qué el texto guardado se ve tan simple?",
+      "a": "La herramienta conserva las palabras de la oferta, no el diseño del sitio, los logos ni los botones. Así el PDF es fácil de leer y de buscar más adelante."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué hacer con una oferta guardada"
+    },
+    {
+      "ul": [
+        "**Antes de la entrevista,** relee las funciones y asocia cada una con una historia de tu propio trabajo.",
+        "**Al escribir la carta de presentación,** usa las palabras de la oferta para las competencias que pide.",
+        "**Tras una oferta de trabajo,** compara el puesto que te ofrecen con el que se anunciaba."
+      ]
+    }
+  ],
+  "related": [
+    {
+      "label": "¿Qué ATS usa una empresa?",
+      "href": "/ats",
+      "body": "Pega un enlace de oferta y ve el sistema de selección que hay detrás."
+    },
+    {
+      "label": "Comparador de CV y oferta",
+      "href": "/resume-job-match-checker",
+      "body": "Compara tu CV con la oferta que acabas de guardar."
+    },
+    {
+      "label": "Verificador de palabras clave ATS",
+      "href": "/free-ats-keyword-checker",
+      "body": "Saca los términos en los que insiste la oferta."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

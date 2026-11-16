@@ -1,0 +1,28 @@
+{
+  "englishOnly": "Esta verificação lê apenas texto em inglês. Cole uma vaga em inglês e a versão em inglês do seu perfil.",
+  "jobLabel": "Vaga",
+  "jobPlaceholder": "Cole a descrição completa da vaga",
+  "headlineLabel": "Seu título do LinkedIn",
+  "headlinePlaceholder": "Backend Engineer | Go, Kubernetes, Payments",
+  "aboutLabel": "Sua seção Sobre",
+  "skillsLabel": "Suas competências",
+  "skillsPlaceholder": "Copie da seção Competências do seu perfil",
+  "submit": "Verificar meu perfil",
+  "busy": "Comparando seu perfil",
+  "privacy": "Lido nesta aba. Nada é armazenado.",
+  "score": "Seu perfil cobre {score}% dos termos em que esta vaga insiste",
+  "listSeparator": ", ",
+  "forHeadline": "Seu título é a linha que recrutadores veem abaixo do seu nome na busca. Estes termos já estão no seu perfil, mas não no título: <strong>{terms}</strong>.",
+  "missing": "Não aparecem no seu perfil: <strong>{terms}</strong>. Adicione os que você pode comprovar ao seu Sobre ou às suas competências.",
+  "termColumn": "Termo",
+  "section": {
+    "headline": "Título",
+    "about": "Sobre",
+    "skills": "Competências"
+  },
+  "found": "Encontrado",
+  "notFound": "Falta",
+  "ctaTitle": "Faça o mesmo com seu currículo",
+  "ctaBody": "O FitMyCV reescreve seu currículo para uma vaga, com as palavras da própria vaga, usando só o que já está na sua experiência.",
+  "ctaLabel": "Adaptar meu currículo a esta vaga"
+}

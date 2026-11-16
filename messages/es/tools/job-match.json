@@ -1,0 +1,56 @@
+{
+  "cvLabel": "Tu CV",
+  "jobLabel": "Descripción de la oferta",
+  "jobPlaceholder": "Pega aquí el texto completo de la oferta.",
+  "englishOnly": "Esta herramienta lee inglés. Compara las palabras de tu CV con las de la oferta, así que usa un CV y una oferta en inglés.",
+  "submit": "Comparar mi CV",
+  "busy": "Comparando",
+  "readingCv": "Leyendo tu CV",
+  "comparing": "Comparando tu CV con la oferta",
+  "needBoth": "Añade tu CV y la descripción completa de la oferta.",
+  "privacy": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "scoreAria": "Puntuación de coincidencia: {value} por ciento",
+  "scoreUnit": "Coincidencia",
+  "verdictStrong": "Buena coincidencia con esta oferta",
+  "verdictPartial": "Coincidencia parcial. Vale la pena adaptar el CV.",
+  "verdictWeak": "Coincidencia baja con esta oferta",
+  "scoreNote": "Combina competencias, palabras clave y señales de experiencia de tu CV y de esta oferta. Es una puntuación de cobertura, no una predicción de que te llamen a entrevista.",
+  "strongHeading": "Coincidencias fuertes",
+  "strongEmpty": "Todavía no aparece en tu CV ninguna competencia nombrada en la oferta.",
+  "missingHeading": "Faltan o son débiles",
+  "missingEmpty": "Tu CV menciona todas las competencias nombradas que pudimos leer en la oferta.",
+  "barExperience": "Experiencia",
+  "barSkills": "Competencias",
+  "barKeywords": "Palabras clave",
+  "improveHeading": "Las 5 cosas que mejorar primero",
+  "tips": {
+    "addSkill": "Añade {skill} dentro de un punto que puedas demostrar con honestidad, no solo en una lista de competencias.",
+    "useWording": "Usa el término «{term}» de la oferta si ese trabajo ya está en tu CV con otras palabras.",
+    "years": "La oferta pide {years} años. Pon los puestos que encajan arriba para que esa cifra se vea enseguida.",
+    "level": "La oferta busca un nivel {level}. Empieza por el cargo y el alcance más cercanos que hayas tenido de verdad.",
+    "proveSkill": "Mantén {skill} en un punto de resultado con una cifra, para que sea una prueba y no una afirmación.",
+    "covered": "Tu CV ya cubre los términos principales de la oferta. Comprueba que cada uno esté en un punto con un resultado."
+  },
+  "levels": {
+    "intern": "becario",
+    "entry_level": "inicial",
+    "junior": "junior",
+    "mid_level": "intermedio",
+    "senior": "senior",
+    "staff": "staff",
+    "lead": "lead",
+    "principal": "principal",
+    "manager": "manager",
+    "director": "director"
+  },
+  "ctaHigh": {
+    "title": "Convierte esta coincidencia en un CV adaptado",
+    "body": "Tu coincidencia es buena. Guarda esta oferta y reescribe tu CV para ella, con la experiencia que ya tienes.",
+    "label": "Adaptar mi CV"
+  },
+  "ctaGaps": {
+    "title": "Cierra estas brechas",
+    "body": "Guarda esta oferta y FitMyCV reescribe tu CV y tu carta de presentación para ella, con la experiencia que ya tienes.",
+    "label": "Cerrar estas brechas"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "label": "Enlace de la oferta",
+  "submit": "Guardar oferta",
+  "busy": "Leyendo",
+  "hint": "Pega el enlace de LinkedIn, de la página de empleo de una empresa o de un portal de empleo. Leemos la página una vez y no guardamos nada.",
+  "progress": "Leyendo la oferta",
+  "errors": {
+    "badUrl": "Pega el enlace completo de la oferta, empezando por https://.",
+    "rateLimited": "Has guardado muchas ofertas en poco tiempo. Espera un minuto y vuelve a intentarlo.",
+    "unreadable": "No pudimos leer esa oferta. Puede que esté cerrada o que el sitio nos bloquee. Ábrela en tu navegador, usa Imprimir y luego Guardar como PDF.",
+    "failed": "No pudimos abrir esa oferta. Vuelve a intentarlo, o abre la página y guárdala desde tu navegador."
+  },
+  "savePdf": "Guardar como PDF",
+  "copy": "Copiar texto",
+  "printHint": "En la ventana de impresión, elige Guardar como PDF como destino.",
+  "savedFrom": "Guardada desde {url} el {date}",
+  "copied": "Oferta copiada",
+  "copyBlocked": "Este navegador bloquea la copia. Selecciona el texto y cópialo.",
+  "cta": {
+    "title": "Guardada. Ahora adapta tu CV a ella.",
+    "body": "FitMyCV reescribe tu propio CV en torno a esta oferta, con sus palabras y tu experiencia real.",
+    "label": "Adaptar mi CV"
+  }
+}

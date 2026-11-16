@@ -1,0 +1,75 @@
+{
+  "seoTitle": "Revisa tu perfil de LinkedIn frente a una oferta de empleo",
+  "description": "Pega tu titular de LinkedIn, tu Acerca de y tus aptitudes junto a una oferta en inglés. Ve qué términos cubre cada sección. Gratis, sin registro.",
+  "keywords": [
+    "revisar perfil de linkedin",
+    "optimizar perfil de linkedin",
+    "palabras clave perfil linkedin",
+    "optimizar linkedin para una oferta",
+    "titular de linkedin",
+    "analizar perfil de linkedin gratis",
+    "puntuación perfil linkedin"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Revisor de perfil de LinkedIn",
+  "h1": "Compara tu perfil de LinkedIn con una oferta",
+  "lede": "Pega una oferta de empleo y tu titular, tu Acerca de y tus aptitudes. Ve qué términos principales de la oferta cubre cada sección, cuáles deberían ir en tu titular y cuáles no aparecen en tu perfil. La herramienta lee texto en inglés.",
+  "howTo": {
+    "name": "Cómo comparar un perfil de LinkedIn con una oferta de empleo",
+    "description": "Compara las secciones de un perfil de LinkedIn con los términos que usa una oferta.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "Usa el anuncio completo, con los requisitos. La herramienta ordena los términos que más repite."
+      },
+      {
+        "name": "Pega tu titular, tu Acerca de y tus aptitudes",
+        "text": "Cópialos de tu propio perfil. No se descarga nada de LinkedIn y no se guarda nada."
+      },
+      {
+        "name": "Cubre los huecos que puedas demostrar",
+        "text": "Lleva a tu titular los términos que ya están en tu perfil. Añade los que faltan solo si tu experiencia los respalda."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Funciona con un perfil en español?",
+      "a": "No. La revisión lee texto en inglés. Las letras con tilde y la ñ se ignoran, así que una palabra como «gestión» se corta en trozos, y palabras comunes como «los» o «para» cuentan como términos. Si postulas en inglés, pega la oferta en inglés y la versión en inglés de tu perfil."
+    },
+    {
+      "q": "¿Por qué pegar texto en lugar del enlace al perfil?",
+      "a": "Leer perfiles de LinkedIn de forma automática va contra las condiciones de LinkedIn, y una copia pegada es lo que vas a editar de todos modos. Además, la revisión se hace en tu navegador y nada sale de esta pestaña."
+    },
+    {
+      "q": "¿Cómo se calcula la puntuación?",
+      "a": "La herramienta toma los 15 términos que la oferta más repite y comprueba si cada uno aparece en tu titular, tu Acerca de o tus aptitudes. La puntuación es la parte de esos términos que se encuentra en algún lugar de tu perfil. Es una revisión de palabras clave, no una opinión sobre cómo se lee el perfil."
+    },
+    {
+      "q": "¿Por qué el titular es lo que más importa?",
+      "a": "Es la línea que aparece bajo tu nombre en los resultados de búsqueda de LinkedIn y junto a cada comentario que dejas. Si un término ya está en tu Acerca de o en tus aptitudes, el titular es el lugar más fácil para hacerlo visible."
+    },
+    {
+      "q": "¿Debo añadir todos los términos que faltan?",
+      "a": "No. Añade los que tu experiencia respalda. Que un reclutador te pregunte por una aptitud que pusiste y no tienes es peor que un hueco."
+    },
+    {
+      "q": "¿Es lo mismo que revisar mi CV?",
+      "a": "No. Tu CV va a un solo empleador, tu perfil lo ve cualquiera que busque. Usa esta herramienta para el perfil, y el verificador ATS de CV gratis o la herramienta de adaptación para el CV."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué mira la revisión"
+    },
+    {
+      "p": "Tres secciones: tu titular, tu Acerca de y tus aptitudes. **Para cada término en el que insiste la oferta, ves qué sección lo menciona.** Los términos que están en tu perfil pero no en tu titular aparecen primero, porque son los más rápidos de corregir."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

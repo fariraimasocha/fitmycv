@@ -5,6 +5,7 @@
 // photo, layout or fonts, and says so.
 
 import { useMemo, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { CheckIcon, WarningIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
@@ -171,7 +172,35 @@ function checkCvFormat(text, country) {
 }
 // pure-region-end
 
+const COUNTRY_CODES = ["za", "ng", "ke", "in", "uk", "us", "other"];
+
+/**
+ * The check's title and fix in the page language. checkCvFormat keeps its
+ * English wording for the tests; this reads the same id, result and country.
+ */
+function checkCopy(t, ch, country, pages) {
+  const c = COUNTRIES[country];
+  const values = {
+    pages,
+    max: c.maxPages,
+    in: t(`countryIn.${country}`),
+    for: t(`countryFor.${country}`),
+  };
+  let fix;
+  if (ch.id === "length") fix = ch.ok ? "length.ok" : "length.fix";
+  else if (ch.id === "personal") {
+    const variant = c.personal === "ifAsked" && country === "ng" ? "ifAskedNg" : c.personal;
+    fix = `personal.${variant}.${ch.ok ? "ok" : "fix"}`;
+  } else if (ch.id === "id") fix = `id.${country}.${ch.ok ? "ok" : "fix"}`;
+  else if (ch.id === "references" && !ch.ok && ["za", "ng", "ke"].includes(country)) {
+    fix = "references.fixReferees";
+  } else fix = `${ch.id}.${ch.ok ? "ok" : "fix"}`;
+  return { title: t(`${ch.id}.title`, values), fix: t(fix, values) };
+}
+
 export default function CvFormatChecker() {
+  const t = useTranslations("tools.cv-format");
+  const locale = useLocale();
   const [cvText, setCvText] = useState("");
   const [country, setCountry] = useState("za");
   const [cvBusy, setCvBusy] = useState(false);
@@ -195,7 +224,7 @@ export default function CvFormatChecker() {
       >
         <div className="flex flex-col gap-2">
           <label htmlFor="cv-country" className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            Country you are applying in
+            {t("countryLabel")}
           </label>
           <select
             id="cv-country"
@@ -206,13 +235,11 @@ export default function CvFormatChecker() {
             }}
             className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)] sm:w-72"
           >
-            <option value="za">South Africa</option>
-            <option value="ng">Nigeria</option>
-            <option value="ke">Kenya</option>
-            <option value="in">India</option>
-            <option value="uk">United Kingdom</option>
-            <option value="us">United States</option>
-            <option value="other">Another country</option>
+            {COUNTRY_CODES.map((code) => (
+              <option key={code} value={code}>
+                {t(`countryOption.${code}`)}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -226,55 +253,62 @@ export default function CvFormatChecker() {
           onBusyChange={setCvBusy}
         />
 
+        {locale !== "en" ? (
+          <p className="text-xs font-semibold leading-6 text-[var(--landing-ink-soft)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
+
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Check my CV format"
-            busyLabel="Checking your CV"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={tooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy ? "Reading your CV" : "Your CV is read in this tab. Nothing is stored."}
+            {cvBusy ? t("readingCv") : t("privacy")}
           </p>
         </div>
       </form>
 
-      {running ? <ToolProgress message="Checking your CV" lines={5} /> : null}
+      {running ? <ToolProgress message={t("busy")} lines={5} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             {result.issues === 0
-              ? `Your CV fits ${COUNTRIES[country].name}`
-              : `${result.issues} ${result.issues === 1 ? "thing" : "things"} to fix for ${COUNTRIES[country].name}`}
+              ? t("fits", { country: t(`countryName.${country}`) })
+              : t("toFix", { count: result.issues, for: t(`countryFor.${country}`) })}
           </p>
           <p className="mt-2 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-            {country === "other"
-              ? "These checks hold in most countries. Rules for one country, like an ID number or a declaration, are not checked. "
-              : ""}
-            This checks the text only. It cannot see a photo, columns or fonts. Leave the photo off unless the posting asks for one.
+            {country === "other" ? `${t("otherNote")} ` : ""}
+            {t("textOnly")}
           </p>
           <ul className="mt-6 flex flex-col gap-3">
-            {result.checks.map((ch) => (
+            {result.checks.map((ch) => {
+              const copy = checkCopy(t, ch, country, result.pages);
+              return (
               <li
                 key={ch.id}
                 className="flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
               >
                 {ch.ok ? (
-                  <CheckIcon size={16} weight="bold" aria-label="Pass" className="mt-0.5 shrink-0 text-[var(--landing-success)]" />
+                  <CheckIcon size={16} weight="bold" aria-label={t("pass")} className="mt-0.5 shrink-0 text-[var(--landing-success)]" />
                 ) : (
-                  <WarningIcon size={16} weight="bold" aria-label="Fix" className="mt-0.5 shrink-0 text-[var(--landing-coral)]" />
+                  <WarningIcon size={16} weight="bold" aria-label={t("fail")} className="mt-0.5 shrink-0 text-[var(--landing-coral)]" />
                 )}
                 <span className="text-sm leading-6 text-[var(--landing-ink)]">
-                  <strong className="font-extrabold">{ch.title}.</strong> {ch.fix}
+                  <strong className="font-extrabold">{copy.title}.</strong> {copy.fix}
                 </span>
               </li>
-            ))}
+              );
+            })}
           </ul>
           <HandoffCta
-            title="Format fixed. Now fit it to the job."
-            body="FitMyCV takes this CV and a job link, then rewrites your summary and top bullets for that posting, with a matching cover letter."
-            label="Tailor my CV to a job"
+            title={t("cta.title")}
+            body={t("cta.body")}
+            label={t("cta.label")}
             source="cv_format"
             cvText={cvText}
           />

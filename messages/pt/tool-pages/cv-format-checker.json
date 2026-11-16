@@ -1,0 +1,114 @@
+{
+  "seoTitle": "Verificar formato do currículo: África do Sul, Nigéria, Índia, UK",
+  "description": "Verifique o formato do seu currículo para o país onde você vai se candidatar. Tamanho, dados pessoais, número de identidade, NYSC e mais. Grátis, sem login.",
+  "keywords": [
+    "verificar formato do currículo",
+    "formato de currículo internacional",
+    "currículo em inglês formato",
+    "currículo para o reino unido",
+    "currículo para os estados unidos",
+    "formato de currículo áfrica do sul",
+    "currículo para trabalhar no exterior",
+    "data de nascimento no currículo",
+    "o que colocar no currículo"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Verificador de formato de currículo",
+  "h1": "Verificador de formato de currículo para África do Sul, Nigéria, Quênia, Índia, Reino Unido e Estados Unidos",
+  "lede": "Um currículo certo em Lagos pode estar errado em Londres. Escolha o país onde vai se candidatar, adicione seu currículo em inglês e veja o que cortar, incluir ou mudar de lugar. Tudo roda no seu navegador. Nada é enviado.",
+  "howTo": {
+    "name": "Como verificar o formato do seu currículo para um país",
+    "description": "Verifique um currículo pelo formato que os empregadores de um país esperam.",
+    "steps": [
+      {
+        "name": "Escolha o país",
+        "text": "Escolha onde fica a vaga, não onde você mora."
+      },
+      {
+        "name": "Adicione seu currículo",
+        "text": "Arraste um PDF ou cole o texto. Ele é lido no seu navegador."
+      },
+      {
+        "name": "Corrija o que for apontado",
+        "text": "Cada verificação diz o que mudar. Corrija e verifique de novo."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "A ferramenta verifica um currículo em português?",
+      "a": "Só em parte. As verificações procuram frases em inglês, como \"date of birth\", \"marital status\" ou \"references available on request\". Em um currículo em português, só o tamanho e o e-mail são realmente verificados. Os países cobertos contratam em inglês, então use a versão em inglês do seu currículo."
+    },
+    {
+      "q": "Devo colocar meu número de identidade no currículo na África do Sul?",
+      "a": "Não. Informe quando um empregador pedir, normalmente na fase da proposta. Seu número de identidade é um dado pessoal protegido pela POPIA, e um currículo é encaminhado e armazenado em lugares que você não vê."
+    },
+    {
+      "q": "Devo colocar minha data de nascimento no currículo?",
+      "a": "No Reino Unido e nos Estados Unidos, não. Os empregadores de lá não esperam isso. Na Nigéria e na Índia, algumas vagas pedem. Inclua só quando a vaga pedir."
+    },
+    {
+      "q": "Qual deve ser o tamanho do meu currículo?",
+      "a": "Duas páginas bastam para a maioria das pessoas em todos os países cobertos. Recém-formados devem buscar uma página. A ferramenta estima o tamanho pelo número de palavras. Veja [qual deve ser o tamanho de um currículo](/blog/how-long-should-a-cv-be) (em inglês)."
+    },
+    {
+      "q": "Devo colocar foto?",
+      "a": "Não, a menos que a vaga peça. A ferramenta lê texto, então não vê foto, mas essa é a regra em todos os países que ela cobre."
+    },
+    {
+      "q": "Meu currículo é enviado para algum lugar?",
+      "a": "Não. O PDF é lido na aba do seu navegador e as verificações rodam ali. Nada é enviado ao FitMyCV nem armazenado."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que a ferramenta verifica"
+    },
+    {
+      "ul": [
+        "**O tamanho** em relação ao que os empregadores daquele país esperam.",
+        "**Dados pessoais** como data de nascimento, estado civil e religião, que ajudam em alguns países e atrapalham em outros.",
+        "**Número de identidade** para África do Sul e Quênia, e **situação no NYSC** para a Nigéria.",
+        "**Um objetivo profissional** onde um resumo profissional funciona melhor.",
+        "**Linhas desnecessárias** como \"references available on request\" e a linha indiana \"I hereby declare\"."
+      ]
+    },
+    {
+      "h2": "Guias por país"
+    },
+    {
+      "p": "Para o quadro completo, leia [formato de currículo na África do Sul](/blog/cv-format-south-africa), [formato de currículo na Nigéria](/blog/cv-format-nigeria) e [formato de currículo no Quênia](/blog/cv-format-kenya). Esses guias estão em inglês."
+    },
+    {
+      "cta": {
+        "title": "Formato pronto? Adapte à vaga.",
+        "body": "Um formato limpo faz seu currículo ser lido. Combinar com a vaga faz você ser pré-selecionado.",
+        "href": "/pt/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo pelo link da vaga"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Comparador de currículo e vaga",
+      "href": "/resume-job-match-checker",
+      "body": "Compare seu currículo com a descrição de uma vaga."
+    },
+    {
+      "label": "Verificador de palavras fracas",
+      "href": "/resume-weak-words-checker",
+      "body": "Encontre os clichês que deixam um currículo igual aos outros."
+    },
+    {
+      "label": "Modelos de currículo",
+      "href": "/cv-templates",
+      "body": "Layouts limpos que funcionam bem em qualquer país."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

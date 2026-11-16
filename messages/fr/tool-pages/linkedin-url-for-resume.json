@@ -1,0 +1,187 @@
+{
+  "seoTitle": "Mettre son lien LinkedIn sur son CV",
+  "description": "Collez le lien de votre profil LinkedIn et obtenez une version propre pour votre CV, plus le lien complet à placer derrière. Gratuit, sans compte, rien n'est envoyé.",
+  "keywords": [
+    "lien linkedin cv",
+    "mettre son linkedin sur son cv",
+    "url linkedin cv",
+    "ajouter linkedin sur cv",
+    "lien cliquable linkedin cv",
+    "lien cv",
+    "personnaliser url linkedin",
+    "comment mettre linkedin sur un cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Lien LinkedIn pour CV",
+  "h1": "Le lien LinkedIn de votre CV",
+  "lede": "Collez le lien de votre profil LinkedIn. Obtenez la forme courte à imprimer sur votre CV et la forme complète à placer derrière comme lien cliquable, sans le texte de suivi ni le préfixe de pays.",
+  "howTo": {
+    "name": "Comment ajouter un lien LinkedIn à un CV",
+    "description": "Transformez une adresse LinkedIn copiée en lien propre pour un CV.",
+    "steps": [
+      {
+        "name": "Copiez l'adresse de votre profil",
+        "text": "Ouvrez votre propre profil LinkedIn et copiez l'adresse dans la barre du navigateur, ou utilisez l'option de partage de votre profil."
+      },
+      {
+        "name": "Collez-la dans l'outil",
+        "text": "L'outil retire le texte de suivi, le préfixe de pays ou mobile et tout ce qui suit votre nom, et vous montre ce qu'il a retiré."
+      },
+      {
+        "name": "Ajoutez les deux formes à votre CV",
+        "text": "Tapez la forme courte dans votre ligne de contact et placez la forme complète comme lien derrière, pour que le texte reste lisible et qu'un clic fonctionne."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Où mettre le lien LinkedIn sur un CV ?",
+      "a": "Dans la ligne de contact en haut, à côté de votre e-mail et de votre numéro de téléphone. Gardez-le dans le corps du document, pas dans un en-tête, un pied de page ou une zone de texte, car certains logiciels de recrutement (ATS) ignorent ces zones."
+    },
+    {
+      "q": "Faut-il mettre son LinkedIn sur son CV ?",
+      "a": "Oui, si votre profil correspond à votre CV et qu'il est assez complet. Les recruteurs vous cherchent souvent de toute façon, et un lien leur évite la recherche. Si le profil date de plusieurs années ou contredit votre CV, mettez-le à jour d'abord ou ne mettez pas le lien."
+    },
+    {
+      "q": "Le lien LinkedIn doit-il être cliquable dans un PDF ?",
+      "a": "Oui. Tapez la forme courte comme texte visible et placez le lien https complet derrière. Word, Google Docs et la plupart des créateurs de CV permettent d'ajouter un lien à un texte sélectionné, et le lien est conservé à l'export en PDF."
+    },
+    {
+      "q": "Faut-il l'URL complète ou la courte ?",
+      "a": "Imprimez la courte, linkedin.com/in/votre-nom. Le https et le www rallongent sans rien apprendre au lecteur. La forme complète va derrière le texte, comme lien, là où personne n'a besoin de la lire."
+    },
+    {
+      "q": "Les logiciels de recrutement (ATS) lisent-ils les liens ?",
+      "a": "Ils lisent le lien comme du texte, comme n'importe quelle autre ligne. Beaucoup l'enregistrent dans un champ de profil, certains l'ignorent. C'est pour cela que le texte imprimé doit être une adresse propre et lisible plutôt qu'une longue chaîne avec du code de suivi à la fin."
+    },
+    {
+      "q": "Et GitHub, un portfolio ou un site personnel ?",
+      "a": "Ajoutez-les dans la même ligne de contact, sous la même forme courte, par exemple github.com/votre-nom. N'ajoutez que les liens utiles pour le poste visé, et vérifiez que chacun s'ouvre avant d'envoyer le CV."
+    },
+    {
+      "q": "Comment obtenir une URL LinkedIn personnalisée ?",
+      "a": "Sur votre profil, ouvrez l'option pour modifier votre profil public et votre URL, puis modifiez l'URL personnalisée. Utilisez votre nom, ou votre nom plus un mot s'il est déjà pris. L'ancien lien cesse en général de fonctionner, alors mettez à jour tout ce qui l'utilisait."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Pourquoi un lien propre vaut une minute"
+    },
+    {
+      "p": "Une adresse LinkedIn copiée contient souvent un préfixe de pays, un chemin de langue et du texte de suivi. **Sur un CV imprimé, cette chaîne fait négligé, et dans certains PDF elle se coupe sur deux lignes et ne fonctionne plus comme lien.** La forme propre est courte, se lit comme votre nom et tient sur la même ligne que votre e-mail."
+    },
+    {
+      "h2": "Les liens LinkedIn qui marchent, et les autres"
+    },
+    {
+      "table": {
+        "head": [
+          "Lien sur le CV",
+          "Verdict",
+          "Pourquoi"
+        ],
+        "rows": [
+          [
+            "linkedin.com/in/farirai-masocha",
+            "Idéal",
+            "Court, lisible, et se lit comme votre nom."
+          ],
+          [
+            "https://www.linkedin.com/in/farirai-masocha",
+            "Correct",
+            "Fonctionne, mais le https et le www rallongent sans rien dire."
+          ],
+          [
+            "linkedin.com/in/farirai-masocha-4b2a19c3",
+            "Faible",
+            "La fin aléatoire fait inachevé. Choisissez une URL personnalisée."
+          ],
+          [
+            "uk.linkedin.com/in/farirai-masocha?originalSubdomain=zw",
+            "Mauvais",
+            "Préfixe de pays et texte de suivi. Long, brouillon et facile à casser."
+          ],
+          [
+            "LinkedIn",
+            "Mauvais",
+            "Un simple mot. Sur papier, ou dans un logiciel qui supprime les liens, personne ne peut le suivre."
+          ]
+        ]
+      }
+    },
+    {
+      "h2": "Choisissez d'abord une URL personnalisée"
+    },
+    {
+      "p": "Si votre lien se termine par une suite de chiffres et de lettres, c'est LinkedIn qui l'a créé pour vous. Vous pouvez le changer en quelques minutes."
+    },
+    {
+      "ol": [
+        "**Ouvrez votre propre profil** en étant connecté à LinkedIn.",
+        "**Trouvez l'option pour modifier votre profil public et votre URL.** Elle se trouve en haut de votre page de profil.",
+        "**Modifiez votre URL personnalisée** et tapez votre nom. S'il est pris, ajoutez l'initiale d'un deuxième prénom ou un mot de votre domaine.",
+        "**Enregistrez, puis collez le nouveau lien dans l'outil** ci-dessus pour obtenir la forme propre pour votre CV."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Mettez à jour partout où l'ancien lien apparaît",
+        "body": "Changer votre URL personnalisée rend en général l'ancienne adresse inutilisable. Vérifiez votre signature d'e-mail, votre portfolio et les CV déjà enregistrés avant d'envoyer la prochaine candidature."
+      }
+    },
+    {
+      "h2": "Où le placer sur la page"
+    },
+    {
+      "p": "Une seule ligne sous votre nom contient tout ce dont un recruteur a besoin pour vous joindre : nom, ville, e-mail, téléphone et liens. Gardez-la en texte simple dans le corps du document."
+    },
+    {
+      "ul": [
+        "**Classez selon ce qu'un recruteur utilise en premier :** e-mail et téléphone, puis LinkedIn, puis GitHub ou un portfolio.",
+        "**Utilisez la même forme courte pour chaque lien,** pour que la ligne se lise comme un ensemble.",
+        "**Retirez les liens qui n'aident pas cette candidature.** Un blog personnel sur un sujet sans rapport prend de la place et appelle les mauvaises questions.",
+        "**Cliquez sur chaque lien dans le PDF exporté** avant de l'envoyer. Un lien qui marchait dans l'éditeur peut se casser à l'export."
+      ]
+    },
+    {
+      "h2": "Le lien, c'est la partie facile"
+    },
+    {
+      "p": "Un lien propre corrige une ligne. Le recruteur qui clique a déjà décidé que votre CV méritait un second regard, et cette décision repose sur tout le reste de la page."
+    },
+    {
+      "p": "Nommez bien le fichier avec le [générateur de nom de fichier CV](/resume-file-name-generator), soignez la ligne sous votre nom avec le [générateur de titre de CV](/resume-headline-generator), puis vérifiez tout le CV face à l'offre avec le [test CV ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Le lien est propre. Et le CV ?",
+        "body": "Collez le lien de l'offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre, en gardant votre vraie expérience.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Générateur de nom de fichier CV",
+      "href": "/resume-file-name-generator",
+      "body": "Nommez le fichier pour qu'un recruteur le retrouve."
+    },
+    {
+      "label": "Générateur de titre de CV",
+      "href": "/resume-headline-generator",
+      "body": "Soignez la ligne sous votre nom, la première qu'un recruteur lit."
+    },
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez votre CV face à une offre et voyez les termes qui vous manquent."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

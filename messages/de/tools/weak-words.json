@@ -1,0 +1,48 @@
+{
+  "englishOnly": "Dieser Checker findet schwache Wörter in Lebensläufen auf Englisch. Seine Wortliste und seine Tipps beziehen sich auf englische Formulierungen.",
+  "submit": "Schwache Wörter finden",
+  "busy": "Ihr Lebenslauf wird gelesen",
+  "privacy": "Ihr Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "noneFound": "Keine schwachen Wörter gefunden",
+  "found": "{count, plural, one {# schwaches Wort gefunden} other {# schwache Wörter gefunden}}",
+  "numbers": "{withNumbers} von Ihren {lines} längeren Zeilen enthalten eine Zahl.",
+  "numbersLow": "Ergänzen Sie bei mehr Zeilen eine Anzahl, einen Prozentwert oder eine gesparte Zeit. Zahlen bleiben Recruitern im Gedächtnis.",
+  "numbersOk": "Gut. Zahlen bleiben Recruitern im Gedächtnis.",
+  "kinds": {
+    "duty": "Aufgabenfloskel",
+    "vague": "Vages Verb",
+    "cliche": "Klischee"
+  },
+  "fixes": {
+    "lead": "Beginnen Sie mit dem, was Sie getan haben: Led, Ran, Built, Managed.",
+    "results": "Nennen Sie Ergebnisse statt Aufgaben. Was hat sich durch Sie verändert?",
+    "delivered": "Sagen Sie, was Sie geliefert haben, nicht was Ihnen übertragen wurde.",
+    "part": "Nennen Sie Ihren Anteil: Built, Designed, Wrote, Tested.",
+    "did": "Sagen Sie, was Sie getan haben: Supported 12 clients, Cut errors by 20%.",
+    "share": "Nennen Sie Ihren Anteil an der Arbeit oder das Ergebnis, das daraus entstand.",
+    "owned": "Sagen Sie, wofür Sie dabei verantwortlich waren.",
+    "verb": "Nutzen Sie ein genaues Verb: Resolved, Processed, Negotiated.",
+    "name": "Nennen Sie sie beim Namen oder geben Sie die Anzahl an.",
+    "list": "Führen Sie die Liste zu Ende oder kürzen Sie sie auf die zwei wichtigen Punkte.",
+    "show": "Zeigen Sie es: eine Frist, die Sie gehalten haben, oder das Volumen, das Sie getragen haben.",
+    "teamResult": "Nennen Sie ein Teamergebnis und Ihren Anteil daran.",
+    "oneResult": "Streichen Sie es und setzen Sie ein echtes Ergebnis an seine Stelle.",
+    "proof": "Liefern Sie einen Beleg: eine Fehlerquote, ein bestandenes Audit.",
+    "started": "Zeigen Sie etwas, das Sie ohne Auftrag angestoßen haben.",
+    "skip": "Streichen Sie es. Jeder Recruiter überliest es.",
+    "unusual": "Beschreiben Sie die ungewöhnliche Lösung, die Sie gefunden haben.",
+    "evidence": "Zeigen Sie den Beleg: ein Nebenprojekt, einen Kurs, ein Ergebnis.",
+    "checkable": "Streichen Sie es. Es sagt nichts, was ein Recruiter prüfen kann.",
+    "who": "Sagen Sie, mit wem Sie gearbeitet haben und was dabei herauskam.",
+    "communication": "Zeigen Sie es: einen Bericht, den Sie geschrieben haben, ein Team, das Sie geschult haben.",
+    "record": "Ersetzen Sie es durch die Bilanz selbst: eine Zahl.",
+    "learned": "Nennen Sie etwas, das Sie gelernt haben, und wie schnell Sie es eingesetzt haben.",
+    "delete": "Streichen Sie es.",
+    "cameFor": "Sagen Sie, wofür andere zu Ihnen kamen."
+  },
+  "handoff": {
+    "title": "Diese Stellen für einen echten Job umschreiben",
+    "body": "FitMyCV schreibt Ihr Profil und Ihre wichtigsten Stichpunkte passend zu einer Stellenanzeige um, in den Worten der Anzeige und nur mit dem, was schon in Ihrem Lebenslauf steht.",
+    "label": "Lebenslauf für einen Job umschreiben"
+  }
+}

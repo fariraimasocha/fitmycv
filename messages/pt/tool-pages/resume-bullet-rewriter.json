@@ -1,0 +1,198 @@
+{
+  "seoTitle": "Reescrever tópicos do currículo em inglês: grátis",
+  "description": "Cole um tópico do seu currículo em inglês e receba três versões mais fortes, com os espaços para números marcados. Transforme tarefas em conquistas. Grátis, sem login.",
+  "keywords": [
+    "tópicos do currículo em inglês",
+    "como descrever atividades no currículo em inglês",
+    "reescrever currículo em inglês",
+    "conquistas no currículo",
+    "verbos de ação currículo em inglês",
+    "resume bullet point rewriter",
+    "rewrite resume bullet points",
+    "action verbs resume",
+    "resume achievement generator"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Reescritor de tópicos",
+  "h1": "Reescreva um tópico do currículo em inglês",
+  "lede": "Cole um tópico em inglês. Receba três versões mais fortes, uma análise direta do que está fraco e o lugar exato onde entra o seu número. Adicione a descrição da vaga e a ferramenta mostra quais termos do anúncio este tópico poderia incluir.",
+  "howTo": {
+    "name": "Como reescrever um tópico do currículo",
+    "description": "Transforme uma tarefa em um tópico de conquista com um verbo forte e um número.",
+    "steps": [
+      {
+        "name": "Cole um tópico",
+        "text": "Copie uma única linha do seu currículo em inglês, a mais fraca que encontrar. Tópicos que começam com “Managed”, “Responsible for” ou “Assisted with” são os melhores candidatos."
+      },
+      {
+        "name": "Se quiser, adicione a descrição da vaga",
+        "text": "Cole o anúncio da vaga que você quer. A ferramenta lista os termos em que o anúncio insiste e que este tópico nunca menciona, para você incluir os que consegue comprovar com honestidade."
+      },
+      {
+        "name": "Escolha uma versão e preencha os espaços",
+        "text": "Cada versão tem espaços entre colchetes onde entra um número. Troque pelos seus valores reais. Um espaço que você não consegue preencher indica que o tópico precisa de outro ângulo."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Funciona com um currículo em português?",
+      "a": "Não. A ferramenta reescreve tópicos escritos em inglês. Ela só reconhece inícios em inglês como “Responsible for”, e os verbos e modelos são em inglês, então as versões saem em inglês. Use para a versão em inglês do seu currículo."
+    },
+    {
+      "q": "O que este reescritor faz, exatamente?",
+      "a": "Ele troca um início de tarefa por um verbo de ação forte, reorganiza a frase em torno de um resultado e marca o lugar onde entra um número. Também aponta o que está errado no original: um início passivo, nenhum número, pronomes, palavras vagas como “various” ou uma frase com mais de vinte e oito palavras."
+    },
+    {
+      "q": "Ele inventa os números por mim?",
+      "a": "Não, e isso é proposital. A ferramenta nunca viu o seu trabalho, então qualquer número que ela criasse seria ficção. Você recebe a frase com um espaço entre colchetes e coloca o número real. Um tópico com um número inventado passa na triagem e cai na entrevista."
+    },
+    {
+      "q": "É grátis? Preciso de conta?",
+      "a": "É grátis e não tem cadastro. A reescrita roda toda no seu navegador, com JavaScript na página. Nada é enviado, nada é armazenado e não há limite de uso."
+    },
+    {
+      "q": "Como transformar uma tarefa em um tópico de conquista?",
+      "a": "Comece com um verbo de ação, diga o que você fez e acrescente o resultado. “Responsible for the support queue” é uma tarefa. “Resolved 80 support tickets a week and held first response under two hours” é uma conquista. O trabalho é o mesmo. A segunda versão diz a quem contrata o que aconteceu."
+    },
+    {
+      "q": "E se eu realmente não tiver números para um tópico?",
+      "a": "Você costuma ter mais do que imagina: quantos, com que frequência, quantas pessoas, quanto tempo levava antes e depois, quanto dinheiro passou por ali. Quando nada disso existe, use o alcance. Citar os sistemas, o tamanho da equipe ou as pessoas com quem você trabalhou é melhor que uma tarefa solta."
+    },
+    {
+      "q": "Quantos tópicos cada cargo deve ter?",
+      "a": "De três a cinco para o cargo mais recente, dois ou três para os mais antigos e um ou dois para o que tiver mais de dez anos. Cada tópico que você mantém precisa merecer a linha. Corte os que só repetem o nome do cargo."
+    },
+    {
+      "q": "Tópicos mais fortes melhoram minha pontuação no ATS?",
+      "a": "Indiretamente. Sistemas de recrutamento comparam vocabulário, então incluir os termos reais do anúncio em um tópico ajuda você a aparecer na busca do recrutador. A reescrita em si é para a pessoa que lê você depois. Confira o lado do vocabulário com o [verificador de currículo ATS](/ats-resume-checker)."
+    }
+  ],
+  "blocks": [
+    { "h2": "Tarefas descrevem o cargo. Conquistas descrevem você." },
+    {
+      "p": "A maioria dos tópicos de currículo é copiada de uma descrição de vaga, e por isso tantos parecem iguais. **Uma tarefa diz o que foi atribuído a você. Uma conquista diz o que mudou porque você estava lá.** Cada versão nesta página leva uma linha da primeira forma para a segunda."
+    },
+    {
+      "compare": {
+        "title": "Suporte",
+        "context": "Mesmo trabalho. A segunda versão mostra a quem contrata o tamanho dele.",
+        "before": "Managed customer support tickets.",
+        "after": "Resolved 80+ support tickets a week and held first response under two hours."
+      }
+    },
+    {
+      "compare": {
+        "title": "Engenharia",
+        "context": "A tarefa esconde a escala. A conquista diz qual é.",
+        "before": "Responsible for maintaining the payments service.",
+        "after": "Owned the payments service through 4x traffic growth, cutting failed charges from 3% to 0.4%."
+      }
+    },
+    {
+      "compare": {
+        "title": "Marketing",
+        "context": "“Helped with” não faz nada nessa frase.",
+        "before": "Helped with social media and email campaigns.",
+        "after": "Ran 12 lifecycle email campaigns a quarter, lifting click-through from 1.8% to 3.1%."
+      }
+    },
+    { "h2": "As quatro partes de um tópico que funciona" },
+    {
+      "steps": [
+        {
+          "title": "Um verbo de ação como primeira palavra",
+          "body": "Nada de “Responsible for”, “Tasked with” ou “Helped”. Comece pelo que você fez: built, cut, negotiated, migrated, recovered, trained."
+        },
+        {
+          "title": "Aquilo em que você atuou",
+          "body": "Específico o bastante para um estranho conseguir imaginar. “The billing pipeline” é melhor que “various systems”."
+        },
+        {
+          "title": "Um número",
+          "body": "Quantos, com que frequência, quanto, quanto mais rápido. Um número real faz mais por um tópico do que três adjetivos a mais."
+        },
+        {
+          "title": "O resultado",
+          "body": "O que passou a ser verdade depois e não era antes. É a metade que a maioria deixa de fora, e é a metade que é lida."
+        }
+      ]
+    },
+    { "h2": "Inícios fracos e o que usar no lugar" },
+    {
+      "p": "A ferramenta detecta estes inícios em inglês e oferece substitutos do grupo de verbos certo. A ideia não é trocar por um sinônimo. Um verbo mais forte obriga você a dizer o que realmente aconteceu."
+    },
+    {
+      "table": {
+        "head": ["Início fraco", "O que ele esconde", "Use no lugar"],
+        "rows": [
+          ["Responsible for (responsável por)", "Se você fez ou só acompanhou", "Owned, ran, led, directed"],
+          ["Managed (gerenciou)", "O tamanho do que você gerenciou", "Scaled, streamlined, oversaw, coordinated"],
+          ["Helped with (ajudou com)", "A sua contribuição real", "Built, delivered, supported, contributed"],
+          ["Assisted (auxiliou)", "Tudo", "Supported, enabled, trained, advised"],
+          ["Worked on (trabalhou em)", "O resultado", "Developed, shipped, rebuilt, migrated"],
+          ["Involved in (envolvido em)", "Se você era central ou só estava por perto", "Drove, contributed to, delivered"],
+          ["Duties included (as tarefas incluíam)", "Que isso é uma descrição de vaga copiada", "Corte a expressão e comece pelo verbo"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Um verbo por tópico, sem repetir",
+        "body": "Se quatro tópicos do mesmo cargo começam com “Led”, o leitor para de ver a palavra. Espalhe os grupos de verbos pela seção: um de criar, um de melhorar, um de liderar, um de economizar."
+      }
+    },
+    { "h2": "Como achar o número quando você acha que não tem" },
+    {
+      "ol": [
+        "**Conte o trabalho.** Chamados, lançamentos, clientes, artigos, notas fiscais, turnos, relatórios. Tudo o que você fez repetidas vezes tem uma frequência.",
+        "**Meça o antes e o depois.** Tempo de carregamento, taxa de erro, tempo de fechamento, cancelamentos, quadro de pessoal, prazo de entrega. Uma mudança de um número para outro é a forma mais forte que um tópico pode ter.",
+        "**Dimensione o que você tocou.** Orçamento, receita, base de usuários, equipe, região, frota. Alcance é um número mesmo quando desempenho não é.",
+        "**Cronometre.** Horas economizadas por semana, dias a menos num ciclo, um prazo antecipado. Tempo é a métrica que quem não é da área entende mais rápido.",
+        "**Confira os registros.** Painéis antigos, notas fiscais, quadros de sprint, avaliações de desempenho. O número quase sempre existe, você só nunca anotou."
+      ]
+    },
+    {
+      "p": "Estime com honestidade quando precisar e arredonde para baixo. “Roughly 50 a week” dá para defender na entrevista. “87.4% improvement” sem nada por trás, não."
+    },
+    { "h2": "Adaptar um tópico a uma vaga específica" },
+    {
+      "p": "Cole a descrição da vaga no segundo campo e a ferramenta lista os termos em que o anúncio insiste e que seu tópico nunca menciona. São sugestões, não ordens. Inclua os que você realmente fez, nas palavras do anúncio, e deixe o resto. A lista funciona melhor com um anúncio em inglês, porque a ferramenta só filtra palavras vazias em inglês."
+    },
+    {
+      "p": "O motivo para usar as palavras do anúncio é simples e prático: recrutadores buscam no sistema de recrutamento os termos do próprio anúncio. Se você escreveu “kept people informed” e eles buscam “stakeholder management”, você não aparece. Para ver a diferença no currículo inteiro e não em uma linha, use [palavras-chave que faltam no currículo](/missing-resume-keywords)."
+    },
+    { "h2": "O que esta página faz e o que não faz" },
+    {
+      "table": {
+        "head": ["", "Este reescritor", "Adaptação pelo link da vaga"],
+        "rows": [
+          ["Reorganiza um tópico", "Sim", "Sim"],
+          ["Marca onde entra o número", "Sim", "Sim"],
+          ["Conhece seus números reais", "Não", "Lê do seu currículo"],
+          ["Reescreve o currículo inteiro", "Não", "Sim"],
+          ["Escreve uma carta de apresentação", "Não", "Sim"],
+          ["Precisa de conta", "Não", "Sim"],
+          ["Limite grátis", "Ilimitado", "Gerações pagas"]
+        ]
+      }
+    },
+    {
+      "p": "Esta página é uma bancada para uma linha por vez. Ela é útil de verdade quando você tem três tópicos ruins e vinte minutos. Quando você tem uma vaga específica e um currículo inteiro para mexer, o que você quer é a [adaptação pelo link da vaga](/tailor-cv-from-job-link), que lê a sua experiência real e mantém os seus números reais."
+    },
+    {
+      "cta": {
+        "title": "Reescreva todos os tópicos de uma vez",
+        "body": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação com base nesse anúncio, mantendo os números que você já tem.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    { "label": "Palavras-chave que faltam no currículo", "href": "/missing-resume-keywords", "body": "Veja em quais termos o anúncio insiste e que seu currículo nunca menciona." },
+    { "label": "Verificador de currículo ATS grátis", "href": "/ats-resume-checker", "body": "Avalie seu currículo com base em uma vaga antes de reescrever os tópicos." },
+    { "label": "O guia completo do currículo para ATS", "href": "/blog/ats-resume-guide", "body": "Como os sistemas de recrutamento leem um currículo e o que isso muda na formatação." }
+  ],
+  "ui": { "home": "Início", "faqHeading": "Perguntas frequentes", "related": "Para onde ir agora", "open": "Abrir" }
+}

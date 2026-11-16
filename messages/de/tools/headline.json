@@ -1,0 +1,67 @@
+{
+  "jobLabel": "Stellenbeschreibung einfügen",
+  "jobPlaceholder": "Füge hier den vollständigen Text der Stellenanzeige ein…",
+  "resumeLabel": "Dein Lebenslauf",
+  "englishOnly": "Dieses Tool liest Stellenanzeigen und Lebensläufe auf Englisch und schreibt die Überschriften auf Englisch.",
+  "submit": "Überschriften erstellen",
+  "busy": "Deine Überschriften entstehen",
+  "statusReadingCv": "Dein Lebenslauf wird gelesen",
+  "statusMatching": "Dein Lebenslauf wird mit der Anzeige abgeglichen",
+  "statusNeedInput": "Füge die Stellenbeschreibung und deinen Lebenslauf ein, um zu starten.",
+  "statusPrivate": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "resultHeading": "{count, plural, one {# Überschrift} other {# Überschriften}} für <hl>{title}</hl>",
+  "titleFromPosting": "Der Jobtitel stammt aus der Anzeige. Jede Kompetenz unten steht sowohl in deinem Lebenslauf als auch in der Anzeige, nichts hier behauptet also etwas, das dein Lebenslauf nicht erwähnt.",
+  "titleFromResume": "Wir haben in der Anzeige keinen Jobtitel gefunden, deshalb nutzen wir den Titel aus deinem Lebenslauf. Jede Kompetenz unten steht in beiden Dokumenten.",
+  "titleGuess": "Der Titel ist eine Schätzung aus dem Wortlaut. Ändere ihn, wenn er falsch ist.",
+  "claims": "Behauptet: {list}. Behalte nur, was dein Lebenslauf belegen kann.",
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "copyAria": "Überschrift kopieren: {text}",
+  "toastCopied": "Überschrift kopiert",
+  "toastCopyFailed": "Kopieren fehlgeschlagen. Markiere die Überschrift und kopiere sie selbst.",
+  "shapes": {
+    "titleSkills": {
+      "shape": "Titel und Top-Kompetenzen",
+      "hint": "Der Klassiker für LinkedIn und ATS. Liest sich gut in einem Suchergebnis."
+    },
+    "seniorityDomain": {
+      "shape": "Erfahrungsstufe und Branche",
+      "hint": "Sagt, was du machst und wo du es gemacht hast."
+    },
+    "years": {
+      "shape": "Jahre und größte Stärke",
+      "hintStated": "Nutzt die Anzahl der Jahre, die in deinem Lebenslauf steht.",
+      "hintSpan": "Nutzt die Spanne zwischen dem frühesten und dem neuesten Datum in deinem Lebenslauf. Ändere sie, wenn die Zahl falsch ist."
+    },
+    "twoStrengths": {
+      "shape": "Zwei Stärken",
+      "hint": "Wir haben deine Berufsjahre nicht gefunden. Ergänze die Zahl selbst, wenn sie in die Überschrift soll."
+    },
+    "focus": {
+      "shape": "Dein Schwerpunkt",
+      "hint": "Beginnt mit der Arbeit statt mit dem Jobtitel."
+    },
+    "plain": {
+      "shape": "Schlichte Kopfzeile",
+      "hint": "Ohne senkrechte Striche, damit sie sauber unter deinem Namen oben im Lebenslauf steht."
+    }
+  },
+  "noTitleHeading": "Wir haben keinen Jobtitel gefunden",
+  "noTitleBody": "Keines der beiden Dokumente nennt eine Rolle, die wir erkennen. Eine Überschrift wäre also geraten. Füge die vollständige Anzeige mit dem Titel oben ein oder ergänze deinen aktuellen Jobtitel im Lebenslauf und starte dann neu.",
+  "matchedHeading": "In deinem Lebenslauf gefunden",
+  "noOverlap": "Dein Lebenslauf und diese Anzeige haben kaum gemeinsames Vokabular. Das solltest du vor der Überschrift angehen. Beginne mit dem <link>ATS-Lebenslauf-Check</link>.",
+  "missingHeading": "In der Anzeige, nicht in deinem Lebenslauf",
+  "missingBody": "Keiner dieser Begriffe darf schon in eine Überschrift. Ergänze zuerst die, die du ehrlich belegen kannst, in einem Stichpunkt und starte dann neu. Der <link>ATS-Lebenslauf-Check</link> bewertet den ganzen Lebenslauf auf dieselbe Weise.",
+  "ctaTitle": "Soll der Rest des Lebenslaufs auch passen?",
+  "ctaBody": "Füge den Link zur Stelle ein und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben passend zur Anzeige um, mit deiner echten Erfahrung.",
+  "ctaLabel": "Lebenslauf anpassen",
+  "examplesHeading": "Beispiele für Lebenslauf-Überschriften",
+  "examplesBody": "Deine fünf entstehen aus der Anzeige, die du einfügst, und den Kompetenzen, die dein Lebenslauf schon belegt. So sehen sie aus.",
+  "exampleRoles": {
+    "software": "Softwareentwicklung",
+    "marketing": "Marketing",
+    "finance": "Finanzen",
+    "nursing": "Pflege",
+    "design": "Produktdesign"
+  }
+}

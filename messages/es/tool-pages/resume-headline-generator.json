@@ -1,0 +1,216 @@
+{
+  "seoTitle": "Generador de titular de currículum gratis, sin registro",
+  "description": "Sube tu currículum y pega una oferta de empleo. Obtén cinco titulares creados solo con las habilidades que muestra tu CV. Gratis, sin registro.",
+  "keywords": [
+    "titular de currículum",
+    "generador de titular de currículum",
+    "título de currículum",
+    "titular para cv",
+    "ejemplos de titular de currículum",
+    "titular profesional cv",
+    "título profesional currículum",
+    "titular de cv ats",
+    "ideas de título para currículum",
+    "titular de currículum en inglés"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Generador de titular de currículum",
+  "h1": "Generador de titular y título de currículum",
+  "lede": "Sube tu currículum y pega la oferta de empleo. Obtén cinco titulares con cinco formas distintas, creados solo con habilidades que tu CV puede respaldar, y con el puesto tomado de la propia oferta.",
+  "howTo": {
+    "name": "Cómo escribir un titular de currículum para un puesto concreto",
+    "description": "Crea un titular de currículum a partir de la oferta que buscas y de tu propia experiencia.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "La herramienta lee el nombre del puesto y los términos en los que insiste la oferta. Pega el anuncio completo, con la parte de requisitos."
+      },
+      {
+        "name": "Sube tu currículum",
+        "text": "Suelta el PDF. Extraemos el texto para que no tengas que copiarlo. Una habilidad que no está en tu CV nunca aparece en un titular."
+      },
+      {
+        "name": "Elige una forma y edítala",
+        "text": "Recibes cinco titulares con cinco formas distintas. Copia el que encaje y quita todo aquello sobre lo que no querrías que te preguntaran en una entrevista."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Qué es un titular de currículum?",
+      "a": "El titular de currículum es la línea que va bajo tu nombre, al principio del CV. Indica el puesto al que te presentas y dos o tres cosas que te hacen creíble para él. No es un resumen, que ocupa dos o tres frases, ni un objetivo, que dice lo que quieres en lugar de lo que ofreces."
+    },
+    {
+      "q": "¿En qué se diferencia un titular de un título de currículum?",
+      "a": "En la práctica se usan las dos palabras para la misma línea, y esta herramienta las trata igual. La única diferencia útil: el título suele ser solo el puesto («Senior Backend Engineer»), mientras que el titular añade pruebas («Senior Backend Engineer, Go y Kubernetes, infraestructura de pagos»). Si un formulario pide un título, pon el puesto. Para la parte de arriba de tu CV, usa el titular."
+    },
+    {
+      "q": "¿El titular del currículum es igual que el titular de LinkedIn?",
+      "a": "Cumplen funciones distintas. El titular de LinkedIn es una línea para todos los reclutadores que te encuentran, así que es general. El titular del currículum va en un CV que envías a un solo empleador, así que debe nombrar ese puesto concreto. Reutilizar el titular de LinkedIn en el CV es la forma más común de desperdiciar esta línea."
+    },
+    {
+      "q": "¿Por qué este generador pide la oferta de empleo?",
+      "a": "Porque un titular que no nombra el puesto al que te presentas hace solo la mitad del trabajo. La oferta le da a la herramienta el nombre exacto del puesto que usa el empleador y los términos en los que insiste. Un generador genérico no tiene ninguna de las dos cosas, así que adivina."
+    },
+    {
+      "q": "¿Me atribuirá habilidades que no tengo?",
+      "a": "No. Cada habilidad de un titular generado tiene que aparecer en la oferta y en el texto de tu currículum. La herramienta te muestra el reparto: lo que coincide y lo que pide la oferta sin que tu CV lo mencione. La segunda lista es una tarea pendiente, no material para el titular."
+    },
+    {
+      "q": "¿Funciona con un currículum y una oferta en español?",
+      "a": "No bien. Detecta puestos y habilidades con listas de palabras en inglés y escribe los titulares en inglés. Está pensada para candidaturas en inglés. Para un CV en español, usa las cinco formas descritas más abajo y escribe tu titular tú mismo."
+    },
+    {
+      "q": "¿Qué longitud debe tener un titular de currículum?",
+      "a": "Una línea que quepa al principio de la página, unos 60 a 90 caracteres. Si en tu CV pasa a una segunda línea, quita el elemento más débil. Tres habilidades es el límite práctico antes de que la línea deje de leerse de un vistazo."
+    },
+    {
+      "q": "¿Los sistemas ATS leen el titular?",
+      "a": "Lo leen como texto, igual que cualquier otra línea, y está arriba del todo, donde mira primero un reclutador. Mantenlo como texto simple en el cuerpo del documento, no dentro de un encabezado, un cuadro de texto o una imagen, porque esos son los sitios que los analizadores suelen pasar por alto."
+    }
+  ],
+  "blocks": [
+    { "h2": "La línea que casi todo el mundo desperdicia" },
+    {
+      "p": "La parte de arriba del CV es lo único que ve todo lector. La mayoría la llena con el puesto copiado de su último empleo, o peor, con la palabra «Currículum». **Un titular debe decirle al empleador a cuál de sus puestos te presentas y por qué eres creíble para él**, en una línea, antes de que nadie baje por la página."
+    },
+    {
+      "p": "Por eso este generador pide la oferta además de tu CV. El puesto sale del anuncio, con las palabras del empleador. Las habilidades salen del cruce entre lo que pide y lo que tú puedes demostrar."
+    },
+    { "h2": "Cinco formas, y cuándo encaja cada una" },
+    {
+      "steps": [
+        {
+          "title": "Puesto y tres habilidades",
+          "body": "«Senior Backend Engineer | Go, Kubernetes, Payments». La forma por defecto. Se lee de un vistazo, tiene muchas palabras clave y sirve para casi cualquier CV."
+        },
+        {
+          "title": "Nivel, puesto y sector",
+          "body": "Úsala cuando el sector importa tanto como el oficio. En salud, fintech, defensa, educación y sector público se mira primero el sector."
+        },
+        {
+          "title": "Puesto, años y un punto fuerte",
+          "body": "Úsala cuando tu experiencia es lo más fuerte que tienes, y solo si los años aparecen de verdad en tu CV."
+        },
+        {
+          "title": "Enfoque en resultados",
+          "body": "Empieza por lo que aportas en lugar de por cómo se llama tu puesto. Útil si cambias de sector y tu antiguo puesto juega en tu contra."
+        },
+        {
+          "title": "Sencillo, sin barras",
+          "body": "Una frase limpia para un encabezado de CV donde la línea va sobre tus datos de contacto y las barras lo recargarían."
+        }
+      ]
+    },
+    { "h2": "Ejemplos de titular de currículum por profesión" },
+    {
+      "p": "Formas reales, no relleno. Fíjate en que cada uno nombra un puesto y luego lo justifica con algo concreto."
+    },
+    {
+      "table": {
+        "head": ["Profesión", "Titular"],
+        "rows": [
+          ["Ingeniero de software", "Ingeniero backend senior | Go, Kubernetes, infraestructura de pagos"],
+          ["Recién graduado en ingeniería", "Desarrollador de software junior | Python y React | 3 proyectos de equipo entregados"],
+          ["Responsable de marketing", "Responsable de marketing digital | Redes sociales de pago, email marketing, HubSpot"],
+          ["Contable", "Contable de gestión, cierres mensuales y previsión de tesorería"],
+          ["Enfermero", "Enfermero | Más de 8 años | Medicina interna y triaje"],
+          ["Diseñador de producto", "Diseñador de producto centrado en sistemas de diseño y accesibilidad"],
+          ["Jefe de proyecto", "Jefe de proyecto certificado PMP | Construcción | Presupuestos de 20 M"],
+          ["Cambio de sector", "Analista de datos | Diez años en operaciones de retail | SQL y Power BI"],
+          ["Atención al cliente", "Especialista en atención al cliente | Zendesk | Onboarding y retención SaaS"],
+          ["Docente", "Profesor de Matemáticas de secundaria | ESO y Bachillerato | Refuerzo educativo"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Usa el nombre del puesto del empleador, no el tuyo anterior",
+        "body": "Si la oferta dice Growth Marketer y tu último puesto se llamaba Técnico de marketing, empieza por Growth Marketer. No mientes sobre tu trayectoria, que la sección de experiencia explica con claridad. Le dices al lector para qué puesto es esta candidatura."
+      }
+    },
+    { "h2": "Ejemplos de título de currículum" },
+    {
+      "p": "Cuando un formulario o una plantilla de CV solo tiene espacio para un título, pon el puesto con las palabras del empleador y nada más. De dos a cuatro palabras, alineadas con la oferta."
+    },
+    {
+      "table": {
+        "head": ["Si la oferta dice", "Tu título de currículum"],
+        "rows": [
+          ["Ingeniero de software senior, Pagos", "Ingeniero de software senior"],
+          ["Responsable de growth marketing", "Responsable de growth marketing"],
+          ["Enfermero, servicio de urgencias", "Enfermero"],
+          ["Analista de datos junior (recién graduado)", "Analista de datos junior"],
+          ["Customer success manager, SaaS", "Customer success manager"],
+          ["Contable de gestión", "Contable de gestión"]
+        ]
+      }
+    },
+    {
+      "p": "Deja los detalles que van tras la coma para el titular, donde puedes demostrarlos. Un título que promete «Pagos» en un CV sin experiencia en pagos invita a una mala primera pregunta en la entrevista."
+    },
+    { "h2": "Titular, título, resumen u objetivo" },
+    {
+      "table": {
+        "head": ["", "Longitud", "Qué dice", "Cuándo usarlo"],
+        "rows": [
+          ["Titular", "Una línea", "El puesto y dos o tres pruebas", "Casi siempre. Es la primera línea por defecto de un CV."],
+          ["Título", "De dos a cuatro palabras", "Solo el puesto", "Un formulario pide un título, o el diseño de tu CV no deja espacio."],
+          ["Resumen", "De dos a tres frases", "Alcance, especialidad y un resultado destacado", "Eres senior, o cambias de sector y el salto necesita explicación."],
+          ["Objetivo", "Una o dos frases", "Lo que buscas", "Pocas veces. Usa el espacio más visible para hablar de ti en lugar del empleador."]
+        ]
+      }
+    },
+    {
+      "p": "Un titular y un resumen pueden ir juntos, en ese orden. Un titular y un objetivo compiten por la misma función, y el objetivo pierde."
+    },
+    { "h2": "Cinco formas de fallar con un titular" },
+    {
+      "ol": [
+        "**Dice «Currículum» o repite tu nombre.** El archivo ya lo dice. Usa la línea para algo que el lector no tiene.",
+        "**Es una lista de adjetivos.** «Trabajador, detallista, buen compañero» no se puede comprobar y lo pone todo el mundo. Nombra una habilidad.",
+        "**Es tu titular de LinkedIn.** Está escrito para todos, así que no nombra ningún puesto. En un CV para un solo empleador, es un fallo.",
+        "**Menciona una herramienta que usaste una vez.** El titular es lo primero que indaga un entrevistador. Pon solo lo que quieras que te pregunten.",
+        "**Está en el encabezado del documento.** Algunos analizadores ignoran por completo los encabezados y los cuadros de texto. Mantén la línea en el cuerpo del documento."
+      ]
+    },
+    { "h2": "El lugar del titular en una mejora más amplia" },
+    {
+      "p": "El titular es la mejora más barata de un CV, y la más pequeña. Cambia los dos primeros segundos. No cambia lo que encuentra un reclutador cuando busca en su sistema de seguimiento de candidatos, ni si tus puntos aportan pruebas."
+    },
+    {
+      "p": "Cuando la primera línea esté bien, revisa la diferencia de vocabulario con [palabras clave que faltan en tu currículum](/missing-resume-keywords) y luego recorre la página con el [reescritor de puntos del currículum](/resume-bullet-rewriter). Si prefieres que las tres cosas se hagan para una misma oferta, eso es [adaptar desde el enlace de la oferta](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "¿El titular está bien pero el resto de la página sigue siendo genérico?",
+        "body": "Pega el enlace de la oferta y FitMyCV reescribe todo el CV para esa oferta, titular incluido, y redacta la carta de presentación que lo acompaña.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Reescritor de puntos del currículum",
+      "href": "/resume-bullet-rewriter",
+      "body": "Convierte una tarea en un logro, línea a línea."
+    },
+    {
+      "label": "Palabras clave que faltan en tu currículum",
+      "href": "/missing-resume-keywords",
+      "body": "Mira qué términos de la oferta no menciona nunca tu CV."
+    },
+    {
+      "label": "Verificador de CV ATS gratis",
+      "href": "/ats-resume-checker",
+      "body": "Puntúa tu CV frente a una oferta y mira los términos que te faltan."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

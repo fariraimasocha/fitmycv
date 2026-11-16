@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { ArrowRightIcon, CheckIcon, CopyIcon, QuotesIcon, XIcon } from "@phosphor-icons/react";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
@@ -25,12 +26,14 @@ const MAX_LISTED = 12;
 
 // Shown before anyone runs the tool, for people searching for examples.
 const EXAMPLE_SECTIONS = [
-  { role: "Data analyst", text: "SQL, Python, Tableau, Power BI, A/B testing, Excel, stakeholder reporting" },
-  { role: "Nurse", text: "Triage, IV therapy, wound care, EPIC, discharge planning, patient education" },
-  { role: "Software engineer", text: "TypeScript, React, Node.js, PostgreSQL, AWS, CI/CD, code review" },
+  { role: "dataAnalyst", text: "SQL, Python, Tableau, Power BI, A/B testing, Excel, stakeholder reporting" },
+  { role: "nurse", text: "Triage, IV therapy, wound care, EPIC, discharge planning, patient education" },
+  { role: "softwareEngineer", text: "TypeScript, React, Node.js, PostgreSQL, AWS, CI/CD, code review" },
 ];
 
 export default function SkillsSectionGenerator() {
+  const t = useTranslations("tools.skills");
+  const locale = useLocale();
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
@@ -69,12 +72,12 @@ export default function SkillsSectionGenerator() {
       if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
       await navigator.clipboard.writeText(result.line);
       setCopied(true);
-      toast.success("Skills copied");
+      toast.success(t("toastCopied"));
       clearTimeout(resetTimer.current);
       resetTimer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
-      toast.error("Copy failed. Select the skills and copy them yourself.");
+      toast.error(t("toastCopyFailed"));
     }
   }
 
@@ -114,7 +117,7 @@ export default function SkillsSectionGenerator() {
               htmlFor="skills-job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description
+              {t("jobLabel")}
             </label>
             <textarea
               id="skills-job-text"
@@ -124,14 +127,14 @@ export default function SkillsSectionGenerator() {
                 reset();
               }}
               rows={10}
-              placeholder="Paste the full text of the job posting here…"
+              placeholder={t("jobPlaceholder")}
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
           </div>
 
           <ResumeFileField
             id="skills-resume-text"
-            label="Your CV"
+            label={t("resumeLabel")}
             value={resumeText}
             onChange={(text) => {
               setResumeText(text);
@@ -141,42 +144,51 @@ export default function SkillsSectionGenerator() {
           />
         </div>
 
+        {locale !== "en" ? (
+          <p className="text-xs leading-5 text-[var(--landing-ink-soft)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
+
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Build my skills section"
-            busyLabel="Reading the posting"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={jobTooShort || resumeTooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
-              ? "Reading your CV"
+              ? t("statusReadingCv")
               : running
-                ? "Matching your CV to the posting"
+                ? t("statusMatching")
                 : jobTooShort || resumeTooShort
-                  ? "Add the job description and your CV to start."
-                  : "Your CV is read in this tab. Nothing is stored."}
+                  ? t("statusNeedInput")
+                  : t("statusPrivate")}
           </p>
         </div>
       </form>
 
-      {running ? <ToolProgress message="Reading the posting" lines={3} /> : null}
+      {running ? <ToolProgress message={t("busy")} lines={3} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           {result.listed.length ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                Your skills section for{" "}
-                <span className="text-[var(--landing-primary-dark)]">{result.title ?? "this job"}</span>
+                {t.rich("resultHeading", {
+                  title: result.title ?? t("thisJob"),
+                  hl: (chunks) => (
+                    <span className="text-[var(--landing-primary-dark)]">{chunks}</span>
+                  ),
+                })}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Only skills that appear in both your CV and the posting, in the
-                order the posting stresses them.
+                {t("resultBody")}
               </p>
               <div className="mt-5 flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 sm:flex-row sm:items-start sm:justify-between">
                 <p className="text-base font-semibold leading-7 text-[var(--landing-ink)]">
-                  <span className="font-extrabold">Skills: </span>
+                  <span className="font-extrabold">{t("skillsLabel")} </span>
                   {result.line}
                 </p>
                 <button
@@ -187,19 +199,19 @@ export default function SkillsSectionGenerator() {
                   {copied ? (
                     <>
                       <CheckIcon size={13} weight="bold" aria-hidden="true" />
-                      Copied
+                      {t("copied")}
                     </>
                   ) : (
                     <>
                       <CopyIcon size={13} weight="bold" aria-hidden="true" />
-                      Copy
+                      {t("copy")}
                     </>
                   )}
                 </button>
               </div>
 
               <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                Where your CV proves each one
+                {t("proofHeading")}
               </p>
               <ul className="mt-3 flex flex-col gap-2">
                 {result.listed.map((item) => (
@@ -218,8 +230,7 @@ export default function SkillsSectionGenerator() {
                       </span>
                     ) : (
                       <span className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                        Your CV names it but never shows it in use. Add one
-                        bullet where you did.
+                        {t("noProof")}
                       </span>
                     )}
                   </li>
@@ -229,12 +240,10 @@ export default function SkillsSectionGenerator() {
           ) : (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                Your CV and this posting share no skills yet
+                {t("noSharedHeading")}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Nothing from the posting appears in your CV, so there is nothing
-                safe to list. Check the gaps below, or paste the full posting
-                with its requirements.
+                {t("noSharedBody")}
               </p>
             </>
           )}
@@ -242,7 +251,7 @@ export default function SkillsSectionGenerator() {
           {gapCount ? (
             <>
               <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                The job wants these, your CV does not show them
+                {t("gapHeading")}
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {result.missing.map((item) => (
@@ -256,8 +265,7 @@ export default function SkillsSectionGenerator() {
                 ))}
               </ul>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                List one only if you have really used it, and add a bullet that
-                shows where.
+                {t("gapBody")}
               </p>
             </>
           ) : null}
@@ -265,14 +273,10 @@ export default function SkillsSectionGenerator() {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {gapCount
-                  ? `${gapCount} skills the job wants are missing from your CV`
-                  : "Skills sorted. Now the rest of the CV"}
+                {gapCount ? t("ctaGapsTitle", { count: gapCount }) : t("ctaDoneTitle")}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                A skills list only helps when your bullets back it up. Sign up
-                free and FitMyCV tailors your whole CV to this posting, using
-                only your real experience.
+                {t("ctaBody")}
               </p>
             </div>
             <button
@@ -280,7 +284,7 @@ export default function SkillsSectionGenerator() {
               onClick={handleTailorHandoff}
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              {gapCount ? "Close the gaps" : "Tailor my CV to this job"}
+              {gapCount ? t("ctaGapsLabel") : t("ctaDoneLabel")}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
@@ -292,11 +296,10 @@ export default function SkillsSectionGenerator() {
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            Skills section examples
+            {t("examplesHeading")}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Yours will use only skills from your CV that the posting asks for.
-            Here is the shape they take.
+            {t("examplesBody")}
           </p>
           <ul className="mt-5 flex flex-col gap-2">
             {EXAMPLE_SECTIONS.map(({ role, text }) => (
@@ -305,7 +308,7 @@ export default function SkillsSectionGenerator() {
                 className="flex flex-col gap-1 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 sm:flex-row sm:items-start sm:gap-4"
               >
                 <span className="font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)] sm:w-36 sm:shrink-0 sm:pt-0.5">
-                  {role}
+                  {t(`exampleRoles.${role}`)}
                 </span>
                 <span className="text-sm font-semibold leading-6 text-[var(--landing-ink)]">{text}</span>
               </li>

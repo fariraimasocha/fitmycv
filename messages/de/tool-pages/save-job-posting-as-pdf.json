@@ -1,0 +1,92 @@
+{
+  "seoTitle": "Stellenanzeige als PDF speichern: kostenlos, ohne Login",
+  "description": "Füge einen Link von LinkedIn oder einer Karriereseite ein und speichere die vollständige Anzeige als PDF, bevor sie offline geht. Kostenlos, ohne Anmeldung.",
+  "keywords": [
+    "stellenanzeige als pdf speichern",
+    "linkedin stellenanzeige speichern",
+    "linkedin job als pdf",
+    "stellenbeschreibung pdf",
+    "stellenanzeige speichern",
+    "stellenanzeige herunterladen",
+    "stellenanzeige archivieren"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Stellenanzeige als PDF",
+  "h1": "Stellenanzeige als PDF speichern",
+  "lede": "Füge den Link zur Anzeige ein. Wir lesen die Anzeige und geben dir ihren vollständigen Text zum Speichern als PDF oder zum Kopieren, damit du ihn noch hast, wenn die Anzeige offline geht.",
+  "howTo": {
+    "name": "So speicherst du eine Stellenanzeige als PDF",
+    "description": "Behalte eine Kopie einer Stellenbeschreibung, bevor die Anzeige entfernt wird.",
+    "steps": [
+      {
+        "name": "Kopiere den Link zur Anzeige",
+        "text": "Öffne die Anzeige und kopiere die Adresse aus der Adressleiste deines Browsers. Ein LinkedIn-Link funktioniert, ebenso ein Link zu einer Karriereseite oder Jobbörse."
+      },
+      {
+        "name": "Einfügen und speichern",
+        "text": "Das Tool liest die Seite und zeigt den Text der Anzeige mit dem Link und dem Datum, an dem du sie gespeichert hast."
+      },
+      {
+        "name": "PDF herunterladen",
+        "text": "Klicke auf Als PDF speichern und wähle im Druckfenster als Ziel Als PDF speichern. Gedruckt wird nur die Anzeige."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Warum überhaupt eine Stellenanzeige speichern?",
+      "a": "Arbeitgeber nehmen Anzeigen offline, wenn die Stelle besetzt ist, oft vor deinem Vorstellungsgespräch. Die Beschreibung ist der beste Hinweis darauf, was sie fragen werden. Speichere also eine Kopie an dem Tag, an dem du dich bewirbst."
+    },
+    {
+      "q": "Funktioniert es mit LinkedIn-Jobs?",
+      "a": "Ja, für öffentliche Links wie linkedin.com/jobs/view/ gefolgt von einer Nummer. Zeigt LinkedIn die Anzeige nicht ohne Login, sagt dir das Tool Bescheid, und du kannst die Seite aus deinem eigenen Browser speichern."
+    },
+    {
+      "q": "Was, wenn die Anzeige schon geschlossen ist?",
+      "a": "Dann ist die Seite meist weg und es gibt nichts mehr zu lesen. Speichere Anzeigen, wenn du dich bewirbst, nicht erst, wenn das Gespräch feststeht."
+    },
+    {
+      "q": "Speichert ihr die Anzeigen, die ich sichere?",
+      "a": "Nein. Die Seite wird einmal gelesen, um dir ihren Text zu zeigen. Nichts wird in einem Konto oder einer Datenbank gespeichert."
+    },
+    {
+      "q": "Warum sieht der gespeicherte Text so schlicht aus?",
+      "a": "Das Tool behält die Wörter der Anzeige, nicht das Layout, die Logos oder Buttons der Seite. So lässt sich das PDF später leicht lesen und durchsuchen."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Was du mit einer gespeicherten Anzeige machst"
+    },
+    {
+      "ul": [
+        "**Vor dem Vorstellungsgespräch** liest du die Aufgaben noch einmal und ordnest jeder eine Geschichte aus deiner eigenen Arbeit zu.",
+        "**Beim Anschreiben** nutzt du die Begriffe der Anzeige für die geforderten Skills.",
+        "**Nach einem Angebot** vergleichst du die angebotene Stelle mit der ausgeschriebenen."
+      ]
+    }
+  ],
+  "related": [
+    {
+      "label": "Welches ATS nutzt ein Unternehmen?",
+      "href": "/ats",
+      "body": "Füge einen Link zur Anzeige ein und sieh das Bewerbermanagementsystem dahinter."
+    },
+    {
+      "label": "Lebenslauf-Stellen-Abgleich",
+      "href": "/resume-job-match-checker",
+      "body": "Gleiche deinen Lebenslauf mit der Anzeige ab, die du gerade gespeichert hast."
+    },
+    {
+      "label": "ATS-Keyword-Check",
+      "href": "/free-ats-keyword-checker",
+      "body": "Zieh die Begriffe heraus, auf die die Anzeige setzt."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

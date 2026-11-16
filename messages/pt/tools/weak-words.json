@@ -1,0 +1,48 @@
+{
+  "englishOnly": "Este verificador encontra palavras fracas em currículos escritos em inglês. A lista de palavras e as dicas tratam de expressões em inglês.",
+  "submit": "Encontrar palavras fracas",
+  "busy": "Lendo seu currículo",
+  "privacy": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "noneFound": "Nenhuma palavra fraca encontrada",
+  "found": "{count, plural, one {# palavra fraca encontrada} other {# palavras fracas encontradas}}",
+  "numbers": "{withNumbers} das suas {lines} linhas mais longas têm um número.",
+  "numbersLow": "Acrescente uma quantidade, uma porcentagem ou um tempo economizado em mais linhas. Números são o que o recrutador lembra.",
+  "numbersOk": "Ótimo. Números são o que o recrutador lembra.",
+  "kinds": {
+    "duty": "Frase de tarefa",
+    "vague": "Verbo vago",
+    "cliche": "Clichê"
+  },
+  "fixes": {
+    "lead": "Comece pelo que você fez: Led, Ran, Built, Managed.",
+    "results": "Liste resultados, não tarefas. O que mudou porque você estava lá?",
+    "delivered": "Diga o que você entregou, não o que recebeu para fazer.",
+    "part": "Diga qual foi a sua parte: Built, Designed, Wrote, Tested.",
+    "did": "Diga o que você fez: Supported 12 clients, Cut errors by 20%.",
+    "share": "Diga qual foi a sua parte no trabalho ou o resultado que ele gerou.",
+    "owned": "Diga pelo que você foi responsável.",
+    "verb": "Use um verbo preciso: Resolved, Processed, Negotiated.",
+    "name": "Diga quais são ou informe a quantidade.",
+    "list": "Termine a lista ou reduza aos dois itens que importam.",
+    "show": "Mostre: um prazo que você cumpriu ou o volume que você deu conta.",
+    "teamResult": "Cite um resultado da equipe e a sua parte nele.",
+    "oneResult": "Apague e coloque um resultado real no lugar.",
+    "proof": "Dê uma prova: uma taxa de erro, uma auditoria em que você passou.",
+    "started": "Mostre algo que você começou sem ninguém pedir.",
+    "skip": "Apague. Todo recrutador pula essa palavra.",
+    "unusual": "Descreva a solução diferente que você encontrou.",
+    "evidence": "Mostre a prova: um projeto paralelo, um curso, um resultado.",
+    "checkable": "Apague. Não diz nada que o recrutador possa conferir.",
+    "who": "Diga com quem você trabalhou e o que isso gerou.",
+    "communication": "Mostre: um relatório que você escreveu, uma equipe que você treinou.",
+    "record": "Troque pelo histórico em si: um número.",
+    "learned": "Cite algo que você aprendeu e em quanto tempo passou a usar.",
+    "delete": "Apague.",
+    "cameFor": "Diga o que as pessoas vinham pedir a você."
+  },
+  "handoff": {
+    "title": "Reescreva isso para uma vaga real",
+    "body": "O FitMyCV reescreve seu resumo e seus principais tópicos com base em uma vaga, nas palavras do próprio anúncio, usando só o que já está no seu currículo.",
+    "label": "Reescrever meu currículo para uma vaga"
+  }
+}

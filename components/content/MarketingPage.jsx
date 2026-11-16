@@ -25,7 +25,11 @@ import LinkedInProfileChecker from "@/components/tools/LinkedInProfileChecker";
 import LetterFromCvGenerator from "@/components/tools/LetterFromCvGenerator";
 import KeywordsGenerator from "@/components/tools/KeywordsGenerator";
 import JsonLd from "@/components/JsonLd";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { PUBLIC_MESSAGES, pickMessages } from "@/i18n/request";
 import {
+  TRANSLATED_PATHS,
   breadcrumbSchema,
   faqSchema,
   howToSchema,
@@ -81,7 +85,7 @@ const PRODUCT_SLUGS = new Set([
  * Every page gets the same hero, prose column, FAQ block, internal-link rail,
  * and schema stack, so a new landing page is a content file, not a layout.
  */
-export default function MarketingPage({ page, children, hideHero = false, locale = "en" }) {
+export default async function MarketingPage({ page, children, hideHero = false, locale = "en" }) {
   const {
     slug,
     eyebrow,
@@ -105,6 +109,12 @@ export default function MarketingPage({ page, children, hideHero = false, locale
   const pagePath = `${prefix}/${slug}`;
 
   const ToolComponent = tool ? TOOL_COMPONENTS[tool] : null;
+  // Each tool's interface copy ships only on its own page.
+  const toolMessages = ToolComponent
+    ? pickMessages(await getMessages(), [...PUBLIC_MESSAGES, "tools.shared", `tools.${tool}`])
+    : null;
+  // Related links stay in the visitor's language when that page is translated.
+  const localHref = (href) => (prefix && TRANSLATED_PATHS.includes(href) ? `${prefix}${href}` : href);
 
   return (
     <div className="landing-root min-h-screen">
@@ -197,7 +207,9 @@ export default function MarketingPage({ page, children, hideHero = false, locale
           <section id="tool" className="scroll-mt-24 px-5 pb-4 sm:px-10 lg:px-16 xl:px-24">
             <div className="mx-auto w-full max-w-3xl">
               {ToolComponent ? (
-                <ToolComponent {...toolProps} />
+                <NextIntlClientProvider messages={toolMessages}>
+                  <ToolComponent {...toolProps} />
+                </NextIntlClientProvider>
               ) : (
                 <KeywordChecker mode={tool} />
               )}
@@ -232,7 +244,7 @@ export default function MarketingPage({ page, children, hideHero = false, locale
                 {related.map(({ label, href, body }) => (
                   <Link
                     key={href}
-                    href={href}
+                    href={localHref(href)}
                     className="landing-card landing-lift group flex flex-col gap-2 rounded-2xl p-6"
                   >
                     <span className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">

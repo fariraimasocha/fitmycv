@@ -1,0 +1,56 @@
+{
+  "cvLabel": "你的简历",
+  "jobLabel": "职位描述",
+  "jobPlaceholder": "在这里粘贴职位描述的完整文本。",
+  "englishOnly": "这个工具读取英文。它比较的是你简历和职位描述中的英文词汇，所以请使用英文简历和英文职位描述。",
+  "submit": "检测匹配度",
+  "busy": "正在检测匹配度",
+  "readingCv": "正在读取你的简历",
+  "comparing": "正在将你的简历与职位描述对比",
+  "needBoth": "请添加你的简历和完整的职位描述。",
+  "privacy": "你的简历只在这个标签页中读取，不会保存任何内容。",
+  "scoreAria": "匹配分数：{value}%",
+  "scoreUnit": "匹配",
+  "verdictStrong": "与这个职位高度匹配",
+  "verdictPartial": "部分匹配。值得针对职位修改一遍。",
+  "verdictWeak": "与这个职位匹配度低",
+  "scoreNote": "根据你的简历和这个职位描述中的技能、关键词和经验信号综合计算。这是覆盖度分数，不代表你一定能获得面试。",
+  "strongHeading": "已匹配",
+  "strongEmpty": "职位描述中点名的技能还没有出现在你的简历里。",
+  "missingHeading": "缺失或较弱",
+  "missingEmpty": "我们从职位描述中读到的每项技能，你的简历都提到了。",
+  "barExperience": "经验匹配",
+  "barSkills": "技能匹配",
+  "barKeywords": "关键词匹配",
+  "improveHeading": "最该改进的 5 件事",
+  "tips": {
+    "addSkill": "把 {skill} 写进一条你能如实证明的要点里，而不只是放在技能列表中。",
+    "useWording": "如果你的简历已经用别的说法写了这项工作，请改用职位描述里的词“{term}”。",
+    "years": "职位要求 {years} 年经验。把相关职位放在靠前的位置，让这个年限一眼就能看到。",
+    "level": "这个职位的级别是 {level}。用你真正担任过的最接近的职位名称和职责范围开头。",
+    "proveSkill": "把 {skill} 保留在一条带数字的成果要点里，让它成为证据，而不只是一句声明。",
+    "covered": "你的简历已经覆盖了职位描述的主要词汇。检查每个词是否都放在带成果的要点里。"
+  },
+  "levels": {
+    "intern": "实习",
+    "entry_level": "入门级",
+    "junior": "初级",
+    "mid_level": "中级",
+    "senior": "高级",
+    "staff": "资深",
+    "lead": "负责人",
+    "principal": "首席",
+    "manager": "经理",
+    "director": "总监"
+  },
+  "ctaHigh": {
+    "title": "把这个匹配度变成一份定制简历",
+    "body": "你的匹配度很高。保留这个职位，用你已有的经验针对它改写简历。",
+    "label": "定制我的简历"
+  },
+  "ctaGaps": {
+    "title": "补上这些差距",
+    "body": "保留这个职位，FitMyCV 会用你已有的经验，针对它改写你的简历和求职信。",
+    "label": "补上这些差距"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "seoTitle": "Comment nommer son fichier CV : exemples et générateur",
+  "description": "Nommez votre CV Prenom-Nom-Poste-CV.pdf. Voyez de bons et de mauvais exemples de noms de fichier, puis tapez votre nom et votre poste pour obtenir le vôtre. Gratuit, sans compte.",
+  "keywords": [
+    "nom fichier cv",
+    "comment nommer son cv",
+    "nommer fichier cv",
+    "nom du fichier cv pdf",
+    "comment enregistrer son cv",
+    "titre fichier cv",
+    "nom de fichier cv exemple",
+    "nommer son cv pdf",
+    "nom fichier lettre de motivation",
+    "générateur nom de fichier cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Générateur de nom de fichier CV",
+  "h1": "Comment nommer son fichier CV : exemples et générateur gratuit",
+  "lede": "Utilisez votre nom, le poste et le mot CV, reliés par des tirets, au format PDF : Farirai-Masocha-Developpeur-logiciel-CV.pdf. Tapez les vôtres ci-dessous et l'outil retire les caractères qui bloquent les envois.",
+  "howTo": {
+    "name": "Comment nommer un fichier CV",
+    "description": "Créez un nom de fichier propre et facile à retrouver pour votre CV, avant de l'envoyer.",
+    "steps": [
+      {
+        "name": "Tapez votre nom et le poste",
+        "text": "Utilisez le nom que le recruteur verra sur le CV, et l'intitulé du poste de l'offre plutôt que votre poste actuel."
+      },
+      {
+        "name": "Ajoutez l'entreprise, si besoin",
+        "text": "Utile quand vous postulez à plusieurs postes chez le même employeur, ou quand une personne précise vous a demandé de lui envoyer le fichier."
+      },
+      {
+        "name": "Copiez le nom et renommez votre fichier",
+        "text": "Renommez le fichier avant de l'envoyer. Certains sites le renomment de leur côté, mais la version qui arrive dans la boîte mail d'un recruteur est souvent la vôtre."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Comment nommer son fichier CV ?",
+      "a": "Votre nom, le poste et le mot CV, reliés par des tirets, au format PDF. Par exemple Farirai-Masocha-Developpeur-logiciel-CV.pdf. Le recruteur sait à qui est le CV et pour quel poste sans l'ouvrir, et le nom reste lisible dans un lien de téléchargement."
+    },
+    {
+      "q": "Tirets, tirets bas ou espaces ?",
+      "a": "Des tirets par défaut. Les espaces deviennent %20 dans une adresse de téléchargement et peuvent gêner d'anciens formulaires d'envoi, et les tirets bas disparaissent quand le nom du fichier s'affiche souligné. N'utilisez les tirets bas que si un site ou un recruteur les demande."
+    },
+    {
+      "q": "Faut-il mettre le nom de l'entreprise ?",
+      "a": "Mettez-le quand vous postulez à plusieurs postes chez le même employeur, ou quand vous écrivez directement à une personne nommée. Laissez-le de côté quand vous postulez largement, car le risque est réel : envoyer à une entreprise un fichier nommé pour une autre est une erreur difficile à expliquer."
+    },
+    {
+      "q": "Comment nommer le fichier de la lettre de motivation ?",
+      "a": "Suivez le même modèle et terminez par Lettre-de-motivation au lieu de CV : Farirai-Masocha-Developpeur-logiciel-Lettre-de-motivation.pdf. Des noms assortis montrent au recruteur que les deux fichiers vont ensemble. Cet outil crée le nom du CV, et vous pouvez adapter la fin vous-même."
+    },
+    {
+      "q": "Faut-il mettre la date dans le nom du fichier ?",
+      "a": "Non. Une date ressemble à un numéro de version, et une date ancienne donne l'air périmé à un CV récent, même si vous l'avez réécrit le matin même. Si vous en avez besoin, gardez les dates dans le nom du dossier sur votre ordinateur."
+    },
+    {
+      "q": "PDF ou DOCX ?",
+      "a": "Envoyez un PDF, sauf si l'offre demande un document Word. Un PDF garde votre mise en page sur toutes les machines. Certains employeurs demandent du DOCX parce que leur processus modifie ou remet en forme le fichier, et dans ce cas, donnez-leur ce qu'ils demandent. Les règles de nommage sont les mêmes."
+    },
+    {
+      "q": "Le nom du fichier influe-t-il sur mon score ATS ?",
+      "a": "Pas sur le score. Les logiciels de recrutement (ATS) analysent le contenu du fichier, pas son nom, et la plupart l'enregistrent de toute façon sous leur propre référence. Le nom compte pour la partie humaine : un recruteur qui cherche dans sa boîte mail ou parcourt un dossier de pièces jointes. Le contenu du fichier est un autre sujet, traité par le [test CV ATS](/ats-resume-checker)."
+    },
+    {
+      "q": "Et si le site renomme mon fichier à l'envoi ?",
+      "a": "Beaucoup le font, et vous ne pouvez pas l'empêcher. Nommez-le correctement quand même. De nombreuses candidatures arrivent encore par e-mail, sont transférées à un responsable du recrutement ou enregistrées sur un disque partagé, et dans ces trois cas, c'est votre nom de fichier qui reste."
+    },
+    {
+      "q": "Pourquoi l'outil retire-t-il les accents ?",
+      "a": "Pour que le nom fonctionne partout. Certains systèmes et formulaires d'envoi gèrent mal les lettres accentuées. L'outil garde la lettre et retire seulement l'accent : Développeur devient Developpeur."
+    }
+  ],
+  "blocks": [
+    { "h2": "Pourquoi le nom du fichier vaut trente secondes" },
+    {
+      "p": "Le dossier de téléchargements d'un recruteur en contient des centaines. **Un fichier appelé cv.pdf devient introuvable dès qu'il arrive à côté de quarante autres portant le même nom.** Le vôtre doit dire qui vous êtes et pour quel poste, avant même qu'on l'ouvre."
+    },
+    {
+      "p": "C'est aussi la dernière chose que vous contrôlez avant que votre candidature ne vous échappe. Tout ce qui suit l'envoi appartient au système de quelqu'un d'autre."
+    },
+    { "h2": "Exemples de noms de fichier CV qui marchent, et d'autres qui ne marchent pas" },
+    {
+      "table": {
+        "head": ["Nom du fichier", "Verdict", "Pourquoi"],
+        "rows": [
+          ["Farirai-Masocha-Developpeur-logiciel-CV.pdf", "Le meilleur", "Le nom, le poste et ce qu'est le fichier. Lisible dans une adresse web et dans une recherche de boîte mail."],
+          ["Farirai-Masocha-CV.pdf", "Bon", "Le bon choix quand vous postulez largement et que le poste varie."],
+          ["Farirai_Masocha_CV.pdf", "Correct", "Les tirets bas sont sans risque. Utilisez-les quand un site ou un recruteur les demande."],
+          ["cv.pdf", "Mauvais", "Anonyme dès qu'il est enregistré. Se confond avec tous les autres fichiers."],
+          ["CV final v3 MODIFIE.pdf", "Mauvais", "Ressemble à un brouillon, et les espaces cassent les liens de téléchargement."],
+          ["CV 2019.pdf", "Mauvais", "La date donne l'air périmé à un CV récent avant même qu'on l'ouvre."],
+          ["Mon CV (2).pdf", "Mauvais", "Les parenthèses et les espaces sont justement ce que les formulaires d'envoi gèrent mal."]
+        ]
+      }
+    },
+    { "h2": "Les caractères à éviter" },
+    {
+      "p": "Ils posent problème quelque part entre votre ordinateur, le formulaire d'envoi et le système du recruteur. L'outil les retire pour vous, et vous le signale."
+    },
+    {
+      "ul": [
+        "**Barres obliques, deux-points et barres verticales** ( \\ / : | ) sont réservés par Windows, macOS ou les deux.",
+        "**Points d'interrogation, astérisques et chevrons** ( ? * < > ) sont des jokers ou des caractères réservés dans les terminaux et systèmes de fichiers courants.",
+        "**Guillemets et apostrophes** passent en général sur votre ordinateur, mais se comportent mal une fois qu'un formulaire les place dans une adresse web.",
+        "**Les espaces** deviennent %20 dans un lien de téléchargement, ce qui rend un nom propre illisible.",
+        "**Les lettres accentuées** sont simplifiées, pour que le nom survive à un système qui les gère mal.",
+        "**Emoji et symboles** n'ont rien à faire dans un document envoyé à un employeur."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Gardez vos propres majuscules",
+        "body": "L'outil ne touche pas à vos majuscules et n'impose pas de règle automatique. Chacun sait écrire son nom, et une règle automatique se trompe plus souvent qu'elle ne réussit sur des noms comme McDonald, van der Berg ou O'Neill."
+      }
+    },
+    { "h2": "Une seule convention de nommage, à chaque fois" },
+    {
+      "ol": [
+        "**Choisissez un séparateur et gardez-le.** Des tirets, sauf si quelque chose vous oblige à faire autrement.",
+        "**Commencez par votre nom.** C'est ce qu'un recruteur tape dans sa boîte mail.",
+        "**Utilisez l'intitulé du poste de l'offre,** pas votre poste actuel, pour que le fichier corresponde à la candidature.",
+        "**Terminez par CV,** ou par Resume si vous postulez sur un marché qui emploie ce mot.",
+        "**Évitez les dates, les numéros de version et les mots final, brouillon et modifié.** Ils ne vous apportent jamais rien.",
+        "**Restez assez court pour être lu d'un coup d'œil.** Environ quatre-vingts caractères avant l'extension, et plus court c'est mieux."
+      ]
+    },
+    {
+      "p": "Appliquez la même convention à votre lettre de motivation, pour que les deux fichiers arrivent ensemble et soignés : Farirai-Masocha-Developpeur-logiciel-Lettre-de-motivation.pdf."
+    },
+    { "h2": "Le nom du fichier, c'est la partie facile" },
+    {
+      "p": "Cette page règle l'extérieur du document en trente secondes. Elle ne change rien à son contenu, et c'est le contenu qui décide de la candidature."
+    },
+    {
+      "p": "Les deux étapes suivantes qui valent votre temps : voyez quels termes de l'offre votre CV ne mentionne jamais avec [les mots-clés manquants du CV](/missing-resume-keywords), puis reprenez la page ligne par ligne avec le [réécrivain de puces de CV](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "Le nom est bon. Et le CV ?",
+        "body": "Collez le lien de l'offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre, en gardant votre vraie expérience.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Mots-clés manquants du CV",
+      "href": "/missing-resume-keywords",
+      "body": "Voyez quels termes de l'offre votre CV ne mentionne jamais."
+    },
+    {
+      "label": "Générateur de titre de CV",
+      "href": "/resume-headline-generator",
+      "body": "Corrigez la première ligne qu'un recruteur lit une fois le fichier ouvert."
+    },
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez le contenu du document face à l'offre."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

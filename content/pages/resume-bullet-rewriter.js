@@ -57,7 +57,7 @@ export const resumeBulletRewriter = {
   faqs: [
     {
       q: "What does this bullet rewriter actually do?",
-      a: "It swaps a duty opener for a strong action verb, restructures the sentence around a result, and marks the place where a number belongs. It also flags what is wrong with the original: a passive opener, no figure anywhere, pronouns, vague words like 'various', or a sentence that has run past twenty five words.",
+      a: "It swaps a duty opener for a strong action verb, restructures the sentence around a result, and marks the place where a number belongs. It also flags what is wrong with the original: a passive opener, no figure anywhere, pronouns, vague words like 'various', or a sentence that has run past twenty eight words.",
     },
     {
       q: "Does it invent the numbers for me?",

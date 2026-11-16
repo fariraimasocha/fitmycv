@@ -1,0 +1,99 @@
+{
+  "seoTitle": "Générateur de lettre de motivation en anglais : gratuit",
+  "description": "Collez l'offre et importez votre CV en anglais. Obtenez une lettre de candidature simple en anglais, avec vos vraies compétences et vos résultats. Gratuit, sans compte.",
+  "keywords": [
+    "lettre de motivation en anglais",
+    "générateur lettre de motivation anglais",
+    "cover letter en anglais",
+    "lettre de candidature en anglais",
+    "exemple lettre de motivation anglais",
+    "modèle cover letter",
+    "application letter anglais"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Lettre de motivation en anglais",
+  "h1": "Générateur de lettre de motivation en anglais",
+  "lede": "Collez l'offre et importez votre CV, tous deux en anglais. Obtenez une lettre complète et une version courte, construites uniquement avec les compétences et les résultats que votre CV montre déjà. Sans compte, rien de stocké.",
+  "howTo": {
+    "name": "Comment rédiger une lettre de candidature en anglais",
+    "description": "Construisez une lettre simple en anglais à partir de l'offre et de votre propre CV.",
+    "steps": [
+      {
+        "name": "Collez l'offre",
+        "text": "L'outil lit l'intitulé du poste et les termes que l'offre répète."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Le texte est lu dans votre navigateur. Une compétence absente de votre CV n'apparaît jamais dans la lettre."
+      },
+      {
+        "name": "Relisez et envoyez",
+        "text": "Ajoutez le nom de l'entreprise et le vôtre, vérifiez chaque affirmation, puis copiez la lettre dans votre e-mail ou un document."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Dans quelle langue la lettre est-elle écrite ?",
+      "a": "En anglais. L'outil remplit un modèle de lettre anglais et lit les intitulés et compétences en anglais. Il sert donc aux candidatures en anglais, avec une offre et un CV rédigés en anglais. Il ne produit pas de lettre en français."
+    },
+    {
+      "q": "Qu'est-ce qu'une lettre de candidature ?",
+      "a": "C'est une courte lettre qui indique le poste visé, pourquoi vous convenez et qui demande un entretien. Dans beaucoup de pays, c'est la même chose qu'une lettre de motivation (cover letter)."
+    },
+    {
+      "q": "Quelle longueur pour la lettre ?",
+      "a": "Trois ou quatre courts paragraphes, moins d'une page. La version courte de cette page sert pour un e-mail ou un petit champ de formulaire."
+    },
+    {
+      "q": "Le générateur invente-t-il quelque chose ?",
+      "a": "Non. L'intitulé vient de l'offre, chaque compétence figure à la fois dans l'offre et dans votre CV, et chaque résultat est une ligne copiée de votre CV. Si votre CV n'a aucun résultat chiffré, la lettre laisse un emplacement à remplir."
+    },
+    {
+      "q": "Mon CV est-il stocké ?",
+      "a": "Non. La lettre est construite dans votre navigateur et rien n'est envoyé."
+    },
+    {
+      "q": "À qui adresser la lettre ?",
+      "a": "Au responsable du recrutement, par son nom si l'offre le donne. Sinon, « Dear Hiring Manager » convient."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "La structure d'une lettre de candidature simple"
+    },
+    {
+      "ol": [
+        "**Nommez le poste.** Indiquez le poste et l'entreprise dès la première ligne.",
+        "**Montrez l'adéquation.** Citez les compétences demandées que vous avez utilisées, puis donnez un résultat chiffré.",
+        "**Demandez l'entretien.** Une ligne, puis un remerciement."
+      ]
+    },
+    {
+      "p": "Pour d'autres exemples et un format à copier, lisez le [guide de la lettre de candidature](/blog/job-application-letter). Pour l'envoyer par e-mail, voyez [comment envoyer une candidature par e-mail](/blog/how-to-email-a-job-application). Les deux guides sont en anglais."
+    }
+  ],
+  "related": [
+    {
+      "label": "Guide de la lettre de candidature",
+      "href": "/blog/job-application-letter",
+      "body": "Format, exemples et ce qu'il faut éviter (en anglais)."
+    },
+    {
+      "label": "Vérificateur de CV",
+      "href": "/cv-checker",
+      "body": "Voyez quels termes de l'offre manquent dans votre CV."
+    },
+    {
+      "label": "Générateur de résumé professionnel",
+      "href": "/professional-summary-generator",
+      "body": "Trois résumés de CV construits à partir d'une offre et de votre CV."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

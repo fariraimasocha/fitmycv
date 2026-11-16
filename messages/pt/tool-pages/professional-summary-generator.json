@@ -1,0 +1,166 @@
+{
+  "seoTitle": "Gerador de resumo profissional para currículo em inglês",
+  "description": "Envie seu currículo em inglês e cole a vaga em inglês. Receba três resumos profissionais em inglês feitos com suas habilidades e resultados reais. Grátis, sem login.",
+  "keywords": [
+    "resumo profissional currículo em inglês",
+    "gerador de resumo profissional",
+    "resumo profissional para currículo",
+    "professional summary currículo",
+    "como fazer resumo profissional em inglês",
+    "exemplos de resumo profissional",
+    "perfil profissional currículo em inglês",
+    "resumo profissional exemplos",
+    "objetivo ou resumo profissional"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Gerador de resumo profissional",
+  "h1": "Gerador de resumo profissional para seu currículo em inglês",
+  "lede": "Envie seu currículo em inglês e cole a descrição da vaga em inglês. Receba três resumos profissionais em inglês que citam o cargo da vaga, usam só habilidades que seu currículo mostra e começam com um resultado real do seu próprio currículo.",
+  "howTo": {
+    "name": "Como escrever um resumo profissional para uma vaga específica",
+    "description": "Monte o resumo profissional do seu currículo em inglês a partir da vaga e da sua própria experiência.",
+    "steps": [
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "A ferramenta lê o cargo e os termos que a vaga repete. Cole o anúncio inteiro em inglês, incluindo os requisitos."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Solte o PDF do seu currículo em inglês. O texto é lido no seu navegador. Uma habilidade que não está no seu currículo nunca aparece em um resumo."
+      },
+      {
+        "name": "Escolha um e deixe com a sua cara",
+        "text": "Você recebe três resumos em três formatos. Copie o que servir, confira cada número e corte o que você não gostaria de ser perguntado."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "O que é o resumo profissional de um currículo?",
+      "a": "São as duas a quatro linhas no topo do currículo, abaixo do seu nome e do seu título. Elas dizem qual cargo você busca, seu nível e sua área, e um resultado que prova que você consegue fazer o trabalho. Recrutadores leem isso primeiro, então é o que decide se leem o resto."
+    },
+    {
+      "q": "Funciona com currículo ou vaga em português?",
+      "a": "Não. A ferramenta lê texto em inglês e escreve os resumos em inglês. Use para um currículo em inglês. As dicas desta página sobre como montar um resumo valem em qualquer idioma, então você pode seguir a mesma fórmula para escrever o seu em português."
+    },
+    {
+      "q": "Como este gerador escreve o resumo?",
+      "a": "Ele preenche uma fórmula simples: o cargo da vaga, seus anos e sua área segundo o currículo, as habilidades que os dois documentos têm em comum e uma linha do seu currículo que contém um número. Ele não inventa nada. Se seu currículo não tem nenhuma linha com número, o resumo mostra um colchete onde o resultado deve entrar."
+    },
+    {
+      "q": "Resumo profissional e perfil profissional são a mesma coisa?",
+      "a": "Sim. Resumo profissional, perfil profissional, resumo de qualificações e professional summary são nomes para o mesmo bloco no topo da página. A dica é a mesma, seja qual for o nome."
+    },
+    {
+      "q": "Qual deve ser o tamanho de um resumo profissional?",
+      "a": "De duas a quatro linhas, ou cerca de 30 a 60 palavras. Se o seu passar disso, o detalhe extra vai na seção de experiência, ao lado do cargo de onde veio."
+    },
+    {
+      "q": "Devo mudar o resumo para cada vaga?",
+      "a": "Para as vagas que você quer de verdade, sim. É a parte do currículo mais rápida de adaptar e a primeira a ser lida. Use o cargo da vaga e o resultado que mais combina com o que pedem. É por isso que esta ferramenta pede a descrição da vaga."
+    },
+    {
+      "q": "Resumo ou objetivo: qual usar?",
+      "a": "Um resumo, quase sempre. Um objetivo diz o que você quer. Um resumo diz o que você oferece e prova, que é o que quem lê está procurando. Até um primeiro currículo funciona melhor com um resumo montado em torno de um projeto ou de um curso."
+    },
+    {
+      "q": "Meu currículo é enviado para algum lugar?",
+      "a": "Não. O PDF é lido dentro da aba do seu navegador e nada é armazenado nem enviado a um servidor. Feche a aba e ele some."
+    }
+  ],
+  "blocks": [
+    { "h2": "A fórmula que todo bom resumo segue" },
+    {
+      "p": "Um bom resumo responde três perguntas, nesta ordem: quem você é profissionalmente, o que você busca e qual é a sua prova. **Cargo e nível, depois área e anos, depois um resultado com número.** Essa é a estrutura inteira, e é exatamente o que esta ferramenta preenche."
+    },
+    {
+      "ol": [
+        "**Cargo e nível.** O cargo ao qual você se candidata, nas palavras do empregador. Analista de dados sênior, não profissional experiente.",
+        "**Área e anos.** Sua área e há quanto tempo você trabalha nela, para quem lê situar você em um segundo.",
+        "**Um resultado com número.** Um resultado real do seu currículo: uma porcentagem, uma quantidade, um orçamento, um tempo economizado. É a linha que a maioria dos resumos pula."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Por que o resultado precisa vir do seu currículo",
+        "body": "O resumo é a primeira coisa que um entrevistador pergunta. Se um número dele não aparece no resto do currículo, parece inventado. Esta ferramenta só usa linhas de resultado que encontra no seu próprio currículo, e marca a lacuna quando não há nenhuma."
+      }
+    },
+    { "h2": "Exemplos de resumo profissional por fase da carreira" },
+    {
+      "table": {
+        "head": ["Fase", "Resumo"],
+        "rows": [
+          ["Recém-formado", "Formado em Estatística buscando uma vaga de analista de dados júnior. Fez um trabalho de conclusão de curso analisando cinco anos de dados de transporte de uma cidade com Python e SQL."],
+          ["Início de carreira", "Especialista em atendimento ao cliente com 3 anos em SaaS. Experiência em Zendesk, onboarding e renovações. Reduziu o tempo de primeira resposta de 9 horas para 2 em uma fila de 400 tickets por semana."],
+          ["Pleno", "Gerente de marketing digital com mais de 6 anos em SaaS B2B. Experiência em mídia social paga, e-mail de ciclo de vida e HubSpot. Aumentou os leads qualificados em 40% em um ano com o mesmo orçamento."],
+          ["Sênior", "Gerente de projetos sênior com 9 anos em construção comercial. Entregou os três últimos projetos dentro ou abaixo do orçamento e reduziu os atrasos de entrega de 3 semanas para 4 dias."],
+          ["Mudança de carreira", "Especialista em treinamento e desenvolvimento vindo de 6 anos como professor do ensino médio. Criou treinamentos para 200 alunos e aumentou as taxas de aprovação em 18%."],
+          ["Enfermagem", "Enfermeira com 8 anos em clínica médica de agudos. Experiência em triagem, terapia intravenosa e planejamento de alta. Supervisionou 12 enfermeiras recém-formadas em uma ala de 28 leitos."]
+        ]
+      }
+    },
+    {
+      "p": "Mais exemplos, com versões de antes e depois, estão no guia de [exemplos de resumo profissional para currículo](/blog/cv-professional-summary-examples)."
+    },
+    { "h2": "Resumo, título ou objetivo" },
+    {
+      "table": {
+        "head": ["", "Tamanho", "O que diz", "Quando usar"],
+        "rows": [
+          ["Título", "Uma linha", "O cargo e duas ou três provas", "Quase sempre. Fica abaixo do seu nome, acima do resumo."],
+          ["Resumo", "De duas a quatro linhas", "Nível, área e um resultado", "Quase sempre. É o primeiro bloco que um recrutador lê."],
+          ["Objetivo", "Uma ou duas frases", "O que você procura", "Raramente. Fala de você em vez de falar do empregador."]
+        ]
+      }
+    },
+    {
+      "p": "Um título e um resumo funcionam juntos, nessa ordem. Se a linha acima do seu resumo ainda repete seu cargo antigo, o [gerador de título para currículo](/resume-headline-generator) cria um a partir da mesma vaga."
+    },
+    { "h2": "Cinco erros comuns em um resumo" },
+    {
+      "ol": [
+        "**É uma lista de adjetivos.** Focado em resultados, dedicado e detalhista servem para qualquer candidato, então não dizem nada. Cite uma habilidade e um resultado.",
+        "**Não tem nenhum número.** Um resumo sem resultado é uma afirmação. Um dado real transforma isso em prova.",
+        "**Não cita nenhum cargo.** Um resumo que serve para qualquer empregador faz metade do trabalho. Use o cargo da vaga.",
+        "**Diz o que você quer.** Isso é um objetivo. Diga o que você oferece ao empregador.",
+        "**Ocupa cinco linhas.** Depois de quatro linhas ele deixa de ser lido de relance. Leve o detalhe extra para a seção de experiência."
+      ]
+    },
+    { "h2": "O resumo dentro de um ajuste maior" },
+    {
+      "p": "O resumo é a parte mais lida do currículo, mas continua sendo um bloco só. Ele não muda se seus tópicos trazem provas nem se a busca de um recrutador encontra seu currículo. Confira a diferença de vocabulário com [palavras-chave que faltam no currículo](/missing-resume-keywords) e depois trabalhe os tópicos com o [reescritor de tópicos do currículo](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "Quer que o currículo inteiro combine, não só o resumo?",
+        "body": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga, resumo incluído, mantendo sua experiência real e seus números reais.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Gerador de título para currículo",
+      "href": "/resume-headline-generator",
+      "body": "Cinco títulos para a linha acima do seu resumo, a partir da mesma vaga."
+    },
+    {
+      "label": "Exemplos de resumo profissional",
+      "href": "/blog/cv-professional-summary-examples",
+      "body": "A fórmula, com exemplos de antes e depois por fase da carreira."
+    },
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Dê uma nota ao seu currículo frente a uma vaga e veja os termos que faltam."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

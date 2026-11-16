@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Lebenslauf Check kostenlos: mit Stellenanzeige abgleichen",
+  "description": "Kostenloser Lebenslauf Check ohne Login. Lade deinen Lebenslauf hoch und füge die Stellenanzeige ein. Sieh deinen Score und die Begriffe, die deinem Lebenslauf fehlen. Gelesen in deinem Browser.",
+  "keywords": [
+    "lebenslauf check",
+    "lebenslauf check kostenlos",
+    "lebenslauf prüfen",
+    "lebenslauf prüfen lassen kostenlos",
+    "cv check",
+    "lebenslauf ats check",
+    "lebenslauf mit stellenanzeige vergleichen",
+    "lebenslauf scanner"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lebenslauf Check",
+  "h1": "Kostenloser Lebenslauf Check, ohne Login",
+  "lede": "Lade deinen Lebenslauf hoch und füge die Stellenanzeige ein. Du siehst deinen Match-Score und genau die Begriffe, die der Arbeitgeber verlangt und die dein Lebenslauf nie erwähnt. Kein Konto, kein Limit.",
+  "howTo": {
+    "name": "So gleichst du deinen Lebenslauf mit einer Stellenanzeige ab",
+    "description": "Bewerte deinen Lebenslauf anhand einer Anzeige und finde die Begriffe, die ihm fehlen.",
+    "steps": [
+      {
+        "name": "Füge die Stellenanzeige ein",
+        "text": "Kopiere die ganze Anzeige samt Anforderungen und füge sie in das Feld für die Stellenbeschreibung ein."
+      },
+      {
+        "name": "Lade deinen Lebenslauf hoch",
+        "text": "Zieh die PDF hinein. Der Text wird in deinem Browser gelesen. Kommt er durcheinander heraus, liest ihn auch ein Bewerbermanagementsystem (ATS) durcheinander."
+      },
+      {
+        "name": "Schließe die Lücken, die du belegen kannst",
+        "text": "Bau jeden fehlenden Begriff, den du wirklich angewendet hast, in einen Stichpunkt mit Ergebnis ein und prüfe dann erneut."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Ist dieser Lebenslauf Check kostenlos?",
+      "a": "Ja. Kein Konto und kein Limit bei den Prüfungen. Die Prüfung läuft in deinem Browser."
+    },
+    {
+      "q": "Wird mein Lebenslauf irgendwo hochgeladen?",
+      "a": "Nein. Die PDF wird in diesem Tab gelesen und nichts wird gespeichert. Schließ den Tab und alles ist weg."
+    },
+    {
+      "q": "Ist das dasselbe wie ein ATS-Check für den Lebenslauf?",
+      "a": "Ja. Diese Seite nutzt dieselbe Prüfung wie unser ATS-Check für den Lebenslauf. Nur der Name ist anders."
+    },
+    {
+      "q": "Was ist ein guter Score?",
+      "a": "Ab 75 % deckst du die meisten Schlüsselbegriffe der Anzeige ab. Zwischen 50 % und 75 % lohnt sich eine Anpassung. Unter 50 % ist der Lebenslauf meist zu allgemein für diese Stelle."
+    },
+    {
+      "q": "Soll ich jeden fehlenden Begriff ergänzen?",
+      "a": "Nur die, die du wirklich angewendet hast. Setze jeden in einen Stichpunkt, der zeigt, was du getan hast und was dabei herauskam. Eine Fähigkeit zu behaupten, die du nicht hast, verschiebt die Absage nur ins Vorstellungsgespräch."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Worauf der Lebenslauf Check achtet"
+    },
+    {
+      "p": "Er zieht die Wörter und Zwei-Wort-Ausdrücke heraus, die die Anzeige wiederholt, gewichtet nach Häufigkeit, und prüft, welche davon in deinem Lebenslauf stehen. Der Score ist der Anteil, den er findet. Er prüft die Wortwahl, nicht deinen Schreibstil oder dein Layout."
+    },
+    {
+      "h2": "Warum ein passender Lebenslauf schlecht abschneiden kann"
+    },
+    {
+      "ul": [
+        "Du beschreibst die Arbeit mit anderen Worten als die Anzeige.",
+        "Du nutzt eine Abkürzung, die die Anzeige ausschreibt, oder umgekehrt.",
+        "Deine besten Belege stehen bei einer älteren Stelle weit unten auf der Seite."
+      ]
+    },
+    {
+      "p": "Alle drei behebst du, indem du den Lebenslauf an die Anzeige anpasst, nicht indem du Erfahrung hinzufügst. Der [Leitfaden zum Anpassen eines Lebenslaufs an eine Stellenbeschreibung](/blog/how-to-tailor-cv-to-job-description) (auf Englisch) zeigt, wie du es selbst machst."
+    }
+  ],
+  "related": [
+    {
+      "label": "ATS-Check für den Lebenslauf",
+      "href": "/ats-resume-checker",
+      "body": "Dieselbe Prüfung, mit einem Vergleich zu Jobscan."
+    },
+    {
+      "label": "Lebenslauf-Format-Check",
+      "href": "/cv-format-checker",
+      "body": "Prüfe deinen Lebenslauf für das Land, in dem du dich bewirbst."
+    },
+    {
+      "label": "Bewerbungsschreiben-Generator",
+      "href": "/job-application-letter-generator",
+      "body": "Ein Anschreiben aus der Anzeige und deinem Lebenslauf."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

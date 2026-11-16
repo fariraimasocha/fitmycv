@@ -1,0 +1,36 @@
+{
+  "englishOnly": "Les phrases que cet outil rédige sont en anglais, pour un CV et une lettre de motivation en anglais.",
+  "reasonLabel": "Pourquoi avez-vous fait une pause ?",
+  "reasons": {
+    "caregiving": "Aide à un proche",
+    "parenting": "Éducation des enfants",
+    "health": "Santé ou convalescence",
+    "layoff": "Licenciement et recherche d'emploi",
+    "study": "Études ou formation",
+    "freelance": "Freelance ou entreprise personnelle",
+    "relocation": "Déménagement dans un autre pays ou une autre ville",
+    "travel": "Voyage"
+  },
+  "fromLabel": "Début de la période",
+  "toLabel": "Fin de la période",
+  "didLabel": "Ce que vous avez fait pendant cette période (facultatif, en anglais)",
+  "didPlaceholder": "Completed a Google Data Analytics certificate",
+  "submit": "Expliquer ma période sans emploi",
+  "busy": "Rédaction de vos phrases",
+  "datesError": "Le mois de fin doit venir après le mois de début.",
+  "privacy": "Rien de ce que vous saisissez ne quitte cet onglet.",
+  "shortTitle": "Vous n'en avez peut-être pas besoin.",
+  "shortBody": "Une interruption de moins de 3 mois a rarement besoin d'explication. Indiquez seulement les années dans les dates de votre CV et elle disparaît.",
+  "cvTitle": "Dans votre CV",
+  "letterTitle": "Dans votre lettre de motivation",
+  "answerTitle": "En entretien",
+  "copyCv": "Copier la phrase pour le CV",
+  "copyLetter": "Copier la phrase pour la lettre de motivation",
+  "copyAnswer": "Copier la réponse pour l'entretien",
+  "copied": "Copié",
+  "handoff": {
+    "title": "Période expliquée. Adaptez maintenant le reste de votre CV.",
+    "body": "FitMyCV réécrit votre CV et votre lettre de motivation pour une offre précise. L'interruption tient en une ligne et votre expérience parle pour vous.",
+    "label": "Adapter mon CV à une offre"
+  }
+}

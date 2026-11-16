@@ -1,0 +1,120 @@
+{
+  "countryLabel": "País donde postulas",
+  "countryOption": {
+    "za": "Sudáfrica",
+    "ng": "Nigeria",
+    "ke": "Kenia",
+    "in": "India",
+    "uk": "Reino Unido",
+    "us": "Estados Unidos",
+    "other": "Otro país"
+  },
+  "countryName": {
+    "za": "Sudáfrica",
+    "ng": "Nigeria",
+    "ke": "Kenia",
+    "in": "India",
+    "uk": "el Reino Unido",
+    "us": "Estados Unidos",
+    "other": "tu país"
+  },
+  "countryIn": {
+    "za": "en Sudáfrica",
+    "ng": "en Nigeria",
+    "ke": "en Kenia",
+    "in": "en India",
+    "uk": "en el Reino Unido",
+    "us": "en Estados Unidos",
+    "other": "en tu país"
+  },
+  "countryFor": {
+    "za": "para Sudáfrica",
+    "ng": "para Nigeria",
+    "ke": "para Kenia",
+    "in": "para India",
+    "uk": "para el Reino Unido",
+    "us": "para Estados Unidos",
+    "other": "para tu país"
+  },
+  "englishOnly": "Las comprobaciones buscan expresiones en inglés, como «date of birth» o «career objective», así que funcionan con un CV escrito en inglés. Las de extensión y correo funcionan en cualquier idioma.",
+  "submit": "Revisar el formato de mi CV",
+  "busy": "Revisando tu CV",
+  "readingCv": "Leyendo tu CV",
+  "privacy": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "fits": "Tu CV encaja para {country}",
+  "toFix": "{count, plural, one {# cosa que corregir} other {# cosas que corregir}} {for}",
+  "otherNote": "Estas comprobaciones valen en la mayoría de los países. No se revisan las reglas de un país concreto, como el número de identidad o la declaración.",
+  "textOnly": "Solo se revisa el texto. No puede ver fotos, columnas ni fuentes. No pongas foto salvo que la oferta la pida.",
+  "pass": "Correcto",
+  "fail": "Corregir",
+  "length": {
+    "title": "Unas {pages, plural, one {# página} other {# páginas}}",
+    "ok": "Dentro de las {max} páginas que esperan la mayoría de empleadores {in}.",
+    "fix": "Recorta a {max} páginas {for}. Deja en una línea cada puesto de hace más de 10 años."
+  },
+  "email": {
+    "title": "Correo electrónico",
+    "ok": "Encontrado. Usa una dirección sencilla del tipo nombre.apellido.",
+    "fix": "No hay correo. Ponlo arriba, junto a tu teléfono."
+  },
+  "personal": {
+    "title": "Datos personales",
+    "drop": {
+      "ok": "Ninguno encontrado. Bien, los empleadores {in} no los esperan.",
+      "fix": "Quita la fecha de nacimiento, el estado civil, el género, la religión y la nacionalidad. Los empleadores {in} no los esperan y favorecen la discriminación."
+    },
+    "ifAsked": {
+      "ok": "Bien. Añade la fecha de nacimiento solo si la oferta la pide.",
+      "fix": "Quita el estado civil. Añade la fecha de nacimiento solo si la oferta la pide."
+    },
+    "ifAskedNg": {
+      "ok": "Bien. Añade la fecha de nacimiento solo si la oferta la pide.",
+      "fix": "Quita el estado civil. Añade la fecha de nacimiento o el estado de origen solo si la oferta los pide."
+    },
+    "general": {
+      "ok": "Bien. Añade fecha de nacimiento o foto solo si los empleadores de tu país las esperan.",
+      "fix": "Quita el estado civil. No tiene nada que ver con el puesto."
+    },
+    "keep": {
+      "ok": "Bien. En Sudáfrica vale la pena indicar la nacionalidad o el permiso de trabajo y el carné de conducir.",
+      "fix": "Quita el estado civil. No tiene nada que ver con el puesto."
+    }
+  },
+  "id": {
+    "title": "Número de identidad",
+    "za": {
+      "ok": "No está en tu CV. Dalo solo cuando un empleador lo pida.",
+      "fix": "Quita tu número de identidad. Dalo cuando un empleador lo pida, normalmente al hacerte una oferta. Es información personal protegida por la ley POPIA."
+    },
+    "ke": {
+      "ok": "No está en tu CV. Dalo en el formulario de solicitud cuando te lo pidan.",
+      "fix": "Quita tu número de identidad. Dalo en el formulario de solicitud o cuando un empleador lo pida. Es un dato personal protegido por la Data Protection Act 2019."
+    }
+  },
+  "nysc": {
+    "title": "Estado del NYSC",
+    "ok": "Encontrado. Los empleadores lo comprueban, así que mantén el año en que terminaste o tu exención.",
+    "fix": "Añade tu estado del NYSC: completado con el año, exento o en curso."
+  },
+  "objective": {
+    "title": "Objetivo profesional",
+    "ok": "Sin objetivo profesional. Bien.",
+    "fix": "Sustituye el objetivo por un resumen profesional de tres líneas sobre lo que aportas, no sobre lo que quieres."
+  },
+  "references": {
+    "title": "Línea de referencias",
+    "ok": "Sin línea de referencias de relleno.",
+    "fix": "Borra «references available on request». Los empleadores ya lo dan por hecho.",
+    "fixReferees": "Borra «references available on request». Los empleadores ya lo dan por hecho. O indica dos referencias con su teléfono, algo habitual aquí."
+  },
+  "declaration": {
+    "title": "Declaración",
+    "ok": "Sin línea de declaración. Bien para el sector privado.",
+    "fix": "Quita la línea «I hereby declare» salvo que la oferta la pida. Los reclutadores del sector privado la saltan."
+  },
+  "cta": {
+    "title": "Formato listo. Ahora adáptalo al puesto.",
+    "body": "FitMyCV toma este CV y el enlace de una oferta, y reescribe tu resumen y tus primeros puntos para ese puesto, con una carta de presentación a juego.",
+    "label": "Adaptar mi CV a una oferta"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "seoTitle": "Generador de habilidades para currículum desde una oferta",
+  "description": "Pega una oferta de empleo y sube tu CV. Obtén una sección de habilidades creada solo con lo que puedes demostrar, y las habilidades que pide el puesto y faltan en tu CV.",
+  "keywords": [
+    "habilidades para currículum",
+    "generador de habilidades para currículum",
+    "sección de habilidades cv",
+    "habilidades para cv",
+    "qué habilidades poner en un currículum",
+    "lista de habilidades para currículum",
+    "habilidades según la oferta de empleo"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Generador de habilidades para currículum",
+  "h1": "Generador de habilidades para currículum",
+  "lede": "Pega la oferta de empleo y sube tu CV. Obtén una sección de habilidades en el orden en que la oferta las destaca, usando solo habilidades que tu CV ya muestra, y una lista de las que pide el puesto y aún no has mostrado. Sin registro, no se guarda nada.",
+  "howTo": {
+    "name": "Cómo escribir una sección de habilidades para un puesto concreto",
+    "description": "Crea la sección de habilidades de tu CV a partir de la oferta que buscas y de tu propia experiencia.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "Pega el anuncio completo, con los requisitos. La herramienta ordena las habilidades que repite la oferta."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "Suelta el PDF. El texto se lee en tu navegador y no se guarda nada."
+      },
+      {
+        "name": "Copia la sección y revisa las pruebas",
+        "text": "Copia la línea de habilidades en tu CV. Cada habilidad viene con la línea de tu CV que la muestra en uso. Si una habilidad no tiene línea, añade un punto que la muestre."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Cómo elige el generador mis habilidades?",
+      "a": "Ordena las habilidades que repite la oferta y se queda solo con las que menciona tu CV. Aparecen en el orden en que la oferta las destaca, así que las que más le importan al empleador van primero."
+    },
+    {
+      "q": "¿Funciona con una oferta y un CV en español?",
+      "a": "No bien. Compara las palabras con listas de palabras en inglés, así que puede pasar por alto habilidades escritas en español o quedarse con palabras comunes que no lo son. Está pensada para candidaturas en inglés."
+    },
+    {
+      "q": "¿Por qué falta en la sección una habilidad que tengo?",
+      "a": "Porque tu CV nunca la menciona. La herramienta no lista una habilidad que tu CV no puede respaldar. La muestra en la lista de huecos. Si de verdad la has usado, añade un punto que muestre dónde y vuelve a usar la herramienta."
+    },
+    {
+      "q": "¿Cuántas habilidades debe tener un CV?",
+      "a": "A la mayoría de los CV les va bien con 6 a 12. A partir de ahí la lista deja de leerse. Elige las que pide el puesto y que tus puntos demuestran."
+    },
+    {
+      "q": "¿Habilidades técnicas o habilidades blandas?",
+      "a": "Empieza por las técnicas: herramientas, métodos y titulaciones que un reclutador puede buscar. Las blandas, como la comunicación, se muestran mejor en un punto que en una lista, porque cualquiera puede escribirlas."
+    },
+    {
+      "q": "¿Los sistemas ATS leen la sección de habilidades?",
+      "a": "Sí. Los reclutadores buscan en el ATS términos de la oferta, y la sección de habilidades es un lugar fácil para esos términos. Usa las palabras exactas de la oferta, que es lo que hace esta herramienta."
+    },
+    {
+      "q": "¿Se sube mi CV a algún sitio?",
+      "a": "No. El PDF se lee dentro de la pestaña de tu navegador y no se guarda ni se envía a ningún servidor. Cierra la pestaña y desaparece."
+    }
+  ],
+  "blocks": [
+    { "h2": "La oferta decide el orden" },
+    {
+      "p": "Una sección de habilidades se lee en segundos, así que los primeros elementos lo deciden todo. **Pon primero las habilidades que repite la oferta, con las palabras del empleador.** Si el anuncio dice Power BI tres veces, Power BI va cerca del principio."
+    },
+    {
+      "callout": {
+        "title": "Por qué cada habilidad necesita un punto que la respalde",
+        "body": "Un reclutador que ve una habilidad en la lista la busca en tu experiencia. Si no está, la lista parece relleno. Esta herramienta muestra la línea de tu CV que demuestra cada habilidad y señala las que no tienen prueba."
+      }
+    },
+    { "h2": "Ejemplos de sección de habilidades" },
+    {
+      "table": {
+        "head": ["Profesión", "Sección de habilidades"],
+        "rows": [
+          ["Analista de datos", "SQL, Python, Tableau, Power BI, pruebas A/B, Excel, informes para la dirección"],
+          ["Enfermería", "Triaje, terapia intravenosa, cura de heridas, historia clínica electrónica, planificación del alta, educación al paciente"],
+          ["Ingeniero de software", "TypeScript, React, Node.js, PostgreSQL, AWS, CI/CD, revisión de código"],
+          ["Responsable de marketing", "Redes sociales de pago, HubSpot, automatización de email, SEO, Google Analytics, planificación de presupuesto"],
+          ["Jefe de proyecto", "Agile, Jira, gestión de riesgos, gestión de stakeholders, presupuestos, PRINCE2"]
+        ]
+      }
+    },
+    { "h2": "Qué hacer con la lista de huecos" },
+    {
+      "p": "La lista de huecos son las habilidades que pide el puesto y que tu CV nunca menciona. Si has usado alguna, añade un punto que lo muestre y pasará a tu sección. Si no, déjala fuera. Para revisar todo el vocabulario, usa [palabras clave que faltan en tu currículum](/missing-resume-keywords) o el [verificador de CV ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "¿Quieres que encaje todo el CV, no solo las habilidades?",
+        "body": "Pega el enlace de la oferta y FitMyCV adapta tu CV y tu carta de presentación a esa oferta, usando solo tu experiencia real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de CV ATS gratis",
+      "href": "/ats-resume-checker",
+      "body": "Puntúa tu CV frente a una oferta y mira los términos que te faltan."
+    },
+    {
+      "label": "Preguntas de entrevista a partir de una oferta",
+      "href": "/interview-questions-from-job-description",
+      "body": "Las preguntas que hará este puesto, con pruebas de tu CV."
+    },
+    {
+      "label": "Generador de resumen profesional",
+      "href": "/professional-summary-generator",
+      "body": "Tres resúmenes de CV creados a partir de la oferta y de tu CV."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

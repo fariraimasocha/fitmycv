@@ -1,0 +1,24 @@
+{
+  "label": "Link zur Stellenanzeige",
+  "submit": "Anzeige speichern",
+  "busy": "Wird gelesen",
+  "hint": "Füge den Link von LinkedIn, einer Karriereseite oder einer Jobbörse ein. Wir lesen die Seite einmal und speichern nichts.",
+  "progress": "Die Anzeige wird gelesen",
+  "errors": {
+    "badUrl": "Füge den vollständigen Link zur Anzeige ein, beginnend mit https://.",
+    "rateLimited": "Du hast in kurzer Zeit viele Anzeigen gespeichert. Warte eine Minute und versuch es noch einmal.",
+    "unreadable": "Wir konnten diese Anzeige nicht lesen. Sie ist vielleicht geschlossen, oder die Seite blockiert uns. Öffne sie in deinem Browser, wähle Drucken und dann Als PDF speichern.",
+    "failed": "Wir konnten diese Anzeige nicht öffnen. Versuch es noch einmal, oder öffne die Seite und speichere sie aus deinem Browser."
+  },
+  "savePdf": "Als PDF speichern",
+  "copy": "Text kopieren",
+  "printHint": "Wähle im Druckfenster als Ziel Als PDF speichern.",
+  "savedFrom": "Gespeichert von {url} am {date}",
+  "copied": "Anzeige kopiert",
+  "copyBlocked": "Kopieren ist in diesem Browser blockiert. Markiere den Text und kopiere ihn.",
+  "cta": {
+    "title": "Gespeichert. Jetzt deinen Lebenslauf darauf anpassen.",
+    "body": "FitMyCV schreibt deinen eigenen Lebenslauf rund um diese Anzeige um, mit ihren Begriffen und deiner echten Erfahrung.",
+    "label": "Lebenslauf anpassen"
+  }
+}

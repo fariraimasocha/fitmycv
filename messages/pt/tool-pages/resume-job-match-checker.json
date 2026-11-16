@@ -1,0 +1,193 @@
+{
+  "seoTitle": "Comparar currículo com a vaga: grátis, sem cadastro",
+  "description": "Envie seu currículo e cole a descrição da vaga. Veja sua pontuação de correspondência, as palavras-chave que faltam e as cinco primeiras correções. Grátis, sem login.",
+  "keywords": [
+    "comparar currículo com a vaga",
+    "comparador de currículo e vaga",
+    "currículo compatível com a vaga",
+    "match currículo vaga",
+    "analisar currículo com descrição da vaga",
+    "palavras-chave que faltam no currículo",
+    "pontuação de compatibilidade currículo",
+    "verificar currículo para vaga",
+    "currículo x descrição da vaga"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Comparador de currículo e vaga",
+  "h1": "Compare seu currículo com a vaga",
+  "lede": "Envie seu currículo e cole a descrição da vaga. Veja sua pontuação de correspondência, as habilidades que você já cobre, o que falta e as cinco primeiras coisas para corrigir antes de se candidatar.",
+  "howTo": {
+    "name": "Como comparar seu currículo com a descrição de uma vaga",
+    "description": "Compare seu currículo com uma vaga específica e veja as lacunas de habilidades, palavras-chave e experiência.",
+    "steps": [
+      {
+        "name": "Envie seu currículo",
+        "text": "Arraste o PDF. Extraímos o texto para você não precisar copiar."
+      },
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "Copie a vaga completa para a qual você vai se candidatar e cole no campo da descrição."
+      },
+      {
+        "name": "Leia a pontuação e as lacunas",
+        "text": "Você recebe uma pontuação geral, as habilidades presentes e ausentes, pontuações de experiência, habilidades e palavras-chave, e cinco correções concretas."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "O que significa a pontuação de correspondência?",
+      "a": "É uma pontuação de cobertura calculada a partir do seu currículo e da vaga: habilidades citadas, palavras-chave da vaga e um sinal leve de experiência, tirado dos anos e do nível. Considere 75% ou mais como boa cobertura, de 50 a 75% como motivo para adaptar, e abaixo de 50% como currículo genérico demais ou uma vaga realmente acima do seu perfil. Não é uma previsão de entrevista."
+    },
+    {
+      "q": "A ferramenta funciona com currículo em português?",
+      "a": "Não, ela foi feita para inglês. A lista de habilidades, as palavras-chave e os sinais de experiência leem palavras em inglês, e as dicas citam os termos em inglês da vaga. Com currículo e vaga em português, a pontuação não é confiável. Use para candidaturas em inglês."
+    },
+    {
+      "q": "Este comparador é grátis?",
+      "a": "Sim. Sem cadastro e sem limite de uso. Toda a comparação roda no seu navegador, e nada é armazenado."
+    },
+    {
+      "q": "Meu currículo é enviado ou armazenado?",
+      "a": "O PDF é lido nesta aba. O arquivo nunca é enviado a um servidor. Feche a aba e ele some."
+    },
+    {
+      "q": "Qual a diferença para o verificador de currículo ATS?",
+      "a": "O verificador ATS dá uma única pontuação de sobreposição de palavras-chave. Esta página divide o resultado em experiência, habilidades e palavras-chave, lista as habilidades presentes e ausentes e mostra cinco pontos para melhorar. Use esta página quando quiser uma leitura de compatibilidade, e o verificador ATS quando só precisar dos termos que faltam."
+    },
+    {
+      "q": "Devo incluir todas as habilidades que faltam no currículo?",
+      "a": "Só as que você consegue comprovar com honestidade. Coloque cada uma em um tópico que mostre que você a usou e o que aconteceu. Citar ferramentas que você nunca usou só adia a recusa para a entrevista."
+    },
+    {
+      "q": "O que medem as pontuações de experiência, habilidades e palavras-chave?",
+      "a": "Habilidades são ferramentas e métodos citados que conseguimos ler nos dois textos, como React ou gestão de projetos. Palavras-chave são os outros termos em que a vaga insiste. Experiência procura anos, palavras de nível e nomes de cargo. Se a vaga não fala em anos, essa parte não derruba a pontuação."
+    },
+    {
+      "q": "Uma pontuação alta garante entrevista?",
+      "a": "Não. A cobertura ajuda o recrutador a encontrar você. São os tópicos que garantem a ligação. Quando a pontuação estiver boa, use o resto do tempo para colocar um número em cada afirmação."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que este comparador mede"
+    },
+    {
+      "p": "Ele compara o currículo que você envia com a vaga que você cola. Você recebe uma pontuação geral e depois três partes: habilidades em comum, palavras-chave em que a vaga insiste e um sinal leve de experiência, tirado dos anos e do nível."
+    },
+    {
+      "p": "Isso é limitado de propósito. Ele mede a sobreposição entre dois documentos. Não classifica você dentro do Workday, Greenhouse ou Lever, e não avalia sua escrita. Ele lê inglês, então serve para candidaturas escritas em inglês."
+    },
+    {
+      "callout": {
+        "title": "Não é mais um verificador ATS",
+        "body": "O [verificador de currículo ATS](/pt/ats-resume-checker) continua sendo o diagnóstico de palavras-chave. Esta página responde a outra pergunta: este currículo combina com esta vaga, e o que devo corrigir primeiro?"
+      }
+    },
+    {
+      "h2": "Como ler o resultado"
+    },
+    {
+      "ol": [
+        "**Pontos fortes** são habilidades citadas que aparecem nos dois textos. Mantenha essas habilidades em tópicos com um resultado.",
+        "**Ausentes ou fracas** são habilidades que a vaga cita e que seu currículo nunca menciona. Inclua só as que você consegue comprovar.",
+        "**As pontuações de experiência, habilidades e palavras-chave** mostram que parte da lacuna é vocabulário e que parte é escopo.",
+        "**Os 5 pontos para melhorar** são a ordem de trabalho. Corrija esses cinco e rode a comparação de novo."
+      ]
+    },
+    {
+      "h2": "O que fazer depois de uma pontuação baixa"
+    },
+    {
+      "ol": [
+        "**Comece pelas habilidades que você já tem com outras palavras.** Se a vaga diz GraphQL e você escreveu consultas de API, use o termo da vaga em um tópico real.",
+        "**Suba os cargos que combinam.** Cinco anos de experiência relevante escondidos no terceiro cargo valem menos que uma experiência mais curta nos dois primeiros tópicos.",
+        "**Deixe de fora as habilidades que você não consegue defender.** Uma pontuação maior que você não sabe explicar é uma entrevista desperdiçada.",
+        "**Depois reescreva, ou deixe o FitMyCV fazer isso.** O [adaptador de currículo com IA](/pt/tailor-cv-from-job-link) usa a mesma vaga e a sua experiência real."
+      ]
+    },
+    {
+      "h2": "Sem login, nada armazenado, comparações ilimitadas"
+    },
+    {
+      "p": "A comparação roda no seu navegador. Sem cadastro obrigatório, sem pedido de e-mail e sem arquivo enviado a um servidor. Feche a aba e o texto some."
+    },
+    {
+      "h2": "Comparador ou reescrita completa?"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Este comparador",
+          "Verificador de currículo ATS",
+          "Adaptação a partir do link da vaga"
+        ],
+        "rows": [
+          [
+            "Precisa de conta",
+            "Não",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Envia seu arquivo a um servidor",
+            "Não",
+            "Não",
+            "Sim, para sua conta"
+          ],
+          [
+            "Pontuação geral de correspondência",
+            "Sim",
+            "Só pontuação de palavras-chave",
+            "Sim"
+          ],
+          [
+            "Habilidades separadas de palavras-chave",
+            "Sim",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Correções prioritárias",
+            "Sim",
+            "Termos que faltam",
+            "Currículo reescrito"
+          ],
+          [
+            "Reescreve o currículo",
+            "Não",
+            "Não",
+            "Sim"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Se quiser a reescrita em seguida, use o [adaptador de currículo com IA](/pt/tailor-cv-from-job-link) ou o [otimizador de currículo com IA](/resume-optimizer). Se só quiser as palavras-chave que faltam, use o [verificador de currículo ATS](/pt/ats-resume-checker)."
+    }
+  ],
+  "related": [
+    {
+      "label": "Adaptar meu currículo a esta vaga",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Cole a URL da vaga e receba um currículo reescrito e uma carta de apresentação."
+    },
+    {
+      "label": "Verificador de currículo ATS",
+      "href": "/ats-resume-checker",
+      "body": "Uma pontuação só de palavras-chave e os termos que seu currículo nunca menciona."
+    },
+    {
+      "label": "Como adaptar um currículo à vaga",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "O método manual, se você preferir reescrever os tópicos por conta própria (em inglês)."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

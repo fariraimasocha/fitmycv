@@ -1,0 +1,51 @@
+{
+  "jobLabel": "Stellenbeschreibung einfügen",
+  "jobPlaceholder": "Füge hier den vollständigen Text der Stellenanzeige ein…",
+  "cvLabel": "Dein Lebenslauf",
+  "companyLabel": "Name des Unternehmens",
+  "nameLabel": "Dein Name",
+  "optional": "(optional)",
+  "englishOnly": "Das Anschreiben wird auf Englisch erstellt. Das Tool liest eine englische Stellenanzeige und einen englischen Lebenslauf und füllt damit eine englische Briefvorlage.",
+  "submit": "Anschreiben erstellen",
+  "busy": "Dein Anschreiben wird erstellt",
+  "readingCv": "Dein Lebenslauf wird gelesen",
+  "needBoth": "Füge die Stellenbeschreibung und deinen Lebenslauf hinzu, um zu starten.",
+  "privacy": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "resultHeading": "Dein Anschreiben für",
+  "titleFromPosting": "Die Stelle stammt aus der Anzeige.",
+  "titleFromCv": "Wir haben in der Anzeige keinen Jobtitel gefunden, deshalb nutzt das Anschreiben den Titel aus deinem Lebenslauf.",
+  "sourcesNote": "Jeder Skill steht sowohl in deinem Lebenslauf als auch in der Anzeige, und jedes Ergebnis ist eine Zeile aus deinem Lebenslauf.",
+  "noResult": "Dein Lebenslauf hat keine Zeile mit einer Zahl, deshalb markiert das Anschreiben, wo dein Ergebnis hingehört.",
+  "shapes": {
+    "full": {
+      "name": "Vollständiges Anschreiben",
+      "hint": "Vier kurze Absätze. Nutze es als E-Mail-Text oder hänge es als PDF an.",
+      "copyAria": "Vollständiges Anschreiben kopieren"
+    },
+    "short": {
+      "name": "Kurzes Anschreiben",
+      "hint": "Für eine E-Mail oder ein Formular mit kleinem Textfeld.",
+      "copyAria": "Kurzes Anschreiben kopieren"
+    }
+  },
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "toastCopied": "Anschreiben kopiert",
+  "toastCopyFailed": "Kopieren fehlgeschlagen. Markiere das Anschreiben und kopiere es selbst.",
+  "noTitleHeading": "Wir haben keinen Jobtitel gefunden",
+  "noTitleBody": "Keines der beiden Dokumente nennt eine Stelle, die wir erkennen. Füge die vollständige Anzeige mit dem Titel oben ein und versuch es noch einmal.",
+  "missingHeading": "In der Anzeige, nicht in deinem Lebenslauf",
+  "missingNote": "Dein Anschreiben lässt diese Begriffe weg, weil dein Lebenslauf sie nie erwähnt. Arbeitgeber lesen Anschreiben und Lebenslauf zusammen, eine Lücke im einen zeigt sich also auch im anderen.",
+  "ctaGaps": {
+    "title": "Schließe diese Lücken",
+    "body": "Diese Anzeige verlangt {count, plural, one {# Begriff} other {# Begriffe}}, die dein Lebenslauf nie erwähnt. FitMyCV schreibt deinen Lebenslauf und dein Anschreiben darauf um, mit der Erfahrung, die du schon hast.",
+    "label": "Lücken schließen"
+  },
+  "ctaCovered": {
+    "title": "Schick einen Lebenslauf, der zum Anschreiben passt",
+    "body": "Dein Lebenslauf deckt die Begriffe dieser Anzeige schon ab. FitMyCV schreibt ihn darauf um, damit deine stärksten Belege oben stehen.",
+    "label": "Lebenslauf anpassen"
+  },
+  "exampleHeading": "Beispiel für ein einfaches Anschreiben",
+  "exampleNote": "Deins entsteht aus der Anzeige, die du einfügst, und den Ergebnissen, die dein Lebenslauf schon zeigt. Es hat diese Form, auf Englisch."
+}

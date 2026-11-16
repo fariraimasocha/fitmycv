@@ -1,0 +1,28 @@
+{
+  "englishOnly": "Dieser Check liest nur englischen Text. Füge eine englische Stellenanzeige und die englische Fassung deines Profils ein.",
+  "jobLabel": "Stellenanzeige",
+  "jobPlaceholder": "Füge die ganze Stellenbeschreibung ein",
+  "headlineLabel": "Deine LinkedIn-Überschrift",
+  "headlinePlaceholder": "Backend Engineer | Go, Kubernetes, Payments",
+  "aboutLabel": "Dein Abschnitt Info",
+  "skillsLabel": "Deine Kenntnisse",
+  "skillsPlaceholder": "Kopiere sie aus dem Abschnitt Kenntnisse deines Profils",
+  "submit": "Mein Profil prüfen",
+  "busy": "Dein Profil wird verglichen",
+  "privacy": "Wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "score": "Dein Profil deckt {score} % der Begriffe ab, auf die diese Anzeige setzt",
+  "listSeparator": ", ",
+  "forHeadline": "Deine Überschrift ist die Zeile, die Recruiter in der Suche unter deinem Namen sehen. Diese Begriffe stehen schon in deinem Profil, aber nicht in der Überschrift: <strong>{terms}</strong>.",
+  "missing": "Gar nicht in deinem Profil: <strong>{terms}</strong>. Ergänze die, die du belegen kannst, in deiner Info oder deinen Kenntnissen.",
+  "termColumn": "Begriff",
+  "section": {
+    "headline": "Überschrift",
+    "about": "Info",
+    "skills": "Kenntnisse"
+  },
+  "found": "Gefunden",
+  "notFound": "Fehlt",
+  "ctaTitle": "Mach dasselbe mit deinem Lebenslauf",
+  "ctaBody": "FitMyCV schreibt deinen Lebenslauf für eine Stellenanzeige neu, in den Worten der Anzeige, und nutzt nur, was schon in deiner Erfahrung steht.",
+  "ctaLabel": "Lebenslauf an diese Stelle anpassen"
+}

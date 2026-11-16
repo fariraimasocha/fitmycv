@@ -1,0 +1,24 @@
+{
+  "label": "Lien de l'offre d'emploi",
+  "submit": "Enregistrer l'offre",
+  "busy": "Lecture",
+  "hint": "Collez le lien d'une offre LinkedIn, d'une page carrières ou d'un site d'emploi. Nous lisons la page une fois et ne stockons rien.",
+  "progress": "Lecture de l'offre",
+  "errors": {
+    "badUrl": "Collez le lien complet de l'offre, en commençant par https://.",
+    "rateLimited": "Vous avez enregistré beaucoup d'offres en peu de temps. Attendez une minute et réessayez.",
+    "unreadable": "Impossible de lire cette offre. Elle est peut-être close, ou le site nous bloque. Ouvrez-la dans votre navigateur, choisissez Imprimer, puis Enregistrer au format PDF.",
+    "failed": "Impossible d'ouvrir cette offre. Réessayez, ou ouvrez la page et enregistrez-la depuis votre navigateur."
+  },
+  "savePdf": "Enregistrer en PDF",
+  "copy": "Copier le texte",
+  "printHint": "Dans la fenêtre d'impression, choisissez Enregistrer au format PDF comme destination.",
+  "savedFrom": "Enregistré depuis {url} le {date}",
+  "copied": "Offre copiée",
+  "copyBlocked": "La copie est bloquée dans ce navigateur. Sélectionnez le texte et copiez-le.",
+  "cta": {
+    "title": "Enregistrée. Adaptez maintenant votre CV.",
+    "body": "FitMyCV réécrit votre propre CV autour de cette offre, avec ses mots et votre expérience réelle.",
+    "label": "Adapter mon CV"
+  }
+}

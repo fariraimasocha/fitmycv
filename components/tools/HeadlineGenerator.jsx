@@ -21,6 +21,7 @@ import {
   SparkleIcon,
   XIcon,
 } from "@phosphor-icons/react";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
@@ -518,26 +519,37 @@ function generateHeadlines(jobText, resumeText, currentYear) {
 // people arrive searching for, so the empty state answers that first.
 const EXAMPLE_HEADLINES = [
   {
-    role: "Software engineering",
+    role: "software",
     text: "Senior Backend Engineer | Go, Kubernetes, Payments Infrastructure",
   },
   {
-    role: "Marketing",
+    role: "marketing",
     text: "Digital Marketing Manager | Paid Social, Lifecycle Email, HubSpot",
   },
   {
-    role: "Finance",
+    role: "finance",
     text: "Management Accountant, Month End Close and Cash Flow Forecasting",
   },
   {
-    role: "Nursing",
+    role: "nursing",
     text: "Registered Nurse | 8+ Years | Acute Medical and Triage",
   },
   {
-    role: "Product design",
+    role: "design",
     text: "Product Designer Focused on Design Systems and Accessibility",
   },
 ];
+
+// Message keys for the shapes generateHeadlines returns. The helpers stay in
+// English because the check script runs them outside React.
+const SHAPE_KEYS = {
+  "Title and top skills": "titleSkills",
+  "Seniority and domain": "seniorityDomain",
+  "Years and signature strength": "years",
+  "Two strengths": "twoStrengths",
+  "What you focus on": "focus",
+  "Plain CV header": "plain",
+};
 
 function Pill({ label, present }) {
   return (
@@ -569,6 +581,8 @@ function Pill({ label, present }) {
 }
 
 export default function HeadlineGenerator() {
+  const t = useTranslations("tools.headline");
+  const locale = useLocale();
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
@@ -595,17 +609,41 @@ export default function HeadlineGenerator() {
     };
   }, [ran, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
 
+  const shapeKey = (headline) => SHAPE_KEYS[headline.shape];
+  const shapeLabel = (headline) => {
+    const key = shapeKey(headline);
+    return key ? t(`shapes.${key}.shape`) : headline.shape;
+  };
+  const shapeHint = (headline) => {
+    const key = shapeKey(headline);
+    if (!key) return headline.hint;
+    if (key === "years") {
+      return t(
+        result?.years?.source === "stated" ? "shapes.years.hintStated" : "shapes.years.hintSpan"
+      );
+    }
+    return t(`shapes.${key}.hint`);
+  };
+  const checkerLink = (chunks) => (
+    <Link
+      href="/ats-resume-checker"
+      className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+    >
+      {chunks}
+    </Link>
+  );
+
   async function copyHeadline(id, text) {
     try {
       if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
       await navigator.clipboard.writeText(text);
       setCopiedId(id);
-      toast.success("Headline copied");
+      toast.success(t("toastCopied"));
       clearTimeout(resetTimer.current);
       resetTimer.current = setTimeout(() => setCopiedId(null), 2000);
     } catch {
       setCopiedId(null);
-      toast.error("Copy failed. Select the headline and copy it yourself.");
+      toast.error(t("toastCopyFailed"));
     }
   }
 
@@ -624,21 +662,21 @@ export default function HeadlineGenerator() {
               htmlFor="headline-job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description
+              {t("jobLabel")}
             </label>
             <textarea
               id="headline-job-text"
               value={jobText}
               onChange={(e) => setJobText(e.target.value)}
               rows={10}
-              placeholder="Paste the full text of the job posting here…"
+              placeholder={t("jobPlaceholder")}
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
           </div>
 
           <ResumeFileField
             id="headline-resume-text"
-            label="Your resume"
+            label={t("resumeLabel")}
             value={resumeText}
             onChange={(text) => {
               setResumeText(text);
@@ -648,27 +686,33 @@ export default function HeadlineGenerator() {
           />
         </div>
 
+        {locale !== "en" ? (
+          <p className="text-xs leading-5 text-[var(--landing-ink-soft)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
+
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Generate headlines"
-            busyLabel="Writing your headlines"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={jobTooShort || resumeTooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
-              ? "Reading your CV"
+              ? t("statusReadingCv")
               : running
-                ? "Matching your resume to the posting"
+                ? t("statusMatching")
                 : jobTooShort || resumeTooShort
-                ? "Add the job description and your CV to generate."
-                : "Your CV is read in this tab. Nothing is stored."}
+                ? t("statusNeedInput")
+                : t("statusPrivate")}
           </p>
         </div>
       </form>
 
       {running ? (
-        <ToolProgress message="Writing your headlines" lines={5} />
+        <ToolProgress message={t("busy")} lines={5} />
       ) : null}
 
       {result ? (
@@ -676,16 +720,19 @@ export default function HeadlineGenerator() {
           {result.headlines.length ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                {result.headlines.length} headlines for{" "}
-                <span className="text-[var(--landing-primary-dark)]">{result.title}</span>
+                {t.rich("resultHeading", {
+                  count: result.headlines.length,
+                  title: result.title,
+                  hl: (chunks) => (
+                    <span className="text-[var(--landing-primary-dark)]">{chunks}</span>
+                  ),
+                })}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
                 {result.titleSource === "posting"
-                  ? "The title comes from the posting. Every skill below appears in both your resume and the posting, so nothing here claims something your CV never mentions."
-                  : "We could not find a job title in the posting, so this uses the title in your resume. Every skill below appears in both documents."}
-                {result.confident
-                  ? ""
-                  : " The title is a best guess from the wording. Edit it if it is wrong."}
+                  ? t("titleFromPosting")
+                  : t("titleFromResume")}
+                {result.confident ? "" : ` ${t("titleGuess")}`}
               </p>
 
               <ul className="mt-6 flex flex-col gap-3">
@@ -697,7 +744,7 @@ export default function HeadlineGenerator() {
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0">
                         <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                          {headline.shape}
+                          {shapeLabel(headline)}
                         </p>
                         <p className="mt-2 font-outfit text-base font-extrabold leading-7 text-[var(--landing-ink)]">
                           {headline.text}
@@ -707,26 +754,26 @@ export default function HeadlineGenerator() {
                         type="button"
                         onClick={() => copyHeadline(headline.id, headline.text)}
                         className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                        aria-label={`Copy headline: ${headline.text}`}
+                        aria-label={t("copyAria", { text: headline.text })}
                       >
                         {copiedId === headline.id ? (
                           <>
                             <CheckIcon size={13} weight="bold" aria-hidden="true" />
-                            Copied
+                            {t("copied")}
                           </>
                         ) : (
                           <>
                             <CopyIcon size={13} weight="bold" aria-hidden="true" />
-                            Copy
+                            {t("copy")}
                           </>
                         )}
                       </button>
                     </div>
                     <p className="text-xs leading-6 text-[var(--landing-ink-soft)]">
                       {headline.claims.length
-                        ? `Claims ${headline.claims.join(", ")}. Keep only what your CV can evidence. `
+                        ? `${t("claims", { list: headline.claims.join(", ") })} `
                         : ""}
-                      {headline.hint}
+                      {shapeHint(headline)}
                     </p>
                   </li>
                 ))}
@@ -735,19 +782,16 @@ export default function HeadlineGenerator() {
           ) : (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                We could not find a job title
+                {t("noTitleHeading")}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Neither document names a role we recognise, so a headline would
-                be a guess. Paste the full posting, including the title at the
-                top, or add your current job title to your CV, then generate
-                again.
+                {t("noTitleBody")}
               </p>
             </>
           )}
 
           <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            Matched from your resume
+            {t("matchedHeading")}
           </p>
           {result.matched.length ? (
             <ul className="mt-3 flex flex-wrap gap-2">
@@ -757,22 +801,14 @@ export default function HeadlineGenerator() {
             </ul>
           ) : (
             <p className="mt-3 text-sm leading-7 text-[var(--landing-ink-soft)]">
-              Your resume and this posting share almost no vocabulary. That is
-              worth fixing before the headline. Start with the{" "}
-              <Link
-                href="/ats-resume-checker"
-                className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
-              >
-                ATS resume checker
-              </Link>
-              .
+              {t.rich("noOverlap", { link: checkerLink })}
             </p>
           )}
 
           {result.missing.length ? (
             <>
               <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                In the posting, not in your CV
+                {t("missingHeading")}
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {result.missing.map(({ term, label }) => (
@@ -780,15 +816,7 @@ export default function HeadlineGenerator() {
                 ))}
               </ul>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                None of these can go in a headline yet. Add the ones you can
-                honestly evidence to a bullet first, then generate again. The{" "}
-                <Link
-                  href="/ats-resume-checker"
-                  className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
-                >
-                  ATS resume checker
-                </Link>{" "}
-                scores the whole CV the same way.
+                {t.rich("missingBody", { link: checkerLink })}
               </p>
             </>
           ) : null}
@@ -796,18 +824,17 @@ export default function HeadlineGenerator() {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                Want the rest of the CV to match?
+                {t("ctaTitle")}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Paste the job link and FitMyCV rewrites your CV and cover letter
-                against the posting, keeping your real experience.
+                {t("ctaBody")}
               </p>
             </div>
             <Link
               href="/tailor-cv-from-job-link"
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              Tailor my CV
+              {t("ctaLabel")}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
@@ -825,11 +852,10 @@ export default function HeadlineGenerator() {
               aria-hidden="true"
               className="text-[var(--landing-accent)]"
             />
-            Resume headline examples
+            {t("examplesHeading")}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Your five will be built from the posting you paste and the skills
-            your CV already proves. Here is the shape they take.
+            {t("examplesBody")}
           </p>
           <ul className="mt-5 flex flex-col gap-2">
             {EXAMPLE_HEADLINES.map(({ role, text }) => (
@@ -838,7 +864,7 @@ export default function HeadlineGenerator() {
                 className="flex flex-col gap-1 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 sm:flex-row sm:items-center sm:gap-4"
               >
                 <span className="font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)] sm:w-40 sm:shrink-0">
-                  {role}
+                  {t(`exampleRoles.${role}`)}
                 </span>
                 <span className="text-sm font-semibold text-[var(--landing-ink)]">
                   {text}

@@ -1,0 +1,125 @@
+{
+  "seoTitle": "Kenntnisse für den Lebenslauf aus der Stellenanzeige",
+  "description": "Füge eine Stellenbeschreibung ein und lade deinen Lebenslauf hoch. Du bekommst einen Kenntnisse-Abschnitt nur aus belegbaren Kompetenzen und die Kompetenzen, die dir fehlen.",
+  "keywords": [
+    "kenntnisse lebenslauf",
+    "fähigkeiten lebenslauf",
+    "kenntnisse und fähigkeiten lebenslauf",
+    "welche kenntnisse in den lebenslauf",
+    "lebenslauf kompetenzen generator",
+    "skills lebenslauf",
+    "hard skills lebenslauf"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Kenntnisse-Generator für den Lebenslauf",
+  "h1": "Kenntnisse-Generator für den Lebenslauf",
+  "lede": "Füge die Stellenbeschreibung ein und lade deinen Lebenslauf hoch. Du bekommst einen Kenntnisse-Abschnitt in der Reihenfolge, die die Anzeige betont, nur mit Kompetenzen, die dein Lebenslauf schon zeigt, und eine Liste der gewünschten Kompetenzen, die du noch nicht gezeigt hast. Kein Login, nichts wird gespeichert.",
+  "howTo": {
+    "name": "So schreibst du einen Kenntnisse-Abschnitt für eine bestimmte Stelle",
+    "description": "Erstelle den Kenntnisse-Abschnitt deines Lebenslaufs aus der Zielanzeige und deiner eigenen Erfahrung.",
+    "steps": [
+      {
+        "name": "Stellenbeschreibung einfügen",
+        "text": "Füge die ganze Anzeige ein, auch die Anforderungen. Das Tool ordnet die Kompetenzen, die die Anzeige wiederholt."
+      },
+      {
+        "name": "Lebenslauf hochladen",
+        "text": "Zieh das PDF hinein. Der Text wird in deinem Browser gelesen und nichts wird gespeichert."
+      },
+      {
+        "name": "Abschnitt kopieren und Belege prüfen",
+        "text": "Kopiere die Zeile mit den Kenntnissen in deinen Lebenslauf. Zu jeder Kompetenz siehst du die Zeile aus deinem Lebenslauf, die sie im Einsatz zeigt. Hat eine Kompetenz keine Zeile, ergänze einen Stichpunkt, der sie zeigt."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Wie wählt der Generator meine Kompetenzen aus?",
+      "a": "Er ordnet die Kompetenzen, die die Stellenbeschreibung wiederholt, und behält nur die, die dein Lebenslauf erwähnt. Sie stehen in der Reihenfolge, die die Anzeige betont, sodass die Kompetenzen, die dem Arbeitgeber am wichtigsten sind, vorne stehen."
+    },
+    {
+      "q": "Funktioniert das Tool mit einer deutschen Anzeige und einem deutschen Lebenslauf?",
+      "a": "Nicht gut. Es gleicht Wörter mit englischen Wortlisten ab und kann deshalb Kompetenzen auf Deutsch übersehen oder gewöhnliche Wörter behalten, die keine Kompetenzen sind. Es ist für Bewerbungen auf Englisch gedacht."
+    },
+    {
+      "q": "Warum fehlt eine Kompetenz, die ich habe, im Abschnitt?",
+      "a": "Weil dein Lebenslauf sie nie erwähnt. Das Tool listet keine Kompetenz auf, die dein Lebenslauf nicht belegen kann. Es zeigt sie stattdessen in der Lückenliste. Hast du sie wirklich genutzt, ergänze einen Stichpunkt, der zeigt, wo, und starte das Tool erneut."
+    },
+    {
+      "q": "Wie viele Kenntnisse sollte ein Lebenslauf auflisten?",
+      "a": "Die meisten Lebensläufe fahren mit 6 bis 12 gut. Darüber hinaus wird die Liste nicht mehr gelesen. Wähle die, die die Stelle verlangt und die deine Stichpunkte belegen."
+    },
+    {
+      "q": "Hard Skills oder Soft Skills?",
+      "a": "Beginne mit Hard Skills: Tools, Methoden und Qualifikationen, nach denen Recruiter suchen können. Soft Skills wie Kommunikation zeigst du besser in einem Stichpunkt als in einer Liste, denn eintippen kann sie jeder."
+    },
+    {
+      "q": "Lesen ATS-Systeme den Kenntnisse-Abschnitt?",
+      "a": "Ja. Recruiter durchsuchen ein ATS nach Begriffen aus der Anzeige, und der Kenntnisse-Abschnitt ist ein einfacher Ort für diese Begriffe. Nutze den genauen Wortlaut der Anzeige, genau das macht dieses Tool."
+    },
+    {
+      "q": "Wird mein Lebenslauf irgendwo hochgeladen?",
+      "a": "Nein. Das PDF wird in deinem Browser-Tab gelesen, und nichts wird gespeichert oder an einen Server gesendet. Schließ den Tab und alles ist weg."
+    }
+  ],
+  "blocks": [
+    { "h2": "Die Anzeige bestimmt die Reihenfolge" },
+    {
+      "p": "Ein Kenntnisse-Abschnitt wird in Sekunden gelesen, also tragen ihn die ersten Einträge. **Setz die Kompetenzen, die die Anzeige wiederholt, nach vorn, in den Worten des Arbeitgebers.** Nennt die Anzeige Power BI dreimal, gehört Power BI weit nach vorn."
+    },
+    {
+      "callout": {
+        "title": "Warum jede Kompetenz einen Stichpunkt dahinter braucht",
+        "body": "Recruiter, die eine Kompetenz in der Liste sehen, suchen sie in deiner Erfahrung. Steht sie dort nicht, wirkt die Liste wie Füllstoff. Dieses Tool zeigt die Zeile aus deinem Lebenslauf, die jede Kompetenz belegt, und markiert die ohne Beleg."
+      }
+    },
+    { "h2": "Beispiele für den Kenntnisse-Abschnitt" },
+    {
+      "table": {
+        "head": ["Beruf", "Kenntnisse"],
+        "rows": [
+          ["Data Analyst", "SQL, Python, Tableau, Power BI, A/B-Tests, Excel, Reporting für Stakeholder"],
+          ["Pflegefachkraft", "Triage, Infusionstherapie, Wundversorgung, Pflegedokumentation, Entlassmanagement, Patientenberatung"],
+          ["Softwareentwickler", "TypeScript, React, Node.js, PostgreSQL, AWS, CI/CD, Code Reviews"],
+          ["Marketing Manager", "Paid Social, HubSpot, E-Mail-Automatisierung, SEO, Google Analytics, Budgetplanung"],
+          ["Projektleiter", "Agile, Jira, Risikomanagement, Stakeholder-Management, Budgetierung, PRINCE2"]
+        ]
+      }
+    },
+    { "h2": "Was du mit der Lückenliste machst" },
+    {
+      "p": "Die Lückenliste enthält die Kompetenzen, die die Stelle verlangt und die dein Lebenslauf nie erwähnt. Hast du eine davon genutzt, ergänze einen Stichpunkt, der sie zeigt, und sie wandert in deinen Abschnitt. Wenn nicht, lass sie weg. Für den vollständigen Vokabel-Check nutze [fehlende Lebenslauf-Keywords](/missing-resume-keywords) oder den [ATS-Lebenslauf-Check](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Soll der ganze Lebenslauf passen, nicht nur die Kenntnisse?",
+        "body": "Füge den Link zur Stelle ein und FitMyCV passt Lebenslauf und Anschreiben an diese Anzeige an, nur mit deiner echten Erfahrung.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Kostenloser ATS-Lebenslauf-Check",
+      "href": "/ats-resume-checker",
+      "body": "Bewerte deinen Lebenslauf gegen eine Anzeige und sieh, welche Begriffe dir fehlen."
+    },
+    {
+      "label": "Interviewfragen aus der Stellenbeschreibung",
+      "href": "/interview-questions-from-job-description",
+      "body": "Die Fragen, die diese Stelle stellen wird, mit Belegen aus deinem Lebenslauf."
+    },
+    {
+      "label": "Kurzprofil-Generator",
+      "href": "/professional-summary-generator",
+      "body": "Drei Kurzprofile für den Lebenslauf, gebaut aus der Anzeige und deinem Lebenslauf."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

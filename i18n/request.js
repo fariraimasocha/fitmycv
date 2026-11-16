@@ -16,15 +16,42 @@ export default getRequestConfig(async ({ requestLocale }) => {
   }
   if (!hasLocale(routing.locales, locale)) locale = routing.defaultLocale;
 
+  const [namespaces, tools] = await Promise.all([
+    Promise.all(
+      NAMESPACES.map(async (ns) => [ns, (await import(`../messages/${locale}/${ns}.json`)).default]),
+    ),
+    Promise.all(
+      TOOL_UI_KEYS.map(async (key) => [key, (await import(`../messages/${locale}/tools/${key}.json`)).default]),
+    ),
+  ]);
   return {
     locale,
-    messages: Object.fromEntries(
-      await Promise.all(
-        NAMESPACES.map(async (ns) => [ns, (await import(`../messages/${locale}/${ns}.json`)).default]),
-      ),
-    ),
+    messages: { ...Object.fromEntries(namespaces), tools: Object.fromEntries(tools) },
   };
 });
+
+// The free tools' interface copy, one file per tool in messages/<locale>/tools/,
+// keyed by the page's `tool` value. MarketingPage sends a page only its own
+// tool's file, so the browser never gets the copy for the other tools.
+export const TOOL_UI_KEYS = [
+  "shared",
+  "job-match",
+  "job-save",
+  "letter-from-cv",
+  "keywords-generator",
+  "cv-format",
+  "weak-words",
+  "gap",
+  "bullet",
+  "headline",
+  "interview",
+  "skills",
+  "summary",
+  "duties",
+  "filename",
+  "linkedin-profile",
+  "link",
+];
 
 // Messages the browser needs outside the dashboard. The dashboard layout
 // passes everything; public pages only get these, which keeps roughly 65KB of

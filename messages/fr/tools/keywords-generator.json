@@ -1,0 +1,29 @@
+{
+  "roleLabel": "Choisissez votre intitulé de poste",
+  "rolePlaceholder": "Choisir un poste",
+  "notListed": "Votre poste n'est pas dans la liste ? Collez l'offre dans le <link>vérificateur de mots-clés ATS</link> : il en extrait les mots-clés de cette offre précise.",
+  "englishOnly": "Les listes de mots-clés sont en anglais. La vérification cherche ces termes anglais dans votre CV, elle fonctionne donc mieux avec un CV rédigé en anglais.",
+  "title": "{count} mots-clés de CV pour <role>{plural}</role>",
+  "intro": "N'ajoutez que ceux que vous avez vraiment pratiqués, chacun dans une puce avec un résultat. <link>Voir où va chaque groupe</link> (page en anglais).",
+  "copyAll": "Tout copier",
+  "copied": "Mots-clés copiés",
+  "copyFailed": "La copie a échoué. Sélectionnez les mots-clés et copiez-les vous-même.",
+  "cvLabel": "Comparez votre CV à cette liste",
+  "submit": "Vérifier mon CV",
+  "busy": "Vérification de votre CV",
+  "readingCv": "Lecture de votre CV",
+  "privacy": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "coverage": "Votre CV couvre {covered} termes sur {total}.",
+  "missingMarked": "{count, plural, one {# terme est marqué en rouge ci-dessus.} other {# termes sont marqués en rouge ci-dessus.}}",
+  "allPresent": "Tous les termes de la liste y figurent.",
+  "handoffGaps": {
+    "title": "Comblez ces manques",
+    "body": "Il manque à votre CV {count} des termes utilisés dans les offres « {role} ». Collez le lien d'une offre et FitMyCV intègre ceux que vous avez pratiqués, à partir de votre vraie expérience.",
+    "label": "Combler ces manques"
+  },
+  "handoffDone": {
+    "title": "Adaptez-le maintenant à une offre",
+    "body": "Une liste reste générale. Collez le lien d'une offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre précise.",
+    "label": "Adapter mon CV"
+  }
+}

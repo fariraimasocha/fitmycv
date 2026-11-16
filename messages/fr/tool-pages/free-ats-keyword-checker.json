@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Vérificateur de mots-clés ATS gratuit pour les offres d'emploi",
+  "description": "Collez une offre d'emploi et obtenez la liste classée des mots-clés sur lesquels un logiciel de recrutement (ATS) l'indexera. Gratuit, sans inscription, tout se passe dans votre navigateur.",
+  "keywords": [
+    "mots-clés cv ats",
+    "vérificateur mots-clés ats",
+    "extraire mots-clés offre d'emploi",
+    "mots-clés offre d'emploi",
+    "trouver mots-clés cv",
+    "analyse offre d'emploi mots-clés",
+    "mots-clés ats gratuit"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Vérificateur de mots-clés ATS",
+  "h1": "Vérificateur de mots-clés ATS gratuit",
+  "lede": "Collez n'importe quelle offre d'emploi et obtenez la liste classée des termes sur lesquels elle insiste vraiment : le vocabulaire qu'un recruteur tapera dans sa recherche et qu'un ATS indexera. Sans compte, sans e-mail, sans limite.",
+  "faqs": [
+    {
+      "q": "Comment trouver les mots-clés d'une offre d'emploi ?",
+      "a": "Collez l'offre complète dans le champ ci-dessus. L'outil classe les mots seuls et les expressions de deux mots selon le poids que l'offre leur donne. Les termes en haut sont donc ceux répétés dans le résumé, les missions et les exigences."
+    },
+    {
+      "q": "Quels mots-clés comptent le plus dans un CV ?",
+      "a": "L'intitulé exact du poste, les outils et technologies nommés, les certifications et toute expression qui apparaît dans plusieurs sections de l'offre. C'est ce que les recruteurs tapent dans un champ de recherche, et ces termes sont comparés mot pour mot, pas selon leur sens."
+    },
+    {
+      "q": "Combien de mots-clés dois-je inclure ?",
+      "a": "Couvrez les termes que vous pouvez honnêtement prouver, et arrêtez-vous là. Viser une densité de mots-clés ne sert à rien. Répéter un terme dix fois ne vaut pas une seule mention dans une puce avec un résultat, et cela se lit mal pour la personne qui lira votre CV."
+    },
+    {
+      "q": "Dois-je donner mon e-mail pour voir les résultats ?",
+      "a": "Non. La liste classée complète s'affiche tout de suite et l'extraction tourne dans votre navigateur. Rien n'est envoyé, donc il n'y a rien à débloquer."
+    },
+    {
+      "q": "Quelle différence avec le test de CV ATS ?",
+      "a": "Cette page n'a besoin que de l'offre et vous montre ce qu'elle demande. Le test de CV ATS prend aussi votre CV et mesure quelle part de ce vocabulaire vous couvrez déjà, avec ce qui manque."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Pourquoi l'extraction des mots-clés vient en premier"
+    },
+    {
+      "p": "Avant de réécrire la moindre puce, vous devez savoir ce que l'employeur demande vraiment : pas l'intitulé du poste, mais les termes précis qui pèsent. Les offres le cachent bien. Une exigence citée une fois dans une liste compte bien moins qu'une expression répétée dans le résumé, les missions et les exigences."
+    },
+    {
+      "p": "Classer les termes rend cela visible en quelques secondes, au lieu de deux lectures attentives."
+    },
+    {
+      "h2": "Comment utiliser la liste"
+    },
+    {
+      "steps": [
+        {
+          "title": "Triez en oui, en partie et non",
+          "body": "Répartissez les termes classés entre ce que vous pouvez solidement prouver, ce que vous pouvez prouver en partie et ce que vous ne pouvez pas revendiquer. Le premier groupe guide votre réécriture. Le troisième vous dit si le poste vous correspond vraiment."
+        },
+        {
+          "title": "Placez les premiers termes dans votre résumé",
+          "body": "Tout ce qui figure dans les cinq premiers a sa place dans votre résumé professionnel, avec une preuve, et non enfoui dans votre troisième puce sous votre deuxième poste."
+        },
+        {
+          "title": "Prouvez chaque terme dans une puce",
+          "body": "Une liste de compétences est une affirmation. Une puce qui nomme l'outil, l'action et le chiffre est une preuve. Visez à ce que chaque terme important apparaisse au moins une fois comme preuve."
+        },
+        {
+          "title": "Mesurez le résultat",
+          "body": "Une fois la réécriture faite, passez le CV et l'offre dans le [test de CV ATS](/ats-resume-checker) pour vérifier que l'écart s'est vraiment réduit."
+        }
+      ]
+    },
+    {
+      "h2": "Ce que cet outil ne sait pas faire"
+    },
+    {
+      "p": "C'est une méthode fondée sur la fréquence et les expressions, pas un modèle de langage. Elle montre très bien ce sur quoi une offre insiste, mais elle est incapable de vous dire si *gérer un compte de résultat* et *piloter le budget* veulent dire la même chose dans votre secteur. Jugez vous-même des synonymes, et lisez le [guide du CV ATS](/blog/ats-resume-guide) (en anglais) pour savoir comment la correspondance des mots-clés fonctionne dans un vrai système."
+    }
+  ],
+  "related": [
+    {
+      "label": "Test CV ATS",
+      "href": "/ats-resume-checker",
+      "body": "Ajoutez votre CV et obtenez un score de correspondance avec les termes qui vous manquent."
+    },
+    {
+      "label": "Comment adapter votre CV",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "La méthode pas à pas, avec un exemple complet avant et après (en anglais)."
+    },
+    {
+      "label": "Verbes d'action pour CV par secteur",
+      "href": "/blog/cv-action-verbs-tech",
+      "body": "Des listes de verbes pour la tech, le marketing, la finance, la santé et la vente (en anglais)."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

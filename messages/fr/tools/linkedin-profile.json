@@ -1,0 +1,28 @@
+{
+  "englishOnly": "Cette vérification lit uniquement le texte en anglais. Collez une offre en anglais et la version anglaise de votre profil.",
+  "jobLabel": "Offre d'emploi",
+  "jobPlaceholder": "Collez le texte complet de l'offre",
+  "headlineLabel": "Votre titre LinkedIn",
+  "headlinePlaceholder": "Backend Engineer | Go, Kubernetes, Payments",
+  "aboutLabel": "Votre section Infos",
+  "skillsLabel": "Vos compétences",
+  "skillsPlaceholder": "Copiez-les depuis la section Compétences de votre profil",
+  "submit": "Vérifier mon profil",
+  "busy": "Comparaison de votre profil",
+  "privacy": "Lu dans cet onglet. Rien n'est stocké.",
+  "score": "Votre profil couvre {score} % des termes sur lesquels l'offre insiste",
+  "listSeparator": ", ",
+  "forHeadline": "Votre titre est la ligne que les recruteurs voient sous votre nom dans la recherche. Ces termes sont déjà sur votre profil, mais pas dans votre titre : <strong>{terms}</strong>.",
+  "missing": "Absents de votre profil : <strong>{terms}</strong>. Ajoutez ceux que vous pouvez prouver à votre section Infos ou à vos compétences.",
+  "termColumn": "Terme",
+  "section": {
+    "headline": "Titre",
+    "about": "Infos",
+    "skills": "Compétences"
+  },
+  "found": "Trouvé",
+  "notFound": "Absent",
+  "ctaTitle": "Faites pareil pour votre CV",
+  "ctaBody": "FitMyCV réécrit votre CV face à une offre, avec les mots de l'offre, en n'utilisant que ce qui figure déjà dans votre expérience.",
+  "ctaLabel": "Adapter mon CV à cette offre"
+}

@@ -1,0 +1,1527 @@
+{
+  "seoTitle": "按职位生成简历关键词：免费工具",
+  "description": "选择你的职位，获得雇主常用的简历关键词，并按它们在简历中的位置分组。上传简历，看看缺少哪些。免费，无需登录。",
+  "keywords": [
+    "简历关键词",
+    "简历关键词生成",
+    "按职位简历关键词",
+    "简历技能关键词",
+    "ATS简历关键词",
+    "简历技能怎么写"
+  ],
+  "eyebrow": "免费工具",
+  "breadcrumbName": "简历关键词生成器",
+  "h1": "简历关键词生成器",
+  "lede": "选择你的职位，获得该职位招聘启事常用的关键词，并按它们在简历中的位置分组。然后上传简历，看看缺少哪些。",
+  "howTo": {
+    "name": "如何找到简历关键词",
+    "description": "获取你所在职位的关键词，并用它们检查你的简历。",
+    "steps": [
+      {
+        "name": "选择你的职位",
+        "text": "列表显示该职位招聘启事常用的词，按类型分组。"
+      },
+      {
+        "name": "上传简历",
+        "text": "每个词都会标为已覆盖或缺失。简历在你的浏览器中读取。"
+      },
+      {
+        "name": "加上你做过的",
+        "text": "把每个你能证明的缺失词写进一条带有成果的要点。"
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "这些关键词从哪里来？",
+      "a": "它们来自我们按职位整理的关键词页面，根据各职位招聘启事中反复出现的词整理而成。每份列表都链接到完整页面。"
+    },
+    {
+      "q": "关键词是英文的吗？",
+      "a": "是的。这些列表来自英文招聘启事，检查时会在你的简历中查找这些英文词，所以最适合英文简历。"
+    },
+    {
+      "q": "我的职位不在列表里，怎么办？",
+      "a": "把招聘启事粘贴到免费的 ATS 关键词检查工具中。它会从这份启事中提取关键词，比任何通用列表都更准。"
+    },
+    {
+      "q": "我的简历会被保存吗？",
+      "a": "不会。简历在此标签页中读取，不会发送到任何地方。"
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "列表只是起点，招聘启事说了算"
+    },
+    {
+      "p": "每份招聘启事对这些词的侧重都不同。用列表找出简历遗漏了什么，投递前再用 [简历检测](/cv-checker) 对照真实的招聘启事检查一遍。"
+    }
+  ],
+  "related": [
+    {
+      "label": "所有简历关键词列表",
+      "href": "/resume-keywords",
+      "body": "每个职位，以及每个词写进要点的示例（英文）。"
+    },
+    {
+      "label": "ATS 关键词检查",
+      "href": "/free-ats-keyword-checker",
+      "body": "从任意招聘启事中提取关键词。"
+    },
+    {
+      "label": "简历检测",
+      "href": "/cv-checker",
+      "body": "用一份招聘启事给你的简历打分。"
+    }
+  ],
+  "ui": {
+    "home": "首页",
+    "faqHeading": "常见问题",
+    "related": "接下来去哪里",
+    "open": "打开"
+  },
+  "toolProps": {
+    "roles": [
+      {
+        "slug": "software-engineer",
+        "role": "软件工程师",
+        "plural": "软件工程师",
+        "groups": [
+          {
+            "title": "系统与技艺",
+            "terms": [
+              "system design",
+              "distributed systems",
+              "microservices",
+              "API design",
+              "data modelling",
+              "concurrency",
+              "performance optimisation",
+              "scalability",
+              "code review",
+              "automated testing",
+              "debugging",
+              "technical design document"
+            ]
+          },
+          {
+            "title": "语言与框架",
+            "terms": [
+              "Go",
+              "Python",
+              "Java",
+              "TypeScript",
+              "JavaScript",
+              "C#",
+              "Rust",
+              "Kotlin",
+              "React",
+              "Node.js",
+              "Spring Boot",
+              "Django",
+              "SQL"
+            ]
+          },
+          {
+            "title": "基础设施与工具",
+            "terms": [
+              "AWS",
+              "GCP",
+              "Azure",
+              "Docker",
+              "Kubernetes (k8s)",
+              "Terraform",
+              "CI/CD",
+              "GitHub Actions",
+              "observability",
+              "Datadog",
+              "Prometheus",
+              "PostgreSQL",
+              "Redis",
+              "Kafka",
+              "infrastructure as code"
+            ]
+          },
+          {
+            "title": "工作方式",
+            "terms": [
+              "Agile",
+              "Scrum",
+              "on-call",
+              "incident response",
+              "postmortem",
+              "SLO",
+              "mentoring",
+              "pair programming",
+              "technical documentation",
+              "cross-functional"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "shipped",
+              "migrated",
+              "refactored",
+              "profiled",
+              "instrumented",
+              "scaled",
+              "hardened",
+              "decomposed",
+              "owned",
+              "mentored"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "data-analyst",
+        "role": "数据分析师",
+        "plural": "数据分析师",
+        "groups": [
+          {
+            "title": "分析与方法",
+            "terms": [
+              "exploratory data analysis",
+              "A/B testing",
+              "hypothesis testing",
+              "statistical significance",
+              "cohort analysis",
+              "segmentation",
+              "forecasting",
+              "regression analysis",
+              "funnel analysis",
+              "data quality",
+              "data cleaning",
+              "root cause analysis"
+            ]
+          },
+          {
+            "title": "工具与语言",
+            "terms": [
+              "SQL",
+              "Python",
+              "pandas",
+              "R",
+              "Excel",
+              "Tableau",
+              "Power BI",
+              "Looker",
+              "dbt",
+              "BigQuery",
+              "Snowflake",
+              "Redshift",
+              "Google Analytics (GA4)",
+              "Jupyter"
+            ]
+          },
+          {
+            "title": "业务与沟通",
+            "terms": [
+              "stakeholder management",
+              "requirements gathering",
+              "KPI definition",
+              "dashboard design",
+              "reporting automation",
+              "data storytelling",
+              "executive reporting",
+              "self-serve analytics",
+              "data governance"
+            ]
+          },
+          {
+            "title": "值得写上的证书",
+            "terms": [
+              "Google Data Analytics Certificate",
+              "Microsoft Power BI (PL-300)",
+              "Tableau Desktop Specialist",
+              "AWS Certified Data Analytics"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "quantified",
+              "modelled",
+              "forecast",
+              "automated",
+              "segmented",
+              "validated",
+              "reconciled",
+              "surfaced",
+              "recommended"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "project-manager",
+        "role": "项目经理",
+        "plural": "项目经理",
+        "groups": [
+          {
+            "title": "交付与管控",
+            "terms": [
+              "scope management",
+              "risk management",
+              "dependency management",
+              "stakeholder management",
+              "budget management",
+              "resource planning",
+              "change control",
+              "RAID log",
+              "governance",
+              "status reporting",
+              "critical path",
+              "benefits realisation"
+            ]
+          },
+          {
+            "title": "方法与框架",
+            "terms": [
+              "Agile",
+              "Scrum",
+              "Kanban",
+              "Waterfall",
+              "SAFe",
+              "PRINCE2",
+              "hybrid delivery",
+              "sprint planning",
+              "backlog refinement",
+              "retrospectives",
+              "release management"
+            ]
+          },
+          {
+            "title": "证书",
+            "terms": [
+              "PMP (Project Management Professional)",
+              "PRINCE2 Practitioner",
+              "CSM (Certified ScrumMaster)",
+              "PMI-ACP",
+              "SAFe Agilist",
+              "MSP (Managing Successful Programmes)"
+            ]
+          },
+          {
+            "title": "工具",
+            "terms": [
+              "Jira",
+              "Confluence",
+              "Asana",
+              "Microsoft Project",
+              "Smartsheet",
+              "Monday.com",
+              "Miro",
+              "ServiceNow",
+              "Power BI"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "delivered",
+              "de-risked",
+              "unblocked",
+              "escalated",
+              "negotiated",
+              "recovered",
+              "consolidated",
+              "forecast",
+              "governed"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "marketing-manager",
+        "role": "市场经理",
+        "plural": "市场经理",
+        "groups": [
+          {
+            "title": "渠道",
+            "terms": [
+              "paid social",
+              "paid search (PPC)",
+              "SEO",
+              "content marketing",
+              "email marketing",
+              "lifecycle marketing",
+              "marketing automation",
+              "affiliate marketing",
+              "influencer marketing",
+              "events",
+              "partner marketing",
+              "ABM (account based marketing)"
+            ]
+          },
+          {
+            "title": "有分量的指标",
+            "terms": [
+              "CAC (customer acquisition cost)",
+              "LTV",
+              "ROAS",
+              "MQL",
+              "SQL (sales qualified lead)",
+              "pipeline contribution",
+              "conversion rate optimisation (CRO)",
+              "attribution",
+              "funnel analysis",
+              "churn",
+              "payback period"
+            ]
+          },
+          {
+            "title": "平台与工具",
+            "terms": [
+              "HubSpot",
+              "Salesforce",
+              "Marketo",
+              "Klaviyo",
+              "Mailchimp",
+              "Google Ads",
+              "Meta Ads Manager",
+              "LinkedIn Campaign Manager",
+              "GA4",
+              "Semrush",
+              "Ahrefs",
+              "Webflow",
+              "Figma"
+            ]
+          },
+          {
+            "title": "职责范围与领导力",
+            "terms": [
+              "budget ownership",
+              "agency management",
+              "go-to-market",
+              "brand positioning",
+              "campaign planning",
+              "cross-functional",
+              "team leadership",
+              "product marketing",
+              "market research"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "launched",
+              "scaled",
+              "grew",
+              "cut",
+              "repositioned",
+              "tested",
+              "consolidated",
+              "rebuilt",
+              "owned"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "customer-service",
+        "role": "客服专员",
+        "plural": "客服专员",
+        "groups": [
+          {
+            "title": "你已有的指标",
+            "terms": [
+              "CSAT",
+              "NPS",
+              "first contact resolution (FCR)",
+              "first response time",
+              "average handle time",
+              "SLA compliance",
+              "ticket volume",
+              "resolution rate",
+              "backlog reduction",
+              "QA score"
+            ]
+          },
+          {
+            "title": "平台与渠道",
+            "terms": [
+              "Zendesk",
+              "Freshdesk",
+              "Intercom",
+              "Salesforce Service Cloud",
+              "HubSpot Service Hub",
+              "Talkdesk",
+              "live chat",
+              "phone support",
+              "email support",
+              "social support",
+              "omnichannel"
+            ]
+          },
+          {
+            "title": "工作本身",
+            "terms": [
+              "escalation management",
+              "de-escalation",
+              "complaint handling",
+              "triage",
+              "troubleshooting",
+              "root cause analysis",
+              "refunds and billing",
+              "account management",
+              "retention",
+              "churn prevention"
+            ]
+          },
+          {
+            "title": "流程与成长",
+            "terms": [
+              "knowledge base",
+              "macros and templates",
+              "workflow automation",
+              "onboarding",
+              "training and coaching",
+              "shift handover",
+              "process improvement",
+              "voice of the customer"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "resolved",
+              "de-escalated",
+              "reduced",
+              "recovered",
+              "retained",
+              "trained",
+              "documented",
+              "streamlined",
+              "coached"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "accountant",
+        "role": "会计",
+        "plural": "会计",
+        "groups": [
+          {
+            "title": "会计周期",
+            "terms": [
+              "month end close",
+              "year end close",
+              "reconciliations",
+              "accounts payable (AP)",
+              "accounts receivable (AR)",
+              "general ledger",
+              "journal entries",
+              "accruals and prepayments",
+              "fixed asset register",
+              "intercompany",
+              "consolidation",
+              "trial balance"
+            ]
+          },
+          {
+            "title": "分析与报告",
+            "terms": [
+              "variance analysis",
+              "budgeting and forecasting",
+              "cash flow forecasting",
+              "management accounts",
+              "board reporting",
+              "KPI reporting",
+              "cost control",
+              "margin analysis",
+              "business partnering"
+            ]
+          },
+          {
+            "title": "合规与准则",
+            "terms": [
+              "IFRS",
+              "UK GAAP",
+              "US GAAP",
+              "statutory accounts",
+              "VAT returns",
+              "corporation tax",
+              "audit support",
+              "internal controls",
+              "SOX",
+              "transfer pricing"
+            ]
+          },
+          {
+            "title": "系统",
+            "terms": [
+              "SAP",
+              "Oracle",
+              "NetSuite",
+              "Xero",
+              "QuickBooks",
+              "Sage",
+              "Microsoft Dynamics",
+              "advanced Excel",
+              "Power BI",
+              "Workday Financials"
+            ]
+          },
+          {
+            "title": "资质",
+            "terms": [
+              "ACCA",
+              "ACA",
+              "CIMA",
+              "CPA",
+              "AAT",
+              "part qualified",
+              "qualified by experience (QBE)",
+              "ICAEW"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "nurse",
+        "role": "护士",
+        "plural": "护士",
+        "groups": [
+          {
+            "title": "注册与证书",
+            "terms": [
+              "registered nurse (RN)",
+              "NMC PIN",
+              "active RN license",
+              "BLS",
+              "ILS",
+              "ALS",
+              "ACLS",
+              "PALS",
+              "safeguarding level 3",
+              "revalidation",
+              "NCLEX"
+            ]
+          },
+          {
+            "title": "临床技能",
+            "terms": [
+              "patient assessment",
+              "medication administration",
+              "IV therapy",
+              "venepuncture",
+              "cannulation",
+              "wound management",
+              "catheterisation",
+              "tracheostomy care",
+              "NEWS2",
+              "early warning scores",
+              "infection prevention and control",
+              "tissue viability"
+            ]
+          },
+          {
+            "title": "工作场景与专科",
+            "terms": [
+              "acute care",
+              "medical surgical",
+              "post-operative care",
+              "ICU",
+              "emergency department",
+              "theatres",
+              "community nursing",
+              "mental health",
+              "paediatrics",
+              "oncology",
+              "care of the elderly",
+              "high dependency unit"
+            ]
+          },
+          {
+            "title": "实践与领导",
+            "terms": [
+              "care planning",
+              "discharge planning",
+              "multidisciplinary team (MDT)",
+              "preceptorship",
+              "clinical audit",
+              "escalation",
+              "handover",
+              "shift coordination",
+              "patient safety",
+              "duty of candour",
+              "electronic patient record (EPR)"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "assessed",
+              "triaged",
+              "escalated",
+              "managed",
+              "precepted",
+              "audited",
+              "coordinated",
+              "administered",
+              "stabilised",
+              "educated"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "teacher",
+        "role": "教师",
+        "plural": "教师",
+        "groups": [
+          {
+            "title": "资质与学段",
+            "terms": [
+              "QTS",
+              "PGCE",
+              "teaching license",
+              "ECT",
+              "early career teacher",
+              "KS1",
+              "KS2",
+              "KS3",
+              "KS4",
+              "KS5",
+              "EYFS",
+              "primary",
+              "secondary",
+              "A level",
+              "GCSE"
+            ]
+          },
+          {
+            "title": "教学与评估",
+            "terms": [
+              "lesson planning",
+              "differentiation",
+              "formative assessment",
+              "summative assessment",
+              "scheme of work",
+              "curriculum design",
+              "behaviour management",
+              "adaptive teaching",
+              "retrieval practice",
+              "mastery",
+              "marking and feedback"
+            ]
+          },
+          {
+            "title": "进步与融合",
+            "terms": [
+              "attainment",
+              "progress data",
+              "intervention",
+              "SEND",
+              "EAL",
+              "pupil premium",
+              "IEP",
+              "data tracking",
+              "raising attainment",
+              "closing the gap"
+            ]
+          },
+          {
+            "title": "职责与安全保护",
+            "terms": [
+              "safeguarding",
+              "DBS",
+              "form tutor",
+              "pastoral care",
+              "head of year",
+              "subject lead",
+              "TLR",
+              "parental engagement",
+              "extracurricular",
+              "mentoring trainee teachers"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "raised",
+              "designed",
+              "led",
+              "rewrote",
+              "tracked",
+              "mentored",
+              "introduced",
+              "coordinated",
+              "differentiated",
+              "moderated"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "product-manager",
+        "role": "产品经理",
+        "plural": "产品经理",
+        "groups": [
+          {
+            "title": "探索与策略",
+            "terms": [
+              "product discovery",
+              "user research",
+              "customer interviews",
+              "problem framing",
+              "product strategy",
+              "product vision",
+              "opportunity sizing",
+              "jobs to be done",
+              "competitive analysis",
+              "go-to-market"
+            ]
+          },
+          {
+            "title": "交付与优先级",
+            "terms": [
+              "roadmap",
+              "prioritisation",
+              "OKRs",
+              "Agile",
+              "Scrum",
+              "backlog management",
+              "user stories",
+              "product requirements document (PRD)",
+              "release planning",
+              "cross-functional",
+              "stakeholder management"
+            ]
+          },
+          {
+            "title": "指标与实验",
+            "terms": [
+              "A/B testing",
+              "experimentation",
+              "activation",
+              "retention",
+              "conversion",
+              "net revenue retention",
+              "churn",
+              "north star metric",
+              "product analytics",
+              "funnel analysis"
+            ]
+          },
+          {
+            "title": "工具",
+            "terms": [
+              "Amplitude",
+              "Mixpanel",
+              "Looker",
+              "SQL",
+              "Jira",
+              "Linear",
+              "Figma",
+              "Productboard",
+              "Confluence"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "launched",
+              "killed",
+              "reprioritised",
+              "validated",
+              "grew",
+              "reduced",
+              "negotiated",
+              "aligned",
+              "piloted",
+              "scaled"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "business-analyst",
+        "role": "业务分析师",
+        "plural": "业务分析师",
+        "groups": [
+          {
+            "title": "需求与分析",
+            "terms": [
+              "requirements gathering",
+              "requirements elicitation",
+              "user stories",
+              "acceptance criteria",
+              "business requirements document (BRD)",
+              "functional requirements",
+              "gap analysis",
+              "impact analysis",
+              "root cause analysis",
+              "use cases"
+            ]
+          },
+          {
+            "title": "流程与变革",
+            "terms": [
+              "process mapping",
+              "process improvement",
+              "BPMN",
+              "as is to be",
+              "workflow design",
+              "change management",
+              "operating model",
+              "Lean",
+              "Six Sigma",
+              "value stream mapping"
+            ]
+          },
+          {
+            "title": "交付与测试",
+            "terms": [
+              "UAT",
+              "test scenarios",
+              "Agile",
+              "Scrum",
+              "backlog refinement",
+              "sprint planning",
+              "stakeholder workshops",
+              "stakeholder management",
+              "traceability matrix",
+              "go-live support"
+            ]
+          },
+          {
+            "title": "工具与证书",
+            "terms": [
+              "Jira",
+              "Confluence",
+              "SQL",
+              "Excel",
+              "Visio",
+              "Miro",
+              "Power BI",
+              "CBAP",
+              "ECBA",
+              "BCS Business Analysis Diploma",
+              "PMI-PBA"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "elicited",
+              "mapped",
+              "translated",
+              "prioritised",
+              "facilitated",
+              "validated",
+              "streamlined",
+              "blocked",
+              "reconciled",
+              "defined"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "data-scientist",
+        "role": "数据科学家",
+        "plural": "数据科学家",
+        "groups": [
+          {
+            "title": "建模与方法",
+            "terms": [
+              "machine learning",
+              "predictive modelling",
+              "classification",
+              "regression",
+              "time series forecasting",
+              "gradient boosting",
+              "deep learning",
+              "natural language processing (NLP)",
+              "recommendation systems",
+              "causal inference",
+              "feature engineering",
+              "model evaluation"
+            ]
+          },
+          {
+            "title": "语言与库",
+            "terms": [
+              "Python",
+              "SQL",
+              "R",
+              "pandas",
+              "NumPy",
+              "scikit-learn",
+              "XGBoost",
+              "PyTorch",
+              "TensorFlow",
+              "Spark",
+              "Jupyter"
+            ]
+          },
+          {
+            "title": "生产部署与 MLOps",
+            "terms": [
+              "model deployment",
+              "MLOps",
+              "MLflow",
+              "Airflow",
+              "Docker",
+              "AWS SageMaker",
+              "Vertex AI",
+              "Databricks",
+              "feature store",
+              "model monitoring",
+              "data drift",
+              "CI/CD"
+            ]
+          },
+          {
+            "title": "实验与统计",
+            "terms": [
+              "A/B testing",
+              "experiment design",
+              "hypothesis testing",
+              "statistical significance",
+              "Bayesian statistics",
+              "uplift modelling",
+              "online evaluation",
+              "stakeholder communication"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "deployed",
+              "productionised",
+              "reduced",
+              "forecast",
+              "ranked",
+              "retrained",
+              "monitored",
+              "validated",
+              "replaced",
+              "scaled"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "ux-designer",
+        "role": "UX 设计师",
+        "plural": "UX 设计师",
+        "groups": [
+          {
+            "title": "研究与探索",
+            "terms": [
+              "user research",
+              "usability testing",
+              "user interviews",
+              "contextual inquiry",
+              "journey mapping",
+              "personas",
+              "jobs to be done",
+              "card sorting",
+              "tree testing",
+              "survey design",
+              "research synthesis",
+              "competitive analysis"
+            ]
+          },
+          {
+            "title": "设计技艺",
+            "terms": [
+              "wireframes",
+              "prototyping",
+              "high fidelity prototypes",
+              "interaction design",
+              "information architecture",
+              "visual design",
+              "user flows",
+              "design systems",
+              "component library",
+              "responsive design",
+              "microcopy",
+              "accessibility (WCAG)"
+            ]
+          },
+          {
+            "title": "工具",
+            "terms": [
+              "Figma",
+              "FigJam",
+              "Sketch",
+              "Adobe XD",
+              "Maze",
+              "UserTesting",
+              "Dovetail",
+              "Hotjar",
+              "Miro",
+              "Framer",
+              "HTML/CSS basics"
+            ]
+          },
+          {
+            "title": "产品与协作",
+            "terms": [
+              "cross-functional",
+              "design handoff",
+              "developer collaboration",
+              "product strategy",
+              "A/B testing",
+              "design critique",
+              "stakeholder management",
+              "design QA",
+              "iteration",
+              "metrics driven design"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "redesigned",
+              "simplified",
+              "tested",
+              "validated",
+              "shipped",
+              "reduced",
+              "consolidated",
+              "standardised",
+              "interviewed",
+              "launched"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "sales",
+        "role": "销售",
+        "plural": "销售",
+        "groups": [
+          {
+            "title": "数字与指标",
+            "terms": [
+              "quota attainment",
+              "annual quota",
+              "revenue closed",
+              "average deal size",
+              "win rate",
+              "sales cycle",
+              "pipeline generated",
+              "new logos",
+              "meetings booked",
+              "renewal rate",
+              "upsell revenue"
+            ]
+          },
+          {
+            "title": "客户开发与销售管道",
+            "terms": [
+              "prospecting",
+              "lead generation",
+              "cold calling",
+              "cold email",
+              "outbound",
+              "inbound",
+              "lead qualification",
+              "BANT",
+              "discovery calls",
+              "appointment setting",
+              "social selling",
+              "referrals"
+            ]
+          },
+          {
+            "title": "成交与客户管理",
+            "terms": [
+              "product demos",
+              "presentations",
+              "objection handling",
+              "negotiation",
+              "closing",
+              "consultative selling",
+              "solution selling",
+              "account management",
+              "upselling",
+              "cross-selling",
+              "customer retention",
+              "B2B sales"
+            ]
+          },
+          {
+            "title": "外勤与现场销售",
+            "terms": [
+              "territory management",
+              "route planning",
+              "field sales",
+              "client visits",
+              "face-to-face selling",
+              "key accounts",
+              "distributor relationships",
+              "trade shows"
+            ]
+          },
+          {
+            "title": "系统",
+            "terms": [
+              "Salesforce",
+              "HubSpot",
+              "LinkedIn Sales Navigator",
+              "Outreach",
+              "Salesloft",
+              "Gong",
+              "ZoomInfo",
+              "Apollo",
+              "Excel"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "closed",
+              "exceeded",
+              "generated",
+              "booked",
+              "won",
+              "opened",
+              "expanded",
+              "renewed",
+              "negotiated",
+              "converted"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "sales-manager",
+        "role": "销售经理",
+        "plural": "销售经理",
+        "groups": [
+          {
+            "title": "数字与指标",
+            "terms": [
+              "quota attainment",
+              "revenue growth",
+              "annual quota",
+              "average deal size",
+              "win rate",
+              "sales cycle",
+              "pipeline coverage",
+              "net new revenue",
+              "expansion revenue",
+              "retention",
+              "forecast accuracy"
+            ]
+          },
+          {
+            "title": "销售流程与方法",
+            "terms": [
+              "pipeline management",
+              "sales forecasting",
+              "territory planning",
+              "account planning",
+              "MEDDIC",
+              "MEDDPICC",
+              "Challenger Sale",
+              "solution selling",
+              "consultative selling",
+              "deal reviews",
+              "enterprise sales",
+              "negotiation"
+            ]
+          },
+          {
+            "title": "领导力",
+            "terms": [
+              "team leadership",
+              "sales coaching",
+              "performance management",
+              "hiring and onboarding",
+              "quota setting",
+              "ramp time",
+              "compensation planning",
+              "cross-functional",
+              "quarterly business reviews (QBRs)"
+            ]
+          },
+          {
+            "title": "系统",
+            "terms": [
+              "Salesforce",
+              "HubSpot",
+              "Gong",
+              "Outreach",
+              "Salesloft",
+              "LinkedIn Sales Navigator",
+              "Clari",
+              "Excel"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "closed",
+              "exceeded",
+              "grew",
+              "built",
+              "coached",
+              "hired",
+              "ramped",
+              "expanded",
+              "negotiated",
+              "turned around"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "financial-analyst",
+        "role": "财务分析师",
+        "plural": "财务分析师",
+        "groups": [
+          {
+            "title": "规划与分析",
+            "terms": [
+              "financial modelling",
+              "variance analysis",
+              "forecasting",
+              "rolling forecast",
+              "budgeting",
+              "scenario analysis",
+              "sensitivity analysis",
+              "three statement model",
+              "long range planning",
+              "driver based planning",
+              "margin analysis",
+              "cost analysis"
+            ]
+          },
+          {
+            "title": "报告",
+            "terms": [
+              "management accounts",
+              "monthly reporting",
+              "board packs",
+              "KPI reporting",
+              "executive dashboards",
+              "month end",
+              "P&L analysis",
+              "cash flow analysis",
+              "commentary"
+            ]
+          },
+          {
+            "title": "商业与投资",
+            "terms": [
+              "business partnering",
+              "pricing analysis",
+              "business cases",
+              "investment appraisal",
+              "NPV",
+              "IRR",
+              "ROI analysis",
+              "capex",
+              "unit economics",
+              "cost control"
+            ]
+          },
+          {
+            "title": "系统与工具",
+            "terms": [
+              "advanced Excel",
+              "Power Query",
+              "pivot tables",
+              "Power BI",
+              "Tableau",
+              "SAP",
+              "Oracle",
+              "NetSuite",
+              "Anaplan",
+              "Adaptive Insights",
+              "SQL",
+              "VBA"
+            ]
+          },
+          {
+            "title": "资质",
+            "terms": [
+              "CFA",
+              "CFA Level I",
+              "ACCA",
+              "CIMA",
+              "ACA",
+              "CPA",
+              "FMVA",
+              "finance degree"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "hr-manager",
+        "role": "人力资源经理",
+        "plural": "人力资源经理",
+        "groups": [
+          {
+            "title": "员工生命周期",
+            "terms": [
+              "talent acquisition",
+              "recruitment",
+              "onboarding",
+              "performance management",
+              "succession planning",
+              "learning and development",
+              "career development",
+              "offboarding",
+              "workforce planning",
+              "organisational design"
+            ]
+          },
+          {
+            "title": "员工关系与合规",
+            "terms": [
+              "employee relations",
+              "grievances",
+              "disciplinaries",
+              "absence management",
+              "employment law",
+              "policy development",
+              "TUPE",
+              "redundancy",
+              "investigations",
+              "right to work",
+              "health and safety",
+              "GDPR"
+            ]
+          },
+          {
+            "title": "薪酬与员工敬业度",
+            "terms": [
+              "compensation and benefits",
+              "pay benchmarking",
+              "pay banding",
+              "employee engagement",
+              "engagement survey",
+              "retention",
+              "attrition",
+              "DEI",
+              "wellbeing",
+              "employer branding"
+            ]
+          },
+          {
+            "title": "系统",
+            "terms": [
+              "Workday",
+              "BambooHR",
+              "SAP SuccessFactors",
+              "HiBob",
+              "Personio",
+              "Greenhouse",
+              "Lever",
+              "ADP",
+              "HR analytics",
+              "Excel"
+            ]
+          },
+          {
+            "title": "资质与业务伙伴",
+            "terms": [
+              "CIPD Level 5",
+              "CIPD Level 7",
+              "SHRM-CP",
+              "SHRM-SCP",
+              "PHR",
+              "HR business partnering",
+              "coaching managers",
+              "change management"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "administrative-assistant",
+        "role": "行政助理",
+        "plural": "行政助理",
+        "groups": [
+          {
+            "title": "核心工作",
+            "terms": [
+              "calendar management",
+              "diary management",
+              "scheduling",
+              "travel booking",
+              "expense reports",
+              "inbox management",
+              "meeting coordination",
+              "minute taking",
+              "data entry",
+              "filing",
+              "document preparation",
+              "event coordination"
+            ]
+          },
+          {
+            "title": "办公室与前台",
+            "terms": [
+              "reception",
+              "visitor management",
+              "phone handling",
+              "office supplies",
+              "vendor coordination",
+              "facilities",
+              "mail handling",
+              "onboarding support",
+              "office management"
+            ]
+          },
+          {
+            "title": "软件",
+            "terms": [
+              "Microsoft Office",
+              "Outlook",
+              "Word",
+              "Excel",
+              "PowerPoint",
+              "Google Workspace",
+              "Slack",
+              "Microsoft Teams",
+              "Zoom",
+              "Expensify",
+              "SAP Concur",
+              "Calendly"
+            ]
+          },
+          {
+            "title": "工作风格",
+            "terms": [
+              "confidentiality",
+              "attention to detail",
+              "prioritisation",
+              "time management",
+              "stakeholder coordination",
+              "problem solving",
+              "written communication",
+              "discretion"
+            ]
+          },
+          {
+            "title": "能体现证据的动词",
+            "terms": [
+              "coordinated",
+              "scheduled",
+              "organised",
+              "processed",
+              "booked",
+              "triaged",
+              "maintained",
+              "streamlined",
+              "drafted",
+              "tracked"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

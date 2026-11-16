@@ -1,0 +1,49 @@
+{
+  "jobLabel": "Pega la oferta de empleo",
+  "jobPlaceholder": "Pega aquí el texto completo de la oferta…",
+  "resumeLabel": "Tu CV",
+  "englishOnly": "Esta herramienta lee ofertas y currículums escritos en inglés, y escribe las preguntas en inglés.",
+  "submit": "Ver mis preguntas",
+  "busy": "Leyendo la oferta",
+  "statusReadingCv": "Leyendo tu CV",
+  "statusMatching": "Comparando tu CV con la oferta",
+  "statusNeedInput": "Añade la oferta de empleo y tu CV para empezar.",
+  "statusPrivate": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "resultHeading": "{count, plural, one {# pregunta} other {# preguntas}} para <hl>{title}</hl>",
+  "thisJob": "este puesto",
+  "resultBody": "Elegidas según lo que pide la oferta. Cada prueba está copiada de tu CV.",
+  "copyAll": "Copiar todo",
+  "copied": "Copiado",
+  "toastCopied": "Preguntas copiadas",
+  "toastCopyFailed": "No se pudo copiar. Selecciona las preguntas y cópialas tú.",
+  "kind": {
+    "role": "Sobre el puesto",
+    "skill": "De la oferta, en tu CV",
+    "gap": "De la oferta, falta en tu CV"
+  },
+  "proof": "Tu prueba:",
+  "tips": {
+    "whyResult": "Nombra algo de la oferta que te atrajo y respáldalo con este resultado.",
+    "whyNoResult": "Nombra algo de la oferta que te atrajo y luego un resultado de tu trabajo. Tu CV aún no tiene ninguna línea con un número, así que elige uno antes de la entrevista.",
+    "walkSkills": "Hazlo en dos minutos y termina con las habilidades que pide este puesto: {skills}.",
+    "walkNoSkills": "Hazlo en dos minutos y termina explicando por qué este puesto es el siguiente paso.",
+    "skillStory": "Cuéntala como situación, tarea, acción y resultado. La línea de tu CV es el resultado, así que construye la historia hacia atrás desde ella.",
+    "skillNoDetail": "Tu CV lo menciona, pero no en una línea con detalle. Prepara una historia con un resultado claro.",
+    "gap": "Tu CV nunca menciona {skill}. Si lo has usado, añádelo a tu CV antes de postularte. Si no, prepara una respuesta honesta sobre lo más parecido que hayas hecho."
+  },
+  "ctaGapsTitle": "{count, plural, one {# de estas preguntas toca un hueco de tu CV} other {# de estas preguntas tocan huecos de tu CV}}",
+  "ctaCoveredTitle": "Tu CV cubre lo que te van a preguntar",
+  "ctaGapsBody": "Ciérralos antes de que lo lean. Regístrate gratis y FitMyCV adapta tu CV a esta oferta, usando solo tu experiencia real.",
+  "ctaCoveredBody": "Asegúrate de que el reclutador también lo vea. Regístrate gratis y FitMyCV adapta tu CV a esta oferta, usando solo tu experiencia real.",
+  "ctaGapsLabel": "Cerrar los huecos",
+  "ctaCoveredLabel": "Adaptar mi CV a este puesto",
+  "commonHeading": "Preguntas de casi todas las entrevistas",
+  "commonBody": "Añade la oferta y tu CV para ver las que hará este puesto, con la línea de tu CV que responde a cada una.",
+  "commonQuestions": [
+    "Háblame de ti.",
+    "¿Por qué quieres este puesto?",
+    "Cuéntame una vez en que resolviste un problema difícil.",
+    "¿Cuál es tu mayor debilidad?",
+    "¿Dónde te ves dentro de tres años?"
+  ]
+}

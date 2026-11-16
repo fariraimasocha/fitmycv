@@ -1,0 +1,76 @@
+{
+  "englishOnly": "This tool rewrites bullets written in English. Its verbs, templates and checks only work on English text, so the rewrites come back in English.",
+  "bulletLabel": "Paste one bullet from your CV",
+  "bulletPlaceholder": "Managed customer support tickets.",
+  "bulletHint": "One bullet at a time works best.",
+  "jobLabel": "Paste the job description (optional)",
+  "jobPlaceholder": "Paste the posting to see which of its terms you could work in…",
+  "jobHint": "Leave this empty to just rewrite the bullet.",
+  "submit": "Rewrite this bullet",
+  "busy": "Rewriting your bullet",
+  "example": "Try an example",
+  "privacy": "Runs entirely in your browser. Nothing is uploaded or stored.",
+  "resultTitle": "Three ways to rewrite it",
+  "resultBody": "Each one opens with an action verb and marks where a number belongs. The highlighted slots are yours to fill. This tool does not know your numbers, so pick figures you can defend in an interview.",
+  "fixTitle": "What to fix in the original",
+  "notes": {
+    "opener": "Opens with \"{opener}\", which names a duty. Start with an action verb instead.",
+    "verbOk": "Opens with an action verb. Keep it and add the numbers.",
+    "number": "Has a number. Check it is the one a hiring manager cares about.",
+    "noNumber": "No number anywhere. Add how many, how often, how much, or how much faster.",
+    "long": "{count} words. Cut it to under 25 so it fits on two lines.",
+    "pronoun": "Uses \"{word}\". Drop pronouns from CV bullets and lead with the verb.",
+    "vague": "\"{word}\" hides the count. Replace it with the real figure.",
+    "fullStop": "Ends with a full stop. Use the same ending on every bullet.",
+    "noFullStop": "No full stop at the end. Fine, as long as every other bullet matches."
+  },
+  "termsTitle": "Terms from the posting you could work in",
+  "termsBody": "The posting leans on these and your bullet never says them. Add only the ones you actually did.",
+  "termsTooShort": "Paste more of the posting to see which of its terms this bullet is missing. A line or two is not enough to rank.",
+  "verbsTitle": "Action verbs for {family}",
+  "verbsSwap": "Swap in whichever one is most accurate.",
+  "families": {
+    "ownership": {
+      "label": "ownership and leadership",
+      "hint": "You are describing something you owned or ran."
+    },
+    "support": {
+      "label": "customer and people support",
+      "hint": "You are describing work you did for customers or colleagues."
+    },
+    "delivery": {
+      "label": "building and shipping",
+      "hint": "You are describing something you helped build or launch."
+    },
+    "process": {
+      "label": "process and efficiency",
+      "hint": "You are describing a process you kept running or improved."
+    },
+    "analysis": {
+      "label": "data and analysis",
+      "hint": "You are describing something you measured or investigated."
+    },
+    "general": {
+      "label": "general action verbs",
+      "hint": "No single family stood out, so these work anywhere."
+    }
+  },
+  "ctaTitle": "One bullet down. What about the rest?",
+  "ctaBody": "Paste the job link and FitMyCV rewrites every bullet against that posting, keeping your real experience and your real numbers.",
+  "ctaLabel": "Tailor my CV",
+  "previewTitle": "What you get back",
+  "preview": {
+    "rewrites": {
+      "title": "Three rewrites",
+      "body": "Each opens with an action verb and marks where your number goes."
+    },
+    "read": {
+      "title": "A read on the original",
+      "body": "Weak opener, missing number, pronouns, length. One line each."
+    },
+    "verbs": {
+      "title": "A verb bank",
+      "body": "Action verbs for the kind of work this bullet describes."
+    }
+  }
+}

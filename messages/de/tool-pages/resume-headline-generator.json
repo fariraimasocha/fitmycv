@@ -1,0 +1,216 @@
+{
+  "seoTitle": "Lebenslauf Überschrift Generator: kostenlos, ohne Login",
+  "description": "Lade deinen Lebenslauf hoch und füge eine Stellenbeschreibung ein. Du bekommst fünf Überschriften nur aus Kompetenzen, die dein Lebenslauf zeigt. Kostenlos, ohne Login.",
+  "keywords": [
+    "lebenslauf überschrift",
+    "überschrift lebenslauf generator",
+    "lebenslauf titel",
+    "lebenslauf headline",
+    "lebenslauf überschrift beispiele",
+    "berufsbezeichnung lebenslauf",
+    "profilzeile lebenslauf",
+    "lebenslauf titel beispiele",
+    "ats lebenslauf überschrift",
+    "englischer lebenslauf headline"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lebenslauf-Überschrift-Generator",
+  "h1": "Generator für Lebenslauf-Überschriften und Titel",
+  "lede": "Lade deinen Lebenslauf hoch und füge die Stellenbeschreibung ein. Du bekommst fünf Überschriften in fünf verschiedenen Formen, gebaut nur aus Kompetenzen, die dein Lebenslauf wirklich belegen kann, mit dem Jobtitel direkt aus der Anzeige.",
+  "howTo": {
+    "name": "So schreibst du eine Lebenslauf-Überschrift für eine bestimmte Stelle",
+    "description": "Erstelle eine Lebenslauf-Überschrift aus der Zielanzeige und deiner eigenen Erfahrung.",
+    "steps": [
+      {
+        "name": "Stellenbeschreibung einfügen",
+        "text": "Das Tool liest den Jobtitel und die Begriffe, auf die die Anzeige setzt. Füge die ganze Anzeige ein, auch den Abschnitt mit den Anforderungen."
+      },
+      {
+        "name": "Lebenslauf hochladen",
+        "text": "Zieh das PDF hinein. Wir lesen den Text aus, du musst nichts kopieren. Eine Kompetenz, die nicht in deinem Lebenslauf steht, erscheint nie in einer Überschrift."
+      },
+      {
+        "name": "Eine Form wählen und anpassen",
+        "text": "Du bekommst fünf Überschriften in fünf verschiedenen Formen. Kopiere die passende und streiche alles, wozu du im Vorstellungsgespräch nicht gefragt werden willst."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Was ist eine Lebenslauf-Überschrift?",
+      "a": "Die Überschrift ist die eine Zeile unter deinem Namen oben im Lebenslauf. Sie nennt die Stelle, auf die du dich bewirbst, und zwei oder drei Dinge, die dich dafür glaubwürdig machen. Sie ist kein Kurzprofil, das zwei oder drei Sätze lang ist, und kein Karriereziel, das sagt, was du willst statt was du bietest."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen Überschrift und Titel?",
+      "a": "In der Praxis meinen viele mit beiden Wörtern dieselbe Zeile, und dieses Tool behandelt sie gleich. Der einzige nützliche Unterschied: Ein Titel ist meist nur die Rolle („Senior Backend Engineer“), eine Überschrift ergänzt Belege („Senior Backend Engineer, Go und Kubernetes, Zahlungsinfrastruktur“). Fragt ein Formular nach einem Titel, gib die Rolle an. Für den Kopf deines Lebenslaufs nimm die Überschrift."
+    },
+    {
+      "q": "Ist die Lebenslauf-Überschrift dasselbe wie die LinkedIn-Headline?",
+      "a": "Sie haben verschiedene Aufgaben. Die LinkedIn-Headline ist eine Zeile für alle Recruiter, die dich finden, und bleibt deshalb allgemein. Die Lebenslauf-Überschrift steht auf einem Dokument für einen einzigen Arbeitgeber und sollte genau diese Stelle nennen. Die LinkedIn-Headline in den Lebenslauf zu kopieren ist der häufigste Weg, diese Zeile zu verschenken."
+    },
+    {
+      "q": "Warum fragt der Generator nach der Stellenbeschreibung?",
+      "a": "Weil eine Überschrift, die die Stelle nicht nennt, nur die halbe Arbeit macht. Die Anzeige verrät dem Tool den genauen Titel, den der Arbeitgeber verwendet, und die Begriffe, auf die er setzt. Ein allgemeiner Überschrift-Generator hat beides nicht und rät deshalb."
+    },
+    {
+      "q": "Schreibt es mir Kompetenzen zu, die ich nicht habe?",
+      "a": "Nein. Jede Kompetenz in einer erstellten Überschrift muss sowohl in der Anzeige als auch im Text deines Lebenslaufs stehen. Das Tool zeigt dir die Aufteilung: was passt, und was die Anzeige will, aber dein Lebenslauf nie erwähnt. Die zweite Liste ist eine To-do-Liste, kein Material für die Überschrift."
+    },
+    {
+      "q": "Funktioniert das Tool mit einem deutschen Lebenslauf und einer deutschen Anzeige?",
+      "a": "Nicht gut. Es erkennt Jobtitel und Kompetenzen mit englischen Wortlisten und schreibt die Überschriften auf Englisch. Es ist für Bewerbungen auf Englisch gedacht. Für einen deutschen Lebenslauf nutze die fünf Formen weiter unten und schreib deine Überschrift selbst."
+    },
+    {
+      "q": "Wie lang sollte eine Lebenslauf-Überschrift sein?",
+      "a": "Eine Zeile, die oben auf der Seite Platz hat, also etwa 60 bis 90 Zeichen. Bricht sie in deinem Lebenslauf in eine zweite Zeile um, streiche das schwächste Element. Drei Kompetenzen sind die praktische Obergrenze, bevor sich die Zeile nicht mehr auf einen Blick lesen lässt."
+    },
+    {
+      "q": "Lesen Bewerbermanagementsysteme die Überschrift?",
+      "a": "Sie lesen sie als Text wie jede andere Zeile, und sie steht ganz oben, wo ein Mensch zuerst hinschaut. Lass sie als einfachen Text im Hauptteil des Dokuments statt in einer Kopfzeile, einem Textfeld oder einem Bild, denn genau dort übersehen Parser häufig etwas."
+    }
+  ],
+  "blocks": [
+    { "h2": "Die Zeile, die die meisten verschenken" },
+    {
+      "p": "Der Kopf eines Lebenslaufs ist der einzige Teil, den jeder Leser sieht. Die meisten füllen ihn mit dem Jobtitel ihrer letzten Stelle oder, schlimmer, mit dem Wort „Lebenslauf“. **Eine Überschrift sollte dem Arbeitgeber sagen, für welche seiner Stellen du hier bist und warum du dafür glaubwürdig bist**, in einer Zeile, bevor jemand scrollt."
+    },
+    {
+      "p": "Deshalb fragt dieser Generator nach der Anzeige und nach deinem Lebenslauf. Der Jobtitel kommt aus der Anzeige, in den Worten des Arbeitgebers. Die Kompetenzen kommen aus der Schnittmenge zwischen dem, was er verlangt, und dem, was du belegen kannst."
+    },
+    { "h2": "Fünf Formen, und wann jede passt" },
+    {
+      "steps": [
+        {
+          "title": "Titel plus drei Kompetenzen",
+          "body": "„Senior Backend Engineer | Go, Kubernetes, Payments“. Der Standard. Schnell erfassbar, reich an Keywords, passt in fast jeden Lebenslauf."
+        },
+        {
+          "title": "Erfahrungsstufe plus Titel plus Branche",
+          "body": "Nutze sie, wenn die Branche genauso zählt wie das Handwerk. Gesundheitswesen, Fintech, Verteidigung, Bildung und öffentlicher Dienst schauen zuerst auf die Branche."
+        },
+        {
+          "title": "Titel plus Jahre plus eine Stärke",
+          "body": "Nutze sie, wenn deine Erfahrung dein stärkstes Argument ist, und nur, wenn die Jahre wirklich in deinem Lebenslauf stehen."
+        },
+        {
+          "title": "Ergebnis zuerst",
+          "body": "Beginnt mit dem, was du lieferst, statt mit deiner Berufsbezeichnung. Nützlich beim Quereinstieg, wenn der alte Jobtitel gegen dich arbeitet."
+        },
+        {
+          "title": "Schlicht, ohne Striche",
+          "body": "Ein klarer Satz für einen Lebenslauf-Kopf, in dem die Zeile über deinen Kontaktdaten steht und senkrechte Striche stören würden."
+        }
+      ]
+    },
+    { "h2": "Beispiele für Lebenslauf-Überschriften nach Beruf" },
+    {
+      "p": "Echte Formen statt Füllstoff. Jede nennt eine Rolle und begründet sie dann mit etwas Konkretem."
+    },
+    {
+      "table": {
+        "head": ["Beruf", "Überschrift"],
+        "rows": [
+          ["Softwareentwickler", "Senior Backend-Entwickler | Go, Kubernetes, Zahlungsinfrastruktur"],
+          ["Berufseinsteiger Informatik", "Junior-Softwareentwickler | Python und React | 3 abgeschlossene Teamprojekte"],
+          ["Marketing Manager", "Digital Marketing Manager | Paid Social, Lifecycle-E-Mail, HubSpot"],
+          ["Controller", "Controller mit Schwerpunkt Monatsabschluss und Liquiditätsplanung"],
+          ["Pflegefachkraft", "Examinierte Pflegefachkraft | 8+ Jahre | Akutmedizin und Triage"],
+          ["Produktdesigner", "Produktdesigner mit Fokus auf Design Systems und Barrierefreiheit"],
+          ["Projektleiter", "PMP-zertifizierter Projektleiter | Bauwesen | Budgets bis 20 Mio."],
+          ["Quereinsteiger", "Data Analyst | Zehn Jahre im Einzelhandel | SQL und Power BI"],
+          ["Kundensupport", "Customer Support Specialist | Zendesk | SaaS-Onboarding und Kundenbindung"],
+          ["Lehrkraft", "Mathematiklehrer Sekundarstufe | Mittlere Reife und Abitur | Förderkonzepte"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Übernimm den Jobtitel des Arbeitgebers, nicht deinen alten",
+        "body": "Steht in der Anzeige Growth Marketer und dein letzter Titel war Marketing Executive, beginne mit Growth Marketer. Du lügst nicht über deinen Werdegang, den der Abschnitt zur Berufserfahrung klar darstellt. Du sagst dem Leser, für welche Stelle diese Bewerbung ist."
+      }
+    },
+    { "h2": "Beispiele für Lebenslauf-Titel" },
+    {
+      "p": "Wenn ein Formular oder eine Vorlage nur Platz für einen Titel hat, gib die Rolle in den Worten des Arbeitgebers an und sonst nichts. Zwei bis vier Wörter, passend zur Anzeige."
+    },
+    {
+      "table": {
+        "head": ["Wenn die Anzeige sagt", "Dein Titel im Lebenslauf"],
+        "rows": [
+          ["Senior Softwareentwickler, Payments", "Senior Softwareentwickler"],
+          ["Growth Marketing Manager", "Growth Marketing Manager"],
+          ["Pflegefachkraft, Notaufnahme", "Pflegefachkraft"],
+          ["Junior Data Analyst (Berufseinstieg)", "Junior Data Analyst"],
+          ["Customer Success Manager, SaaS", "Customer Success Manager"],
+          ["Controller", "Controller"]
+        ]
+      }
+    },
+    {
+      "p": "Heb dir die Zusätze nach dem Komma für die Überschrift auf, wo du sie belegen kannst. Ein Titel, der „Payments“ verspricht, auf einem Lebenslauf ohne Payments-Erfahrung lädt zur falschen ersten Frage im Gespräch ein."
+    },
+    { "h2": "Überschrift, Titel, Kurzprofil oder Karriereziel" },
+    {
+      "table": {
+        "head": ["", "Länge", "Sagt", "Nutze es, wenn"],
+        "rows": [
+          ["Überschrift", "Eine Zeile", "Die Rolle plus zwei oder drei Belege", "Fast immer. Sie ist die Standard-Kopfzeile eines Lebenslaufs."],
+          ["Titel", "Zwei bis vier Wörter", "Nur die Rolle", "Ein Formularfeld nach einem Titel fragt oder dein Layout keinen Platz hat."],
+          ["Kurzprofil", "Zwei bis drei Sätze", "Umfang, Spezialgebiet und ein zentrales Ergebnis", "Du bist erfahren oder wechselst das Fachgebiet und der Sprung braucht eine Erklärung."],
+          ["Karriereziel", "Ein bis zwei Sätze", "Was du suchst", "Selten. Es nutzt den besten Platz, um über dich statt über den Arbeitgeber zu sprechen."]
+        ]
+      }
+    },
+    {
+      "p": "Überschrift und Kurzprofil können zusammen stehen, in dieser Reihenfolge. Überschrift und Karriereziel konkurrieren um dieselbe Aufgabe, und das Karriereziel verliert."
+    },
+    { "h2": "Fünf Arten, wie eine Überschrift schiefgeht" },
+    {
+      "ol": [
+        "**Sie sagt „Lebenslauf“ oder wiederholt deinen Namen.** Das steht schon in der Datei. Nutze die Zeile für etwas, das der Leser noch nicht hat.",
+        "**Sie ist eine Liste von Adjektiven.** „Fleißig, sorgfältig, teamfähig“ lässt sich nicht prüfen und jeder schreibt es. Nenne stattdessen eine Kompetenz.",
+        "**Sie ist deine LinkedIn-Headline.** Für alle geschrieben, nennt sie keine Rolle. Auf einem Lebenslauf für einen einzigen Arbeitgeber geht das daneben.",
+        "**Sie nennt ein Tool, das du einmal benutzt hast.** Die Überschrift ist das Erste, wonach im Gespräch gefragt wird. Schreib nur hinein, wozu du gefragt werden willst.",
+        "**Sie steht in der Kopfzeile des Dokuments.** Manche Parser überspringen Kopfzeilen und Textfelder komplett. Lass die Zeile im Hauptteil des Dokuments."
+      ]
+    },
+    { "h2": "Wo die Überschrift in einer größeren Überarbeitung steht" },
+    {
+      "p": "Die Überschrift ist die günstigste Verbesserung an einem Lebenslauf und die kleinste. Sie verändert die ersten zwei Sekunden. Sie ändert nicht, was Recruiter finden, wenn sie ihr Bewerbermanagementsystem durchsuchen, und nicht, ob deine Stichpunkte Belege liefern."
+    },
+    {
+      "p": "Sobald die erste Zeile stimmt, prüfe die Lücke im Vokabular mit [fehlenden Lebenslauf-Keywords](/missing-resume-keywords) und arbeite dich dann mit dem [Stichpunkt-Umschreiber](/resume-bullet-rewriter) durch die Seite. Wenn du alle drei lieber für eine Anzeige erledigt haben willst, ist das [Anpassen per Stellenlink](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "Überschrift passt, der Rest der Seite ist noch allgemein?",
+        "body": "Füge den Link zur Stelle ein und FitMyCV schreibt den ganzen Lebenslauf passend zu dieser Anzeige um, Überschrift inklusive, und schreibt das passende Anschreiben.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Stichpunkt-Umschreiber",
+      "href": "/resume-bullet-rewriter",
+      "body": "Mach aus einer Aufgabe einen Erfolg, eine Zeile nach der anderen."
+    },
+    {
+      "label": "Fehlende Lebenslauf-Keywords",
+      "href": "/missing-resume-keywords",
+      "body": "Sieh, welche Begriffe der Anzeige dein Lebenslauf nie erwähnt."
+    },
+    {
+      "label": "Kostenloser ATS-Lebenslauf-Check",
+      "href": "/ats-resume-checker",
+      "body": "Bewerte deinen Lebenslauf gegen eine Anzeige und sieh, welche Begriffe dir fehlen."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

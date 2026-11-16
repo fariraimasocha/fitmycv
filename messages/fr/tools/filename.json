@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "name": { "label": "Votre nom complet", "placeholder": "Farirai Masocha" },
+    "role": { "label": "Intitulé du poste", "placeholder": "Développeur logiciel" },
+    "company": { "label": "Entreprise (facultatif)", "placeholder": "Northwind" }
+  },
+  "fileLabel": "CV",
+  "private": "Les noms se construisent pendant que vous tapez. Rien n'est envoyé ni stocké.",
+  "exampleHeading": "Voici ce que vous obtenez",
+  "heading": "Vos noms de fichier",
+  "exampleBadge": "Exemple",
+  "exampleIntro": "Tapez votre nom et l'intitulé du poste pour créer le vôtre. Copiez celui qui convient et renommez votre fichier avant de l'envoyer.",
+  "intro": "Copiez celui qui convient à la candidature, puis renommez votre fichier avant de l'envoyer.",
+  "recommended": "Recommandé",
+  "companySlot": "Avec le nom de l'entreprise",
+  "notes": {
+    "recommended": "À utiliser pour la plupart des candidatures. Il donne votre nom et le poste.",
+    "broad": "À utiliser quand vous envoyez le même CV pour plusieurs postes différents.",
+    "company": "À utiliser quand un même recruteur pourvoit plusieurs postes dans la même entreprise.",
+    "companyEmpty": "Ajoutez le nom d'une entreprise pour créer celui-ci.",
+    "underscore": "À utiliser quand un formulaire ou un cabinet demande des tirets bas."
+  },
+  "copy": "Copier",
+  "copied": "Copié",
+  "copyAria": "Copier le nom de fichier {name}",
+  "toastCopied": "Nom de fichier copié",
+  "copyBlocked": "La copie est bloquée dans ce navigateur. Sélectionnez le nom et copiez-le.",
+  "worthFixing": "À corriger",
+  "issues": {
+    "spaces": "Les espaces sont remplacées. Une espace brute devient %20 dans un lien de téléchargement.",
+    "version": "Retirez final, draft et v2. Un mot de version fait penser à un fichier de travail.",
+    "lowercase": "Votre nom est tout en minuscules. Mettez des majuscules. Un recruteur lit ce nom.",
+    "extension": "Retirez l'extension. Elle est ajoutée pour vous, et le PDF est le format le plus sûr.",
+    "illegal": "Caractères qui bloquent les envois retirés : {chars}",
+    "accented": "Les accents sont simplifiés, pour que le nom fonctionne sur tous les systèmes.",
+    "truncated": "Raccourci pour que le nom de fichier se lise d'un coup d'œil."
+  }
+}

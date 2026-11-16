@@ -230,7 +230,25 @@
       "missingHeading": "Absents de votre CV",
       "coveredHeading": "Déjà couverts",
       "keywordsTitle": "Les {count} termes sur lesquels l'offre insiste",
-      "keywordsBody": "Classés selon le poids que l'offre leur donne. Parcourez la liste et vérifiez que chaque terme que vous pouvez honnêtement revendiquer figure dans une puce de votre CV, avec un résultat."
+      "keywordsBody": "Classés selon le poids que l'offre leur donne. Parcourez la liste et vérifiez que chaque terme que vous pouvez honnêtement revendiquer figure dans une puce de votre CV, avec un résultat.",
+      "leadEmail": {
+        "title": "Recevez ce score par e-mail avec un lien pour combler les manques",
+        "body": "Facultatif. Aucun compte nécessaire.",
+        "emailLabel": "Adresse e-mail",
+        "placeholder": "vous@email.com",
+        "send": "Envoyer",
+        "sending": "Envoi...",
+        "emailRequired": "Saisissez votre adresse e-mail.",
+        "invalidEmail": "Saisissez une adresse e-mail valide.",
+        "tooMany": "Trop de demandes. Réessayez dans une minute.",
+        "saveError": "Impossible d'enregistrer votre e-mail. Réessayez.",
+        "sentToast": "Envoyé. Consultez votre boîte de réception pour votre score et la suite.",
+        "duplicateToast": "Cette adresse a déjà reçu son premier score. Nous ne l'envoyons qu'une fois.",
+        "sentTitle": "Consultez votre boîte de réception",
+        "sentBody": "Nous vous avons envoyé votre score et un lien pour combler les manques.",
+        "duplicateTitle": "Déjà envoyé",
+        "duplicateBody": "Cette adresse a déjà reçu son premier score par e-mail. Nous ne l'envoyons qu'une fois."
+      }
     },
     "resumeFile": {
       "label": "Votre CV",

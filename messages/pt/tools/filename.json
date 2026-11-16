@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "name": { "label": "Seu nome completo", "placeholder": "Farirai Masocha" },
+    "role": { "label": "Cargo", "placeholder": "Engenheiro de software" },
+    "company": { "label": "Empresa (opcional)", "placeholder": "Northwind" }
+  },
+  "fileLabel": "CV",
+  "private": "Os nomes são montados enquanto você digita. Nada é enviado nem armazenado.",
+  "exampleHeading": "Veja o que você recebe",
+  "heading": "Seus nomes de arquivo",
+  "exampleBadge": "Exemplo",
+  "exampleIntro": "Digite seu nome e o cargo para montar o seu. Copie o que servir e renomeie o arquivo antes de enviar.",
+  "intro": "Copie o que servir para a candidatura e renomeie o arquivo antes de enviar.",
+  "recommended": "Recomendado",
+  "companySlot": "Com o nome da empresa",
+  "notes": {
+    "recommended": "Use este na maioria das candidaturas. Ele diz quem você é e qual é o cargo.",
+    "broad": "Use quando enviar o mesmo currículo para vários cargos diferentes.",
+    "company": "Use quando um mesmo recrutador estiver preenchendo vários cargos na mesma empresa.",
+    "companyEmpty": "Adicione o nome de uma empresa para montar este.",
+    "underscore": "Use quando um formulário ou uma agência pedir sublinhados."
+  },
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "copyAria": "Copiar o nome de arquivo {name}",
+  "toastCopied": "Nome de arquivo copiado",
+  "copyBlocked": "Este navegador bloqueia a cópia. Selecione o nome e copie.",
+  "worthFixing": "Vale corrigir",
+  "issues": {
+    "spaces": "Os espaços são substituídos. Um espaço vira %20 em um link de download.",
+    "version": "Deixe de fora final, draft e v2. Uma palavra de versão faz parecer um rascunho.",
+    "lowercase": "Seu nome está todo em minúsculas. Use maiúsculas. Um recrutador lê este nome.",
+    "extension": "Tire a extensão. Ela é adicionada para você, e PDF é o formato mais seguro.",
+    "illegal": "Removemos os caracteres que quebram o envio: {chars}",
+    "accented": "Os acentos são simplificados, para o nome funcionar em qualquer sistema operacional.",
+    "truncated": "Encurtado para o nome ser lido de relance."
+  }
+}

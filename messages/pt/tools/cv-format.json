@@ -1,0 +1,120 @@
+{
+  "countryLabel": "País onde você está se candidatando",
+  "countryOption": {
+    "za": "África do Sul",
+    "ng": "Nigéria",
+    "ke": "Quênia",
+    "in": "Índia",
+    "uk": "Reino Unido",
+    "us": "Estados Unidos",
+    "other": "Outro país"
+  },
+  "countryName": {
+    "za": "a África do Sul",
+    "ng": "a Nigéria",
+    "ke": "o Quênia",
+    "in": "a Índia",
+    "uk": "o Reino Unido",
+    "us": "os Estados Unidos",
+    "other": "o seu país"
+  },
+  "countryIn": {
+    "za": "na África do Sul",
+    "ng": "na Nigéria",
+    "ke": "no Quênia",
+    "in": "na Índia",
+    "uk": "no Reino Unido",
+    "us": "nos Estados Unidos",
+    "other": "no seu país"
+  },
+  "countryFor": {
+    "za": "para a África do Sul",
+    "ng": "para a Nigéria",
+    "ke": "para o Quênia",
+    "in": "para a Índia",
+    "uk": "para o Reino Unido",
+    "us": "para os Estados Unidos",
+    "other": "para o seu país"
+  },
+  "englishOnly": "As verificações procuram frases em inglês, como \"date of birth\" ou \"career objective\", então funcionam em um currículo escrito em inglês. As verificações de tamanho e e-mail funcionam em qualquer idioma.",
+  "submit": "Verificar o formato do meu currículo",
+  "busy": "Verificando seu currículo",
+  "readingCv": "Lendo seu currículo",
+  "privacy": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "fits": "Seu currículo está adequado para {country}",
+  "toFix": "{count, plural, one {# ponto para corrigir} other {# pontos para corrigir}} {for}",
+  "otherNote": "Estas verificações valem na maioria dos países. Regras de um país só, como número de identidade ou declaração, não são verificadas.",
+  "textOnly": "Só o texto é verificado. A ferramenta não vê foto, colunas nem fontes. Não coloque foto, a menos que a vaga peça.",
+  "pass": "Ok",
+  "fail": "Corrigir",
+  "length": {
+    "title": "Cerca de {pages, plural, one {# página} other {# páginas}}",
+    "ok": "Dentro das {max} páginas que a maioria dos empregadores {in} espera.",
+    "fix": "Reduza para {max} páginas {for}. Resuma em uma linha cada cargo com mais de 10 anos."
+  },
+  "email": {
+    "title": "Endereço de e-mail",
+    "ok": "Encontrado. Use um endereço simples, no estilo nome.sobrenome.",
+    "fix": "Nenhum e-mail encontrado. Coloque no topo, ao lado do seu telefone."
+  },
+  "personal": {
+    "title": "Dados pessoais",
+    "drop": {
+      "ok": "Nenhum encontrado. Ótimo, os empregadores {in} não esperam esses dados.",
+      "fix": "Remova data de nascimento, estado civil, gênero, religião e nacionalidade. Os empregadores {in} não esperam esses dados e eles abrem espaço para discriminação."
+    },
+    "ifAsked": {
+      "ok": "Tudo certo. Inclua a data de nascimento só quando a vaga pedir.",
+      "fix": "Remova o estado civil. Inclua a data de nascimento só quando a vaga pedir."
+    },
+    "ifAskedNg": {
+      "ok": "Tudo certo. Inclua a data de nascimento só quando a vaga pedir.",
+      "fix": "Remova o estado civil. Inclua a data de nascimento ou o estado de origem só quando a vaga pedir."
+    },
+    "general": {
+      "ok": "Tudo certo. Inclua data de nascimento ou foto só se os empregadores do seu país esperarem.",
+      "fix": "Remova o estado civil. Ele não tem nada a ver com a vaga."
+    },
+    "keep": {
+      "ok": "Tudo certo. Na África do Sul, vale a pena informar a nacionalidade ou a situação da permissão de trabalho e a carteira de motorista.",
+      "fix": "Remova o estado civil. Ele não tem nada a ver com a vaga."
+    }
+  },
+  "id": {
+    "title": "Número de identidade",
+    "za": {
+      "ok": "Não está no seu currículo. Informe só quando um empregador pedir.",
+      "fix": "Remova seu número de identidade. Informe quando um empregador pedir, normalmente na fase da proposta. É um dado pessoal protegido pela POPIA."
+    },
+    "ke": {
+      "ok": "Não está no seu currículo. Informe no formulário de candidatura quando pedirem.",
+      "fix": "Remova seu número de identidade. Informe no formulário de candidatura ou quando um empregador pedir. É um dado pessoal protegido pelo Data Protection Act 2019."
+    }
+  },
+  "nysc": {
+    "title": "Situação no NYSC",
+    "ok": "Encontrada. Os empregadores verificam, então mantenha o ano em que você concluiu ou sua dispensa.",
+    "fix": "Inclua sua situação no NYSC: concluído com o ano, dispensado ou em andamento."
+  },
+  "objective": {
+    "title": "Objetivo profissional",
+    "ok": "Sem objetivo profissional. Ótimo.",
+    "fix": "Troque o objetivo por um resumo profissional de três linhas sobre o que você oferece, não sobre o que você quer."
+  },
+  "references": {
+    "title": "Linha de referências",
+    "ok": "Sem linha de referências desnecessária.",
+    "fix": "Apague \"references available on request\". Os empregadores já presumem isso.",
+    "fixReferees": "Apague \"references available on request\". Os empregadores já presumem isso. Ou liste duas referências com telefone, o que é comum aqui."
+  },
+  "declaration": {
+    "title": "Declaração",
+    "ok": "Sem linha de declaração. Bom para vagas no setor privado.",
+    "fix": "Tire a linha \"I hereby declare\", a menos que a vaga peça. Recrutadores do setor privado ignoram essa linha."
+  },
+  "cta": {
+    "title": "Formato corrigido. Agora adapte à vaga.",
+    "body": "O FitMyCV pega este currículo e o link de uma vaga e reescreve seu resumo e seus principais tópicos para ela, com uma carta de apresentação combinando.",
+    "label": "Adaptar meu currículo a uma vaga"
+  }
+}

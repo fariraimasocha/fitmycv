@@ -1,0 +1,49 @@
+{
+  "jobLabel": "粘贴职位描述",
+  "jobPlaceholder": "在这里粘贴职位招聘的完整文本…",
+  "resumeLabel": "你的简历",
+  "englishOnly": "这个工具读取英文的招聘信息和简历，并用英文写出问题。",
+  "submit": "获取我的问题",
+  "busy": "正在读取招聘信息",
+  "statusReadingCv": "正在读取你的简历",
+  "statusMatching": "正在将你的简历与职位比对",
+  "statusNeedInput": "添加职位描述和你的简历后即可开始。",
+  "statusPrivate": "你的简历只在这个标签页中读取，不会保存任何内容。",
+  "resultHeading": "{count, plural, other {# 个问题}}，适用于 <hl>{title}</hl>",
+  "thisJob": "这个职位",
+  "resultBody": "根据招聘信息的要求挑选。每条证据都摘自你的简历。",
+  "copyAll": "全部复制",
+  "copied": "已复制",
+  "toastCopied": "问题已复制",
+  "toastCopyFailed": "复制失败。请选中问题后自行复制。",
+  "kind": {
+    "role": "关于职位",
+    "skill": "招聘信息要求，简历中已有",
+    "gap": "招聘信息要求，简历中缺少"
+  },
+  "proof": "你的证据：",
+  "tips": {
+    "whyResult": "说出招聘信息中吸引你的一点，再用这个成果来支撑。",
+    "whyNoResult": "说出招聘信息中吸引你的一点，再说一个你工作中的成果。你的简历还没有带数字的句子，面试前先选好一个。",
+    "walkSkills": "控制在两分钟内，最后落在这个职位要求的技能上：{skills}。",
+    "walkNoSkills": "控制在两分钟内，最后说明为什么这份工作是你的下一步。",
+    "skillStory": "按情境、任务、行动、结果来讲。你简历中的这句话就是结果，所以从它倒推来组织故事。",
+    "skillNoDetail": "你的简历提到了这项技能，但没有任何细节。准备一个结果清楚的故事。",
+    "gap": "你的简历从未提到 {skill}。如果你用过，请在申请前把它加进简历。如果没用过，请准备一个诚实的回答，讲讲你做过的最接近的事。"
+  },
+  "ctaGapsTitle": "{count, plural, other {其中 # 个问题触及你简历中的空缺}}",
+  "ctaCoveredTitle": "你的简历覆盖了他们会问的内容",
+  "ctaGapsBody": "在他们读到之前补上这些空缺。免费注册，FitMyCV 会根据这份招聘信息定制你的简历，只使用你的真实经历。",
+  "ctaCoveredBody": "也要确保招聘人员看到这一点。免费注册，FitMyCV 会根据这份招聘信息定制你的简历，只使用你的真实经历。",
+  "ctaGapsLabel": "补上空缺",
+  "ctaCoveredLabel": "按这个职位定制我的简历",
+  "commonHeading": "几乎每场面试都会问的问题",
+  "commonBody": "添加招聘信息和你的简历，就能得到这个职位会问的问题，以及简历中回答每个问题的那一句。",
+  "commonQuestions": [
+    "请介绍一下你自己。",
+    "你为什么想要这个职位？",
+    "讲一次你解决难题的经历。",
+    "你最大的缺点是什么？",
+    "你三年后想做什么？"
+  ]
+}

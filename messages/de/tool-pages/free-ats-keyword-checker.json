@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Kostenloser ATS-Keyword-Checker für Stellenanzeigen",
+  "description": "Füge eine Stellenanzeige ein und erhalte die sortierte Liste der Keywords, nach denen ein Bewerbermanagementsystem (ATS) sie indexiert. Kostenlos, ohne Anmeldung, komplett in deinem Browser.",
+  "keywords": [
+    "ats keywords",
+    "ats keyword checker",
+    "keywords aus stellenanzeige",
+    "stellenanzeige keywords finden",
+    "lebenslauf keywords",
+    "keywords für lebenslauf",
+    "ats keywords lebenslauf"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "ATS-Keyword-Checker",
+  "h1": "Kostenloser ATS-Keyword-Checker",
+  "lede": "Füge eine beliebige Stellenanzeige ein und erhalte die sortierte Liste der Begriffe, auf die sie wirklich setzt: das Vokabular, mit dem Recruiter suchen und das ein ATS indexiert. Kein Konto, keine E-Mail, kein Limit.",
+  "faqs": [
+    {
+      "q": "Wie finde ich die Keywords in einer Stellenanzeige?",
+      "a": "Füge die ganze Anzeige in das Feld oben ein. Das Tool sortiert einzelne Wörter und Zwei-Wort-Ausdrücke nach dem Gewicht, das die Anzeige ihnen gibt. Oben stehen also die Begriffe, die sich in Zusammenfassung, Aufgaben und Anforderungen wiederholen."
+    },
+    {
+      "q": "Welche Keywords zählen im Lebenslauf am meisten?",
+      "a": "Die genaue Berufsbezeichnung, konkrete Tools und Technologien, Zertifikate und jeder Ausdruck, der in mehr als einem Abschnitt der Anzeige vorkommt. Genau das tippen Recruiter in ein Suchfeld, und es wird Wort für Wort abgeglichen, nicht nach Bedeutung."
+    },
+    {
+      "q": "Wie viele Keywords sollte ich aufnehmen?",
+      "a": "Decke die Begriffe ab, die du ehrlich belegen kannst, und hör dann auf. Eine Keyword-Dichte als Ziel bringt nichts. Einen Begriff zehnmal zu wiederholen schlägt nicht die eine Erwähnung in einem Stichpunkt mit Ergebnis, und es liest sich schlecht für den Menschen, der am Ende liest."
+    },
+    {
+      "q": "Muss ich meine E-Mail angeben, um die Ergebnisse zu sehen?",
+      "a": "Nein. Die ganze sortierte Liste erscheint sofort, und die Auswertung läuft in deinem Browser. Es wird nichts hochgeladen, also gibt es auch nichts freizuschalten."
+    },
+    {
+      "q": "Was ist der Unterschied zum ATS-Check für den Lebenslauf?",
+      "a": "Diese Seite braucht nur die Stellenanzeige und zeigt dir, was sie verlangt. Der ATS-Check für den Lebenslauf nimmt auch deinen Lebenslauf und bewertet, wie viel von diesem Vokabular du schon abdeckst, plus was fehlt."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Warum die Keyword-Auswertung der erste Schritt ist"
+    },
+    {
+      "p": "Bevor du einen einzigen Stichpunkt umschreibst, musst du wissen, was der Arbeitgeber wirklich verlangt: nicht wie die Stelle heißt, sondern welche Begriffe das Gewicht tragen. Anzeigen verstecken das. Eine Anforderung, die einmal in einer Liste steht, zählt viel weniger als ein Ausdruck, der in Zusammenfassung, Aufgaben und Anforderungen wiederkehrt."
+    },
+    {
+      "p": "Die sortierte Liste macht das in wenigen Sekunden sichtbar, statt nach zwei gründlichen Lesedurchgängen."
+    },
+    {
+      "h2": "So nutzt du die Liste"
+    },
+    {
+      "steps": [
+        {
+          "title": "Sortiere in ja, teilweise und nein",
+          "body": "Teile die Begriffe auf in das, was du klar belegen kannst, was du nur schwach belegen kannst und was du nicht behaupten kannst. Die erste Gruppe treibt deine Überarbeitung. Die dritte zeigt dir, ob die Stelle wirklich passt."
+        },
+        {
+          "title": "Bring die wichtigsten Begriffe in dein Profil",
+          "body": "Alles aus den Top fünf gehört in dein Kurzprofil, mit Beleg, und nicht versteckt im dritten Stichpunkt deiner zweiten Stelle."
+        },
+        {
+          "title": "Belege jeden Begriff in einem Stichpunkt",
+          "body": "Eine Liste von Fähigkeiten ist eine Behauptung. Ein Stichpunkt mit Tool, Handlung und Zahl ist ein Beleg. Ziel: Jeder wichtige Begriff kommt mindestens einmal als Beleg vor."
+        },
+        {
+          "title": "Bewerte das Ergebnis",
+          "body": "Wenn du überarbeitet hast, gib Lebenslauf und Anzeige in den [ATS-Check für den Lebenslauf](/ats-resume-checker), um zu prüfen, ob die Lücke wirklich kleiner geworden ist."
+        }
+      ]
+    },
+    {
+      "h2": "Was dieses Tool nicht kann"
+    },
+    {
+      "p": "Es ist eine Methode auf Basis von Häufigkeit und Ausdrücken, kein Sprachmodell. Es zeigt sehr gut, worauf eine Anzeige Wert legt, kann dir aber nicht sagen, ob *GuV-Verantwortung* und *Budgetverantwortung* in deiner Branche dasselbe bedeuten. Entscheide bei Synonymen selbst, und lies den [ATS-Leitfaden für Lebensläufe](/blog/ats-resume-guide) (auf Englisch), um zu sehen, wie der Keyword-Abgleich in einem echten System funktioniert."
+    }
+  ],
+  "related": [
+    {
+      "label": "ATS-Check für den Lebenslauf",
+      "href": "/ats-resume-checker",
+      "body": "Füge deinen Lebenslauf hinzu und erhalte einen Match-Score plus die Begriffe, die dir fehlen."
+    },
+    {
+      "label": "So passt du deinen Lebenslauf an",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "Die Methode Schritt für Schritt, mit einem vollständigen Vorher-nachher-Beispiel (auf Englisch)."
+    },
+    {
+      "label": "Aktionsverben für den Lebenslauf nach Branche",
+      "href": "/blog/cv-action-verbs-tech",
+      "body": "Verblisten für Tech, Marketing, Finanzen, Gesundheitswesen und Vertrieb (auf Englisch)."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

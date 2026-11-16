@@ -6,6 +6,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
@@ -20,6 +21,7 @@ import { trackEvent } from "@/lib/analytics";
 const HIGH_MATCH_SCORE = 75;
 
 function ScoreRing({ value }) {
+  const t = useTranslations("tools.job-match");
   const tone =
     value >= 75
       ? "var(--landing-success)"
@@ -34,14 +36,14 @@ function ScoreRing({ value }) {
         background: `conic-gradient(${tone} ${value * 3.6}deg, oklch(0.905 0.02 83) 0deg)`,
       }}
       role="img"
-      aria-label={`Match score: ${value} percent`}
+      aria-label={t("scoreAria", { value })}
     >
       <div className="flex h-24 w-24 flex-col items-center justify-center rounded-full bg-[var(--landing-paper-soft)]">
         <span className="font-outfit text-3xl font-extrabold text-[var(--landing-ink)]">
           {value}%
         </span>
         <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
-          Match
+          {t("scoreUnit")}
         </span>
       </div>
     </div>
@@ -110,6 +112,8 @@ function SkillChip({ term, present }) {
 }
 
 export default function JobMatchChecker() {
+  const t = useTranslations("tools.job-match");
+  const locale = useLocale();
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
@@ -149,13 +153,7 @@ export default function JobMatchChecker() {
 
   const highMatch =
     typeof result?.overall === "number" && result.overall >= HIGH_MATCH_SCORE;
-  const ctaTitle = highMatch
-    ? "Lock this match into a tailored CV"
-    : "Close these gaps";
-  const ctaBody = highMatch
-    ? "Your match is strong. Keep this posting and rewrite your CV against it, using the experience you already have."
-    : "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.";
-  const ctaLabel = highMatch ? "Tailor my CV" : "Close these gaps";
+  const cta = highMatch ? "ctaHigh" : "ctaGaps";
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -169,7 +167,7 @@ export default function JobMatchChecker() {
         <div className="grid gap-5 md:grid-cols-2">
           <ResumeFileField
             id="resume-text"
-            label="Your resume"
+            label={t("cvLabel")}
             value={cvText}
             onChange={(text) => {
               setCvText(text);
@@ -183,7 +181,7 @@ export default function JobMatchChecker() {
               htmlFor="job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Job description
+              {t("jobLabel")}
             </label>
             <textarea
               id="job-text"
@@ -193,33 +191,39 @@ export default function JobMatchChecker() {
                 reset();
               }}
               rows={10}
-              placeholder="Paste the full text of the job posting here."
+              placeholder={t("jobPlaceholder")}
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
           </div>
         </div>
 
+        {locale !== "en" ? (
+          <p className="text-xs font-semibold leading-6 text-[var(--landing-ink-soft)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
+
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Check my match"
-            busyLabel="Checking your match"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={jobTooShort || cvTooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
-              ? "Reading your CV"
+              ? t("readingCv")
               : running
-                ? "Comparing your CV with the posting"
+                ? t("comparing")
                 : jobTooShort || cvTooShort
-                ? "Add your CV and the full job description."
-                : "Your CV is read in this tab. Nothing is stored."}
+                ? t("needBoth")
+                : t("privacy")}
           </p>
         </div>
       </form>
 
       {running ? (
-        <ToolProgress message="Checking your match" lines={4} />
+        <ToolProgress message={t("busy")} lines={4} />
       ) : null}
 
       {result ? (
@@ -229,15 +233,13 @@ export default function JobMatchChecker() {
             <div>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                 {result.overall >= 75
-                  ? "Strong match for this posting"
+                  ? t("verdictStrong")
                   : result.overall >= 50
-                    ? "Partial match. A tailoring pass is worth it."
-                    : "Weak match for this posting"}
+                    ? t("verdictPartial")
+                    : t("verdictWeak")}
               </p>
               <p className="mt-2 max-w-lg text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Combined from skills, keywords, and experience signals in your
-                CV and this posting. It is a coverage score, not a prediction
-                that you will get an interview.
+                {t("scoreNote")}
               </p>
             </div>
           </div>
@@ -245,7 +247,7 @@ export default function JobMatchChecker() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <div>
               <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                Strong matches
+                {t("strongHeading")}
               </p>
               {result.skills.strong.length ? (
                 <ul className="mt-3 flex flex-wrap gap-2">
@@ -255,14 +257,14 @@ export default function JobMatchChecker() {
                 </ul>
               ) : (
                 <p className="mt-3 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                  No named skills from the posting showed up on your resume yet.
+                  {t("strongEmpty")}
                 </p>
               )}
             </div>
 
             <div>
               <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                Missing or weak matches
+                {t("missingHeading")}
               </p>
               {result.skills.missing.length ? (
                 <ul className="mt-3 flex flex-wrap gap-2">
@@ -272,39 +274,48 @@ export default function JobMatchChecker() {
                 </ul>
               ) : (
                 <p className="mt-3 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                  Your resume mentions every named skill we could read from the
-                  posting.
+                  {t("missingEmpty")}
                 </p>
               )}
             </div>
           </div>
 
           <div className="mt-8 grid gap-5">
-            <MatchBar label="Experience match" value={result.experience.score} />
-            <MatchBar label="Skills match" value={result.skills.score} />
-            <MatchBar label="Keyword match" value={result.keywords.score} />
+            <MatchBar label={t("barExperience")} value={result.experience.score} />
+            <MatchBar label={t("barSkills")} value={result.skills.score} />
+            <MatchBar label={t("barKeywords")} value={result.keywords.score} />
           </div>
 
           <div className="mt-8">
             <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-              Top 5 things to improve
+              {t("improveHeading")}
             </p>
             <ol className="mt-3 flex flex-col gap-2">
-              {result.improvements.map((item, i) => (
+              {result.tips.map(({ key, values }, i) => (
                 <li
-                  key={item}
+                  key={result.improvements[i]}
                   className="flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
                 >
                   <span className="font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-sm leading-6 text-[var(--landing-ink)]">{item}</span>
+                  <span className="text-sm leading-6 text-[var(--landing-ink)]">
+                    {t(`tips.${key}`, {
+                      ...values,
+                      level: values.level ? t(`levels.${values.level.replace(" ", "_")}`) : "",
+                    })}
+                  </span>
                 </li>
               ))}
             </ol>
           </div>
 
-          <CtaCard title={ctaTitle} body={ctaBody} label={ctaLabel} onClick={handleTailorHandoff} />
+          <CtaCard
+            title={t(`${cta}.title`)}
+            body={t(`${cta}.body`)}
+            label={t(`${cta}.label`)}
+            onClick={handleTailorHandoff}
+          />
         </div>
       ) : null}
     </div>

@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Analisar currículo grátis: compare com a vaga, sem login",
+  "description": "Analise seu currículo grátis, sem login. Envie seu currículo e cole a vaga. Veja sua pontuação e os termos que faltam no seu currículo. Seu currículo é lido no seu navegador.",
+  "keywords": [
+    "analisar currículo grátis",
+    "analisador de currículo",
+    "verificar currículo",
+    "avaliar currículo online grátis",
+    "currículo ats",
+    "analisar currículo sem cadastro",
+    "comparar currículo com vaga",
+    "scanner de currículo"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Analisar currículo",
+  "h1": "Analise seu currículo grátis, sem login",
+  "lede": "Envie seu currículo e cole a vaga. Veja sua pontuação de correspondência e os termos exatos que o empregador pediu e que seu currículo nunca menciona. Sem conta e sem limite.",
+  "howTo": {
+    "name": "Como comparar seu currículo com uma vaga",
+    "description": "Pontue seu currículo em relação a uma vaga e encontre os termos que faltam.",
+    "steps": [
+      {
+        "name": "Cole a vaga",
+        "text": "Copie a vaga inteira, com os requisitos, e cole no campo da descrição da vaga."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Arraste o PDF. O texto é lido no seu navegador. Se sair embaralhado, um sistema de recrutamento (ATS) também vai lê-lo embaralhado."
+      },
+      {
+        "name": "Preencha as lacunas que você pode comprovar",
+        "text": "Coloque cada termo que falta e que você realmente usou em um tópico com um resultado, e analise de novo."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Esta análise de currículo é grátis?",
+      "a": "Sim. Sem conta e sem limite de análises. A análise roda no seu navegador."
+    },
+    {
+      "q": "Meu currículo é enviado para algum lugar?",
+      "a": "Não. O PDF é lido nesta aba e nada é salvo. Feche a aba e ele some."
+    },
+    {
+      "q": "É o mesmo que um verificador de currículo ATS?",
+      "a": "Sim. Esta página usa a mesma análise do nosso verificador de currículo ATS. Só o nome muda."
+    },
+    {
+      "q": "O que é uma boa pontuação?",
+      "a": "75% ou mais significa que você cobre a maioria dos termos-chave da vaga. Entre 50% e 75%, vale a pena adaptar o currículo. Abaixo de 50%, o currículo costuma estar genérico demais para essa vaga."
+    },
+    {
+      "q": "Devo adicionar todos os termos que faltam?",
+      "a": "Só os que você realmente usou. Coloque cada um em um tópico que mostre o que você fez e o que aconteceu. Dizer que tem uma habilidade que você não tem só leva a recusa para a entrevista."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que a análise do currículo verifica"
+    },
+    {
+      "p": "Ela extrai as palavras e expressões de duas palavras que a vaga repete, ponderadas pela frequência, e verifica quais estão no seu currículo. A pontuação é a parte que ela encontra. Ela verifica o vocabulário, não sua escrita nem seu layout."
+    },
+    {
+      "h2": "Por que um currículo qualificado pode ter pontuação baixa"
+    },
+    {
+      "ul": [
+        "Você descreve o trabalho com palavras diferentes das da vaga.",
+        "Você usa uma sigla que a vaga escreve por extenso, ou o contrário.",
+        "Suas melhores provas estão em um cargo antigo, no fim da página."
+      ]
+    },
+    {
+      "p": "Os três casos se resolvem adaptando o currículo à vaga, não acrescentando experiência. O [guia para adaptar um currículo à descrição da vaga](/blog/how-to-tailor-cv-to-job-description) (em inglês) mostra como fazer isso sozinho."
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de currículo ATS",
+      "href": "/ats-resume-checker",
+      "body": "A mesma análise, com uma comparação com o Jobscan."
+    },
+    {
+      "label": "Verificador de formato de currículo",
+      "href": "/cv-format-checker",
+      "body": "Verifique seu currículo para o país onde você vai se candidatar."
+    },
+    {
+      "label": "Gerador de carta de candidatura",
+      "href": "/job-application-letter-generator",
+      "body": "Uma carta feita a partir da vaga e do seu currículo."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

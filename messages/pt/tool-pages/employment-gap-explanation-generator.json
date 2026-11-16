@@ -1,0 +1,68 @@
+{
+  "seoTitle": "Como explicar um intervalo no currículo: frases em inglês",
+  "description": "Explique um intervalo sem emprego em uma linha honesta. Receba frases em inglês para o currículo, a carta de apresentação e a entrevista. Grátis, sem cadastro.",
+  "keywords": [
+    "como explicar intervalo no currículo",
+    "lacuna no currículo",
+    "período sem trabalhar currículo",
+    "pausa na carreira currículo",
+    "gap no currículo",
+    "explicar tempo desempregado entrevista",
+    "employment gap explanation",
+    "career break currículo em inglês"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Explicação de intervalo no currículo",
+  "h1": "Gerador de explicação para intervalo no currículo, em inglês",
+  "lede": "Um intervalo só atrapalha quando parece escondido. Escolha por que você ficou afastado e quando, e receba em inglês uma linha honesta para o currículo, uma para a carta de apresentação e uma resposta curta para a entrevista.",
+  "howTo": {
+    "name": "Como explicar um intervalo no currículo",
+    "description": "Escreva uma explicação curta e honesta para uma pausa na carreira.",
+    "steps": [
+      { "name": "Escolha o motivo", "text": "Escolha o que é verdade. Você não deve detalhes a ninguém." },
+      { "name": "Adicione as datas", "text": "Mês e ano de início e de fim." },
+      { "name": "Copie as frases", "text": "Use a linha do currículo na sua linha do tempo, a frase da carta uma vez e treine a resposta em voz alta." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "A ferramenta escreve as frases em português?",
+      "a": "Não. As frases vêm de modelos fixos em inglês e servem para um currículo e uma carta de apresentação em inglês. O que você escreve no campo opcional entra do jeito que está, então escreva em inglês."
+    },
+    {
+      "q": "Devo explicar um intervalo no currículo?",
+      "a": "Sim, quando passa de uns três meses. Uma linha na linha do tempo evita que o recrutador fique imaginando. Intervalos menores raramente precisam de algo, principalmente se as suas datas mostram só os anos."
+    },
+    {
+      "q": "Quanto detalhe dar sobre um intervalo por saúde?",
+      "a": "Quase nenhum. “Health and recovery, now resolved” basta. Você não precisa dizer qual era o problema, e o que importa é que ele não vai afetar o seu trabalho."
+    },
+    {
+      "q": "E se eu fui demitido?",
+      "a": "Diga de forma direta. Reestruturações são comuns e os recrutadores sabem disso. O que eles querem ouvir é que você está escolhendo a próxima vaga com cuidado."
+    },
+    {
+      "q": "Devo citar cursos ou voluntariado do período?",
+      "a": "Sim. Coloque no campo opcional. Assim o intervalo deixa de ser tempo parado e vira tempo bem usado."
+    },
+    {
+      "q": "O que eu digito fica armazenado?",
+      "a": "Não. O texto é montado no seu navegador a partir de modelos. Nada é enviado."
+    }
+  ],
+  "blocks": [
+    { "h2": "A regra: curto, verdadeiro e sobre o agora" },
+    {
+      "p": "Recrutadores não estão perguntando por que você saiu. Estão perguntando se você está pronto para trabalhar. Toda linha que esta ferramenta escreve termina aí."
+    },
+    {
+      "p": "Para exemplos por situação, leia [como explicar um intervalo no currículo](/blog/how-to-explain-employment-gap-on-cv) (em inglês)."
+    }
+  ],
+  "related": [
+    { "label": "Verificador de formato de currículo", "href": "/cv-format-checker", "body": "Confira seu currículo para o país onde você está se candidatando." },
+    { "label": "Currículo x vaga", "href": "/resume-job-match-checker", "body": "Avalie seu currículo com base na descrição de uma vaga." },
+    { "label": "Gerador de resumo profissional", "href": "/professional-summary-generator", "body": "Três resumos para o currículo, feitos a partir de uma vaga e do seu currículo." }
+  ],
+  "ui": { "home": "Início", "faqHeading": "Perguntas frequentes", "related": "Para onde ir agora", "open": "Abrir" }
+}

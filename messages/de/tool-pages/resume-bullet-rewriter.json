@@ -1,0 +1,198 @@
+{
+  "seoTitle": "Stichpunkte im englischen Lebenslauf umschreiben",
+  "description": "Fügen Sie einen englischen Stichpunkt aus Ihrem Lebenslauf ein und erhalten Sie drei stärkere Fassungen mit markierten Stellen für Zahlen. Aus Aufgaben werden Erfolge. Kostenlos, ohne Login.",
+  "keywords": [
+    "lebenslauf stichpunkte englisch",
+    "englischer lebenslauf formulierungen",
+    "lebenslauf englisch aufgaben beschreiben",
+    "resume bullet point rewriter",
+    "rewrite resume bullet points",
+    "aktionsverben englisch lebenslauf",
+    "erfolge im lebenslauf formulieren",
+    "action verbs resume",
+    "resume achievement generator"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Stichpunkt-Umschreiber",
+  "h1": "Einen Stichpunkt im englischen Lebenslauf umschreiben",
+  "lede": "Fügen Sie einen Stichpunkt auf Englisch ein. Sie erhalten drei stärkere Fassungen, eine klare Einschätzung, was schwach ist, und die genaue Stelle, an die Ihre Zahl gehört. Fügen Sie die Stellenbeschreibung hinzu, und das Tool zeigt, welche Begriffe der Anzeige dieser Stichpunkt aufnehmen könnte.",
+  "howTo": {
+    "name": "So schreiben Sie einen Stichpunkt im Lebenslauf um",
+    "description": "Machen Sie aus einer Aufgabe einen Erfolgs-Stichpunkt mit starkem Verb und einer Zahl.",
+    "steps": [
+      {
+        "name": "Einen Stichpunkt einfügen",
+        "text": "Kopieren Sie eine einzelne Zeile aus Ihrem englischen Lebenslauf, die schwächste, die Sie finden. Stichpunkte, die mit „Managed“, „Responsible for“ oder „Assisted with“ beginnen, eignen sich am besten."
+      },
+      {
+        "name": "Optional die Stellenbeschreibung einfügen",
+        "text": "Fügen Sie die Anzeige ein, auf die Sie sich bewerben. Das Tool listet dann die Begriffe, die die Anzeige betont und die dieser Stichpunkt nie nennt, damit Sie die einbauen können, die Sie ehrlich belegen können."
+      },
+      {
+        "name": "Eine Fassung wählen und die Lücken füllen",
+        "text": "Jede Fassung hat Lücken in eckigen Klammern, wo eine Zahl hingehört. Ersetzen Sie sie durch Ihre echten Werte. Eine Lücke, die Sie nicht füllen können, zeigt, dass der Stichpunkt einen anderen Ansatz braucht."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Funktioniert das mit einem Lebenslauf auf Deutsch?",
+      "a": "Nein. Das Tool schreibt Stichpunkte auf Englisch um. Es erkennt nur englische Einstiege wie „Responsible for“, und seine Verben und Vorlagen sind englisch, daher kommen die Fassungen auf Englisch zurück. Nutzen Sie es für die englische Fassung Ihres Lebenslaufs."
+    },
+    {
+      "q": "Was macht dieser Umschreiber genau?",
+      "a": "Er ersetzt einen Aufgaben-Einstieg durch ein starkes Aktionsverb, baut den Satz um ein Ergebnis herum und markiert die Stelle, an die eine Zahl gehört. Er zeigt auch, was am Original schwach ist: ein passiver Einstieg, keine einzige Zahl, Pronomen, vage Wörter wie „various“ oder ein Satz mit mehr als achtundzwanzig Wörtern."
+    },
+    {
+      "q": "Erfindet das Tool die Zahlen für mich?",
+      "a": "Nein, und das ist Absicht. Das Tool hat Ihre Arbeit nie gesehen, jede Zahl von ihm wäre also erfunden. Sie erhalten den Satz mit einer Lücke in eckigen Klammern und tragen die echte Zahl ein. Ein Stichpunkt mit erfundener Kennzahl übersteht das Screening und scheitert im Vorstellungsgespräch."
+    },
+    {
+      "q": "Ist es kostenlos, und brauche ich ein Konto?",
+      "a": "Es ist kostenlos und ohne Anmeldung. Das Umschreiben läuft komplett in Ihrem Browser mit JavaScript auf der Seite. Nichts wird hochgeladen, nichts gespeichert, und es gibt kein Nutzungslimit."
+    },
+    {
+      "q": "Wie mache ich aus einer Aufgabe einen Erfolgs-Stichpunkt?",
+      "a": "Beginnen Sie mit einem Aktionsverb, nennen Sie, was Sie getan haben, und hängen Sie das Ergebnis an. „Responsible for the support queue“ ist eine Aufgabe. „Resolved 80 support tickets a week and held first response under two hours“ ist ein Erfolg. Die Arbeit ist dieselbe. Die zweite Fassung sagt einer Führungskraft, was passiert ist."
+    },
+    {
+      "q": "Was, wenn ich für einen Stichpunkt wirklich keine Zahlen habe?",
+      "a": "Meist haben Sie mehr, als Sie denken: wie viele, wie oft, wie viele Menschen, wie lange es vorher und nachher dauerte, wie viel Geld durchlief. Wenn nichts davon passt, nennen Sie den Umfang. Systeme, Teamgröße oder die Beteiligten, mit denen Sie gearbeitet haben, schlagen eine bloße Aufgabe."
+    },
+    {
+      "q": "Wie viele Stichpunkte sollte jede Stelle haben?",
+      "a": "Drei bis fünf für Ihre letzte Stelle, zwei bis drei für ältere und einen oder zwei für alles, was mehr als zehn Jahre zurückliegt. Jeder Stichpunkt muss seine Zeile verdienen. Streichen Sie die, die nur den Jobtitel wiederholen."
+    },
+    {
+      "q": "Verbessern stärkere Stichpunkte meinen ATS-Score?",
+      "a": "Indirekt. Bewerbermanagementsysteme gleichen Wörter ab, Begriffe aus der Anzeige in einem Stichpunkt helfen also, in einer Recruiter-Suche aufzutauchen. Die Umformulierung selbst ist für den Menschen, der Sie danach liest. Die Wortseite prüfen Sie mit dem [ATS-Lebenslauf-Check](/ats-resume-checker)."
+    }
+  ],
+  "blocks": [
+    { "h2": "Aufgaben beschreiben die Stelle. Erfolge beschreiben Sie." },
+    {
+      "p": "Die meisten Stichpunkte im Lebenslauf sind aus einer Stellenbeschreibung kopiert, deshalb klingen so viele gleich. **Eine Aufgabe sagt, was Ihnen übertragen wurde. Ein Erfolg sagt, was sich durch Sie verändert hat.** Jede Fassung auf dieser Seite schiebt eine Zeile von der ersten Form in die zweite."
+    },
+    {
+      "compare": {
+        "title": "Support",
+        "context": "Dieselbe Stelle. Die zweite Fassung zeigt einer Führungskraft den Umfang.",
+        "before": "Managed customer support tickets.",
+        "after": "Resolved 80+ support tickets a week and held first response under two hours."
+      }
+    },
+    {
+      "compare": {
+        "title": "Engineering",
+        "context": "Die Aufgabe versteckt die Größenordnung. Der Erfolg nennt sie.",
+        "before": "Responsible for maintaining the payments service.",
+        "after": "Owned the payments service through 4x traffic growth, cutting failed charges from 3% to 0.4%."
+      }
+    },
+    {
+      "compare": {
+        "title": "Marketing",
+        "context": "„Helped with“ leistet in diesem Satz nichts.",
+        "before": "Helped with social media and email campaigns.",
+        "after": "Ran 12 lifecycle email campaigns a quarter, lifting click-through from 1.8% to 3.1%."
+      }
+    },
+    { "h2": "Die vier Teile eines Stichpunkts, der funktioniert" },
+    {
+      "steps": [
+        {
+          "title": "Ein Aktionsverb als erstes Wort",
+          "body": "Nicht „Responsible for“, nicht „Tasked with“, nicht „Helped“. Beginnen Sie mit dem, was Sie getan haben: built, cut, negotiated, migrated, recovered, trained."
+        },
+        {
+          "title": "Das, woran Sie gearbeitet haben",
+          "body": "So konkret, dass sich ein Fremder es vorstellen kann. „The billing pipeline“ schlägt „various systems“."
+        },
+        {
+          "title": "Eine Zahl",
+          "body": "Wie viele, wie oft, wie viel, wie viel schneller. Eine echte Zahl bringt einem Stichpunkt mehr als drei weitere Adjektive."
+        },
+        {
+          "title": "Das Ergebnis",
+          "body": "Was danach galt, das vorher nicht galt. Diese Hälfte lassen die meisten weg, und genau sie wird gelesen."
+        }
+      ]
+    },
+    { "h2": "Schwache Einstiege und was Sie stattdessen nutzen" },
+    {
+      "p": "Das Tool erkennt diese englischen Einstiege und schlägt Ersatz aus der passenden Verbgruppe vor. Es geht nicht um ein Synonym. Ein stärkeres Verb zwingt Sie zu sagen, was wirklich passiert ist."
+    },
+    {
+      "table": {
+        "head": ["Schwacher Einstieg", "Was er versteckt", "Stattdessen"],
+        "rows": [
+          ["Responsible for (verantwortlich für)", "Ob Sie es getan oder nur zugesehen haben", "Owned, ran, led, directed"],
+          ["Managed (betreute)", "Wie groß das war, was Sie betreut haben", "Scaled, streamlined, oversaw, coordinated"],
+          ["Helped with (half bei)", "Ihren tatsächlichen Beitrag", "Built, delivered, supported, contributed"],
+          ["Assisted (unterstützte)", "Alles", "Supported, enabled, trained, advised"],
+          ["Worked on (arbeitete an)", "Das Ergebnis", "Developed, shipped, rebuilt, migrated"],
+          ["Involved in (beteiligt an)", "Ob Sie zentral oder nur am Rand dabei waren", "Drove, contributed to, delivered"],
+          ["Duties included (zu den Aufgaben gehörte)", "Dass hier eine Stellenbeschreibung kopiert wurde", "Streichen Sie die Floskel und beginnen Sie mit dem Verb"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Ein Verb pro Stichpunkt, keine Wiederholungen",
+        "body": "Wenn vier Stichpunkte derselben Stelle mit „Led“ beginnen, nimmt der Leser das Wort nicht mehr wahr. Verteilen Sie die Verbgruppen über den Abschnitt: einmal aufbauen, einmal verbessern, einmal führen, einmal sparen."
+      }
+    },
+    { "h2": "Die Zahl finden, wenn Sie glauben, keine zu haben" },
+    {
+      "ol": [
+        "**Zählen Sie die Arbeit.** Tickets, Releases, Kunden, Artikel, Rechnungen, Schichten, Berichte. Alles, was Sie wiederholt getan haben, hat eine Rate.",
+        "**Messen Sie vorher und nachher.** Ladezeit, Fehlerquote, Bearbeitungszeit, Abwanderung, Personalstärke, Durchlaufzeit. Eine Veränderung von einem Wert zum anderen ist die stärkste Form eines Stichpunkts.",
+        "**Bestimmen Sie die Größe dessen, was Sie bearbeitet haben.** Budget, Umsatz, Nutzerbasis, Team, Region, Flotte. Umfang ist eine Zahl, auch wenn Leistung keine ist.",
+        "**Messen Sie die Zeit.** Gesparte Stunden pro Woche, Tage weniger im Zyklus, eine vorgezogene Frist. Zeit ist die Kennzahl, die auch Nicht-Techniker sofort verstehen.",
+        "**Prüfen Sie die Unterlagen.** Alte Dashboards, Rechnungen, Sprint-Boards, Leistungsbeurteilungen. Die Zahl gibt es meist, Sie haben sie nur nie aufgeschrieben."
+      ]
+    },
+    {
+      "p": "Schätzen Sie ehrlich, wenn es sein muss, und runden Sie vorsichtig. „Roughly 50 a week“ können Sie im Vorstellungsgespräch vertreten. „87.4% improvement“ ohne Grundlage nicht."
+    },
+    { "h2": "Einen Stichpunkt an eine bestimmte Anzeige anpassen" },
+    {
+      "p": "Fügen Sie die Stellenbeschreibung ins zweite Feld ein, und das Tool listet die Begriffe, die die Anzeige betont und die Ihr Stichpunkt nie nennt. Das sind Vorschläge, keine Anweisungen. Bauen Sie die ein, die Sie wirklich gemacht haben, in den Worten der Anzeige, und lassen Sie den Rest weg. Die Begriffsliste funktioniert am besten mit einer Anzeige auf Englisch, denn das Tool filtert nur englische Füllwörter heraus."
+    },
+    {
+      "p": "Der Grund, die Formulierung der Anzeige zu übernehmen, ist schlicht und praktisch: Recruiter durchsuchen ihr Bewerbermanagementsystem nach den Begriffen aus ihrer eigenen Anzeige. Wenn Sie „kept people informed“ geschrieben haben und sie nach „stakeholder management“ suchen, tauchen Sie nicht auf. Um die Lücke im ganzen Lebenslauf statt in einer Zeile zu sehen, nutzen Sie [fehlende Keywords im Lebenslauf](/missing-resume-keywords)."
+    },
+    { "h2": "Was diese Seite kann und was nicht" },
+    {
+      "table": {
+        "head": ["", "Dieser Umschreiber", "Anpassung per Job-Link"],
+        "rows": [
+          ["Baut einen Stichpunkt um", "Ja", "Ja"],
+          ["Markiert, wo die Zahl hingehört", "Ja", "Ja"],
+          ["Kennt Ihre echten Zahlen", "Nein", "Liest sie aus Ihrem Lebenslauf"],
+          ["Schreibt den ganzen Lebenslauf um", "Nein", "Ja"],
+          ["Schreibt ein passendes Anschreiben", "Nein", "Ja"],
+          ["Braucht ein Konto", "Nein", "Ja"],
+          ["Kostenloses Limit", "Unbegrenzt", "Bezahlte Generierungen"]
+        ]
+      }
+    },
+    {
+      "p": "Diese Seite ist eine Werkbank für eine Zeile nach der anderen. Sie ist wirklich nützlich, wenn Sie drei schwache Stichpunkte und zwanzig Minuten haben. Wenn Sie eine bestimmte Anzeige und einen ganzen Lebenslauf anpassen wollen, brauchen Sie die [Anpassung per Job-Link](/tailor-cv-from-job-link), die Ihre echte Erfahrung liest und Ihre echten Zahlen behält."
+    },
+    {
+      "cta": {
+        "title": "Alle Stichpunkte auf einmal umschreiben",
+        "body": "Fügen Sie den Link zur Stelle ein, und FitMyCV schreibt Ihren Lebenslauf und Ihr Anschreiben passend zu dieser Anzeige um, mit den Zahlen, die Sie schon haben.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    { "label": "Fehlende Keywords im Lebenslauf", "href": "/missing-resume-keywords", "body": "Sehen Sie, welche Begriffe die Anzeige betont, die Ihr Lebenslauf nie nennt." },
+    { "label": "Kostenloser ATS-Lebenslauf-Check", "href": "/ats-resume-checker", "body": "Bewerten Sie Ihren Lebenslauf anhand einer Anzeige, bevor Sie Stichpunkte umschreiben." },
+    { "label": "Der komplette ATS-Lebenslauf-Leitfaden", "href": "/blog/ats-resume-guide", "body": "Wie Bewerbermanagementsysteme einen Lebenslauf lesen und was das für die Formatierung bedeutet." }
+  ],
+  "ui": { "home": "Startseite", "faqHeading": "Häufige Fragen", "related": "Wie es weitergeht", "open": "Öffnen" }
+}

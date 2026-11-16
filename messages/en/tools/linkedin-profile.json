@@ -1,0 +1,28 @@
+{
+  "englishOnly": "This check reads English text only. It matches the words of an English job posting against an English profile.",
+  "jobLabel": "Job posting",
+  "jobPlaceholder": "Paste the full job description",
+  "headlineLabel": "Your LinkedIn headline",
+  "headlinePlaceholder": "Backend Engineer | Go, Kubernetes, Payments",
+  "aboutLabel": "Your About section",
+  "skillsLabel": "Your skills",
+  "skillsPlaceholder": "Copy them from the Skills section of your profile",
+  "submit": "Check my profile",
+  "busy": "Comparing your profile",
+  "privacy": "Read in this tab. Nothing is stored.",
+  "score": "Your profile covers {score}% of the terms this posting leans on",
+  "listSeparator": ", ",
+  "forHeadline": "Your headline is the line recruiters see under your name in search. These are already on your profile but not in it: <strong>{terms}</strong>.",
+  "missing": "Not on your profile at all: <strong>{terms}</strong>. Add the ones you can back up to your About or Skills.",
+  "termColumn": "Term",
+  "section": {
+    "headline": "Headline",
+    "about": "About",
+    "skills": "Skills"
+  },
+  "found": "Found",
+  "notFound": "Missing",
+  "ctaTitle": "Do the same for your CV",
+  "ctaBody": "FitMyCV rewrites your CV against a job posting, in the posting's own words, using only what is already in your experience.",
+  "ctaLabel": "Tailor my CV to this job"
+}

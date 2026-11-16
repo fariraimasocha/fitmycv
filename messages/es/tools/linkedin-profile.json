@@ -1,0 +1,28 @@
+{
+  "englishOnly": "Esta revisión solo lee texto en inglés. Pega una oferta en inglés y la versión en inglés de tu perfil.",
+  "jobLabel": "Oferta de empleo",
+  "jobPlaceholder": "Pega la descripción completa del puesto",
+  "headlineLabel": "Tu titular de LinkedIn",
+  "headlinePlaceholder": "Backend Engineer | Go, Kubernetes, Payments",
+  "aboutLabel": "Tu sección Acerca de",
+  "skillsLabel": "Tus aptitudes",
+  "skillsPlaceholder": "Cópialas de la sección Aptitudes de tu perfil",
+  "submit": "Revisar mi perfil",
+  "busy": "Comparando tu perfil",
+  "privacy": "Se lee en esta pestaña. No se guarda nada.",
+  "score": "Tu perfil cubre el {score} % de los términos en los que insiste esta oferta",
+  "listSeparator": ", ",
+  "forHeadline": "Tu titular es la línea que los reclutadores ven bajo tu nombre en la búsqueda. Estos términos ya están en tu perfil, pero no en el titular: <strong>{terms}</strong>.",
+  "missing": "No aparecen en tu perfil: <strong>{terms}</strong>. Añade los que puedas demostrar a tu Acerca de o a tus aptitudes.",
+  "termColumn": "Término",
+  "section": {
+    "headline": "Titular",
+    "about": "Acerca de",
+    "skills": "Aptitudes"
+  },
+  "found": "Encontrado",
+  "notFound": "Falta",
+  "ctaTitle": "Haz lo mismo con tu CV",
+  "ctaBody": "FitMyCV reescribe tu CV frente a una oferta, con las palabras de la oferta, usando solo lo que ya está en tu experiencia.",
+  "ctaLabel": "Adaptar mi CV a esta oferta"
+}

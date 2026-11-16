@@ -1,0 +1,56 @@
+{
+  "cvLabel": "Dein Lebenslauf",
+  "jobLabel": "Stellenbeschreibung",
+  "jobPlaceholder": "Füge hier den vollständigen Text der Stellenanzeige ein.",
+  "englishOnly": "Dieses Tool liest Englisch. Es vergleicht die Wörter in deinem Lebenslauf mit denen der Anzeige. Nutze also einen englischen Lebenslauf und eine englische Stellenanzeige.",
+  "submit": "Abgleich prüfen",
+  "busy": "Abgleich läuft",
+  "readingCv": "Dein Lebenslauf wird gelesen",
+  "comparing": "Dein Lebenslauf wird mit der Anzeige verglichen",
+  "needBoth": "Füge deinen Lebenslauf und die vollständige Stellenbeschreibung hinzu.",
+  "privacy": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "scoreAria": "Übereinstimmung: {value} Prozent",
+  "scoreUnit": "Match",
+  "verdictStrong": "Starke Übereinstimmung mit dieser Anzeige",
+  "verdictPartial": "Teilweise Übereinstimmung. Eine Anpassung lohnt sich.",
+  "verdictWeak": "Schwache Übereinstimmung mit dieser Anzeige",
+  "scoreNote": "Berechnet aus Skills, Keywords und Erfahrungssignalen in deinem Lebenslauf und dieser Anzeige. Es ist ein Abdeckungswert, keine Vorhersage, dass du ein Vorstellungsgespräch bekommst.",
+  "strongHeading": "Starke Treffer",
+  "strongEmpty": "Noch keiner der in der Anzeige genannten Skills taucht in deinem Lebenslauf auf.",
+  "missingHeading": "Fehlende oder schwache Treffer",
+  "missingEmpty": "Dein Lebenslauf nennt jeden Skill, den wir in der Anzeige lesen konnten.",
+  "barExperience": "Erfahrung",
+  "barSkills": "Skills",
+  "barKeywords": "Keywords",
+  "improveHeading": "Die 5 wichtigsten Verbesserungen",
+  "tips": {
+    "addSkill": "Nenne {skill} in einem Stichpunkt, den du ehrlich belegen kannst, nicht nur in einer Skill-Liste.",
+    "useWording": "Übernimm den Begriff „{term}“ aus der Anzeige, wenn diese Arbeit schon mit anderen Worten in deinem Lebenslauf steht.",
+    "years": "Die Anzeige verlangt {years} Jahre Erfahrung. Stell die passenden Stationen nach oben, damit diese Zahl sofort auffällt.",
+    "level": "Die Anzeige zielt auf das Level {level}. Stell den nächstliegenden Titel und Verantwortungsbereich voran, den du wirklich hattest.",
+    "proveSkill": "Behalte {skill} in einem Ergebnis-Stichpunkt mit einer Zahl, damit es ein Beleg ist und keine Behauptung.",
+    "covered": "Dein Lebenslauf deckt die wichtigsten Begriffe der Anzeige schon ab. Prüfe, dass jeder in einem Stichpunkt mit einem Ergebnis steht."
+  },
+  "levels": {
+    "intern": "Praktikum",
+    "entry_level": "Berufseinstieg",
+    "junior": "Junior",
+    "mid_level": "Professional",
+    "senior": "Senior",
+    "staff": "Staff",
+    "lead": "Lead",
+    "principal": "Principal",
+    "manager": "Manager",
+    "director": "Director"
+  },
+  "ctaHigh": {
+    "title": "Mach aus diesem Treffer einen angepassten Lebenslauf",
+    "body": "Deine Übereinstimmung ist stark. Behalte diese Anzeige und schreib deinen Lebenslauf darauf um, mit der Erfahrung, die du schon hast.",
+    "label": "Lebenslauf anpassen"
+  },
+  "ctaGaps": {
+    "title": "Schließe diese Lücken",
+    "body": "Behalte diese Anzeige, und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben darauf um, mit der Erfahrung, die du schon hast.",
+    "label": "Lücken schließen"
+  }
+}

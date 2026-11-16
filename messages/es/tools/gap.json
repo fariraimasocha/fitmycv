@@ -1,0 +1,36 @@
+{
+  "englishOnly": "Las frases que escribe esta herramienta están en inglés, para un CV y una carta de presentación en inglés.",
+  "reasonLabel": "¿Por qué dejaste de trabajar?",
+  "reasons": {
+    "caregiving": "Cuidar de un familiar",
+    "parenting": "Criar a los hijos",
+    "health": "Salud o recuperación",
+    "layoff": "Despido y búsqueda de empleo",
+    "study": "Estudios o un curso",
+    "freelance": "Autónomo o negocio propio",
+    "relocation": "Mudanza a otro país o ciudad",
+    "travel": "Viajes"
+  },
+  "fromLabel": "Inicio del periodo",
+  "toLabel": "Fin del periodo",
+  "didLabel": "Algo que hiciste durante ese tiempo (opcional, en inglés)",
+  "didPlaceholder": "Completed a Google Data Analytics certificate",
+  "submit": "Explicar mi periodo sin empleo",
+  "busy": "Escribiendo tus frases",
+  "datesError": "El mes final debe ser posterior al mes inicial.",
+  "privacy": "Nada de lo que escribes sale de esta pestaña.",
+  "shortTitle": "Puede que no lo necesites.",
+  "shortBody": "Un periodo de menos de 3 meses rara vez necesita explicación. Pon solo los años en las fechas de tu CV y desaparece.",
+  "cvTitle": "En tu CV",
+  "letterTitle": "En tu carta de presentación",
+  "answerTitle": "En la entrevista",
+  "copyCv": "Copiar la frase para el CV",
+  "copyLetter": "Copiar la frase para la carta de presentación",
+  "copyAnswer": "Copiar la respuesta para la entrevista",
+  "copied": "Copiado",
+  "handoff": {
+    "title": "Periodo explicado. Ahora adapta el resto de tu CV.",
+    "body": "FitMyCV reescribe tu CV y tu carta de presentación para una oferta concreta. El periodo sin empleo ocupa una línea y tu experiencia habla por ti.",
+    "label": "Adaptar mi CV a una oferta"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "englishOnly": "The lines this tool writes are in English, for a CV and cover letter in English.",
+  "reasonLabel": "Why were you away?",
+  "reasons": {
+    "caregiving": "Caring for a family member",
+    "parenting": "Raising children",
+    "health": "Health or recovery",
+    "layoff": "Laid off and job searching",
+    "study": "Study or a course",
+    "freelance": "Freelancing or own business",
+    "relocation": "Moving country or city",
+    "travel": "Travel"
+  },
+  "fromLabel": "Gap started",
+  "toLabel": "Gap ended",
+  "didLabel": "Anything you did during it (optional)",
+  "didPlaceholder": "Completed a Google Data Analytics certificate",
+  "submit": "Explain my gap",
+  "busy": "Writing your lines",
+  "datesError": "The end month must come after the start month.",
+  "privacy": "Nothing you type leaves this tab.",
+  "shortTitle": "You may not need this.",
+  "shortBody": "A gap under 3 months rarely needs explaining. Show years only on your CV dates and it disappears.",
+  "cvTitle": "On your CV",
+  "letterTitle": "In your cover letter",
+  "answerTitle": "In the interview",
+  "copyCv": "Copy on your cv",
+  "copyLetter": "Copy in your cover letter",
+  "copyAnswer": "Copy in the interview",
+  "copied": "Copied",
+  "handoff": {
+    "title": "Gap handled. Now fit the rest of your CV.",
+    "body": "FitMyCV rewrites your CV and cover letter for a specific job posting, so the gap is one line and your experience does the talking.",
+    "label": "Tailor my CV to a job"
+  }
+}

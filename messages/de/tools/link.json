@@ -1,0 +1,50 @@
+{
+  "label": "Der Link zu deinem LinkedIn-Profil",
+  "placeholder": "https://www.linkedin.com/in/dein-name",
+  "hint": "Füge die Adresse deiner Profilseite ein. Der Link wird beim Tippen bereinigt. Nichts wird hochgeladen oder gespeichert.",
+  "exampleHeading": "Das bekommst du",
+  "resultHeading": "Deine Links für den Lebenslauf",
+  "exampleBadge": "Beispiel",
+  "exampleIntro": "Füge oben deinen eigenen Link ein, um ihn zu bereinigen. Dieses Beispiel stammt von einem unordentlichen Länderlink mit Tracking-Text.",
+  "resultIntro": "Kopiere die kurze Form in deinen Lebenslauf und hinterlege die volle Form als Hyperlink.",
+  "shortBadge": "Für den Lebenslauf",
+  "shortNote": "Schreib sie als sichtbaren Text in deine Kontaktzeile. Sie ist kurz und gut lesbar.",
+  "fullNote": "Nutze sie als Hyperlink hinter diesem Text, damit ein Klick dein Profil öffnet.",
+  "copy": "Kopieren",
+  "copiedButton": "Kopiert",
+  "copyAria": "Link {link} kopieren",
+  "copied": "Link kopiert",
+  "copyBlocked": "Dieser Browser blockiert das Kopieren. Markiere den Link und kopiere ihn.",
+  "previewHeading": "So sieht es im Kopf deines Lebenslaufs aus",
+  "previewLine": "Dein Name | Stadt, Land | du@email.com",
+  "removed": "Entfernt: {items}.",
+  "listSeparator": ", ",
+  "removedItem": {
+    "mobile": "das Mobilpräfix m.",
+    "country": "das Länderpräfix {prefix}.",
+    "tracking": "der Tracking-Text nach dem ?",
+    "fragment": "das #-Fragment",
+    "path": "der Sprach- oder Seitenteil nach deinem Namen",
+    "slash": "der Schrägstrich am Ende"
+  },
+  "issuesHeading": "Lohnt sich zu beheben",
+  "issue": {
+    "autoSuffix": "Dein Link endet mit einer Reihe aus Zahlen oder Buchstaben, die LinkedIn angehängt hat. Eine eigene URL nur mit deinem Namen liest sich im Lebenslauf besser. Die Schritte stehen weiter unten.",
+    "oddCharacters": "Dein Link enthält andere Zeichen als Buchstaben ohne Umlaut oder Akzent, Zahlen und Bindestriche. Manche PDF-Reader und Bewerbermanagementsysteme brechen den Link an diesen Zeichen ab. Eine eigene URL löst das.",
+    "tooShort": "Dieser Name im Link ist sehr kurz. Prüfe, ob du die ganze Adresse aus deinem Profil kopiert hast."
+  },
+  "notLink": "Das sieht nicht wie ein Link aus. Füge die Adresse deiner Profilseite ein.",
+  "notLinkedIn": "Das ist kein LinkedIn-Link. Füge die Adresse deiner LinkedIn-Profilseite ein.",
+  "noHandle": "Der Link endet nach /in/. Kopiere die ganze Adresse von deiner Profilseite.",
+  "notProfile": {
+    "company": "Das ist eine Unternehmensseite. Füge den Link zu deinem eigenen Profil ein, den mit /in/.",
+    "school": "Das ist eine Seite einer Hochschule oder Schule. Füge den Link zu deinem eigenen Profil ein, den mit /in/.",
+    "showcase": "Das ist eine Fokusseite. Füge den Link zu deinem eigenen Profil ein, den mit /in/.",
+    "posts": "Das ist ein Link zu einem Beitrag. Füge den Link zu deinem eigenen Profil ein, den mit /in/.",
+    "feed": "Das ist ein Link zu deinem Feed oder einem Beitrag. Füge den Link zu deinem Profil ein, den mit /in/.",
+    "jobs": "Das ist eine Stellenanzeige. Füge den Link zu deinem eigenen Profil ein, den mit /in/.",
+    "pulse": "Das ist ein Link zu einem Artikel. Füge den Link zu deinem eigenen Profil ein, den mit /in/.",
+    "pub": "Das ist ein Profillink im alten Format. Öffne dein Profil und kopiere die Adresse aus dem Browser, die jetzt /in/ nutzt.",
+    "other": "Dieser Link führt nicht zu einem Profil. Profillinks enthalten /in/ und danach deinen Namen."
+  }
+}

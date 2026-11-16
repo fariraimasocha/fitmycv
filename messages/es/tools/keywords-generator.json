@@ -1,0 +1,29 @@
+{
+  "roleLabel": "Elige tu puesto",
+  "rolePlaceholder": "Elige un puesto",
+  "notListed": "¿Tu puesto no aparece? Pega la oferta en el <link>comprobador de palabras clave ATS</link> y extraerá las palabras clave de esa oferta.",
+  "englishOnly": "Las listas de palabras clave están en inglés. La comprobación busca estos términos en inglés en tu CV, así que funciona mejor con un CV escrito en inglés.",
+  "title": "{count} palabras clave de CV para <role>{plural}</role>",
+  "intro": "Añade solo las que de verdad has aplicado, cada una dentro de un punto con un resultado. <link>Mira dónde va cada grupo</link> (página en inglés).",
+  "copyAll": "Copiar todo",
+  "copied": "Palabras clave copiadas",
+  "copyFailed": "No se pudo copiar. Selecciona las palabras clave y cópialas tú.",
+  "cvLabel": "Compara tu CV con esta lista",
+  "submit": "Revisar mi CV",
+  "busy": "Revisando tu CV",
+  "readingCv": "Leyendo tu CV",
+  "privacy": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "coverage": "Tu CV cubre {covered} de {total}.",
+  "missingMarked": "{count, plural, one {# está marcada en rojo arriba.} other {# están marcadas en rojo arriba.}}",
+  "allPresent": "Están todos los términos de la lista.",
+  "handoffGaps": {
+    "title": "Cubre estas carencias",
+    "body": "A tu CV le faltan {count} de los términos que usan las ofertas de {role}. Pega el enlace de una oferta y FitMyCV incorpora los que has aplicado, a partir de tu experiencia real.",
+    "label": "Cubrir estas carencias"
+  },
+  "handoffDone": {
+    "title": "Ahora ajústalo a una oferta",
+    "body": "Una lista es general. Pega el enlace de una oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta concreta.",
+    "label": "Adaptar mi CV"
+  }
+}

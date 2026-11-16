@@ -1,0 +1,166 @@
+{
+  "seoTitle": "Generador de resumen profesional para CV en inglés",
+  "description": "Sube tu CV en inglés y pega la oferta en inglés. Recibe tres resúmenes profesionales en inglés hechos con tus habilidades y resultados reales. Gratis, sin cuenta.",
+  "keywords": [
+    "resumen profesional cv en inglés",
+    "generador de resumen profesional",
+    "perfil profesional cv en inglés",
+    "professional summary cv",
+    "resumen profesional para cv",
+    "ejemplos de resumen profesional cv",
+    "cómo escribir un perfil profesional en inglés",
+    "extracto profesional cv",
+    "perfil profesional ejemplos"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Generador de resumen profesional",
+  "h1": "Generador de resumen profesional para tu CV en inglés",
+  "lede": "Sube tu CV en inglés y pega la oferta de empleo en inglés. Recibe tres resúmenes profesionales en inglés que nombran el puesto de la oferta, usan solo habilidades que tu CV muestra y empiezan con un resultado real de tu propio CV.",
+  "howTo": {
+    "name": "Cómo escribir un resumen profesional para una oferta concreta",
+    "description": "Crea el resumen profesional de tu CV en inglés a partir de la oferta y de tu propia experiencia.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "La herramienta lee el puesto y los términos que la oferta repite. Pega el anuncio completo en inglés, con los requisitos."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "Suelta el PDF de tu CV en inglés. El texto se lee en tu navegador. Una habilidad que no está en tu CV nunca aparece en un resumen."
+      },
+      {
+        "name": "Elige uno y hazlo tuyo",
+        "text": "Recibes tres resúmenes con tres formas distintas. Copia el que encaje, revisa cada número y quita lo que no quieras que te pregunten."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Qué es el resumen profesional de un CV?",
+      "a": "Son las dos a cuatro líneas en la parte superior de tu CV, bajo tu nombre y tu titular. Dicen a qué puesto aspiras, tu nivel y tu campo, y un resultado que demuestra que puedes hacer el trabajo. Los reclutadores lo leen primero, así que decide si leen el resto."
+    },
+    {
+      "q": "¿Funciona con un CV o una oferta en español?",
+      "a": "No. La herramienta lee texto en inglés y escribe los resúmenes en inglés. Úsala para un CV en inglés. Los consejos de esta página sobre cómo construir un resumen sirven en cualquier idioma, así que puedes seguir la misma fórmula para escribir el tuyo en español."
+    },
+    {
+      "q": "¿Cómo escribe el resumen este generador?",
+      "a": "Rellena una fórmula sencilla: el puesto de la oferta, tus años y tu campo según tu CV, las habilidades que comparten los dos documentos y una línea de tu CV que contiene un número. No inventa nada. Si tu CV no tiene ninguna línea con un número, el resumen muestra un corchete donde debería ir tu resultado."
+    },
+    {
+      "q": "¿Resumen profesional y perfil profesional son lo mismo?",
+      "a": "Sí. Resumen profesional, perfil profesional, extracto y professional summary nombran el mismo bloque en la parte superior de la página. El consejo es el mismo lo llames como lo llames."
+    },
+    {
+      "q": "¿Cuánto debe medir un resumen profesional?",
+      "a": "De dos a cuatro líneas, o unas 30 a 60 palabras. Si el tuyo es más largo, el detalle extra va en tu sección de experiencia, junto al puesto del que viene."
+    },
+    {
+      "q": "¿Debo cambiar mi resumen para cada oferta?",
+      "a": "Para los puestos que de verdad quieres, sí. Es la parte del CV más rápida de adaptar y la que se lee primero. Pon el puesto de la oferta y el resultado que mejor encaje con lo que piden. Por eso esta herramienta te pide la oferta."
+    },
+    {
+      "q": "¿Resumen u objetivo profesional?",
+      "a": "Un resumen, casi siempre. Un objetivo dice lo que quieres. Un resumen dice lo que ofreces y lo demuestra, que es lo que busca quien lo lee. Incluso un primer CV funciona mejor con un resumen construido alrededor de un proyecto o un curso."
+    },
+    {
+      "q": "¿Se sube mi CV a algún sitio?",
+      "a": "No. El PDF se lee dentro de la pestaña de tu navegador y no se guarda ni se envía a ningún servidor. Cierra la pestaña y desaparece."
+    }
+  ],
+  "blocks": [
+    { "h2": "La fórmula que sigue todo buen resumen" },
+    {
+      "p": "Un buen resumen responde tres preguntas en orden: quién eres profesionalmente, a qué aspiras y cuál es tu prueba. **Puesto y nivel, luego sector y años, luego un resultado con un número.** Esa es toda la estructura, y es justo lo que rellena esta herramienta."
+    },
+    {
+      "ol": [
+        "**Puesto y nivel.** El puesto al que te postulas, con las palabras del empleador. Analista de datos sénior, no profesional con experiencia.",
+        "**Sector y años.** Tu campo y cuánto tiempo llevas en él, para que quien lee te sitúe en un segundo.",
+        "**Un resultado con un número.** Un resultado real de tu CV: un porcentaje, una cantidad, un presupuesto, un tiempo ahorrado. Es la línea que la mayoría de resúmenes se salta."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Por qué el resultado tiene que salir de tu CV",
+        "body": "El resumen es lo primero que te pregunta un entrevistador. Si un número no aparece en el resto de tu CV, parece inventado. Esta herramienta solo usa líneas de resultado que encuentra en tu propio CV, y marca el hueco cuando no hay ninguna."
+      }
+    },
+    { "h2": "Ejemplos de resumen profesional según la etapa" },
+    {
+      "table": {
+        "head": ["Etapa", "Resumen"],
+        "rows": [
+          ["Recién titulado", "Graduado en Estadística que busca un puesto de analista de datos júnior. Hizo un proyecto de fin de grado que analiza cinco años de datos del transporte de una ciudad con Python y SQL."],
+          ["Inicio de carrera", "Especialista de atención al cliente con 3 años en SaaS. Experiencia en Zendesk, incorporación de clientes y renovaciones. Redujo el tiempo de primera respuesta de 9 horas a 2 en una cola de 400 tickets semanales."],
+          ["Nivel medio", "Responsable de marketing digital con más de 6 años en SaaS B2B. Experiencia en redes sociales de pago, email de ciclo de vida y HubSpot. Aumentó un 40 % los leads cualificados en un año con el mismo presupuesto."],
+          ["Sénior", "Jefe de proyecto sénior con 9 años en construcción comercial. Entregó los tres últimos proyectos dentro o por debajo del presupuesto y redujo los retrasos de entrega de 3 semanas a 4 días."],
+          ["Cambio de carrera", "Especialista en formación y desarrollo que viene de 6 años como profesor de secundaria. Diseñó formación para 200 alumnos y subió un 18 % las tasas de aprobado."],
+          ["Enfermería", "Enfermera con 8 años en medicina de agudos. Experiencia en triaje, terapia intravenosa y planificación de altas. Tutorizó a 12 enfermeras recién tituladas en una planta de 28 camas."]
+        ]
+      }
+    },
+    {
+      "p": "Hay más ejemplos, con versiones de antes y después, en la guía de [ejemplos de resumen profesional para CV](/blog/cv-professional-summary-examples)."
+    },
+    { "h2": "Resumen, titular u objetivo" },
+    {
+      "table": {
+        "head": ["", "Extensión", "Qué dice", "Cuándo usarlo"],
+        "rows": [
+          ["Titular", "Una línea", "El puesto y dos o tres pruebas", "Casi siempre. Va bajo tu nombre, encima del resumen."],
+          ["Resumen", "De dos a cuatro líneas", "Nivel, campo y un resultado", "Casi siempre. Es el primer bloque que lee un reclutador."],
+          ["Objetivo", "Una o dos frases", "Lo que buscas", "Pocas veces. Habla de ti en vez de hablar del empleador."]
+        ]
+      }
+    },
+    {
+      "p": "Un titular y un resumen funcionan juntos, en ese orden. Si la línea encima de tu resumen todavía repite tu puesto antiguo, el [generador de titulares de CV](/resume-headline-generator) crea uno a partir de la misma oferta."
+    },
+    { "h2": "Cinco errores típicos en un resumen" },
+    {
+      "ol": [
+        "**Es una lista de adjetivos.** Orientado a resultados, trabajador y detallista valen para cualquier candidato, así que no dicen nada. Nombra una habilidad y un resultado.",
+        "**No tiene ningún número.** Un resumen sin resultado es una afirmación. Una cifra real lo convierte en prueba.",
+        "**No nombra ningún puesto.** Un resumen que podría ir a cualquier empleador hace la mitad del trabajo. Usa el puesto de la oferta.",
+        "**Dice lo que quieres.** Eso es un objetivo. Di lo que ofreces al empleador.",
+        "**Ocupa cinco líneas.** Pasadas cuatro líneas deja de leerse de un vistazo. Lleva el detalle extra a tu sección de experiencia."
+      ]
+    },
+    { "h2": "El resumen dentro de un arreglo más grande" },
+    {
+      "p": "El resumen es la parte más leída de tu CV, pero sigue siendo un solo bloque. No cambia si tus logros aportan pruebas ni si la búsqueda de un reclutador encuentra tu CV. Revisa la diferencia de vocabulario con [palabras clave que faltan en tu CV](/missing-resume-keywords) y luego trabaja los logros con el [reescritor de logros del CV](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "¿Quieres que todo el CV encaje, no solo el resumen?",
+        "body": "Pega el enlace de la oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta, resumen incluido, manteniendo tu experiencia real y tus números reales.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Generador de titulares de CV",
+      "href": "/resume-headline-generator",
+      "body": "Cinco titulares para la línea encima de tu resumen, a partir de la misma oferta."
+    },
+    {
+      "label": "Ejemplos de resumen profesional",
+      "href": "/blog/cv-professional-summary-examples",
+      "body": "La fórmula, con ejemplos de antes y después según la etapa profesional."
+    },
+    {
+      "label": "Verificador de CV ATS gratis",
+      "href": "/ats-resume-checker",
+      "body": "Puntúa tu CV frente a una oferta y mira los términos que te faltan."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

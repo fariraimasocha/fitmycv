@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "name": { "label": "你的全名", "placeholder": "Farirai Masocha" },
+    "role": { "label": "职位名称", "placeholder": "软件工程师" },
+    "company": { "label": "公司（可选）", "placeholder": "Northwind" }
+  },
+  "fileLabel": "简历",
+  "private": "边输入边生成文件名，不会上传或保存任何内容。",
+  "exampleHeading": "你会得到这样的结果",
+  "heading": "你的文件名",
+  "exampleBadge": "示例",
+  "exampleIntro": "输入你的姓名和职位名称，生成你自己的文件名。复制合适的那个，并在上传前重命名你的文件。",
+  "intro": "复制适合这次申请的那个，然后在上传前重命名你的文件。",
+  "recommended": "推荐",
+  "companySlot": "包含公司名称",
+  "notes": {
+    "recommended": "适用于大多数申请。写明了你和职位。",
+    "broad": "当你把同一份简历投给多个不同职位时使用。",
+    "company": "当同一位招聘人员在为同一家公司招多个职位时使用。",
+    "companyEmpty": "填写公司名称后即可生成这一个。",
+    "underscore": "当上传表单或中介要求使用下划线时使用。"
+  },
+  "copy": "复制",
+  "copied": "已复制",
+  "copyAria": "复制文件名 {name}",
+  "toastCopied": "文件名已复制",
+  "copyBlocked": "这个浏览器禁止了复制。请选中文件名后复制。",
+  "worthFixing": "值得修改",
+  "issues": {
+    "spaces": "空格已被替换。空格在下载链接中会变成 %20。",
+    "version": "去掉 final、draft 和 v2。版本词会让文件看起来像草稿。",
+    "lowercase": "你的名字全是小写。请改成首字母大写，招聘人员会看到这个名字。",
+    "extension": "去掉扩展名。工具会自动加上，而且 PDF 是更稳妥的格式。",
+    "illegal": "已删除会导致上传出错的字符：{chars}",
+    "accented": "带重音的字母已被简化，确保文件名在任何操作系统上都能正常使用。",
+    "truncated": "已截短，让文件名一眼就能看完。"
+  }
+}

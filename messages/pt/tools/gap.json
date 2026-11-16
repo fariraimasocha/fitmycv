@@ -1,0 +1,36 @@
+{
+  "englishOnly": "As frases que esta ferramenta escreve são em inglês, para um currículo e uma carta de apresentação em inglês.",
+  "reasonLabel": "Por que você ficou afastado?",
+  "reasons": {
+    "caregiving": "Cuidando de um familiar",
+    "parenting": "Criando os filhos",
+    "health": "Saúde ou recuperação",
+    "layoff": "Demissão e busca de emprego",
+    "study": "Estudo ou curso",
+    "freelance": "Freelance ou negócio próprio",
+    "relocation": "Mudança de país ou de cidade",
+    "travel": "Viagem"
+  },
+  "fromLabel": "Início do intervalo",
+  "toLabel": "Fim do intervalo",
+  "didLabel": "O que você fez nesse período (opcional, em inglês)",
+  "didPlaceholder": "Completed a Google Data Analytics certificate",
+  "submit": "Explicar meu intervalo",
+  "busy": "Escrevendo suas frases",
+  "datesError": "O mês final precisa ser depois do mês inicial.",
+  "privacy": "Nada do que você digita sai desta aba.",
+  "shortTitle": "Talvez você nem precise disso.",
+  "shortBody": "Um intervalo de menos de 3 meses raramente precisa de explicação. Mostre só os anos nas datas do currículo e ele some.",
+  "cvTitle": "No currículo",
+  "letterTitle": "Na carta de apresentação",
+  "answerTitle": "Na entrevista",
+  "copyCv": "Copiar a frase do currículo",
+  "copyLetter": "Copiar a frase da carta de apresentação",
+  "copyAnswer": "Copiar a resposta da entrevista",
+  "copied": "Copiado",
+  "handoff": {
+    "title": "Intervalo resolvido. Agora ajuste o resto do currículo.",
+    "body": "O FitMyCV reescreve seu currículo e sua carta de apresentação para uma vaga específica. Assim o intervalo vira uma linha e a sua experiência fala por você.",
+    "label": "Adaptar meu currículo a uma vaga"
+  }
+}

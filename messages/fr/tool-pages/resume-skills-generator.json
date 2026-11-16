@@ -1,0 +1,125 @@
+{
+  "seoTitle": "Générateur de compétences CV à partir d'une offre",
+  "description": "Collez une offre d'emploi et importez votre CV. Obtenez une section compétences construite seulement avec ce que vous pouvez prouver, et les compétences qui vous manquent.",
+  "keywords": [
+    "compétences cv",
+    "générateur de compétences cv",
+    "section compétences cv",
+    "quelles compétences mettre sur un cv",
+    "liste de compétences cv",
+    "compétences cv à partir de l'offre",
+    "hard skills cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Générateur de compétences CV",
+  "h1": "Générateur de compétences pour CV",
+  "lede": "Collez l'offre d'emploi et importez votre CV. Obtenez une section compétences dans l'ordre où l'offre insiste sur elles, avec seulement les compétences que votre CV montre déjà, et la liste de celles que le poste demande et que vous n'avez pas encore montrées. Sans compte, rien n'est stocké.",
+  "howTo": {
+    "name": "Comment écrire une section compétences pour un poste précis",
+    "description": "Construisez la section compétences de votre CV à partir de l'offre visée et de votre propre expérience.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Collez l'annonce complète, avec les exigences. L'outil classe les compétences que l'offre répète."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Le texte est lu dans votre navigateur et rien n'est stocké."
+      },
+      {
+        "name": "Copiez la section et vérifiez les preuves",
+        "text": "Copiez la ligne de compétences dans votre CV. Chaque compétence vient avec la ligne de votre CV qui la montre en action. Si une compétence n'a pas de ligne, ajoutez une puce qui la montre."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Comment le générateur choisit-il mes compétences ?",
+      "a": "Il classe les compétences que l'offre répète, puis ne garde que celles que votre CV mentionne. Elles sont listées dans l'ordre où l'offre insiste sur elles, donc celles qui comptent le plus pour l'employeur viennent en premier."
+    },
+    {
+      "q": "L'outil fonctionne-t-il avec une offre et un CV en français ?",
+      "a": "Pas bien. Il compare les mots avec des listes de mots anglais, il peut donc manquer des compétences écrites en français ou garder des mots courants qui n'en sont pas. Il est fait pour les candidatures en anglais."
+    },
+    {
+      "q": "Pourquoi une compétence que j'ai n'apparaît-elle pas dans la section ?",
+      "a": "Parce que votre CV ne la mentionne jamais. L'outil ne liste pas une compétence que votre CV ne peut pas prouver. Il la place dans la liste des manques. Si vous l'avez vraiment utilisée, ajoutez une puce qui montre où, puis relancez l'outil."
+    },
+    {
+      "q": "Combien de compétences mettre sur un CV ?",
+      "a": "La plupart des CV s'en sortent bien avec 6 à 12. Au delà, la liste n'est plus lue. Choisissez celles que le poste demande et que vos puces prouvent."
+    },
+    {
+      "q": "Hard skills ou soft skills ?",
+      "a": "Commencez par les hard skills : outils, méthodes et diplômes qu'un recruteur peut rechercher. Les soft skills comme la communication se montrent mieux dans une puce que dans une liste, car n'importe qui peut les écrire."
+    },
+    {
+      "q": "Les logiciels ATS lisent-ils la section compétences ?",
+      "a": "Oui. Les recruteurs cherchent dans l'ATS des termes tirés de l'offre, et la section compétences est un endroit simple pour ces termes. Reprenez les mots exacts de l'offre, c'est ce que fait cet outil."
+    },
+    {
+      "q": "Mon CV est-il envoyé quelque part ?",
+      "a": "Non. Le PDF est lu dans l'onglet de votre navigateur, et rien n'est stocké ni envoyé à un serveur. Fermez l'onglet et tout disparaît."
+    }
+  ],
+  "blocks": [
+    { "h2": "L'offre décide de l'ordre" },
+    {
+      "p": "Une section compétences se lit en quelques secondes, ce sont donc les premiers éléments qui comptent. **Placez d'abord les compétences que l'offre répète, avec les mots de l'employeur.** Si l'annonce cite Power BI trois fois, Power BI va près du début."
+    },
+    {
+      "callout": {
+        "title": "Pourquoi chaque compétence a besoin d'une puce derrière elle",
+        "body": "Un recruteur qui voit une compétence listée la cherche dans votre expérience. Si elle n'y est pas, la liste fait remplissage. Cet outil montre la ligne de votre CV qui prouve chaque compétence, et signale celles qui n'ont pas de preuve."
+      }
+    },
+    { "h2": "Exemples de section compétences" },
+    {
+      "table": {
+        "head": ["Métier", "Section compétences"],
+        "rows": [
+          ["Data analyst", "SQL, Python, Tableau, Power BI, A/B testing, Excel, reporting aux parties prenantes"],
+          ["Infirmier", "Triage, perfusions, soins des plaies, dossier patient informatisé, préparation de la sortie, éducation thérapeutique"],
+          ["Ingénieur logiciel", "TypeScript, React, Node.js, PostgreSQL, AWS, CI/CD, revue de code"],
+          ["Responsable marketing", "Social ads, HubSpot, marketing automation, SEO, Google Analytics, gestion de budget"],
+          ["Chef de projet", "Agile, Jira, gestion des risques, gestion des parties prenantes, budgétisation, PRINCE2"]
+        ]
+      }
+    },
+    { "h2": "Que faire de la liste des manques" },
+    {
+      "p": "La liste des manques contient les compétences que le poste demande et que votre CV ne mentionne jamais. Si vous en avez utilisé une, ajoutez une puce qui la montre et elle passera dans votre section. Sinon, laissez-la de côté. Pour un contrôle complet du vocabulaire, utilisez les [mots-clés manquants du CV](/missing-resume-keywords) ou le [test CV ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Vous voulez que tout le CV corresponde, pas seulement les compétences ?",
+        "body": "Collez le lien de l'offre et FitMyCV adapte votre CV et votre lettre de motivation à cette offre, avec seulement votre expérience réelle.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez votre CV face à une offre et voyez les termes qui vous manquent."
+    },
+    {
+      "label": "Questions d'entretien à partir d'une offre",
+      "href": "/interview-questions-from-job-description",
+      "body": "Les questions que ce poste va poser, avec des preuves tirées de votre CV."
+    },
+    {
+      "label": "Générateur de résumé de CV",
+      "href": "/professional-summary-generator",
+      "body": "Trois résumés de CV construits à partir de l'offre et de votre CV."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

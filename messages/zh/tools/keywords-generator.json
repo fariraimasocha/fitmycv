@@ -1,0 +1,29 @@
+{
+  "roleLabel": "选择你的职位",
+  "rolePlaceholder": "选择一个职位",
+  "notListed": "没有你的职位？把招聘启事粘贴到<link>ATS 关键词检查工具</link>，它会从这份启事中提取关键词。",
+  "englishOnly": "关键词列表是英文的。简历检查会在你的简历中查找这些英文词，所以最适合英文简历。",
+  "title": "<role>{plural}</role>的 {count} 个简历关键词",
+  "intro": "只加入你真正做过的，并把每一个写进一条带有成果的要点。<link>查看每组关键词该放在哪里</link>（英文页面）。",
+  "copyAll": "全部复制",
+  "copied": "关键词已复制",
+  "copyFailed": "复制失败。请选中关键词后自行复制。",
+  "cvLabel": "用这份列表检查你的简历",
+  "submit": "检查我的简历",
+  "busy": "正在检查你的简历",
+  "readingCv": "正在读取你的简历",
+  "privacy": "你的简历在此标签页中读取，不会保存任何内容。",
+  "coverage": "你的简历覆盖了 {total} 个中的 {covered} 个。",
+  "missingMarked": "{count, plural, other {上方有 # 个标为红色。}}",
+  "allPresent": "列表中的每个词都有。",
+  "handoffGaps": {
+    "title": "补上这些缺口",
+    "body": "{role}招聘启事常用的词中，你的简历缺少 {count} 个。粘贴职位链接，FitMyCV 会根据你的真实经历，把你做过的那些写进去。",
+    "label": "补上这些缺口"
+  },
+  "handoffDone": {
+    "title": "现在针对一个职位调整",
+    "body": "列表是通用的。粘贴职位链接，FitMyCV 会针对这份招聘启事重写你的简历和求职信。",
+    "label": "定制我的简历"
+  }
+}

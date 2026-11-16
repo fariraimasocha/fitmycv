@@ -1,0 +1,131 @@
+{
+  "seoTitle": "Perguntas de entrevista a partir da vaga, grátis",
+  "description": "Cole a descrição da vaga e envie seu currículo. Veja as perguntas que esta vaga vai fazer, a linha do seu currículo que responde a cada uma e as lacunas a preparar.",
+  "keywords": [
+    "perguntas de entrevista",
+    "perguntas de entrevista de emprego",
+    "perguntas de entrevista a partir da vaga",
+    "gerador de perguntas de entrevista",
+    "como se preparar para entrevista de emprego",
+    "perguntas mais comuns em entrevista",
+    "método STAR entrevista"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Perguntas de entrevista a partir da vaga",
+  "h1": "Perguntas de entrevista a partir da descrição da vaga",
+  "lede": "Cole a descrição da vaga e envie seu currículo. Veja as perguntas que esta vaga provavelmente vai fazer, a linha do seu próprio currículo que responde a cada uma e as habilidades pedidas que seu currículo ainda não mostra. Sem login, nada é armazenado.",
+  "howTo": {
+    "name": "Como prever perguntas de entrevista a partir da descrição da vaga",
+    "description": "Transforme a vaga e seu currículo em uma lista de perguntas prováveis, com provas da sua própria experiência.",
+    "steps": [
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "Cole o anúncio inteiro, incluindo os requisitos. A ferramenta lê o cargo e as habilidades que a vaga repete."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Solte o PDF. O texto é lido no seu navegador e nada é armazenado."
+      },
+      {
+        "name": "Prepare uma história por pergunta",
+        "text": "Cada pergunta vem com a linha do seu currículo que a responde. Monte uma história curta em torno dessa linha e prepare uma resposta honesta para cada lacuna."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Como esta ferramenta escolhe as perguntas?",
+      "a": "Ela lê o cargo e as habilidades que a vaga repete, depois confere quais delas seu currículo menciona. Habilidades presentes nas duas listas viram perguntas com uma prova do seu currículo. Habilidades que só estão na vaga viram perguntas sobre lacunas, porque o entrevistador vai perguntar sobre elas."
+    },
+    {
+      "q": "A ferramenta funciona com vaga e currículo em português?",
+      "a": "Não muito bem. Ela encontra habilidades com listas de palavras em inglês e escreve as perguntas em inglês. Foi feita para candidaturas em inglês. Para uma entrevista em português, use as perguntas comuns e o método STAR descritos nesta página."
+    },
+    {
+      "q": "Ela escreve minhas respostas?",
+      "a": "Não. Ela mostra a linha do seu próprio currículo que responde a cada pergunta e como estruturá-la. As palavras na entrevista devem ser suas, e uma resposta baseada no seu trabalho real é mais fácil de defender quando fazem uma pergunta de acompanhamento."
+    },
+    {
+      "q": "Quais perguntas aparecem em quase toda entrevista?",
+      "a": "Fale sobre você, por que você quer esta vaga, conte sobre uma vez em que resolveu um problema difícil, qual é o seu maior defeito e onde você se vê daqui a alguns anos. Esta ferramenta acrescenta as perguntas específicas da vaga que você colar."
+    },
+    {
+      "q": "O que fazer com as perguntas sobre lacunas?",
+      "a": "Se você já usou a habilidade e seu currículo só não diz isso, adicione ao currículo antes de se candidatar. Se não usou, prepare uma resposta honesta sobre a coisa mais próxima que você já fez e como você aprenderia. Nunca afirme uma habilidade sobre a qual você não consegue falar por dois minutos."
+    },
+    {
+      "q": "O que é o método STAR?",
+      "a": "Situação, tarefa, ação, resultado. Apresente o contexto em uma frase, diga o que você precisava fazer, passe a maior parte do tempo no que você fez e termine no resultado. A linha do seu currículo costuma ser o resultado, então monte a história de trás para frente a partir dela."
+    },
+    {
+      "q": "Meu currículo é enviado para algum lugar?",
+      "a": "Não. O PDF é lido dentro da aba do seu navegador, e nada é armazenado nem enviado a um servidor. Feche a aba e ele some."
+    }
+  ],
+  "blocks": [
+    { "h2": "A vaga diz o que vão perguntar" },
+    {
+      "p": "Entrevistadores trabalham a partir da descrição da vaga. As habilidades que ela repete são as que eles precisam verificar, então viram perguntas. **Se uma habilidade aparece três vezes na vaga, espere ser perguntado sobre ela.**"
+    },
+    {
+      "ol": [
+        "**Perguntas sobre a vaga.** Por que esta vaga, e me conte sua trajetória pelo currículo. Toda entrevista tem.",
+        "**Perguntas sobre habilidades.** Conte sobre uma vez em que você usou uma habilidade que a vaga pede. Seu currículo já deve ter a resposta.",
+        "**Perguntas sobre lacunas.** A vaga pede algo que seu currículo nunca menciona. São estas que pegam as pessoas desprevenidas."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Por que a prova vem do seu currículo",
+        "body": "O entrevistador está com seu currículo na frente. Uma história que bate com uma linha da página convence. Uma que não bate levanta uma dúvida. Esta ferramenta só usa linhas que encontra no seu próprio currículo."
+      }
+    },
+    { "h2": "Como responder a uma pergunta sobre habilidade" },
+    {
+      "table": {
+        "head": ["Etapa", "O que dizer", "Tamanho"],
+        "rows": [
+          ["Situação", "Onde você estava e o que estava acontecendo", "Uma frase"],
+          ["Tarefa", "O que você precisava fazer", "Uma frase"],
+          ["Ação", "O que você fez, na primeira pessoa", "A maior parte da resposta"],
+          ["Resultado", "O que mudou, com um número se você tiver", "Uma ou duas frases"]
+        ]
+      }
+    },
+    { "h2": "Feche as lacunas antes da entrevista, não durante" },
+    {
+      "p": "Uma pergunta sobre lacuna na entrevista muitas vezes começa como uma lacuna no currículo. Se a vaga pede algo que você já fez e seu currículo não diz isso, o recrutador pode nunca te chamar. Veja a lista completa de termos que faltam com [palavras-chave que faltam no currículo](/missing-resume-keywords), ou avalie seu currículo em relação à vaga com o [verificador de currículo ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Quer que seu currículo responda a essas perguntas por você?",
+        "body": "Cole o link da vaga e o FitMyCV adapta seu currículo e sua carta de apresentação a essa vaga, usando só sua experiência real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Avalie seu currículo em relação a uma vaga e veja os termos que faltam."
+    },
+    {
+      "label": "Gerador de resumo profissional",
+      "href": "/professional-summary-generator",
+      "body": "Três resumos de currículo montados a partir da vaga e do seu currículo."
+    },
+    {
+      "label": "Reescritor de tópicos do currículo",
+      "href": "/resume-bullet-rewriter",
+      "body": "Transforme uma tarefa em uma conquista sobre a qual você consegue falar."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

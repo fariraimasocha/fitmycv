@@ -1,0 +1,67 @@
+{
+  "jobLabel": "Paste the job description",
+  "jobPlaceholder": "Paste the full text of the job posting here…",
+  "resumeLabel": "Your resume",
+  "englishOnly": "This tool reads job posts and CVs written in English, and it writes the headlines in English.",
+  "submit": "Generate headlines",
+  "busy": "Writing your headlines",
+  "statusReadingCv": "Reading your CV",
+  "statusMatching": "Matching your resume to the posting",
+  "statusNeedInput": "Add the job description and your CV to generate.",
+  "statusPrivate": "Your CV is read in this tab. Nothing is stored.",
+  "resultHeading": "{count, plural, one {# headline} other {# headlines}} for <hl>{title}</hl>",
+  "titleFromPosting": "The title comes from the posting. Every skill below appears in both your resume and the posting, so nothing here claims something your CV never mentions.",
+  "titleFromResume": "We could not find a job title in the posting, so this uses the title in your resume. Every skill below appears in both documents.",
+  "titleGuess": "The title is a best guess from the wording. Edit it if it is wrong.",
+  "claims": "Claims {list}. Keep only what your CV can evidence.",
+  "copy": "Copy",
+  "copied": "Copied",
+  "copyAria": "Copy headline: {text}",
+  "toastCopied": "Headline copied",
+  "toastCopyFailed": "Copy failed. Select the headline and copy it yourself.",
+  "shapes": {
+    "titleSkills": {
+      "shape": "Title and top skills",
+      "hint": "The LinkedIn and ATS staple. Reads well in a search result."
+    },
+    "seniorityDomain": {
+      "shape": "Seniority and domain",
+      "hint": "Says what you do and where you have done it."
+    },
+    "years": {
+      "shape": "Years and signature strength",
+      "hintStated": "Uses the number of years stated in your resume.",
+      "hintSpan": "Uses the span between the earliest and latest dates in your resume. Change it if the number is wrong."
+    },
+    "twoStrengths": {
+      "shape": "Two strengths",
+      "hint": "We could not find your years of experience. Add the number here yourself if you want it in the headline."
+    },
+    "focus": {
+      "shape": "What you focus on",
+      "hint": "Leads with the work rather than the job title."
+    },
+    "plain": {
+      "shape": "Plain CV header",
+      "hint": "No pipes, so it sits cleanly under your name at the top of a CV."
+    }
+  },
+  "noTitleHeading": "We could not find a job title",
+  "noTitleBody": "Neither document names a role we recognise, so a headline would be a guess. Paste the full posting, including the title at the top, or add your current job title to your CV, then generate again.",
+  "matchedHeading": "Matched from your resume",
+  "noOverlap": "Your resume and this posting share almost no vocabulary. That is worth fixing before the headline. Start with the <link>ATS resume checker</link>.",
+  "missingHeading": "In the posting, not in your CV",
+  "missingBody": "None of these can go in a headline yet. Add the ones you can honestly evidence to a bullet first, then generate again. The <link>ATS resume checker</link> scores the whole CV the same way.",
+  "ctaTitle": "Want the rest of the CV to match?",
+  "ctaBody": "Paste the job link and FitMyCV rewrites your CV and cover letter against the posting, keeping your real experience.",
+  "ctaLabel": "Tailor my CV",
+  "examplesHeading": "Resume headline examples",
+  "examplesBody": "Your five will be built from the posting you paste and the skills your CV already proves. Here is the shape they take.",
+  "exampleRoles": {
+    "software": "Software engineering",
+    "marketing": "Marketing",
+    "finance": "Finance",
+    "nursing": "Nursing",
+    "design": "Product design"
+  }
+}

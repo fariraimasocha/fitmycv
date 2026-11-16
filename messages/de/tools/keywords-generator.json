@@ -1,0 +1,29 @@
+{
+  "roleLabel": "Wähle deine Berufsbezeichnung",
+  "rolePlaceholder": "Beruf wählen",
+  "notListed": "Dein Beruf fehlt? Füge die Stellenanzeige in den <link>ATS-Keyword-Checker</link> ein. Er zieht die Keywords aus genau dieser Anzeige.",
+  "englishOnly": "Die Keyword-Listen sind auf Englisch. Der Abgleich sucht diese englischen Begriffe in deinem Lebenslauf und funktioniert daher am besten mit einem englischen Lebenslauf.",
+  "title": "{count} Lebenslauf-Keywords für <role>{plural}</role>",
+  "intro": "Nimm nur die auf, die du wirklich gemacht hast, und setze jedes in einen Stichpunkt mit Ergebnis. <link>Sieh dir an, wohin jede Gruppe gehört</link> (Seite auf Englisch).",
+  "copyAll": "Alle kopieren",
+  "copied": "Keywords kopiert",
+  "copyFailed": "Kopieren fehlgeschlagen. Markiere die Keywords und kopiere sie selbst.",
+  "cvLabel": "Lebenslauf mit dieser Liste abgleichen",
+  "submit": "Lebenslauf prüfen",
+  "busy": "Lebenslauf wird geprüft",
+  "readingCv": "Lebenslauf wird gelesen",
+  "privacy": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "coverage": "Dein Lebenslauf enthält {covered} von {total}.",
+  "missingMarked": "{count, plural, one {# ist oben rot markiert.} other {# sind oben rot markiert.}}",
+  "allPresent": "Jeder Begriff der Liste ist enthalten.",
+  "handoffGaps": {
+    "title": "Schließe diese Lücken",
+    "body": "Deinem Lebenslauf fehlen {count} der Begriffe, die Anzeigen für {role} verwenden. Füge einen Link zur Stelle ein und FitMyCV baut die ein, die du wirklich gemacht hast, auf Basis deiner echten Erfahrung.",
+    "label": "Lücken schließen"
+  },
+  "handoffDone": {
+    "title": "Jetzt auf eine Stelle zuschneiden",
+    "body": "Eine Liste ist allgemein. Füge einen Link zur Stelle ein und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben für genau diese Anzeige um.",
+    "label": "Lebenslauf anpassen"
+  }
+}

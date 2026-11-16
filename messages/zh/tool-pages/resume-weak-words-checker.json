@@ -1,0 +1,80 @@
+{
+  "seoTitle": "英文简历弱词检查：删掉陈词滥调",
+  "description": "找出英文简历里的流行词、陈词滥调和职责式用语，并告诉你该怎么改写。免费，无需登录，在你的浏览器中运行。",
+  "keywords": [
+    "英文简历弱词",
+    "英文简历用词",
+    "英文简历避免使用的词",
+    "简历陈词滥调",
+    "英文简历流行词检查",
+    "英文简历动词",
+    "responsible for 替换",
+    "英文简历怎么写"
+  ],
+  "eyebrow": "免费工具",
+  "breadcrumbName": "简历弱词检查",
+  "h1": "英文简历弱词检查",
+  "lede": "\"Hard-working team player, responsible for various tasks.\" 每个招聘人员都读过上千遍这样的句子。添加你的英文简历，看看哪些短语让它淹没在人群里，以及该改成什么。",
+  "howTo": {
+    "name": "如何删掉英文简历中的弱词",
+    "description": "找出并替换让简历显得千篇一律的短语。",
+    "steps": [
+      { "name": "添加你的简历", "text": "拖入 PDF 或粘贴文本。简历需要是英文的。" },
+      { "name": "阅读列表", "text": "每个短语都会显示出现了几次、出现在哪里，以及该改成什么。" },
+      { "name": "换成证据", "text": "把每个短语换成一个动词加一个结果。一个数字胜过一个形容词。" }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "可以检查中文简历吗？",
+      "a": "不可以。它只在英文简历中查找弱词。词表和建议都针对英文短语，所以中文简历不会得到有用的结果。如果你在申请需要英文简历的职位，就可以用它检查英文版本。"
+    },
+    {
+      "q": "\"responsible for\" 应该换成什么？",
+      "a": "换成一个说明你做了什么的动词，再加上结果。\"Responsible for payroll\" 可以改成 \"Ran payroll for 120 staff with no late payments in two years\"。[要点改写工具](/resume-bullet-rewriter) 可以一次改写一行。"
+    },
+    {
+      "q": "流行词一定不好吗？",
+      "a": "单独出现时，是的。\"Detail-oriented\"（注重细节）是一个没人能核实的说法。拿出证据，比如你通过的一次审计，才能做到这个词想做的事。"
+    },
+    {
+      "q": "它能找出所有弱词吗？",
+      "a": "不能。它检查的是一份固定的常见弱词表。由普通词组成的含糊句子它发现不了，所以也要把你的要点大声读一遍。"
+    },
+    {
+      "q": "为什么它要统计含有数字的行？",
+      "a": "因为数字是最快的证据。如果你较长的行里不到三分之一有数字，它会提醒你多加一些。"
+    },
+    {
+      "q": "我的简历会被保存吗？",
+      "a": "不会。简历在你的浏览器标签页里读取，不会发送到任何地方。"
+    }
+  ],
+  "blocks": [
+    { "h2": "三类弱词" },
+    {
+      "ul": [
+        "**职责用语**，比如 \"responsible for\"（负责）和 \"duties included\"（职责包括），描述的是岗位，而不是你在岗位上做了什么。",
+        "**含糊动词**，比如 \"helped\"（帮助）、\"worked on\"（参与）和 \"handled\"（处理），掩盖了你承担的那部分工作。",
+        "**陈词滥调**，比如 \"team player\"（团队合作者）和 \"results-driven\"（结果导向），都是没有证据的说法。"
+      ]
+    },
+    {
+      "compare": {
+        "title": "同一条要点，修改前后",
+        "context": "客服岗位",
+        "before": "Responsible for handling customer complaints and helped the team with various tasks.",
+        "after": "Resolved 40 customer complaints a week and cut repeat complaints by a quarter by rewriting the reply templates."
+      }
+    },
+    {
+      "p": "按领域分类的英文行动动词：[技术](/blog/cv-action-verbs-tech)、[销售](/blog/cv-action-verbs-sales)、[市场营销](/blog/cv-action-verbs-marketing)、[财务](/blog/cv-action-verbs-finance) 和 [医疗](/blog/cv-action-verbs-healthcare)。"
+    }
+  ],
+  "related": [
+    { "label": "简历要点改写工具", "href": "/resume-bullet-rewriter", "body": "把一条职责改写成成果要点。" },
+    { "label": "ATS 简历检查", "href": "/ats-resume-checker", "body": "看看你的简历缺少哪些必需的用词。" },
+    { "label": "简历格式检查", "href": "/cv-format-checker", "body": "按你申请的国家检查简历格式。" }
+  ],
+  "ui": { "home": "首页", "faqHeading": "常见问题", "related": "接下来去哪里", "open": "打开" }
+}

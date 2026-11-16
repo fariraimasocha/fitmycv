@@ -230,7 +230,25 @@
       "missingHeading": "Falta en tu CV",
       "coveredHeading": "Ya cubiertas",
       "keywordsTitle": "Los {count} términos en los que se apoya esta oferta",
-      "keywordsBody": "Ordenados según el peso que les da la oferta. Recorre la lista y asegúrate de que cada término que puedas afirmar con honestidad aparezca en un punto de tu CV con un resultado."
+      "keywordsBody": "Ordenados según el peso que les da la oferta. Recorre la lista y asegúrate de que cada término que puedas afirmar con honestidad aparezca en un punto de tu CV con un resultado.",
+      "leadEmail": {
+        "title": "Envíame esta puntuación y un enlace para cubrir las carencias",
+        "body": "Opcional. No necesitas cuenta.",
+        "emailLabel": "Correo electrónico",
+        "placeholder": "tu@email.com",
+        "send": "Enviar",
+        "sending": "Enviando...",
+        "emailRequired": "Escribe tu correo electrónico.",
+        "invalidEmail": "Escribe un correo electrónico válido.",
+        "tooMany": "Demasiadas solicitudes. Inténtalo de nuevo en un minuto.",
+        "saveError": "No se pudo guardar tu correo. Inténtalo de nuevo.",
+        "sentToast": "Enviado. Revisa tu bandeja de entrada para ver tu puntuación y los siguientes pasos.",
+        "duplicateToast": "Esta dirección ya recibió su primera puntuación. Solo la enviamos una vez.",
+        "sentTitle": "Revisa tu bandeja de entrada",
+        "sentBody": "Te enviamos tu puntuación y un enlace para cubrir las carencias.",
+        "duplicateTitle": "Ya enviado",
+        "duplicateBody": "Ya enviamos a esta dirección su primera puntuación. Solo la enviamos una vez."
+      }
     },
     "resumeFile": {
       "label": "Tu CV",

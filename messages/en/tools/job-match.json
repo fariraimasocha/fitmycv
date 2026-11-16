@@ -1,0 +1,56 @@
+{
+  "cvLabel": "Your resume",
+  "jobLabel": "Job description",
+  "jobPlaceholder": "Paste the full text of the job posting here.",
+  "englishOnly": "This checker reads English. It compares the words in your resume with the words in the posting, so use an English resume and an English job posting.",
+  "submit": "Check my match",
+  "busy": "Checking your match",
+  "readingCv": "Reading your CV",
+  "comparing": "Comparing your CV with the posting",
+  "needBoth": "Add your CV and the full job description.",
+  "privacy": "Your CV is read in this tab. Nothing is stored.",
+  "scoreAria": "Match score: {value} percent",
+  "scoreUnit": "Match",
+  "verdictStrong": "Strong match for this posting",
+  "verdictPartial": "Partial match. A tailoring pass is worth it.",
+  "verdictWeak": "Weak match for this posting",
+  "scoreNote": "Combined from skills, keywords, and experience signals in your CV and this posting. It is a coverage score, not a prediction that you will get an interview.",
+  "strongHeading": "Strong matches",
+  "strongEmpty": "No named skills from the posting showed up on your resume yet.",
+  "missingHeading": "Missing or weak matches",
+  "missingEmpty": "Your resume mentions every named skill we could read from the posting.",
+  "barExperience": "Experience match",
+  "barSkills": "Skills match",
+  "barKeywords": "Keyword match",
+  "improveHeading": "Top 5 things to improve",
+  "tips": {
+    "addSkill": "Add {skill} inside a bullet you can honestly evidence, not only a skills list.",
+    "useWording": "Use the posting's wording for \"{term}\" if that work is already on your CV under different words.",
+    "years": "The posting asks for {years} years. Put the matching roles near the top so that number is easy to find.",
+    "level": "The posting reads as {level}. Lead with the closest title and scope you actually held.",
+    "proveSkill": "Keep {skill} in a result bullet with a number, so it is proof rather than a claim.",
+    "covered": "Your CV already covers the posting's main terms. Check that each one sits in a bullet with a result attached."
+  },
+  "levels": {
+    "intern": "intern",
+    "entry_level": "entry level",
+    "junior": "junior",
+    "mid_level": "mid level",
+    "senior": "senior",
+    "staff": "staff",
+    "lead": "lead",
+    "principal": "principal",
+    "manager": "manager",
+    "director": "director"
+  },
+  "ctaHigh": {
+    "title": "Lock this match into a tailored CV",
+    "body": "Your match is strong. Keep this posting and rewrite your CV against it, using the experience you already have.",
+    "label": "Tailor my CV"
+  },
+  "ctaGaps": {
+    "title": "Close these gaps",
+    "body": "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.",
+    "label": "Close these gaps"
+  }
+}

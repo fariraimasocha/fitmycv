@@ -1,0 +1,222 @@
+{
+  "seoTitle": "Mots-clés manquants dans votre CV : outil gratuit",
+  "description": "Importez votre CV et collez une offre d'emploi pour voir quels mots-clés manquent à votre CV et combien de fois l'offre utilise chacun. Gratuit, lu dans votre navigateur.",
+  "keywords": [
+    "mots-clés manquants cv",
+    "mots-clés cv offre d'emploi",
+    "trouver mots-clés manquants cv",
+    "comparer cv et offre d'emploi",
+    "extraire mots-clés offre d'emploi",
+    "mots-clés offre d'emploi",
+    "analyse mots-clés cv",
+    "écart mots-clés cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Mots-clés manquants",
+  "h1": "Trouvez les mots-clés qui manquent à votre CV",
+  "lede": "Importez votre CV et collez une offre d'emploi. Vous obtenez les termes que l'offre demande et que votre CV ne mentionne jamais, classés selon le nombre de fois où l'offre cite chacun. Sans inscription, et rien ne quitte votre navigateur.",
+  "howTo": {
+    "name": "Comment trouver les mots-clés qui manquent à votre CV",
+    "description": "Comparez une offre d'emploi à votre CV et listez les termes de l'offre que votre CV ne mentionne jamais.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Copiez l'offre complète, missions et exigences comprises, et collez-la dans le premier champ. Un texte partiel donne une liste partielle."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Nous en extrayons le texte, vous n'avez rien à copier. Les compétences, les puces et le résumé sont tous lus."
+      },
+      {
+        "name": "Parcourez la liste des manques",
+        "text": "Chaque terme manquant indique combien de fois l'offre le cite. Commencez par le haut et ajoutez ceux que vous pouvez honnêtement prouver, dans une puce avec un résultat."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Comment trouver les mots-clés qui manquent à mon CV ?",
+      "a": "Collez l'offre et importez votre CV dans l'outil ci-dessus. Il repère les termes sur lesquels l'offre insiste, cherche chacun dans le texte de votre CV et liste ceux que votre CV ne mentionne jamais. Toute la comparaison tourne dans votre navigateur et prend quelques secondes."
+    },
+    {
+      "q": "Qu'est-ce qu'un écart de mots-clés dans un CV ?",
+      "a": "C'est un terme que l'employeur utilise et que votre CV n'utilise pas. Le plus souvent, c'est un problème de vocabulaire, pas d'expérience. Vous avez fait le travail, mais vous l'avez décrit avec d'autres mots que l'auteur de l'offre. Un recruteur qui cherche ses propres mots ne vous trouve donc jamais."
+    },
+    {
+      "q": "Que veut dire « Cité 4 fois » à côté d'un mot-clé ?",
+      "a": "C'est le nombre de fois où ce terme exact apparaît dans l'offre que vous avez collée. Rien n'est pondéré ni estimé. Un terme cité quatre fois revient dans le résumé, les missions et les exigences, ce qui signifie en général qu'il est vraiment indispensable."
+    },
+    {
+      "q": "Dois-je ajouter chaque mot-clé manquant à mon CV ?",
+      "a": "Non. N'ajoutez que ceux que vous pouvez honnêtement prouver, chacun dans une puce qui dit ce que vous avez fait et ce que cela a donné. Citer un outil que vous n'avez jamais utilisé déplace le refus du tri des CV vers l'entretien, ce qui est pire."
+    },
+    {
+      "q": "Quelle différence avec le vérificateur de mots-clés ATS gratuit ?",
+      "a": "Le vérificateur de mots-clés liste ce que l'offre demande. Cette page liste ce qui manque à votre CV. Le vérificateur n'a besoin que de l'offre et vous donne une liste classée de vocabulaire pour rédiger. Cette page a aussi besoin de votre CV et retire ce que vous couvrez déjà, pour ne garder que les manques."
+    },
+    {
+      "q": "Mon CV est-il envoyé ou stocké quelque part ?",
+      "a": "Le PDF est lu dans cet onglet. Le fichier n'est jamais envoyé à un serveur et rien n'est stocké. Fermez l'onglet et tout disparaît."
+    },
+    {
+      "q": "Pourquoi un terme est-il marqué manquant alors qu'il est dans mon CV ?",
+      "a": "En général à cause de l'orthographe ou de la forme. L'offre abrège peut-être ce que vous écrivez en toutes lettres, ou utilise un pluriel, un trait d'union ou un autre temps. Vérifiez la forme exacte dans votre CV et reprenez celle de l'offre quand c'est honnête. Écrire les deux formes une fois, par exemple « référencement naturel (SEO) », règle la plupart de ces cas."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Ce qui compte comme mot-clé manquant"
+    },
+    {
+      "p": "Un mot-clé manquant est un terme sur lequel l'offre insiste et qui n'apparaît nulle part dans le texte de votre CV. L'outil extrait de l'offre les mots seuls et les expressions de deux mots répétées, cherche chacun dans votre CV et vous montre le reste."
+    },
+    {
+      "p": "Le chiffre à côté de chaque terme est le simple décompte des mentions dans l'offre. C'est tout le classement. Un terme répété quatre fois dans le résumé, les missions et les exigences est vraiment indispensable. Un terme cité une fois est peut-être un simple atout, que vous pouvez laisser de côté sans perte."
+    },
+    {
+      "callout": {
+        "title": "Des manques, pas une note",
+        "body": "Cette page ne donne volontairement aucun score. Un pourcentage vous dit comment vous vous en sortez. Une liste de termes manquants vous dit quoi faire ensuite, et c'est la seule réponse utile quand il vous reste vingt minutes avant la clôture de la candidature."
+      }
+    },
+    {
+      "h2": "Extracteur de mots-clés, recherche des manques ou test complet ?"
+    },
+    {
+      "p": "Trois besoins proches, trois réponses différentes. Choisissez celui qui correspond à votre vraie question."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Cette page",
+          "Extracteur de mots-clés",
+          "Test CV ATS"
+        ],
+        "rows": [
+          [
+            "La question à laquelle il répond",
+            "Que manque-t-il à mon CV ?",
+            "Que demande cette offre ?",
+            "Quel est mon niveau de correspondance global ?"
+          ],
+          [
+            "A besoin de l'offre d'emploi",
+            "Oui",
+            "Oui",
+            "Oui"
+          ],
+          [
+            "A besoin de votre CV",
+            "Oui",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Donne un score de correspondance",
+            "Non",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Liste les termes manquants avec leur nombre de mentions",
+            "Oui",
+            "Non",
+            "Non"
+          ],
+          [
+            "Réécrit votre CV",
+            "Non",
+            "Non",
+            "Non"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Si vous n'avez pas encore écrit votre CV, commencez par l'[extracteur de mots-clés d'offre d'emploi](/free-ats-keyword-checker), qui classe ce que l'offre demande. Si vous voulez un seul chiffre à suivre d'une version à l'autre, utilisez le [test de CV ATS](/ats-resume-checker). Si vous avez déjà un CV et une offre précise sous les yeux, restez ici."
+    },
+    {
+      "h2": "Que faire de chaque mot-clé manquant"
+    },
+    {
+      "p": "Parcourez la liste à partir du terme le plus cité. Pour chacun, posez-vous les mêmes quatre questions."
+    },
+    {
+      "ol": [
+        "**Puis-je le prouver ?** Si vous avez fait ce travail, il a sa place dans votre CV. Sinon, passez au suivant. Un manque que vous ne pouvez pas combler honnêtement vous renseigne sur le poste, ce n'est pas une tâche.",
+        "**Est-ce que je le dis déjà avec d'autres mots ?** Si l'offre dit *gestion des parties prenantes* et que votre puce dit *tenir la direction informée*, vous décrivez le même travail avec des mots que personne ne recherche. Changez les mots, pas le travail.",
+        "**Est-ce un problème de sigle ?** Écrivez les deux formes une fois, par exemple « intégration continue (CI) », pour qu'une recherche littérale sur l'une ou l'autre vous trouve.",
+        "**Où le placer ?** Dans une puce, avec une action et un chiffre. Une liste de compétences est une affirmation. Une puce qui nomme l'outil et le résultat est une preuve, et c'est ce que veut la personne qui lit votre CV après le filtre."
+      ]
+    },
+    {
+      "p": "Puis importez votre CV mis à jour et relancez l'analyse. Deux ou trois passages suffisent en général à vider l'essentiel de la liste sans rien inventer. La [méthode complète d'adaptation](/blog/how-to-tailor-cv-to-job-description) (en anglais) suit le même processus avec un exemple avant et après."
+    },
+    {
+      "h2": "Pourquoi le nombre de mentions change l'ordre des corrections"
+    },
+    {
+      "p": "Une offre d'emploi n'est pas plate. La même exigence revient dans le résumé, puis dans les missions, puis dans les indispensables, alors que les éléments vraiment facultatifs apparaissent une fois dans une puce en bas de page. Compter les mentions rend cette hiérarchie visible sans lire l'offre trois fois."
+    },
+    {
+      "steps": [
+        {
+          "title": "Cité trois fois ou plus",
+          "body": "Traitez-le comme indispensable. Si vous pouvez le prouver, il a sa place dans votre résumé et dans au moins une puce de votre poste le plus récent."
+        },
+        {
+          "title": "Cité deux fois",
+          "body": "Il mérite une puce si vous avez la preuve. C'est là que se trouvent la plupart des gains rapides, car ces termes sont de vraies exigences faciles à manquer à la première lecture."
+        },
+        {
+          "title": "Cité une fois",
+          "body": "Facultatif. Ajoutez-le à votre ligne de compétences si c'est vrai, et ne restructurez rien pour lui."
+        }
+      ]
+    },
+    {
+      "h2": "Ce que cette analyse ne peut pas vous dire"
+    },
+    {
+      "p": "C'est une méthode fondée sur la fréquence et les expressions, pas un modèle de langage. Elle compare des chaînes de caractères. Elle ne peut pas vous dire que *responsable du compte de résultat* et *gestion du budget* veulent dire la même chose dans votre secteur, et elle ne repère pas une exigence que l'offre ne fait que sous-entendre. Jugez vous-même des synonymes."
+    },
+    {
+      "p": "Elle ne dit rien non plus de la mise en page. Si le texte de votre CV sort dans le désordre ou avec du contenu manquant, un vrai logiciel de recrutement (ATS) extraira le même désordre, et aucun travail sur les mots-clés n'y changera rien. Le [guide du CV ATS](/blog/ats-resume-guide) (en anglais) couvre les règles de mise en page qui sont à la base de tout cela."
+    },
+    {
+      "p": "Et elle ne réécrit rien. Combler un écart de mots-clés à la main prend vingt à quarante minutes par poste. C'est pour cela que la plupart des gens arrêtent d'adapter leur CV après une douzaine de candidatures. Si vous préférez éviter cela, l'[optimiseur de CV](/resume-optimizer) (en anglais) explique ce qu'une réécriture automatique change et ce qu'elle laisse en place."
+    },
+    {
+      "cta": {
+        "title": "Comblez les manques sans tout réécrire à la main",
+        "body": "Collez le lien de l'offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre, à partir de l'expérience que vous avez déjà.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Vérificateur de mots-clés ATS gratuit",
+      "href": "/free-ats-keyword-checker",
+      "body": "Vous n'avez que l'offre ? Obtenez la liste classée des termes sur lesquels elle insiste avant d'écrire."
+    },
+    {
+      "label": "Test CV ATS",
+      "href": "/ats-resume-checker",
+      "body": "Vous voulez un seul chiffre à suivre d'une version à l'autre ? Évaluez votre CV face à l'offre."
+    },
+    {
+      "label": "Adapter un CV depuis le lien d'une offre",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Collez l'URL de l'offre et obtenez un CV réécrit et une lettre de motivation en moins d'une minute."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

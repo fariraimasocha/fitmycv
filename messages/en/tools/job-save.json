@@ -1,0 +1,24 @@
+{
+  "label": "Job posting link",
+  "submit": "Save posting",
+  "busy": "Reading",
+  "hint": "Paste the link from LinkedIn, a company careers page or a job board. We read the page once and store nothing.",
+  "progress": "Reading the posting",
+  "errors": {
+    "badUrl": "Paste the full job link, starting with https://.",
+    "rateLimited": "You saved a lot of postings in a short time. Wait a minute and try again.",
+    "unreadable": "We couldn't read that posting. It may have closed, or the site may block us. Open it in your browser and use Print, then Save as PDF.",
+    "failed": "We couldn't open that posting. Try again, or open the page and save it from your browser."
+  },
+  "savePdf": "Save as PDF",
+  "copy": "Copy text",
+  "printHint": "In the print window, set the destination to Save as PDF.",
+  "savedFrom": "Saved from {url} on {date}",
+  "copied": "Posting copied",
+  "copyBlocked": "Copy is blocked in this browser. Select the text and copy it.",
+  "cta": {
+    "title": "Saved. Now tailor your CV to it.",
+    "body": "FitMyCV rewrites your own CV around this posting, using its words and your real experience.",
+    "label": "Tailor my CV"
+  }
+}

@@ -19,6 +19,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, CopyIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 
@@ -419,6 +420,8 @@ function dutiesToBullets(text) {
 
 // pure-helpers:end
 
+// The example and the placeholder stay English in every locale: the verb
+// lists above only read English duties.
 const EXAMPLE_DUTIES = `Responsible for managing the customer support inbox
 Handle refunds and billing questions from customers
 Maintain the help centre articles and FAQs
@@ -442,7 +445,11 @@ function SlottedText({ text }) {
   );
 }
 
+const FEATURES = ["perDuty", "slot", "number"];
+
 export default function DutiesToBullets() {
+  const t = useTranslations("tools.duties");
+  const locale = useLocale();
   const [duties, setDuties] = useState("");
   const [copied, setCopied] = useState(null);
   const resetTimer = useRef(null);
@@ -463,7 +470,7 @@ export default function DutiesToBullets() {
       resetTimer.current = setTimeout(() => setCopied(null), 2000);
     } catch {
       setCopied(null);
-      toast.error("Copy failed. Select the text and copy it yourself.");
+      toast.error(t("toastFailed"));
     }
   }
 
@@ -476,12 +483,17 @@ export default function DutiesToBullets() {
         }}
         className="flex flex-col gap-5"
       >
+        {locale !== "en" ? (
+          <p className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-3 text-sm leading-6 text-[var(--landing-ink)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
         <div className="flex flex-col gap-2">
           <label
             htmlFor="duties-text"
             className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
           >
-            Paste the duties from your job description
+            {t("label")}
           </label>
           <textarea
             id="duties-text"
@@ -492,14 +504,14 @@ export default function DutiesToBullets() {
             className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            One duty per line. Bullet points, numbered lists and semicolons work too. Up to {MAX_DUTIES} duties.
+            {t("hint", { max: MAX_DUTIES })}
           </p>
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Turn duties into bullets"
-            busyLabel="Rewriting your duties"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={tooShort}
           />
@@ -512,47 +524,45 @@ export default function DutiesToBullets() {
             disabled={running}
             className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
           >
-            Try an example
+            {t("example")}
           </button>
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {running
-              ? "Rewriting your duties"
-              : "Runs entirely in your browser. Nothing is uploaded or stored."}
+              ? t("busy")
+              : t("private")}
           </p>
         </div>
       </form>
 
-      {running ? <ToolProgress message="Rewriting your duties" lines={4} /> : null}
+      {running ? <ToolProgress message={t("busy")} lines={4} /> : null}
 
       {!running && bullets.length ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                {bullets.length === 1 ? "Your duty as a bullet" : `Your ${bullets.length} duties as bullets`}
+                {t("heading", { count: bullets.length })}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Each one opens with an action verb and marks where a number belongs.
-                The highlighted slots are yours to fill. This tool does not know your
-                numbers, so use figures you can defend in an interview.
+                {t("intro")}
               </p>
             </div>
             <button
               type="button"
               onClick={() =>
-                copy("all", bullets.map((b) => `• ${b.bullet}`).join("\n"), "All bullets copied")
+                copy("all", bullets.map((b) => `• ${b.bullet}`).join("\n"), t("toastAll"))
               }
               className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
               {copied === "all" ? (
                 <>
                   <CheckIcon size={13} weight="bold" aria-hidden="true" />
-                  Copied
+                  {t("copied")}
                 </>
               ) : (
                 <>
                   <CopyIcon size={13} weight="bold" aria-hidden="true" />
-                  Copy all
+                  {t("copyAll")}
                 </>
               )}
             </button>
@@ -571,7 +581,7 @@ export default function DutiesToBullets() {
                     </span>
                     <div>
                       <p className="text-xs leading-6 text-[var(--landing-ink-soft)]">
-                        Was: {item.original}
+                        {t("was", { duty: item.original })}
                       </p>
                       <p className="mt-1 text-sm leading-7 text-[var(--landing-ink)]">
                         <SlottedText text={item.bullet} />
@@ -580,24 +590,24 @@ export default function DutiesToBullets() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => copy(i, item.bullet, "Bullet copied")}
+                    onClick={() => copy(i, item.bullet, t("toastOne"))}
                     className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                    aria-label={`Copy bullet: ${item.bullet}`}
+                    aria-label={t("copyAria", { bullet: item.bullet })}
                   >
                     {copied === i ? (
                       <>
                         <CheckIcon size={13} weight="bold" aria-hidden="true" />
-                        Copied
+                        {t("copied")}
                       </>
                     ) : (
                       <>
                         <CopyIcon size={13} weight="bold" aria-hidden="true" />
-                        Copy
+                        {t("copy")}
                       </>
                     )}
                   </button>
                 </div>
-                <p className="ps-8 text-xs leading-6 text-[var(--landing-ink-soft)]">{item.note}</p>
+                <p className="ps-8 text-xs leading-6 text-[var(--landing-ink-soft)]">{t(`notes.${item.family}`)}</p>
               </li>
             ))}
           </ol>
@@ -605,18 +615,17 @@ export default function DutiesToBullets() {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                Applying for a new job with these?
+                {t("ctaTitle")}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Paste the job link and FitMyCV rewrites every bullet against that
-                posting, keeping your real experience and your real numbers.
+                {t("ctaBody")}
               </p>
             </div>
             <Link
-              href="/tailor-cv-from-job-link"
+              href={locale === "en" ? "/tailor-cv-from-job-link" : `/${locale}/tailor-cv-from-job-link`}
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              Tailor these to a new job
+              {t("ctaButton")}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
@@ -630,31 +639,20 @@ export default function DutiesToBullets() {
       {!running && !bullets.length ? (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            What you get back
+            {t("emptyHeading")}
           </p>
           <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-            {[
-              {
-                title: "One bullet per duty",
-                body: "Weak openers like 'Responsible for' removed, and a past tense action verb up front.",
-              },
-              {
-                title: "A slot for your number",
-                body: "Each bullet marks where a figure belongs, so it reads as a result.",
-              },
-              {
-                title: "Which number to find",
-                body: "A note under each bullet on what to count: people, hours, money or change.",
-              },
-            ].map(({ title, body }) => (
+            {FEATURES.map((key) => (
               <li
-                key={title}
+                key={key}
                 className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-4"
               >
                 <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-                  {title}
+                  {t(`features.${key}.title`)}
                 </p>
-                <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">{body}</p>
+                <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">
+                  {t(`features.${key}.body`)}
+                </p>
               </li>
             ))}
           </ul>

@@ -1,0 +1,67 @@
+{
+  "jobLabel": "Collez l'offre d'emploi",
+  "jobPlaceholder": "Collez ici le texte complet de l'offre…",
+  "resumeLabel": "Votre CV",
+  "englishOnly": "Cet outil lit des offres et des CV rédigés en anglais, et il écrit les titres en anglais.",
+  "submit": "Générer les titres",
+  "busy": "Rédaction de vos titres",
+  "statusReadingCv": "Lecture de votre CV",
+  "statusMatching": "Comparaison de votre CV avec l'offre",
+  "statusNeedInput": "Ajoutez l'offre d'emploi et votre CV pour générer.",
+  "statusPrivate": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "resultHeading": "{count, plural, one {# titre} other {# titres}} pour <hl>{title}</hl>",
+  "titleFromPosting": "L'intitulé vient de l'offre. Chaque compétence ci-dessous figure à la fois dans votre CV et dans l'offre, donc rien ici n'affirme ce que votre CV ne mentionne pas.",
+  "titleFromResume": "Nous n'avons pas trouvé d'intitulé de poste dans l'offre, nous utilisons donc celui de votre CV. Chaque compétence ci-dessous figure dans les deux documents.",
+  "titleGuess": "L'intitulé est une estimation tirée du texte. Corrigez-le s'il est faux.",
+  "claims": "Affirme : {list}. Gardez seulement ce que votre CV peut prouver.",
+  "copy": "Copier",
+  "copied": "Copié",
+  "copyAria": "Copier le titre : {text}",
+  "toastCopied": "Titre copié",
+  "toastCopyFailed": "La copie a échoué. Sélectionnez le titre et copiez-le vous-même.",
+  "shapes": {
+    "titleSkills": {
+      "shape": "Intitulé et compétences clés",
+      "hint": "Le classique de LinkedIn et des ATS. Se lit bien dans un résultat de recherche."
+    },
+    "seniorityDomain": {
+      "shape": "Niveau et secteur",
+      "hint": "Dit ce que vous faites et où vous l'avez fait."
+    },
+    "years": {
+      "shape": "Années et point fort",
+      "hintStated": "Reprend le nombre d'années indiqué dans votre CV.",
+      "hintSpan": "Reprend l'écart entre la date la plus ancienne et la plus récente de votre CV. Changez-le si le nombre est faux."
+    },
+    "twoStrengths": {
+      "shape": "Deux points forts",
+      "hint": "Nous n'avons pas trouvé vos années d'expérience. Ajoutez le nombre vous-même si vous le voulez dans le titre."
+    },
+    "focus": {
+      "shape": "Ce sur quoi vous travaillez",
+      "hint": "Commence par le travail plutôt que par l'intitulé du poste."
+    },
+    "plain": {
+      "shape": "En-tête de CV sobre",
+      "hint": "Sans barres verticales, il se place proprement sous votre nom en haut du CV."
+    }
+  },
+  "noTitleHeading": "Nous n'avons pas trouvé d'intitulé de poste",
+  "noTitleBody": "Aucun des deux documents ne nomme un poste que nous reconnaissons, un titre serait donc une supposition. Collez l'offre complète, avec l'intitulé en haut, ou ajoutez votre poste actuel à votre CV, puis relancez.",
+  "matchedHeading": "Trouvé dans votre CV",
+  "noOverlap": "Votre CV et cette offre n'ont presque aucun vocabulaire en commun. Mieux vaut régler ça avant le titre. Commencez par le <link>test CV ATS</link>.",
+  "missingHeading": "Dans l'offre, absent de votre CV",
+  "missingBody": "Aucun de ces termes ne peut encore aller dans un titre. Ajoutez d'abord ceux que vous pouvez honnêtement prouver dans une puce, puis relancez. Le <link>test CV ATS</link> évalue tout le CV de la même façon.",
+  "ctaTitle": "Vous voulez que le reste du CV corresponde aussi ?",
+  "ctaBody": "Collez le lien de l'offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre, en gardant votre expérience réelle.",
+  "ctaLabel": "Adapter mon CV",
+  "examplesHeading": "Exemples de titres de CV",
+  "examplesBody": "Vos cinq titres seront construits à partir de l'offre collée et des compétences que votre CV prouve déjà. Voici la forme qu'ils prennent.",
+  "exampleRoles": {
+    "software": "Développement logiciel",
+    "marketing": "Marketing",
+    "finance": "Finance",
+    "nursing": "Soins infirmiers",
+    "design": "Design produit"
+  }
+}

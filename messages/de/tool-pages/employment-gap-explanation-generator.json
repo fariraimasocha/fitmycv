@@ -1,0 +1,68 @@
+{
+  "seoTitle": "Lücke im Lebenslauf erklären: Sätze auf Englisch",
+  "description": "Erklären Sie eine Lücke im Lebenslauf in einer ehrlichen Zeile. Sie erhalten englische Sätze für Lebenslauf, Anschreiben und Vorstellungsgespräch. Kostenlos, ohne Anmeldung.",
+  "keywords": [
+    "lücke im lebenslauf erklären",
+    "lücke im lebenslauf englisch",
+    "career break lebenslauf",
+    "auszeit im lebenslauf",
+    "employment gap explanation",
+    "lücke im lebenslauf anschreiben",
+    "lücke im lebenslauf vorstellungsgespräch",
+    "career gap explanation examples"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lücke im Lebenslauf erklären",
+  "h1": "Lücke im Lebenslauf erklären, auf Englisch",
+  "lede": "Eine Lücke schadet nur, wenn sie versteckt wirkt. Wählen Sie, warum Sie weg waren und wann, und Sie erhalten auf Englisch eine ehrliche Zeile für den Lebenslauf, eine für das Anschreiben und eine kurze Antwort für das Vorstellungsgespräch.",
+  "howTo": {
+    "name": "So erklären Sie eine Lücke im Lebenslauf",
+    "description": "Schreiben Sie eine kurze, ehrliche Erklärung für eine berufliche Auszeit.",
+    "steps": [
+      { "name": "Grund wählen", "text": "Wählen Sie den, der stimmt. Details schulden Sie niemandem." },
+      { "name": "Daten eintragen", "text": "Monat und Jahr für Beginn und Ende." },
+      { "name": "Sätze kopieren", "text": "Setzen Sie die Lebenslauf-Zeile in Ihren Werdegang, den Satz fürs Anschreiben einmal ein, und üben Sie die Antwort laut." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Schreibt das Tool die Sätze auf Deutsch?",
+      "a": "Nein. Die Sätze kommen aus festen englischen Vorlagen und sind für einen Lebenslauf und ein Anschreiben auf Englisch gedacht. Was Sie ins optionale Feld schreiben, wird unverändert eingefügt, schreiben Sie es also auf Englisch."
+    },
+    {
+      "q": "Sollte ich eine Lücke im Lebenslauf erklären?",
+      "a": "Ja, wenn sie länger als etwa drei Monate ist. Eine Zeile im Werdegang verhindert, dass ein Recruiter rätselt. Kürzere Lücken brauchen selten etwas, vor allem wenn Ihre Daten nur Jahre zeigen."
+    },
+    {
+      "q": "Wie viel sollte ich über eine gesundheitliche Lücke sagen?",
+      "a": "Fast nichts. „Health and recovery, now resolved“ reicht. Sie müssen keine Erkrankung nennen, und das Wichtige ist, dass sie Ihre Arbeit nicht beeinträchtigt."
+    },
+    {
+      "q": "Was, wenn mir gekündigt wurde?",
+      "a": "Sagen Sie es offen. Umstrukturierungen sind häufig, und Recruiter wissen das. Hören wollen sie, dass Sie Ihre nächste Stelle bewusst auswählen."
+    },
+    {
+      "q": "Sollte ich Kurse oder Ehrenamt aus der Zeit erwähnen?",
+      "a": "Ja. Tragen Sie es im optionalen Feld ein. So wird aus der Lücke keine verlorene, sondern genutzte Zeit."
+    },
+    {
+      "q": "Wird etwas gespeichert, das ich eingebe?",
+      "a": "Nein. Der Text wird in Ihrem Browser aus Vorlagen erstellt. Nichts wird gesendet."
+    }
+  ],
+  "blocks": [
+    { "h2": "Die Regel: kurz, wahr und auf jetzt bezogen" },
+    {
+      "p": "Recruiter fragen nicht, warum Sie gegangen sind. Sie fragen, ob Sie bereit sind zu arbeiten. Jede Zeile, die dieses Tool schreibt, endet genau dort."
+    },
+    {
+      "p": "Beispiele nach Situation finden Sie in [So erklären Sie eine Lücke im Lebenslauf](/blog/how-to-explain-employment-gap-on-cv) (auf Englisch)."
+    }
+  ],
+  "related": [
+    { "label": "Lebenslauf-Format-Check", "href": "/cv-format-checker", "body": "Prüfen Sie Ihren Lebenslauf für das Land, in dem Sie sich bewerben." },
+    { "label": "Lebenslauf mit Stelle abgleichen", "href": "/resume-job-match-checker", "body": "Bewerten Sie Ihren Lebenslauf anhand einer Stellenbeschreibung." },
+    { "label": "Profil-Generator", "href": "/professional-summary-generator", "body": "Drei Kurzprofile für den Lebenslauf, aus einer Anzeige und Ihrem Lebenslauf." }
+  ],
+  "ui": { "home": "Startseite", "faqHeading": "Häufige Fragen", "related": "Wie es weitergeht", "open": "Öffnen" }
+}

@@ -1,0 +1,45 @@
+{
+  "englishOnly": "Esta herramienta funciona con texto en inglés. Pega tus funciones en inglés y escribe los logros en inglés.",
+  "label": "Pega las funciones de tu descripción de puesto",
+  "hint": "Una función por línea. También sirven viñetas, listas numeradas y punto y coma. Hasta {max} funciones.",
+  "submit": "Convertir funciones en logros",
+  "busy": "Reescribiendo tus funciones",
+  "example": "Probar un ejemplo",
+  "private": "Funciona por completo en tu navegador. No se sube ni se guarda nada.",
+  "heading": "{count, plural, one {Tu función como logro} other {Tus # funciones como logros}}",
+  "intro": "Cada uno empieza con un verbo de acción y marca dónde va un número. Los huecos resaltados son tuyos. Esta herramienta no conoce tus cifras, así que usa números que puedas defender en una entrevista.",
+  "copy": "Copiar",
+  "copyAll": "Copiar todo",
+  "copied": "Copiado",
+  "copyAria": "Copiar logro: {bullet}",
+  "toastAll": "Todos los logros copiados",
+  "toastOne": "Logro copiado",
+  "toastFailed": "No se pudo copiar. Selecciona el texto y cópialo tú.",
+  "was": "Antes: {duty}",
+  "notes": {
+    "ownership": "Añade el tamaño: personas en el equipo, presupuesto o cuántos proyectos llevabas a la vez.",
+    "support": "Añade cuántos por semana, en cuánto tiempo respondías o una puntuación de satisfacción.",
+    "delivery": "Añade cuánto tardó, cuántas personas lo usan o qué cambió después del lanzamiento.",
+    "process": "Añade horas ahorradas, errores eliminados, costes reducidos o cuántos registros abarcó.",
+    "analysis": "Añade cuántos datos, qué decisión apoyó o qué cambio produjo.",
+    "general": "Añade cuántos, con qué frecuencia, cuánto o cuánto más rápido."
+  },
+  "ctaTitle": "¿Vas a postularte a otro empleo con ellos?",
+  "ctaBody": "Pega el enlace de la oferta y FitMyCV reescribe cada logro para esa oferta, manteniendo tu experiencia real y tus números reales.",
+  "ctaButton": "Adaptarlos a una nueva oferta",
+  "emptyHeading": "Lo que recibes",
+  "features": {
+    "perDuty": {
+      "title": "Un logro por función",
+      "body": "Se quitan aperturas débiles como 'Responsible for' y se pone delante un verbo de acción en pasado."
+    },
+    "slot": {
+      "title": "Un hueco para tu número",
+      "body": "Cada logro marca dónde va una cifra, para que se lea como un resultado."
+    },
+    "number": {
+      "title": "Qué número buscar",
+      "body": "Una nota bajo cada logro sobre qué contar: personas, horas, dinero o cambio."
+    }
+  }
+}

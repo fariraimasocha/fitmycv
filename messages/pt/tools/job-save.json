@@ -1,0 +1,24 @@
+{
+  "label": "Link da vaga",
+  "submit": "Salvar vaga",
+  "busy": "Lendo",
+  "hint": "Cole o link do LinkedIn, da página de carreiras de uma empresa ou de um site de vagas. Lemos a página uma vez e não armazenamos nada.",
+  "progress": "Lendo a vaga",
+  "errors": {
+    "badUrl": "Cole o link completo da vaga, começando com https://.",
+    "rateLimited": "Você salvou muitas vagas em pouco tempo. Espere um minuto e tente de novo.",
+    "unreadable": "Não conseguimos ler esta vaga. Ela pode ter sido encerrada, ou o site pode nos bloquear. Abra a vaga no navegador, use Imprimir e depois Salvar como PDF.",
+    "failed": "Não conseguimos abrir esta vaga. Tente de novo, ou abra a página e salve pelo seu navegador."
+  },
+  "savePdf": "Salvar como PDF",
+  "copy": "Copiar texto",
+  "printHint": "Na janela de impressão, escolha Salvar como PDF como destino.",
+  "savedFrom": "Salvo de {url} em {date}",
+  "copied": "Vaga copiada",
+  "copyBlocked": "A cópia está bloqueada neste navegador. Selecione o texto e copie.",
+  "cta": {
+    "title": "Salvo. Agora adapte seu currículo a ela.",
+    "body": "O FitMyCV reescreve seu próprio currículo em torno desta vaga, com as palavras dela e a sua experiência real.",
+    "label": "Adaptar meu currículo"
+  }
+}

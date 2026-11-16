@@ -1,0 +1,216 @@
+{
+  "seoTitle": "Gerador de título de currículo grátis, sem login",
+  "description": "Envie seu currículo e cole a descrição da vaga. Receba cinco títulos montados só com habilidades que seu currículo mostra. Grátis, sem login.",
+  "keywords": [
+    "título de currículo",
+    "gerador de título de currículo",
+    "título para currículo",
+    "exemplos de título de currículo",
+    "título profissional currículo",
+    "cargo no currículo",
+    "headline currículo",
+    "título currículo ats",
+    "como fazer título de currículo",
+    "título de currículo em inglês"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Gerador de título de currículo",
+  "h1": "Gerador de título de currículo",
+  "lede": "Envie seu currículo e cole a descrição da vaga. Receba cinco títulos em cinco formatos diferentes, montados só com habilidades que seu currículo consegue comprovar, e com o cargo tirado da própria vaga.",
+  "howTo": {
+    "name": "Como escrever um título de currículo para uma vaga específica",
+    "description": "Monte um título de currículo a partir da vaga desejada e da sua própria experiência.",
+    "steps": [
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "A ferramenta lê o cargo e os termos em que a vaga insiste. Cole o anúncio inteiro, incluindo a parte de requisitos."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Solte o PDF. Nós extraímos o texto para você não precisar copiar. Uma habilidade que não está no seu currículo nunca aparece em um título."
+      },
+      {
+        "name": "Escolha um formato e edite",
+        "text": "Você recebe cinco títulos em cinco formatos diferentes. Copie o que servir e corte tudo sobre o que você não gostaria de ser perguntado em uma entrevista."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "O que é um título de currículo?",
+      "a": "O título de currículo é a linha logo abaixo do seu nome, no topo do currículo. Ele diz o cargo para o qual você está se candidatando e duas ou três coisas que te tornam confiável para ele. Não é um resumo, que tem duas ou três frases, nem um objetivo, que diz o que você quer em vez do que você oferece."
+    },
+    {
+      "q": "Qual a diferença entre título e cargo no currículo?",
+      "a": "Na prática, as pessoas usam as duas palavras para a mesma linha, e esta ferramenta trata as duas do mesmo jeito. A única distinção útil: o cargo costuma ser só a função (\"Senior Backend Engineer\"), enquanto o título acrescenta as provas (\"Senior Backend Engineer, Go e Kubernetes, infraestrutura de pagamentos\"). Se um formulário pede o cargo, informe a função. Se você está escrevendo o topo do currículo, use o título."
+    },
+    {
+      "q": "O título do currículo é o mesmo que o título do LinkedIn?",
+      "a": "Eles têm funções diferentes. O título do LinkedIn é uma linha para todo recrutador que te encontra, então fica genérico. O título do currículo está em um documento que você envia para um empregador, então deve citar aquela vaga específica. Reaproveitar o título do LinkedIn no currículo é o jeito mais comum de desperdiçar essa linha."
+    },
+    {
+      "q": "Por que este gerador pede a descrição da vaga?",
+      "a": "Porque um título que não cita a vaga para a qual você se candidata faz só metade do trabalho. A vaga mostra à ferramenta o cargo exato que o empregador usa e os termos em que ele insiste. Um gerador de título genérico não tem nenhum dos dois, então chuta."
+    },
+    {
+      "q": "Ele vai afirmar habilidades que eu não tenho?",
+      "a": "Não. Cada habilidade de um título gerado precisa aparecer tanto na vaga quanto no texto do seu currículo. A ferramenta mostra a divisão: o que combinou e o que a vaga pede sem que seu currículo mencione. A segunda lista é uma tarefa a fazer, não material para o título."
+    },
+    {
+      "q": "A ferramenta funciona com currículo e vaga em português?",
+      "a": "Não muito bem. Ela encontra cargos e habilidades com listas de palavras em inglês e escreve os títulos em inglês. Foi feita para candidaturas em inglês. Para um currículo em português, use os cinco formatos descritos abaixo e escreva o título você mesmo."
+    },
+    {
+      "q": "Qual deve ser o tamanho de um título de currículo?",
+      "a": "Uma linha que caiba no topo da página, cerca de 60 a 90 caracteres. Se ele quebrar em uma segunda linha no seu currículo, corte o item mais fraco. Três habilidades é o limite prático antes que a linha deixe de ser lida de relance."
+    },
+    {
+      "q": "Os sistemas ATS leem o título?",
+      "a": "Eles leem como texto, igual a qualquer outra linha, e ele fica bem no topo, onde o recrutador olha primeiro. Deixe-o como texto simples no corpo do documento, e não dentro de um cabeçalho, caixa de texto ou imagem, porque são os lugares que os leitores de currículo costumam ignorar."
+    }
+  ],
+  "blocks": [
+    { "h2": "A linha que a maioria das pessoas desperdiça" },
+    {
+      "p": "O topo do currículo é a única parte que todo leitor vê. A maioria das pessoas coloca ali o cargo do último emprego ou, pior, a palavra \"Currículo\". **Um título deve dizer ao empregador para qual das vagas dele você está se candidatando e por que você é confiável para ela**, em uma linha, antes de alguém rolar a página."
+    },
+    {
+      "p": "É por isso que este gerador pede a vaga além do seu currículo. O cargo vem do anúncio, nas palavras do empregador. As habilidades vêm da interseção entre o que ele pediu e o que você consegue comprovar."
+    },
+    { "h2": "Cinco formatos e quando usar cada um" },
+    {
+      "steps": [
+        {
+          "title": "Cargo e três habilidades",
+          "body": "\"Senior Backend Engineer | Go, Kubernetes, Payments\". O padrão. Fácil de ler de relance, rico em palavras-chave, funciona em quase todo currículo."
+        },
+        {
+          "title": "Senioridade, cargo e área",
+          "body": "Use quando o setor importa tanto quanto a função. Saúde, fintech, defesa, educação e setor público leem a área primeiro."
+        },
+        {
+          "title": "Cargo, anos e um ponto forte",
+          "body": "Use quando sua experiência é o que você tem de mais forte, e só quando os anos realmente estão no seu currículo."
+        },
+        {
+          "title": "Foco no resultado",
+          "body": "Começa pelo que você entrega em vez de como você se chama. Útil para quem está mudando de carreira e cujo cargo antigo atrapalha."
+        },
+        {
+          "title": "Simples, sem barras",
+          "body": "Uma frase limpa para um cabeçalho de currículo em que a linha fica acima dos seus contatos e as barras poluiriam."
+        }
+      ]
+    },
+    { "h2": "Exemplos de título de currículo por profissão" },
+    {
+      "p": "Formatos reais, não enchimento. Repare que cada um cita um cargo e depois o justifica com algo específico."
+    },
+    {
+      "table": {
+        "head": ["Profissão", "Título"],
+        "rows": [
+          ["Engenheiro de software", "Engenheiro Backend Sênior | Go, Kubernetes, Infraestrutura de Pagamentos"],
+          ["Recém-formado em engenharia", "Desenvolvedor Júnior | Python e React | 3 Projetos em Equipe Entregues"],
+          ["Gerente de marketing", "Gerente de Marketing Digital | Mídia Paga, E-mail Marketing, HubSpot"],
+          ["Contador", "Analista de Controladoria, Fechamento Mensal e Projeção de Fluxo de Caixa"],
+          ["Enfermeiro", "Enfermeiro | Mais de 8 Anos | Clínica Médica e Triagem"],
+          ["Product designer", "Product Designer com Foco em Design Systems e Acessibilidade"],
+          ["Gerente de projetos", "Gerente de Projetos Certificado PMP | Construção Civil | Orçamentos de 20 Milhões"],
+          ["Mudança de carreira", "Analista de Dados | Dez Anos em Operações de Varejo | SQL e Power BI"],
+          ["Atendimento ao cliente", "Especialista em Suporte ao Cliente | Zendesk | Onboarding e Retenção em SaaS"],
+          ["Professor", "Professor de Matemática do Ensino Médio | ENEM e Vestibular | Reforço Escolar"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Use o cargo do empregador, não o seu antigo",
+        "body": "Se a vaga diz Growth Marketer e seu último cargo era Analista de Marketing, comece com Growth Marketer. Você não está mentindo sobre sua trajetória, que a seção de experiência mostra com clareza. Você está dizendo ao leitor para qual vaga é esta candidatura."
+      }
+    },
+    { "h2": "Exemplos de cargo para currículo" },
+    {
+      "p": "Quando um formulário ou modelo de currículo só tem espaço para o cargo, informe a função nas palavras do empregador e nada mais. De duas a quatro palavras, iguais às da vaga."
+    },
+    {
+      "table": {
+        "head": ["Se a vaga diz", "Seu cargo no currículo"],
+        "rows": [
+          ["Engenheiro de Software Sênior, Pagamentos", "Engenheiro de Software Sênior"],
+          ["Gerente de Growth Marketing", "Gerente de Growth Marketing"],
+          ["Enfermeiro, Pronto-Socorro", "Enfermeiro"],
+          ["Analista de Dados Júnior (Recém-formado)", "Analista de Dados Júnior"],
+          ["Customer Success Manager, SaaS", "Customer Success Manager"],
+          ["Analista de Controladoria", "Analista de Controladoria"]
+        ]
+      }
+    },
+    {
+      "p": "Deixe os complementos depois da vírgula para o título, onde você consegue comprová-los. Um cargo que promete \"Pagamentos\" em um currículo sem experiência com pagamentos atrai a primeira pergunta errada na entrevista."
+    },
+    { "h2": "Título, cargo, resumo ou objetivo" },
+    {
+      "table": {
+        "head": ["", "Tamanho", "O que diz", "Quando usar"],
+        "rows": [
+          ["Título", "Uma linha", "O cargo mais duas ou três provas", "Quase sempre. É a primeira linha padrão de um currículo."],
+          ["Cargo", "Duas a quatro palavras", "Só a função", "Um formulário pede o cargo, ou o layout do seu currículo não tem espaço."],
+          ["Resumo", "Duas a três frases", "Escopo, especialidade e um resultado de destaque", "Você é sênior, ou está mudando de área e a mudança precisa de explicação."],
+          ["Objetivo", "Uma a duas frases", "O que você procura", "Raramente. Usa o espaço mais nobre para falar de você em vez do empregador."]
+        ]
+      }
+    },
+    {
+      "p": "Um título e um resumo podem ficar juntos, nessa ordem. Um título e um objetivo disputam a mesma função, e o objetivo perde."
+    },
+    { "h2": "Cinco jeitos de errar no título" },
+    {
+      "ol": [
+        "**Ele diz \"Currículo\" ou repete seu nome.** O arquivo já diz isso. Use a linha para algo que o leitor ainda não tem.",
+        "**É uma lista de adjetivos.** \"Esforçado, detalhista, trabalha em equipe\" não pode ser verificado e todo candidato escreve isso. Cite uma habilidade.",
+        "**É o seu título do LinkedIn.** Escrito para todo mundo, não cita nenhuma vaga. Em um currículo enviado para um único empregador, isso é um erro.",
+        "**Ele cita uma ferramenta que você usou uma vez.** O título é a primeira coisa que o entrevistador investiga. Coloque ali só o que você quer que perguntem.",
+        "**Ele fica no cabeçalho do documento.** Alguns leitores de currículo ignoram cabeçalhos e caixas de texto por completo. Mantenha a linha no corpo do documento."
+      ]
+    },
+    { "h2": "O lugar do título em uma correção maior" },
+    {
+      "p": "O título é a melhoria mais barata de um currículo, e a menor. Ele muda os dois primeiros segundos. Não muda o que o recrutador encontra quando busca no sistema de recrutamento, nem se seus tópicos trazem provas."
+    },
+    {
+      "p": "Com a primeira linha certa, confira a diferença de vocabulário com [palavras-chave que faltam no currículo](/missing-resume-keywords) e depois desça pela página com o [reescritor de tópicos do currículo](/resume-bullet-rewriter). Se preferir as três coisas feitas para uma mesma vaga, isso é [adaptar a partir do link da vaga](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "Título certo, mas o resto da página ainda genérico?",
+        "body": "Cole o link da vaga e o FitMyCV reescreve o currículo inteiro para essa vaga, incluindo o título, e escreve a carta de apresentação correspondente.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Reescritor de tópicos do currículo",
+      "href": "/resume-bullet-rewriter",
+      "body": "Transforme uma tarefa em uma conquista, uma linha por vez."
+    },
+    {
+      "label": "Palavras-chave que faltam no currículo",
+      "href": "/missing-resume-keywords",
+      "body": "Veja quais termos da vaga seu currículo nunca menciona."
+    },
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Avalie seu currículo em relação a uma vaga e veja os termos que faltam."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

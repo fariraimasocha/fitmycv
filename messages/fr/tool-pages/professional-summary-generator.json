@@ -1,0 +1,166 @@
+{
+  "seoTitle": "Professional summary : générateur pour votre CV en anglais",
+  "description": "Importez votre CV en anglais et collez une offre en anglais. Obtenez trois professional summaries construits à partir de vos vraies compétences et de vos vrais résultats. Gratuit, sans compte.",
+  "keywords": [
+    "professional summary cv anglais",
+    "résumé professionnel cv anglais",
+    "accroche cv anglais",
+    "profil cv anglais exemple",
+    "cv en anglais summary",
+    "générateur professional summary",
+    "exemple professional summary",
+    "résumé de profil cv",
+    "accroche cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Générateur de professional summary",
+  "h1": "Générateur de professional summary pour votre CV en anglais",
+  "lede": "Importez votre CV en anglais et collez l'offre en anglais. Vous obtenez trois résumés de profil, en anglais, qui reprennent l'intitulé du poste de l'offre, n'utilisent que des compétences présentes dans votre CV et mettent en avant un vrai résultat tiré de votre CV.",
+  "howTo": {
+    "name": "Comment écrire un professional summary pour une offre précise",
+    "description": "Construisez le résumé de profil de votre CV en anglais à partir de l'offre visée et de votre propre expérience.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "L'outil lit l'intitulé du poste et les termes que l'offre répète. Collez l'annonce complète en anglais, exigences comprises."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF de votre CV en anglais. Le texte est lu dans votre navigateur. Une compétence absente de votre CV n'apparaît jamais dans un résumé."
+      },
+      {
+        "name": "Choisissez-en un et faites-le vôtre",
+        "text": "Trois résumés reviennent, sous trois formes. Copiez celui qui convient, vérifiez chaque chiffre et retirez tout ce sur quoi vous ne voudriez pas être interrogé."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Qu'est-ce qu'un professional summary sur un CV ?",
+      "a": "Ce sont les deux à quatre lignes en haut du CV, sous votre nom et votre titre. Elles disent quel poste vous visez, votre niveau, votre domaine, et un résultat qui prouve que vous savez faire le travail. Le recruteur les lit en premier, donc elles décident s'il lit la suite. En français, on parle souvent d'accroche ou de profil."
+    },
+    {
+      "q": "L'outil fonctionne-t-il avec un CV et une offre en français ?",
+      "a": "Non. Il lit du texte en anglais et écrit les résumés en anglais. Il sert donc quand vous postulez avec un CV en anglais. Si votre CV est en français, la formule expliquée plus bas s'applique telle quelle : écrivez votre accroche vous-même en suivant les trois étapes."
+    },
+    {
+      "q": "Comment l'outil écrit-il le résumé ?",
+      "a": "Il remplit une formule simple : l'intitulé du poste tiré de l'offre, vos années et votre domaine tirés de votre CV, les compétences communes aux deux documents, et une ligne de votre CV qui contient un chiffre. Il n'invente rien. Si votre CV n'a aucune ligne avec un chiffre, le résumé affiche un crochet à l'endroit où votre résultat doit aller."
+    },
+    {
+      "q": "Professional summary et resume summary, c'est la même chose ?",
+      "a": "Oui. Professional summary, resume summary, profile et personal statement désignent le même bloc en haut de la page. Le conseil est le même, quel que soit le nom."
+    },
+    {
+      "q": "Quelle longueur pour un professional summary ?",
+      "a": "Deux à quatre lignes, soit environ 30 à 60 mots. Si le vôtre est plus long, les détails en trop vont dans la partie expérience, à côté du poste d'où ils viennent."
+    },
+    {
+      "q": "Faut-il changer de résumé pour chaque offre ?",
+      "a": "Pour les postes que vous voulez vraiment, oui. C'est la partie du CV la plus rapide à adapter, et la première lue. Reprenez l'intitulé du poste de l'offre et le résultat qui correspond le mieux à ce qu'elle demande. C'est pour cela que l'outil demande l'offre."
+    },
+    {
+      "q": "Résumé ou objectif : lequel choisir ?",
+      "a": "Un résumé, presque toujours. Un objectif dit ce que vous voulez. Un résumé dit ce que vous apportez et le prouve, et c'est ce que le lecteur cherche. Même un premier CV gagne à avoir un résumé construit autour d'un projet ou d'une formation."
+    },
+    {
+      "q": "Mon CV est-il envoyé quelque part ?",
+      "a": "Non. Le PDF est lu dans l'onglet de votre navigateur, et rien n'est stocké ni envoyé à un serveur. Fermez l'onglet et tout disparaît."
+    }
+  ],
+  "blocks": [
+    { "h2": "La formule que suit tout bon résumé" },
+    {
+      "p": "Un bon résumé répond à trois questions, dans l'ordre : qui vous êtes professionnellement, ce que vous visez et quelle est votre preuve. **Titre et niveau, puis domaine et années, puis un résultat chiffré.** C'est toute la structure, et c'est exactement ce que l'outil remplit."
+    },
+    {
+      "ol": [
+        "**Titre et niveau.** Le poste que vous visez, avec les mots de l'employeur. Senior Data Analyst, pas « professionnel expérimenté ».",
+        "**Domaine et années.** Votre secteur et depuis combien de temps vous y travaillez, pour que le lecteur vous situe en une seconde.",
+        "**Un résultat chiffré.** Un vrai résultat tiré de votre CV : un pourcentage, un nombre, un budget, du temps gagné. C'est la ligne que la plupart des résumés oublient."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Pourquoi le résultat doit venir de votre CV",
+        "body": "Le résumé est la première chose sur laquelle un recruteur vous interroge. Si un chiffre qu'il contient n'apparaît nulle part ailleurs dans votre CV, il semble inventé. L'outil n'utilise que des lignes de résultat trouvées dans votre propre CV, et signale le manque quand il n'y en a pas."
+      }
+    },
+    { "h2": "Exemples de résumés selon l'étape de carrière" },
+    {
+      "table": {
+        "head": ["Étape", "Résumé"],
+        "rows": [
+          ["Jeune diplômé", "Diplômé en statistiques visant un poste d'analyste de données junior. A mené un projet de fin d'études analysant cinq ans de données de transport urbain en Python et SQL."],
+          ["Début de carrière", "Spécialiste du support client avec 3 ans d'expérience dans le SaaS. Maîtrise de Zendesk, de l'onboarding et des renouvellements. A réduit le délai de première réponse de 9 heures à 2 sur une file de 400 tickets par semaine."],
+          ["Confirmé", "Responsable marketing digital avec plus de 6 ans dans le SaaS B2B. Maîtrise de la publicité sur les réseaux sociaux, de l'emailing et de HubSpot. A augmenté les leads qualifiés de 40 % en un an à budget constant."],
+          ["Senior", "Chef de projet senior avec 9 ans dans la construction commerciale. A livré les trois derniers projets dans le budget ou en dessous, et réduit les retards de livraison de 3 semaines à 4 jours."],
+          ["Reconversion", "Spécialiste de la formation après 6 ans d'enseignement au lycée. A conçu des formations pour 200 apprenants et fait progresser le taux de réussite aux évaluations de 18 %."],
+          ["Infirmier", "Infirmier diplômé d'État avec 8 ans en médecine aiguë. Maîtrise du triage, des perfusions et de la préparation des sorties. A encadré 12 infirmiers nouvellement diplômés dans un service de 28 lits."]
+        ]
+      }
+    },
+    {
+      "p": "D'autres exemples détaillés, avec des versions avant et après, se trouvent dans le guide [CV professional summary examples](/blog/cv-professional-summary-examples) (en anglais)."
+    },
+    { "h2": "Résumé, titre ou objectif" },
+    {
+      "table": {
+        "head": ["", "Longueur", "Ce qu'il dit", "Quand l'utiliser"],
+        "rows": [
+          ["Titre", "Une ligne", "Le poste et deux ou trois preuves", "Presque toujours. Il se place sous votre nom, au-dessus du résumé."],
+          ["Résumé", "Deux à quatre lignes", "Niveau, domaine et un résultat", "Presque toujours. C'est le premier bloc que lit un recruteur."],
+          ["Objectif", "Une à deux phrases", "Ce que vous cherchez", "Rarement. Il parle de vous plutôt que de l'employeur."]
+        ]
+      }
+    },
+    {
+      "p": "Le titre et le résumé fonctionnent ensemble, dans cet ordre. Si la ligne au-dessus de votre résumé reprend encore votre ancien poste, le [générateur de titre de CV](/resume-headline-generator) en construit un à partir de la même offre."
+    },
+    { "h2": "Cinq erreurs fréquentes dans un résumé" },
+    {
+      "ol": [
+        "**C'est une liste d'adjectifs.** Dynamique, rigoureux et orienté résultats conviennent à tous les candidats, donc ils ne disent rien au lecteur. Citez plutôt une compétence et un résultat.",
+        "**Il n'y a aucun chiffre.** Un résumé sans résultat est une affirmation. Un vrai chiffre en fait une preuve.",
+        "**Il ne nomme aucun poste.** Un résumé qui pourrait partir chez n'importe quel employeur ne fait que la moitié du travail. Reprenez l'intitulé de l'offre.",
+        "**Il dit ce que vous voulez.** C'est un objectif. Dites plutôt ce que vous apportez à l'employeur.",
+        "**Il fait cinq lignes.** Au-delà de quatre lignes, il ne se lit plus en diagonale. Déplacez les détails en trop dans la partie expérience."
+      ]
+    },
+    { "h2": "La place du résumé dans le reste du CV" },
+    {
+      "p": "Le résumé est la partie la plus lue de votre CV, mais ce n'est qu'un bloc. Il ne change rien au fait que vos puces apportent des preuves ou que la recherche d'un recruteur trouve votre CV. Vérifiez l'écart de vocabulaire avec [les mots-clés manquants du CV](/missing-resume-keywords), puis retravaillez vos puces avec le [réécrivain de puces de CV](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "Vous voulez que tout le CV corresponde, pas seulement le résumé ?",
+        "body": "Collez le lien de l'offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre, résumé compris, en gardant votre vraie expérience et vos vrais chiffres.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Générateur de titre de CV",
+      "href": "/resume-headline-generator",
+      "body": "Cinq titres pour la ligne au-dessus de votre résumé, à partir de la même offre."
+    },
+    {
+      "label": "CV professional summary examples",
+      "href": "/blog/cv-professional-summary-examples",
+      "body": "La formule, avec des exemples avant et après selon l'étape de carrière (en anglais)."
+    },
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez votre CV face à une offre et voyez les termes qui vous manquent."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

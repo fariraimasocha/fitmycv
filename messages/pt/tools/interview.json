@@ -1,0 +1,49 @@
+{
+  "jobLabel": "Cole a descrição da vaga",
+  "jobPlaceholder": "Cole aqui o texto completo da vaga…",
+  "resumeLabel": "Seu currículo",
+  "englishOnly": "Esta ferramenta lê vagas e currículos escritos em inglês, e escreve as perguntas em inglês.",
+  "submit": "Ver minhas perguntas",
+  "busy": "Lendo a vaga",
+  "statusReadingCv": "Lendo seu currículo",
+  "statusMatching": "Comparando seu currículo com a vaga",
+  "statusNeedInput": "Adicione a descrição da vaga e seu currículo para começar.",
+  "statusPrivate": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "resultHeading": "{count, plural, one {# pergunta} other {# perguntas}} para <hl>{title}</hl>",
+  "thisJob": "esta vaga",
+  "resultBody": "Escolhidas a partir do que a vaga pede. Cada prova é copiada do seu currículo.",
+  "copyAll": "Copiar tudo",
+  "copied": "Copiado",
+  "toastCopied": "Perguntas copiadas",
+  "toastCopyFailed": "Não foi possível copiar. Selecione as perguntas e copie você mesmo.",
+  "kind": {
+    "role": "Sobre a vaga",
+    "skill": "Na vaga, no seu currículo",
+    "gap": "Na vaga, fora do seu currículo"
+  },
+  "proof": "Sua prova:",
+  "tips": {
+    "whyResult": "Cite uma coisa da vaga que chamou sua atenção e sustente com este resultado.",
+    "whyNoResult": "Cite uma coisa da vaga que chamou sua atenção e depois um resultado do seu trabalho. Seu currículo ainda não tem nenhuma linha com número, então escolha um antes da entrevista.",
+    "walkSkills": "Fale por no máximo dois minutos e termine nas habilidades que esta vaga pede: {skills}.",
+    "walkNoSkills": "Fale por no máximo dois minutos e termine explicando por que esta vaga é o próximo passo.",
+    "skillStory": "Conte como situação, tarefa, ação, resultado. A linha do seu currículo é o resultado, então monte a história de trás para frente a partir dela.",
+    "skillNoDetail": "Seu currículo cita isso, mas em nenhuma linha com detalhes. Prepare uma história com um resultado claro.",
+    "gap": "Seu currículo nunca menciona {skill}. Se você já usou, adicione ao currículo antes de se candidatar. Se não usou, prepare uma resposta honesta sobre a coisa mais próxima que você já fez."
+  },
+  "ctaGapsTitle": "{count, plural, one {# destas perguntas atinge uma lacuna no seu currículo} other {# destas perguntas atingem lacunas no seu currículo}}",
+  "ctaCoveredTitle": "Seu currículo cobre o que vão perguntar",
+  "ctaGapsBody": "Feche essas lacunas antes que leiam seu currículo. Cadastre-se grátis e o FitMyCV adapta seu currículo a esta vaga, usando só sua experiência real.",
+  "ctaCoveredBody": "Garanta que o recrutador também veja isso. Cadastre-se grátis e o FitMyCV adapta seu currículo a esta vaga, usando só sua experiência real.",
+  "ctaGapsLabel": "Fechar as lacunas",
+  "ctaCoveredLabel": "Adaptar meu currículo a esta vaga",
+  "commonHeading": "Perguntas de quase toda entrevista",
+  "commonBody": "Adicione a vaga e seu currículo para ver as que esta vaga vai fazer, com a linha do seu currículo que responde a cada uma.",
+  "commonQuestions": [
+    "Fale sobre você.",
+    "Por que você quer esta vaga?",
+    "Conte sobre uma vez em que você resolveu um problema difícil.",
+    "Qual é o seu maior defeito?",
+    "Onde você se vê daqui a três anos?"
+  ]
+}

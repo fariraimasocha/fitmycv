@@ -859,7 +859,7 @@
     }
   }
 
-  /* Dialogs and sheets sit on white like the cards, not on the cream page.
+  /* Dialogs and sheets sit on the cream surface like the cards.
      Set as a variable on the element so it beats the bg-background utility. */
   body:has(.dashboard-shell) [data-slot="dialog-content"],
   body:has(.dashboard-shell) [data-slot="sheet-content"] {
@@ -876,11 +876,14 @@
   body:has(.dashboard-shell) {
     --dash-ink: #1a1a1a;
     --dash-muted: #5c5c5c;
-    /* Neutral, not warm: as a fill (active nav, tabs, chips) the beige read muddy. */
-    --dash-line: #f2f2f2;
-    --dash-surface: #ffffff;
-    /* 5.0:1 on white, so it is safe for small text as well as graphics. */
-    --dash-accent: #b4513a;
+    /* A shade darker than the cream, so lines and fills (active nav, tabs,
+       chips) show as clearly as #f2f2f2 did on white. */
+    --dash-line: #e6e3d4;
+    /* The cream of the landing CTA. CV and cover letter previews stay white:
+       they are the paper. */
+    --dash-surface: #f2f0e3;
+    /* 5.0:1 on the cream, so it is safe for small text as well as graphics. */
+    --dash-accent: #a84a34;
 
     --landing-ink: var(--dash-ink);
     --landing-ink-deep: var(--dash-ink);
@@ -944,7 +947,7 @@
     --landing-shadow-sm: none;
   }
 
-  /* The sidebar is white like the page, split by a line-grey edge. */
+  /* The sidebar is cream like the page, split by a line edge. */
   .dashboard-shell [data-slot="sidebar-container"] {
     border-color: var(--dash-line);
   }

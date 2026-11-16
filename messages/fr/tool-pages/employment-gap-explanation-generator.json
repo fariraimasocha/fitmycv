@@ -1,0 +1,68 @@
+{
+  "seoTitle": "Expliquer une période sans emploi sur un CV en anglais",
+  "description": "Expliquez une période sans emploi en une phrase honnête, en anglais. Obtenez la formulation pour votre CV, votre lettre de motivation et l'entretien. Gratuit, sans compte.",
+  "keywords": [
+    "expliquer un trou dans son cv",
+    "trou dans le cv",
+    "période d'inactivité cv",
+    "pause professionnelle cv",
+    "employment gap cv anglais",
+    "career break cv anglais",
+    "justifier une période sans emploi entretien",
+    "cv en anglais période sans emploi"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Expliquer une période sans emploi",
+  "h1": "Expliquer une période sans emploi, en anglais",
+  "lede": "Une interruption ne fait du tort que si elle semble cachée. Choisissez pourquoi vous avez fait une pause et quand, et obtenez en anglais une phrase honnête pour votre CV, une pour votre lettre de motivation et une réponse courte pour l'entretien.",
+  "howTo": {
+    "name": "Comment expliquer une période sans emploi",
+    "description": "Rédigez une explication courte et honnête d'une pause dans votre carrière.",
+    "steps": [
+      { "name": "Choisissez la raison", "text": "Prenez celle qui est vraie. Vous ne devez pas de détails." },
+      { "name": "Ajoutez les dates", "text": "Le mois et l'année du début et de la fin." },
+      { "name": "Copiez les phrases", "text": "Mettez la phrase du CV dans votre parcours, celle de la lettre une seule fois, et entraînez-vous à dire la réponse à voix haute." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Les phrases sont-elles en français ?",
+      "a": "Non. L'outil remplit des modèles rédigés en anglais, donc les trois phrases sont en anglais, pour un CV et une lettre de motivation en anglais. Si vous postulez en français, servez-vous-en comme base : le principe reste le même, une phrase courte, vraie et tournée vers votre disponibilité."
+    },
+    {
+      "q": "Faut-il expliquer une période sans emploi sur son CV ?",
+      "a": "Oui, quand elle dépasse environ trois mois. Une ligne dans votre parcours évite qu'un recruteur fasse des suppositions. Les interruptions plus courtes ont rarement besoin d'explication, surtout si vos dates n'indiquent que les années."
+    },
+    {
+      "q": "Quel niveau de détail donner pour une raison de santé ?",
+      "a": "Presque aucun. « Health and recovery, now resolved » suffit. Vous n'avez pas à nommer une maladie. Ce qui compte, c'est que cela n'affectera pas votre travail."
+    },
+    {
+      "q": "Et si j'ai été licencié ?",
+      "a": "Dites-le simplement. Les restructurations sont fréquentes et les recruteurs le savent. Ce qu'ils veulent entendre, c'est que vous choisissez votre prochain poste en connaissance de cause."
+    },
+    {
+      "q": "Faut-il mentionner les formations ou le bénévolat de cette période ?",
+      "a": "Oui. Ajoutez-les dans le champ facultatif, en anglais. Cela transforme l'interruption en temps utilisé."
+    },
+    {
+      "q": "Ce que je saisis est-il stocké ?",
+      "a": "Non. Le texte est construit dans votre navigateur à partir de modèles. Rien n'est envoyé nulle part."
+    }
+  ],
+  "blocks": [
+    { "h2": "La règle : court, vrai et tourné vers aujourd'hui" },
+    {
+      "p": "Les recruteurs ne se demandent pas pourquoi vous êtes parti. Ils se demandent si vous êtes prêt à travailler. Chaque phrase que rédige cet outil se termine sur ce point."
+    },
+    {
+      "p": "Pour des exemples par situation, lisez [comment expliquer une période sans emploi sur votre CV](/blog/how-to-explain-employment-gap-on-cv) (en anglais)."
+    }
+  ],
+  "related": [
+    { "label": "Vérificateur de format de CV", "href": "/cv-format-checker", "body": "Vérifiez votre CV pour le pays où vous postulez." },
+    { "label": "Comparateur CV et offre", "href": "/resume-job-match-checker", "body": "Évaluez votre CV face à une offre d'emploi." },
+    { "label": "Générateur de résumé de CV", "href": "/professional-summary-generator", "body": "Trois résumés de CV construits à partir d'une offre et de votre CV." }
+  ],
+  "ui": { "home": "Accueil", "faqHeading": "Questions fréquentes", "related": "Pour aller plus loin", "open": "Ouvrir" }
+}

@@ -1,0 +1,29 @@
+{
+  "roleLabel": "Pick your job title",
+  "rolePlaceholder": "Choose a role",
+  "notListed": "Role not listed? Paste the advert into the <link>ATS keyword checker</link> and it pulls the keywords from that posting.",
+  "englishOnly": "The keyword lists are in English. The CV check looks for these English terms, so it works best on a CV written in English.",
+  "title": "{count} resume keywords for <role>{plural}</role>",
+  "intro": "Only add the ones you have done, and put each one inside a bullet with a result. <link>See where each group belongs</link>.",
+  "copyAll": "Copy all",
+  "copied": "Keywords copied",
+  "copyFailed": "Copy failed. Select the keywords and copy them yourself.",
+  "cvLabel": "Check your CV against this list",
+  "submit": "Check my CV",
+  "busy": "Checking your CV",
+  "readingCv": "Reading your CV",
+  "privacy": "Your CV is read in this tab. Nothing is stored.",
+  "coverage": "Your CV covers {covered} of {total}.",
+  "missingMarked": "{count, plural, one {# is marked in red above.} other {# are marked in red above.}}",
+  "allPresent": "Every term on the list is there.",
+  "handoffGaps": {
+    "title": "Close these gaps",
+    "body": "Your CV is missing {count} of the terms {role} postings use. Paste a job link and FitMyCV works in the ones you have done, using your real experience.",
+    "label": "Close these gaps"
+  },
+  "handoffDone": {
+    "title": "Now match it to one job",
+    "body": "A list is general. Paste a job link and FitMyCV rewrites your CV and cover letter for that exact posting.",
+    "label": "Tailor my CV"
+  }
+}

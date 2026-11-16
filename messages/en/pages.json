@@ -230,7 +230,25 @@
       "missingHeading": "Missing from your CV",
       "coveredHeading": "Already covered",
       "keywordsTitle": "The {count} terms this posting leans on",
-      "keywordsBody": "Ranked by how much weight the posting gives them. Work down the list and make sure each one you can honestly claim appears in a bullet on your CV with a result attached."
+      "keywordsBody": "Ranked by how much weight the posting gives them. Work down the list and make sure each one you can honestly claim appears in a bullet on your CV with a result attached.",
+      "leadEmail": {
+        "title": "Email me this score and a link to fix the gaps",
+        "body": "Optional. No account needed.",
+        "emailLabel": "Email address",
+        "placeholder": "you@email.com",
+        "send": "Send",
+        "sending": "Sending...",
+        "emailRequired": "Enter your email address.",
+        "invalidEmail": "Enter a valid email address.",
+        "tooMany": "Too many requests. Try again in a minute.",
+        "saveError": "Could not save your email. Try again.",
+        "sentToast": "Sent. Check your inbox for your score and next steps.",
+        "duplicateToast": "This address already has your first score. We send it once.",
+        "sentTitle": "Check your inbox",
+        "sentBody": "We emailed your score and a link to fix the gaps.",
+        "duplicateTitle": "Already sent",
+        "duplicateBody": "We already emailed this address its first score. We send it once."
+      }
     },
     "resumeFile": {
       "label": "Your CV",

@@ -1,0 +1,199 @@
+{
+  "seoTitle": "Profil für den englischen Lebenslauf: Professional Summary Generator",
+  "description": "Lade deinen englischen Lebenslauf hoch und füge eine englische Stellenanzeige ein. Du bekommst drei Profiltexte auf Englisch aus deinen echten Fähigkeiten. Kostenlos, ohne Login.",
+  "keywords": [
+    "professional summary generator",
+    "professional summary lebenslauf englisch",
+    "profil lebenslauf englisch",
+    "kurzprofil lebenslauf englisch",
+    "englischer lebenslauf profil beispiel",
+    "summary lebenslauf englisch",
+    "cv summary englisch",
+    "kurzprofil lebenslauf beispiele",
+    "resume summary generator"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Professional Summary Generator",
+  "h1": "Profiltext für deinen englischen Lebenslauf",
+  "lede": "Lade deinen englischen Lebenslauf hoch und füge die englische Stellenanzeige ein. Du bekommst drei Profiltexte auf Englisch, die die Rolle aus der Anzeige nennen, nur Fähigkeiten aus deinem Lebenslauf verwenden und mit einem echten Ergebnis aus deinem Lebenslauf beginnen.",
+  "howTo": {
+    "name": "So schreibst du ein Profil für eine bestimmte Stelle",
+    "description": "Erstelle das Profil oben in deinem englischen Lebenslauf aus der Zielanzeige und deiner eigenen Erfahrung.",
+    "steps": [
+      {
+        "name": "Stellenanzeige einfügen",
+        "text": "Das Tool liest den Jobtitel und die Begriffe, die die Anzeige wiederholt. Füge die ganze Anzeige ein, inklusive der Anforderungen. Sie muss auf Englisch sein."
+      },
+      {
+        "name": "Lebenslauf hochladen",
+        "text": "Zieh das PDF hinein. Der Text wird in deinem Browser gelesen. Eine Fähigkeit, die nicht in deinem Lebenslauf steht, taucht nie in einem Profiltext auf."
+      },
+      {
+        "name": "Einen auswählen und anpassen",
+        "text": "Du bekommst drei Profiltexte in drei Formen. Kopiere den passenden, prüfe jede Zahl und streiche alles, wonach du nicht gefragt werden möchtest."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Was ist ein Profil im Lebenslauf?",
+      "a": "Es sind die zwei bis vier Zeilen oben im Lebenslauf, unter deinem Namen und deiner Überschrift. Im Englischen heißt dieser Block Professional Summary. Er sagt, welche Rolle du anstrebst, dein Level und dein Fachgebiet, und nennt ein Ergebnis, das zeigt, dass du den Job kannst. Recruiter lesen ihn zuerst, also entscheidet er, ob sie weiterlesen."
+    },
+    {
+      "q": "Funktioniert das Tool auch mit einem deutschen Lebenslauf?",
+      "a": "Nein. Das Tool liest englischen Text und schreibt die Profiltexte auf Englisch. Es eignet sich, wenn du dich mit einem englischen Lebenslauf auf eine englische Anzeige bewirbst. Die Ratschläge auf dieser Seite gelten aber in jeder Sprache, auch für dein deutsches Kurzprofil."
+    },
+    {
+      "q": "Wie schreibt der Generator den Profiltext?",
+      "a": "Er füllt eine einfache Formel: den Jobtitel aus der Anzeige, deine Jahre und dein Fachgebiet aus dem Lebenslauf, die Fähigkeiten, die in beiden Dokumenten stehen, und eine Zeile aus deinem Lebenslauf mit einer Zahl. Er erfindet nichts. Hat dein Lebenslauf keine Zeile mit einer Zahl, zeigt der Profiltext eine Klammer, wo dein Ergebnis hingehört."
+    },
+    {
+      "q": "Ist ein Profil dasselbe wie eine Resume Summary?",
+      "a": "Ja. Professional Summary, Resume Summary, Profil, Kurzprofil und Personal Statement meinen alle denselben Block oben auf der Seite. Der Rat ist derselbe, egal wie du ihn nennst."
+    },
+    {
+      "q": "Wie lang sollte ein Profil sein?",
+      "a": "Zwei bis vier Zeilen, also etwa 30 bis 60 Wörter. Wird deins länger, gehören die zusätzlichen Details in den Abschnitt Berufserfahrung, wo sie neben der Stelle stehen, aus der sie stammen."
+    },
+    {
+      "q": "Sollte ich mein Profil für jede Stelle ändern?",
+      "a": "Für Stellen, die du wirklich willst, ja. Es ist der schnellste Teil des Lebenslaufs zum Anpassen und der Teil, der zuerst gelesen wird. Setz den Jobtitel aus der Anzeige ein und das Ergebnis, das am besten zu den Anforderungen passt. Deshalb fragt dieses Tool nach der Stellenanzeige."
+    },
+    {
+      "q": "Profil oder Karriereziel: was soll ich nehmen?",
+      "a": "Fast immer ein Profil. Ein Karriereziel sagt, was du willst. Ein Profil sagt, was du bietest, und belegt es. Genau das sucht der Leser. Selbst ein erster Lebenslauf ist mit einem Profil rund um ein Projekt oder einen Kurs besser bedient."
+    },
+    {
+      "q": "Wird mein Lebenslauf irgendwo hochgeladen?",
+      "a": "Nein. Das PDF wird in deinem Browser-Tab gelesen, nichts wird gespeichert oder an einen Server geschickt. Schließ den Tab und es ist weg."
+    }
+  ],
+  "blocks": [
+    { "h2": "Die Formel, der jedes gute Profil folgt" },
+    {
+      "p": "Ein starkes Profil beantwortet drei Fragen in dieser Reihenfolge: wer du beruflich bist, was du anstrebst und was dein Beleg ist. **Titel und Level, dann Fachgebiet und Jahre, dann ein Ergebnis mit einer Zahl.** Das ist die ganze Struktur, und genau die füllt dieses Tool aus."
+    },
+    {
+      "ol": [
+        "**Titel und Level.** Die Rolle, auf die du dich bewirbst, in den Worten des Arbeitgebers. Senior Data Analyst, nicht erfahrene Fachkraft.",
+        "**Fachgebiet und Jahre.** Dein Bereich und wie lange du darin arbeitest, damit der Leser dich in einer Sekunde einordnen kann.",
+        "**Ein Ergebnis mit einer Zahl.** Ein echtes Ergebnis aus deinem Lebenslauf: ein Prozentsatz, eine Anzahl, ein Budget, eingesparte Zeit. Diese Zeile lassen die meisten Profile weg."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Warum das Ergebnis aus deinem Lebenslauf kommen muss",
+        "body": "Nach dem Profil fragt ein Interviewer als Erstes. Steht eine Zahl darin, die sonst nirgends in deinem Lebenslauf vorkommt, wirkt sie erfunden. Dieses Tool nutzt nur Ergebniszeilen, die es in deinem eigenen Lebenslauf findet, und markiert die Lücke, wenn es keine gibt."
+      }
+    },
+    { "h2": "Profil-Beispiele nach Karrierestufe" },
+    {
+      "table": {
+        "head": ["Stufe", "Profil"],
+        "rows": [
+          [
+            "Absolvent",
+            "Statistikabsolvent mit Ziel Junior Data Analyst. Abschlussprojekt: fünf Jahre Verkehrsdaten einer Stadt mit Python und SQL ausgewertet."
+          ],
+          [
+            "Berufseinstieg",
+            "Customer Support Specialist mit 3 Jahren im SaaS-Bereich. Erfahren in Zendesk, Onboarding und Vertragsverlängerungen. Erste Antwortzeit von 9 auf 2 Stunden gesenkt, bei 400 Tickets pro Woche."
+          ],
+          [
+            "Mittleres Level",
+            "Digital Marketing Manager mit über 6 Jahren in B2B SaaS. Erfahren in Paid Social, Lifecycle-E-Mails und HubSpot. Qualifizierte Leads in einem Jahr bei gleichem Budget um 40 % gesteigert."
+          ],
+          [
+            "Senior",
+            "Senior Projektmanager mit 9 Jahren im gewerblichen Bau. Die letzten drei Projekte im oder unter Budget abgeschlossen und Übergabeverzögerungen von 3 Wochen auf 4 Tage gesenkt."
+          ],
+          [
+            "Quereinsteiger",
+            "Learning and Development Specialist nach 6 Jahren als Lehrkraft an einer weiterführenden Schule. Schulungen für 200 Lernende konzipiert und Bestehensquoten um 18 % gesteigert."
+          ],
+          [
+            "Pflege",
+            "Examinierte Pflegefachkraft mit 8 Jahren in der Akutmedizin. Erfahren in Triage, Infusionstherapie und Entlassmanagement. 12 neue Pflegekräfte auf einer Station mit 28 Betten eingearbeitet."
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Weitere Beispiele mit Vorher- und Nachher-Versionen findest du im Leitfaden mit [Beispielen für die Professional Summary](/blog/cv-professional-summary-examples) (auf Englisch)."
+    },
+    { "h2": "Profil, Überschrift oder Karriereziel" },
+    {
+      "table": {
+        "head": ["", "Länge", "Sagt", "Nutze es, wenn"],
+        "rows": [
+          [
+            "Überschrift",
+            "Eine Zeile",
+            "Die Rolle plus zwei oder drei Belege",
+            "Fast immer. Sie steht unter deinem Namen, über dem Profil."
+          ],
+          [
+            "Profil",
+            "Zwei bis vier Zeilen",
+            "Level, Fachgebiet und ein Ergebnis",
+            "Fast immer. Es ist der erste Block, den ein Recruiter liest."
+          ],
+          [
+            "Karriereziel",
+            "Ein bis zwei Sätze",
+            "Was du suchst",
+            "Selten. Es spricht über dich statt über den Arbeitgeber."
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Überschrift und Profil arbeiten zusammen, in dieser Reihenfolge. Wenn die Zeile über deinem Profil noch deinen alten Jobtitel wiederholt, erstellt der [Generator für Lebenslauf-Überschriften](/resume-headline-generator) eine aus derselben Anzeige."
+    },
+    { "h2": "Fünf Fehler, die ein Profil schwächen" },
+    {
+      "ol": [
+        "**Es ist eine Liste von Adjektiven.** Ergebnisorientiert, fleißig und detailverliebt passen auf jeden Bewerber und sagen dem Leser nichts. Nenne stattdessen eine Fähigkeit und ein Ergebnis.",
+        "**Es hat keine Zahl.** Ein Profil ohne Ergebnis ist eine Behauptung. Eine echte Zahl macht daraus einen Beleg.",
+        "**Es nennt keine Rolle.** Ein Profil, das an jeden Arbeitgeber gehen könnte, macht nur die halbe Arbeit. Nutze den Titel aus der Anzeige.",
+        "**Es sagt, was du willst.** Das ist ein Karriereziel. Sag stattdessen, was du dem Arbeitgeber bietest.",
+        "**Es läuft über fünf Zeilen.** Ab vier Zeilen lässt es sich nicht mehr überfliegen. Verschieb die Details in den Abschnitt Berufserfahrung."
+      ]
+    },
+    { "h2": "Wo das Profil in die größere Überarbeitung passt" },
+    {
+      "p": "Das Profil ist der meistgelesene Teil deines Lebenslaufs, aber es bleibt ein Block. Es ändert nichts daran, ob deine Stichpunkte Belege enthalten oder ob die Suche eines Recruiters deinen Lebenslauf findet. Prüfe die Vokabellücke mit [fehlenden Lebenslauf-Keywords](/missing-resume-keywords) und überarbeite dann die Stichpunkte mit dem [Stichpunkt-Umschreiber](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "Soll der ganze Lebenslauf passen, nicht nur das Profil?",
+        "body": "Füge den Link zur Stellenanzeige ein und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben passend zu dieser Anzeige um, Profil inklusive, mit deiner echten Erfahrung und deinen echten Zahlen.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Generator für Lebenslauf-Überschriften",
+      "href": "/resume-headline-generator",
+      "body": "Fünf Überschriften für die Zeile über deinem Profil, aus derselben Anzeige."
+    },
+    {
+      "label": "Beispiele für die Professional Summary",
+      "href": "/blog/cv-professional-summary-examples",
+      "body": "Die Formel mit Vorher- und Nachher-Beispielen nach Karrierestufe, auf Englisch."
+    },
+    {
+      "label": "Kostenloser ATS-Check für den Lebenslauf",
+      "href": "/ats-resume-checker",
+      "body": "Bewerte deinen Lebenslauf gegen eine Anzeige und sieh die Begriffe, die dir fehlen."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

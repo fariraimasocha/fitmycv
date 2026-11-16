@@ -1,0 +1,49 @@
+{
+  "jobLabel": "Stellenbeschreibung einfügen",
+  "jobPlaceholder": "Füge hier den vollständigen Text der Stellenanzeige ein…",
+  "resumeLabel": "Dein Lebenslauf",
+  "englishOnly": "Dieses Tool liest Stellenanzeigen und Lebensläufe auf Englisch und schreibt die Fragen auf Englisch.",
+  "submit": "Meine Fragen anzeigen",
+  "busy": "Die Anzeige wird gelesen",
+  "statusReadingCv": "Dein Lebenslauf wird gelesen",
+  "statusMatching": "Dein Lebenslauf wird mit der Anzeige abgeglichen",
+  "statusNeedInput": "Füge die Stellenbeschreibung und deinen Lebenslauf ein, um zu starten.",
+  "statusPrivate": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "resultHeading": "{count, plural, one {# Frage} other {# Fragen}} für <hl>{title}</hl>",
+  "thisJob": "diese Stelle",
+  "resultBody": "Ausgewählt nach dem, was die Anzeige verlangt. Jeder Beleg ist aus deinem Lebenslauf kopiert.",
+  "copyAll": "Alle kopieren",
+  "copied": "Kopiert",
+  "toastCopied": "Fragen kopiert",
+  "toastCopyFailed": "Kopieren fehlgeschlagen. Markiere die Fragen und kopiere sie selbst.",
+  "kind": {
+    "role": "Zur Stelle",
+    "skill": "Aus der Anzeige, in deinem Lebenslauf",
+    "gap": "Aus der Anzeige, fehlt in deinem Lebenslauf"
+  },
+  "proof": "Dein Beleg:",
+  "tips": {
+    "whyResult": "Nenne eine Sache aus der Anzeige, die dich angesprochen hat, und untermauere sie mit diesem Ergebnis.",
+    "whyNoResult": "Nenne eine Sache aus der Anzeige, die dich angesprochen hat, und dann ein Ergebnis aus deiner Arbeit. Dein Lebenslauf hat noch keine Zeile mit einer Zahl, also such dir vor dem Gespräch eine aus.",
+    "walkSkills": "Bleib bei zwei Minuten und ende mit den Kompetenzen, die diese Stelle verlangt: {skills}.",
+    "walkNoSkills": "Bleib bei zwei Minuten und ende damit, warum diese Stelle der nächste Schritt ist.",
+    "skillStory": "Erzähl es als Situation, Aufgabe, Handlung, Ergebnis. Deine Zeile im Lebenslauf ist das Ergebnis, also bau die Geschichte von dort rückwärts auf.",
+    "skillNoDetail": "Dein Lebenslauf erwähnt das, aber in keiner Zeile mit Details. Bereite eine Geschichte mit einem klaren Ergebnis vor.",
+    "gap": "Dein Lebenslauf erwähnt {skill} nie. Wenn du es genutzt hast, ergänze es vor der Bewerbung im Lebenslauf. Wenn nicht, bereite eine ehrliche Antwort zu dem vor, was dem am nächsten kommt."
+  },
+  "ctaGapsTitle": "{count, plural, one {# dieser Fragen trifft eine Lücke in deinem Lebenslauf} other {# dieser Fragen treffen Lücken in deinem Lebenslauf}}",
+  "ctaCoveredTitle": "Dein Lebenslauf deckt ab, was sie fragen werden",
+  "ctaGapsBody": "Schließ sie, bevor jemand deinen Lebenslauf liest. Melde dich kostenlos an und FitMyCV passt deinen Lebenslauf an diese Anzeige an, nur mit deiner echten Erfahrung.",
+  "ctaCoveredBody": "Sorg dafür, dass die Recruiterin oder der Recruiter das auch sieht. Melde dich kostenlos an und FitMyCV passt deinen Lebenslauf an diese Anzeige an, nur mit deiner echten Erfahrung.",
+  "ctaGapsLabel": "Lücken schließen",
+  "ctaCoveredLabel": "Lebenslauf an diese Stelle anpassen",
+  "commonHeading": "Fragen aus fast jedem Vorstellungsgespräch",
+  "commonBody": "Füge die Anzeige und deinen Lebenslauf ein, um die Fragen zu dieser Stelle zu bekommen, jeweils mit der Zeile aus deinem Lebenslauf, die sie beantwortet.",
+  "commonQuestions": [
+    "Erzählen Sie etwas über sich.",
+    "Warum wollen Sie diese Stelle?",
+    "Erzählen Sie von einer Situation, in der Sie ein schwieriges Problem gelöst haben.",
+    "Was ist Ihre größte Schwäche?",
+    "Wo sehen Sie sich in drei Jahren?"
+  ]
+}

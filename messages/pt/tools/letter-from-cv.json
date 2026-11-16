@@ -1,0 +1,51 @@
+{
+  "jobLabel": "Cole a descrição da vaga",
+  "jobPlaceholder": "Cole aqui o texto completo do anúncio…",
+  "cvLabel": "Seu currículo",
+  "companyLabel": "Nome da empresa",
+  "nameLabel": "Seu nome",
+  "optional": "(opcional)",
+  "englishOnly": "A carta é escrita em inglês. A ferramenta lê uma vaga e um currículo em inglês e preenche com eles um modelo de carta em inglês.",
+  "submit": "Escrever minha carta",
+  "busy": "Escrevendo sua carta",
+  "readingCv": "Lendo seu currículo",
+  "needBoth": "Adicione a descrição da vaga e seu currículo para começar.",
+  "privacy": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "resultHeading": "Sua carta de candidatura para",
+  "titleFromPosting": "O cargo vem da vaga.",
+  "titleFromCv": "Não encontramos um cargo na vaga, então a carta usa o cargo do seu currículo.",
+  "sourcesNote": "Cada habilidade está no seu currículo e na vaga, e cada resultado é uma linha do seu currículo.",
+  "noResult": "Seu currículo não tem nenhuma linha com número, então a carta marca onde vai o seu resultado.",
+  "shapes": {
+    "full": {
+      "name": "Carta completa",
+      "hint": "Quatro parágrafos curtos. Use como corpo do e-mail ou anexe como PDF.",
+      "copyAria": "Copiar a carta completa"
+    },
+    "short": {
+      "name": "Carta curta",
+      "hint": "Para um e-mail ou um formulário com um campo de texto pequeno.",
+      "copyAria": "Copiar a carta curta"
+    }
+  },
+  "copy": "Copiar",
+  "copied": "Copiada",
+  "toastCopied": "Carta copiada",
+  "toastCopyFailed": "A cópia falhou. Selecione a carta e copie você mesmo.",
+  "noTitleHeading": "Não encontramos um cargo",
+  "noTitleBody": "Nenhum dos dois documentos cita um cargo que reconhecemos. Cole o anúncio completo, com o cargo no topo, e tente de novo.",
+  "missingHeading": "Na vaga, mas não no seu currículo",
+  "missingNote": "Sua carta deixa esses termos de fora porque seu currículo nunca os menciona. O recrutador lê a carta e o currículo juntos, então uma lacuna em um aparece no outro.",
+  "ctaGaps": {
+    "title": "Feche essas lacunas",
+    "body": "Esta vaga pede {count, plural, one {# termo} other {# termos}} que seu currículo nunca menciona. O FitMyCV reescreve seu currículo e sua carta de apresentação para ela, com a experiência que você já tem.",
+    "label": "Fechar essas lacunas"
+  },
+  "ctaCovered": {
+    "title": "Envie um currículo que combine com a carta",
+    "body": "Seu currículo já cobre os termos desta vaga. O FitMyCV o reescreve para ela, para que suas melhores provas fiquem no topo.",
+    "label": "Adaptar meu currículo"
+  },
+  "exampleHeading": "Exemplo de carta de candidatura simples",
+  "exampleNote": "A sua é montada a partir do anúncio que você cola e dos resultados que seu currículo já mostra. Ela segue este formato, em inglês."
+}

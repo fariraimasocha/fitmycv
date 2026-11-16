@@ -8,6 +8,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 import { CopyIcon, FilePdfIcon, WarningIcon } from "@phosphor-icons/react";
@@ -19,6 +20,16 @@ import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { trackEvent } from "@/lib/analytics";
 
+// The route answers in English, so the status picks the message instead.
+const ERROR_BY_STATUS = { 400: "badUrl", 422: "unreadable", 429: "rateLimited" };
+
+class SaveError extends Error {
+  constructor(key) {
+    super(key);
+    this.key = key;
+  }
+}
+
 async function fetchPosting(url) {
   const res = await fetch("/api/tools/job-save", {
     method: "POST",
@@ -26,7 +37,7 @@ async function fetchPosting(url) {
     body: JSON.stringify({ url }),
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || "We couldn't open that posting. Try again.");
+  if (!res.ok) throw new SaveError(ERROR_BY_STATUS[res.status] ?? "failed");
   return { ...data, savedAt: new Date() };
 }
 
@@ -39,6 +50,8 @@ const hostOf = (url) => {
 };
 
 export default function JobPostingSaver() {
+  const t = useTranslations("tools.job-save");
+  const locale = useLocale();
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
@@ -63,9 +76,9 @@ export default function JobPostingSaver() {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(posting.text);
-      toast.success("Posting copied");
+      toast.success(t("copied"));
     } catch {
-      toast.error("Copy is blocked in this browser. Select the text and copy it.");
+      toast.error(t("copyBlocked"));
     }
   };
 
@@ -86,7 +99,7 @@ export default function JobPostingSaver() {
     <div className="landing-card rounded-3xl p-4 sm:p-8">
       <form onSubmit={onSubmit} className="flex flex-col gap-2">
         <label htmlFor="job-save-url" className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-          Job posting link
+          {t("label")}
         </label>
         <div className="flex flex-col gap-3 sm:flex-row">
           <input
@@ -102,24 +115,24 @@ export default function JobPostingSaver() {
           />
           <div className="shrink-0">
             <ToolSubmitButton
-              label="Save posting"
-              busyLabel="Reading"
+              label={t("submit")}
+              busyLabel={t("busy")}
               running={save.isPending}
               disabled={!value.trim()}
             />
           </div>
         </div>
         <p className="mt-2 text-xs font-semibold text-[var(--landing-ink-soft)]">
-          Paste the link from LinkedIn, a company careers page or a job board. We read the page once and store nothing.
+          {t("hint")}
         </p>
       </form>
 
-      {save.isPending ? <ToolProgress message="Reading the posting" lines={5} /> : null}
+      {save.isPending ? <ToolProgress message={t("progress")} lines={5} /> : null}
 
       {save.isError ? (
         <p className="mt-6 flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]">
           <WarningIcon size={15} weight="bold" aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
-          {save.error.message}
+          {t(`errors.${save.error.key ?? "failed"}`)}
         </p>
       ) : null}
 
@@ -128,21 +141,23 @@ export default function JobPostingSaver() {
           <div className="flex flex-wrap gap-3">
             <button type="button" onClick={savePdf} className="landing-primary-btn font-outfit text-sm">
               <FilePdfIcon size={15} weight="bold" aria-hidden="true" />
-              Save as PDF
+              {t("savePdf")}
             </button>
             <button type="button" onClick={copy} className="landing-secondary-btn landing-secondary-btn-sm font-outfit">
               <CopyIcon size={14} weight="bold" aria-hidden="true" />
-              Copy text
+              {t("copy")}
             </button>
           </div>
           <p className="mt-3 text-xs font-semibold text-[var(--landing-ink-soft)]">
-            In the print window, set the destination to Save as PDF.
+            {t("printHint")}
           </p>
 
           <article className="job-print-area mt-6 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 sm:p-7">
             <p className="break-all text-xs font-semibold text-[var(--landing-ink-soft)]">
-              Saved from {posting.url} on{" "}
-              {posting.savedAt.toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" })}
+              {t("savedFrom", {
+                url: posting.url,
+                date: posting.savedAt.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" }),
+              })}
             </p>
             <div className="mt-4 max-h-125 overflow-y-auto whitespace-pre-wrap break-words text-sm leading-7 text-[var(--landing-ink)] print:max-h-none print:overflow-visible">
               {posting.text}
@@ -150,9 +165,9 @@ export default function JobPostingSaver() {
           </article>
 
           <CtaCard
-            title="Saved. Now tailor your CV to it."
-            body="FitMyCV rewrites your own CV around this posting, using its words and your real experience."
-            label="Tailor my CV"
+            title={t("cta.title")}
+            body={t("cta.body")}
+            label={t("cta.label")}
             onClick={tailor}
           />
         </div>

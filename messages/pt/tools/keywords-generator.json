@@ -1,0 +1,29 @@
+{
+  "roleLabel": "Escolha seu cargo",
+  "rolePlaceholder": "Escolher um cargo",
+  "notListed": "Seu cargo não está na lista? Cole a vaga no <link>verificador de palavras-chave ATS</link> e ele extrai as palavras-chave dessa vaga.",
+  "englishOnly": "As listas de palavras-chave estão em inglês. A verificação procura estes termos em inglês no seu currículo, por isso funciona melhor com um currículo escrito em inglês.",
+  "title": "{count} palavras-chave de currículo para <role>{plural}</role>",
+  "intro": "Adicione só as que você realmente aplicou, cada uma em um tópico com um resultado. <link>Veja onde vai cada grupo</link> (página em inglês).",
+  "copyAll": "Copiar tudo",
+  "copied": "Palavras-chave copiadas",
+  "copyFailed": "Não foi possível copiar. Selecione as palavras-chave e copie você mesmo.",
+  "cvLabel": "Compare seu currículo com esta lista",
+  "submit": "Verificar meu currículo",
+  "busy": "Verificando seu currículo",
+  "readingCv": "Lendo seu currículo",
+  "privacy": "Seu currículo é lido nesta aba. Nada é salvo.",
+  "coverage": "Seu currículo cobre {covered} de {total}.",
+  "missingMarked": "{count, plural, one {# está marcada em vermelho acima.} other {# estão marcadas em vermelho acima.}}",
+  "allPresent": "Todos os termos da lista estão lá.",
+  "handoffGaps": {
+    "title": "Preencha estas lacunas",
+    "body": "Faltam no seu currículo {count} dos termos usados nas vagas de {role}. Cole o link de uma vaga e o FitMyCV inclui os que você realmente aplicou, com base na sua experiência real.",
+    "label": "Preencher estas lacunas"
+  },
+  "handoffDone": {
+    "title": "Agora ajuste-o a uma vaga",
+    "body": "Uma lista é genérica. Cole o link de uma vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga específica.",
+    "label": "Adaptar meu currículo"
+  }
+}

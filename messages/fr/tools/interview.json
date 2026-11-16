@@ -1,0 +1,49 @@
+{
+  "jobLabel": "Collez l'offre d'emploi",
+  "jobPlaceholder": "Collez ici le texte complet de l'offre…",
+  "resumeLabel": "Votre CV",
+  "englishOnly": "Cet outil lit des offres et des CV rédigés en anglais, et il écrit les questions en anglais.",
+  "submit": "Voir mes questions",
+  "busy": "Lecture de l'offre",
+  "statusReadingCv": "Lecture de votre CV",
+  "statusMatching": "Comparaison de votre CV avec l'offre",
+  "statusNeedInput": "Ajoutez l'offre d'emploi et votre CV pour commencer.",
+  "statusPrivate": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "resultHeading": "{count, plural, one {# question} other {# questions}} pour <hl>{title}</hl>",
+  "thisJob": "ce poste",
+  "resultBody": "Choisies selon ce que demande l'offre. Chaque preuve est copiée de votre CV.",
+  "copyAll": "Tout copier",
+  "copied": "Copié",
+  "toastCopied": "Questions copiées",
+  "toastCopyFailed": "La copie a échoué. Sélectionnez les questions et copiez-les vous-même.",
+  "kind": {
+    "role": "Sur le poste",
+    "skill": "Dans l'offre, présent dans votre CV",
+    "gap": "Dans l'offre, absent de votre CV"
+  },
+  "proof": "Votre preuve :",
+  "tips": {
+    "whyResult": "Citez une chose de l'offre qui vous a attiré, puis appuyez-la avec ce résultat.",
+    "whyNoResult": "Citez une chose de l'offre qui vous a attiré, puis un résultat de votre travail. Votre CV n'a encore aucune ligne avec un chiffre, choisissez-en un avant l'entretien.",
+    "walkSkills": "Tenez-vous à deux minutes et terminez sur les compétences que ce poste demande : {skills}.",
+    "walkNoSkills": "Tenez-vous à deux minutes et terminez sur la raison pour laquelle ce poste est l'étape suivante.",
+    "skillStory": "Racontez-la en situation, tâche, action, résultat. La ligne de votre CV est le résultat, construisez donc l'histoire à rebours à partir d'elle.",
+    "skillNoDetail": "Votre CV mentionne cette compétence, mais sans aucun détail. Préparez une histoire avec un résultat clair.",
+    "gap": "Votre CV ne mentionne jamais {skill}. Si vous l'avez utilisé, ajoutez-le à votre CV avant de postuler. Sinon, préparez une réponse honnête sur ce que vous avez fait de plus proche."
+  },
+  "ctaGapsTitle": "{count, plural, one {# de ces questions touche un manque de votre CV} other {# de ces questions touchent des manques de votre CV}}",
+  "ctaCoveredTitle": "Votre CV couvre ce qu'ils vont demander",
+  "ctaGapsBody": "Comblez-les avant qu'ils ne lisent votre CV. Inscrivez-vous gratuitement et FitMyCV adapte votre CV à cette offre, avec seulement votre expérience réelle.",
+  "ctaCoveredBody": "Assurez-vous que le recruteur le voie aussi. Inscrivez-vous gratuitement et FitMyCV adapte votre CV à cette offre, avec seulement votre expérience réelle.",
+  "ctaGapsLabel": "Combler les manques",
+  "ctaCoveredLabel": "Adapter mon CV à ce poste",
+  "commonHeading": "Les questions de presque tous les entretiens",
+  "commonBody": "Ajoutez l'offre et votre CV pour obtenir celles que ce poste va poser, avec la ligne de votre CV qui répond à chacune.",
+  "commonQuestions": [
+    "Parlez-moi de vous.",
+    "Pourquoi voulez-vous ce poste ?",
+    "Racontez-moi une fois où vous avez résolu un problème difficile.",
+    "Quel est votre principal défaut ?",
+    "Où vous voyez-vous dans trois ans ?"
+  ]
+}

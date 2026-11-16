@@ -1,0 +1,203 @@
+{
+  "seoTitle": "Missions du CV en anglais : transformez-les en réalisations",
+  "description": "Collez en anglais les missions d'une fiche de poste et obtenez des puces de CV en anglais qui commencent par un verbe d'action et indiquent où placer vos chiffres. Gratuit, sans compte.",
+  "keywords": [
+    "missions cv anglais",
+    "décrire ses missions cv anglais",
+    "verbes d'action cv anglais",
+    "réalisations cv anglais",
+    "cv en anglais expérience professionnelle",
+    "job duties for resume",
+    "transformer missions en réalisations",
+    "responsabilités cv anglais",
+    "puces cv anglais"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Missions en puces de CV",
+  "h1": "Transformez vos missions en puces pour un CV en anglais",
+  "lede": "Collez en anglais les missions de votre fiche de poste, une par ligne. Chacune revient en anglais sous forme de puce de CV qui commence par un verbe d'action et montre où placer votre chiffre.",
+  "howTo": {
+    "name": "Comment transformer des missions en puces de CV",
+    "description": "Réécrivez les missions d'une fiche de poste en réalisations pour votre CV en anglais.",
+    "steps": [
+      {
+        "name": "Collez vos missions",
+        "text": "Copiez en anglais les responsabilités de la fiche de poste d'un emploi que vous avez occupé, ou vos propres notes. Une mission par ligne. Les puces et les listes numérotées fonctionnent aussi."
+      },
+      {
+        "name": "Lisez chaque réécriture",
+        "text": "Les formules faibles comme « Responsible for » et « Assisted with » sont retirées. Chaque mission revient au passé, avec un verbe fort en tête."
+      },
+      {
+        "name": "Ajoutez les chiffres",
+        "text": "Chaque puce a une zone surlignée où va un chiffre, et une note sur ce qu'il faut compter. Remplacez chaque zone par un vrai chiffre que vous pouvez défendre."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Faut-il recopier sa fiche de poste dans son CV ?",
+      "a": "Non. Une fiche de poste liste ce que l'employeur attendait de toute personne à ce poste. Votre CV doit dire ce que vous en avez fait et ce qui a changé. Servez-vous des missions comme point de départ, puis réécrivez chacune comme une réalisation avec un chiffre."
+    },
+    {
+      "q": "L'outil fonctionne-t-il avec des missions en français ?",
+      "a": "Non. Il lit des missions rédigées en anglais et écrit les puces en anglais, car ses listes de verbes sont en anglais. Il sert quand vous préparez un CV en anglais. Pour un CV en français, la méthode de cette page s'applique telle quelle : un verbe d'action, le travail, un chiffre et ce qui a changé."
+    },
+    {
+      "q": "Que fait exactement cet outil ?",
+      "a": "Il découpe le texte collé en missions séparées, retire les formules faibles comme « Responsible for », met le verbe au passé et ajoute une zone entre crochets où va un chiffre. Il applique des règles fixes dans votre navigateur. Il n'utilise pas d'IA et ne peut pas connaître vos chiffres."
+    },
+    {
+      "q": "Invente-t-il des chiffres ?",
+      "a": "Non. Il marque l'endroit où placer un chiffre et indique quel type chercher : combien, à quelle fréquence, quel montant, ou combien plus vite. C'est vous qui mettez le vrai chiffre. Un chiffre inventé passe le premier tri et s'effondre en entretien."
+    },
+    {
+      "q": "Est-ce gratuit, et faut-il un compte ?",
+      "a": "C'est gratuit, sans inscription et sans limite d'utilisation. Tout tourne dans votre navigateur. Rien de ce que vous collez n'est envoyé ni stocké."
+    },
+    {
+      "q": "Quelle différence entre une mission et une réalisation ?",
+      "a": "Une mission, c'est ce qu'on vous a confié : « Gérer les remboursements clients ». Une réalisation, c'est ce qui s'est passé parce que vous l'avez fait : « Traité 40 remboursements par semaine et réduit le retard de dix jours à deux ». Les recruteurs lisent la seconde, car tous les candidats au poste avaient les mêmes missions."
+    },
+    {
+      "q": "Combien de puces par poste ?",
+      "a": "Trois à cinq pour votre poste le plus récent, deux ou trois pour les plus anciens, et une ou deux pour tout ce qui date de plus de dix ans. Gardez les puces les plus proches du poste visé et supprimez les autres."
+    },
+    {
+      "q": "Les puces doivent-elles correspondre au poste visé ?",
+      "a": "Oui. Réécrivez d'abord les missions, puis vérifiez quels termes de la nouvelle offre vos puces ne mentionnent jamais. L'outil [mots-clés manquants du CV](/missing-resume-keywords) montre cet écart. L'adaptation depuis un lien d'offre fait les deux étapes sur tout votre CV."
+    }
+  ],
+  "blocks": [
+    { "h2": "Les missions, c'est ce qu'on vous a confié. Les réalisations, c'est ce que vous en avez fait." },
+    {
+      "p": "La plupart des CV listent des missions copiées d'une fiche de poste, et c'est pour cela que tant de CV se ressemblent. **Tous ceux qui ont occupé le poste avaient les mêmes missions.** Ce qui vous distingue, c'est ce qui a changé parce que vous étiez là, et cela demande un verbe, le travail et un chiffre."
+    },
+    {
+      "compare": {
+        "title": "Support client",
+        "context": "La mission telle que l'annonce la formule, et le même travail écrit comme un résultat.",
+        "before": "Responsible for handling customer refunds.",
+        "after": "Processed 40 refunds a week and cut the backlog from ten days to two."
+      }
+    },
+    {
+      "compare": {
+        "title": "Opérations",
+        "context": "La mission nomme une tâche. La puce dit quelle était son ampleur.",
+        "before": "Duties included stock control and ordering.",
+        "after": "Ran stock control for three stores and cut out of stock items by a third."
+      }
+    },
+    { "h2": "Exemples de missions en puces de CV, par métier" },
+    {
+      "p": "La colonne de gauche montre comment une fiche de poste formule souvent la mission. Celle de droite montre la même mission sous forme de puce de CV. **Les chiffres sont des exemples.** Utilisez les vôtres et retirez tout ce que vous ne pouvez pas prouver."
+    },
+    {
+      "table": {
+        "head": ["Métier", "Mission telle qu'écrite dans l'annonce", "En puce de CV"],
+        "rows": [
+          ["Service client", "Respond to customer enquiries by phone and email", "Answered 60 customer enquiries a day by phone and email and held a 95% satisfaction score"],
+          ["Commerce de détail", "Responsible for merchandising and stock replenishment", "Reset store displays weekly and cut stock gaps on the shop floor by 30%"],
+          ["Assistant administratif", "Manage the director's diary and arrange meetings", "Ran the diaries of two directors and booked 25 meetings a week without a clash"],
+          ["Infirmier", "Monitor patients and administer medication", "Monitored 8 patients a shift on an acute ward and gave medication with no reported errors"],
+          ["Enseignant", "Plan and deliver lessons in line with the curriculum", "Planned and taught 22 lessons a week across three year groups, lifting pass rates from 64% to 78%"],
+          ["Ingénieur logiciel", "Develop and maintain web applications", "Built and maintained three internal web apps used by 400 staff, cutting page load time by half"],
+          ["Commercial", "Build relationships with new and existing clients", "Built a book of 35 accounts and grew repeat revenue by 18% in a year"],
+          ["Comptable", "Prepare month end reports and reconciliations", "Prepared month end reports for four entities and closed the books two days faster"],
+          ["Marketing", "Assist with social media and email campaigns", "Ran 12 email campaigns a quarter and grew the list from 8,000 to 14,000 subscribers"],
+          ["Logistique", "Pick, pack and dispatch customer orders", "Picked and packed 300 orders a shift at 99.8% accuracy"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Les mots de l'employeur, vos propres chiffres",
+        "body": "Gardez les termes de l'offre à laquelle vous postulez, car les recruteurs les recherchent. Changez tout le reste : le verbe, l'ampleur et le résultat."
+      }
+    },
+    { "h2": "La forme que doit prendre chaque puce" },
+    {
+      "steps": [
+        {
+          "title": "Un verbe d'action au passé, en premier",
+          "body": "Built, ran, cut, trained, resolved. Pas « Responsible for », « Duties included » ou « Helped with », qui décrivent le poste et non ce que vous avez fait."
+        },
+        {
+          "title": "Le travail, en mots simples",
+          "body": "Assez précis pour qu'un inconnu puisse se le représenter. « La file des remboursements » vaut mieux que « divers problèmes clients »."
+        },
+        {
+          "title": "Un chiffre",
+          "body": "Combien, à quelle fréquence, quel montant, ou combien plus vite. Un vrai chiffre fait plus que n'importe quel adjectif."
+        },
+        {
+          "title": "Ce qui a changé",
+          "body": "Ce qui était vrai après et ne l'était pas avant. Une fiche de poste ne le dit jamais, donc vous seul pouvez l'ajouter."
+        }
+      ]
+    },
+    { "h2": "Les formules faibles que l'outil retire" },
+    {
+      "table": {
+        "head": ["Dans la fiche de poste", "Ce que cela cache", "Ce qu'il faut écrire à la place"],
+        "rows": [
+          ["Responsible for", "Si vous l'avez fait ou seulement regardé faire", "Owned, ran, led"],
+          ["Duties included", "Que la ligne est copiée d'une annonce", "Commencez par le verbe"],
+          ["Tasked with", "Le résultat", "Delivered, completed, shipped"],
+          ["Assisted with", "Votre rôle exact", "Supported, trained, resolved"],
+          ["Helped", "Tout", "Le vrai verbe de ce que vous avez fait"],
+          ["Worked on", "Le résultat obtenu", "Built, rebuilt, migrated"],
+          ["Involved in", "Si votre rôle était central", "Drove, delivered, contributed"]
+        ]
+      }
+    },
+    { "h2": "Trouver le chiffre" },
+    {
+      "ol": [
+        "**Comptez le travail.** Tickets, commandes, patients, cours, factures, gardes. Tout ce que vous faisiez souvent a un rythme.",
+        "**Comparez avant et après.** Retard, erreurs, délais d'attente, délai de clôture. Le passage d'un chiffre à un autre donne la puce la plus forte.",
+        "**Mesurez ce que vous avez touché.** Budget, équipe, nombre de sites, clients, utilisateurs. L'ampleur compte comme un chiffre.",
+        "**Consultez vos anciens documents.** Rapports, tableaux de bord, plannings et entretiens annuels contiennent souvent le chiffre oublié."
+      ]
+    },
+    {
+      "p": "Quand vous devez estimer, arrondissez à la baisse et écrivez « about ». « About 50 a week » tient en entretien. Un chiffre précis sans rien derrière, non."
+    },
+    { "h2": "Des missions d'un poste au CV du suivant" },
+    {
+      "p": "Cette page réécrit les missions que vous collez, une liste à la fois. Quand vous postulez à une offre précise, les puces doivent aussi reprendre ses mots. Vérifiez l'écart avec [les mots-clés manquants du CV](/missing-resume-keywords), peaufinez une ligne avec le [réécrivain de puces de CV](/resume-bullet-rewriter), ou traitez tout le CV d'un coup avec [l'adaptation depuis un lien d'offre](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "Adaptez chaque puce au poste que vous visez",
+        "body": "Collez le lien de l'offre et FitMyCV réécrit votre CV et votre lettre de motivation pour cette offre, en gardant votre vraie expérience et vos vrais chiffres.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Réécrivain de puces de CV",
+      "href": "/resume-bullet-rewriter",
+      "body": "Réécrivez une puce de trois façons, avec un diagnostic de ce qui l'affaiblit."
+    },
+    {
+      "label": "Mots-clés manquants du CV",
+      "href": "/missing-resume-keywords",
+      "body": "Voyez quels termes de l'offre votre CV ne mentionne jamais."
+    },
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez votre CV face à une offre avant de postuler."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

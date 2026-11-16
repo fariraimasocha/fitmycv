@@ -1,0 +1,45 @@
+{
+  "englishOnly": "Cet outil fonctionne sur du texte en anglais. Collez vos missions en anglais et il écrit les puces en anglais.",
+  "label": "Collez les missions de votre fiche de poste",
+  "hint": "Une mission par ligne. Les puces, les listes numérotées et les points-virgules fonctionnent aussi. Jusqu'à {max} missions.",
+  "submit": "Transformer en puces",
+  "busy": "Réécriture de vos missions",
+  "example": "Essayer un exemple",
+  "private": "Tout se passe dans votre navigateur. Rien n'est envoyé ni stocké.",
+  "heading": "{count, plural, one {Votre mission en puce} other {Vos # missions en puces}}",
+  "intro": "Chaque puce commence par un verbe d'action et indique où placer un chiffre. Les zones surlignées sont à remplir par vous. L'outil ne connaît pas vos chiffres, alors utilisez des chiffres que vous pouvez défendre en entretien.",
+  "copy": "Copier",
+  "copyAll": "Tout copier",
+  "copied": "Copié",
+  "copyAria": "Copier la puce : {bullet}",
+  "toastAll": "Toutes les puces sont copiées",
+  "toastOne": "Puce copiée",
+  "toastFailed": "La copie a échoué. Sélectionnez le texte et copiez-le vous-même.",
+  "was": "Avant : {duty}",
+  "notes": {
+    "ownership": "Ajoutez la taille : nombre de personnes dans l'équipe, budget, ou nombre de projets menés en même temps.",
+    "support": "Ajoutez combien par semaine, en combien de temps vous répondiez, ou un score de satisfaction.",
+    "delivery": "Ajoutez la durée, le nombre d'utilisateurs, ou ce qui a changé après le lancement.",
+    "process": "Ajoutez les heures gagnées, les erreurs supprimées, les coûts réduits, ou le nombre de dossiers concernés.",
+    "analysis": "Ajoutez le volume de données, la décision que cela a éclairée, ou le changement obtenu.",
+    "general": "Ajoutez combien, à quelle fréquence, quel montant, ou combien plus vite."
+  },
+  "ctaTitle": "Vous postulez à un nouveau poste avec ces puces ?",
+  "ctaBody": "Collez le lien de l'offre et FitMyCV réécrit chaque puce pour cette offre, en gardant votre vraie expérience et vos vrais chiffres.",
+  "ctaButton": "Les adapter à une nouvelle offre",
+  "emptyHeading": "Ce que vous obtenez",
+  "features": {
+    "perDuty": {
+      "title": "Une puce par mission",
+      "body": "Les formules faibles comme « Responsible for » sont retirées, et un verbe d'action au passé ouvre la puce."
+    },
+    "slot": {
+      "title": "Une place pour votre chiffre",
+      "body": "Chaque puce indique où placer un chiffre, pour qu'elle se lise comme un résultat."
+    },
+    "number": {
+      "title": "Quel chiffre chercher",
+      "body": "Une note sous chaque puce dit quoi compter : personnes, heures, argent ou changement."
+    }
+  }
+}

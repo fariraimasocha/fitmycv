@@ -1,0 +1,75 @@
+{
+  "seoTitle": "Vérifier son profil LinkedIn face à une offre d'emploi",
+  "description": "Collez votre titre LinkedIn, votre section Infos et vos compétences à côté d'une offre en anglais. Voyez quels termes chaque section couvre. Gratuit, sans compte.",
+  "keywords": [
+    "vérifier profil linkedin",
+    "optimiser profil linkedin",
+    "mots-clés profil linkedin",
+    "optimiser son profil linkedin pour une offre",
+    "titre profil linkedin",
+    "analyse profil linkedin gratuit",
+    "score profil linkedin"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Vérificateur de profil LinkedIn",
+  "h1": "Comparez votre profil LinkedIn à une offre",
+  "lede": "Collez une offre d'emploi et votre titre, votre section Infos et vos compétences. Voyez quels termes principaux de l'offre chaque section couvre, lesquels ont leur place dans votre titre et lesquels sont absents de votre profil. L'outil lit le texte en anglais.",
+  "howTo": {
+    "name": "Comment comparer un profil LinkedIn à une offre d'emploi",
+    "description": "Comparez les sections d'un profil LinkedIn avec les termes qu'utilise une offre.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Prenez l'annonce entière, exigences comprises. L'outil classe les termes qu'elle répète le plus."
+      },
+      {
+        "name": "Collez votre titre, votre section Infos et vos compétences",
+        "text": "Copiez chacun depuis votre propre profil. Rien n'est récupéré sur LinkedIn et rien n'est stocké."
+      },
+      {
+        "name": "Comblez les manques que vous pouvez prouver",
+        "text": "Placez dans votre titre les termes déjà présents sur votre profil. N'ajoutez les autres que si votre expérience les justifie."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "L'outil fonctionne-t-il avec un profil en français ?",
+      "a": "Non. La vérification lit le texte en anglais. Les lettres accentuées sont ignorées, donc un mot comme « développement » est coupé en morceaux, et les mots courants comme « les » ou « des » sont comptés comme des termes. Si vous postulez en anglais, collez l'offre en anglais et la version anglaise de votre profil."
+    },
+    {
+      "q": "Pourquoi coller du texte plutôt qu'un lien de profil ?",
+      "a": "Lire automatiquement des profils LinkedIn va contre les conditions d'utilisation de LinkedIn, et c'est de toute façon une copie que vous allez modifier. La vérification tourne aussi dans votre navigateur, et rien ne quitte cet onglet."
+    },
+    {
+      "q": "Comment le score est-il calculé ?",
+      "a": "L'outil retient les 15 termes que l'offre répète le plus, puis vérifie si chacun apparaît dans votre titre, votre section Infos ou vos compétences. Le score est la part de ces termes trouvés quelque part sur votre profil. C'est une vérification de mots-clés, pas un avis sur la qualité du texte."
+    },
+    {
+      "q": "Pourquoi le titre compte-t-il le plus ?",
+      "a": "C'est la ligne affichée sous votre nom dans les résultats de recherche LinkedIn et à côté de chaque commentaire que vous laissez. Si un terme figure déjà dans votre section Infos ou vos compétences, le titre est l'endroit le plus simple pour le rendre visible."
+    },
+    {
+      "q": "Dois-je ajouter chaque terme manquant ?",
+      "a": "Non. Ajoutez ceux que votre expérience justifie. Un recruteur qui vous interroge sur une compétence affichée que vous n'avez pas, c'est pire qu'un manque."
+    },
+    {
+      "q": "Est-ce la même chose que vérifier mon CV ?",
+      "a": "Non. Votre CV va à un seul employeur, votre profil est vu par tous ceux qui font une recherche. Utilisez cet outil pour le profil, et le test CV ATS gratuit ou l'outil d'adaptation pour le CV."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Ce que la vérification examine"
+    },
+    {
+      "p": "Trois sections : votre titre, votre section Infos et vos compétences. **Pour chaque terme sur lequel l'offre insiste, vous voyez quelle section le mentionne.** Les termes présents sur votre profil mais absents de votre titre sont listés en premier, car ce sont les plus rapides à corriger."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

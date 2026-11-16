@@ -1,0 +1,67 @@
+{
+  "jobLabel": "Cole a descrição da vaga",
+  "jobPlaceholder": "Cole aqui o texto completo da vaga…",
+  "resumeLabel": "Seu currículo",
+  "englishOnly": "Esta ferramenta lê vagas e currículos escritos em inglês, e escreve os títulos em inglês.",
+  "submit": "Gerar títulos",
+  "busy": "Escrevendo seus títulos",
+  "statusReadingCv": "Lendo seu currículo",
+  "statusMatching": "Comparando seu currículo com a vaga",
+  "statusNeedInput": "Adicione a descrição da vaga e seu currículo para gerar.",
+  "statusPrivate": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "resultHeading": "{count, plural, one {# título} other {# títulos}} para <hl>{title}</hl>",
+  "titleFromPosting": "O cargo vem da vaga. Cada habilidade abaixo aparece no seu currículo e na vaga, então nada aqui afirma algo que seu currículo não menciona.",
+  "titleFromResume": "Não encontramos um cargo na vaga, então usamos o cargo do seu currículo. Cada habilidade abaixo aparece nos dois documentos.",
+  "titleGuess": "O cargo é um palpite a partir do texto. Corrija se estiver errado.",
+  "claims": "Afirma: {list}. Mantenha só o que seu currículo consegue comprovar.",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "copyAria": "Copiar título: {text}",
+  "toastCopied": "Título copiado",
+  "toastCopyFailed": "Não foi possível copiar. Selecione o título e copie você mesmo.",
+  "shapes": {
+    "titleSkills": {
+      "shape": "Cargo e principais habilidades",
+      "hint": "O clássico do LinkedIn e dos ATS. Fica bem em um resultado de busca."
+    },
+    "seniorityDomain": {
+      "shape": "Senioridade e área",
+      "hint": "Diz o que você faz e onde fez."
+    },
+    "years": {
+      "shape": "Anos e ponto forte",
+      "hintStated": "Usa o número de anos informado no seu currículo.",
+      "hintSpan": "Usa o intervalo entre a data mais antiga e a mais recente do seu currículo. Altere se o número estiver errado."
+    },
+    "twoStrengths": {
+      "shape": "Dois pontos fortes",
+      "hint": "Não encontramos seus anos de experiência. Adicione o número você mesmo se quiser no título."
+    },
+    "focus": {
+      "shape": "No que você foca",
+      "hint": "Começa pelo trabalho, não pelo cargo."
+    },
+    "plain": {
+      "shape": "Cabeçalho simples de currículo",
+      "hint": "Sem barras verticais, fica limpo abaixo do seu nome no topo do currículo."
+    }
+  },
+  "noTitleHeading": "Não encontramos um cargo",
+  "noTitleBody": "Nenhum dos documentos cita um cargo que reconhecemos, então um título seria um chute. Cole a vaga completa, com o cargo no topo, ou adicione seu cargo atual ao currículo e gere de novo.",
+  "matchedHeading": "Encontrado no seu currículo",
+  "noOverlap": "Seu currículo e esta vaga quase não têm vocabulário em comum. Vale corrigir isso antes do título. Comece pelo <link>verificador de currículo ATS</link>.",
+  "missingHeading": "Na vaga, fora do seu currículo",
+  "missingBody": "Nenhum destes termos pode ir para um título ainda. Primeiro, adicione a um tópico os que você consegue comprovar com honestidade, depois gere de novo. O <link>verificador de currículo ATS</link> avalia o currículo inteiro do mesmo jeito.",
+  "ctaTitle": "Quer que o resto do currículo também combine?",
+  "ctaBody": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga, mantendo sua experiência real.",
+  "ctaLabel": "Adaptar meu currículo",
+  "examplesHeading": "Exemplos de título de currículo",
+  "examplesBody": "Seus cinco títulos serão montados a partir da vaga que você colar e das habilidades que seu currículo já comprova. Este é o formato deles.",
+  "exampleRoles": {
+    "software": "Engenharia de software",
+    "marketing": "Marketing",
+    "finance": "Finanças",
+    "nursing": "Enfermagem",
+    "design": "Design de produto"
+  }
+}

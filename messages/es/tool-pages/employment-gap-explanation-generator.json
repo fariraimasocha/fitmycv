@@ -1,0 +1,68 @@
+{
+  "seoTitle": "Explicar un periodo sin empleo en un CV en inglés",
+  "description": "Explica un periodo sin empleo en una frase honesta, en inglés. Obtén el texto para tu CV, tu carta de presentación y la entrevista. Gratis, sin registro.",
+  "keywords": [
+    "cómo explicar un periodo sin trabajo en el cv",
+    "huecos en el currículum",
+    "periodo de inactividad laboral cv",
+    "pausa profesional en el cv",
+    "employment gap cv en inglés",
+    "career break cv en inglés",
+    "explicar periodo sin empleo en entrevista",
+    "cv en inglés periodo sin empleo"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Explicar un periodo sin empleo",
+  "h1": "Explica un periodo sin empleo, en inglés",
+  "lede": "Un periodo sin empleo solo perjudica cuando parece oculto. Elige por qué dejaste de trabajar y cuándo, y obtén en inglés una frase honesta para tu CV, otra para tu carta de presentación y una respuesta breve para la entrevista.",
+  "howTo": {
+    "name": "Cómo explicar un periodo sin empleo",
+    "description": "Escribe una explicación breve y honesta de una pausa profesional.",
+    "steps": [
+      { "name": "Elige el motivo", "text": "Elige el que sea verdad. No debes dar detalles." },
+      { "name": "Añade las fechas", "text": "Mes y año de inicio y de fin." },
+      { "name": "Copia las frases", "text": "Pon la frase del CV en tu trayectoria, la de la carta una sola vez, y practica la respuesta en voz alta." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Las frases salen en español?",
+      "a": "No. La herramienta rellena plantillas escritas en inglés, así que las tres frases salen en inglés, para un CV y una carta de presentación en inglés. Si te postulas en español, úsalas como base: la idea es la misma, una frase breve, verdadera y centrada en que estás disponible."
+    },
+    {
+      "q": "¿Debo explicar un periodo sin empleo en mi CV?",
+      "a": "Sí, cuando dura más de unos tres meses. Una línea en tu trayectoria evita que el reclutador haga suposiciones. Los periodos más cortos rara vez necesitan nada, sobre todo si tus fechas muestran solo los años."
+    },
+    {
+      "q": "¿Cuánto detalle doy sobre un motivo de salud?",
+      "a": "Casi ninguno. “Health and recovery, now resolved” es suficiente. No tienes que nombrar ninguna enfermedad. Lo útil es dejar claro que no afectará a tu trabajo."
+    },
+    {
+      "q": "¿Y si me despidieron?",
+      "a": "Dilo con claridad. Las reestructuraciones son habituales y los reclutadores lo saben. Lo que quieren oír es que eliges tu próximo puesto a conciencia."
+    },
+    {
+      "q": "¿Menciono los cursos o el voluntariado de ese tiempo?",
+      "a": "Sí. Añádelo en el campo opcional, en inglés. Convierte el tiempo fuera en tiempo aprovechado."
+    },
+    {
+      "q": "¿Se guarda lo que escribo?",
+      "a": "No. El texto se crea en tu navegador a partir de plantillas. No se envía nada a ningún sitio."
+    }
+  ],
+  "blocks": [
+    { "h2": "La regla: breve, verdadero y centrado en el presente" },
+    {
+      "p": "Los reclutadores no se preguntan por qué te fuiste. Se preguntan si estás listo para trabajar. Cada frase que escribe esta herramienta termina ahí."
+    },
+    {
+      "p": "Para ejemplos según cada situación, lee [cómo explicar un periodo sin empleo en tu CV](/blog/how-to-explain-employment-gap-on-cv) (en inglés)."
+    }
+  ],
+  "related": [
+    { "label": "Revisor de formato de CV", "href": "/cv-format-checker", "body": "Revisa tu CV para el país al que te postulas." },
+    { "label": "Comparador de CV y oferta", "href": "/resume-job-match-checker", "body": "Puntúa tu CV frente a una oferta de empleo." },
+    { "label": "Generador de perfil profesional", "href": "/professional-summary-generator", "body": "Tres resúmenes de CV creados a partir de una oferta y tu CV." }
+  ],
+  "ui": { "home": "Inicio", "faqHeading": "Preguntas frecuentes", "related": "Qué hacer después", "open": "Abrir" }
+}

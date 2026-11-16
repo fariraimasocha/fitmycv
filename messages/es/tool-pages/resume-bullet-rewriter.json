@@ -1,0 +1,197 @@
+{
+  "seoTitle": "Reescribir logros de un CV en inglés: gratis, sin registro",
+  "description": "Pega una línea de tu CV en inglés y obtén tres versiones más fuertes, con el hueco para las cifras marcado. Gratis, sin registro, no se sube nada.",
+  "keywords": [
+    "reescribir cv en inglés",
+    "verbos de acción cv en inglés",
+    "logros en el currículum",
+    "convertir funciones en logros cv",
+    "mejorar cv en inglés",
+    "bullet points cv en inglés",
+    "cómo redactar logros en el cv",
+    "generador de logros para cv"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Reescribir logros del CV",
+  "h1": "Reescribe una línea de tu CV en inglés",
+  "lede": "Pega una línea de tu CV escrita en inglés. Obtén tres versiones más fuertes, un diagnóstico claro de lo que falla y el sitio exacto donde va tu número. Añade la oferta a la que apuntas y la herramienta muestra qué términos de la oferta podría incluir esta línea.",
+  "howTo": {
+    "name": "Cómo reescribir una línea del CV",
+    "description": "Convierte una función en un logro con un verbo fuerte y un número.",
+    "steps": [
+      {
+        "name": "Pega una línea",
+        "text": "Copia una sola línea de tu CV en inglés, la más floja que encuentres. Las que empiezan por “Managed”, “Responsible for” o “Assisted with” son las mejores candidatas."
+      },
+      {
+        "name": "Añade la oferta, si quieres",
+        "text": "Pega la oferta a la que apuntas. La herramienta lista los términos en los que insiste la oferta y que esta línea nunca menciona, para que incluyas los que puedas demostrar con honestidad."
+      },
+      {
+        "name": "Elige una versión y rellena los huecos",
+        "text": "Cada versión tiene huecos entre corchetes donde va un número. Cámbialos por tus cifras reales. Si no puedes rellenar un hueco, la línea necesita otro enfoque."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Funciona con un CV en español?",
+      "a": "No. Reconoce inicios de frase en inglés como “Responsible for” o “Helped”, y sus verbos y plantillas están en inglés. Por eso reescribe líneas escritas en inglés, y las nuevas versiones salen en inglés. Para un CV en español, el método de esta página sigue sirviendo: un verbo de acción, un número y un resultado."
+    },
+    {
+      "q": "¿Qué hace exactamente esta herramienta?",
+      "a": "Cambia un inicio que describe una función por un verbo de acción fuerte, reorganiza la frase en torno a un resultado y marca el sitio donde va un número. También señala lo que falla en el original: un inicio pasivo, ninguna cifra, pronombres, palabras vagas como “various” o una frase de más de veintiocho palabras."
+    },
+    {
+      "q": "¿Se inventa los números por mí?",
+      "a": "No, y es a propósito. La herramienta nunca ha visto tu trabajo, así que cualquier cifra que diera sería inventada. Te da la frase con un hueco entre corchetes y tú pones el número real. Una línea con una cifra inventada pasa el filtro y falla en la entrevista."
+    },
+    {
+      "q": "¿Es gratis? ¿Necesito una cuenta?",
+      "a": "Es gratis y no hace falta registrarse. Toda la reescritura funciona en tu navegador con el JavaScript de la página. No se sube nada, no se guarda nada y no hay límite de uso."
+    },
+    {
+      "q": "¿Cómo convierto una función en un logro?",
+      "a": "Empieza con un verbo de acción, di qué hiciste y añade el resultado. “Responsible for the support queue” es una función. “Resolved 80 support tickets a week and held first response under two hours” es un logro. El trabajo es el mismo. La segunda versión le dice a quien contrata qué pasó."
+    },
+    {
+      "q": "¿Y si de verdad no tengo números para una línea?",
+      "a": "Normalmente tienes más de los que crees: cuántos, con qué frecuencia, cuántas personas, cuánto tardaba antes y después, cuánto dinero pasó por tus manos. Si no hay nada de eso, usa el alcance: los sistemas, el tamaño del equipo o las personas con las que trabajaste. Es mejor que una función a secas."
+    },
+    {
+      "q": "¿Cuántas líneas debe tener cada puesto?",
+      "a": "De tres a cinco para tu puesto más reciente, dos o tres para los anteriores, y una o dos para lo que tenga más de diez años. Cada línea que mantengas debe ganarse su sitio. Quita las que solo repiten el nombre del puesto."
+    },
+    {
+      "q": "¿Unas líneas más fuertes mejoran mi puntuación ATS?",
+      "a": "De forma indirecta. Los sistemas de seguimiento de candidatos comparan vocabulario, así que incluir los términos reales de la oferta en una línea te ayuda a aparecer en la búsqueda de un reclutador. La reescritura en sí es para la persona que te lee después. Revisa el vocabulario con el [revisor de CV ATS](/ats-resume-checker)."
+    }
+  ],
+  "blocks": [
+    { "h2": "Las funciones describen el puesto. Los logros te describen a ti." },
+    {
+      "p": "La mayoría de las líneas de un CV se copian de una descripción de puesto, y por eso tantas suenan igual. **Una función dice lo que te asignaron. Un logro dice qué cambió porque estabas tú.** Cada versión de esta página lleva una línea de la primera forma a la segunda."
+    },
+    {
+      "compare": {
+        "title": "Soporte",
+        "context": "Mismo puesto. La segunda versión le dice a quien contrata el tamaño del trabajo.",
+        "before": "Managed customer support tickets.",
+        "after": "Resolved 80+ support tickets a week and held first response under two hours."
+      }
+    },
+    {
+      "compare": {
+        "title": "Ingeniería",
+        "context": "La función esconde la escala. El logro la nombra.",
+        "before": "Responsible for maintaining the payments service.",
+        "after": "Owned the payments service through 4x traffic growth, cutting failed charges from 3% to 0.4%."
+      }
+    },
+    {
+      "compare": {
+        "title": "Marketing",
+        "context": "“Helped with” no aporta nada a esa frase.",
+        "before": "Helped with social media and email campaigns.",
+        "after": "Ran 12 lifecycle email campaigns a quarter, lifting click-through from 1.8% to 3.1%."
+      }
+    },
+    { "h2": "Las cuatro partes de una línea que funciona" },
+    {
+      "steps": [
+        {
+          "title": "Un verbo de acción, como primera palabra",
+          "body": "Ni “Responsible for”, ni “Tasked with”, ni “Helped”. Empieza por lo que hiciste: built, cut, negotiated, migrated, recovered, trained."
+        },
+        {
+          "title": "Aquello sobre lo que actuaste",
+          "body": "Lo bastante concreto para que un desconocido se lo imagine. “The billing pipeline” es mejor que “various systems”."
+        },
+        {
+          "title": "Un número",
+          "body": "Cuántos, con qué frecuencia, cuánto dinero, cuánto más rápido. Una cifra real aporta más a una línea que tres adjetivos más."
+        },
+        {
+          "title": "El resultado",
+          "body": "Lo que era cierto después y no lo era antes. Es la mitad que casi todos olvidan, y es la mitad que se lee."
+        }
+      ]
+    },
+    { "h2": "Inicios débiles y qué usar en su lugar" },
+    {
+      "p": "La herramienta detecta estos inicios en inglés y propone sustitutos de la familia de verbos que corresponde. No se trata de buscar un sinónimo. Un verbo más fuerte te obliga a decir qué pasó de verdad."
+    },
+    {
+      "table": {
+        "head": ["Inicio débil", "Qué esconde", "Prueba con"],
+        "rows": [
+          ["Responsible for (responsable de)", "Si lo hiciste tú o lo viste hacer", "Owned, ran, led, directed"],
+          ["Managed (gestioné)", "El tamaño de lo que gestionabas", "Scaled, streamlined, oversaw, coordinated"],
+          ["Helped with (ayudé con)", "Tu aportación real", "Built, delivered, supported, contributed"],
+          ["Assisted (asistí)", "Todo", "Supported, enabled, trained, advised"],
+          ["Worked on (trabajé en)", "El resultado", "Developed, shipped, rebuilt, migrated"],
+          ["Involved in (participé en)", "Si tu papel era central o secundario", "Drove, contributed to, delivered"],
+          ["Duties included (funciones como)", "Que es una descripción de puesto copiada", "Quita la frase y empieza con el verbo"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Un verbo por línea, sin repetir",
+        "body": "Si cuatro líneas de un mismo puesto empiezan por “Led”, quien lee deja de ver la palabra. Reparte las familias de verbos en la sección: una de crear, una de mejorar, una de liderar, una de ahorrar."
+      }
+    },
+    { "h2": "Encontrar el número cuando crees que no lo tienes" },
+    {
+      "ol": [
+        "**Cuenta el trabajo.** Tickets, lanzamientos, clientes, artículos, facturas, turnos, informes. Todo lo que hacías de forma repetida tiene un ritmo.",
+        "**Mide el antes y el después.** Tiempo de carga, tasa de error, tiempo de cierre, bajas de clientes, plantilla, tiempo de respuesta. El paso de una cifra a otra es la forma más fuerte que puede tener una línea.",
+        "**Mide el tamaño de lo que tocaste.** Presupuesto, ingresos, usuarios, equipo, región, flota. El alcance es un número aunque el rendimiento no lo sea.",
+        "**Mide el tiempo.** Horas ahorradas a la semana, días quitados a un ciclo, un plazo adelantado. El tiempo es la medida que antes entienden quienes no son técnicos.",
+        "**Revisa los registros.** Paneles antiguos, facturas, tableros de sprint, evaluaciones de desempeño. La cifra suele existir, solo que nunca la anotaste."
+      ]
+    },
+    {
+      "p": "Si tienes que estimar, hazlo con honestidad y redondea a la baja. “Roughly 50 a week” se puede defender en una entrevista. “87.4% improvement” sin nada detrás, no."
+    },
+    { "h2": "Adaptar una línea a una oferta concreta" },
+    {
+      "p": "Pega la oferta en el segundo campo y la herramienta lista los términos en los que insiste y que tu línea nunca menciona. Son sugerencias, no instrucciones. Incluye los que de verdad hiciste, con las palabras de la oferta, y deja el resto. Como la herramienta compara palabras en inglés, funciona con una oferta escrita en inglés."
+    },
+    {
+      "p": "El motivo para usar las palabras de la oferta es concreto y práctico: los reclutadores buscan en su sistema de seguimiento de candidatos los términos de su propio anuncio. Si escribiste “kept people informed” y buscan “stakeholder management”, no apareces. Para ver lo que falta en todo tu CV y no solo en una línea, usa [palabras clave que faltan en el CV](/missing-resume-keywords)."
+    },
+    { "h2": "Lo que hace esta página y lo que no" },
+    {
+      "table": {
+        "head": ["", "Esta herramienta", "Adaptar desde el enlace de una oferta"],
+        "rows": [
+          ["Reorganiza una línea", "Sí", "Sí"],
+          ["Marca dónde va el número", "Sí", "Sí"],
+          ["Conoce tus cifras reales", "No", "Las lee de tu CV"],
+          ["Reescribe todo el CV", "No", "Sí"],
+          ["Escribe una carta de presentación a juego", "No", "Sí"],
+          ["Necesita una cuenta", "No", "Sí"],
+          ["Límite gratis", "Ilimitado", "Generaciones de pago"]
+        ]
+      }
+    },
+    {
+      "p": "Esta página es un banco de trabajo para una línea cada vez. Es útil de verdad cuando tienes tres líneas flojas y veinte minutos. Cuando tienes una oferta concreta y todo un CV que adaptar, lo que necesitas es [adaptar el CV desde el enlace de una oferta](/tailor-cv-from-job-link), que lee tu experiencia real y mantiene tus cifras reales."
+    },
+    {
+      "cta": {
+        "title": "Reescribe todas las líneas a la vez",
+        "body": "Pega el enlace de la oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta, manteniendo los números que ya tienes.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    { "label": "Palabras clave que faltan en el CV", "href": "/missing-resume-keywords", "body": "Ve en qué términos insiste la oferta y que tu CV nunca menciona." },
+    { "label": "Revisor de CV ATS gratis", "href": "/ats-resume-checker", "body": "Puntúa tu CV frente a una oferta antes de reescribir tus líneas." },
+    { "label": "Guía completa del CV para ATS", "href": "/blog/ats-resume-guide", "body": "Cómo leen un CV los sistemas de seguimiento de candidatos y qué implica para el formato." }
+  ],
+  "ui": { "home": "Inicio", "faqHeading": "Preguntas frecuentes", "related": "Qué hacer después", "open": "Abrir" }
+}

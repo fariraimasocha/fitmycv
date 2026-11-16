@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "name": { "label": "Dein vollständiger Name", "placeholder": "Farirai Masocha" },
+    "role": { "label": "Jobtitel", "placeholder": "Softwareentwickler" },
+    "company": { "label": "Unternehmen (optional)", "placeholder": "Northwind" }
+  },
+  "fileLabel": "Lebenslauf",
+  "private": "Die Namen entstehen beim Tippen. Nichts wird hochgeladen oder gespeichert.",
+  "exampleHeading": "Das bekommst du",
+  "heading": "Deine Dateinamen",
+  "exampleBadge": "Beispiel",
+  "exampleIntro": "Gib deinen Namen und den Jobtitel ein, um deine eigenen zu erstellen. Kopiere den passenden und benenne deine Datei um, bevor du sie hochlädst.",
+  "intro": "Kopiere den, der zur Bewerbung passt, und benenne deine Datei um, bevor du sie hochlädst.",
+  "recommended": "Empfohlen",
+  "companySlot": "Mit dem Firmennamen",
+  "notes": {
+    "recommended": "Für die meisten Bewerbungen. Er nennt dich und die Stelle.",
+    "broad": "Wenn du denselben Lebenslauf an mehrere verschiedene Stellen schickst.",
+    "company": "Wenn ein Recruiter mehrere Stellen im selben Unternehmen besetzt.",
+    "companyEmpty": "Gib einen Firmennamen ein, um diesen zu erstellen.",
+    "underscore": "Wenn ein Upload-Formular oder eine Agentur Unterstriche verlangt."
+  },
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "copyAria": "Dateinamen kopieren: {name}",
+  "toastCopied": "Dateiname kopiert",
+  "copyBlocked": "Kopieren ist in diesem Browser blockiert. Markiere den Namen und kopiere ihn.",
+  "worthFixing": "Lohnt sich zu korrigieren",
+  "issues": {
+    "spaces": "Leerzeichen werden ersetzt. Ein Leerzeichen wird in einem Download-Link zu %20.",
+    "version": "Lass final, draft und v2 weg. Ein Versionswort sieht nach Arbeitsdatei aus.",
+    "lowercase": "Dein Name ist komplett kleingeschrieben. Schreib ihn groß. Ein Recruiter liest diesen Namen.",
+    "extension": "Lass die Dateiendung weg. Sie wird automatisch ergänzt, und PDF ist das sicherere Format.",
+    "illegal": "Zeichen entfernt, die Uploads stören: {chars}",
+    "accented": "Akzente und Umlaute werden vereinfacht, damit der Name auf jedem Betriebssystem funktioniert.",
+    "truncated": "Gekürzt, damit der Dateiname auf einen Blick lesbar bleibt."
+  }
+}

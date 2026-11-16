@@ -6,6 +6,7 @@
 
 import { useMemo, useState } from "react";
 import { CopyIcon } from "@phosphor-icons/react";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import HandoffCta from "@/components/tools/HandoffCta";
@@ -97,7 +98,8 @@ function explainGap({ reason, from, to, did = "" }) {
 }
 // pure-region-end
 
-function CopyBlock({ title, text }) {
+function CopyBlock({ title, copyLabel, text }) {
+  const t = useTranslations("tools.gap");
   return (
     <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
       <div className="flex items-center justify-between gap-3">
@@ -106,9 +108,9 @@ function CopyBlock({ title, text }) {
           type="button"
           onClick={() => {
             navigator.clipboard?.writeText(text);
-            toast.success("Copied");
+            toast.success(t("copied"));
           }}
-          aria-label={`Copy ${title.toLowerCase()}`}
+          aria-label={copyLabel}
           className="rounded-md p-1.5 text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
         >
           <CopyIcon size={16} aria-hidden="true" />
@@ -120,6 +122,8 @@ function CopyBlock({ title, text }) {
 }
 
 export default function GapExplainer() {
+  const t = useTranslations("tools.gap");
+  const locale = useLocale();
   const [reason, setReason] = useState("caregiving");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -150,63 +154,66 @@ export default function GapExplainer() {
         }}
         className="flex flex-col gap-5"
       >
+        {locale !== "en" ? (
+          <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">{t("englishOnly")}</p>
+        ) : null}
         <div className="flex flex-col gap-2">
-          <label htmlFor="gap-reason" className={fieldLabel}>Why were you away?</label>
+          <label htmlFor="gap-reason" className={fieldLabel}>{t("reasonLabel")}</label>
           <select id="gap-reason" value={reason} onChange={change(setReason)} className={field}>
-            {Object.entries(REASONS).map(([key, r]) => (
-              <option key={key} value={key}>{r.label}</option>
+            {Object.keys(REASONS).map((key) => (
+              <option key={key} value={key}>{t(`reasons.${key}`)}</option>
             ))}
           </select>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label htmlFor="gap-from" className={fieldLabel}>Gap started</label>
+            <label htmlFor="gap-from" className={fieldLabel}>{t("fromLabel")}</label>
             <input id="gap-from" type="month" value={from} onChange={change(setFrom)} className={field} />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="gap-to" className={fieldLabel}>Gap ended</label>
+            <label htmlFor="gap-to" className={fieldLabel}>{t("toLabel")}</label>
             <input id="gap-to" type="month" value={to} onChange={change(setTo)} className={field} />
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="gap-did" className={fieldLabel}>Anything you did during it (optional)</label>
+          <label htmlFor="gap-did" className={fieldLabel}>{t("didLabel")}</label>
           <input
             id="gap-did"
             value={did}
             onChange={change(setDid)}
-            placeholder="Completed a Google Data Analytics certificate"
+            placeholder={t("didPlaceholder")}
             className={field}
           />
         </div>
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Explain my gap"
-            busyLabel="Writing your lines"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={months === null}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {from && to && months === null ? "The end month must come after the start month." : "Nothing you type leaves this tab."}
+            {from && to && months === null ? t("datesError") : t("privacy")}
           </p>
         </div>
       </form>
 
-      {running ? <ToolProgress message="Writing your lines" lines={3} /> : null}
+      {running ? <ToolProgress message={t("busy")} lines={3} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 flex flex-col gap-3 border-t border-[var(--landing-line)] pt-8">
           {result.short ? (
             <p className="text-sm leading-6 text-[var(--landing-ink)]">
-              <strong className="font-extrabold">You may not need this.</strong> A gap under 3 months rarely needs explaining. Show years only on your CV dates and it disappears.
+              <strong className="font-extrabold">{t("shortTitle")}</strong> {t("shortBody")}
             </p>
           ) : null}
-          <CopyBlock title="On your CV" text={result.cv} />
-          <CopyBlock title="In your cover letter" text={result.letter} />
-          <CopyBlock title="In the interview" text={result.answer} />
+          <CopyBlock title={t("cvTitle")} copyLabel={t("copyCv")} text={result.cv} />
+          <CopyBlock title={t("letterTitle")} copyLabel={t("copyLetter")} text={result.letter} />
+          <CopyBlock title={t("answerTitle")} copyLabel={t("copyAnswer")} text={result.answer} />
           <HandoffCta
-            title="Gap handled. Now fit the rest of your CV."
-            body="FitMyCV rewrites your CV and cover letter for a specific job posting, so the gap is one line and your experience does the talking."
-            label="Tailor my CV to a job"
+            title={t("handoff.title")}
+            body={t("handoff.body")}
+            label={t("handoff.label")}
             source="gap_explainer"
           />
         </div>

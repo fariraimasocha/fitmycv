@@ -17,6 +17,7 @@ import {
   QuotesIcon,
   WarningCircleIcon,
 } from "@phosphor-icons/react";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
@@ -26,23 +27,12 @@ import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff, saveCvHandoff } from "@/lib/ats-handoff";
 import { trackEvent } from "@/lib/analytics";
 
-const KIND_LABEL = {
-  role: "About the role",
-  skill: "From the posting, on your CV",
-  gap: "From the posting, missing from your CV",
-};
-
-// Shown before anyone runs the tool, for people searching for the common
-// questions rather than their own.
-const COMMON_QUESTIONS = [
-  "Tell me about yourself.",
-  "Why do you want this role?",
-  "Tell me about a time you solved a hard problem.",
-  "What is your biggest weakness?",
-  "Where do you see yourself in three years?",
-];
-
 export default function InterviewQuestionsGenerator() {
+  const t = useTranslations("tools.interview");
+  const locale = useLocale();
+  // Shown before anyone runs the tool, for people searching for the common
+  // questions rather than their own.
+  const commonQuestions = t.raw("commonQuestions");
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
@@ -74,20 +64,47 @@ export default function InterviewQuestionsGenerator() {
     });
   }, [result, gapCount]);
 
+  // lib/interview-questions.js writes its tips in English. The tip depends only
+  // on the question id and whether a proof line was found, so the component
+  // picks the matching message instead.
+  function tipFor(q) {
+    if (q.id === "why") return t(q.evidence ? "tips.whyResult" : "tips.whyNoResult");
+    if (q.id === "walk") {
+      return result.matched.length
+        ? t("tips.walkSkills", {
+            skills: result.matched
+              .slice(0, 3)
+              .map((item) => item.label)
+              .join(", "),
+          })
+        : t("tips.walkNoSkills");
+    }
+    if (q.kind === "skill") return t(q.evidence ? "tips.skillStory" : "tips.skillNoDetail");
+    if (q.kind === "gap") {
+      const gap = result.missing.find((item) => `gap-${item.term}` === q.id);
+      return gap ? t("tips.gap", { skill: gap.label }) : q.tip;
+    }
+    return q.tip;
+  }
+
   async function copyAll() {
     const text = result.questions
-      .map((q) => [q.q, q.evidence ? `Your proof: ${q.evidence}` : null, q.tip].filter(Boolean).join("\n"))
+      .map((q) =>
+        [q.q, q.evidence ? `${t("proof")} ${q.evidence}` : null, tipFor(q)]
+          .filter(Boolean)
+          .join("\n")
+      )
       .join("\n\n");
     try {
       if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      toast.success("Questions copied");
+      toast.success(t("toastCopied"));
       clearTimeout(resetTimer.current);
       resetTimer.current = setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
-      toast.error("Copy failed. Select the questions and copy them yourself.");
+      toast.error(t("toastCopyFailed"));
     }
   }
 
@@ -127,7 +144,7 @@ export default function InterviewQuestionsGenerator() {
               htmlFor="interview-job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description
+              {t("jobLabel")}
             </label>
             <textarea
               id="interview-job-text"
@@ -137,14 +154,14 @@ export default function InterviewQuestionsGenerator() {
                 reset();
               }}
               rows={10}
-              placeholder="Paste the full text of the job posting here…"
+              placeholder={t("jobPlaceholder")}
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
           </div>
 
           <ResumeFileField
             id="interview-resume-text"
-            label="Your CV"
+            label={t("resumeLabel")}
             value={resumeText}
             onChange={(text) => {
               setResumeText(text);
@@ -154,40 +171,48 @@ export default function InterviewQuestionsGenerator() {
           />
         </div>
 
+        {locale !== "en" ? (
+          <p className="text-xs leading-5 text-[var(--landing-ink-soft)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
+
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Get my questions"
-            busyLabel="Reading the posting"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={jobTooShort || resumeTooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
-              ? "Reading your CV"
+              ? t("statusReadingCv")
               : running
-                ? "Matching your CV to the posting"
+                ? t("statusMatching")
                 : jobTooShort || resumeTooShort
-                  ? "Add the job description and your CV to start."
-                  : "Your CV is read in this tab. Nothing is stored."}
+                  ? t("statusNeedInput")
+                  : t("statusPrivate")}
           </p>
         </div>
       </form>
 
-      {running ? <ToolProgress message="Reading the posting" lines={4} /> : null}
+      {running ? <ToolProgress message={t("busy")} lines={4} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                {result.questions.length} questions for{" "}
-                <span className="text-[var(--landing-primary-dark)]">
-                  {result.title ?? "this job"}
-                </span>
+                {t.rich("resultHeading", {
+                  count: result.questions.length,
+                  title: result.title ?? t("thisJob"),
+                  hl: (chunks) => (
+                    <span className="text-[var(--landing-primary-dark)]">{chunks}</span>
+                  ),
+                })}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                Picked from what the posting asks for. Every proof line is
-                copied from your CV.
+                {t("resultBody")}
               </p>
             </div>
             <button
@@ -198,12 +223,12 @@ export default function InterviewQuestionsGenerator() {
               {copied ? (
                 <>
                   <CheckIcon size={13} weight="bold" aria-hidden="true" />
-                  Copied
+                  {t("copied")}
                 </>
               ) : (
                 <>
                   <CopyIcon size={13} weight="bold" aria-hidden="true" />
-                  Copy all
+                  {t("copyAll")}
                 </>
               )}
             </button>
@@ -228,7 +253,7 @@ export default function InterviewQuestionsGenerator() {
                       className="text-[var(--landing-coral)]"
                     />
                   ) : null}
-                  {KIND_LABEL[q.kind]}
+                  {t(`kind.${q.kind}`)}
                 </p>
                 <p className="text-base font-bold leading-7 text-[var(--landing-ink)]">{q.q}</p>
                 {q.evidence ? (
@@ -240,12 +265,12 @@ export default function InterviewQuestionsGenerator() {
                       className="mt-1 shrink-0 text-[var(--landing-accent)]"
                     />
                     <span>
-                      <span className="font-bold">Your proof: </span>
+                      <span className="font-bold">{t("proof")} </span>
                       {q.evidence}
                     </span>
                   </p>
                 ) : null}
-                <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">{q.tip}</p>
+                <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">{tipFor(q)}</p>
               </li>
             ))}
           </ol>
@@ -254,13 +279,11 @@ export default function InterviewQuestionsGenerator() {
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
                 {gapCount
-                  ? `${gapCount} of these questions hit gaps in your CV`
-                  : "Your CV covers what they will ask"}
+                  ? t("ctaGapsTitle", { count: gapCount })
+                  : t("ctaCoveredTitle")}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {gapCount
-                  ? "Close them before they read it. Sign up free and FitMyCV tailors your CV to this posting, using only your real experience."
-                  : "Make sure the recruiter sees that too. Sign up free and FitMyCV tailors your CV to this posting, using only your real experience."}
+                {gapCount ? t("ctaGapsBody") : t("ctaCoveredBody")}
               </p>
             </div>
             <button
@@ -268,7 +291,7 @@ export default function InterviewQuestionsGenerator() {
               onClick={handleTailorHandoff}
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              {gapCount ? "Close the gaps" : "Tailor my CV to this job"}
+              {gapCount ? t("ctaGapsLabel") : t("ctaCoveredLabel")}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
@@ -280,14 +303,13 @@ export default function InterviewQuestionsGenerator() {
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            Questions almost every interview asks
+            {t("commonHeading")}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Add the posting and your CV to get the ones this job will ask, with
-            the line from your CV that answers each.
+            {t("commonBody")}
           </p>
           <ul className="mt-5 flex flex-col gap-2">
-            {COMMON_QUESTIONS.map((q) => (
+            {commonQuestions.map((q) => (
               <li
                 key={q}
                 className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 text-sm font-semibold leading-6 text-[var(--landing-ink)]"

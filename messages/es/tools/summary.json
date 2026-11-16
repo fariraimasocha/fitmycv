@@ -1,0 +1,51 @@
+{
+  "englishOnly": "Esta herramienta funciona con texto en inglés. Lee una oferta de empleo en inglés y un CV en inglés, y escribe los resúmenes en inglés.",
+  "jobLabel": "Pega la oferta de empleo",
+  "jobPlaceholder": "Pega aquí el texto completo de la oferta…",
+  "cvLabel": "Tu CV",
+  "submit": "Escribir mi resumen",
+  "busy": "Escribiendo tus resúmenes",
+  "statusReading": "Leyendo tu CV",
+  "statusMatching": "Comparando tu CV con la oferta",
+  "statusNeedInput": "Añade la oferta de empleo y tu CV para empezar.",
+  "statusPrivate": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "resultHeading": "{count, plural, one {# resumen para} other {# resúmenes para}} <role>{title}</role>",
+  "fromPosting": "El puesto sale de la oferta. Cada habilidad aparece tanto en tu CV como en la oferta, y cada resultado es una línea de tu CV.",
+  "fromResume": "No encontramos un puesto en la oferta, así que usamos el puesto de tu CV. Cada habilidad aparece en los dos documentos.",
+  "titleGuess": "El puesto es una suposición a partir del texto. Corrígelo si no es el correcto.",
+  "noResult": "Tu CV no tiene ninguna línea con un número, así que cada resumen marca dónde va tu resultado.",
+  "shapes": {
+    "formula": "La fórmula",
+    "resultFirst": "Primero el resultado",
+    "short": "Breve y directo"
+  },
+  "hints": {
+    "formula": "Puesto y nivel, luego sector y años, luego un resultado. Sirve para casi cualquier CV.",
+    "resultFirst": "Empieza con tu mejor número. Útil cuando el resultado impresiona más que el puesto.",
+    "short": "Dos líneas para un CV de una página, cuando falta espacio arriba.",
+    "shortSecond": "Dos líneas para un CV de una página. Usa un segundo resultado de tu CV para no repetir el primero."
+  },
+  "copyAria": "Copiar resumen: {shape}",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "toastCopied": "Resumen copiado",
+  "toastFailed": "No se pudo copiar. Selecciona el resumen y cópialo tú.",
+  "claims": "Afirma {list}. Deja solo lo que tu CV puede demostrar.",
+  "slot": "Sustituye el corchete por un número real antes de usarlo.",
+  "noTitleHeading": "No encontramos un puesto",
+  "noTitleBody": "Ningún documento nombra un puesto que reconozcamos, así que un resumen sería una suposición. Pega la oferta completa, con el puesto al principio, o añade tu puesto actual a tu CV y vuelve a intentarlo.",
+  "matchedHeading": "Coincidencias en tu CV",
+  "noMatch": "Tu CV y esta oferta casi no comparten vocabulario. Arregla eso antes del resumen. Empieza con el <link>verificador de CV ATS</link>.",
+  "missingHeading": "En la oferta, no en tu CV",
+  "missingBody": "Ninguno de estos puede ir todavía en tu resumen. Añade primero a un logro los que puedas demostrar con honestidad y vuelve a ejecutarlo.",
+  "ctaTitle": "Resumen listo. ¿Y el resto del CV?",
+  "ctaBody": "Regístrate gratis y FitMyCV reescribe todo tu CV y tu carta de presentación para esta oferta, manteniendo tu experiencia real.",
+  "ctaButton": "Adaptar todo mi CV a esta oferta",
+  "examplesHeading": "Ejemplos de resumen profesional",
+  "examplesBody": "El tuyo se construye con la oferta que pegues y los resultados que tu CV ya muestra. Así es la forma que tienen.",
+  "stages": {
+    "graduate": "Recién titulado",
+    "mid": "Nivel medio",
+    "senior": "Sénior"
+  }
+}

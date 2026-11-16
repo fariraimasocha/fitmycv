@@ -1,0 +1,203 @@
+{
+  "seoTitle": "Funciones del puesto para CV en inglés: conviértelas en logros",
+  "description": "Pega en inglés las funciones de una descripción de puesto y recibe logros para tu CV en inglés que empiezan con un verbo de acción y marcan dónde van tus números. Gratis, sin cuenta.",
+  "keywords": [
+    "funciones del puesto para cv",
+    "funciones del puesto cv en inglés",
+    "responsabilidades en el cv en inglés",
+    "cómo describir funciones en el cv",
+    "logros en el cv en inglés",
+    "convertir funciones en logros cv",
+    "descripción del puesto en el cv",
+    "ejemplos de funciones para cv",
+    "resume bullets en inglés"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Funciones del puesto a logros del CV",
+  "h1": "Convierte funciones del puesto en logros para tu CV en inglés",
+  "lede": "Pega en inglés las funciones de tu descripción de puesto, una por línea. Recibe cada una como un logro en inglés para tu CV, que empieza con un verbo de acción y muestra dónde va tu número.",
+  "howTo": {
+    "name": "Cómo convertir funciones del puesto en logros para el CV",
+    "description": "Reescribe las funciones de una descripción de puesto como logros para tu CV en inglés.",
+    "steps": [
+      {
+        "name": "Pega tus funciones",
+        "text": "Copia en inglés las responsabilidades de la descripción de un puesto que ocupaste, o de tus propias notas. Una función por línea. También sirven viñetas y listas numeradas."
+      },
+      {
+        "name": "Lee cada versión",
+        "text": "Se quitan aperturas débiles como 'Responsible for' y 'Assisted with'. Cada función vuelve en pasado, con un verbo fuerte al principio."
+      },
+      {
+        "name": "Rellena los números",
+        "text": "Cada logro tiene un hueco resaltado donde va una cifra y una nota sobre qué contar. Sustituye cada hueco por un número real que puedas defender."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Debo copiar la descripción del puesto en mi CV?",
+      "a": "No. Una descripción de puesto enumera lo que el empleador pedía a cualquiera en ese puesto. Tu CV debe decir qué hiciste tú y qué cambió. Usa las funciones como lista de partida y reescribe cada una como un logro con un número."
+    },
+    {
+      "q": "¿Funciona con funciones escritas en español?",
+      "a": "No. La herramienta lee texto en inglés y escribe los logros en inglés, porque sus listas de verbos y aperturas son inglesas. Úsala para un CV en inglés. Los consejos de esta página sobre verbos, números y resultados sirven en cualquier idioma."
+    },
+    {
+      "q": "¿Qué hace exactamente esta herramienta?",
+      "a": "Divide el texto que pegas en funciones sueltas, quita aperturas débiles como 'Responsible for', pone el verbo en pasado y añade un hueco entre corchetes donde va un número. Funciona con reglas fijas en tu navegador. No usa IA y no puede conocer tus cifras."
+    },
+    {
+      "q": "¿Se inventa números?",
+      "a": "No. Marca el lugar del número y te dice qué tipo buscar: cuántos, con qué frecuencia, cuánto o cuánto más rápido. Tú pones la cifra real. Un número inventado pasa el filtro y se cae en la entrevista."
+    },
+    {
+      "q": "¿Es gratis? ¿Necesito una cuenta?",
+      "a": "Es gratis, sin registro y sin límite de uso. Todo funciona en tu navegador. Nada de lo que pegas se sube ni se guarda."
+    },
+    {
+      "q": "¿Qué diferencia hay entre funciones y logros?",
+      "a": "Una función es lo que te asignaron: 'Gestionar los reembolsos de clientes'. Un logro es lo que pasó porque lo hiciste: 'Tramité 40 reembolsos a la semana y reduje el retraso de diez días a dos'. Los reclutadores leen lo segundo, porque todos los candidatos a ese puesto tenían las mismas funciones."
+    },
+    {
+      "q": "¿Cuántos logros debe tener cada empleo?",
+      "a": "De tres a cinco para tu puesto más reciente, dos o tres para los anteriores y uno o dos para lo que tenga más de diez años. Quédate con los que más se acercan al puesto que buscas y quita el resto."
+    },
+    {
+      "q": "¿Los logros deben encajar con el puesto al que me postulo?",
+      "a": "Sí. Reescribe primero las funciones y luego revisa qué términos usa la nueva oferta que tus logros nunca mencionan. La herramienta de [palabras clave que faltan en tu CV](/missing-resume-keywords) muestra esa diferencia. Adaptar el CV desde el enlace de la oferta hace los dos pasos en todo tu CV."
+    }
+  ],
+  "blocks": [
+    { "h2": "Las funciones son lo que te dieron. Los logros son lo que hiciste con ellas." },
+    {
+      "p": "La mayoría de CV enumeran funciones copiadas de una descripción de puesto, y por eso tantos se parecen. **Todos los que ocuparon el puesto tuvieron las mismas funciones.** Lo que te distingue es lo que cambió porque estabas tú, y eso necesita un verbo, el trabajo y un número."
+    },
+    {
+      "compare": {
+        "title": "Atención al cliente",
+        "context": "La función del anuncio, y el mismo trabajo escrito como resultado.",
+        "before": "Responsable de gestionar los reembolsos de clientes.",
+        "after": "Tramité 40 reembolsos a la semana y reduje el retraso de diez días a dos."
+      }
+    },
+    {
+      "compare": {
+        "title": "Operaciones",
+        "context": "La función nombra una tarea. El logro dice lo grande que era.",
+        "before": "Entre mis funciones estaban el control de stock y los pedidos.",
+        "after": "Llevé el control de stock de tres tiendas y reduje en un tercio los artículos agotados."
+      }
+    },
+    { "h2": "Ejemplos de funciones para el CV por puesto" },
+    {
+      "p": "La columna de la izquierda muestra cómo suele redactar la función una descripción de puesto. La de la derecha, la misma función como logro en el CV. **Los números son ejemplos.** Usa los tuyos y deja fuera lo que no puedas respaldar."
+    },
+    {
+      "table": {
+        "head": ["Puesto", "Función tal como aparece en el anuncio", "Como logro en el CV"],
+        "rows": [
+          ["Atención al cliente", "Responder consultas de clientes por teléfono y email", "Respondí 60 consultas de clientes al día por teléfono y email con una satisfacción del 95 %"],
+          ["Comercio", "Responsable de la exposición y la reposición de producto", "Renové los escaparates cada semana y reduje un 30 % los huecos de stock en tienda"],
+          ["Asistente administrativo", "Gestionar la agenda del director y organizar reuniones", "Llevé la agenda de dos directores y cerré 25 reuniones a la semana sin solapamientos"],
+          ["Enfermería", "Vigilar a los pacientes y administrar la medicación", "Atendí a 8 pacientes por turno en una planta de agudos y administré la medicación sin errores registrados"],
+          ["Docente", "Planificar e impartir clases según el currículo", "Planifiqué e impartí 22 clases a la semana en tres cursos y subí el aprobado del 64 % al 78 %"],
+          ["Ingeniería de software", "Desarrollar y mantener aplicaciones web", "Desarrollé y mantuve tres aplicaciones web internas que usan 400 empleados y reduje a la mitad el tiempo de carga"],
+          ["Ventas", "Crear relaciones con clientes nuevos y actuales", "Construí una cartera de 35 cuentas y aumenté un 18 % los ingresos recurrentes en un año"],
+          ["Contabilidad", "Preparar informes y conciliaciones de cierre de mes", "Preparé los informes de cierre de mes de cuatro sociedades y cerré las cuentas dos días antes"],
+          ["Marketing", "Ayudar con redes sociales y campañas de email", "Lancé 12 campañas de email por trimestre y pasé la lista de 8.000 a 14.000 suscriptores"],
+          ["Almacén", "Preparar, embalar y enviar pedidos de clientes", "Preparé y embalé 300 pedidos por turno con un 99,8 % de precisión"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Usa las palabras del empleador y tus propios números",
+        "body": "Mantén los términos de la descripción del puesto al que te postulas, porque los reclutadores los buscan. Cambia todo lo demás: el verbo, la escala y el resultado."
+      }
+    },
+    { "h2": "La forma que debe tener cada logro" },
+    {
+      "steps": [
+        {
+          "title": "Un verbo de acción en pasado, primero",
+          "body": "Built, ran, cut, trained, resolved. No 'Responsible for', 'Duties included' ni 'Helped with', que describen el puesto y no a ti."
+        },
+        {
+          "title": "El trabajo, con palabras sencillas",
+          "body": "Lo bastante concreto para que un desconocido se lo imagine. 'La cola de reembolsos' es mejor que 'varios asuntos de clientes'."
+        },
+        {
+          "title": "Un número",
+          "body": "Cuántos, con qué frecuencia, cuánto o cuánto más rápido. Una cifra real hace más que cualquier adjetivo."
+        },
+        {
+          "title": "Qué cambió",
+          "body": "Lo que era cierto después y no antes. Es la parte que una descripción de puesto nunca cuenta, así que solo tú puedes añadirla."
+        }
+      ]
+    },
+    { "h2": "Aperturas débiles que quita esta herramienta" },
+    {
+      "table": {
+        "head": ["En la descripción del puesto", "Lo que oculta", "Qué escribir en su lugar"],
+        "rows": [
+          ["Responsible for", "Si lo hiciste o solo lo viste", "Owned, ran, led"],
+          ["Duties included", "Que la línea está copiada de un anuncio", "Empieza con el verbo"],
+          ["Tasked with", "El resultado", "Delivered, completed, shipped"],
+          ["Assisted with", "Tu parte en ello", "Supported, trained, resolved"],
+          ["Helped", "Todo", "El verbo real de lo que hiciste"],
+          ["Worked on", "El resultado", "Built, rebuilt, migrated"],
+          ["Involved in", "Si eras una pieza clave", "Drove, delivered, contributed"]
+        ]
+      }
+    },
+    { "h2": "Cómo encontrar el número" },
+    {
+      "ol": [
+        "**Cuenta el trabajo.** Tickets, pedidos, pacientes, clases, facturas, turnos. Todo lo que hacías a menudo tiene un ritmo.",
+        "**Compara el antes y el después.** Retrasos, errores, tiempos de espera, tiempo de cierre. Un cambio de una cifra a otra es el logro más fuerte que puedes escribir.",
+        "**Mide lo que tocaste.** Presupuesto, equipo, número de centros, clientes, usuarios. El alcance cuenta como número.",
+        "**Revisa registros antiguos.** Informes, paneles, cuadrantes y evaluaciones suelen guardar la cifra que olvidaste."
+      ]
+    },
+    {
+      "p": "Si tienes que estimar, redondea a la baja y di 'unos'. 'Unos 50 a la semana' aguanta en una entrevista. Una cifra precisa sin nada detrás, no."
+    },
+    { "h2": "De las funciones de un empleo al CV del siguiente" },
+    {
+      "p": "Esta página reescribe las funciones que pegas, una lista cada vez. Cuando te postulas a una oferta concreta, los logros también tienen que usar las palabras de esa oferta. Revisa la diferencia con [palabras clave que faltan en tu CV](/missing-resume-keywords), pule líneas sueltas con el [reescritor de logros del CV](/resume-bullet-rewriter) o haz todo el CV a la vez con la [adaptación desde el enlace de la oferta](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "Adapta cada logro al empleo que quieres",
+        "body": "Pega el enlace de la oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta, manteniendo tu experiencia real y tus números reales.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Reescritor de logros del CV",
+      "href": "/resume-bullet-rewriter",
+      "body": "Reescribe un logro de tres formas, con una lectura de lo que falla."
+    },
+    {
+      "label": "Palabras clave que faltan en tu CV",
+      "href": "/missing-resume-keywords",
+      "body": "Mira qué términos de la oferta tu CV nunca menciona."
+    },
+    {
+      "label": "Verificador de CV ATS gratis",
+      "href": "/ats-resume-checker",
+      "body": "Puntúa tu CV frente a una oferta antes de postularte."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

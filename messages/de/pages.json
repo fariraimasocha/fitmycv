@@ -230,7 +230,25 @@
       "missingHeading": "Fehlt in deinem Lebenslauf",
       "coveredHeading": "Schon abgedeckt",
       "keywordsTitle": "Die {count} Begriffe, auf die diese Anzeige setzt",
-      "keywordsBody": "Sortiert nach dem Gewicht, das die Anzeige ihnen gibt. Geh die Liste durch und sorg dafür, dass jeder Begriff, den du ehrlich für dich beanspruchen kannst, in einem Stichpunkt mit Ergebnis in deinem Lebenslauf steht."
+      "keywordsBody": "Sortiert nach dem Gewicht, das die Anzeige ihnen gibt. Geh die Liste durch und sorg dafür, dass jeder Begriff, den du ehrlich für dich beanspruchen kannst, in einem Stichpunkt mit Ergebnis in deinem Lebenslauf steht.",
+      "leadEmail": {
+        "title": "Schick mir diesen Score und einen Link, um die Lücken zu schließen",
+        "body": "Optional. Kein Konto nötig.",
+        "emailLabel": "E-Mail-Adresse",
+        "placeholder": "du@email.com",
+        "send": "Senden",
+        "sending": "Wird gesendet...",
+        "emailRequired": "Gib deine E-Mail-Adresse ein.",
+        "invalidEmail": "Gib eine gültige E-Mail-Adresse ein.",
+        "tooMany": "Zu viele Anfragen. Versuch es in einer Minute noch einmal.",
+        "saveError": "Deine E-Mail konnte nicht gespeichert werden. Versuch es noch einmal.",
+        "sentToast": "Gesendet. In deinem Posteingang findest du deinen Score und die nächsten Schritte.",
+        "duplicateToast": "Diese Adresse hat ihren ersten Score schon bekommen. Wir senden ihn nur einmal.",
+        "sentTitle": "Sieh in deinen Posteingang",
+        "sentBody": "Wir haben dir deinen Score und einen Link zum Schließen der Lücken geschickt.",
+        "duplicateTitle": "Schon gesendet",
+        "duplicateBody": "Diese Adresse hat ihren ersten Score schon per E-Mail bekommen. Wir senden ihn nur einmal."
+      }
     },
     "resumeFile": {
       "label": "Dein Lebenslauf",

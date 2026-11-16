@@ -1,0 +1,51 @@
+{
+  "englishOnly": "This tool works on English text. It reads an English job description and an English CV, and it writes the summaries in English.",
+  "jobLabel": "Paste the job description",
+  "jobPlaceholder": "Paste the full text of the job posting here…",
+  "cvLabel": "Your CV",
+  "submit": "Write my summary",
+  "busy": "Writing your summaries",
+  "statusReading": "Reading your CV",
+  "statusMatching": "Matching your CV to the posting",
+  "statusNeedInput": "Add the job description and your CV to start.",
+  "statusPrivate": "Your CV is read in this tab. Nothing is stored.",
+  "resultHeading": "{count, plural, one {# summary for} other {# summaries for}} <role>{title}</role>",
+  "fromPosting": "The title comes from the posting. Every skill appears in both your CV and the posting, and every result is a line from your CV.",
+  "fromResume": "We could not find a job title in the posting, so this uses the title in your CV. Every skill appears in both documents.",
+  "titleGuess": "The title is a best guess from the wording. Edit it if it is wrong.",
+  "noResult": "Your CV has no line with a number in it, so each summary marks where your result goes.",
+  "shapes": {
+    "formula": "The formula",
+    "resultFirst": "Result first",
+    "short": "Short and plain"
+  },
+  "hints": {
+    "formula": "Title and level, then domain and years, then one result. Works for almost any CV.",
+    "resultFirst": "Opens on your strongest number. Good when the result is more impressive than the title.",
+    "short": "Two lines for a one page CV, when space at the top is tight.",
+    "shortSecond": "Two lines for a one page CV. Uses a second result from your CV so it does not repeat the first."
+  },
+  "copyAria": "Copy summary: {shape}",
+  "copy": "Copy",
+  "copied": "Copied",
+  "toastCopied": "Summary copied",
+  "toastFailed": "Copy failed. Select the summary and copy it yourself.",
+  "claims": "Claims {list}. Keep only what your CV can evidence.",
+  "slot": "Replace the bracket with a real number before you use it.",
+  "noTitleHeading": "We could not find a job title",
+  "noTitleBody": "Neither document names a role we recognise, so a summary would be a guess. Paste the full posting, including the title at the top, or add your current job title to your CV, then try again.",
+  "matchedHeading": "Matched from your CV",
+  "noMatch": "Your CV and this posting share almost no vocabulary. Fix that before the summary. Start with the <link>ATS resume checker</link>.",
+  "missingHeading": "In the posting, not in your CV",
+  "missingBody": "None of these can go in your summary yet. Add the ones you can honestly evidence to a bullet first, then run it again.",
+  "ctaTitle": "Summary done. Is the rest of the CV?",
+  "ctaBody": "Sign up free and FitMyCV rewrites your whole CV and cover letter against this posting, keeping your real experience.",
+  "ctaButton": "Tailor my whole CV to this job",
+  "examplesHeading": "Professional summary examples",
+  "examplesBody": "Yours will be built from the posting you paste and the results your CV already shows. Here is the shape they take.",
+  "stages": {
+    "graduate": "Graduate",
+    "mid": "Mid-level",
+    "senior": "Senior"
+  }
+}

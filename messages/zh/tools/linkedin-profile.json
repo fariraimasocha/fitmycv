@@ -1,0 +1,28 @@
+{
+  "englishOnly": "这项检查只读取英文文本。请贴上英文职位描述和你资料的英文版本。",
+  "jobLabel": "职位描述",
+  "jobPlaceholder": "贴上完整的职位描述",
+  "headlineLabel": "你的领英标题",
+  "headlinePlaceholder": "Backend Engineer | Go, Kubernetes, Payments",
+  "aboutLabel": "你的简介",
+  "skillsLabel": "你的技能",
+  "skillsPlaceholder": "从资料的技能板块复制",
+  "submit": "检查我的资料",
+  "busy": "正在比较你的资料",
+  "privacy": "在此标签页中读取，不保存任何内容。",
+  "score": "你的资料覆盖了这份职位描述看重的关键词的 {score}%",
+  "listSeparator": "、",
+  "forHeadline": "标题是招聘人员在搜索结果里看到的、你名字下面那一行。这些关键词已经在你的资料里，但不在标题中：<strong>{terms}</strong>。",
+  "missing": "资料里完全没有：<strong>{terms}</strong>。把你能证明的写进简介或技能。",
+  "termColumn": "关键词",
+  "section": {
+    "headline": "标题",
+    "about": "简介",
+    "skills": "技能"
+  },
+  "found": "已找到",
+  "notFound": "缺少",
+  "ctaTitle": "简历也这样检查一遍",
+  "ctaBody": "FitMyCV 会对照职位描述改写你的简历，用职位描述自己的措辞，并且只用你经历里已有的内容。",
+  "ctaLabel": "按这个职位定制简历"
+}

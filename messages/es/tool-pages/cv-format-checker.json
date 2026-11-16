@@ -1,0 +1,114 @@
+{
+  "seoTitle": "Revisar el formato del CV: Sudáfrica, Nigeria, India, Reino Unido",
+  "description": "Revisa el formato de tu CV para el país donde postulas. Extensión, datos personales, número de identidad, NYSC y más. Gratis, sin registro, tu CV no sale del navegador.",
+  "keywords": [
+    "revisar formato de cv",
+    "formato de cv reino unido",
+    "cv en inglés formato",
+    "formato cv estados unidos",
+    "formato cv sudáfrica",
+    "formato cv india",
+    "cv para trabajar en el extranjero",
+    "fecha de nacimiento en el cv",
+    "qué poner en un cv"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Revisor de formato de CV",
+  "h1": "Revisor de formato de CV para Sudáfrica, Nigeria, Kenia, India, el Reino Unido y Estados Unidos",
+  "lede": "Un CV correcto en Lagos puede estar mal en Londres. Elige el país donde postulas, añade tu CV en inglés y ve qué quitar, añadir o mover. Funciona en tu navegador. No se sube nada.",
+  "howTo": {
+    "name": "Cómo revisar el formato de tu CV para un país",
+    "description": "Revisa un CV según el formato que esperan los empleadores de un país.",
+    "steps": [
+      {
+        "name": "Elige el país",
+        "text": "Elige dónde está el puesto, no dónde vives."
+      },
+      {
+        "name": "Añade tu CV",
+        "text": "Suelta un PDF o pega el texto. Se lee en tu navegador."
+      },
+      {
+        "name": "Corrige lo que marca",
+        "text": "Cada comprobación dice qué cambiar. Corrígelo y vuelve a revisar."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Revisa un CV en español?",
+      "a": "Solo en parte. Las comprobaciones buscan expresiones en inglés, como «date of birth», «marital status» o «references available on request». En un CV en español solo se revisan de verdad la extensión y el correo. Los países que cubre contratan en inglés, así que usa la versión en inglés de tu CV."
+    },
+    {
+      "q": "¿Debo poner mi número de identidad en el CV en Sudáfrica?",
+      "a": "No. Dalo cuando un empleador lo pida, normalmente al hacerte una oferta. Tu número de identidad es información personal protegida por la ley POPIA, y un CV se reenvía y se guarda en sitios que no ves."
+    },
+    {
+      "q": "¿Debo poner mi fecha de nacimiento en el CV?",
+      "a": "En el Reino Unido y Estados Unidos, no. Los empleadores no la esperan. En Nigeria e India algunas ofertas la piden. Añádela solo si la oferta la pide."
+    },
+    {
+      "q": "¿Qué extensión debe tener mi CV?",
+      "a": "Dos páginas bastan para la mayoría de la gente en todos los países que cubre la herramienta. Si acabas de graduarte, apunta a una. La herramienta estima la extensión por el número de palabras. Mira [cuánto debe ocupar un CV](/blog/how-long-should-a-cv-be) (en inglés)."
+    },
+    {
+      "q": "¿Debo poner foto?",
+      "a": "No, salvo que la oferta la pida. La herramienta lee texto y no puede ver una foto, pero esta es la regla en todos los países que cubre."
+    },
+    {
+      "q": "¿Se sube mi CV a algún sitio?",
+      "a": "No. El PDF se lee en la pestaña de tu navegador y las comprobaciones se hacen ahí. No se envía nada a FitMyCV ni se guarda."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué revisa la herramienta"
+    },
+    {
+      "ul": [
+        "**La extensión** frente a lo que esperan los empleadores de ese país.",
+        "**Los datos personales** como la fecha de nacimiento, el estado civil y la religión, que ayudan en unos países y perjudican en otros.",
+        "**El número de identidad** para Sudáfrica y Kenia, y **el estado del NYSC** para Nigeria.",
+        "**Un objetivo profesional** donde funciona mejor un resumen profesional.",
+        "**Líneas de relleno** como «references available on request» y la línea india «I hereby declare»."
+      ]
+    },
+    {
+      "h2": "Guías por país"
+    },
+    {
+      "p": "Para el panorama completo, lee [el formato de CV en Sudáfrica](/blog/cv-format-south-africa), [el formato de CV en Nigeria](/blog/cv-format-nigeria) y [el formato de CV en Kenia](/blog/cv-format-kenya). Las guías están en inglés."
+    },
+    {
+      "cta": {
+        "title": "¿Formato listo? Adáptalo al puesto.",
+        "body": "Un formato limpio hace que te lean. Encajar con la oferta hace que te preseleccionen.",
+        "href": "/es/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV desde un enlace de oferta"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Comparador de CV y oferta",
+      "href": "/resume-job-match-checker",
+      "body": "Compara tu CV con una oferta de empleo."
+    },
+    {
+      "label": "Detector de palabras débiles",
+      "href": "/resume-weak-words-checker",
+      "body": "Encuentra los clichés que hacen que un CV pase desapercibido."
+    },
+    {
+      "label": "Plantillas de CV",
+      "href": "/cv-templates",
+      "body": "Diseños limpios que se leen bien en cualquier país."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

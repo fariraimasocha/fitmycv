@@ -16,6 +16,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
@@ -403,7 +404,8 @@ function rewriteBullet(text) {
   return { family, label: spec.label, opener: opener ? opener[0] : null, variants };
 }
 
-/** One line per problem, each naming the fix. No score, no grade. */
+/** One line per problem, each naming the fix. No score, no grade. `key` and
+ * `values` pick the translated line; `text` is the English one. */
 function diagnoseBullet(text) {
   const clean = normalizeBullet(text);
   const raw = String(text || "").trim();
@@ -415,16 +417,19 @@ function diagnoseBullet(text) {
     opener
       ? {
           tone: "warn",
+          key: "opener",
+          values: { opener: opener[0] },
           text: `Opens with "${opener[0]}", which names a duty. Start with an action verb instead.`,
         }
-      : { tone: "ok", text: "Opens with an action verb. Keep it and add the numbers." }
+      : { tone: "ok", key: "verbOk", text: "Opens with an action verb. Keep it and add the numbers." }
   );
 
   notes.push(
     /\d/.test(clean)
-      ? { tone: "ok", text: "Has a number. Check it is the one a hiring manager cares about." }
+      ? { tone: "ok", key: "number", text: "Has a number. Check it is the one a hiring manager cares about." }
       : {
           tone: "warn",
+          key: "noNumber",
           text: "No number anywhere. Add how many, how often, how much, or how much faster.",
         }
   );
@@ -432,6 +437,8 @@ function diagnoseBullet(text) {
   if (words.length > 28) {
     notes.push({
       tone: "warn",
+      key: "long",
+      values: { count: words.length },
       text: `${words.length} words. Cut it to under 25 so it fits on two lines.`,
     });
   }
@@ -440,6 +447,8 @@ function diagnoseBullet(text) {
   if (pronoun) {
     notes.push({
       tone: "warn",
+      key: "pronoun",
+      values: { word: pronoun[0] },
       text: `Uses "${pronoun[0]}". Drop pronouns from CV bullets and lead with the verb.`,
     });
   }
@@ -448,12 +457,15 @@ function diagnoseBullet(text) {
   if (vague) {
     notes.push({
       tone: "warn",
+      key: "vague",
+      values: { word: vague },
       text: `"${vague}" hides the count. Replace it with the real figure.`,
     });
   }
 
   notes.push({
     tone: "note",
+    key: raw.endsWith(".") ? "fullStop" : "noFullStop",
     text: raw.endsWith(".")
       ? "Ends with a full stop. Use the same ending on every bullet."
       : "No full stop at the end. Fine, as long as every other bullet matches.",
@@ -527,6 +539,8 @@ function NoteIcon({ tone }) {
 }
 
 export default function BulletRewriter() {
+  const t = useTranslations("tools.bullet");
+  const locale = useLocale();
   const [bullet, setBullet] = useState("");
   const [jobText, setJobText] = useState("");
   const { running, ran, start } = useToolRun();
@@ -542,7 +556,6 @@ export default function BulletRewriter() {
       notes: diagnoseBullet(bullet),
       terms: tailoringTerms(bullet, jobText).filter(notCompanyTerm(jobText)),
       verbs: VERB_FAMILIES[rewrite.family].verbs,
-      familyHint: VERB_FAMILIES[rewrite.family].hint,
     };
   }, [ran, bullet, jobText]);
 
@@ -558,24 +571,27 @@ export default function BulletRewriter() {
         }}
         className="flex flex-col gap-5"
       >
+        {locale !== "en" ? (
+          <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">{t("englishOnly")}</p>
+        ) : null}
         <div className="grid gap-5 md:grid-cols-2">
           <div className="flex flex-col gap-2">
             <label
               htmlFor="bullet-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste one bullet from your CV
+              {t("bulletLabel")}
             </label>
             <textarea
               id="bullet-text"
               value={bullet}
               onChange={(e) => setBullet(e.target.value)}
               rows={4}
-              placeholder="Managed customer support tickets."
+              placeholder={t("bulletPlaceholder")}
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
             <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-              One bullet at a time works best.
+              {t("bulletHint")}
             </p>
           </div>
 
@@ -584,26 +600,26 @@ export default function BulletRewriter() {
               htmlFor="bullet-job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description (optional)
+              {t("jobLabel")}
             </label>
             <textarea
               id="bullet-job-text"
               value={jobText}
               onChange={(e) => setJobText(e.target.value)}
               rows={4}
-              placeholder="Paste the posting to see which of its terms you could work in…"
+              placeholder={t("jobPlaceholder")}
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
             <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-              Leave this empty to just rewrite the bullet.
+              {t("jobHint")}
             </p>
           </div>
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Rewrite this bullet"
-            busyLabel="Rewriting your bullet"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={tooShort}
           />
@@ -617,29 +633,25 @@ export default function BulletRewriter() {
             disabled={running}
             className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
           >
-            Try an example
+            {t("example")}
           </button>
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {running
-              ? "Rewriting your bullet"
-              : "Runs entirely in your browser. Nothing is uploaded or stored."}
+            {running ? t("busy") : t("privacy")}
           </p>
         </div>
       </form>
 
       {running ? (
-        <ToolProgress message="Rewriting your bullet" lines={3} />
+        <ToolProgress message={t("busy")} lines={3} />
       ) : null}
 
       {result ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-            Three ways to rewrite it
+            {t("resultTitle")}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Each one opens with an action verb and marks where a number belongs.
-            The highlighted slots are yours to fill. This tool does not know your
-            numbers, so pick figures you can defend in an interview.
+            {t("resultBody")}
           </p>
 
           <ol className="mt-6 flex flex-col gap-3">
@@ -659,14 +671,14 @@ export default function BulletRewriter() {
           </ol>
 
           <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            What to fix in the original
+            {t("fixTitle")}
           </p>
           <ul className="mt-3 flex flex-col gap-2">
             {result.notes.map((note) => (
-              <li key={note.text} className="flex items-start gap-2.5">
+              <li key={note.key} className="flex items-start gap-2.5">
                 <NoteIcon tone={note.tone} />
                 <span className="text-sm leading-6 text-[var(--landing-ink-soft)]">
-                  {note.text}
+                  {t(`notes.${note.key}`, note.values)}
                 </span>
               </li>
             ))}
@@ -675,11 +687,10 @@ export default function BulletRewriter() {
           {result.terms.length ? (
             <>
               <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                Terms from the posting you could work in
+                {t("termsTitle")}
               </p>
               <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                The posting leans on these and your bullet never says them. Add
-                only the ones you actually did.
+                {t("termsBody")}
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {result.terms.map((term) => (
@@ -694,16 +705,15 @@ export default function BulletRewriter() {
             </>
           ) : jobStarted ? (
             <p className="mt-8 text-sm leading-7 text-[var(--landing-ink-soft)]">
-              Paste more of the posting to see which of its terms this bullet is
-              missing. A line or two is not enough to rank.
+              {t("termsTooShort")}
             </p>
           ) : null}
 
           <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            Action verbs for {result.label.toLowerCase()}
+            {t("verbsTitle", { family: t(`families.${result.family}.label`) })}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            {result.familyHint} Swap in whichever one is most accurate.
+            {t(`families.${result.family}.hint`)} {t("verbsSwap")}
           </p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {result.verbs.map((verb) => (
@@ -725,18 +735,17 @@ export default function BulletRewriter() {
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                One bullet down. What about the rest?
+                {t("ctaTitle")}
               </p>
               <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Paste the job link and FitMyCV rewrites every bullet against that
-                posting, keeping your real experience and your real numbers.
+                {t("ctaBody")}
               </p>
             </div>
             <Link
               href="/tailor-cv-from-job-link"
               className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              Tailor my CV
+              {t("ctaLabel")}
               <ArrowRightIcon
                 size={15}
                 aria-hidden="true"
@@ -748,23 +757,13 @@ export default function BulletRewriter() {
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            What you get back
+            {t("previewTitle")}
           </p>
           <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-            {[
-              {
-                title: "Three rewrites",
-                body: "Each opens with an action verb and marks where your number goes.",
-              },
-              {
-                title: "A read on the original",
-                body: "Weak opener, missing number, pronouns, length. One line each.",
-              },
-              {
-                title: "A verb bank",
-                body: "Action verbs for the kind of work this bullet describes.",
-              },
-            ].map(({ title, body }) => (
+            {["rewrites", "read", "verbs"].map((key) => ({
+              title: t(`preview.${key}.title`),
+              body: t(`preview.${key}.body`),
+            })).map(({ title, body }) => (
               <li
                 key={title}
                 className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-4"

@@ -1,0 +1,76 @@
+{
+  "englishOnly": "Cet outil réécrit des lignes d'expérience rédigées en anglais. Ses verbes, ses modèles et ses vérifications ne fonctionnent que sur du texte anglais, donc les réécritures sont en anglais.",
+  "bulletLabel": "Collez une ligne d'expérience de votre CV",
+  "bulletPlaceholder": "Managed customer support tickets.",
+  "bulletHint": "Une ligne à la fois donne les meilleurs résultats.",
+  "jobLabel": "Collez l'offre d'emploi (facultatif)",
+  "jobPlaceholder": "Collez l'offre pour voir quels termes vous pourriez intégrer…",
+  "jobHint": "Laissez ce champ vide pour simplement réécrire la ligne.",
+  "submit": "Réécrire cette ligne",
+  "busy": "Réécriture de votre ligne",
+  "example": "Essayer un exemple",
+  "privacy": "Tout se passe dans votre navigateur. Rien n'est envoyé ni stocké.",
+  "resultTitle": "Trois façons de la réécrire",
+  "resultBody": "Chacune commence par un verbe d'action et indique où placer un chiffre. Les emplacements surlignés sont à remplir par vous. L'outil ne connaît pas vos chiffres, choisissez donc des valeurs que vous pouvez défendre en entretien.",
+  "fixTitle": "Ce qu'il faut corriger dans l'original",
+  "notes": {
+    "opener": "Commence par « {opener} », qui décrit une tâche. Commencez plutôt par un verbe d'action.",
+    "verbOk": "Commence par un verbe d'action. Gardez-le et ajoutez les chiffres.",
+    "number": "Contient un chiffre. Vérifiez que c'est celui qui intéresse un recruteur.",
+    "noNumber": "Aucun chiffre. Ajoutez combien, à quelle fréquence, quel montant ou combien plus vite.",
+    "long": "{count} mots. Descendez sous 25 pour tenir sur deux lignes.",
+    "pronoun": "Utilise « {word} ». Retirez les pronoms des lignes de CV et commencez par le verbe.",
+    "vague": "« {word} » cache le nombre. Remplacez-le par le vrai chiffre.",
+    "fullStop": "Se termine par un point. Utilisez la même fin sur chaque ligne.",
+    "noFullStop": "Pas de point final. C'est bien, tant que toutes les autres lignes font pareil."
+  },
+  "termsTitle": "Termes de l'offre que vous pourriez intégrer",
+  "termsBody": "L'offre insiste sur ces termes et votre ligne ne les mentionne jamais. Ajoutez seulement ceux qui correspondent à ce que vous avez vraiment fait.",
+  "termsTooShort": "Collez une plus grande partie de l'offre pour voir quels termes manquent à cette ligne. Une ou deux phrases ne suffisent pas pour les classer.",
+  "verbsTitle": "Verbes d'action pour {family}",
+  "verbsSwap": "Choisissez celui qui décrit le mieux ce que vous avez fait.",
+  "families": {
+    "ownership": {
+      "label": "la responsabilité et le management",
+      "hint": "Vous décrivez une chose dont vous aviez la charge ou que vous dirigiez."
+    },
+    "support": {
+      "label": "le service aux clients et aux collègues",
+      "hint": "Vous décrivez un travail fait pour des clients ou des collègues."
+    },
+    "delivery": {
+      "label": "la conception et la livraison",
+      "hint": "Vous décrivez une chose que vous avez aidé à construire ou à lancer."
+    },
+    "process": {
+      "label": "les processus et l'efficacité",
+      "hint": "Vous décrivez un processus que vous avez fait tourner ou amélioré."
+    },
+    "analysis": {
+      "label": "les données et l'analyse",
+      "hint": "Vous décrivez une chose que vous avez mesurée ou étudiée."
+    },
+    "general": {
+      "label": "tous les domaines",
+      "hint": "Aucune famille ne ressort, ces verbes conviennent partout."
+    }
+  },
+  "ctaTitle": "Une ligne de faite. Et les autres ?",
+  "ctaBody": "Collez le lien de l'offre et FitMyCV réécrit chaque ligne en fonction de cette offre, en gardant votre vraie expérience et vos vrais chiffres.",
+  "ctaLabel": "Adapter mon CV",
+  "previewTitle": "Ce que vous obtenez",
+  "preview": {
+    "rewrites": {
+      "title": "Trois réécritures",
+      "body": "Chacune commence par un verbe d'action et indique où placer votre chiffre."
+    },
+    "read": {
+      "title": "Un diagnostic de l'original",
+      "body": "Début faible, chiffre manquant, pronoms, longueur. Une ligne pour chaque point."
+    },
+    "verbs": {
+      "title": "Une banque de verbes",
+      "body": "Des verbes d'action pour le type de travail que décrit cette ligne."
+    }
+  }
+}

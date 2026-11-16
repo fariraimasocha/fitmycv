@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Analyse de CV gratuite : face à une offre, sans compte",
+  "description": "Analyse de CV gratuite, sans compte. Importez votre CV et collez l'offre d'emploi. Voyez votre score et les termes qui manquent à votre CV. Le CV est lu dans votre navigateur.",
+  "keywords": [
+    "analyse cv gratuite",
+    "vérificateur de cv",
+    "tester mon cv",
+    "analyser son cv",
+    "test cv ats",
+    "vérifier son cv gratuitement",
+    "comparer cv et offre d'emploi",
+    "scanner cv"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Analyse de CV",
+  "h1": "Analyse de CV gratuite, sans compte",
+  "lede": "Importez votre CV et collez l'offre d'emploi. Vous voyez votre score de correspondance et les termes précis que l'employeur demande et que votre CV ne mentionne jamais. Sans compte, sans limite.",
+  "howTo": {
+    "name": "Comment comparer votre CV à une offre d'emploi",
+    "description": "Évaluez votre CV face à une offre et repérez les termes qui lui manquent.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Copiez toute l'offre, exigences comprises, et collez-la dans le champ prévu pour l'offre."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Le texte est lu dans votre navigateur. S'il sort dans le désordre, un logiciel de recrutement (ATS) le lira aussi dans le désordre."
+      },
+      {
+        "name": "Comblez les manques que vous pouvez prouver",
+        "text": "Ajoutez chaque terme manquant que vous avez vraiment pratiqué dans une puce avec un résultat, puis relancez l'analyse."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Cette analyse de CV est-elle gratuite ?",
+      "a": "Oui. Pas de compte et pas de limite d'analyses. L'analyse tourne dans votre navigateur."
+    },
+    {
+      "q": "Mon CV est-il envoyé quelque part ?",
+      "a": "Non. Le PDF est lu dans cet onglet et rien n'est stocké. Fermez l'onglet et tout disparaît."
+    },
+    {
+      "q": "Est-ce la même chose qu'un test de CV ATS ?",
+      "a": "Oui. Cette page utilise la même analyse que notre test de CV ATS. Seul le nom change."
+    },
+    {
+      "q": "Qu'est-ce qu'un bon score ?",
+      "a": "75 % et plus signifie que vous couvrez la plupart des termes clés de l'offre. Entre 50 et 75 %, une adaptation en vaut la peine. Sous 50 %, votre CV est en général trop générique pour ce poste."
+    },
+    {
+      "q": "Dois-je ajouter chaque terme manquant ?",
+      "a": "Seulement ceux que vous avez vraiment pratiqués. Placez chacun dans une puce qui montre ce que vous avez fait et ce que cela a donné. Revendiquer une compétence que vous n'avez pas ne fait que repousser le refus à l'entretien."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Ce que regarde l'analyse"
+    },
+    {
+      "p": "Elle repère les mots et les expressions de deux mots que l'offre répète, pondérés selon leur fréquence, et vérifie lesquels figurent dans votre CV. Le score est la part qu'elle retrouve. Elle vérifie le vocabulaire, pas votre style ni votre mise en page."
+    },
+    {
+      "h2": "Pourquoi un bon profil peut obtenir un score faible"
+    },
+    {
+      "ul": [
+        "Vous décrivez le travail avec d'autres mots que l'offre.",
+        "Vous utilisez un sigle que l'offre écrit en toutes lettres, ou l'inverse.",
+        "Vos meilleures preuves se trouvent dans un ancien poste, en bas de la page."
+      ]
+    },
+    {
+      "p": "Dans les trois cas, la solution est d'adapter le CV à l'offre, pas d'ajouter de l'expérience. Le [guide pour adapter un CV à une offre](/blog/how-to-tailor-cv-to-job-description) (en anglais) explique comment le faire vous-même."
+    }
+  ],
+  "related": [
+    {
+      "label": "Test CV ATS",
+      "href": "/ats-resume-checker",
+      "body": "La même analyse, avec une comparaison avec Jobscan."
+    },
+    {
+      "label": "Vérificateur de format de CV",
+      "href": "/cv-format-checker",
+      "body": "Vérifiez votre CV selon le pays où vous postulez."
+    },
+    {
+      "label": "Générateur de lettre de candidature",
+      "href": "/job-application-letter-generator",
+      "body": "Une lettre construite à partir de l'offre et de votre CV."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

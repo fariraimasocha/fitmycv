@@ -1,0 +1,1527 @@
+{
+  "seoTitle": "Lebenslauf-Keywords nach Beruf: kostenloser Generator",
+  "description": "Wähle deinen Beruf und erhalte die Lebenslauf-Keywords, die Arbeitgeber nutzen, gruppiert danach, wo sie hingehören. Lade deinen Lebenslauf hoch, um zu sehen, welche fehlen. Kostenlos, ohne Login.",
+  "keywords": [
+    "lebenslauf keywords",
+    "keywords für lebenslauf",
+    "lebenslauf keywords nach beruf",
+    "lebenslauf schlüsselwörter",
+    "ats keywords lebenslauf",
+    "kenntnisse lebenslauf beispiele"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lebenslauf-Keyword-Generator",
+  "h1": "Lebenslauf-Keyword-Generator",
+  "lede": "Wähle deinen Beruf und erhalte die Keywords, die Stellenanzeigen für diese Rolle verwenden, gruppiert danach, wo sie im Lebenslauf hingehören. Lade dann deinen Lebenslauf hoch, um zu sehen, welche ihm fehlen.",
+  "howTo": {
+    "name": "So findest du Keywords für deinen Lebenslauf",
+    "description": "Hol dir die Keywords für deinen Beruf und gleiche deinen Lebenslauf damit ab.",
+    "steps": [
+      {
+        "name": "Wähle deinen Beruf",
+        "text": "Die Liste zeigt die Begriffe, die Anzeigen für diese Rolle verwenden, gruppiert nach Art."
+      },
+      {
+        "name": "Lade deinen Lebenslauf hoch",
+        "text": "Jeder Begriff wird als vorhanden oder fehlend markiert. Der Lebenslauf wird in deinem Browser gelesen."
+      },
+      {
+        "name": "Ergänze die, die du gemacht hast",
+        "text": "Setze jeden fehlenden Begriff, den du belegen kannst, in einen Stichpunkt mit Ergebnis."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Woher kommen diese Keywords?",
+      "a": "Es sind die Listen unserer Keyword-Seiten pro Beruf, gebaut aus den Begriffen, die Stellenanzeigen für jede Rolle wiederholen. Jede Liste verlinkt auf ihre vollständige Seite."
+    },
+    {
+      "q": "Sind die Keywords auf Englisch?",
+      "a": "Ja. Die Listen stammen aus englischsprachigen Stellenanzeigen, und der Abgleich sucht diese englischen Begriffe in deinem Lebenslauf. Für einen deutschen Lebenslauf füge besser eine deutsche Anzeige in den ATS-Keyword-Checker ein. Er zieht die Keywords aus genau dieser Anzeige, in ihrer Sprache."
+    },
+    {
+      "q": "Mein Beruf ist nicht dabei. Was nun?",
+      "a": "Füge die Stellenanzeige in den kostenlosen ATS-Keyword-Checker ein. Er zieht die Keywords aus genau dieser Anzeige, und das ist besser als jede allgemeine Liste."
+    },
+    {
+      "q": "Wird mein Lebenslauf gespeichert?",
+      "a": "Nein. Er wird in diesem Tab gelesen und nirgendwohin geschickt."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Eine Liste ist ein Anfang, die Anzeige entscheidet"
+    },
+    {
+      "p": "Jede Anzeige gewichtet diese Begriffe anders. Nutze die Liste, um zu sehen, was deinem Lebenslauf fehlt, und gleiche ihn vor der Bewerbung mit dem [Lebenslauf Check](/cv-checker) an der echten Anzeige ab."
+    }
+  ],
+  "related": [
+    {
+      "label": "Alle Keyword-Listen",
+      "href": "/resume-keywords",
+      "body": "Jeder Beruf, mit einem Beispiel für jeden Begriff in einem Stichpunkt (auf Englisch)."
+    },
+    {
+      "label": "ATS-Keyword-Checker",
+      "href": "/free-ats-keyword-checker",
+      "body": "Zieh die Keywords aus jeder beliebigen Stellenanzeige."
+    },
+    {
+      "label": "Lebenslauf Check",
+      "href": "/cv-checker",
+      "body": "Bewerte deinen Lebenslauf anhand einer Stellenanzeige."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  },
+  "toolProps": {
+    "roles": [
+      {
+        "slug": "software-engineer",
+        "role": "Softwareentwickler",
+        "plural": "Softwareentwickler",
+        "groups": [
+          {
+            "title": "Systeme und Handwerk",
+            "terms": [
+              "system design",
+              "distributed systems",
+              "microservices",
+              "API design",
+              "data modelling",
+              "concurrency",
+              "performance optimisation",
+              "scalability",
+              "code review",
+              "automated testing",
+              "debugging",
+              "technical design document"
+            ]
+          },
+          {
+            "title": "Sprachen und Frameworks",
+            "terms": [
+              "Go",
+              "Python",
+              "Java",
+              "TypeScript",
+              "JavaScript",
+              "C#",
+              "Rust",
+              "Kotlin",
+              "React",
+              "Node.js",
+              "Spring Boot",
+              "Django",
+              "SQL"
+            ]
+          },
+          {
+            "title": "Infrastruktur und Tooling",
+            "terms": [
+              "AWS",
+              "GCP",
+              "Azure",
+              "Docker",
+              "Kubernetes (k8s)",
+              "Terraform",
+              "CI/CD",
+              "GitHub Actions",
+              "observability",
+              "Datadog",
+              "Prometheus",
+              "PostgreSQL",
+              "Redis",
+              "Kafka",
+              "infrastructure as code"
+            ]
+          },
+          {
+            "title": "Wie du arbeitest",
+            "terms": [
+              "Agile",
+              "Scrum",
+              "on-call",
+              "incident response",
+              "postmortem",
+              "SLO",
+              "mentoring",
+              "pair programming",
+              "technical documentation",
+              "cross-functional"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "shipped",
+              "migrated",
+              "refactored",
+              "profiled",
+              "instrumented",
+              "scaled",
+              "hardened",
+              "decomposed",
+              "owned",
+              "mentored"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "data-analyst",
+        "role": "Datenanalyst",
+        "plural": "Datenanalysten",
+        "groups": [
+          {
+            "title": "Analyse und Methode",
+            "terms": [
+              "exploratory data analysis",
+              "A/B testing",
+              "hypothesis testing",
+              "statistical significance",
+              "cohort analysis",
+              "segmentation",
+              "forecasting",
+              "regression analysis",
+              "funnel analysis",
+              "data quality",
+              "data cleaning",
+              "root cause analysis"
+            ]
+          },
+          {
+            "title": "Tools und Sprachen",
+            "terms": [
+              "SQL",
+              "Python",
+              "pandas",
+              "R",
+              "Excel",
+              "Tableau",
+              "Power BI",
+              "Looker",
+              "dbt",
+              "BigQuery",
+              "Snowflake",
+              "Redshift",
+              "Google Analytics (GA4)",
+              "Jupyter"
+            ]
+          },
+          {
+            "title": "Business und Kommunikation",
+            "terms": [
+              "stakeholder management",
+              "requirements gathering",
+              "KPI definition",
+              "dashboard design",
+              "reporting automation",
+              "data storytelling",
+              "executive reporting",
+              "self-serve analytics",
+              "data governance"
+            ]
+          },
+          {
+            "title": "Nennenswerte Zertifikate",
+            "terms": [
+              "Google Data Analytics Certificate",
+              "Microsoft Power BI (PL-300)",
+              "Tableau Desktop Specialist",
+              "AWS Certified Data Analytics"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "quantified",
+              "modelled",
+              "forecast",
+              "automated",
+              "segmented",
+              "validated",
+              "reconciled",
+              "surfaced",
+              "recommended"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "project-manager",
+        "role": "Projektmanager",
+        "plural": "Projektmanager",
+        "groups": [
+          {
+            "title": "Umsetzung und Steuerung",
+            "terms": [
+              "scope management",
+              "risk management",
+              "dependency management",
+              "stakeholder management",
+              "budget management",
+              "resource planning",
+              "change control",
+              "RAID log",
+              "governance",
+              "status reporting",
+              "critical path",
+              "benefits realisation"
+            ]
+          },
+          {
+            "title": "Methoden und Frameworks",
+            "terms": [
+              "Agile",
+              "Scrum",
+              "Kanban",
+              "Waterfall",
+              "SAFe",
+              "PRINCE2",
+              "hybrid delivery",
+              "sprint planning",
+              "backlog refinement",
+              "retrospectives",
+              "release management"
+            ]
+          },
+          {
+            "title": "Zertifikate",
+            "terms": [
+              "PMP (Project Management Professional)",
+              "PRINCE2 Practitioner",
+              "CSM (Certified ScrumMaster)",
+              "PMI-ACP",
+              "SAFe Agilist",
+              "MSP (Managing Successful Programmes)"
+            ]
+          },
+          {
+            "title": "Tools",
+            "terms": [
+              "Jira",
+              "Confluence",
+              "Asana",
+              "Microsoft Project",
+              "Smartsheet",
+              "Monday.com",
+              "Miro",
+              "ServiceNow",
+              "Power BI"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "delivered",
+              "de-risked",
+              "unblocked",
+              "escalated",
+              "negotiated",
+              "recovered",
+              "consolidated",
+              "forecast",
+              "governed"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "marketing-manager",
+        "role": "Marketing Manager",
+        "plural": "Marketing Manager",
+        "groups": [
+          {
+            "title": "Kanäle",
+            "terms": [
+              "paid social",
+              "paid search (PPC)",
+              "SEO",
+              "content marketing",
+              "email marketing",
+              "lifecycle marketing",
+              "marketing automation",
+              "affiliate marketing",
+              "influencer marketing",
+              "events",
+              "partner marketing",
+              "ABM (account based marketing)"
+            ]
+          },
+          {
+            "title": "Kennzahlen mit Gewicht",
+            "terms": [
+              "CAC (customer acquisition cost)",
+              "LTV",
+              "ROAS",
+              "MQL",
+              "SQL (sales qualified lead)",
+              "pipeline contribution",
+              "conversion rate optimisation (CRO)",
+              "attribution",
+              "funnel analysis",
+              "churn",
+              "payback period"
+            ]
+          },
+          {
+            "title": "Plattformen und Tools",
+            "terms": [
+              "HubSpot",
+              "Salesforce",
+              "Marketo",
+              "Klaviyo",
+              "Mailchimp",
+              "Google Ads",
+              "Meta Ads Manager",
+              "LinkedIn Campaign Manager",
+              "GA4",
+              "Semrush",
+              "Ahrefs",
+              "Webflow",
+              "Figma"
+            ]
+          },
+          {
+            "title": "Verantwortung und Führung",
+            "terms": [
+              "budget ownership",
+              "agency management",
+              "go-to-market",
+              "brand positioning",
+              "campaign planning",
+              "cross-functional",
+              "team leadership",
+              "product marketing",
+              "market research"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "launched",
+              "scaled",
+              "grew",
+              "cut",
+              "repositioned",
+              "tested",
+              "consolidated",
+              "rebuilt",
+              "owned"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "customer-service",
+        "role": "Kundenservice-Mitarbeiter",
+        "plural": "Kundenservice-Mitarbeiter",
+        "groups": [
+          {
+            "title": "Kennzahlen, die du schon hast",
+            "terms": [
+              "CSAT",
+              "NPS",
+              "first contact resolution (FCR)",
+              "first response time",
+              "average handle time",
+              "SLA compliance",
+              "ticket volume",
+              "resolution rate",
+              "backlog reduction",
+              "QA score"
+            ]
+          },
+          {
+            "title": "Plattformen und Kanäle",
+            "terms": [
+              "Zendesk",
+              "Freshdesk",
+              "Intercom",
+              "Salesforce Service Cloud",
+              "HubSpot Service Hub",
+              "Talkdesk",
+              "live chat",
+              "phone support",
+              "email support",
+              "social support",
+              "omnichannel"
+            ]
+          },
+          {
+            "title": "Die Arbeit selbst",
+            "terms": [
+              "escalation management",
+              "de-escalation",
+              "complaint handling",
+              "triage",
+              "troubleshooting",
+              "root cause analysis",
+              "refunds and billing",
+              "account management",
+              "retention",
+              "churn prevention"
+            ]
+          },
+          {
+            "title": "Prozesse und Entwicklung",
+            "terms": [
+              "knowledge base",
+              "macros and templates",
+              "workflow automation",
+              "onboarding",
+              "training and coaching",
+              "shift handover",
+              "process improvement",
+              "voice of the customer"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "resolved",
+              "de-escalated",
+              "reduced",
+              "recovered",
+              "retained",
+              "trained",
+              "documented",
+              "streamlined",
+              "coached"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "accountant",
+        "role": "Buchhalter",
+        "plural": "Buchhalter",
+        "groups": [
+          {
+            "title": "Der Abschlusszyklus",
+            "terms": [
+              "month end close",
+              "year end close",
+              "reconciliations",
+              "accounts payable (AP)",
+              "accounts receivable (AR)",
+              "general ledger",
+              "journal entries",
+              "accruals and prepayments",
+              "fixed asset register",
+              "intercompany",
+              "consolidation",
+              "trial balance"
+            ]
+          },
+          {
+            "title": "Analyse und Reporting",
+            "terms": [
+              "variance analysis",
+              "budgeting and forecasting",
+              "cash flow forecasting",
+              "management accounts",
+              "board reporting",
+              "KPI reporting",
+              "cost control",
+              "margin analysis",
+              "business partnering"
+            ]
+          },
+          {
+            "title": "Compliance und Standards",
+            "terms": [
+              "IFRS",
+              "UK GAAP",
+              "US GAAP",
+              "statutory accounts",
+              "VAT returns",
+              "corporation tax",
+              "audit support",
+              "internal controls",
+              "SOX",
+              "transfer pricing"
+            ]
+          },
+          {
+            "title": "Systeme",
+            "terms": [
+              "SAP",
+              "Oracle",
+              "NetSuite",
+              "Xero",
+              "QuickBooks",
+              "Sage",
+              "Microsoft Dynamics",
+              "advanced Excel",
+              "Power BI",
+              "Workday Financials"
+            ]
+          },
+          {
+            "title": "Qualifikationen",
+            "terms": [
+              "ACCA",
+              "ACA",
+              "CIMA",
+              "CPA",
+              "AAT",
+              "part qualified",
+              "qualified by experience (QBE)",
+              "ICAEW"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "nurse",
+        "role": "Pflegefachkraft",
+        "plural": "Pflegefachkräfte",
+        "groups": [
+          {
+            "title": "Zulassung und Zertifikate",
+            "terms": [
+              "registered nurse (RN)",
+              "NMC PIN",
+              "active RN license",
+              "BLS",
+              "ILS",
+              "ALS",
+              "ACLS",
+              "PALS",
+              "safeguarding level 3",
+              "revalidation",
+              "NCLEX"
+            ]
+          },
+          {
+            "title": "Klinische Fähigkeiten",
+            "terms": [
+              "patient assessment",
+              "medication administration",
+              "IV therapy",
+              "venepuncture",
+              "cannulation",
+              "wound management",
+              "catheterisation",
+              "tracheostomy care",
+              "NEWS2",
+              "early warning scores",
+              "infection prevention and control",
+              "tissue viability"
+            ]
+          },
+          {
+            "title": "Einsatzbereich und Fachgebiet",
+            "terms": [
+              "acute care",
+              "medical surgical",
+              "post-operative care",
+              "ICU",
+              "emergency department",
+              "theatres",
+              "community nursing",
+              "mental health",
+              "paediatrics",
+              "oncology",
+              "care of the elderly",
+              "high dependency unit"
+            ]
+          },
+          {
+            "title": "Praxis und Führung",
+            "terms": [
+              "care planning",
+              "discharge planning",
+              "multidisciplinary team (MDT)",
+              "preceptorship",
+              "clinical audit",
+              "escalation",
+              "handover",
+              "shift coordination",
+              "patient safety",
+              "duty of candour",
+              "electronic patient record (EPR)"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "assessed",
+              "triaged",
+              "escalated",
+              "managed",
+              "precepted",
+              "audited",
+              "coordinated",
+              "administered",
+              "stabilised",
+              "educated"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "teacher",
+        "role": "Lehrkraft",
+        "plural": "Lehrkräfte",
+        "groups": [
+          {
+            "title": "Qualifikation und Schulstufe",
+            "terms": [
+              "QTS",
+              "PGCE",
+              "teaching license",
+              "ECT",
+              "early career teacher",
+              "KS1",
+              "KS2",
+              "KS3",
+              "KS4",
+              "KS5",
+              "EYFS",
+              "primary",
+              "secondary",
+              "A level",
+              "GCSE"
+            ]
+          },
+          {
+            "title": "Unterricht und Bewertung",
+            "terms": [
+              "lesson planning",
+              "differentiation",
+              "formative assessment",
+              "summative assessment",
+              "scheme of work",
+              "curriculum design",
+              "behaviour management",
+              "adaptive teaching",
+              "retrieval practice",
+              "mastery",
+              "marking and feedback"
+            ]
+          },
+          {
+            "title": "Lernfortschritt und Inklusion",
+            "terms": [
+              "attainment",
+              "progress data",
+              "intervention",
+              "SEND",
+              "EAL",
+              "pupil premium",
+              "IEP",
+              "data tracking",
+              "raising attainment",
+              "closing the gap"
+            ]
+          },
+          {
+            "title": "Verantwortung und Kinderschutz",
+            "terms": [
+              "safeguarding",
+              "DBS",
+              "form tutor",
+              "pastoral care",
+              "head of year",
+              "subject lead",
+              "TLR",
+              "parental engagement",
+              "extracurricular",
+              "mentoring trainee teachers"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "raised",
+              "designed",
+              "led",
+              "rewrote",
+              "tracked",
+              "mentored",
+              "introduced",
+              "coordinated",
+              "differentiated",
+              "moderated"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "product-manager",
+        "role": "Produktmanager",
+        "plural": "Produktmanager",
+        "groups": [
+          {
+            "title": "Discovery und Strategie",
+            "terms": [
+              "product discovery",
+              "user research",
+              "customer interviews",
+              "problem framing",
+              "product strategy",
+              "product vision",
+              "opportunity sizing",
+              "jobs to be done",
+              "competitive analysis",
+              "go-to-market"
+            ]
+          },
+          {
+            "title": "Umsetzung und Priorisierung",
+            "terms": [
+              "roadmap",
+              "prioritisation",
+              "OKRs",
+              "Agile",
+              "Scrum",
+              "backlog management",
+              "user stories",
+              "product requirements document (PRD)",
+              "release planning",
+              "cross-functional",
+              "stakeholder management"
+            ]
+          },
+          {
+            "title": "Kennzahlen und Experimente",
+            "terms": [
+              "A/B testing",
+              "experimentation",
+              "activation",
+              "retention",
+              "conversion",
+              "net revenue retention",
+              "churn",
+              "north star metric",
+              "product analytics",
+              "funnel analysis"
+            ]
+          },
+          {
+            "title": "Tools",
+            "terms": [
+              "Amplitude",
+              "Mixpanel",
+              "Looker",
+              "SQL",
+              "Jira",
+              "Linear",
+              "Figma",
+              "Productboard",
+              "Confluence"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "launched",
+              "killed",
+              "reprioritised",
+              "validated",
+              "grew",
+              "reduced",
+              "negotiated",
+              "aligned",
+              "piloted",
+              "scaled"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "business-analyst",
+        "role": "Business Analyst",
+        "plural": "Business Analysts",
+        "groups": [
+          {
+            "title": "Anforderungen und Analyse",
+            "terms": [
+              "requirements gathering",
+              "requirements elicitation",
+              "user stories",
+              "acceptance criteria",
+              "business requirements document (BRD)",
+              "functional requirements",
+              "gap analysis",
+              "impact analysis",
+              "root cause analysis",
+              "use cases"
+            ]
+          },
+          {
+            "title": "Prozesse und Veränderung",
+            "terms": [
+              "process mapping",
+              "process improvement",
+              "BPMN",
+              "as is to be",
+              "workflow design",
+              "change management",
+              "operating model",
+              "Lean",
+              "Six Sigma",
+              "value stream mapping"
+            ]
+          },
+          {
+            "title": "Umsetzung und Tests",
+            "terms": [
+              "UAT",
+              "test scenarios",
+              "Agile",
+              "Scrum",
+              "backlog refinement",
+              "sprint planning",
+              "stakeholder workshops",
+              "stakeholder management",
+              "traceability matrix",
+              "go-live support"
+            ]
+          },
+          {
+            "title": "Tools und Zertifikate",
+            "terms": [
+              "Jira",
+              "Confluence",
+              "SQL",
+              "Excel",
+              "Visio",
+              "Miro",
+              "Power BI",
+              "CBAP",
+              "ECBA",
+              "BCS Business Analysis Diploma",
+              "PMI-PBA"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "elicited",
+              "mapped",
+              "translated",
+              "prioritised",
+              "facilitated",
+              "validated",
+              "streamlined",
+              "blocked",
+              "reconciled",
+              "defined"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "data-scientist",
+        "role": "Data Scientist",
+        "plural": "Data Scientists",
+        "groups": [
+          {
+            "title": "Modellierung und Methode",
+            "terms": [
+              "machine learning",
+              "predictive modelling",
+              "classification",
+              "regression",
+              "time series forecasting",
+              "gradient boosting",
+              "deep learning",
+              "natural language processing (NLP)",
+              "recommendation systems",
+              "causal inference",
+              "feature engineering",
+              "model evaluation"
+            ]
+          },
+          {
+            "title": "Sprachen und Bibliotheken",
+            "terms": [
+              "Python",
+              "SQL",
+              "R",
+              "pandas",
+              "NumPy",
+              "scikit-learn",
+              "XGBoost",
+              "PyTorch",
+              "TensorFlow",
+              "Spark",
+              "Jupyter"
+            ]
+          },
+          {
+            "title": "Produktion und MLOps",
+            "terms": [
+              "model deployment",
+              "MLOps",
+              "MLflow",
+              "Airflow",
+              "Docker",
+              "AWS SageMaker",
+              "Vertex AI",
+              "Databricks",
+              "feature store",
+              "model monitoring",
+              "data drift",
+              "CI/CD"
+            ]
+          },
+          {
+            "title": "Experimente und Statistik",
+            "terms": [
+              "A/B testing",
+              "experiment design",
+              "hypothesis testing",
+              "statistical significance",
+              "Bayesian statistics",
+              "uplift modelling",
+              "online evaluation",
+              "stakeholder communication"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "deployed",
+              "productionised",
+              "reduced",
+              "forecast",
+              "ranked",
+              "retrained",
+              "monitored",
+              "validated",
+              "replaced",
+              "scaled"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "ux-designer",
+        "role": "UX Designer",
+        "plural": "UX Designer",
+        "groups": [
+          {
+            "title": "Research und Discovery",
+            "terms": [
+              "user research",
+              "usability testing",
+              "user interviews",
+              "contextual inquiry",
+              "journey mapping",
+              "personas",
+              "jobs to be done",
+              "card sorting",
+              "tree testing",
+              "survey design",
+              "research synthesis",
+              "competitive analysis"
+            ]
+          },
+          {
+            "title": "Design-Handwerk",
+            "terms": [
+              "wireframes",
+              "prototyping",
+              "high fidelity prototypes",
+              "interaction design",
+              "information architecture",
+              "visual design",
+              "user flows",
+              "design systems",
+              "component library",
+              "responsive design",
+              "microcopy",
+              "accessibility (WCAG)"
+            ]
+          },
+          {
+            "title": "Tools",
+            "terms": [
+              "Figma",
+              "FigJam",
+              "Sketch",
+              "Adobe XD",
+              "Maze",
+              "UserTesting",
+              "Dovetail",
+              "Hotjar",
+              "Miro",
+              "Framer",
+              "HTML/CSS basics"
+            ]
+          },
+          {
+            "title": "Produkt und Zusammenarbeit",
+            "terms": [
+              "cross-functional",
+              "design handoff",
+              "developer collaboration",
+              "product strategy",
+              "A/B testing",
+              "design critique",
+              "stakeholder management",
+              "design QA",
+              "iteration",
+              "metrics driven design"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "redesigned",
+              "simplified",
+              "tested",
+              "validated",
+              "shipped",
+              "reduced",
+              "consolidated",
+              "standardised",
+              "interviewed",
+              "launched"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "sales",
+        "role": "Vertriebsmitarbeiter",
+        "plural": "Vertriebsmitarbeiter",
+        "groups": [
+          {
+            "title": "Zahlen und Ziele",
+            "terms": [
+              "quota attainment",
+              "annual quota",
+              "revenue closed",
+              "average deal size",
+              "win rate",
+              "sales cycle",
+              "pipeline generated",
+              "new logos",
+              "meetings booked",
+              "renewal rate",
+              "upsell revenue"
+            ]
+          },
+          {
+            "title": "Akquise und Pipeline",
+            "terms": [
+              "prospecting",
+              "lead generation",
+              "cold calling",
+              "cold email",
+              "outbound",
+              "inbound",
+              "lead qualification",
+              "BANT",
+              "discovery calls",
+              "appointment setting",
+              "social selling",
+              "referrals"
+            ]
+          },
+          {
+            "title": "Abschluss und Kundenkonten",
+            "terms": [
+              "product demos",
+              "presentations",
+              "objection handling",
+              "negotiation",
+              "closing",
+              "consultative selling",
+              "solution selling",
+              "account management",
+              "upselling",
+              "cross-selling",
+              "customer retention",
+              "B2B sales"
+            ]
+          },
+          {
+            "title": "Außendienst",
+            "terms": [
+              "territory management",
+              "route planning",
+              "field sales",
+              "client visits",
+              "face-to-face selling",
+              "key accounts",
+              "distributor relationships",
+              "trade shows"
+            ]
+          },
+          {
+            "title": "Systeme",
+            "terms": [
+              "Salesforce",
+              "HubSpot",
+              "LinkedIn Sales Navigator",
+              "Outreach",
+              "Salesloft",
+              "Gong",
+              "ZoomInfo",
+              "Apollo",
+              "Excel"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "closed",
+              "exceeded",
+              "generated",
+              "booked",
+              "won",
+              "opened",
+              "expanded",
+              "renewed",
+              "negotiated",
+              "converted"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "sales-manager",
+        "role": "Vertriebsleiter",
+        "plural": "Vertriebsleiter",
+        "groups": [
+          {
+            "title": "Zahlen und Ziele",
+            "terms": [
+              "quota attainment",
+              "revenue growth",
+              "annual quota",
+              "average deal size",
+              "win rate",
+              "sales cycle",
+              "pipeline coverage",
+              "net new revenue",
+              "expansion revenue",
+              "retention",
+              "forecast accuracy"
+            ]
+          },
+          {
+            "title": "Vertriebsprozess und Methode",
+            "terms": [
+              "pipeline management",
+              "sales forecasting",
+              "territory planning",
+              "account planning",
+              "MEDDIC",
+              "MEDDPICC",
+              "Challenger Sale",
+              "solution selling",
+              "consultative selling",
+              "deal reviews",
+              "enterprise sales",
+              "negotiation"
+            ]
+          },
+          {
+            "title": "Führung",
+            "terms": [
+              "team leadership",
+              "sales coaching",
+              "performance management",
+              "hiring and onboarding",
+              "quota setting",
+              "ramp time",
+              "compensation planning",
+              "cross-functional",
+              "quarterly business reviews (QBRs)"
+            ]
+          },
+          {
+            "title": "Systeme",
+            "terms": [
+              "Salesforce",
+              "HubSpot",
+              "Gong",
+              "Outreach",
+              "Salesloft",
+              "LinkedIn Sales Navigator",
+              "Clari",
+              "Excel"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "closed",
+              "exceeded",
+              "grew",
+              "built",
+              "coached",
+              "hired",
+              "ramped",
+              "expanded",
+              "negotiated",
+              "turned around"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "financial-analyst",
+        "role": "Finanzanalyst",
+        "plural": "Finanzanalysten",
+        "groups": [
+          {
+            "title": "Planung und Analyse",
+            "terms": [
+              "financial modelling",
+              "variance analysis",
+              "forecasting",
+              "rolling forecast",
+              "budgeting",
+              "scenario analysis",
+              "sensitivity analysis",
+              "three statement model",
+              "long range planning",
+              "driver based planning",
+              "margin analysis",
+              "cost analysis"
+            ]
+          },
+          {
+            "title": "Reporting",
+            "terms": [
+              "management accounts",
+              "monthly reporting",
+              "board packs",
+              "KPI reporting",
+              "executive dashboards",
+              "month end",
+              "P&L analysis",
+              "cash flow analysis",
+              "commentary"
+            ]
+          },
+          {
+            "title": "Kommerziell und Investment",
+            "terms": [
+              "business partnering",
+              "pricing analysis",
+              "business cases",
+              "investment appraisal",
+              "NPV",
+              "IRR",
+              "ROI analysis",
+              "capex",
+              "unit economics",
+              "cost control"
+            ]
+          },
+          {
+            "title": "Systeme und Tools",
+            "terms": [
+              "advanced Excel",
+              "Power Query",
+              "pivot tables",
+              "Power BI",
+              "Tableau",
+              "SAP",
+              "Oracle",
+              "NetSuite",
+              "Anaplan",
+              "Adaptive Insights",
+              "SQL",
+              "VBA"
+            ]
+          },
+          {
+            "title": "Qualifikationen",
+            "terms": [
+              "CFA",
+              "CFA Level I",
+              "ACCA",
+              "CIMA",
+              "ACA",
+              "CPA",
+              "FMVA",
+              "finance degree"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "hr-manager",
+        "role": "Personalleiter",
+        "plural": "Personalleiter",
+        "groups": [
+          {
+            "title": "Mitarbeiterlebenszyklus",
+            "terms": [
+              "talent acquisition",
+              "recruitment",
+              "onboarding",
+              "performance management",
+              "succession planning",
+              "learning and development",
+              "career development",
+              "offboarding",
+              "workforce planning",
+              "organisational design"
+            ]
+          },
+          {
+            "title": "Mitarbeiterbeziehungen und Compliance",
+            "terms": [
+              "employee relations",
+              "grievances",
+              "disciplinaries",
+              "absence management",
+              "employment law",
+              "policy development",
+              "TUPE",
+              "redundancy",
+              "investigations",
+              "right to work",
+              "health and safety",
+              "GDPR"
+            ]
+          },
+          {
+            "title": "Vergütung und Engagement",
+            "terms": [
+              "compensation and benefits",
+              "pay benchmarking",
+              "pay banding",
+              "employee engagement",
+              "engagement survey",
+              "retention",
+              "attrition",
+              "DEI",
+              "wellbeing",
+              "employer branding"
+            ]
+          },
+          {
+            "title": "Systeme",
+            "terms": [
+              "Workday",
+              "BambooHR",
+              "SAP SuccessFactors",
+              "HiBob",
+              "Personio",
+              "Greenhouse",
+              "Lever",
+              "ADP",
+              "HR analytics",
+              "Excel"
+            ]
+          },
+          {
+            "title": "Qualifikationen und Partnerschaft",
+            "terms": [
+              "CIPD Level 5",
+              "CIPD Level 7",
+              "SHRM-CP",
+              "SHRM-SCP",
+              "PHR",
+              "HR business partnering",
+              "coaching managers",
+              "change management"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "administrative-assistant",
+        "role": "Verwaltungsassistenz",
+        "plural": "Verwaltungsassistenzen",
+        "groups": [
+          {
+            "title": "Kernaufgaben",
+            "terms": [
+              "calendar management",
+              "diary management",
+              "scheduling",
+              "travel booking",
+              "expense reports",
+              "inbox management",
+              "meeting coordination",
+              "minute taking",
+              "data entry",
+              "filing",
+              "document preparation",
+              "event coordination"
+            ]
+          },
+          {
+            "title": "Büro und Empfang",
+            "terms": [
+              "reception",
+              "visitor management",
+              "phone handling",
+              "office supplies",
+              "vendor coordination",
+              "facilities",
+              "mail handling",
+              "onboarding support",
+              "office management"
+            ]
+          },
+          {
+            "title": "Software",
+            "terms": [
+              "Microsoft Office",
+              "Outlook",
+              "Word",
+              "Excel",
+              "PowerPoint",
+              "Google Workspace",
+              "Slack",
+              "Microsoft Teams",
+              "Zoom",
+              "Expensify",
+              "SAP Concur",
+              "Calendly"
+            ]
+          },
+          {
+            "title": "Arbeitsweise",
+            "terms": [
+              "confidentiality",
+              "attention to detail",
+              "prioritisation",
+              "time management",
+              "stakeholder coordination",
+              "problem solving",
+              "written communication",
+              "discretion"
+            ]
+          },
+          {
+            "title": "Verben, die Belege tragen",
+            "terms": [
+              "coordinated",
+              "scheduled",
+              "organised",
+              "processed",
+              "booked",
+              "triaged",
+              "maintained",
+              "streamlined",
+              "drafted",
+              "tracked"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

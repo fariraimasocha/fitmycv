@@ -1,0 +1,76 @@
+{
+  "englishOnly": "Dieses Tool schreibt Stichpunkte auf Englisch um. Seine Verben, Vorlagen und Prüfungen funktionieren nur mit englischem Text, daher kommen die neuen Fassungen auf Englisch zurück.",
+  "bulletLabel": "Fügen Sie einen Stichpunkt aus Ihrem Lebenslauf ein",
+  "bulletPlaceholder": "Managed customer support tickets.",
+  "bulletHint": "Am besten ein Stichpunkt nach dem anderen.",
+  "jobLabel": "Fügen Sie die Stellenbeschreibung ein (optional)",
+  "jobPlaceholder": "Fügen Sie die Anzeige ein, um zu sehen, welche ihrer Begriffe Sie einbauen könnten…",
+  "jobHint": "Lassen Sie das Feld leer, wenn Sie nur den Stichpunkt umschreiben möchten.",
+  "submit": "Stichpunkt umschreiben",
+  "busy": "Ihr Stichpunkt wird umgeschrieben",
+  "example": "Beispiel ausprobieren",
+  "privacy": "Läuft komplett in Ihrem Browser. Nichts wird hochgeladen oder gespeichert.",
+  "resultTitle": "Drei neue Fassungen",
+  "resultBody": "Jede beginnt mit einem Aktionsverb und markiert, wo eine Zahl hingehört. Die hervorgehobenen Lücken füllen Sie selbst. Dieses Tool kennt Ihre Zahlen nicht, wählen Sie also Werte, die Sie im Vorstellungsgespräch belegen können.",
+  "fixTitle": "Was Sie am Original ändern sollten",
+  "notes": {
+    "opener": "Beginnt mit \"{opener}\", das eine Aufgabe beschreibt. Beginnen Sie stattdessen mit einem Aktionsverb.",
+    "verbOk": "Beginnt mit einem Aktionsverb. Behalten Sie es und ergänzen Sie Zahlen.",
+    "number": "Enthält eine Zahl. Prüfen Sie, ob es die Zahl ist, die eine Führungskraft interessiert.",
+    "noNumber": "Keine einzige Zahl. Ergänzen Sie wie viele, wie oft, wie viel oder wie viel schneller.",
+    "long": "{count} Wörter. Kürzen Sie auf unter 25, damit es in zwei Zeilen passt.",
+    "pronoun": "Enthält \"{word}\". Lassen Sie Pronomen in Stichpunkten weg und beginnen Sie mit dem Verb.",
+    "vague": "\"{word}\" verschleiert die Anzahl. Ersetzen Sie es durch die echte Zahl.",
+    "fullStop": "Endet mit einem Punkt. Beenden Sie jeden Stichpunkt gleich.",
+    "noFullStop": "Kein Punkt am Ende. Das passt, solange alle anderen Stichpunkte gleich enden."
+  },
+  "termsTitle": "Begriffe aus der Anzeige, die Sie einbauen könnten",
+  "termsBody": "Die Anzeige betont diese Begriffe, und Ihr Stichpunkt nennt sie nie. Ergänzen Sie nur die, die Sie wirklich gemacht haben.",
+  "termsTooShort": "Fügen Sie mehr von der Anzeige ein, um zu sehen, welche Begriffe diesem Stichpunkt fehlen. Ein oder zwei Zeilen reichen für eine Rangfolge nicht.",
+  "verbsTitle": "Aktionsverben für {family}",
+  "verbsSwap": "Nehmen Sie das, das am genauesten passt.",
+  "families": {
+    "ownership": {
+      "label": "Verantwortung und Führung",
+      "hint": "Sie beschreiben etwas, das Sie verantwortet oder geleitet haben."
+    },
+    "support": {
+      "label": "Kunden- und Teamunterstützung",
+      "hint": "Sie beschreiben Arbeit für Kunden oder Kollegen."
+    },
+    "delivery": {
+      "label": "Entwickeln und Ausliefern",
+      "hint": "Sie beschreiben etwas, das Sie mit aufgebaut oder gestartet haben."
+    },
+    "process": {
+      "label": "Prozesse und Effizienz",
+      "hint": "Sie beschreiben einen Prozess, den Sie am Laufen gehalten oder verbessert haben."
+    },
+    "analysis": {
+      "label": "Daten und Analyse",
+      "hint": "Sie beschreiben etwas, das Sie gemessen oder untersucht haben."
+    },
+    "general": {
+      "label": "alle Bereiche",
+      "hint": "Keine Gruppe sticht heraus, diese Verben passen überall."
+    }
+  },
+  "ctaTitle": "Ein Stichpunkt erledigt. Und der Rest?",
+  "ctaBody": "Fügen Sie den Link zur Stelle ein, und FitMyCV schreibt jeden Stichpunkt passend zu dieser Anzeige um, mit Ihrer echten Erfahrung und Ihren echten Zahlen.",
+  "ctaLabel": "Lebenslauf anpassen",
+  "previewTitle": "Was Sie zurückbekommen",
+  "preview": {
+    "rewrites": {
+      "title": "Drei neue Fassungen",
+      "body": "Jede beginnt mit einem Aktionsverb und markiert, wo Ihre Zahl hingehört."
+    },
+    "read": {
+      "title": "Eine Einschätzung des Originals",
+      "body": "Schwacher Einstieg, fehlende Zahl, Pronomen, Länge. Je eine Zeile."
+    },
+    "verbs": {
+      "title": "Eine Verbliste",
+      "body": "Aktionsverben für die Art von Arbeit, die dieser Stichpunkt beschreibt."
+    }
+  }
+}

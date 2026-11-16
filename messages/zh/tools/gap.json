@@ -1,0 +1,36 @@
+{
+  "englishOnly": "这个工具写出的句子是英文的，适用于英文简历和英文求职信。",
+  "reasonLabel": "你为什么离开职场？",
+  "reasons": {
+    "caregiving": "照顾家人",
+    "parenting": "抚养孩子",
+    "health": "健康原因或康复",
+    "layoff": "被裁员后找工作",
+    "study": "学习或进修课程",
+    "freelance": "自由职业或自己创业",
+    "relocation": "搬到其他国家或城市",
+    "travel": "旅行"
+  },
+  "fromLabel": "空档开始时间",
+  "toLabel": "空档结束时间",
+  "didLabel": "空档期间做过的事（选填，请用英文填写）",
+  "didPlaceholder": "Completed a Google Data Analytics certificate",
+  "submit": "解释我的空档期",
+  "busy": "正在写你的句子",
+  "datesError": "结束月份必须晚于开始月份。",
+  "privacy": "你输入的内容不会离开这个标签页。",
+  "shortTitle": "你可能不需要解释。",
+  "shortBody": "不到 3 个月的空档很少需要解释。简历上的日期只写年份，空档就看不出来了。",
+  "cvTitle": "写在简历上",
+  "letterTitle": "写在求职信里",
+  "answerTitle": "面试时这样说",
+  "copyCv": "复制简历上的句子",
+  "copyLetter": "复制求职信里的句子",
+  "copyAnswer": "复制面试回答",
+  "copied": "已复制",
+  "handoff": {
+    "title": "空档期已处理好。现在调整简历的其余部分。",
+    "body": "FitMyCV 针对具体的招聘启事改写你的简历和求职信，让空档只占一行，由你的经验说话。",
+    "label": "按职位定制我的简历"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "countryLabel": "Land, in dem du dich bewirbst",
+  "countryOption": {
+    "za": "Südafrika",
+    "ng": "Nigeria",
+    "ke": "Kenia",
+    "in": "Indien",
+    "uk": "Vereinigtes Königreich",
+    "us": "USA",
+    "other": "Ein anderes Land"
+  },
+  "countryName": {
+    "za": "Südafrika",
+    "ng": "Nigeria",
+    "ke": "Kenia",
+    "in": "Indien",
+    "uk": "Großbritannien",
+    "us": "die USA",
+    "other": "dein Land"
+  },
+  "countryIn": {
+    "za": "in Südafrika",
+    "ng": "in Nigeria",
+    "ke": "in Kenia",
+    "in": "in Indien",
+    "uk": "in Großbritannien",
+    "us": "in den USA",
+    "other": "in deinem Land"
+  },
+  "countryFor": {
+    "za": "für Südafrika",
+    "ng": "für Nigeria",
+    "ke": "für Kenia",
+    "in": "für Indien",
+    "uk": "für Großbritannien",
+    "us": "für die USA",
+    "other": "für dein Land"
+  },
+  "englishOnly": "Die Prüfungen suchen nach englischen Formulierungen wie „date of birth“ oder „career objective“. Sie funktionieren also bei einem Lebenslauf auf Englisch. Länge und E-Mail werden in jeder Sprache geprüft.",
+  "submit": "Format prüfen",
+  "busy": "Dein Lebenslauf wird geprüft",
+  "readingCv": "Dein Lebenslauf wird gelesen",
+  "privacy": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "fits": "Dein Lebenslauf passt für {country}",
+  "toFix": "{count, plural, one {# Punkt} other {# Punkte}} zu korrigieren {for}",
+  "otherNote": "Diese Prüfungen gelten in den meisten Ländern. Regeln für ein einzelnes Land, etwa eine Ausweisnummer oder eine Erklärung, werden nicht geprüft.",
+  "textOnly": "Geprüft wird nur der Text. Fotos, Spalten oder Schriften sieht das Tool nicht. Lass das Foto weg, außer die Anzeige verlangt eins.",
+  "pass": "In Ordnung",
+  "fail": "Korrigieren",
+  "length": {
+    "title": "Etwa {pages, plural, one {# Seite} other {# Seiten}} lang",
+    "ok": "Innerhalb der {max} Seiten, die die meisten Arbeitgeber {in} erwarten.",
+    "fix": "Kürze auf {max} Seiten {for}. Fasse Stationen, die älter als 10 Jahre sind, in je einer Zeile zusammen."
+  },
+  "email": {
+    "title": "E-Mail-Adresse",
+    "ok": "Gefunden. Nutze eine schlichte Adresse im Stil vorname.nachname.",
+    "fix": "Keine E-Mail gefunden. Setz sie oben neben deine Telefonnummer."
+  },
+  "personal": {
+    "title": "Persönliche Angaben",
+    "drop": {
+      "ok": "Keine gefunden. Gut, Arbeitgeber {in} erwarten sie nicht.",
+      "fix": "Entferne Geburtsdatum, Familienstand, Geschlecht, Religion und Nationalität. Arbeitgeber {in} erwarten sie nicht, und sie laden zu Vorurteilen ein."
+    },
+    "ifAsked": {
+      "ok": "In Ordnung. Füge das Geburtsdatum nur hinzu, wenn die Anzeige danach fragt.",
+      "fix": "Entferne den Familienstand. Füge das Geburtsdatum nur hinzu, wenn die Anzeige danach fragt."
+    },
+    "ifAskedNg": {
+      "ok": "In Ordnung. Füge das Geburtsdatum nur hinzu, wenn die Anzeige danach fragt.",
+      "fix": "Entferne den Familienstand. Füge Geburtsdatum oder Herkunftsstaat nur hinzu, wenn die Anzeige danach fragt."
+    },
+    "general": {
+      "ok": "In Ordnung. Füge Geburtsdatum oder Foto nur hinzu, wenn Arbeitgeber in deinem Land das erwarten.",
+      "fix": "Entferne den Familienstand. Er hat nichts mit der Stelle zu tun."
+    },
+    "keep": {
+      "ok": "In Ordnung. Nationalität oder Arbeitserlaubnis und Führerschein lohnt es sich in Südafrika anzugeben.",
+      "fix": "Entferne den Familienstand. Er hat nichts mit der Stelle zu tun."
+    }
+  },
+  "id": {
+    "title": "Ausweisnummer",
+    "za": {
+      "ok": "Nicht in deinem Lebenslauf. Gib sie nur weiter, wenn ein Arbeitgeber danach fragt.",
+      "fix": "Entferne deine Ausweisnummer. Gib sie weiter, wenn ein Arbeitgeber fragt, meist beim Angebot. Sie ist eine persönliche Information nach POPIA."
+    },
+    "ke": {
+      "ok": "Nicht in deinem Lebenslauf. Gib sie im Bewerbungsformular an, wenn danach gefragt wird.",
+      "fix": "Entferne deine Ausweisnummer. Gib sie im Bewerbungsformular an oder wenn ein Arbeitgeber fragt. Sie sind personenbezogene Daten nach dem Data Protection Act 2019."
+    }
+  },
+  "nysc": {
+    "title": "NYSC-Status",
+    "ok": "Gefunden. Arbeitgeber prüfen ihn, behalte also das Jahr des Abschlusses oder deine Befreiung.",
+    "fix": "Füge deinen NYSC-Status hinzu: abgeschlossen mit Jahr, befreit oder derzeit im Dienst."
+  },
+  "objective": {
+    "title": "Karriereziel",
+    "ok": "Kein Karriereziel. Gut.",
+    "fix": "Ersetze das Karriereziel durch ein dreizeiliges Kurzprofil darüber, was du bietest, nicht was du willst."
+  },
+  "references": {
+    "title": "Zeile zu Referenzen",
+    "ok": "Keine überflüssige Referenzzeile.",
+    "fix": "Lösche „references available on request“. Arbeitgeber setzen das voraus.",
+    "fixReferees": "Lösche „references available on request“. Arbeitgeber setzen das voraus. Oder nenne zwei Referenzpersonen mit Telefonnummer, das ist hier üblich."
+  },
+  "declaration": {
+    "title": "Erklärung",
+    "ok": "Keine Erklärungszeile. Passt für Stellen in der Privatwirtschaft.",
+    "fix": "Streich die Zeile „I hereby declare“, außer die Anzeige verlangt sie. Recruiter in der Privatwirtschaft überspringen sie."
+  },
+  "cta": {
+    "title": "Format korrigiert. Jetzt passend zur Stelle machen.",
+    "body": "FitMyCV nimmt diesen Lebenslauf und einen Link zur Anzeige und schreibt dein Kurzprofil und deine wichtigsten Stichpunkte für diese Stelle um, mit passendem Anschreiben.",
+    "label": "Lebenslauf auf eine Stelle anpassen"
+  }
+}

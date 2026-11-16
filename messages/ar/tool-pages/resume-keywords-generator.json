@@ -1,0 +1,1527 @@
+{
+  "seoTitle": "مولّد الكلمات المفتاحية للسيرة الذاتية حسب الوظيفة: مجانا",
+  "description": "اختر مسماك الوظيفي واحصل على الكلمات المفتاحية التي يستخدمها أصحاب العمل، مجمّعة حسب مكانها في السيرة. ارفع سيرتك الذاتية لترى ما ينقصك. مجاني وبدون تسجيل دخول.",
+  "keywords": [
+    "الكلمات المفتاحية للسيرة الذاتية",
+    "مولد الكلمات المفتاحية للسيرة الذاتية",
+    "كلمات مفتاحية للسيرة الذاتية حسب الوظيفة",
+    "مهارات السيرة الذاتية حسب الوظيفة",
+    "كلمات مفتاحية ATS",
+    "كلمات مفتاحية للسي في"
+  ],
+  "eyebrow": "أداة مجانية",
+  "breadcrumbName": "مولّد الكلمات المفتاحية للسيرة الذاتية",
+  "h1": "مولّد الكلمات المفتاحية للسيرة الذاتية",
+  "lede": "اختر مسماك الوظيفي واحصل على الكلمات المفتاحية التي تستخدمها إعلانات هذه الوظيفة، مجمّعة حسب مكانها في السيرة الذاتية. ثم ارفع سيرتك الذاتية لترى ما ينقصها.",
+  "howTo": {
+    "name": "كيف تجد الكلمات المفتاحية لسيرتك الذاتية",
+    "description": "احصل على الكلمات المفتاحية لوظيفتك وافحص سيرتك الذاتية مقابلها.",
+    "steps": [
+      {
+        "name": "اختر مسماك الوظيفي",
+        "text": "تعرض القائمة المصطلحات التي تستخدمها إعلانات هذه الوظيفة، مجمّعة حسب النوع."
+      },
+      {
+        "name": "ارفع سيرتك الذاتية",
+        "text": "يُعلَّم كل مصطلح على أنه موجود أو ناقص. تُقرأ السيرة الذاتية في متصفحك."
+      },
+      {
+        "name": "أضف ما قمت به",
+        "text": "ضع كل مصطلح ناقص تستطيع إثباته داخل نقطة تذكر نتيجة."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "من أين تأتي هذه الكلمات المفتاحية؟",
+      "a": "إنها القوائم الموجودة في صفحات الكلمات المفتاحية لكل وظيفة لدينا، مبنية من المصطلحات التي تكررها إعلانات كل وظيفة. كل قائمة ترتبط بصفحتها الكاملة."
+    },
+    {
+      "q": "هل الكلمات المفتاحية باللغة الإنجليزية؟",
+      "a": "نعم. القوائم مأخوذة من إعلانات مكتوبة بالإنجليزية، ويبحث الفحص عن هذه المصطلحات الإنجليزية في سيرتك الذاتية. إذا كانت سيرتك بالعربية، فالصق إعلانًا بالعربية في أداة فحص الكلمات المفتاحية ATS، فهي تستخرج الكلمات المفتاحية من ذلك الإعلان بلغته."
+    },
+    {
+      "q": "وظيفتي غير موجودة في القائمة. ماذا أفعل؟",
+      "a": "الصق إعلان الوظيفة في أداة فحص الكلمات المفتاحية ATS المجانية. تستخرج الكلمات المفتاحية من هذا الإعلان بالتحديد، وهذا أفضل من أي قائمة عامة."
+    },
+    {
+      "q": "هل تُحفظ سيرتي الذاتية؟",
+      "a": "لا. تُقرأ في علامة التبويب هذه ولا يُرسل شيء إلى أي مكان."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "القائمة بداية، والإعلان هو الحكم"
+    },
+    {
+      "p": "كل إعلان يعطي هذه المصطلحات وزنًا مختلفًا. استخدم القائمة لتعرف ما تُغفله سيرتك الذاتية، ثم قارنها بالإعلان الحقيقي عبر [فحص السيرة الذاتية](/cv-checker) قبل أن تتقدم."
+    }
+  ],
+  "related": [
+    {
+      "label": "كل قوائم الكلمات المفتاحية",
+      "href": "/resume-keywords",
+      "body": "كل وظيفة، مع مثال لكل مصطلح داخل نقطة (بالإنجليزية)."
+    },
+    {
+      "label": "فحص الكلمات المفتاحية ATS",
+      "href": "/free-ats-keyword-checker",
+      "body": "استخرج الكلمات المفتاحية من أي إعلان وظيفة."
+    },
+    {
+      "label": "فحص السيرة الذاتية",
+      "href": "/cv-checker",
+      "body": "قيّم سيرتك الذاتية مقابل إعلان وظيفة واحد."
+    }
+  ],
+  "ui": {
+    "home": "الرئيسية",
+    "faqHeading": "الأسئلة الشائعة",
+    "related": "إلى أين بعد ذلك",
+    "open": "افتح"
+  },
+  "toolProps": {
+    "roles": [
+      {
+        "slug": "software-engineer",
+        "role": "مهندس برمجيات",
+        "plural": "مهندس برمجيات",
+        "groups": [
+          {
+            "title": "الأنظمة والحرفة",
+            "terms": [
+              "system design",
+              "distributed systems",
+              "microservices",
+              "API design",
+              "data modelling",
+              "concurrency",
+              "performance optimisation",
+              "scalability",
+              "code review",
+              "automated testing",
+              "debugging",
+              "technical design document"
+            ]
+          },
+          {
+            "title": "اللغات وأطر العمل",
+            "terms": [
+              "Go",
+              "Python",
+              "Java",
+              "TypeScript",
+              "JavaScript",
+              "C#",
+              "Rust",
+              "Kotlin",
+              "React",
+              "Node.js",
+              "Spring Boot",
+              "Django",
+              "SQL"
+            ]
+          },
+          {
+            "title": "البنية التحتية والأدوات",
+            "terms": [
+              "AWS",
+              "GCP",
+              "Azure",
+              "Docker",
+              "Kubernetes (k8s)",
+              "Terraform",
+              "CI/CD",
+              "GitHub Actions",
+              "observability",
+              "Datadog",
+              "Prometheus",
+              "PostgreSQL",
+              "Redis",
+              "Kafka",
+              "infrastructure as code"
+            ]
+          },
+          {
+            "title": "طريقة عملك",
+            "terms": [
+              "Agile",
+              "Scrum",
+              "on-call",
+              "incident response",
+              "postmortem",
+              "SLO",
+              "mentoring",
+              "pair programming",
+              "technical documentation",
+              "cross-functional"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "shipped",
+              "migrated",
+              "refactored",
+              "profiled",
+              "instrumented",
+              "scaled",
+              "hardened",
+              "decomposed",
+              "owned",
+              "mentored"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "data-analyst",
+        "role": "محلل بيانات",
+        "plural": "محلل بيانات",
+        "groups": [
+          {
+            "title": "التحليل والمنهج",
+            "terms": [
+              "exploratory data analysis",
+              "A/B testing",
+              "hypothesis testing",
+              "statistical significance",
+              "cohort analysis",
+              "segmentation",
+              "forecasting",
+              "regression analysis",
+              "funnel analysis",
+              "data quality",
+              "data cleaning",
+              "root cause analysis"
+            ]
+          },
+          {
+            "title": "الأدوات واللغات",
+            "terms": [
+              "SQL",
+              "Python",
+              "pandas",
+              "R",
+              "Excel",
+              "Tableau",
+              "Power BI",
+              "Looker",
+              "dbt",
+              "BigQuery",
+              "Snowflake",
+              "Redshift",
+              "Google Analytics (GA4)",
+              "Jupyter"
+            ]
+          },
+          {
+            "title": "الأعمال والتواصل",
+            "terms": [
+              "stakeholder management",
+              "requirements gathering",
+              "KPI definition",
+              "dashboard design",
+              "reporting automation",
+              "data storytelling",
+              "executive reporting",
+              "self-serve analytics",
+              "data governance"
+            ]
+          },
+          {
+            "title": "شهادات تستحق الذكر",
+            "terms": [
+              "Google Data Analytics Certificate",
+              "Microsoft Power BI (PL-300)",
+              "Tableau Desktop Specialist",
+              "AWS Certified Data Analytics"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "quantified",
+              "modelled",
+              "forecast",
+              "automated",
+              "segmented",
+              "validated",
+              "reconciled",
+              "surfaced",
+              "recommended"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "project-manager",
+        "role": "مدير مشروع",
+        "plural": "مدير مشروع",
+        "groups": [
+          {
+            "title": "التنفيذ والضبط",
+            "terms": [
+              "scope management",
+              "risk management",
+              "dependency management",
+              "stakeholder management",
+              "budget management",
+              "resource planning",
+              "change control",
+              "RAID log",
+              "governance",
+              "status reporting",
+              "critical path",
+              "benefits realisation"
+            ]
+          },
+          {
+            "title": "المناهج والأطر",
+            "terms": [
+              "Agile",
+              "Scrum",
+              "Kanban",
+              "Waterfall",
+              "SAFe",
+              "PRINCE2",
+              "hybrid delivery",
+              "sprint planning",
+              "backlog refinement",
+              "retrospectives",
+              "release management"
+            ]
+          },
+          {
+            "title": "الشهادات",
+            "terms": [
+              "PMP (Project Management Professional)",
+              "PRINCE2 Practitioner",
+              "CSM (Certified ScrumMaster)",
+              "PMI-ACP",
+              "SAFe Agilist",
+              "MSP (Managing Successful Programmes)"
+            ]
+          },
+          {
+            "title": "الأدوات",
+            "terms": [
+              "Jira",
+              "Confluence",
+              "Asana",
+              "Microsoft Project",
+              "Smartsheet",
+              "Monday.com",
+              "Miro",
+              "ServiceNow",
+              "Power BI"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "delivered",
+              "de-risked",
+              "unblocked",
+              "escalated",
+              "negotiated",
+              "recovered",
+              "consolidated",
+              "forecast",
+              "governed"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "marketing-manager",
+        "role": "مدير تسويق",
+        "plural": "مدير تسويق",
+        "groups": [
+          {
+            "title": "القنوات",
+            "terms": [
+              "paid social",
+              "paid search (PPC)",
+              "SEO",
+              "content marketing",
+              "email marketing",
+              "lifecycle marketing",
+              "marketing automation",
+              "affiliate marketing",
+              "influencer marketing",
+              "events",
+              "partner marketing",
+              "ABM (account based marketing)"
+            ]
+          },
+          {
+            "title": "مؤشرات لها وزن",
+            "terms": [
+              "CAC (customer acquisition cost)",
+              "LTV",
+              "ROAS",
+              "MQL",
+              "SQL (sales qualified lead)",
+              "pipeline contribution",
+              "conversion rate optimisation (CRO)",
+              "attribution",
+              "funnel analysis",
+              "churn",
+              "payback period"
+            ]
+          },
+          {
+            "title": "المنصات والأدوات",
+            "terms": [
+              "HubSpot",
+              "Salesforce",
+              "Marketo",
+              "Klaviyo",
+              "Mailchimp",
+              "Google Ads",
+              "Meta Ads Manager",
+              "LinkedIn Campaign Manager",
+              "GA4",
+              "Semrush",
+              "Ahrefs",
+              "Webflow",
+              "Figma"
+            ]
+          },
+          {
+            "title": "النطاق والقيادة",
+            "terms": [
+              "budget ownership",
+              "agency management",
+              "go-to-market",
+              "brand positioning",
+              "campaign planning",
+              "cross-functional",
+              "team leadership",
+              "product marketing",
+              "market research"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "launched",
+              "scaled",
+              "grew",
+              "cut",
+              "repositioned",
+              "tested",
+              "consolidated",
+              "rebuilt",
+              "owned"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "customer-service",
+        "role": "ممثل خدمة العملاء",
+        "plural": "ممثل خدمة العملاء",
+        "groups": [
+          {
+            "title": "مؤشرات لديك بالفعل",
+            "terms": [
+              "CSAT",
+              "NPS",
+              "first contact resolution (FCR)",
+              "first response time",
+              "average handle time",
+              "SLA compliance",
+              "ticket volume",
+              "resolution rate",
+              "backlog reduction",
+              "QA score"
+            ]
+          },
+          {
+            "title": "المنصات والقنوات",
+            "terms": [
+              "Zendesk",
+              "Freshdesk",
+              "Intercom",
+              "Salesforce Service Cloud",
+              "HubSpot Service Hub",
+              "Talkdesk",
+              "live chat",
+              "phone support",
+              "email support",
+              "social support",
+              "omnichannel"
+            ]
+          },
+          {
+            "title": "العمل نفسه",
+            "terms": [
+              "escalation management",
+              "de-escalation",
+              "complaint handling",
+              "triage",
+              "troubleshooting",
+              "root cause analysis",
+              "refunds and billing",
+              "account management",
+              "retention",
+              "churn prevention"
+            ]
+          },
+          {
+            "title": "العمليات والتطور",
+            "terms": [
+              "knowledge base",
+              "macros and templates",
+              "workflow automation",
+              "onboarding",
+              "training and coaching",
+              "shift handover",
+              "process improvement",
+              "voice of the customer"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "resolved",
+              "de-escalated",
+              "reduced",
+              "recovered",
+              "retained",
+              "trained",
+              "documented",
+              "streamlined",
+              "coached"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "accountant",
+        "role": "محاسب",
+        "plural": "محاسب",
+        "groups": [
+          {
+            "title": "الدورة المحاسبية",
+            "terms": [
+              "month end close",
+              "year end close",
+              "reconciliations",
+              "accounts payable (AP)",
+              "accounts receivable (AR)",
+              "general ledger",
+              "journal entries",
+              "accruals and prepayments",
+              "fixed asset register",
+              "intercompany",
+              "consolidation",
+              "trial balance"
+            ]
+          },
+          {
+            "title": "التحليل والتقارير",
+            "terms": [
+              "variance analysis",
+              "budgeting and forecasting",
+              "cash flow forecasting",
+              "management accounts",
+              "board reporting",
+              "KPI reporting",
+              "cost control",
+              "margin analysis",
+              "business partnering"
+            ]
+          },
+          {
+            "title": "الامتثال والمعايير",
+            "terms": [
+              "IFRS",
+              "UK GAAP",
+              "US GAAP",
+              "statutory accounts",
+              "VAT returns",
+              "corporation tax",
+              "audit support",
+              "internal controls",
+              "SOX",
+              "transfer pricing"
+            ]
+          },
+          {
+            "title": "الأنظمة",
+            "terms": [
+              "SAP",
+              "Oracle",
+              "NetSuite",
+              "Xero",
+              "QuickBooks",
+              "Sage",
+              "Microsoft Dynamics",
+              "advanced Excel",
+              "Power BI",
+              "Workday Financials"
+            ]
+          },
+          {
+            "title": "المؤهلات",
+            "terms": [
+              "ACCA",
+              "ACA",
+              "CIMA",
+              "CPA",
+              "AAT",
+              "part qualified",
+              "qualified by experience (QBE)",
+              "ICAEW"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "nurse",
+        "role": "ممرض",
+        "plural": "ممرض",
+        "groups": [
+          {
+            "title": "التسجيل والشهادات",
+            "terms": [
+              "registered nurse (RN)",
+              "NMC PIN",
+              "active RN license",
+              "BLS",
+              "ILS",
+              "ALS",
+              "ACLS",
+              "PALS",
+              "safeguarding level 3",
+              "revalidation",
+              "NCLEX"
+            ]
+          },
+          {
+            "title": "المهارات السريرية",
+            "terms": [
+              "patient assessment",
+              "medication administration",
+              "IV therapy",
+              "venepuncture",
+              "cannulation",
+              "wound management",
+              "catheterisation",
+              "tracheostomy care",
+              "NEWS2",
+              "early warning scores",
+              "infection prevention and control",
+              "tissue viability"
+            ]
+          },
+          {
+            "title": "بيئة العمل والتخصص",
+            "terms": [
+              "acute care",
+              "medical surgical",
+              "post-operative care",
+              "ICU",
+              "emergency department",
+              "theatres",
+              "community nursing",
+              "mental health",
+              "paediatrics",
+              "oncology",
+              "care of the elderly",
+              "high dependency unit"
+            ]
+          },
+          {
+            "title": "الممارسة والقيادة",
+            "terms": [
+              "care planning",
+              "discharge planning",
+              "multidisciplinary team (MDT)",
+              "preceptorship",
+              "clinical audit",
+              "escalation",
+              "handover",
+              "shift coordination",
+              "patient safety",
+              "duty of candour",
+              "electronic patient record (EPR)"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "assessed",
+              "triaged",
+              "escalated",
+              "managed",
+              "precepted",
+              "audited",
+              "coordinated",
+              "administered",
+              "stabilised",
+              "educated"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "teacher",
+        "role": "معلم",
+        "plural": "معلم",
+        "groups": [
+          {
+            "title": "المؤهل والمرحلة",
+            "terms": [
+              "QTS",
+              "PGCE",
+              "teaching license",
+              "ECT",
+              "early career teacher",
+              "KS1",
+              "KS2",
+              "KS3",
+              "KS4",
+              "KS5",
+              "EYFS",
+              "primary",
+              "secondary",
+              "A level",
+              "GCSE"
+            ]
+          },
+          {
+            "title": "التدريس والتقييم",
+            "terms": [
+              "lesson planning",
+              "differentiation",
+              "formative assessment",
+              "summative assessment",
+              "scheme of work",
+              "curriculum design",
+              "behaviour management",
+              "adaptive teaching",
+              "retrieval practice",
+              "mastery",
+              "marking and feedback"
+            ]
+          },
+          {
+            "title": "التقدم والدمج",
+            "terms": [
+              "attainment",
+              "progress data",
+              "intervention",
+              "SEND",
+              "EAL",
+              "pupil premium",
+              "IEP",
+              "data tracking",
+              "raising attainment",
+              "closing the gap"
+            ]
+          },
+          {
+            "title": "المسؤولية والحماية",
+            "terms": [
+              "safeguarding",
+              "DBS",
+              "form tutor",
+              "pastoral care",
+              "head of year",
+              "subject lead",
+              "TLR",
+              "parental engagement",
+              "extracurricular",
+              "mentoring trainee teachers"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "raised",
+              "designed",
+              "led",
+              "rewrote",
+              "tracked",
+              "mentored",
+              "introduced",
+              "coordinated",
+              "differentiated",
+              "moderated"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "product-manager",
+        "role": "مدير منتج",
+        "plural": "مدير منتج",
+        "groups": [
+          {
+            "title": "الاستكشاف والاستراتيجية",
+            "terms": [
+              "product discovery",
+              "user research",
+              "customer interviews",
+              "problem framing",
+              "product strategy",
+              "product vision",
+              "opportunity sizing",
+              "jobs to be done",
+              "competitive analysis",
+              "go-to-market"
+            ]
+          },
+          {
+            "title": "التنفيذ وتحديد الأولويات",
+            "terms": [
+              "roadmap",
+              "prioritisation",
+              "OKRs",
+              "Agile",
+              "Scrum",
+              "backlog management",
+              "user stories",
+              "product requirements document (PRD)",
+              "release planning",
+              "cross-functional",
+              "stakeholder management"
+            ]
+          },
+          {
+            "title": "المؤشرات والتجريب",
+            "terms": [
+              "A/B testing",
+              "experimentation",
+              "activation",
+              "retention",
+              "conversion",
+              "net revenue retention",
+              "churn",
+              "north star metric",
+              "product analytics",
+              "funnel analysis"
+            ]
+          },
+          {
+            "title": "الأدوات",
+            "terms": [
+              "Amplitude",
+              "Mixpanel",
+              "Looker",
+              "SQL",
+              "Jira",
+              "Linear",
+              "Figma",
+              "Productboard",
+              "Confluence"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "launched",
+              "killed",
+              "reprioritised",
+              "validated",
+              "grew",
+              "reduced",
+              "negotiated",
+              "aligned",
+              "piloted",
+              "scaled"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "business-analyst",
+        "role": "محلل أعمال",
+        "plural": "محلل أعمال",
+        "groups": [
+          {
+            "title": "المتطلبات والتحليل",
+            "terms": [
+              "requirements gathering",
+              "requirements elicitation",
+              "user stories",
+              "acceptance criteria",
+              "business requirements document (BRD)",
+              "functional requirements",
+              "gap analysis",
+              "impact analysis",
+              "root cause analysis",
+              "use cases"
+            ]
+          },
+          {
+            "title": "العمليات والتغيير",
+            "terms": [
+              "process mapping",
+              "process improvement",
+              "BPMN",
+              "as is to be",
+              "workflow design",
+              "change management",
+              "operating model",
+              "Lean",
+              "Six Sigma",
+              "value stream mapping"
+            ]
+          },
+          {
+            "title": "التنفيذ والاختبار",
+            "terms": [
+              "UAT",
+              "test scenarios",
+              "Agile",
+              "Scrum",
+              "backlog refinement",
+              "sprint planning",
+              "stakeholder workshops",
+              "stakeholder management",
+              "traceability matrix",
+              "go-live support"
+            ]
+          },
+          {
+            "title": "الأدوات والشهادات",
+            "terms": [
+              "Jira",
+              "Confluence",
+              "SQL",
+              "Excel",
+              "Visio",
+              "Miro",
+              "Power BI",
+              "CBAP",
+              "ECBA",
+              "BCS Business Analysis Diploma",
+              "PMI-PBA"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "elicited",
+              "mapped",
+              "translated",
+              "prioritised",
+              "facilitated",
+              "validated",
+              "streamlined",
+              "blocked",
+              "reconciled",
+              "defined"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "data-scientist",
+        "role": "عالم بيانات",
+        "plural": "عالم بيانات",
+        "groups": [
+          {
+            "title": "النمذجة والمنهج",
+            "terms": [
+              "machine learning",
+              "predictive modelling",
+              "classification",
+              "regression",
+              "time series forecasting",
+              "gradient boosting",
+              "deep learning",
+              "natural language processing (NLP)",
+              "recommendation systems",
+              "causal inference",
+              "feature engineering",
+              "model evaluation"
+            ]
+          },
+          {
+            "title": "اللغات والمكتبات",
+            "terms": [
+              "Python",
+              "SQL",
+              "R",
+              "pandas",
+              "NumPy",
+              "scikit-learn",
+              "XGBoost",
+              "PyTorch",
+              "TensorFlow",
+              "Spark",
+              "Jupyter"
+            ]
+          },
+          {
+            "title": "الإنتاج وMLOps",
+            "terms": [
+              "model deployment",
+              "MLOps",
+              "MLflow",
+              "Airflow",
+              "Docker",
+              "AWS SageMaker",
+              "Vertex AI",
+              "Databricks",
+              "feature store",
+              "model monitoring",
+              "data drift",
+              "CI/CD"
+            ]
+          },
+          {
+            "title": "التجريب والإحصاء",
+            "terms": [
+              "A/B testing",
+              "experiment design",
+              "hypothesis testing",
+              "statistical significance",
+              "Bayesian statistics",
+              "uplift modelling",
+              "online evaluation",
+              "stakeholder communication"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "deployed",
+              "productionised",
+              "reduced",
+              "forecast",
+              "ranked",
+              "retrained",
+              "monitored",
+              "validated",
+              "replaced",
+              "scaled"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "ux-designer",
+        "role": "مصمم تجربة المستخدم",
+        "plural": "مصمم تجربة المستخدم",
+        "groups": [
+          {
+            "title": "البحث والاستكشاف",
+            "terms": [
+              "user research",
+              "usability testing",
+              "user interviews",
+              "contextual inquiry",
+              "journey mapping",
+              "personas",
+              "jobs to be done",
+              "card sorting",
+              "tree testing",
+              "survey design",
+              "research synthesis",
+              "competitive analysis"
+            ]
+          },
+          {
+            "title": "حرفة التصميم",
+            "terms": [
+              "wireframes",
+              "prototyping",
+              "high fidelity prototypes",
+              "interaction design",
+              "information architecture",
+              "visual design",
+              "user flows",
+              "design systems",
+              "component library",
+              "responsive design",
+              "microcopy",
+              "accessibility (WCAG)"
+            ]
+          },
+          {
+            "title": "الأدوات",
+            "terms": [
+              "Figma",
+              "FigJam",
+              "Sketch",
+              "Adobe XD",
+              "Maze",
+              "UserTesting",
+              "Dovetail",
+              "Hotjar",
+              "Miro",
+              "Framer",
+              "HTML/CSS basics"
+            ]
+          },
+          {
+            "title": "المنتج والتعاون",
+            "terms": [
+              "cross-functional",
+              "design handoff",
+              "developer collaboration",
+              "product strategy",
+              "A/B testing",
+              "design critique",
+              "stakeholder management",
+              "design QA",
+              "iteration",
+              "metrics driven design"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "redesigned",
+              "simplified",
+              "tested",
+              "validated",
+              "shipped",
+              "reduced",
+              "consolidated",
+              "standardised",
+              "interviewed",
+              "launched"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "sales",
+        "role": "مندوب مبيعات",
+        "plural": "مندوب مبيعات",
+        "groups": [
+          {
+            "title": "الأرقام والأهداف",
+            "terms": [
+              "quota attainment",
+              "annual quota",
+              "revenue closed",
+              "average deal size",
+              "win rate",
+              "sales cycle",
+              "pipeline generated",
+              "new logos",
+              "meetings booked",
+              "renewal rate",
+              "upsell revenue"
+            ]
+          },
+          {
+            "title": "التنقيب عن العملاء ومسار المبيعات",
+            "terms": [
+              "prospecting",
+              "lead generation",
+              "cold calling",
+              "cold email",
+              "outbound",
+              "inbound",
+              "lead qualification",
+              "BANT",
+              "discovery calls",
+              "appointment setting",
+              "social selling",
+              "referrals"
+            ]
+          },
+          {
+            "title": "إتمام الصفقات والحسابات",
+            "terms": [
+              "product demos",
+              "presentations",
+              "objection handling",
+              "negotiation",
+              "closing",
+              "consultative selling",
+              "solution selling",
+              "account management",
+              "upselling",
+              "cross-selling",
+              "customer retention",
+              "B2B sales"
+            ]
+          },
+          {
+            "title": "المبيعات الميدانية",
+            "terms": [
+              "territory management",
+              "route planning",
+              "field sales",
+              "client visits",
+              "face-to-face selling",
+              "key accounts",
+              "distributor relationships",
+              "trade shows"
+            ]
+          },
+          {
+            "title": "الأنظمة",
+            "terms": [
+              "Salesforce",
+              "HubSpot",
+              "LinkedIn Sales Navigator",
+              "Outreach",
+              "Salesloft",
+              "Gong",
+              "ZoomInfo",
+              "Apollo",
+              "Excel"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "closed",
+              "exceeded",
+              "generated",
+              "booked",
+              "won",
+              "opened",
+              "expanded",
+              "renewed",
+              "negotiated",
+              "converted"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "sales-manager",
+        "role": "مدير مبيعات",
+        "plural": "مدير مبيعات",
+        "groups": [
+          {
+            "title": "الأرقام والأهداف",
+            "terms": [
+              "quota attainment",
+              "revenue growth",
+              "annual quota",
+              "average deal size",
+              "win rate",
+              "sales cycle",
+              "pipeline coverage",
+              "net new revenue",
+              "expansion revenue",
+              "retention",
+              "forecast accuracy"
+            ]
+          },
+          {
+            "title": "عملية البيع ومنهجه",
+            "terms": [
+              "pipeline management",
+              "sales forecasting",
+              "territory planning",
+              "account planning",
+              "MEDDIC",
+              "MEDDPICC",
+              "Challenger Sale",
+              "solution selling",
+              "consultative selling",
+              "deal reviews",
+              "enterprise sales",
+              "negotiation"
+            ]
+          },
+          {
+            "title": "القيادة",
+            "terms": [
+              "team leadership",
+              "sales coaching",
+              "performance management",
+              "hiring and onboarding",
+              "quota setting",
+              "ramp time",
+              "compensation planning",
+              "cross-functional",
+              "quarterly business reviews (QBRs)"
+            ]
+          },
+          {
+            "title": "الأنظمة",
+            "terms": [
+              "Salesforce",
+              "HubSpot",
+              "Gong",
+              "Outreach",
+              "Salesloft",
+              "LinkedIn Sales Navigator",
+              "Clari",
+              "Excel"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "closed",
+              "exceeded",
+              "grew",
+              "built",
+              "coached",
+              "hired",
+              "ramped",
+              "expanded",
+              "negotiated",
+              "turned around"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "financial-analyst",
+        "role": "محلل مالي",
+        "plural": "محلل مالي",
+        "groups": [
+          {
+            "title": "التخطيط والتحليل",
+            "terms": [
+              "financial modelling",
+              "variance analysis",
+              "forecasting",
+              "rolling forecast",
+              "budgeting",
+              "scenario analysis",
+              "sensitivity analysis",
+              "three statement model",
+              "long range planning",
+              "driver based planning",
+              "margin analysis",
+              "cost analysis"
+            ]
+          },
+          {
+            "title": "التقارير",
+            "terms": [
+              "management accounts",
+              "monthly reporting",
+              "board packs",
+              "KPI reporting",
+              "executive dashboards",
+              "month end",
+              "P&L analysis",
+              "cash flow analysis",
+              "commentary"
+            ]
+          },
+          {
+            "title": "التجارة والاستثمار",
+            "terms": [
+              "business partnering",
+              "pricing analysis",
+              "business cases",
+              "investment appraisal",
+              "NPV",
+              "IRR",
+              "ROI analysis",
+              "capex",
+              "unit economics",
+              "cost control"
+            ]
+          },
+          {
+            "title": "الأنظمة والأدوات",
+            "terms": [
+              "advanced Excel",
+              "Power Query",
+              "pivot tables",
+              "Power BI",
+              "Tableau",
+              "SAP",
+              "Oracle",
+              "NetSuite",
+              "Anaplan",
+              "Adaptive Insights",
+              "SQL",
+              "VBA"
+            ]
+          },
+          {
+            "title": "المؤهلات",
+            "terms": [
+              "CFA",
+              "CFA Level I",
+              "ACCA",
+              "CIMA",
+              "ACA",
+              "CPA",
+              "FMVA",
+              "finance degree"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "hr-manager",
+        "role": "مدير موارد بشرية",
+        "plural": "مدير موارد بشرية",
+        "groups": [
+          {
+            "title": "دورة حياة الموظف",
+            "terms": [
+              "talent acquisition",
+              "recruitment",
+              "onboarding",
+              "performance management",
+              "succession planning",
+              "learning and development",
+              "career development",
+              "offboarding",
+              "workforce planning",
+              "organisational design"
+            ]
+          },
+          {
+            "title": "علاقات الموظفين والامتثال",
+            "terms": [
+              "employee relations",
+              "grievances",
+              "disciplinaries",
+              "absence management",
+              "employment law",
+              "policy development",
+              "TUPE",
+              "redundancy",
+              "investigations",
+              "right to work",
+              "health and safety",
+              "GDPR"
+            ]
+          },
+          {
+            "title": "المكافآت والارتباط الوظيفي",
+            "terms": [
+              "compensation and benefits",
+              "pay benchmarking",
+              "pay banding",
+              "employee engagement",
+              "engagement survey",
+              "retention",
+              "attrition",
+              "DEI",
+              "wellbeing",
+              "employer branding"
+            ]
+          },
+          {
+            "title": "الأنظمة",
+            "terms": [
+              "Workday",
+              "BambooHR",
+              "SAP SuccessFactors",
+              "HiBob",
+              "Personio",
+              "Greenhouse",
+              "Lever",
+              "ADP",
+              "HR analytics",
+              "Excel"
+            ]
+          },
+          {
+            "title": "المؤهلات والشراكة",
+            "terms": [
+              "CIPD Level 5",
+              "CIPD Level 7",
+              "SHRM-CP",
+              "SHRM-SCP",
+              "PHR",
+              "HR business partnering",
+              "coaching managers",
+              "change management"
+            ]
+          }
+        ]
+      },
+      {
+        "slug": "administrative-assistant",
+        "role": "مساعد إداري",
+        "plural": "مساعد إداري",
+        "groups": [
+          {
+            "title": "المهام الأساسية",
+            "terms": [
+              "calendar management",
+              "diary management",
+              "scheduling",
+              "travel booking",
+              "expense reports",
+              "inbox management",
+              "meeting coordination",
+              "minute taking",
+              "data entry",
+              "filing",
+              "document preparation",
+              "event coordination"
+            ]
+          },
+          {
+            "title": "المكتب والاستقبال",
+            "terms": [
+              "reception",
+              "visitor management",
+              "phone handling",
+              "office supplies",
+              "vendor coordination",
+              "facilities",
+              "mail handling",
+              "onboarding support",
+              "office management"
+            ]
+          },
+          {
+            "title": "البرمجيات",
+            "terms": [
+              "Microsoft Office",
+              "Outlook",
+              "Word",
+              "Excel",
+              "PowerPoint",
+              "Google Workspace",
+              "Slack",
+              "Microsoft Teams",
+              "Zoom",
+              "Expensify",
+              "SAP Concur",
+              "Calendly"
+            ]
+          },
+          {
+            "title": "أسلوب العمل",
+            "terms": [
+              "confidentiality",
+              "attention to detail",
+              "prioritisation",
+              "time management",
+              "stakeholder coordination",
+              "problem solving",
+              "written communication",
+              "discretion"
+            ]
+          },
+          {
+            "title": "أفعال تحمل دليلًا",
+            "terms": [
+              "coordinated",
+              "scheduled",
+              "organised",
+              "processed",
+              "booked",
+              "triaged",
+              "maintained",
+              "streamlined",
+              "drafted",
+              "tracked"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

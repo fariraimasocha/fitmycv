@@ -1,0 +1,167 @@
+{
+  "seoTitle": "Como nomear o arquivo do currículo: exemplos e gerador",
+  "description": "Nomeie seu currículo como Nome-Sobrenome-Cargo-CV.pdf. Veja exemplos bons e ruins de nome de arquivo e digite seu nome e cargo para montar o seu. Grátis, sem login.",
+  "keywords": [
+    "nome do arquivo do currículo",
+    "como nomear o arquivo do currículo",
+    "como salvar currículo em pdf",
+    "nome do pdf do currículo",
+    "que nome dar ao currículo",
+    "nome de arquivo para currículo",
+    "exemplos de nome de arquivo de currículo",
+    "gerador de nome de arquivo para currículo",
+    "como enviar currículo em pdf"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Gerador de nome de arquivo para currículo",
+  "h1": "Como nomear o arquivo do currículo: exemplos e um gerador grátis",
+  "lede": "Use seu nome, o cargo e a palavra CV, unidos por hífens, salvo em PDF: Farirai-Masocha-Engenheiro-de-software-CV.pdf. Digite os seus abaixo e a ferramenta remove os caracteres que quebram o envio.",
+  "howTo": {
+    "name": "Como nomear o arquivo do currículo",
+    "description": "Monte um nome de arquivo limpo e fácil de buscar para o seu currículo antes de enviar.",
+    "steps": [
+      {
+        "name": "Digite seu nome e o cargo",
+        "text": "Use o nome que o recrutador vai ver no próprio currículo, e o cargo da vaga em vez do seu cargo atual."
+      },
+      {
+        "name": "Adicione a empresa, se quiser",
+        "text": "Vale a pena quando você se candidata a várias vagas na mesma empresa, ou quando uma pessoa específica pediu que você enviasse direto para ela."
+      },
+      {
+        "name": "Copie o nome e renomeie o arquivo",
+        "text": "Renomeie o arquivo antes de enviar. Alguns portais renomeiam de novo do lado deles, mas a versão que chega ao e-mail de um recrutador costuma ser a sua."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Que nome devo dar ao arquivo do meu currículo?",
+      "a": "Seu nome, o cargo e a palavra CV, unidos por hífens, em PDF. Por exemplo Farirai-Masocha-Engenheiro-de-software-CV.pdf. Ele diz ao recrutador de quem é o currículo e para qual vaga sem precisar abrir, e continua legível quando aparece em um link de download."
+    },
+    {
+      "q": "Hífens, sublinhados ou espaços?",
+      "a": "Hífens por padrão. Espaços viram %20 em uma URL de download e podem dar problema em formulários de envio antigos, e sublinhados somem quando o nome do arquivo aparece sublinhado. Use sublinhados só quando um portal ou um recrutador pedir."
+    },
+    {
+      "q": "Devo incluir o nome da empresa?",
+      "a": "Inclua quando você se candidata a mais de uma vaga na mesma empresa, ou quando envia o e-mail direto para uma pessoa específica. Deixe de fora quando se candidata a muitas vagas, porque o risco é real: mandar para uma empresa um arquivo com o nome de outra é um erro difícil de explicar."
+    },
+    {
+      "q": "Que nome dar ao arquivo da carta de apresentação?",
+      "a": "Use o mesmo padrão e termine com Carta-de-apresentacao em vez de CV: Farirai-Masocha-Engenheiro-de-software-Carta-de-apresentacao.pdf. Esta ferramenta só monta o nome do currículo, então escreva este à mão. Com nomes iguais, o recrutador vê que os dois arquivos são da mesma candidatura."
+    },
+    {
+      "q": "Devo colocar a data no nome do arquivo?",
+      "a": "Não. Uma data parece número de versão, e uma data antiga faz um currículo atual parecer desatualizado mesmo que você o tenha reescrito naquela manhã. Se precisar de datas, coloque no nome da pasta no seu computador."
+    },
+    {
+      "q": "PDF ou DOCX?",
+      "a": "Envie PDF, a menos que a vaga peça um documento do Word. Um PDF mantém seu layout em qualquer computador. Algumas empresas pedem DOCX porque o processo delas edita ou reformata o arquivo, e quando pedirem, entregue o que pediram. As regras de nome são as mesmas nos dois casos."
+    },
+    {
+      "q": "O nome do arquivo afeta minha nota no ATS?",
+      "a": "A nota, não. Os sistemas de rastreamento de candidatos (ATS) leem o que está dentro do arquivo, não o nome dele, e a maioria guarda o arquivo com uma referência própria. O nome importa para o lado humano: um recrutador buscando no e-mail ou olhando uma pasta de anexos. O que está dentro do arquivo é outro trabalho, e o [verificador de currículo ATS](/ats-resume-checker) cuida disso."
+    },
+    {
+      "q": "E se o portal renomear meu arquivo no envio?",
+      "a": "Muitos fazem isso, e você não tem como impedir. Nomeie direito mesmo assim. Muitas candidaturas ainda chegam por e-mail, são encaminhadas a um gestor ou baixadas para uma pasta compartilhada, e nos três casos o nome que fica é o seu."
+    }
+  ],
+  "blocks": [
+    { "h2": "Por que o nome do arquivo vale trinta segundos" },
+    {
+      "p": "A pasta de downloads de um recrutador guarda centenas desses arquivos. **Um arquivo chamado curriculo.pdf fica invisível assim que cai ao lado de outros quarenta com o mesmo nome.** O seu deve dizer quem você é e para qual vaga ele é, antes que alguém abra."
+    },
+    {
+      "p": "É também a última coisa que você controla antes de a candidatura sair das suas mãos. Tudo depois do envio pertence ao sistema de outra pessoa."
+    },
+    { "h2": "Exemplos de nome de arquivo de currículo que funcionam, e outros que não" },
+    {
+      "table": {
+        "head": ["Nome do arquivo", "Avaliação", "Por quê"],
+        "rows": [
+          ["Farirai-Masocha-Engenheiro-de-software-CV.pdf", "Melhor", "Nome, cargo e o que é o arquivo. Legível em uma URL e em uma busca no e-mail."],
+          ["Farirai-Masocha-CV.pdf", "Bom", "A escolha certa quando você se candidata a muitas vagas e o cargo muda."],
+          ["Farirai_Masocha_CV.pdf", "Aceitável", "Sublinhados são seguros. Use quando um portal ou um recrutador pedir."],
+          ["curriculo.pdf", "Ruim", "Anônimo assim que é salvo. Colide com todos os outros arquivos."],
+          ["Curriculo final v3 ATUALIZADO.pdf", "Ruim", "Parece um rascunho de trabalho, e os espaços quebram os links de download."],
+          ["CV 2019.pdf", "Ruim", "A data faz um currículo atual parecer desatualizado antes de ser aberto."],
+          ["Meu CV (2).pdf", "Ruim", "Parênteses e espaços são exatamente o que os formulários de envio tratam mal."]
+        ]
+      }
+    },
+    { "h2": "Caracteres que você deve evitar" },
+    {
+      "p": "Estes caracteres quebram o tratamento de arquivos em algum ponto entre o seu computador, o formulário de envio e o sistema operacional do recrutador. A ferramenta remove esses caracteres para você, e avisa quando fez isso."
+    },
+    {
+      "ul": [
+        "**Barras, dois-pontos e barras verticais** ( \\ / : | ) são reservados pelo Windows, pelo macOS ou pelos dois.",
+        "**Pontos de interrogação, asteriscos e sinais de menor e maior** ( ? * < > ) são curingas ou caracteres reservados em terminais e sistemas de arquivos comuns.",
+        "**Aspas e apóstrofos** costumam funcionar no seu computador e falhar quando um formulário coloca o nome em uma URL.",
+        "**Espaços** viram %20 em um link de download, o que deixa um nome limpo ilegível.",
+        "**Letras acentuadas** são simplificadas, para o nome sobreviver em um sistema que não lida bem com elas.",
+        "**Emojis e símbolos** nunca devem estar em um documento que você envia para uma empresa."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Mantenha suas próprias maiúsculas",
+        "body": "A ferramenta respeita as suas maiúsculas em vez de aplicar uma regra por cima. Cada pessoa sabe como se escreve o próprio nome, e uma regra automática erra sobrenomes como McDonald, van der Berg e O'Neill mais vezes do que acerta."
+      }
+    },
+    { "h2": "Um só padrão de nome, sempre" },
+    {
+      "ol": [
+        "**Escolha um separador e mantenha.** Hífens, a menos que algo obrigue a outra coisa.",
+        "**Comece pelo seu nome.** É o que um recrutador busca no e-mail.",
+        "**Use o cargo da vaga,** não o seu cargo atual, para o arquivo combinar com a vaga a que responde.",
+        "**Termine com CV,** ou com a palavra usada no país da empresa.",
+        "**Deixe de fora datas, números de versão e palavras como final, rascunho e atualizado.** Elas só atrapalham.",
+        "**Mantenha curto o bastante para ler de relance.** Cerca de oitenta caracteres antes da extensão no máximo, e quanto mais curto, melhor."
+      ]
+    },
+    {
+      "p": "Use o mesmo padrão na carta de apresentação, para os dois arquivos chegarem com cara de cuidado: Farirai-Masocha-Engenheiro-de-software-Carta-de-apresentacao.pdf."
+    },
+    { "h2": "O nome do arquivo é a parte fácil" },
+    {
+      "p": "Esta página resolve o lado de fora do documento em trinta segundos. Ela não faz nada pelo que está dentro, e é o de dentro que decide a candidatura."
+    },
+    {
+      "p": "As próximas duas coisas que valem o seu tempo: veja quais termos da vaga seu currículo nunca cita com [palavras-chave que faltam no currículo](/missing-resume-keywords) e depois revise a página com o [reescritor de tópicos do currículo](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "O nome está certo. E o currículo?",
+        "body": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga, mantendo sua experiência real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Palavras-chave que faltam no currículo",
+      "href": "/missing-resume-keywords",
+      "body": "Veja quais termos da vaga seu currículo nunca cita."
+    },
+    {
+      "label": "Gerador de título para currículo",
+      "href": "/resume-headline-generator",
+      "body": "Corrija a primeira linha que um recrutador lê ao abrir o arquivo."
+    },
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Dê uma nota ao que está dentro do documento frente à vaga."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

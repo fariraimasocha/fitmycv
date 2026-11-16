@@ -1,0 +1,167 @@
+{
+  "seoTitle": "Cómo nombrar el archivo de tu CV: ejemplos y generador",
+  "description": "Nombra tu CV como Nombre-Apellido-Puesto-CV.pdf. Mira ejemplos buenos y malos de nombres de archivo y escribe tu nombre y puesto para obtener el tuyo. Gratis, sin cuenta.",
+  "keywords": [
+    "nombre del archivo cv",
+    "cómo nombrar el archivo del cv",
+    "cómo guardar mi cv en pdf",
+    "nombre de archivo para curriculum",
+    "qué nombre ponerle a mi cv",
+    "nombre del pdf del cv",
+    "ejemplos de nombre de archivo cv",
+    "generador de nombre de archivo cv",
+    "cómo llamar al archivo del curriculum"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Generador de nombre de archivo para CV",
+  "h1": "Cómo nombrar el archivo de tu CV: ejemplos y un generador gratis",
+  "lede": "Usa tu nombre, el puesto y la palabra CV, unidos con guiones y guardado en PDF: Farirai-Masocha-Ingeniero-de-software-CV.pdf. Escribe los tuyos abajo y la herramienta quita los caracteres que rompen las subidas.",
+  "howTo": {
+    "name": "Cómo nombrar el archivo de tu CV",
+    "description": "Crea un nombre de archivo limpio y fácil de buscar para tu CV antes de subirlo.",
+    "steps": [
+      {
+        "name": "Escribe tu nombre y el puesto",
+        "text": "Usa el nombre que el reclutador verá en el propio CV, y el puesto de la oferta en lugar del tuyo actual."
+      },
+      {
+        "name": "Añade la empresa, si quieres",
+        "text": "Vale la pena cuando te postulas a varios puestos en la misma empresa, o cuando una persona concreta te pidió que se lo enviaras directamente."
+      },
+      {
+        "name": "Copia el nombre y renombra tu archivo",
+        "text": "Cambia el nombre del archivo antes de subirlo. Algunos portales lo renombran por su cuenta, pero la versión que llega al correo de un reclutador suele ser la tuya."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Qué nombre le pongo al archivo de mi CV?",
+      "a": "Tu nombre, el puesto y la palabra CV, unidos con guiones y en PDF. Por ejemplo Farirai-Masocha-Ingeniero-de-software-CV.pdf. Le dice al reclutador de quién es el CV y para qué puesto sin abrirlo, y se sigue leyendo bien cuando aparece en un enlace de descarga."
+    },
+    {
+      "q": "¿Guiones, guiones bajos o espacios?",
+      "a": "Guiones por defecto. Los espacios se convierten en %20 en una URL de descarga y pueden fallar en formularios de subida antiguos, y los guiones bajos desaparecen cuando el nombre se muestra subrayado. Usa guiones bajos solo cuando un portal o un reclutador los pida."
+    },
+    {
+      "q": "¿Incluyo el nombre de la empresa?",
+      "a": "Inclúyelo cuando te postulas a más de un puesto en la misma empresa, o cuando escribes directamente a una persona concreta. Déjalo fuera cuando te postulas a muchas ofertas, porque el riesgo es real: enviar a una empresa un archivo con el nombre de otra es un error difícil de explicar."
+    },
+    {
+      "q": "¿Qué nombre le pongo a mi carta de presentación?",
+      "a": "Usa el mismo patrón y termina con Carta-de-presentacion en lugar de CV: Farirai-Masocha-Ingeniero-de-software-Carta-de-presentacion.pdf. Esta herramienta solo crea el nombre del CV, así que escribe este a mano. Si los nombres coinciden, el reclutador ve que los dos archivos son de la misma candidatura."
+    },
+    {
+      "q": "¿Pongo la fecha en el nombre del archivo?",
+      "a": "No. Una fecha parece un número de versión, y una fecha antigua hace que un CV actual parezca viejo aunque lo hayas reescrito esa misma mañana. Si necesitas fechas, ponlas en el nombre de la carpeta de tu ordenador."
+    },
+    {
+      "q": "¿PDF o DOCX?",
+      "a": "Envía PDF salvo que la oferta pida un documento de Word. Un PDF mantiene tu diseño en cualquier equipo. Algunas empresas piden DOCX porque su proceso edita o reformatea el archivo, y si lo piden, dales lo que piden. Las reglas para el nombre son las mismas en los dos casos."
+    },
+    {
+      "q": "¿El nombre del archivo afecta a mi puntuación ATS?",
+      "a": "A la puntuación, no. Los sistemas de seguimiento de candidatos (ATS) leen lo que hay dentro del archivo, no cómo se llama, y la mayoría lo guarda con su propia referencia. El nombre del archivo importa para la parte humana: un reclutador que busca en su correo o revisa una carpeta de adjuntos. Lo que hay dentro del archivo es otro trabajo, y el [verificador de CV ATS](/ats-resume-checker) se encarga de eso."
+    },
+    {
+      "q": "¿Y si el portal renombra mi archivo al subirlo?",
+      "a": "Muchos lo hacen, y no puedes evitarlo. Nómbralo bien de todos modos. Muchas candidaturas siguen llegando por correo, se reenvían a un responsable de contratación o se descargan en una unidad compartida, y en los tres casos el nombre que queda es el tuyo."
+    }
+  ],
+  "blocks": [
+    { "h2": "Por qué el nombre del archivo merece treinta segundos" },
+    {
+      "p": "La carpeta de descargas de un reclutador guarda cientos de estos archivos. **Un archivo llamado cv.pdf se vuelve invisible en cuanto cae junto a otros cuarenta con el mismo nombre.** El tuyo debe decir quién eres y para qué puesto es, antes de que nadie lo abra."
+    },
+    {
+      "p": "También es lo último que controlas antes de que tu candidatura salga de tus manos. Todo lo que pasa después de subirla depende del sistema de otra persona."
+    },
+    { "h2": "Ejemplos de nombres de archivo de CV que funcionan, y otros que no" },
+    {
+      "table": {
+        "head": ["Nombre de archivo", "Valoración", "Por qué"],
+        "rows": [
+          ["Farirai-Masocha-Ingeniero-de-software-CV.pdf", "El mejor", "Nombre, puesto y qué es el archivo. Se lee bien en una URL y en una búsqueda en el correo."],
+          ["Farirai-Masocha-CV.pdf", "Bueno", "La opción correcta cuando te postulas a muchas ofertas y el puesto cambia."],
+          ["Farirai_Masocha_CV.pdf", "Correcto", "Los guiones bajos son seguros. Úsalos cuando un portal o un reclutador los pida."],
+          ["cv.pdf", "Malo", "Anónimo en cuanto se guarda. Choca con todos los demás archivos."],
+          ["CV final v3 ACTUALIZADO.pdf", "Malo", "Parece un borrador, y los espacios rompen los enlaces de descarga."],
+          ["CV 2019.pdf", "Malo", "La fecha hace que un CV actual parezca viejo antes de abrirlo."],
+          ["Mi CV (2).pdf", "Malo", "Los paréntesis y los espacios son justo lo que los formularios de subida manejan mal."]
+        ]
+      }
+    },
+    { "h2": "Caracteres que debes evitar" },
+    {
+      "p": "Estos caracteres rompen el manejo de archivos en algún punto entre tu ordenador, el formulario de subida y el sistema operativo del reclutador. La herramienta los quita por ti, y te avisa cuando lo hace."
+    },
+    {
+      "ul": [
+        "**Barras, dos puntos y barras verticales** ( \\ / : | ) están reservados por Windows, macOS o ambos.",
+        "**Signos de interrogación, asteriscos y signos de menor y mayor** ( ? * < > ) son comodines o caracteres reservados en terminales y sistemas de archivos comunes.",
+        "**Comillas y apóstrofos** suelen funcionar en tu equipo y fallan cuando un formulario los mete en una URL.",
+        "**Los espacios** se convierten en %20 en un enlace de descarga, lo que vuelve ilegible un nombre limpio.",
+        "**Las letras con acento** se simplifican, para que el nombre sobreviva en un sistema que no las maneja bien.",
+        "**Los emojis y los símbolos** nunca deberían ir en un documento que envías a una empresa."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Mantén tus propias mayúsculas",
+        "body": "La herramienta respeta tus mayúsculas en lugar de imponer una regla. Cada persona sabe cómo se escribe su nombre, y una regla automática se equivoca con apellidos como McDonald, van der Berg y O'Neill más veces de las que acierta."
+      }
+    },
+    { "h2": "Una sola convención de nombres, siempre" },
+    {
+      "ol": [
+        "**Elige un separador y no lo cambies.** Guiones, salvo que algo te obligue a otra cosa.",
+        "**Empieza por tu nombre.** Es lo que un reclutador busca en su correo.",
+        "**Usa el puesto de la oferta,** no el tuyo actual, para que el archivo encaje con el puesto al que responde.",
+        "**Termina con CV,** o con la palabra que se use en el país de la empresa.",
+        "**Deja fuera fechas, números de versión y palabras como final, borrador o actualizado.** Solo te restan.",
+        "**Que se lea de un vistazo.** Unos ochenta caracteres antes de la extensión como máximo, y cuanto más corto, mejor."
+      ]
+    },
+    {
+      "p": "Aplica la misma convención a tu carta de presentación, para que las dos lleguen con un aspecto cuidado: Farirai-Masocha-Ingeniero-de-software-Carta-de-presentacion.pdf."
+    },
+    { "h2": "El nombre del archivo es la parte fácil" },
+    {
+      "p": "Esta página arregla el exterior del documento en treinta segundos. No hace nada por lo que hay dentro, y lo de dentro es lo que decide la candidatura."
+    },
+    {
+      "p": "Lo siguiente que merece tu tiempo: mira qué términos de la oferta tu CV nunca menciona con [palabras clave que faltan en tu CV](/missing-resume-keywords) y luego repasa la página con el [reescritor de logros del CV](/resume-bullet-rewriter)."
+    },
+    {
+      "cta": {
+        "title": "El nombre está bien. ¿Y el CV?",
+        "body": "Pega el enlace de la oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta, manteniendo tu experiencia real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Palabras clave que faltan en tu CV",
+      "href": "/missing-resume-keywords",
+      "body": "Mira qué términos de la oferta tu CV nunca menciona."
+    },
+    {
+      "label": "Generador de titulares de CV",
+      "href": "/resume-headline-generator",
+      "body": "Arregla la primera línea que lee un reclutador al abrir el archivo."
+    },
+    {
+      "label": "Verificador de CV ATS gratis",
+      "href": "/ats-resume-checker",
+      "body": "Puntúa lo que hay dentro del documento frente a la oferta."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

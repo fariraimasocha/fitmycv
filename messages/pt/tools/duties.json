@@ -1,0 +1,45 @@
+{
+  "englishOnly": "Esta ferramenta funciona com texto em inglês. Cole suas atribuições em inglês e ela escreve os tópicos em inglês.",
+  "label": "Cole as atribuições da descrição do seu cargo",
+  "hint": "Uma atribuição por linha. Marcadores, listas numeradas e ponto e vírgula também funcionam. Até {max} atribuições.",
+  "submit": "Transformar atribuições em tópicos",
+  "busy": "Reescrevendo suas atribuições",
+  "example": "Testar um exemplo",
+  "private": "Roda inteiramente no seu navegador. Nada é enviado nem armazenado.",
+  "heading": "{count, plural, one {Sua atribuição como tópico} other {Suas # atribuições como tópicos}}",
+  "intro": "Cada um começa com um verbo de ação e marca onde entra um número. Os espaços destacados são para você preencher. Esta ferramenta não conhece seus números, então use dados que você consiga defender em uma entrevista.",
+  "copy": "Copiar",
+  "copyAll": "Copiar tudo",
+  "copied": "Copiado",
+  "copyAria": "Copiar tópico: {bullet}",
+  "toastAll": "Todos os tópicos copiados",
+  "toastOne": "Tópico copiado",
+  "toastFailed": "Não foi possível copiar. Selecione o texto e copie você mesmo.",
+  "was": "Antes: {duty}",
+  "notes": {
+    "ownership": "Adicione o tamanho: pessoas na equipe, orçamento ou quantos projetos rodavam ao mesmo tempo.",
+    "support": "Adicione quantos por semana, em quanto tempo você respondia ou uma nota de satisfação.",
+    "delivery": "Adicione quanto tempo levou, quantas pessoas usam ou o que mudou depois do lançamento.",
+    "process": "Adicione horas economizadas, erros eliminados, custos cortados ou quantos registros cobriu.",
+    "analysis": "Adicione quantos dados, qual decisão apoiou ou que mudança gerou.",
+    "general": "Adicione quantos, com que frequência, quanto ou quanto mais rápido."
+  },
+  "ctaTitle": "Vai se candidatar a uma nova vaga com eles?",
+  "ctaBody": "Cole o link da vaga e o FitMyCV reescreve cada tópico para essa vaga, mantendo sua experiência real e seus números reais.",
+  "ctaButton": "Adaptar a uma nova vaga",
+  "emptyHeading": "O que você recebe",
+  "features": {
+    "perDuty": {
+      "title": "Um tópico por atribuição",
+      "body": "Aberturas fracas como 'Responsible for' são removidas, e um verbo de ação no passado vem na frente."
+    },
+    "slot": {
+      "title": "Um espaço para o seu número",
+      "body": "Cada tópico marca onde entra um dado, para que ele soe como um resultado."
+    },
+    "number": {
+      "title": "Qual número procurar",
+      "body": "Uma nota abaixo de cada tópico sobre o que contar: pessoas, horas, dinheiro ou mudança."
+    }
+  }
+}

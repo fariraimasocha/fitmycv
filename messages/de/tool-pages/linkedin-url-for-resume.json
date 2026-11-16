@@ -1,0 +1,187 @@
+{
+  "seoTitle": "LinkedIn-Link im Lebenslauf: so geht's",
+  "description": "Füge den Link zu deinem LinkedIn-Profil ein und erhalte eine saubere Version für deinen Lebenslauf, dazu den vollen Link zum Hinterlegen. Kostenlos, ohne Login, nichts wird hochgeladen.",
+  "keywords": [
+    "linkedin im lebenslauf",
+    "linkedin link lebenslauf",
+    "linkedin url lebenslauf",
+    "linkedin profil in lebenslauf einfügen",
+    "linkedin link im cv",
+    "lebenslauf link",
+    "linkedin url ändern",
+    "linkedin url anpassen"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "LinkedIn-Link für den Lebenslauf",
+  "h1": "Der LinkedIn-Link für deinen Lebenslauf",
+  "lede": "Füge den Link zu deinem LinkedIn-Profil ein. Du bekommst die kurze Form für den gedruckten Lebenslauf und die volle Form, die du als Hyperlink dahinterlegst, ohne Tracking-Text und Länderpräfix.",
+  "howTo": {
+    "name": "So fügst du einen LinkedIn-Link in den Lebenslauf ein",
+    "description": "Mach aus einer kopierten LinkedIn-Adresse einen sauberen Link für den Lebenslauf.",
+    "steps": [
+      {
+        "name": "Kopiere deine Profiladresse",
+        "text": "Öffne dein eigenes LinkedIn-Profil und kopiere die Adresse aus der Browserleiste, oder nutze die Teilen-Option in deinem Profil."
+      },
+      {
+        "name": "Füge sie in das Tool ein",
+        "text": "Das Tool entfernt Tracking-Text, Länder- oder Mobilpräfix und alles nach deinem Namen und zeigt dir, was es entfernt hat."
+      },
+      {
+        "name": "Übernimm beide Formen in deinen Lebenslauf",
+        "text": "Schreib die kurze Form in deine Kontaktzeile und hinterlege die volle Form als Hyperlink, damit der Text sauber aussieht und ein Klick trotzdem funktioniert."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Wo steht der LinkedIn-Link im Lebenslauf?",
+      "a": "In der Kontaktzeile oben, neben E-Mail und Telefonnummer. Lass ihn im Textkörper des Dokuments, nicht in Kopfzeile, Fußzeile oder Textfeld, weil manche Bewerbermanagementsysteme (ATS) diese Bereiche überspringen."
+    },
+    {
+      "q": "Sollte mein LinkedIn in den Lebenslauf?",
+      "a": "Ja, wenn dein Profil zu deinem Lebenslauf passt und einigermaßen vollständig ist. Recruiter suchen dich oft ohnehin, und ein Link erspart ihnen die Suche. Ist das Profil Jahre alt oder widerspricht es deinem Lebenslauf, aktualisiere es zuerst oder lass den Link weg."
+    },
+    {
+      "q": "Sollte der LinkedIn-Link im PDF klickbar sein?",
+      "a": "Ja. Schreib die kurze Form als sichtbaren Text und hinterlege den vollen https-Link. Word, Google Docs und die meisten Lebenslauf-Editoren erlauben einen Hyperlink auf markiertem Text, und der Link bleibt beim Export als PDF erhalten."
+    },
+    {
+      "q": "Die volle URL oder die kurze?",
+      "a": "Druck die kurze, linkedin.com/in/dein-name. Das https und das www machen sie länger, ohne dem Leser etwas zu sagen. Die volle Form gehört als Hyperlink hinter den Text, wo niemand sie lesen muss."
+    },
+    {
+      "q": "Können Bewerbermanagementsysteme (ATS) Links lesen?",
+      "a": "Sie lesen den Link als Text, wie jede andere Zeile. Viele speichern ihn als Profilfeld, manche ignorieren ihn. Darum sollte der gedruckte Text eine saubere, lesbare Adresse sein und keine lange Zeichenkette mit Tracking-Code am Ende."
+    },
+    {
+      "q": "Und GitHub, ein Portfolio oder eine eigene Website?",
+      "a": "Füge sie in derselben Kontaktzeile in derselben kurzen Form hinzu, zum Beispiel github.com/dein-name. Nimm nur Links auf, die zur Stelle passen, und prüfe vor dem Versand, ob jeder sich öffnet."
+    },
+    {
+      "q": "Wie bekomme ich eine eigene LinkedIn-URL?",
+      "a": "Öffne in deinem Profil die Option, dein öffentliches Profil und deine URL zu bearbeiten, und ändere dann die eigene URL. Nimm deinen Namen, oder deinen Namen plus ein Wort, wenn er vergeben ist. Der alte Link funktioniert meist nicht mehr, also aktualisiere alles, was ihn nutzt."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Warum sich ein sauberer Link lohnt"
+    },
+    {
+      "p": "Eine kopierte LinkedIn-Adresse enthält oft ein Länderpräfix, einen Sprachpfad und Tracking-Text. **Auf einem gedruckten Lebenslauf wirkt das nachlässig, und in manchen PDFs bricht die Zeichenkette um und funktioniert nicht mehr als Link.** Die saubere Form ist kurz, liest sich wie dein Name und passt in dieselbe Zeile wie deine E-Mail."
+    },
+    {
+      "h2": "LinkedIn-Links, die funktionieren, und welche nicht"
+    },
+    {
+      "table": {
+        "head": [
+          "Link im Lebenslauf",
+          "Urteil",
+          "Warum"
+        ],
+        "rows": [
+          [
+            "linkedin.com/in/farirai-masocha",
+            "Am besten",
+            "Kurz, lesbar und liest sich wie dein Name."
+          ],
+          [
+            "https://www.linkedin.com/in/farirai-masocha",
+            "In Ordnung",
+            "Funktioniert, aber https und www machen ihn länger und sagen nichts."
+          ],
+          [
+            "linkedin.com/in/farirai-masocha-4b2a19c3",
+            "Schwach",
+            "Die zufällige Endung wirkt unfertig. Leg eine eigene URL fest."
+          ],
+          [
+            "uk.linkedin.com/in/farirai-masocha?originalSubdomain=zw",
+            "Schlecht",
+            "Länderpräfix und Tracking-Text. Lang, unordentlich und leicht kaputt."
+          ],
+          [
+            "LinkedIn",
+            "Schlecht",
+            "Ein bloßes Wort. Auf Papier, oder in einem System, das Hyperlinks entfernt, kann ihm niemand folgen."
+          ]
+        ]
+      }
+    },
+    {
+      "h2": "Leg zuerst eine eigene URL fest"
+    },
+    {
+      "p": "Endet dein Link mit einer Reihe aus Zahlen und Buchstaben, hat LinkedIn ihn für dich erstellt. Du kannst ihn in ein paar Minuten ändern."
+    },
+    {
+      "ol": [
+        "**Öffne dein eigenes Profil,** während du bei LinkedIn angemeldet bist.",
+        "**Such die Option, dein öffentliches Profil und deine URL zu bearbeiten.** Sie steht oben auf deiner Profilseite.",
+        "**Bearbeite deine eigene URL** und gib deinen Namen ein. Ist er vergeben, füge einen zweiten Anfangsbuchstaben oder ein Wort aus deinem Fachgebiet hinzu.",
+        "**Speichere und füge den neuen Link oben in das Tool ein,** um die saubere Form für deinen Lebenslauf zu bekommen."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Aktualisiere jede Stelle, an der der alte Link steht",
+        "body": "Wenn du deine eigene URL änderst, funktioniert die alte Adresse meist nicht mehr. Prüfe deine E-Mail-Signatur, dein Portfolio und jeden schon gespeicherten Lebenslauf, bevor du die nächste Bewerbung schickst."
+      }
+    },
+    {
+      "h2": "Wo er auf der Seite steht"
+    },
+    {
+      "p": "Eine Zeile unter deinem Namen enthält alles, was ein Recruiter braucht, um dich zu erreichen: Name, Stadt, E-Mail, Telefon und Links. Lass sie als normalen Text im Textkörper des Dokuments."
+    },
+    {
+      "ul": [
+        "**Ordne sie danach, was ein Recruiter zuerst nutzt:** E-Mail und Telefon, dann LinkedIn, dann GitHub oder ein Portfolio.",
+        "**Nutze für jeden Link dieselbe kurze Form,** damit die Zeile wie aus einem Guss wirkt.",
+        "**Lass Links weg, die dieser Bewerbung nicht helfen.** Ein privater Blog über ein fremdes Thema kostet Platz und lädt zu den falschen Fragen ein.",
+        "**Klick jeden Link im exportierten PDF an,** bevor du es schickst. Ein Link, der im Editor funktioniert hat, kann beim Export kaputtgehen."
+      ]
+    },
+    {
+      "h2": "Der Link ist der leichte Teil"
+    },
+    {
+      "p": "Ein sauberer Link repariert eine Zeile. Der Recruiter, der ihn anklickt, hat schon entschieden, dass dein Lebenslauf einen zweiten Blick wert ist, und diese Entscheidung hängt an allem anderen auf der Seite."
+    },
+    {
+      "p": "Benenne die Datei richtig mit dem [Dateinamen-Generator für den Lebenslauf](/resume-file-name-generator), verbessere die Zeile unter deinem Namen mit dem [Generator für Lebenslauf-Überschriften](/resume-headline-generator) und prüfe dann den ganzen Lebenslauf gegen die Anzeige mit dem [ATS-Check für den Lebenslauf](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Der Link ist sauber. Und der Lebenslauf?",
+        "body": "Füge den Link zur Stellenanzeige ein, und FitMyCV schreibt deinen Lebenslauf und dein Anschreiben für diese Anzeige neu, mit deiner echten Erfahrung.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Dateinamen-Generator für den Lebenslauf",
+      "href": "/resume-file-name-generator",
+      "body": "Benenne die Datei so, dass ein Recruiter sie wiederfindet."
+    },
+    {
+      "label": "Generator für Lebenslauf-Überschriften",
+      "href": "/resume-headline-generator",
+      "body": "Verbessere die Zeile unter deinem Namen, die ein Recruiter zuerst liest."
+    },
+    {
+      "label": "Kostenloser ATS-Check",
+      "href": "/ats-resume-checker",
+      "body": "Bewerte deinen Lebenslauf gegen eine Anzeige und sieh, welche Begriffe dir fehlen."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

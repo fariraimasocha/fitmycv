@@ -1,0 +1,56 @@
+{
+  "cvLabel": "Seu currículo",
+  "jobLabel": "Descrição da vaga",
+  "jobPlaceholder": "Cole aqui o texto completo da vaga.",
+  "englishOnly": "Esta ferramenta lê inglês. Ela compara as palavras do seu currículo com as da vaga, então use um currículo e uma vaga escritos em inglês.",
+  "submit": "Comparar meu currículo",
+  "busy": "Comparando",
+  "readingCv": "Lendo seu currículo",
+  "comparing": "Comparando seu currículo com a vaga",
+  "needBoth": "Adicione seu currículo e a descrição completa da vaga.",
+  "privacy": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "scoreAria": "Pontuação de correspondência: {value} por cento",
+  "scoreUnit": "Match",
+  "verdictStrong": "Boa correspondência com esta vaga",
+  "verdictPartial": "Correspondência parcial. Vale a pena adaptar.",
+  "verdictWeak": "Correspondência fraca com esta vaga",
+  "scoreNote": "Calculada a partir das habilidades, palavras-chave e sinais de experiência no seu currículo e nesta vaga. É uma pontuação de cobertura, não uma previsão de que você será chamado para entrevista.",
+  "strongHeading": "Pontos fortes",
+  "strongEmpty": "Nenhuma habilidade citada na vaga aparece no seu currículo ainda.",
+  "missingHeading": "Ausentes ou fracas",
+  "missingEmpty": "Seu currículo menciona todas as habilidades citadas que conseguimos ler na vaga.",
+  "barExperience": "Experiência",
+  "barSkills": "Habilidades",
+  "barKeywords": "Palavras-chave",
+  "improveHeading": "Os 5 pontos para melhorar primeiro",
+  "tips": {
+    "addSkill": "Inclua {skill} em um tópico que você consiga comprovar com honestidade, não só em uma lista de habilidades.",
+    "useWording": "Use o termo \"{term}\" da vaga se esse trabalho já aparece no seu currículo com outras palavras.",
+    "years": "A vaga pede {years} anos de experiência. Coloque os cargos correspondentes no topo para esse número ficar fácil de achar.",
+    "level": "A vaga é para o nível {level}. Destaque o cargo e o escopo mais próximos que você realmente teve.",
+    "proveSkill": "Mantenha {skill} em um tópico de resultado com um número, para que seja prova e não só afirmação.",
+    "covered": "Seu currículo já cobre os principais termos da vaga. Confira se cada um está em um tópico com um resultado."
+  },
+  "levels": {
+    "intern": "estágio",
+    "entry_level": "iniciante",
+    "junior": "júnior",
+    "mid_level": "pleno",
+    "senior": "sênior",
+    "staff": "staff",
+    "lead": "líder",
+    "principal": "principal",
+    "manager": "gerente",
+    "director": "diretor"
+  },
+  "ctaHigh": {
+    "title": "Transforme este resultado em um currículo adaptado",
+    "body": "Sua correspondência é boa. Guarde esta vaga e reescreva seu currículo para ela, com a experiência que você já tem.",
+    "label": "Adaptar meu currículo"
+  },
+  "ctaGaps": {
+    "title": "Feche essas lacunas",
+    "body": "Guarde esta vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para ela, com a experiência que você já tem.",
+    "label": "Fechar essas lacunas"
+  }
+}

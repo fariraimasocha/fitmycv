@@ -1,0 +1,50 @@
+{
+  "label": "Le lien de votre profil LinkedIn",
+  "placeholder": "https://www.linkedin.com/in/votre-nom",
+  "hint": "Collez l'adresse de votre page de profil. Le lien est nettoyé pendant la saisie. Rien n'est envoyé ni stocké.",
+  "exampleHeading": "Voici ce que vous obtenez",
+  "resultHeading": "Vos liens pour le CV",
+  "exampleBadge": "Exemple",
+  "exampleIntro": "Collez votre propre lien ci-dessus pour le nettoyer. Cet exemple part d'un lien de pays brouillon, avec du texte de suivi.",
+  "resultIntro": "Copiez la forme courte dans votre CV et placez la forme complète derrière, comme lien cliquable.",
+  "shortBadge": "Pour le CV",
+  "shortNote": "Tapez-la comme texte visible dans votre ligne de contact. Elle est courte et facile à lire.",
+  "fullNote": "Utilisez-la comme lien derrière ce texte, pour qu'un clic ouvre votre profil.",
+  "copy": "Copier",
+  "copiedButton": "Copié",
+  "copyAria": "Copier le lien {link}",
+  "copied": "Lien copié",
+  "copyBlocked": "La copie est bloquée dans ce navigateur. Sélectionnez le lien et copiez-le.",
+  "previewHeading": "Le rendu dans l'en-tête de votre CV",
+  "previewLine": "Votre Nom | Ville, Pays | vous@email.com",
+  "removed": "Retiré : {items}.",
+  "listSeparator": ", ",
+  "removedItem": {
+    "mobile": "le préfixe mobile m.",
+    "country": "le préfixe de pays {prefix}.",
+    "tracking": "le texte de suivi après le ?",
+    "fragment": "le fragment #",
+    "path": "la partie langue ou page après votre nom",
+    "slash": "la barre oblique finale"
+  },
+  "issuesHeading": "À corriger",
+  "issue": {
+    "autoSuffix": "Votre lien se termine par une suite de chiffres ou de lettres ajoutée par LinkedIn. Une URL personnalisée avec seulement votre nom se lit mieux sur un CV. Les étapes sont plus bas.",
+    "oddCharacters": "Votre lien contient d'autres caractères que des lettres sans accent, des chiffres et des traits d'union. Certains lecteurs PDF et logiciels de recrutement coupent le lien à ces caractères. Une URL personnalisée règle le problème.",
+    "tooShort": "Cet identifiant est très court. Vérifiez que vous avez copié l'adresse complète de votre profil."
+  },
+  "notLink": "Cela ne ressemble pas à un lien. Collez l'adresse de votre page de profil.",
+  "notLinkedIn": "Ce n'est pas un lien LinkedIn. Collez l'adresse de votre page de profil LinkedIn.",
+  "noHandle": "Le lien s'arrête après /in/. Copiez l'adresse complète de votre page de profil.",
+  "notProfile": {
+    "company": "C'est une page entreprise. Collez le lien de votre propre profil, celui qui contient /in/.",
+    "school": "C'est une page d'école. Collez le lien de votre propre profil, celui qui contient /in/.",
+    "showcase": "C'est une page vitrine. Collez le lien de votre propre profil, celui qui contient /in/.",
+    "posts": "C'est le lien d'une publication. Collez le lien de votre propre profil, celui qui contient /in/.",
+    "feed": "C'est le lien de votre fil ou d'une publication. Collez le lien de votre profil, celui qui contient /in/.",
+    "jobs": "C'est une offre d'emploi. Collez le lien de votre propre profil, celui qui contient /in/.",
+    "pulse": "C'est le lien d'un article. Collez le lien de votre propre profil, celui qui contient /in/.",
+    "pub": "C'est un lien de profil à l'ancien format. Ouvrez votre profil et copiez l'adresse dans le navigateur, qui utilise maintenant /in/.",
+    "other": "Ce lien ne mène pas à un profil. Les liens de profil contiennent /in/ suivi de votre nom."
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "seoTitle": "Preguntas de entrevista a partir de una oferta, gratis",
+  "description": "Pega una oferta de empleo y sube tu CV. Mira las preguntas que hará este puesto, la línea de tu CV que responde a cada una y los huecos que debes preparar.",
+  "keywords": [
+    "preguntas de entrevista",
+    "preguntas de entrevista según la oferta",
+    "preguntas de entrevista de trabajo",
+    "generador de preguntas de entrevista",
+    "preparar entrevista de trabajo",
+    "preguntas frecuentes en una entrevista",
+    "método STAR entrevista"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Preguntas de entrevista a partir de una oferta",
+  "h1": "Preguntas de entrevista a partir de una oferta de empleo",
+  "lede": "Pega la oferta de empleo y sube tu CV. Obtén las preguntas que probablemente hará este puesto, la línea de tu propio CV que responde a cada una y las habilidades que piden y que tu CV aún no muestra. Sin registro, no se guarda nada.",
+  "howTo": {
+    "name": "Cómo prever las preguntas de entrevista a partir de una oferta",
+    "description": "Convierte la oferta y tu CV en una lista de preguntas probables con pruebas de tu propia experiencia.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "Pega el anuncio completo, con los requisitos. La herramienta lee el nombre del puesto y las habilidades que la oferta repite."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "Suelta el PDF. El texto se lee en tu navegador y no se guarda nada."
+      },
+      {
+        "name": "Prepara una historia por pregunta",
+        "text": "Cada pregunta viene con la línea de tu CV que la responde. Construye una historia corta alrededor de esa línea y prepara una respuesta honesta para cada hueco."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Cómo elige la herramienta las preguntas?",
+      "a": "Lee el nombre del puesto y las habilidades que repite la oferta, y luego comprueba cuáles menciona tu CV. Las habilidades que están en las dos listas se convierten en preguntas con una prueba de tu CV. Las que solo están en la oferta se convierten en preguntas sobre huecos, porque un entrevistador te preguntará por ellas."
+    },
+    {
+      "q": "¿Funciona con una oferta y un CV en español?",
+      "a": "No bien. Detecta las habilidades con listas de palabras en inglés y escribe las preguntas en inglés. Está pensada para candidaturas en inglés. Para una entrevista en español, usa las preguntas habituales y el método STAR que explica esta página."
+    },
+    {
+      "q": "¿Escribe mis respuestas por mí?",
+      "a": "No. Te muestra la línea de tu propio CV que responde a cada pregunta y cómo darle forma. Las palabras de la entrevista deben ser tuyas, y una respuesta basada en tu trabajo real es más fácil de defender cuando te repreguntan."
+    },
+    {
+      "q": "¿Qué preguntas salen en casi todas las entrevistas?",
+      "a": "Háblame de ti, por qué quieres este puesto, cuéntame una vez en que resolviste un problema difícil, cuál es tu mayor debilidad y dónde te ves dentro de unos años. Esta herramienta añade las preguntas propias del puesto que pegas."
+    },
+    {
+      "q": "¿Qué hago con las preguntas sobre huecos?",
+      "a": "Si has usado la habilidad y tu CV simplemente no lo dice, añádela a tu CV antes de postularte. Si no, prepara una respuesta honesta sobre lo más parecido que hayas hecho y cómo la aprenderías. Nunca digas que tienes una habilidad de la que no puedes hablar durante dos minutos."
+    },
+    {
+      "q": "¿Qué es el método STAR?",
+      "a": "Situación, tarea, acción, resultado. Presenta el contexto en una frase, di lo que tenías que hacer, dedica la mayor parte del tiempo a lo que hiciste y termina con el resultado. La línea de tu CV suele ser el resultado, así que construye la historia hacia atrás desde ella."
+    },
+    {
+      "q": "¿Se sube mi CV a algún sitio?",
+      "a": "No. El PDF se lee dentro de la pestaña de tu navegador y no se guarda ni se envía a ningún servidor. Cierra la pestaña y desaparece."
+    }
+  ],
+  "blocks": [
+    { "h2": "La oferta te dice lo que te van a preguntar" },
+    {
+      "p": "Los entrevistadores trabajan a partir de la oferta de empleo. Las habilidades que repite son las que tienen que comprobar, así que se convierten en preguntas. **Si una habilidad aparece tres veces en la oferta, espera que te pregunten por ella.**"
+    },
+    {
+      "ol": [
+        "**Preguntas sobre el puesto.** Por qué este puesto, y háblame de tu CV. Todas las entrevistas las tienen.",
+        "**Preguntas sobre habilidades.** Cuéntame una vez en que usaste una habilidad que pide la oferta. Tu CV ya debería tener la respuesta.",
+        "**Preguntas sobre huecos.** La oferta pide algo que tu CV nunca menciona. Son las que pillan desprevenida a la gente."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Por qué la prueba sale de tu CV",
+        "body": "El entrevistador tiene tu CV delante. Una historia que coincide con una línea de la página se cree. Una que no coincide genera una pregunta. Esta herramienta solo usa líneas que encuentra en tu propio CV."
+      }
+    },
+    { "h2": "Cómo responder a una pregunta sobre una habilidad" },
+    {
+      "table": {
+        "head": ["Paso", "Qué decir", "Duración"],
+        "rows": [
+          ["Situación", "Dónde estabas y qué pasaba", "Una frase"],
+          ["Tarea", "Lo que tenías que conseguir", "Una frase"],
+          ["Acción", "Lo que hiciste, en primera persona", "La mayor parte de la respuesta"],
+          ["Resultado", "Qué cambió, con un número si lo tienes", "Una o dos frases"]
+        ]
+      }
+    },
+    { "h2": "Cierra los huecos antes de la entrevista, no durante" },
+    {
+      "p": "Una pregunta sobre un hueco en la entrevista suele venir antes de un hueco en el CV. Si la oferta pide algo que has hecho y tu CV no lo dice, puede que el reclutador nunca te llame. Revisa la lista completa de términos que faltan con [palabras clave que faltan en tu currículum](/missing-resume-keywords), o puntúa tu CV frente a la oferta con el [verificador de CV ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "¿Quieres que tu CV responda estas preguntas por ti?",
+        "body": "Pega el enlace de la oferta y FitMyCV adapta tu CV y tu carta de presentación a esa oferta, usando solo tu experiencia real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de CV ATS gratis",
+      "href": "/ats-resume-checker",
+      "body": "Puntúa tu CV frente a una oferta y mira los términos que te faltan."
+    },
+    {
+      "label": "Generador de resumen profesional",
+      "href": "/professional-summary-generator",
+      "body": "Tres resúmenes de CV creados a partir de la oferta y de tu CV."
+    },
+    {
+      "label": "Reescritor de puntos del currículum",
+      "href": "/resume-bullet-rewriter",
+      "body": "Convierte una tarea en un logro del que puedas hablar."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "seoTitle": "Bewerbungsschreiben auf Englisch erstellen: kostenlos",
+  "description": "Füge die Stellenanzeige ein und lade deinen englischen Lebenslauf hoch. Erhalte ein einfaches Anschreiben auf Englisch mit deinen echten Skills und Ergebnissen. Kostenlos, ohne Login.",
+  "keywords": [
+    "bewerbungsschreiben auf englisch",
+    "anschreiben englisch generator",
+    "cover letter englisch erstellen",
+    "englisches anschreiben",
+    "cover letter generator kostenlos",
+    "bewerbung auf englisch anschreiben",
+    "cover letter beispiel englisch"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Bewerbungsschreiben auf Englisch",
+  "h1": "Bewerbungsschreiben auf Englisch erstellen",
+  "lede": "Füge die Stellenanzeige ein und lade deinen Lebenslauf hoch, beides auf Englisch. Du bekommst ein vollständiges und ein kurzes Anschreiben, gebaut nur aus Skills und Ergebnissen, die dein Lebenslauf schon zeigt. Kein Login, nichts gespeichert.",
+  "howTo": {
+    "name": "So schreibst du ein Bewerbungsschreiben auf Englisch",
+    "description": "Erstelle ein einfaches englisches Anschreiben aus der Stellenanzeige und deinem eigenen Lebenslauf.",
+    "steps": [
+      {
+        "name": "Füge die Stellenanzeige ein",
+        "text": "Das Tool liest den Jobtitel und die Begriffe, die die Anzeige wiederholt."
+      },
+      {
+        "name": "Lade deinen Lebenslauf hoch",
+        "text": "Der Text wird in deinem Browser gelesen. Ein Skill, der nicht in deinem Lebenslauf steht, taucht nie im Anschreiben auf."
+      },
+      {
+        "name": "Prüfen und abschicken",
+        "text": "Ergänze den Namen des Unternehmens und deinen Namen, prüfe jede Aussage und kopiere das Anschreiben in deine E-Mail oder ein Dokument."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "In welcher Sprache wird das Anschreiben geschrieben?",
+      "a": "Auf Englisch. Das Tool füllt eine englische Briefvorlage und liest Jobtitel und Skills auf Englisch. Es ist also für Bewerbungen auf Englisch gedacht, mit einer englischen Anzeige und einem englischen Lebenslauf. Ein deutsches Anschreiben erstellt es nicht."
+    },
+    {
+      "q": "Was ist ein Bewerbungsschreiben?",
+      "a": "Ein kurzer Brief, der sagt, auf welche Stelle du dich bewirbst, warum du passt, und um ein Gespräch bittet. In vielen Ländern ist es dasselbe wie ein Anschreiben oder Cover Letter."
+    },
+    {
+      "q": "Wie lang sollte das Anschreiben sein?",
+      "a": "Drei oder vier kurze Absätze, unter einer Seite. Die kurze Version auf dieser Seite ist für eine E-Mail oder ein kleines Formularfeld."
+    },
+    {
+      "q": "Erfindet der Generator etwas?",
+      "a": "Nein. Der Jobtitel kommt aus der Anzeige, jeder Skill steht sowohl in der Anzeige als auch in deinem Lebenslauf, und jedes Ergebnis ist eine Zeile aus deinem Lebenslauf. Hat dein Lebenslauf kein Ergebnis mit einer Zahl, lässt das Anschreiben eine Lücke, die du füllst."
+    },
+    {
+      "q": "Wird mein Lebenslauf gespeichert?",
+      "a": "Nein. Das Anschreiben entsteht in deinem Browser, und nichts wird verschickt."
+    },
+    {
+      "q": "An wen richte ich das Anschreiben?",
+      "a": "An die einstellende Person, mit Namen, wenn die Anzeige ihn nennt. Sonst passt „Dear Hiring Manager“."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Der Aufbau eines einfachen Bewerbungsschreibens"
+    },
+    {
+      "ol": [
+        "**Nenne die Stelle.** Stelle und Unternehmen gehören in die erste Zeile.",
+        "**Zeig, dass du passt.** Nenne die geforderten Skills, die du genutzt hast, und dann ein Ergebnis mit einer Zahl.",
+        "**Bitte um das Gespräch.** Eine Zeile, dann ein Dank."
+      ]
+    },
+    {
+      "p": "Mehr Beispiele und ein Format zum Kopieren findest du im [Leitfaden zum Bewerbungsschreiben](/blog/job-application-letter). Für den Versand per E-Mail lies [wie du eine Bewerbung per E-Mail schickst](/blog/how-to-email-a-job-application). Beide Leitfäden sind auf Englisch."
+    }
+  ],
+  "related": [
+    {
+      "label": "Leitfaden zum Bewerbungsschreiben",
+      "href": "/blog/job-application-letter",
+      "body": "Format, Beispiele und was du weglassen solltest (auf Englisch)."
+    },
+    {
+      "label": "Lebenslauf-Check",
+      "href": "/cv-checker",
+      "body": "Sieh, welche Begriffe aus der Anzeige deinem Lebenslauf fehlen."
+    },
+    {
+      "label": "Generator für das Kurzprofil",
+      "href": "/professional-summary-generator",
+      "body": "Drei Kurzprofile für den Lebenslauf, gebaut aus einer Anzeige und deinem Lebenslauf."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

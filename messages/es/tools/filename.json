@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "name": { "label": "Tu nombre completo", "placeholder": "Farirai Masocha" },
+    "role": { "label": "Puesto", "placeholder": "Ingeniero de software" },
+    "company": { "label": "Empresa (opcional)", "placeholder": "Northwind" }
+  },
+  "fileLabel": "CV",
+  "private": "Los nombres se crean mientras escribes. No se sube ni se guarda nada.",
+  "exampleHeading": "Esto es lo que obtienes",
+  "heading": "Tus nombres de archivo",
+  "exampleBadge": "Ejemplo",
+  "exampleIntro": "Escribe tu nombre y el puesto para crear el tuyo. Copia el que encaje y cambia el nombre del archivo antes de subirlo.",
+  "intro": "Copia el que encaje con la candidatura y cambia el nombre del archivo antes de subirlo.",
+  "recommended": "Recomendado",
+  "companySlot": "Con el nombre de la empresa",
+  "notes": {
+    "recommended": "Úsalo para la mayoría de candidaturas. Dice quién eres y para qué puesto.",
+    "broad": "Úsalo cuando envías el mismo CV a varios puestos distintos.",
+    "company": "Úsalo cuando un mismo reclutador cubre varios puestos en la misma empresa.",
+    "companyEmpty": "Añade el nombre de una empresa para crear este.",
+    "underscore": "Úsalo cuando un formulario o una agencia pida guiones bajos."
+  },
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "copyAria": "Copiar el nombre de archivo {name}",
+  "toastCopied": "Nombre de archivo copiado",
+  "copyBlocked": "Este navegador bloquea la copia. Selecciona el nombre y cópialo.",
+  "worthFixing": "Conviene corregir",
+  "issues": {
+    "spaces": "Los espacios se sustituyen. Un espacio se convierte en %20 en un enlace de descarga.",
+    "version": "No pongas final, draft ni v2. Una palabra de versión hace que parezca un borrador.",
+    "lowercase": "Tu nombre está todo en minúsculas. Pon las mayúsculas. Un reclutador lee este nombre.",
+    "extension": "Quita la extensión. Se añade sola, y PDF es el formato más seguro.",
+    "illegal": "Se quitaron los caracteres que rompen las subidas: {chars}",
+    "accented": "Los acentos se simplifican, para que el nombre funcione en cualquier sistema operativo.",
+    "truncated": "Se recortó para que el nombre se lea de un vistazo."
+  }
+}

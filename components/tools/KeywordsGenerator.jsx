@@ -9,7 +9,8 @@
 // A title we have no list for points at the posting-based keyword checker.
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import NextLink from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { CheckIcon, CopyIcon, XIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
 
@@ -22,6 +23,7 @@ import {
 } from "@/components/tools/tool-run";
 import { stem, tokenize } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";
+import { Link } from "@/i18n/navigation";
 
 const labelClass =
   "font-outfit text-sm font-extrabold text-[var(--landing-ink)]";
@@ -82,6 +84,7 @@ function coveredTerms(terms, cvText) {
 }
 
 function RoleKeywords({ role }) {
+  const t = useTranslations("tools.keywords-generator");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun();
@@ -99,9 +102,9 @@ function RoleKeywords({ role }) {
   async function copyAll() {
     try {
       await navigator.clipboard.writeText(allTerms.join(", "));
-      toast.success("Keywords copied");
+      toast.success(t("copied"));
     } catch {
-      toast.error("Copy failed. Select the keywords and copy them yourself.");
+      toast.error(t("copyFailed"));
     }
   }
 
@@ -110,21 +113,26 @@ function RoleKeywords({ role }) {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-            {allTerms.length} resume keywords for{" "}
-            <span className="text-[var(--landing-primary-dark)]">
-              {role.plural}
-            </span>
+            {t.rich("title", {
+              count: allTerms.length,
+              plural: role.plural,
+              role: (chunks) => (
+                <span className="text-[var(--landing-primary-dark)]">{chunks}</span>
+              ),
+            })}
           </p>
           <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Only add the ones you have done, and put each one inside a bullet
-            with a result.{" "}
-            <Link
-              href={`/${role.slug}-resume-keywords`}
-              className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
-            >
-              See where each group belongs
-            </Link>
-            .
+            {/* The per role pages are English only, so a plain link. */}
+            {t.rich("intro", {
+              link: (chunks) => (
+                <NextLink
+                  href={`/${role.slug}-resume-keywords`}
+                  className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+                >
+                  {chunks}
+                </NextLink>
+              ),
+            })}
           </p>
         </div>
         <button
@@ -133,7 +141,7 @@ function RoleKeywords({ role }) {
           className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
         >
           <CopyIcon size={13} weight="bold" aria-hidden="true" />
-          Copy all
+          {t("copyAll")}
         </button>
       </div>
 
@@ -163,7 +171,7 @@ function RoleKeywords({ role }) {
       >
         <ResumeFileField
           id="keywords-cv-text"
-          label="Check your CV against this list"
+          label={t("cvLabel")}
           value={cvText}
           onChange={(text) => {
             setCvText(text);
@@ -174,41 +182,39 @@ function RoleKeywords({ role }) {
         />
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <ToolSubmitButton
-            label="Check my CV"
-            busyLabel="Checking your CV"
+            label={t("submit")}
+            busyLabel={t("busy")}
             running={running}
             disabled={cvText.trim().length < 40 || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
-              ? "Reading your CV"
-              : "Your CV is read in this tab. Nothing is stored."}
+            {cvBusy ? t("readingCv") : t("privacy")}
           </p>
         </div>
       </form>
 
-      {running ? <ToolProgress message="Checking your CV" lines={2} /> : null}
+      {running ? <ToolProgress message={t("busy")} lines={2} /> : null}
 
       {covered ? (
         <p
           role="status"
           className="mt-6 font-outfit text-base font-extrabold text-[var(--landing-ink)]"
         >
-          Your CV covers {covered.size} of {allTerms.length}.{" "}
+          {t("coverage", { covered: covered.size, total: allTerms.length })}{" "}
           {missingCount
-            ? `${missingCount} are marked in red above.`
-            : "Every term on the list is there."}
+            ? t("missingMarked", { count: missingCount })
+            : t("allPresent")}
         </p>
       ) : null}
 
       <HandoffCta
-        title={missingCount ? "Close these gaps" : "Now match it to one job"}
+        title={missingCount ? t("handoffGaps.title") : t("handoffDone.title")}
         body={
           missingCount
-            ? `Your CV is missing ${missingCount} of the terms ${role.role} postings use. Paste a job link and FitMyCV works in the ones you have done, using your real experience.`
-            : "A list is general. Paste a job link and FitMyCV rewrites your CV and cover letter for that exact posting."
+            ? t("handoffGaps.body", { count: missingCount, role: role.role })
+            : t("handoffDone.body")
         }
-        label={missingCount ? "Close these gaps" : "Tailor my CV"}
+        label={missingCount ? t("handoffGaps.label") : t("handoffDone.label")}
         source="keywords_generator"
         cvText={cvText}
       />
@@ -217,6 +223,8 @@ function RoleKeywords({ role }) {
 }
 
 export default function KeywordsGenerator({ roles = [] }) {
+  const t = useTranslations("tools.keywords-generator");
+  const locale = useLocale();
   const [slug, setSlug] = useState("");
   const role = roles.find((r) => r.slug === slug) ?? null;
 
@@ -224,7 +232,7 @@ export default function KeywordsGenerator({ roles = [] }) {
     <div className="landing-card rounded-3xl p-4 sm:p-8">
       <div className="flex flex-col gap-2">
         <label htmlFor="keywords-role" className={labelClass}>
-          Pick your job title
+          {t("roleLabel")}
         </label>
         <select
           id="keywords-role"
@@ -236,7 +244,7 @@ export default function KeywordsGenerator({ roles = [] }) {
           }}
           className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm text-[var(--landing-ink)]"
         >
-          <option value="">Choose a role</option>
+          <option value="">{t("rolePlaceholder")}</option>
           {roles.map((r) => (
             <option key={r.slug} value={r.slug}>
               {r.role}
@@ -244,15 +252,23 @@ export default function KeywordsGenerator({ roles = [] }) {
           ))}
         </select>
         <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-          Role not listed? Paste the advert into the{" "}
-          <Link
-            href="/free-ats-keyword-checker"
-            className="text-[var(--landing-primary-dark)] underline underline-offset-4"
-          >
-            ATS keyword checker
-          </Link>{" "}
-          and it pulls the keywords from that posting.
+          {t.rich("notListed", {
+            link: (chunks) => (
+              <Link
+                href="/free-ats-keyword-checker"
+                className="text-[var(--landing-primary-dark)] underline underline-offset-4"
+              >
+                {chunks}
+              </Link>
+            ),
+          })}
         </p>
+        {/* The term lists are English, so the CV check only finds English terms. */}
+        {locale !== "en" ? (
+          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
+            {t("englishOnly")}
+          </p>
+        ) : null}
       </div>
 
       {role ? <RoleKeywords key={role.slug} role={role} /> : null}

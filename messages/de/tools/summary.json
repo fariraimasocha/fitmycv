@@ -1,0 +1,51 @@
+{
+  "englishOnly": "Dieses Tool arbeitet mit englischem Text. Es liest eine englische Stellenanzeige und einen englischen Lebenslauf und schreibt die Profiltexte auf Englisch.",
+  "jobLabel": "Stellenanzeige einfügen",
+  "jobPlaceholder": "Füge hier den vollständigen Text der Stellenanzeige ein…",
+  "cvLabel": "Dein Lebenslauf",
+  "submit": "Profil schreiben",
+  "busy": "Deine Profiltexte werden geschrieben",
+  "statusReading": "Dein Lebenslauf wird gelesen",
+  "statusMatching": "Dein Lebenslauf wird mit der Anzeige abgeglichen",
+  "statusNeedInput": "Füge die Stellenanzeige und deinen Lebenslauf ein, um zu starten.",
+  "statusPrivate": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
+  "resultHeading": "{count, plural, one {# Profiltext für} other {# Profiltexte für}} <role>{title}</role>",
+  "fromPosting": "Der Titel stammt aus der Anzeige. Jede Fähigkeit steht sowohl in deinem Lebenslauf als auch in der Anzeige, und jedes Ergebnis ist eine Zeile aus deinem Lebenslauf.",
+  "fromResume": "Wir haben in der Anzeige keinen Jobtitel gefunden, daher wird der Titel aus deinem Lebenslauf verwendet. Jede Fähigkeit steht in beiden Dokumenten.",
+  "titleGuess": "Der Titel ist eine Schätzung anhand der Formulierung. Ändere ihn, falls er nicht stimmt.",
+  "noResult": "Dein Lebenslauf hat keine Zeile mit einer Zahl, daher markiert jeder Profiltext, wo dein Ergebnis hingehört.",
+  "shapes": {
+    "formula": "Die Formel",
+    "resultFirst": "Ergebnis zuerst",
+    "short": "Kurz und schlicht"
+  },
+  "hints": {
+    "formula": "Titel und Level, dann Branche und Jahre, dann ein Ergebnis. Passt zu fast jedem Lebenslauf.",
+    "resultFirst": "Beginnt mit deiner stärksten Zahl. Gut, wenn das Ergebnis mehr hermacht als der Titel.",
+    "short": "Zwei Zeilen für einen einseitigen Lebenslauf, wenn oben wenig Platz ist.",
+    "shortSecond": "Zwei Zeilen für einen einseitigen Lebenslauf. Nutzt ein zweites Ergebnis aus deinem Lebenslauf, damit es das erste nicht wiederholt."
+  },
+  "copyAria": "Profiltext kopieren: {shape}",
+  "copy": "Kopieren",
+  "copied": "Kopiert",
+  "toastCopied": "Profiltext kopiert",
+  "toastFailed": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn selbst.",
+  "claims": "Behauptet {list}. Behalte nur, was dein Lebenslauf belegen kann.",
+  "slot": "Ersetze die Klammer durch eine echte Zahl, bevor du den Text verwendest.",
+  "noTitleHeading": "Wir haben keinen Jobtitel gefunden",
+  "noTitleBody": "Keines der beiden Dokumente nennt eine Rolle, die wir erkennen, also wäre ein Profiltext geraten. Füge die vollständige Anzeige mit dem Titel oben ein oder ergänze deinen aktuellen Jobtitel im Lebenslauf und versuche es dann erneut.",
+  "matchedHeading": "Treffer aus deinem Lebenslauf",
+  "noMatch": "Dein Lebenslauf und diese Anzeige haben kaum gemeinsames Vokabular. Behebe das vor dem Profiltext. Fang mit dem <link>ATS-Check für deinen Lebenslauf</link> an.",
+  "missingHeading": "In der Anzeige, nicht in deinem Lebenslauf",
+  "missingBody": "Keiner dieser Begriffe kann schon in deinen Profiltext. Schreib die, die du ehrlich belegen kannst, zuerst in einen Stichpunkt und starte das Tool dann erneut.",
+  "ctaTitle": "Profiltext fertig. Und der Rest des Lebenslaufs?",
+  "ctaBody": "Melde dich kostenlos an und FitMyCV schreibt deinen ganzen Lebenslauf und dein Anschreiben passend zu dieser Anzeige um, mit deiner echten Erfahrung.",
+  "ctaButton": "Ganzen Lebenslauf an diese Stelle anpassen",
+  "examplesHeading": "Beispiele für Profiltexte",
+  "examplesBody": "Deiner entsteht aus der Anzeige, die du einfügst, und den Ergebnissen, die dein Lebenslauf schon zeigt. So sehen sie aus.",
+  "stages": {
+    "graduate": "Absolvent",
+    "mid": "Mittleres Level",
+    "senior": "Senior"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Comprobador de palabras clave ATS gratis para ofertas de empleo",
+  "description": "Pega una oferta de empleo y obtén la lista ordenada de palabras clave con las que un sistema de seguimiento de candidatos (ATS) la indexará. Gratis, sin registro y todo en tu navegador.",
+  "keywords": [
+    "palabras clave cv ats",
+    "comprobador de palabras clave ats",
+    "extraer palabras clave de oferta de empleo",
+    "palabras clave para cv",
+    "palabras clave oferta de empleo",
+    "buscar palabras clave cv",
+    "palabras clave ats gratis"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Comprobador de palabras clave ATS",
+  "h1": "Comprobador de palabras clave ATS gratis",
+  "lede": "Pega cualquier oferta de empleo y obtén la lista ordenada de los términos en los que de verdad se apoya: el vocabulario con el que buscará un reclutador y que indexará un ATS. Sin cuenta, sin correo y sin límite.",
+  "faqs": [
+    {
+      "q": "¿Cómo encuentro las palabras clave de una oferta de empleo?",
+      "a": "Pega la oferta completa en el campo de arriba. La herramienta ordena las palabras sueltas y las expresiones de dos palabras según el peso que les da la oferta, así que los términos de arriba son los que se repiten en el resumen, las funciones y los requisitos."
+    },
+    {
+      "q": "¿Qué palabras clave importan más en un CV?",
+      "a": "El nombre exacto del puesto, las herramientas y tecnologías concretas, las certificaciones y cualquier expresión que aparezca en más de una sección de la oferta. Es lo que los reclutadores escriben en un buscador, y se compara como texto literal, no por su significado."
+    },
+    {
+      "q": "¿Cuántas palabras clave debo incluir?",
+      "a": "Cubre los términos que puedas demostrar con honestidad y para ahí. Buscar una densidad de palabras clave no sirve. Repetir un término diez veces no supera a mencionarlo una vez en un punto con un resultado, y se lee mal para la persona que revisa el CV al final."
+    },
+    {
+      "q": "¿Tengo que dar mi correo para ver los resultados?",
+      "a": "No. La lista completa aparece al momento y la extracción se ejecuta en tu navegador, así que no se sube nada y no hay nada que desbloquear."
+    },
+    {
+      "q": "¿En qué se diferencia del verificador ATS de CV?",
+      "a": "Esta página solo necesita la oferta y te muestra lo que pide. El verificador ATS de CV también usa tu CV y puntúa cuánto de ese vocabulario ya cubres, además de lo que falta."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Por qué extraer las palabras clave es el primer paso"
+    },
+    {
+      "p": "Antes de reescribir un solo punto necesitas saber qué pide de verdad la empresa: no el nombre del puesto, sino los términos concretos que pesan. Las ofertas lo esconden. Un requisito citado una vez en una lista importa mucho menos que una expresión repetida en el resumen, las funciones y los requisitos."
+    },
+    {
+      "p": "Ordenar los términos lo hace visible en unos segundos, en lugar de dos lecturas atentas."
+    },
+    {
+      "h2": "Cómo usar la lista"
+    },
+    {
+      "steps": [
+        {
+          "title": "Separa en sí, en parte y no",
+          "body": "Reparte los términos entre lo que puedes demostrar con solidez, lo que puedes demostrar en parte y lo que no puedes afirmar. El primer grupo guía tu reescritura. El tercero te dice si el puesto encaja de verdad contigo."
+        },
+        {
+          "title": "Pon los primeros términos en tu resumen",
+          "body": "Todo lo que esté entre los cinco primeros va en tu resumen profesional, con una prueba, no escondido en el tercer punto de tu segundo empleo."
+        },
+        {
+          "title": "Demuestra cada término en un punto",
+          "body": "Una lista de habilidades es una afirmación. Un punto que nombra la herramienta, la acción y la cifra es una prueba. Procura que cada término importante aparezca al menos una vez como prueba."
+        },
+        {
+          "title": "Puntúa el resultado",
+          "body": "Cuando hayas reescrito, pasa el CV y la oferta por el [verificador ATS de CV](/ats-resume-checker) para confirmar que la diferencia se ha reducido de verdad."
+        }
+      ]
+    },
+    {
+      "h2": "Lo que esta herramienta no puede hacer"
+    },
+    {
+      "p": "Es un método basado en frecuencias y expresiones, no un modelo de lenguaje. Muestra muy bien en qué insiste una oferta, pero no puede decirte si *gestionar una cuenta de resultados* y *ser responsable del presupuesto* significan lo mismo en tu sector. Usa tu criterio con los sinónimos y lee la [guía del CV para ATS](/blog/ats-resume-guide) (en inglés) para saber cómo funciona la coincidencia de palabras clave en un sistema real."
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador ATS de CV",
+      "href": "/ats-resume-checker",
+      "body": "Añade tu CV y obtén una puntuación de coincidencia con los términos que te faltan."
+    },
+    {
+      "label": "Cómo adaptar tu CV",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "El método paso a paso, con un ejemplo completo de antes y después (en inglés)."
+    },
+    {
+      "label": "Verbos de acción para CV por sector",
+      "href": "/blog/cv-action-verbs-tech",
+      "body": "Listas de verbos para tecnología, marketing, finanzas, salud y ventas (en inglés)."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

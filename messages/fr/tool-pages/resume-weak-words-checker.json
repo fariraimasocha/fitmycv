@@ -1,0 +1,80 @@
+{
+  "seoTitle": "Mots faibles dans un CV en anglais : le vérificateur gratuit",
+  "description": "Repérez les clichés, mots à la mode et formules de tâche dans votre CV en anglais, avec quoi écrire à la place. Gratuit, sans compte, dans votre navigateur.",
+  "keywords": [
+    "mots à éviter dans un cv",
+    "mots faibles cv",
+    "clichés cv",
+    "cv en anglais mots à éviter",
+    "buzzwords cv anglais",
+    "verbes d'action cv anglais",
+    "responsible for cv anglais",
+    "vérifier cv en anglais"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Vérificateur de mots faibles",
+  "h1": "Vérificateur de mots faibles pour CV en anglais",
+  "lede": "« Hard-working team player, responsible for various tasks. » Les recruteurs anglophones ont lu cette phrase des milliers de fois. Ajoutez votre CV rédigé en anglais et voyez chaque expression qui le rend banal, avec quoi écrire à la place.",
+  "howTo": {
+    "name": "Comment retirer les mots faibles d'un CV en anglais",
+    "description": "Repérez et remplacez les expressions qui rendent un CV générique.",
+    "steps": [
+      { "name": "Ajoutez votre CV", "text": "Déposez un PDF ou collez le texte de votre CV en anglais." },
+      { "name": "Lisez la liste", "text": "Chaque expression indique combien de fois elle apparaît, où, et quoi écrire à la place." },
+      { "name": "Remplacez par des preuves", "text": "Remplacez chacune par un verbe et un résultat. Un chiffre vaut mieux qu'un adjectif." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "L'outil fonctionne-t-il sur un CV en français ?",
+      "a": "Non. Il cherche une liste fixe d'expressions anglaises, comme « responsible for » ou « team player ». Il repère donc les mots faibles dans les CV rédigés en anglais. Sur un CV en français, il ne trouvera rien d'utile. Le conseil reste valable dans toutes les langues : remplacez les formules vagues par un verbe et un résultat."
+    },
+    {
+      "q": "Que mettre à la place de « responsible for » ?",
+      "a": "Un verbe qui dit ce que vous avez fait, puis le résultat. « Responsible for payroll » devient « Ran payroll for 120 staff with no late payments in two years ». Le [réécrivain de lignes de CV](/resume-bullet-rewriter) le fait ligne par ligne."
+    },
+    {
+      "q": "Les mots à la mode sont-ils toujours à éviter ?",
+      "a": "Oui, quand ils sont seuls. « Detail-oriented » est une affirmation que personne ne peut vérifier. Une preuve, comme un audit réussi, fait le travail que le mot essayait de faire."
+    },
+    {
+      "q": "L'outil trouve-t-il tous les mots faibles ?",
+      "a": "Non. Il vérifie une liste fixe des plus courants. Il ne repère pas une phrase vague faite de mots ordinaires, alors relisez aussi vos lignes à voix haute."
+    },
+    {
+      "q": "Pourquoi compte-t-il les lignes avec des chiffres ?",
+      "a": "Parce qu'un chiffre est la preuve la plus rapide. Si moins d'un tiers de vos lignes longues en contiennent un, l'outil vous conseille d'en ajouter."
+    },
+    {
+      "q": "Mon CV est-il stocké ?",
+      "a": "Non. Il est lu dans votre onglet et n'est jamais envoyé nulle part."
+    }
+  ],
+  "blocks": [
+    { "h2": "Trois types de mots faibles" },
+    {
+      "ul": [
+        "**Les formules de tâche** comme « responsible for » et « duties included » décrivent le poste, pas ce que vous y avez fait.",
+        "**Les verbes vagues** comme « helped », « worked on » et « handled » cachent votre part du travail.",
+        "**Les clichés** comme « team player » et « results-driven » sont des affirmations sans preuve."
+      ]
+    },
+    {
+      "compare": {
+        "title": "Une ligne, avant et après",
+        "context": "Poste en service client",
+        "before": "Responsible for handling customer complaints and helped the team with various tasks.",
+        "after": "Resolved 40 customer complaints a week and cut repeat complaints by a quarter by rewriting the reply templates."
+      }
+    },
+    {
+      "p": "Verbes d'action par domaine (en anglais) : [tech](/blog/cv-action-verbs-tech), [vente](/blog/cv-action-verbs-sales), [marketing](/blog/cv-action-verbs-marketing), [finance](/blog/cv-action-verbs-finance) et [santé](/blog/cv-action-verbs-healthcare)."
+    }
+  ],
+  "related": [
+    { "label": "Réécrire une ligne de CV", "href": "/resume-bullet-rewriter", "body": "Transformez une tâche en réalisation." },
+    { "label": "Test CV ATS", "href": "/ats-resume-checker", "body": "Voyez quels termes requis manquent à votre CV." },
+    { "label": "Vérificateur de format de CV", "href": "/cv-format-checker", "body": "Vérifiez votre CV pour le pays où vous postulez." }
+  ],
+  "ui": { "home": "Accueil", "faqHeading": "Questions fréquentes", "related": "Pour aller plus loin", "open": "Ouvrir" }
+}

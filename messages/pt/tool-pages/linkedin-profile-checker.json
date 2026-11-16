@@ -1,0 +1,75 @@
+{
+  "seoTitle": "Analise seu perfil do LinkedIn para uma vaga",
+  "description": "Cole seu título do LinkedIn, seu Sobre e suas competências ao lado de uma vaga em inglês. Veja quais termos cada seção cobre. Grátis, sem login.",
+  "keywords": [
+    "analisar perfil linkedin",
+    "otimizar perfil linkedin",
+    "palavras-chave perfil linkedin",
+    "otimizar linkedin para vaga",
+    "título do linkedin",
+    "avaliar perfil linkedin grátis",
+    "nota perfil linkedin"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Verificador de perfil do LinkedIn",
+  "h1": "Compare seu perfil do LinkedIn com uma vaga",
+  "lede": "Cole uma vaga e seu título, seu Sobre e suas competências. Veja quais termos principais da vaga cada seção cobre, quais deveriam estar no seu título e quais não aparecem no seu perfil. A ferramenta lê texto em inglês.",
+  "howTo": {
+    "name": "Como comparar um perfil do LinkedIn com uma vaga",
+    "description": "Compare as seções de um perfil do LinkedIn com os termos que uma vaga usa.",
+    "steps": [
+      {
+        "name": "Cole a vaga",
+        "text": "Use o anúncio inteiro, com os requisitos. A ferramenta ordena os termos que ele mais repete."
+      },
+      {
+        "name": "Cole seu título, seu Sobre e suas competências",
+        "text": "Copie cada um do seu próprio perfil. Nada é buscado no LinkedIn e nada é armazenado."
+      },
+      {
+        "name": "Cubra as lacunas que você pode comprovar",
+        "text": "Leve para o título os termos que já estão no seu perfil. Adicione os que faltam só onde sua experiência sustenta."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Funciona com um perfil em português?",
+      "a": "Não. A verificação lê texto em inglês. Letras com acento e ç são ignoradas, então uma palavra como “gestão” é cortada em pedaços, e palavras comuns como “para” ou “com” contam como termos. Se você se candidata em inglês, cole a vaga em inglês e a versão em inglês do seu perfil."
+    },
+    {
+      "q": "Por que colar texto em vez do link do perfil?",
+      "a": "Ler perfis do LinkedIn de forma automática vai contra os termos do LinkedIn, e uma cópia colada é o que você vai editar de qualquer jeito. Além disso, a verificação roda no seu navegador e nada sai desta aba."
+    },
+    {
+      "q": "Como a nota é calculada?",
+      "a": "A ferramenta pega os 15 termos que a vaga mais repete e verifica se cada um aparece no seu título, no seu Sobre ou nas suas competências. A nota é a parte desses termos encontrada em algum lugar do seu perfil. É uma verificação de palavras-chave, não uma opinião sobre como o perfil se lê."
+    },
+    {
+      "q": "Por que o título importa mais?",
+      "a": "É a linha que aparece abaixo do seu nome nos resultados de busca do LinkedIn e ao lado de cada comentário que você deixa. Se um termo já está no seu Sobre ou nas suas competências, o título é o lugar mais fácil para deixá-lo visível."
+    },
+    {
+      "q": "Devo adicionar todos os termos que faltam?",
+      "a": "Não. Adicione os que sua experiência sustenta. Um recrutador perguntar sobre uma competência que você listou e não tem é pior do que uma lacuna."
+    },
+    {
+      "q": "É o mesmo que verificar meu currículo?",
+      "a": "Não. Seu currículo vai para um empregador, seu perfil é visto por todo mundo que pesquisa. Use esta ferramenta para o perfil, e o verificador de currículo ATS grátis ou a ferramenta de adaptação para o currículo."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que a verificação olha"
+    },
+    {
+      "p": "Três seções: seu título, seu Sobre e suas competências. **Para cada termo em que a vaga insiste, você vê qual seção o menciona.** Os termos que estão no seu perfil mas não no título aparecem primeiro, porque são os mais rápidos de corrigir."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

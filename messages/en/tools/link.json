@@ -1,0 +1,50 @@
+{
+  "label": "Your LinkedIn profile link",
+  "placeholder": "https://www.linkedin.com/in/your-name",
+  "hint": "Paste the address from your profile page. The link is cleaned as you type. Nothing is uploaded or stored.",
+  "exampleHeading": "Here is what you get",
+  "resultHeading": "Your CV links",
+  "exampleBadge": "Example",
+  "exampleIntro": "Paste your own link above to clean it. This example comes from a messy country link with tracking text.",
+  "resultIntro": "Copy the short form into your CV and put the full form behind it as the hyperlink.",
+  "shortBadge": "For the CV",
+  "shortNote": "Type this as the visible text in your contact line. It is short and easy to read.",
+  "fullNote": "Use this as the hyperlink behind that text, so a click opens your profile.",
+  "copy": "Copy",
+  "copiedButton": "Copied",
+  "copyAria": "Copy link {link}",
+  "copied": "Link copied",
+  "copyBlocked": "Copy is blocked in this browser. Select the link and copy it.",
+  "previewHeading": "How it looks in your CV header",
+  "previewLine": "Your Name | City, Country | you@email.com",
+  "removed": "Removed {items}.",
+  "listSeparator": ", ",
+  "removedItem": {
+    "mobile": "the mobile m. prefix",
+    "country": "the {prefix}. country prefix",
+    "tracking": "the tracking text after the ?",
+    "fragment": "the # fragment",
+    "path": "the language or page part after your name",
+    "slash": "the trailing slash"
+  },
+  "issuesHeading": "Worth fixing",
+  "issue": {
+    "autoSuffix": "Your link ends in a string of numbers or letters that LinkedIn added. A custom URL with just your name reads better on a CV. The steps are below.",
+    "oddCharacters": "Your link has characters other than letters, numbers and hyphens. Some PDF readers and applicant tracking systems break the link at those. A custom URL fixes it.",
+    "tooShort": "That handle is very short. Check you copied the whole address from your profile."
+  },
+  "notLink": "That does not look like a link. Paste the address from your profile page.",
+  "notLinkedIn": "That is not a LinkedIn link. Paste the address from your LinkedIn profile page.",
+  "noHandle": "The link stops after /in/. Copy the full address from your profile page.",
+  "notProfile": {
+    "company": "That is a company page. Paste the link to your own profile, the one with /in/ in it.",
+    "school": "That is a school page. Paste the link to your own profile, the one with /in/ in it.",
+    "showcase": "That is a showcase page. Paste the link to your own profile, the one with /in/ in it.",
+    "posts": "That is a link to a post. Paste the link to your own profile, the one with /in/ in it.",
+    "feed": "That is a link to your feed or a post. Paste the link to your profile, the one with /in/ in it.",
+    "jobs": "That is a job listing. Paste the link to your own profile, the one with /in/ in it.",
+    "pulse": "That is a link to an article. Paste the link to your own profile, the one with /in/ in it.",
+    "pub": "That is an old style profile link. Open your profile and copy the address from the browser, which now uses /in/.",
+    "other": "That link does not point at a profile. Profile links have /in/ followed by your name."
+  }
+}

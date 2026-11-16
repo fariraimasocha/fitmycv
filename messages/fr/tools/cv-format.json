@@ -1,0 +1,120 @@
+{
+  "countryLabel": "Pays où vous postulez",
+  "countryOption": {
+    "za": "Afrique du Sud",
+    "ng": "Nigeria",
+    "ke": "Kenya",
+    "in": "Inde",
+    "uk": "Royaume-Uni",
+    "us": "États-Unis",
+    "other": "Un autre pays"
+  },
+  "countryName": {
+    "za": "l'Afrique du Sud",
+    "ng": "le Nigeria",
+    "ke": "le Kenya",
+    "in": "l'Inde",
+    "uk": "le Royaume-Uni",
+    "us": "les États-Unis",
+    "other": "votre pays"
+  },
+  "countryIn": {
+    "za": "en Afrique du Sud",
+    "ng": "au Nigeria",
+    "ke": "au Kenya",
+    "in": "en Inde",
+    "uk": "au Royaume-Uni",
+    "us": "aux États-Unis",
+    "other": "dans votre pays"
+  },
+  "countryFor": {
+    "za": "pour l'Afrique du Sud",
+    "ng": "pour le Nigeria",
+    "ke": "pour le Kenya",
+    "in": "pour l'Inde",
+    "uk": "pour le Royaume-Uni",
+    "us": "pour les États-Unis",
+    "other": "pour votre pays"
+  },
+  "englishOnly": "Les vérifications cherchent des formulations anglaises, comme « date of birth » ou « career objective ». Elles fonctionnent donc sur un CV rédigé en anglais. Les contrôles de longueur et d'e-mail marchent dans toutes les langues.",
+  "submit": "Vérifier le format de mon CV",
+  "busy": "Vérification de votre CV",
+  "readingCv": "Lecture de votre CV",
+  "privacy": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "fits": "Votre CV convient pour {country}",
+  "toFix": "{count, plural, one {# point à corriger} other {# points à corriger}} {for}",
+  "otherNote": "Ces vérifications valent dans la plupart des pays. Les règles propres à un pays, comme le numéro d'identité ou la déclaration, ne sont pas vérifiées.",
+  "textOnly": "Seul le texte est vérifié. L'outil ne voit ni photo, ni colonnes, ni polices. Ne mettez pas de photo sauf si l'offre en demande une.",
+  "pass": "Conforme",
+  "fail": "À corriger",
+  "length": {
+    "title": "Environ {pages, plural, one {# page} other {# pages}}",
+    "ok": "Dans la limite des {max} pages attendues par la plupart des employeurs {in}.",
+    "fix": "Réduisez à {max} pages {for}. Résumez en une ligne chaque poste de plus de 10 ans."
+  },
+  "email": {
+    "title": "Adresse e-mail",
+    "ok": "Trouvée. Utilisez une adresse simple du type prenom.nom.",
+    "fix": "Aucun e-mail trouvé. Placez-le en haut, à côté de votre numéro de téléphone."
+  },
+  "personal": {
+    "title": "Informations personnelles",
+    "drop": {
+      "ok": "Aucune trouvée. Bien, les employeurs {in} ne les attendent pas.",
+      "fix": "Retirez la date de naissance, la situation familiale, le genre, la religion et la nationalité. Les employeurs {in} ne les attendent pas et elles exposent à la discrimination."
+    },
+    "ifAsked": {
+      "ok": "Correct. N'ajoutez la date de naissance que si l'offre la demande.",
+      "fix": "Retirez la situation familiale. N'ajoutez la date de naissance que si l'offre la demande."
+    },
+    "ifAskedNg": {
+      "ok": "Correct. N'ajoutez la date de naissance que si l'offre la demande.",
+      "fix": "Retirez la situation familiale. N'ajoutez la date de naissance ou l'État d'origine que si l'offre les demande."
+    },
+    "general": {
+      "ok": "Correct. N'ajoutez une date de naissance ou une photo que si les employeurs de votre pays les attendent.",
+      "fix": "Retirez la situation familiale. Elle n'a rien à voir avec le poste."
+    },
+    "keep": {
+      "ok": "Correct. La nationalité ou le statut de permis de travail et le permis de conduire valent la peine d'être indiqués en Afrique du Sud.",
+      "fix": "Retirez la situation familiale. Elle n'a rien à voir avec le poste."
+    }
+  },
+  "id": {
+    "title": "Numéro d'identité",
+    "za": {
+      "ok": "Absent de votre CV. Communiquez-le seulement quand un employeur le demande.",
+      "fix": "Retirez votre numéro d'identité. Communiquez-le quand un employeur le demande, en général au moment de l'offre. C'est une donnée personnelle protégée par la loi POPIA."
+    },
+    "ke": {
+      "ok": "Absent de votre CV. Indiquez-le sur le formulaire de candidature quand on vous le demande.",
+      "fix": "Retirez votre numéro d'identité. Indiquez-le sur le formulaire de candidature ou quand un employeur le demande. C'est une donnée personnelle protégée par le Data Protection Act 2019."
+    }
+  },
+  "nysc": {
+    "title": "Statut NYSC",
+    "ok": "Trouvé. Les employeurs le vérifient : gardez l'année où vous avez terminé ou votre exemption.",
+    "fix": "Ajoutez votre statut NYSC : terminé avec l'année, exempté, ou en cours."
+  },
+  "objective": {
+    "title": "Objectif de carrière",
+    "ok": "Pas d'objectif de carrière. Bien.",
+    "fix": "Remplacez l'objectif par un résumé professionnel de trois lignes sur ce que vous apportez, pas sur ce que vous voulez."
+  },
+  "references": {
+    "title": "Ligne de références",
+    "ok": "Pas de ligne de références inutile.",
+    "fix": "Supprimez « references available on request ». Les employeurs le supposent déjà.",
+    "fixReferees": "Supprimez « references available on request ». Les employeurs le supposent déjà. Ou indiquez deux référents avec leur numéro de téléphone, ce qui est courant ici."
+  },
+  "declaration": {
+    "title": "Déclaration",
+    "ok": "Pas de ligne de déclaration. Très bien pour le secteur privé.",
+    "fix": "Supprimez la ligne « I hereby declare » sauf si l'offre la demande. Les recruteurs du secteur privé l'ignorent."
+  },
+  "cta": {
+    "title": "Format corrigé. Adaptez-le maintenant au poste.",
+    "body": "FitMyCV prend ce CV et le lien d'une offre, puis réécrit votre résumé et vos premières puces pour ce poste, avec une lettre de motivation assortie.",
+    "label": "Adapter mon CV à une offre"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "cvLabel": "Votre CV",
+  "jobLabel": "Offre d'emploi",
+  "jobPlaceholder": "Collez ici le texte complet de l'offre.",
+  "englishOnly": "Cet outil lit l'anglais. Il compare les mots de votre CV à ceux de l'offre : utilisez un CV et une offre rédigés en anglais.",
+  "submit": "Comparer mon CV",
+  "busy": "Comparaison en cours",
+  "readingCv": "Lecture de votre CV",
+  "comparing": "Comparaison de votre CV avec l'offre",
+  "needBoth": "Ajoutez votre CV et le texte complet de l'offre.",
+  "privacy": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "scoreAria": "Score de correspondance : {value} pour cent",
+  "scoreUnit": "Score",
+  "verdictStrong": "Bonne correspondance avec cette offre",
+  "verdictPartial": "Correspondance partielle. Une adaptation vaut le coup.",
+  "verdictWeak": "Faible correspondance avec cette offre",
+  "scoreNote": "Calculé à partir des compétences, des mots-clés et des signaux d'expérience présents dans votre CV et dans cette offre. C'est un score de couverture, pas une prédiction d'entretien.",
+  "strongHeading": "Points forts",
+  "strongEmpty": "Aucune compétence nommée dans l'offre n'apparaît encore dans votre CV.",
+  "missingHeading": "Manquants ou faibles",
+  "missingEmpty": "Votre CV mentionne toutes les compétences nommées que nous avons pu lire dans l'offre.",
+  "barExperience": "Expérience",
+  "barSkills": "Compétences",
+  "barKeywords": "Mots-clés",
+  "improveHeading": "Les 5 points à améliorer en premier",
+  "tips": {
+    "addSkill": "Ajoutez {skill} dans une puce que vous pouvez honnêtement prouver, pas seulement dans une liste de compétences.",
+    "useWording": "Reprenez le terme « {term} » de l'offre si ce travail figure déjà dans votre CV sous d'autres mots.",
+    "years": "L'offre demande {years} ans d'expérience. Placez les postes correspondants en haut pour que ce chiffre se voie tout de suite.",
+    "level": "L'offre vise un niveau {level}. Mettez en avant l'intitulé et le périmètre les plus proches que vous avez réellement occupés.",
+    "proveSkill": "Gardez {skill} dans une puce de résultat avec un chiffre, pour en faire une preuve et non une affirmation.",
+    "covered": "Votre CV couvre déjà les principaux termes de l'offre. Vérifiez que chacun se trouve dans une puce avec un résultat."
+  },
+  "levels": {
+    "intern": "stagiaire",
+    "entry_level": "débutant",
+    "junior": "junior",
+    "mid_level": "confirmé",
+    "senior": "senior",
+    "staff": "staff",
+    "lead": "lead",
+    "principal": "principal",
+    "manager": "manager",
+    "director": "directeur"
+  },
+  "ctaHigh": {
+    "title": "Transformez ce score en CV adapté",
+    "body": "Votre correspondance est bonne. Gardez cette offre et réécrivez votre CV pour elle, avec l'expérience que vous avez déjà.",
+    "label": "Adapter mon CV"
+  },
+  "ctaGaps": {
+    "title": "Comblez ces manques",
+    "body": "Gardez cette offre et FitMyCV réécrit votre CV et votre lettre de motivation pour elle, avec l'expérience que vous avez déjà.",
+    "label": "Combler ces manques"
+  }
+}

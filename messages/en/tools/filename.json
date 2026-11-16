@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "name": { "label": "Your full name", "placeholder": "Farirai Masocha" },
+    "role": { "label": "Job title", "placeholder": "Software Engineer" },
+    "company": { "label": "Company (optional)", "placeholder": "Northwind" }
+  },
+  "fileLabel": "Resume",
+  "private": "Names build as you type. Nothing is uploaded or stored.",
+  "exampleHeading": "Here is what you get",
+  "heading": "Your file names",
+  "exampleBadge": "Example",
+  "exampleIntro": "Type your name and the job title to build your own. Copy the one that fits and rename your file before you upload it.",
+  "intro": "Copy the one that fits the application, then rename your file before you upload it.",
+  "recommended": "Recommended",
+  "companySlot": "With the company name",
+  "notes": {
+    "recommended": "Use this for most applications. It names you and the role.",
+    "broad": "Use it when you send the same CV to several different roles.",
+    "company": "Use it when one recruiter is filling several roles at the same company.",
+    "companyEmpty": "Add a company name to build this one.",
+    "underscore": "Use it when an upload form or an agency asks for underscores."
+  },
+  "copy": "Copy",
+  "copied": "Copied",
+  "copyAria": "Copy file name {name}",
+  "toastCopied": "File name copied",
+  "copyBlocked": "Copy is blocked in this browser. Select the name and copy it.",
+  "worthFixing": "Worth fixing",
+  "issues": {
+    "spaces": "Spaces are replaced. A raw space turns into %20 in a download link.",
+    "version": "Leave out final, draft and v2. A version word reads as a working file.",
+    "lowercase": "Your name is all lowercase. Capitalise it. A recruiter reads this name.",
+    "extension": "Drop the extension. It is added for you, and PDF is the safer format.",
+    "illegal": "Removed the characters that break uploads: {chars}",
+    "accented": "Accents are simplified, so the name is safe on any operating system.",
+    "truncated": "Trimmed to keep the file name short enough to read at a glance."
+  }
+}

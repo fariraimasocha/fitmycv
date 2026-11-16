@@ -1,0 +1,125 @@
+{
+  "seoTitle": "Gerador de habilidades para currículo a partir da vaga",
+  "description": "Cole a descrição da vaga e envie seu currículo. Receba uma seção de habilidades montada só com o que você comprova, mais as habilidades que a vaga pede e faltam.",
+  "keywords": [
+    "habilidades para currículo",
+    "gerador de habilidades para currículo",
+    "seção de habilidades currículo",
+    "quais habilidades colocar no currículo",
+    "lista de habilidades para currículo",
+    "competências para currículo",
+    "hard skills currículo"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Gerador de habilidades para currículo",
+  "h1": "Gerador de habilidades para currículo",
+  "lede": "Cole a descrição da vaga e envie seu currículo. Receba uma seção de habilidades na ordem em que a vaga dá ênfase a elas, usando só habilidades que seu currículo já mostra, e uma lista das que a vaga pede e você ainda não mostrou. Sem login, nada é armazenado.",
+  "howTo": {
+    "name": "Como escrever uma seção de habilidades para uma vaga específica",
+    "description": "Monte a seção de habilidades do currículo a partir da vaga desejada e da sua própria experiência.",
+    "steps": [
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "Cole o anúncio inteiro, incluindo os requisitos. A ferramenta ordena as habilidades que a vaga repete."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Solte o PDF. O texto é lido no seu navegador e nada é armazenado."
+      },
+      {
+        "name": "Copie a seção e confira as provas",
+        "text": "Copie a linha de habilidades para o seu currículo. Cada habilidade vem com a linha do seu currículo que a mostra em uso. Se uma habilidade não tiver linha, adicione um tópico que a mostre."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Como o gerador escolhe minhas habilidades?",
+      "a": "Ele ordena as habilidades que a descrição da vaga repete e mantém só as que seu currículo menciona. Elas aparecem na ordem em que a vaga dá ênfase, então as que mais importam para o empregador vêm primeiro."
+    },
+    {
+      "q": "A ferramenta funciona com vaga e currículo em português?",
+      "a": "Não muito bem. Ela compara as palavras com listas de palavras em inglês, então pode deixar passar habilidades escritas em português ou manter palavras comuns que não são habilidades. Foi feita para candidaturas em inglês."
+    },
+    {
+      "q": "Por que uma habilidade que eu tenho não aparece na seção?",
+      "a": "Porque seu currículo nunca a menciona. A ferramenta não lista uma habilidade que seu currículo não consegue sustentar. Ela aparece na lista de lacunas. Se você realmente usou, adicione um tópico que mostre onde e rode a ferramenta de novo."
+    },
+    {
+      "q": "Quantas habilidades um currículo deve ter?",
+      "a": "A maioria dos currículos funciona bem com 6 a 12. Depois disso, a lista deixa de ser lida. Escolha as que a vaga pede e que seus tópicos comprovam."
+    },
+    {
+      "q": "Hard skills ou soft skills?",
+      "a": "Comece pelas hard skills: ferramentas, métodos e qualificações que um recrutador pode buscar. Soft skills como comunicação ficam melhores mostradas em um tópico do que listadas, porque qualquer pessoa pode digitá-las."
+    },
+    {
+      "q": "Os sistemas ATS leem a seção de habilidades?",
+      "a": "Sim. Recrutadores buscam no ATS termos da vaga, e a seção de habilidades é um lugar fácil para esses termos ficarem. Use as palavras exatas da vaga, que é o que esta ferramenta faz."
+    },
+    {
+      "q": "Meu currículo é enviado para algum lugar?",
+      "a": "Não. O PDF é lido dentro da aba do seu navegador, e nada é armazenado nem enviado a um servidor. Feche a aba e ele some."
+    }
+  ],
+  "blocks": [
+    { "h2": "A vaga decide a ordem" },
+    {
+      "p": "Uma seção de habilidades é lida em segundos, então os primeiros itens fazem o trabalho. **Coloque primeiro as habilidades que a vaga repete, nas palavras do empregador.** Se o anúncio cita Power BI três vezes, Power BI vai perto do começo."
+    },
+    {
+      "callout": {
+        "title": "Por que cada habilidade precisa de um tópico por trás",
+        "body": "Um recrutador que vê uma habilidade listada procura por ela na sua experiência. Se ela não estiver lá, a lista parece enchimento. Esta ferramenta mostra a linha do seu currículo que comprova cada habilidade e sinaliza as que não têm prova."
+      }
+    },
+    { "h2": "Exemplos de seção de habilidades" },
+    {
+      "table": {
+        "head": ["Profissão", "Seção de habilidades"],
+        "rows": [
+          ["Analista de dados", "SQL, Python, Tableau, Power BI, testes A/B, Excel, relatórios para stakeholders"],
+          ["Enfermeiro", "Triagem, terapia intravenosa, curativos, prontuário eletrônico, planejamento de alta, educação do paciente"],
+          ["Engenheiro de software", "TypeScript, React, Node.js, PostgreSQL, AWS, CI/CD, code review"],
+          ["Gerente de marketing", "Mídia paga em redes sociais, HubSpot, automação de e-mail, SEO, Google Analytics, planejamento de orçamento"],
+          ["Gerente de projetos", "Agile, Jira, gestão de riscos, gestão de stakeholders, orçamento, PRINCE2"]
+        ]
+      }
+    },
+    { "h2": "O que fazer com a lista de lacunas" },
+    {
+      "p": "A lista de lacunas reúne as habilidades que a vaga pede e que seu currículo nunca menciona. Se você já usou alguma, adicione um tópico que mostre isso e ela passa para a sua seção. Se não usou, deixe de fora. Para a verificação completa de vocabulário, use [palavras-chave que faltam no currículo](/missing-resume-keywords) ou o [verificador de currículo ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Quer que o currículo inteiro combine, não só as habilidades?",
+        "body": "Cole o link da vaga e o FitMyCV adapta seu currículo e sua carta de apresentação a essa vaga, usando só sua experiência real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Avalie seu currículo em relação a uma vaga e veja os termos que faltam."
+    },
+    {
+      "label": "Perguntas de entrevista a partir da vaga",
+      "href": "/interview-questions-from-job-description",
+      "body": "As perguntas que esta vaga vai fazer, com provas do seu currículo."
+    },
+    {
+      "label": "Gerador de resumo profissional",
+      "href": "/professional-summary-generator",
+      "body": "Três resumos de currículo montados a partir da vaga e do seu currículo."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

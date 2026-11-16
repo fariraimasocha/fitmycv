@@ -1,0 +1,51 @@
+{
+  "englishOnly": "Esta ferramenta funciona com texto em inglês. Ela lê uma descrição de vaga em inglês e um currículo em inglês, e escreve os resumos em inglês.",
+  "jobLabel": "Cole a descrição da vaga",
+  "jobPlaceholder": "Cole aqui o texto completo da vaga…",
+  "cvLabel": "Seu currículo",
+  "submit": "Escrever meu resumo",
+  "busy": "Escrevendo seus resumos",
+  "statusReading": "Lendo seu currículo",
+  "statusMatching": "Comparando seu currículo com a vaga",
+  "statusNeedInput": "Adicione a descrição da vaga e seu currículo para começar.",
+  "statusPrivate": "Seu currículo é lido nesta aba. Nada é armazenado.",
+  "resultHeading": "{count, plural, one {# resumo para} other {# resumos para}} <role>{title}</role>",
+  "fromPosting": "O cargo vem da vaga. Cada habilidade aparece tanto no seu currículo quanto na vaga, e cada resultado é uma linha do seu currículo.",
+  "fromResume": "Não encontramos um cargo na vaga, então usamos o cargo do seu currículo. Cada habilidade aparece nos dois documentos.",
+  "titleGuess": "O cargo é um palpite a partir do texto. Corrija se estiver errado.",
+  "noResult": "Seu currículo não tem nenhuma linha com um número, então cada resumo marca onde vai o seu resultado.",
+  "shapes": {
+    "formula": "A fórmula",
+    "resultFirst": "Resultado primeiro",
+    "short": "Curto e direto"
+  },
+  "hints": {
+    "formula": "Cargo e nível, depois área e anos, depois um resultado. Serve para quase qualquer currículo.",
+    "resultFirst": "Começa com o seu melhor número. Bom quando o resultado impressiona mais que o cargo.",
+    "short": "Duas linhas para um currículo de uma página, quando falta espaço no topo.",
+    "shortSecond": "Duas linhas para um currículo de uma página. Usa um segundo resultado do seu currículo para não repetir o primeiro."
+  },
+  "copyAria": "Copiar resumo: {shape}",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "toastCopied": "Resumo copiado",
+  "toastFailed": "Não foi possível copiar. Selecione o resumo e copie você mesmo.",
+  "claims": "Afirma {list}. Mantenha só o que seu currículo comprova.",
+  "slot": "Troque o colchete por um número real antes de usar.",
+  "noTitleHeading": "Não encontramos um cargo",
+  "noTitleBody": "Nenhum dos documentos cita um cargo que reconhecemos, então um resumo seria um palpite. Cole a vaga completa, com o cargo no topo, ou adicione seu cargo atual ao currículo e tente de novo.",
+  "matchedHeading": "Encontrado no seu currículo",
+  "noMatch": "Seu currículo e esta vaga quase não têm vocabulário em comum. Resolva isso antes do resumo. Comece pelo <link>verificador de currículo ATS</link>.",
+  "missingHeading": "Na vaga, não no seu currículo",
+  "missingBody": "Nenhum destes pode entrar no seu resumo ainda. Primeiro coloque em um tópico os que você consegue comprovar com honestidade, depois rode de novo.",
+  "ctaTitle": "Resumo pronto. E o resto do currículo?",
+  "ctaBody": "Cadastre-se grátis e o FitMyCV reescreve todo o seu currículo e sua carta de apresentação para esta vaga, mantendo sua experiência real.",
+  "ctaButton": "Adaptar todo o currículo a esta vaga",
+  "examplesHeading": "Exemplos de resumo profissional",
+  "examplesBody": "O seu é montado com a vaga que você colar e os resultados que seu currículo já mostra. Este é o formato.",
+  "stages": {
+    "graduate": "Recém-formado",
+    "mid": "Pleno",
+    "senior": "Sênior"
+  }
+}

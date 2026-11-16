@@ -1,0 +1,80 @@
+{
+  "seoTitle": "Palabras débiles en un CV en inglés: revisor gratis",
+  "description": "Encuentra los clichés, palabras de moda y frases de funciones de tu CV en inglés, con qué escribir en su lugar. Gratis, sin registro, en tu navegador.",
+  "keywords": [
+    "palabras a evitar en un currículum",
+    "palabras débiles cv",
+    "clichés currículum",
+    "cv en inglés palabras a evitar",
+    "buzzwords cv inglés",
+    "verbos de acción cv en inglés",
+    "responsible for en cv",
+    "revisar cv en inglés"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Revisor de palabras débiles",
+  "h1": "Revisor de palabras débiles para CV en inglés",
+  "lede": "“Hard-working team player, responsible for various tasks.” Los reclutadores de habla inglesa han leído esa frase miles de veces. Añade tu CV escrito en inglés y ve cada frase que lo hace pasar desapercibido, con qué escribir en su lugar.",
+  "howTo": {
+    "name": "Cómo quitar las palabras débiles de un CV en inglés",
+    "description": "Encuentra y sustituye las frases que hacen que un CV suene genérico.",
+    "steps": [
+      { "name": "Añade tu CV", "text": "Sube un PDF o pega el texto de tu CV en inglés." },
+      { "name": "Lee la lista", "text": "Cada frase muestra cuántas veces aparece, dónde y qué escribir en su lugar." },
+      { "name": "Cámbialas por pruebas", "text": "Sustituye cada una por un verbo y un resultado. Un número vale más que un adjetivo." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Funciona con un CV en español?",
+      "a": "No. Busca una lista fija de frases en inglés, como “responsible for” o “team player”. Por eso encuentra palabras débiles en currículums escritos en inglés. En un CV en español no encontrará nada útil. El consejo sirve en cualquier idioma: cambia las frases vagas por un verbo y un resultado."
+    },
+    {
+      "q": "¿Qué escribo en lugar de “responsible for”?",
+      "a": "Un verbo que diga lo que hiciste y después el resultado. “Responsible for payroll” pasa a “Ran payroll for 120 staff with no late payments in two years”. El [reescritor de logros del CV](/resume-bullet-rewriter) lo hace línea a línea."
+    },
+    {
+      "q": "¿Las palabras de moda siempre son malas?",
+      "a": "Sí, cuando van solas. “Detail-oriented” es una afirmación que nadie puede comprobar. Una prueba, como una auditoría que superaste, hace el trabajo que la palabra intentaba hacer."
+    },
+    {
+      "q": "¿Encuentra todas las palabras débiles?",
+      "a": "No. Revisa una lista fija de las más comunes. No detecta una frase vaga hecha con palabras normales, así que lee también tus líneas en voz alta."
+    },
+    {
+      "q": "¿Por qué cuenta las líneas con números?",
+      "a": "Porque un número es la prueba más rápida. Si menos de un tercio de tus líneas largas tiene uno, la herramienta te dice que añadas más."
+    },
+    {
+      "q": "¿Se guarda mi CV?",
+      "a": "No. Se lee en tu pestaña del navegador y nunca se envía a ningún sitio."
+    }
+  ],
+  "blocks": [
+    { "h2": "Tres tipos de palabras débiles" },
+    {
+      "ul": [
+        "**Las frases de funciones** como “responsible for” y “duties included” describen el puesto, no lo que hiciste en él.",
+        "**Los verbos vagos** como “helped”, “worked on” y “handled” esconden tu parte del trabajo.",
+        "**Los clichés** como “team player” y “results-driven” son afirmaciones sin ninguna prueba."
+      ]
+    },
+    {
+      "compare": {
+        "title": "Una línea, antes y después",
+        "context": "Puesto de atención al cliente",
+        "before": "Responsible for handling customer complaints and helped the team with various tasks.",
+        "after": "Resolved 40 customer complaints a week and cut repeat complaints by a quarter by rewriting the reply templates."
+      }
+    },
+    {
+      "p": "Verbos de acción por sector (en inglés): [tecnología](/blog/cv-action-verbs-tech), [ventas](/blog/cv-action-verbs-sales), [marketing](/blog/cv-action-verbs-marketing), [finanzas](/blog/cv-action-verbs-finance) y [salud](/blog/cv-action-verbs-healthcare)."
+    }
+  ],
+  "related": [
+    { "label": "Reescribir un logro del CV", "href": "/resume-bullet-rewriter", "body": "Convierte una función en un logro." },
+    { "label": "Revisor de CV ATS", "href": "/ats-resume-checker", "body": "Ve qué términos requeridos le faltan a tu CV." },
+    { "label": "Revisor de formato de CV", "href": "/cv-format-checker", "body": "Revisa tu CV para el país al que te postulas." }
+  ],
+  "ui": { "home": "Inicio", "faqHeading": "Preguntas frecuentes", "related": "Qué hacer después", "open": "Abrir" }
+}

@@ -230,7 +230,25 @@
       "missingHeading": "Falta no seu currículo",
       "coveredHeading": "Já cobertas",
       "keywordsTitle": "Os {count} termos em que esta vaga se apoia",
-      "keywordsBody": "Em ordem do peso que a vaga dá a cada um. Percorra a lista e garanta que cada termo que você pode afirmar com honestidade apareça num tópico do seu currículo com um resultado."
+      "keywordsBody": "Em ordem do peso que a vaga dá a cada um. Percorra a lista e garanta que cada termo que você pode afirmar com honestidade apareça num tópico do seu currículo com um resultado.",
+      "leadEmail": {
+        "title": "Receba por e-mail esta pontuação e um link para preencher as lacunas",
+        "body": "Opcional. Não precisa de conta.",
+        "emailLabel": "Endereço de e-mail",
+        "placeholder": "voce@email.com",
+        "send": "Enviar",
+        "sending": "Enviando...",
+        "emailRequired": "Digite seu e-mail.",
+        "invalidEmail": "Digite um e-mail válido.",
+        "tooMany": "Muitas solicitações. Tente de novo em um minuto.",
+        "saveError": "Não foi possível salvar seu e-mail. Tente de novo.",
+        "sentToast": "Enviado. Veja sua caixa de entrada para a pontuação e os próximos passos.",
+        "duplicateToast": "Este endereço já recebeu a primeira pontuação. Enviamos só uma vez.",
+        "sentTitle": "Veja sua caixa de entrada",
+        "sentBody": "Enviamos sua pontuação e um link para preencher as lacunas.",
+        "duplicateTitle": "Já enviado",
+        "duplicateBody": "Já enviamos a este endereço a primeira pontuação. Enviamos só uma vez."
+      }
     },
     "resumeFile": {
       "label": "Seu currículo",

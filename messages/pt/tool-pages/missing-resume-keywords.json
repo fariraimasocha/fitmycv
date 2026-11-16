@@ -1,0 +1,222 @@
+{
+  "seoTitle": "Palavras-chave que faltam no currículo: ferramenta grátis",
+  "description": "Envie seu currículo e cole uma descrição de vaga para ver quais palavras-chave faltam no seu currículo e quantas vezes a vaga usa cada uma. Grátis, lido no seu navegador.",
+  "keywords": [
+    "palavras-chave que faltam no currículo",
+    "palavras-chave currículo vaga",
+    "encontrar palavras-chave para currículo",
+    "comparar currículo com vaga",
+    "extrair palavras-chave da descrição da vaga",
+    "palavras-chave da vaga",
+    "análise de palavras-chave do currículo",
+    "palavras-chave para currículo"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Palavras-chave que faltam",
+  "h1": "Encontre as palavras-chave que faltam no seu currículo",
+  "lede": "Envie seu currículo e cole uma descrição de vaga. Você recebe os termos que a vaga pede e que seu currículo nunca menciona, ordenados por quantas vezes a vaga cita cada um. Sem cadastro, e nada sai do seu navegador.",
+  "howTo": {
+    "name": "Como encontrar as palavras-chave que faltam no seu currículo",
+    "description": "Compare uma descrição de vaga com seu currículo e liste os termos da vaga que seu currículo nunca menciona.",
+    "steps": [
+      {
+        "name": "Cole a descrição da vaga",
+        "text": "Copie a vaga completa, com responsabilidades e requisitos, e cole no primeiro campo. Texto parcial gera uma lista parcial."
+      },
+      {
+        "name": "Envie seu currículo",
+        "text": "Arraste o PDF. Nós extraímos o texto para você não precisar copiar. Competências, tópicos e resumo são todos lidos."
+      },
+      {
+        "name": "Percorra a lista do que falta",
+        "text": "Cada termo que falta mostra quantas vezes a vaga o cita. Comece pelo topo e adicione os que você pode comprovar com honestidade, em um tópico com um resultado."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Como encontro as palavras-chave que faltam no meu currículo?",
+      "a": "Cole a vaga e envie seu currículo na ferramenta acima. Ela extrai os termos em que a vaga se apoia, procura cada um no texto do seu currículo e lista os que seu currículo nunca menciona. Toda a comparação roda no seu navegador e leva poucos segundos."
+    },
+    {
+      "q": "O que é uma lacuna de palavras-chave no currículo?",
+      "a": "É um termo que o empregador usa e seu currículo não. Em geral é um problema de vocabulário, não de experiência. Você fez o trabalho, mas o descreveu com palavras diferentes das de quem escreveu a vaga, então um recrutador que busca as palavras dele nunca encontra você."
+    },
+    {
+      "q": "O que significa \"Menções: 4\" ao lado de uma palavra-chave?",
+      "a": "É o número de vezes que esse termo exato aparece na vaga que você colou. Nada é ponderado nem estimado. Um termo citado quatro vezes se repete no resumo, nas responsabilidades e nos requisitos, o que costuma indicar que é obrigatório de verdade, e não um diferencial."
+    },
+    {
+      "q": "Devo adicionar ao currículo todas as palavras-chave que faltam?",
+      "a": "Não. Adicione só as que você pode comprovar com honestidade, cada uma em um tópico que diga o que você fez e o que aconteceu. Dizer que usa uma ferramenta que nunca usou leva a recusa da triagem do currículo para a entrevista, que é um lugar pior para ser recusado."
+    },
+    {
+      "q": "Qual a diferença para o verificador de palavras-chave ATS grátis?",
+      "a": "O verificador de palavras-chave lista o que a vaga pede. Esta página lista o que falta no seu currículo. O verificador só precisa da vaga e dá uma lista ordenada de vocabulário para você escrever. Esta página também precisa do seu currículo e tira o que você já cobre, para sobrar só o que falta."
+    },
+    {
+      "q": "Meu currículo é enviado ou salvo em algum lugar?",
+      "a": "O PDF é lido nesta aba. O arquivo nunca é enviado a um servidor e nada é salvo. Feche a aba e ele some."
+    },
+    {
+      "q": "Por que um termo aparece como ausente se ele está no meu currículo?",
+      "a": "Em geral por causa da grafia ou da forma. A vaga pode abreviar o que você escreve por extenso, ou usar plural, hífen ou outro tempo verbal. Confira a forma exata no seu currículo e use a da vaga quando for honesto. Escrever as duas formas uma vez, como \"otimização para mecanismos de busca (SEO)\", resolve a maioria desses casos."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "O que conta como palavra-chave que falta"
+    },
+    {
+      "p": "Uma palavra-chave que falta é um termo em que a vaga se apoia e que não aparece em nenhum lugar do texto do seu currículo. A ferramenta extrai da vaga palavras soltas e expressões de duas palavras repetidas, procura cada uma no seu currículo e mostra o que sobra."
+    },
+    {
+      "p": "O número ao lado de cada termo é a contagem real de vezes que a vaga o cita. Essa é toda a ordenação. Um termo repetido quatro vezes no resumo, nas responsabilidades e nos requisitos é obrigatório de verdade. Um termo citado uma vez pode ser um diferencial que você pode deixar de lado sem perder nada."
+    },
+    {
+      "callout": {
+        "title": "Lacunas, não uma nota",
+        "body": "Esta página não dá pontuação de propósito. Uma porcentagem diz como você foi. Uma lista de termos que faltam diz o que fazer em seguida, e é a única resposta útil quando faltam vinte minutos para a vaga fechar."
+      }
+    },
+    {
+      "h2": "Extrator de palavras-chave, busca de lacunas ou verificador completo?"
+    },
+    {
+      "p": "Três tarefas parecidas, três respostas diferentes. Escolha a que combina com a pergunta que você realmente tem."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Esta página",
+          "Extrator de palavras-chave",
+          "Verificador de currículo ATS"
+        ],
+        "rows": [
+          [
+            "A pergunta que responde",
+            "O que falta no meu currículo?",
+            "O que esta vaga pede?",
+            "Quanto eu combino no geral?"
+          ],
+          [
+            "Precisa da descrição da vaga",
+            "Sim",
+            "Sim",
+            "Sim"
+          ],
+          [
+            "Precisa do seu currículo",
+            "Sim",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Dá uma pontuação de correspondência",
+            "Não",
+            "Não",
+            "Sim"
+          ],
+          [
+            "Lista os termos que faltam com o número de menções",
+            "Sim",
+            "Não",
+            "Não"
+          ],
+          [
+            "Reescreve seu currículo",
+            "Não",
+            "Não",
+            "Não"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Se você ainda não escreveu o currículo, comece pelo [extrator de palavras-chave da vaga](/free-ats-keyword-checker), que ordena o que a vaga pede. Se quer um único número para acompanhar entre versões, use o [verificador de currículo ATS](/ats-resume-checker). Se você já tem um currículo e uma vaga específica na sua frente, fique aqui."
+    },
+    {
+      "h2": "O que fazer com cada palavra-chave que falta"
+    },
+    {
+      "p": "Percorra a lista a partir do termo mais citado. Para cada um, faça as mesmas quatro perguntas."
+    },
+    {
+      "ol": [
+        "**Consigo comprovar?** Se você fez o trabalho, ele entra no currículo. Se não fez, pule e siga em frente. Uma lacuna que você não pode preencher com honestidade é uma informação sobre a vaga, não uma tarefa.",
+        "**Já digo isso com outras palavras?** Se a vaga diz *gestão de stakeholders* e seu tópico diz *mantive a diretoria informada*, você descreve o mesmo trabalho com palavras que ninguém busca. Mude as palavras, não o trabalho.",
+        "**É um problema de sigla?** Escreva as duas formas uma vez, como \"integração contínua (CI)\", para que uma busca literal por qualquer uma das formas encontre você.",
+        "**Onde entra?** Em um tópico, com uma ação e um número. Uma lista de competências é uma afirmação. Um tópico que cita a ferramenta e o resultado é uma prova, e é isso que a pessoa que lê depois do filtro quer ver."
+      ]
+    },
+    {
+      "p": "Depois envie o currículo atualizado de novo e repita a análise. Duas ou três rodadas costumam limpar a maior parte da lista sem inventar nada. O [método completo de adaptação](/blog/how-to-tailor-cv-to-job-description) (em inglês) segue o mesmo processo com um exemplo de antes e depois."
+    },
+    {
+      "h2": "Por que o número de menções muda o que você corrige primeiro"
+    },
+    {
+      "p": "Descrições de vaga não são planas. O mesmo requisito aparece no resumo, de novo nas responsabilidades e mais uma vez nos obrigatórios, enquanto coisas realmente opcionais aparecem uma vez em um tópico no fim. Contar as menções deixa essa hierarquia visível sem ler a vaga três vezes."
+    },
+    {
+      "steps": [
+        {
+          "title": "Citado três vezes ou mais",
+          "body": "Trate como obrigatório. Se você pode comprovar, ele entra no seu resumo e em pelo menos um tópico do seu cargo mais recente."
+        },
+        {
+          "title": "Citado duas vezes",
+          "body": "Vale um tópico se você tiver a prova. É aqui que estão a maioria dos ganhos rápidos, porque esses termos são requisitos reais fáceis de perder na primeira leitura."
+        },
+        {
+          "title": "Citado uma vez",
+          "body": "Opcional. Inclua na sua linha de competências se for verdade, e não reorganize nada por causa dele."
+        }
+      ]
+    },
+    {
+      "h2": "O que esta análise de lacunas não consegue dizer"
+    },
+    {
+      "p": "É um método baseado em frequência e expressões, não um modelo de linguagem. Ela compara sequências de texto. Não consegue dizer que *responsável pelo P&L* e *gestão do orçamento* significam a mesma coisa no seu setor, e não percebe um requisito que a vaga só sugere. Use seu julgamento com sinônimos."
+    },
+    {
+      "p": "Ela também não diz nada sobre o layout. Se o texto do seu currículo sai fora de ordem ou com conteúdo faltando, um sistema de recrutamento (ATS) real vai extrair a mesma bagunça, e nenhum trabalho com palavras-chave resolve isso. O [guia de currículo ATS](/blog/ats-resume-guide) (em inglês) cobre as regras de formatação por trás de tudo isso."
+    },
+    {
+      "p": "E ela não reescreve nada. Preencher uma lacuna de palavras-chave à mão leva de vinte a quarenta minutos por vaga, e é por isso que a maioria das pessoas para de adaptar o currículo depois de uma dúzia de candidaturas. Se você prefere não fazer isso, o [otimizador de currículo](/resume-optimizer) (em inglês) explica o que uma reescrita automática muda e o que ela mantém."
+    },
+    {
+      "cta": {
+        "title": "Preencha as lacunas sem reescrever à mão",
+        "body": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga, usando a experiência que você já tem.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador de palavras-chave ATS grátis",
+      "href": "/free-ats-keyword-checker",
+      "body": "Só tem a vaga? Receba a lista ordenada dos termos em que ela se apoia antes de escrever."
+    },
+    {
+      "label": "Verificador de currículo ATS",
+      "href": "/ats-resume-checker",
+      "body": "Quer um único número para acompanhar entre versões? Pontue seu currículo em relação à vaga."
+    },
+    {
+      "label": "Adaptar um currículo a partir do link da vaga",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Cole a URL da vaga e receba um currículo reescrito e uma carta de apresentação em menos de um minuto."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

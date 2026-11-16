@@ -1,0 +1,114 @@
+{
+  "seoTitle": "Lebenslauf-Format prüfen: Südafrika, Nigeria, Indien, UK, USA",
+  "description": "Prüfe das Format deines Lebenslaufs für das Land, in dem du dich bewirbst. Länge, persönliche Angaben, Ausweisnummer, NYSC und mehr. Kostenlos, ohne Login.",
+  "keywords": [
+    "lebenslauf format prüfen",
+    "englischer lebenslauf format",
+    "lebenslauf uk format",
+    "cv format usa",
+    "lebenslauf für das ausland",
+    "cv format südafrika",
+    "lebenslauf indien format",
+    "geburtsdatum im lebenslauf",
+    "was gehört in einen lebenslauf"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lebenslauf-Format-Check",
+  "h1": "Lebenslauf-Format-Check für Südafrika, Nigeria, Kenia, Indien, Großbritannien und die USA",
+  "lede": "Ein Lebenslauf, der in Lagos richtig ist, kann in London falsch sein. Wähle das Land, in dem du dich bewirbst, füge deinen englischen Lebenslauf hinzu und sieh, was du streichen, ergänzen oder verschieben solltest. Alles läuft in deinem Browser. Nichts wird hochgeladen.",
+  "howTo": {
+    "name": "So prüfst du das Format deines Lebenslaufs für ein Land",
+    "description": "Prüfe einen Lebenslauf gegen das Format, das Arbeitgeber in einem Land erwarten.",
+    "steps": [
+      {
+        "name": "Wähle das Land",
+        "text": "Wähle das Land der Stelle, nicht das, in dem du lebst."
+      },
+      {
+        "name": "Füge deinen Lebenslauf hinzu",
+        "text": "Zieh ein PDF hinein oder füge den Text ein. Er wird in deinem Browser gelesen."
+      },
+      {
+        "name": "Korrigiere, was markiert wird",
+        "text": "Jede Prüfung sagt, was du ändern solltest. Korrigiere das und prüfe dann noch einmal."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Prüft das Tool einen deutschen Lebenslauf?",
+      "a": "Nur teilweise. Die Prüfungen suchen nach englischen Formulierungen wie „date of birth“, „marital status“ oder „references available on request“. Bei einem deutschen Lebenslauf werden nur Länge und E-Mail wirklich geprüft. Die abgedeckten Länder stellen auf Englisch ein, nutze also die englische Version deines Lebenslaufs."
+    },
+    {
+      "q": "Gehört meine Ausweisnummer in Südafrika in den Lebenslauf?",
+      "a": "Nein. Gib sie weiter, wenn ein Arbeitgeber fragt, meist beim Angebot. Deine Ausweisnummer ist eine persönliche Information nach POPIA, und ein Lebenslauf wird an Stellen weitergeleitet und gespeichert, die du nicht siehst."
+    },
+    {
+      "q": "Gehört mein Geburtsdatum in den Lebenslauf?",
+      "a": "In Großbritannien und den USA nicht. Arbeitgeber dort erwarten es nicht. In Nigeria und Indien fragen manche Anzeigen danach. Füge es nur hinzu, wenn die Anzeige es verlangt."
+    },
+    {
+      "q": "Wie lang sollte mein Lebenslauf sein?",
+      "a": "Zwei Seiten reichen für die meisten Menschen in jedem Land, das das Tool abdeckt. Absolventen sollten eine Seite anpeilen. Das Tool schätzt die Länge über die Wortzahl, siehe [wie lang ein Lebenslauf sein sollte](/blog/how-long-should-a-cv-be) (auf Englisch)."
+    },
+    {
+      "q": "Soll ich ein Foto hinzufügen?",
+      "a": "Lass es weg, außer die Anzeige verlangt eins. Das Tool liest Text und sieht kein Foto, aber das ist die Regel in jedem Land, das es abdeckt."
+    },
+    {
+      "q": "Wird mein Lebenslauf irgendwo hochgeladen?",
+      "a": "Nein. Das PDF wird in deinem Browser-Tab gelesen, und die Prüfungen laufen dort. Nichts wird an FitMyCV geschickt oder gespeichert."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Was das Tool prüft"
+    },
+    {
+      "ul": [
+        "**Die Länge** im Vergleich zu dem, was Arbeitgeber in diesem Land erwarten.",
+        "**Persönliche Angaben** wie Geburtsdatum, Familienstand und Religion, die in manchen Ländern helfen und in anderen schaden.",
+        "**Die Ausweisnummer** für Südafrika und Kenia sowie den **NYSC-Status** für Nigeria.",
+        "**Ein Karriereziel**, wo ein Kurzprofil besser funktioniert.",
+        "**Füllzeilen** wie „references available on request“ und die indische Zeile „I hereby declare“."
+      ]
+    },
+    {
+      "h2": "Länder-Leitfäden"
+    },
+    {
+      "p": "Das vollständige Bild findest du in [Lebenslauf-Format in Südafrika](/blog/cv-format-south-africa), [Lebenslauf-Format in Nigeria](/blog/cv-format-nigeria) und [Lebenslauf-Format in Kenia](/blog/cv-format-kenya). Diese Leitfäden sind auf Englisch."
+    },
+    {
+      "cta": {
+        "title": "Format erledigt? Jetzt passend zur Stelle machen.",
+        "body": "Ein sauberes Format sorgt dafür, dass du gelesen wirst. Die Passung zur Anzeige bringt dich auf die Shortlist.",
+        "href": "/de/tailor-cv-from-job-link",
+        "label": "Lebenslauf per Link zur Anzeige anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Lebenslauf-Stellen-Abgleich",
+      "href": "/resume-job-match-checker",
+      "body": "Gleiche deinen Lebenslauf mit einer Stellenbeschreibung ab."
+    },
+    {
+      "label": "Check auf schwache Wörter",
+      "href": "/resume-weak-words-checker",
+      "body": "Finde die Floskeln, mit denen ein Lebenslauf untergeht."
+    },
+    {
+      "label": "Lebenslauf-Vorlagen",
+      "href": "/cv-templates",
+      "body": "Klare Layouts, die in jedem Land gut lesbar sind."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

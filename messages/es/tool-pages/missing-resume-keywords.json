@@ -1,0 +1,222 @@
+{
+  "seoTitle": "Palabras clave que faltan en tu CV: herramienta gratis",
+  "description": "Sube tu CV y pega una oferta de empleo para ver qué palabras clave le faltan a tu CV y cuántas veces usa cada una la oferta. Gratis y leído en tu navegador.",
+  "keywords": [
+    "palabras clave que faltan en mi cv",
+    "palabras clave cv oferta de empleo",
+    "encontrar palabras clave que faltan en el cv",
+    "comparar cv con oferta de empleo",
+    "extraer palabras clave de oferta de empleo",
+    "palabras clave de una oferta de empleo",
+    "análisis de palabras clave cv",
+    "palabras clave para cv"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Palabras clave que faltan",
+  "h1": "Encuentra las palabras clave que le faltan a tu CV",
+  "lede": "Sube tu CV y pega una oferta de empleo. Obtienes los términos que pide la oferta y que tu CV nunca menciona, ordenados por cuántas veces la oferta menciona cada uno. Sin registro, y nada sale de tu navegador.",
+  "howTo": {
+    "name": "Cómo encontrar las palabras clave que le faltan a tu CV",
+    "description": "Compara una oferta de empleo con tu CV y lista los términos de la oferta que tu CV nunca menciona.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "Copia la oferta completa, con las funciones y los requisitos, y pégala en el primer campo. Un texto parcial da una lista parcial."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "Arrastra el PDF. Extraemos el texto para que no tengas que copiarlo. Se leen las habilidades, los puntos y el resumen."
+      },
+      {
+        "name": "Recorre la lista de lo que falta",
+        "text": "Cada término que falta muestra cuántas veces lo menciona la oferta. Empieza por arriba y añade los que puedas demostrar con honestidad, dentro de un punto con un resultado."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Cómo encuentro las palabras clave que le faltan a mi CV?",
+      "a": "Pega la oferta y sube tu CV en la herramienta de arriba. Extrae los términos en los que se apoya la oferta, busca cada uno en el texto de tu CV y lista los que tu CV nunca menciona. Toda la comparación se hace en tu navegador y tarda unos segundos."
+    },
+    {
+      "q": "¿Qué es una carencia de palabras clave en un CV?",
+      "a": "Es un término que usa la empresa y tu CV no. Suele ser un problema de vocabulario, no de experiencia. Hiciste el trabajo, pero lo describiste con otras palabras que quien redactó la oferta, así que un reclutador que busca sus propias palabras nunca te encuentra."
+    },
+    {
+      "q": "¿Qué significa \"Menciones: 4\" junto a una palabra clave?",
+      "a": "Es el número de veces que ese término exacto aparece en la oferta que pegaste. Nada se pondera ni se estima. Un término mencionado cuatro veces se repite en el resumen, las funciones y los requisitos, lo que suele indicar que es imprescindible y no un simple extra."
+    },
+    {
+      "q": "¿Debo añadir a mi CV todas las palabras clave que faltan?",
+      "a": "No. Añade solo las que puedas demostrar con honestidad, cada una dentro de un punto que diga lo que hiciste y qué resultado tuvo. Afirmar que usas una herramienta que nunca has usado lleva el rechazo del filtro del CV a la entrevista, que es un sitio peor para ser rechazado."
+    },
+    {
+      "q": "¿En qué se diferencia del comprobador de palabras clave ATS gratis?",
+      "a": "El comprobador lista lo que pide la oferta. Esta página lista lo que le falta a tu CV. El comprobador solo necesita la oferta y te da una lista ordenada de vocabulario para redactar. Esta página también necesita tu CV y resta lo que ya cubres, para que te queden solo las carencias."
+    },
+    {
+      "q": "¿Mi CV se sube o se guarda en algún sitio?",
+      "a": "El PDF se lee en esta pestaña. El archivo nunca se envía a un servidor y no se guarda nada. Cierra la pestaña y desaparece."
+    },
+    {
+      "q": "¿Por qué aparece como ausente un término que está en mi CV?",
+      "a": "Normalmente por la ortografía o la forma. Puede que la oferta abrevie lo que tú escribes completo, o que use un plural, un guion o otro tiempo verbal. Revisa la forma exacta en tu CV y usa la de la oferta cuando sea honesto. Escribir las dos formas una vez, por ejemplo \"posicionamiento en buscadores (SEO)\", resuelve la mayoría de estos casos."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué cuenta como palabra clave que falta"
+    },
+    {
+      "p": "Una palabra clave que falta es un término en el que se apoya la oferta y que no aparece en ninguna parte del texto de tu CV. La herramienta extrae de la oferta las palabras sueltas y las expresiones de dos palabras repetidas, busca cada una en tu CV y te muestra el resto."
+    },
+    {
+      "p": "El número junto a cada término es el recuento real de veces que la oferta lo menciona. Ese es todo el orden. Un término repetido cuatro veces en el resumen, las funciones y los requisitos es imprescindible. Un término mencionado una vez puede ser un extra que no te cuesta nada dejar fuera."
+    },
+    {
+      "callout": {
+        "title": "Carencias, no una nota",
+        "body": "Esta página no da puntuación a propósito. Un porcentaje te dice cómo lo has hecho. Una lista de términos que faltan te dice qué hacer después, que es lo único útil cuando te quedan veinte minutos para que cierre la candidatura."
+      }
+    },
+    {
+      "h2": "¿Extractor de palabras clave, buscador de carencias o verificador completo?"
+    },
+    {
+      "p": "Tres tareas parecidas, tres respuestas distintas. Elige la que corresponde a tu pregunta real."
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Esta página",
+          "Extractor de palabras clave",
+          "Verificador ATS de CV"
+        ],
+        "rows": [
+          [
+            "La pregunta que responde",
+            "¿Qué le falta a mi CV?",
+            "¿Qué pide esta oferta?",
+            "¿Cuánto encajo en general?"
+          ],
+          [
+            "Necesita la oferta de empleo",
+            "Sí",
+            "Sí",
+            "Sí"
+          ],
+          [
+            "Necesita tu CV",
+            "Sí",
+            "No",
+            "Sí"
+          ],
+          [
+            "Da una puntuación de coincidencia",
+            "No",
+            "No",
+            "Sí"
+          ],
+          [
+            "Lista los términos que faltan con su número de menciones",
+            "Sí",
+            "No",
+            "No"
+          ],
+          [
+            "Reescribe tu CV",
+            "No",
+            "No",
+            "No"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Si aún no has escrito el CV, empieza por el [extractor de palabras clave de ofertas](/free-ats-keyword-checker), que ordena lo que pide la oferta. Si quieres una sola cifra para seguir entre versiones, usa el [verificador ATS de CV](/ats-resume-checker). Si ya tienes un CV y una oferta concreta delante, quédate aquí."
+    },
+    {
+      "h2": "Qué hacer con cada palabra clave que falta"
+    },
+    {
+      "p": "Recorre la lista desde el término más mencionado. Para cada uno, hazte las mismas cuatro preguntas."
+    },
+    {
+      "ol": [
+        "**¿Puedo demostrarlo?** Si has hecho ese trabajo, va en el CV. Si no, sáltalo y sigue. Una carencia que no puedes cubrir con honestidad es información sobre el puesto, no una tarea.",
+        "**¿Ya lo digo con otras palabras?** Si la oferta dice *gestión de stakeholders* y tu punto dice *mantuve informada a la dirección*, describes el mismo trabajo con palabras que nadie busca. Cambia las palabras, no el trabajo.",
+        "**¿Es un problema de siglas?** Escribe las dos formas una vez, por ejemplo \"integración continua (CI)\", para que una búsqueda literal de cualquiera de las dos te encuentre.",
+        "**¿Dónde va?** Dentro de un punto, con una acción y una cifra. Una lista de habilidades es una afirmación. Un punto que nombra la herramienta y el resultado es una prueba, y es lo que quiere la persona que lee el CV después del filtro."
+      ]
+    },
+    {
+      "p": "Después vuelve a subir el CV actualizado y repite la revisión. Dos o tres pasadas suelen vaciar casi toda la lista sin inventar nada. El [método completo de adaptación](/blog/how-to-tailor-cv-to-job-description) (en inglés) sigue el mismo proceso con un ejemplo de antes y después."
+    },
+    {
+      "h2": "Por qué el número de menciones cambia lo que corriges primero"
+    },
+    {
+      "p": "Las ofertas de empleo no son planas. El mismo requisito se repite en el resumen, otra vez en las funciones y otra en los imprescindibles, mientras que lo realmente opcional aparece una vez en un punto al final. Contar las menciones hace visible esa jerarquía sin leer la oferta tres veces."
+    },
+    {
+      "steps": [
+        {
+          "title": "Mencionado tres veces o más",
+          "body": "Trátalo como imprescindible. Si puedes demostrarlo, va en tu resumen y en al menos un punto de tu puesto más reciente."
+        },
+        {
+          "title": "Mencionado dos veces",
+          "body": "Merece un punto si tienes la prueba. Aquí están la mayoría de las mejoras rápidas, porque son requisitos reales fáciles de pasar por alto en una primera lectura."
+        },
+        {
+          "title": "Mencionado una vez",
+          "body": "Opcional. Añádelo a tu línea de habilidades si es cierto y no reorganices nada por él."
+        }
+      ]
+    },
+    {
+      "h2": "Lo que este análisis no puede decirte"
+    },
+    {
+      "p": "Es un método basado en frecuencias y expresiones, no un modelo de lenguaje. Compara cadenas de texto. No puede decirte que *responsable de la cuenta de resultados* y *gestión del presupuesto* significan lo mismo en tu sector, y no detecta un requisito que la oferta solo da a entender. Usa tu criterio con los sinónimos."
+    },
+    {
+      "p": "Tampoco dice nada sobre el diseño. Si el texto de tu CV sale desordenado o le falta contenido, un sistema de seguimiento de candidatos (ATS) real extraerá el mismo desorden, y ningún trabajo con palabras clave lo arregla. La [guía del CV para ATS](/blog/ats-resume-guide) (en inglés) cubre las reglas de formato que hay debajo de todo esto."
+    },
+    {
+      "p": "Y no reescribe nada. Cubrir a mano las carencias de palabras clave lleva entre veinte y cuarenta minutos por puesto, y por eso la mayoría de la gente deja de adaptar su CV tras una docena de candidaturas. Si prefieres no hacerlo, el [optimizador de CV](/resume-optimizer) (en inglés) explica qué cambia una reescritura automática y qué deja igual."
+    },
+    {
+      "cta": {
+        "title": "Cubre las carencias sin reescribir a mano",
+        "body": "Pega el enlace de la oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta, con la experiencia que ya tienes.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar mi CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Comprobador de palabras clave ATS gratis",
+      "href": "/free-ats-keyword-checker",
+      "body": "¿Solo tienes la oferta? Obtén la lista ordenada de los términos en los que se apoya antes de escribir."
+    },
+    {
+      "label": "Verificador ATS de CV",
+      "href": "/ats-resume-checker",
+      "body": "¿Quieres una sola cifra para seguir entre versiones? Puntúa tu CV frente a la oferta."
+    },
+    {
+      "label": "Adaptar un CV desde el enlace de una oferta",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Pega la URL de la oferta y obtén un CV reescrito y una carta de presentación en menos de un minuto."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

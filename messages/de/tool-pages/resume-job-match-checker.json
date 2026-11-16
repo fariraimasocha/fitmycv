@@ -1,0 +1,194 @@
+{
+  "seoTitle": "Lebenslauf mit Stellenanzeige abgleichen: kostenlos, ohne Login",
+  "description": "Lade deinen Lebenslauf hoch und füge eine Stellenbeschreibung ein. Sieh deinen Match-Score, fehlende Keywords und die fünf wichtigsten Korrekturen. Kostenlos, ohne Login.",
+  "keywords": [
+    "lebenslauf mit stellenanzeige abgleichen",
+    "lebenslauf stellenbeschreibung vergleichen",
+    "lebenslauf check stellenanzeige",
+    "lebenslauf match score",
+    "lebenslauf keywords prüfen",
+    "fehlende keywords lebenslauf",
+    "lebenslauf passend zur stelle",
+    "cv job matching",
+    "lebenslauf analyse kostenlos",
+    "lebenslauf mit jobbeschreibung vergleichen"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Lebenslauf-Stellen-Abgleich",
+  "h1": "Lebenslauf mit einer Stellenanzeige abgleichen",
+  "lede": "Lade deinen Lebenslauf hoch und füge die Stellenbeschreibung ein. Sieh deinen Match-Score, die Skills, die du schon abdeckst, was fehlt, und die ersten fünf Dinge, die du vor der Bewerbung korrigieren solltest.",
+  "howTo": {
+    "name": "So gleichst du deinen Lebenslauf mit einer Stellenbeschreibung ab",
+    "description": "Vergleiche deinen Lebenslauf mit einer konkreten Anzeige und sieh die Lücken bei Skills, Keywords und Erfahrung.",
+    "steps": [
+      {
+        "name": "Lade deinen Lebenslauf hoch",
+        "text": "Zieh das PDF hinein. Wir lesen den Text heraus, du musst nichts kopieren."
+      },
+      {
+        "name": "Füge die Stellenbeschreibung ein",
+        "text": "Kopiere die vollständige Anzeige, auf die du dich bewirbst, und füge sie in das Feld für die Stellenbeschreibung ein."
+      },
+      {
+        "name": "Lies den Score und die Lücken",
+        "text": "Du bekommst einen Gesamtwert, starke und fehlende Skills, Werte für Erfahrung, Skills und Keywords sowie fünf konkrete Korrekturen."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Was bedeutet der Match-Score?",
+      "a": "Es ist ein Abdeckungswert aus deinem Lebenslauf und der Anzeige: genannte Skills, Keywords der Anzeige und ein leichtes Erfahrungssignal aus Jahren und Senioritätsstufe. Ab 75 % ist die Abdeckung stark, zwischen 50 und 75 % lohnt sich eine Anpassung, unter 50 % ist der Lebenslauf zu allgemein oder die Stelle ein echter Sprung. Es ist keine Vorhersage, dass du ein Vorstellungsgespräch bekommst."
+    },
+    {
+      "q": "Funktioniert das Tool mit einem deutschen Lebenslauf?",
+      "a": "Nein, es ist für Englisch gebaut. Die Skill-Liste, die Keywords und die Erfahrungssignale lesen englische Wörter, und die Tipps zitieren die englischen Begriffe der Anzeige. Mit einem Lebenslauf und einer Anzeige auf Deutsch ist der Score nicht verlässlich. Nutze es für Bewerbungen auf Englisch."
+    },
+    {
+      "q": "Ist dieser Abgleich kostenlos?",
+      "a": "Ja. Ohne Anmeldung und ohne Nutzungslimit. Der ganze Abgleich läuft in deinem Browser, und nichts wird gespeichert."
+    },
+    {
+      "q": "Wird mein Lebenslauf hochgeladen oder gespeichert?",
+      "a": "Das PDF wird in diesem Tab gelesen. Die Datei wird nie an einen Server geschickt. Schließ den Tab, und alles ist weg."
+    },
+    {
+      "q": "Was ist der Unterschied zum ATS-Check?",
+      "a": "Der ATS-Check liefert einen einzigen Keyword-Score. Diese Seite teilt das Ergebnis in Erfahrung, Skills und Keywords auf, listet starke und fehlende Skills und gibt dir fünf Verbesserungen. Nutze diese Seite für eine Passungsanalyse und den ATS-Check, wenn du nur die fehlenden Begriffe brauchst."
+    },
+    {
+      "q": "Soll ich jeden fehlenden Skill in meinen Lebenslauf schreiben?",
+      "a": "Nur die, die du ehrlich belegen kannst. Setz jeden in einen Stichpunkt, der zeigt, dass du ihn genutzt hast und was dabei herauskam. Tools zu nennen, die du nie genutzt hast, verschiebt die Absage nur ins Vorstellungsgespräch."
+    },
+    {
+      "q": "Was messen die Werte für Erfahrung, Skills und Keywords?",
+      "a": "Skills sind genannte Tools und Methoden, die wir in beiden Texten lesen, etwa React oder Projektmanagement. Keywords sind die anderen Begriffe, auf die die Anzeige setzt. Erfahrung sucht nach Jahren, Senioritätswörtern und Rollenbezeichnungen. Nennt die Anzeige keine Jahre, zieht dieser Teil den Score nicht nach unten."
+    },
+    {
+      "q": "Garantiert ein hoher Score ein Vorstellungsgespräch?",
+      "a": "Nein. Die Abdeckung hilft Recruitern, dich zu finden. Deine Stichpunkte bringen dir den Anruf. Sobald der Score gut aussieht, steck den Rest deiner Zeit darein, jede Aussage mit einer Zahl zu belegen."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Was dieser Abgleich misst"
+    },
+    {
+      "p": "Er vergleicht den Lebenslauf, den du hochlädst, mit der Stellenbeschreibung, die du einfügst. Du bekommst einen Gesamtwert und drei Teile: gemeinsame Skills, Keywords, auf die die Anzeige setzt, und ein leichtes Erfahrungssignal aus Jahren und Senioritätsstufe."
+    },
+    {
+      "p": "Das ist bewusst eng gefasst. Er zeigt dir die Überschneidung zwischen zwei Dokumenten. Er ordnet dich nicht in Workday, Greenhouse oder Lever ein und bewertet nicht deinen Schreibstil. Er liest Englisch, ist also für Bewerbungen auf Englisch gedacht."
+    },
+    {
+      "callout": {
+        "title": "Kein weiterer ATS-Check",
+        "body": "Der [ATS-Check](/de/ats-resume-checker) bleibt die Keyword-Diagnose. Diese Seite beantwortet eine andere Frage: Wie gut passt dieser Lebenslauf zu dieser Stelle, und was sollte ich zuerst korrigieren?"
+      }
+    },
+    {
+      "h2": "So liest du das Ergebnis"
+    },
+    {
+      "ol": [
+        "**Starke Treffer** sind genannte Skills, die in beiden Texten vorkommen. Behalte sie in Stichpunkten mit einem Ergebnis.",
+        "**Fehlende oder schwache Treffer** sind Skills, die die Anzeige nennt und dein Lebenslauf nie erwähnt. Füge nur die hinzu, die du belegen kannst.",
+        "**Die Werte für Erfahrung, Skills und Keywords** zeigen, welcher Teil der Lücke am Wortschatz liegt und welcher am Umfang deiner Erfahrung.",
+        "**Die 5 wichtigsten Verbesserungen** geben die Reihenfolge vor. Korrigiere diese fünf und starte den Abgleich dann neu."
+      ]
+    },
+    {
+      "h2": "Was du nach einem niedrigen Score tun kannst"
+    },
+    {
+      "ol": [
+        "**Fang mit Skills an, die du unter anderem Namen schon hast.** Wenn die Anzeige GraphQL sagt und du API-Abfragen geschrieben hast, nimm ihren Begriff in einen echten Stichpunkt.",
+        "**Schieb die passenden Stationen nach oben.** Fünf Jahre passende Erfahrung in der dritten Station bringen weniger als eine kürzere Überschneidung in den ersten beiden Stichpunkten.",
+        "**Lass Skills weg, die du nicht verteidigen kannst.** Ein höherer Score, den du im Gespräch nicht erklären kannst, ist ein verschenktes Vorstellungsgespräch.",
+        "**Dann umschreiben, oder FitMyCV machen lassen.** Die [Lebenslauf-Anpassung mit KI](/de/tailor-cv-from-job-link) nutzt dieselbe Anzeige und deine echte Erfahrung."
+      ]
+    },
+    {
+      "h2": "Kein Login, nichts gespeichert, unbegrenzte Abgleiche"
+    },
+    {
+      "p": "Der Abgleich läuft in deinem Browser. Keine Kontopflicht, keine E-Mail-Abfrage und keine Datei, die an einen Server geht. Schließ den Tab, und der Text ist weg."
+    },
+    {
+      "h2": "Abgleich oder komplette Überarbeitung?"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Dieser Abgleich",
+          "ATS-Check",
+          "Anpassung per Link zur Anzeige"
+        ],
+        "rows": [
+          [
+            "Konto nötig",
+            "Nein",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Schickt deine Datei an einen Server",
+            "Nein",
+            "Nein",
+            "Ja, in dein Konto"
+          ],
+          [
+            "Gesamter Match-Score",
+            "Ja",
+            "Nur Keyword-Score",
+            "Ja"
+          ],
+          [
+            "Skills und Keywords getrennt",
+            "Ja",
+            "Nein",
+            "Ja"
+          ],
+          [
+            "Wichtigste Korrekturen",
+            "Ja",
+            "Fehlende Begriffe",
+            "Umgeschriebener Lebenslauf"
+          ],
+          [
+            "Schreibt den Lebenslauf um",
+            "Nein",
+            "Nein",
+            "Ja"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Wenn du als Nächstes die Überarbeitung willst, nutze die [Lebenslauf-Anpassung mit KI](/de/tailor-cv-from-job-link) oder den [KI-Lebenslauf-Optimierer](/resume-optimizer). Wenn du nur fehlende Keywords willst, nutze den [ATS-Check](/de/ats-resume-checker)."
+    }
+  ],
+  "related": [
+    {
+      "label": "Lebenslauf auf diese Stelle anpassen",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Füge die URL der Anzeige ein und erhalte einen umgeschriebenen Lebenslauf und ein Anschreiben."
+    },
+    {
+      "label": "ATS-Check",
+      "href": "/ats-resume-checker",
+      "body": "Ein reiner Keyword-Score und die Begriffe, die dein Lebenslauf nie erwähnt."
+    },
+    {
+      "label": "Lebenslauf an eine Stellenbeschreibung anpassen",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "Die manuelle Methode, wenn du die Stichpunkte lieber selbst umschreibst (auf Englisch)."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

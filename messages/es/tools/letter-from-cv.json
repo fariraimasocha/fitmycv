@@ -1,0 +1,51 @@
+{
+  "jobLabel": "Pega la descripción de la oferta",
+  "jobPlaceholder": "Pega aquí el texto completo del anuncio…",
+  "cvLabel": "Tu CV",
+  "companyLabel": "Nombre de la empresa",
+  "nameLabel": "Tu nombre",
+  "optional": "(opcional)",
+  "englishOnly": "La carta se escribe en inglés. La herramienta lee una oferta y un CV en inglés y rellena con ellos una plantilla de carta en inglés.",
+  "submit": "Escribir mi carta",
+  "busy": "Escribiendo tu carta",
+  "readingCv": "Leyendo tu CV",
+  "needBoth": "Añade la descripción de la oferta y tu CV para empezar.",
+  "privacy": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "resultHeading": "Tu carta de presentación para",
+  "titleFromPosting": "El puesto viene de la oferta.",
+  "titleFromCv": "No encontramos el nombre del puesto en la oferta, así que se usa el de tu CV.",
+  "sourcesNote": "Cada competencia está tanto en tu CV como en la oferta, y cada resultado es una línea de tu CV.",
+  "noResult": "Tu CV no tiene ninguna línea con una cifra, así que la carta marca dónde va tu resultado.",
+  "shapes": {
+    "full": {
+      "name": "Carta completa",
+      "hint": "Cuatro párrafos cortos. Úsala como cuerpo de un correo o adjúntala en PDF.",
+      "copyAria": "Copiar la carta completa"
+    },
+    "short": {
+      "name": "Carta corta",
+      "hint": "Para un correo o un formulario con un cuadro de texto pequeño.",
+      "copyAria": "Copiar la carta corta"
+    }
+  },
+  "copy": "Copiar",
+  "copied": "Copiada",
+  "toastCopied": "Carta copiada",
+  "toastCopyFailed": "No se pudo copiar. Selecciona la carta y cópiala tú.",
+  "noTitleHeading": "No encontramos el nombre del puesto",
+  "noTitleBody": "Ninguno de los dos documentos nombra un puesto que reconozcamos. Pega el anuncio completo, con el título arriba, y vuelve a intentarlo.",
+  "missingHeading": "En la oferta, no en tu CV",
+  "missingNote": "Tu carta los deja fuera porque tu CV nunca los menciona. Quien contrata lee la carta y el CV juntos, así que una brecha en uno se nota en ambos.",
+  "ctaGaps": {
+    "title": "Cierra estas brechas",
+    "body": "Esta oferta pide {count, plural, one {# término} other {# términos}} que tu CV nunca menciona. FitMyCV reescribe tu CV y tu carta de presentación para ella, con la experiencia que ya tienes.",
+    "label": "Cerrar estas brechas"
+  },
+  "ctaCovered": {
+    "title": "Envía un CV a la altura de la carta",
+    "body": "Tu CV ya cubre los términos de esta oferta. FitMyCV lo reescribe para ella y deja tus mejores pruebas arriba.",
+    "label": "Adaptar mi CV"
+  },
+  "exampleHeading": "Ejemplo de carta de presentación sencilla",
+  "exampleNote": "La tuya se construye con el anuncio que pegas y los resultados que tu CV ya muestra. Tiene esta forma, en inglés."
+}

@@ -1,0 +1,67 @@
+{
+  "jobLabel": "粘贴职位描述",
+  "jobPlaceholder": "在这里粘贴职位招聘的完整文本…",
+  "resumeLabel": "你的简历",
+  "englishOnly": "这个工具读取英文的招聘信息和简历，并用英文写出标题。",
+  "submit": "生成标题",
+  "busy": "正在写你的标题",
+  "statusReadingCv": "正在读取你的简历",
+  "statusMatching": "正在将你的简历与职位比对",
+  "statusNeedInput": "添加职位描述和你的简历后即可生成。",
+  "statusPrivate": "你的简历只在这个标签页中读取，不会保存任何内容。",
+  "resultHeading": "{count, plural, other {# 个标题}}，适用于 <hl>{title}</hl>",
+  "titleFromPosting": "职位名称来自招聘信息。下面每项技能都同时出现在你的简历和招聘信息中，所以这里不会声称你的简历从未提到的内容。",
+  "titleFromResume": "我们在招聘信息中没有找到职位名称，所以使用了你简历中的职位名称。下面每项技能都同时出现在两份文件中。",
+  "titleGuess": "这个职位名称是根据措辞做出的推测。如果不对，请修改。",
+  "claims": "声称：{list}。只保留你的简历能证明的内容。",
+  "copy": "复制",
+  "copied": "已复制",
+  "copyAria": "复制标题：{text}",
+  "toastCopied": "标题已复制",
+  "toastCopyFailed": "复制失败。请选中标题后自行复制。",
+  "shapes": {
+    "titleSkills": {
+      "shape": "职位名称加核心技能",
+      "hint": "LinkedIn 和 ATS 的常见写法。在搜索结果中很好读。"
+    },
+    "seniorityDomain": {
+      "shape": "资历加领域",
+      "hint": "说明你做什么，以及在哪个领域做过。"
+    },
+    "years": {
+      "shape": "年限加核心优势",
+      "hintStated": "使用你简历中写明的工作年限。",
+      "hintSpan": "使用你简历中最早和最晚日期之间的跨度。如果数字不对，请修改。"
+    },
+    "twoStrengths": {
+      "shape": "两项优势",
+      "hint": "我们没有找到你的工作年限。如果想在标题中写上，请自己加上数字。"
+    },
+    "focus": {
+      "shape": "你专注的工作",
+      "hint": "先写工作内容，而不是职位名称。"
+    },
+    "plain": {
+      "shape": "简洁的简历开头",
+      "hint": "不用竖线，可以整齐地放在简历顶部你的名字下面。"
+    }
+  },
+  "noTitleHeading": "我们没有找到职位名称",
+  "noTitleBody": "两份文件都没有写出我们能识别的职位，所以标题只会是猜测。请粘贴完整的招聘信息，包括顶部的职位名称，或在简历中加上你当前的职位名称，然后重新生成。",
+  "matchedHeading": "从你的简历中匹配到",
+  "noOverlap": "你的简历和这份招聘信息几乎没有共同词汇。在写标题之前，先解决这个问题更值得。从 <link>ATS 简历检测</link> 开始。",
+  "missingHeading": "招聘信息中有，你的简历中没有",
+  "missingBody": "这些内容目前都不能放进标题。先把你能如实证明的写进一条要点，然后重新生成。<link>ATS 简历检测</link> 会用同样的方式为整份简历评分。",
+  "ctaTitle": "想让简历的其余部分也匹配吗？",
+  "ctaBody": "粘贴职位链接，FitMyCV 会根据这份招聘信息改写你的简历和求职信，并保留你的真实经历。",
+  "ctaLabel": "定制我的简历",
+  "examplesHeading": "简历标题示例",
+  "examplesBody": "你的五个标题会根据你粘贴的招聘信息和简历已经证明的技能生成。下面是它们的样子。",
+  "exampleRoles": {
+    "software": "软件工程",
+    "marketing": "市场营销",
+    "finance": "财务",
+    "nursing": "护理",
+    "design": "产品设计"
+  }
+}

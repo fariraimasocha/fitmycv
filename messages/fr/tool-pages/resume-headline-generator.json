@@ -1,0 +1,216 @@
+{
+  "seoTitle": "Générateur de titre de CV gratuit, sans compte",
+  "description": "Importez votre CV et collez une offre d'emploi. Obtenez cinq titres construits seulement avec les compétences que votre CV montre. Gratuit, sans compte.",
+  "keywords": [
+    "titre de cv",
+    "générateur titre cv",
+    "titre cv exemple",
+    "accroche cv",
+    "titre de cv professionnel",
+    "intitulé de poste cv",
+    "exemple titre cv",
+    "titre cv ats",
+    "trouver un titre de cv",
+    "titre cv en anglais"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Générateur de titre de CV",
+  "h1": "Générateur de titre de CV",
+  "lede": "Importez votre CV et collez l'offre d'emploi. Obtenez cinq titres de cinq formes différentes, construits seulement avec les compétences que votre CV peut prouver, et l'intitulé du poste tiré de l'offre elle-même.",
+  "howTo": {
+    "name": "Comment écrire un titre de CV pour un poste précis",
+    "description": "Construisez un titre de CV à partir de l'offre visée et de votre propre expérience.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "L'outil lit l'intitulé du poste et les termes sur lesquels l'offre insiste. Collez l'annonce complète, avec la partie sur les exigences."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Nous en extrayons le texte, vous n'avez rien à copier. Une compétence absente de votre CV n'apparaît jamais dans un titre."
+      },
+      {
+        "name": "Choisissez une forme et modifiez-la",
+        "text": "Vous recevez cinq titres de cinq formes différentes. Copiez celui qui convient, puis retirez tout ce sur quoi vous ne voudriez pas être interrogé en entretien."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Qu'est-ce qu'un titre de CV ?",
+      "a": "Le titre de CV est la ligne placée sous votre nom, en haut du CV. Il indique le poste visé et deux ou trois éléments qui vous rendent crédible pour ce poste. Ce n'est pas un résumé, qui fait deux ou trois phrases, ni un objectif, qui dit ce que vous voulez plutôt que ce que vous apportez."
+    },
+    {
+      "q": "Quelle différence entre un titre et un intitulé de poste ?",
+      "a": "En pratique, on emploie souvent les deux mots pour la même ligne, et cet outil les traite de la même façon. La seule nuance utile : l'intitulé est en général le poste seul (« Senior Backend Engineer »), alors que le titre ajoute des preuves (« Senior Backend Engineer, Go et Kubernetes, infrastructure de paiement »). Si un formulaire demande un intitulé, donnez le poste. Pour le haut de votre CV, utilisez le titre."
+    },
+    {
+      "q": "Le titre du CV est-il le même que le titre LinkedIn ?",
+      "a": "Ils n'ont pas le même rôle. Le titre LinkedIn s'adresse à tous les recruteurs qui vous trouvent, il reste donc général. Le titre du CV est sur un document envoyé à un seul employeur, il doit donc nommer ce poste précis. Recopier son titre LinkedIn sur son CV est la façon la plus courante de gâcher cette ligne."
+    },
+    {
+      "q": "Pourquoi ce générateur demande-t-il l'offre d'emploi ?",
+      "a": "Parce qu'un titre qui ne nomme pas le poste visé ne fait que la moitié du travail. L'offre donne à l'outil l'intitulé exact utilisé par l'employeur et les termes sur lesquels il insiste. Un générateur de titre générique n'a ni l'un ni l'autre, alors il devine."
+    },
+    {
+      "q": "Va-t-il m'attribuer des compétences que je n'ai pas ?",
+      "a": "Non. Chaque compétence d'un titre généré doit figurer à la fois dans l'offre et dans le texte de votre CV. L'outil vous montre la répartition : ce qui correspond, et ce que l'offre demande sans que votre CV le mentionne. Cette seconde liste est une liste de choses à faire, pas une matière pour le titre."
+    },
+    {
+      "q": "L'outil fonctionne-t-il avec un CV et une offre en français ?",
+      "a": "Pas bien. Il repère les intitulés et les compétences avec des listes de mots anglais et il rédige les titres en anglais. Il est fait pour les candidatures en anglais. Pour un CV en français, servez-vous des cinq formes décrites plus bas et écrivez votre titre vous-même."
+    },
+    {
+      "q": "Quelle longueur pour un titre de CV ?",
+      "a": "Une ligne qui tient en haut de la page, soit environ 60 à 90 caractères. S'il passe sur deux lignes dans votre CV, retirez l'élément le plus faible. Trois compétences, c'est la limite pratique avant que la ligne ne se lise plus d'un coup d'œil."
+    },
+    {
+      "q": "Les logiciels ATS lisent-ils le titre ?",
+      "a": "Ils le lisent comme n'importe quelle autre ligne de texte, et il se trouve tout en haut, là où un recruteur regarde d'abord. Gardez-le en texte simple dans le corps du document plutôt que dans un en-tête, une zone de texte ou une image, car ce sont les endroits que les analyseurs ratent souvent."
+    }
+  ],
+  "blocks": [
+    { "h2": "La ligne que la plupart des gens gâchent" },
+    {
+      "p": "Le haut du CV est la seule partie que tout lecteur voit. La plupart des gens y mettent l'intitulé de leur dernier poste, ou pire, le mot « CV ». **Un titre doit dire à l'employeur pour lequel de ses postes vous candidatez et pourquoi vous êtes crédible**, en une ligne, avant qu'on fasse défiler la page."
+    },
+    {
+      "p": "C'est pourquoi ce générateur demande l'offre en plus de votre CV. L'intitulé du poste vient de l'annonce, avec les mots de l'employeur. Les compétences viennent du recoupement entre ce qu'il demande et ce que vous pouvez prouver."
+    },
+    { "h2": "Cinq formes, et quand utiliser chacune" },
+    {
+      "steps": [
+        {
+          "title": "Intitulé et trois compétences",
+          "body": "« Senior Backend Engineer | Go, Kubernetes, Payments ». La forme par défaut. Lisible d'un coup d'œil, riche en mots-clés, elle convient à presque tous les CV."
+        },
+        {
+          "title": "Niveau, intitulé et secteur",
+          "body": "À utiliser quand le secteur compte autant que le métier. Santé, fintech, défense, éducation et secteur public regardent d'abord le secteur."
+        },
+        {
+          "title": "Intitulé, années et un point fort",
+          "body": "À utiliser quand votre expérience est votre meilleur atout, et seulement si les années figurent vraiment sur votre CV."
+        },
+        {
+          "title": "Formulation par le résultat",
+          "body": "Commence par ce que vous apportez plutôt que par votre intitulé. Utile en reconversion, quand l'ancien intitulé joue contre vous."
+        },
+        {
+          "title": "Sobre, sans barres verticales",
+          "body": "Une phrase nette pour un en-tête de CV où la ligne se trouve au-dessus de vos coordonnées et où les barres l'encombreraient."
+        }
+      ]
+    },
+    { "h2": "Exemples de titres de CV par métier" },
+    {
+      "p": "De vraies formes, pas du remplissage. Remarquez que chacun nomme un poste puis le justifie par quelque chose de précis."
+    },
+    {
+      "table": {
+        "head": ["Métier", "Titre"],
+        "rows": [
+          ["Ingénieur logiciel", "Ingénieur backend senior | Go, Kubernetes, infrastructure de paiement"],
+          ["Jeune diplômé en informatique", "Développeur junior | Python et React | 3 projets d'équipe livrés"],
+          ["Responsable marketing", "Responsable marketing digital | Social ads, emailing, HubSpot"],
+          ["Comptable", "Contrôleur de gestion, clôtures mensuelles et prévisions de trésorerie"],
+          ["Infirmier", "Infirmier diplômé d'État | 8 ans et plus | Médecine aiguë et triage"],
+          ["Product designer", "Product designer spécialisé en design systems et accessibilité"],
+          ["Chef de projet", "Chef de projet certifié PMP | BTP | Budgets de 20 M"],
+          ["Reconversion", "Data analyst | Dix ans en opérations retail | SQL et Power BI"],
+          ["Support client", "Chargé de support client | Zendesk | Onboarding et fidélisation SaaS"],
+          ["Enseignant", "Professeur de mathématiques en lycée | Brevet et bac | Soutien scolaire"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Reprenez l'intitulé de l'employeur, pas votre ancien intitulé",
+        "body": "Si l'offre dit Growth Marketer et que votre dernier poste s'appelait Chargé de marketing, commencez par Growth Marketer. Vous ne mentez pas sur votre parcours, que la partie expérience présente clairement. Vous dites au lecteur pour quel poste est cette candidature."
+      }
+    },
+    { "h2": "Exemples d'intitulés de poste pour un CV" },
+    {
+      "p": "Quand un formulaire ou un modèle de CV n'a de place que pour un intitulé, donnez le poste avec les mots de l'employeur, rien de plus. Deux à quatre mots, alignés sur l'offre."
+    },
+    {
+      "table": {
+        "head": ["Si l'offre dit", "Votre intitulé"],
+        "rows": [
+          ["Ingénieur logiciel senior, Paiements", "Ingénieur logiciel senior"],
+          ["Responsable growth marketing", "Responsable growth marketing"],
+          ["Infirmier, service des urgences", "Infirmier"],
+          ["Data analyst junior (jeune diplômé)", "Data analyst junior"],
+          ["Customer success manager, SaaS", "Customer success manager"],
+          ["Contrôleur de gestion", "Contrôleur de gestion"]
+        ]
+      }
+    },
+    {
+      "p": "Gardez les précisions après la virgule pour le titre, là où vous pouvez les prouver. Un intitulé qui promet « Paiements » sur un CV sans expérience dans les paiements appelle la mauvaise première question en entretien."
+    },
+    { "h2": "Titre, intitulé, résumé ou objectif" },
+    {
+      "table": {
+        "head": ["", "Longueur", "Ce qu'il dit", "Quand l'utiliser"],
+        "rows": [
+          ["Titre", "Une ligne", "Le poste et deux ou trois preuves", "Presque toujours. C'est la première ligne par défaut d'un CV."],
+          ["Intitulé", "Deux à quatre mots", "Le poste seul", "Un formulaire demande un intitulé, ou la mise en page de votre CV n'a pas de place."],
+          ["Résumé", "Deux à trois phrases", "Périmètre, spécialité et un résultat marquant", "Vous êtes senior, ou vous changez de domaine et le saut demande une explication."],
+          ["Objectif", "Une à deux phrases", "Ce que vous recherchez", "Rarement. Il utilise l'espace le plus visible pour parler de vous plutôt que de l'employeur."]
+        ]
+      }
+    },
+    {
+      "p": "Un titre et un résumé peuvent cohabiter, dans cet ordre. Un titre et un objectif se disputent le même rôle, et l'objectif perd."
+    },
+    { "h2": "Cinq façons de rater un titre" },
+    {
+      "ol": [
+        "**Il dit « CV » ou répète votre nom.** Le fichier le dit déjà. Utilisez la ligne pour une information que le lecteur n'a pas.",
+        "**C'est une liste d'adjectifs.** « Travailleur, rigoureux, esprit d'équipe » ne se vérifie pas et tous les candidats l'écrivent. Nommez plutôt une compétence.",
+        "**C'est votre titre LinkedIn.** Écrit pour tout le monde, il ne nomme aucun poste. Sur un CV envoyé à un seul employeur, c'est raté.",
+        "**Il cite un outil utilisé une seule fois.** Le titre est la première chose qu'un recruteur creuse en entretien. N'y mettez que ce sur quoi vous voulez être interrogé.",
+        "**Il est dans l'en-tête du document.** Certains analyseurs ignorent complètement les en-têtes et les zones de texte. Gardez la ligne dans le corps du document."
+      ]
+    },
+    { "h2": "La place du titre dans une correction plus large" },
+    {
+      "p": "Le titre est l'amélioration la moins chère d'un CV, et la plus petite. Il change les deux premières secondes. Il ne change pas ce qu'un recruteur trouve quand il cherche dans son logiciel de recrutement, ni le fait que vos puces apportent des preuves."
+    },
+    {
+      "p": "Une fois la première ligne réglée, vérifiez l'écart de vocabulaire avec les [mots-clés manquants du CV](/missing-resume-keywords), puis descendez dans la page avec le [réécriveur de puces de CV](/resume-bullet-rewriter). Si vous préférez que les trois soient faits pour une même offre, c'est [l'adaptation à partir d'un lien d'offre](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "Le titre est bon, mais le reste de la page est encore générique ?",
+        "body": "Collez le lien de l'offre et FitMyCV réécrit tout le CV pour cette offre, titre compris, et rédige la lettre de motivation qui va avec.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Réécriveur de puces de CV",
+      "href": "/resume-bullet-rewriter",
+      "body": "Transformez une tâche en réalisation, une ligne à la fois."
+    },
+    {
+      "label": "Mots-clés manquants du CV",
+      "href": "/missing-resume-keywords",
+      "body": "Voyez quels termes de l'offre votre CV ne mentionne jamais."
+    },
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez votre CV face à une offre et voyez les termes qui vous manquent."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

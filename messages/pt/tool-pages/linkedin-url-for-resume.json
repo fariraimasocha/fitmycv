@@ -1,0 +1,187 @@
+{
+  "seoTitle": "Como colocar o link do LinkedIn no currículo",
+  "description": "Cole o link do seu perfil do LinkedIn e receba uma versão limpa para o currículo, mais o link completo para colocar por trás. Grátis, sem login, nada é enviado.",
+  "keywords": [
+    "linkedin no currículo",
+    "como colocar linkedin no currículo",
+    "link do linkedin no currículo",
+    "url do linkedin para currículo",
+    "colocar link no currículo",
+    "link currículo",
+    "personalizar url linkedin",
+    "currículo com linkedin"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Link do LinkedIn para currículo",
+  "h1": "O link do LinkedIn para o seu currículo",
+  "lede": "Cole o link do seu perfil do LinkedIn. Receba a forma curta para imprimir no currículo e a forma completa para colocar por trás como hiperlink, sem o texto de rastreamento e sem o prefixo de país.",
+  "howTo": {
+    "name": "Como adicionar o link do LinkedIn ao currículo",
+    "description": "Transforme um endereço do LinkedIn copiado em um link limpo para o currículo.",
+    "steps": [
+      {
+        "name": "Copie o endereço do seu perfil",
+        "text": "Abra seu próprio perfil do LinkedIn e copie o endereço da barra do navegador, ou use a opção de compartilhar do seu perfil."
+      },
+      {
+        "name": "Cole na ferramenta",
+        "text": "A ferramenta remove o texto de rastreamento, o prefixo de país ou de celular e tudo o que vem depois do seu nome, e mostra o que removeu."
+      },
+      {
+        "name": "Coloque as duas formas no currículo",
+        "text": "Digite a forma curta na sua linha de contato e coloque a forma completa como hiperlink por trás, para o texto ficar limpo e o clique continuar funcionando."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Onde fica o link do LinkedIn no currículo?",
+      "a": "Na linha de contato no topo, ao lado do seu e-mail e telefone. Deixe no corpo do documento, não em cabeçalho, rodapé ou caixa de texto, porque alguns sistemas de recrutamento (ATS) pulam essas áreas."
+    },
+    {
+      "q": "Devo colocar meu LinkedIn no currículo?",
+      "a": "Sim, se o seu perfil bate com o currículo e está razoavelmente completo. Recrutadores costumam procurar você de qualquer forma, e um link poupa a busca. Se o perfil está desatualizado há anos ou contradiz o currículo, atualize primeiro ou deixe o link de fora."
+    },
+    {
+      "q": "O link do LinkedIn deve ser clicável no PDF?",
+      "a": "Sim. Digite a forma curta como texto visível e coloque o link https completo por trás. Word, Google Docs e a maioria dos criadores de currículo permitem adicionar um hiperlink ao texto selecionado, e o link continua funcionando quando você exporta para PDF."
+    },
+    {
+      "q": "Uso a URL completa ou a curta?",
+      "a": "Imprima a curta, linkedin.com/in/seu-nome. O https e o www aumentam o tamanho sem dizer nada ao leitor. A forma completa fica por trás do texto como hiperlink, onde ninguém precisa ler."
+    },
+    {
+      "q": "Os sistemas de recrutamento (ATS) leem links?",
+      "a": "Eles leem o link como texto, como qualquer outra linha. Muitos guardam como um campo do perfil, e alguns ignoram. Por isso o texto impresso deve ser um endereço limpo e legível, e não uma sequência longa com código de rastreamento no fim."
+    },
+    {
+      "q": "E GitHub, portfólio ou site pessoal?",
+      "a": "Adicione na mesma linha de contato, na mesma forma curta, por exemplo github.com/seu-nome. Inclua só links que ajudem na vaga, e confira se cada um abre antes de enviar o currículo."
+    },
+    {
+      "q": "Como consigo uma URL personalizada no LinkedIn?",
+      "a": "No seu perfil, abra a opção de editar o perfil público e a URL, e então edite a URL personalizada. Use seu nome, ou seu nome mais uma palavra se já estiver em uso. O link antigo normalmente para de funcionar, então atualize tudo o que usava esse link."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Por que um link limpo vale um minuto"
+    },
+    {
+      "p": "Um endereço do LinkedIn copiado costuma trazer prefixo de país, caminho de idioma e texto de rastreamento. **Num currículo impresso essa sequência parece descuidada, e em alguns PDFs ela quebra em duas linhas e deixa de funcionar como link.** A forma limpa é curta, se lê como o seu nome e cabe na mesma linha do seu e-mail."
+    },
+    {
+      "h2": "Links do LinkedIn que funcionam, e os que não funcionam"
+    },
+    {
+      "table": {
+        "head": [
+          "Link no currículo",
+          "Veredito",
+          "Por quê"
+        ],
+        "rows": [
+          [
+            "linkedin.com/in/farirai-masocha",
+            "Melhor",
+            "Curto, legível e se lê como o seu nome."
+          ],
+          [
+            "https://www.linkedin.com/in/farirai-masocha",
+            "Aceitável",
+            "Funciona, mas o https e o www aumentam o tamanho e não dizem nada."
+          ],
+          [
+            "linkedin.com/in/farirai-masocha-4b2a19c3",
+            "Fraco",
+            "O final aleatório parece inacabado. Defina uma URL personalizada."
+          ],
+          [
+            "uk.linkedin.com/in/farirai-masocha?originalSubdomain=zw",
+            "Ruim",
+            "Prefixo de país e texto de rastreamento. Longo, bagunçado e fácil de quebrar."
+          ],
+          [
+            "LinkedIn",
+            "Ruim",
+            "Uma palavra solta. No papel, ou em um sistema que remove hiperlinks, ninguém consegue segui-la."
+          ]
+        ]
+      }
+    },
+    {
+      "h2": "Defina uma URL personalizada primeiro"
+    },
+    {
+      "p": "Se o seu link termina com uma sequência de números e letras, foi o LinkedIn que criou para você. Dá para mudar em poucos minutos."
+    },
+    {
+      "ol": [
+        "**Abra seu próprio perfil** com a sessão do LinkedIn iniciada.",
+        "**Encontre a opção de editar o perfil público e a URL.** Ela fica perto do topo da página do perfil.",
+        "**Edite sua URL personalizada** e digite seu nome. Se estiver em uso, adicione a inicial do nome do meio ou uma palavra da sua área.",
+        "**Salve e cole o novo link na ferramenta** acima para receber a forma limpa para o currículo."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Atualize todos os lugares onde está o link antigo",
+        "body": "Mudar a URL personalizada normalmente faz o endereço antigo parar de funcionar. Confira sua assinatura de e-mail, seu portfólio e qualquer currículo já salvo antes de enviar a próxima candidatura."
+      }
+    },
+    {
+      "h2": "Onde ele fica na página"
+    },
+    {
+      "p": "Uma linha abaixo do seu nome reúne tudo o que um recrutador precisa para falar com você: nome, cidade, e-mail, telefone e links. Deixe como texto simples no corpo do documento."
+    },
+    {
+      "ul": [
+        "**Ordene pelo que o recrutador usa primeiro:** e-mail e telefone, depois LinkedIn, depois GitHub ou portfólio.",
+        "**Use a mesma forma curta em todos os links,** para a linha parecer um conjunto.",
+        "**Tire os links que não ajudam nesta candidatura.** Um blog pessoal sobre um assunto sem relação ocupa espaço e atrai as perguntas erradas.",
+        "**Clique em cada link no PDF exportado** antes de enviar. Um link que funcionava no editor pode quebrar na exportação."
+      ]
+    },
+    {
+      "h2": "O link é a parte fácil"
+    },
+    {
+      "p": "Um link limpo arruma uma linha. O recrutador que clica já decidiu que seu currículo merece uma segunda olhada, e essa decisão depende de todo o resto da página."
+    },
+    {
+      "p": "Dê um bom nome ao arquivo com o [gerador de nome de arquivo para currículo](/resume-file-name-generator), arrume a linha abaixo do seu nome com o [gerador de título para currículo](/resume-headline-generator) e depois confira o currículo inteiro com a vaga no [verificador de currículo ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "O link está limpo. E o currículo?",
+        "body": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga, mantendo sua experiência real.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Gerador de nome de arquivo para currículo",
+      "href": "/resume-file-name-generator",
+      "body": "Dê ao arquivo um nome que o recrutador consiga encontrar de novo."
+    },
+    {
+      "label": "Gerador de título para currículo",
+      "href": "/resume-headline-generator",
+      "body": "Arrume a linha abaixo do seu nome, a primeira que o recrutador lê."
+    },
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Dê nota ao seu currículo com base em uma vaga e veja os termos que faltam."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

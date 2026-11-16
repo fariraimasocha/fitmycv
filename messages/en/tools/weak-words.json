@@ -1,0 +1,48 @@
+{
+  "englishOnly": "This checker finds weak words in CVs written in English. Its word list and its advice are about English phrases.",
+  "submit": "Find weak words",
+  "busy": "Reading your CV",
+  "privacy": "Your CV is read in this tab. Nothing is stored.",
+  "noneFound": "No weak words found",
+  "found": "{count, plural, one {# weak word found} other {# weak words found}}",
+  "numbers": "{withNumbers} of your {lines} longer lines have a number in them.",
+  "numbersLow": "Add a count, a percentage or a time saved to more of them. Numbers are what a recruiter remembers.",
+  "numbersOk": "Good. Numbers are what a recruiter remembers.",
+  "kinds": {
+    "duty": "Duty phrase",
+    "vague": "Vague verb",
+    "cliche": "Cliché"
+  },
+  "fixes": {
+    "lead": "Start with what you did: Led, Ran, Built, Managed.",
+    "results": "List results, not duties. What changed because you were there?",
+    "delivered": "Say what you delivered instead of what you were given.",
+    "part": "Name your part: Built, Designed, Wrote, Tested.",
+    "did": "Say what you did: Supported 12 clients, Cut errors by 20%.",
+    "share": "Name your share of the work, or the result it produced.",
+    "owned": "Say what you owned in it.",
+    "verb": "Use a precise verb: Resolved, Processed, Negotiated.",
+    "name": "Name them, or give the count.",
+    "list": "Finish the list or cut it to the two items that matter.",
+    "show": "Show it: a deadline you hit or the volume you carried.",
+    "teamResult": "Name a team result and your part in it.",
+    "oneResult": "Delete it and put one real result in its place.",
+    "proof": "Give proof: an error rate, an audit you passed.",
+    "started": "Show something you started without being asked.",
+    "skip": "Delete it. Every recruiter skips it.",
+    "unusual": "Describe the unusual fix you found.",
+    "evidence": "Show the evidence: a side project, a course, a result.",
+    "checkable": "Delete it. It says nothing a recruiter can check.",
+    "who": "Say who you worked with and what it produced.",
+    "communication": "Show it: a report you wrote, a team you trained.",
+    "record": "Replace it with the record: one number.",
+    "learned": "Name something you learned and how fast you used it.",
+    "delete": "Delete it.",
+    "cameFor": "Say what people came to you for."
+  },
+  "handoff": {
+    "title": "Rewrite these for a real job",
+    "body": "FitMyCV rewrites your summary and top bullets against a job posting, in the posting's own words, using only what is already in your CV.",
+    "label": "Rewrite my CV for a job"
+  }
+}

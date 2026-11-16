@@ -1,0 +1,45 @@
+{
+  "englishOnly": "This tool works on English text. Paste your duties in English and it writes the bullets in English.",
+  "label": "Paste the duties from your job description",
+  "hint": "One duty per line. Bullet points, numbered lists and semicolons work too. Up to {max} duties.",
+  "submit": "Turn duties into bullets",
+  "busy": "Rewriting your duties",
+  "example": "Try an example",
+  "private": "Runs entirely in your browser. Nothing is uploaded or stored.",
+  "heading": "{count, plural, one {Your duty as a bullet} other {Your # duties as bullets}}",
+  "intro": "Each one opens with an action verb and marks where a number belongs. The highlighted slots are yours to fill. This tool does not know your numbers, so use figures you can defend in an interview.",
+  "copy": "Copy",
+  "copyAll": "Copy all",
+  "copied": "Copied",
+  "copyAria": "Copy bullet: {bullet}",
+  "toastAll": "All bullets copied",
+  "toastOne": "Bullet copied",
+  "toastFailed": "Copy failed. Select the text and copy it yourself.",
+  "was": "Was: {duty}",
+  "notes": {
+    "ownership": "Add the size of it: people in the team, the budget, or how many projects ran at once.",
+    "support": "Add how many a week, how fast you answered, or a satisfaction score.",
+    "delivery": "Add how long it took, how many people use it, or what changed after launch.",
+    "process": "Add hours saved, errors removed, cost cut, or how many records it covered.",
+    "analysis": "Add how much data, which decision it fed, or the change it led to.",
+    "general": "Add how many, how often, how much, or how much faster."
+  },
+  "ctaTitle": "Applying for a new job with these?",
+  "ctaBody": "Paste the job link and FitMyCV rewrites every bullet against that posting, keeping your real experience and your real numbers.",
+  "ctaButton": "Tailor these to a new job",
+  "emptyHeading": "What you get back",
+  "features": {
+    "perDuty": {
+      "title": "One bullet per duty",
+      "body": "Weak openers like 'Responsible for' removed, and a past tense action verb up front."
+    },
+    "slot": {
+      "title": "A slot for your number",
+      "body": "Each bullet marks where a figure belongs, so it reads as a result."
+    },
+    "number": {
+      "title": "Which number to find",
+      "body": "A note under each bullet on what to count: people, hours, money or change."
+    }
+  }
+}

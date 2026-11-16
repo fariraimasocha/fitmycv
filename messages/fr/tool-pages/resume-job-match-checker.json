@@ -1,0 +1,194 @@
+{
+  "seoTitle": "Comparer son CV à une offre d'emploi : gratuit, sans compte",
+  "description": "Importez votre CV et collez une offre d'emploi. Voyez votre score de correspondance, les mots-clés manquants et les cinq premières corrections. Gratuit, sans compte.",
+  "keywords": [
+    "comparer cv et offre d'emploi",
+    "comparateur cv offre d'emploi",
+    "correspondance cv offre",
+    "analyse cv par rapport à une offre",
+    "cv et fiche de poste",
+    "score de correspondance cv",
+    "mots-clés manquants cv",
+    "adéquation cv poste",
+    "tester son cv avec une offre",
+    "cv compatible offre d'emploi"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Comparateur CV et offre",
+  "h1": "Comparez votre CV à une offre d'emploi",
+  "lede": "Importez votre CV et collez l'offre. Voyez votre score de correspondance, les compétences que vous couvrez déjà, ce qui manque, et les cinq premières choses à corriger avant de postuler.",
+  "howTo": {
+    "name": "Comment comparer votre CV à une offre d'emploi",
+    "description": "Comparez votre CV à une offre précise et repérez les manques en compétences, mots-clés et expérience.",
+    "steps": [
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Nous en extrayons le texte, vous n'avez rien à copier."
+      },
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Copiez le texte complet de l'offre à laquelle vous postulez et collez-le dans le champ prévu."
+      },
+      {
+        "name": "Lisez le score et les manques",
+        "text": "Vous obtenez un score global, les compétences présentes et manquantes, des scores d'expérience, de compétences et de mots-clés, et cinq corrections concrètes."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Que signifie le score de correspondance ?",
+      "a": "C'est un score de couverture calculé à partir de votre CV et de l'offre : compétences nommées, mots-clés de l'offre et un léger signal d'expérience tiré des années et du niveau. À partir de 75 %, la couverture est bonne. Entre 50 et 75 %, une adaptation vaut le coup. Sous 50 %, le CV est trop générique ou le poste est vraiment ambitieux. Ce n'est pas une prédiction d'entretien."
+    },
+    {
+      "q": "L'outil fonctionne-t-il avec un CV en français ?",
+      "a": "Non, il est conçu pour l'anglais. Sa liste de compétences, ses mots-clés et ses signaux d'expérience lisent des mots anglais, et ses conseils citent les termes anglais de l'offre. Avec un CV et une offre en français, le score n'est pas fiable. Utilisez-le pour une candidature en anglais."
+    },
+    {
+      "q": "Ce comparateur est-il gratuit ?",
+      "a": "Oui. Sans inscription et sans limite d'utilisation. Toute la comparaison tourne dans votre navigateur, et rien n'est stocké."
+    },
+    {
+      "q": "Mon CV est-il envoyé ou stocké ?",
+      "a": "Le PDF est lu dans cet onglet. Le fichier n'est jamais envoyé à un serveur. Fermez l'onglet et tout disparaît."
+    },
+    {
+      "q": "Quelle différence avec le test CV ATS ?",
+      "a": "Le test CV ATS donne un seul score de recoupement des mots-clés. Cette page sépare le résultat en expérience, compétences et mots-clés, liste les compétences présentes et manquantes, et vous donne cinq points à améliorer. Utilisez cette page pour un bilan d'adéquation, et le test ATS si vous voulez seulement les termes manquants."
+    },
+    {
+      "q": "Dois-je ajouter chaque compétence manquante à mon CV ?",
+      "a": "Seulement celles que vous pouvez honnêtement prouver. Placez chacune dans une puce qui montre que vous l'avez utilisée et ce que cela a donné. Citer des outils que vous n'avez jamais utilisés ne fait que repousser le refus à l'entretien."
+    },
+    {
+      "q": "Que mesurent les scores d'expérience, de compétences et de mots-clés ?",
+      "a": "Les compétences sont les outils et méthodes nommés que nous lisons dans les deux textes, comme React ou la gestion de projet. Les mots-clés sont les autres termes sur lesquels l'offre insiste. L'expérience cherche les années, les mots de niveau et les intitulés de poste. Si l'offre ne mentionne aucune durée, cette partie ne fait pas baisser le score."
+    },
+    {
+      "q": "Un score élevé garantit-il un entretien ?",
+      "a": "Non. La couverture aide un recruteur à vous trouver. Ce sont vos puces qui décrochent l'appel. Une fois le score correct, passez le reste de votre temps à chiffrer chaque affirmation."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Ce que mesure ce comparateur"
+    },
+    {
+      "p": "Il compare le CV que vous importez avec l'offre que vous collez. Vous obtenez un score global, puis trois parties : les compétences en commun, les mots-clés sur lesquels l'offre insiste, et un léger signal d'expérience tiré des années et du niveau."
+    },
+    {
+      "p": "C'est volontairement limité. Il mesure le recoupement entre deux documents. Il ne vous classe pas dans Workday, Greenhouse ou Lever, et il ne juge pas votre style. Il lit l'anglais, donc il sert aux candidatures rédigées en anglais."
+    },
+    {
+      "callout": {
+        "title": "Ce n'est pas un test ATS de plus",
+        "body": "Le [test CV ATS](/fr/ats-resume-checker) reste le diagnostic des mots-clés. Cette page répond à une autre question : ce CV correspond-il à ce poste, et que corriger en premier ?"
+      }
+    },
+    {
+      "h2": "Comment lire le résultat"
+    },
+    {
+      "ol": [
+        "**Points forts** : les compétences nommées présentes dans les deux textes. Gardez-les dans des puces avec un résultat.",
+        "**Manquants ou faibles** : les compétences que l'offre nomme et que votre CV ne mentionne jamais. N'ajoutez que celles que vous pouvez prouver.",
+        "**Les scores d'expérience, de compétences et de mots-clés** montrent quelle part de l'écart vient du vocabulaire et quelle part vient du périmètre.",
+        "**Les 5 points à améliorer** donnent l'ordre de travail. Corrigez-les, puis relancez la comparaison."
+      ]
+    },
+    {
+      "h2": "Que faire après un score faible"
+    },
+    {
+      "ol": [
+        "**Commencez par les compétences que vous avez déjà sous d'autres mots.** Si l'offre dit GraphQL et que vous avez écrit requêtes d'API, reprenez leur terme dans une vraie puce.",
+        "**Remontez les postes qui correspondent.** Cinq ans d'expérience pertinente enfouis dans votre troisième poste pèsent moins qu'une expérience plus courte dans vos deux premières puces.",
+        "**Laissez de côté les compétences que vous ne pouvez pas défendre.** Un score plus haut que vous ne savez pas expliquer, c'est un entretien gâché.",
+        "**Puis réécrivez, ou laissez FitMyCV le faire.** L'[adaptation de CV par IA](/fr/tailor-cv-from-job-link) utilise la même offre et votre expérience réelle."
+      ]
+    },
+    {
+      "h2": "Sans compte, rien de stocké, comparaisons illimitées"
+    },
+    {
+      "p": "La comparaison tourne dans votre navigateur. Pas de compte obligatoire, pas d'e-mail demandé, aucun fichier envoyé à un serveur. Fermez l'onglet et le texte disparaît."
+    },
+    {
+      "h2": "Comparateur ou réécriture complète ?"
+    },
+    {
+      "table": {
+        "head": [
+          "",
+          "Ce comparateur",
+          "Test CV ATS",
+          "Adaptation depuis un lien d'offre"
+        ],
+        "rows": [
+          [
+            "Compte nécessaire",
+            "Non",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Envoie votre fichier à un serveur",
+            "Non",
+            "Non",
+            "Oui, vers votre compte"
+          ],
+          [
+            "Score global de correspondance",
+            "Oui",
+            "Score de mots-clés seulement",
+            "Oui"
+          ],
+          [
+            "Compétences et mots-clés séparés",
+            "Oui",
+            "Non",
+            "Oui"
+          ],
+          [
+            "Corrections prioritaires",
+            "Oui",
+            "Termes manquants",
+            "CV réécrit"
+          ],
+          [
+            "Réécrit le CV",
+            "Non",
+            "Non",
+            "Oui"
+          ]
+        ]
+      }
+    },
+    {
+      "p": "Pour la réécriture, utilisez l'[adaptation de CV par IA](/fr/tailor-cv-from-job-link) ou l'[optimiseur de CV par IA](/resume-optimizer). Si vous voulez seulement les mots-clés manquants, utilisez le [test CV ATS](/fr/ats-resume-checker)."
+    }
+  ],
+  "related": [
+    {
+      "label": "Adapter mon CV à ce poste",
+      "href": "/tailor-cv-from-job-link",
+      "body": "Collez l'URL de l'offre et obtenez un CV réécrit et une lettre de motivation."
+    },
+    {
+      "label": "Test CV ATS",
+      "href": "/ats-resume-checker",
+      "body": "Un score de mots-clés et les termes que votre CV ne mentionne jamais."
+    },
+    {
+      "label": "Adapter un CV à une offre",
+      "href": "/blog/how-to-tailor-cv-to-job-description",
+      "body": "La méthode manuelle si vous préférez réécrire vos puces vous-même (en anglais)."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

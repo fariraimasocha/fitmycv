@@ -1,0 +1,203 @@
+{
+  "seoTitle": "Atribuições do cargo para currículo em inglês: vire resultados",
+  "description": "Cole em inglês as atribuições de uma descrição de cargo e receba tópicos para seu currículo em inglês que começam com um verbo de ação e marcam onde entram seus números. Grátis, sem login.",
+  "keywords": [
+    "atribuições do cargo para currículo",
+    "atribuições no currículo em inglês",
+    "responsabilidades no currículo em inglês",
+    "como descrever atividades no currículo",
+    "resultados no currículo em inglês",
+    "transformar atribuições em resultados",
+    "descrição de cargo no currículo",
+    "exemplos de atribuições para currículo",
+    "resume bullets em inglês"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Atribuições do cargo para tópicos do currículo",
+  "h1": "Transforme atribuições do cargo em tópicos para seu currículo em inglês",
+  "lede": "Cole em inglês as atribuições da descrição do seu cargo, uma por linha. Receba cada uma como um tópico em inglês para o currículo, que começa com um verbo de ação e mostra onde entra o seu número.",
+  "howTo": {
+    "name": "Como transformar atribuições do cargo em tópicos para o currículo",
+    "description": "Reescreva as atribuições de uma descrição de cargo como resultados para seu currículo em inglês.",
+    "steps": [
+      {
+        "name": "Cole suas atribuições",
+        "text": "Copie em inglês as responsabilidades da descrição de um cargo que você ocupou, ou das suas próprias anotações. Uma atribuição por linha. Marcadores e listas numeradas também funcionam."
+      },
+      {
+        "name": "Leia cada versão",
+        "text": "Aberturas fracas como 'Responsible for' e 'Assisted with' são removidas. Cada atribuição volta no passado, com um verbo forte na frente."
+      },
+      {
+        "name": "Preencha os números",
+        "text": "Cada tópico tem um espaço destacado onde entra um dado e uma nota sobre o que contar. Troque cada espaço por um número real que você consiga defender."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Devo copiar a descrição do cargo no meu currículo?",
+      "a": "Não. Uma descrição de cargo lista o que o empregador pedia de qualquer pessoa naquela função. Seu currículo deve dizer o que você fez com isso e o que mudou. Use as atribuições como ponto de partida e reescreva cada uma como um resultado com número."
+    },
+    {
+      "q": "Funciona com atribuições escritas em português?",
+      "a": "Não. A ferramenta lê texto em inglês e escreve os tópicos em inglês, porque suas listas de verbos e aberturas são em inglês. Use para um currículo em inglês. As dicas desta página sobre verbos, números e resultados valem em qualquer idioma."
+    },
+    {
+      "q": "O que esta ferramenta faz, exatamente?",
+      "a": "Ela divide o texto colado em atribuições separadas, remove aberturas fracas como 'Responsible for', coloca o verbo no passado e adiciona um espaço entre colchetes onde entra um número. Ela roda com regras fixas no seu navegador. Não usa IA e não tem como saber seus números."
+    },
+    {
+      "q": "Ela inventa números?",
+      "a": "Não. Ela marca o lugar do número e diz que tipo procurar: quantos, com que frequência, quanto ou quanto mais rápido. Você coloca o dado real. Um número inventado passa na triagem e cai na entrevista."
+    },
+    {
+      "q": "É grátis? Preciso de conta?",
+      "a": "É grátis, sem cadastro e sem limite de uso. Tudo roda no seu navegador. Nada do que você cola é enviado ou armazenado."
+    },
+    {
+      "q": "Qual a diferença entre atribuições e resultados?",
+      "a": "Uma atribuição é o que foi passado para você: 'Cuidar dos reembolsos de clientes'. Um resultado é o que aconteceu porque você fez: 'Processei 40 reembolsos por semana e reduzi o acúmulo de dez dias para dois'. Recrutadores leem o segundo tipo, porque todos os candidatos ao cargo tinham as mesmas atribuições."
+    },
+    {
+      "q": "Quantos tópicos cada emprego deve ter?",
+      "a": "De três a cinco para o cargo mais recente, dois ou três para os anteriores e um ou dois para o que tiver mais de dez anos. Fique com os tópicos mais próximos da vaga que você quer e corte o resto."
+    },
+    {
+      "q": "Os tópicos devem combinar com a vaga para a qual me candidato?",
+      "a": "Sim. Reescreva primeiro as atribuições e depois veja quais termos a nova vaga usa que seus tópicos nunca citam. A ferramenta de [palavras-chave que faltam no currículo](/missing-resume-keywords) mostra essa diferença. Adaptar a partir do link da vaga faz as duas etapas no currículo inteiro."
+    }
+  ],
+  "blocks": [
+    { "h2": "Atribuições são o que você recebeu. Resultados são o que você fez com elas." },
+    {
+      "p": "A maioria dos currículos lista atribuições copiadas de uma descrição de cargo, e é por isso que tantos parecem iguais. **Todo mundo que ocupou o cargo teve as mesmas atribuições.** O que diferencia você é o que mudou porque você estava lá, e isso pede um verbo, o trabalho e um número."
+    },
+    {
+      "compare": {
+        "title": "Atendimento ao cliente",
+        "context": "A atribuição do anúncio, e o mesmo trabalho escrito como resultado.",
+        "before": "Responsável por cuidar dos reembolsos de clientes.",
+        "after": "Processei 40 reembolsos por semana e reduzi o acúmulo de dez dias para dois."
+      }
+    },
+    {
+      "compare": {
+        "title": "Operações",
+        "context": "A atribuição nomeia uma tarefa. O tópico diz o tamanho dela.",
+        "before": "Entre as atribuições, controle de estoque e pedidos.",
+        "after": "Cuidei do controle de estoque de três lojas e reduzi em um terço os itens em falta."
+      }
+    },
+    { "h2": "Exemplos de atribuições para currículo por cargo" },
+    {
+      "p": "A coluna da esquerda mostra como uma descrição de cargo costuma escrever a atribuição. A da direita mostra a mesma atribuição como tópico no currículo. **Os números são exemplos.** Use os seus e deixe de fora o que você não consegue comprovar."
+    },
+    {
+      "table": {
+        "head": ["Cargo", "Atribuição como aparece no anúncio", "Como tópico no currículo"],
+        "rows": [
+          ["Atendimento ao cliente", "Responder dúvidas de clientes por telefone e e-mail", "Respondi 60 dúvidas de clientes por dia por telefone e e-mail com 95% de satisfação"],
+          ["Varejo", "Responsável pela exposição e reposição de produtos", "Renovei as vitrines toda semana e reduzi em 30% as faltas de estoque na loja"],
+          ["Assistente administrativo", "Gerenciar a agenda do diretor e marcar reuniões", "Cuidei da agenda de dois diretores e marquei 25 reuniões por semana sem conflitos"],
+          ["Enfermagem", "Monitorar pacientes e administrar medicação", "Monitorei 8 pacientes por plantão em uma ala de agudos e administrei medicação sem erros registrados"],
+          ["Professor", "Planejar e dar aulas de acordo com o currículo escolar", "Planejei e dei 22 aulas por semana em três séries e aumentei a aprovação de 64% para 78%"],
+          ["Engenharia de software", "Desenvolver e manter aplicações web", "Desenvolvi e mantive três aplicações web internas usadas por 400 funcionários e reduzi o tempo de carregamento pela metade"],
+          ["Vendas", "Construir relacionamento com clientes novos e atuais", "Montei uma carteira de 35 contas e aumentei a receita recorrente em 18% em um ano"],
+          ["Contabilidade", "Preparar relatórios e conciliações de fechamento do mês", "Preparei os relatórios de fechamento de quatro empresas e fechei o mês dois dias mais cedo"],
+          ["Marketing", "Ajudar com redes sociais e campanhas de e-mail", "Rodei 12 campanhas de e-mail por trimestre e aumentei a lista de 8.000 para 14.000 inscritos"],
+          ["Armazém", "Separar, embalar e despachar pedidos de clientes", "Separei e embalei 300 pedidos por turno com 99,8% de precisão"]
+        ]
+      }
+    },
+    {
+      "callout": {
+        "title": "Use as palavras do empregador e os seus próprios números",
+        "body": "Mantenha os termos da descrição do cargo para o qual você se candidata, porque os recrutadores buscam por eles. Mude todo o resto: o verbo, a escala e o resultado."
+      }
+    },
+    { "h2": "O formato que todo tópico deve ter" },
+    {
+      "steps": [
+        {
+          "title": "Um verbo de ação no passado, primeiro",
+          "body": "Built, ran, cut, trained, resolved. Não 'Responsible for', 'Duties included' ou 'Helped with', que descrevem o cargo e não você."
+        },
+        {
+          "title": "O trabalho, em palavras simples",
+          "body": "Concreto o bastante para um desconhecido imaginar. 'A fila de reembolsos' é melhor que 'diversas demandas de clientes'."
+        },
+        {
+          "title": "Um número",
+          "body": "Quantos, com que frequência, quanto ou quanto mais rápido. Um dado real faz mais que qualquer adjetivo."
+        },
+        {
+          "title": "O que mudou",
+          "body": "O que passou a ser verdade depois e não era antes. É a parte que uma descrição de cargo nunca conta, então só você pode adicionar."
+        }
+      ]
+    },
+    { "h2": "Aberturas fracas que esta ferramenta remove" },
+    {
+      "table": {
+        "head": ["Na descrição do cargo", "O que esconde", "O que escrever no lugar"],
+        "rows": [
+          ["Responsible for", "Se você fez ou só acompanhou", "Owned, ran, led"],
+          ["Duties included", "Que a linha foi copiada de um anúncio", "Comece pelo verbo"],
+          ["Tasked with", "O resultado", "Delivered, completed, shipped"],
+          ["Assisted with", "A sua parte nisso", "Supported, trained, resolved"],
+          ["Helped", "Tudo", "O verbo real do que você fez"],
+          ["Worked on", "O resultado", "Built, rebuilt, migrated"],
+          ["Involved in", "Se você era peça central", "Drove, delivered, contributed"]
+        ]
+      }
+    },
+    { "h2": "Como achar o número" },
+    {
+      "ol": [
+        "**Conte o trabalho.** Chamados, pedidos, pacientes, aulas, notas fiscais, turnos. Tudo o que você fazia com frequência tem um ritmo.",
+        "**Compare antes e depois.** Acúmulo, erros, tempo de espera, tempo de fechamento. A mudança de um número para outro é o tópico mais forte que você pode escrever.",
+        "**Meça o que você tocou.** Orçamento, equipe, número de unidades, clientes, usuários. Escopo conta como número.",
+        "**Veja registros antigos.** Relatórios, painéis, escalas e avaliações costumam guardar o número que você esqueceu."
+      ]
+    },
+    {
+      "p": "Se precisar estimar, arredonde para baixo e diga 'cerca de'. 'Cerca de 50 por semana' se sustenta em uma entrevista. Um número preciso sem nada por trás, não."
+    },
+    { "h2": "Das atribuições de um emprego ao currículo do próximo" },
+    {
+      "p": "Esta página reescreve as atribuições que você cola, uma lista por vez. Quando você se candidata a uma vaga específica, os tópicos também precisam usar as palavras dessa vaga. Confira a diferença com [palavras-chave que faltam no currículo](/missing-resume-keywords), ajuste linhas soltas com o [reescritor de tópicos do currículo](/resume-bullet-rewriter) ou faça o currículo inteiro de uma vez com a [adaptação a partir do link da vaga](/tailor-cv-from-job-link)."
+    },
+    {
+      "cta": {
+        "title": "Adapte cada tópico à vaga que você quer",
+        "body": "Cole o link da vaga e o FitMyCV reescreve seu currículo e sua carta de apresentação para essa vaga, mantendo sua experiência real e seus números reais.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adaptar meu currículo"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Reescritor de tópicos do currículo",
+      "href": "/resume-bullet-rewriter",
+      "body": "Reescreva um tópico de três formas, com uma leitura do que está fraco."
+    },
+    {
+      "label": "Palavras-chave que faltam no currículo",
+      "href": "/missing-resume-keywords",
+      "body": "Veja quais termos da vaga seu currículo nunca cita."
+    },
+    {
+      "label": "Verificador de currículo ATS grátis",
+      "href": "/ats-resume-checker",
+      "body": "Dê uma nota ao seu currículo frente a uma vaga antes de se candidatar."
+    }
+  ],
+  "ui": {
+    "home": "Início",
+    "faqHeading": "Perguntas frequentes",
+    "related": "Para onde ir agora",
+    "open": "Abrir"
+  }
+}

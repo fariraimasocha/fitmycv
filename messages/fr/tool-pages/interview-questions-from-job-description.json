@@ -1,0 +1,131 @@
+{
+  "seoTitle": "Questions d'entretien à partir d'une offre d'emploi",
+  "description": "Collez une offre d'emploi et importez votre CV. Voyez les questions que ce poste va poser, la ligne de votre CV qui répond à chacune et les manques à préparer.",
+  "keywords": [
+    "questions entretien d'embauche",
+    "questions entretien à partir de l'offre",
+    "préparer un entretien d'embauche",
+    "questions fréquentes entretien",
+    "générateur de questions d'entretien",
+    "préparation entretien offre d'emploi",
+    "méthode STAR entretien"
+  ],
+  "eyebrow": "Outil gratuit",
+  "breadcrumbName": "Questions d'entretien à partir d'une offre",
+  "h1": "Questions d'entretien à partir d'une offre d'emploi",
+  "lede": "Collez l'offre d'emploi et importez votre CV. Obtenez les questions que ce poste risque de poser, la ligne de votre propre CV qui répond à chacune, et les compétences demandées que votre CV ne montre pas encore. Sans compte, rien n'est stocké.",
+  "howTo": {
+    "name": "Comment prévoir les questions d'entretien à partir d'une offre",
+    "description": "Transformez l'offre et votre CV en une liste de questions probables, avec des preuves tirées de votre propre expérience.",
+    "steps": [
+      {
+        "name": "Collez l'offre d'emploi",
+        "text": "Collez l'annonce complète, avec les exigences. L'outil lit l'intitulé du poste et les compétences que l'offre répète."
+      },
+      {
+        "name": "Importez votre CV",
+        "text": "Déposez le PDF. Le texte est lu dans votre navigateur et rien n'est stocké."
+      },
+      {
+        "name": "Préparez une histoire par question",
+        "text": "Chaque question vient avec la ligne de votre CV qui y répond. Construisez une courte histoire autour de cette ligne, et préparez une réponse honnête pour chaque manque."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Comment l'outil choisit-il les questions ?",
+      "a": "Il lit l'intitulé du poste et les compétences que l'offre répète, puis vérifie lesquelles votre CV mentionne. Les compétences présentes des deux côtés deviennent des questions avec une preuve tirée de votre CV. Celles qui ne sont que dans l'offre deviennent des questions sur vos manques, parce qu'un recruteur vous interrogera dessus."
+    },
+    {
+      "q": "L'outil fonctionne-t-il avec une offre et un CV en français ?",
+      "a": "Pas bien. Il repère les compétences avec des listes de mots anglais et il écrit les questions en anglais. Il est fait pour les candidatures en anglais. Pour un entretien en français, servez-vous des questions courantes et de la méthode STAR décrites sur cette page."
+    },
+    {
+      "q": "Rédige-t-il mes réponses à ma place ?",
+      "a": "Non. Il vous montre la ligne de votre propre CV qui répond à chaque question, et comment la présenter. Les mots de l'entretien doivent être les vôtres, et une réponse fondée sur votre vrai travail se défend mieux quand on vous relance."
+    },
+    {
+      "q": "Quelles questions reviennent dans presque tous les entretiens ?",
+      "a": "Parlez-moi de vous, pourquoi voulez-vous ce poste, racontez-moi une fois où vous avez résolu un problème difficile, quel est votre principal défaut, et où vous voyez-vous dans quelques années. Cet outil ajoute les questions propres au poste que vous collez."
+    },
+    {
+      "q": "Que faire des questions sur mes manques ?",
+      "a": "Si vous avez utilisé la compétence et que votre CV ne le dit simplement pas, ajoutez-la à votre CV avant de postuler. Sinon, préparez une réponse honnête sur ce que vous avez fait de plus proche et sur la façon dont vous l'apprendriez. Ne revendiquez jamais une compétence dont vous ne pouvez pas parler pendant deux minutes."
+    },
+    {
+      "q": "Qu'est-ce que la méthode STAR ?",
+      "a": "Situation, tâche, action, résultat. Posez le contexte en une phrase, dites ce que vous deviez faire, passez l'essentiel du temps sur ce que vous avez fait, et terminez sur le résultat. La ligne de votre CV est souvent le résultat, construisez donc l'histoire à rebours à partir d'elle."
+    },
+    {
+      "q": "Mon CV est-il envoyé quelque part ?",
+      "a": "Non. Le PDF est lu dans l'onglet de votre navigateur, et rien n'est stocké ni envoyé à un serveur. Fermez l'onglet et tout disparaît."
+    }
+  ],
+  "blocks": [
+    { "h2": "L'offre vous dit ce qu'ils vont demander" },
+    {
+      "p": "Les recruteurs travaillent à partir de l'offre d'emploi. Les compétences qu'elle répète sont celles qu'ils doivent vérifier, elles deviennent donc des questions. **Si une compétence apparaît trois fois dans l'offre, attendez-vous à être interrogé dessus.**"
+    },
+    {
+      "ol": [
+        "**Les questions sur le poste.** Pourquoi ce poste, et présentez-moi votre parcours. Tous les entretiens en ont.",
+        "**Les questions sur les compétences.** Racontez-moi une fois où vous avez utilisé une compétence demandée par l'offre. Votre CV devrait déjà contenir la réponse.",
+        "**Les questions sur les manques.** L'offre demande une chose que votre CV ne mentionne jamais. Ce sont celles qui prennent les candidats au dépourvu."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Pourquoi la preuve vient de votre CV",
+        "body": "Le recruteur a votre CV sous les yeux. Une histoire qui correspond à une ligne de la page est crue. Une histoire qui n'y correspond pas soulève une question. Cet outil n'utilise que des lignes trouvées dans votre propre CV."
+      }
+    },
+    { "h2": "Comment répondre à une question sur une compétence" },
+    {
+      "table": {
+        "head": ["Étape", "Ce qu'il faut dire", "Longueur"],
+        "rows": [
+          ["Situation", "Où vous étiez et ce qui se passait", "Une phrase"],
+          ["Tâche", "Ce que vous deviez accomplir", "Une phrase"],
+          ["Action", "Ce que vous avez fait, à la première personne", "L'essentiel de la réponse"],
+          ["Résultat", "Ce qui a changé, avec un chiffre si vous en avez un", "Une ou deux phrases"]
+        ]
+      }
+    },
+    { "h2": "Comblez les manques avant l'entretien, pas pendant" },
+    {
+      "p": "Une question sur un manque en entretien vient souvent d'abord d'un manque sur le CV. Si l'offre demande une chose que vous avez faite et que votre CV ne le dit pas, le recruteur risque de ne jamais vous inviter. Consultez la liste complète des termes manquants avec les [mots-clés manquants du CV](/missing-resume-keywords), ou évaluez votre CV face à l'offre avec le [test CV ATS](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Vous voulez que votre CV réponde à ces questions pour vous ?",
+        "body": "Collez le lien de l'offre et FitMyCV adapte votre CV et votre lettre de motivation à cette offre, avec seulement votre expérience réelle.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Adapter mon CV"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Test CV ATS gratuit",
+      "href": "/ats-resume-checker",
+      "body": "Évaluez votre CV face à une offre et voyez les termes qui vous manquent."
+    },
+    {
+      "label": "Générateur de résumé de CV",
+      "href": "/professional-summary-generator",
+      "body": "Trois résumés de CV construits à partir de l'offre et de votre CV."
+    },
+    {
+      "label": "Réécriveur de puces de CV",
+      "href": "/resume-bullet-rewriter",
+      "body": "Transformez une tâche en réalisation dont vous pouvez parler."
+    }
+  ],
+  "ui": {
+    "home": "Accueil",
+    "faqHeading": "Questions fréquentes",
+    "related": "Pour aller plus loin",
+    "open": "Ouvrir"
+  }
+}

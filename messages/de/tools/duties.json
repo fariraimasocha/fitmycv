@@ -1,0 +1,45 @@
+{
+  "englishOnly": "Dieses Tool arbeitet mit englischem Text. Füge deine Aufgaben auf Englisch ein, und es schreibt die Stichpunkte auf Englisch.",
+  "label": "Füge die Aufgaben aus deiner Stellenbeschreibung ein",
+  "hint": "Eine Aufgabe pro Zeile. Aufzählungszeichen, nummerierte Listen und Semikolons gehen auch. Bis zu {max} Aufgaben.",
+  "submit": "Aufgaben in Stichpunkte umwandeln",
+  "busy": "Deine Aufgaben werden umgeschrieben",
+  "example": "Beispiel ausprobieren",
+  "private": "Läuft komplett in deinem Browser. Nichts wird hochgeladen oder gespeichert.",
+  "heading": "{count, plural, one {Deine Aufgabe als Stichpunkt} other {Deine # Aufgaben als Stichpunkte}}",
+  "intro": "Jeder beginnt mit einem Aktionsverb und markiert, wo eine Zahl hingehört. Die hervorgehobenen Lücken füllst du selbst. Das Tool kennt deine Zahlen nicht, also nimm Werte, die du im Vorstellungsgespräch vertreten kannst.",
+  "copy": "Kopieren",
+  "copyAll": "Alle kopieren",
+  "copied": "Kopiert",
+  "copyAria": "Stichpunkt kopieren: {bullet}",
+  "toastAll": "Alle Stichpunkte kopiert",
+  "toastOne": "Stichpunkt kopiert",
+  "toastFailed": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn selbst.",
+  "was": "Vorher: {duty}",
+  "notes": {
+    "ownership": "Ergänze den Umfang: Personen im Team, das Budget oder wie viele Projekte gleichzeitig liefen.",
+    "support": "Ergänze, wie viele pro Woche, wie schnell du geantwortet hast oder einen Zufriedenheitswert.",
+    "delivery": "Ergänze, wie lange es gedauert hat, wie viele Menschen es nutzen oder was sich nach dem Start geändert hat.",
+    "process": "Ergänze eingesparte Stunden, beseitigte Fehler, gesenkte Kosten oder wie viele Datensätze es umfasste.",
+    "analysis": "Ergänze, wie viele Daten, welche Entscheidung darauf beruhte oder welche Veränderung daraus folgte.",
+    "general": "Ergänze, wie viele, wie oft, wie viel oder wie viel schneller."
+  },
+  "ctaTitle": "Bewirbst du dich damit auf eine neue Stelle?",
+  "ctaBody": "Füge den Link zur Stellenanzeige ein und FitMyCV schreibt jeden Stichpunkt passend zu dieser Anzeige um, mit deiner echten Erfahrung und deinen echten Zahlen.",
+  "ctaButton": "An eine neue Stelle anpassen",
+  "emptyHeading": "Was du zurückbekommst",
+  "features": {
+    "perDuty": {
+      "title": "Ein Stichpunkt pro Aufgabe",
+      "body": "Schwache Einstiege wie 'Responsible for' fliegen raus, vorne steht ein Aktionsverb in der Vergangenheit."
+    },
+    "slot": {
+      "title": "Eine Lücke für deine Zahl",
+      "body": "Jeder Stichpunkt markiert, wo eine Zahl hingehört, damit er als Ergebnis gelesen wird."
+    },
+    "number": {
+      "title": "Welche Zahl du suchen solltest",
+      "body": "Ein Hinweis unter jedem Stichpunkt, was du zählen kannst: Personen, Stunden, Geld oder Veränderung."
+    }
+  }
+}

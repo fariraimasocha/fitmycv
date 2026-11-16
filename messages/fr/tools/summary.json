@@ -1,0 +1,51 @@
+{
+  "englishOnly": "Cet outil fonctionne sur du texte en anglais. Il lit une offre et un CV rédigés en anglais, et il écrit les résumés en anglais.",
+  "jobLabel": "Collez l'offre d'emploi",
+  "jobPlaceholder": "Collez ici le texte complet de l'offre…",
+  "cvLabel": "Votre CV",
+  "submit": "Écrire mon résumé",
+  "busy": "Rédaction de vos résumés",
+  "statusReading": "Lecture de votre CV",
+  "statusMatching": "Comparaison de votre CV avec l'offre",
+  "statusNeedInput": "Ajoutez l'offre et votre CV pour commencer.",
+  "statusPrivate": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "resultHeading": "{count, plural, one {# résumé pour} other {# résumés pour}} <role>{title}</role>",
+  "fromPosting": "Le titre vient de l'offre. Chaque compétence figure à la fois dans votre CV et dans l'offre, et chaque résultat est une ligne de votre CV.",
+  "fromResume": "Nous n'avons pas trouvé d'intitulé de poste dans l'offre, donc le titre vient de votre CV. Chaque compétence figure dans les deux documents.",
+  "titleGuess": "Le titre est une estimation tirée de la formulation. Corrigez-le s'il est faux.",
+  "noResult": "Aucune ligne de votre CV ne contient de chiffre, donc chaque résumé indique où placer votre résultat.",
+  "shapes": {
+    "formula": "La formule",
+    "resultFirst": "Le résultat d'abord",
+    "short": "Court et simple"
+  },
+  "hints": {
+    "formula": "Titre et niveau, puis secteur et années, puis un résultat. Convient à presque tous les CV.",
+    "resultFirst": "Commence par votre meilleur chiffre. Utile quand le résultat impressionne plus que le titre.",
+    "short": "Deux lignes pour un CV d'une page, quand la place manque en haut.",
+    "shortSecond": "Deux lignes pour un CV d'une page. Utilise un deuxième résultat de votre CV pour ne pas répéter le premier."
+  },
+  "copyAria": "Copier le résumé : {shape}",
+  "copy": "Copier",
+  "copied": "Copié",
+  "toastCopied": "Résumé copié",
+  "toastFailed": "La copie a échoué. Sélectionnez le résumé et copiez-le vous-même.",
+  "claims": "Mentionne {list}. Gardez seulement ce que votre CV peut prouver.",
+  "slot": "Remplacez le crochet par un vrai chiffre avant de l'utiliser.",
+  "noTitleHeading": "Nous n'avons pas trouvé d'intitulé de poste",
+  "noTitleBody": "Aucun des deux documents ne nomme un poste que nous reconnaissons, donc un résumé serait une supposition. Collez l'offre complète, avec l'intitulé en haut, ou ajoutez votre poste actuel à votre CV, puis réessayez.",
+  "matchedHeading": "Trouvé dans votre CV",
+  "noMatch": "Votre CV et cette offre n'ont presque aucun vocabulaire en commun. Réglez cela avant le résumé. Commencez par le <link>test CV ATS</link>.",
+  "missingHeading": "Dans l'offre, pas dans votre CV",
+  "missingBody": "Aucun de ces termes ne peut encore aller dans votre résumé. Ajoutez d'abord ceux que vous pouvez honnêtement prouver dans une puce, puis relancez l'outil.",
+  "ctaTitle": "Le résumé est prêt. Et le reste du CV ?",
+  "ctaBody": "Inscrivez-vous gratuitement et FitMyCV réécrit tout votre CV et votre lettre de motivation pour cette offre, en gardant votre vraie expérience.",
+  "ctaButton": "Adapter tout mon CV à cette offre",
+  "examplesHeading": "Exemples de résumés professionnels",
+  "examplesBody": "Le vôtre sera construit à partir de l'offre que vous collez et des résultats que votre CV montre déjà. Voici la forme qu'ils prennent.",
+  "stages": {
+    "graduate": "Jeune diplômé",
+    "mid": "Confirmé",
+    "senior": "Senior"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "seoTitle": "Palavras fracas no currículo em inglês: corte os clichês",
+  "description": "Encontre buzzwords, clichês e frases de tarefa no seu currículo em inglês, com o que escrever no lugar. Grátis, sem cadastro, roda no navegador.",
+  "keywords": [
+    "palavras fracas currículo",
+    "palavras para evitar no currículo",
+    "clichês no currículo",
+    "currículo em inglês palavras",
+    "buzzwords currículo",
+    "resume buzzwords",
+    "words to avoid on a resume",
+    "responsible for alternativa",
+    "verbos de ação currículo em inglês"
+  ],
+  "eyebrow": "Ferramenta grátis",
+  "breadcrumbName": "Verificador de palavras fracas",
+  "h1": "Verificador de palavras fracas para currículo em inglês",
+  "lede": "“Hard-working team player, responsible for various tasks.” Todo recrutador já leu essa linha mil vezes. Adicione seu currículo em inglês e veja cada expressão que faz ele se perder no meio dos outros, com o que escrever no lugar.",
+  "howTo": {
+    "name": "Como tirar palavras fracas de um currículo em inglês",
+    "description": "Encontre e troque as expressões que deixam um currículo genérico.",
+    "steps": [
+      { "name": "Adicione seu currículo", "text": "Solte um PDF ou cole o texto." },
+      { "name": "Leia a lista", "text": "Cada expressão mostra quantas vezes aparece, onde e o que escrever no lugar." },
+      { "name": "Troque por provas", "text": "Substitua cada uma por um verbo e um resultado. Um número vale mais que um adjetivo." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Funciona com um currículo em português?",
+      "a": "Não. O verificador encontra palavras fracas em currículos escritos em inglês. A lista tem só expressões em inglês, como “responsible for” e “team player”, então um texto em português quase não gera resultados. Use para a versão em inglês do seu currículo."
+    },
+    {
+      "q": "O que escrever no lugar de “responsible for”?",
+      "a": "Um verbo que diga o que você fez e depois o resultado. “Responsible for payroll” vira “Ran payroll for 120 staff with no late payments in two years”. O [reescritor de tópicos](/resume-bullet-rewriter) faz isso uma linha por vez."
+    },
+    {
+      "q": "Buzzwords são sempre ruins?",
+      "a": "Sim, quando aparecem sozinhas. “Detail-oriented” é uma afirmação que ninguém consegue conferir. A prova, como uma auditoria em que você passou, faz o trabalho que a palavra tentava fazer."
+    },
+    {
+      "q": "O verificador encontra todas as palavras fracas?",
+      "a": "Não. Ele confere uma lista fixa das mais comuns. Não pega uma frase vaga feita de palavras comuns, então leia seus tópicos em voz alta também."
+    },
+    {
+      "q": "Por que ele conta linhas com números?",
+      "a": "Porque um número é a prova mais rápida. Se menos de um terço das suas linhas mais longas tem um, o verificador avisa para você acrescentar alguns."
+    },
+    {
+      "q": "Meu currículo fica armazenado?",
+      "a": "Não. Ele é lido na aba do seu navegador e nunca é enviado para lugar nenhum."
+    }
+  ],
+  "blocks": [
+    { "h2": "Três tipos de palavras fracas" },
+    {
+      "ul": [
+        "**Frases de tarefa** como “responsible for” (responsável por) e “duties included” (as tarefas incluíam) descrevem o cargo, não o que você fez nele.",
+        "**Verbos vagos** como “helped”, “worked on” e “handled” escondem a sua parte no trabalho.",
+        "**Clichês** como “team player” e “results-driven” são afirmações sem prova."
+      ]
+    },
+    {
+      "compare": {
+        "title": "Um tópico, antes e depois",
+        "context": "Cargo de atendimento ao cliente",
+        "before": "Responsible for handling customer complaints and helped the team with various tasks.",
+        "after": "Resolved 40 customer complaints a week and cut repeat complaints by a quarter by rewriting the reply templates."
+      }
+    },
+    {
+      "p": "Verbos de ação em inglês por área: [tecnologia](/blog/cv-action-verbs-tech), [vendas](/blog/cv-action-verbs-sales), [marketing](/blog/cv-action-verbs-marketing), [finanças](/blog/cv-action-verbs-finance) e [saúde](/blog/cv-action-verbs-healthcare)."
+    }
+  ],
+  "related": [
+    { "label": "Reescritor de tópicos do currículo", "href": "/resume-bullet-rewriter", "body": "Transforme uma tarefa em um tópico de conquista." },
+    { "label": "Verificador de currículo ATS", "href": "/ats-resume-checker", "body": "Veja quais termos exigidos faltam no seu currículo." },
+    { "label": "Verificador de formato de currículo", "href": "/cv-format-checker", "body": "Confira seu currículo para o país onde você está se candidatando." }
+  ],
+  "ui": { "home": "Início", "faqHeading": "Perguntas frequentes", "related": "Para onde ir agora", "open": "Abrir" }
+}

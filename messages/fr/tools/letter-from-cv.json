@@ -1,0 +1,51 @@
+{
+  "jobLabel": "Collez l'offre d'emploi",
+  "jobPlaceholder": "Collez ici le texte complet de l'annonce…",
+  "cvLabel": "Votre CV",
+  "companyLabel": "Nom de l'entreprise",
+  "nameLabel": "Votre nom",
+  "optional": "(facultatif)",
+  "englishOnly": "La lettre est rédigée en anglais. L'outil lit une offre et un CV en anglais, puis remplit un modèle de lettre en anglais.",
+  "submit": "Rédiger ma lettre",
+  "busy": "Rédaction de votre lettre",
+  "readingCv": "Lecture de votre CV",
+  "needBoth": "Ajoutez l'offre et votre CV pour commencer.",
+  "privacy": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "resultHeading": "Votre lettre de candidature pour",
+  "titleFromPosting": "L'intitulé du poste vient de l'offre.",
+  "titleFromCv": "Nous n'avons pas trouvé d'intitulé dans l'offre, la lettre utilise donc celui de votre CV.",
+  "sourcesNote": "Chaque compétence figure à la fois dans votre CV et dans l'offre, et chaque résultat est une ligne de votre CV.",
+  "noResult": "Votre CV n'a aucune ligne avec un chiffre, la lettre indique donc où placer votre résultat.",
+  "shapes": {
+    "full": {
+      "name": "Lettre complète",
+      "hint": "Quatre courts paragraphes. À utiliser comme corps d'e-mail ou à joindre en PDF.",
+      "copyAria": "Copier la lettre complète"
+    },
+    "short": {
+      "name": "Lettre courte",
+      "hint": "Pour un e-mail ou un formulaire avec un petit champ de texte.",
+      "copyAria": "Copier la lettre courte"
+    }
+  },
+  "copy": "Copier",
+  "copied": "Copiée",
+  "toastCopied": "Lettre copiée",
+  "toastCopyFailed": "La copie a échoué. Sélectionnez la lettre et copiez-la vous-même.",
+  "noTitleHeading": "Aucun intitulé de poste trouvé",
+  "noTitleBody": "Aucun des deux documents ne nomme un poste que nous reconnaissons. Collez l'annonce complète, avec l'intitulé en haut, puis réessayez.",
+  "missingHeading": "Dans l'offre, absent de votre CV",
+  "missingNote": "Votre lettre les laisse de côté parce que votre CV ne les mentionne jamais. Un employeur lit la lettre et le CV ensemble : un manque dans l'un se voit dans l'autre.",
+  "ctaGaps": {
+    "title": "Comblez ces manques",
+    "body": "Cette offre demande {count, plural, one {# terme} other {# termes}} que votre CV ne mentionne jamais. FitMyCV réécrit votre CV et votre lettre de motivation pour elle, avec l'expérience que vous avez déjà.",
+    "label": "Combler ces manques"
+  },
+  "ctaCovered": {
+    "title": "Envoyez un CV assorti à la lettre",
+    "body": "Votre CV couvre déjà les termes de cette offre. FitMyCV le réécrit pour elle afin que vos meilleures preuves soient en haut.",
+    "label": "Adapter mon CV"
+  },
+  "exampleHeading": "Exemple de lettre de candidature simple",
+  "exampleNote": "La vôtre est construite à partir de l'annonce que vous collez et des résultats que montre déjà votre CV. Elle prend cette forme, en anglais."
+}

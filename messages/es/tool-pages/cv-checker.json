@@ -1,0 +1,102 @@
+{
+  "seoTitle": "Revisar CV gratis: compara tu CV con una oferta, sin registro",
+  "description": "Revisa tu CV gratis y sin registro. Sube tu CV y pega la oferta de empleo. Ve tu puntuación y los términos que le faltan a tu CV. Tu CV se lee en tu navegador.",
+  "keywords": [
+    "revisar cv gratis",
+    "analizar cv",
+    "comprobar mi cv",
+    "analizador de cv gratis",
+    "revisar cv ats",
+    "revisar cv sin registro",
+    "comparar cv con oferta de empleo",
+    "escáner de cv"
+  ],
+  "eyebrow": "Herramienta gratis",
+  "breadcrumbName": "Revisar CV",
+  "h1": "Revisa tu CV gratis, sin registro",
+  "lede": "Sube tu CV y pega la oferta de empleo. Ves tu puntuación de coincidencia y los términos exactos que pide la empresa y que tu CV nunca menciona. Sin cuenta y sin límite.",
+  "howTo": {
+    "name": "Cómo comparar tu CV con una oferta de empleo",
+    "description": "Puntúa tu CV frente a una oferta y encuentra los términos que le faltan.",
+    "steps": [
+      {
+        "name": "Pega la oferta de empleo",
+        "text": "Copia la oferta completa, requisitos incluidos, y pégala en el campo de la descripción del puesto."
+      },
+      {
+        "name": "Sube tu CV",
+        "text": "Arrastra el PDF. El texto se lee en tu navegador. Si sale desordenado, un sistema de seguimiento de candidatos (ATS) también lo leerá desordenado."
+      },
+      {
+        "name": "Cubre las carencias que puedas demostrar",
+        "text": "Añade cada término que falte y que de verdad hayas aplicado a un punto con un resultado, y vuelve a revisar."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "¿Esta revisión de CV es gratis?",
+      "a": "Sí. Sin cuenta y sin límite de revisiones. La revisión se ejecuta en tu navegador."
+    },
+    {
+      "q": "¿Mi CV se sube a algún sitio?",
+      "a": "No. El PDF se lee en esta pestaña y no se guarda nada. Cierra la pestaña y desaparece."
+    },
+    {
+      "q": "¿Es lo mismo que un verificador ATS de CV?",
+      "a": "Sí. Esta página usa la misma revisión que nuestro verificador ATS de CV. Solo cambia el nombre."
+    },
+    {
+      "q": "¿Qué es una buena puntuación?",
+      "a": "Un 75 % o más significa que cubres la mayoría de los términos clave de la oferta. Entre el 50 % y el 75 %, merece la pena adaptar el CV. Por debajo del 50 %, el CV suele ser demasiado genérico para este puesto."
+    },
+    {
+      "q": "¿Debo añadir todos los términos que faltan?",
+      "a": "Solo los que de verdad hayas aplicado. Pon cada uno en un punto que muestre lo que hiciste y qué resultado tuvo. Afirmar una habilidad que no tienes solo lleva el rechazo a la entrevista."
+    }
+  ],
+  "blocks": [
+    {
+      "h2": "Qué mira la revisión del CV"
+    },
+    {
+      "p": "Extrae las palabras y las expresiones de dos palabras que la oferta repite, ponderadas según su frecuencia, y comprueba cuáles están en tu CV. La puntuación es la parte que encuentra. Revisa el vocabulario, no tu redacción ni tu diseño."
+    },
+    {
+      "h2": "Por qué un CV válido puede puntuar bajo"
+    },
+    {
+      "ul": [
+        "Describes el trabajo con palabras distintas a las de la oferta.",
+        "Usas una sigla que la oferta escribe completa, o al revés.",
+        "Tus mejores pruebas están en un puesto antiguo, al final de la página."
+      ]
+    },
+    {
+      "p": "Los tres casos se resuelven adaptando el CV a la oferta, no añadiendo experiencia. La [guía para adaptar un CV a una oferta](/blog/how-to-tailor-cv-to-job-description) (en inglés) explica cómo hacerlo tú mismo."
+    }
+  ],
+  "related": [
+    {
+      "label": "Verificador ATS de CV",
+      "href": "/ats-resume-checker",
+      "body": "La misma revisión, con una comparación con Jobscan."
+    },
+    {
+      "label": "Verificador de formato de CV",
+      "href": "/cv-format-checker",
+      "body": "Revisa tu CV según el país al que te postulas."
+    },
+    {
+      "label": "Generador de carta de solicitud",
+      "href": "/job-application-letter-generator",
+      "body": "Una carta creada a partir de la oferta y tu CV."
+    }
+  ],
+  "ui": {
+    "home": "Inicio",
+    "faqHeading": "Preguntas frecuentes",
+    "related": "Qué hacer después",
+    "open": "Abrir"
+  }
+}

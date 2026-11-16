@@ -1,0 +1,48 @@
+{
+  "englishOnly": "Esta herramienta encuentra palabras débiles en currículums escritos en inglés. Su lista de palabras y sus consejos tratan sobre frases en inglés.",
+  "submit": "Buscar palabras débiles",
+  "busy": "Leyendo tu CV",
+  "privacy": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "noneFound": "No se encontraron palabras débiles",
+  "found": "{count, plural, one {# palabra débil encontrada} other {# palabras débiles encontradas}}",
+  "numbers": "{withNumbers} de tus {lines} líneas largas tienen un número.",
+  "numbersLow": "Añade una cantidad, un porcentaje o un tiempo ahorrado a más de ellas. Los números son lo que recuerda un reclutador.",
+  "numbersOk": "Bien. Los números son lo que recuerda un reclutador.",
+  "kinds": {
+    "duty": "Frase de funciones",
+    "vague": "Verbo vago",
+    "cliche": "Cliché"
+  },
+  "fixes": {
+    "lead": "Empieza por lo que hiciste: Led, Ran, Built, Managed.",
+    "results": "Enumera resultados, no funciones. ¿Qué cambió porque estabas tú?",
+    "delivered": "Di lo que entregaste, no lo que te asignaron.",
+    "part": "Nombra tu parte: Built, Designed, Wrote, Tested.",
+    "did": "Di lo que hiciste: Supported 12 clients, Cut errors by 20%.",
+    "share": "Nombra tu parte del trabajo, o el resultado que produjo.",
+    "owned": "Di de qué te encargabas tú.",
+    "verb": "Usa un verbo preciso: Resolved, Processed, Negotiated.",
+    "name": "Nómbralos, o da la cantidad.",
+    "list": "Termina la lista o déjala en los dos elementos que importan.",
+    "show": "Demuéstralo: un plazo que cumpliste o el volumen que sacaste adelante.",
+    "teamResult": "Nombra un resultado del equipo y tu parte en él.",
+    "oneResult": "Bórralo y pon un resultado real en su lugar.",
+    "proof": "Da una prueba: una tasa de error, una auditoría que superaste.",
+    "started": "Muestra algo que empezaste sin que te lo pidieran.",
+    "skip": "Bórralo. Todos los reclutadores lo saltan.",
+    "unusual": "Describe la solución poco habitual que encontraste.",
+    "evidence": "Muestra la prueba: un proyecto personal, un curso, un resultado.",
+    "checkable": "Bórralo. No dice nada que un reclutador pueda comprobar.",
+    "who": "Di con quién trabajaste y qué se consiguió.",
+    "communication": "Demuéstralo: un informe que escribiste, un equipo que formaste.",
+    "record": "Sustitúyelo por el historial en sí: un número.",
+    "learned": "Nombra algo que aprendiste y lo rápido que lo pusiste en práctica.",
+    "delete": "Bórralo.",
+    "cameFor": "Di para qué acudía la gente a ti."
+  },
+  "handoff": {
+    "title": "Reescríbelas para una oferta real",
+    "body": "FitMyCV reescribe tu resumen y tus principales logros según una oferta de empleo, con las palabras de la oferta y usando solo lo que ya está en tu CV.",
+    "label": "Adaptar mi CV a una oferta"
+  }
+}

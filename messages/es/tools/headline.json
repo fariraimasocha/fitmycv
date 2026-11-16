@@ -1,0 +1,67 @@
+{
+  "jobLabel": "Pega la oferta de empleo",
+  "jobPlaceholder": "Pega aquí el texto completo de la oferta…",
+  "resumeLabel": "Tu currículum",
+  "englishOnly": "Esta herramienta lee ofertas y currículums escritos en inglés, y escribe los titulares en inglés.",
+  "submit": "Generar titulares",
+  "busy": "Escribiendo tus titulares",
+  "statusReadingCv": "Leyendo tu CV",
+  "statusMatching": "Comparando tu currículum con la oferta",
+  "statusNeedInput": "Añade la oferta de empleo y tu CV para generar.",
+  "statusPrivate": "Tu CV se lee en esta pestaña. No se guarda nada.",
+  "resultHeading": "{count, plural, one {# titular} other {# titulares}} para <hl>{title}</hl>",
+  "titleFromPosting": "El puesto sale de la oferta. Cada habilidad de abajo aparece tanto en tu currículum como en la oferta, así que nada aquí afirma algo que tu CV no mencione.",
+  "titleFromResume": "No encontramos un puesto en la oferta, así que usamos el de tu currículum. Cada habilidad de abajo aparece en los dos documentos.",
+  "titleGuess": "El puesto es una estimación sacada del texto. Corrígelo si no es correcto.",
+  "claims": "Afirma: {list}. Quédate solo con lo que tu CV puede demostrar.",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "copyAria": "Copiar titular: {text}",
+  "toastCopied": "Titular copiado",
+  "toastCopyFailed": "No se pudo copiar. Selecciona el titular y cópialo tú.",
+  "shapes": {
+    "titleSkills": {
+      "shape": "Puesto y habilidades clave",
+      "hint": "El clásico de LinkedIn y de los ATS. Se lee bien en un resultado de búsqueda."
+    },
+    "seniorityDomain": {
+      "shape": "Nivel y sector",
+      "hint": "Dice qué haces y dónde lo has hecho."
+    },
+    "years": {
+      "shape": "Años y punto fuerte",
+      "hintStated": "Usa el número de años que indica tu currículum.",
+      "hintSpan": "Usa el intervalo entre la fecha más antigua y la más reciente de tu currículum. Cámbialo si el número no es correcto."
+    },
+    "twoStrengths": {
+      "shape": "Dos puntos fuertes",
+      "hint": "No encontramos tus años de experiencia. Añade el número tú si lo quieres en el titular."
+    },
+    "focus": {
+      "shape": "En qué te centras",
+      "hint": "Empieza por el trabajo en lugar del nombre del puesto."
+    },
+    "plain": {
+      "shape": "Encabezado de CV sencillo",
+      "hint": "Sin barras verticales, así queda limpio bajo tu nombre en la parte superior del CV."
+    }
+  },
+  "noTitleHeading": "No encontramos un puesto",
+  "noTitleBody": "Ninguno de los dos documentos nombra un puesto que reconozcamos, así que un titular sería una suposición. Pega la oferta completa, con el puesto al principio, o añade tu puesto actual a tu CV, y vuelve a generar.",
+  "matchedHeading": "Encontrado en tu currículum",
+  "noOverlap": "Tu currículum y esta oferta casi no comparten vocabulario. Conviene arreglarlo antes del titular. Empieza por el <link>verificador de CV ATS</link>.",
+  "missingHeading": "En la oferta, no en tu CV",
+  "missingBody": "Ninguno de estos puede ir todavía en un titular. Añade primero a un punto los que puedas demostrar con honestidad, y vuelve a generar. El <link>verificador de CV ATS</link> puntúa todo el CV de la misma forma.",
+  "ctaTitle": "¿Quieres que el resto del CV también encaje?",
+  "ctaBody": "Pega el enlace de la oferta y FitMyCV reescribe tu CV y tu carta de presentación para esa oferta, manteniendo tu experiencia real.",
+  "ctaLabel": "Adaptar mi CV",
+  "examplesHeading": "Ejemplos de titular de currículum",
+  "examplesBody": "Los tuyos se crearán a partir de la oferta que pegues y de las habilidades que tu CV ya demuestra. Esta es la forma que tienen.",
+  "exampleRoles": {
+    "software": "Ingeniería de software",
+    "marketing": "Marketing",
+    "finance": "Finanzas",
+    "nursing": "Enfermería",
+    "design": "Diseño de producto"
+  }
+}

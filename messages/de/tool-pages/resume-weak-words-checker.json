@@ -1,0 +1,81 @@
+{
+  "seoTitle": "Schwache Wörter im englischen Lebenslauf finden",
+  "description": "Finden Sie Buzzwords, Klischees und Aufgabenfloskeln in Ihrem englischen Lebenslauf, mit einem Tipp, was Sie stattdessen schreiben. Kostenlos, ohne Anmeldung, im Browser.",
+  "keywords": [
+    "lebenslauf englisch buzzwords",
+    "schwache wörter lebenslauf",
+    "englischer lebenslauf floskeln",
+    "lebenslauf englisch formulierungen",
+    "resume buzzwords",
+    "words to avoid on a resume",
+    "responsible for alternative",
+    "cv englisch verben",
+    "englischen lebenslauf prüfen"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Schwache Wörter finden",
+  "h1": "Schwache Wörter im englischen Lebenslauf finden",
+  "lede": "„Hard-working team player, responsible for various tasks.“ Jeder Recruiter hat diese Zeile tausendmal gelesen. Fügen Sie Ihren englischen Lebenslauf ein und sehen Sie jede Formulierung, mit der er in der Masse untergeht, samt Tipp, was Sie stattdessen schreiben.",
+  "howTo": {
+    "name": "So entfernen Sie schwache Wörter aus einem englischen Lebenslauf",
+    "description": "Finden und ersetzen Sie die Formulierungen, die einen Lebenslauf austauschbar machen.",
+    "steps": [
+      { "name": "Lebenslauf einfügen", "text": "Legen Sie ein PDF ab oder fügen Sie den Text ein." },
+      { "name": "Liste lesen", "text": "Jede Formulierung zeigt, wie oft sie vorkommt, wo, und was Sie stattdessen schreiben." },
+      { "name": "Durch Belege ersetzen", "text": "Ersetzen Sie jede durch ein Verb und ein Ergebnis. Eine Zahl schlägt ein Adjektiv." }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Funktioniert der Checker mit einem Lebenslauf auf Deutsch?",
+      "a": "Nein. Er findet schwache Wörter in Lebensläufen auf Englisch. Seine Liste enthält nur englische Formulierungen wie „responsible for“ oder „team player“, ein deutscher Text ergibt daher kaum Treffer. Nutzen Sie ihn für die englische Fassung Ihres Lebenslaufs."
+    },
+    {
+      "q": "Was schreibe ich statt „responsible for“?",
+      "a": "Ein Verb, das sagt, was Sie getan haben, und dann das Ergebnis. „Responsible for payroll“ wird zu „Ran payroll for 120 staff with no late payments in two years“. Der [Stichpunkt-Umschreiber](/resume-bullet-rewriter) macht das Zeile für Zeile."
+    },
+    {
+      "q": "Sind Buzzwords immer schlecht?",
+      "a": "Ja, wenn sie allein stehen. „Detail-oriented“ ist eine Behauptung, die niemand prüfen kann. Ein Beleg, etwa ein bestandenes Audit, leistet, was das Wort versucht hat."
+    },
+    {
+      "q": "Findet der Checker jedes schwache Wort?",
+      "a": "Nein. Er prüft eine feste Liste der häufigsten. Einen vagen Satz aus ganz normalen Wörtern erkennt er nicht, lesen Sie Ihre Stichpunkte also auch laut."
+    },
+    {
+      "q": "Warum zählt er Zeilen mit Zahlen?",
+      "a": "Weil eine Zahl der schnellste Beleg ist. Wenn weniger als ein Drittel Ihrer längeren Zeilen eine enthält, sagt der Checker Ihnen, dass Sie welche ergänzen sollten."
+    },
+    {
+      "q": "Wird mein Lebenslauf gespeichert?",
+      "a": "Nein. Er wird in Ihrem Browser-Tab gelesen und nirgendwohin gesendet."
+    }
+  ],
+  "blocks": [
+    { "h2": "Drei Arten schwacher Wörter" },
+    {
+      "ul": [
+        "**Aufgabenfloskeln** wie „responsible for“ (verantwortlich für) und „duties included“ (zu den Aufgaben gehörte) beschreiben die Stelle, nicht was Sie darin getan haben.",
+        "**Vage Verben** wie „helped“, „worked on“ und „handled“ verstecken Ihren Anteil an der Arbeit.",
+        "**Klischees** wie „team player“ und „results-driven“ sind Behauptungen ohne Beleg."
+      ]
+    },
+    {
+      "compare": {
+        "title": "Ein Stichpunkt, vorher und nachher",
+        "context": "Stelle im Kundenservice",
+        "before": "Responsible for handling customer complaints and helped the team with various tasks.",
+        "after": "Resolved 40 customer complaints a week and cut repeat complaints by a quarter by rewriting the reply templates."
+      }
+    },
+    {
+      "p": "Englische Aktionsverben nach Bereich: [Tech](/blog/cv-action-verbs-tech), [Vertrieb](/blog/cv-action-verbs-sales), [Marketing](/blog/cv-action-verbs-marketing), [Finanzen](/blog/cv-action-verbs-finance) und [Gesundheitswesen](/blog/cv-action-verbs-healthcare)."
+    }
+  ],
+  "related": [
+    { "label": "Stichpunkt-Umschreiber", "href": "/resume-bullet-rewriter", "body": "Machen Sie aus einer Aufgabe einen Erfolgs-Stichpunkt." },
+    { "label": "ATS-Lebenslauf-Check", "href": "/ats-resume-checker", "body": "Sehen Sie, welche geforderten Begriffe Ihrem Lebenslauf fehlen." },
+    { "label": "Lebenslauf-Format-Check", "href": "/cv-format-checker", "body": "Prüfen Sie Ihren Lebenslauf für das Land, in dem Sie sich bewerben." }
+  ],
+  "ui": { "home": "Startseite", "faqHeading": "Häufige Fragen", "related": "Wie es weitergeht", "open": "Öffnen" }
+}

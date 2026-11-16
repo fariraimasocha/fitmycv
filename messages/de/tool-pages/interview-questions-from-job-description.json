@@ -1,0 +1,131 @@
+{
+  "seoTitle": "Vorstellungsgespräch Fragen aus der Stellenanzeige, gratis",
+  "description": "Füge eine Stellenbeschreibung ein und lade deinen Lebenslauf hoch. Sieh die Fragen zu dieser Stelle, die Zeile aus deinem Lebenslauf, die jede beantwortet, und die Lücken.",
+  "keywords": [
+    "vorstellungsgespräch fragen",
+    "fragen vorstellungsgespräch stellenanzeige",
+    "vorstellungsgespräch vorbereiten",
+    "typische fragen im vorstellungsgespräch",
+    "interviewfragen generator",
+    "vorbereitung vorstellungsgespräch stellenbeschreibung",
+    "star methode vorstellungsgespräch"
+  ],
+  "eyebrow": "Kostenloses Tool",
+  "breadcrumbName": "Interviewfragen aus der Stellenbeschreibung",
+  "h1": "Interviewfragen aus der Stellenbeschreibung",
+  "lede": "Füge die Stellenbeschreibung ein und lade deinen Lebenslauf hoch. Du bekommst die Fragen, die diese Stelle wahrscheinlich stellt, die Zeile aus deinem eigenen Lebenslauf, die jede beantwortet, und die gewünschten Kompetenzen, die dein Lebenslauf noch nicht zeigt. Kein Login, nichts wird gespeichert.",
+  "howTo": {
+    "name": "So sagst du Interviewfragen aus einer Stellenbeschreibung voraus",
+    "description": "Mach aus der Anzeige und deinem Lebenslauf eine Liste wahrscheinlicher Fragen mit Belegen aus deiner eigenen Erfahrung.",
+    "steps": [
+      {
+        "name": "Stellenbeschreibung einfügen",
+        "text": "Füge die ganze Anzeige ein, auch die Anforderungen. Das Tool liest den Jobtitel und die Kompetenzen, die die Anzeige wiederholt."
+      },
+      {
+        "name": "Lebenslauf hochladen",
+        "text": "Zieh das PDF hinein. Der Text wird in deinem Browser gelesen und nichts wird gespeichert."
+      },
+      {
+        "name": "Pro Frage eine Geschichte vorbereiten",
+        "text": "Jede Frage kommt mit der Zeile aus deinem Lebenslauf, die sie beantwortet. Bau um diese Zeile eine kurze Geschichte und bereite für jede Lücke eine ehrliche Antwort vor."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Wie wählt das Tool die Fragen aus?",
+      "a": "Es liest den Jobtitel und die Kompetenzen, die die Anzeige wiederholt, und prüft dann, welche davon dein Lebenslauf erwähnt. Kompetenzen auf beiden Listen werden zu Fragen mit einem Beleg aus deinem Lebenslauf. Kompetenzen nur in der Anzeige werden zu Lückenfragen, denn danach wird man dich fragen."
+    },
+    {
+      "q": "Funktioniert das Tool mit einer deutschen Anzeige und einem deutschen Lebenslauf?",
+      "a": "Nicht gut. Es erkennt Kompetenzen mit englischen Wortlisten und schreibt die Fragen auf Englisch. Es ist für Bewerbungen auf Englisch gedacht. Für ein Gespräch auf Deutsch nutze die typischen Fragen und die STAR-Methode auf dieser Seite."
+    },
+    {
+      "q": "Schreibt es meine Antworten für mich?",
+      "a": "Nein. Es zeigt dir die Zeile aus deinem eigenen Lebenslauf, die jede Frage beantwortet, und wie du sie aufbaust. Die Worte im Gespräch sollten deine sein, und eine Antwort, die auf deiner echten Arbeit beruht, lässt sich bei Nachfragen leichter verteidigen."
+    },
+    {
+      "q": "Welche Fragen kommen in fast jedem Vorstellungsgespräch?",
+      "a": "Erzählen Sie etwas über sich, warum wollen Sie diese Stelle, erzählen Sie von einem schwierigen Problem, das Sie gelöst haben, was ist Ihre größte Schwäche, und wo sehen Sie sich in ein paar Jahren. Dieses Tool ergänzt die Fragen, die zu der Stelle gehören, die du einfügst."
+    },
+    {
+      "q": "Was mache ich mit den Lückenfragen?",
+      "a": "Wenn du die Kompetenz genutzt hast und dein Lebenslauf es nur nicht sagt, ergänze sie vor der Bewerbung. Wenn nicht, bereite eine ehrliche Antwort zu dem vor, was dem am nächsten kommt, und wie du es lernen würdest. Behaupte nie eine Kompetenz, über die du keine zwei Minuten sprechen kannst."
+    },
+    {
+      "q": "Was ist die STAR-Methode?",
+      "a": "Situation, Aufgabe, Handlung, Ergebnis. Beschreib die Ausgangslage in einem Satz, sag, was du erledigen musstest, verwende die meiste Zeit auf das, was du getan hast, und ende mit dem Ergebnis. Deine Zeile im Lebenslauf ist meist das Ergebnis, also bau die Geschichte von dort rückwärts auf."
+    },
+    {
+      "q": "Wird mein Lebenslauf irgendwo hochgeladen?",
+      "a": "Nein. Das PDF wird in deinem Browser-Tab gelesen, und nichts wird gespeichert oder an einen Server gesendet. Schließ den Tab und alles ist weg."
+    }
+  ],
+  "blocks": [
+    { "h2": "Die Anzeige verrät, was gefragt wird" },
+    {
+      "p": "Interviewer arbeiten mit der Stellenbeschreibung. Die Kompetenzen, die sie wiederholt, müssen sie prüfen, also werden daraus Fragen. **Steht eine Kompetenz dreimal in der Anzeige, rechne damit, dass du danach gefragt wirst.**"
+    },
+    {
+      "ol": [
+        "**Fragen zur Stelle.** Warum diese Stelle, und führen Sie mich durch Ihren Lebenslauf. Die kommen in jedem Gespräch.",
+        "**Fragen zu Kompetenzen.** Erzählen Sie von einer Situation, in der Sie eine Kompetenz aus der Anzeige genutzt haben. Dein Lebenslauf sollte die Antwort schon enthalten.",
+        "**Lückenfragen.** Die Anzeige verlangt etwas, das dein Lebenslauf nie erwähnt. An diesen Fragen scheitern viele."
+      ]
+    },
+    {
+      "callout": {
+        "title": "Warum der Beleg aus deinem Lebenslauf kommt",
+        "body": "Der Interviewer hat deinen Lebenslauf vor sich. Eine Geschichte, die zu einer Zeile auf der Seite passt, wird geglaubt. Eine, die nicht passt, wirft eine Frage auf. Dieses Tool nutzt nur Zeilen, die es in deinem eigenen Lebenslauf findet."
+      }
+    },
+    { "h2": "So beantwortest du eine Frage zu einer Kompetenz" },
+    {
+      "table": {
+        "head": ["Schritt", "Was du sagst", "Länge"],
+        "rows": [
+          ["Situation", "Wo du warst und was los war", "Ein Satz"],
+          ["Aufgabe", "Was du erledigen musstest", "Ein Satz"],
+          ["Handlung", "Was du getan hast, in der Ich-Form", "Der größte Teil der Antwort"],
+          ["Ergebnis", "Was sich verändert hat, mit einer Zahl, wenn du eine hast", "Ein oder zwei Sätze"]
+        ]
+      }
+    },
+    { "h2": "Schließ die Lücken vor dem Gespräch, nicht währenddessen" },
+    {
+      "p": "Eine Lückenfrage im Gespräch bedeutet oft zuerst eine Lücke im Lebenslauf. Verlangt die Anzeige etwas, das du gemacht hast, und dein Lebenslauf sagt es nicht, lädt dich der Recruiter vielleicht nie ein. Prüf die vollständige Liste fehlender Begriffe mit [fehlenden Lebenslauf-Keywords](/missing-resume-keywords) oder bewerte deinen Lebenslauf gegen die Anzeige mit dem [ATS-Lebenslauf-Check](/ats-resume-checker)."
+    },
+    {
+      "cta": {
+        "title": "Soll dein Lebenslauf diese Fragen für dich beantworten?",
+        "body": "Füge den Link zur Stelle ein und FitMyCV passt Lebenslauf und Anschreiben an diese Anzeige an, nur mit deiner echten Erfahrung.",
+        "href": "/tailor-cv-from-job-link",
+        "label": "Lebenslauf anpassen"
+      }
+    }
+  ],
+  "related": [
+    {
+      "label": "Kostenloser ATS-Lebenslauf-Check",
+      "href": "/ats-resume-checker",
+      "body": "Bewerte deinen Lebenslauf gegen eine Anzeige und sieh, welche Begriffe dir fehlen."
+    },
+    {
+      "label": "Kurzprofil-Generator",
+      "href": "/professional-summary-generator",
+      "body": "Drei Kurzprofile für den Lebenslauf, gebaut aus der Anzeige und deinem Lebenslauf."
+    },
+    {
+      "label": "Stichpunkt-Umschreiber",
+      "href": "/resume-bullet-rewriter",
+      "body": "Mach aus einer Aufgabe einen Erfolg, über den du sprechen kannst."
+    }
+  ],
+  "ui": {
+    "home": "Startseite",
+    "faqHeading": "Häufige Fragen",
+    "related": "Wie es weitergeht",
+    "open": "Öffnen"
+  }
+}

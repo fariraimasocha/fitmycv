@@ -1,0 +1,48 @@
+{
+  "englishOnly": "Cet outil repère les mots faibles dans les CV rédigés en anglais. Sa liste de mots et ses conseils portent sur des expressions anglaises.",
+  "submit": "Trouver les mots faibles",
+  "busy": "Lecture de votre CV",
+  "privacy": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
+  "noneFound": "Aucun mot faible trouvé",
+  "found": "{count, plural, one {# mot faible trouvé} other {# mots faibles trouvés}}",
+  "numbers": "{withNumbers} de vos {lines} lignes longues contiennent un chiffre.",
+  "numbersLow": "Ajoutez un nombre, un pourcentage ou un temps gagné à davantage de lignes. Les chiffres sont ce qu'un recruteur retient.",
+  "numbersOk": "Bien. Les chiffres sont ce qu'un recruteur retient.",
+  "kinds": {
+    "duty": "Formule de tâche",
+    "vague": "Verbe vague",
+    "cliche": "Cliché"
+  },
+  "fixes": {
+    "lead": "Commencez par ce que vous avez fait : Led, Ran, Built, Managed.",
+    "results": "Listez des résultats, pas des tâches. Qu'est-ce qui a changé grâce à vous ?",
+    "delivered": "Dites ce que vous avez livré, pas ce qu'on vous a confié.",
+    "part": "Précisez votre rôle : Built, Designed, Wrote, Tested.",
+    "did": "Dites ce que vous avez fait : Supported 12 clients, Cut errors by 20%.",
+    "share": "Précisez votre part du travail, ou le résultat obtenu.",
+    "owned": "Dites ce dont vous étiez responsable.",
+    "verb": "Utilisez un verbe précis : Resolved, Processed, Negotiated.",
+    "name": "Nommez-les, ou donnez leur nombre.",
+    "list": "Terminez la liste ou gardez seulement les deux éléments qui comptent.",
+    "show": "Prouvez-le : une échéance tenue ou le volume que vous avez géré.",
+    "teamResult": "Citez un résultat d'équipe et votre part dans ce résultat.",
+    "oneResult": "Supprimez-le et mettez un vrai résultat à sa place.",
+    "proof": "Donnez une preuve : un taux d'erreur, un audit réussi.",
+    "started": "Montrez une chose que vous avez lancée sans qu'on vous le demande.",
+    "skip": "Supprimez-le. Tous les recruteurs le sautent.",
+    "unusual": "Décrivez la solution inhabituelle que vous avez trouvée.",
+    "evidence": "Montrez la preuve : un projet personnel, une formation, un résultat.",
+    "checkable": "Supprimez-le. Un recruteur ne peut rien en vérifier.",
+    "who": "Dites avec qui vous avez travaillé et ce que cela a produit.",
+    "communication": "Prouvez-le : un rapport que vous avez écrit, une équipe que vous avez formée.",
+    "record": "Remplacez-le par le bilan lui-même : un chiffre.",
+    "learned": "Citez une chose apprise et la vitesse à laquelle vous l'avez mise en pratique.",
+    "delete": "Supprimez-le.",
+    "cameFor": "Dites pourquoi on venait vous voir."
+  },
+  "handoff": {
+    "title": "Réécrivez-les pour une vraie offre",
+    "body": "FitMyCV réécrit votre résumé et vos principales lignes d'expérience en fonction d'une offre d'emploi, avec les mots de l'offre, en utilisant uniquement ce qui figure déjà dans votre CV.",
+    "label": "Adapter mon CV à une offre"
+  }
+}

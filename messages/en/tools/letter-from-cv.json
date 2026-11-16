@@ -1,0 +1,51 @@
+{
+  "jobLabel": "Paste the job description",
+  "jobPlaceholder": "Paste the full text of the job advert here…",
+  "cvLabel": "Your CV",
+  "companyLabel": "Company name",
+  "nameLabel": "Your name",
+  "optional": "(optional)",
+  "englishOnly": "The letter is written in English. The tool reads an English job advert and an English CV, and fills an English letter template from them.",
+  "submit": "Write my letter",
+  "busy": "Writing your letter",
+  "readingCv": "Reading your CV",
+  "needBoth": "Add the job description and your CV to start.",
+  "privacy": "Your CV is read in this tab. Nothing is stored.",
+  "resultHeading": "Your application letter for",
+  "titleFromPosting": "The role comes from the posting.",
+  "titleFromCv": "We could not find a job title in the posting, so this uses the title in your CV.",
+  "sourcesNote": "Every skill is in both your CV and the posting, and every result is a line from your CV.",
+  "noResult": "Your CV has no line with a number in it, so the letter marks where your result goes.",
+  "shapes": {
+    "full": {
+      "name": "Full letter",
+      "hint": "Four short paragraphs. Use it as an email body or attach it as a PDF.",
+      "copyAria": "Copy the full letter"
+    },
+    "short": {
+      "name": "Short letter",
+      "hint": "For an email or a form with a small text box.",
+      "copyAria": "Copy the short letter"
+    }
+  },
+  "copy": "Copy",
+  "copied": "Copied",
+  "toastCopied": "Letter copied",
+  "toastCopyFailed": "Copy failed. Select the letter and copy it yourself.",
+  "noTitleHeading": "We could not find a job title",
+  "noTitleBody": "Neither document names a role we recognise. Paste the full advert, including the title at the top, then try again.",
+  "missingHeading": "In the posting, not in your CV",
+  "missingNote": "Your letter leaves these out because your CV never mentions them. An employer reads the letter and the CV together, so a gap in one shows in both.",
+  "ctaGaps": {
+    "title": "Close these gaps",
+    "body": "This posting asks for {count, plural, one {# term} other {# terms}} your CV never mentions. FitMyCV rewrites your CV and cover letter against it, using the experience you already have.",
+    "label": "Close these gaps"
+  },
+  "ctaCovered": {
+    "title": "Send a CV that matches the letter",
+    "body": "Your CV already covers this posting's terms. FitMyCV rewrites your CV against it so the strongest evidence sits at the top.",
+    "label": "Tailor my CV"
+  },
+  "exampleHeading": "A simple job application letter example",
+  "exampleNote": "Yours is built from the advert you paste and the results your CV already shows. It takes this shape."
+}

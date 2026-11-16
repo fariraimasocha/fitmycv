@@ -934,8 +934,9 @@
     --chart-3: var(--dash-muted);
     --chart-4: var(--dash-line);
     --chart-5: var(--dash-accent);
-    /* The cream at 90%, mixed toward ink, so the sidebar sits a shade back. */
-    --sidebar: color-mix(in srgb, var(--dash-surface) 90%, var(--dash-ink));
+    /* The page cream (oklch 0.953 0.017 100), a step darker on the same hue so
+       the two read as one family. Mixing toward the grey ink made it muddy. */
+    --sidebar: oklch(0.923 0.021 100);
     --sidebar-foreground: var(--dash-ink);
     --sidebar-primary: var(--dash-ink);
     --sidebar-primary-foreground: var(--dash-surface);

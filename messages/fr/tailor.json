@@ -440,7 +440,14 @@
     "responsibilities": "Responsabilités",
     "qualifications": "Qualifications",
     "keyTerms": "Termes clés",
-    "inYourCv": "{matched} sur {total} dans votre CV"
+    "inYourCv": "{matched} sur {total} dans votre CV",
+    "shownInCv": "{met} sur {total} visibles dans votre CV",
+    "checking": "Vérification de votre CV…",
+    "status": {
+      "met": "Dans votre CV",
+      "partial": "En partie dans votre CV",
+      "missing": "Pas encore dans votre CV"
+    }
   },
   "coverLetter": {
     "title": "Lettre de motivation",
@@ -747,5 +754,12 @@
     "sectionsAria": "Sections du document adapté",
     "saveTailored": "Enregistrer le CV adapté",
     "liveUpdates": "Mis à jour pendant la saisie"
+  },
+  "health": {
+    "title": "Votre CV aujourd'hui",
+    "description": "{count, plural, one {# point} other {# points}} à corriger dans le CV que vous avez importé.",
+    "clean": "Nous avons vérifié le CV que vous avez importé.",
+    "cleanShort": "Aucun problème trouvé.",
+    "more": "{count} de plus dans l'onglet ATS après l'adaptation."
   }
 }

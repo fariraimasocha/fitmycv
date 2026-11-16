@@ -440,7 +440,14 @@
     "responsibilities": "Aufgaben",
     "qualifications": "Qualifikationen",
     "keyTerms": "Schlüsselbegriffe",
-    "inYourCv": "{matched} von {total} in deinem Lebenslauf"
+    "inYourCv": "{matched} von {total} in deinem Lebenslauf",
+    "shownInCv": "{met} von {total} in deinem Lebenslauf",
+    "checking": "Lebenslauf wird geprüft…",
+    "status": {
+      "met": "In deinem Lebenslauf",
+      "partial": "Teilweise in deinem Lebenslauf",
+      "missing": "Noch nicht in deinem Lebenslauf"
+    }
   },
   "coverLetter": {
     "title": "Anschreiben",
@@ -747,5 +754,12 @@
     "sectionsAria": "Bereiche des angepassten Dokuments",
     "saveTailored": "Angepassten Lebenslauf speichern",
     "liveUpdates": "Aktualisiert sich beim Tippen"
+  },
+  "health": {
+    "title": "Dein Lebenslauf jetzt",
+    "description": "{count, plural, one {# Punkt} other {# Punkte}} zum Verbessern in deinem hochgeladenen Lebenslauf.",
+    "clean": "Wir haben deinen hochgeladenen Lebenslauf geprüft.",
+    "cleanShort": "Keine Probleme gefunden.",
+    "more": "{count} weitere im ATS-Tab nach dem Anpassen."
   }
 }

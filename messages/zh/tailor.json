@@ -440,7 +440,14 @@
     "responsibilities": "职责",
     "qualifications": "资历",
     "keyTerms": "关键词",
-    "inYourCv": "你的简历中有 {matched}/{total} 个"
+    "inYourCv": "你的简历中有 {matched}/{total} 个",
+    "shownInCv": "简历中体现了 {met}/{total} 项",
+    "checking": "正在检查你的简历…",
+    "status": {
+      "met": "简历中已有",
+      "partial": "简历中部分体现",
+      "missing": "简历中尚未体现"
+    }
   },
   "coverLetter": {
     "title": "求职信",
@@ -747,5 +754,12 @@
     "sectionsAria": "定制文件的各个部分",
     "saveTailored": "保存定制简历",
     "liveUpdates": "随输入实时更新"
+  },
+  "health": {
+    "title": "你当前的简历",
+    "description": "你上传的简历中有 {count} 处需要修改。",
+    "clean": "我们检查了你上传的简历。",
+    "cleanShort": "没有发现问题。",
+    "more": "定制后可在 ATS 标签页查看另外 {count} 项。"
   }
 }

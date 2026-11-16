@@ -440,7 +440,14 @@
     "responsibilities": "Responsibilities",
     "qualifications": "Qualifications",
     "keyTerms": "Key terms",
-    "inYourCv": "{matched} of {total} in your CV"
+    "inYourCv": "{matched} of {total} in your CV",
+    "shownInCv": "{met} of {total} shown in your CV",
+    "checking": "Checking your CV…",
+    "status": {
+      "met": "In your CV",
+      "partial": "Partly in your CV",
+      "missing": "Not in your CV yet"
+    }
   },
   "coverLetter": {
     "title": "Cover letter",
@@ -747,5 +754,12 @@
     "sectionsAria": "Tailored document sections",
     "saveTailored": "Save tailored CV",
     "liveUpdates": "Updates as you type"
+  },
+  "health": {
+    "title": "Your CV right now",
+    "description": "{count, plural, one {# thing} other {# things}} to fix in the CV you uploaded.",
+    "clean": "We checked the CV you uploaded.",
+    "cleanShort": "No problems found.",
+    "more": "{count} more in the ATS tab after you tailor."
   }
 }

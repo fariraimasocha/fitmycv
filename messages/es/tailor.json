@@ -440,7 +440,14 @@
     "responsibilities": "Responsabilidades",
     "qualifications": "Cualificaciones",
     "keyTerms": "Términos clave",
-    "inYourCv": "{matched} de {total} en tu CV"
+    "inYourCv": "{matched} de {total} en tu CV",
+    "shownInCv": "{met} de {total} aparecen en tu CV",
+    "checking": "Revisando tu CV…",
+    "status": {
+      "met": "En tu CV",
+      "partial": "En parte en tu CV",
+      "missing": "Aún no está en tu CV"
+    }
   },
   "coverLetter": {
     "title": "Carta de presentación",
@@ -747,5 +754,12 @@
     "sectionsAria": "Secciones del documento adaptado",
     "saveTailored": "Guardar CV adaptado",
     "liveUpdates": "Se actualiza mientras escribes"
+  },
+  "health": {
+    "title": "Tu CV ahora",
+    "description": "{count, plural, one {# cosa} other {# cosas}} que corregir en el CV que subiste.",
+    "clean": "Revisamos el CV que subiste.",
+    "cleanShort": "No encontramos problemas.",
+    "more": "{count} más en la pestaña ATS después de adaptar."
   }
 }

@@ -36,6 +36,7 @@ import { DownloadButton } from "@/components/ui/download-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
+import CvHealthCard from "@/components/CvHealthCard";
 import JobMatchScoreCard from "@/components/JobMatchScoreCard";
 import { ResumeTemplate } from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
@@ -206,6 +207,8 @@ function Tailor() {
   const [atsScore, setAtsScore] = useState(null);
   const [atsLoading, setAtsLoading] = useState(false);
   const [preAtsScore, setPreAtsScore] = useState(null);
+  const [evidence, setEvidence] = useState(null);
+  const [evidenceLoading, setEvidenceLoading] = useState(false);
   const [companyBrief, setCompanyBrief] = useState(null);
   const [companyBriefLoading, setCompanyBriefLoading] = useState(false);
   const [matchScore, setMatchScore] = useState(null);
@@ -348,6 +351,7 @@ function Tailor() {
       setCompanyBrief(null);
       setMatchScore(null);
       setPreAtsScore(null);
+      setEvidence(null);
       setWhyThisRole(null);
       setAppliedFixes([]);
       trackEvent("job_requirements_extracted", {
@@ -396,6 +400,28 @@ function Tailor() {
             .then((res) => {
               if (res?.data) setPreAtsScore(res.data);
             });
+
+          // Free for everyone: which requirements their CV already shows, with
+          // the line that shows it. A failure just leaves the plain list.
+          setEvidenceLoading(true);
+          fetch("/api/job/evidence", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ referenceCV, jobData: result.data }),
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              if (!res?.data) return;
+              setEvidence(res.data);
+              const all = [...res.data.requirements, ...res.data.qualifications];
+              trackEvent("requirements_checked", {
+                total: all.length,
+                met: all.filter((c) => c.status === "met").length,
+                partial: all.filter((c) => c.status === "partial").length,
+              });
+            })
+            .catch(() => {})
+            .finally(() => setEvidenceLoading(false));
 
           return Promise.all([scorePromise, preAtsPromise]);
         })
@@ -1078,6 +1104,8 @@ function Tailor() {
                   referenceCV={cachedReferenceCV}
                   matchGrade={matchScore?.globalGrade}
                   matchLoading={matchScoreLoading}
+                  evidence={evidence}
+                  evidenceLoading={evidenceLoading}
                 />
               </Rise>
               <div className="flex min-w-0 flex-col gap-4 lg:col-span-5 lg:sticky lg:top-32">
@@ -1121,6 +1149,7 @@ function Tailor() {
                     </button>
                   </DashboardPanel>
                 )}
+                {!tailorResult && <CvHealthCard report={preAtsScore} delay={0.08} />}
                 {(!isPremium || matchScoreLoading || matchScore) && (
                   <Rise delay={0.1}>
                     <JobMatchScoreCard

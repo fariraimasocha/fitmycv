@@ -14,6 +14,8 @@ import {
   CaretDownIcon,
   CaretUpIcon,
   CheckCircleIcon,
+  CircleHalfIcon,
+  CircleIcon,
   XCircleIcon,
 } from "@phosphor-icons/react";
 import { GradeBadge } from "@/components/GradeBadge";
@@ -39,7 +41,15 @@ function normalizeSearchText(value) {
  * The scraped posting as a flat card: title and meta up top, then one
  * hairline-divided section per list. The tailor action lives on the page.
  */
-export default function JobRequirementsCard({ data, jobUrl, referenceCV, matchGrade, matchLoading }) {
+export default function JobRequirementsCard({
+  data,
+  jobUrl,
+  referenceCV,
+  matchGrade,
+  matchLoading,
+  evidence,
+  evidenceLoading,
+}) {
   const t = useTranslations("tailor.jobRequirements");
   // Host match only: LinkedIn and Indeed links show nothing, which is honest.
   const ats = detectAts(jobUrl);
@@ -89,7 +99,13 @@ export default function JobRequirementsCard({ data, jobUrl, referenceCV, matchGr
       </div>
       <div className="divide-y divide-[var(--landing-line)] border-t border-[var(--landing-line)]">
         {data.requirements?.length > 0 && (
-          <Section icon={ListChecksIcon} title={t("requirements")} items={data.requirements} />
+          <Section
+            icon={ListChecksIcon}
+            title={t("requirements")}
+            items={data.requirements}
+            checks={evidence?.requirements}
+            checking={evidenceLoading}
+          />
         )}
         {data.responsibilities?.length > 0 && (
           <Section
@@ -103,6 +119,8 @@ export default function JobRequirementsCard({ data, jobUrl, referenceCV, matchGr
             icon={GraduationCapIcon}
             title={t("qualifications")}
             items={data.qualifications}
+            checks={evidence?.qualifications}
+            checking={evidenceLoading}
           />
         )}
         {data.keywords?.length > 0 && (
@@ -125,15 +143,62 @@ function SectionTitle({ icon: Icon, children, trailing }) {
   );
 }
 
-function Section({ icon, title, items }) {
+// met: in the CV, partial: something close, missing: not shown yet.
+const CHECK = {
+  met: { Icon: CheckCircleIcon, weight: "fill", tone: "text-[var(--landing-success)]" },
+  partial: { Icon: CircleHalfIcon, weight: "fill", tone: "text-[var(--dash-accent)]" },
+  missing: { Icon: CircleIcon, weight: "regular", tone: "text-[var(--dash-muted)]" },
+};
+
+function Section({ icon, title, items, checks, checking }) {
+  const t = useTranslations("tailor.jobRequirements");
+  // Only a full answer turns the list into a checklist. Anything partial
+  // would put ticks against the wrong lines.
+  const checked = checks?.length === items.length ? checks : null;
+  const met = checked?.filter((c) => c.status === "met").length ?? 0;
+  const trailing = checked ? (
+    <span className="ms-auto text-xs tabular-nums text-muted-foreground">
+      {t("shownInCv", { met, total: items.length })}
+    </span>
+  ) : checking ? (
+    <span className="ms-auto text-xs text-muted-foreground" aria-live="polite">
+      {t("checking")}
+    </span>
+  ) : null;
+
   return (
     <div className="dashboard-card-pad">
-      <SectionTitle icon={icon}>{title}</SectionTitle>
-      <ul className="mt-3 list-disc space-y-1 ps-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
-        {items.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
+      <SectionTitle icon={icon} trailing={trailing}>
+        {title}
+      </SectionTitle>
+      {checked ? (
+        <ul className="mt-3 space-y-3">
+          {items.map((item, i) => {
+            const { status, quote } = checked[i];
+            const { Icon, weight, tone } = CHECK[status];
+            return (
+              <li key={i} className="flex gap-2">
+                <Icon size={18} weight={weight} className={`mt-0.5 shrink-0 ${tone}`} aria-hidden="true" />
+                <div className="min-w-0 text-sm leading-6">
+                  <span className="sr-only">{t(`status.${status}`)}: </span>
+                  <span className={status === "missing" ? "text-[var(--landing-ink-soft)]" : "text-foreground"}>
+                    {item}
+                  </span>
+                  {quote && (
+                    <q className="mt-0.5 block text-xs leading-5 text-muted-foreground italic">{quote}</q>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <ul className="mt-3 list-disc space-y-1 ps-4 text-sm leading-6 text-[var(--landing-ink-soft)]">
+          {items.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

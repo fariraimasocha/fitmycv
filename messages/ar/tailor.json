@@ -440,7 +440,14 @@
     "responsibilities": "المسؤوليات",
     "qualifications": "المؤهلات",
     "keyTerms": "المصطلحات الرئيسية",
-    "inYourCv": "{matched} من {total} في سيرتك الذاتية"
+    "inYourCv": "{matched} من {total} في سيرتك الذاتية",
+    "shownInCv": "{met} من {total} ظاهرة في سيرتك",
+    "checking": "نفحص سيرتك…",
+    "status": {
+      "met": "موجود في سيرتك",
+      "partial": "موجود جزئيا في سيرتك",
+      "missing": "غير موجود في سيرتك بعد"
+    }
   },
   "coverLetter": {
     "title": "خطاب التقديم",
@@ -747,5 +754,12 @@
     "sectionsAria": "أقسام المستند المخصص",
     "saveTailored": "احفظ السيرة الذاتية المخصصة",
     "liveUpdates": "تتحدث أثناء الكتابة"
+  },
+  "health": {
+    "title": "سيرتك الذاتية الآن",
+    "description": "{count, plural, one {مشكلة واحدة} other {# مشكلات}} لإصلاحها في السيرة التي رفعتها.",
+    "clean": "فحصنا السيرة التي رفعتها.",
+    "cleanShort": "لم نجد أي مشكلة.",
+    "more": "{count} أخرى في تبويب ATS بعد التخصيص."
   }
 }

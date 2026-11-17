@@ -1377,6 +1377,39 @@
     transform-origin: top left;
   }
 
+  /* Homepage strip: two slides fill the row from lg up, so each resume is big
+     enough to read. Each width is 640px times the scale, so the document fills
+     its slide exactly. 580px is half the 1180px container less the 20px gap. */
+  @media (min-width: 64rem) {
+    .template-slide-wide {
+      flex-basis: 26.25rem;
+      width: 26.25rem;
+    }
+    .template-slide-wide .template-doc {
+      transform: scale(0.65625);
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .template-slide-wide {
+      flex-basis: 33rem;
+      width: 33rem;
+    }
+    .template-slide-wide .template-doc {
+      transform: scale(0.825);
+    }
+  }
+
+  @media (min-width: 86.25rem) {
+    .template-slide-wide {
+      flex-basis: 36.25rem;
+      width: 36.25rem;
+    }
+    .template-slide-wide .template-doc {
+      transform: scale(0.90625);
+    }
+  }
+
   /* Nineteen template cards each render a full resume document, so the gallery
      is a few thousand DOM nodes of real text. content-visibility lets the
      browser skip layout and paint for the cards that are off screen; the

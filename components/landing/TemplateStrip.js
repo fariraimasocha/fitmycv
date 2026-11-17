@@ -4,7 +4,11 @@ import { useRef } from "react";
 import { useTranslations } from "next-intl";
 import RevealWords from "@/components/landing/RevealWords";
 import { Link } from "@/i18n/navigation";
-import { ArrowRightIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import {
+  ArrowRightIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
+} from "@phosphor-icons/react";
 
 import { ResumeTemplate } from "@/components/ResumePreview";
 import {
@@ -19,13 +23,13 @@ import { SAMPLE_CV } from "@/utils/cv-templates/sample-cv";
 // are real, then send you to the gallery.
 const SHOWN = ["classic", "modern", "accent", "executive", "technical", "rezi"];
 
-const CARDS = SHOWN.map((id) => TEMPLATE_METADATA.find((t) => t.id === id)).filter(
-  Boolean,
-);
+const CARDS = SHOWN.map((id) =>
+  TEMPLATE_METADATA.find((t) => t.id === id),
+).filter(Boolean);
 
 const GAP = 20;
 
-function ArrowButton({ dir, onClick }) {
+function ArrowButton({ dir, onClick, className }) {
   const t = useTranslations("landing.templates");
   const Icon = dir === "prev" ? CaretLeftIcon : CaretRightIcon;
   return (
@@ -33,7 +37,7 @@ function ArrowButton({ dir, onClick }) {
       type="button"
       onClick={onClick}
       aria-label={dir === "prev" ? t("prev") : t("next")}
-      className="flex size-control cursor-pointer items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)] landing-shadow-lift transition-colors duration-300 hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2"
+      className={`absolute top-1/2 z-10 flex size-control -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] text-[var(--landing-ink)] landing-shadow-lift transition-colors duration-300 hover:bg-[var(--landing-paper-soft)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2 ${className}`}
     >
       <Icon size={17} weight="bold" aria-hidden="true" />
     </button>
@@ -59,10 +63,18 @@ export default function TemplateStrip() {
     if (!el) return;
 
     const slide = el.querySelector(":scope > li");
-    const step = slide ? slide.getBoundingClientRect().width + GAP : el.clientWidth;
+    const step = slide
+      ? slide.getBoundingClientRect().width + GAP
+      : el.clientWidth;
     const max = el.scrollWidth - el.clientWidth;
 
-    el.scrollLeft = Math.max(0, Math.min(max, el.scrollLeft + direction * step));
+    // Native smooth scroll: the browser animates it off the main thread and
+    // still lands on a snap point. Reduced motion jumps instead.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollTo({
+      left: Math.max(0, Math.min(max, el.scrollLeft + direction * step)),
+      behavior: reduce ? "auto" : "smooth",
+    });
   };
 
   return (
@@ -71,15 +83,14 @@ export default function TemplateStrip() {
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="max-w-2xl">
             <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
-            <RevealWords text={t("title")} className="mt-3 font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl" />
-            <p className="landing-copy mt-4 text-base">
-              {t("body")}
-            </p>
+            <RevealWords
+              text={t("title")}
+              className="mt-3 font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl"
+            />
+            <p className="landing-copy mt-4 text-base">{t("body")}</p>
           </div>
 
           <div className="flex shrink-0 items-center gap-3">
-            <ArrowButton dir="prev" onClick={() => move(-1)} />
-            <ArrowButton dir="next" onClick={() => move(1)} />
             <Link
               href="/cv-templates"
               className="landing-secondary-btn landing-secondary-btn-sm font-outfit group"
@@ -97,39 +108,56 @@ export default function TemplateStrip() {
         {/* Native scroll with snap points, so a touch swipe and a keyboard
             scroll keep working without carousel state to fall out of step with
             the DOM. The arrows only set scrollLeft. */}
-        <ul
-          ref={trackRef}
-          className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
-        >
-          {CARDS.map((template) => (
-            <li key={template.id} className="template-slide snap-start">
-              <Link
-                href="/cv-templates"
-                className="landing-card landing-lift group flex flex-col overflow-hidden rounded-2xl"
+        {/* Arrows sit on the row's left and right edges, centred on the
+            cards. From lg they sit in the page margin, clear of the resumes. */}
+        <div className="relative mt-8">
+          <ArrowButton
+            dir="prev"
+            onClick={() => move(-1)}
+            className="start-2 lg:-start-14"
+          />
+          <ArrowButton
+            dir="next"
+            onClick={() => move(1)}
+            className="end-2 lg:-end-14"
+          />
+          <ul
+            ref={trackRef}
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+          >
+            {CARDS.map((template) => (
+              <li
+                key={template.id}
+                className="template-slide template-slide-wide snap-start"
               >
-                <span className="relative block aspect-3/4 w-full overflow-hidden bg-white">
-                  <span className="template-doc pointer-events-none absolute inset-0 select-none">
-                    <ResumeTemplate
-                      data={SAMPLE_CV}
-                      template={template.id}
-                      style={getTemplateDefaultStyle(template.id)}
-                    />
-                  </span>
-                </span>
-                <span className="flex items-center justify-between gap-2 border-t border-[var(--landing-line)] px-5 py-4">
-                  <span className="font-outfit text-base font-bold text-[var(--landing-ink)]">
-                    {template.name}
-                  </span>
-                  {template.badge ? (
-                    <span className="shrink-0 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-1 text-xs font-semibold text-[var(--landing-ink-soft)]">
-                      {template.badge}
+                <Link
+                  href="/cv-templates"
+                  className="landing-card landing-lift group flex flex-col overflow-hidden rounded-2xl"
+                >
+                  <span className="relative block aspect-3/4 w-full overflow-hidden bg-white">
+                    <span className="template-doc pointer-events-none absolute inset-0 select-none">
+                      <ResumeTemplate
+                        data={SAMPLE_CV}
+                        template={template.id}
+                        style={getTemplateDefaultStyle(template.id)}
+                      />
                     </span>
-                  ) : null}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                  </span>
+                  <span className="flex items-center justify-between gap-2 border-t border-[var(--landing-line)] px-5 py-4">
+                    <span className="font-outfit text-base font-bold text-[var(--landing-ink)]">
+                      {template.name}
+                    </span>
+                    {template.badge ? (
+                      <span className="shrink-0 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-2.5 py-1 text-xs font-semibold text-[var(--landing-ink-soft)]">
+                        {template.badge}
+                      </span>
+                    ) : null}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

@@ -239,6 +239,7 @@ export default function ResumeFileField({
           value={value}
           onChange={(event) => onChange(event.target.value)}
           rows={rows}
+          autoFocus={pasteOpen}
           placeholder={t("textPlaceholder")}
           className={textareaClassName}
         />

@@ -30,7 +30,7 @@ export const faqs = [
   },
   {
     q: "How long should tailoring a resume take?",
-    a: "Ten to fifteen minutes by hand once you have a master CV. If it takes an hour, you are rewriting things that do not need rewriting. See [how much to tailor](/blog/how-much-should-you-tailor-your-resume).",
+    a: "Ten to fifteen minutes by hand once you have a master CV. If it takes an hour, you are rewriting things that do not need rewriting. See [tips for tailoring a CV to specific jobs](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
   {
     q: "Is it fine to send the same resume everywhere?",

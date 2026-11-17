@@ -141,7 +141,7 @@ export const atsResumeChecker = {
       },
     },
     {
-      p: "If you would rather skip the manual rewrite, [tailor your CV from the job link](/tailor-cv-from-job-link) instead. It reads the posting for you and produces the rewritten CV and cover letter directly. The [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description) covers the manual method in full if you prefer to do it yourself.",
+      p: "If you would rather skip the manual rewrite, [tailor your CV from the job link](/tailor-cv-from-job-link) instead. It reads the posting for you and produces the rewritten CV and cover letter directly. The [step-by-step tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs) covers the manual method in full if you prefer to do it yourself.",
     },
   ],
   related: [
@@ -252,7 +252,7 @@ export const freeAtsKeywordChecker = {
     },
     {
       label: "How to tailor your CV",
-      href: "/blog/how-to-tailor-cv-to-job-description",
+      href: "/blog/tips-for-tailoring-a-cv-to-specific-jobs",
       body: "The step-by-step method, with a full before-and-after example.",
     },
     {
@@ -395,7 +395,7 @@ export const resumeOptimizer = {
       p: "It is tempting to treat a match percentage as the goal. It is not. It is a proxy. A CV stuffed with terms you cannot defend scores well and interviews badly. The honest version of optimisation is: cover everything you can genuinely evidence, describe it in the words the employer uses, and put the strongest evidence where it gets read.",
     },
     {
-      p: "If you would rather do all of that by hand, the [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the same method written out, and the [ATS resume guide](/blog/ats-resume-guide) covers the formatting rules underneath it.",
+      p: "If you would rather do all of that by hand, the [step-by-step tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs) is the same method written out, and the [ATS resume guide](/blog/ats-resume-guide) covers the formatting rules underneath it.",
     },
     {
       cta: {
@@ -573,7 +573,7 @@ export const resumeJobMatchChecker = {
     },
     {
       label: "How to tailor a CV to a job description",
-      href: "/blog/how-to-tailor-cv-to-job-description",
+      href: "/blog/tips-for-tailoring-a-cv-to-specific-jobs",
       body: "The manual method if you would rather rewrite the bullets yourself.",
     },
   ],

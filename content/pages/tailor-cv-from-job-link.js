@@ -156,7 +156,7 @@ export const BLOCKS = [
     },
   },
   {
-    p: "The pattern in all three is the same one covered in [how to tailor your CV to a job description](/blog/how-to-tailor-cv-to-job-description): verb, specific action, measurable result, with the posting's vocabulary used where it honestly applies.",
+    p: "The pattern in all three is the same one covered in [how to tailor your CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs): verb, specific action, measurable result, with the posting's vocabulary used where it honestly applies.",
   },
 
   { h2: "Tailoring from a link versus tailoring by hand" },
@@ -179,7 +179,7 @@ export const BLOCKS = [
     },
   },
   {
-    p: "At two applications a month, do it by hand. The [step-by-step guide](/blog/how-to-tailor-cv-to-job-description) is all you need. At ten a week, six hours of tailoring is what makes people stop tailoring, and a generic CV is what a low response rate is made of.",
+    p: "At two applications a month, do it by hand. The [step-by-step guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs) is all you need. At ten a week, six hours of tailoring is what makes people stop tailoring, and a generic CV is what a low response rate is made of.",
   },
 
   { h2: "Tailoring a resume from a LinkedIn job link" },

@@ -190,11 +190,6 @@ export const aiCoverLetterGenerator = {
       href: "/tailor-cv-from-job-link",
       body: "The matching CV, generated from the same posting.",
     },
-    {
-      label: "Cover letter from a job description",
-      href: "/blog/cover-letter-from-job-description",
-      body: "Worked letter: each paragraph mapped to a line in the posting.",
-    },
   ],
 };
 
@@ -335,7 +330,7 @@ export const coverLetterBuilder = {
     },
     {
       label: "How to tailor your CV",
-      href: "/blog/how-to-tailor-cv-to-job-description",
+      href: "/blog/tips-for-tailoring-a-cv-to-specific-jobs",
       body: "The step-by-step method, with a before and after.",
     },
   ],

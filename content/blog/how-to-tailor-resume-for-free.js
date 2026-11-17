@@ -140,7 +140,7 @@ export const blocks = [
 
   { h2: "How much to change" },
   {
-    p: "Change the top third and stop. That means the summary, the order of your skills, and the bullets in your most recent one or two roles. Employers, titles and dates stay as they are. The reasoning is in [how much should you tailor your resume](/blog/how-much-should-you-tailor-your-resume).",
+    p: "Change the top third and stop. That means the summary, the order of your skills, and the bullets in your most recent one or two roles. Employers, titles and dates stay as they are. The reasoning is in [tips for tailoring a CV to specific jobs](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
   {
     p: "It helps a lot to start from a master resume: one long private document with every role, bullet and metric you have. Then tailoring is mostly deleting, which is faster than writing. The method is in [how to tailor a CV from a master resume](/blog/tailor-cv-from-master-resume).",
@@ -177,7 +177,7 @@ export const blocks = [
     p: "Free accounts can tailor and see a preview: the full summary, the first line of each role, and the first paragraph of the cover letter. The full documents need a paid plan. That is $9.99 a month or $29.99 lifetime. In South Africa, Zimbabwe, Kenya, Nigeria and Uganda it is $6.99 a month or $16.99 lifetime.",
   },
   {
-    p: "If you apply rarely, keep using the free workflow. If you apply often, try the [resume tailor that reads the job link](/tailor-cv-from-job-link) on one real posting and compare it with what you would have done by hand. For a longer side by side, read [FitMyCV vs ChatGPT for resume tailoring](/blog/fitmycv-vs-chatgpt-resume-tailoring). If you are not sure tailoring is worth the effort at all, start with [does tailoring your resume actually work](/blog/does-tailoring-your-resume-actually-work). For the manual method without any AI, see the [step by step tailoring guide](/blog/how-to-tailor-cv-to-job-description).",
+    p: "If you apply rarely, keep using the free workflow. If you apply often, try the [resume tailor that reads the job link](/tailor-cv-from-job-link) on one real posting and compare it with what you would have done by hand. For a longer side by side, read [FitMyCV vs ChatGPT for resume tailoring](/blog/fitmycv-vs-chatgpt-resume-tailoring). For the manual method without any AI, see the [step by step tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
 
   { h2: "A quick checklist before you send" },

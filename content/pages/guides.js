@@ -321,7 +321,7 @@ export const howToWriteAResume = {
       p: "What you have now is a master CV. It is not what you should send. Sending the same document to every posting is the single biggest cause of low response rates.",
     },
     {
-      p: "For each role, reorder the bullets so the matching ones lead, rewrite the summary around that posting's top requirements, and adjust the vocabulary to match. The [tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the full method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass automatically if doing it by hand is what makes you stop.",
+      p: "For each role, reorder the bullets so the matching ones lead, rewrite the summary around that posting's top requirements, and adjust the vocabulary to match. The [tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs) is the full method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass automatically if doing it by hand is what makes you stop.",
     },
   ],
   related: [

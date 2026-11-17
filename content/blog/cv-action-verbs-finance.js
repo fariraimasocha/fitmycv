@@ -117,7 +117,7 @@ export const blocks = [
     p: "**Verb → the specific change you made, with the system or standard named → the number that improved.** In finance the number is rarely missing; what is missing is the decision that produced it.",
   },
   {
-    p: "Which verbs lead should track the posting. A controllership role wants *reconciled*, *remediated*, and *substantiated*; an FP&A role wants *forecast*, *modelled*, and *advised*. See [how to tailor your CV to a job description](/blog/how-to-tailor-cv-to-job-description) for the reordering method.",
+    p: "Which verbs lead should track the posting. A controllership role wants *reconciled*, *remediated*, and *substantiated*; an FP&A role wants *forecast*, *modelled*, and *advised*. See [how to tailor your CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs) for the reordering method.",
   },
   {
     cta: {

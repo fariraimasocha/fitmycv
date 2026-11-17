@@ -154,7 +154,7 @@ export const blocks = [
     },
   },
   {
-    p: "If you want the manual method written out without a model in the loop, use the [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description). If you want the honest ChatGPT-versus-tool split, that is the [FitMyCV vs ChatGPT comparison](/blog/fitmycv-vs-chatgpt-resume-tailoring). If the bottleneck is producing a first draft per posting, [paste the job link](/tailor-cv-from-job-link) instead.",
+    p: "If you want the manual method written out without a model in the loop, use the [step-by-step tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs). If you want the honest ChatGPT-versus-tool split, that is the [FitMyCV vs ChatGPT comparison](/blog/fitmycv-vs-chatgpt-resume-tailoring). If the bottleneck is producing a first draft per posting, [paste the job link](/tailor-cv-from-job-link) instead.",
   },
   {
     cta: {

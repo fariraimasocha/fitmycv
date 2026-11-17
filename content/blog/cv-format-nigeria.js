@@ -65,7 +65,7 @@ export const blocks = [
     p: "Most CV advice online is written for the UK or the US. A Nigerian CV shares the basics but has its own checks. Employers look for your NYSC status. Government roles may ask for your state of origin. Graduate adverts may still mention O'level results. At the same time, many old Nigerian templates carry details that hurt you, like marital status, religion and a passport photo. This guide sets out the format that works in 2026.",
   },
   {
-    p: "Nigeria uses the word CV. In the US the same document is a resume, and our guide to the [difference between a CV and a resume](/blog/cv-vs-resume-difference) explains where the two split. Everything here uses the Nigerian meaning.",
+    p: "Nigeria uses the word CV. In the US the same document is called a resume. Everything here uses the Nigerian meaning.",
   },
   {
     callout: {
@@ -89,7 +89,7 @@ export const blocks = [
     },
   },
   {
-    p: "If you are a fresh graduate, do not stretch to two pages. Our guide on writing a [CV with no experience](/blog/cv-with-no-experience) shows how to fill one strong page with projects, SIWES placements and your service year. For the general rule, see [how long a CV should be](/blog/how-long-should-a-cv-be).",
+    p: "If you are a fresh graduate, do not stretch to two pages. Fill one strong page with projects, SIWES placements and your service year. The free [CV format checker](/cv-format-checker) estimates your length from the word count.",
   },
 
   { h2: "The section order that works" },
@@ -209,7 +209,7 @@ export const blocks = [
     p: "Send a PDF unless the advert asks for Word. Use one column, standard headings such as Work Experience and Education, and no text inside images, tables or text boxes. Put your contact details in the body of the page, not the header, so applicant tracking systems can read them. The [ATS resume checker](/ats-resume-checker) shows how software reads your file.",
   },
   {
-    p: "On Jobberman and other boards, fill in your profile to match your CV. If your dates differ between the two, a recruiter will notice. If you have a gap after school or after NYSC, give one short honest line. Our guide on [explaining an employment gap on your CV](/blog/how-to-explain-employment-gap-on-cv) shows how, and the free [gap explanation generator](/employment-gap-explanation-generator) drafts it for you.",
+    p: "On Jobberman and other boards, fill in your profile to match your CV. If your dates differ between the two, a recruiter will notice. If you have a gap after school or after NYSC, give one short honest line. The free [gap explanation generator](/employment-gap-explanation-generator) drafts it for you.",
   },
 
   { h2: "Common mistakes on Nigerian CVs" },
@@ -231,7 +231,7 @@ export const blocks = [
 
   { h2: "Tailor it to each advert" },
   {
-    p: "A clean format gets your CV read. Matching the advert gets you shortlisted. Read the requirements and make sure the top half of your first page answers them in the advert's own words. If it asks for reconciliation experience and you have it, the word reconciliation should appear in a bullet with a result. The [resume job match checker](/resume-job-match-checker) shows which requirements your CV misses, and our guide to [tailoring a CV to a job description](/blog/how-to-tailor-cv-to-job-description) walks through it.",
+    p: "A clean format gets your CV read. Matching the advert gets you shortlisted. Read the requirements and make sure the top half of your first page answers them in the advert's own words. If it asks for reconciliation experience and you have it, the word reconciliation should appear in a bullet with a result. The [resume job match checker](/resume-job-match-checker) shows which requirements your CV misses, and our guide to [tailoring a CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs) walks through it.",
   },
   {
     p: "If you want this done for you, FitMyCV reads a job link or pasted description and rewrites your CV to match it, then writes a cover letter. You download both as PDFs. Try it with [tailor CV from a job link](/tailor-cv-from-job-link). In Nigeria it costs $6.99 a month or $16.99 for lifetime access. Free accounts see a preview of the tailored CV. The full document needs a paid plan.",

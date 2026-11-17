@@ -96,7 +96,7 @@ export const blocks = [
     ],
   },
   {
-    p: "If you want the manual method with no model in the loop, use the [step-by-step tailoring guide](/blog/how-to-tailor-cv-to-job-description). If you want a wider tool landscape, the [AI resume tailoring tools comparison](/blog/best-ai-resume-tailoring-tools-2026) sits next to this.",
+    p: "If you want the manual method with no model in the loop, use the [step-by-step tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs). If you want a wider tool landscape, the [AI resume tailoring tools comparison](/blog/best-ai-resume-tailoring-tools-2026) sits next to this.",
   },
   {
     cta: {

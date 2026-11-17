@@ -117,7 +117,7 @@ export const blocks = [
     p: "**Verb → the specific motion you ran → attainment, deal size, or retention.** The middle clause is what separates a rep who hit quota from one who can explain why, and it is the part hiring managers probe in interviews.",
   },
   {
-    p: "Which stage leads should follow the posting. A new-logo hunting role wants *prospected*, *penetrated*, and *closed* first; a farming role wants *expanded*, *renewed*, and *recovered*. Reordering to match is the whole point of [tailoring your CV to the job description](/blog/how-to-tailor-cv-to-job-description).",
+    p: "Which stage leads should follow the posting. A new-logo hunting role wants *prospected*, *penetrated*, and *closed* first; a farming role wants *expanded*, *renewed*, and *recovered*. Reordering to match is the whole point of [tailoring your CV to the job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
   {
     cta: {

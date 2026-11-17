@@ -43,7 +43,7 @@ export const resumeExamplesHub = {
 
     { h2: "From example to application" },
     {
-      p: "An example gets you a solid master CV. What earns responses is the next step: reordering and rewording it for each posting so the matching evidence leads and the vocabulary matches. That takes twenty to forty minutes per role by hand. The [tailoring guide](/blog/how-to-tailor-cv-to-job-description) is the method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass in about a minute.",
+      p: "An example gets you a solid master CV. What earns responses is the next step: reordering and rewording it for each posting so the matching evidence leads and the vocabulary matches. That takes twenty to forty minutes per role by hand. The [tailoring guide](/blog/tips-for-tailoring-a-cv-to-specific-jobs) is the method, and [tailoring from a job link](/tailor-cv-from-job-link) does the first pass in about a minute.",
     },
     {
       cta: {

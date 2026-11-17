@@ -134,9 +134,6 @@ export const professionalSummaryGenerator = {
         ],
       },
     },
-    {
-      p: "More worked examples, with before and after versions, are in the guide to [CV professional summary examples](/blog/cv-professional-summary-examples).",
-    },
 
     { h2: "Summary, headline or objective" },
     {
@@ -197,11 +194,6 @@ export const professionalSummaryGenerator = {
       label: "Resume headline generator",
       href: "/resume-headline-generator",
       body: "Five headlines for the line above your summary, from the same posting.",
-    },
-    {
-      label: "CV professional summary examples",
-      href: "/blog/cv-professional-summary-examples",
-      body: "The formula, with before and after examples by career stage.",
     },
     {
       label: "Free ATS resume checker",

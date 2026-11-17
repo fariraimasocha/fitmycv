@@ -116,7 +116,7 @@ export const blocks = [
     p: "**Verb → the specific decision you made → the metric that moved.** The middle clause is what separates a marketer who ran campaigns from one who changed results. Name the channel, the budget, the segment, or the test.",
   },
   {
-    p: "Which verbs lead should change with the posting. A demand-gen role wants *sourced*, *qualified*, and *attributed* near the top; a brand role wants *positioned* and *articulated*. Matching that emphasis is exactly what [tailoring a CV to the job description](/blog/how-to-tailor-cv-to-job-description) means in practice.",
+    p: "Which verbs lead should change with the posting. A demand-gen role wants *sourced*, *qualified*, and *attributed* near the top; a brand role wants *positioned* and *articulated*. Matching that emphasis is exactly what [tailoring a CV to the job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs) means in practice.",
   },
   {
     cta: {

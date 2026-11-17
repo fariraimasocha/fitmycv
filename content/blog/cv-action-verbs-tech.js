@@ -121,7 +121,7 @@ export const blocks = [
     p: "Every strong tech bullet is the same shape: **verb → what you specifically did, with the technology named → the measurable result.** If you cannot attach a number, attach scope: request volume, dataset size, team size, number of services.",
   },
   {
-    p: "Then make sure the verbs you choose reflect the posting you are applying to. A role that stresses reliability wants *instrumented* and *stabilised* near the top; a platform role wants *architected* and *migrated*. That is the tailoring step covered in [how to tailor your CV to a job description](/blog/how-to-tailor-cv-to-job-description).",
+    p: "Then make sure the verbs you choose reflect the posting you are applying to. A role that stresses reliability wants *instrumented* and *stabilised* near the top; a platform role wants *architected* and *migrated*. That is the tailoring step covered in [how to tailor your CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
   {
     cta: {

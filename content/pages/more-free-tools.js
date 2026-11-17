@@ -80,7 +80,7 @@ export const cvChecker = {
       ],
     },
     {
-      p: "All three are fixed by tailoring the CV to the advert, not by adding experience. The [guide to tailoring a CV to a job description](/blog/how-to-tailor-cv-to-job-description) covers how to do it yourself.",
+      p: "All three are fixed by tailoring the CV to the advert, not by adding experience. The [guide to tailoring a CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs) covers how to do it yourself.",
     },
   ],
   related: [

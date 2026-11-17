@@ -550,15 +550,13 @@ function Pill({ label, present }) {
     >
       {present ? (
         <CheckIcon
-          size={11}
-          weight="bold"
+          size={12}
           aria-hidden="true"
           className="text-[var(--landing-success)]"
         />
       ) : (
         <XIcon
-          size={11}
-          weight="bold"
+          size={12}
           aria-hidden="true"
           className="text-[var(--landing-coral)]"
         />
@@ -711,12 +709,12 @@ export default function HeadlineGenerator() {
                       >
                         {copiedId === headline.id ? (
                           <>
-                            <CheckIcon size={13} weight="bold" aria-hidden="true" />
+                            <CheckIcon size={14} aria-hidden="true" />
                             Copied
                           </>
                         ) : (
                           <>
-                            <CopyIcon size={13} weight="bold" aria-hidden="true" />
+                            <CopyIcon size={14} aria-hidden="true" />
                             Copy
                           </>
                         )}
@@ -809,7 +807,7 @@ export default function HeadlineGenerator() {
             >
               Tailor my CV
               <ArrowRightIcon
-                size={15}
+                size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />
@@ -820,7 +818,7 @@ export default function HeadlineGenerator() {
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
           <p className="inline-flex items-center gap-2 font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
             <SparkleIcon
-              size={15}
+              size={16}
               weight="fill"
               aria-hidden="true"
               className="text-[var(--landing-accent)]"

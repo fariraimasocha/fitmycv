@@ -196,7 +196,7 @@ export function ResumePane({ draft, template, style }) {
           <div className="flex h-full items-center justify-center p-6">
             <div className="flex max-w-xs flex-col items-center text-center">
               <span className="flex size-12 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
-                <FileDashedIcon size={22} aria-hidden="true" />
+                <FileDashedIcon size={20} aria-hidden="true" />
               </span>
               <p className="mt-4 font-outfit text-base font-semibold tracking-[-0.01em] text-foreground">
                 {t("deletedTitle")}

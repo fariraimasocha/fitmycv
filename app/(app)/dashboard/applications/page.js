@@ -302,7 +302,7 @@ function ApplicationsTracker() {
                 {t("tailorCv")}
               </Link>
               <button type="button" onClick={() => setAddOpen(true)} className="dashboard-primary-btn">
-                <PlusIcon size={16} weight="bold" aria-hidden="true" />
+                <PlusIcon size={16} aria-hidden="true" />
                 {t("addApplication")}
               </button>
             </>

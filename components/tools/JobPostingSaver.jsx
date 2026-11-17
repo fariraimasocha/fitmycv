@@ -118,7 +118,7 @@ export default function JobPostingSaver() {
 
       {save.isError ? (
         <p className="mt-6 flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]">
-          <WarningIcon size={15} weight="bold" aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
+          <WarningIcon size={16} aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
           {save.error.message}
         </p>
       ) : null}
@@ -127,11 +127,11 @@ export default function JobPostingSaver() {
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
           <div className="flex flex-wrap gap-3">
             <button type="button" onClick={savePdf} className="landing-primary-btn font-outfit text-sm">
-              <FilePdfIcon size={15} weight="bold" aria-hidden="true" />
+              <FilePdfIcon size={16} aria-hidden="true" />
               Save as PDF
             </button>
             <button type="button" onClick={copy} className="landing-secondary-btn landing-secondary-btn-sm font-outfit">
-              <CopyIcon size={14} weight="bold" aria-hidden="true" />
+              <CopyIcon size={14} aria-hidden="true" />
               Copy text
             </button>
           </div>

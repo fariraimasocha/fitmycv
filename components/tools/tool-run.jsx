@@ -49,7 +49,7 @@ export function ToolSubmitButton({ label, busyLabel, running, disabled, ...rest 
     >
       {running ? (
         <>
-          <CircleNotchIcon size={15} className="animate-spin" aria-hidden="true" />
+          <CircleNotchIcon size={16} className="animate-spin" aria-hidden="true" />
           {busyLabel}
         </>
       ) : (

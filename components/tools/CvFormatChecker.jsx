@@ -261,9 +261,9 @@ export default function CvFormatChecker() {
                 className="flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
               >
                 {ch.ok ? (
-                  <CheckIcon size={16} weight="bold" aria-label="Pass" className="mt-0.5 shrink-0 text-[var(--landing-success)]" />
+                  <CheckIcon size={16} aria-label="Pass" className="mt-1 shrink-0 text-[var(--landing-success)]" />
                 ) : (
-                  <WarningIcon size={16} weight="bold" aria-label="Fix" className="mt-0.5 shrink-0 text-[var(--landing-coral)]" />
+                  <WarningIcon size={16} aria-label="Fix" className="mt-1 shrink-0 text-[var(--landing-coral)]" />
                 )}
                 <span className="text-sm leading-6 text-[var(--landing-ink)]">
                   <strong className="font-extrabold">{ch.title}.</strong> {ch.fix}

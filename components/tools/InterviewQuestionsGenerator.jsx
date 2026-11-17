@@ -197,12 +197,12 @@ export default function InterviewQuestionsGenerator() {
             >
               {copied ? (
                 <>
-                  <CheckIcon size={13} weight="bold" aria-hidden="true" />
+                  <CheckIcon size={14} aria-hidden="true" />
                   Copied
                 </>
               ) : (
                 <>
-                  <CopyIcon size={13} weight="bold" aria-hidden="true" />
+                  <CopyIcon size={14} aria-hidden="true" />
                   Copy all
                 </>
               )}
@@ -222,8 +222,7 @@ export default function InterviewQuestionsGenerator() {
                 <p className="inline-flex items-center gap-1.5 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
                   {q.kind === "gap" ? (
                     <WarningCircleIcon
-                      size={13}
-                      weight="bold"
+                      size={14}
                       aria-hidden="true"
                       className="text-[var(--landing-coral)]"
                     />
@@ -237,7 +236,7 @@ export default function InterviewQuestionsGenerator() {
                       size={14}
                       weight="fill"
                       aria-hidden="true"
-                      className="mt-1 shrink-0 text-[var(--landing-accent)]"
+                      className="mt-1.25 shrink-0 text-[var(--landing-accent)]"
                     />
                     <span>
                       <span className="font-bold">Your proof: </span>
@@ -270,7 +269,7 @@ export default function InterviewQuestionsGenerator() {
             >
               {gapCount ? "Close the gaps" : "Tailor my CV to this job"}
               <ArrowRightIcon
-                size={15}
+                size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />

@@ -91,15 +91,13 @@ function SkillChip({ term, present }) {
     >
       {present ? (
         <CheckIcon
-          size={11}
-          weight="bold"
+          size={12}
           aria-hidden="true"
           className="text-[var(--landing-success)]"
         />
       ) : (
         <XIcon
-          size={11}
-          weight="bold"
+          size={12}
           aria-hidden="true"
           className="text-[var(--landing-coral)]"
         />

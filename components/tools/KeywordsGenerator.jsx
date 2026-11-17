@@ -48,8 +48,7 @@ function Pill({ label, present }) {
       }`}
     >
       <Icon
-        size={11}
-        weight="bold"
+        size={12}
         aria-hidden="true"
         className={
           present
@@ -132,7 +131,7 @@ function RoleKeywords({ role }) {
           onClick={copyAll}
           className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
         >
-          <CopyIcon size={13} weight="bold" aria-hidden="true" />
+          <CopyIcon size={14} aria-hidden="true" />
           Copy all
         </button>
       </div>

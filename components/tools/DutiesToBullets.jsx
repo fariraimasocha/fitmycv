@@ -546,12 +546,12 @@ export default function DutiesToBullets() {
             >
               {copied === "all" ? (
                 <>
-                  <CheckIcon size={13} weight="bold" aria-hidden="true" />
+                  <CheckIcon size={14} aria-hidden="true" />
                   Copied
                 </>
               ) : (
                 <>
-                  <CopyIcon size={13} weight="bold" aria-hidden="true" />
+                  <CopyIcon size={14} aria-hidden="true" />
                   Copy all
                 </>
               )}
@@ -586,12 +586,12 @@ export default function DutiesToBullets() {
                   >
                     {copied === i ? (
                       <>
-                        <CheckIcon size={13} weight="bold" aria-hidden="true" />
+                        <CheckIcon size={14} aria-hidden="true" />
                         Copied
                       </>
                     ) : (
                       <>
-                        <CopyIcon size={13} weight="bold" aria-hidden="true" />
+                        <CopyIcon size={14} aria-hidden="true" />
                         Copy
                       </>
                     )}
@@ -618,7 +618,7 @@ export default function DutiesToBullets() {
             >
               Tailor these to a new job
               <ArrowRightIcon
-                size={15}
+                size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />

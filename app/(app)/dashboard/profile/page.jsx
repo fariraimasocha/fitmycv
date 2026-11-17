@@ -209,7 +209,7 @@ export default function ProfilePage() {
               </div>
             </div>
             <span className="inline-flex h-6 w-fit shrink-0 items-center gap-2 rounded-full border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] px-3 text-xs font-medium text-foreground">
-              <GoogleLogoIcon size={14} weight="bold" aria-hidden="true" />
+              <GoogleLogoIcon size={14} aria-hidden="true" />
               {t("signedInWithGoogle")}
             </span>
           </div>
@@ -319,7 +319,7 @@ export default function ProfilePage() {
         <DialogContent className="rounded-lg border-[var(--landing-line)] bg-card sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-destructive">
-              <TrashIcon size={18} aria-hidden="true" />
+              <TrashIcon size={20} aria-hidden="true" />
               {t("dialogTitle")}
             </DialogTitle>
             <DialogDescription className="text-start">

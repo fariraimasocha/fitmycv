@@ -107,7 +107,7 @@ export function DashboardActivation({ steps, className, delay = 0.05 }) {
                 {step.done ? (
                   <span className="inline-flex h-control-sm items-center gap-2 rounded-full bg-[var(--landing-success-soft)] px-3 text-sm font-medium text-[var(--landing-success)]">
                     {t("done")}
-                    <CheckIcon size={14} weight="bold" aria-hidden="true" />
+                    <CheckIcon size={14} aria-hidden="true" />
                   </span>
                 ) : (
                   <Link

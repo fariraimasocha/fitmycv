@@ -209,8 +209,7 @@ export default function InterviewPrepCard({ prepData, isLoading, jobTitle, jobCo
                 <li key={i} className="flex items-start gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
                   <CheckIcon
                     size={14}
-                    weight="bold"
-                    className="mt-2 shrink-0 text-[var(--landing-success)]"
+                    className="mt-1.25 shrink-0 text-[var(--landing-success)]"
                     aria-hidden="true"
                   />
                   {point}

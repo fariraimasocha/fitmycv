@@ -219,8 +219,7 @@ export default function LinkedInUrlFormatter() {
         {result.error ? (
           <p className="mt-4 flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]">
             <WarningIcon
-              size={15}
-              weight="bold"
+              size={16}
               aria-hidden="true"
               className="mt-1 shrink-0 text-[var(--landing-accent)]"
             />
@@ -267,7 +266,6 @@ export default function LinkedInUrlFormatter() {
                         <>
                           <CheckIcon
                             size={14}
-                            weight="bold"
                             aria-hidden="true"
                             className="text-[var(--landing-success)]"
                           />
@@ -275,7 +273,7 @@ export default function LinkedInUrlFormatter() {
                         </>
                       ) : (
                         <>
-                          <CopyIcon size={14} weight="bold" aria-hidden="true" />
+                          <CopyIcon size={14} aria-hidden="true" />
                           Copy
                         </>
                       )}
@@ -315,8 +313,7 @@ export default function LinkedInUrlFormatter() {
                       className="flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]"
                     >
                       <WarningIcon
-                        size={15}
-                        weight="bold"
+                        size={16}
                         aria-hidden="true"
                         className="mt-1 shrink-0 text-[var(--landing-accent)]"
                       />

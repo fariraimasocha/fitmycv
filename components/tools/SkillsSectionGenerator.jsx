@@ -186,12 +186,12 @@ export default function SkillsSectionGenerator() {
                 >
                   {copied ? (
                     <>
-                      <CheckIcon size={13} weight="bold" aria-hidden="true" />
+                      <CheckIcon size={14} aria-hidden="true" />
                       Copied
                     </>
                   ) : (
                     <>
-                      <CopyIcon size={13} weight="bold" aria-hidden="true" />
+                      <CopyIcon size={14} aria-hidden="true" />
                       Copy
                     </>
                   )}
@@ -208,12 +208,12 @@ export default function SkillsSectionGenerator() {
                     className="flex flex-col gap-1 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
                   >
                     <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--landing-ink)]">
-                      <CheckIcon size={12} weight="bold" aria-hidden="true" className="text-[var(--landing-success)]" />
+                      <CheckIcon size={12} aria-hidden="true" className="text-[var(--landing-success)]" />
                       {item.label}
                     </span>
                     {item.evidence ? (
                       <span className="flex gap-2 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                        <QuotesIcon size={13} weight="fill" aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
+                        <QuotesIcon size={14} weight="fill" aria-hidden="true" className="mt-1.25 shrink-0 text-[var(--landing-accent)]" />
                         {item.evidence}
                       </span>
                     ) : (
@@ -250,7 +250,7 @@ export default function SkillsSectionGenerator() {
                     key={item.term}
                     className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
                   >
-                    <XIcon size={11} weight="bold" aria-hidden="true" className="text-[var(--landing-coral)]" />
+                    <XIcon size={12} aria-hidden="true" className="text-[var(--landing-coral)]" />
                     {item.label}
                   </li>
                 ))}
@@ -282,7 +282,7 @@ export default function SkillsSectionGenerator() {
             >
               {gapCount ? "Close the gaps" : "Tailor my CV to this job"}
               <ArrowRightIcon
-                size={15}
+                size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />

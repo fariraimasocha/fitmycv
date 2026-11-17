@@ -81,7 +81,7 @@ export function DashboardEmptyState({
             />
           ) : Icon && (
             <span className="landing-inset-edge flex h-12 w-12 items-center justify-center rounded-md bg-[var(--landing-primary-soft)] text-foreground">
-              <Icon size={22} aria-hidden="true" />
+              <Icon size={20} aria-hidden="true" />
             </span>
           )}
           <div className="flex flex-col gap-1">

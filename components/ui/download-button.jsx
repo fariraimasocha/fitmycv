@@ -93,7 +93,7 @@ export function DownloadButton({
           <SpinnerGapIcon size={16} className="animate-spin motion-reduce:animate-none" />
         </span>
         <span aria-hidden className={cn(ICON_LAYER, done ? "opacity-100" : "opacity-0")}>
-          <CheckIcon size={16} weight="bold" />
+          <CheckIcon size={16} />
         </span>
       </span>
 

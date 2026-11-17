@@ -15,8 +15,8 @@ const TONES = {
 export function DashboardTile({ href, onClick, icon: Icon, label, description, tone = "neutral", className }) {
   const body = (
     <>
-      <span className={cn("flex size-14 items-center justify-center rounded-full", TONES[tone] ?? TONES.neutral)}>
-        <Icon size={26} aria-hidden="true" />
+      <span className={cn("flex size-12 items-center justify-center rounded-full", TONES[tone] ?? TONES.neutral)}>
+        <Icon size={24} aria-hidden="true" />
       </span>
       <span className="font-outfit text-base font-medium text-[var(--landing-ink)]">{label}</span>
       {description && <span className="-mt-2 text-xs text-muted-foreground">{description}</span>}

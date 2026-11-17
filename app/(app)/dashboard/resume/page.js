@@ -103,7 +103,7 @@ function UploadPanel({ onParsed, replacing }) {
           {UPLOAD_STEPS.map((step) => (
             <li key={step.key} className="flex gap-3 py-4 last:pb-0">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
-                <step.icon size={18} aria-hidden="true" />
+                <step.icon size={20} aria-hidden="true" />
               </span>
               <div>
                 <p className="text-sm font-medium text-foreground">

@@ -466,7 +466,7 @@ export default function DashboardHome() {
               href="/dashboard/tailor"
               className={showActivation ? "dashboard-secondary-btn" : "dashboard-primary-btn"}
             >
-              <PlusIcon size={16} weight="bold" aria-hidden="true" />
+              <PlusIcon size={16} aria-hidden="true" />
               {t("tailorMyCv")}
             </Link>
           </>

@@ -178,7 +178,7 @@ function Section({ icon, title, items, checks, checking }) {
             const { Icon, weight, tone } = CHECK[status];
             return (
               <li key={i} className="flex gap-2">
-                <Icon size={18} weight={weight} className={`mt-0.5 shrink-0 ${tone}`} aria-hidden="true" />
+                <Icon size={20} weight={weight} className={`mt-0.5 shrink-0 ${tone}`} aria-hidden="true" />
                 <div className="min-w-0 text-sm leading-6">
                   <span className="sr-only">{t(`status.${status}`)}: </span>
                   <span className={status === "missing" ? "text-[var(--landing-ink-soft)]" : "text-foreground"}>

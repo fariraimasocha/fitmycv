@@ -79,7 +79,7 @@ export function DashboardPanelHeader({
           className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
         >
           {linkLabel ?? t("viewAll")}
-          <ArrowRightIcon size={12} weight="bold" aria-hidden="true" />
+          <ArrowRightIcon size={12} aria-hidden="true" />
         </Link>
       )}
     </div>

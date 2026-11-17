@@ -229,7 +229,7 @@ export default function KeywordChecker({ mode = "match" }) {
         >
           {repeatCheck ? t("topCtaRepeat") : t("topCta")}
           <ArrowRightIcon
-            size={15}
+            size={16}
             aria-hidden="true"
             className="transition-transform duration-200 group-hover:translate-x-0.5"
           />
@@ -393,7 +393,6 @@ export default function KeywordChecker({ mode = "match" }) {
                       <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-[var(--landing-ink)]">
                         <XIcon
                           size={12}
-                          weight="bold"
                           aria-hidden="true"
                           className="shrink-0 text-[var(--landing-coral)]"
                         />
@@ -424,8 +423,7 @@ export default function KeywordChecker({ mode = "match" }) {
                         className="inline-flex items-center gap-1.5 rounded-full border border-[var(--landing-line)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink-soft)]"
                       >
                         <CheckIcon
-                          size={11}
-                          weight="bold"
+                          size={12}
                           aria-hidden="true"
                           className="text-[var(--landing-success)]"
                         />
@@ -469,8 +467,7 @@ export default function KeywordChecker({ mode = "match" }) {
                         className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
                       >
                         <XIcon
-                          size={11}
-                          weight="bold"
+                          size={12}
                           aria-hidden="true"
                           className="text-[var(--landing-coral)]"
                         />
@@ -493,8 +490,7 @@ export default function KeywordChecker({ mode = "match" }) {
                       className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
                     >
                       <CheckIcon
-                        size={11}
-                        weight="bold"
+                        size={12}
                         aria-hidden="true"
                         className="text-[var(--landing-success)]"
                       />
@@ -546,7 +542,7 @@ export default function KeywordChecker({ mode = "match" }) {
             >
               {t(`${ctaKey}.cta`)}
               <ArrowRightIcon
-                size={15}
+                size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />

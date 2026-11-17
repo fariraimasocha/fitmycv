@@ -73,7 +73,7 @@ function ThreadRow({ thread, active, now, onNavigate, onDelete, deleting }) {
             : "bg-[var(--landing-primary-soft)] text-foreground"
         )}
       >
-        <ChatCircleDotsIcon size={18} aria-hidden="true" />
+        <ChatCircleDotsIcon size={20} aria-hidden="true" />
       </span>
       <div className="pointer-events-none relative z-10 min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-foreground">{thread.title}</p>

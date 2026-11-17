@@ -175,7 +175,7 @@ export default function OnboardingPage() {
             aria-hidden={!canGoBack}
             tabIndex={canGoBack ? undefined : -1}
           >
-            <ArrowLeftIcon size={18} weight="bold" aria-hidden="true" />
+            <ArrowLeftIcon size={20} aria-hidden="true" />
           </button>
 
           <span className="flex shrink-0 items-center">
@@ -252,7 +252,6 @@ export default function OnboardingPage() {
                         {item.done ? (
                           <CheckIcon
                             size={14}
-                            weight="bold"
                             className="text-[var(--landing-ink-soft)]"
                             aria-hidden="true"
                           />
@@ -293,7 +292,6 @@ export default function OnboardingPage() {
                     {t("payoff.tailorCta")}
                     <ArrowRightIcon
                       size={16}
-                      weight="bold"
                       aria-hidden="true"
                     />
                   </button>
@@ -341,7 +339,6 @@ export default function OnboardingPage() {
                     {t("continueToTailoring")}
                     <ArrowRightIcon
                       size={16}
-                      weight="bold"
                       aria-hidden="true"
                     />
                   </button>

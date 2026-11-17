@@ -120,8 +120,7 @@ function Pill({ label, present }) {
       }
     >
       <Icon
-        size={11}
-        weight="bold"
+        size={12}
         aria-hidden="true"
         className={
           present
@@ -221,9 +220,9 @@ function LetterResult({ result, copiedId, onCopy, onCloseGaps }) {
                     aria-label={`Copy the ${letter.shape.toLowerCase()}`}
                   >
                     {copiedId === letter.id ? (
-                      <CheckIcon size={13} weight="bold" aria-hidden="true" />
+                      <CheckIcon size={14} aria-hidden="true" />
                     ) : (
-                      <CopyIcon size={13} weight="bold" aria-hidden="true" />
+                      <CopyIcon size={14} aria-hidden="true" />
                     )}
                     {copiedId === letter.id ? "Copied" : "Copy"}
                   </button>
@@ -288,7 +287,7 @@ function LetterExample() {
     <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
       <p className="inline-flex items-center gap-2 font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
         <SparkleIcon
-          size={15}
+          size={16}
           weight="fill"
           aria-hidden="true"
           className="text-[var(--landing-accent)]"

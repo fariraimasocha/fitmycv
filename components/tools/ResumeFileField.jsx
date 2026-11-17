@@ -118,7 +118,7 @@ export default function ResumeFileField({
       {hasFile ? (
         <div className="landing-rise flex items-center gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
           <FilePdfIcon
-            size={22}
+            size={20}
             weight="duotone"
             aria-hidden="true"
             className="shrink-0 text-[var(--landing-primary-dark)]"

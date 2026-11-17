@@ -55,7 +55,7 @@ function Result({ result }) {
                 {SECTIONS.map((s) => (
                   <td key={s} className="px-2 py-2 text-center">
                     {t.found[s] ? (
-                      <CheckIcon size={16} weight="bold" className="inline text-[var(--landing-success)]" aria-label="Found" />
+                      <CheckIcon size={16} className="inline text-[var(--landing-success)]" aria-label="Found" />
                     ) : (
                       <MinusIcon size={16} className="inline text-[var(--landing-ink-soft)]" aria-label="Missing" />
                     )}

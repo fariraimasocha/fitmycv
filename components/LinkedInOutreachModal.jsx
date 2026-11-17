@@ -79,7 +79,7 @@ export default function LinkedInOutreachModal({
       <DialogContent className="max-h-[85vh] gap-0 overflow-y-auto p-0 sm:max-w-md">
         <DialogHeader className="border-b border-[var(--landing-line)] px-4 py-3">
           <DialogTitle className="flex items-center gap-2 text-sm font-semibold">
-            <LinkedinLogoIcon size={18} weight="fill" className="text-[var(--dash-ink)]" aria-hidden="true" />
+            <LinkedinLogoIcon size={20} weight="fill" className="text-[var(--dash-ink)]" aria-hidden="true" />
             {t("title")}
           </DialogTitle>
         </DialogHeader>

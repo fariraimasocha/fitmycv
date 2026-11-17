@@ -11,7 +11,7 @@ function EmptyNote({ icon: Icon, children, action }) {
   return (
     <div className="mt-4 flex flex-1 flex-col justify-between gap-4 border-t border-dash-line pt-4">
       <div className="flex items-start gap-3 text-dash-muted">
-        <Icon size={20} aria-hidden="true" className="mt-1 shrink-0" />
+        <Icon size={20} aria-hidden="true" className="mt-0.5 shrink-0" />
         <p className="text-sm leading-6">{children}</p>
       </div>
       {action}

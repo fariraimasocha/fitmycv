@@ -144,7 +144,7 @@ function CompanyResearch() {
         actions={
           hasBriefs ? (
             <Link href="/dashboard/tailor" className="dashboard-primary-btn">
-              <PlusIcon size={16} weight="bold" aria-hidden="true" />
+              <PlusIcon size={16} aria-hidden="true" />
               {t("addJob")}
             </Link>
           ) : null

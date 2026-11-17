@@ -502,7 +502,6 @@ function NoteIcon({ tone }) {
     return (
       <CheckIcon
         size={14}
-        weight="bold"
         aria-hidden="true"
         className="mt-1 shrink-0 text-[var(--landing-success)]"
       />
@@ -512,7 +511,6 @@ function NoteIcon({ tone }) {
     return (
       <XIcon
         size={14}
-        weight="bold"
         aria-hidden="true"
         className="mt-1 shrink-0 text-[var(--landing-coral)]"
       />
@@ -712,8 +710,7 @@ export default function BulletRewriter() {
                 className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
               >
                 <CheckIcon
-                  size={11}
-                  weight="bold"
+                  size={12}
                   aria-hidden="true"
                   className="text-[var(--landing-success)]"
                 />
@@ -738,7 +735,7 @@ export default function BulletRewriter() {
             >
               Tailor my CV
               <ArrowRightIcon
-                size={15}
+                size={16}
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"
               />

@@ -589,7 +589,6 @@ function FormSection({ id, title, count, open, onToggle, action, children }) {
         >
           <CaretRightIcon
             size={16}
-            weight="bold"
             className={cn(
               "shrink-0 text-muted-foreground transition-transform rtl:-scale-x-100",
               open && "rotate-90",
@@ -721,12 +720,11 @@ function CvChecks({ report, onSelect, t }) {
       <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-lg px-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--landing-ink)] sm:px-6 [&::-webkit-details-marker]:hidden">
         <CaretRightIcon
           size={16}
-          weight="bold"
           className="shrink-0 text-muted-foreground transition-transform group-open:rotate-90 rtl:-scale-x-100"
           aria-hidden="true"
         />
         <span className="flex min-w-0 flex-1 items-center gap-2 font-outfit text-base font-medium text-foreground">
-          <ListChecksIcon size={18} className="shrink-0" aria-hidden="true" />
+          <ListChecksIcon size={20} className="shrink-0" aria-hidden="true" />
           <span className="truncate">{t("checks.title")}</span>
         </span>
         <span className="shrink-0 text-xs font-medium tabular-nums text-muted-foreground">

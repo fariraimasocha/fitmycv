@@ -354,7 +354,7 @@ function StoryBank() {
   const count = list.length;
   const addButton = (
     <button type="button" onClick={() => setAddOpen(true)} className="dashboard-primary-btn">
-      <PlusIcon size={16} weight="bold" aria-hidden="true" />
+      <PlusIcon size={16} aria-hidden="true" />
       {t("addStory")}
     </button>
   );

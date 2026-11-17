@@ -156,7 +156,7 @@ function StepRail({ current }) {
                 state === "next" && "border border-[var(--landing-line)] text-muted-foreground",
               )}
             >
-              {state === "done" ? <CheckIcon size={14} weight="bold" aria-hidden="true" /> : number}
+              {state === "done" ? <CheckIcon size={14} aria-hidden="true" /> : number}
             </span>
             {/* Phones show only the current label, so the row never wraps. */}
             <span
@@ -919,8 +919,8 @@ function Tailor() {
               {jobInputMode === "link" ? (
                 <div className="relative">
                   <LinkIcon
-                    size={18}
-                    className="pointer-events-none absolute start-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+                    size={16}
+                    className="pointer-events-none absolute start-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                     aria-hidden="true"
                   />
                   <Input
@@ -932,7 +932,7 @@ function Tailor() {
                     autoComplete="url"
                     spellCheck={false}
                     autoFocus
-                    className="w-full ps-8 text-base sm:text-sm"
+                    className="w-full ps-9 text-base sm:text-sm"
                   />
                 </div>
               ) : (
@@ -1026,7 +1026,7 @@ function Tailor() {
         <div className="sticky top-14 z-10 -mx-3 border-b border-[var(--landing-line)] bg-[var(--landing-bg)]/95 px-3 py-2 backdrop-blur-md sm:top-16 sm:-mx-6 sm:px-6">
           <div className="flex items-center gap-3">
             <span className="hidden size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground sm:flex">
-              <BriefcaseIcon size={18} aria-hidden="true" />
+              <BriefcaseIcon size={20} aria-hidden="true" />
             </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold text-foreground">
@@ -1096,7 +1096,7 @@ function Tailor() {
             <DashboardPanel pad={false}>
               <div className="dashboard-row-pad flex items-center gap-3">
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
-                  <ListChecksIcon size={18} aria-hidden="true" />
+                  <ListChecksIcon size={20} aria-hidden="true" />
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-foreground">
@@ -1201,7 +1201,7 @@ function Tailor() {
           {(tailorResult.keywordsInjected?.length > 0 ||
             (typeof preAtsScore?.score === "number" && atsScore?.score > preAtsScore.score)) && (
             <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-medium text-[var(--landing-ink)]">
-              <CheckCircleIcon size={18} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
+              <CheckCircleIcon size={20} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
               {tailorResult.keywordsInjected?.length > 0 && (
                 <span>{t("result.peakKeywords", { count: tailorResult.keywordsInjected.length })}</span>
               )}

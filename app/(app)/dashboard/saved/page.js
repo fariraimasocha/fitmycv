@@ -127,7 +127,7 @@ function SavedJobRow({ item, confirming, onRemove, removing }) {
           )}
         >
           {confirming ? (
-            <CheckIcon size={16} weight="bold" aria-hidden="true" />
+            <CheckIcon size={16} aria-hidden="true" />
           ) : (
             <TrashIcon size={16} aria-hidden="true" />
           )}

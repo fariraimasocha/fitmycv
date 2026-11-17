@@ -49,7 +49,7 @@ export function DashboardStatStrip({ items, columns = items.length, className, d
             )}
             <div className="min-w-0">
               <dt className="text-xs text-muted-foreground">{item.label}</dt>
-              <dd className="truncate text-sm font-semibold tabular-nums text-foreground">
+              <dd className="truncate text-base font-semibold tabular-nums text-foreground">
                 {/* Numbers count to their new value, so a move to Interview
                     or Offer visibly lands. Text values (rates, "n/a") stay as is. */}
                 {typeof item.value === "number" ? <AnimatedNumber value={item.value} /> : item.value}

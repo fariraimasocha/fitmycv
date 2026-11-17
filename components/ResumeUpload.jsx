@@ -256,7 +256,7 @@ export default function ResumeUpload({ onParsed }) {
 
       {isComplete && (
         <div className="flex items-center gap-3 rounded-lg bg-[var(--landing-success-soft)] px-4 py-3 text-[var(--landing-success)]">
-          <CheckCircleIcon size={22} weight="fill" className="shrink-0" aria-hidden="true" />
+          <CheckCircleIcon size={20} weight="fill" className="shrink-0" aria-hidden="true" />
           <div>
             <p className="text-sm font-semibold">{t("doneTitle")}</p>
             <p className="text-xs opacity-80">{t("doneBody")}</p>

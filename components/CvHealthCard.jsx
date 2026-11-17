@@ -40,7 +40,7 @@ export default function CvHealthCard({ report, delay = 0 }) {
         </>
       ) : (
         <p className="mt-4 flex items-center gap-2 text-sm text-foreground">
-          <CheckCircleIcon size={18} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
+          <CheckCircleIcon size={20} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
           {t("cleanShort")}
         </p>
       )}

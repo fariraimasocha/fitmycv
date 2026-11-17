@@ -213,7 +213,7 @@ function ProposalCard({ proposal, draft, busy, onDecide }) {
             onClick={() => onDecide("apply")}
             className="dashboard-primary-btn dashboard-primary-btn-sm"
           >
-            <CheckIcon size={16} weight="bold" aria-hidden="true" />
+            <CheckIcon size={16} aria-hidden="true" />
             {t("applyChange")}
           </button>
           <button
@@ -324,7 +324,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
           {messages.length === 0 && !sending && (
             <div className="flex flex-1 flex-col justify-center py-6">
               <span className="flex size-12 items-center justify-center rounded-full bg-[var(--landing-accent-soft)] text-[var(--landing-accent-dark)]">
-                <SparkleIcon size={22} aria-hidden="true" />
+                <SparkleIcon size={20} aria-hidden="true" />
               </span>
               <h2 className="mt-4 font-outfit text-base font-semibold tracking-[-0.02em] text-foreground">
                 {t("emptyTitle")}
@@ -348,7 +348,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
                     className="group flex items-start gap-3 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 text-start transition-colors outline-none hover:border-[var(--landing-ink-faint)] hover:bg-[var(--landing-paper-soft)] focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-foreground">
-                      <s.icon size={18} aria-hidden="true" />
+                      <s.icon size={20} aria-hidden="true" />
                     </span>
                     <span className="min-w-0">
                       <span className="block text-sm font-medium text-foreground">{t(`suggestions.${s.key}.label`)}</span>
@@ -458,7 +458,7 @@ export function AgentChat({ thread, draft, sending, sendingText, onSend, decidin
               disabled={!text.trim() || sending}
               className="dashboard-primary-btn size-control shrink-0 px-0"
             >
-              <ArrowUpIcon size={16} weight="bold" aria-hidden="true" />
+              <ArrowUpIcon size={16} aria-hidden="true" />
             </button>
           </div>
           <p className="mt-2 hidden px-1 text-xs text-muted-foreground sm:block">

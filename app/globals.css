@@ -832,16 +832,23 @@
      the shell. CV previews set their own font, so they are unaffected. */
   .dashboard-shell,
   body:has(.dashboard-shell) {
-    --font-outfit: var(--font-bricolage);
-    --font-sn-pro: var(--font-bricolage);
+    /* The system face: SF Pro on Apple devices, Segoe UI on Windows. A UI
+       face, not a display one, and nothing to download. */
+    --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+    --font-outfit: var(--font-system);
+    --font-sn-pro: var(--font-system);
+    font-family: var(--font-system);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     /* shadcn's primary and foreground are a blue-black; the landing's ink is
        a warm #1a1a1a. */
     --foreground: var(--landing-ink);
     --primary: var(--landing-primary);
     --primary-foreground: var(--landing-on-primary);
-    /* Teal-flat: 8px cards (rounded-lg), 6px controls (rounded-md), pills
-       only for badges and avatars. */
-    --radius: 0.5rem;
+    /* Three radii that nest: 8px chips (rounded-sm), 10px controls
+       (rounded-md), 12px cards (rounded-lg), 16px for dialogs and large
+       surfaces. Pills only for badges and avatars. */
+    --radius: 0.75rem;
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
@@ -1657,4 +1664,30 @@ body:has(.dashboard-shell) [data-slot="button"]:is(:not([data-variant]), [data-v
   background: var(--dash-line);
   color: var(--dash-muted);
   opacity: 1;
+}
+
+/* Type and shape guards for the shell. Unlayered on purpose: inside
+   @layer components the utilities would win. ponytail: these override utilities
+   shared with the public tool pages, so the marketing site keeps its look.
+   Replace the utilities in the source when those pages get the same pass.
+   The CV paper ([data-cv-color]) keeps its own weights and caps. */
+.dashboard-shell :is(.font-extrabold, .font-black, .font-bold):not([data-cv-color] *),
+body:has(.dashboard-shell) [data-slot="dialog-content"] :is(.font-extrabold, .font-black, .font-bold) {
+  font-weight: 600;
+}
+
+/* Sentence-case labels instead of spaced capitals. */
+.dashboard-shell .uppercase:not([data-cv-color] *, [data-cv-color]) {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Anything larger than a card caps at 16px, so corners stay in one family. */
+.dashboard-shell :is(.rounded-2xl, .rounded-3xl, .rounded-4xl):not([data-cv-color] *) {
+  border-radius: calc(var(--radius) + 4px);
+}
+
+.dashboard-shell :is(h1, h2, h3):not([data-cv-color] *) {
+  letter-spacing: -0.01em;
+  line-height: 1.25;
 }

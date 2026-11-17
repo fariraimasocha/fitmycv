@@ -124,7 +124,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
         <CardTitle className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <span className="flex min-w-0 items-center gap-3 font-outfit text-base font-semibold">
             <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-primary-soft)] text-[var(--landing-ink)]">
-              <BuildingsIcon size={18} aria-hidden="true" />
+              <BuildingsIcon size={20} aria-hidden="true" />
             </span>
             <span className="truncate">{brief.companyName}</span>
           </span>
@@ -210,7 +210,7 @@ export default function CompanyResearchCard({ brief, isLoading }) {
                       className="inline-flex items-start gap-2 text-sm font-medium text-[var(--landing-ink)] hover:underline"
                     >
                       <span>{item.title}</span>
-                      <ArrowSquareOutIcon size={14} className="mt-1 shrink-0" aria-hidden="true" />
+                      <ArrowSquareOutIcon size={14} className="mt-0.75 shrink-0" aria-hidden="true" />
                     </a>
                   ) : (
                     <p className="text-sm font-medium">{item.title}</p>

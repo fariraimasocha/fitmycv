@@ -214,7 +214,7 @@ function PreferencesForm({ prefs }) {
                         className="inline-flex size-6 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                         aria-label={t("removeTitle", { title })}
                       >
-                        <XIcon size={12} weight="bold" aria-hidden="true" />
+                        <XIcon size={12} aria-hidden="true" />
                       </button>
                     </li>
                   ))}

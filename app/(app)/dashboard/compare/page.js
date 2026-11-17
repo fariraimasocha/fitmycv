@@ -89,7 +89,7 @@ function OfferOption({ app, selected, disabled, onToggle }) {
           )}
           aria-hidden="true"
         >
-          {selected && <CheckIcon size={12} weight="bold" />}
+          {selected && <CheckIcon size={12} />}
         </span>
         <span className="hidden size-9 shrink-0 items-center justify-center rounded-full bg-[var(--landing-surface)] font-outfit text-xs font-semibold text-foreground ring-1 ring-inset ring-[var(--landing-line)] sm:flex">
           {initials(app.jobCompany)}

@@ -305,7 +305,7 @@ export default function AgentThreadPage() {
               onClick={() => setThreadsOpen(false)}
               className="dashboard-primary-btn w-full"
             >
-              <PlusIcon size={16} weight="bold" aria-hidden="true" />
+              <PlusIcon size={16} aria-hidden="true" />
               {t("newThread")}
             </Link>
           </div>

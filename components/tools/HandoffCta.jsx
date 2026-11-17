@@ -44,7 +44,7 @@ export function CtaCard({ title, body, label, onClick }) {
       <button type="button" onClick={onClick} className="landing-primary-btn group shrink-0 font-outfit text-sm">
         {label}
         <ArrowRightIcon
-          size={15}
+          size={16}
           aria-hidden="true"
           className="transition-transform duration-200 group-hover:translate-x-0.5"
         />

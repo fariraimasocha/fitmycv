@@ -108,7 +108,7 @@ export default function UpgradePage() {
                 className="flex items-start gap-3 text-sm leading-6 text-foreground"
               >
                 <span className="mt-1 flex size-5 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
-                  <CheckIcon size={12} weight="bold" aria-hidden="true" />
+                  <CheckIcon size={12} aria-hidden="true" />
                 </span>
                 {t.has(`features.f${i + 1}`) ? t(`features.f${i + 1}`) : feature}
               </li>

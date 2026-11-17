@@ -761,5 +761,12 @@
     "clean": "Verificamos o CV que você enviou.",
     "cleanShort": "Nenhum problema encontrado.",
     "more": "Mais {count} na aba ATS depois de adaptar."
+  },
+  "beforeAfter": {
+    "title": "O que a adaptação mudou",
+    "fixTitle": "O que esta correção mudou",
+    "description": "{count, plural, one {# dos seus tópicos} other {# dos seus tópicos}}, antes e depois. As palavras-chave adicionadas estão destacadas.",
+    "before": "Antes",
+    "after": "Depois"
   }
 }

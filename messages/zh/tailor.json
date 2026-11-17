@@ -761,5 +761,12 @@
     "clean": "我们检查了你上传的简历。",
     "cleanShort": "没有发现问题。",
     "more": "定制后可在 ATS 标签页查看另外 {count} 项。"
+  },
+  "beforeAfter": {
+    "title": "定制改了什么",
+    "fixTitle": "这次修复改了什么",
+    "description": "你的 {count} 条要点，修改前后对比。新增的关键词已高亮。",
+    "before": "修改前",
+    "after": "修改后"
   }
 }

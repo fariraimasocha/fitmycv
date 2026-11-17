@@ -761,5 +761,12 @@
     "clean": "Wir haben deinen hochgeladenen Lebenslauf geprüft.",
     "cleanShort": "Keine Probleme gefunden.",
     "more": "{count} weitere im ATS-Tab nach dem Anpassen."
+  },
+  "beforeAfter": {
+    "title": "Was das Anpassen geändert hat",
+    "fixTitle": "Was diese Korrektur geändert hat",
+    "description": "{count, plural, one {# deiner Stichpunkte} other {# deiner Stichpunkte}}, vorher und nachher. Hinzugefügte Schlüsselwörter sind markiert.",
+    "before": "Vorher",
+    "after": "Nachher"
   }
 }

@@ -37,6 +37,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import JobRequirementsCard from "@/components/JobRequirementsCard";
 import CvHealthCard from "@/components/CvHealthCard";
+import BeforeAfterCard from "@/components/BeforeAfterCard";
+import { changedBullets } from "@/lib/bullet-diff";
 import JobMatchScoreCard from "@/components/JobMatchScoreCard";
 import { ResumeTemplate } from "@/components/ResumePreview";
 import ResumeForm from "@/components/ResumeForm";
@@ -208,6 +210,8 @@ function Tailor() {
   const [atsLoading, setAtsLoading] = useState(false);
   const [preAtsScore, setPreAtsScore] = useState(null);
   const [evidence, setEvidence] = useState(null);
+  const [bulletPairs, setBulletPairs] = useState([]);
+  const [fixPairs, setFixPairs] = useState([]);
   const [evidenceLoading, setEvidenceLoading] = useState(false);
   const [companyBrief, setCompanyBrief] = useState(null);
   const [companyBriefLoading, setCompanyBriefLoading] = useState(false);
@@ -352,6 +356,8 @@ function Tailor() {
       setMatchScore(null);
       setPreAtsScore(null);
       setEvidence(null);
+      setBulletPairs([]);
+      setFixPairs([]);
       setWhyThisRole(null);
       setAppliedFixes([]);
       trackEvent("job_requirements_extracted", {
@@ -544,9 +550,17 @@ function Tailor() {
       setWhyThisRole(null);
       setAppliedFixes([]);
       setFixGain(0);
+      const pairs = changedBullets(
+        cachedReferenceCV,
+        result.data?.tailoredCV,
+        (result.data?.keywordsInjected || []).map((k) => k.keyword),
+      );
+      setBulletPairs(pairs);
+      setFixPairs([]);
       trackEvent("cv_tailored", {
         is_premium: Boolean(session?.user?.isPremium),
         has_cover_letter: Boolean(result.data?.coverLetter),
+        before_after_pairs: pairs.length,
       });
       // The route files every tailored CV under Applications, a Pro page.
       if (session?.user?.isPremium) {
@@ -753,6 +767,9 @@ function Tailor() {
         throw new Error(json.error || t("errors.fix"));
       }
       const updated = json.data.tailoredCV;
+      // Highlight the job terms the CV was missing before this fix.
+      const gaps = [...(atsScore?.coverage?.skillsMissing || []), ...(atsScore?.coverage?.missing || [])];
+      setFixPairs(changedBullets(tailorResult.tailoredCV, updated, gaps));
       setTailorResult((r) => ({ ...r, tailoredCV: updated }));
       setLiveValues(null);
       setAppliedFixes((list) => [...list, fix]);
@@ -1234,6 +1251,7 @@ function Tailor() {
 
           {activeTab === "cv" && (
             <>
+              <BeforeAfterCard pairs={bulletPairs} />
               <DashboardTabBar
                 ariaLabel={t("mobileTabs.ariaLabel")}
                 tabs={mobileTabs}
@@ -1343,18 +1361,21 @@ function Tailor() {
             </PreviewUnlockGate>
           )}
           {activeTab === "ats" && (
-            <ATSScoreCard
-              atsData={atsScore}
-              isLoading={atsLoading}
-              cv={tailorResult.tailoredCV}
-              jobData={jobData}
-              preScore={preAtsScore?.score}
-              onApplyFix={handleApplyFix}
-              locked={!isPremium}
-              applyingFix={applyingFix}
-              appliedFixes={appliedFixes}
-              fixGain={fixGain}
-            />
+            <>
+              <BeforeAfterCard pairs={fixPairs} titleKey="fixTitle" />
+              <ATSScoreCard
+                atsData={atsScore}
+                isLoading={atsLoading}
+                cv={tailorResult.tailoredCV}
+                jobData={jobData}
+                preScore={preAtsScore?.score}
+                onApplyFix={handleApplyFix}
+                locked={!isPremium}
+                applyingFix={applyingFix}
+                appliedFixes={appliedFixes}
+                fixGain={fixGain}
+              />
+            </>
           )}
           {activeTab === "why" && (
             <WhyThisRoleCard

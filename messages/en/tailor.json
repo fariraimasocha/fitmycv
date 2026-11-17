@@ -761,5 +761,12 @@
     "clean": "We checked the CV you uploaded.",
     "cleanShort": "No problems found.",
     "more": "{count} more in the ATS tab after you tailor."
+  },
+  "beforeAfter": {
+    "title": "What tailoring changed",
+    "fixTitle": "What this fix changed",
+    "description": "{count, plural, one {One of your bullets} other {# of your bullets}}, before and after. Added keywords are highlighted.",
+    "before": "Before",
+    "after": "After"
   }
 }

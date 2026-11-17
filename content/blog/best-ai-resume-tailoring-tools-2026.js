@@ -30,7 +30,7 @@ export const faqs = [
   },
   {
     q: "What is the difference between an AI resume builder and a tailoring tool?",
-    a: "A builder helps you create a CV. A tailor takes a CV you already have and rewrites it for one posting. Mixing the two is why comparison tables feel noisy. We keep builders in a [separate post](/blog/best-ai-resume-builders-2026).",
+    a: "A builder helps you create a CV. A tailor takes a CV you already have and rewrites it for one posting. Mixing the two is why comparison tables feel noisy.",
   },
   {
     q: "Which website is best to tailor a resume to a job description?",
@@ -48,7 +48,7 @@ export const faqs = [
 
 export const blocks = [
   {
-    p: "“Best AI to tailor a resume to a job description” is not the same question as “best AI resume builder”. Builders help you make a document. Tailors rewrite one you already have against a posting. This page is only the second group. For Kickresume, Jobscan-as-checker, and Resume Worded, use the [builders comparison](/blog/best-ai-resume-builders-2026).",
+    p: "“Best AI to tailor a resume to a job description” is not the same question as “best AI resume builder”. Builders help you make a document. Tailors rewrite one you already have against a posting. This page is only the second group.",
   },
   {
     p: "We make FitMyCV, so read that row with scepticism. Limits and prices were checked in August 2026.",
@@ -121,7 +121,7 @@ export const blocks = [
   { h2: "How to choose" },
   {
     ol: [
-      "**No CV yet?** A builder (see the [2026 builders post](/blog/best-ai-resume-builders-2026)), then come back.",
+      "**No CV yet?** Start with a builder, then come back.",
       "**CV exists, no responses?** Run the [free ATS checker](/ats-resume-checker) first. If the gap is vocabulary, tailor. If the gap is weak bullets, fix the writing before you pay for volume.",
       "**You skip tailoring because it takes forty minutes?** A job-link tailor, or an [AI resume optimizer](/resume-optimizer) that rewrites the CV you already have.",
       "**You also need a CRM?** Teal, plus a tailor if Teal’s rewrite is too light.",

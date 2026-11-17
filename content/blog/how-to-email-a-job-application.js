@@ -151,7 +151,7 @@ export const blocks = [
 
   { h2: "If you do not hear back" },
   {
-    p: "Wait about a week, or until the closing date has passed, then send one short follow up in the same email thread. The guide on [how to follow up on a job application](/blog/how-to-follow-up-on-a-job-application) has templates for that message.",
+    p: "Wait about a week, or until the closing date has passed, then send one short follow up in the same email thread.",
   },
   {
     cta: {

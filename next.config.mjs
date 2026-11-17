@@ -22,6 +22,30 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Posts removed Dec 2026 for zero Search Console clicks in 90 days.
+      // Each points at the closest live page so old links still land somewhere useful.
+      { source: "/blog/why-am-i-not-getting-interviews", destination: "/blog/tips-for-tailoring-a-cv-to-specific-jobs", permanent: true },
+      { source: "/blog/ats-resume-format", destination: "/blog/ats-resume-guide", permanent: true },
+      { source: "/blog/how-to-get-a-remote-job", destination: "/blog", permanent: true },
+      { source: "/blog/how-to-find-resume-keyword-gaps", destination: "/blog/how-to-check-resume-against-job-description", permanent: true },
+      { source: "/blog/how-to-explain-employment-gap-on-cv", destination: "/employment-gap-explanation-generator", permanent: true },
+      { source: "/blog/skills-to-put-on-a-resume", destination: "/resume-keywords", permanent: true },
+      { source: "/blog/career-change-cv", destination: "/blog", permanent: true },
+      { source: "/blog/how-to-tailor-cv-to-job-description", destination: "/blog/tips-for-tailoring-a-cv-to-specific-jobs", permanent: true },
+      { source: "/blog/how-to-follow-up-on-a-job-application", destination: "/blog/how-to-email-a-job-application", permanent: true },
+      { source: "/blog/how-to-tailor-a-resume-for-a-specific-job", destination: "/blog/tips-for-tailoring-a-cv-to-specific-jobs", permanent: true },
+      { source: "/blog/cover-letter-from-job-description", destination: "/ai-cover-letter-generator", permanent: true },
+      { source: "/blog/cover-letter-with-no-experience", destination: "/ai-cover-letter-generator", permanent: true },
+      { source: "/blog/cv-professional-summary-examples", destination: "/professional-summary-generator", permanent: true },
+      { source: "/blog/how-much-should-you-tailor-your-resume", destination: "/blog/tips-for-tailoring-a-cv-to-specific-jobs", permanent: true },
+      { source: "/blog/how-long-should-a-cv-be", destination: "/cv-format-checker", permanent: true },
+      { source: "/blog/does-tailoring-your-resume-actually-work", destination: "/blog/tips-for-tailoring-a-cv-to-specific-jobs", permanent: true },
+      { source: "/blog/cv-vs-resume-difference", destination: "/blog", permanent: true },
+      { source: "/blog/how-many-jobs-should-i-apply-to", destination: "/blog", permanent: true },
+      { source: "/blog/how-to-match-resume-to-job-description", destination: "/blog/tips-for-tailoring-a-cv-to-specific-jobs", permanent: true },
+      { source: "/blog/what-is-a-resume-match-score", destination: "/blog/how-to-check-resume-against-job-description", permanent: true },
+      { source: "/blog/best-ai-resume-builders-2026", destination: "/blog/best-ai-resume-tailoring-tools-2026", permanent: true },
+      { source: "/blog/cv-with-no-experience", destination: "/blog", permanent: true },
       {
         source: "/",
         has: [{ type: "host", value: "^fitmycv\\.link$" }],

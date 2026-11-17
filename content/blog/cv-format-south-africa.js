@@ -61,7 +61,7 @@ export const blocks = [
     p: "A South African CV looks a lot like a British one, with a few local habits on top. Recruiters expect to see your driver's licence code, the languages you speak and named referees. They do not need your ID number, your photo or your marital status, even though many old templates still include them. This guide sets out the format that works in 2026, section by section.",
   },
   {
-    p: "In South Africa the document is called a CV. In the US the same thing is called a resume, and our guide to the [difference between a CV and a resume](/blog/cv-vs-resume-difference) covers where the two split. Everything below uses the South African meaning.",
+    p: "In South Africa the document is called a CV. In the US the same thing is called a resume. Everything below uses the South African meaning.",
   },
   {
     callout: {
@@ -85,7 +85,7 @@ export const blocks = [
     },
   },
   {
-    p: "Our full guide on [how long a CV should be](/blog/how-long-should-a-cv-be) explains how to cut without losing your strongest material. The short rule: every line should carry a keyword, a number or a named tool.",
+    p: "To check your length, run the free [CV format checker](/cv-format-checker). The rule for cutting: every line should carry a keyword, a number or a named tool.",
   },
 
   { h2: "The section order that works" },
@@ -189,7 +189,7 @@ export const blocks = [
     p: "Many large employers and job portals in South Africa screen applications with an applicant tracking system. These systems read plain layouts best. Use one column, standard headings such as Work Experience and Qualifications, and no text inside images, tables or text boxes. Put your contact details in the body of the page, not in the header. The [ATS resume checker](/ats-resume-checker) shows how software reads your file.",
   },
   {
-    p: "Portal profiles often ask you to fill in your history field by field as well as upload a CV. Keep both consistent. A recruiter who sees different dates in your profile and your CV will ask why. If you have a gap, give a short honest reason. Our guide on [explaining an employment gap on your CV](/blog/how-to-explain-employment-gap-on-cv) shows how, and the free [gap explanation generator](/employment-gap-explanation-generator) drafts the line for you.",
+    p: "Portal profiles often ask you to fill in your history field by field as well as upload a CV. Keep both consistent. A recruiter who sees different dates in your profile and your CV will ask why. If you have a gap, give a short honest reason. The free [gap explanation generator](/employment-gap-explanation-generator) drafts the line for you.",
   },
 
   { h2: "Common mistakes on South African CVs" },
@@ -211,7 +211,7 @@ export const blocks = [
 
   { h2: "Tailor it to each advert" },
   {
-    p: "A clean format gets your CV read. Matching the advert gets you shortlisted. Read the requirements, then make sure the top half of your first page answers them in the advert's own words. If it asks for IFRS reporting and you have done it, the phrase IFRS should appear in a bullet with a result. The [resume job match checker](/resume-job-match-checker) shows which requirements your CV misses, and our guide to [tailoring a CV to a job description](/blog/how-to-tailor-cv-to-job-description) walks through it.",
+    p: "A clean format gets your CV read. Matching the advert gets you shortlisted. Read the requirements, then make sure the top half of your first page answers them in the advert's own words. If it asks for IFRS reporting and you have done it, the phrase IFRS should appear in a bullet with a result. The [resume job match checker](/resume-job-match-checker) shows which requirements your CV misses, and our guide to [tailoring a CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs) walks through it.",
   },
   {
     compare: {

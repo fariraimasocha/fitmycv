@@ -123,9 +123,6 @@ export const resumeKeywordsHub = {
       p: "Postings for the same job title use different words. One asks for 'stakeholder management', another for 'client relationships'. The role lists show the common vocabulary. The posting you are answering today shows the exact words, and those are the ones to match.",
     },
     {
-      p: "For the skills side of the page, see [skills to put on a resume](/blog/skills-to-put-on-a-resume).",
-    },
-    {
       cta: {
         title: "See which keywords your CV is missing",
         body: "Paste the job description and upload your CV. The checker lists the posting's terms your CV never mentions. Free, and your file is read in your browser.",

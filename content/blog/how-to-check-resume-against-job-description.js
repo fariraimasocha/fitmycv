@@ -96,7 +96,7 @@ export const blocks = [
     p: "Before anything about content, confirm the file is readable. Open your CV, select all, copy, and paste it into a plain text editor.",
   },
   {
-    p: "What arrives is close to what a parser extracts. If sections land out of order, if your skills column has interleaved with your job history, or if your phone number is missing because it lives in a header, that is a formatting problem and no amount of keyword work will fix it. The detail is in [ATS resume format](/blog/ats-resume-format).",
+    p: "What arrives is close to what a parser extracts. If sections land out of order, if your skills column has interleaved with your job history, or if your phone number is missing because it lives in a header, that is a formatting problem and no amount of keyword work will fix it. The detail is in [ATS resume guide](/blog/ats-resume-guide).",
   },
 
   { h2: "Check two: the highlighter pass" },

@@ -125,7 +125,7 @@ export const blocks = [
     p: "You do not have to take any of this on trust. The [free ATS resume checker](/ats-resume-checker) runs in your browser, needs no account, and shows you the same keyword gap Jobscan charges for. If the gap looks right, [tailor from the job link](/tailor-cv-from-job-link) and see whether the rewrite is worth it.",
   },
   {
-    p: "For a wider look at free checkers, including the ones we do not build, read [best free ATS resume checkers](/blog/best-free-ats-resume-checkers-2026). If your real question is how much of the CV to change, read [how to tailor a resume for a specific job](/blog/how-to-tailor-a-resume-for-a-specific-job).",
+    p: "For a wider look at free checkers, including the ones we do not build, read [best free ATS resume checkers](/blog/best-free-ats-resume-checkers-2026). If your real question is how much of the CV to change, read [tips for tailoring a CV to specific jobs](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
   {
     cta: {

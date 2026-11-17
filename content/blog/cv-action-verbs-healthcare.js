@@ -117,7 +117,7 @@ export const blocks = [
     p: "**Verb → the specific clinical or service action, with the setting and tool named → the caseload, compliance figure, or time saved.** Naming the scoring system, protocol, or pathway you used is what turns a modest sentence into evidence.",
   },
   {
-    p: "Which verbs lead should follow the posting. A quality-improvement role wants *audited*, *standardised*, and *reduced* at the top; a ward role wants *triaged*, *escalated*, and *precepted*. That reordering is the core of [tailoring a CV to a job description](/blog/how-to-tailor-cv-to-job-description).",
+    p: "Which verbs lead should follow the posting. A quality-improvement role wants *audited*, *standardised*, and *reduced* at the top; a ward role wants *triaged*, *escalated*, and *precepted*. That reordering is the core of [tailoring a CV to a job description](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
   },
   {
     cta: {

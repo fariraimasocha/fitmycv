@@ -261,7 +261,7 @@ export const tealAlternative = {
     },
     {
       label: "How to tailor your CV",
-      href: "/blog/how-to-tailor-cv-to-job-description",
+      href: "/blog/tips-for-tailoring-a-cv-to-specific-jobs",
       body: "The manual method, in full, if you would rather not pay anyone.",
     },
   ],
@@ -857,8 +857,8 @@ export const resumeWordedAlternative = {
       body: "Full keyword match with no account and no scan cap.",
     },
     {
-      label: "How to find resume keyword gaps",
-      href: "/blog/how-to-find-resume-keyword-gaps",
+      label: "How to check your resume against a job description",
+      href: "/blog/how-to-check-resume-against-job-description",
       body: "What a match report is actually telling you.",
     },
   ],

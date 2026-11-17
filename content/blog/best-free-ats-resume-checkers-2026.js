@@ -147,7 +147,7 @@ export const blocks = [
     },
   },
   {
-    p: "If you already have a CV and a posting, start with a checker. If you are staring at a blank page, start with a builder. If you apply often and skip tailoring, you need the third category. The [2026 AI resume builder comparison](/blog/best-ai-resume-builders-2026) sorts those tools by job, not by score.",
+    p: "If you already have a CV and a posting, start with a checker. If you are staring at a blank page, start with a builder. If you apply often and skip tailoring, you need the third category. The [2026 AI resume tailoring tools comparison](/blog/best-ai-resume-tailoring-tools-2026) covers that third group.",
   },
 
   { h2: "How to use any checker without fooling yourself" },

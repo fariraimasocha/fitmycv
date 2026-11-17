@@ -135,7 +135,7 @@ export const missingResumeKeywords = {
       ],
     },
     {
-      p: "Then paste the updated CV back in and re-run. Two or three passes usually clears most of the list without inventing anything. The [full tailoring method](/blog/how-to-tailor-cv-to-job-description) walks through the same process with a before and after example.",
+      p: "Then paste the updated CV back in and re-run. Two or three passes usually clears most of the list without inventing anything. The [full tailoring method](/blog/tips-for-tailoring-a-cv-to-specific-jobs) walks through the same process with a before and after example.",
     },
 
     { h2: "Why the mention count changes what you fix first" },

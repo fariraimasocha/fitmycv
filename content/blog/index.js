@@ -2,11 +2,8 @@
 // The registry is the single source of truth for the hub, the sitemap, and the
 // related-posts rails, so adding a post means adding one import and one entry.
 import atsResumeGuide from "./ats-resume-guide";
-import bestAiResumeBuilders from "./best-ai-resume-builders-2026";
-import howToTailorCv from "./how-to-tailor-cv-to-job-description";
 import chatgptPrompts from "./chatgpt-prompts-to-tailor-resume";
 import bestFreeAtsCheckers from "./best-free-ats-resume-checkers-2026";
-import coverLetterFromJd from "./cover-letter-from-job-description";
 import fitmycvVsChatgpt from "./fitmycv-vs-chatgpt-resume-tailoring";
 import bestAiTailoringTools from "./best-ai-resume-tailoring-tools-2026";
 import verbsTech from "./cv-action-verbs-tech";
@@ -14,25 +11,7 @@ import verbsMarketing from "./cv-action-verbs-marketing";
 import verbsFinance from "./cv-action-verbs-finance";
 import verbsHealthcare from "./cv-action-verbs-healthcare";
 import verbsSales from "./cv-action-verbs-sales";
-import whyNotGettingInterviews from "./why-am-i-not-getting-interviews";
-import howManyJobsToApply from "./how-many-jobs-should-i-apply-to";
-import howToFollowUp from "./how-to-follow-up-on-a-job-application";
-import coverLetterNoExperience from "./cover-letter-with-no-experience";
-import cvNoExperience from "./cv-with-no-experience";
-import employmentGap from "./how-to-explain-employment-gap-on-cv";
-import careerChangeCv from "./career-change-cv";
-import howLongShouldCvBe from "./how-long-should-a-cv-be";
-import howToGetRemoteJob from "./how-to-get-a-remote-job";
-import cvProfessionalSummary from "./cv-professional-summary-examples";
-import atsResumeFormat from "./ats-resume-format";
-import howToMatchResume from "./how-to-match-resume-to-job-description";
 import howToCheckResume from "./how-to-check-resume-against-job-description";
-import howToFindKeywordGaps from "./how-to-find-resume-keyword-gaps";
-import whatIsMatchScore from "./what-is-a-resume-match-score";
-import doesTailoringWork from "./does-tailoring-your-resume-actually-work";
-import howMuchToTailor from "./how-much-should-you-tailor-your-resume";
-import cvVsResume from "./cv-vs-resume-difference";
-import skillsToPutOnResume from "./skills-to-put-on-a-resume";
 import jobApplicationLetter from "./job-application-letter";
 import howToEmailApplication from "./how-to-email-a-job-application";
 
@@ -42,13 +21,11 @@ import tiredOfTailoring from "./tired-of-tailoring-resume-for-every-job";
 import cvFormatSouthAfrica from "./cv-format-south-africa";
 import cvFormatNigeria from "./cv-format-nigeria";
 import cvFormatKenya from "./cv-format-kenya";
-import tailorForSpecificJob from "./how-to-tailor-a-resume-for-a-specific-job";
 import tailoringTips from "./tips-for-tailoring-a-cv-to-specific-jobs";
 import jobscanAlternative from "./jobscan-alternative";
 
 export const POSTS = [
   jobscanAlternative,
-  tailorForSpecificJob,
   tailoringTips,
   tailorFromMasterResume,
   tailorResumeForFree,
@@ -56,40 +33,19 @@ export const POSTS = [
   cvFormatSouthAfrica,
   cvFormatNigeria,
   cvFormatKenya,
-  skillsToPutOnResume,
   jobApplicationLetter,
   howToEmailApplication,
-  doesTailoringWork,
-  howMuchToTailor,
-  cvVsResume,
-  atsResumeFormat,
-  howToMatchResume,
   howToCheckResume,
-  howToFindKeywordGaps,
-  whatIsMatchScore,
   atsResumeGuide,
-  howToTailorCv,
   chatgptPrompts,
   bestFreeAtsCheckers,
-  coverLetterFromJd,
   fitmycvVsChatgpt,
   bestAiTailoringTools,
-  bestAiResumeBuilders,
   verbsTech,
   verbsMarketing,
   verbsFinance,
   verbsHealthcare,
   verbsSales,
-  whyNotGettingInterviews,
-  howManyJobsToApply,
-  howToFollowUp,
-  coverLetterNoExperience,
-  cvNoExperience,
-  employmentGap,
-  careerChangeCv,
-  howLongShouldCvBe,
-  howToGetRemoteJob,
-  cvProfessionalSummary,
 ];
 
 export const POSTS_BY_SLUG = Object.fromEntries(

@@ -129,7 +129,7 @@ export const blocks = [
     },
   },
   {
-    p: "To see these tips applied to a real CV, read [how to tailor a resume for a specific job](/blog/how-to-tailor-a-resume-for-a-specific-job). For the full step by step method, read [how to tailor your CV to a job description](/blog/how-to-tailor-cv-to-job-description).",
+    p: "To do this from one master CV, read [how to tailor your CV from a master resume](/blog/tailor-cv-from-master-resume). To do it without paying for anything, read [how to tailor your resume for free](/blog/how-to-tailor-resume-for-free).",
   },
   {
     cta: {

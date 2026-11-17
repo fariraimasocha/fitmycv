@@ -49,7 +49,7 @@ export const cvFormatChecker = {
     },
     {
       q: "How long should my CV be?",
-      a: "Two pages covers most people in every country the checker supports. Graduates should aim for one. The checker estimates your length from the word count, see [how long a CV should be](/blog/how-long-should-a-cv-be).",
+      a: "Two pages covers most people in every country the checker supports. Graduates should aim for one. The checker estimates your length from the word count.",
     },
     {
       q: "Should I add a photo?",
@@ -196,7 +196,6 @@ export const employmentGapExplanationGenerator = {
     "A gap only hurts when it looks hidden. Pick why you were away and when, and get one honest line for your CV, one for your cover letter and a short answer for the interview.",
   ctas: [
     { label: "Explain my gap", href: "#tool" },
-    { label: "Read the full guide", href: "/blog/how-to-explain-employment-gap-on-cv", variant: "secondary" },
   ],
   tool: "gap",
   howTo: {
@@ -234,9 +233,6 @@ export const employmentGapExplanationGenerator = {
     { h2: "The rule: short, true, and about now" },
     {
       p: "Recruiters are not asking why you left. They are asking if you are ready to work. Every line this tool writes ends there.",
-    },
-    {
-      p: "For examples by situation, read [how to explain an employment gap on your CV](/blog/how-to-explain-employment-gap-on-cv).",
     },
   ],
   related: [

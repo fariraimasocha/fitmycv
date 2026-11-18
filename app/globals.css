@@ -1724,3 +1724,84 @@ body:has(.dashboard-shell) [data-slot="dialog-content"] :is(.font-extrabold, .fo
   letter-spacing: -0.01em;
   line-height: 1.25;
 }
+
+/* Light reading surface for long-form posts. The marketing site is dark, and
+   grey text on charcoal is tiring over an eight-minute read, so the article
+   re-scopes the landing tokens to paper. Blocks, the FAQ and embedded tools
+   read the same tokens, so they turn light without markup changes. The site
+   header and footer sit outside and stay dark. */
+.reading-light {
+  --landing-bg: #f7f4ef;
+  --landing-paper: #f7f4ef;
+  --landing-paper-strong: #efeae2;
+  --landing-paper-soft: #faf8f5;
+  --landing-surface: #ffffff;
+  --landing-surface-elevated: #ffffff;
+  --landing-ink: #1a1a1a;
+  /* Body copy. 9.0:1 on the paper: softer than the ink, still made for
+     reading, not for captions. */
+  --landing-ink-soft: #46433c;
+  --landing-ink-faint: #6b665b;
+  --landing-line: #e3ddd4;
+  --landing-primary: #1a1a1a;
+  --landing-primary-dark: #1a1a1a;
+  --landing-primary-soft: #efeae2;
+  --landing-on-primary: #ffffff;
+  --landing-accent: #c05a3f;
+  --landing-accent-dark: #9a4530;
+  --landing-accent-soft: #f7ece7;
+  --landing-accent-line: #e0b9a8;
+  --landing-coral: #b04f36;
+  --landing-success: #2f7a4b;
+  --landing-success-soft: #eaf4ed;
+  --landing-shadow: none;
+  --landing-shadow-sm: none;
+  --foreground: var(--landing-ink);
+  --muted-foreground: var(--landing-ink-soft);
+  --border: var(--landing-line);
+  /* A reading face, not a display one: SF Pro on Apple devices. Titles keep
+     the serif. */
+  --font-reading: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-outfit: var(--font-reading);
+  --font-sn-pro: var(--font-reading);
+  background: var(--landing-paper);
+  color: var(--landing-ink);
+  font-family: var(--font-reading);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Same weight cap as the dashboard: semibold is the heaviest weight on paper. */
+.reading-light :is(.font-extrabold, .font-black, .font-bold) {
+  font-weight: 600;
+}
+
+/* The same paper at night. Readers whose system is set to dark get warm
+   near-white text on a warm charcoal, at reading contrast, not the grey on
+   grey the marketing theme uses for secondary copy. Contrast on --landing-paper:
+   ink 15.1:1, ink-soft 10.8:1, ink-faint 6.1:1, accent-dark 8.7:1. */
+@media (prefers-color-scheme: dark) {
+  .reading-light {
+    --landing-bg: #1b1a18;
+    --landing-paper: #1b1a18;
+    --landing-paper-strong: #2a2825;
+    --landing-paper-soft: #211f1d;
+    --landing-surface: #242220;
+    --landing-surface-elevated: #2a2825;
+    --landing-ink: #f2efe8;
+    --landing-ink-soft: #d0cbc1;
+    --landing-ink-faint: #9d988d;
+    --landing-line: #3a3733;
+    --landing-primary: #f2efe8;
+    --landing-primary-dark: #f2efe8;
+    --landing-primary-soft: #2a2825;
+    --landing-on-primary: #1b1a18;
+    --landing-accent: #e07a5f;
+    --landing-accent-dark: #f0a58f;
+    --landing-accent-soft: #33241f;
+    --landing-accent-line: #6b3f32;
+    --landing-coral: #ec8f74;
+    --landing-success: #74c493;
+    --landing-success-soft: #1f2e25;
+    color-scheme: dark;
+  }
+}

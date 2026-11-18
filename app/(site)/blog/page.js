@@ -50,36 +50,39 @@ export default function BlogIndexPage() {
     <div className="landing-root min-h-screen">
       <Header />
       <main dir="ltr">
-        <section className="relative isolate overflow-hidden px-5 pb-10 pt-32 sm:px-10 lg:px-16 xl:px-24">
-          <div className="landing-container flex flex-col items-center text-center">
-            <span className="landing-eyebrow">
-              <span
-                className="h-2 w-2 rounded-full bg-[var(--landing-primary)]"
-                aria-hidden="true"
-              />
-              The FitMyCV blog
-            </span>
-            <h1
-              className="font-serif-display mt-6 max-w-3xl font-normal leading-[1.02] tracking-tight text-[var(--landing-ink)]"
-              style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
-            >
-              Guides for getting past the filter
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)]">
-              How applicant tracking systems actually read a CV, how to tailor
-              one to a job description without losing your evening, and the
-              words that make a bullet land.
-            </p>
-          </div>
-        </section>
+        {/* Same paper as the posts, so opening one is not a jump in theme. */}
+        <div className="reading-light">
+          <section className="relative isolate overflow-hidden px-5 pb-10 pt-32 sm:px-10 lg:px-16 xl:px-24">
+            <div className="landing-container flex flex-col items-center text-center">
+              <span className="landing-eyebrow">
+                <span
+                  className="h-2 w-2 rounded-full bg-[var(--landing-primary)]"
+                  aria-hidden="true"
+                />
+                The FitMyCV blog
+              </span>
+              <h1
+                className="font-serif-display mt-6 max-w-3xl font-normal leading-[1.02] tracking-tight text-[var(--landing-ink)]"
+                style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+              >
+                Guides for getting past the filter
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--landing-ink-soft)]">
+                How applicant tracking systems actually read a CV, how to tailor
+                one to a job description without losing your evening, and the
+                words that make a bullet land.
+              </p>
+            </div>
+          </section>
 
-        <section className="px-5 pb-16 pt-2 sm:px-10 lg:px-16 xl:px-24">
-          <div className="landing-container grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, i) => (
-              <BlogCard key={post.meta.slug} post={post.meta} priority={i < 3} />
-            ))}
-          </div>
-        </section>
+          <section className="px-5 pb-16 pt-2 sm:px-10 lg:px-16 xl:px-24">
+            <div className="landing-container grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post, i) => (
+                <BlogCard key={post.meta.slug} post={post.meta} priority={i < 3} />
+              ))}
+            </div>
+          </section>
+        </div>
 
         <CTABand />
       </main>

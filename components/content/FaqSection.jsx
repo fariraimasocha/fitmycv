@@ -9,7 +9,38 @@ export default function FaqSection({
   intro,
   muted = true,
   id = "faq",
+  inline = false,
 }) {
+  // Inside an article: one more section of the reading column, with the
+  // article's own heading style, not a centered band of its own.
+  if (inline) {
+    return (
+      <section id={id} className="mt-16 scroll-mt-24">
+        <h2 className="text-2xl font-semibold leading-tight tracking-[-0.015em] text-[var(--landing-ink)] sm:text-[1.75rem]">
+          {heading}
+        </h2>
+        <div className="mt-6 border-t border-[var(--landing-line)]">
+          {faqs.map(({ q, a }) => (
+            <details
+              key={q}
+              className="group border-b border-[var(--landing-line)] [&_summary::-webkit-details-marker]:hidden"
+            >
+              <summary className="flex min-h-control cursor-pointer list-none items-center justify-between gap-4 py-4 text-lg font-semibold leading-7 text-[var(--landing-ink)]">
+                {q}
+                <PlusIcon
+                  size={20}
+                  aria-hidden="true"
+                  className="shrink-0 text-[var(--landing-ink-faint)] transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
+                />
+              </summary>
+              <p className="pb-5 pe-9 text-base leading-7 text-[var(--landing-ink-soft)]">{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       id={id}

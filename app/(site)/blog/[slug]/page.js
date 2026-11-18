@@ -1,7 +1,8 @@
 import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CaretRightIcon, ClockIcon } from "@phosphor-icons/react/dist/ssr";
+import { CaretDownIcon, CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
 
 import Header from "@/components/Header";
 import Footer from "@/components/landing/Footer";
@@ -46,6 +47,23 @@ export async function generateMetadata({ params }) {
   });
 }
 
+function Toc({ headings, className = "" }) {
+  return (
+    <ul className={`flex flex-col gap-2.5 border-s border-[var(--landing-line)] ${className}`}>
+      {headings.map((heading) => (
+        <li key={heading}>
+          <a
+            href={`#${slugifyHeading(heading)}`}
+            className="-ms-px block border-s border-transparent ps-3 text-sm leading-5 text-[var(--landing-ink-soft)] transition-colors hover:border-[var(--landing-ink)] hover:text-[var(--landing-ink)]"
+          >
+            {heading}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default async function BlogPostPage({ params }) {
   setRequestLocale("en");
   const { slug } = await params;
@@ -55,150 +73,148 @@ export default async function BlogPostPage({ params }) {
   const { meta, faqs, blocks } = post;
   const related = relatedPosts(slug);
   const headings = blocks.filter((block) => block.h2).map((block) => block.h2);
+  const toc = faqs?.length ? [...headings, "Frequently asked questions"] : headings;
 
   return (
     <div className="landing-root min-h-screen">
       <Header />
       <main dir="ltr">
-        <article>
-          {/* Header */}
-          <section className="relative isolate overflow-hidden px-5 pb-10 pt-32 sm:px-10 lg:px-16 xl:px-24">
-
-            <div className="mx-auto w-full max-w-3xl">
-              <nav
-                aria-label="Breadcrumb"
-                className="flex flex-wrap items-center gap-1.5 text-xs font-bold text-[var(--landing-ink-soft)]"
-              >
-                <Link href="/" className="hover:text-[var(--landing-ink)]">
-                  Home
-                </Link>
-                <CaretRightIcon size={11} aria-hidden="true" />
-                <Link href="/blog" className="hover:text-[var(--landing-ink)]">
-                  Blog
-                </Link>
-                <CaretRightIcon size={11} aria-hidden="true" />
-                <span className="text-[var(--landing-ink)]">{meta.category}</span>
-              </nav>
-
-              <h1
-                className="font-serif-display mt-6 font-normal leading-[1.06] tracking-tight text-[var(--landing-ink)]"
-                style={{ fontSize: "clamp(32px, 4.4vw, 52px)" }}
-              >
-                {meta.title}
-              </h1>
-
-              <p className="mt-6 text-lg font-semibold leading-8 text-[var(--landing-ink-soft)]">
-                {meta.excerpt}
-              </p>
-
-              <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-[var(--landing-line)] pt-5 text-sm font-semibold text-[var(--landing-ink-soft)]">
-                <span>
-                  By{" "}
-                  <Link
-                    href={AUTHOR.path}
-                    rel="author"
-                    className="text-[var(--landing-ink)] underline underline-offset-4"
-                  >
-                    {AUTHOR.name}
+        {/* The article sits on paper: long reads are easier dark on light. */}
+        <div className="reading-light">
+          <article className="px-5 pb-20 pt-12 sm:px-10 sm:pt-16 lg:px-16 xl:px-24">
+            {/* Header */}
+            {/* The nav's frame: same container and inset as the logo and the
+                Sign up button, so the page shares one left and right edge. */}
+            <header className="landing-container px-4 sm:px-8">
+              <div>
+                <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--landing-ink-faint)]">
+                  <Link href="/blog" className="hover:text-[var(--landing-ink)]">
+                    Blog
                   </Link>
-                  , {AUTHOR.role.charAt(0).toLowerCase() + AUTHOR.role.slice(1)}
-                </span>
-                <span aria-hidden="true">·</span>
-                <span>
-                  {meta.updated && meta.updated !== meta.date ? "Updated " : ""}
-                  <FormattedDate
-                    date={meta.updated || meta.date}
-                    locale="en-GB"
-                    options={{ day: "numeric", month: "long", year: "numeric" }}
-                  />
-                </span>
-                <span aria-hidden="true">·</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <ClockIcon size={14} weight="bold" aria-hidden="true" />
-                  {meta.readingTime} min read
-                </span>
-              </div>
-            </div>
-          </section>
+                  <CaretRightIcon size={12} aria-hidden="true" />
+                  <span className="font-medium text-[var(--landing-accent-dark)]">{meta.category}</span>
+                </nav>
 
-          {/* Cover */}
-          <div className="px-5 sm:px-10 lg:px-16 xl:px-24">
-            <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-strong)] shadow-[var(--landing-shadow-sm)]">
+                <h1
+                  className="font-serif-display mt-4 max-w-200 font-normal leading-[1.05] tracking-[-0.01em] text-[var(--landing-ink)]"
+                  style={{ fontSize: "clamp(36px, 5.2vw, 64px)" }}
+                >
+                  {meta.title}
+                </h1>
+
+                <p className="mt-6 max-w-170 text-xl leading-8 text-[var(--landing-ink-soft)]">{meta.excerpt}</p>
+
+                <div className="mt-8 flex items-center gap-3 border-t border-[var(--landing-line)] pt-6">
+                  <Image
+                    src="/fari.png"
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="size-10 shrink-0 rounded-full object-cover"
+                  />
+                  <div className="min-w-0 text-sm leading-5">
+                    <Link
+                      href={AUTHOR.path}
+                      rel="author"
+                      className="font-semibold text-[var(--landing-ink)] underline-offset-4 hover:underline"
+                    >
+                      {AUTHOR.name}
+                    </Link>
+                    <p className="text-[var(--landing-ink-faint)]">
+                      {meta.updated && meta.updated !== meta.date ? "Updated " : ""}
+                      <FormattedDate
+                        date={meta.updated || meta.date}
+                        locale="en-GB"
+                        options={{ day: "numeric", month: "long", year: "numeric" }}
+                      />
+                      {" · "}
+                      {meta.readingTime} min read
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            {/* Cover */}
+            <div className="landing-container px-4 sm:px-8 mt-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={meta.image}
                 alt={meta.imageAlt}
                 width={1536}
                 height={1024}
-                className="h-auto w-full"
+                className="aspect-2/1 h-auto w-full rounded-2xl border border-[var(--landing-line)] object-cover"
               />
             </div>
-          </div>
 
-          {/* Body */}
-          <section className="px-5 pb-4 pt-14 sm:px-10 lg:px-16 xl:px-24">
-            <div className="mx-auto w-full max-w-3xl">
+            {/* Body: the contents rail starts on the nav's left edge, then one 680px
+                reading column. Text wider than 680px gets hard to track. */}
+            <div className="landing-container px-4 sm:px-8 mt-12 lg:grid lg:grid-cols-[14rem_minmax(0,42.5rem)] lg:gap-x-16">
               {headings.length > 3 ? (
-                <nav
-                  aria-label="On this page"
-                  className="landing-card mb-12 rounded-2xl p-6"
-                >
-                  <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                    On this page
-                  </p>
-                  <ul className="mt-4 flex flex-col gap-2.5">
-                    {headings.map((heading) => (
-                      <li key={heading}>
-                        <a
-                          href={`#${slugifyHeading(heading)}`}
-                          className="text-sm font-semibold leading-6 text-[var(--landing-primary-dark)] hover:underline hover:underline-offset-4"
-                        >
-                          {heading}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                <nav aria-label="On this page" className="mb-10 lg:mb-0">
+                  {/* Phones: one tap opens the list, so the opening is not
+                      pushed below a block of links. */}
+                  <details className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] lg:hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary className="flex min-h-control cursor-pointer list-none items-center justify-between px-4 text-sm font-semibold text-[var(--landing-ink)]">
+                      On this page
+                      <CaretDownIcon size={16} aria-hidden="true" />
+                    </summary>
+                    <Toc headings={toc} className="px-4 pb-4" />
+                  </details>
+                  <div className="sticky top-24 hidden lg:block">
+                    <p className="text-sm font-semibold text-[var(--landing-ink)]">On this page</p>
+                    <Toc headings={toc} className="mt-3" />
+                  </div>
                 </nav>
-              ) : null}
+              ) : (
+                <div className="hidden lg:block" />
+              )}
 
-              <Blocks blocks={blocks} />
+              <div className="min-w-0">
+                <Blocks blocks={blocks} />
 
-              <aside className="mt-14 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-6">
-                <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                  <Link href={AUTHOR.path} rel="author" className="underline-offset-4 hover:underline">
-                    {AUTHOR.name}
-                  </Link>
-                </p>
-                <p className="mt-1 text-sm font-bold text-[var(--landing-ink-soft)]">{AUTHOR.short}</p>
-                <p className="mt-3 text-sm leading-7 text-[var(--landing-ink-soft)]">{AUTHOR.origin}</p>
-              </aside>
-            </div>
-          </section>
-        </article>
+                {faqs?.length ? (
+                  <FaqSection faqs={faqs} heading="Frequently asked questions" id="frequently-asked-questions" inline />
+                ) : null}
 
-        <div className="mt-8">
-          <FaqSection
-            faqs={faqs}
-            heading="Frequently asked questions"
-            id="faq"
-          />
-        </div>
-
-        {/* Related */}
-        {related.length ? (
-          <section className="landing-section">
-            <div className="landing-container">
-              <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
-                Keep reading
-              </h2>
-              <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-                {related.map((item) => (
-                  <BlogCard key={item.meta.slug} post={item.meta} />
-                ))}
+                <aside className="mt-16 flex gap-4 border-t border-[var(--landing-line)] pt-8">
+                  <Image
+                    src="/fari.png"
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="size-14 shrink-0 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-base font-semibold text-[var(--landing-ink)]">
+                      <Link href={AUTHOR.path} rel="author" className="underline-offset-4 hover:underline">
+                        {AUTHOR.name}
+                      </Link>
+                    </p>
+                    <p className="mt-0.5 text-sm text-[var(--landing-ink-faint)]">{AUTHOR.short}</p>
+                    <p className="mt-3 text-base leading-7 text-[var(--landing-ink-soft)]">{AUTHOR.origin}</p>
+                  </div>
+                </aside>
               </div>
             </div>
-          </section>
-        ) : null}
+          </article>
+
+          {/* Related */}
+          {related.length ? (
+            <section className="border-t border-[var(--landing-line)] px-5 py-16 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
+              <div className="landing-container px-4 sm:px-8">
+                <h2 className="text-2xl font-semibold leading-tight tracking-[-0.015em] text-[var(--landing-ink)] sm:text-[1.75rem]">
+                  Keep reading
+                </h2>
+                <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+                  {related.map((item) => (
+                    <BlogCard key={item.meta.slug} post={item.meta} />
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : null}
+        </div>
 
         <CTABand />
       </main>

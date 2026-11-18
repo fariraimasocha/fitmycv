@@ -11,6 +11,8 @@ export function parseResumeFromResponse(responseText) {
     basics: extractBasics(raw),
     work: mapWork(raw),
     education: mapEducation(raw),
+    certifications: mapCertifications(raw),
+    references: mapReferences(raw),
     skills: mapSkills(raw),
   };
 }
@@ -64,6 +66,36 @@ function mapEducation(raw) {
     startDate: e.startDate || "",
     endDate: e.endDate || "",
   }));
+}
+
+const str = (v) => (typeof v === "string" ? v.trim() : "");
+
+// Entries with no name are dropped, so an empty section never reaches the CV.
+export function mapCertifications(raw) {
+  const list = raw.certifications || raw.certificates || [];
+  if (!Array.isArray(list)) return [];
+  return list
+    .map((c) => (typeof c === "string" ? { name: c } : c || {}))
+    .map((c) => ({
+      name: str(c.name || c.title),
+      issuer: str(c.issuer || c.authority),
+      date: str(c.date),
+    }))
+    .filter((c) => c.name);
+}
+
+export function mapReferences(raw) {
+  const list = raw.references || [];
+  if (!Array.isArray(list)) return [];
+  return list
+    .map((r) => ({
+      name: str(r?.name),
+      title: str(r?.title || r?.position),
+      company: str(r?.company || r?.organization),
+      email: str(r?.email),
+      phone: str(r?.phone),
+    }))
+    .filter((r) => r.name);
 }
 
 function mapSkills(raw) {

@@ -38,4 +38,19 @@ assert.equal(parsedNewline.basics.summary, "Line one\nLine two");
 const fenced = '```json\n{ "basics": { "name": "Jane", "email": "j@x.com", }, "work": [] }\n```';
 assert.equal(parseResumeFromResponse(fenced).basics.email, "j@x.com");
 
+
+// Certifications and referees parse, and blank or missing ones leave empty lists.
+const withExtras = parseResumeFromResponse(`{
+  "basics": { "name": "Brian" },
+  "certificates": [{ "name": "AWS Solutions Architect", "issuer": "Amazon", "date": "2024" }, { "name": "" }],
+  "references": [{ "name": "Jane Moyo", "title": "CTO", "company": "Acme", "phone": "0771" }, { "name": " " }]
+}`);
+assert.deepEqual(withExtras.certifications, [{ name: "AWS Solutions Architect", issuer: "Amazon", date: "2024" }]);
+assert.equal(withExtras.references.length, 1);
+assert.equal(withExtras.references[0].company, "Acme");
+
+const without = parseResumeFromResponse('{ "basics": { "name": "Brian" } }');
+assert.deepEqual(without.certifications, []);
+assert.deepEqual(without.references, []);
+
 console.log("resume-parser: all checks passed");

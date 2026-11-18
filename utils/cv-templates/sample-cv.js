@@ -65,6 +65,9 @@ export const SAMPLE_CV = {
       endDate: "May 2017",
     },
   ],
+  certifications: [
+    { name: "AWS Certified Solutions Architect, Associate", issuer: "Amazon Web Services", date: "2022" },
+  ],
   skills: [
     { category: "Languages", skills: ["Go", "Python", "TypeScript", "SQL"] },
     {

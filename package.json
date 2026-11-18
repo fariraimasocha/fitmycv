@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "SWC_NATIVE_BINDING_CACHE=/tmp/swc-native-cache next build",
+    "build": "next build",
     "start": "next start",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "node scripts/deploy-cloudflare.mjs",
@@ -79,6 +79,7 @@
   },
   "pnpm": {
     "overrides": {
+      "@swc/core": "1.16.2",
       "@hono/node-server": "1.19.14",
       "ajv@<6.14.0": "6.14.0",
       "brace-expansion@<1.1.13": "1.1.14",

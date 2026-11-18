@@ -1,3 +1,4 @@
+import { PRICING } from "@/lib/pricing";
 // Tool + optimiser landing pages.
 
 export const atsResumeChecker = {
@@ -271,11 +272,13 @@ export const freeAtsKeywordChecker = {
 
 export const resumeOptimizer = {
   slug: "resume-optimizer",
-  seoTitle: "AI CV and Resume Optimizer: Free Score, No Login",
+  seoTitle: "Resume Optimizer: Free ATS Score, Then an AI Rewrite",
   description:
-    "Score your CV against a job posting for free, with no login. Then let AI rewrite it for that job: keyword coverage, stronger bullets, and an ATS-safe PDF.",
+    "Free resume optimizer. Paste a job posting and upload your resume to see your match score and missing keywords, no login. Then have AI rewrite it for that job.",
   keywords: [
     "resume optimizer",
+    "free resume optimizer",
+    "resume optimizer free",
     "cv optimizer",
     "ai cv optimizer",
     "cv optimiser",
@@ -287,15 +290,23 @@ export const resumeOptimizer = {
   ],
   eyebrow: "CV optimizer",
   breadcrumbName: "CV and resume optimizer",
-  h1: "AI resume optimizer",
+  h1: "Resume optimizer",
   lede:
-    "Your CV is not broken. It is generic. FitMyCV rewrites the CV you already have against the specific posting you are applying to, so the right evidence leads and the right words are used.",
+    "Paste a job posting and upload your resume. You get a free match score and the keywords you are missing, with no login. When you want the fixes done for you, FitMyCV rewrites your resume for that job from the job link.",
   ctas: [
     { label: "Optimize my CV", href: "/tailor-cv-from-job-link" },
     { label: "Check my score first", href: "#tool", variant: "secondary" },
   ],
   tool: "match",
   faqs: [
+    {
+      q: "Is this resume optimizer free?",
+      a: `The score is free: your match against the posting and the keywords you are missing, with no login and no limit. It runs in your browser. The AI rewrite, the cover letter and the PDF export are paid: $${PRICING.month.price} a month or $${PRICING.lifetime.price} once.`,
+    },
+    {
+      q: "Are resume optimizers worth it?",
+      a: "A score on its own tells you what is wrong but leaves the editing to you. That is useful if you have the time. An optimizer earns its price when it does the rewrite for each job and keeps your real experience. If a tool invents skills or numbers, it is not worth using at any price.",
+    },
     {
       q: "What does a resume optimizer actually do?",
       a: "It takes a CV you already have and improves it against a target: stronger verbs, quantified bullets, sections ordered by relevance, and the vocabulary the posting uses. It does not invent experience. It changes which of your real experience leads and how it is described.",
@@ -326,6 +337,36 @@ export const resumeOptimizer = {
     },
   ],
   blocks: [
+    { h2: "What you get free, and what is paid" },
+    {
+      table: {
+        head: ["", "Free, no login", "Paid"],
+        rows: [
+          ["Match score against the posting", "Yes", "Yes"],
+          ["Keywords the posting expects that your resume is missing", "Yes", "Yes"],
+          ["Number of checks", "No limit", "No limit"],
+          ["Resume rewritten for the job", "No", "Yes, from the job link"],
+          ["Matching cover letter", "No", "Yes"],
+          ["ATS-safe PDF download", "No", "Yes"],
+        ],
+      },
+    },
+    {
+      p: `Paid is $${PRICING.month.price} a month or $${PRICING.lifetime.price} once. Start with the free score above. If the gap is small, fix it by hand. If it is large, or you are applying to many jobs, [let FitMyCV rewrite it from the job link](/tailor-cv-from-job-link).`,
+    },
+
+    { h2: "How to optimize your resume for a job" },
+    {
+      ol: [
+        "**Read the posting for what it repeats.** The skills, tools and duties it names more than once are the ones the employer cares about most.",
+        "**Run the free score.** See which of those terms your resume never mentions.",
+        "**Add only what you can back up.** Put each missing term into a real bullet with a result. Skip anything you have not done.",
+        "**Move the best evidence up.** In each role, the bullets that answer the posting go first.",
+        "**Rewrite the summary for this job.** Name the job title and the two or three things the posting leans on hardest.",
+        "**Check again, then export a single-column PDF.** Plain layouts read cleanly in applicant tracking systems.",
+      ],
+    },
+
     { h2: "The three reasons a CV gets ignored" },
     {
       p: "Before optimising anything, it is worth knowing which problem you actually have. They need different fixes.",

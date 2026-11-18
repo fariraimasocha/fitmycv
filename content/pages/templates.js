@@ -19,7 +19,7 @@ export const cvTemplates = {
   breadcrumbName: "CV templates",
   h1: "ATS-friendly CV templates",
   lede:
-    "24 layouts, all single-column and built to survive parsing. Choose one, drop your content in, and export a clean PDF. No design software and no sidebar that scrambles on extraction.",
+    "24 layouts, most of them single column and built to survive parsing. Choose one, drop your content in, and export a clean PDF. No design software needed.",
   ctas: [
     { label: "Use a template", href: "/auth" },
     { label: "How to write a CV", href: "/how-to-write-a-resume", variant: "secondary" },
@@ -28,15 +28,15 @@ export const cvTemplates = {
   faqs: [
     {
       q: "What makes a CV template ATS-friendly?",
-      a: "A single-column layout, standard section headings, contact details in the document body rather than the header, no tables or text boxes used for layout, no graphics or skill-rating dots, and export as a text-based PDF. Every template here follows all six rules.",
+      a: "A single-column layout, standard section headings, contact details in the document body rather than the header, no tables or text boxes used for layout, no graphics or skill-rating dots, and export as a text-based PDF. The single column templates here follow all six. Sidebar, Studio and Ledger do not, so keep those for applications a person reads first.",
     },
     {
       q: "Are these CV templates free?",
       a: "Creating an account and building your CV in any of the 24 layouts is free, and so is tailoring it to a job posting: you get the rewritten CV and the cover letter on screen without paying. The paid plan is what adds the match score and the ATS score, and lets you download the result as a PDF.",
     },
     {
-      q: "Why do the templates not have colours and sidebars?",
-      a: "Because sidebars are the single most common cause of scrambled parsing. A parser can read straight across both columns and interleave your skills list into a job description. The templates are deliberately conservative for that reason, with restraint in typography rather than decoration.",
+      q: "Why are most of the templates plain, with no sidebar?",
+      a: "Because sidebars are the single most common cause of scrambled parsing. A parser can read straight across both columns and interleave your skills list into a job description. Most templates are deliberately conservative for that reason. The few with a sidebar or columns suit applications a person reads first.",
     },
     {
       q: "Which CV template should I choose?",
@@ -134,28 +134,42 @@ export const cvTemplates = {
 
 export const resumeTemplates = {
   slug: "resume-templates",
-  seoTitle: "Free ATS Resume Templates That Parse Cleanly",
+  seoTitle: "Free ATS Resume Templates: 24 Layouts to Download",
   description:
-    "17 free ATS resume templates: single column, standard headings, no graphics. Built for US conventions and the rules parsers actually enforce.",
+    "Free ATS resume templates for US jobs. Download any of 24 layouts as a PDF with no account, or fill one in with a free account. Standard headings, no graphics.",
   keywords: [
     "resume template",
     "free resume template",
     "ats resume template",
+    "free ats resume template",
+    "ats friendly resume template",
     "professional resume template",
     "simple resume template",
     "best resume format",
   ],
   eyebrow: "Templates",
   breadcrumbName: "Resume templates",
-  h1: "ATS resume templates",
+  h1: "Free ATS resume templates",
   lede:
-    "24 layouts that parse cleanly, with US resume conventions built in: one page where it should be one page, reverse-chronological, and no design flourish that costs you a field.",
+    "24 ATS resume templates with US conventions built in. Download any one as a PDF for free, no account needed. To fill one in with your own details, sign up free.",
   ctas: [
     { label: "Use a template", href: "/auth" },
     { label: "Resume tips", href: "/resume-tips", variant: "secondary" },
   ],
   showTemplates: true,
   faqs: [
+    {
+      q: "What is an ATS resume template?",
+      a: "A resume layout that applicant tracking systems can read without scrambling it. That means one column, standard headings like Experience and Education, contact details in the body of the page, and real text rather than images.",
+    },
+    {
+      q: "Can I download these ATS resume templates for free?",
+      a: "Yes. Choose Download PDF on any template, then Save as PDF in the print dialog. You get the layout with sample text to replace, and you need no account. To fill a template with your own details inside FitMyCV, create a free account.",
+    },
+    {
+      q: "Which of these templates are not single column?",
+      a: "Sidebar and Studio use two columns, and Ledger puts each section in a ruled box. They suit applications a person reads first, such as an email to a hiring manager. For online applications that go through an ATS, pick a single column layout.",
+    },
     {
       q: "What is the best resume format in 2026?",
       a: "Reverse-chronological, single column, standard headings, exported as a text-based PDF. Functional and skills-based formats obscure your timeline, which parsers handle badly and recruiters read as evasive.",
@@ -182,7 +196,22 @@ export const resumeTemplates = {
     },
   ],
   blocks: [
-    { h2: "The rules every template here follows" },
+    { h2: "Which ATS resume template to use" },
+    {
+      p: "Pick the template that fits where you are now. All of these are single column.",
+    },
+    {
+      ul: [
+        "**Most people:** Classic or Professional. Plain, safe, and they let the bullets do the work.",
+        "**Students and new graduates:** Graduate. Education comes first, because that is your strongest section.",
+        "**Career changers:** Hybrid. Skills lead, and the timeline still follows below.",
+        "**Senior and leadership roles:** Executive. A longer summary, kept concise.",
+        "**Technical roles:** Technical. Your skills block sits at the top.",
+        "**A long history on one page:** Compact. A dense layout that still parses.",
+      ],
+    },
+
+    { h2: "The rules the single column templates follow" },
     {
       ol: [
         "**One column.** Reading order top to bottom, always.",
@@ -194,7 +223,7 @@ export const resumeTemplates = {
       ],
     },
     {
-      p: "Those six are not stylistic preferences. Each one maps to a specific, repeatable parsing failure. The [complete ATS guide](/blog/ats-resume-guide) walks through what breaks and why.",
+      p: "Each of those six rules maps to a repeatable parsing failure. Sidebar, Studio and Ledger break the column and layout rules on purpose, so keep them for applications a person reads first. The [complete ATS guide](/blog/ats-resume-guide) walks through what breaks and why.",
     },
 
     { h2: "US resume conventions" },
@@ -215,10 +244,6 @@ export const resumeTemplates = {
       p: "If you are applying in the UK, Ireland, or Europe, the [CV templates page](/cv-templates) covers the same layouts with those conventions instead.",
     },
 
-    { h2: "Picking the right one" },
-    {
-      p: "Most people should use **Classic** or **Professional** and spend the saved time on the bullets. Reach for **Technical** if a structured skills block matters, **Executive** if you are leading with scope and P&L, and **Compact** if a dense history has to fit on one page.",
-    },
     {
       callout: {
         title: "Switching later costs nothing",

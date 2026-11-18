@@ -174,7 +174,7 @@ export const blocks = [
       },
       {
         title: "Score the overlap",
-        body: "Eyeballing misses synonyms and acronyms. Run the CV and the posting through the [free ATS resume checker](/ats-resume-checker) to see which required terms are genuinely missing.",
+        body: "Eyeballing misses synonyms and acronyms. Run the CV and the posting through the [free CV checker](/cv-checker) to see which required terms are genuinely missing.",
       },
     ],
   },

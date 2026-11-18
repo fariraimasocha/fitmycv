@@ -211,7 +211,7 @@ export const blocks = [
 
   { h2: "File type and job boards" },
   {
-    p: "Send a PDF unless the advert asks for Word. Use one column, standard headings such as Work Experience and Education, and no text inside images, tables or text boxes. Put your contact details in the body of the page, not the header, so applicant tracking systems can read them. The [ATS resume checker](/ats-resume-checker) shows how software reads your file.",
+    p: "Send a PDF unless the advert asks for Word. Use one column, standard headings such as Work Experience and Education, and no text inside images, tables or text boxes. Put your contact details in the body of the page, not the header, so applicant tracking systems can read them. The [free CV checker](/cv-checker) shows how software reads your file.",
   },
   {
     p: "On BrighterMonday, Fuzu, MyJobMag and other boards, fill in your profile to match your CV. If your dates differ between the two, a recruiter will notice. If you have a gap after school or after an attachment, give one short honest line. Our guide on [explaining an employment gap on your CV](/blog/how-to-explain-employment-gap-on-cv) shows how, and the free [gap explanation generator](/employment-gap-explanation-generator) drafts it for you.",

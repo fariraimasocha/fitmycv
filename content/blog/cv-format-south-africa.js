@@ -186,7 +186,7 @@ export const blocks = [
     p: "Send a PDF unless the advert asks for Word. A PDF keeps your layout intact on any device. Name the file with your name and the role, such as Thandi-Nkosi-CV-Financial-Accountant.pdf.",
   },
   {
-    p: "Many large employers and job portals in South Africa screen applications with an applicant tracking system. These systems read plain layouts best. Use one column, standard headings such as Work Experience and Qualifications, and no text inside images, tables or text boxes. Put your contact details in the body of the page, not in the header. The [ATS resume checker](/ats-resume-checker) shows how software reads your file.",
+    p: "Many large employers and job portals in South Africa screen applications with an applicant tracking system. These systems read plain layouts best. Use one column, standard headings such as Work Experience and Qualifications, and no text inside images, tables or text boxes. Put your contact details in the body of the page, not in the header. The [free CV checker](/cv-checker) shows how software reads your file.",
   },
   {
     p: "Portal profiles often ask you to fill in your history field by field as well as upload a CV. Keep both consistent. A recruiter who sees different dates in your profile and your CV will ask why. If you have a gap, give a short honest reason. Our guide on [explaining an employment gap on your CV](/blog/how-to-explain-employment-gap-on-cv) shows how, and the free [gap explanation generator](/employment-gap-explanation-generator) drafts the line for you.",

@@ -142,6 +142,10 @@ export default function ResumeUpload({ onParsed }) {
         : { source: "pdf", file_size_bytes: file.size });
       onParsed({ ...result.data, rawText: result.rawText });
     } catch (error) {
+      trackEvent("resume_upload_failed", {
+        source: pasting ? "paste" : "pdf",
+        error: error.message,
+      });
       toast.error(error.message || t("uploadError"));
       // A scanned or odd PDF fails the same way every time, so offer paste.
       setPasteOpen(true);

@@ -114,7 +114,13 @@ export async function POST(request) {
 
     return Response.json({ data: parsed, rawText });
   } catch (error) {
-    console.error("Resume upload error:", error);
+    console.error("Resume upload error:", error?.status, error?.message);
+    if (error?.status === 429) {
+      return Response.json(
+        { error: "We're busy right now. Wait a few minutes and try again." },
+        { status: 503 }
+      );
+    }
     return Response.json(
       { error: "Couldn't read your CV. Try again, or upload a different PDF." },
       { status: 500 }

@@ -1063,6 +1063,12 @@
     font-weight: 600;
   }
 
+  /* The liquid pill in DashboardTabBar paints the active fill once it has
+     measured. Until then, and if it never does, the button keeps its own. */
+  .dashboard-tab-pills[data-liquid="true"] > .dashboard-tab-pill[data-active="true"] {
+    background: transparent;
+  }
+
   .dashboard-tab-pill[data-active="true"] > svg {
     color: var(--landing-accent-dark);
   }

@@ -67,9 +67,15 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      distortion-waves:
+        specifier: file:vendor/distortion-waves
+        version: file:vendor/distortion-waves(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       groq-sdk:
         specifier: ^0.37.0
         version: 0.37.0
+      liquid-gooey:
+        specifier: 0.2.2
+        version: 0.2.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       mongodb:
         specifier: ^7.6.0
         version: 7.6.0(socks@2.8.9)
@@ -3522,6 +3528,12 @@ packages:
     resolution: {integrity: sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==}
     engines: {node: '>=0.3.1'}
 
+  distortion-waves@file:vendor/distortion-waves:
+    resolution: {directory: vendor/distortion-waves, type: directory}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
@@ -4534,6 +4546,12 @@ packages:
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+
+  liquid-gooey@0.2.2:
+    resolution: {integrity: sha512-UnnNSYdZoNHXowmHKo2pOF6suI1+pLMKf7qBMj1wT6wG3u0gqXP7qiLVMpCjJM2ETkr/GqF8n4fcuIgWb1fHQQ==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   locate-path@3.0.0:
     resolution: {integrity: sha512-7AO748wWnIhNqAuaty2ZWHkQHRSNfPVIsPIfwEOWO22AmaoVrWavlOcMR5nzTLNYvp36X220/maaRsrec1G65A==}
@@ -9186,6 +9204,11 @@ snapshots:
 
   diff@8.0.4: {}
 
+  distortion-waves@file:vendor/distortion-waves(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+
   doctrine@2.1.0:
     dependencies:
       esutils: 2.0.3
@@ -10406,6 +10429,11 @@ snapshots:
       lightningcss-win32-x64-msvc: 1.32.0
 
   lines-and-columns@1.2.4: {}
+
+  liquid-gooey@0.2.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   locate-path@3.0.0:
     dependencies:

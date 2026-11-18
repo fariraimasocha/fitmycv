@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import ResumeUpload from "@/components/ResumeUpload";
 import Loader from "@/components/Loader";
+import Wave from "@/components/Wave";
 import { getActivationSteps } from "@/lib/activation-steps";
 import { trackEvent } from "@/lib/analytics";
 import { peekAtsHandoff } from "@/lib/ats-handoff";
@@ -66,6 +67,7 @@ export default function OnboardingPage() {
   const queryClient = useQueryClient();
   const [finishing, setFinishing] = useState(false);
   const [completionFailed, setCompletionFailed] = useState(false);
+  const uploadCard = useRef(null);
 
   const firstName = session?.user?.name?.split(" ")[0] || null;
   const onPayoff = Boolean(parsedCV);
@@ -141,7 +143,9 @@ export default function OnboardingPage() {
 
   const onParsed = (cv) => saveCV.mutate(cv);
 
-  if (finishing || saveCV.isPending) {
+  // While the CV saves, the upload card shows its own "done" state, so the
+  // wave has the upload view to carry into the payoff. No Loader there.
+  if (finishing) {
     return <Loader />;
   }
 
@@ -206,16 +210,16 @@ export default function OnboardingPage() {
         </ol>
 
         <section className="flex flex-1 flex-col pt-8 pb-8 sm:pt-12">
-          {/* keyed so each step remounts and animates in; no exit animation.
-              AnimatePresence mode="wait" deadlocks the swap here */}
-          <motion.div
-            key={onPayoff ? "payoff" : "upload"}
-            initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.22 }}
-          >
-            {onPayoff ? (
-              <>
+          {/* The first peak: a wave rises from the upload card and leaves
+              "Here is what we read" behind. Both views need an opaque
+              background, since the wave bends a picture of them. */}
+          <Wave
+            revealed={onPayoff}
+            type="vertical"
+            source={uploadCard}
+            className="rounded-lg"
+            revealedContent={
+              <div className="h-full bg-[var(--landing-bg)]">
                 <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">{t("payoff.eyebrow")}</span>
                 <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)]">
                   {t("payoff.title", { hasName: firstName ? "yes" : "no", name: firstName ?? "" })}
@@ -299,9 +303,10 @@ export default function OnboardingPage() {
                     {t("payoff.dashboardCta")}
                   </button>
                 </div>
-              </>
-            ) : (
-              <>
+              </div>
+            }
+          >
+            <div className="bg-[var(--landing-bg)]">
                 <span className="inline-block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">{t("upload.eyebrow")}</span>
                 <h1 className="mt-4 font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)]">
                   {t("upload.title", { hasName: firstName ? "yes" : "no", name: firstName ?? "" })}
@@ -310,7 +315,7 @@ export default function OnboardingPage() {
                   {t("upload.privacy")}
                 </p>
 
-                <div className="mt-8 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 sm:p-6">
+                <div ref={uploadCard} className="mt-8 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 sm:p-6">
                   <ResumeUpload onParsed={onParsed} />
                 </div>
 
@@ -343,9 +348,8 @@ export default function OnboardingPage() {
                 <p className="mt-4 text-xs leading-5 text-[var(--landing-ink-soft)]">
                   {t("upload.editLater")}
                 </p>
-              </>
-            )}
-          </motion.div>
+            </div>
+          </Wave>
         </section>
       </main>
     </div>

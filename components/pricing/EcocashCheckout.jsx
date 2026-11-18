@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -9,6 +9,7 @@ import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import { useCheckoutStore } from "@/stores/checkout-store";
 import { requestJson } from "@/lib/request-json";
 import { trackEvent } from "@/lib/analytics";
+import Wave from "@/components/Wave";
 
 const SLOW_AFTER_MS = 2 * 60 * 1000;
 
@@ -29,6 +30,7 @@ export default function EcocashCheckout({ options, cvId = null, variant = "landi
   const [phone, setPhone] = useState("");
   const [payment, setPayment] = useState(null); // { id, plan, price }
   const [slowId, setSlowId] = useState(null);
+  const phoneIcon = useRef(null);
   const slow = Boolean(payment?.id) && slowId === payment.id;
 
   const start = useMutation({
@@ -54,17 +56,20 @@ export default function EcocashCheckout({ options, cvId = null, variant = "landi
     return () => clearTimeout(timer);
   }, [payment?.id]);
 
+  // Same endings as Polar: the success page waits for Pro, a single CV opens.
+  const nextUrl =
+    payment?.plan === "single" && cvId
+      ? `/dashboard/tailored/${cvId}?unlock=pending`
+      : `/payment/success?plan=${payment?.plan}`;
+
+  // The wave's onFinish moves on once "Paid" has landed. This timer is the
+  // backstop in case it never reports (it runs about 4s).
   useEffect(() => {
     if (state !== "paid" || !payment) return;
     trackEvent("ecocash_paid", { plan: payment.plan, source });
-    // Same endings as Polar: the success page waits for Pro, a single CV opens.
-    const next =
-      payment.plan === "single" && cvId
-        ? `/dashboard/tailored/${cvId}?unlock=pending`
-        : `/payment/success?plan=${payment.plan}`;
-    const timer = setTimeout(() => window.location.assign(next), 1200);
+    const timer = setTimeout(() => window.location.assign(nextUrl), 6000);
     return () => clearTimeout(timer);
-  }, [state, payment, cvId, source]);
+  }, [state, payment, source, nextUrl]);
 
   const reset = () => {
     setPayment(null);
@@ -82,49 +87,59 @@ export default function EcocashCheckout({ options, cvId = null, variant = "landi
     start.mutate(option);
   };
 
-  if (payment && state === "paid") {
-    return (
-      <div role="status" className="flex flex-col items-center gap-2 py-2 text-center">
-        <CheckCircleIcon size={32} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
-        <p className="font-outfit text-base font-semibold text-[var(--landing-ink)]">{t("paidTitle")}</p>
-        <p className="text-sm text-[var(--landing-ink-soft)]">
-          {t(payment.plan === "single" ? "paidSingle" : "paidLifetime")}
-        </p>
-      </div>
-    );
-  }
-
+  // Waiting on the phone, then paid. The money moment gets the one wave in
+  // this flow: a green ring opens from the phone icon into "Paid".
   if (payment && state !== "failed") {
     return (
-      <div role="status" aria-live="polite" className="flex flex-col gap-3 rounded-xl border border-[var(--landing-line)] p-4">
-        <div className="flex items-start gap-3">
-          <DeviceMobileIcon size={24} className="mt-0.5 shrink-0 text-[var(--landing-accent)]" aria-hidden="true" />
-          <div className="flex flex-col gap-1">
-            <p className="font-outfit text-sm font-semibold text-[var(--landing-ink)]">{t("waitingTitle")}</p>
+      <Wave
+        revealed={state === "paid"}
+        type="center"
+        source={phoneIcon}
+        palette="green"
+        onFinish={(paid) => paid && window.location.assign(nextUrl)}
+        className="rounded-xl"
+        revealedContent={
+          <div role="status" className="flex h-full flex-col items-center justify-center gap-2 rounded-xl bg-[var(--landing-surface)] p-4 text-center">
+            <CheckCircleIcon size={32} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
+            <p className="font-outfit text-base font-semibold text-[var(--landing-ink)]">{t("paidTitle")}</p>
             <p className="text-sm text-[var(--landing-ink-soft)]">
-              {t("waitingBody", { phone, price: payment.price })}
+              {t(payment.plan === "single" ? "paidSingle" : "paidLifetime")}
             </p>
           </div>
-        </div>
-        {slow ? (
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-[var(--landing-ink-soft)]">{t("slow")}</p>
-            <div className="flex gap-2">
-              <button type="button" onClick={() => status.refetch()} className={`${BUTTONS[variant][1]} flex-1 rounded-xl text-sm`}>
-                {t("checkAgain")}
-              </button>
-              <button type="button" onClick={reset} className={`${BUTTONS[variant][1]} flex-1 rounded-xl text-sm`}>
-                {t("tryAgain")}
-              </button>
+        }
+      >
+        <div role="status" aria-live="polite" className="flex flex-col gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4">
+          <div className="flex items-start gap-3">
+            <span ref={phoneIcon} className="mt-0.5 shrink-0">
+              <DeviceMobileIcon size={24} className="text-[var(--landing-accent)]" aria-hidden="true" />
+            </span>
+            <div className="flex flex-col gap-1">
+              <p className="font-outfit text-sm font-semibold text-[var(--landing-ink)]">{t("waitingTitle")}</p>
+              <p className="text-sm text-[var(--landing-ink-soft)]">
+                {t("waitingBody", { phone, price: payment.price })}
+              </p>
             </div>
           </div>
-        ) : (
-          <p className="flex items-center gap-2 text-xs text-[var(--landing-ink-soft)]">
-            <SpinnerGapIcon size={14} className="animate-spin motion-reduce:animate-none" aria-hidden="true" />
-            {t("checking")}
-          </p>
-        )}
-      </div>
+          {slow ? (
+            <div className="flex flex-col gap-2">
+              <p className="text-sm text-[var(--landing-ink-soft)]">{t("slow")}</p>
+              <div className="flex gap-2">
+                <button type="button" onClick={() => status.refetch()} className={`${BUTTONS[variant][1]} flex-1 rounded-xl text-sm`}>
+                  {t("checkAgain")}
+                </button>
+                <button type="button" onClick={reset} className={`${BUTTONS[variant][1]} flex-1 rounded-xl text-sm`}>
+                  {t("tryAgain")}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p className="flex items-center gap-2 text-xs text-[var(--landing-ink-soft)]">
+              <SpinnerGapIcon size={14} className="animate-spin motion-reduce:animate-none" aria-hidden="true" />
+              {t("checking")}
+            </p>
+          )}
+        </div>
+      </Wave>
     );
   }
 

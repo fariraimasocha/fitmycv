@@ -1,0 +1,37 @@
+{
+  "name": "distortion-waves",
+  "version": "0.1.0",
+  "description": "A colourful distortion wave for React: it opens from a button, an edge or an avatar and carries one view into another, bending the live DOM with a soft swell, progressive blur and chromatic aberration",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "license": "MIT",
+  "homepage": "https://libraries.dev/waves",
+  "vendored": {
+    "from": "https://github.com/Jakubantalik/Libraries.dev/tree/a326572458d76be96fd21fef22f806317e64a25b/packages/distortion-waves",
+    "commit": "a326572458d76be96fd21fef22f806317e64a25b",
+    "builtWith": "vite build",
+    "note": "Not on npm yet. Swap for the npm release once published."
+  }
+}

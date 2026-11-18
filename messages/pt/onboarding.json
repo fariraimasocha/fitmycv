@@ -1,5 +1,4 @@
 {
-  "back": "Voltar",
   "skip": "Pular por enquanto",
   "tryAgain": "Tentar de novo",
   "continueToTailoring": "Continuar para a adaptação",
@@ -36,5 +35,12 @@
       "title": "Acompanhe suas candidaturas",
       "description": "Mantenha todas as vagas para as quais você se candidatou em um só funil."
     }
+  },
+  "stepper": {
+    "label": "Progresso da configuração",
+    "upload": "Envie seu CV",
+    "review": "Confira o que lemos",
+    "tailor": "Adapte seu primeiro CV",
+    "done": "Concluído"
   }
 }

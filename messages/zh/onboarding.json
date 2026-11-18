@@ -1,5 +1,4 @@
 {
-  "back": "返回",
   "skip": "暂时跳过",
   "tryAgain": "重试",
   "continueToTailoring": "继续定制",
@@ -36,5 +35,12 @@
       "title": "跟踪你的求职申请",
       "description": "把你申请过的所有职位集中在一个流程中管理。"
     }
+  },
+  "stepper": {
+    "label": "设置进度",
+    "upload": "上传简历",
+    "review": "查看我们读取的内容",
+    "tailor": "定制第一份简历",
+    "done": "已完成"
   }
 }

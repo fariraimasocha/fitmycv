@@ -1,5 +1,4 @@
 {
-  "back": "Retour",
   "skip": "Passer pour l’instant",
   "tryAgain": "Réessayer",
   "continueToTailoring": "Continuer vers l’adaptation",
@@ -36,5 +35,12 @@
       "title": "Suivre vos candidatures",
       "description": "Gardez tous les postes auxquels vous avez postulé dans un seul suivi."
     }
+  },
+  "stepper": {
+    "label": "Progression de la configuration",
+    "upload": "Importez votre CV",
+    "review": "Vérifiez ce que nous avons lu",
+    "tailor": "Adaptez votre premier CV",
+    "done": "Terminé"
   }
 }

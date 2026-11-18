@@ -1,5 +1,4 @@
 {
-  "back": "Back",
   "skip": "Skip for now",
   "tryAgain": "Try again",
   "continueToTailoring": "Continue to tailoring",
@@ -36,5 +35,12 @@
       "title": "Track your applications",
       "description": "Keep every role you have applied to in one pipeline."
     }
+  },
+  "stepper": {
+    "label": "Setup progress",
+    "upload": "Upload your CV",
+    "review": "Check what we read",
+    "tailor": "Tailor your first CV",
+    "done": "Done"
   }
 }

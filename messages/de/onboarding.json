@@ -1,5 +1,4 @@
 {
-  "back": "Zurück",
   "skip": "Vorerst überspringen",
   "tryAgain": "Erneut versuchen",
   "continueToTailoring": "Weiter zum Anpassen",
@@ -36,5 +35,12 @@
       "title": "Bewerbungen verfolgen",
       "description": "Behalte alle Stellen, auf die du dich beworben hast, in einer Übersicht."
     }
+  },
+  "stepper": {
+    "label": "Fortschritt der Einrichtung",
+    "upload": "Lebenslauf hochladen",
+    "review": "Prüfen, was wir gelesen haben",
+    "tailor": "Ersten Lebenslauf anpassen",
+    "done": "Erledigt"
   }
 }

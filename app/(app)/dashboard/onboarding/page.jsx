@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowRightIcon,
-  ArrowLeftIcon,
   CheckIcon,
 } from "@phosphor-icons/react";
 import BrandLogo from "@/components/BrandLogo";
@@ -19,13 +18,12 @@ import { getActivationSteps } from "@/lib/activation-steps";
 import { trackEvent } from "@/lib/analytics";
 import { peekAtsHandoff } from "@/lib/ats-handoff";
 
-// Onboarding is now just the CV upload (value first). The previous
-// 3-question wizard and the in-flow paywall have been removed per
-// feedback that the upload should be the only step. Pricing is still
-// available on /dashboard/upgrade and via the dashboard activation card.
-const QUESTIONS = [];
-const UPLOAD_STEP = 0;
-const TOTAL_STEPS = 1;
+// Onboarding is just the CV upload (value first). Pricing lives on
+// /dashboard/upgrade and the dashboard activation card.
+//
+// The stepper shows the whole first run, not only this page: the last step is
+// left open on the payoff so "Tailor your first CV" is the one thing to do.
+const STEPS = ["upload", "review", "tailor"];
 
 function countYears(work, thisYear) {
   const years = (work ?? [])
@@ -62,8 +60,6 @@ export default function OnboardingPage() {
   const t = useTranslations("onboarding");
 
   const [thisYear] = useState(() => new Date().getFullYear());
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({});
   const [parsedCV, setParsedCV] = useState(null);
   // A parsed CV whose save failed, kept so a retry doesn't need a re-upload.
   const [pendingCV, setPendingCV] = useState(null);
@@ -72,7 +68,6 @@ export default function OnboardingPage() {
   const [completionFailed, setCompletionFailed] = useState(false);
 
   const firstName = session?.user?.name?.split(" ")[0] || null;
-  const isUploadStep = step === UPLOAD_STEP;
   const onPayoff = Boolean(parsedCV);
 
   const completeOnboarding = useCallback(
@@ -119,7 +114,7 @@ export default function OnboardingPage() {
 
   // Skipping lands on /dashboard, not /dashboard/tailor: the tailor page
   // errors on first action without a reference CV.
-  const skip = () => completeOnboarding("/dashboard", answers);
+  const skip = () => completeOnboarding("/dashboard");
 
   // The upload route only parses. My CV saves after review, so onboarding has
   // to save here, or the CV is gone the moment the user leaves this page.
@@ -150,70 +145,71 @@ export default function OnboardingPage() {
     return <Loader />;
   }
 
-  const canGoBack = step > 0 && !onPayoff;
+  // Upload is current until the CV is read. Then upload and review are done.
+  const current = onPayoff ? 2 : 0;
   const facts = onPayoff ? summariseCV(parsedCV, thisYear) : [];
   // The full checklist the dashboard will show, with the CV step already
   // ticked. The user just finished it.
-  const plan = getActivationSteps(session?.user?.isPremium).map((step) => ({
-    ...step,
-    done: step.key === "resume",
+  const plan = getActivationSteps(session?.user?.isPremium).map((item) => ({
+    ...item,
+    done: item.key === "resume",
   }));
 
   return (
     <div className="dashboard-shell min-h-screen bg-[var(--landing-bg)] text-[var(--landing-ink)]">
       <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-4 py-8 sm:px-8">
-        <header className="flex items-center gap-3">
-          {/* The slot keeps its layout box on every step so the logo never
-              shifts. visibility, not `hidden`. display:none would still jump. */}
-          <button
-            type="button"
-            onClick={() => setStep((previous) => previous - 1)}
-            className={`-ms-1 shrink-0 rounded-md p-1 text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] ${
-              canGoBack ? "cursor-pointer" : "invisible"
-            }`}
-            aria-label={t("back")}
-            aria-hidden={!canGoBack}
-            tabIndex={canGoBack ? undefined : -1}
-          >
-            <ArrowLeftIcon size={20} aria-hidden="true" />
-          </button>
-
-          <span className="flex shrink-0 items-center">
-            <BrandLogo
-              size="sm"
-              wordmarkClassName="font-outfit text-base font-semibold"
-            />
-          </span>
-
+        <header className="flex items-center justify-between gap-3">
+          <BrandLogo
+            size="sm"
+            wordmarkClassName="font-outfit text-base font-semibold"
+          />
           {!onPayoff && (
-            <>
-              <span
-                className="hidden h-px flex-1 bg-[var(--landing-line)] sm:block"
-                aria-hidden="true"
-              >
-                <motion.span
-                  className="block h-px bg-[var(--landing-accent)]"
-                  initial={false}
-                  animate={{ width: `${((step + 1) / TOTAL_STEPS) * 100}%` }}
-                  transition={{ duration: reduceMotion ? 0 : 0.3 }}
-                />
-              </span>
-              <button
-                type="button"
-                onClick={skip}
-                className="ms-auto shrink-0 cursor-pointer sm:ms-0 text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
-              >
-                {t("skip")}
-              </button>
-            </>
+            <button
+              type="button"
+              onClick={skip}
+              className="shrink-0 cursor-pointer text-xs font-semibold text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
+            >
+              {t("skip")}
+            </button>
           )}
         </header>
 
-        <section className="flex flex-1 flex-col pt-8 pb-8 sm:pt-24">
+        {/* Same container as the upload card, so both share its edges. */}
+        <ol aria-label={t("stepper.label")} className="mt-6 grid grid-cols-3 gap-2">
+          {STEPS.map((key, index) => {
+            const done = index < current;
+            const active = index === current;
+            return (
+              <li key={key} aria-current={active ? "step" : undefined} className="min-w-0">
+                <span className="block h-1 overflow-hidden rounded-full bg-[var(--landing-line)]" aria-hidden="true">
+                  <motion.span
+                    className="block h-full rounded-full bg-[var(--landing-accent)]"
+                    initial={false}
+                    animate={{ width: done || active ? "100%" : "0%" }}
+                    transition={{ duration: reduceMotion ? 0 : 0.4, delay: reduceMotion ? 0 : index * 0.08 }}
+                  />
+                </span>
+                <span
+                  className={`mt-2 flex items-center gap-1 text-xs ${
+                    active
+                      ? "font-semibold text-[var(--landing-ink)]"
+                      : "text-[var(--landing-ink-soft)]"
+                  }`}
+                >
+                  {done && <CheckIcon size={12} weight="bold" className="shrink-0" aria-hidden="true" />}
+                  <span className="truncate">{t(`stepper.${key}`)}</span>
+                  {done && <span className="sr-only">{t("stepper.done")}</span>}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+
+        <section className="flex flex-1 flex-col pt-8 pb-8 sm:pt-12">
           {/* keyed so each step remounts and animates in; no exit animation.
               AnimatePresence mode="wait" deadlocks the swap here */}
           <motion.div
-            key={onPayoff ? "payoff" : step}
+            key={onPayoff ? "payoff" : "upload"}
             initial={reduceMotion ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.22 }}
@@ -285,7 +281,7 @@ export default function OnboardingPage() {
                   <button
                     type="button"
                     onClick={() =>
-                      completeOnboarding("/dashboard/tailor", answers)
+                      completeOnboarding("/dashboard/tailor")
                     }
                     className="dashboard-primary-btn w-full cursor-pointer text-sm sm:w-fit"
                   >
@@ -297,7 +293,7 @@ export default function OnboardingPage() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => completeOnboarding("/dashboard", answers)}
+                    onClick={() => completeOnboarding("/dashboard")}
                     className="cursor-pointer text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
                   >
                     {t("payoff.dashboardCta")}
@@ -332,7 +328,7 @@ export default function OnboardingPage() {
                   <button
                     type="button"
                     onClick={() =>
-                      completeOnboarding("/dashboard/tailor", answers)
+                      completeOnboarding("/dashboard/tailor")
                     }
                     className="dashboard-primary-btn mt-4 w-full cursor-pointer text-sm sm:w-fit"
                   >

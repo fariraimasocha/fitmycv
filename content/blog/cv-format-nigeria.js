@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cv tips", "cv format", "nigeria", "graduates"],
   image: "/blog/cv-with-no-experience.jpg",
   imageAlt:
-    "Flat illustration of a Nigerian graduate CV with contact details, NYSC status, education and referees blocks slotting into place",
+    "CV format in Nigeria: illustration of a graduate CV with contact details, NYSC status, education and referees blocks slotting into place",
   keywords: [
     "cv format nigeria",
     "nigerian cv format",

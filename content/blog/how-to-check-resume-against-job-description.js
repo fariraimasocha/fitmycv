@@ -12,7 +12,7 @@ export const meta = {
   tags: ["checking", "job description", "ats", "resume"],
   image: "/blog/how-to-check-resume-against-job-description.jpg",
   imageAlt:
-    "Flat illustration of a magnifying glass checking a resume beside a job posting",
+    "How to check a resume against a job description: illustration of a magnifying glass checking a resume beside a job posting",
   keywords: [
     "how to check resume against job description",
     "check resume against job description",

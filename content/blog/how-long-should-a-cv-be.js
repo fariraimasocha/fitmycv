@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cv tips", "cv length", "resume format", "job search"],
   image: "/blog/how-long-should-a-cv-be.jpg",
   imageAlt:
-    "Flat illustration comparing a padded CV with a dense, well-edited CV of the right length",
+    "How long should a CV be: illustration comparing a padded CV with a dense, well-edited CV of the right length",
   keywords: [
     "how long should a cv be",
     "how many pages should a cv be",

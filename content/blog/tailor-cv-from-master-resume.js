@@ -13,7 +13,7 @@ export const meta = {
   tags: ["master resume", "tailoring", "cv", "process"],
   image: "/blog/how-to-tailor-cv-to-job-description.jpg",
   imageAlt:
-    "Flat illustration of one long master CV with a shorter tailored CV drawn from it",
+    "Illustration of one long master resume with a shorter tailored CV drawn from it",
   keywords: [
     "master resume",
     "tailor cv from master resume",

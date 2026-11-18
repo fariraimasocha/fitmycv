@@ -12,7 +12,7 @@ export const meta = {
   tags: ["tailoring", "keywords", "cv", "process"],
   image: "/blog/how-much-should-you-tailor-your-resume.jpg",
   imageAlt:
-    "Flat illustration of a CV with the top third highlighted for editing and the rest unchanged",
+    "How much should you tailor your resume: illustration of a CV with the top third highlighted for editing and the rest unchanged",
   keywords: [
     "how much should you tailor your resume",
     "how much to tailor resume for each job",

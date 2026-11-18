@@ -13,7 +13,7 @@ export const meta = {
   series: "cv-foundations",
   tags: ["cv tips", "cv format", "kenya", "graduates"],
   image: "/blog/how-long-should-a-cv-be.jpg",
-  imageAlt: "Flat illustration of a one page CV next to a two page CV and a ruler",
+  imageAlt: "CV format in Kenya: illustration of a one page CV next to a two page CV and a ruler",
   keywords: [
     "cv format kenya",
     "kenyan cv format",

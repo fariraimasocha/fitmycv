@@ -12,7 +12,7 @@ export const meta = {
   tags: ["matching", "job description", "keywords", "resume"],
   image: "/blog/how-to-match-resume-to-job-description.jpg",
   imageAlt:
-    "Flat illustration of a resume mapped to a job posting, with lines connecting matching points",
+    "How to match a resume to a job description: illustration of a resume mapped to a job posting, with lines connecting matching points",
   keywords: [
     "how to match resume to job description",
     "match resume to job description",

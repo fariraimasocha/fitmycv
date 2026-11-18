@@ -13,7 +13,7 @@ export const meta = {
   tags: ["tailoring", "free tools", "chatgpt", "keywords"],
   image: "/blog/chatgpt-prompts-to-tailor-resume.jpg",
   imageAlt:
-    "Flat illustration of a resume being compared with a job posting next to a chat window",
+    "How to tailor a resume for free: illustration of a resume compared with a job posting next to a chat window",
   keywords: [
     "tailor resume for free",
     "free resume tailoring",

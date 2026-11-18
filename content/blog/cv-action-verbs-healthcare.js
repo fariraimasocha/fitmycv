@@ -14,7 +14,7 @@ export const meta = {
   tags: ["action verbs", "healthcare", "resume", "bullets"],
   image: "/blog/cv-action-verbs-healthcare.jpg",
   imageAlt:
-    "Flat illustration of a CV document beside a heartbeat line and a plus cross",
+    "CV action verbs for healthcare: illustration of a CV beside a heartbeat line and a plus cross",
   keywords: [
     "cv action verbs healthcare",
     "nursing resume action verbs",

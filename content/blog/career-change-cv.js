@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cv tips", "career change", "transferable skills", "job search"],
   image: "/blog/career-change-cv.jpg",
   imageAlt:
-    "Flat illustration of a CV bridging two career paths, with transferable skills carrying across the gap",
+    "Career change CV illustration: a CV bridging two career paths, with transferable skills carrying across the gap",
   keywords: [
     "career change cv",
     "how to write a career change cv",

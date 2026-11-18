@@ -14,7 +14,7 @@ export const meta = {
   tags: ["action verbs", "finance", "resume", "bullets"],
   image: "/blog/cv-action-verbs-finance.jpg",
   imageAlt:
-    "Flat illustration of a CV document beside a rising bar chart and upward arrow",
+    "CV action verbs for finance: illustration of a CV beside a rising bar chart and an upward arrow",
   keywords: [
     "cv action verbs finance",
     "accounting resume action verbs",

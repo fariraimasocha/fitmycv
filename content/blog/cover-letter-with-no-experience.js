@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cover letter", "no experience", "entry level", "graduates"],
   image: "/blog/cover-letter-with-no-experience.jpg",
   imageAlt:
-    "Flat illustration of a first-time job seeker assembling a cover letter from projects, coursework, and volunteering",
+    "Illustration of a cover letter with no experience: a first-time job seeker building it from projects, coursework and volunteering",
   keywords: [
     "cover letter with no experience",
     "cover letter no experience but willing to learn",

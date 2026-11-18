@@ -13,7 +13,7 @@ export const meta = {
   tags: ["comparison", "jobscan", "ats", "tailoring"],
   image: "/blog/jobscan-alternative.jpg",
   imageAlt:
-    "Flat illustration of a scored CV turning into a rewritten CV and a cover letter",
+    "A Jobscan alternative: illustration of a scored CV turning into a rewritten CV and a cover letter",
   keywords: [
     "jobscan alternative",
     "jobscan alternatives",

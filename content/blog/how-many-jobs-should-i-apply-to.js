@@ -14,7 +14,7 @@ export const meta = {
   tags: ["job search", "applications", "strategy", "productivity"],
   image: "/blog/how-many-jobs-should-i-apply-to.jpg",
   imageAlt:
-    "Flat illustration of a calendar with a small stack of tailored applications outperforming a large stack of generic ones",
+    "How many jobs should I apply to: illustration of a calendar where a small stack of tailored applications beats a large stack of generic ones",
   keywords: [
     "how many jobs should i apply to",
     "how many jobs should i apply to per day",

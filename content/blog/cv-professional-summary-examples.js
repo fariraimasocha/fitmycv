@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cv tips", "professional summary", "resume summary", "personal statement"],
   image: "/blog/cv-professional-summary-examples.jpg",
   imageAlt:
-    "Flat illustration of the top of a CV with a sharp three-line professional summary highlighted",
+    "CV professional summary examples: illustration of the top of a CV with a sharp three-line summary highlighted",
   keywords: [
     "cv professional summary examples",
     "how to write a professional summary for a cv",

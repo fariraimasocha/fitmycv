@@ -14,7 +14,7 @@ export const meta = {
   tags: ["job search", "applications", "follow up", "email templates"],
   image: "/blog/how-to-follow-up-on-a-job-application.jpg",
   imageAlt:
-    "Flat illustration of a polite follow up email travelling toward a hiring manager's inbox",
+    "How to follow up on a job application: illustration of a polite follow up email travelling toward a hiring manager's inbox",
   keywords: [
     "how to follow up on a job application",
     "follow up email after applying",

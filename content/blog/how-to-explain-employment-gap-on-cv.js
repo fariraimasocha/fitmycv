@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cv tips", "employment gap", "career break", "job search"],
   image: "/blog/how-to-explain-employment-gap-on-cv.jpg",
   imageAlt:
-    "Flat illustration of a CV timeline with a clearly labelled gap that is handled calmly rather than hidden",
+    "How to explain an employment gap on a resume or CV: illustration of a CV timeline with a clearly labelled gap, handled calmly rather than hidden",
   keywords: [
     "how to explain employment gap on resume",
     "how to explain employment gap on cv",

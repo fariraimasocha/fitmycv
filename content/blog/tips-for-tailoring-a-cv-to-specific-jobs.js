@@ -12,7 +12,7 @@ export const meta = {
   category: "Tailoring",
   tags: ["tailoring", "tips", "cv", "job applications"],
   image: "/blog/tips-for-tailoring-a-cv-to-specific-jobs.jpg",
-  imageAlt: "Flat illustration of a CV with a checklist of tailoring tips beside it",
+  imageAlt: "Tips for tailoring a CV to specific jobs: illustration of a CV with a checklist of tailoring tips beside it",
   keywords: [
     "tips for tailoring a cv to specific jobs",
     "cv tailoring tips",

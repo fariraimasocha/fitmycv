@@ -13,7 +13,7 @@ export const meta = {
   series: "action-verbs",
   tags: ["action verbs", "marketing", "resume", "bullets"],
   image: "/blog/cv-action-verbs-marketing.jpg",
-  imageAlt: "Flat illustration of a CV document beside a geometric megaphone",
+  imageAlt: "CV action verbs for marketing: illustration of a CV beside a geometric megaphone",
   keywords: [
     "cv action verbs marketing",
     "marketing resume action verbs",

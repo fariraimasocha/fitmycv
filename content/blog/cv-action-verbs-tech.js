@@ -14,7 +14,7 @@ export const meta = {
   tags: ["action verbs", "tech", "resume", "bullets"],
   image: "/blog/cv-action-verbs-tech.jpg",
   imageAlt:
-    "Flat illustration of a CV document beside an abstract code-bracket motif",
+    "CV action verbs for tech: illustration of a CV beside an abstract code bracket motif",
   keywords: [
     "cv action verbs tech",
     "resume action verbs software engineer",

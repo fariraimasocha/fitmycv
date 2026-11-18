@@ -14,7 +14,7 @@ export const meta = {
   tags: ["cv tips", "no experience", "graduates", "entry level"],
   image: "/blog/cv-with-no-experience.jpg",
   imageAlt:
-    "Flat illustration of a first CV built from education, projects, and skills blocks slotting into place",
+    "Illustration of a CV with no experience: a first CV built from education, projects and skills blocks slotting into place",
   keywords: [
     "cv with no experience",
     "how to write a cv with no experience",

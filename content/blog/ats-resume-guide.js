@@ -14,7 +14,7 @@ export const meta = {
   tags: ["ats", "resume", "keywords", "formatting"],
   image: "/blog/ats-resume-guide.jpg",
   imageAlt:
-    "Flat illustration of a CV document passing through a scanner beam, representing an applicant tracking system parsing a resume",
+    "Illustration of an ATS resume checker: a CV passing through a scanner beam as an applicant tracking system parses it",
   keywords: [
     "ats resume checker",
     "ats friendly resume",

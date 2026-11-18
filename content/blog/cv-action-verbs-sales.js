@@ -14,7 +14,7 @@ export const meta = {
   tags: ["action verbs", "sales", "resume", "bullets"],
   image: "/blog/cv-action-verbs-sales.jpg",
   imageAlt:
-    "Flat illustration of a CV document beside a handshake and a rising arrow",
+    "CV action verbs for sales: illustration of a CV beside a handshake and a rising arrow",
   keywords: [
     "cv action verbs sales",
     "sales resume action verbs",

@@ -13,7 +13,7 @@ export const meta = {
   category: "Tailoring",
   tags: ["tailoring", "opinion", "job search", "workflow"],
   image: "/blog/does-tailoring-your-resume-actually-work.jpg",
-  imageAlt: "Flat illustration of one CV being adjusted for several job postings",
+  imageAlt: "Tired of tailoring your resume for every job? Illustration of one CV being adjusted for several job postings",
   keywords: [
     "tired of tailoring resume",
     "tailoring resume for every job",

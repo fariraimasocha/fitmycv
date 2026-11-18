@@ -12,7 +12,7 @@ export const meta = {
   category: "Tailoring",
   tags: ["tailoring", "examples", "resume", "job description"],
   image: "/blog/how-to-tailor-a-resume-for-a-specific-job.jpg",
-  imageAlt: "Flat illustration of one resume split into two versions for two job postings",
+  imageAlt: "How to tailor a resume for a specific job: illustration of one resume split into two versions for two job postings",
   keywords: [
     "how to tailor a resume for a specific job",
     "how to tailor a resume for specific jobs",

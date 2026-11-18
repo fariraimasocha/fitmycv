@@ -244,7 +244,9 @@
     "removeCertification": "Supprimer la certification {index}",
     "removeReference": "Supprimer la référence {index}",
     "certificationN": "Certification {index}",
-    "referenceN": "Référence {index}"
+    "referenceN": "Référence {index}",
+    "workLocked": "Toutes les puces sont rédigées et enregistrées. Débloquez ce CV pour les voir et les modifier.",
+    "workLockedButton": "Débloquer le CV complet"
   },
   "ats": {
     "severity": {

@@ -1367,6 +1367,11 @@ function Tailor() {
                       queryKey={["tailored-cv", savedId]}
                       saveButtonLabel={t("result.saveTailored")}
                       onValuesChange={handleValuesChange}
+                      lockWork={!isPremium}
+                      onUnlock={() => {
+                        setUpgradeModalContext("download");
+                        setShowUpgradeModal(true);
+                      }}
                       onSaved={(data) => {
                         setTailorResult((r) => ({ ...r, tailoredCV: data }));
                         setLiveValues(null);

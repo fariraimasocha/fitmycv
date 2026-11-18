@@ -244,7 +244,9 @@
     "removeCertification": "Zertifikat {index} entfernen",
     "removeReference": "Referenz {index} entfernen",
     "certificationN": "Zertifikat {index}",
-    "referenceN": "Referenz {index}"
+    "referenceN": "Referenz {index}",
+    "workLocked": "Alle Stichpunkte sind geschrieben und gespeichert. Schalte diesen Lebenslauf frei, um sie alle zu sehen und zu bearbeiten.",
+    "workLockedButton": "Ganzen Lebenslauf freischalten"
   },
   "ats": {
     "severity": {

@@ -244,7 +244,9 @@
     "removeCertification": "删除证书 {index}",
     "removeReference": "删除推荐人 {index}",
     "certificationN": "证书 {index}",
-    "referenceN": "推荐人 {index}"
+    "referenceN": "推荐人 {index}",
+    "workLocked": "所有要点都已写好并保存。解锁这份简历即可查看和编辑全部内容。",
+    "workLockedButton": "解锁完整简历"
   },
   "ats": {
     "severity": {

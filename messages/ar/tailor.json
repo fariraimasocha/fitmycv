@@ -244,7 +244,9 @@
     "removeCertification": "إزالة الشهادة {index}",
     "removeReference": "إزالة المرجع {index}",
     "certificationN": "الشهادة {index}",
-    "referenceN": "المرجع {index}"
+    "referenceN": "المرجع {index}",
+    "workLocked": "كل النقاط مكتوبة ومحفوظة. افتح هذه السيرة الذاتية لرؤيتها وتعديلها كلها.",
+    "workLockedButton": "افتح السيرة الذاتية كاملة"
   },
   "ats": {
     "severity": {

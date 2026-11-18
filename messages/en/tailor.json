@@ -244,7 +244,9 @@
     "removeCertification": "Remove certification {index}",
     "removeReference": "Remove reference {index}",
     "certificationN": "Certification {index}",
-    "referenceN": "Reference {index}"
+    "referenceN": "Reference {index}",
+    "workLocked": "Every bullet is written and saved. Unlock this CV to see and edit them all.",
+    "workLockedButton": "Unlock full CV"
   },
   "ats": {
     "severity": {

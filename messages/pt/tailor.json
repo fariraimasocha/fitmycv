@@ -244,7 +244,9 @@
     "removeCertification": "Remover certificação {index}",
     "removeReference": "Remover referência {index}",
     "certificationN": "Certificação {index}",
-    "referenceN": "Referência {index}"
+    "referenceN": "Referência {index}",
+    "workLocked": "Todos os tópicos estão escritos e salvos. Desbloqueie este CV para ver e editar todos.",
+    "workLockedButton": "Desbloquear CV completo"
   },
   "ats": {
     "severity": {

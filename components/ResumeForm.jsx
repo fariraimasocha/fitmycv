@@ -18,6 +18,7 @@ import {
   CaretRightIcon,
   CheckIcon,
   CheckCircleIcon,
+  CrownIcon,
 } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -122,6 +123,11 @@ export default function ResumeForm({
   showChecks = true,
   // True while the values came from a fresh upload and have never been saved.
   isDraft = false,
+  // A free user's tailored CV holds only each role's first line, so the
+  // roles are read-only and the server ignores them (app/api/tailored-cv).
+  lockWork = false,
+  // Opens the upgrade modal. Called from the locked roles and on a 402.
+  onUnlock,
 }) {
   const queryClient = useQueryClient();
   const t = useTranslations("tailor.resumeForm");
@@ -265,7 +271,7 @@ export default function ResumeForm({
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || t("saveError"));
+        throw Object.assign(new Error(err.error || t("saveError")), { code: err.code });
       }
 
       return res.json();
@@ -278,6 +284,10 @@ export default function ResumeForm({
       onSaved?.(data);
     },
     onError: (error) => {
+      if (error.code === "PREMIUM_REQUIRED" && onUnlock) {
+        onUnlock();
+        return;
+      }
       toast.error(error.message);
     },
   });
@@ -392,8 +402,24 @@ export default function ResumeForm({
           count={workFieldsList.length}
           open={openSections.work}
           onToggle={() => toggleSection("work")}
-          action={<AddIconButton label={t("addPosition")} onClick={addWork} />}
+          action={lockWork ? null : <AddIconButton label={t("addPosition")} onClick={addWork} />}
         >
+          {lockWork && (
+            <div className="mb-4 flex flex-col gap-3 rounded-lg bg-[var(--landing-paper-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm leading-6 text-muted-foreground">{t("workLocked")}</p>
+              {onUnlock && (
+                <button
+                  type="button"
+                  onClick={onUnlock}
+                  className="dashboard-primary-btn inline-flex shrink-0 items-center justify-center gap-2"
+                >
+                  <CrownIcon size={16} aria-hidden="true" />
+                  {t("workLockedButton")}
+                </button>
+              )}
+            </div>
+          )}
+          <fieldset disabled={lockWork} className="min-w-0 disabled:opacity-70">
           {workFieldsList.length === 0 ? (
             <SectionEmptyState actionLabel={t("addPosition")} onAction={addWork}>
               {t("empty.work")}
@@ -448,6 +474,7 @@ export default function ResumeForm({
               ))}
             </div>
           )}
+          </fieldset>
         </FormSection>
 
         <FormSection

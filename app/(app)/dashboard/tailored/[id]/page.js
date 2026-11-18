@@ -463,13 +463,17 @@ function TailoredCVDetail() {
               )}
             >
               <ResumeForm
-                key={cv._id}
+                // Remount on unlock: the form reads initialData once, and the
+                // preview's one-line roles must not be saved over the full CV.
+                key={`${cv._id}-${unlocked}`}
                 initialData={resumeData}
                 saveEndpoint={`/api/tailored-cv/${id}`}
                 saveMethod="PUT"
                 queryKey={["tailored-cv", id]}
                 saveButtonLabel={t("saveTailored")}
                 onValuesChange={handleValuesChange}
+                lockWork={!unlocked}
+                onUnlock={openDownloadPaywall}
               />
             </div>
 

@@ -33,7 +33,7 @@ export const meta = {
 export const faqs = [
   {
     q: "What does tailoring a resume for a job application mean?",
-    a: "It means changing the top of your CV for one posting: the summary, the order of your skills and the first bullets of your most relevant role, written in the posting's words. Your facts stay the same. For a side by side example, see [how to tailor a resume for a specific job](/blog/how-to-tailor-a-resume-for-a-specific-job), and for quick rules, the [12 tips for tailoring a CV](/blog/tips-for-tailoring-a-cv-to-specific-jobs).",
+    a: "It means changing the top of your CV for one posting: the summary, the order of your skills and the first bullets of your most relevant role, written in the posting's words. Your facts stay the same. For a side by side example and a checklist, see [how to tailor your resume to a job description](/blog/tired-of-tailoring-resume-for-every-job).",
   },
   {
     q: "How long should it take to tailor a CV to a job description?",

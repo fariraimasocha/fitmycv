@@ -13,7 +13,7 @@ const ENHANCV_CHECKED = "October 2026";
 
 export const jobscanAlternative = {
   slug: "jobscan-alternative",
-  seoTitle: "Jobscan Alternative With Unlimited Free ATS Scans",
+  seoTitle: "Jobscan Alternatives: 5 Picks, Including a Free One",
   description:
     "Scan your CV against any job posting for free, with no scan limit and no account. Then paste the job link to get it rewritten, plus a cover letter.",
   keywords: [
@@ -38,7 +38,7 @@ export const jobscanAlternative = {
   faqs: [
     {
       q: "What is the best Jobscan alternative?",
-      a: "It depends what you want back. If you want a match score and a keyword report, Jobscan is mature and good at it, and our free ATS resume checker does the same job with no account. If you want the rewritten CV rather than a list of what to fix, that is what FitMyCV does.",
+      a: "It depends what you want back. For a free match score with no account, the FitMyCV ATS resume checker. For the CV rewritten to the job, FitMyCV. For a grade on your CV and LinkedIn, Resume Worded. For a first CV with a live score, Rezi. For a job tracker as well, Teal.",
     },
     {
       q: "Is there a free Jobscan alternative?",
@@ -58,6 +58,20 @@ export const jobscanAlternative = {
     },
   ],
   blocks: [
+    { h2: "Jobscan alternatives, by what you need" },
+    {
+      p: "Jobscan scores your CV against a posting. Pick the alternative that matches what you want instead.",
+    },
+    {
+      ul: [
+        "**You want a free score with no account:** the [FitMyCV ATS resume checker](/ats-resume-checker). No scan limit, and it runs in your browser.",
+        "**You want the CV rewritten, not just scored:** FitMyCV. Paste the job link and get the tailored CV and a cover letter back.",
+        "**You want a grade for your CV and LinkedIn:** Resume Worded gives a line by line list of fixes. [Resume Worded compared](/resume-worded-alternative).",
+        "**You need a first CV built from scratch:** Rezi scores it as you type. [Rezi compared](/rezi-alternative).",
+        "**You want to track applications too:** Teal is a job tracker with AI attached. [Teal compared](/teal-alternative).",
+      ],
+    },
+
     { h2: "The difference in one line" },
     {
       p: "Jobscan is a diagnostic. FitMyCV is a rewrite. Jobscan hands you a percentage and a list of missing keywords, and the twenty to forty minutes of editing per application is still yours. FitMyCV reads the posting from its URL and returns the CV already rewritten, plus a matching cover letter.",
@@ -269,7 +283,7 @@ export const tealAlternative = {
 
 export const kickresumeAlternative = {
   slug: "kickresume-alternative",
-  seoTitle: "Kickresume Alternative With No Watermark, Ever",
+  seoTitle: "Kickresume Alternatives: 5 Picks by What You Need",
   description:
     "Already have a CV? Paste a job link and FitMyCV rewrites it for that role. No watermark on any export, 24 single column themes, and a free ATS check.",
   keywords: [
@@ -293,7 +307,7 @@ export const kickresumeAlternative = {
   faqs: [
     {
       q: "What is the best Kickresume alternative?",
-      a: "If you want a full builder with a large template gallery and a from-scratch flow, other builders are closer substitutes. If you already have a CV and want it adapted per application, that is a different tool, and it is the one FitMyCV is.",
+      a: "It depends on why you are leaving. To rewrite a CV you already have for each job, FitMyCV. For a design-led CV, Enhancv. For a first CV built from scratch, Rezi. For a hosted CV with a shareable link, VisualCV. To track applications as well, Teal.",
     },
     {
       q: "Does the free plan add a watermark?",
@@ -309,6 +323,22 @@ export const kickresumeAlternative = {
     },
   ],
   blocks: [
+    // ponytail: answer the search first. "kickresume alternatives" sat at
+    // position 7.5 with 924 impressions and 0 clicks (Search Console, Nov 2026).
+    { h2: "Kickresume alternatives, by what you need" },
+    {
+      p: "The right alternative depends on why you are leaving Kickresume. Pick the line that matches.",
+    },
+    {
+      ul: [
+        "**You already have a CV and want it rewritten for each job:** FitMyCV. Paste the job link and get the tailored CV and a cover letter back, with no watermark on any export.",
+        "**You want a CV that looks unlike everyone else's:** Enhancv is a design tool. [Enhancv compared](/enhancv-alternative).",
+        "**You need a first CV built from scratch:** Rezi builds an ATS friendly CV and scores it as you type. [Rezi compared](/rezi-alternative).",
+        "**You want a hosted CV with a shareable link:** VisualCV gives you templates and a personal site. [VisualCV compared](/visualcv-alternative).",
+        "**You want to track applications too:** Teal is a job tracker with AI attached. [Teal compared](/teal-alternative).",
+      ],
+    },
+
     { h2: "Builder or tailor" },
     {
       p: "These are two different jobs. A builder solves the blank page: you have no CV, or the one you have is fifteen years old, and you need a well-structured document with a decent layout. Kickresume is good at that.",
@@ -1229,7 +1259,7 @@ const FASTAPPLY_CHECKED = "November 2026";
 
 export const fastapplyAlternative = {
   slug: "fastapply-alternative",
-  seoTitle: "FastApply Alternative: Fewer Applications, Each One Tailored",
+  seoTitle: "FastApply Alternatives: 5 Picks for Tailored Applications",
   description:
     "A FastApply alternative for people who would rather send ten tailored applications than five hundred automatic ones. Paste a job link, get a CV and cover letter.",
   keywords: [
@@ -1254,7 +1284,7 @@ export const fastapplyAlternative = {
   faqs: [
     {
       q: "What is the best FastApply alternative?",
-      a: "It depends on what you want automated. If you want software to find jobs and submit applications while you sleep, look at other auto apply tools, because FitMyCV does not do that. If you want the CV and letter rewritten for each role you choose, FitMyCV does that from a job link.",
+      a: "It depends on what you want automated. To have each CV and letter rewritten for jobs you pick, FitMyCV. For tailoring plus a job search workspace, Seekario. For a tracker with autofill, Huntr. For a tracker with AI attached, Teal. For a close match to our tailoring, TailoredCV.ai. FitMyCV does not auto apply.",
     },
     {
       q: "Is there a free FastApply alternative?",
@@ -1274,6 +1304,20 @@ export const fastapplyAlternative = {
     },
   ],
   blocks: [
+    { h2: "FastApply alternatives, by what you need" },
+    {
+      p: "FastApply applies to jobs for you. Pick the alternative that matches what you want instead.",
+    },
+    {
+      ul: [
+        "**You want each application tailored, and you send it:** FitMyCV. Paste the job link and get the tailored CV and a cover letter back.",
+        "**You want tailoring plus a job search workspace:** Seekario reads a job URL and has a Chrome extension. [Seekario compared](/seekario-alternative).",
+        "**You want a tracker with autofill:** Huntr has a kanban board and autofill. [Huntr compared](/huntr-alternative).",
+        "**You want a tracker with AI attached:** Teal. [Teal compared](/teal-alternative).",
+        "**You want a close match to FitMyCV:** TailoredCV.ai rewrites your CV to match a posting. [TailoredCV compared](/tailoredcv-alternative).",
+      ],
+    },
+
     { h2: "Volume or fit" },
     {
       p: "FastApply is built to send more applications. Its Apply for Me feature runs on its servers, watches job boards for new roles, and applies to the ones above your match score, even when your laptop is closed. Plans go from 200 to 2,000 applications a month.",

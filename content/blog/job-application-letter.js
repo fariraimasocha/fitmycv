@@ -1,13 +1,13 @@
 export const meta = {
   slug: "job-application-letter",
-  title: "How to Write a Job Application Letter (Example and Template)",
-  seoTitle: "Application Letter for a Job: Simple Example and Template",
+  title: "Application Letter for a Job: A Simple Sample and How to Write One",
+  seoTitle: "Application Letter for a Job: Simple Sample to Copy",
   description:
-    "How to write an application letter for a job: a simple example in English to copy, a template with blanks, and a free generator. One page, 250 to 400 words.",
+    "A simple application letter for a job you can copy and fill in, plus how to write one in 5 steps. One page, 250 to 400 words, with a free generator.",
   excerpt:
-    "An application letter asks for a specific job and proves you fit it in one page. Here is the structure, a full example, and a template to copy.",
+    "A simple application letter for a job to copy and fill in, a finished example, and five steps to write your own in one page.",
   date: "2026-09-27",
-  updated: "2026-11-04",
+  updated: "2026-11-18",
   readingTime: 7,
   category: "Cover Letters",
   series: "cover-letters",
@@ -35,7 +35,11 @@ export const meta = {
 
 export const faqs = [
   {
-    q: "What is a job application letter?",
+    q: "How do I write a simple application letter?",
+    a: "Use five short parts. Greet the reader by name. Name the job and where you saw it. Give two examples that match what the posting asks for, each with a result. Add one reason you want this employer. Close by saying your CV is attached and asking to discuss the role. Copy the sample at the top of this page and replace each bracket.",
+  },
+  {
+    q: "What is an application letter for a job?",
     a: "It is a one page letter that asks for a specific job and explains why you fit it. You send it with your CV, or on its own when an employer asks for a letter instead of a form. It names the role, gives two or three pieces of evidence, and asks for an interview.",
   },
   {
@@ -58,15 +62,23 @@ export const faqs = [
 
 export const blocks = [
   {
-    p: "A job application letter has one job: get the reader to open your CV with a reason to say yes. It names the role, proves you fit it with two or three specific examples, and asks for an interview. Everything else is optional.",
-  },
-  {
-    p: "Start with the simple example below. After it come the structure behind it, a template with blanks, and a free generator that writes the letter for you.",
+    p: "An application letter for a job is a one page letter that names the role you want, gives two or three reasons you fit it, and asks for an interview. Keep it to 250 to 400 words. Copy the simple sample below, replace each [bracket], and send it with your CV.",
   },
 
-  { h2: "A simple job application letter example" },
+  { h2: "Simple application letter sample to copy" },
   {
-    p: "Target role: Accounts Assistant at a logistics company. The posting asks for accounts payable experience, reconciliations, Excel, and attention to detail.",
+    callout: {
+      title: "Simple job application letter",
+      body: "[Your name]\n[Your address]\n[Phone] | [Email]\n\n[Date]\n\n[Hiring manager's name]\n[Company name]\n[Company address]\n\nDear [Name or Hiring Manager],\n\nI am applying for the [exact job title] role advertised on [where you saw it]. I [your current role or strongest qualification], where I [one relevant result with a number].\n\nYour posting asks for [requirement one]. [What you did that shows it, and the result.]\n\nYou also mention [requirement two]. [What you did that shows it, and the result.]\n\nI would like to join [company] because [one specific reason tied to the company or team].\n\nMy CV is attached. I would welcome the chance to discuss the role.\n\nYours sincerely,\n[Your name]",
+    },
+  },
+  {
+    p: "Replace every bracket. If you cannot fill one with something true and specific, cut that paragraph rather than filling it with general claims. If you apply by email, drop the addresses and the date and start at 'Dear'.",
+  },
+
+  { h2: "Application letter example, filled in" },
+  {
+    p: "Here is the same sample written out for an Accounts Assistant role at a logistics company. The posting asks for accounts payable experience, reconciliations, Excel, and attention to detail.",
   },
   {
     callout: {
@@ -76,34 +88,6 @@ export const blocks = [
   },
   {
     p: "Notice what it does. The role is named in the first line. Each requirement from the posting gets a specific answer with a number. The 'why this company' part is one sentence with a real detail. There is no line that could be pasted into a letter for a different job.",
-  },
-  {
-    callout: {
-      title: "The short version",
-      body: "One page. Name the role in the first line. Spend the middle on two or three examples that match the posting's requirements, each with a result. Close by asking for an interview. Address it to a person when you can.",
-    },
-  },
-  {
-    p: "Want it written for you? Fill in the [free application letter generator](#free-application-letter-generator) below and copy the result. To draft from the posting and your CV instead, use the [AI cover letter generator](/ai-cover-letter-generator). It works for application letters too.",
-  },
-
-  { h2: "Application letter or cover letter?" },
-  {
-    p: "In most hiring the two words mean the same thing: a letter that goes with your CV and makes the case for one role. The difference is regional and about formality.",
-  },
-  {
-    table: {
-      head: ["", "Application letter", "Cover letter"],
-      rows: [
-        ["Where the term is common", "Much of Africa and Asia, and public sector hiring", "US, UK, Canada, Australia"],
-        ["Tone", "Often more formal, can include your address and the date", "Formal but plain, usually sent by email or upload"],
-        ["Can it stand alone?", "Sometimes, when the employer asks for a letter only", "Almost always sent with a CV"],
-        ["What it must do", "Ask for a named role and prove you fit it", "The same"],
-      ],
-    },
-  },
-  {
-    p: "If a posting asks for an application letter, follow its instructions on format first. Everything below works for both.",
   },
 
   { h2: "How to write an application letter for a job" },
@@ -134,19 +118,30 @@ export const blocks = [
 
   { h2: "Free application letter generator" },
   {
-    p: "Fill in the boxes and get the template below written out as a full letter. Leave out anything you cannot back up and that part drops out. Nothing you type leaves this page.",
+    p: "Fill in the boxes and get the sample above written out as a full letter. Leave out anything you cannot back up and that part drops out. Nothing you type leaves this page.",
   },
   { tool: "application-letter" },
-
-  { h2: "A template you can copy" },
   {
-    callout: {
-      title: "Application letter template",
-      body: "Dear [Name or Hiring Manager],\n\nI am applying for the [exact job title] role advertised on [where you saw it]. I [your current role or strongest qualification], where I [one relevant result with a number].\n\nYour posting asks for [requirement one]. [What you did that shows it, and the result.]\n\nYou also mention [requirement two]. [What you did that shows it, and the result.]\n\nI would like to join [company] because [one specific reason tied to the company or team].\n\nMy CV is attached. I would welcome the chance to discuss the role.\n\nYours sincerely,\n[Your name]\n[Phone] | [Email]",
+    p: "To draft from the posting and your CV instead, use the [AI cover letter generator](/ai-cover-letter-generator). It works for application letters too.",
+  },
+
+  { h2: "Application letter or cover letter?" },
+  {
+    p: "In most hiring the two words mean the same thing: a letter that goes with your CV and makes the case for one role. The difference is regional and about formality.",
+  },
+  {
+    table: {
+      head: ["", "Application letter", "Cover letter"],
+      rows: [
+        ["Where the term is common", "Much of Africa and Asia, and public sector hiring", "US, UK, Canada, Australia"],
+        ["Tone", "Often more formal, can include your address and the date", "Formal but plain, usually sent by email or upload"],
+        ["Can it stand alone?", "Sometimes, when the employer asks for a letter only", "Almost always sent with a CV"],
+        ["What it must do", "Ask for a named role and prove you fit it", "The same"],
+      ],
     },
   },
   {
-    p: "Replace every bracket. If you cannot fill one with something true and specific, cut that paragraph rather than filling it with general claims.",
+    p: "If a posting asks for an application letter, follow its instructions on format first. Everything on this page works for both.",
   },
 
   { h2: "Phrases to cut" },

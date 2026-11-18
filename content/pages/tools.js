@@ -2,13 +2,15 @@
 
 export const atsResumeChecker = {
   slug: "ats-resume-checker",
-  seoTitle: "Free ATS Resume Checker: No Login, No Sign-Up",
+  seoTitle: "Free ATS Resume Checker: No Login, No Sign Up",
   description:
-    "Free ATS resume checker, no login. Upload your CV and paste a job posting for a keyword match score. Your file is read in your browser. Unlimited checks.",
+    "Free ATS resume checker. No login, no sign up. Upload your CV, paste a job description and get your ATS match score. It runs in your browser. No limit.",
   keywords: [
     "ats resume checker",
     "free ats resume checker",
     "ats resume checker free online without login",
+    "ats checker no login",
+    "ats score checker free without login",
     "ats resume checker with job description free",
     "ats resume",
     "resume checker",
@@ -18,9 +20,9 @@ export const atsResumeChecker = {
   ],
   eyebrow: "Free tool",
   breadcrumbName: "ATS resume checker",
-  h1: "Free ATS resume checker, no login",
+  h1: "Free ATS resume checker: no login, no sign up",
   lede:
-    "No login, no sign-up. Upload your CV and paste a job description. See your keyword match score and the exact terms the posting expects that your CV never mentions, in about ten seconds.",
+    "It's free, with no login and no sign up. The check runs in your browser. Upload your CV and paste a job description. You see your ATS match score and the terms the posting expects that your CV never mentions.",
   ctas: [
     { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link" },
     { label: "Read the ATS guide", href: "/blog/ats-resume-guide", variant: "secondary" },
@@ -51,8 +53,12 @@ export const atsResumeChecker = {
       a: "An ATS resume checker compares your CV against a specific job description and reports how much of the posting's important vocabulary your CV actually contains. It is a diagnostic: it shows you the gap between what the employer asked for and what your CV says.",
     },
     {
+      q: "Do I need to sign up to use the ATS checker?",
+      a: "No. There is no login and no sign up. Upload your CV, paste a job description and you get your score on this page. You only need an account if you choose to have FitMyCV rewrite your CV.",
+    },
+    {
       q: "Is this ATS checker really free?",
-      a: "Yes, and there is no sign-up. The whole check runs in your browser using JavaScript on the page, so there is no account and no usage limit.",
+      a: "Yes. The whole check runs in your browser using JavaScript on the page, so there is no account and no limit on how many checks you run.",
     },
     {
       q: "Does my CV get uploaded or stored anywhere?",

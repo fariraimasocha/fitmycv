@@ -36,22 +36,14 @@ import skillsToPutOnResume from "./skills-to-put-on-a-resume";
 import jobApplicationLetter from "./job-application-letter";
 import howToEmailApplication from "./how-to-email-a-job-application";
 
-import tailorFromMasterResume from "./tailor-cv-from-master-resume";
-import tailorResumeForFree from "./how-to-tailor-resume-for-free";
 import tiredOfTailoring from "./tired-of-tailoring-resume-for-every-job";
 import cvFormatSouthAfrica from "./cv-format-south-africa";
 import cvFormatNigeria from "./cv-format-nigeria";
 import cvFormatKenya from "./cv-format-kenya";
-import tailorForSpecificJob from "./how-to-tailor-a-resume-for-a-specific-job";
-import tailoringTips from "./tips-for-tailoring-a-cv-to-specific-jobs";
 import jobscanAlternative from "./jobscan-alternative";
 
 export const POSTS = [
   jobscanAlternative,
-  tailorForSpecificJob,
-  tailoringTips,
-  tailorFromMasterResume,
-  tailorResumeForFree,
   tiredOfTailoring,
   cvFormatSouthAfrica,
   cvFormatNigeria,

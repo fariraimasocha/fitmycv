@@ -34,6 +34,17 @@ const nextConfig = {
         destination: "https://www.fitmycv.link/:path+",
         permanent: true,
       },
+      // Tailoring posts merged into one guide (Nov 2026).
+      ...[
+        "tips-for-tailoring-a-cv-to-specific-jobs",
+        "how-to-tailor-resume-for-free",
+        "tailor-cv-from-master-resume",
+        "how-to-tailor-a-resume-for-a-specific-job",
+      ].map((slug) => ({
+        source: `/blog/${slug}`,
+        destination: "/blog/tired-of-tailoring-resume-for-every-job",
+        permanent: true,
+      })),
     ];
   },
   async rewrites() {

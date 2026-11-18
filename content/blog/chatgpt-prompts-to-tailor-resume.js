@@ -89,6 +89,7 @@ export const blocks = [
     p: "Read the “do not add” column before you touch a sentence. Those rows are either a cover-letter topic or a sign this role is a stretch.",
   },
 
+  { tool: "keyword-checker" },
   { h2: "Prompt 2: rewrite the professional summary" },
   {
     p: "Only after the table exists. Keep it to two or three lines. Name the target title and two evidenced requirements.",

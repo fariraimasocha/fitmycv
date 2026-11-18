@@ -111,6 +111,13 @@ export const blocks = [
     p: "It also will not help if your CV does not parse. Layout failures happen before wording matters: a two column CV with a sidebar can interleave into nonsense when converted to text. Our [ATS resume guide](/blog/ats-resume-guide) covers that, and it is worth ruling out first.",
   },
 
+  {
+    take: {
+      claim: "Tailor so a recruiter can find you, not to chase a callback percentage.",
+      body: "No public study isolates the tailored resume, so we will not quote you a number for it. The reason to tailor holds without one: recruiters search their ATS by the posting's words, and a CV without them is harder to find.",
+    },
+  },
+  { testimonial: "Tino" },
   { h2: "So how much should you do?" },
   {
     p: "Enough to cover the posting's real vocabulary with experience you actually have, and no more. Optimising past that point produces a CV written for a parser and read by nobody. We work through the stopping point in [how much you should tailor your resume](/blog/how-much-should-you-tailor-your-resume). When the gaps are worth closing, the [resume tailor](/tailor-cv-from-job-link) rewrites your summary and top bullets from the job link.",

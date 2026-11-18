@@ -67,6 +67,13 @@ export const blocks = [
     },
   },
 
+  {
+    video: {
+      src: "/new-fitmycv-demo.mp4",
+      poster: "/hero-new.png",
+      caption: "FitMyCV from job link to tailored CV, recorded in the app.",
+    },
+  },
   { h2: "When ChatGPT is the right choice" },
   {
     p: "One role you care about, time to check every line, and you want to stay in a chat. Use the [two-pass prompts](/blog/chatgpt-prompts-to-tailor-resume): gap analysis first, then summary, then three bullets. Repeat “do not invent metrics, tools, titles, or employers” in the same message as the rewrite.",

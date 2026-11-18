@@ -113,6 +113,14 @@ export const blocks = [
     ],
   },
 
+  {
+    figure: {
+      src: "/landing/job-link.png",
+      alt: "The Tailor CV screen in FitMyCV, with a LinkedIn job link pasted in",
+      caption: "Step one in FitMyCV: paste the job link. If the board blocks it, paste the description instead.",
+      width: 1568, height: 726,
+    },
+  },
   { h2: "Jobscan: the match-score diagnostic" },
   {
     p: "Jobscan is the tool most people mean when they say \"ATS checker\". You paste your CV and a job description and it returns a match rate plus a list of hard and soft skills the posting mentions that your CV does not.",

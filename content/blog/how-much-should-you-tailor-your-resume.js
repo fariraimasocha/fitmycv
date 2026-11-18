@@ -89,6 +89,7 @@ export const blocks = [
     ],
   },
 
+  { testimonial: "Nobesuthu" },
   { h2: "The two ways to overdo it" },
   {
     p: "**Writing for the parser.** A CV stuffed with every term from the posting scores well and reads like a robot wrote it, because one did. The person who shortlists you is a human reading quickly, and hollow density is obvious at a glance. Match scores are a diagnostic, not a target, which we cover in [what a resume match score actually measures](/blog/what-is-a-resume-match-score).",

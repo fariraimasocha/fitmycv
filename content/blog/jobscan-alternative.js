@@ -77,6 +77,14 @@ export const blocks = [
     p: "Prices and limits checked September 2026. Confirm on [Jobscan's pricing page](https://www.jobscan.co/pricing) and [ours](/pricing), because both move.",
   },
 
+  {
+    figure: {
+      src: "/landing/tailored-cv.png",
+      alt: "A tailored CV in FitMyCV, with CV checks on the left showing 15 of 17 passed and a live preview on the right",
+      caption: "A tailored CV in FitMyCV. The checks on the left run in your browser and test whether software can read the CV. The preview updates as you edit.",
+      width: 1568, height: 726,
+    },
+  },
   { h2: "Where Jobscan is genuinely better" },
   {
     p: "It has been at this longer. The match algorithm is mature, the ATS research library is deep, and if your job is to understand applicant tracking systems rather than to apply to jobs, that library is worth reading.",

@@ -98,6 +98,14 @@ export const blocks = [
     p: "An [AI resume tailor](/tailor-cv-from-job-link) built for one bottleneck: a tailored CV and cover letter from a job URL. Upload once, paste LinkedIn, Indeed, Glassdoor, or a careers page, edit the draft, export a single-column PDF. It does not invent employers, dates, or metrics. It is the wrong tool if you have no CV yet.",
   },
 
+  {
+    figure: {
+      src: "/landing/tailored-cv.png",
+      alt: "A tailored CV in FitMyCV, with CV checks on the left showing 15 of 17 passed and a live preview on the right",
+      caption: "A tailored CV in FitMyCV. The checks on the left run in your browser and test whether software can read the CV. The preview updates as you edit.",
+      width: 1568, height: 726,
+    },
+  },
   { h2: "FastApply" },
   {
     p: "FastApply is aimed at people who want to send more applications, not write a better one. If the product you need is “apply faster”, it may fit. If the product you need is “this CV actually matches this posting”, treat it as a different category. High volume without a constrained rewrite is how generic CVs scale. The [FastApply alternative](/fastapply-alternative) page compares prices and features side by side.",

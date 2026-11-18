@@ -109,6 +109,14 @@ export const blocks = [
     ],
   },
 
+  {
+    figure: {
+      src: "/landing/applications.png",
+      alt: "The FitMyCV Applications board, with columns for saved, applied, screening and interview, and counts for interviews, offers and response rate",
+      caption: "The Applications board in FitMyCV. Move a card when you hear back and it counts your interviews, offers and response rate.",
+      width: 1568, height: 726,
+    },
+  },
   { h2: "Quality is one lever, and it is the strongest one" },
   {
     p: "The single change that reliably lifts a response rate is the 20 to 30 minutes you spend making each CV answer the specific posting in front of you. Read the listing fully, change at least one real line so your CV mirrors the role's own language, and track responses rather than submissions.",

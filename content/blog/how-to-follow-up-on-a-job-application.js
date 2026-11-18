@@ -122,6 +122,14 @@ export const blocks = [
     p: "If a decision timeline was given and it passes with no word, one more short note is reasonable: reference the timeline you were told, restate interest, and ask for an update. After that, let it go and keep applying.",
   },
 
+  {
+    figure: {
+      src: "/landing/applications.png",
+      alt: "The FitMyCV Applications board, with columns for saved, applied, screening and interview, and counts for interviews, offers and response rate",
+      caption: "The Applications board in FitMyCV. Move a card when you hear back and it counts your interviews, offers and response rate.",
+      width: 1568, height: 726,
+    },
+  },
   { h2: "Follow up mistakes to avoid" },
   {
     ul: [

@@ -127,6 +127,7 @@ export const blocks = [
     ],
   },
 
+  { testimonial: "Rejoice" },
   { h2: "A template you can copy" },
   {
     callout: {

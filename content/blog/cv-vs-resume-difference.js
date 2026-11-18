@@ -104,6 +104,7 @@ export const blocks = [
     },
   },
 
+  { tool: "cv-format" },
   { h2: "A note on spelling and dates" },
   {
     p: "Small things that mark a document as foreign: date formats, spelling, and phone number formatting. Write dates the way the employer's country writes them, use their spelling conventions, and give your number in international format if you are applying abroad. None of this is decisive, and all of it is free.",

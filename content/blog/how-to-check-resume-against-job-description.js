@@ -139,6 +139,8 @@ export const blocks = [
     },
   },
 
+  { tool: "job-match" },
+  { testimonial: "Titus" },
   { h2: "What to do with what you find" },
   {
     ol: [

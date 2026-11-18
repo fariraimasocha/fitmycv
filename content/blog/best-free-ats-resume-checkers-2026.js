@@ -112,6 +112,8 @@ export const blocks = [
     p: "We built it. The useful comparison is not “is our score magic”. It is “can you run it on the posting in front of you without creating an account”. On that test it is the simplest of the five.",
   },
 
+  { tool: "keyword-checker" },
+  { testimonial: "Titus" },
   { h2: "Jobscan: the match-score diagnostic" },
   {
     p: "Jobscan is still the name people mean when they say ATS checker. Paste a resume and a job listing, get a match rate, see missing hard skills. The free tier is enough to learn the format. The paid plan is priced for people who scan every application.",

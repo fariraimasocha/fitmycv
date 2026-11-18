@@ -403,7 +403,7 @@ export const kickresumeAlternative = {
 
 export const huntrAlternative = {
   slug: "huntr-alternative",
-  seoTitle: "Huntr Alternative: The Rewrite Without the Tracker",
+  seoTitle: "Huntr Alternatives: 5 Picks by What You Need",
   description:
     "A Huntr alternative for people who want a tailored CV, not a job board to maintain. Paste a job link, get a CV and cover letter. One payment.",
   keywords: [
@@ -428,7 +428,7 @@ export const huntrAlternative = {
   faqs: [
     {
       q: "What is the best Huntr alternative?",
-      a: "It depends on which half of Huntr you actually use. If you want the pipeline tracking and the application autofill, nothing here replaces that, and Huntr does it well. If the tracker sat untouched and you were really there for the tailoring, FitMyCV does that one job from a job link.",
+      a: "It depends on which half of Huntr you use. For tailoring only, FitMyCV. For a tracker with AI attached, Teal. For tailoring plus a job search workspace, Seekario. For a first CV built from scratch, Rezi. For a free score with no account, the FitMyCV ATS resume checker.",
     },
     {
       q: "Is there a free Huntr alternative?",
@@ -448,6 +448,20 @@ export const huntrAlternative = {
     },
   ],
   blocks: [
+    { h2: "Huntr alternatives, by what you need" },
+    {
+      p: "Huntr is a job tracker with tailoring attached. Pick the alternative that matches what you want instead.",
+    },
+    {
+      ul: [
+        "**You only want the CV tailored for each job:** FitMyCV. Paste the job link and get the tailored CV and a cover letter back.",
+        "**You want a tracker with AI attached:** Teal. [Teal compared](/teal-alternative).",
+        "**You want tailoring plus a job search workspace:** Seekario reads a job URL and has a Chrome extension. [Seekario compared](/seekario-alternative).",
+        "**You need a first CV built from scratch:** Rezi scores it as you type. [Rezi compared](/rezi-alternative).",
+        "**You want a free score with no account:** the [FitMyCV ATS resume checker](/ats-resume-checker). No scan limit, and it runs in your browser.",
+      ],
+    },
+
     { h2: "One product, two jobs" },
     {
       p: "Huntr bundles a job tracker and a resume tailor. That is a genuine advantage when you are running thirty live applications and need to remember who you spoke to. It is dead weight when you apply to four roles a month and just want the CV to fit.",

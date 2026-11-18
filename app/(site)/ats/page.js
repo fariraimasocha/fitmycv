@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 
+import Blocks from "@/components/content/Blocks";
 import MarketingPage from "@/components/content/MarketingPage";
 import { atsLookup } from "@/content/pages/job-tools";
 import { ATS_COMPANIES } from "@/content/ats-companies";
@@ -24,6 +25,11 @@ export default function AtsLookupPage() {
   setRequestLocale("en");
   return (
     <MarketingPage page={atsLookup}>
+      <section className="px-5 pb-4 pt-14 sm:px-10 lg:px-16 xl:px-24">
+        <div className="mx-auto w-full max-w-3xl">
+          <Blocks blocks={atsLookup.guide} />
+        </div>
+      </section>
       <section className="px-5 pb-4 pt-14 sm:px-10 lg:px-16 xl:px-24">
         <div className="mx-auto w-full max-w-3xl">
           <h2 className="landing-section-title text-2xl sm:text-3xl">Companies we have checked</h2>

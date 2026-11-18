@@ -4,9 +4,9 @@
 
 export const resumeFileNameGenerator = {
   slug: "resume-file-name-generator",
-  seoTitle: "How to Name a Resume File: Examples and Generator",
+  seoTitle: "What to Name Your Resume File: Format and Examples",
   description:
-    "Name your resume First-Last-Role-Resume.pdf. See good and bad CV file name examples, then type your name and role to get yours. Free, no login.",
+    "Name your resume FirstName-LastName-Resume.pdf, adding the job title for one role. See good and bad file name examples, what to avoid, and a free generator.",
   keywords: [
     "resume file name generator",
     "resume file name",
@@ -17,6 +17,9 @@ export const resumeFileNameGenerator = {
     "how to name a resume file",
     "resume naming convention",
     "what to name a resume file",
+    "what to name resume file",
+    "file name for resume",
+    "resume name",
     "resume name example",
     "resume name ideas",
     "naming resume file",
@@ -25,9 +28,9 @@ export const resumeFileNameGenerator = {
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Resume file name generator",
-  h1: "How to name a resume file: examples and a free generator",
+  h1: "What to name your resume file, with examples and a free generator",
   lede:
-    "Use your name, the role and the word Resume, joined by hyphens, saved as PDF: Farirai-Masocha-Software-Engineer-Resume.pdf. Type yours below and the tool strips the characters that break uploads.",
+    "Name it FirstName-LastName-Resume.pdf, and add the job title when you apply for one role: Farirai-Masocha-Software-Engineer-Resume.pdf. Use hyphens, no spaces, no dates, and save it as a PDF. Type yours below to get a clean file name.",
   ctas: [
     { label: "Name my file", href: "#tool" },
     {
@@ -62,6 +65,18 @@ export const resumeFileNameGenerator = {
       a: "Your name, the role, and the word Resume, joined by hyphens, saved as PDF. For example Farirai-Masocha-Software-Engineer-Resume.pdf. It tells a recruiter whose CV it is and which role it is for without opening it, and it stays readable when it appears in a download link.",
     },
     {
+      q: "What is a good file name for a resume?",
+      a: "FirstName-LastName-Resume.pdf is a good default. Farirai-Masocha-Resume.pdf says whose CV it is and what the file is, and it reads cleanly in an inbox, a shared folder or a download link. Add the job title when the CV is tailored to one role.",
+    },
+    {
+      q: "Should my resume file name be just my name?",
+      a: "Your name alone works, but add Resume or CV. When you send a CV and a cover letter together, Farirai-Masocha.pdf does not say which file is which. Farirai-Masocha-Resume.pdf and Farirai-Masocha-Cover-Letter.pdf do.",
+    },
+    {
+      q: "Should I write Resume or CV in the file name?",
+      a: "Use the word the posting uses. Most US and Canadian postings say resume. Most UK, European and academic postings say CV. If the posting uses neither, either one is fine.",
+    },
+    {
       q: "Should I use hyphens, underscores or spaces?",
       a: "Hyphens by default. Spaces become %20 in a download URL and can trip older upload forms, and underscores disappear when the file name is displayed underlined. Use underscores only when a portal or a recruiter explicitly asks for them.",
     },
@@ -91,6 +106,26 @@ export const resumeFileNameGenerator = {
     },
   ],
   blocks: [
+    { h2: "The resume file name format to use" },
+    {
+      p: "**FirstName-LastName-JobTitle-Resume.pdf.** Your name first, then the job title from the posting, then the word Resume, joined by hyphens. Drop the job title when you send the same CV to many roles.",
+    },
+    {
+      ul: [
+        "**Farirai-Masocha-Resume.pdf** when you apply broadly and the role varies.",
+        "**Farirai-Masocha-Software-Engineer-Resume.pdf** when you apply for one role.",
+        "**Farirai-Masocha-Software-Engineer-Northwind-Resume.pdf** when you apply for several roles at one company, or email a named contact.",
+        "**Farirai-Masocha-CV.pdf** when the employer says CV rather than resume, as most UK, European and academic postings do.",
+        "**Farirai-Masocha-Software-Engineer-Cover-Letter.pdf** for the cover letter that goes with it.",
+      ],
+    },
+    {
+      p: "**Avoid:** resume.pdf on its own, spaces, dates, version words like final or v2, and special characters such as slashes, colons and brackets.",
+    },
+    {
+      p: "FitMyCV uses this same format for every CV and cover letter you download from it, so the file is ready to send without renaming.",
+    },
+
     { h2: "Why the file name is worth thirty seconds" },
     {
       p: "A recruiter's downloads folder holds hundreds of these. **A file called resume.pdf is invisible the moment it lands next to forty others with the same name.** Yours should say who you are and which role it is for, before anyone opens it.",
@@ -177,6 +212,19 @@ export const resumeFileNameGenerator = {
     },
     {
       p: "Apply the same convention to your cover letter, so the pair arrive looking deliberate: Farirai-Masocha-Software-Engineer-Cover-Letter.pdf.",
+    },
+
+    { h2: "How to rename your resume file" },
+    {
+      ul: [
+        "**Windows:** select the file, press F2, type the new name, then press Enter.",
+        "**Mac:** select the file in Finder, press Return, type the new name, then press Return again.",
+        "**Google Docs:** rename the document first, then choose File, Download, PDF. The download takes the document's title as its file name.",
+        "**Microsoft Word:** choose File, Save As, type the name, and pick PDF as the file type.",
+      ],
+    },
+    {
+      p: "Keep the .pdf ending when you rename. If it disappears, your computer may stop opening the file as a PDF.",
     },
 
     { h2: "The file name is the easy part" },

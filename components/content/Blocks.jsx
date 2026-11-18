@@ -155,7 +155,7 @@ function Block({ block }) {
 
   if (block.ol) {
     return (
-      <ol className="mt-6 flex list-decimal flex-col gap-3 ps-6 text-lg leading-8 text-[var(--landing-ink-soft)] marker:font-semibold marker:text-[var(--landing-ink)]">
+      <ol start={block.start} className="mt-6 flex list-decimal flex-col gap-3 ps-6 text-lg leading-8 text-[var(--landing-ink-soft)] marker:font-semibold marker:text-[var(--landing-ink)]">
         {block.ol.map((item, i) => (
           <li key={i} className="ps-1">
             {inline(item, `ol-${i}`)}

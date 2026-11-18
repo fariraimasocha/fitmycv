@@ -136,9 +136,9 @@ export const workdayResumeFormat = {
 
 export const greenhouseAtsResume = {
   slug: "greenhouse-ats-resume",
-  seoTitle: "Greenhouse Resume Format: Columns, Parsing and PDF Tips",
+  seoTitle: "Greenhouse Resume Parsing: Columns, Tables, Headers, Footers",
   description:
-    "How to format a CV for Greenhouse job applications: single column, parser safe headings, and why the PDF you attach is the one a human reads.",
+    "Greenhouse's help center says columns, tables, headers, footers and text boxes can stop a resume parsing. What that means and how to format your CV for it.",
   keywords: [
     "greenhouse ats resume",
     "greenhouse ats",
@@ -147,17 +147,35 @@ export const greenhouseAtsResume = {
     "greenhouse job application tips",
     "greenhouse resume parsing",
     "boards.greenhouse.io application",
+    "greenhouse resume parsing columns",
+    "greenhouse resume parsing tables headers footers",
   ],
   eyebrow: "Applicant tracking systems",
   breadcrumbName: "Greenhouse ATS resume",
   h1: "Greenhouse ATS resume format",
   lede:
-    "Greenhouse is the short form: name, email, CV, maybe a cover letter and a couple of questions. Less to get wrong than Workday, which means the file you attach carries almost all of the weight.",
+    "Greenhouse's own help center lists columned layouts, tables, headers, footers and text boxes as reasons a resume does not parse. Use one column, keep your contact details in the body, and attach a PDF or DOCX under 2.5MB.",
   ctas: [
     { label: "Tailor my CV for this role", href: "/tailor-cv-from-job-link" },
     { label: "Check my CV free", href: "/ats-resume-checker", variant: "secondary" },
   ],
   faqs: [
+    {
+      q: "Can Greenhouse parse a resume with columns?",
+      a: "Greenhouse's help article on unsuccessful resume parses lists \"resumes that have a columned layout\" as one cause. A one column CV is the safe choice.",
+    },
+    {
+      q: "Can Greenhouse parse tables, headers and footers?",
+      a: "The same article lists \"complex resumes with tables, headers, and footers\" and \"resumes with the name and contact information in the header, footer, or text box\" as causes of a failed parse. Keep your name, email and phone in the body of the page and lay out your sections without tables.",
+    },
+    {
+      q: "What happens if Greenhouse can't parse my resume?",
+      a: "Greenhouse says the recruiter sees a message that the resume has only been attached to the candidate, and someone has to type your details into the fields by hand. Your file is still there, but your profile starts out empty.",
+    },
+    {
+      q: "Is there a file size limit for Greenhouse resumes?",
+      a: "Yes. Greenhouse says it can't parse resumes larger than 2.5MB. Photos and graphics make files bigger and are also on its list of parsing problems.",
+    },
     {
       q: "What resume format does Greenhouse prefer?",
       a: "A single column PDF with selectable text, standard section headings, and dates as Month YYYY. Greenhouse application forms are short, so there is no autofill step to catch a bad parse for you.",
@@ -176,6 +194,26 @@ export const greenhouseAtsResume = {
     },
   ],
   blocks: [
+    { h2: "Does Greenhouse parse columns, tables, headers and footers?" },
+    {
+      p: "Often not well. Greenhouse's help article on [unsuccessful resume parses](https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse) lists these as reasons a resume fails to parse:",
+    },
+    {
+      ul: [
+        "A columned layout.",
+        "Complex resumes with tables, headers and footers.",
+        "A name and contact details placed in the header, footer or a text box.",
+        "Graphics, photos or word art, or a resume uploaded as an image instead of a document.",
+        "A file larger than 2.5MB.",
+      ],
+    },
+    {
+      callout: {
+        title: "What a failed parse means for you",
+        body: "Greenhouse says the recruiter sees that the resume was only attached, and someone has to type your details in by hand. Your file still reaches them, but none of your details fill in on their own.",
+      },
+    },
+
     { h2: "Short form, heavier file" },
     {
       p: "A Greenhouse application usually asks for very little: your name, contact details, a CV, and sometimes a cover letter or two custom questions. There is no long autofill to review, which is a relief and a risk.",

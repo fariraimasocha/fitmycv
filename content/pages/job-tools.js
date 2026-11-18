@@ -94,24 +94,78 @@ export const saveJobPostingAsPdf = {
 
 export const atsLookup = {
   slug: "ats",
-  seoTitle: "Which ATS Does a Company Use? Free Lookup",
+  seoTitle: "How to Know Which ATS a Company Uses (Free Lookup)",
   description:
-    "Paste a job link and see which applicant tracking system the company hires through: Workday, Greenhouse, Lever, SuccessFactors, Taleo and more. Free, no login.",
+    "Click Apply and read the address bar. greenhouse.io, lever.co, myworkdayjobs.com or icims.com names the ATS. Or paste the job link here and check it free.",
   keywords: [
     "which ats does company use",
     "what ats does a company use",
     "ats lookup",
     "company ats checker",
     "which applicant tracking system",
+    "how to know the ats a company is using",
+    "how to find out what ats a company uses",
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Which ATS does a company use?",
   h1: "Which ATS does this company use?",
   lede:
-    "Paste a link to one of the company's jobs. The link itself shows which applicant tracking system the job sits on, so you know how your CV will be read.",
+    "Click Apply on the job and look at the address bar. If it says greenhouse.io, lever.co, myworkdayjobs.com or icims.com, that is the company's applicant tracking system. Paste the link below and we read it for you.",
   ctas: [{ label: "Check a link", href: "#tool" }],
   tool: "ats-lookup",
+  // Rendered by app/(site)/ats/page.js straight under the tool, so the how-to
+  // answer sits above the company list.
+  guide: [
+    { h2: "How to know which ATS a company is using" },
+    {
+      steps: [
+        {
+          title: "Open the job and click Apply",
+          body: "Many careers pages sit on the company's own website and only hand you to the hiring system when you click Apply. Check the address bar on the page that opens.",
+        },
+        {
+          title: "Match the web address",
+          body: "Each hiring system hosts its forms on its own domain. The table below shows the common ones.",
+        },
+        {
+          title: "Still on the company's site? Check the form",
+          body: "Some companies embed the application form in their own page. Look at the bottom of the form for a line naming the system, such as Powered by Greenhouse.",
+        },
+        {
+          title: "Found it on LinkedIn? Use the Apply button",
+          body: "Easy Apply keeps you on LinkedIn, so it does not show the company's system. A plain Apply button opens the company's own application page. Copy that link.",
+        },
+      ],
+    },
+    {
+      table: {
+        head: ["The address contains", "The ATS is"],
+        rows: [
+          ["boards.greenhouse.io or job-boards.greenhouse.io", "Greenhouse"],
+          ["jobs.lever.co", "Lever"],
+          ["myworkdayjobs.com", "Workday"],
+          ["icims.com", "iCIMS"],
+          ["jobs.ashbyhq.com", "Ashby"],
+          ["smartrecruiters.com", "SmartRecruiters"],
+          ["apply.workable.com", "Workable"],
+          ["taleo.net", "Oracle Taleo"],
+          ["successfactors.com", "SAP SuccessFactors"],
+        ],
+      },
+    },
+    {
+      p: "The lookup above does the matching for you. It reads the address you paste and nothing else. It does not open the page, so a LinkedIn, Indeed or company careers link will not tell it anything. Paste the link from the Apply page instead.",
+    },
+  ],
   faqs: [
+    {
+      q: "How do I know which ATS a company is using?",
+      a: "Click Apply on one of its jobs and read the web address. greenhouse.io means Greenhouse, lever.co means Lever, myworkdayjobs.com means Workday and icims.com means iCIMS. If the address stays on the company's own site, look for a Powered by line at the bottom of the form.",
+    },
+    {
+      q: "Does LinkedIn show which ATS a company uses?",
+      a: "Not on the job post itself. If the post has a plain Apply button, it opens the company's application page, and that page's address shows the system. Easy Apply jobs stay on LinkedIn, so they do not show it.",
+    },
     {
       q: "How does the lookup know which ATS a company uses?",
       a: "Each hiring system hosts jobs on its own web address, like greenhouse.io, lever.co or myworkdayjobs.com. The tool reads that address from the link you paste. It does not guess from the company name.",

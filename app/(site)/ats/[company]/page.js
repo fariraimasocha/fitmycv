@@ -73,7 +73,7 @@ export default async function AtsCompanyPage({ params }) {
   const company = getAtsCompany(slug);
   if (!company) notFound();
   const vendor = getAtsVendor(company.ats);
-  const faqs = faqsFor(company, vendor);
+  const faqs = [...faqsFor(company, vendor), ...(company.extra?.faqs ?? [])];
   const peers = ATS_COMPANIES.filter((c) => c.ats === company.ats && c.slug !== slug).slice(0, 8);
 
   return (
@@ -106,6 +106,9 @@ export default async function AtsCompanyPage({ params }) {
             <p className="mt-6 text-lg font-semibold leading-8 text-[var(--landing-ink-soft)]">
               {company.name} posts its jobs on <strong className="text-[var(--landing-ink)]">{vendor.name}</strong>.
             </p>
+            {company.extra?.lede ? (
+              <p className="mt-4 text-base leading-8 text-[var(--landing-ink-soft)]">{company.extra.lede}</p>
+            ) : null}
           </div>
         </section>
 
@@ -136,6 +139,13 @@ export default async function AtsCompanyPage({ params }) {
               </p>
             </div>
 
+            {/* Extra content answers what searchers came for, so it goes first. */}
+            {company.extra?.blocks ? (
+              <div>
+                <Blocks blocks={company.extra.blocks} />
+              </div>
+            ) : null}
+
             <div>
               <Blocks
                 blocks={[
@@ -150,12 +160,6 @@ export default async function AtsCompanyPage({ params }) {
                 ]}
               />
             </div>
-
-            {company.extra?.blocks ? (
-              <div>
-                <Blocks blocks={company.extra.blocks} />
-              </div>
-            ) : null}
 
             <div className="flex flex-col gap-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
               <div>

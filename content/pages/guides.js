@@ -3,9 +3,9 @@
 
 export const resumeTips = {
   slug: "resume-tips",
-  seoTitle: "27 Resume Tips That Lift Your Response Rate",
+  seoTitle: "27 Resume Tips for 2026: Simple Fixes You Can Make Today",
   description:
-    "Twenty-seven resume tips grouped by the problem they solve: parsing, keywords, bullets, structure, and the final check. Ordered by impact.",
+    "27 practical resume tips for 2026, each in one line. Get past ATS parsing, match the job posting, write stronger bullets, and check your CV before you send.",
   keywords: [
     "resume tips",
     "cv tips",
@@ -16,9 +16,9 @@ export const resumeTips = {
   ],
   eyebrow: "Guide",
   breadcrumbName: "Resume tips",
-  h1: "Resume tips that actually change your response rate",
+  h1: "27 resume tips you can act on today",
   lede:
-    "Twenty-seven specific things to change, grouped by the problem each one solves, and ordered so the highest-impact fixes come first.",
+    "Twenty-seven specific things to change, each in one line first, then grouped by the problem it solves with the highest-impact fixes first.",
   ctas: [
     { label: "Check my CV now", href: "/ats-resume-checker" },
     { label: "How to write a resume", href: "/how-to-write-a-resume", variant: "secondary" },
@@ -26,7 +26,7 @@ export const resumeTips = {
   faqs: [
     {
       q: "What is the single most important resume tip?",
-      a: "Tailor it to the posting you are applying to. Every other tip on this page is worth a few percent; sending a CV that matches the specific role is worth more than all of them combined.",
+      a: "Tailor it to the posting you are applying to. A CV that matches the specific role does more for you than any formatting or wording fix on this page.",
     },
     {
       q: "How long should a resume be?",
@@ -48,10 +48,46 @@ export const resumeTips = {
       q: "How far back should a resume go?",
       a: "Ten to fifteen years in detail. Older roles can be compressed into a single line each under an \"Earlier experience\" heading, which preserves the timeline without spending page space on work nobody will ask about.",
     },
+    {
+      q: "How do I check if my resume will parse in an ATS?",
+      a: "Select all the text in your exported PDF and paste it into a plain text editor. If the order is scrambled or your contact details are missing, a parser will have the same problem. Then score it against a real posting with the [free ATS resume checker](/ats-resume-checker) to see which terms are missing.",
+    },
   ],
   blocks: [
+    { h2: "All 27 resume tips at a glance" },
     {
-      p: "Most resume advice is either too vague to act on (\"be concise\") or too cosmetic to matter (\"use a modern font\"). What follows is neither. Each item names a specific change, and the sections are ordered by how much difference they make.",
+      ol: [
+        "Use a single-column layout.",
+        "Put contact details in the body, not the header.",
+        "Delete tables and text boxes.",
+        "Remove graphics, photos, and skill-rating dots.",
+        "Export a text-based PDF, not a scan.",
+        "Use standard section headings like Experience and Skills.",
+        "Use the market job title, not your internal one.",
+        "Copy key terms from the job posting word for word.",
+        "Write each acronym out in full once.",
+        "Put keywords inside bullets, not only in a skills list.",
+        "Name the tools you use.",
+        "Never hide keywords in white text.",
+        "Start each bullet with a verb, not \"Responsible for\".",
+        "Add a number wherever one honestly exists.",
+        "State your scope: team size, budget, region, or users.",
+        "Cut duties everyone in your role does.",
+        "Keep one idea per bullet.",
+        "Keep each bullet to two lines.",
+        "Vary your verbs, but pick the plain one.",
+        "Put your most relevant experience near the top.",
+        "Lead each role with its strongest matching bullet.",
+        "Write a three-line summary: title, level, one result.",
+        "Shrink old roles to one line instead of deleting them.",
+        "Give month and year for every date.",
+        "Paste your PDF into a text editor to see what a parser sees.",
+        "Check that the top third of page one says what you do and why you fit.",
+        "Score your keyword overlap against the real posting.",
+      ],
+    },
+    {
+      p: "If you only do one thing, tailor your CV to each posting. The sections below explain each tip and why it matters, in order of impact.",
     },
 
     { h2: "Fix the parse first (tips 1 to 6)" },
@@ -74,6 +110,7 @@ export const resumeTips = {
 
     { h2: "Get found (tips 7 to 12)" },
     {
+      start: 7,
       ol: [
         "**Use the market job title, not your internal one.** \"Growth Wizard\" matches nothing; put the real title first and the internal one in brackets.",
         "**Take vocabulary from the posting verbatim.** Recruiters search literal strings, not meanings.",
@@ -86,6 +123,7 @@ export const resumeTips = {
 
     { h2: "Make the bullets work (tips 13 to 19)" },
     {
+      start: 13,
       ol: [
         "**Lead with a verb, never with \"Responsible for\".** Responsibility describes the job you were given, not what you did with it.",
         "**Attach a number wherever one honestly exists:** percentage, volume, time, revenue, headcount, error rate.",
@@ -108,6 +146,7 @@ export const resumeTips = {
 
     { h2: "Structure and relevance (tips 20 to 24)" },
     {
+      start: 20,
       ol: [
         "**Put the most relevant role first within reverse-chronological order.** If your most relevant experience is older, add a short \"Relevant experience\" section above it.",
         "**Lead each role with its strongest matching bullet.** Most readers get two bullets deep.",
@@ -119,6 +158,7 @@ export const resumeTips = {
 
     { h2: "Before you send (tips 25 to 27)" },
     {
+      start: 25,
       ol: [
         "**Run the copy-paste test.** Select all in your exported PDF, paste into a plain text editor, and read what arrives. That is what the parser sees.",
         "**Do the six-second scan.** Cover everything below the top third of page one. Does what remains say what you do, at what level, and why you fit this role?",

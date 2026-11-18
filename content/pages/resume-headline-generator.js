@@ -4,9 +4,9 @@
 
 export const resumeHeadlineGenerator = {
   slug: "resume-headline-generator",
-  seoTitle: "Resume Headline and Title Generator: Free, No Login",
+  seoTitle: "Free Resume Headline Generator and Examples by Role",
   description:
-    "Upload your resume and paste a job description. Get five headlines built only from skills your CV shows. Free, no login, read in your browser.",
+    "Free resume headline generator. Paste the job ad and upload your CV to get five headlines using only skills your CV shows. Plus headline examples by role.",
   keywords: [
     "resume headline generator",
     "resume title generator",
@@ -21,9 +21,9 @@ export const resumeHeadlineGenerator = {
   ],
   eyebrow: "Free tool",
   breadcrumbName: "Resume headline generator",
-  h1: "Resume headline and title generator",
+  h1: "Resume headline generator, with examples by role",
   lede:
-    "Upload your resume and paste the job description. Get five headlines in five different shapes, built only from skills your CV can actually back up, with the role title taken from the posting itself.",
+    "A resume headline is the one line under your name that states the role and two or three things that prove you fit it, like Senior Backend Engineer | Go, Kubernetes, Payments. Upload your resume and paste the job description to get five, built only from skills your CV backs up.",
   ctas: [
     { label: "Generate my headlines", href: "#tool" },
     {
@@ -54,6 +54,10 @@ export const resumeHeadlineGenerator = {
   },
   faqs: [
     {
+      q: "Is this resume headline generator free?",
+      a: "Yes. There is no sign-up, and it runs in your browser. Your resume is read on your device and is not uploaded to a server.",
+    },
+    {
       q: "What is a resume headline?",
       a: "A resume headline is the one line under your name at the top of your CV. It states the role you are applying for and two or three things that make you credible for it. It is not a summary, which is two or three sentences, and it is not an objective, which states what you want rather than what you offer.",
     },
@@ -74,6 +78,10 @@ export const resumeHeadlineGenerator = {
       a: "No. Every skill in a generated headline has to appear in both the posting and your resume text. The tool shows you the split: what matched, and what the posting wants that your CV never mentions. The second list is a to-do, not headline material.",
     },
     {
+      q: "What is a good resume headline example?",
+      a: "Senior Backend Engineer | Go, Kubernetes, Payments Infrastructure. It names the role in the employer's words, then three skills the CV can back up. The table above has examples for 15 roles, including a student with no full-time experience.",
+    },
+    {
       q: "How long should a resume headline be?",
       a: "One line that survives at the top of a page, so roughly 60 to 90 characters. If it wraps onto a second line on your CV, cut the weakest item. Three skills is the practical ceiling before the line stops being scannable.",
     },
@@ -83,43 +91,9 @@ export const resumeHeadlineGenerator = {
     },
   ],
   blocks: [
-    { h2: "The line most people waste" },
-    {
-      p: "The top of a CV is the only part every reader sees. Most people fill it with a job title copied from their last role, or worse, with the word 'Resume'. **A headline should tell the employer which of their roles you are here for and why you are credible for it**, in one line, before anyone scrolls.",
-    },
-    {
-      p: "That is why this generator asks for the posting as well as your CV. The role title comes from the advert, in the employer's own words. The skills come from the overlap between what they asked for and what you can evidence.",
-    },
-
-    { h2: "Five shapes, and when each one fits" },
-    {
-      steps: [
-        {
-          title: "Title plus three skills",
-          body: "'Senior Backend Engineer | Go, Kubernetes, Payments'. The default. Scannable, keyword dense, works on almost every CV.",
-        },
-        {
-          title: "Seniority plus title plus domain",
-          body: "Use when the industry matters as much as the craft. Healthcare, fintech, defence, education and public sector hiring all read domain first.",
-        },
-        {
-          title: "Title plus years plus one strength",
-          body: "Use when your experience is the strongest thing you have, and only when the years are genuinely on your CV.",
-        },
-        {
-          title: "Outcome framing",
-          body: "Leads with what you deliver rather than what you are called. Useful for career changers whose old job title works against them.",
-        },
-        {
-          title: "Plain, no pipes",
-          body: "A clean sentence for a CV header where the line sits above your contact details and pipes would clutter it.",
-        },
-      ],
-    },
-
     { h2: "Resume headline examples by role" },
     {
-      p: "Real shapes rather than filler. Notice that every one names a role and then earns it with something specific.",
+      p: "Each one names the role first, then backs it up with skills, a specialism or a number. Swap in the title from your posting and the skills your CV can prove.",
     },
     {
       table: {
@@ -165,6 +139,26 @@ export const resumeHeadlineGenerator = {
             "Teacher",
             "Secondary Mathematics Teacher | GCSE and A Level | Intervention Design",
           ],
+          [
+            "Sales representative",
+            "B2B Sales Representative | SaaS | Outbound Prospecting and Salesforce",
+          ],
+          [
+            "Data scientist",
+            "Data Scientist | Python, SQL and Forecasting Models | Retail Pricing",
+          ],
+          [
+            "HR",
+            "HR Generalist | Recruitment, Onboarding and Employee Relations",
+          ],
+          [
+            "Administrative assistant",
+            "Administrative Assistant | Diary Management, Microsoft 365, Office Operations",
+          ],
+          [
+            "Student or no experience",
+            "Business Graduate | Excel and Data Analysis | Retail Customer Service",
+          ],
         ],
       },
     },
@@ -173,6 +167,40 @@ export const resumeHeadlineGenerator = {
         title: "Match the employer's job title, not your old one",
         body: "If the posting says Growth Marketer and your last title was Marketing Executive, lead with Growth Marketer. You are not lying about your history, which the experience section states plainly. You are telling the reader which role this application is for.",
       },
+    },
+
+    { h2: "The line most people waste" },
+    {
+      p: "The top of a CV is the only part every reader sees. Most people fill it with a job title copied from their last role, or worse, with the word 'Resume'. **A headline should tell the employer which of their roles you are here for and why you are credible for it**, in one line, before anyone scrolls.",
+    },
+    {
+      p: "That is why this generator asks for the posting as well as your CV. The role title comes from the advert, in the employer's own words. The skills come from the overlap between what they asked for and what you can evidence.",
+    },
+
+    { h2: "Five shapes, and when each one fits" },
+    {
+      steps: [
+        {
+          title: "Title plus three skills",
+          body: "'Senior Backend Engineer | Go, Kubernetes, Payments'. The default. Scannable, keyword dense, works on almost every CV.",
+        },
+        {
+          title: "Seniority plus title plus domain",
+          body: "Use when the industry matters as much as the craft. Healthcare, fintech, defence, education and public sector hiring all read domain first.",
+        },
+        {
+          title: "Title plus years plus one strength",
+          body: "Use when your experience is the strongest thing you have, and only when the years are genuinely on your CV.",
+        },
+        {
+          title: "Outcome framing",
+          body: "Leads with what you deliver rather than what you are called. Useful for career changers whose old job title works against them.",
+        },
+        {
+          title: "Plain, no pipes",
+          body: "A clean sentence for a CV header where the line sits above your contact details and pipes would clutter it.",
+        },
+      ],
     },
 
     { h2: "Resume title examples" },

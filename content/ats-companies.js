@@ -6,8 +6,9 @@
 // company that runs its own hiring system gets no page: no page beats a
 // false claim.
 //
-// Optional `extra` adds a title, description, keywords and blocks for a company
-// whose searchers want more than the ATS answer (GSC shows "target resume").
+// Optional `extra` adds a title, description, keywords, lede, blocks and faqs
+// for a company whose searchers want more than the ATS answer (GSC shows
+// "target resume").
 
 export const ATS_CHECKED_ON = "2026-10-09";
 
@@ -64,11 +65,53 @@ export const ATS_COMPANIES = [
     ats: "workday",
     evidenceUrl: "https://target.wd5.myworkdayjobs.com/targetcareers",
     extra: {
-      title: "Target Resume Tips: Which ATS Does Target Use?",
+      title: "Target Resume Examples for Store Jobs (Workday Tips)",
       description:
-        "Target posts its jobs on Workday. How to write a resume for a Target job so Workday reads it, with examples for store, customer service and first job applications.",
+        "Example resume bullets for Target stocking, checkout, guest service and team leader jobs. Target hires through Workday, so keep the layout simple to read.",
       keywords: ["target resume", "target team member resume", "resume for target", "target resume examples"],
+      lede: "Below are example resume bullets for Target store jobs: stocking, checkout and guest service, team leader, and a first job. Target posts its jobs on Workday, so keep the layout simple enough for Workday to read.",
       blocks: [
+        { h2: "Target resume examples" },
+        {
+          p: "These are examples to adapt, not real resumes. The numbers are placeholders. Put in your own and only claim what you did.",
+        },
+        { h3: "Team member: stocking and fulfillment" },
+        {
+          ul: [
+            "Unloaded the morning truck and stocked about 40 cases an hour across grocery and household aisles.",
+            "Picked and packed online orders for same-day pickup, keeping each order inside the time the app set.",
+            "Kept the back room labelled and in order so the next shift could find stock without asking.",
+          ],
+        },
+        { h3: "Team member: checkout and guest service" },
+        {
+          ul: [
+            "Served about 150 guests a shift at the checkout and balanced the cash drawer at close.",
+            "Handled returns and exchanges at the guest service desk and followed the store's refund policy.",
+            "Signed guests up for the store card and loyalty program while keeping the line moving.",
+          ],
+        },
+        { h3: "Team leader" },
+        {
+          ul: [
+            "Led a team of 8 on the evening shift and set the zone and replenishment priorities each night.",
+            "Trained 5 new team members on the register, pickup orders and safety routines in their first week.",
+            "Built weekly schedules around team availability and covered call-outs without missing a closing task.",
+          ],
+        },
+        { h3: "First job or no work history" },
+        {
+          ul: [
+            "Volunteered at a weekend food bank, sorting donations and stocking shelves for 4 hours a week.",
+            "Ran the till at a school fundraiser and counted and handed over the takings at the end of the day.",
+            "Available evenings, weekends and holidays.",
+          ],
+        },
+        { h3: "Sample summary" },
+        {
+          p: "*Reliable team member with 2 years in retail stocking and checkout. Comfortable on the register, with online pickup orders and on early truck shifts. Available weekends and holidays.*",
+        },
+
         { h2: "Writing a resume for a Target job" },
         {
           p: "Use the words from the posting you are applying to, not a generic list. If it mentions guest service, stocking or the checkout, put those words inside bullets that show what you did and how often.",
@@ -82,6 +125,24 @@ export const ATS_COMPANIES = [
             "**First job or no work history:** the [first job resume example](/resume-examples/first-job) shows how to use school, volunteering and part-time work.",
             "**Management roles:** the [operations manager resume example](/resume-examples/operations-manager) covers multi-site and distribution management.",
           ],
+        },
+      ],
+      faqs: [
+        {
+          q: "What should I put on a resume for Target?",
+          a: "Your contact details, a short summary, your work history with bullets that show what you did, your skills and your availability. Use the words from the posting, such as guest service, stocking or checkout, where they are true for you.",
+        },
+        {
+          q: "How do I write a Target resume with no experience?",
+          a: "Lead with what you have done: school, volunteering, sports, or helping with a family business. Write bullets that show you turned up, worked with people and handled money or stock. Add your availability, since store jobs often need evening and weekend shifts.",
+        },
+        {
+          q: "What skills should I list on a Target resume?",
+          a: "Pick the skills the posting asks for and that you can back up. For store jobs that often means customer service, cash handling, stocking, teamwork and working at a steady pace. Put each one inside a bullet too, not only in a list.",
+        },
+        {
+          q: "Should my Target resume be one page?",
+          a: "For store and hourly jobs, yes. One page is enough for a few jobs and keeps the recruiter on the parts that match the posting.",
         },
       ],
     },

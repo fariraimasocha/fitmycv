@@ -15,7 +15,7 @@ import StickyCtaBar from "@/components/landing/StickyCtaBar";
 import FounderFaqSection from "@/components/landing/FounderFaqSection";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { faqSchema, howToSchema, localeAlternates } from "@/lib/seo";
+import { faqSchema, howToSchema, localeAlternates, robotsFor } from "@/lib/seo";
 import {
   getSoftwareApplicationSchema,
   webPageSchema,
@@ -42,6 +42,7 @@ export async function generateMetadata({ params }) {
     },
     description: t("description"),
     alternates,
+    ...robotsFor(alternates.canonical),
     openGraph: {
       type: "website",
       url: `${SITE_URL}${alternates.canonical}`,

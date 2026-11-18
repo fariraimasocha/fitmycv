@@ -7,7 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { getServerPricing } from "@/lib/server-pricing";
 import { SHOW_MONTHLY } from "@/lib/pricing";
 import { getTranslations } from "next-intl/server";
-import { localeAlternates } from "@/lib/seo";
+import { localeAlternates, robotsFor } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }) {
       "ats resume optimizer pricing",
     ],
     alternates,
+    ...robotsFor(alternates.canonical),
     openGraph: {
       type: "website",
       url: alternates.canonical,

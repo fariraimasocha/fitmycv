@@ -31,8 +31,8 @@ export const faqs = [
     a: "A reverse chronological CV of about two pages. Start with your name and contact details, add a short profile, then work experience with the most recent job first, then qualifications, skills and languages, then two or three referees. Use a simple layout with no tables, graphics or photo, and send it as a PDF unless the advert asks for Word.",
   },
   {
-    q: "Should I put my ID number on my CV in South Africa?",
-    a: "No. Leave it off until an employer asks for it, usually at the offer or background check stage. A CV gets forwarded, uploaded to portals and stored in inboxes you do not control, and a full ID number is useful to fraudsters. POPIA expects employers to collect only the personal information they need, and they do not need your ID number to decide whether to interview you.",
+    q: "Should a CV have an ID number in South Africa?",
+    a: "No. Leave your ID number off until an employer asks for it, usually at the offer or background check stage. A CV gets forwarded, uploaded to portals and stored in inboxes you do not control, and a full ID number is useful to fraudsters. POPIA expects employers to collect only the personal information they need, and they do not need your ID number to decide whether to interview you.",
   },
   {
     q: "How many pages should a South African CV be?",

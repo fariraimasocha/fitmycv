@@ -28,6 +28,7 @@ export const meta = {
     "tailor resume for free",
     "master resume",
     "tailoring resume for every job",
+    "should i change my resume for each job",
   ],
 };
 
@@ -37,8 +38,8 @@ export const faqs = [
     a: "Read the posting and list the five things it asks for most. Check which of them your resume already shows. Then rewrite your summary for the role, move the matching skills and bullets to the top, use the posting's words for work you have done, and check the match again. Leave your employers, titles, dates and facts as they are.",
   },
   {
-    q: "Do I really need to tailor my resume for every job?",
-    a: "For every type of job, yes. Two postings with the same title and similar requirements can share one tailored version. A new type of role needs a new one, and only the top third changes.",
+    q: "Should I change my resume for each job?",
+    a: "Yes, for each type of job. Two postings with the same title and similar requirements can share one tailored version. A new type of role needs a new one, and only the top third changes.",
   },
   {
     q: "How long should tailoring a resume take?",

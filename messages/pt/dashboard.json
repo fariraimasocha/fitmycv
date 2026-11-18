@@ -116,6 +116,44 @@
         "matches": "Vagas diárias para você"
       },
       "action": "Mudar para o Pro"
+    },
+    "linkForm": {
+      "title": "Adapte seu CV a uma vaga",
+      "description": "Cole o link de uma vaga. Você recebe um CV e uma carta de apresentação escritos para essa função.",
+      "label": "Link da vaga",
+      "placeholder": "Cole o link de uma vaga",
+      "noCvTitle": "Comece pelo seu CV",
+      "noCvDescription": "A adaptação reescreve seu CV para cada vaga, então precisa do seu CV primeiro. Você envia uma única vez.",
+      "noCvAction": "Enviar seu CV"
+    },
+    "matches": {
+      "title": "Vagas que combinam com seu CV",
+      "description": "Vagas publicadas nos últimos 14 dias, ordenadas pelas palavras-chave do seu CV",
+      "fit": "{fit, plural, one {Combina com # palavra-chave do seu CV} other {Combina com # palavras-chave do seu CV}}",
+      "new": "Nova desde sua última visita",
+      "tailor": "Adaptar para esta vaga",
+      "unlock": "Desbloquear empresa e link de candidatura",
+      "companyHidden": "Nome da empresa oculto. Faça upgrade para ver.",
+      "browse": "Ver todas as vagas",
+      "emptyNoCvTitle": "As vagas que combinam com seu CV aparecem aqui",
+      "emptyNoCvDescription": "Adicione seu CV e escolhemos vagas com as mesmas palavras-chave.",
+      "emptyTitle": "Nenhuma vaga compatível no momento",
+      "emptyDescription": "Nenhuma vaga recente tem palavras-chave em comum com seu CV. Veja a lista completa.",
+      "error": "Não foi possível carregar as vagas. Atualize a página."
+    },
+    "weeklyGoal": {
+      "title": "Meta semanal",
+      "progress": "{goal, plural, one {Esta semana: {applied} de # candidatura enviada} other {Esta semana: {applied} de # candidaturas enviadas}}",
+      "hint": "Marque um CV adaptado como enviado e ele conta aqui. A contagem recomeça toda segunda-feira.",
+      "done": "Você atingiu a meta desta semana.",
+      "change": "Mudar meta",
+      "label": "Candidaturas por semana",
+      "save": "Salvar",
+      "saving": "Salvando",
+      "cancel": "Cancelar",
+      "saved": "Meta semanal salva",
+      "saveError": "Não foi possível salvar sua meta. Tente de novo.",
+      "loadError": "Não foi possível carregar sua meta semanal. Atualize a página."
     }
   },
   "activation": {

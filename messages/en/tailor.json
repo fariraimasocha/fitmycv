@@ -146,7 +146,9 @@
       "profiles": "Online profiles",
       "work": "Work experience",
       "education": "Education",
-      "skills": "Skills"
+      "skills": "Skills",
+      "certifications": "Certifications",
+      "references": "References"
     },
     "fields": {
       "fullNameRequired": "Full name *",
@@ -165,14 +167,20 @@
       "institution": "Institution",
       "degree": "Degree",
       "fieldOfStudy": "Field of study",
-      "categoryName": "Category name"
+      "categoryName": "Category name",
+      "certificationName": "Certification name",
+      "issuer": "Issued by",
+      "date": "Date",
+      "referenceName": "Full name",
+      "jobTitle": "Job title"
     },
     "placeholders": {
       "network": "LinkedIn, GitHub…",
       "yearMonth": "YYYY-MM",
       "endDate": "YYYY-MM or Present",
       "degree": "BSc, MA, PhD…",
-      "category": "e.g. Programming Languages"
+      "category": "e.g. Programming Languages",
+      "certificationName": "AWS Certified Cloud Practitioner"
     },
     "addProfileButton": "Add Profile",
     "addProfile": "Add profile",
@@ -195,7 +203,9 @@
       "profiles": "Add the profiles you want employers to see.",
       "work": "Your positions are what get rewritten for each job.",
       "education": "Add where you studied and what you studied.",
-      "skills": "Skills get matched against each job’s requirements."
+      "skills": "Skills get matched against each job’s requirements.",
+      "certifications": "Add certifications and licences. This section stays off your CV until you add one.",
+      "references": "Add people employers can contact about you. This section stays off your CV until you add one."
     },
     "positionN": "Position {index}",
     "educationN": "Education {index}",
@@ -228,7 +238,13 @@
       "intro": "These checks run as you type and never leave your browser. They test whether software can read your CV, not how well it's written.",
       "checksPassed": "{passed} of {total} checks passed",
       "allPassed": "Every check passed."
-    }
+    },
+    "addCertification": "Add certification",
+    "addReference": "Add reference",
+    "removeCertification": "Remove certification {index}",
+    "removeReference": "Remove reference {index}",
+    "certificationN": "Certification {index}",
+    "referenceN": "Reference {index}"
   },
   "ats": {
     "severity": {
@@ -768,5 +784,30 @@
     "description": "{count, plural, one {One of your bullets} other {# of your bullets}}, before and after. Added keywords are highlighted.",
     "before": "Before",
     "after": "After"
+  },
+  "whatNext": {
+    "title": "What next",
+    "applyHint": "Send your application, then mark it here so you know when to follow up.",
+    "openAndMark": "Open the job and mark as applied",
+    "markApplied": "Mark as applied",
+    "marking": "Marking as applied",
+    "applied": "Applied",
+    "appliedToast": "Marked as applied.",
+    "alreadyApplied": "You marked this as applied on {date}.",
+    "followUp": "Follow up on {date} if you have not heard back.",
+    "markError": "Couldn't mark this as applied. Try again.",
+    "nextTitle": "Next matching job",
+    "isNew": "New since your last visit",
+    "fit": "{count, plural, one {# keyword} other {# keywords}} from your CV in this listing",
+    "lockedCompany": "Company hidden on the free plan",
+    "tailorNext": "Tailor this one next",
+    "unlock": "Unlock company and apply link",
+    "pasteAnother": "Paste another job link",
+    "noMatchTitle": "Tailor your CV to another job",
+    "noMatchBody": "Paste a job link and get a CV written for that role.",
+    "loadingAria": "Loading the next matching job",
+    "downloadNextMatch": "Next up: {title}.",
+    "tailorItNext": "Tailor it next",
+    "downloadMarkApplied": "Sent it? Mark this job as applied."
   }
 }

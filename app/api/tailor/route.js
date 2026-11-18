@@ -10,6 +10,7 @@ import { chat, MODEL_SMART } from "@/lib/groq";
 import { relevanceNotes } from "@/lib/jev";
 import { groqRateLimited, tooManyRequests } from "@/lib/rate-limit";
 import { keepClaimedSkills } from "@/lib/skill-guard";
+import { mapCertifications, mapReferences } from "@/utils/resume-parser";
 
 // The CV text cap on /api/resume/upload is 50k, and its parsed JSON plus the
 // job fits well inside this. Anything bigger is not a real CV and job.
@@ -224,6 +225,11 @@ Please tailor the CV for this specific role and generate a cover letter that cle
       (k) => !(dropped.has(k.keyword.toLowerCase()) && /skill/i.test(k.location)),
     );
     if (dropped.size) console.warn(`Tailor dropped ${dropped.size} unclaimed skill(s)`);
+
+    // Certifications and referees are facts, so they are copied from the
+    // reference CV as they are. The model never gets to rename or invent one.
+    tailoredCV.certifications = mapCertifications(referenceCV);
+    tailoredCV.references = mapReferences(referenceCV);
 
     // Guard against the model silently dropping work roles.
     const expectedRoles = (referenceCV.work || []).length;

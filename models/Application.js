@@ -71,6 +71,8 @@ const applicationSchema = new mongoose.Schema(
       type: Date,
     },
     followUpNote: { type: String, default: "" },
+    // Set when the follow-up reminder email goes out, so it sends once.
+    followUpReminderSentAt: { type: Date },
     // Keyword and skill overlap from the copilot's "Score my fit". No model involved.
     fit: {
       score: Number,

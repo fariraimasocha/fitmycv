@@ -116,6 +116,44 @@
         "matches": "Offres quotidiennes pour vous"
       },
       "action": "Passer à Pro"
+    },
+    "linkForm": {
+      "title": "Adaptez votre CV à une offre",
+      "description": "Collez le lien d'une offre d'emploi. Vous obtenez un CV et une lettre de motivation écrits pour ce poste.",
+      "label": "Lien de l'offre",
+      "placeholder": "Collez le lien d'une offre",
+      "noCvTitle": "Commencez par votre CV",
+      "noCvDescription": "L'adaptation réécrit votre CV pour chaque offre, elle a donc besoin de votre CV d'abord. Vous l'importez une seule fois.",
+      "noCvAction": "Importer votre CV"
+    },
+    "matches": {
+      "title": "Offres qui correspondent à votre CV",
+      "description": "Offres publiées ces 14 derniers jours, classées selon les mots-clés de votre CV",
+      "fit": "{fit, plural, one {Correspond à # mot-clé de votre CV} other {Correspond à # mots-clés de votre CV}}",
+      "new": "Nouveau depuis votre dernière visite",
+      "tailor": "Adapter pour cette offre",
+      "unlock": "Débloquer l'entreprise et le lien de candidature",
+      "companyHidden": "Nom de l'entreprise masqué. Passez à Pro pour le voir.",
+      "browse": "Voir toutes les offres",
+      "emptyNoCvTitle": "Les offres qui correspondent à votre CV apparaissent ici",
+      "emptyNoCvDescription": "Ajoutez votre CV et nous choisissons des offres qui partagent ses mots-clés.",
+      "emptyTitle": "Aucune offre correspondante pour le moment",
+      "emptyDescription": "Aucune offre récente ne partage de mots-clés avec votre CV. Consultez la liste complète.",
+      "error": "Impossible de charger les offres. Actualisez la page."
+    },
+    "weeklyGoal": {
+      "title": "Objectif de la semaine",
+      "progress": "{goal, plural, one {Cette semaine : {applied} sur # candidature envoyée} other {Cette semaine : {applied} sur # candidatures envoyées}}",
+      "hint": "Marquez un CV adapté comme envoyé et il compte ici. Le compteur repart chaque lundi.",
+      "done": "Vous avez atteint votre objectif de la semaine.",
+      "change": "Modifier l'objectif",
+      "label": "Candidatures par semaine",
+      "save": "Enregistrer",
+      "saving": "Enregistrement",
+      "cancel": "Annuler",
+      "saved": "Objectif enregistré",
+      "saveError": "Impossible d'enregistrer votre objectif. Réessayez.",
+      "loadError": "Impossible de charger votre objectif. Actualisez la page."
     }
   },
   "activation": {

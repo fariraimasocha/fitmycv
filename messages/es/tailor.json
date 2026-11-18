@@ -114,7 +114,6 @@
     "downloadPdf": "Descargar PDF",
     "stats": {
       "checks": "Comprobaciones del CV",
-      "aimFor": "Apunta a 80 o más. Ahí la puntuación se pone verde.",
       "checksPassed": "{passed} de {total} superadas",
       "checking": "Comprobando",
       "positions": "Puestos",
@@ -147,7 +146,9 @@
       "profiles": "Perfiles en línea",
       "work": "Experiencia laboral",
       "education": "Formación",
-      "skills": "Habilidades"
+      "skills": "Habilidades",
+      "certifications": "Certificaciones",
+      "references": "Referencias"
     },
     "fields": {
       "fullNameRequired": "Nombre completo *",
@@ -166,14 +167,20 @@
       "institution": "Institución",
       "degree": "Título",
       "fieldOfStudy": "Área de estudio",
-      "categoryName": "Nombre de la categoría"
+      "categoryName": "Nombre de la categoría",
+      "certificationName": "Nombre de la certificación",
+      "issuer": "Emitida por",
+      "date": "Fecha",
+      "referenceName": "Nombre completo",
+      "jobTitle": "Cargo"
     },
     "placeholders": {
       "network": "LinkedIn, GitHub…",
       "yearMonth": "AAAA-MM",
       "endDate": "AAAA-MM o Present",
       "degree": "Grado, Máster, Doctorado…",
-      "category": "p. ej. Lenguajes de programación"
+      "category": "p. ej. Lenguajes de programación",
+      "certificationName": "AWS Certified Cloud Practitioner"
     },
     "addProfileButton": "Añadir perfil",
     "addProfile": "Añadir perfil",
@@ -196,7 +203,9 @@
       "profiles": "Añade los perfiles que quieres que vean las empresas.",
       "work": "Tus puestos son lo que se reescribe para cada oferta.",
       "education": "Añade dónde estudiaste y qué estudiaste.",
-      "skills": "Tus habilidades se comparan con los requisitos de cada oferta."
+      "skills": "Tus habilidades se comparan con los requisitos de cada oferta.",
+      "certifications": "Añade certificaciones y licencias. Esta sección no aparece en tu CV hasta que añadas una.",
+      "references": "Añade personas a las que las empresas puedan contactar sobre ti. Esta sección no aparece en tu CV hasta que añadas una."
     },
     "positionN": "Puesto {index}",
     "educationN": "Formación {index}",
@@ -229,7 +238,13 @@
       "intro": "Estas comprobaciones se ejecutan mientras escribes y nunca salen de tu navegador. Comprueban si un programa puede leer tu CV, no lo bien que está escrito.",
       "checksPassed": "{passed} de {total} comprobaciones superadas",
       "allPassed": "Todas las comprobaciones superadas."
-    }
+    },
+    "addCertification": "Añadir certificación",
+    "addReference": "Añadir referencia",
+    "removeCertification": "Quitar certificación {index}",
+    "removeReference": "Quitar referencia {index}",
+    "certificationN": "Certificación {index}",
+    "referenceN": "Referencia {index}"
   },
   "ats": {
     "severity": {
@@ -403,7 +418,8 @@
         "title": "Hay un hueco de más de seis meses entre dos puestos.",
         "action": "Un hueco no es un problema. Añade una línea breve sobre él solo si quieres."
       }
-    }
+    },
+    "aimFor": "Apunta a 80 o más. Ahí la puntuación se pone verde."
   },
   "jobMatch": {
     "levels": {
@@ -768,5 +784,30 @@
     "description": "{count, plural, one {# de tus viñetas} other {# de tus viñetas}}, antes y después. Las palabras clave añadidas están resaltadas.",
     "before": "Antes",
     "after": "Después"
+  },
+  "whatNext": {
+    "title": "Qué sigue",
+    "applyHint": "Envía tu solicitud y márcala aquí para saber cuándo hacer seguimiento.",
+    "openAndMark": "Abrir la oferta y marcar como enviada",
+    "markApplied": "Marcar como enviada",
+    "marking": "Marcando como enviada",
+    "applied": "Enviada",
+    "appliedToast": "Marcada como enviada.",
+    "alreadyApplied": "La marcaste como enviada el {date}.",
+    "followUp": "Haz seguimiento el {date} si no has recibido respuesta.",
+    "markError": "No se pudo marcar como enviada. Inténtalo de nuevo.",
+    "nextTitle": "Siguiente oferta que encaja",
+    "isNew": "Nueva desde tu última visita",
+    "fit": "{count, plural, one {# palabra clave} other {# palabras clave}} de tu CV en esta oferta",
+    "lockedCompany": "Empresa oculta en el plan gratuito",
+    "tailorNext": "Adaptar mi CV a esta",
+    "unlock": "Desbloquear empresa y enlace para postularte",
+    "pasteAnother": "Pegar otro enlace de empleo",
+    "noMatchTitle": "Adapta tu CV a otro empleo",
+    "noMatchBody": "Pega un enlace de empleo y recibe un CV escrito para ese puesto.",
+    "loadingAria": "Cargando la siguiente oferta que encaja",
+    "downloadNextMatch": "Siguiente: {title}.",
+    "tailorItNext": "Adaptar ahora",
+    "downloadMarkApplied": "¿Ya la enviaste? Marca este empleo como enviado."
   }
 }

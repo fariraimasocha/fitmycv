@@ -1,14 +1,12 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import {
   EnvelopeSimpleIcon,
-  PlusIcon,
-  FileTextIcon,
   WarningCircleIcon,
   MagnifyingGlassIcon,
   DownloadSimpleIcon,
@@ -24,7 +22,11 @@ import {
   DashboardActivation,
   DashboardActivityChart,
   DashboardPipelineCard,
+  HomeJobLinkForm,
+  HomeMatchesCard,
+  HomeWeeklyGoal,
 } from "@/components/dashboard";
+import { trackEvent } from "@/lib/analytics";
 import { buildWeeklyCounts, weekStartDates } from "@/lib/activity-series";
 import Loader from "@/components/Loader";
 import { getActivationSteps } from "@/lib/activation-steps";
@@ -325,6 +327,7 @@ function useDashboardData(isPremium, today) {
     applicationsLoading: isPremium && applicationsQuery.isLoading,
     activationSteps,
     showActivation,
+    hasCV: referenceCVLoading || Boolean(referenceCV),
   };
 }
 
@@ -440,7 +443,18 @@ export default function DashboardHome() {
   const firstName = session?.user?.name?.split(" ")[0];
   const isPremium = Boolean(session?.user?.isPremium);
   const data = useDashboardData(isPremium, today);
-  const { activationSteps, showActivation } = data;
+  const { activationSteps, showActivation, hasCV } = data;
+  // The job link card already covers the "Add your CV" and "Tailor" steps, each
+  // with its own primary button, so the checklist only shows for what is left.
+  const nowStep = activationSteps.find((step) => !step.done);
+  const showChecklist = showActivation && nowStep?.key === "applications";
+
+  const visitTracked = useRef(false);
+  useEffect(() => {
+    if (visitTracked.current) return;
+    visitTracked.current = true;
+    trackEvent("dashboard_visit");
+  }, []);
 
   return (
     <DashboardPageShell>
@@ -454,26 +468,17 @@ export default function DashboardHome() {
           </span>
         }
         description={formattedDate}
-        actions={
-          <>
-            <Link href="/dashboard/resume" className="dashboard-secondary-btn">
-              <FileTextIcon size={16} aria-hidden="true" />
-              {t("myCv")}
-            </Link>
-            {/* While the checklist shows, its "Now" step is the one primary
-                action. A second filled button here would compete with it. */}
-            <Link
-              href="/dashboard/tailor"
-              className={showActivation ? "dashboard-secondary-btn" : "dashboard-primary-btn"}
-            >
-              <PlusIcon size={16} aria-hidden="true" />
-              {t("tailorMyCv")}
-            </Link>
-          </>
-        }
       />
 
-      {showActivation && <DashboardActivation steps={activationSteps} />}
+      <HomeJobLinkForm hasCV={hasCV} />
+
+      {showChecklist && <DashboardActivation steps={activationSteps} />}
+
+      {/* What to apply to next, and how this week is going. */}
+      <div className="grid items-stretch gap-4 lg:grid-cols-12 lg:gap-6">
+        <HomeMatchesCard hasCV={hasCV} className="lg:col-span-7" delay={0.1} />
+        <HomeWeeklyGoal className="lg:col-span-5" delay={0.15} />
+      </div>
 
       <DashboardContent data={data} today={today} isPremium={isPremium} />
     </DashboardPageShell>

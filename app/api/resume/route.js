@@ -24,12 +24,12 @@ export async function PUT(request) {
 
   try {
     const body = await request.json();
-    const { basics, work, education, skills, rawText } = body;
+    const { basics, work, education, certifications, references, skills, rawText } = body;
 
     await connectDB();
     const cv = await ReferenceCV.findOneAndUpdate(
       { userId: session.user.id },
-      { basics, work, education, skills, rawText },
+      { basics, work, education, certifications, references, skills, rawText },
       { upsert: true, new: true, runValidators: true }
     ).lean();
 

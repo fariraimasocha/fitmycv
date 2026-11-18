@@ -32,6 +32,7 @@ import {
   DashboardFilterPills,
 } from "@/components/dashboard";
 import UpgradePromptModal from "@/components/UpgradePromptModal";
+import NextMatchCard from "@/components/dashboard/NextMatchCard";
 import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE } from "@/utils/cv-templates/metadata";
@@ -254,6 +255,8 @@ export default function TailoredCVsPage() {
           basics: data.basics,
           work: data.work,
           education: data.education,
+          certifications: data.certifications ?? [],
+          references: data.references ?? [],
           skills: data.skills,
         },
         template: DEFAULT_TEMPLATE,
@@ -347,7 +350,10 @@ export default function TailoredCVsPage() {
           actionLabel={hasReferenceCV ? t("tailorCta") : t("empty.upload")}
           actionHref={hasReferenceCV ? "/dashboard/tailor" : "/dashboard/resume"}
         />
-      ) : (
+      ) : null}
+      {/* Matches need a main CV, and the empty state already offers the paste. */}
+      {isEmpty && hasReferenceCV && <NextMatchCard fallback={false} className="mx-auto w-full max-w-xl" />}
+      {loadFailed || isEmpty ? null : (
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <DashboardFilterPills
@@ -403,6 +409,7 @@ export default function TailoredCVsPage() {
               ))}
             </ul>
           )}
+          <NextMatchCard />
         </div>
       )}
       <UpgradePromptModal

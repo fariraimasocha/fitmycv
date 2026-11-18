@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { requirePremium } from "@/lib/paywall";
 import { parseTailorResponse } from "@/utils/tailor-parser";
+import { mapCertifications, mapReferences } from "@/utils/resume-parser";
 import { chat, MODEL_SMART } from "@/lib/groq";
 
 const SYSTEM_PROMPT = `You edit an already tailored CV to apply ONE specific ATS recommendation. You are not rewriting the CV from scratch.
@@ -82,6 +83,9 @@ Apply this one recommendation and return the complete CV.`;
 
     const parsed = parseTailorResponse(responseText);
     const updatedCV = parsed.tailoredCV;
+    // The model never sees these as editable, so carry them over untouched.
+    updatedCV.certifications = mapCertifications(tailoredCV);
+    updatedCV.references = mapReferences(tailoredCV);
 
     // The model occasionally returns a truncated CV. Dropping roles the user
     // already had is worse than not applying the fix, so refuse instead.

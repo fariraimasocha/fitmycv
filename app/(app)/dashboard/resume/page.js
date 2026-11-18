@@ -52,6 +52,8 @@ function buildResumeData(source) {
     basics: source?.basics ?? {},
     work: source?.work ?? [],
     education: source?.education ?? [],
+    certifications: source?.certifications ?? [],
+    references: source?.references ?? [],
     skills: source?.skills ?? [],
   };
 }

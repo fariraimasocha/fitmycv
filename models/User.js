@@ -103,6 +103,15 @@ const userSchema = new mongoose.Schema(
     paywallReminderSentAt: { type: Date },
     // Drives the daily job digest. Defaults are opt-in; an existing user with
     // no jobPreferences is treated as emailDigest:true / remoteOnly:true.
+    // Weekly applications goal shown on the dashboard home. No streaks: a
+    // missed week just resets.
+    weeklyGoal: { type: Number, default: 5, min: 1, max: 50 },
+    // Bumped by the dashboard home at most every 12 hours. previousActiveAt
+    // keeps the visit before, so "New since your last visit" survives the bump.
+    lastActiveAt: { type: Date, default: null },
+    previousActiveAt: { type: Date, default: null },
+    // Last weekly match email to a free user. Guards a retried cron run.
+    weeklyMatchesSentAt: { type: Date, default: null },
     jobPreferences: {
       titles: { type: [String], default: [] }, // overrides CV-derived queries
       country: { type: String, default: "us" }, // ISO-2; JSearch market to search

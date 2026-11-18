@@ -116,6 +116,44 @@
         "matches": "Daily job matches"
       },
       "action": "Upgrade to Pro"
+    },
+    "linkForm": {
+      "title": "Tailor your CV to a job",
+      "description": "Paste the link to a job post. You get a CV and a cover letter written for that role.",
+      "label": "Job link",
+      "placeholder": "Paste a job link",
+      "noCvTitle": "Start with your CV",
+      "noCvDescription": "Tailoring rewrites your CV for each job, so it needs your CV first. You upload it once.",
+      "noCvAction": "Upload your CV"
+    },
+    "matches": {
+      "title": "Jobs that fit your CV",
+      "description": "Jobs listed in the last 14 days, ranked by keywords from your CV",
+      "fit": "{fit, plural, one {Matches # keyword from your CV} other {Matches # keywords from your CV}}",
+      "new": "New since your last visit",
+      "tailor": "Tailor for this job",
+      "unlock": "Unlock company and apply link",
+      "companyHidden": "Company name hidden. Upgrade to see it.",
+      "browse": "Browse all jobs",
+      "emptyNoCvTitle": "Jobs that fit your CV show up here",
+      "emptyNoCvDescription": "Add your CV and we pick jobs that share its keywords.",
+      "emptyTitle": "No matching jobs right now",
+      "emptyDescription": "None of the recent jobs share keywords with your CV. Browse the full list instead.",
+      "error": "Couldn't load matching jobs. Refresh the page."
+    },
+    "weeklyGoal": {
+      "title": "Weekly goal",
+      "progress": "{goal, plural, one {This week: {applied} of # application sent} other {This week: {applied} of # applications sent}}",
+      "hint": "Mark a tailored CV as applied and it counts here. The count starts again each Monday.",
+      "done": "You reached this week's goal.",
+      "change": "Change goal",
+      "label": "Applications per week",
+      "save": "Save",
+      "saving": "Saving",
+      "cancel": "Cancel",
+      "saved": "Weekly goal saved",
+      "saveError": "Couldn't save your goal. Try again.",
+      "loadError": "Couldn't load your weekly goal. Refresh the page."
     }
   },
   "activation": {

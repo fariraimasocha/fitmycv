@@ -35,6 +35,18 @@ Use this exact schema:
     "startDate": "",
     "endDate": ""
   }],
+  "certifications": [{
+    "name": "",
+    "issuer": "",
+    "date": ""
+  }],
+  "references": [{
+    "name": "",
+    "title": "",
+    "company": "",
+    "email": "",
+    "phone": ""
+  }],
   "skills": [{
     "name": "",
     "keywords": []
@@ -47,6 +59,9 @@ Rules:
 - "label" is the person's job title or professional headline
 - "highlights" should be an array of bullet points / achievements for each role
 - Group skills by category (e.g. "Programming Languages", "Frameworks", "Tools")
+- "certifications" holds certifications, licences and professional courses, not degrees. Use [] if the CV lists none
+- "references" holds only referees the CV actually names. "References available on request" or no referees means []
+- Never invent a certification or a referee
 - If a field is not found, use an empty string
 - Return ONLY the JSON object, no markdown, no explanation`;
 

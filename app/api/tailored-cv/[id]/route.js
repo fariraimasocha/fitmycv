@@ -5,7 +5,7 @@ import Application from "@/models/Application";
 import { requirePremium } from "@/lib/paywall";
 import { httpUrl, tailoredForViewer } from "@/lib/tailored-preview";
 
-const CONTENT_FIELDS = ["basics", "work", "education", "skills", "coverLetter", "whyThisRole"];
+const CONTENT_FIELDS = ["basics", "work", "education", "certifications", "references", "skills", "coverLetter", "whyThisRole"];
 
 export async function GET(request, { params }) {
   const session = await auth();

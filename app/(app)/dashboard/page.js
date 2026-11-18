@@ -8,6 +8,7 @@ import {
   listCompanyResearch,
   listTailoredCVs,
 } from "@/lib/dashboard-data";
+import { getTopMatches, getWeeklyProgress, touchLastActive } from "@/lib/matches";
 import DashboardHome from "./DashboardHome";
 
 // Mongo documents carry ObjectIds and Dates. The client cache must hold the
@@ -37,12 +38,17 @@ export default async function DashboardPage({ searchParams }) {
     try {
       await connectDB();
       const isPremium = Boolean(session.user.isPremium);
-      const [tailoredCVs, referenceCV, research, applications] = await Promise.all([
+      const since = await touchLastActive(userId);
+      const [tailoredCVs, referenceCV, research, applications, matches, weekly] = await Promise.all([
         listTailoredCVs(userId),
         getReferenceCV(userId),
         isPremium ? listCompanyResearch(userId) : null,
         isPremium ? listApplications(userId) : null,
+        getTopMatches({ userId, isPremium, n: 3, since }),
+        getWeeklyProgress(userId),
       ]);
+      queryClient.setQueryData(["matches", 3], asJson(matches));
+      queryClient.setQueryData(["weekly-goal"], asJson(weekly));
       queryClient.setQueryData(["tailored-cvs"], asJson(tailoredCVs));
       queryClient.setQueryData(["resume"], asJson(referenceCV ?? null));
       if (isPremium) {

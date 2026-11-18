@@ -116,6 +116,44 @@
         "matches": "每日职位匹配"
       },
       "action": "升级到 Pro"
+    },
+    "linkForm": {
+      "title": "按职位定制你的简历",
+      "description": "粘贴职位链接。你会得到一份为该职位撰写的简历和求职信。",
+      "label": "职位链接",
+      "placeholder": "粘贴职位链接",
+      "noCvTitle": "先上传你的简历",
+      "noCvDescription": "定制会针对每个职位改写你的简历，所以需要先有你的简历。只需上传一次。",
+      "noCvAction": "上传简历"
+    },
+    "matches": {
+      "title": "适合你简历的职位",
+      "description": "过去 14 天发布的职位，按你简历中的关键词排序",
+      "fit": "{fit, plural, other {匹配你简历中的 # 个关键词}}",
+      "new": "上次访问后新增",
+      "tailor": "为此职位定制",
+      "unlock": "解锁公司名称和申请链接",
+      "companyHidden": "公司名称已隐藏。升级后可查看。",
+      "browse": "浏览所有职位",
+      "emptyNoCvTitle": "适合你简历的职位会显示在这里",
+      "emptyNoCvDescription": "添加简历后，我们会挑选与其关键词相同的职位。",
+      "emptyTitle": "暂时没有匹配的职位",
+      "emptyDescription": "近期职位都没有与你简历相同的关键词。可以浏览完整列表。",
+      "error": "无法加载匹配的职位。请刷新页面。"
+    },
+    "weeklyGoal": {
+      "title": "每周目标",
+      "progress": "{goal, plural, other {本周：已投递 {applied} / # 份申请}}",
+      "hint": "将定制简历标记为已投递，就会计入这里。每周一重新开始计数。",
+      "done": "你已完成本周目标。",
+      "change": "修改目标",
+      "label": "每周申请数",
+      "save": "保存",
+      "saving": "正在保存",
+      "cancel": "取消",
+      "saved": "每周目标已保存",
+      "saveError": "无法保存你的目标。请重试。",
+      "loadError": "无法加载你的每周目标。请刷新页面。"
     }
   },
   "activation": {

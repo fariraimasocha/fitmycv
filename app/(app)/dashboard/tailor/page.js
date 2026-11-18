@@ -77,6 +77,12 @@ import {
 import { takeAtsHandoff } from "@/lib/ats-handoff";
 import { textAfterLink } from "@/lib/ats-detect";
 import Loader from "@/components/Loader";
+import NextMatchCard, {
+  MarkAppliedCard,
+  tailorNextHref,
+  useMarkApplied,
+  useNextMatch,
+} from "@/components/dashboard/NextMatchCard";
 import { Rebuild } from "@lucasmarkes/hairline/react";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -108,6 +114,8 @@ function buildResumeData(source) {
     basics: source?.basics ?? {},
     work: source?.work ?? [],
     education: source?.education ?? [],
+    certifications: source?.certifications ?? [],
+    references: source?.references ?? [],
     skills: source?.skills ?? [],
   };
 }
@@ -180,6 +188,7 @@ function StepRail({ current }) {
 function Tailor() {
   const { data: session } = useSession();
   const t = useTranslations("tailor.tailorPage");
+  const tNext = useTranslations("tailor.whatNext");
   const jobInputTabs = JOB_INPUT_TABS.map((key) => ({ key, label: t(`inputTabs.${key}`) }));
   const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
   const resultTabs = RESULT_TABS.map((tab) => ({ ...tab, label: t(`resultTabs.${tab.id}`) }));
@@ -189,6 +198,9 @@ function Tailor() {
   // Prefilled when arriving from /jobs. That pool already holds the URL, so
   // the user never retypes it. Lazy initializer: read once, then it is theirs.
   const [urlParam] = useState(() => searchParams.get("url"));
+  // auto=1 (from /jobs or the next match card) reads the job on arrival.
+  const [autoParam] = useState(() => searchParams.get("auto") === "1");
+  const autoStarted = useRef(false);
   const [url, setUrl] = useState(urlParam ?? "");
   // Some boards block scraping, so a pasted description is the fallback.
   const [jobInputMode, setJobInputMode] = useState("link");
@@ -202,6 +214,9 @@ function Tailor() {
   const [showJobDetails, setShowJobDetails] = useState(true);
   const [tailorResult, setTailorResult] = useState(null);
   const [savedId, setSavedId] = useState(null);
+  // The link this result was tailored from, fixed at tailor time so editing
+  // the job field does not refetch the next match on every keystroke.
+  const [tailoredUrl, setTailoredUrl] = useState("");
   const [mobileTab, setMobileTab] = useState("preview");
   const [liveValues, setLiveValues] = useState(null);
   const [activeTab, setActiveTab] = useState("cv");
@@ -381,6 +396,8 @@ function Tailor() {
             basics: cvData.data.basics,
             work: cvData.data.work,
             education: cvData.data.education,
+            certifications: cvData.data.certifications ?? [],
+            references: cvData.data.references ?? [],
             skills: cvData.data.skills,
           };
           setCachedReferenceCV(referenceCV);
@@ -486,6 +503,19 @@ function Tailor() {
     },
   });
 
+  // Start once. The ref survives StrictMode's second effect run, and dropping
+  // auto from the address means a refresh does not read the job again.
+  useEffect(() => {
+    if (!autoParam || !urlParam || autoStarted.current) return;
+    autoStarted.current = true;
+    trackEvent("tailor_auto_started");
+    extractMutation.mutate({ url: urlParam.trim() });
+    const params = new URLSearchParams(window.location.search);
+    params.delete("auto");
+    const query = params.toString();
+    window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}`);
+  }, [autoParam, urlParam, extractMutation]);
+
   // Takes the job as an argument: when chained from extract, `jobData` state
   // has not re-rendered yet.
   const tailorMutation = useMutation({
@@ -507,6 +537,8 @@ function Tailor() {
         basics: cvData.data.basics,
         work: cvData.data.work,
         education: cvData.data.education,
+        certifications: cvData.data.certifications ?? [],
+        references: cvData.data.references ?? [],
         skills: cvData.data.skills,
       };
 
@@ -542,6 +574,7 @@ function Tailor() {
       setTailorResult(result.data);
       // The tailor route saves the CV (and its application) itself.
       setSavedId(result.data.savedId);
+      setTailoredUrl(jobInputMode === "link" ? url.trim() : "");
       setAtsScore(result.data.atsScore);
       queryClient.invalidateQueries({ queryKey: ["tailored-cvs"] });
       setLiveValues(null);
@@ -617,6 +650,23 @@ function Tailor() {
     setLiveValues(values);
   }, []);
 
+  // The end of the flow: apply to this job, then the next one.
+  const markAppliedState = useMarkApplied(savedId, "tailor_result");
+  const { data: nextMatch } = useNextMatch(tailoredUrl, Boolean(tailorResult));
+
+  // "Paste another job link" from the result. The address may not change, so
+  // clear the job here rather than rely on navigation.
+  const startOver = () => {
+    setJobData(null);
+    setTailorResult(null);
+    setSavedId(null);
+    setUrl("");
+    setJobText("");
+    setJobInputMode("link");
+    setEditingJob(false);
+    window.scrollTo({ top: 0 });
+  };
+
   // The preview follows the editor as you type, the same as My CV, and the
   // PDF is the preview.
   const previewData = tailorResult
@@ -673,6 +723,22 @@ function Tailor() {
       toast(t("result.nextLetter"), {
         duration: 8000,
         action: { label: t("result.viewLetter"), onClick: () => setActiveTab("letter") },
+      });
+    } else if (nextMatch && !nextMatch.locked && nextMatch.applyUrl) {
+      toast(tNext("downloadNextMatch", { title: nextMatch.title }), {
+        duration: 8000,
+        action: {
+          label: tNext("tailorItNext"),
+          onClick: () => {
+            trackEvent("next_match_tailored", { locked: false });
+            router.push(tailorNextHref(nextMatch.applyUrl));
+          },
+        },
+      });
+    } else if (savedId && !markAppliedState.applied) {
+      toast(tNext("downloadMarkApplied"), {
+        duration: 8000,
+        action: { label: tNext("markApplied"), onClick: () => markAppliedState.markApplied(null) },
       });
     } else {
       toast(t("result.nextApplications"), {
@@ -780,6 +846,8 @@ function Tailor() {
         basics: updated.basics,
         work: updated.work,
         education: updated.education,
+        certifications: updated.certifications ?? [],
+        references: updated.references ?? [],
         skills: updated.skills,
       });
       runAtsScore(updated, atsScore?.score);
@@ -1215,6 +1283,17 @@ function Tailor() {
               )}
             </p>
           )}
+          {/* The end: one step to apply, one job to do next. Secondary buttons,
+              so Download stays the one primary action on this screen. */}
+          <section aria-labelledby="what-next-title" className="flex flex-col gap-2">
+            <h2 id="what-next-title" className="text-xs font-medium text-muted-foreground">
+              {tNext("title")}
+            </h2>
+            <div className="grid items-stretch gap-3 lg:grid-cols-2">
+              {savedId && <MarkAppliedCard state={markAppliedState} jobUrl={tailoredUrl} />}
+              <NextMatchCard excludeUrl={tailoredUrl} onPasteAnother={startOver} />
+            </div>
+          </section>
           {/* One row when everything fits at full width. When it does not, the
               actions wrap below the tabs instead of squeezing them. */}
           <div className="flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:items-center lg:justify-between">
@@ -1444,10 +1523,17 @@ function Tailor() {
   );
 }
 
+// Keyed on the job link, so following "Tailor this one next" from this page
+// starts a fresh tailor instead of keeping the old result.
+function TailorForUrl() {
+  const url = useSearchParams().get("url") ?? "";
+  return <Tailor key={url} />;
+}
+
 export default function TailorPage() {
   return (
     <Suspense fallback={<Loader />}>
-      <Tailor />
+      <TailorForUrl />
     </Suspense>
   );
 }

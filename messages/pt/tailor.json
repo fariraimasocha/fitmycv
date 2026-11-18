@@ -114,7 +114,6 @@
     "downloadPdf": "Baixar PDF",
     "stats": {
       "checks": "Verificações do currículo",
-      "aimFor": "Mire em 80 ou mais. É aí que a pontuação fica verde.",
       "checksPassed": "{passed} de {total} aprovadas",
       "checking": "Verificando",
       "positions": "Cargos",
@@ -147,7 +146,9 @@
       "profiles": "Perfis online",
       "work": "Experiência profissional",
       "education": "Formação",
-      "skills": "Habilidades"
+      "skills": "Habilidades",
+      "certifications": "Certificações",
+      "references": "Referências"
     },
     "fields": {
       "fullNameRequired": "Nome completo *",
@@ -166,14 +167,20 @@
       "institution": "Instituição",
       "degree": "Grau",
       "fieldOfStudy": "Área de estudo",
-      "categoryName": "Nome da categoria"
+      "categoryName": "Nome da categoria",
+      "certificationName": "Nome da certificação",
+      "issuer": "Emitida por",
+      "date": "Data",
+      "referenceName": "Nome completo",
+      "jobTitle": "Cargo"
     },
     "placeholders": {
       "network": "LinkedIn, GitHub…",
       "yearMonth": "AAAA-MM",
       "endDate": "AAAA-MM ou Atual",
       "degree": "Bacharelado, Mestrado, Doutorado…",
-      "category": "ex.: Linguagens de programação"
+      "category": "ex.: Linguagens de programação",
+      "certificationName": "AWS Certified Cloud Practitioner"
     },
     "addProfileButton": "Adicionar perfil",
     "addProfile": "Adicionar perfil",
@@ -196,7 +203,9 @@
       "profiles": "Adicione os perfis que você quer que os empregadores vejam.",
       "work": "Seus cargos são o que reescrevemos para cada vaga.",
       "education": "Adicione onde e o que você estudou.",
-      "skills": "As habilidades são comparadas com os requisitos de cada vaga."
+      "skills": "As habilidades são comparadas com os requisitos de cada vaga.",
+      "certifications": "Adicione certificações e licenças. Esta seção só aparece no seu CV depois que você adicionar uma.",
+      "references": "Adicione pessoas que os empregadores podem contatar sobre você. Esta seção só aparece no seu CV depois que você adicionar uma."
     },
     "positionN": "Cargo {index}",
     "educationN": "Formação {index}",
@@ -229,7 +238,13 @@
       "intro": "Estas verificações rodam enquanto você digita e nunca saem do seu navegador. Elas testam se um software consegue ler seu currículo, não se ele está bem escrito.",
       "checksPassed": "{passed} de {total} verificações aprovadas",
       "allPassed": "Todas as verificações foram aprovadas."
-    }
+    },
+    "addCertification": "Adicionar certificação",
+    "addReference": "Adicionar referência",
+    "removeCertification": "Remover certificação {index}",
+    "removeReference": "Remover referência {index}",
+    "certificationN": "Certificação {index}",
+    "referenceN": "Referência {index}"
   },
   "ats": {
     "severity": {
@@ -403,7 +418,8 @@
         "title": "Há um intervalo de mais de seis meses entre dois cargos.",
         "action": "Um intervalo não é problema. Adicione uma linha curta sobre ele só se quiser."
       }
-    }
+    },
+    "aimFor": "Mire em 80 ou mais. É aí que a pontuação fica verde."
   },
   "jobMatch": {
     "levels": {
@@ -768,5 +784,30 @@
     "description": "{count, plural, one {# dos seus tópicos} other {# dos seus tópicos}}, antes e depois. As palavras-chave adicionadas estão destacadas.",
     "before": "Antes",
     "after": "Depois"
+  },
+  "whatNext": {
+    "title": "O que fazer agora",
+    "applyHint": "Envie sua candidatura e marque aqui para saber quando fazer o acompanhamento.",
+    "openAndMark": "Abrir a vaga e marcar como enviada",
+    "markApplied": "Marcar como enviada",
+    "marking": "Marcando como enviada",
+    "applied": "Enviada",
+    "appliedToast": "Marcada como enviada.",
+    "alreadyApplied": "Você marcou como enviada em {date}.",
+    "followUp": "Faça o acompanhamento em {date} se não tiver resposta.",
+    "markError": "Não foi possível marcar como enviada. Tente de novo.",
+    "nextTitle": "Próxima vaga compatível",
+    "isNew": "Nova desde sua última visita",
+    "fit": "{count, plural, one {# palavra-chave} other {# palavras-chave}} do seu currículo nesta vaga",
+    "lockedCompany": "Empresa oculta no plano gratuito",
+    "tailorNext": "Adaptar para esta vaga",
+    "unlock": "Desbloquear empresa e link da vaga",
+    "pasteAnother": "Colar outro link de vaga",
+    "noMatchTitle": "Adapte seu currículo para outra vaga",
+    "noMatchBody": "Cole um link de vaga e receba um currículo escrito para essa função.",
+    "loadingAria": "Carregando a próxima vaga compatível",
+    "downloadNextMatch": "Próxima: {title}.",
+    "tailorItNext": "Adaptar agora",
+    "downloadMarkApplied": "Já enviou? Marque esta vaga como enviada."
   }
 }

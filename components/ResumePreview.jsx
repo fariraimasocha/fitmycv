@@ -35,6 +35,59 @@ function BulletList({ description }) {
   );
 }
 
+// ── Optional sections shared by every template ──────────
+// Certifications and references render only when they hold a named entry,
+// so a CV without them shows no empty heading. Each template passes its own
+// heading so the section matches the rest of the layout.
+
+function ExtraSections({ certifications, references, Heading, headingProps }) {
+  const certs = (certifications ?? []).filter((c) => c?.name?.trim());
+  const refs = (references ?? []).filter((r) => r?.name?.trim());
+
+  return (
+    <>
+      {certs.length > 0 && (
+        <div>
+          <Heading {...headingProps}>Certifications</Heading>
+          <div className="space-y-1">
+            {certs.map((cert, i) => (
+              <p key={i} className="break-inside-avoid text-xs">
+                <span className="font-bold">{cert.name}</span>
+                {[cert.issuer, cert.date].filter(Boolean).map((part) => `, ${part}`).join("")}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {refs.length > 0 && (
+        <div>
+          <Heading {...headingProps}>References</Heading>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+            {refs.map((ref, i) => (
+              <div key={i} className="break-inside-avoid text-xs">
+                <p className="font-bold">{ref.name}</p>
+                {(ref.title || ref.company) && <p>{[ref.title, ref.company].filter(Boolean).join(", ")}</p>}
+                {[ref.email, ref.phone].filter(Boolean).map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+function MinimalSectionHeading({ children }) {
+  return <h2 className="mb-2 text-xs font-normal text-black">{children}</h2>;
+}
+
+function TechnicalSectionHeading({ children }) {
+  return <h2 className="mb-1 text-[10px] font-bold uppercase border-b border-black pb-0.5">{children}</h2>;
+}
+
 // ── Classic: Harvard Resume ────────────────────────────
 
 function ClassicSectionHeading({ children }) {
@@ -45,7 +98,7 @@ function ClassicSectionHeading({ children }) {
   );
 }
 
-function ClassicPreview({ basics, work, education, skills }) {
+function ClassicPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
 
   return (
@@ -129,6 +182,12 @@ function ClassicPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ClassicSectionHeading}
+      />
     </div>
   );
 }
@@ -144,7 +203,7 @@ function ModernSectionHeading({ children }) {
   );
 }
 
-function ModernPreview({ basics, work, education, skills }) {
+function ModernPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
 
   return (
@@ -229,6 +288,12 @@ function ModernPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ModernSectionHeading}
+      />
     </div>
   );
 }
@@ -243,7 +308,7 @@ function CleanSectionHeading({ children }) {
   );
 }
 
-function CleanPreview({ basics, work, education, skills }) {
+function CleanPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
 
   return (
@@ -328,13 +393,19 @@ function CleanPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={CleanSectionHeading}
+      />
     </div>
   );
 }
 
 // ── Minimal: Zero decoration, max whitespace ───────────
 
-function MinimalPreview({ basics, work, education, skills }) {
+function MinimalPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
 
   return (
@@ -414,6 +485,12 @@ function MinimalPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={MinimalSectionHeading}
+      />
     </div>
   );
 }
@@ -433,7 +510,7 @@ function DashList({ description }) {
   );
 }
 
-function TechnicalPreview({ basics, work, education, skills }) {
+function TechnicalPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
   const commentLine = "# " + "-".repeat(36);
 
@@ -509,6 +586,12 @@ function TechnicalPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={TechnicalSectionHeading}
+      />
     </div>
   );
 }
@@ -555,7 +638,7 @@ function SidebarSectionHeading({ children }) {
   );
 }
 
-function SidebarPreview({ basics, work, education, skills }) {
+function SidebarPreview({ basics, work, education, certifications, references, skills }) {
   return (
     <div className="text-black">
       {/* Header */}
@@ -653,6 +736,12 @@ function SidebarPreview({ basics, work, education, skills }) {
               </div>
             </div>
           )}
+
+          <ExtraSections
+            certifications={certifications}
+            references={references}
+            Heading={SidebarSectionHeading}
+          />
         </div>
       </div>
     </div>
@@ -674,7 +763,7 @@ function SpotlightSectionHeading({ children }) {
   );
 }
 
-function SpotlightPreview({ basics, work, education, skills }) {
+function SpotlightPreview({ basics, work, education, certifications, references, skills }) {
   const [firstName, ...restName] = (basics.name || "").split(" ");
 
   return (
@@ -758,6 +847,12 @@ function SpotlightPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={SpotlightSectionHeading}
+      />
     </div>
   );
 }
@@ -773,7 +868,7 @@ function ExecutiveSectionHeading({ children }) {
   );
 }
 
-function ExecutivePreview({ basics, work, education, skills }) {
+function ExecutivePreview({ basics, work, education, certifications, references, skills }) {
   return (
     <div className="text-gray-800">
       <div>
@@ -849,6 +944,12 @@ function ExecutivePreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ExecutiveSectionHeading}
+      />
     </div>
   );
 }
@@ -863,7 +964,7 @@ function CompactSectionHeading({ children }) {
   );
 }
 
-function CompactPreview({ basics, work, education, skills }) {
+function CompactPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
   const profileParts = (basics.profiles || [])
     .filter((p) => p.url || p.network)
@@ -945,6 +1046,12 @@ function CompactPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={CompactSectionHeading}
+      />
     </div>
   );
 }
@@ -959,7 +1066,7 @@ function ElegantSectionHeading({ children }) {
   );
 }
 
-function ElegantPreview({ basics, work, education, skills }) {
+function ElegantPreview({ basics, work, education, certifications, references, skills }) {
   return (
     <div className="text-black">
       <div className="mb-3 text-center">
@@ -1032,6 +1139,12 @@ function ElegantPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ElegantSectionHeading}
+      />
     </div>
   );
 }
@@ -1062,7 +1175,7 @@ function ProfessionalDashList({ description }) {
   );
 }
 
-function ProfessionalPreview({ basics, work, education, skills }) {
+function ProfessionalPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
   const profileParts = (basics.profiles || [])
     .filter((p) => p.url || p.network)
@@ -1142,6 +1255,12 @@ function ProfessionalPreview({ basics, work, education, skills }) {
           </p>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ProfessionalSectionHeading}
+      />
     </div>
   );
 }
@@ -1156,7 +1275,7 @@ function HybridSectionHeading({ children }) {
   );
 }
 
-function HybridPreview({ basics, work, education, skills }) {
+function HybridPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
   const profileParts = (basics.profiles || [])
     .filter((p) => p.url || p.network)
@@ -1247,6 +1366,12 @@ function HybridPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={HybridSectionHeading}
+      />
     </div>
   );
 }
@@ -1262,7 +1387,7 @@ function AccentSectionHeading({ children }) {
   );
 }
 
-function AccentPreview({ basics, work, education, skills }) {
+function AccentPreview({ basics, work, education, certifications, references, skills }) {
   return (
     <div className="text-gray-800">
       {/* Header: left-aligned, accent name */}
@@ -1347,6 +1472,12 @@ function AccentPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={AccentSectionHeading}
+      />
     </div>
   );
 }
@@ -1361,7 +1492,7 @@ function GraduateSectionHeading({ children }) {
   );
 }
 
-function GraduatePreview({ basics, work, education, skills }) {
+function GraduatePreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
   const profileParts = (basics.profiles || [])
     .filter((p) => p.url || p.network)
@@ -1454,6 +1585,12 @@ function GraduatePreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={GraduateSectionHeading}
+      />
     </div>
   );
 }
@@ -1471,7 +1608,7 @@ function StandardSectionHeading({ children }) {
 // The source template separates contacts with a diamond rather than a pipe and
 // leads each entry with the company, not the role. The diamond is dropped: a
 // dingbat between contact fields is the "icon bullet" parse failure.
-function StandardPreview({ basics, work, education, skills }) {
+function StandardPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [basics.email, basics.phone, basics.location].filter(Boolean);
   const profileParts = (basics.profiles || [])
     .filter((profile) => profile.url || profile.network)
@@ -1556,6 +1693,12 @@ function StandardPreview({ basics, work, education, skills }) {
           </p>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={StandardSectionHeading}
+      />
     </div>
   );
 }
@@ -1607,7 +1750,7 @@ function ReziParagraphList({ description, style }) {
   );
 }
 
-function ReziPreview({ basics, work, education, skills, style = { dividers: true, indent: false } }) {
+function ReziPreview({ basics, work, education, certifications, references, skills, style = { dividers: true, indent: false } }) {
   const contactParts = [basics.location, basics.email, basics.phone].filter(Boolean);
   const profileParts = (basics.profiles || [])
     .filter((profile) => profile.url || profile.network)
@@ -1699,6 +1842,12 @@ function ReziPreview({ basics, work, education, skills, style = { dividers: true
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ReziSectionHeading} headingProps={{ style }}
+      />
     </div>
   );
 }
@@ -1716,7 +1865,7 @@ function ScholarSectionHeading({ children }) {
   );
 }
 
-function ScholarPreview({ basics, work, education, skills }) {
+function ScholarPreview({ basics, work, education, certifications, references, skills }) {
   const headerParts = [
     basics.phone,
     basics.email,
@@ -1814,6 +1963,12 @@ function ScholarPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={ScholarSectionHeading}
+      />
     </div>
   );
 }
@@ -1832,7 +1987,7 @@ function CharterSectionHeading({ children }) {
   );
 }
 
-function CharterPreview({ basics, work, education, skills }) {
+function CharterPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [
     basics.phone,
     basics.email,
@@ -1934,6 +2089,12 @@ function CharterPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={CharterSectionHeading}
+      />
     </div>
   );
 }
@@ -1962,7 +2123,7 @@ function RuledBulletList({ description }) {
   );
 }
 
-function RuledPreview({ basics, work, education, skills }) {
+function RuledPreview({ basics, work, education, certifications, references, skills }) {
   const profiles = (basics.profiles || []).filter((profile) => profile.url || profile.network);
 
   return (
@@ -2055,6 +2216,12 @@ function RuledPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={RuledSectionHeading}
+      />
     </div>
   );
 }
@@ -2074,7 +2241,7 @@ function StudioSectionHeading({ children }) {
   );
 }
 
-function StudioPreview({ basics, work, education, skills }) {
+function StudioPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [
     basics.location,
     basics.phone,
@@ -2160,6 +2327,12 @@ function StudioPreview({ basics, work, education, skills }) {
               </div>
             </div>
           )}
+
+          <ExtraSections
+            certifications={certifications}
+            references={references}
+            Heading={StudioSectionHeading}
+          />
         </div>
       </div>
     </div>
@@ -2186,7 +2359,7 @@ function LedgerRow({ children, aside }) {
   );
 }
 
-function LedgerPreview({ basics, work, education, skills }) {
+function LedgerPreview({ basics, work, education, certifications, references, skills }) {
   const contactParts = [
     basics.location,
     basics.phone,
@@ -2259,6 +2432,12 @@ function LedgerPreview({ basics, work, education, skills }) {
             </div>
           </div>
         )}
+
+        <ExtraSections
+          certifications={certifications}
+          references={references}
+          Heading={LedgerSectionHeading}
+        />
       </div>
     </div>
   );
@@ -2291,7 +2470,7 @@ function CrispEntry({ title, subtitle, dates, description }) {
   );
 }
 
-function CrispPreview({ basics, work, education, skills }) {
+function CrispPreview({ basics, work, education, certifications, references, skills }) {
   return (
     <div className="space-y-4 text-gray-900">
       <div className="border-b border-gray-300 pb-4">
@@ -2355,6 +2534,12 @@ function CrispPreview({ basics, work, education, skills }) {
           </div>
         </div>
       )}
+
+      <ExtraSections
+        certifications={certifications}
+        references={references}
+        Heading={CrispSectionHeading}
+      />
     </div>
   );
 }
@@ -2413,7 +2598,7 @@ const PADDING = {
 };
 
 function renderTemplatePreview({ data, template, style, padding, Preview }) {
-  const { basics, work, education, skills } = data;
+  const { basics, work, education, certifications, references, skills } = data;
   const resolvedStyle = normalizeTemplateStyle(style ?? getTemplateDefaultStyle(template));
 
   // The font and accent reach the document as inherited CSS variables, and the
@@ -2438,6 +2623,8 @@ function renderTemplatePreview({ data, template, style, padding, Preview }) {
         basics={basics}
         work={work}
         education={education}
+        certifications={certifications}
+        references={references}
         skills={skills}
         style={resolvedStyle}
       />

@@ -116,6 +116,44 @@
         "matches": "Ofertas diarias para ti"
       },
       "action": "Pasar a Pro"
+    },
+    "linkForm": {
+      "title": "Adapta tu CV a una oferta",
+      "description": "Pega el enlace de una oferta de empleo. Recibes un CV y una carta de presentación escritos para ese puesto.",
+      "label": "Enlace de la oferta",
+      "placeholder": "Pega el enlace de una oferta",
+      "noCvTitle": "Empieza con tu CV",
+      "noCvDescription": "Adaptar reescribe tu CV para cada oferta, así que primero necesita tu CV. Solo lo subes una vez.",
+      "noCvAction": "Sube tu CV"
+    },
+    "matches": {
+      "title": "Ofertas que encajan con tu CV",
+      "description": "Ofertas publicadas en los últimos 14 días, ordenadas por palabras clave de tu CV",
+      "fit": "{fit, plural, one {Coincide con # palabra clave de tu CV} other {Coincide con # palabras clave de tu CV}}",
+      "new": "Nueva desde tu última visita",
+      "tailor": "Adaptar para esta oferta",
+      "unlock": "Desbloquea la empresa y el enlace para postular",
+      "companyHidden": "Nombre de la empresa oculto. Mejora tu plan para verlo.",
+      "browse": "Ver todas las ofertas",
+      "emptyNoCvTitle": "Aquí aparecen las ofertas que encajan con tu CV",
+      "emptyNoCvDescription": "Añade tu CV y elegimos ofertas que comparten sus palabras clave.",
+      "emptyTitle": "Ahora no hay ofertas que encajen",
+      "emptyDescription": "Ninguna oferta reciente comparte palabras clave con tu CV. Mira la lista completa.",
+      "error": "No se pudieron cargar las ofertas. Recarga la página."
+    },
+    "weeklyGoal": {
+      "title": "Meta semanal",
+      "progress": "{goal, plural, one {Esta semana: {applied} de # solicitud enviada} other {Esta semana: {applied} de # solicitudes enviadas}}",
+      "hint": "Marca un CV adaptado como enviado y cuenta aquí. El conteo empieza de nuevo cada lunes.",
+      "done": "Alcanzaste tu meta de esta semana.",
+      "change": "Cambiar meta",
+      "label": "Solicitudes por semana",
+      "save": "Guardar",
+      "saving": "Guardando",
+      "cancel": "Cancelar",
+      "saved": "Meta semanal guardada",
+      "saveError": "No se pudo guardar tu meta. Inténtalo de nuevo.",
+      "loadError": "No se pudo cargar tu meta semanal. Recarga la página."
     }
   },
   "activation": {

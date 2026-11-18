@@ -15,3 +15,6 @@ export { DashboardTabBar } from "./DashboardTabBar";
 export { ProGate } from "./ProGate";
 export { DashboardLoadError } from "./DashboardLoadError";
 export { DashboardTile, DashboardTileGrid } from "./DashboardTile";
+export { HomeJobLinkForm } from "./HomeJobLinkForm";
+export { HomeMatchesCard } from "./HomeMatchesCard";
+export { HomeWeeklyGoal } from "./HomeWeeklyGoal";

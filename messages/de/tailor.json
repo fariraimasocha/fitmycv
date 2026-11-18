@@ -114,7 +114,6 @@
     "downloadPdf": "PDF herunterladen",
     "stats": {
       "checks": "CV-Prüfungen",
-      "aimFor": "Ziel: 80 oder mehr. Ab da wird der Wert grün.",
       "checksPassed": "{passed} von {total} bestanden",
       "checking": "Wird geprüft",
       "positions": "Positionen",
@@ -147,7 +146,9 @@
       "profiles": "Online-Profile",
       "work": "Berufserfahrung",
       "education": "Ausbildung",
-      "skills": "Skills"
+      "skills": "Skills",
+      "certifications": "Zertifikate",
+      "references": "Referenzen"
     },
     "fields": {
       "fullNameRequired": "Vollständiger Name *",
@@ -166,14 +167,20 @@
       "institution": "Einrichtung",
       "degree": "Abschluss",
       "fieldOfStudy": "Studienfach",
-      "categoryName": "Name der Kategorie"
+      "categoryName": "Name der Kategorie",
+      "certificationName": "Name des Zertifikats",
+      "issuer": "Ausgestellt von",
+      "date": "Datum",
+      "referenceName": "Vollständiger Name",
+      "jobTitle": "Berufsbezeichnung"
     },
     "placeholders": {
       "network": "LinkedIn, GitHub…",
       "yearMonth": "JJJJ-MM",
       "endDate": "JJJJ-MM oder Present",
       "degree": "Bachelor, Master, Promotion…",
-      "category": "z. B. Programmiersprachen"
+      "category": "z. B. Programmiersprachen",
+      "certificationName": "AWS Certified Cloud Practitioner"
     },
     "addProfileButton": "Profil hinzufügen",
     "addProfile": "Profil hinzufügen",
@@ -196,7 +203,9 @@
       "profiles": "Füg die Profile hinzu, die Arbeitgeber sehen sollen.",
       "work": "Deine Positionen werden für jede Stelle neu geschrieben.",
       "education": "Gib an, wo und was du studiert hast.",
-      "skills": "Deine Skills werden mit den Anforderungen jeder Stelle abgeglichen."
+      "skills": "Deine Skills werden mit den Anforderungen jeder Stelle abgeglichen.",
+      "certifications": "Füge Zertifikate und Lizenzen hinzu. Dieser Abschnitt erscheint erst in deinem Lebenslauf, wenn du einen Eintrag hinzufügst.",
+      "references": "Füge Personen hinzu, die Arbeitgeber über dich kontaktieren können. Dieser Abschnitt erscheint erst in deinem Lebenslauf, wenn du einen Eintrag hinzufügst."
     },
     "positionN": "Position {index}",
     "educationN": "Ausbildung {index}",
@@ -229,7 +238,13 @@
       "intro": "Diese Prüfungen laufen beim Tippen und verlassen nie deinen Browser. Sie testen, ob Software deinen Lebenslauf lesen kann, nicht wie gut er geschrieben ist.",
       "checksPassed": "{passed} von {total} Prüfungen bestanden",
       "allPassed": "Alle Prüfungen bestanden."
-    }
+    },
+    "addCertification": "Zertifikat hinzufügen",
+    "addReference": "Referenz hinzufügen",
+    "removeCertification": "Zertifikat {index} entfernen",
+    "removeReference": "Referenz {index} entfernen",
+    "certificationN": "Zertifikat {index}",
+    "referenceN": "Referenz {index}"
   },
   "ats": {
     "severity": {
@@ -403,7 +418,8 @@
         "title": "Zwischen zwei Positionen liegt eine Lücke von mehr als sechs Monaten.",
         "action": "Eine Lücke ist in Ordnung. Füg nur dann eine kurze Zeile dazu hinzu, wenn du möchtest."
       }
-    }
+    },
+    "aimFor": "Ziel: 80 oder mehr. Ab da wird der Wert grün."
   },
   "jobMatch": {
     "levels": {
@@ -768,5 +784,30 @@
     "description": "{count, plural, one {# deiner Stichpunkte} other {# deiner Stichpunkte}}, vorher und nachher. Hinzugefügte Schlüsselwörter sind markiert.",
     "before": "Vorher",
     "after": "Nachher"
+  },
+  "whatNext": {
+    "title": "Wie geht es weiter",
+    "applyHint": "Schick deine Bewerbung ab und markiere sie hier, damit du weißt, wann du nachhaken solltest.",
+    "openAndMark": "Stelle öffnen und als beworben markieren",
+    "markApplied": "Als beworben markieren",
+    "marking": "Wird als beworben markiert",
+    "applied": "Beworben",
+    "appliedToast": "Als beworben markiert.",
+    "alreadyApplied": "Du hast das am {date} als beworben markiert.",
+    "followUp": "Hak am {date} nach, wenn du bis dahin nichts gehört hast.",
+    "markError": "Konnte nicht als beworben markiert werden. Versuch es noch einmal.",
+    "nextTitle": "Nächste passende Stelle",
+    "isNew": "Neu seit deinem letzten Besuch",
+    "fit": "{count, plural, one {# Schlüsselwort} other {# Schlüsselwörter}} aus deinem Lebenslauf in dieser Anzeige",
+    "lockedCompany": "Firma im kostenlosen Plan ausgeblendet",
+    "tailorNext": "Als Nächstes für diese Stelle anpassen",
+    "unlock": "Firma und Bewerbungslink freischalten",
+    "pasteAnother": "Weiteren Stellenlink einfügen",
+    "noMatchTitle": "Pass deinen Lebenslauf an eine weitere Stelle an",
+    "noMatchBody": "Füge einen Stellenlink ein und erhalte einen Lebenslauf für genau diese Rolle.",
+    "loadingAria": "Nächste passende Stelle wird geladen",
+    "downloadNextMatch": "Als Nächstes: {title}.",
+    "tailorItNext": "Als Nächstes anpassen",
+    "downloadMarkApplied": "Abgeschickt? Markiere diese Stelle als beworben."
   }
 }

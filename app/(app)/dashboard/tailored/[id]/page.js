@@ -45,6 +45,7 @@ import {
   DashboardStatStrip,
   DashboardTabBar,
 } from "@/components/dashboard";
+import NextMatchCard, { MarkAppliedCard, useMarkApplied } from "@/components/dashboard/NextMatchCard";
 import { useBreadcrumbStore } from "@/stores/breadcrumb-store";
 import { cn } from "@/lib/utils";
 
@@ -67,6 +68,8 @@ function buildResumeData(source) {
     basics: source?.basics ?? {},
     work: source?.work ?? [],
     education: source?.education ?? [],
+    certifications: source?.certifications ?? [],
+    references: source?.references ?? [],
     skills: source?.skills ?? [],
   };
 }
@@ -104,6 +107,7 @@ function DetailSkeleton() {
 function TailoredCVDetail() {
   const { id } = useParams();
   const t = useTranslations("tailor.tailoredDetail");
+  const tNext = useTranslations("tailor.whatNext");
   const documentTabs = DOCUMENT_TABS.map((tab) => ({ ...tab, label: t(`documentTabs.${tab.id}`) }));
   const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
   // Back from buying this one CV. The webhook usually lands within seconds,
@@ -121,6 +125,7 @@ function TailoredCVDetail() {
   const [whyLoading, setWhyLoading] = useState(false);
   const [liveValues, setLiveValues] = useState(null);
   const setDetailLabel = useBreadcrumbStore((s) => s.setDetailLabel);
+  const markAppliedState = useMarkApplied(id, "tailored_detail");
 
   const { data: cv, isLoading } = useQuery({
     queryKey: ["tailored-cv", id],
@@ -534,6 +539,17 @@ function TailoredCVDetail() {
           />
         )}
       </Rise>
+
+      {/* Below the document, so this page never ends on the CV alone. */}
+      <section aria-labelledby="what-next-title" className="flex flex-col gap-2">
+        <h2 id="what-next-title" className="text-xs font-medium text-muted-foreground">
+          {tNext("title")}
+        </h2>
+        <div className="grid items-stretch gap-3 lg:grid-cols-2">
+          <MarkAppliedCard state={markAppliedState} jobUrl={cv.jobUrl || ""} />
+          <NextMatchCard excludeUrl={cv.jobUrl || ""} />
+        </div>
+      </section>
 
       <UpgradePromptModal
         open={showUpgradeModal}

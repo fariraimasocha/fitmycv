@@ -6,6 +6,8 @@ import JobDigestItem from "@/models/JobDigestItem";
 import { searchJobs, buildQueries, scoreJob } from "@/lib/jsearch";
 import { buildJobDigestEmail } from "@/lib/job-digest-email";
 import { sendEmail } from "@/lib/email";
+import { getTopMatches } from "@/lib/matches";
+import { weeklyMatchesMessage } from "@/lib/nurture-email";
 
 const DEDUP_WINDOW_DAYS = 14;
 
@@ -98,5 +100,65 @@ export async function GET(request) {
     }
   }
 
-  return Response.json({ processed, skipped, errors, total: users.length });
+  const weekly = new Date().getUTCDay() === 1 ? await sendWeeklyFreeMatches(since) : null;
+
+  return Response.json({ processed, skipped, errors, total: users.length, weekly });
+}
+
+const WEEK = 7 * 864e5;
+
+// Mondays only: up to 3 jobs from the crawled pool, added in the last 7 days
+// and matched to the CV, for free users with a main CV. Same lock as the board.
+async function sendWeeklyFreeMatches(dedupSince) {
+  const cvUserIds = await ReferenceCV.distinct("userId");
+  const users = await User.find({
+    _id: { $in: cvUserIds },
+    isPremium: { $ne: true },
+    marketingEmails: { $ne: false },
+    $or: [{ weeklyMatchesSentAt: null }, { weeklyMatchesSentAt: { $lt: new Date(Date.now() - 6 * 864e5) } }],
+  })
+    .select("email name weeklyMatchesSentAt")
+    .lean();
+
+  let sent = 0;
+  let skipped = 0;
+  const errors = [];
+  const weekAgo = new Date(Date.now() - WEEK);
+
+  for (const user of users) {
+    try {
+      const recent = await JobDigestItem.find({ userId: user._id, sentAt: { $gte: dedupSince } })
+        .select("jobId")
+        .lean();
+      const sentIds = new Set(recent.map((d) => d.jobId));
+      const jobs = (await getTopMatches({ userId: user._id, isPremium: false, n: 10, since: weekAgo }))
+        .filter((job) => job.isNew && !sentIds.has(job.id))
+        .slice(0, 3);
+      if (jobs.length === 0) {
+        skipped++;
+        continue;
+      }
+      const previous = user.weeklyMatchesSentAt ?? null;
+      const claimed = await User.updateOne(
+        { _id: user._id, weeklyMatchesSentAt: previous },
+        { weeklyMatchesSentAt: new Date() },
+      );
+      if (claimed.modifiedCount === 0) continue;
+      try {
+        await sendEmail(weeklyMatchesMessage(user, jobs));
+      } catch (err) {
+        await User.updateOne({ _id: user._id }, { weeklyMatchesSentAt: previous });
+        throw err;
+      }
+      await JobDigestItem.insertMany(
+        jobs.map((job) => ({ userId: user._id, jobId: job.id, job })),
+        { ordered: false },
+      ).catch(() => {});
+      sent++;
+    } catch (err) {
+      console.error(`Weekly matches error for ${user.email}:`, err);
+      errors.push({ email: user.email, error: err.message });
+    }
+  }
+  return { sent, skipped, errors, total: users.length };
 }

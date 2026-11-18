@@ -8,6 +8,7 @@ import {
   REMINDER_AFTER,
   REMINDER_UNTIL,
   checkoutReminderMessage,
+  followUpMessage,
   dueStep,
   nurtureMessage,
   paywallReminderMessage,
@@ -15,6 +16,7 @@ import {
 } from "@/lib/nurture-email";
 import User from "@/models/User";
 import TailoredCV from "@/models/TailoredCV";
+import Application from "@/models/Application";
 
 // Hourly. Sends each signup the next nurture email once it is due.
 export async function GET(request) {
@@ -65,8 +67,9 @@ export async function GET(request) {
 
   const reminders = await sendCheckoutReminders(errors);
   const paywallReminders = await sendPaywallReminders(errors);
+  const followUps = await sendFollowUpReminders(errors);
 
-  return Response.json({ sent, skipped, reminders, paywallReminders, errors, total: users.length });
+  return Response.json({ sent, skipped, reminders, paywallReminders, followUps, errors, total: users.length });
 }
 
 // One email to anyone who opened a Polar checkout 2 to 48 hours ago and has
@@ -157,6 +160,49 @@ async function sendPaywallReminders(errors) {
       await User.updateOne({ _id: user._id }, { $unset: { paywallReminderSentAt: 1 } });
       console.error(`Paywall reminder failed for ${user.email}:`, err);
       errors.push({ email: user.email, step: "paywall_reminder", error: err.message });
+    }
+  }
+  return sent;
+}
+
+// One email on an application's follow-up date, while it still sits at
+// "applied". The 2 day floor keeps old rows from a backlog out of it.
+async function sendFollowUpReminders(errors) {
+  const now = Date.now();
+  const apps = await Application.find({
+    status: "applied",
+    archived: { $ne: true },
+    followUpDate: { $lte: new Date(now), $gte: new Date(now - 2 * 864e5) },
+    followUpReminderSentAt: { $exists: false },
+  })
+    .select("userId jobTitle jobCompany appliedAt tailoredCVId")
+    .lean();
+  if (!apps.length) return 0;
+
+  const users = await User.find({
+    _id: { $in: [...new Set(apps.map((a) => String(a.userId)))] },
+    marketingEmails: { $ne: false },
+  })
+    .select("email name isPremium")
+    .lean();
+  const byId = new Map(users.map((u) => [String(u._id), u]));
+
+  let sent = 0;
+  for (const app of apps) {
+    const user = byId.get(String(app.userId));
+    if (!user) continue;
+    const claimed = await Application.updateOne(
+      { _id: app._id, followUpReminderSentAt: { $exists: false } },
+      { $set: { followUpReminderSentAt: new Date() } },
+    );
+    if (claimed.modifiedCount === 0) continue;
+    try {
+      await sendEmail(followUpMessage(user, app));
+      sent++;
+    } catch (err) {
+      await Application.updateOne({ _id: app._id }, { $unset: { followUpReminderSentAt: 1 } });
+      console.error(`Follow-up reminder failed for ${user.email}:`, err);
+      errors.push({ email: user.email, step: "follow_up", error: err.message });
     }
   }
   return sent;

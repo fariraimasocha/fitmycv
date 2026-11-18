@@ -114,7 +114,6 @@
     "downloadPdf": "Télécharger le PDF",
     "stats": {
       "checks": "Vérifications du CV",
-      "aimFor": "Visez 80 ou plus. C'est là que le score passe au vert.",
       "checksPassed": "{passed} sur {total} réussies",
       "checking": "Vérification",
       "positions": "Postes",
@@ -147,7 +146,9 @@
       "profiles": "Profils en ligne",
       "work": "Expérience professionnelle",
       "education": "Formation",
-      "skills": "Compétences"
+      "skills": "Compétences",
+      "certifications": "Certifications",
+      "references": "Références"
     },
     "fields": {
       "fullNameRequired": "Nom complet *",
@@ -166,14 +167,20 @@
       "institution": "Établissement",
       "degree": "Diplôme",
       "fieldOfStudy": "Domaine d’études",
-      "categoryName": "Nom de la catégorie"
+      "categoryName": "Nom de la catégorie",
+      "certificationName": "Nom de la certification",
+      "issuer": "Délivrée par",
+      "date": "Date",
+      "referenceName": "Nom complet",
+      "jobTitle": "Intitulé du poste"
     },
     "placeholders": {
       "network": "LinkedIn, GitHub…",
       "yearMonth": "AAAA-MM",
       "endDate": "AAAA-MM ou Present",
       "degree": "Licence, Master, Doctorat…",
-      "category": "ex. Langages de programmation"
+      "category": "ex. Langages de programmation",
+      "certificationName": "AWS Certified Cloud Practitioner"
     },
     "addProfileButton": "Ajouter un profil",
     "addProfile": "Ajouter un profil",
@@ -196,7 +203,9 @@
       "profiles": "Ajoutez les profils que vous voulez montrer aux employeurs.",
       "work": "Ce sont vos postes qui sont réécrits pour chaque offre.",
       "education": "Indiquez où vous avez étudié et ce que vous avez étudié.",
-      "skills": "Vos compétences sont comparées aux exigences de chaque offre."
+      "skills": "Vos compétences sont comparées aux exigences de chaque offre.",
+      "certifications": "Ajoutez vos certifications et licences. Cette section n'apparaît sur votre CV qu'une fois une entrée ajoutée.",
+      "references": "Ajoutez des personnes que les employeurs peuvent contacter à votre sujet. Cette section n'apparaît sur votre CV qu'une fois une entrée ajoutée."
     },
     "positionN": "Poste {index}",
     "educationN": "Formation {index}",
@@ -229,7 +238,13 @@
       "intro": "Ces vérifications s’exécutent pendant la saisie et ne quittent jamais votre navigateur. Elles testent si un logiciel peut lire votre CV, pas la qualité de sa rédaction.",
       "checksPassed": "{passed} vérifications réussies sur {total}",
       "allPassed": "Toutes les vérifications sont réussies."
-    }
+    },
+    "addCertification": "Ajouter une certification",
+    "addReference": "Ajouter une référence",
+    "removeCertification": "Supprimer la certification {index}",
+    "removeReference": "Supprimer la référence {index}",
+    "certificationN": "Certification {index}",
+    "referenceN": "Référence {index}"
   },
   "ats": {
     "severity": {
@@ -403,7 +418,8 @@
         "title": "Il y a un écart de plus de six mois entre deux postes.",
         "action": "Un écart n’est pas un problème. Ajoutez une courte ligne à ce sujet seulement si vous le souhaitez."
       }
-    }
+    },
+    "aimFor": "Visez 80 ou plus. C'est là que le score passe au vert."
   },
   "jobMatch": {
     "levels": {
@@ -768,5 +784,30 @@
     "description": "{count, plural, one {# de vos puces} other {# de vos puces}}, avant et après. Les mots clés ajoutés sont surlignés.",
     "before": "Avant",
     "after": "Après"
+  },
+  "whatNext": {
+    "title": "Et maintenant",
+    "applyHint": "Envoyez votre candidature, puis marquez-la ici pour savoir quand relancer.",
+    "openAndMark": "Ouvrir l'offre et marquer comme envoyée",
+    "markApplied": "Marquer comme envoyée",
+    "marking": "Marquage en cours",
+    "applied": "Envoyée",
+    "appliedToast": "Candidature marquée comme envoyée.",
+    "alreadyApplied": "Vous l'avez marquée comme envoyée le {date}.",
+    "followUp": "Relancez le {date} si vous n'avez pas de réponse.",
+    "markError": "Impossible de la marquer comme envoyée. Réessayez.",
+    "nextTitle": "Prochaine offre correspondante",
+    "isNew": "Nouvelle depuis votre dernière visite",
+    "fit": "{count, plural, one {# mot-clé} other {# mots-clés}} de votre CV dans cette offre",
+    "lockedCompany": "Entreprise masquée avec l'offre gratuite",
+    "tailorNext": "Adapter mon CV à celle-ci",
+    "unlock": "Débloquer l'entreprise et le lien pour postuler",
+    "pasteAnother": "Coller un autre lien d'offre",
+    "noMatchTitle": "Adaptez votre CV à une autre offre",
+    "noMatchBody": "Collez un lien d'offre et obtenez un CV rédigé pour ce poste.",
+    "loadingAria": "Chargement de la prochaine offre correspondante",
+    "downloadNextMatch": "Ensuite : {title}.",
+    "tailorItNext": "L'adapter ensuite",
+    "downloadMarkApplied": "Envoyée ? Marquez cette offre comme envoyée."
   }
 }

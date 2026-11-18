@@ -114,7 +114,6 @@
     "downloadPdf": "下载 PDF",
     "stats": {
       "checks": "简历检查",
-      "aimFor": "目标是 80 分或以上，分数会变成绿色。",
       "checksPassed": "已通过 {passed}/{total} 项",
       "checking": "正在检查",
       "positions": "职位",
@@ -147,7 +146,9 @@
       "profiles": "在线主页",
       "work": "工作经历",
       "education": "教育背景",
-      "skills": "技能"
+      "skills": "技能",
+      "certifications": "证书",
+      "references": "推荐人"
     },
     "fields": {
       "fullNameRequired": "全名 *",
@@ -166,14 +167,20 @@
       "institution": "学校或机构",
       "degree": "学位",
       "fieldOfStudy": "专业",
-      "categoryName": "类别名称"
+      "categoryName": "类别名称",
+      "certificationName": "证书名称",
+      "issuer": "颁发机构",
+      "date": "日期",
+      "referenceName": "姓名",
+      "jobTitle": "职位"
     },
     "placeholders": {
       "network": "LinkedIn、GitHub…",
       "yearMonth": "YYYY-MM",
       "endDate": "YYYY-MM 或 至今",
       "degree": "学士、硕士、博士…",
-      "category": "例如：编程语言"
+      "category": "例如：编程语言",
+      "certificationName": "AWS Certified Cloud Practitioner"
     },
     "addProfileButton": "添加主页",
     "addProfile": "添加主页",
@@ -196,7 +203,9 @@
       "profiles": "添加你希望雇主看到的主页。",
       "work": "针对每个职位改写的就是你的这些工作经历。",
       "education": "添加你就读的学校和所学专业。",
-      "skills": "技能会与每个职位的要求进行匹配。"
+      "skills": "技能会与每个职位的要求进行匹配。",
+      "certifications": "添加你的证书和执照。添加之前，这一栏不会出现在简历上。",
+      "references": "添加雇主可以联系的推荐人。添加之前，这一栏不会出现在简历上。"
     },
     "positionN": "职位 {index}",
     "educationN": "教育经历 {index}",
@@ -229,7 +238,13 @@
       "intro": "这些检查会随你输入实时运行，数据不会离开你的浏览器。它们检验的是软件能否读取你的简历，而不是简历写得好不好。",
       "checksPassed": "已通过 {passed}/{total} 项检查",
       "allPassed": "所有检查均已通过。"
-    }
+    },
+    "addCertification": "添加证书",
+    "addReference": "添加推荐人",
+    "removeCertification": "删除证书 {index}",
+    "removeReference": "删除推荐人 {index}",
+    "certificationN": "证书 {index}",
+    "referenceN": "推荐人 {index}"
   },
   "ats": {
     "severity": {
@@ -403,7 +418,8 @@
         "title": "两个职位之间有超过六个月的空档。",
         "action": "有空档没关系。只有在你愿意时，才需要加一行简短说明。"
       }
-    }
+    },
+    "aimFor": "目标是 80 分或以上，分数会变成绿色。"
   },
   "jobMatch": {
     "levels": {
@@ -768,5 +784,30 @@
     "description": "你的 {count} 条要点，修改前后对比。新增的关键词已高亮。",
     "before": "修改前",
     "after": "修改后"
+  },
+  "whatNext": {
+    "title": "下一步",
+    "applyHint": "投递申请后，在这里标记，方便你知道何时跟进。",
+    "openAndMark": "打开职位并标记为已投递",
+    "markApplied": "标记为已投递",
+    "marking": "正在标记为已投递",
+    "applied": "已投递",
+    "appliedToast": "已标记为已投递。",
+    "alreadyApplied": "你已在 {date} 标记为已投递。",
+    "followUp": "如果到 {date} 还没有回音，记得跟进。",
+    "markError": "无法标记为已投递，请重试。",
+    "nextTitle": "下一个匹配职位",
+    "isNew": "自你上次访问后新增",
+    "fit": "此职位包含你简历中的 {count} 个关键词",
+    "lockedCompany": "免费版不显示公司名称",
+    "tailorNext": "接着为这个职位定制",
+    "unlock": "解锁公司名称和申请链接",
+    "pasteAnother": "粘贴另一个职位链接",
+    "noMatchTitle": "为另一个职位定制简历",
+    "noMatchBody": "粘贴职位链接，获取为该职位撰写的简历。",
+    "loadingAria": "正在加载下一个匹配职位",
+    "downloadNextMatch": "下一个：{title}。",
+    "tailorItNext": "接着定制",
+    "downloadMarkApplied": "已经投递了？把这个职位标记为已投递。"
   }
 }

@@ -47,6 +47,22 @@ const tailoredCVSchema = new mongoose.Schema(
         endDate: String,
       },
     ],
+    certifications: [
+      {
+        name: String,
+        issuer: String,
+        date: String,
+      },
+    ],
+    references: [
+      {
+        name: String,
+        title: String,
+        company: String,
+        email: String,
+        phone: String,
+      },
+    ],
     skills: [
       {
         category: String,

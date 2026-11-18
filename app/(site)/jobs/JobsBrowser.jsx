@@ -226,9 +226,10 @@ function JobRow({ job, upgradeHref, now }) {
           </Link>
         ) : (
           <>
-            {/* The pool already holds the URL, so tailoring skips the paste a link step. */}
+            {/* The pool already holds the URL, so tailoring skips the paste a
+                link step, and auto=1 starts reading the job on arrival. */}
             <Link
-              href={`/dashboard/tailor?url=${encodeURIComponent(job.applyUrl)}`}
+              href={`/dashboard/tailor?url=${encodeURIComponent(job.applyUrl)}&auto=1`}
               className={ROW_BTN}
             >
               <SparkleIcon size={16} aria-hidden="true" />

@@ -72,6 +72,28 @@ const resumeSchema = z.object({
     )
     .optional()
     .default([]),
+  certifications: z
+    .array(
+      z.object({
+        name: z.string().optional().default(""),
+        issuer: z.string().optional().default(""),
+        date: z.string().optional().default(""),
+      }),
+    )
+    .optional()
+    .default([]),
+  references: z
+    .array(
+      z.object({
+        name: z.string().optional().default(""),
+        title: z.string().optional().default(""),
+        company: z.string().optional().default(""),
+        email: z.string().optional().default(""),
+        phone: z.string().optional().default(""),
+      }),
+    )
+    .optional()
+    .default([]),
   skills: z
     .array(
       z.object({
@@ -119,6 +141,8 @@ export default function ResumeForm({
       },
       work: [],
       education: [],
+      certifications: [],
+      references: [],
       skills: [],
     },
   });
@@ -147,8 +171,8 @@ export default function ResumeForm({
   // can be checked; a saved CV opens the two sections people edit most.
   const [openSections, setOpenSections] = useState(() =>
     isDraft
-      ? { personal: true, profiles: true, work: true, education: true, skills: true }
-      : { personal: true, profiles: false, work: true, education: false, skills: false },
+      ? { personal: true, profiles: true, work: true, education: true, certifications: true, references: true, skills: true }
+      : { personal: true, profiles: false, work: true, education: false, certifications: false, references: false, skills: false },
   );
   const toggleSection = (id) =>
     setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -180,6 +204,14 @@ export default function ResumeForm({
     openSection("education");
     appendEducation({ institution: "", degree: "", fieldOfStudy: "", startDate: "", endDate: "" });
   };
+  const addCertification = () => {
+    openSection("certifications");
+    appendCertification({ name: "", issuer: "", date: "" });
+  };
+  const addReference = () => {
+    openSection("references");
+    appendReference({ name: "", title: "", company: "", email: "", phone: "" });
+  };
   const addSkillGroup = () => {
     openSection("skills");
     appendSkill({ category: "", skills: [] });
@@ -197,6 +229,18 @@ export default function ResumeForm({
     remove: removeEducation,
     move: moveEducation,
   } = useFieldArray({ control, name: "education" });
+  const {
+    fields: certificationFieldsList,
+    append: appendCertification,
+    remove: removeCertification,
+    move: moveCertification,
+  } = useFieldArray({ control, name: "certifications" });
+  const {
+    fields: referenceFieldsList,
+    append: appendReference,
+    remove: removeReference,
+    move: moveReference,
+  } = useFieldArray({ control, name: "references" });
   const {
     fields: skillsFieldsList,
     append: appendSkill,
@@ -244,6 +288,8 @@ export default function ResumeForm({
 
   const work = values?.work ?? [];
   const education = values?.education ?? [];
+  const certifications = values?.certifications ?? [];
+  const references = values?.references ?? [];
   const skills = values?.skills ?? [];
 
   return (
@@ -458,6 +504,106 @@ export default function ResumeForm({
                         />
                       </Field>
                     </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </FormSection>
+
+        <FormSection
+          id="certifications"
+          title={t("sections.certifications")}
+          count={certificationFieldsList.length}
+          open={openSections.certifications}
+          onToggle={() => toggleSection("certifications")}
+          action={<AddIconButton label={t("addCertification")} onClick={addCertification} />}
+        >
+          {certificationFieldsList.length === 0 ? (
+            <SectionEmptyState actionLabel={t("addCertification")} onAction={addCertification}>
+              {t("empty.certifications")}
+            </SectionEmptyState>
+          ) : (
+            <div className="divide-y divide-[var(--landing-line)]">
+              {certificationFieldsList.map((field, index) => (
+                <div key={field.id} className="space-y-4 py-4 first:pt-0 last:pb-0">
+                  <ItemHeader
+                    title={certifications[index]?.name || t("certificationN", { index: index + 1 })}
+                  >
+                    <ItemActions
+                      index={index}
+                      total={certificationFieldsList.length}
+                      onMove={moveCertification}
+                      removeLabel={t("removeCertification", { index: index + 1 })}
+                      onRemove={() => removeCertification(index)}
+                    />
+                  </ItemHeader>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label={t("fields.certificationName")}>
+                      <Input
+                        placeholder={t("placeholders.certificationName")}
+                        {...register(`certifications.${index}.name`)}
+                      />
+                    </Field>
+                    <Field label={t("fields.issuer")}>
+                      <Input {...register(`certifications.${index}.issuer`)} />
+                    </Field>
+                    <Field label={t("fields.date")}>
+                      <Input
+                        placeholder={t("placeholders.yearMonth")}
+                        {...register(`certifications.${index}.date`)}
+                      />
+                    </Field>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </FormSection>
+
+        <FormSection
+          id="references"
+          title={t("sections.references")}
+          count={referenceFieldsList.length}
+          open={openSections.references}
+          onToggle={() => toggleSection("references")}
+          action={<AddIconButton label={t("addReference")} onClick={addReference} />}
+        >
+          {referenceFieldsList.length === 0 ? (
+            <SectionEmptyState actionLabel={t("addReference")} onAction={addReference}>
+              {t("empty.references")}
+            </SectionEmptyState>
+          ) : (
+            <div className="divide-y divide-[var(--landing-line)]">
+              {referenceFieldsList.map((field, index) => (
+                <div key={field.id} className="space-y-4 py-4 first:pt-0 last:pb-0">
+                  <ItemHeader
+                    title={references[index]?.name || t("referenceN", { index: index + 1 })}
+                  >
+                    <ItemActions
+                      index={index}
+                      total={referenceFieldsList.length}
+                      onMove={moveReference}
+                      removeLabel={t("removeReference", { index: index + 1 })}
+                      onRemove={() => removeReference(index)}
+                    />
+                  </ItemHeader>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <Field label={t("fields.referenceName")}>
+                      <Input {...register(`references.${index}.name`)} />
+                    </Field>
+                    <Field label={t("fields.jobTitle")}>
+                      <Input {...register(`references.${index}.title`)} />
+                    </Field>
+                    <Field label={t("fields.company")}>
+                      <Input {...register(`references.${index}.company`)} />
+                    </Field>
+                    <Field label={t("fields.email")}>
+                      <Input type="email" {...register(`references.${index}.email`)} />
+                    </Field>
+                    <Field label={t("fields.phone")}>
+                      <Input type="tel" {...register(`references.${index}.phone`)} />
+                    </Field>
                   </div>
                 </div>
               ))}

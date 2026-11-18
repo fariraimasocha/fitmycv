@@ -116,6 +116,44 @@
         "matches": "Tägliche Job-Matches"
       },
       "action": "Auf Pro upgraden"
+    },
+    "linkForm": {
+      "title": "Passe deinen Lebenslauf an eine Stelle an",
+      "description": "Füge den Link zu einer Stellenanzeige ein. Du bekommst einen Lebenslauf und ein Anschreiben für genau diese Stelle.",
+      "label": "Link zur Stelle",
+      "placeholder": "Link zur Stelle einfügen",
+      "noCvTitle": "Starte mit deinem Lebenslauf",
+      "noCvDescription": "Beim Anpassen wird dein Lebenslauf für jede Stelle neu geschrieben, deshalb braucht es ihn zuerst. Du lädst ihn nur einmal hoch.",
+      "noCvAction": "Lebenslauf hochladen"
+    },
+    "matches": {
+      "title": "Stellen, die zu deinem Lebenslauf passen",
+      "description": "Stellen der letzten 14 Tage, sortiert nach Stichwörtern aus deinem Lebenslauf",
+      "fit": "{fit, plural, one {Passt zu # Stichwort aus deinem Lebenslauf} other {Passt zu # Stichwörtern aus deinem Lebenslauf}}",
+      "new": "Neu seit deinem letzten Besuch",
+      "tailor": "Für diese Stelle anpassen",
+      "unlock": "Firma und Bewerbungslink freischalten",
+      "companyHidden": "Firmenname verborgen. Mit einem Upgrade siehst du ihn.",
+      "browse": "Alle Stellen ansehen",
+      "emptyNoCvTitle": "Hier erscheinen Stellen, die zu deinem Lebenslauf passen",
+      "emptyNoCvDescription": "Füge deinen Lebenslauf hinzu und wir wählen Stellen mit denselben Stichwörtern aus.",
+      "emptyTitle": "Gerade keine passenden Stellen",
+      "emptyDescription": "Keine der neuen Stellen teilt Stichwörter mit deinem Lebenslauf. Sieh dir stattdessen die ganze Liste an.",
+      "error": "Passende Stellen konnten nicht geladen werden. Lade die Seite neu."
+    },
+    "weeklyGoal": {
+      "title": "Wochenziel",
+      "progress": "{goal, plural, one {Diese Woche: {applied} von # Bewerbung verschickt} other {Diese Woche: {applied} von # Bewerbungen verschickt}}",
+      "hint": "Markiere einen angepassten Lebenslauf als beworben, dann zählt er hier. Die Zählung beginnt jeden Montag neu.",
+      "done": "Du hast dein Ziel für diese Woche erreicht.",
+      "change": "Ziel ändern",
+      "label": "Bewerbungen pro Woche",
+      "save": "Speichern",
+      "saving": "Wird gespeichert",
+      "cancel": "Abbrechen",
+      "saved": "Wochenziel gespeichert",
+      "saveError": "Dein Ziel konnte nicht gespeichert werden. Versuch es noch einmal.",
+      "loadError": "Dein Wochenziel konnte nicht geladen werden. Lade die Seite neu."
     }
   },
   "activation": {

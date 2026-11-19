@@ -771,7 +771,12 @@
     },
     "sectionsAria": "Tailored document sections",
     "saveTailored": "Save tailored CV",
-    "liveUpdates": "Updates as you type"
+    "liveUpdates": "Updates as you type",
+    "checkoutFailed": {
+      "title": "Checkout didn't start",
+      "description": "Nothing was charged and your CV is still here. Try again, or ask us for help.",
+      "support": "Contact support"
+    }
   },
   "health": {
     "title": "Your CV right now",

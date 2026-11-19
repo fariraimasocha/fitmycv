@@ -38,6 +38,7 @@ import { buildPdfFilename } from "@/utils/pdf-filename";
 import { DEFAULT_TEMPLATE, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
 import { getTemplateFontOption, normalizeTemplateStyle } from "@/utils/cv-templates/style";
 import { trackEvent } from "@/lib/analytics";
+import { openSupport } from "@/lib/open-support";
 import {
   DashboardPageShell,
   DashboardPageHeader,
@@ -112,7 +113,10 @@ function TailoredCVDetail() {
   const mobileTabs = MOBILE_TABS.map((tab) => ({ ...tab, label: t(`mobileTabs.${tab.id}`) }));
   // Back from buying this one CV. The webhook usually lands within seconds,
   // so the page polls until the server stops sending the preview.
-  const unlockPending = useSearchParams().get("unlock") === "pending";
+  const searchParams = useSearchParams();
+  const unlockPending = searchParams.get("unlock") === "pending";
+  // The checkout route sends people back here when Polar won't start.
+  const checkoutFailed = searchParams.get("error") === "checkout_failed";
   const [unlockSlow, setUnlockSlow] = useState(false);
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState("cv");
@@ -152,6 +156,15 @@ function TailoredCVDetail() {
     // useSearchParams in sync with the native history API.
     window.history.replaceState(null, "", `/dashboard/tailored/${id}`);
   }, [unlockPending, cv, id, t]);
+
+  useEffect(() => {
+    if (!checkoutFailed) return;
+    toast.error(t("checkoutFailed.title"), {
+      description: t("checkoutFailed.description"),
+      action: { label: t("checkoutFailed.support"), onClick: openSupport },
+    });
+    window.history.replaceState(null, "", `/dashboard/tailored/${id}`);
+  }, [checkoutFailed, id, t]);
 
   useEffect(() => {
     if (cv?.jobTitle) setDetailLabel(cv.jobTitle);

@@ -132,7 +132,9 @@
     "forJob": {
       "title": "Téléchargez votre CV pour {title}",
       "titleWithCompany": "Téléchargez votre CV pour {title} chez {company}"
-    }
+    },
+    "opening": "Ouverture du paiement…",
+    "savedNote": "Ton CV est enregistré dans CV adaptés. Télécharge-le quand tu veux après la mise à niveau."
   },
   "unlockGate": {
     "button": "Débloquer le téléchargement",

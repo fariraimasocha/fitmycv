@@ -29,6 +29,8 @@ async function resolveCheckoutTier() {
 }
 
 export async function GET(request) {
+  // Where a failed checkout lands. Becomes the buyer's CV once we know it.
+  let failPath = "/dashboard/upgrade";
   try {
     const session = await auth();
 
@@ -70,6 +72,7 @@ export async function GET(request) {
       tailoredCvId = String(cv._id);
     }
     const returnPath = cv ? `/dashboard/tailored/${cv._id}` : "/dashboard/upgrade";
+    failPath = returnPath;
 
     const tier = await resolveCheckoutTier();
     const productId = getPolarProductId(tier, plan);
@@ -128,7 +131,7 @@ export async function GET(request) {
   } catch (error) {
     console.error("Polar checkout error:", error);
     return NextResponse.redirect(
-      localAppUrl("/dashboard/upgrade?error=checkout_failed", request),
+      localAppUrl(`${failPath}?error=checkout_failed`, request),
     );
   }
 }

@@ -132,7 +132,9 @@
     "forJob": {
       "title": "下载你用于{title}的简历",
       "titleWithCompany": "下载你用于{company}{title}职位的简历"
-    }
+    },
+    "opening": "正在打开结账页面…",
+    "savedNote": "你的简历已保存在「定制简历」中。升级后可随时下载。"
   },
   "unlockGate": {
     "button": "解锁下载",

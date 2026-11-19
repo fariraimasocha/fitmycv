@@ -132,7 +132,9 @@
     "forJob": {
       "title": "Baixe seu currículo para {title}",
       "titleWithCompany": "Baixe seu currículo para {title} na {company}"
-    }
+    },
+    "opening": "Abrindo o checkout…",
+    "savedNote": "Seu currículo está salvo em Currículos adaptados. Baixe quando quiser depois do upgrade."
   },
   "unlockGate": {
     "button": "Desbloquear para baixar",

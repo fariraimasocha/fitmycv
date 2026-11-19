@@ -771,7 +771,12 @@
     },
     "sectionsAria": "Sections du document adapté",
     "saveTailored": "Enregistrer le CV adapté",
-    "liveUpdates": "Mis à jour pendant la saisie"
+    "liveUpdates": "Mis à jour pendant la saisie",
+    "checkoutFailed": {
+      "title": "Le paiement n'a pas démarré",
+      "description": "Rien n'a été débité et ton CV est toujours là. Réessaie ou demande-nous de l'aide.",
+      "support": "Contacter le support"
+    }
   },
   "health": {
     "title": "Votre CV aujourd'hui",

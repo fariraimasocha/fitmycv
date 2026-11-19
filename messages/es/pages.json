@@ -132,7 +132,9 @@
     "forJob": {
       "title": "Descarga tu CV para {title}",
       "titleWithCompany": "Descarga tu CV para {title} en {company}"
-    }
+    },
+    "opening": "Abriendo el pago…",
+    "savedNote": "Tu CV está guardado en CV adaptados. Descárgalo cuando quieras después de mejorar tu plan."
   },
   "unlockGate": {
     "button": "Desbloquear para descargar",

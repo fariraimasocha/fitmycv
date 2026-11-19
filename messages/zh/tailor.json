@@ -771,7 +771,12 @@
     },
     "sectionsAria": "定制文件的各个部分",
     "saveTailored": "保存定制简历",
-    "liveUpdates": "随输入实时更新"
+    "liveUpdates": "随输入实时更新",
+    "checkoutFailed": {
+      "title": "结账未能开始",
+      "description": "没有扣款，你的简历也还在。请重试，或联系我们寻求帮助。",
+      "support": "联系客服"
+    }
   },
   "health": {
     "title": "你当前的简历",

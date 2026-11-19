@@ -132,7 +132,9 @@
     "forJob": {
       "title": "Download your CV for {title}",
       "titleWithCompany": "Download your CV for {title} at {company}"
-    }
+    },
+    "opening": "Opening checkout…",
+    "savedNote": "Your CV is saved in Tailored CVs. Download it anytime after you upgrade."
   },
   "unlockGate": {
     "button": "Unlock to download",

@@ -771,7 +771,12 @@
     },
     "sectionsAria": "Bereiche des angepassten Dokuments",
     "saveTailored": "Angepassten Lebenslauf speichern",
-    "liveUpdates": "Aktualisiert sich beim Tippen"
+    "liveUpdates": "Aktualisiert sich beim Tippen",
+    "checkoutFailed": {
+      "title": "Der Checkout ist nicht gestartet",
+      "description": "Es wurde nichts abgebucht und dein Lebenslauf ist noch da. Versuche es erneut oder frag uns um Hilfe.",
+      "support": "Support kontaktieren"
+    }
   },
   "health": {
     "title": "Dein Lebenslauf jetzt",

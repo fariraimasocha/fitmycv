@@ -771,7 +771,12 @@
     },
     "sectionsAria": "Secciones del documento adaptado",
     "saveTailored": "Guardar CV adaptado",
-    "liveUpdates": "Se actualiza mientras escribes"
+    "liveUpdates": "Se actualiza mientras escribes",
+    "checkoutFailed": {
+      "title": "El pago no se inició",
+      "description": "No se cobró nada y tu CV sigue aquí. Inténtalo de nuevo o pídenos ayuda.",
+      "support": "Contactar con soporte"
+    }
   },
   "health": {
     "title": "Tu CV ahora",

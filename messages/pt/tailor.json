@@ -771,7 +771,12 @@
     },
     "sectionsAria": "Seções do documento adaptado",
     "saveTailored": "Salvar currículo adaptado",
-    "liveUpdates": "Atualiza enquanto você digita"
+    "liveUpdates": "Atualiza enquanto você digita",
+    "checkoutFailed": {
+      "title": "O checkout não começou",
+      "description": "Nada foi cobrado e seu currículo continua aqui. Tente de novo ou peça ajuda.",
+      "support": "Falar com o suporte"
+    }
   },
   "health": {
     "title": "Seu CV agora",

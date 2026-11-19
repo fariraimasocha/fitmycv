@@ -132,7 +132,9 @@
     "forJob": {
       "title": "Lade deinen Lebenslauf für {title} herunter",
       "titleWithCompany": "Lade deinen Lebenslauf für {title} bei {company} herunter"
-    }
+    },
+    "opening": "Checkout wird geöffnet…",
+    "savedNote": "Dein Lebenslauf ist unter Angepasste Lebensläufe gespeichert. Nach dem Upgrade kannst du ihn jederzeit herunterladen."
   },
   "unlockGate": {
     "button": "Zum Herunterladen freischalten",

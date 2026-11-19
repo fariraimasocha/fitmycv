@@ -97,8 +97,11 @@ The skills live in `.claude/skills/`. Invoke the matching skill before you desig
   Hick's law, Fitts's law, social proof and open loops.
 - **`emotional-design`:** for confirmation moments, small wins, polish in
   high-stakes flows, first impressions, and tactile charts and cards.
+- **`ceiling-breaker`:** for screens that look fine but feel generic, and
+  for limit, error, empty and offline states. Also use it for cross-page
+  consistency and for honest progress or retention mechanics.
 
-All three follow the copy rules above. Celebrate only what the data shows,
+All four follow the copy rules above. Celebrate only what the data shows,
 never invent activity numbers, use no dark patterns, respect
 `useReducedMotion()`, and never add motion inside the CV document itself.
 

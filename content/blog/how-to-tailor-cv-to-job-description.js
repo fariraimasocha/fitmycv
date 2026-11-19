@@ -37,7 +37,7 @@ export const faqs = [
   },
   {
     q: "How long should it take to tailor a CV to a job description?",
-    a: "Working through it by hand, budget 20 to 40 minutes for a role you care about: ten minutes decoding the posting, ten rewriting the summary and top bullets, and the rest reordering and checking. It drops to about a minute if you let a tool read the posting and do the first pass for you.",
+    a: "Working through it by hand, budget 20 to 40 minutes for a role you care about: ten minutes decoding the posting, ten rewriting the summary and top bullets, and the rest reordering and checking. It drops to about a minute if you let a tool read the posting and do the first pass for you. Our guide on [how to apply to jobs faster](/blog/how-to-apply-to-jobs-faster) shows the full routine.",
   },
   {
     q: "What exactly should I change when tailoring a CV?",

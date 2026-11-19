@@ -48,7 +48,7 @@ export const faqs = [
 
 export const blocks = [
   {
-    p: "The best free ATS resume checker is the one you can run on the posting in front of you without paying or signing up. FitMyCV and ATSGrader need no account. Jobscan gives the benchmark match rate, but only a few free scans a month. Teal suits you if you already track jobs there. Resume Worded is better for writing feedback than for keyword matching.",
+    p: "The best free ATS resume checker is the one you can run on the posting in front of you without paying or signing up. FitMyCV and ATSGrader need no account. Jobscan gives the benchmark match rate, but only a few free scans a month. Teal suits you if you already track jobs there. Resume Worded is better for writing feedback than for keyword matching. None of them can copy what one employer configured, so read [how ATS works](/blog/how-ats-works) before trusting any score.",
   },
   {
     p: "“Best free” is mostly a comparison of paywalls, not of scoring science. Jobscan set the category, and most free checkers now copy its promise: paste a job description, get a match score. We make FitMyCV, so read its row with that in mind. The table compares what each tool lets you do without paying.",

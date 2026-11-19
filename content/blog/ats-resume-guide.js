@@ -8,7 +8,7 @@ export const meta = {
   excerpt:
     "Most rejections happen before a human opens your CV. Here is exactly how applicant tracking systems read a resume in 2026, and how to write one that survives the parse.",
   date: "2026-07-29",
-  updated: "2026-08-28",
+  updated: "2026-11-19",
   readingTime: 12,
   category: "ATS",
   tags: ["ats", "resume", "keywords", "formatting"],
@@ -18,6 +18,7 @@ export const meta = {
   keywords: [
     "ats resume checker",
     "ats friendly resume",
+    "what makes a resume ats friendly",
     "how to beat ats",
     "ats resume",
     "applicant tracking system resume",
@@ -32,6 +33,10 @@ export const faqs = [
   {
     q: "What is an ATS-friendly resume?",
     a: "An ATS-friendly resume is one an applicant tracking system can parse without losing information. In practice that means a single-column layout, standard section headings like Experience and Education, real selectable text rather than images, and wording that mirrors the language used in the job description.",
+  },
+  {
+    q: "What makes a resume ATS friendly?",
+    a: "A single column layout, standard section headings, contact details in the body, one consistent date format, no photos, tables or text boxes, the posting's exact keywords inside real bullets, a text based PDF or DOCX, and a clear file name. Test it by pasting the text into a plain note: if it reads in order, a parser can read it too.",
   },
   {
     q: "Do applicant tracking systems really reject resumes automatically?",
@@ -68,10 +73,40 @@ export const blocks = [
     p: "You applied to forty roles and heard back from two. It is tempting to read that as a verdict on your experience, but far more often it is a verdict on **parsing and keyword coverage**. The CV never made it into the pile a human actually reads.",
   },
   {
-    p: "Almost every mid-size and enterprise employer now runs applications through an applicant tracking system. The ATS ingests your file, extracts the text, tries to slot that text into structured fields (name, employer, title, dates, skills) and stores the result as a searchable record. Recruiters then search that database. If the extraction went badly, or your record does not contain the words they search for, you are not rejected so much as **invisible**.",
+    p: "Almost every mid-size and enterprise employer now runs applications through an applicant tracking system. The ATS ingests your file, extracts the text, tries to slot that text into structured fields (name, employer, title, dates, skills) and stores the result as a searchable record. Recruiters then search that database. If the extraction went badly, or your record does not contain the words they search for, you are not rejected so much as **invisible**. For the full picture of the three filters, see [how ATS works](/blog/how-ats-works).",
   },
   {
     p: "This guide covers what actually breaks in that pipeline, in the order it breaks: the file, the layout, the section structure, the keywords, and the evidence. Work through it once on your master CV and you will not have to think about it again.",
+  },
+
+  { h2: "What makes a resume ATS friendly? 9 checks" },
+  {
+    p: "An ATS friendly resume is one a parser can read in the right order, with the words the posting uses. That comes down to nine checks. The first five are about layout, the next two about keywords, the last two about the file.",
+  },
+  {
+    figure: {
+      src: "/blog/ats-friendly-resume-checklist.jpg",
+      alt: "A single column CV linked to a checklist of nine items, all ticked",
+      caption: "Nine checks. Every one can be tested on your own file before you apply.",
+      width: 1200,
+      height: 800,
+    },
+  },
+  {
+    ol: [
+      "**One column, newest role first.** No sidebars. The parser reads top to bottom.",
+      "**Standard headings.** Summary, Experience, Education, Skills. \"My Journey\" may not get filed anywhere.",
+      "**No photos, tables, text boxes or icons without labels.** They get skipped or scrambled.",
+      "**Contact details in the body**, never in the header or footer.",
+      "**One date format everywhere**, like \"May 2023 to Present\", so the timeline builds correctly.",
+      "**The posting's exact words** for skills and the job title, where they are true for you.",
+      "**Keywords inside real bullets**, not a hidden list. \"Used SQL to cut reporting time by 25%\" beats \"SQL\" alone.",
+      "**A text based file.** PDF or DOCX, whichever the employer asks for. Never a scan.",
+      "**A clear file name**, like Firstname_Lastname_Resume.pdf.",
+    ],
+  },
+  {
+    p: "Then test it: select all, copy, and paste into a plain text note. If it reads in the right order, you pass the first five checks. Paste the job posting into the [ATS resume checker](/ats-resume-checker) for checks six and seven. The rest of this guide explains each check in detail.",
   },
 
   { h2: "What an ATS actually does with your resume" },

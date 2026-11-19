@@ -110,7 +110,7 @@ export const blocks = [
     },
   },
   {
-    p: "The other half of positioning is language. The searchable record only matches the words that are actually on the page. If the posting says stakeholder management and your CV says keeping people in the loop, the search does not find you. Mirror the posting's exact terms where they are true. Our guide on how to tailor your CV to a job description walks through the full sequence, and the ATS-friendly resume guide covers the formatting that keeps your text parseable.",
+    p: "The other half of positioning is language. The searchable record only matches the words that are actually on the page. If the posting says stakeholder management and your CV says keeping people in the loop, the search does not find you. (More on that search, and the other two ATS filters, in [how ATS works](/blog/how-ats-works).) Mirror the posting's exact terms where they are true. Our guide on how to tailor your CV to a job description walks through the full sequence, and the ATS-friendly resume guide covers the formatting that keeps your text parseable.",
   },
   {
     steps: [

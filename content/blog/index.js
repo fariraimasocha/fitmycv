@@ -41,8 +41,14 @@ import cvFormatSouthAfrica from "./cv-format-south-africa";
 import cvFormatNigeria from "./cv-format-nigeria";
 import cvFormatKenya from "./cv-format-kenya";
 import jobscanAlternative from "./jobscan-alternative";
+import howAtsWorks from "./how-ats-works";
+import howToApplyFaster from "./how-to-apply-to-jobs-faster";
+import resumeBuilderNoSub from "./resume-builder-no-subscription";
 
 export const POSTS = [
+  resumeBuilderNoSub,
+  howToApplyFaster,
+  howAtsWorks,
   jobscanAlternative,
   tiredOfTailoring,
   cvFormatSouthAfrica,

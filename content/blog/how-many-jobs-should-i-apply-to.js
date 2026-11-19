@@ -125,7 +125,7 @@ export const blocks = [
     p: "The obstacle is time. Tailoring 15 applications a week by hand is several hours of work, which is why most people quietly stop and drift back to a single generic CV. That is the moment your response rate falls off a cliff.",
   },
   {
-    p: "FitMyCV keeps tailoring sustainable at volume. You paste the job link, and it reads the posting and rewrites your CV and cover letter to match, so a properly targeted application takes a minute to draft instead of forty. That is how you send 15 tailored applications a week without burning out. For the manual method, see our step-by-step guide on tailoring a CV to a job description.",
+    p: "FitMyCV keeps tailoring sustainable at volume. You paste the job link, and it reads the posting and rewrites your CV and cover letter to match, so a properly targeted application takes a minute to draft instead of forty. That is how you send 15 tailored applications a week without burning out. For the rest of the routine, see [how to apply to jobs faster](/blog/how-to-apply-to-jobs-faster). For the manual method, see our step-by-step guide on tailoring a CV to a job description.",
   },
   {
     cta: {

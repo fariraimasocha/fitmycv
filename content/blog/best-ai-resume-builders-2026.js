@@ -50,7 +50,7 @@ export const faqs = [
 
 export const blocks = [
   {
-    p: "\"Best AI resume builder\" is a question with no single answer, because the tools in this category are not really competing. One is a design studio, one is a diagnostic, one is a job-search CRM, and one is a tailoring engine. Picking the wrong category is why people churn through three subscriptions and conclude that AI resume tools do not work.",
+    p: "\"Best AI resume builder\" is a question with no single answer, because the tools in this category are not really competing. One is a design studio, one is a diagnostic, one is a job-search CRM, and one is a tailoring engine. Picking the wrong category is why people churn through three subscriptions and conclude that AI resume tools do not work. If the subscription is the problem, see [resume builders with no subscription](/blog/resume-builder-no-subscription).",
   },
   {
     p: "This comparison sorts them by the job they are built for. We make one of these tools, so read the FitMyCV section with the appropriate scepticism. We have tried to be specific about where it is the wrong choice.",

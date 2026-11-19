@@ -7,7 +7,7 @@ export const meta = {
   excerpt:
     "A cover letter is not a summary of your CV. It is three paragraphs that answer three lines in the posting. Here is a worked letter, then the faster way to draft one.",
   date: "2026-08-28",
-  updated: "2026-08-28",
+  updated: "2026-11-19",
   readingTime: 8,
   category: "Cover Letters",
   series: "cover-letters",
@@ -43,11 +43,23 @@ export const faqs = [
   },
   {
     q: "Is an AI-generated cover letter from a job description free?",
-    a: "Uploading your CV and reading a posting are free on FitMyCV. Generating the tailored letter is the paid step. If you only want the method, the worked example below is enough to write one by hand.",
+    a: "You can generate one on FitMyCV for free and see a preview: the opening paragraph of the letter, next to the tailored CV. One payment unlocks the full letter and PDF downloads. If you only want the method, the worked example below is enough to write one by hand.",
   },
 ];
 
 export const blocks = [
+  {
+    p: "To write a cover letter from a job description, **pick three lines from the posting and answer each one with a fact from your CV**. One paragraph per line. Cut every sentence that does not point at both. That is the whole method, and the rest of this post shows it on a real example.",
+  },
+  {
+    figure: {
+      src: "/blog/cover-letter-from-job-description-three-lines.jpg",
+      alt: "A job posting with three highlighted lines, each linked to one paragraph of a three paragraph cover letter",
+      caption: "Three lines from the posting become three paragraphs.",
+      width: 1200,
+      height: 800,
+    },
+  },
   {
     p: "Most cover letters fail because they summarise the CV. The recruiter already has the CV. What they do not have is a short argument that this posting and this person belong together. That argument is built from the job description, not from a template.",
   },
@@ -122,6 +134,15 @@ export const blocks = [
   },
 
   { h2: "AI cover letter generator from resume and job description" },
+  {
+    figure: {
+      src: "/blog/cover-letter-from-job-description-overlap.jpg",
+      alt: "A CV and a job posting overlapping, with the overlap highlighted and an arrow leading to a letter",
+      caption: "A good letter only uses the overlap between your CV and the posting.",
+      width: 1200,
+      height: 800,
+    },
+  },
   {
     p: "The method above is forty minutes when you already know the story. It is longer when you are writing ten letters a week. An AI cover letter generator from resume and job description is useful only if it reads both documents. Most “generators” paste your name into a template. That is not tailoring.",
   },

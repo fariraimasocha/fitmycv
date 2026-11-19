@@ -31,7 +31,7 @@ export default function BrandLogo({
       {showWordmark ? (
         <span
           className={cn(
-            "font-outfit font-extrabold tracking-tight text-[var(--landing-ink)]",
+            "font-outfit font-black tracking-tight text-[var(--landing-ink)]",
             wordmarkClassName,
           )}
         >

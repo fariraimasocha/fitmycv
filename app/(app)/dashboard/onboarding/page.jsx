@@ -165,7 +165,7 @@ export default function OnboardingPage() {
         <header className="flex items-center justify-between gap-3">
           <BrandLogo
             size="sm"
-            wordmarkClassName="font-outfit text-base font-semibold"
+            wordmarkClassName="text-base"
           />
           {!onPayoff && (
             <button

@@ -25,6 +25,7 @@
     "check:job-url": "node scripts/check-job-url.mjs",
     "check:nurture": "node scripts/check-nurture.mjs",
     "announce": "node --env-file=.env scripts/send-announcement.mjs",
+    "add-creator": "node --env-file=.env scripts/add-creator.mjs",
     "gsc": "node --env-file=.env scripts/gsc.mjs",
     "seo:data": "node --env-file=.env scripts/seo-weekly-data.mjs",
     "seo:triage": "node --env-file=.env scripts/seo-triage.mjs",

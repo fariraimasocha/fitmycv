@@ -122,5 +122,5 @@ export default function proxy(request, event) {
 }
 
 export const config = {
-  matcher: ["/((?!api/|_next/static|_next/image|_next/|favicon.ico|md/).*)"],
+  matcher: ["/((?!api/|r/|_next/static|_next/image|_next/|favicon.ico|md/).*)"],
 };

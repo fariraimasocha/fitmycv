@@ -99,6 +99,8 @@ const userSchema = new mongoose.Schema(
     checkoutPlan: { type: String },
     checkoutCvId: { type: mongoose.Schema.Types.ObjectId, ref: "TailoredCV" },
     checkoutReminderSentAt: { type: Date },
+    // Creator code from the `ref` cookie set by /r/<code>, saved at signup.
+    referredBy: { type: String, index: true },
     // The one "your CV is saved" email after a paywall with no checkout.
     paywallReminderSentAt: { type: Date },
     // Drives the daily job digest. Defaults are opt-in; an existing user with

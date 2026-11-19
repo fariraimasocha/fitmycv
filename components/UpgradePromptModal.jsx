@@ -126,10 +126,6 @@ export default function UpgradePromptModal({
           <DialogDescription className="text-[var(--landing-ink-soft)]">
             {description}
           </DialogDescription>
-          {/* A cvId is a saved TailoredCV, so closing this loses nothing. */}
-          {cvId ? (
-            <p className="text-sm text-[var(--landing-ink-soft)]">{t("savedNote")}</p>
-          ) : null}
         </DialogHeader>
 
         {proof.length > 0 && (
@@ -164,10 +160,6 @@ export default function UpgradePromptModal({
                 { plan: "lifetime", price: pricing.lifetime.price, label: tEco("payLifetime", { price: pricing.lifetime.price }) },
               ]}
             />
-            {offerSingle ? (
-              <p className="text-xs text-[var(--landing-ink-soft)]">{t("singleNote")}</p>
-            ) : null}
-            <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
             <button
               type="button"
               onClick={() => setCardInstead(true)}
@@ -194,7 +186,7 @@ export default function UpgradePromptModal({
                   aria-busy={pendingPlan === "single"}
                   className="dashboard-primary-btn w-full disabled:cursor-wait disabled:opacity-60"
                 >
-                  {pendingPlan === "single" ? t("opening") : t("getSingle", { price: pricing.single.price })}
+                  {t("getSingle", { price: pricing.single.price })}
                 </button>
                 <p className="text-xs text-[var(--landing-ink-soft)]">{t("singleNote")}</p>
               </>
@@ -206,7 +198,7 @@ export default function UpgradePromptModal({
               aria-busy={pendingPlan === "lifetime"}
               className={`${offerSingle ? "dashboard-secondary-btn mt-2" : "dashboard-primary-btn"} w-full disabled:cursor-wait disabled:opacity-60`}
             >
-              {pendingPlan === "lifetime" ? t("opening") : t("getLifetime", { price: pricing.lifetime.price })}
+              {t("getLifetime", { price: pricing.lifetime.price })}
             </button>
             <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
             <button
@@ -226,7 +218,7 @@ export default function UpgradePromptModal({
             aria-busy={pendingPlan === "month"}
             className="dashboard-primary-btn w-full disabled:cursor-wait disabled:opacity-60"
           >
-            {pendingPlan === "month" ? t("opening") : t("getMonth", { price: pricing.month.price })}
+            {t("getMonth", { price: pricing.month.price })}
           </button>
           <p className="text-xs text-[var(--landing-ink-soft)]">{t("monthNote")}</p>
           {offerSingle && (
@@ -238,7 +230,7 @@ export default function UpgradePromptModal({
                 aria-busy={pendingPlan === "single"}
                 className="dashboard-secondary-btn mt-2 w-full disabled:cursor-wait disabled:opacity-60"
               >
-                {pendingPlan === "single" ? t("opening") : t("getSingle", { price: pricing.single.price })}
+                {t("getSingle", { price: pricing.single.price })}
               </button>
               <p className="text-xs text-[var(--landing-ink-soft)]">{t("singleNote")}</p>
             </>
@@ -250,7 +242,7 @@ export default function UpgradePromptModal({
             aria-busy={pendingPlan === "lifetime"}
             className="mt-2 text-sm font-medium text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)] disabled:cursor-wait disabled:opacity-60"
           >
-            {pendingPlan === "lifetime" ? t("opening") : t("orLifetime", { price: pricing.lifetime.price })}
+            {t("orLifetime", { price: pricing.lifetime.price })}
           </button>
           <button
             type="button"

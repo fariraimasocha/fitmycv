@@ -8,17 +8,21 @@
 // may be listed: a skill the CV never mentions goes in the gap list, never in
 // the section.
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { ArrowRightIcon, CheckIcon, CopyIcon, QuotesIcon, XIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { useEffect, useMemo, useState } from "react";
+import { CheckIcon, QuotesIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  CopyButton,
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { evidenceFor, postingSkills } from "@/lib/interview-questions";
-import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff, saveCvHandoff } from "@/lib/ats-handoff";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
 
 const MAX_LISTED = 12;
@@ -31,20 +35,14 @@ const EXAMPLE_SECTIONS = [
 ];
 
 export default function SkillsSectionGenerator() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
-  const [copied, setCopied] = useState(false);
+  const { running, ran, start, reset } = useToolRun("skills_section");
   const [currentYear] = useState(() => new Date().getFullYear());
-  const resetTimer = useRef(null);
 
-  useEffect(() => () => clearTimeout(resetTimer.current), []);
-
-  const jobTooShort = jobText.trim().length < 40;
+  const jobIsLink = isLinkOnly(jobText);
+  const jobTooShort = jobText.trim().length < 40 || jobIsLink;
   const resumeTooShort = resumeText.trim().length < 40;
 
   const result = useMemo(() => {
@@ -63,41 +61,6 @@ export default function SkillsSectionGenerator() {
     if (!result) return;
     trackEvent("skills_section_generated", { listed: result.listed.length, gaps: gapCount });
   }, [result, gapCount]);
-
-  async function copyLine() {
-    try {
-      if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(result.line);
-      setCopied(true);
-      toast.success("Skills copied");
-      clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-      toast.error("Copy failed. Select the skills and copy them yourself.");
-    }
-  }
-
-  // Same handoff as the ATS checker: the posting opens in the tailor, and a
-  // new user finds this CV already in onboarding's paste box.
-  const handleTailorHandoff = () => {
-    saveAtsHandoff({ jobText: jobText.trim(), score: null, source: "skills" });
-    trackEvent("ats_handoff_cta", {
-      score: null,
-      source: "skills",
-      signed_in: Boolean(session?.user),
-      gaps: gapCount,
-    });
-    const dest = "/dashboard/tailor";
-    if (session?.user) {
-      router.push(dest);
-      return;
-    }
-    saveCvHandoff(resumeText, "skills");
-    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
-    if (gate?.interceptAuth(null, authUrl)) return;
-    router.push(authUrl);
-  };
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -153,9 +116,11 @@ export default function SkillsSectionGenerator() {
               ? "Reading your CV"
               : running
                 ? "Matching your CV to the posting"
-                : jobTooShort || resumeTooShort
-                  ? "Add the job description and your CV to start."
-                  : "Your CV is read in this tab. Nothing is stored."}
+                : jobIsLink
+                  ? JOB_IS_LINK
+                  : jobTooShort || resumeTooShort
+                    ? "Add the job description and your CV to start."
+                    : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -179,23 +144,12 @@ export default function SkillsSectionGenerator() {
                   <span className="font-extrabold">Skills: </span>
                   {result.line}
                 </p>
-                <button
-                  type="button"
-                  onClick={copyLine}
-                  className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                >
-                  {copied ? (
-                    <>
-                      <CheckIcon size={14} aria-hidden="true" />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <CopyIcon size={14} aria-hidden="true" />
-                      Copy
-                    </>
-                  )}
-                </button>
+                <CopyButton
+                  tool="skills_section"
+                  text={result.line}
+                  message="Skills copied"
+                  ariaLabel="Copy your skills section"
+                />
               </div>
 
               <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
@@ -262,32 +216,21 @@ export default function SkillsSectionGenerator() {
             </>
           ) : null}
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {gapCount
+          <HandoffCta
+            title={
+              gapCount === 1
+                ? "1 skill the job wants is missing from your CV"
+                : gapCount
                   ? `${gapCount} skills the job wants are missing from your CV`
-                  : "Skills sorted. Now the rest of the CV"}
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                A skills list only helps when your bullets back it up. Sign up
-                free and FitMyCV tailors your whole CV to this posting, using
-                only your real experience.
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleTailorHandoff}
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              {gapCount ? "Close the gaps" : "Tailor my CV to this job"}
-              <ArrowRightIcon
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </button>
-          </div>
+                  : "Skills sorted. Now the rest of the CV"
+            }
+            body="A skills list only helps when your bullets back it up. Sign up free and FitMyCV tailors your whole CV to this posting, using only your real experience."
+            label={gapCount ? "Close the gaps" : "Tailor my CV to this job"}
+            source="skills"
+            jobText={jobText}
+            cvText={resumeText}
+            track={{ gaps: gapCount }}
+          />
         </div>
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">

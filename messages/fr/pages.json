@@ -201,6 +201,7 @@
       "errorBoth": "Ajoutez d'abord votre CV et l'offre d'emploi.",
       "errorJob": "Collez d'abord le texte complet de l'offre.",
       "errorCv": "Ajoutez d'abord votre CV.",
+      "errorLink": "C'est un lien. Collez plutôt le texte de l'offre.",
       "jobLabel": "Collez l'offre d'emploi",
       "required": "(obligatoire)",
       "jobPlaceholder": "Collez ici le texte complet de l'offre…",
@@ -215,8 +216,16 @@
       "busyKeywords": "Lecture de l'offre",
       "readingCv": "Lecture de votre CV",
       "working": "Analyse de l'offre en cours",
-      "privacyCv": "Votre CV est lu dans cet onglet. Rien n'est stocké.",
-      "privacy": "Tout se passe dans votre navigateur. Rien n'est stocké.",
+      "privacy": "Lu dans cet onglet. Rien n'est envoyé.",
+      "previewHeading": "Ce que vous obtenez",
+      "previewScoreTitle": "Un score de couverture",
+      "previewScoreBody": "La part des principaux termes de l'offre que votre CV mentionne déjà.",
+      "previewMissingTitle": "Mots-clés manquants",
+      "previewMissingBody": "Les termes de l'offre que votre CV ne mentionne jamais.",
+      "previewCoveredTitle": "Mots-clés couverts",
+      "previewCoveredBody": "Les termes que votre CV contient déjà.",
+      "previewRankedTitle": "Mots-clés classés",
+      "previewRankedBody": "Jusqu'à 30 termes sur lesquels l'offre insiste, les plus importants d'abord.",
       "gapsMissingTitle": "{count, plural, one {# mot-clé manque} other {# mots-clés manquent}} dans votre CV",
       "gapsNoneTitle": "Rien ne manque dans votre CV",
       "gapsMissingBody": "Cette offre insiste sur {total} termes et votre CV en mentionne {covered}. Les autres sont ci-dessous, classés selon le nombre de fois où l'offre les cite. Ajoutez ceux que vous pouvez honnêtement prouver.",
@@ -248,9 +257,20 @@
       "uploadAria": "Importer votre CV",
       "replace": "Remplacer le fichier",
       "reviewHint": "Relisez le texte ci-dessous. C'est ce que l'outil va lire.",
-      "fileHint": "PDF, 8 Mo maximum. Lu dans cet onglet, jamais stocké.",
+      "fileHint": "PDF, 8 Mo maximum. Lu dans cet onglet, jamais envoyé.",
       "textPlaceholder": "Le texte extrait apparaît ici. Corrigez une ligne si elle semble fausse.",
-      "paste": "Ou collez le texte"
+      "paste": "Ou collez le texte",
+      "errorWord": "C'est un fichier Word. Exportez-le en PDF, puis importez ce PDF.",
+      "errorType": "Ce type de fichier n'est pas pris en charge. Choisissez un PDF.",
+      "errorSize": "Ce fichier dépasse 8 Mo. Choisissez un PDF plus léger.",
+      "errorEmpty": "Nous n'avons pas pu lire assez de texte dans ce fichier. C'est peut-être un scan. Collez plutôt le texte ci-dessous.",
+      "removed": "CV retiré",
+      "undo": "Annuler"
+    },
+    "copy": {
+      "copy": "Copier",
+      "copied": "Copié",
+      "failed": "La copie est bloquée dans ce navigateur. Sélectionnez le texte et copiez-le."
     }
   }
 }

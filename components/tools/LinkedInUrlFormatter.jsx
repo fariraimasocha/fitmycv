@@ -7,9 +7,10 @@
 // whether a profile exists. It only tidies the URL the user pasted. The pure
 // helpers between the markers are checked by scripts/check-tools.mjs.
 
-import { useEffect, useMemo, useState } from "react";
-import { CheckIcon, CopyIcon, WarningIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { useMemo, useState } from "react";
+import { WarningIcon } from "@phosphor-icons/react";
+
+import { CopyButton } from "@/components/tools/tool-run";
 
 // pure-helpers:start
 
@@ -122,8 +123,6 @@ const EXAMPLE = "https://uk.linkedin.com/in/farirai-masocha-4b2a19c3?originalSub
 
 export default function LinkedInUrlFormatter() {
   const [value, setValue] = useState("");
-  const [copied, setCopied] = useState("");
-  const [copyError, setCopyError] = useState("");
 
   const result = useMemo(() => {
     const isExample = !value.trim();
@@ -136,27 +135,6 @@ export default function LinkedInUrlFormatter() {
       issues: findLinkIssues(parsed.handle),
     };
   }, [value]);
-
-  useEffect(() => {
-    if (!copied) return undefined;
-    const timer = setTimeout(() => setCopied(""), 2000);
-    return () => clearTimeout(timer);
-  }, [copied]);
-
-  const handleCopy = async (key, text) => {
-    if (!navigator?.clipboard?.writeText) {
-      setCopyError("Copy is blocked in this browser. Select the link and copy it.");
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopyError("");
-      setCopied(key);
-      toast.success("Link copied");
-    } catch {
-      setCopyError("Copy is blocked in this browser. Select the link and copy it.");
-    }
-  };
 
   const options = result.short
     ? [
@@ -188,10 +166,7 @@ export default function LinkedInUrlFormatter() {
           type="text"
           inputMode="url"
           value={value}
-          onChange={(event) => {
-            setValue(event.target.value);
-            setCopyError("");
-          }}
+          onChange={(event) => setValue(event.target.value)}
           placeholder="https://www.linkedin.com/in/your-name"
           autoComplete="off"
           spellCheck={false}
@@ -201,7 +176,7 @@ export default function LinkedInUrlFormatter() {
 
       <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
         Paste the address from your profile page. The link is cleaned as you type.
-        Nothing is uploaded or stored.
+        Nothing is uploaded.
       </p>
 
       <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
@@ -256,28 +231,12 @@ export default function LinkedInUrlFormatter() {
                   </div>
 
                   {!result.isExample ? (
-                    <button
-                      type="button"
-                      onClick={() => handleCopy(option.key, option.text)}
-                      aria-label={`Copy link ${option.text}`}
-                      className="landing-secondary-btn landing-secondary-btn-sm shrink-0 font-outfit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                    >
-                      {copied === option.key ? (
-                        <>
-                          <CheckIcon
-                            size={14}
-                            aria-hidden="true"
-                            className="text-[var(--landing-success)]"
-                          />
-                          Copied
-                        </>
-                      ) : (
-                        <>
-                          <CopyIcon size={14} aria-hidden="true" />
-                          Copy
-                        </>
-                      )}
-                    </button>
+                    <CopyButton
+                      tool="linkedin_url"
+                      text={option.text}
+                      message="Link copied"
+                      ariaLabel={`Copy link ${option.text}`}
+                    />
                   ) : null}
                 </li>
               ))}
@@ -326,12 +285,6 @@ export default function LinkedInUrlFormatter() {
           </>
         )}
 
-        <p aria-live="polite" className="sr-only">
-          {copied ? "Link copied" : ""}
-        </p>
-        {copyError ? (
-          <p className="mt-4 text-sm font-semibold text-[var(--landing-coral)]">{copyError}</p>
-        ) : null}
       </div>
     </div>
   );

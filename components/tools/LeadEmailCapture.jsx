@@ -35,20 +35,22 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
 
       const data = await response.json();
       if (!response.ok) {
-        toast.error(data.error ?? "Could not save your email.");
+        toast.error(data.error ?? "We couldn't save that email. Check the address and try again.");
         return;
       }
 
       trackEvent("lead_captured", { source: "ats_checker" });
       setSaved(true);
       setDuplicate(Boolean(data.duplicate));
+      // The only caller is gaps mode, which has no score. The copy promises
+      // the link, which every email carries, and nothing else.
       if (data.duplicate) {
-        toast.success("This address already has your first score. We send it once.");
+        toast.success("We already emailed this address. We send it once.");
       } else {
-        toast.success("Sent. Check your inbox for your score and next steps.");
+        toast.success("Sent. Check your inbox.");
       }
     } catch {
-      toast.error("Could not save your email.");
+      toast.error("We couldn't reach FitMyCV. Check your connection and try again.");
     } finally {
       setSubmitting(false);
     }
@@ -62,8 +64,8 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
         </p>
         <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
           {duplicate
-            ? "We already emailed this address its first score. We send it once."
-            : "We emailed your score and a link to fix the gaps."}
+            ? "We already emailed this address. We send it once."
+            : "We emailed you a link to fix the gaps."}
         </p>
       </div>
     );
@@ -75,7 +77,7 @@ export default function LeadEmailCapture({ score, missingKeywordCount }) {
       className="mt-8 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-5"
     >
       <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-        Email me this score and a link to fix the gaps
+        Email me a link to fix these gaps
       </p>
       <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
         Optional. No account needed.

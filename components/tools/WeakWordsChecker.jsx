@@ -8,8 +8,20 @@ import { useMemo, useState } from "react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import {
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
+
+const PREVIEW = [
+  { title: "Weak words, counted", body: "Duty phrases, vague verbs and clichés, with how often each one appears." },
+  { title: "What to write instead", body: "One fix for each phrase, next to a line it was found in." },
+  { title: "A numbers check", body: "How many of your longer lines have a number in them." },
+];
 
 // pure-region-start
 // [phrase, kind, what to do instead]. Matched case-insensitively on word edges.
@@ -136,7 +148,7 @@ const KIND_LABEL = { duty: "Duty phrase", vague: "Vague verb", cliche: "Cliché"
 export default function WeakWordsChecker() {
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("weak_words");
   const tooShort = cvText.trim().length < 40;
 
   const result = useMemo(() => (ran && !tooShort ? findWeakWords(cvText) : null), [ran, tooShort, cvText]);
@@ -168,12 +180,14 @@ export default function WeakWordsChecker() {
             disabled={tooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy ? "Reading your CV" : "Your CV is read in this tab. Nothing is stored."}
+            {cvBusy ? "Reading your CV" : tooShort ? "Add your CV to start." : TOOL_PRIVACY}
           </p>
         </div>
       </form>
 
       {running ? <ToolProgress message="Reading your CV" lines={4} /> : null}
+
+      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
 
       {result ? <WeakWordsResult result={result} cvText={cvText} /> : null}
     </div>

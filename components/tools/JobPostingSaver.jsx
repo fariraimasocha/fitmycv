@@ -10,21 +10,35 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
-import { CopyIcon, FilePdfIcon, WarningIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { FilePdfIcon, WarningIcon } from "@phosphor-icons/react";
 
 import { CtaCard } from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton } from "@/components/tools/tool-run";
+import { CopyButton, ToolPreview, ToolProgress, ToolSubmitButton } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
+import { toUrl } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
 
+const PREVIEW = [
+  { title: "The full posting", body: "The text of the page as written, with its link and today's date on top." },
+  { title: "A PDF", body: "Saved through your browser's print window, so you keep it after the posting closes." },
+  { title: "Text you can copy", body: "Paste it into your notes or into the other tools here." },
+];
+
 async function fetchPosting(url) {
-  const res = await fetch("/api/tools/job-save", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url }),
-  });
+  let res;
+  try {
+    res = await fetch("/api/tools/job-save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+  } catch {
+    // fetch only rejects when the request never arrived: offline, or blocked.
+    throw new Error(
+      "We couldn't reach FitMyCV. Check your connection and try again. Your link is still in the box."
+    );
+  }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || "We couldn't open that posting. Try again.");
   return { ...data, savedAt: new Date() };
@@ -43,14 +57,29 @@ export default function JobPostingSaver() {
   const { data: session } = useSession();
   const gate = useWebviewGate();
   const [value, setValue] = useState("");
-  const save = useMutation({ mutationFn: fetchPosting });
+  const [notALink, setNotALink] = useState(false);
+  const save = useMutation({
+    mutationFn: fetchPosting,
+    onError: () => trackEvent("tool_error", { tool: "job_saver" }),
+  });
   const posting = save.data;
+  const error = notALink
+    ? "That does not look like a link. Copy the full address of the job page from your browser."
+    : save.isError
+      ? save.error.message
+      : null;
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const url = value.trim();
-    if (!url) return;
-    save.mutate(/^https?:\/\//i.test(url) ? url : `https://${url}`);
+    if (!value.trim()) return;
+    // Checked here so a typo never costs a request. The route checks it again.
+    const url = toUrl(value);
+    if (!url) {
+      setNotALink(true);
+      return;
+    }
+    trackEvent("tool_run", { tool: "job_saver" });
+    save.mutate(url.href);
   };
 
   const savePdf = () => {
@@ -58,15 +87,6 @@ export default function JobPostingSaver() {
     document.title = `job-posting-${hostOf(posting.url)}-${posting.savedAt.toISOString().slice(0, 10)}`;
     window.print();
     document.title = previous;
-  };
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(posting.text);
-      toast.success("Posting copied");
-    } catch {
-      toast.error("Copy is blocked in this browser. Select the text and copy it.");
-    }
   };
 
   const tailor = () => {
@@ -94,7 +114,10 @@ export default function JobPostingSaver() {
             type="text"
             inputMode="url"
             value={value}
-            onChange={(event) => setValue(event.target.value)}
+            onChange={(event) => {
+              setValue(event.target.value);
+              setNotALink(false);
+            }}
             placeholder="https://www.linkedin.com/jobs/view/..."
             autoComplete="off"
             spellCheck={false}
@@ -116,24 +139,31 @@ export default function JobPostingSaver() {
 
       {save.isPending ? <ToolProgress message="Reading the posting" lines={5} /> : null}
 
-      {save.isError ? (
-        <p className="mt-6 flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]">
+      {error && !save.isPending ? (
+        <p
+          role="alert"
+          className="mt-6 flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]"
+        >
           <WarningIcon size={16} aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
-          {save.error.message}
+          {error}
         </p>
       ) : null}
 
+      {!posting && !save.isPending ? <ToolPreview items={PREVIEW} /> : null}
+
       {posting && !save.isPending ? (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <button type="button" onClick={savePdf} className="landing-primary-btn font-outfit text-sm">
               <FilePdfIcon size={16} aria-hidden="true" />
               Save as PDF
             </button>
-            <button type="button" onClick={copy} className="landing-secondary-btn landing-secondary-btn-sm font-outfit">
-              <CopyIcon size={14} aria-hidden="true" />
-              Copy text
-            </button>
+            <CopyButton
+              tool="job_saver"
+              text={posting.text}
+              message="Posting copied"
+              ariaLabel="Copy the posting text"
+            />
           </div>
           <p className="mt-3 text-xs font-semibold text-[var(--landing-ink-soft)]">
             In the print window, set the destination to Save as PDF.

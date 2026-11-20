@@ -10,12 +10,13 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { CheckIcon, CopyIcon, XIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
 import {
+  CopyButton,
+  TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
   useToolRun,
@@ -83,7 +84,8 @@ function coveredTerms(terms, cvText) {
 function RoleKeywords({ role }) {
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("keywords_generator");
+  const cvTooShort = cvText.trim().length < 40;
 
   const allTerms = useMemo(() => role.groups.flatMap((g) => g.terms), [role]);
 
@@ -94,15 +96,6 @@ function RoleKeywords({ role }) {
   );
 
   const missingCount = covered ? allTerms.length - covered.size : 0;
-
-  async function copyAll() {
-    try {
-      await navigator.clipboard.writeText(allTerms.join(", "));
-      toast.success("Keywords copied");
-    } catch {
-      toast.error("Copy failed. Select the keywords and copy them yourself.");
-    }
-  }
 
   return (
     <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
@@ -126,14 +119,13 @@ function RoleKeywords({ role }) {
             .
           </p>
         </div>
-        <button
-          type="button"
-          onClick={copyAll}
-          className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-        >
-          <CopyIcon size={14} aria-hidden="true" />
-          Copy all
-        </button>
+        <CopyButton
+          tool="keywords_generator"
+          text={allTerms.join(", ")}
+          label="Copy all"
+          message="Keywords copied"
+          ariaLabel="Copy all keywords"
+        />
       </div>
 
       {role.groups.map((group) => (
@@ -176,12 +168,14 @@ function RoleKeywords({ role }) {
             label="Check my CV"
             busyLabel="Checking your CV"
             running={running}
-            disabled={cvText.trim().length < 40 || cvBusy}
+            disabled={cvTooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
               ? "Reading your CV"
-              : "Your CV is read in this tab. Nothing is stored."}
+              : cvTooShort
+                ? "Add your CV to check it against the list."
+                : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -194,9 +188,11 @@ function RoleKeywords({ role }) {
           className="mt-6 font-outfit text-base font-extrabold text-[var(--landing-ink)]"
         >
           Your CV covers {covered.size} of {allTerms.length}.{" "}
-          {missingCount
-            ? `${missingCount} are marked in red above.`
-            : "Every term on the list is there."}
+          {missingCount === 1
+            ? "1 is marked in red above."
+            : missingCount
+              ? `${missingCount} are marked in red above.`
+              : "Every term on the list is there."}
         </p>
       ) : null}
 

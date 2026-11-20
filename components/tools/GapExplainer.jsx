@@ -5,12 +5,23 @@
 // Templates, no AI, nothing leaves the tab.
 
 import { useMemo, useState } from "react";
-import { CopyIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
 
 import HandoffCta from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import {
+  CopyButton,
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
+
+const PREVIEW = [
+  { title: "A line for your CV", body: "The dates of the break and a short label for it." },
+  { title: "A sentence for your cover letter", body: "A plain explanation of the gap, ready to paste." },
+  { title: "An interview answer", body: "A short answer you can say out loud." },
+];
 
 // pure-region-start
 // cv: the CV line. letter: a cover letter sentence. answer: what to say in an
@@ -102,17 +113,7 @@ function CopyBlock({ title, text }) {
     <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
       <div className="flex items-center justify-between gap-3">
         <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">{title}</p>
-        <button
-          type="button"
-          onClick={() => {
-            navigator.clipboard?.writeText(text);
-            toast.success("Copied");
-          }}
-          aria-label={`Copy ${title.toLowerCase()}`}
-          className="rounded-md p-1.5 text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
-        >
-          <CopyIcon size={16} aria-hidden="true" />
-        </button>
+        <CopyButton tool="gap_explainer" text={text} ariaLabel={`Copy ${title.toLowerCase()}`} />
       </div>
       <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink)]">{text}</p>
     </div>
@@ -124,7 +125,7 @@ export default function GapExplainer() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [did, setDid] = useState("");
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("gap_explainer");
   const months = monthsBetween(from, to);
 
   const result = useMemo(
@@ -186,12 +187,18 @@ export default function GapExplainer() {
             disabled={months === null}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {from && to && months === null ? "The end month must come after the start month." : "Nothing you type leaves this tab."}
+            {from && to && months === null
+              ? "The end month must come after the start month."
+              : months === null
+                ? "Pick the month the gap started and the month it ended."
+                : TOOL_PRIVACY}
           </p>
         </div>
       </form>
 
       {running ? <ToolProgress message="Writing your lines" lines={3} /> : null}
+
+      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 flex flex-col gap-3 border-t border-[var(--landing-line)] pt-8">

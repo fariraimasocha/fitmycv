@@ -9,19 +9,20 @@
 // AI. The upgrade path, when the letter needs real rewriting, is the
 // signed-in tailor, which also writes the cover letter.
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { CheckIcon, CopyIcon, SparkleIcon, XIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { useMemo, useState } from "react";
+import { CheckIcon, SparkleIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
-import { CtaCard } from "@/components/tools/HandoffCta";
+import HandoffCta from "@/components/tools/HandoffCta";
 import {
+  CopyButton,
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { isLinkOnly } from "@/lib/ats-detect";
 import {
   extractRoleTitle,
   extractTerms,
@@ -31,8 +32,6 @@ import {
   stem,
   tokenize,
 } from "@/lib/summary-helpers";
-import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff, saveCvHandoff } from "@/lib/ats-handoff";
 import { trackEvent } from "@/lib/analytics";
 import { notCompanyTerm } from "@/lib/keywords";
 
@@ -175,7 +174,7 @@ function readLetter(jobText, cvText, company, name, currentYear) {
   };
 }
 
-function LetterResult({ result, copiedId, onCopy, onCloseGaps }) {
+function LetterResult({ result, jobText, cvText }) {
   const missingCount = result.missing.length;
   return (
     <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
@@ -213,19 +212,15 @@ function LetterResult({ result, copiedId, onCopy, onCloseGaps }) {
                       {letter.hint}
                     </p>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => onCopy(letter.id, letter.text)}
-                    className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                    aria-label={`Copy the ${letter.shape.toLowerCase()}`}
-                  >
-                    {copiedId === letter.id ? (
-                      <CheckIcon size={14} aria-hidden="true" />
-                    ) : (
-                      <CopyIcon size={14} aria-hidden="true" />
-                    )}
-                    {copiedId === letter.id ? "Copied" : "Copy"}
-                  </button>
+                  <CopyButton
+                    tool="letter_from_cv"
+                    text={letter.text}
+                    message="Letter copied"
+                    ariaLabel={`Copy the ${letter.shape.toLowerCase()}`}
+                    onCopied={() =>
+                      trackEvent("application_letter_copied", { shape: letter.id })
+                    }
+                  />
                 </div>
                 <p className="whitespace-pre-line break-words text-sm font-semibold leading-7 text-[var(--landing-ink)]">
                   {letter.text}
@@ -264,7 +259,13 @@ function LetterResult({ result, copiedId, onCopy, onCloseGaps }) {
         </>
       ) : null}
 
-      <CtaCard
+      {/* Same handoff as the ATS checker: the posting goes to the tailor, and a
+          new user's CV goes to onboarding so they skip the upload. */}
+      <HandoffCta
+        source="application_letter"
+        jobText={jobText}
+        cvText={cvText}
+        track={{ missing_count: missingCount }}
         title={
           missingCount
             ? "Close these gaps"
@@ -276,7 +277,6 @@ function LetterResult({ result, copiedId, onCopy, onCloseGaps }) {
             : "Your CV already covers this posting's terms. FitMyCV rewrites your CV against it so the strongest evidence sits at the top."
         }
         label={missingCount ? "Close these gaps" : "Tailor my CV"}
-        onClick={onCloseGaps}
       />
     </div>
   );
@@ -306,22 +306,16 @@ function LetterExample() {
 }
 
 export default function LetterFromCvGenerator() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [company, setCompany] = useState("");
   const [name, setName] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const [copiedId, setCopiedId] = useState(null);
   const [currentYear] = useState(() => new Date().getFullYear());
-  const { running, ran, start, reset } = useToolRun();
-  const copyTimer = useRef(null);
+  const { running, ran, start, reset } = useToolRun("letter_from_cv");
 
-  useEffect(() => () => clearTimeout(copyTimer.current), []);
-
-  const jobTooShort = jobText.trim().length < 40;
+  const jobIsLink = isLinkOnly(jobText);
+  const jobTooShort = jobText.trim().length < 40 || jobIsLink;
   const cvTooShort = cvText.trim().length < 40;
 
   const result = useMemo(() => {
@@ -337,44 +331,6 @@ export default function LetterFromCvGenerator() {
     name,
     currentYear,
   ]);
-
-  async function copyLetter(id, text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedId(id);
-      toast.success("Letter copied");
-      trackEvent("application_letter_copied", { shape: id });
-      clearTimeout(copyTimer.current);
-      copyTimer.current = setTimeout(() => setCopiedId(null), 2000);
-    } catch {
-      toast.error("Copy failed. Select the letter and copy it yourself.");
-    }
-  }
-
-  // Same handoff as the ATS checker: the posting goes to the tailor, and a new
-  // user's CV goes to onboarding so they skip the upload.
-  const closeGaps = () => {
-    const missing = result?.missing.length ?? 0;
-    saveAtsHandoff({
-      jobText: jobText.trim(),
-      score: null,
-      source: "application_letter",
-    });
-    trackEvent("ats_handoff_cta", {
-      source: "application_letter",
-      signed_in: Boolean(session?.user),
-      missing_count: missing,
-    });
-    const dest = "/dashboard/tailor";
-    if (session?.user) {
-      router.push(dest);
-      return;
-    }
-    saveCvHandoff(cvText, "application_letter");
-    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
-    if (gate?.interceptAuth(null, authUrl)) return;
-    router.push(authUrl);
-  };
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -394,7 +350,10 @@ export default function LetterFromCvGenerator() {
             <textarea
               id="letter-job-text"
               value={jobText}
-              onChange={(e) => setJobText(e.target.value)}
+              onChange={(e) => {
+                setJobText(e.target.value);
+                reset();
+              }}
               rows={10}
               placeholder="Paste the full text of the job advert here…"
               className={`${fieldClass} resize-y`}
@@ -423,7 +382,10 @@ export default function LetterFromCvGenerator() {
             <input
               id="letter-company"
               value={company}
-              onChange={(e) => setCompany(e.target.value)}
+              onChange={(e) => {
+                setCompany(e.target.value);
+                reset();
+              }}
               placeholder="Greenfield Logistics"
               className={fieldClass}
             />
@@ -438,7 +400,10 @@ export default function LetterFromCvGenerator() {
             <input
               id="letter-name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                reset();
+              }}
               autoComplete="name"
               placeholder="Thandiwe Moyo"
               className={fieldClass}
@@ -456,9 +421,11 @@ export default function LetterFromCvGenerator() {
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {cvBusy
               ? "Reading your CV"
-              : jobTooShort || cvTooShort
-                ? "Add the job description and your CV to start."
-                : "Your CV is read in this tab. Nothing is stored."}
+              : jobIsLink
+                ? JOB_IS_LINK
+                : jobTooShort || cvTooShort
+                  ? "Add the job description and your CV to start."
+                  : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -468,12 +435,7 @@ export default function LetterFromCvGenerator() {
       ) : null}
 
       {result ? (
-        <LetterResult
-          result={result}
-          copiedId={copiedId}
-          onCopy={copyLetter}
-          onCloseGaps={closeGaps}
-        />
+        <LetterResult result={result} jobText={jobText} cvText={cvText} />
       ) : (
         <LetterExample />
       )}

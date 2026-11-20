@@ -18,6 +18,14 @@ function formatFileSize(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+// Codes from utils/extract-resume-client.js, mapped to pages.tools.resumeFile.
+const ERROR_KEYS = {
+  word: "errorWord",
+  type: "errorType",
+  size: "errorSize",
+  empty: "errorEmpty",
+};
+
 const textareaClassName =
   "min-w-0 w-full max-w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]";
 
@@ -56,8 +64,7 @@ export default function ResumeFileField({
     async (file) => {
       const invalid = validateResumeFile(file);
       if (invalid) {
-        setError(invalid);
-        toast.error(invalid);
+        setError(t(ERROR_KEYS[invalid]));
         return;
       }
 
@@ -71,12 +78,11 @@ export default function ResumeFileField({
         onChange(text);
         toast.success(t("ready"));
       } catch (caught) {
-        const message =
-          caught instanceof Error
-            ? caught.message
-            : t("readFailed");
-        setError(message);
-        toast.error(message);
+        // An error with no code is the PDF library's own wording (a locked or
+        // broken file), so it gets the general message instead.
+        setError(t(ERROR_KEYS[caught?.code] ?? "readFailed"));
+        // Both messages end in "paste the text", so the box is open and focused.
+        setPasteOpen(true);
       } finally {
         setBusy(false);
         if (inputRef.current) inputRef.current.value = "";
@@ -96,11 +102,23 @@ export default function ResumeFileField({
 
   const clearFile = () => {
     if (reading) return;
+    const before = { fileName, fileSize, text: value };
     setFileName("");
     setFileSize(0);
     setError("");
     onChange("");
     if (inputRef.current) inputRef.current.value = "";
+    // The text may hold hand edits, so removing it can be taken back.
+    toast(t("removed"), {
+      action: {
+        label: t("undo"),
+        onClick: () => {
+          setFileName(before.fileName);
+          setFileSize(before.fileSize);
+          onChange(before.text);
+        },
+      },
+    });
   };
 
   const hasFile = Boolean(fileName);

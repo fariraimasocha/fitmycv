@@ -12,19 +12,21 @@
 // The pure helpers between the two marker comments below are checked by
 // scripts/check-tools.mjs. Run: npm run check:tools
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRightIcon,
-  CheckIcon,
-  CopyIcon,
-  SparkleIcon,
-  XIcon,
-} from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { CheckIcon, SparkleIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  CopyButton,
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { notCompanyTerm } from "@/lib/keywords";
 
 // pure-helpers:start
@@ -570,16 +572,13 @@ export default function HeadlineGenerator() {
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
-  const [copiedId, setCopiedId] = useState(null);
+  const { running, ran, start, reset } = useToolRun("headline");
   // Captured once so the render body stays pure. Years of experience read from
   // date ranges need a "today" to count up to.
   const [currentYear] = useState(() => new Date().getFullYear());
-  const resetTimer = useRef(null);
 
-  useEffect(() => () => clearTimeout(resetTimer.current), []);
-
-  const jobTooShort = jobText.trim().length < 40;
+  const jobIsLink = isLinkOnly(jobText);
+  const jobTooShort = jobText.trim().length < 40 || jobIsLink;
   const resumeTooShort = resumeText.trim().length < 40;
 
   const result = useMemo(() => {
@@ -592,20 +591,6 @@ export default function HeadlineGenerator() {
       missing: out.missing.filter((item) => keep(item.term)),
     };
   }, [ran, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
-
-  async function copyHeadline(id, text) {
-    try {
-      if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(text);
-      setCopiedId(id);
-      toast.success("Headline copied");
-      clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => setCopiedId(null), 2000);
-    } catch {
-      setCopiedId(null);
-      toast.error("Copy failed. Select the headline and copy it yourself.");
-    }
-  }
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -627,7 +612,10 @@ export default function HeadlineGenerator() {
             <textarea
               id="headline-job-text"
               value={jobText}
-              onChange={(e) => setJobText(e.target.value)}
+              onChange={(e) => {
+                setJobText(e.target.value);
+                reset();
+              }}
               rows={10}
               placeholder="Paste the full text of the job posting here…"
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
@@ -658,9 +646,11 @@ export default function HeadlineGenerator() {
               ? "Reading your CV"
               : running
                 ? "Matching your resume to the posting"
-                : jobTooShort || resumeTooShort
-                ? "Add the job description and your CV to generate."
-                : "Your CV is read in this tab. Nothing is stored."}
+                : jobIsLink
+                  ? JOB_IS_LINK
+                  : jobTooShort || resumeTooShort
+                    ? "Add the job description and your CV to generate."
+                    : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -701,24 +691,12 @@ export default function HeadlineGenerator() {
                           {headline.text}
                         </p>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => copyHeadline(headline.id, headline.text)}
-                        className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                        aria-label={`Copy headline: ${headline.text}`}
-                      >
-                        {copiedId === headline.id ? (
-                          <>
-                            <CheckIcon size={14} aria-hidden="true" />
-                            Copied
-                          </>
-                        ) : (
-                          <>
-                            <CopyIcon size={14} aria-hidden="true" />
-                            Copy
-                          </>
-                        )}
-                      </button>
+                      <CopyButton
+                        tool="headline"
+                        text={headline.text}
+                        message="Headline copied"
+                        ariaLabel={`Copy headline: ${headline.text}`}
+                      />
                     </div>
                     <p className="text-xs leading-6 text-[var(--landing-ink-soft)]">
                       {headline.claims.length
@@ -791,28 +769,14 @@ export default function HeadlineGenerator() {
             </>
           ) : null}
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                Want the rest of the CV to match?
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Paste the job link and FitMyCV rewrites your CV and cover letter
-                against the posting, keeping your real experience.
-              </p>
-            </div>
-            <Link
-              href="/tailor-cv-from-job-link"
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Tailor my CV
-              <ArrowRightIcon
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
+          <HandoffCta
+            title="Want the rest of the CV to match?"
+            body="Sign up free and FitMyCV rewrites your CV and cover letter against this posting, keeping your real experience."
+            label="Tailor my CV to this job"
+            source="headline"
+            jobText={jobText}
+            cvText={resumeText}
+          />
         </div>
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">

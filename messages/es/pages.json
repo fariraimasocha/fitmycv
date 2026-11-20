@@ -201,6 +201,7 @@
       "errorBoth": "Primero añade tu CV y la descripción de la oferta.",
       "errorJob": "Primero pega la descripción completa de la oferta.",
       "errorCv": "Primero añade tu CV.",
+      "errorLink": "Eso es un enlace. Pega el texto de la oferta en su lugar.",
       "jobLabel": "Pega la descripción de la oferta",
       "required": "(obligatorio)",
       "jobPlaceholder": "Pega aquí el texto completo de la oferta…",
@@ -215,8 +216,16 @@
       "busyKeywords": "Leyendo la oferta",
       "readingCv": "Leyendo tu CV",
       "working": "Analizando la oferta",
-      "privacyCv": "Tu CV se lee en esta pestaña. No se guarda nada.",
-      "privacy": "Funciona por completo en tu navegador. No se guarda nada.",
+      "privacy": "Se lee en esta pestaña. No se sube nada.",
+      "previewHeading": "Lo que recibes",
+      "previewScoreTitle": "Una puntuación de cobertura",
+      "previewScoreBody": "La parte de los términos principales de la oferta que tu CV ya menciona.",
+      "previewMissingTitle": "Palabras clave que faltan",
+      "previewMissingBody": "Los términos de la oferta que tu CV nunca menciona.",
+      "previewCoveredTitle": "Palabras clave cubiertas",
+      "previewCoveredBody": "Los términos que tu CV ya incluye.",
+      "previewRankedTitle": "Palabras clave ordenadas",
+      "previewRankedBody": "Hasta 30 términos en los que insiste la oferta, los de más peso primero.",
       "gapsMissingTitle": "{count, plural, one {Falta # palabra clave} other {Faltan # palabras clave}} en tu CV",
       "gapsNoneTitle": "No falta nada en tu CV",
       "gapsMissingBody": "Esta oferta se apoya en {total} términos y tu CV menciona {covered}. El resto está abajo, ordenado según cuántas veces aparece cada uno en la oferta. Añade los que puedas demostrar con honestidad.",
@@ -248,9 +257,20 @@
       "uploadAria": "Subir tu CV",
       "replace": "Reemplazar archivo",
       "reviewHint": "Revisa el texto de abajo. Es lo que leerá el verificador.",
-      "fileHint": "PDF, hasta 8 MB. Se lee en esta pestaña y nunca se guarda.",
+      "fileHint": "PDF, hasta 8 MB. Se lee en esta pestaña y nunca se sube.",
       "textPlaceholder": "Aquí aparece el texto extraído. Edítalo si alguna línea no está bien.",
-      "paste": "O pega el texto"
+      "paste": "O pega el texto",
+      "errorWord": "Eso es un archivo de Word. Expórtalo como PDF y sube ese PDF.",
+      "errorType": "Ese tipo de archivo no es compatible. Elige un PDF.",
+      "errorSize": "Ese archivo supera los 8 MB. Elige un PDF más pequeño.",
+      "errorEmpty": "No pudimos leer suficiente texto de este archivo. Puede que sea un escaneo. Pega el texto abajo.",
+      "removed": "CV eliminado",
+      "undo": "Deshacer"
+    },
+    "copy": {
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "failed": "Este navegador bloquea la copia. Selecciona el texto y cópialo."
     }
   }
 }

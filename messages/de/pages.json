@@ -201,6 +201,7 @@
       "errorBoth": "Füge zuerst deinen Lebenslauf und die Stellenbeschreibung hinzu.",
       "errorJob": "Füge zuerst die vollständige Stellenbeschreibung ein.",
       "errorCv": "Füge zuerst deinen Lebenslauf hinzu.",
+      "errorLink": "Das ist ein Link. Füge stattdessen den Text der Stellenanzeige ein.",
       "jobLabel": "Stellenbeschreibung einfügen",
       "required": "(Pflichtfeld)",
       "jobPlaceholder": "Füge hier den vollständigen Text der Stellenanzeige ein…",
@@ -215,8 +216,16 @@
       "busyKeywords": "Anzeige wird gelesen",
       "readingCv": "Lebenslauf wird gelesen",
       "working": "Anzeige wird ausgewertet",
-      "privacyCv": "Dein Lebenslauf wird in diesem Tab gelesen. Nichts wird gespeichert.",
-      "privacy": "Läuft komplett in deinem Browser. Nichts wird gespeichert.",
+      "privacy": "Wird in diesem Tab gelesen. Nichts wird hochgeladen.",
+      "previewHeading": "Das bekommst du",
+      "previewScoreTitle": "Ein Abdeckungswert",
+      "previewScoreBody": "Der Anteil der wichtigsten Begriffe der Anzeige, die dein Lebenslauf schon nennt.",
+      "previewMissingTitle": "Fehlende Keywords",
+      "previewMissingBody": "Die Begriffe der Anzeige, die in deinem Lebenslauf nie vorkommen.",
+      "previewCoveredTitle": "Abgedeckte Keywords",
+      "previewCoveredBody": "Die Begriffe, die dein Lebenslauf schon enthält.",
+      "previewRankedTitle": "Keywords nach Gewicht",
+      "previewRankedBody": "Bis zu 30 Begriffe, auf die die Anzeige setzt, die wichtigsten zuerst.",
       "gapsMissingTitle": "{count, plural, one {# Keyword fehlt} other {# Keywords fehlen}} in deinem Lebenslauf",
       "gapsNoneTitle": "In deinem Lebenslauf fehlt nichts",
       "gapsMissingBody": "Diese Anzeige setzt auf {total} Begriffe, und dein Lebenslauf erwähnt {covered} davon. Die übrigen stehen unten, sortiert danach, wie oft die Anzeige sie nennt. Ergänze die, die du ehrlich belegen kannst.",
@@ -248,9 +257,20 @@
       "uploadAria": "Lebenslauf hochladen",
       "replace": "Datei ersetzen",
       "reviewHint": "Prüf den Text unten. Genau den liest der Check.",
-      "fileHint": "PDF, bis 8 MB. Wird in diesem Tab gelesen, nie gespeichert.",
+      "fileHint": "PDF, bis 8 MB. Wird in diesem Tab gelesen, nie hochgeladen.",
       "textPlaceholder": "Hier erscheint der ausgelesene Text. Bearbeite ihn, wenn eine Zeile falsch aussieht.",
-      "paste": "Oder füge den Text ein"
+      "paste": "Oder füge den Text ein",
+      "errorWord": "Das ist eine Word-Datei. Exportiere sie als PDF und lade das PDF hoch.",
+      "errorType": "Dieser Dateityp wird nicht unterstützt. Wähle ein PDF.",
+      "errorSize": "Diese Datei ist größer als 8 MB. Wähle ein kleineres PDF.",
+      "errorEmpty": "Wir konnten nicht genug Text aus dieser Datei lesen. Vielleicht ist es ein Scan. Füge den Text stattdessen unten ein.",
+      "removed": "Lebenslauf entfernt",
+      "undo": "Rückgängig"
+    },
+    "copy": {
+      "copy": "Kopieren",
+      "copied": "Kopiert",
+      "failed": "Kopieren ist in diesem Browser blockiert. Markiere den Text und kopiere ihn."
     }
   }
 }

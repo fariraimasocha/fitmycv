@@ -9,9 +9,26 @@ import { useMemo, useState } from "react";
 import { CheckIcon, MinusIcon } from "@phosphor-icons/react";
 
 import HandoffCta from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import {
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { checkProfile, SECTIONS } from "@/lib/linkedin-check";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
+
+const MIN_JOB_CHARS = 80;
+const MIN_PROFILE_CHARS = 20;
+
+const PREVIEW = [
+  { title: "A coverage figure", body: "The share of the posting's main terms that appear anywhere on your profile." },
+  { title: "Section by section", body: "A table of each term against your headline, About and skills." },
+  { title: "Headline picks", body: "Up to three terms your profile already has that your headline does not." },
+];
 
 const field =
   "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)]";
@@ -19,7 +36,7 @@ const fieldLabel = "font-outfit text-sm font-extrabold text-[var(--landing-ink)]
 
 const SECTION_LABEL = { headline: "Headline", about: "About", skills: "Skills" };
 
-function Result({ result }) {
+function Result({ result, job }) {
   return (
     <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
       <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -72,6 +89,7 @@ function Result({ result }) {
         body="FitMyCV rewrites your CV against a job posting, in the posting's own words, using only what is already in your experience."
         label="Tailor my CV to this job"
         source="linkedin_check"
+        jobText={job}
       />
     </div>
   );
@@ -80,9 +98,12 @@ function Result({ result }) {
 export default function LinkedInProfileChecker() {
   const [job, setJob] = useState("");
   const [profile, setProfile] = useState({ headline: "", about: "", skills: "" });
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("linkedin_profile");
   const profileText = SECTIONS.map((s) => profile[s]).join("\n");
-  const tooShort = job.trim().length < 80 || profileText.trim().length < 20;
+  const jobIsLink = isLinkOnly(job);
+  const jobTooShort = job.trim().length < MIN_JOB_CHARS || jobIsLink;
+  const profileTooShort = profileText.trim().length < MIN_PROFILE_CHARS;
+  const tooShort = jobTooShort || profileTooShort;
 
   const result = useMemo(
     () => (ran && !tooShort ? checkProfile(job, profile) : null),
@@ -151,14 +172,22 @@ export default function LinkedInProfileChecker() {
             disabled={tooShort}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            Read in this tab. Nothing is stored.
+            {jobIsLink
+              ? JOB_IS_LINK
+              : jobTooShort
+                ? "Paste the full job description."
+                : profileTooShort
+                  ? "Add your headline, About section or skills."
+                  : TOOL_PRIVACY}
           </p>
         </div>
       </form>
 
       {running ? <ToolProgress message="Comparing your profile" lines={4} /> : null}
 
-      {result ? <Result result={result} /> : null}
+      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+
+      {result ? <Result result={result} job={job} /> : null}
     </div>
   );
 }

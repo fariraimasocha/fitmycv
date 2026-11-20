@@ -15,10 +15,19 @@
 // Self check: npm run check:tools
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
-import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
+import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  CopyButton,
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { notCompanyTerm } from "@/lib/keywords";
 
 // pure-region-start
@@ -481,6 +490,12 @@ const EXAMPLE_BULLET = "Managed customer support tickets.";
 
 const EXAMPLE_JOB = `Customer Support Specialist. You will own the support queue, resolve customer tickets across email and chat, and keep first response time under two hours. We look for careful troubleshooting, clear written communication, and hands-on time with Zendesk. You will escalate bugs to the product team and keep the help centre documentation current. Support in a SaaS company is preferred.`;
 
+const PREVIEW = [
+  { title: "Three rewrites", body: "Each opens with an action verb and marks where your number goes." },
+  { title: "A read on the original", body: "Weak opener, missing number, pronouns, length. One line each." },
+  { title: "A verb bank", body: "Action verbs for the kind of work this bullet describes." },
+];
+
 const SLOT_CLASS =
   "rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-1.5 py-0.5 font-bold text-[var(--landing-primary-dark)]";
 
@@ -527,7 +542,11 @@ function NoteIcon({ tone }) {
 export default function BulletRewriter() {
   const [bullet, setBullet] = useState("");
   const [jobText, setJobText] = useState("");
-  const { running, ran, start } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("bullet_rewriter");
+
+  // A pasted link is not a posting. Its terms would be pieces of the address.
+  const jobIsLink = isLinkOnly(jobText);
+  const posting = jobIsLink ? "" : jobText;
 
   const result = useMemo(() => {
     if (!ran) return null;
@@ -538,14 +557,15 @@ export default function BulletRewriter() {
     return {
       ...rewrite,
       notes: diagnoseBullet(bullet),
-      terms: tailoringTerms(bullet, jobText).filter(notCompanyTerm(jobText)),
+      terms: tailoringTerms(bullet, posting).filter(notCompanyTerm(posting)),
       verbs: VERB_FAMILIES[rewrite.family].verbs,
       familyHint: VERB_FAMILIES[rewrite.family].hint,
     };
-  }, [ran, bullet, jobText]);
+  }, [ran, bullet, posting]);
 
   const tooShort = normalizeBullet(bullet).split(/\s+/).filter(Boolean).length < 3;
-  const jobStarted = jobText.trim().length > 0;
+  const jobStarted = posting.trim().length > 0;
+  const untouched = !bullet.trim() && !jobText.trim();
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -567,7 +587,10 @@ export default function BulletRewriter() {
             <textarea
               id="bullet-text"
               value={bullet}
-              onChange={(e) => setBullet(e.target.value)}
+              onChange={(e) => {
+                setBullet(e.target.value);
+                reset();
+              }}
               rows={4}
               placeholder="Managed customer support tickets."
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
@@ -587,13 +610,16 @@ export default function BulletRewriter() {
             <textarea
               id="bullet-job-text"
               value={jobText}
-              onChange={(e) => setJobText(e.target.value)}
+              onChange={(e) => {
+                setJobText(e.target.value);
+                reset();
+              }}
               rows={4}
               placeholder="Paste the posting to see which of its terms you could work in…"
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
             />
             <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-              Leave this empty to just rewrite the bullet.
+              {jobIsLink ? JOB_IS_LINK : "Leave this empty to just rewrite the bullet."}
             </p>
           </div>
         </div>
@@ -605,22 +631,26 @@ export default function BulletRewriter() {
             running={running}
             disabled={tooShort}
           />
-          <button
-            type="button"
-            onClick={() => {
-              setBullet(EXAMPLE_BULLET);
-              setJobText(EXAMPLE_JOB);
-              start();
-            }}
-            disabled={running}
-            className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            Try an example
-          </button>
+          {/* Only offered on an empty form, so it never replaces what you typed. */}
+          {untouched ? (
+            <button
+              type="button"
+              onClick={() => {
+                setBullet(EXAMPLE_BULLET);
+                setJobText(EXAMPLE_JOB);
+                start();
+              }}
+              className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+            >
+              Try an example
+            </button>
+          ) : null}
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {running
               ? "Rewriting your bullet"
-              : "Runs entirely in your browser. Nothing is uploaded or stored."}
+              : tooShort
+                ? "Paste a bullet of at least three words."
+                : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -649,9 +679,15 @@ export default function BulletRewriter() {
                 <span className="mt-0.5 font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-sm leading-7 text-[var(--landing-ink)]">
+                <p className="min-w-0 flex-1 text-sm leading-7 text-[var(--landing-ink)]">
                   <SlottedText text={variant} />
                 </p>
+                <CopyButton
+                  tool="bullet_rewriter"
+                  text={variant}
+                  message="Bullet copied"
+                  ariaLabel={`Copy rewrite ${i + 1}`}
+                />
               </li>
             ))}
           </ol>
@@ -719,63 +755,16 @@ export default function BulletRewriter() {
             ))}
           </ul>
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                One bullet down. What about the rest?
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Paste the job link and FitMyCV rewrites every bullet against that
-                posting, keeping your real experience and your real numbers.
-              </p>
-            </div>
-            <Link
-              href="/tailor-cv-from-job-link"
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Tailor my CV
-              <ArrowRightIcon
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
+          <HandoffCta
+            title="One bullet down. What about the rest?"
+            body="FitMyCV rewrites every bullet against a job posting, keeping your real experience and your real numbers."
+            label="Tailor my CV"
+            source="bullet_rewriter"
+            jobText={posting}
+          />
         </div>
-      ) : (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-          <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            What you get back
-          </p>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-            {[
-              {
-                title: "Three rewrites",
-                body: "Each opens with an action verb and marks where your number goes.",
-              },
-              {
-                title: "A read on the original",
-                body: "Weak opener, missing number, pronouns, length. One line each.",
-              },
-              {
-                title: "A verb bank",
-                body: "Action verbs for the kind of work this bullet describes.",
-              },
-            ].map(({ title, body }) => (
-              <li
-                key={title}
-                className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-4"
-              >
-                <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-                  {title}
-                </p>
-                <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">
-                  {body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
+      ) : running ? null : (
+        <ToolPreview items={PREVIEW} />
       )}
     </div>
   );

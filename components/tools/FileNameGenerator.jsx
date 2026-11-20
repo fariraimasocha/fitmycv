@@ -7,10 +7,10 @@
 // only real logic here is the sanitiser, and scripts/check-tools.mjs
 // runs it against the awkward inputs.
 
-import { useEffect, useMemo, useState } from "react";
-import { CheckIcon, CopyIcon, WarningIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { useMemo, useState } from "react";
+import { WarningIcon } from "@phosphor-icons/react";
 
+import { CopyButton } from "@/components/tools/tool-run";
 import { buildFileName, exceedsLimit } from "@/utils/pdf-filename";
 
 // Characters that Windows, macOS or Linux refuse inside a file name.
@@ -68,8 +68,6 @@ const FIELDS = [
 
 export default function FileNameGenerator() {
   const [values, setValues] = useState({ name: "", role: "", company: "" });
-  const [copied, setCopied] = useState("");
-  const [copyError, setCopyError] = useState("");
 
   const { options, issues, isExample } = useMemo(() => {
     const empty = !values.name.trim() && !values.role.trim() && !values.company.trim();
@@ -110,32 +108,8 @@ export default function FileNameGenerator() {
     };
   }, [values]);
 
-  useEffect(() => {
-    if (!copied) return undefined;
-    const timer = setTimeout(() => setCopied(""), 2000);
-    return () => clearTimeout(timer);
-  }, [copied]);
-
   const update = (key) => (event) => {
     setValues((current) => ({ ...current, [key]: event.target.value }));
-    setCopyError("");
-  };
-
-  const handleCopy = async (option) => {
-    if (!navigator?.clipboard?.writeText) {
-      setCopied("");
-      setCopyError("Copy is blocked in this browser. Select the name and copy it.");
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(option.fileName);
-      setCopyError("");
-      setCopied(option.key);
-      toast.success("File name copied");
-    } catch {
-      setCopied("");
-      setCopyError("Copy is blocked in this browser. Select the name and copy it.");
-    }
   };
 
   return (
@@ -164,7 +138,7 @@ export default function FileNameGenerator() {
       </div>
 
       <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
-        Names build as you type. Nothing is uploaded or stored.
+        Names build as you type. Nothing is uploaded.
       </p>
 
       <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
@@ -213,40 +187,16 @@ export default function FileNameGenerator() {
               </div>
 
               {option.fileName && !isExample ? (
-                <button
-                  type="button"
-                  onClick={() => handleCopy(option)}
-                  aria-label={`Copy file name ${option.fileName}`}
-                  className="landing-secondary-btn landing-secondary-btn-sm shrink-0 font-outfit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                >
-                  {copied === option.key ? (
-                    <>
-                      <CheckIcon
-                        size={14}
-                        aria-hidden="true"
-                        className="text-[var(--landing-success)]"
-                      />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <CopyIcon size={14} aria-hidden="true" />
-                      Copy
-                    </>
-                  )}
-                </button>
+                <CopyButton
+                  tool="file_name"
+                  text={option.fileName}
+                  message="File name copied"
+                  ariaLabel={`Copy file name ${option.fileName}`}
+                />
               ) : null}
             </li>
           ))}
         </ul>
-
-        <p aria-live="polite" className="sr-only">
-          {copied ? "File name copied" : ""}
-        </p>
-
-        {copyError ? (
-          <p className="mt-4 text-sm font-semibold text-[var(--landing-coral)]">{copyError}</p>
-        ) : null}
 
         {issues.length ? (
           <div className="mt-8">

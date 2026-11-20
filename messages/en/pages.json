@@ -201,6 +201,7 @@
       "errorBoth": "Add your CV and the job description first.",
       "errorJob": "Paste the full job description first.",
       "errorCv": "Add your CV first.",
+      "errorLink": "That is a link. Paste the text of the job posting instead.",
       "jobLabel": "Paste the job description",
       "required": "(required)",
       "jobPlaceholder": "Paste the full text of the job posting here…",
@@ -215,8 +216,16 @@
       "busyKeywords": "Reading the posting",
       "readingCv": "Reading your CV",
       "working": "Working through the posting",
-      "privacyCv": "Your CV is read in this tab. Nothing is stored.",
-      "privacy": "Runs entirely in your browser. Nothing is stored.",
+      "privacy": "Read in this tab. Nothing is uploaded.",
+      "previewHeading": "What you get back",
+      "previewScoreTitle": "A coverage score",
+      "previewScoreBody": "The share of the posting's main terms that your CV already mentions.",
+      "previewMissingTitle": "Missing keywords",
+      "previewMissingBody": "The posting's terms your CV never mentions.",
+      "previewCoveredTitle": "Covered keywords",
+      "previewCoveredBody": "The terms your CV already has.",
+      "previewRankedTitle": "Ranked keywords",
+      "previewRankedBody": "Up to 30 terms the posting leans on, most weighted first.",
       "gapsMissingTitle": "{count, plural, one {# keyword} other {# keywords}} missing from your CV",
       "gapsNoneTitle": "Nothing missing from your CV",
       "gapsMissingBody": "This posting leans on {total} terms and your CV mentions {covered} of them. The rest are below, ranked by how often the posting mentions each one. Add the ones you can honestly evidence.",
@@ -248,9 +257,20 @@
       "uploadAria": "Upload your CV",
       "replace": "Replace file",
       "reviewHint": "Review the text below. That is what the checker will read.",
-      "fileHint": "PDF, up to 8MB. Read in this tab, never stored.",
+      "fileHint": "PDF, up to 8MB. Read in this tab, never uploaded.",
       "textPlaceholder": "The extracted text appears here. Edit it if a line looks wrong.",
-      "paste": "Or paste the text"
+      "paste": "Or paste the text",
+      "errorWord": "That is a Word file. Export it as a PDF, then upload that.",
+      "errorType": "That file type is not supported. Choose a PDF.",
+      "errorSize": "That file is over 8MB. Choose a smaller PDF.",
+      "errorEmpty": "We could not read enough text from this file. It may be a scan. Paste the text below instead.",
+      "removed": "CV removed",
+      "undo": "Undo"
+    },
+    "copy": {
+      "copy": "Copy",
+      "copied": "Copied",
+      "failed": "Copy is blocked in this browser. Select the text and copy it."
     }
   }
 }

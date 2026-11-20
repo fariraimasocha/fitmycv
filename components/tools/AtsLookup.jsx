@@ -3,17 +3,24 @@
 // "Which ATS does this company use?" lookup on /ats. Reads the vendor off the
 // pasted link in the browser (lib/ats-detect.js). No request, no guessing.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon, CheckCircleIcon, WarningIcon } from "@phosphor-icons/react";
 
 import { detectAts, toUrl } from "@/lib/ats-detect";
+import { trackEvent } from "@/lib/analytics";
 
 export default function AtsLookup() {
   const [value, setValue] = useState("");
   const typed = value.trim();
   const url = typed ? toUrl(typed) : null;
   const vendor = url ? detectAts(typed) : null;
+  const vendorId = vendor?.id;
+
+  // There is no submit button, so a run is a link we could name a vendor for.
+  useEffect(() => {
+    if (vendorId) trackEvent("tool_run", { tool: "ats_lookup", vendor: vendorId });
+  }, [vendorId]);
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -32,7 +39,7 @@ export default function AtsLookup() {
         className="mt-2 w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
       />
       <p className="mt-3 text-xs font-semibold text-[var(--landing-ink-soft)]">
-        Open a job and copy the link from the Apply page. The check runs as you type and nothing is sent anywhere.
+        Open a job and copy the link from the Apply page. The check runs as you type. Nothing is uploaded.
       </p>
 
       <div aria-live="polite">

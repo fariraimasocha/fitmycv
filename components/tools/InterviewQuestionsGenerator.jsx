@@ -7,23 +7,21 @@
 // model call, no storage. lib/interview-questions.js picks the questions from
 // the posting and the proof lines from the CV.
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import {
-  ArrowRightIcon,
-  CheckIcon,
-  CopyIcon,
-  QuotesIcon,
-  WarningCircleIcon,
-} from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { useEffect, useMemo, useState } from "react";
+import { QuotesIcon, WarningCircleIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  CopyButton,
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { generateInterviewQuestions } from "@/lib/interview-questions";
-import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff, saveCvHandoff } from "@/lib/ats-handoff";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
 
 const KIND_LABEL = {
@@ -43,20 +41,14 @@ const COMMON_QUESTIONS = [
 ];
 
 export default function InterviewQuestionsGenerator() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
-  const [copied, setCopied] = useState(false);
+  const { running, ran, start, reset } = useToolRun("interview_questions");
   const [currentYear] = useState(() => new Date().getFullYear());
-  const resetTimer = useRef(null);
 
-  useEffect(() => () => clearTimeout(resetTimer.current), []);
-
-  const jobTooShort = jobText.trim().length < 40;
+  const jobIsLink = isLinkOnly(jobText);
+  const jobTooShort = jobText.trim().length < 40 || jobIsLink;
   const resumeTooShort = resumeText.trim().length < 40;
 
   const result = useMemo(() => {
@@ -73,44 +65,6 @@ export default function InterviewQuestionsGenerator() {
       gaps: gapCount,
     });
   }, [result, gapCount]);
-
-  async function copyAll() {
-    const text = result.questions
-      .map((q) => [q.q, q.evidence ? `Your proof: ${q.evidence}` : null, q.tip].filter(Boolean).join("\n"))
-      .join("\n\n");
-    try {
-      if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      toast.success("Questions copied");
-      clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-      toast.error("Copy failed. Select the questions and copy them yourself.");
-    }
-  }
-
-  // Same handoff as the ATS checker: the posting opens in the tailor, and a
-  // new user finds this CV already in onboarding's paste box.
-  const handleTailorHandoff = () => {
-    saveAtsHandoff({ jobText: jobText.trim(), score: null, source: "interview" });
-    trackEvent("ats_handoff_cta", {
-      score: null,
-      source: "interview",
-      signed_in: Boolean(session?.user),
-      gaps: gapCount,
-    });
-    const dest = "/dashboard/tailor";
-    if (session?.user) {
-      router.push(dest);
-      return;
-    }
-    saveCvHandoff(resumeText, "interview");
-    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
-    if (gate?.interceptAuth(null, authUrl)) return;
-    router.push(authUrl);
-  };
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -166,9 +120,11 @@ export default function InterviewQuestionsGenerator() {
               ? "Reading your CV"
               : running
                 ? "Matching your CV to the posting"
-                : jobTooShort || resumeTooShort
-                  ? "Add the job description and your CV to start."
-                  : "Your CV is read in this tab. Nothing is stored."}
+                : jobIsLink
+                  ? JOB_IS_LINK
+                  : jobTooShort || resumeTooShort
+                    ? "Add the job description and your CV to start."
+                    : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -190,23 +146,17 @@ export default function InterviewQuestionsGenerator() {
                 copied from your CV.
               </p>
             </div>
-            <button
-              type="button"
-              onClick={copyAll}
-              className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              {copied ? (
-                <>
-                  <CheckIcon size={14} aria-hidden="true" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <CopyIcon size={14} aria-hidden="true" />
-                  Copy all
-                </>
-              )}
-            </button>
+            <CopyButton
+              tool="interview_questions"
+              label="Copy all"
+              message="Questions copied"
+              ariaLabel="Copy all questions"
+              text={result.questions
+                .map((q) =>
+                  [q.q, q.evidence ? `Your proof: ${q.evidence}` : null, q.tip].filter(Boolean).join("\n")
+                )
+                .join("\n\n")}
+            />
           </div>
 
           <ol className="mt-6 flex flex-col gap-3">
@@ -249,32 +199,25 @@ export default function InterviewQuestionsGenerator() {
             ))}
           </ol>
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                {gapCount
+          <HandoffCta
+            title={
+              gapCount === 1
+                ? "1 of these questions hits a gap in your CV"
+                : gapCount
                   ? `${gapCount} of these questions hit gaps in your CV`
-                  : "Your CV covers what they will ask"}
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                {gapCount
-                  ? "Close them before they read it. Sign up free and FitMyCV tailors your CV to this posting, using only your real experience."
-                  : "Make sure the recruiter sees that too. Sign up free and FitMyCV tailors your CV to this posting, using only your real experience."}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleTailorHandoff}
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              {gapCount ? "Close the gaps" : "Tailor my CV to this job"}
-              <ArrowRightIcon
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </button>
-          </div>
+                  : "Your CV covers what they will ask"
+            }
+            body={
+              gapCount
+                ? "Close them before they read it. Sign up free and FitMyCV tailors your CV to this posting, using only your real experience."
+                : "Make sure the recruiter sees that too. Sign up free and FitMyCV tailors your CV to this posting, using only your real experience."
+            }
+            label={gapCount ? "Close the gaps" : "Tailor my CV to this job"}
+            source="interview"
+            jobText={jobText}
+            cvText={resumeText}
+            track={{ gaps: gapCount }}
+          />
         </div>
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">

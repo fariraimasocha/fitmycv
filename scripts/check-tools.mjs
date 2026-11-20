@@ -668,6 +668,13 @@ Email jane@example.com, phone +44 7700 900123`;
       for (const word of keep) assert.ok(terms.some((t) => t.split(" ").includes(word)), `${lang}: ${word} in ${terms}`);
     }
   });
+
+  check("cuts a Chinese posting into words and leaves C++ and Node.js whole", () => {
+    const job = "高级数据分析师。负责使用SQL和Python进行数据分析,搭建Tableau数据看板。要求熟悉SQL,具有三年以上数据分析经验。使用C++和Node.js开发。";
+    const terms = extractTerms(job, 20).map((t) => t.term);
+    for (const keep of ["数据 分析", "sql", "python", "tableau", "c++", "node.js"]) assert.ok(terms.includes(keep), `${keep} in ${terms}`);
+    for (const filler of ["负责", "要求", "熟悉", "经验", "使用"]) assert.ok(!terms.includes(filler), filler);
+  });
 }
 
 if (failures.length) {

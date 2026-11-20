@@ -201,6 +201,7 @@
       "errorBoth": "Primeiro adicione seu currículo e a descrição da vaga.",
       "errorJob": "Primeiro cole a descrição completa da vaga.",
       "errorCv": "Primeiro adicione seu currículo.",
+      "errorLink": "Isso é um link. Cole o texto da vaga no lugar.",
       "jobLabel": "Cole a descrição da vaga",
       "required": "(obrigatório)",
       "jobPlaceholder": "Cole aqui o texto completo da vaga…",
@@ -215,8 +216,16 @@
       "busyKeywords": "Lendo a vaga",
       "readingCv": "Lendo seu currículo",
       "working": "Analisando a vaga",
-      "privacyCv": "Seu currículo é lido nesta aba. Nada é guardado.",
-      "privacy": "Roda inteiramente no seu navegador. Nada é guardado.",
+      "privacy": "Lido nesta aba. Nada é enviado.",
+      "previewHeading": "O que você recebe",
+      "previewScoreTitle": "Uma pontuação de cobertura",
+      "previewScoreBody": "A parte dos principais termos da vaga que seu currículo já menciona.",
+      "previewMissingTitle": "Palavras-chave que faltam",
+      "previewMissingBody": "Os termos da vaga que seu currículo nunca menciona.",
+      "previewCoveredTitle": "Palavras-chave cobertas",
+      "previewCoveredBody": "Os termos que seu currículo já tem.",
+      "previewRankedTitle": "Palavras-chave em ordem",
+      "previewRankedBody": "Até 30 termos em que a vaga insiste, os de maior peso primeiro.",
       "gapsMissingTitle": "{count, plural, one {Falta # palavra-chave} other {Faltam # palavras-chave}} no seu currículo",
       "gapsNoneTitle": "Não falta nada no seu currículo",
       "gapsMissingBody": "Esta vaga se apoia em {total} termos e seu currículo menciona {covered} deles. O resto está abaixo, em ordem de quantas vezes a vaga menciona cada um. Adicione os que você consegue comprovar com honestidade.",
@@ -248,9 +257,20 @@
       "uploadAria": "Enviar seu currículo",
       "replace": "Substituir arquivo",
       "reviewHint": "Revise o texto abaixo. É isso que o verificador vai ler.",
-      "fileHint": "PDF, até 8 MB. Lido nesta aba, nunca guardado.",
+      "fileHint": "PDF, até 8 MB. Lido nesta aba, nunca enviado.",
       "textPlaceholder": "O texto extraído aparece aqui. Edite se alguma linha estiver errada.",
-      "paste": "Ou cole o texto"
+      "paste": "Ou cole o texto",
+      "errorWord": "Isso é um arquivo do Word. Exporte como PDF e envie esse PDF.",
+      "errorType": "Esse tipo de arquivo não é aceito. Escolha um PDF.",
+      "errorSize": "Esse arquivo passa de 8 MB. Escolha um PDF menor.",
+      "errorEmpty": "Não conseguimos ler texto suficiente neste arquivo. Pode ser uma digitalização. Cole o texto abaixo.",
+      "removed": "Currículo removido",
+      "undo": "Desfazer"
+    },
+    "copy": {
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "failed": "A cópia está bloqueada neste navegador. Selecione o texto e copie."
     }
   }
 }

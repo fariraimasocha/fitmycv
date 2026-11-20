@@ -5,19 +5,28 @@
 // can stay unlimited and account-free.
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
-import { CtaCard } from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
-import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff } from "@/lib/ats-handoff";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
-import { trackEvent } from "@/lib/analytics";
 
 const HIGH_MATCH_SCORE = 75;
+
+const PREVIEW = [
+  { title: "A match score", body: "Skills, keywords and experience combined into one coverage score." },
+  { title: "Matched and missing skills", body: "The named skills from the posting that your resume shows, and the ones it does not." },
+  { title: "What to improve", body: "Up to five changes to make before you apply." },
+];
 
 function ScoreRing({ value }) {
   const tone =
@@ -108,42 +117,19 @@ function SkillChip({ term, present }) {
 }
 
 export default function JobMatchChecker() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("job_match");
 
-  const jobTooShort = jobText.trim().length < 40;
+  const jobIsLink = isLinkOnly(jobText);
+  const jobTooShort = jobText.trim().length < 40 || jobIsLink;
   const cvTooShort = cvText.trim().length < 40;
 
   const result = useMemo(() => {
     if (!ran || jobTooShort || cvTooShort) return null;
     return scoreResumeJobMatch(jobText, cvText);
   }, [ran, jobText, cvText, jobTooShort, cvTooShort]);
-
-  const handleTailorHandoff = () => {
-    const text = jobText.trim();
-    if (!text) return;
-    const score =
-      typeof result?.overall === "number" ? result.overall : null;
-    saveAtsHandoff({ jobText: text, score, source: "job_match" });
-    trackEvent("ats_handoff_cta", {
-      score,
-      source: "job_match",
-      signed_in: Boolean(session?.user),
-    });
-    const dest = "/dashboard/tailor";
-    if (session?.user) {
-      router.push(dest);
-      return;
-    }
-    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
-    if (gate?.interceptAuth(null, authUrl)) return;
-    router.push(authUrl);
-  };
 
   const highMatch =
     typeof result?.overall === "number" && result.overall >= HIGH_MATCH_SCORE;
@@ -209,9 +195,11 @@ export default function JobMatchChecker() {
               ? "Reading your CV"
               : running
                 ? "Comparing your CV with the posting"
-                : jobTooShort || cvTooShort
-                ? "Add your CV and the full job description."
-                : "Your CV is read in this tab. Nothing is stored."}
+                : jobIsLink
+                  ? JOB_IS_LINK
+                  : jobTooShort || cvTooShort
+                    ? "Add your CV and the full job description."
+                    : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -219,6 +207,8 @@ export default function JobMatchChecker() {
       {running ? (
         <ToolProgress message="Checking your match" lines={4} />
       ) : null}
+
+      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
@@ -285,7 +275,7 @@ export default function JobMatchChecker() {
 
           <div className="mt-8">
             <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-              Top 5 things to improve
+              What to improve
             </p>
             <ol className="mt-3 flex flex-col gap-2">
               {result.improvements.map((item, i) => (
@@ -302,7 +292,15 @@ export default function JobMatchChecker() {
             </ol>
           </div>
 
-          <CtaCard title={ctaTitle} body={ctaBody} label={ctaLabel} onClick={handleTailorHandoff} />
+          <HandoffCta
+            title={ctaTitle}
+            body={ctaBody}
+            label={ctaLabel}
+            source="job_match"
+            jobText={jobText}
+            cvText={cvText}
+            score={result.overall}
+          />
         </div>
       ) : null}
     </div>

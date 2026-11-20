@@ -9,8 +9,20 @@ import { CheckIcon, WarningIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import {
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
+
+const PREVIEW = [
+  { title: "Length", body: "A page estimate from your word count, against what employers in that country expect." },
+  { title: "Personal details", body: "Which details to remove for that country, like marital status or date of birth." },
+  { title: "Filler lines", body: "A career objective or a \"references on request\" line, each with what to do instead." },
+];
 
 // pure-region-start
 const COUNTRIES = {
@@ -175,7 +187,7 @@ export default function CvFormatChecker() {
   const [cvText, setCvText] = useState("");
   const [country, setCountry] = useState("za");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("cv_format");
   const tooShort = cvText.trim().length < 40;
 
   const result = useMemo(
@@ -234,12 +246,14 @@ export default function CvFormatChecker() {
             disabled={tooShort || cvBusy}
           />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy ? "Reading your CV" : "Your CV is read in this tab. Nothing is stored."}
+            {cvBusy ? "Reading your CV" : tooShort ? "Add your CV to start." : TOOL_PRIVACY}
           </p>
         </div>
       </form>
 
       {running ? <ToolProgress message="Checking your CV" lines={5} /> : null}
+
+      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
 
       {result ? (
         <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">

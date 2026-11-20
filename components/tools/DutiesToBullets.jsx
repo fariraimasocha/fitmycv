@@ -15,12 +15,17 @@
 // needs the same lists.
 // Self check: npm run check:tools
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import { ArrowRightIcon, CheckIcon, CopyIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { useMemo, useState } from "react";
 
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  CopyButton,
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 
 // pure-helpers:start
 
@@ -426,6 +431,21 @@ Work with the product team to report bugs
 Assist with onboarding new customers
 Monitor customer satisfaction scores and prepare weekly reports`;
 
+const PREVIEW = [
+  {
+    title: "One bullet per duty",
+    body: "Weak openers like 'Responsible for' removed, and a past tense action verb up front.",
+  },
+  {
+    title: "A slot for your number",
+    body: "Each bullet marks where a figure belongs, so it reads as a result.",
+  },
+  {
+    title: "Which number to find",
+    body: "A note under each bullet on what to count: people, hours, money or change.",
+  },
+];
+
 const SLOT_CLASS =
   "rounded-md border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] px-1.5 py-0.5 font-bold text-[var(--landing-primary-dark)]";
 
@@ -444,28 +464,10 @@ function SlottedText({ text }) {
 
 export default function DutiesToBullets() {
   const [duties, setDuties] = useState("");
-  const [copied, setCopied] = useState(null);
-  const resetTimer = useRef(null);
-  const { running, ran, start } = useToolRun();
-
-  useEffect(() => () => clearTimeout(resetTimer.current), []);
+  const { running, ran, start, reset } = useToolRun("duties_to_bullets");
 
   const bullets = useMemo(() => (ran ? dutiesToBullets(duties) : []), [ran, duties]);
   const tooShort = splitDuties(duties).length === 0;
-
-  async function copy(key, text, message) {
-    try {
-      if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(text);
-      setCopied(key);
-      toast.success(message);
-      clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => setCopied(null), 2000);
-    } catch {
-      setCopied(null);
-      toast.error("Copy failed. Select the text and copy it yourself.");
-    }
-  }
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -486,7 +488,10 @@ export default function DutiesToBullets() {
           <textarea
             id="duties-text"
             value={duties}
-            onChange={(e) => setDuties(e.target.value)}
+            onChange={(e) => {
+              setDuties(e.target.value);
+              reset();
+            }}
             rows={7}
             placeholder={"Responsible for managing the support inbox\nHandle refunds and billing questions\nMaintain the help centre articles"}
             className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
@@ -503,21 +508,25 @@ export default function DutiesToBullets() {
             running={running}
             disabled={tooShort}
           />
-          <button
-            type="button"
-            onClick={() => {
-              setDuties(EXAMPLE_DUTIES);
-              start();
-            }}
-            disabled={running}
-            className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
-          >
-            Try an example
-          </button>
+          {/* Only offered on an empty box, so it never replaces what you typed. */}
+          {duties.trim() ? null : (
+            <button
+              type="button"
+              onClick={() => {
+                setDuties(EXAMPLE_DUTIES);
+                start();
+              }}
+              className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+            >
+              Try an example
+            </button>
+          )}
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
             {running
               ? "Rewriting your duties"
-              : "Runs entirely in your browser. Nothing is uploaded or stored."}
+              : tooShort
+                ? "Paste at least one duty of three words or more."
+                : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -537,25 +546,13 @@ export default function DutiesToBullets() {
                 numbers, so use figures you can defend in an interview.
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() =>
-                copy("all", bullets.map((b) => `• ${b.bullet}`).join("\n"), "All bullets copied")
-              }
-              className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              {copied === "all" ? (
-                <>
-                  <CheckIcon size={14} aria-hidden="true" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <CopyIcon size={14} aria-hidden="true" />
-                  Copy all
-                </>
-              )}
-            </button>
+            <CopyButton
+              tool="duties_to_bullets"
+              text={bullets.map((b) => `• ${b.bullet}`).join("\n")}
+              label="Copy all"
+              message="All bullets copied"
+              ariaLabel="Copy all bullets"
+            />
           </div>
 
           <ol className="mt-6 flex flex-col gap-3">
@@ -578,88 +575,28 @@ export default function DutiesToBullets() {
                       </p>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => copy(i, item.bullet, "Bullet copied")}
-                    className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                    aria-label={`Copy bullet: ${item.bullet}`}
-                  >
-                    {copied === i ? (
-                      <>
-                        <CheckIcon size={14} aria-hidden="true" />
-                        Copied
-                      </>
-                    ) : (
-                      <>
-                        <CopyIcon size={14} aria-hidden="true" />
-                        Copy
-                      </>
-                    )}
-                  </button>
+                  <CopyButton
+                    tool="duties_to_bullets"
+                    text={item.bullet}
+                    message="Bullet copied"
+                    ariaLabel={`Copy bullet: ${item.bullet}`}
+                  />
                 </div>
                 <p className="ps-8 text-xs leading-6 text-[var(--landing-ink-soft)]">{item.note}</p>
               </li>
             ))}
           </ol>
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                Applying for a new job with these?
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Paste the job link and FitMyCV rewrites every bullet against that
-                posting, keeping your real experience and your real numbers.
-              </p>
-            </div>
-            <Link
-              href="/tailor-cv-from-job-link"
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Tailor these to a new job
-              <ArrowRightIcon
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
+          <HandoffCta
+            title="Applying for a new job with these?"
+            body="FitMyCV rewrites every bullet against a job posting, keeping your real experience and your real numbers."
+            label="Tailor my CV"
+            source="duties"
+          />
         </div>
       ) : null}
 
-      {!running && !bullets.length ? (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-          <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            What you get back
-          </p>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-            {[
-              {
-                title: "One bullet per duty",
-                body: "Weak openers like 'Responsible for' removed, and a past tense action verb up front.",
-              },
-              {
-                title: "A slot for your number",
-                body: "Each bullet marks where a figure belongs, so it reads as a result.",
-              },
-              {
-                title: "Which number to find",
-                body: "A note under each bullet on what to count: people, hours, money or change.",
-              },
-            ].map(({ title, body }) => (
-              <li
-                key={title}
-                className="rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-4"
-              >
-                <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-                  {title}
-                </p>
-                <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">{body}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+      {!running && !bullets.length ? <ToolPreview items={PREVIEW} /> : null}
     </div>
   );
 }

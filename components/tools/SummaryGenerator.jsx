@@ -13,28 +13,23 @@
 // The readers live in lib/summary-helpers.js, shared with the job application
 // letter generator. They started as a copy of HeadlineGenerator.jsx's helpers.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import {
-  ArrowRightIcon,
-  CheckIcon,
-  CopyIcon,
-  SparkleIcon,
-  XIcon,
-} from "@phosphor-icons/react";
-import { toast } from "sonner";
+import { CheckIcon, SparkleIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import HandoffCta from "@/components/tools/HandoffCta";
+import {
+  CopyButton,
+  JOB_IS_LINK,
+  TOOL_PRIVACY,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { notCompanyTerm } from "@/lib/keywords";
 import { generateSummaries } from "@/lib/summary-helpers";
-import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
-import { saveAtsHandoff } from "@/lib/ats-handoff";
-import { trackEvent } from "@/lib/analytics";
-
-
 
 // Shown before anyone runs the tool. People searching "professional summary
 // examples" land here too, so the empty state answers that first.
@@ -81,22 +76,16 @@ function Pill({ label, present }) {
 }
 
 export default function SummaryGenerator() {
-  const router = useRouter();
-  const { data: session } = useSession();
-  const gate = useWebviewGate();
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
-  const [copiedId, setCopiedId] = useState(null);
+  const { running, ran, start, reset } = useToolRun("summary");
   // Captured once so the render body stays pure. Years read from date ranges
   // need a "today" to count up to.
   const [currentYear] = useState(() => new Date().getFullYear());
-  const resetTimer = useRef(null);
 
-  useEffect(() => () => clearTimeout(resetTimer.current), []);
-
-  const jobTooShort = jobText.trim().length < 40;
+  const jobIsLink = isLinkOnly(jobText);
+  const jobTooShort = jobText.trim().length < 40 || jobIsLink;
   const resumeTooShort = resumeText.trim().length < 40;
 
   const result = useMemo(() => {
@@ -109,39 +98,6 @@ export default function SummaryGenerator() {
       missing: out.missing.filter((item) => keep(item.term)),
     };
   }, [ran, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
-
-  async function copySummary(id, text) {
-    try {
-      if (!navigator?.clipboard?.writeText) throw new Error("Clipboard unavailable");
-      await navigator.clipboard.writeText(text);
-      setCopiedId(id);
-      toast.success("Summary copied");
-      clearTimeout(resetTimer.current);
-      resetTimer.current = setTimeout(() => setCopiedId(null), 2000);
-    } catch {
-      setCopiedId(null);
-      toast.error("Copy failed. Select the summary and copy it yourself.");
-    }
-  }
-
-  // Same handoff as the ATS checkers: the posting rides along in
-  // sessionStorage, so /dashboard/tailor opens with it already filled in.
-  const handleTailorHandoff = () => {
-    saveAtsHandoff({ jobText, score: null, source: "summary" });
-    trackEvent("ats_handoff_cta", {
-      score: null,
-      source: "summary",
-      signed_in: Boolean(session?.user),
-    });
-    const dest = "/dashboard/tailor";
-    if (session?.user) {
-      router.push(dest);
-      return;
-    }
-    const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
-    if (gate?.interceptAuth(null, authUrl)) return;
-    router.push(authUrl);
-  };
 
   return (
     <div className="landing-card rounded-3xl p-4 sm:p-8">
@@ -163,7 +119,10 @@ export default function SummaryGenerator() {
             <textarea
               id="summary-job-text"
               value={jobText}
-              onChange={(e) => setJobText(e.target.value)}
+              onChange={(e) => {
+                setJobText(e.target.value);
+                reset();
+              }}
               rows={10}
               placeholder="Paste the full text of the job posting here…"
               className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
@@ -194,9 +153,11 @@ export default function SummaryGenerator() {
               ? "Reading your CV"
               : running
                 ? "Matching your CV to the posting"
-                : jobTooShort || resumeTooShort
-                  ? "Add the job description and your CV to start."
-                  : "Your CV is read in this tab. Nothing is stored."}
+                : jobIsLink
+                  ? JOB_IS_LINK
+                  : jobTooShort || resumeTooShort
+                    ? "Add the job description and your CV to start."
+                    : TOOL_PRIVACY}
           </p>
         </div>
       </form>
@@ -238,24 +199,12 @@ export default function SummaryGenerator() {
                           {summary.text}
                         </p>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => copySummary(summary.id, summary.text)}
-                        className="landing-secondary-btn shrink-0 font-outfit text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-                        aria-label={`Copy summary: ${summary.shape}`}
-                      >
-                        {copiedId === summary.id ? (
-                          <>
-                            <CheckIcon size={14} aria-hidden="true" />
-                            Copied
-                          </>
-                        ) : (
-                          <>
-                            <CopyIcon size={14} aria-hidden="true" />
-                            Copy
-                          </>
-                        )}
-                      </button>
+                      <CopyButton
+                        tool="summary"
+                        text={summary.text}
+                        message="Summary copied"
+                        ariaLabel={`Copy summary: ${summary.shape}`}
+                      />
                     </div>
                     <p className="text-xs leading-6 text-[var(--landing-ink-soft)]">
                       {summary.claims.length
@@ -321,29 +270,14 @@ export default function SummaryGenerator() {
             </>
           ) : null}
 
-          <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
-                Summary done. Is the rest of the CV?
-              </p>
-              <p className="mt-1.5 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
-                Sign up free and FitMyCV rewrites your whole CV and cover letter
-                against this posting, keeping your real experience.
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={handleTailorHandoff}
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Tailor my whole CV to this job
-              <ArrowRightIcon
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </button>
-          </div>
+          <HandoffCta
+            title="Summary done. Is the rest of the CV?"
+            body="Sign up free and FitMyCV rewrites your whole CV and cover letter against this posting, keeping your real experience."
+            label="Tailor my whole CV to this job"
+            source="summary"
+            jobText={jobText}
+            cvText={resumeText}
+          />
         </div>
       ) : (
         <div className="mt-8 border-t border-[var(--landing-line)] pt-8">

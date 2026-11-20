@@ -15,22 +15,29 @@ const isWord = (file) =>
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
   /\.docx?$/i.test(file.name);
 
+// Each failure has a code, so a translated page can show its own wording
+// (components/tools/ResumeFileField.jsx). The English text is for callers that
+// print error.message as it comes.
+const MESSAGES = {
+  word: "That is a Word file. Export it as a PDF, then upload that.",
+  type: "Choose a PDF resume.",
+  size: "File is too large. Choose a PDF under 8MB.",
+  empty: "Could not read enough text from this file. It may be a scan. Try another PDF, or paste the text.",
+};
+
+const fail = (code) => Object.assign(new Error(MESSAGES[code]), { code });
+
+/** Returns "word", "type" or "size" when the file cannot be read, else null. */
 export function validateResumeFile(file) {
-  if (isWord(file)) {
-    return "That is a Word file. Export it as a PDF, then upload that.";
-  }
-  if (!isPdf(file) && !isPlainText(file)) {
-    return "Choose a PDF resume.";
-  }
-  if (file.size > MAX_FILE_SIZE) {
-    return "File is too large. Choose a PDF under 8MB.";
-  }
+  if (isWord(file)) return "word";
+  if (!isPdf(file) && !isPlainText(file)) return "type";
+  if (file.size > MAX_FILE_SIZE) return "size";
   return null;
 }
 
 export async function extractResumeText(file) {
   const invalid = validateResumeFile(file);
-  if (invalid) throw new Error(invalid);
+  if (invalid) throw fail(invalid);
 
   let text = "";
 
@@ -42,11 +49,7 @@ export async function extractResumeText(file) {
     text = await extractPdfText(await file.arrayBuffer());
   }
 
-  if (text.length < MIN_TEXT_LENGTH) {
-    throw new Error(
-      "Could not read enough text from this file. It may be a scan. Try another PDF, or paste the text."
-    );
-  }
+  if (text.length < MIN_TEXT_LENGTH) throw fail("empty");
 
   return text;
 }

@@ -20,9 +20,10 @@ import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
 import { ArcGauge } from "@/components/charts/ArcGauge";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import { CopyButton, ToolPreview, ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib/ats-handoff";
+import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
 import { extractTerms, stem, tokenize } from "@/lib/keywords";
 
@@ -78,7 +79,8 @@ export default function KeywordChecker({ mode = "match" }) {
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
-  const { running, ran, start, reset } = useToolRun();
+  const tool = `ats_checker_${mode}`;
+  const { running, ran, start, reset } = useToolRun(tool);
   // Shown under the button, not as a toast. Toasts in the corner were missed
   // and the button looked like it did nothing.
   const [formError, setFormError] = useState("");
@@ -243,6 +245,12 @@ export default function KeywordChecker({ mode = "match" }) {
         noValidate
         onSubmit={(e) => {
           e.preventDefault();
+          // A pasted link is long enough to pass the length check, and would
+          // be scored as if "https" and "refid" were the posting's keywords.
+          if (isLinkOnly(jobText)) {
+            setFormError(t("errorLink"));
+            return;
+          }
           const cvMissing = needsCv && cvText.trim().length < 40;
           if (tooShort || cvMissing) {
             setFormError(
@@ -347,8 +355,6 @@ export default function KeywordChecker({ mode = "match" }) {
               ? t("readingCv")
               : running
                 ? t("working")
-                : needsCv
-                ? t("privacyCv")
                 : t("privacy")}
           </p>
         </div>
@@ -364,6 +370,21 @@ export default function KeywordChecker({ mode = "match" }) {
                 : t("busyKeywords")
           }
           lines={5}
+        />
+      ) : null}
+
+      {!running && !result ? (
+        <ToolPreview
+          heading={t("previewHeading")}
+          items={(gapsMode
+            ? ["Missing", "Covered"]
+            : matchMode
+              ? ["Score", "Missing", "Covered"]
+              : ["Ranked"]
+          ).map((key) => ({
+            title: t(`preview${key}Title`),
+            body: t(`preview${key}Body`),
+          }))}
         />
       ) : null}
 
@@ -384,7 +405,16 @@ export default function KeywordChecker({ mode = "match" }) {
               {topCta}
 
               {result.missing.length ? (
-                <ol className="mt-6 grid gap-2 sm:grid-cols-2">
+                <div className="mt-6 flex items-center justify-between gap-3">
+                  <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+                    {t("missingHeading")}
+                  </p>
+                  <CopyButton tool={tool} text={result.missing.map(({ term }) => term).join(", ")} />
+                </div>
+              ) : null}
+
+              {result.missing.length ? (
+                <ol className="mt-3 grid gap-2 sm:grid-cols-2">
                   {result.missing.map(({ term, count }) => (
                     <li
                       key={term}
@@ -457,9 +487,12 @@ export default function KeywordChecker({ mode = "match" }) {
 
               {result.missing.length ? (
                 <>
-                  <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-                    {t("missingHeading")}
-                  </p>
+                  <div className="mt-8 flex items-center justify-between gap-3">
+                    <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+                      {t("missingHeading")}
+                    </p>
+                    <CopyButton tool={tool} text={result.missing.map(({ term }) => term).join(", ")} />
+                  </div>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {result.missing.map(({ term }) => (
                       <li
@@ -502,12 +535,17 @@ export default function KeywordChecker({ mode = "match" }) {
             </>
           ) : (
             <>
-              <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                {t("keywordsTitle", { count: result.terms.length })}
-              </p>
-              <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                {t("keywordsBody")}
-              </p>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+                    {t("keywordsTitle", { count: result.terms.length })}
+                  </p>
+                  <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
+                    {t("keywordsBody")}
+                  </p>
+                </div>
+                <CopyButton tool={tool} text={result.terms.map(({ term }) => term).join(", ")} />
+              </div>
               <ol className="mt-6 grid gap-2 sm:grid-cols-2">
                 {result.terms.map(({ term }, i) => (
                   <li

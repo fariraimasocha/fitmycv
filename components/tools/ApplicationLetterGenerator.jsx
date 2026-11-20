@@ -6,12 +6,23 @@
 // paragraph rather than pad it.
 
 import { useMemo, useState } from "react";
-import { CopyIcon } from "@phosphor-icons/react";
-import { toast } from "sonner";
 
 import HandoffCta from "@/components/tools/HandoffCta";
-import { ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import {
+  CopyButton,
+  TOOL_PRIVACY,
+  ToolPreview,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
+
+const PREVIEW = [
+  { title: "A full letter", body: "A greeting, an opening, your evidence, a closing line and a sign-off." },
+  { title: "Only what you typed", body: "Optional parts you leave empty are left out, so nothing is padded." },
+  { title: "Ready to copy", body: "Paste it into an email or a document and edit it there." },
+];
 
 // pure-region-start
 const REQUIRED = ["name", "role", "company", "background"];
@@ -101,7 +112,7 @@ const FIELDS = [
 
 export default function ApplicationLetterGenerator() {
   const [form, setForm] = useState({});
-  const { running, ran, start, reset } = useToolRun();
+  const { running, ran, start, reset } = useToolRun("application_letter");
   const ready = REQUIRED.every((k) => form[k]?.trim());
   const letter = useMemo(() => (ran ? buildLetter(form) : null), [ran, form]);
 
@@ -139,29 +150,26 @@ export default function ApplicationLetterGenerator() {
         <div className="flex flex-col items-start gap-3 sm:col-span-2 sm:flex-row sm:items-center">
           <ToolSubmitButton label="Write my letter" busyLabel="Writing your letter" running={running} disabled={!ready} />
           <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {ready ? "Nothing you type leaves this tab." : "Fill in your name, the job title, the company and your current role."}
+            {ready ? TOOL_PRIVACY : "Fill in your name, the job title, the company and your current role."}
           </p>
         </div>
       </form>
 
       {running ? <ToolProgress message="Writing your letter" lines={5} /> : null}
 
+      {!running && !letter ? <ToolPreview items={PREVIEW} /> : null}
+
       {letter ? (
         <div className="landing-rise mt-8 flex flex-col gap-3 border-t border-[var(--landing-line)] pt-8">
           <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
             <div className="flex items-center justify-between gap-3">
               <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">Your application letter</p>
-              <button
-                type="button"
-                onClick={() => {
-                  navigator.clipboard?.writeText(letter);
-                  toast.success("Letter copied");
-                }}
-                aria-label="Copy your application letter"
-                className="rounded-md p-1.5 text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
-              >
-                <CopyIcon size={16} aria-hidden="true" />
-              </button>
+              <CopyButton
+                tool="application_letter"
+                text={letter}
+                message="Letter copied"
+                ariaLabel="Copy your application letter"
+              />
             </div>
             <p className="mt-1.5 whitespace-pre-line break-words text-sm leading-6 text-[var(--landing-ink)]">{letter}</p>
           </div>

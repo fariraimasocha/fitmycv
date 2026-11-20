@@ -1,3 +1,4 @@
+import { toUrl } from "@/lib/ats-detect";
 import { JobPageError, scrapeJobPage } from "@/lib/job-extract";
 import { isRateLimited } from "@/lib/rate-limit";
 
@@ -9,14 +10,11 @@ import { isRateLimited } from "@/lib/rate-limit";
 
 const MAX_URL_CHARS = 2000;
 
+// Same rule as the form: http or https, and a host with a dot in it. A typed
+// word like "hello" must not cost an Exa request.
 function validUrl(value) {
-  if (typeof value !== "string" || !value.trim() || value.length > MAX_URL_CHARS) return null;
-  try {
-    const url = new URL(value.trim());
-    return /^https?:$/.test(url.protocol) ? url.href : null;
-  } catch {
-    return null;
-  }
+  if (typeof value !== "string" || value.length > MAX_URL_CHARS) return null;
+  return toUrl(value)?.href ?? null;
 }
 
 export async function POST(request) {

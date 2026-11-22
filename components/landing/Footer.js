@@ -132,6 +132,15 @@ export default function Footer() {
               </h3>
               {/* eslint-disable @next/next/no-img-element -- external badge images */}
               <div className="flex flex-wrap items-center gap-3">
+                <a href="https://launchfriday.xyz/launch/fitmycv-6074cc" target="_blank" rel="noopener">
+                  <img
+                    src="https://launchfriday.xyz/badge.svg"
+                    alt="Launching on LaunchFriday"
+                    width="200"
+                    height="54"
+                    loading="lazy"
+                  />
+                </a>
                 <a href="https://findly.tools/fitmycv?utm_source=fitmycv" target="_blank" rel="nofollow noopener noreferrer">
                   <img
                     src="https://findly.tools/badges/findly-tools-badge-dark.svg"

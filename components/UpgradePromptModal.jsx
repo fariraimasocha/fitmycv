@@ -92,10 +92,13 @@ export default function UpgradePromptModal({
       tier: pricing.tier,
       plan,
       source,
+      paywall_context: context,
     });
     if (session?.user) {
       setPendingPlan(plan);
       const query = new URLSearchParams({ plan });
+      query.set("source", "paywall");
+      query.set("context", context);
       // Lifetime sends the CV too, so leaving Polar lands back on it.
       if (cvId) query.set("cv", cvId);
       window.location.assign(`/api/polar/checkout?${query}`);
@@ -114,7 +117,12 @@ export default function UpgradePromptModal({
   // none. This one CV sits second, for the visitor who needs one application
   // today and would otherwise close the modal. Lifetime stays a text link.
   return (
-    <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
+    <Dialog open={open} onOpenChange={(v) => {
+      if (!v) {
+        trackEvent("paywall_dismissed", { context, has_cv: Boolean(cvId) });
+        onClose();
+      }
+    }}>
       <DialogContent className="rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
         <DialogHeader>
           <div className="mb-1 flex items-center gap-2">

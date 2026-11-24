@@ -24,8 +24,9 @@ export const atsResumeChecker = {
   h1: "Free ATS resume checker: no login, no sign up",
   lede:
     "It's free, with no login and no sign up. The check runs in your browser. Upload your CV and paste a job description. You see your ATS match score and the terms the posting expects that your CV never mentions.",
+  // The checker is free; downloading the tailored PDF is a separate paid step.
   ctas: [
-    { label: "Tailor my CV instead", href: "/tailor-cv-from-job-link" },
+    { label: "See how CV tailoring works", href: "/tailor-cv-from-job-link" },
     { label: "Read the ATS guide", href: "/blog/ats-resume-guide", variant: "secondary" },
   ],
   tool: "match",
@@ -55,7 +56,7 @@ export const atsResumeChecker = {
     },
     {
       q: "Do I need to sign up to use the ATS checker?",
-      a: "No. There is no login and no sign up. Upload your CV, paste a job description and you get your score on this page. You only need an account if you choose to have FitMyCV rewrite your CV.",
+      a: "No. There is no login and no sign up. Upload your CV, paste a job description and you get your score on this page. Tailoring a CV requires an account; downloading the tailored PDF requires a paid plan.",
     },
     {
       q: "Is this ATS checker really free?",
@@ -122,7 +123,7 @@ export const atsResumeChecker = {
           ["Sends your file to a server", "No", "Yes", "Yes, to your account"],
           ["Job-description matching", "Yes", "Yes", "Yes"],
           ["Rewrites the CV", "No", "No", "Yes"],
-          ["Free limit", "Unlimited", "A few scans / month", "Paid generations"],
+          ["Free limit", "Unlimited", "A few scans / month", "Review a draft free; PDF download is paid"],
         ],
       },
     },

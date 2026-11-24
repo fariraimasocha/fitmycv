@@ -1,9 +1,9 @@
 export const meta = {
   slug: "job-application-letter",
   title: "Application Letter for a Job: A Simple Sample and How to Write One",
-  seoTitle: "Application Letter for a Job: Simple Sample to Copy",
+  seoTitle: "Job Application Letter: Free Sample, Format and Generator",
   description:
-    "A simple application letter for a job you can copy and fill in, plus how to write one in 5 steps. One page, 250 to 400 words, with a free generator.",
+    "Copy a complete job application letter sample, follow a five-step format, or use the free generator to write a letter for your role.",
   excerpt:
     "A simple application letter for a job to copy and fill in, a finished example, and five steps to write your own in one page.",
   date: "2026-09-27",

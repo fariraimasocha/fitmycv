@@ -87,7 +87,7 @@ export default function PricingCards({
     trackEvent("checkout_start", { tier, plan, source: "pricing_cards" });
     if (session?.user) {
       setPendingPlan(plan);
-      window.location.assign(`/api/polar/checkout?plan=${plan}`);
+      window.location.assign(`/api/polar/checkout?plan=${plan}&source=pricing_cards`);
     } else {
       setPendingCheckout(true, plan);
       if (gate?.interceptAuth(null, "/auth")) return;

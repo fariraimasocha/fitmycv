@@ -111,11 +111,11 @@
     },
     "download": {
       "title": "Download your PDFs",
-      "description": "Your CV and cover letter are ready. Upgrade to download them as PDFs."
+      "description": "Your tailored CV and cover letter are saved. Choose an option below to unlock their PDF downloads."
     },
     "preTailor": {
       "title": "Download your PDFs",
-      "description": "Upgrade to download your tailored CV and cover letter as PDFs."
+      "description": "Choose an option below to unlock PDF downloads for your tailored CV and cover letter."
     },
     "getMonth": "Get Pro for ${price} a month",
     "maybeLater": "Maybe later",
@@ -190,11 +190,11 @@
       },
       "handoffMatch": {
         "title": "Close these gaps",
-        "body": "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.",
+        "body": "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have. You can review the draft before paying to download PDFs.",
         "cta": "Close these gaps"
       },
       "topRepeat": "That is {count, plural, one {# check} other {# checks}} on this page. Let FitMyCV rewrite your CV for this job instead, using only the experience you already have.",
-      "topMissing": "{count, plural, one {# keyword} other {# keywords}} missing. FitMyCV rewrites your CV for this posting, using only the experience you already have.",
+      "topMissing": "{count, plural, one {# keyword} other {# keywords}} missing. Tailor this CV to the job, review the draft, then choose whether to pay for the PDF.",
       "topStrong": "Your coverage is strong. Turn it into a CV written for this posting.",
       "topCtaRepeat": "Rewrite my CV for this job",
       "topCta": "Tailor my CV to this job",

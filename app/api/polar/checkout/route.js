@@ -8,6 +8,7 @@ import User from "@/models/User";
 import TailoredCV from "@/models/TailoredCV";
 import { appUrl } from "@/lib/site";
 import { CHECKOUT_PLANS, getPolarProductId } from "@/lib/pricing";
+import { captureServerEvent } from "@/lib/posthog-server";
 import {
   getPricingTier,
   resolveCountryFromHeaders,
@@ -15,6 +16,8 @@ import {
 } from "@/lib/pricing-region";
 
 const polar = createPolarClient();
+const CHECKOUT_SOURCES = new Set(["paywall", "pricing_cards"]);
+const PAYWALL_CONTEXTS = new Set(["default", "download", "tailored", "pre_tailor"]);
 
 function localAppUrl(path, request) {
   return process.env.NODE_ENV === "production"
@@ -51,6 +54,12 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const planParam = searchParams.get("plan");
     const plan = CHECKOUT_PLANS.includes(planParam) ? planParam : "lifetime";
+    const sourceParam = searchParams.get("source");
+    const checkoutSource = CHECKOUT_SOURCES.has(sourceParam) ? sourceParam : null;
+    const contextParam = searchParams.get("context");
+    const paywallContext = checkoutSource === "paywall" && PAYWALL_CONTEXTS.has(contextParam)
+      ? contextParam
+      : null;
 
     // ?cv= names the CV the buyer was looking at. Leaving Polar goes back to
     // it, for any plan. A single purchase also unlocks it, so it must exist
@@ -117,6 +126,8 @@ export async function GET(request) {
         userId: String(session.user.id),
         pricingTier: tier,
         plan,
+        ...(checkoutSource ? { checkoutSource } : {}),
+        ...(paywallContext ? { paywallContext } : {}),
         ...(tailoredCvId ? { tailoredCvId } : {}),
         ...(datafastVisitorId
           ? { datafast_visitor_id: datafastVisitorId }
@@ -125,6 +136,17 @@ export async function GET(request) {
           ? { datafast_session_id: datafastSessionId }
           : {}),
       },
+    });
+
+    // Counts a checkout that Polar actually created, distinct from a button
+    // click that may have sent a signed-out visitor through authentication.
+    await captureServerEvent(session.user.id, "checkout_created", {
+      plan,
+      tier,
+      checkout_source: checkoutSource,
+      paywall_context: paywallContext,
+      checkout_id: checkout.id,
+      $insert_id: checkout.id,
     });
 
     return NextResponse.redirect(checkout.url);

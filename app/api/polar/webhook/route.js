@@ -45,6 +45,8 @@ async function capturePurchase(user, order) {
     plan,
     order_id: order.id,
     tier: order.metadata?.pricingTier ?? null,
+    checkout_source: order.metadata?.checkoutSource ?? null,
+    paywall_context: order.metadata?.paywallContext ?? null,
     revenue: order.totalAmount / 100,
     currency: order.currency,
     $insert_id: order.id,

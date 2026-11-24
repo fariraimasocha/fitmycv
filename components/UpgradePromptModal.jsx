@@ -113,16 +113,16 @@ export default function UpgradePromptModal({
     stats?.grade ? t("stats.grade", { grade: stats.grade }) : null,
   ].filter(Boolean);
 
+  const dismissPaywall = () => {
+    trackEvent("paywall_dismissed", { context, has_cv: Boolean(cvId) });
+    onClose();
+  };
+
   // Monthly leads: in October every purchase was monthly and lifetime sold
   // none. This one CV sits second, for the visitor who needs one application
   // today and would otherwise close the modal. Lifetime stays a text link.
   return (
-    <Dialog open={open} onOpenChange={(v) => {
-      if (!v) {
-        trackEvent("paywall_dismissed", { context, has_cv: Boolean(cvId) });
-        onClose();
-      }
-    }}>
+    <Dialog open={open} onOpenChange={(v) => !v && dismissPaywall()}>
       <DialogContent className="rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
         <DialogHeader>
           <div className="mb-1 flex items-center gap-2">
@@ -185,7 +185,7 @@ export default function UpgradePromptModal({
             </button>
             <button
               type="button"
-              onClick={onClose}
+              onClick={dismissPaywall}
               className="text-sm text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
             >
               {t("maybeLater")}
@@ -219,7 +219,7 @@ export default function UpgradePromptModal({
             <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
             <button
               type="button"
-              onClick={onClose}
+              onClick={dismissPaywall}
               className="text-sm text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
             >
               {t("maybeLater")}
@@ -262,7 +262,7 @@ export default function UpgradePromptModal({
           </button>
           <button
             type="button"
-            onClick={onClose}
+            onClick={dismissPaywall}
             className="text-sm text-[var(--landing-ink-soft)] hover:text-[var(--landing-ink)]"
           >
             {t("maybeLater")}

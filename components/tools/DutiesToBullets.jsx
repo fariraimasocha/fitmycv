@@ -18,6 +18,7 @@
 import { useMemo, useState } from "react";
 
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, { ToolStepActions, ToolStepBack } from "@/components/tools/ToolShell";
 import {
   CopyButton,
   TOOL_PRIVACY,
@@ -462,79 +463,32 @@ function SlottedText({ text }) {
   );
 }
 
+const STEPS = ["Paste duties", "View results"];
+
+const textareaClass =
+  "w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]";
+
 export default function DutiesToBullets() {
+  const [step, setStep] = useState(1);
   const [duties, setDuties] = useState("");
   const { running, ran, start, reset } = useToolRun("duties_to_bullets");
 
   const bullets = useMemo(() => (ran ? dutiesToBullets(duties) : []), [ran, duties]);
   const tooShort = splitDuties(duties).length === 0;
 
-  return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="duties-text"
-            className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
-          >
-            Paste the duties from your job description
-          </label>
-          <textarea
-            id="duties-text"
-            value={duties}
-            onChange={(e) => {
-              setDuties(e.target.value);
-              reset();
-            }}
-            rows={7}
-            placeholder={"Responsible for managing the support inbox\nHandle refunds and billing questions\nMaintain the help centre articles"}
-            className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            One duty per line. Bullet points, numbered lists and semicolons work too. Up to {MAX_DUTIES} duties.
-          </p>
-        </div>
+  const goStep = (n) => {
+    if (n < 2) reset();
+    setStep(n);
+  };
 
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Turn duties into bullets"
-            busyLabel="Rewriting your duties"
-            running={running}
-            disabled={tooShort}
-          />
-          {/* Only offered on an empty box, so it never replaces what you typed. */}
-          {duties.trim() ? null : (
-            <button
-              type="button"
-              onClick={() => {
-                setDuties(EXAMPLE_DUTIES);
-                start();
-              }}
-              className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Try an example
-            </button>
-          )}
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {running
-              ? "Rewriting your duties"
-              : tooShort
-                ? "Paste at least one duty of three words or more."
-                : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
+  const hint = running
+    ? "Rewriting your duties"
+    : tooShort
+      ? "Paste at least one duty of three words or more."
+      : TOOL_PRIVACY;
 
-      {running ? <ToolProgress message="Rewriting your duties" lines={4} /> : null}
-
-      {!running && bullets.length ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+  const resultsBlock = bullets.length ? (
+        <div className="landing-rise mx-auto w-full max-w-2xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -594,9 +548,78 @@ export default function DutiesToBullets() {
             source="duties"
           />
         </div>
+  ) : null;
+
+  return (
+    <ToolShell steps={STEPS} current={bullets.length ? 2 : step} onStepSelect={goStep}>
+      {!bullets.length && step === 1 ? (
+        <>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              start();
+            }}
+            className="mx-auto flex w-full max-w-xl flex-col gap-5"
+          >
+            <div className="flex flex-col gap-2">
+              <label
+                htmlFor="duties-text"
+                className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
+              >
+                Paste the duties from your job description
+              </label>
+              <textarea
+                id="duties-text"
+                value={duties}
+                onChange={(e) => {
+                  setDuties(e.target.value);
+                  reset();
+                }}
+                rows={7}
+                placeholder={"Responsible for managing the support inbox\nHandle refunds and billing questions\nMaintain the help centre articles"}
+                className={textareaClass}
+              />
+              <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
+                One duty per line. Bullet points, numbered lists and semicolons work too. Up to {MAX_DUTIES} duties.
+              </p>
+            </div>
+
+            <ToolStepActions hint={hint}>
+              <ToolSubmitButton
+                label="Turn duties into bullets"
+                busyLabel="Rewriting your duties"
+                running={running}
+                disabled={tooShort}
+              />
+              {duties.trim() ? null : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDuties(EXAMPLE_DUTIES);
+                    start();
+                  }}
+                  className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2"
+                >
+                  Try an example
+                </button>
+              )}
+            </ToolStepActions>
+          </form>
+
+          {running ? <ToolProgress message="Rewriting your duties" lines={4} /> : null}
+
+          {!running && !bullets.length ? <ToolPreview items={PREVIEW} /> : null}
+        </>
       ) : null}
 
-      {!running && !bullets.length ? <ToolPreview items={PREVIEW} /> : null}
-    </div>
+      {bullets.length ? (
+        <>
+          {resultsBlock}
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Paste different duties" onClick={() => goStep(1)} />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

@@ -259,13 +259,17 @@
       "reviewHint": "Relisez le texte ci-dessous. C'est ce que l'outil va lire.",
       "fileHint": "PDF, 8 Mo maximum. Lu dans cet onglet, jamais envoyé.",
       "textPlaceholder": "Le texte extrait apparaît ici. Corrigez une ligne si elle semble fausse.",
-      "paste": "Ou collez le texte",
+      "paste": "Ou collez le texte du CV",
       "errorWord": "C'est un fichier Word. Exportez-le en PDF, puis importez ce PDF.",
       "errorType": "Ce type de fichier n'est pas pris en charge. Choisissez un PDF.",
       "errorSize": "Ce fichier dépasse 8 Mo. Choisissez un PDF plus léger.",
       "errorEmpty": "Nous n'avons pas pu lire assez de texte dans ce fichier. C'est peut-être un scan. Collez plutôt le texte ci-dessous.",
       "removed": "CV retiré",
-      "undo": "Annuler"
+      "undo": "Annuler",
+      "dropHero": "Glissez-déposez, ou",
+      "chooseHero": "choisissez un fichier",
+      "dropHeroEnd": "pour l'importer",
+      "fileHintHero": "au format .pdf, 8 Mo maximum"
     },
     "copy": {
       "copy": "Copier",

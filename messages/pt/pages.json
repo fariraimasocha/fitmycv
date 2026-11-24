@@ -259,13 +259,17 @@
       "reviewHint": "Revise o texto abaixo. É isso que o verificador vai ler.",
       "fileHint": "PDF, até 8 MB. Lido nesta aba, nunca enviado.",
       "textPlaceholder": "O texto extraído aparece aqui. Edite se alguma linha estiver errada.",
-      "paste": "Ou cole o texto",
+      "paste": "Ou cole o texto do currículo",
       "errorWord": "Isso é um arquivo do Word. Exporte como PDF e envie esse PDF.",
       "errorType": "Esse tipo de arquivo não é aceito. Escolha um PDF.",
       "errorSize": "Esse arquivo passa de 8 MB. Escolha um PDF menor.",
       "errorEmpty": "Não conseguimos ler texto suficiente neste arquivo. Pode ser uma digitalização. Cole o texto abaixo.",
       "removed": "Currículo removido",
-      "undo": "Desfazer"
+      "undo": "Desfazer",
+      "dropHero": "Arraste e solte, ou",
+      "chooseHero": "escolha um arquivo",
+      "dropHeroEnd": "para enviar",
+      "fileHintHero": "como arquivo .pdf, até 8 MB"
     },
     "copy": {
       "copy": "Copiar",

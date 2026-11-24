@@ -14,6 +14,11 @@ import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { KEYWORDS_STEPS } from "@/components/tools/ToolStepper";
 import {
   CopyButton,
   TOOL_PRIVACY,
@@ -81,176 +86,217 @@ function coveredTerms(terms, cvText) {
   );
 }
 
-function RoleKeywords({ role }) {
+export default function KeywordsGenerator({ roles = [] }) {
+  const [step, setStep] = useState(1);
+  const [slug, setSlug] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun("keywords_generator");
-  const cvTooShort = cvText.trim().length < 40;
 
-  const allTerms = useMemo(() => role.groups.flatMap((g) => g.terms), [role]);
+  const role = roles.find((r) => r.slug === slug) ?? null;
+  const allTerms = useMemo(
+    () => (role ? role.groups.flatMap((g) => g.terms) : []),
+    [role],
+  );
+  const cvTooShort = cvText.trim().length < 40;
 
   const covered = useMemo(
     () =>
-      ran && cvText.trim().length >= 40 ? coveredTerms(allTerms, cvText) : null,
-    [ran, cvText, allTerms],
+      ran && !cvTooShort && role
+        ? coveredTerms(allTerms, cvText)
+        : null,
+    [ran, cvText, cvTooShort, role, allTerms],
   );
 
   const missingCount = covered ? allTerms.length - covered.size : 0;
 
+  const goStep = (n) => {
+    if (n < 3) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-            {allTerms.length} resume keywords for{" "}
-            <span className="text-[var(--landing-primary-dark)]">
-              {role.plural}
-            </span>
-          </p>
-          <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Only add the ones you have done, and put each one inside a bullet
-            with a result.{" "}
-            <Link
-              href={`/${role.slug}-resume-keywords`}
-              className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+    <ToolShell steps={KEYWORDS_STEPS} current={covered ? 3 : step} onStepSelect={goStep}>
+      {!covered && step === 1 ? (
+        <div className="mx-auto flex w-full max-w-xl flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="keywords-role" className={labelClass}>
+              Pick your job title
+            </label>
+            <select
+              id="keywords-role"
+              value={slug}
+              onChange={(e) => {
+                setSlug(e.target.value);
+                reset();
+                if (e.target.value)
+                  trackEvent("keywords_generated", { role: e.target.value });
+              }}
+              className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm text-[var(--landing-ink)] outline-none transition-colors focus:border-[var(--landing-accent)]"
             >
-              See where each group belongs
-            </Link>
-            .
-          </p>
-        </div>
-        <CopyButton
-          tool="keywords_generator"
-          text={allTerms.join(", ")}
-          label="Copy all"
-          message="Keywords copied"
-          ariaLabel="Copy all keywords"
-        />
-      </div>
+              <option value="">Choose a role</option>
+              {roles.map((r) => (
+                <option key={r.slug} value={r.slug}>
+                  {r.role}
+                </option>
+              ))}
+            </select>
+            <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
+              Role not listed? Paste the advert into the{" "}
+              <Link
+                href="/free-ats-keyword-checker"
+                className="text-[var(--landing-primary-dark)] underline underline-offset-4"
+              >
+                ATS keyword checker
+              </Link>{" "}
+              and it pulls the keywords from that posting.
+            </p>
+          </div>
 
-      {role.groups.map((group) => (
-        <div key={group.title} className="mt-6">
-          <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
-            {group.title}
-          </p>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {group.terms.map((term) => (
-              <Pill
-                key={term}
-                label={term}
-                present={covered ? covered.has(term) : undefined}
+          {slug ? (
+            <ToolStepActions hint={TOOL_PRIVACY}>
+              <ToolSubmitButton
+                label="Continue"
+                busyLabel="Continue"
+                running={false}
+                disabled={false}
+                onClick={() => setStep(2)}
+                type="button"
               />
-            ))}
-          </ul>
+            </ToolStepActions>
+          ) : null}
         </div>
-      ))}
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-        }}
-        className="mt-8 flex flex-col gap-4 border-t border-[var(--landing-line)] pt-8"
-      >
-        <ResumeFileField
-          id="keywords-cv-text"
-          label="Check your CV against this list"
-          value={cvText}
-          onChange={(text) => {
-            setCvText(text);
-            reset();
-          }}
-          onBusyChange={setCvBusy}
-          rows={6}
-        />
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Check my CV"
-            busyLabel="Checking your CV"
-            running={running}
-            disabled={cvTooShort || cvBusy}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
-              ? "Reading your CV"
-              : cvTooShort
-                ? "Add your CV to check it against the list."
-                : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
-
-      {running ? <ToolProgress message="Checking your CV" lines={2} /> : null}
-
-      {covered ? (
-        <p
-          role="status"
-          className="mt-6 font-outfit text-base font-extrabold text-[var(--landing-ink)]"
-        >
-          Your CV covers {covered.size} of {allTerms.length}.{" "}
-          {missingCount === 1
-            ? "1 is marked in red above."
-            : missingCount
-              ? `${missingCount} are marked in red above.`
-              : "Every term on the list is there."}
-        </p>
       ) : null}
 
-      <HandoffCta
-        title={missingCount ? "Close these gaps" : "Now match it to one job"}
-        body={
-          missingCount
-            ? `Your CV is missing ${missingCount} of the terms ${role.role} postings use. Paste a job link and FitMyCV works in the ones you have done, using your real experience.`
-            : "A list is general. Paste a job link and FitMyCV rewrites your CV and cover letter for that exact posting."
-        }
-        label={missingCount ? "Close these gaps" : "Tailor my CV"}
-        source="keywords_generator"
-        cvText={cvText}
-      />
-    </div>
-  );
-}
-
-export default function KeywordsGenerator({ roles = [] }) {
-  const [slug, setSlug] = useState("");
-  const role = roles.find((r) => r.slug === slug) ?? null;
-
-  return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <div className="flex flex-col gap-2">
-        <label htmlFor="keywords-role" className={labelClass}>
-          Pick your job title
-        </label>
-        <select
-          id="keywords-role"
-          value={slug}
-          onChange={(e) => {
-            setSlug(e.target.value);
-            if (e.target.value)
-              trackEvent("keywords_generated", { role: e.target.value });
+      {step === 2 && role ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (cvTooShort || cvBusy) return;
+            start();
           }}
-          className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm text-[var(--landing-ink)]"
+          className="mx-auto w-full max-w-xl"
         >
-          <option value="">Choose a role</option>
-          {roles.map((r) => (
-            <option key={r.slug} value={r.slug}>
-              {r.role}
-            </option>
-          ))}
-        </select>
-        <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-          Role not listed? Paste the advert into the{" "}
-          <Link
-            href="/free-ats-keyword-checker"
-            className="text-[var(--landing-primary-dark)] underline underline-offset-4"
-          >
-            ATS keyword checker
-          </Link>{" "}
-          and it pulls the keywords from that posting.
-        </p>
-      </div>
+          <ResumeFileField
+            id="keywords-cv-text"
+            variant="hero"
+            hideLabel
+            value={cvText}
+            onChange={(text) => {
+              setCvText(text);
+              reset();
+            }}
+            onBusyChange={setCvBusy}
+          />
 
-      {role ? <RoleKeywords key={role.slug} role={role} /> : null}
-    </div>
+          <ToolStepActions
+            hint={
+              cvTooShort
+                ? "Add your CV to check it against the list."
+                : TOOL_PRIVACY
+            }
+          >
+            <ToolSubmitButton
+              label="Check my CV"
+              busyLabel="Checking your CV"
+              running={running}
+              disabled={cvTooShort || cvBusy}
+            />
+            <ToolStepBack label="Back to title" onClick={() => goStep(1)} />
+          </ToolStepActions>
+        </form>
+      ) : null}
+
+      {step === 2 && running ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ToolProgress message="Checking your CV" lines={2} />
+        </div>
+      ) : null}
+
+      {step === 3 && covered && role ? (
+        <div className="landing-rise mx-auto w-full max-w-2xl">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+                {allTerms.length} resume keywords for{" "}
+                <span className="text-[var(--landing-primary-dark)]">
+                  {role.plural}
+                </span>
+              </p>
+              <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
+                Only add the ones you have done, and put each one inside a bullet
+                with a result.{" "}
+                <Link
+                  href={`/${role.slug}-resume-keywords`}
+                  className="font-semibold text-[var(--landing-primary-dark)] underline underline-offset-4"
+                >
+                  See where each group belongs
+                </Link>
+                .
+              </p>
+            </div>
+            <CopyButton
+              tool="keywords_generator"
+              text={allTerms.join(", ")}
+              label="Copy all"
+              message="Keywords copied"
+              ariaLabel="Copy all keywords"
+            />
+          </div>
+
+          {role.groups.map((group) => (
+            <div key={group.title} className="mt-6">
+              <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+                {group.title}
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {group.terms.map((term) => (
+                  <Pill
+                    key={term}
+                    label={term}
+                    present={covered.has(term)}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <p
+            role="status"
+            className="mt-6 font-outfit text-base font-extrabold text-[var(--landing-ink)]"
+          >
+            Your CV covers {covered.size} of {allTerms.length}.{" "}
+            {missingCount === 1
+              ? "1 is marked in red above."
+              : missingCount
+                ? `${missingCount} are marked in red above.`
+                : "Every term on the list is there."}
+          </p>
+
+          <HandoffCta
+            title={missingCount ? "Close these gaps" : "Now match it to one job"}
+            body={
+              missingCount
+                ? `Your CV is missing ${missingCount} of the terms ${role.role} postings use. Paste a job link and FitMyCV works in the ones you have done, using your real experience.`
+                : "A list is general. Paste a job link and FitMyCV rewrites your CV and cover letter for that exact posting."
+            }
+            label={missingCount ? "Close these gaps" : "Tailor my CV"}
+            source="keywords_generator"
+            cvText={cvText}
+          />
+
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack
+              label="Pick another title"
+              onClick={() => {
+                setSlug("");
+                setCvText("");
+                goStep(1);
+              }}
+            />
+          </div>
+        </div>
+      ) : null}
+    </ToolShell>
   );
 }

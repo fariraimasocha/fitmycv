@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { CheckIcon, MinusIcon } from "@phosphor-icons/react";
 
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, { ToolStepActions, ToolStepBack } from "@/components/tools/ToolShell";
 import {
   JOB_IS_LINK,
   TOOL_PRIVACY,
@@ -24,6 +25,8 @@ import { trackEvent } from "@/lib/analytics";
 const MIN_JOB_CHARS = 80;
 const MIN_PROFILE_CHARS = 20;
 
+const STEPS = ["Paste profile", "View results"];
+
 const PREVIEW = [
   { title: "A coverage figure", body: "The share of the posting's main terms that appear anywhere on your profile." },
   { title: "Section by section", body: "A table of each term against your headline, About and skills." },
@@ -31,14 +34,14 @@ const PREVIEW = [
 ];
 
 const field =
-  "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)]";
+  "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]";
 const fieldLabel = "font-outfit text-sm font-extrabold text-[var(--landing-ink)]";
 
 const SECTION_LABEL = { headline: "Headline", about: "About", skills: "Skills" };
 
 function Result({ result, job }) {
   return (
-    <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+    <div className="landing-rise mx-auto w-full max-w-2xl">
       <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
         Your profile covers {result.score}% of the terms this posting leans on
       </p>
@@ -96,6 +99,7 @@ function Result({ result, job }) {
 }
 
 export default function LinkedInProfileChecker() {
+  const [step, setStep] = useState(1);
   const [job, setJob] = useState("");
   const [profile, setProfile] = useState({ headline: "", about: "", skills: "" });
   const { running, ran, start, reset } = useToolRun("linkedin_profile");
@@ -110,84 +114,99 @@ export default function LinkedInProfileChecker() {
     [ran, tooShort, job, profile]
   );
 
+  const goStep = (n) => {
+    if (n < 2) reset();
+    setStep(n);
+  };
+
   const set = (key) => (e) => {
     setProfile((p) => ({ ...p, [key]: e.target.value }));
     reset();
   };
 
+  const hint = jobIsLink
+    ? JOB_IS_LINK
+    : jobTooShort
+      ? "Paste the full job description."
+      : profileTooShort
+        ? "Add your headline, About section or skills."
+        : TOOL_PRIVACY;
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-          trackEvent("linkedin_profile_checked");
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="flex flex-col gap-2">
-          <label htmlFor="li-job" className={fieldLabel}>Job posting</label>
-          <textarea
-            id="li-job"
-            rows={6}
-            value={job}
-            onChange={(e) => {
-              setJob(e.target.value);
-              reset();
+    <ToolShell steps={STEPS} current={result ? 2 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              start();
+              trackEvent("linkedin_profile_checked");
             }}
-            placeholder="Paste the full job description"
-            className={field}
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="li-headline" className={fieldLabel}>Your LinkedIn headline</label>
-          <input
-            id="li-headline"
-            value={profile.headline}
-            onChange={set("headline")}
-            placeholder="Backend Engineer | Go, Kubernetes, Payments"
-            className={field}
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="li-about" className={fieldLabel}>Your About section</label>
-          <textarea id="li-about" rows={5} value={profile.about} onChange={set("about")} className={field} />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="li-skills" className={fieldLabel}>Your skills</label>
-          <textarea
-            id="li-skills"
-            rows={3}
-            value={profile.skills}
-            onChange={set("skills")}
-            placeholder="Copy them from the Skills section of your profile"
-            className={field}
-          />
-        </div>
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Check my profile"
-            busyLabel="Comparing your profile"
-            running={running}
-            disabled={tooShort}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {jobIsLink
-              ? JOB_IS_LINK
-              : jobTooShort
-                ? "Paste the full job description."
-                : profileTooShort
-                  ? "Add your headline, About section or skills."
-                  : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
+            className="mx-auto flex w-full max-w-xl flex-col gap-5"
+          >
+            <div className="flex flex-col gap-2">
+              <label htmlFor="li-job" className={fieldLabel}>Job posting</label>
+              <textarea
+                id="li-job"
+                rows={6}
+                value={job}
+                onChange={(e) => {
+                  setJob(e.target.value);
+                  reset();
+                }}
+                placeholder="Paste the full job description"
+                className={field}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="li-headline" className={fieldLabel}>Your LinkedIn headline</label>
+              <input
+                id="li-headline"
+                value={profile.headline}
+                onChange={set("headline")}
+                placeholder="Backend Engineer | Go, Kubernetes, Payments"
+                className={field}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="li-about" className={fieldLabel}>Your About section</label>
+              <textarea id="li-about" rows={5} value={profile.about} onChange={set("about")} className={field} />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="li-skills" className={fieldLabel}>Your skills</label>
+              <textarea
+                id="li-skills"
+                rows={3}
+                value={profile.skills}
+                onChange={set("skills")}
+                placeholder="Copy them from the Skills section of your profile"
+                className={field}
+              />
+            </div>
+            <ToolStepActions hint={hint}>
+              <ToolSubmitButton
+                label="Check my profile"
+                busyLabel="Comparing your profile"
+                running={running}
+                disabled={tooShort}
+              />
+            </ToolStepActions>
+          </form>
 
-      {running ? <ToolProgress message="Comparing your profile" lines={4} /> : null}
+          {running ? <ToolProgress message="Comparing your profile" lines={4} /> : null}
 
-      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+          {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+        </>
+      ) : null}
 
-      {result ? <Result result={result} job={job} /> : null}
-    </div>
+      {result ? (
+        <>
+          <Result result={result} job={job} />
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Edit profile details" onClick={() => goStep(1)} />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

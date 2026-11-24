@@ -259,13 +259,17 @@
       "reviewHint": "Revisa el texto de abajo. Es lo que leerá el verificador.",
       "fileHint": "PDF, hasta 8 MB. Se lee en esta pestaña y nunca se sube.",
       "textPlaceholder": "Aquí aparece el texto extraído. Edítalo si alguna línea no está bien.",
-      "paste": "O pega el texto",
+      "paste": "O pega el texto del currículum",
       "errorWord": "Eso es un archivo de Word. Expórtalo como PDF y sube ese PDF.",
       "errorType": "Ese tipo de archivo no es compatible. Elige un PDF.",
       "errorSize": "Ese archivo supera los 8 MB. Elige un PDF más pequeño.",
       "errorEmpty": "No pudimos leer suficiente texto de este archivo. Puede que sea un escaneo. Pega el texto abajo.",
       "removed": "CV eliminado",
-      "undo": "Deshacer"
+      "undo": "Deshacer",
+      "dropHero": "Arrastra y suelta, o",
+      "chooseHero": "elige un archivo",
+      "dropHeroEnd": "para subir",
+      "fileHintHero": "como archivo .pdf, hasta 8 MB"
     },
     "copy": {
       "copy": "Copiar",

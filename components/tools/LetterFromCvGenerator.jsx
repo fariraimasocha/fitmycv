@@ -10,10 +10,15 @@
 // signed-in tailor, which also writes the cover letter.
 
 import { useMemo, useState } from "react";
-import { CheckIcon, SparkleIcon, XIcon } from "@phosphor-icons/react";
+import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { CV_JOB_STEPS } from "@/components/tools/ToolStepper";
 import {
   CopyButton,
   JOB_IS_LINK,
@@ -92,19 +97,8 @@ function buildLetters({ title, company, name, years, skills, results }) {
 }
 // pure-region-end
 
-const EXAMPLE_LETTER = `Dear Hiring Manager,
-
-I am writing to apply for the Administrative Assistant position at Greenfield Logistics. I have 4+ years of experience in this kind of work.
-
-In my work I use Microsoft Excel, diary management and invoicing, which this role asks for. Cut supplier invoice errors by 30% by moving tracking into one shared sheet.
-
-I would welcome the chance to discuss how I can help Greenfield Logistics. Thank you for considering my application.
-
-Yours sincerely,
-Thandiwe Moyo`;
-
 const fieldClass =
-  "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]";
+  "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]";
 const labelClass =
   "font-outfit text-sm font-extrabold text-[var(--landing-ink)]";
 
@@ -177,7 +171,7 @@ function readLetter(jobText, cvText, company, name, currentYear) {
 function LetterResult({ result, jobText, cvText }) {
   const missingCount = result.missing.length;
   return (
-    <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+    <div className="landing-rise mx-auto w-full max-w-2xl">
       {result.letters.length ? (
         <>
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -282,30 +276,8 @@ function LetterResult({ result, jobText, cvText }) {
   );
 }
 
-function LetterExample() {
-  return (
-    <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-      <p className="inline-flex items-center gap-2 font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-        <SparkleIcon
-          size={16}
-          weight="fill"
-          aria-hidden="true"
-          className="text-[var(--landing-accent)]"
-        />
-        A simple job application letter example
-      </p>
-      <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-        Yours is built from the advert you paste and the results your CV already
-        shows. It takes this shape.
-      </p>
-      <p className="mt-5 whitespace-pre-line break-words rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 text-sm font-semibold leading-7 text-[var(--landing-ink)]">
-        {EXAMPLE_LETTER}
-      </p>
-    </div>
-  );
-}
-
 export default function LetterFromCvGenerator() {
+  const [step, setStep] = useState(1);
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [company, setCompany] = useState("");
@@ -332,20 +304,57 @@ export default function LetterFromCvGenerator() {
     currentYear,
   ]);
 
+  const goStep = (n) => {
+    if (n < 3) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-          trackEvent("application_letter_generated", {});
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="grid gap-5 md:grid-cols-2">
+    <ToolShell steps={CV_JOB_STEPS} current={result ? 3 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ResumeFileField
+            id="letter-cv-text"
+            variant="hero"
+            hideLabel
+            value={cvText}
+            onChange={(text) => {
+              setCvText(text);
+              reset();
+            }}
+            onBusyChange={setCvBusy}
+            onReady={(text) => {
+              if (text.trim().length >= 40) setStep(2);
+            }}
+          />
+          {!cvTooShort && !cvBusy ? (
+            <ToolStepActions hint={TOOL_PRIVACY}>
+              <ToolSubmitButton
+                label="Continue"
+                busyLabel="Reading your CV"
+                running={false}
+                disabled={false}
+                onClick={() => setStep(2)}
+                type="button"
+              />
+            </ToolStepActions>
+          ) : null}
+        </div>
+      ) : null}
+
+      {!result && step === 2 ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (jobTooShort || cvTooShort || cvBusy) return;
+            start();
+            trackEvent("application_letter_generated", {});
+          }}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
           <div className="flex flex-col gap-2">
             <label htmlFor="letter-job-text" className={labelClass}>
-              Paste the job description
+              Job description
             </label>
             <textarea
               id="letter-job-text"
@@ -355,90 +364,92 @@ export default function LetterFromCvGenerator() {
                 reset();
               }}
               rows={10}
-              placeholder="Paste the full text of the job advert here…"
+              autoFocus
+              placeholder="Paste the full text of the job advert here."
               className={`${fieldClass} resize-y`}
             />
           </div>
-          <ResumeFileField
-            id="letter-cv-text"
-            label="Your CV"
-            value={cvText}
-            onChange={(text) => {
-              setCvText(text);
-              reset();
-            }}
-            onBusyChange={setCvBusy}
-          />
-        </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="letter-company" className={labelClass}>
-              Company name{" "}
-              <span className="font-semibold text-[var(--landing-ink-soft)]">
-                (optional)
-              </span>
-            </label>
-            <input
-              id="letter-company"
-              value={company}
-              onChange={(e) => {
-                setCompany(e.target.value);
-                reset();
-              }}
-              placeholder="Greenfield Logistics"
-              className={fieldClass}
-            />
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="letter-company" className={labelClass}>
+                Company name{" "}
+                <span className="font-semibold text-[var(--landing-ink-soft)]">
+                  (optional)
+                </span>
+              </label>
+              <input
+                id="letter-company"
+                value={company}
+                onChange={(e) => {
+                  setCompany(e.target.value);
+                  reset();
+                }}
+                placeholder="Greenfield Logistics"
+                className={fieldClass}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="letter-name" className={labelClass}>
+                Your name{" "}
+                <span className="font-semibold text-[var(--landing-ink-soft)]">
+                  (optional)
+                </span>
+              </label>
+              <input
+                id="letter-name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  reset();
+                }}
+                autoComplete="name"
+                placeholder="Thandiwe Moyo"
+                className={fieldClass}
+              />
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="letter-name" className={labelClass}>
-              Your name{" "}
-              <span className="font-semibold text-[var(--landing-ink-soft)]">
-                (optional)
-              </span>
-            </label>
-            <input
-              id="letter-name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                reset();
-              }}
-              autoComplete="name"
-              placeholder="Thandiwe Moyo"
-              className={fieldClass}
-            />
-          </div>
-        </div>
 
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Write my letter"
-            busyLabel="Writing your letter"
-            running={running}
-            disabled={jobTooShort || cvTooShort || cvBusy}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
-              ? "Reading your CV"
-              : jobIsLink
+          <ToolStepActions
+            hint={
+              jobIsLink
                 ? JOB_IS_LINK
-                : jobTooShort || cvTooShort
-                  ? "Add the job description and your CV to start."
-                  : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
+                : jobTooShort
+                  ? "Paste the full job posting to continue."
+                  : TOOL_PRIVACY
+            }
+          >
+            <ToolSubmitButton
+              label="Write my letter"
+              busyLabel="Writing your letter"
+              running={running}
+              disabled={jobTooShort || cvTooShort || cvBusy}
+            />
+            <ToolStepBack label="Back to resume" onClick={() => goStep(1)} />
+          </ToolStepActions>
+        </form>
+      ) : null}
 
-      {running ? (
-        <ToolProgress message="Writing your letter" lines={4} />
+      {!result && step === 2 && running ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ToolProgress message="Writing your letter" lines={4} />
+        </div>
       ) : null}
 
       {result ? (
-        <LetterResult result={result} jobText={jobText} cvText={cvText} />
-      ) : (
-        <LetterExample />
-      )}
-    </div>
+        <>
+          <LetterResult result={result} jobText={jobText} cvText={cvText} />
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack
+              label="Write another letter"
+              onClick={() => {
+                setJobText("");
+                goStep(2);
+              }}
+            />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

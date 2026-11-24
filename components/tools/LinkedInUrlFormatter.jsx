@@ -10,6 +10,7 @@
 import { useMemo, useState } from "react";
 import { WarningIcon } from "@phosphor-icons/react";
 
+import ToolShell, { ToolStepBack } from "@/components/tools/ToolShell";
 import { CopyButton } from "@/components/tools/tool-run";
 
 // pure-helpers:start
@@ -121,6 +122,11 @@ function findLinkIssues(handle) {
 
 const EXAMPLE = "https://uk.linkedin.com/in/farirai-masocha-4b2a19c3?originalSubdomain=zw";
 
+const STEPS = ["Paste URL", "View results"];
+
+const inputClass =
+  "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]";
+
 export default function LinkedInUrlFormatter() {
   const [value, setValue] = useState("");
 
@@ -152,34 +158,46 @@ export default function LinkedInUrlFormatter() {
       ]
     : [];
 
+  const hasInput = Boolean(value.trim());
+  const current = hasInput ? 2 : 1;
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <div className="flex flex-col gap-2">
-        <label
-          htmlFor="linkedin-url"
-          className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
-        >
-          Your LinkedIn profile link
-        </label>
-        <input
-          id="linkedin-url"
-          type="text"
-          inputMode="url"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          placeholder="https://www.linkedin.com/in/your-name"
-          autoComplete="off"
-          spellCheck={false}
-          className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
-        />
+    <ToolShell
+      steps={STEPS}
+      current={current}
+      onStepSelect={(n) => {
+        if (n < 2) setValue("");
+      }}
+    >
+      <div className="mx-auto w-full max-w-xl">
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="linkedin-url"
+            className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
+          >
+            Your LinkedIn profile link
+          </label>
+          <input
+            id="linkedin-url"
+            type="text"
+            inputMode="url"
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            placeholder="https://www.linkedin.com/in/your-name"
+            autoComplete="off"
+            spellCheck={false}
+            className={inputClass}
+          />
+        </div>
+        <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
+          Paste the address from your profile page. The link is cleaned as you type.
+          Nothing is uploaded.
+        </p>
       </div>
 
-      <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
-        Paste the address from your profile page. The link is cleaned as you type.
-        Nothing is uploaded.
-      </p>
-
-      <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
+      {current === 2 ? (
+        <>
+          <div className="landing-rise mx-auto mt-8 w-full max-w-2xl">
         <div className="flex flex-wrap items-baseline gap-3">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             {result.isExample ? "Here is what you get" : "Your CV links"}
@@ -284,8 +302,12 @@ export default function LinkedInUrlFormatter() {
             ) : null}
           </>
         )}
-
-      </div>
-    </div>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Edit URL" onClick={() => setValue("")} />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

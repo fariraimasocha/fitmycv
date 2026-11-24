@@ -18,6 +18,7 @@ import { useMemo, useState } from "react";
 import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, { ToolStepActions, ToolStepBack } from "@/components/tools/ToolShell";
 import {
   CopyButton,
   JOB_IS_LINK,
@@ -539,7 +540,13 @@ function NoteIcon({ tone }) {
   );
 }
 
+const STEPS = ["Paste a bullet", "View results"];
+
+const textareaClass =
+  "w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]";
+
 export default function BulletRewriter() {
+  const [step, setStep] = useState(1);
   const [bullet, setBullet] = useState("");
   const [jobText, setJobText] = useState("");
   const { running, ran, start, reset } = useToolRun("bullet_rewriter");
@@ -563,104 +570,23 @@ export default function BulletRewriter() {
     };
   }, [ran, bullet, posting]);
 
+  const goStep = (n) => {
+    if (n < 2) reset();
+    setStep(n);
+  };
+
   const tooShort = normalizeBullet(bullet).split(/\s+/).filter(Boolean).length < 3;
   const jobStarted = posting.trim().length > 0;
   const untouched = !bullet.trim() && !jobText.trim();
 
-  return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="grid gap-5 md:grid-cols-2">
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="bullet-text"
-              className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
-            >
-              Paste one bullet from your CV
-            </label>
-            <textarea
-              id="bullet-text"
-              value={bullet}
-              onChange={(e) => {
-                setBullet(e.target.value);
-                reset();
-              }}
-              rows={4}
-              placeholder="Managed customer support tickets."
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
-            />
-            <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-              One bullet at a time works best.
-            </p>
-          </div>
+  const hint = running
+    ? "Rewriting your bullet"
+    : tooShort
+      ? "Paste a bullet of at least three words."
+      : TOOL_PRIVACY;
 
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="bullet-job-text"
-              className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
-            >
-              Paste the job description (optional)
-            </label>
-            <textarea
-              id="bullet-job-text"
-              value={jobText}
-              onChange={(e) => {
-                setJobText(e.target.value);
-                reset();
-              }}
-              rows={4}
-              placeholder="Paste the posting to see which of its terms you could work in…"
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
-            />
-            <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-              {jobIsLink ? JOB_IS_LINK : "Leave this empty to just rewrite the bullet."}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Rewrite this bullet"
-            busyLabel="Rewriting your bullet"
-            running={running}
-            disabled={tooShort}
-          />
-          {/* Only offered on an empty form, so it never replaces what you typed. */}
-          {untouched ? (
-            <button
-              type="button"
-              onClick={() => {
-                setBullet(EXAMPLE_BULLET);
-                setJobText(EXAMPLE_JOB);
-                start();
-              }}
-              className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-            >
-              Try an example
-            </button>
-          ) : null}
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {running
-              ? "Rewriting your bullet"
-              : tooShort
-                ? "Paste a bullet of at least three words."
-                : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
-
-      {running ? (
-        <ToolProgress message="Rewriting your bullet" lines={3} />
-      ) : null}
-
-      {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+  const resultBlock = result ? (
+        <div className="landing-rise mx-auto w-full max-w-2xl">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             Three ways to rewrite it
           </p>
@@ -763,9 +689,104 @@ export default function BulletRewriter() {
             jobText={posting}
           />
         </div>
-      ) : running ? null : (
-        <ToolPreview items={PREVIEW} />
-      )}
-    </div>
+  ) : null;
+
+  return (
+    <ToolShell steps={STEPS} current={result ? 2 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              start();
+            }}
+            className="mx-auto flex w-full max-w-2xl flex-col gap-5"
+          >
+            <div className="grid gap-5 md:grid-cols-2">
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="bullet-text"
+                  className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
+                >
+                  Paste one bullet from your CV
+                </label>
+                <textarea
+                  id="bullet-text"
+                  value={bullet}
+                  onChange={(e) => {
+                    setBullet(e.target.value);
+                    reset();
+                  }}
+                  rows={4}
+                  placeholder="Managed customer support tickets."
+                  className={textareaClass}
+                />
+                <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
+                  One bullet at a time works best.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="bullet-job-text"
+                  className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
+                >
+                  Paste the job description (optional)
+                </label>
+                <textarea
+                  id="bullet-job-text"
+                  value={jobText}
+                  onChange={(e) => {
+                    setJobText(e.target.value);
+                    reset();
+                  }}
+                  rows={4}
+                  placeholder="Paste the posting to see which of its terms you could work in…"
+                  className={textareaClass}
+                />
+                <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
+                  {jobIsLink ? JOB_IS_LINK : "Leave this empty to just rewrite the bullet."}
+                </p>
+              </div>
+            </div>
+
+            <ToolStepActions hint={hint}>
+              <ToolSubmitButton
+                label="Rewrite this bullet"
+                busyLabel="Rewriting your bullet"
+                running={running}
+                disabled={tooShort}
+              />
+              {untouched ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setBullet(EXAMPLE_BULLET);
+                    setJobText(EXAMPLE_JOB);
+                    start();
+                  }}
+                  className="landing-secondary-btn font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-accent)] focus-visible:ring-offset-2"
+                >
+                  Try an example
+                </button>
+              ) : null}
+            </ToolStepActions>
+          </form>
+
+          {running ? <ToolProgress message="Rewriting your bullet" lines={3} /> : null}
+
+          {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+        </>
+      ) : null}
+
+      {result ? (
+        <>
+          {resultBlock}
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Rewrite another bullet" onClick={() => goStep(1)} />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

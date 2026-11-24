@@ -3,16 +3,23 @@
 // Free resume ↔ job match. Runs in the browser. A dropped PDF is read
 // locally. The rewrite lives behind /tailor-cv-from-job-link so this page
 // can stay unlimited and account-free.
+//
+// Stepped shell (Upload → Add job → View results) mirrors the Jobscan free
+// tool pattern, in FitMyCV colours.
 
 import { useMemo, useState } from "react";
 import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { CV_JOB_STEPS } from "@/components/tools/ToolStepper";
 import {
   JOB_IS_LINK,
   TOOL_PRIVACY,
-  ToolPreview,
   ToolProgress,
   ToolSubmitButton,
   useToolRun,
@@ -21,12 +28,6 @@ import { isLinkOnly } from "@/lib/ats-detect";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
 const HIGH_MATCH_SCORE = 75;
-
-const PREVIEW = [
-  { title: "A match score", body: "Skills, keywords and experience combined into one coverage score." },
-  { title: "Matched and missing skills", body: "The named skills from the posting that your resume shows, and the ones it does not." },
-  { title: "What to improve", body: "Up to five changes to make before you apply." },
-];
 
 function ScoreRing({ value }) {
   const tone =
@@ -117,6 +118,7 @@ function SkillChip({ term, present }) {
 }
 
 export default function JobMatchChecker() {
+  const [step, setStep] = useState(1);
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
@@ -141,27 +143,53 @@ export default function JobMatchChecker() {
     : "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.";
   const ctaLabel = highMatch ? "Tailor my CV" : "Close these gaps";
 
+  const goStep = (n) => {
+    if (n < 3) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="grid gap-5 md:grid-cols-2">
+    <ToolShell steps={CV_JOB_STEPS} current={result ? 3 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <div className="mx-auto w-full max-w-xl">
           <ResumeFileField
             id="resume-text"
-            label="Your resume"
+            variant="hero"
+            hideLabel
             value={cvText}
             onChange={(text) => {
               setCvText(text);
               reset();
             }}
             onBusyChange={setCvBusy}
+            onReady={(text) => {
+              if (text.trim().length >= 40) setStep(2);
+            }}
           />
+          {!cvTooShort && !cvBusy ? (
+            <ToolStepActions hint={TOOL_PRIVACY}>
+              <ToolSubmitButton
+                label="Continue"
+                busyLabel="Reading your CV"
+                running={false}
+                disabled={false}
+                onClick={() => setStep(2)}
+                type="button"
+              />
+            </ToolStepActions>
+          ) : null}
+        </div>
+      ) : null}
 
+      {!result && step === 2 ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (jobTooShort || cvTooShort || cvBusy) return;
+            start();
+          }}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
           <div className="flex flex-col gap-2">
             <label
               htmlFor="job-text"
@@ -176,42 +204,41 @@ export default function JobMatchChecker() {
                 setJobText(e.target.value);
                 reset();
               }}
-              rows={10}
+              rows={12}
+              autoFocus
               placeholder="Paste the full text of the job posting here."
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
+              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]"
             />
           </div>
-        </div>
 
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Check my match"
-            busyLabel="Checking your match"
-            running={running}
-            disabled={jobTooShort || cvTooShort || cvBusy}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
-              ? "Reading your CV"
-              : running
-                ? "Comparing your CV with the posting"
-                : jobIsLink
-                  ? JOB_IS_LINK
-                  : jobTooShort || cvTooShort
-                    ? "Add your CV and the full job description."
-                    : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
-
-      {running ? (
-        <ToolProgress message="Checking your match" lines={4} />
+          <ToolStepActions
+            hint={
+              jobIsLink
+                ? JOB_IS_LINK
+                : jobTooShort
+                  ? "Paste the full job posting to continue."
+                  : TOOL_PRIVACY
+            }
+          >
+            <ToolSubmitButton
+              label="Check my match"
+              busyLabel="Checking your match"
+              running={running}
+              disabled={jobTooShort || cvTooShort || cvBusy}
+            />
+            <ToolStepBack label="Back to resume" onClick={() => goStep(1)} />
+          </ToolStepActions>
+        </form>
       ) : null}
 
-      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+      {!result && step === 2 && running ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ToolProgress message="Checking your match" lines={4} />
+        </div>
+      ) : null}
 
       {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mx-auto w-full max-w-2xl">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <ScoreRing value={result.overall} />
             <div>
@@ -301,8 +328,18 @@ export default function JobMatchChecker() {
             cvText={cvText}
             score={result.overall}
           />
+
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack
+              label="Check another job"
+              onClick={() => {
+                setJobText("");
+                goStep(2);
+              }}
+            />
+          </div>
         </div>
       ) : null}
-    </div>
+    </ToolShell>
   );
 }

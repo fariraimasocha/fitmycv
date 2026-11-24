@@ -12,6 +12,11 @@ import { QuotesIcon, WarningCircleIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { CV_JOB_STEPS } from "@/components/tools/ToolStepper";
 import {
   CopyButton,
   JOB_IS_LINK,
@@ -30,17 +35,8 @@ const KIND_LABEL = {
   gap: "From the posting, missing from your CV",
 };
 
-// Shown before anyone runs the tool, for people searching for the common
-// questions rather than their own.
-const COMMON_QUESTIONS = [
-  "Tell me about yourself.",
-  "Why do you want this role?",
-  "Tell me about a time you solved a hard problem.",
-  "What is your biggest weakness?",
-  "Where do you see yourself in three years?",
-];
-
 export default function InterviewQuestionsGenerator() {
+  const [step, setStep] = useState(1);
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
@@ -66,22 +62,59 @@ export default function InterviewQuestionsGenerator() {
     });
   }, [result, gapCount]);
 
+  const goStep = (n) => {
+    if (n < 3) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="grid gap-5 md:grid-cols-2">
+    <ToolShell steps={CV_JOB_STEPS} current={result ? 3 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ResumeFileField
+            id="interview-resume-text"
+            variant="hero"
+            hideLabel
+            value={resumeText}
+            onChange={(text) => {
+              setResumeText(text);
+              reset();
+            }}
+            onBusyChange={setCvBusy}
+            onReady={(text) => {
+              if (text.trim().length >= 40) setStep(2);
+            }}
+          />
+          {!resumeTooShort && !cvBusy ? (
+            <ToolStepActions hint={TOOL_PRIVACY}>
+              <ToolSubmitButton
+                label="Continue"
+                busyLabel="Reading your CV"
+                running={false}
+                disabled={false}
+                onClick={() => setStep(2)}
+                type="button"
+              />
+            </ToolStepActions>
+          ) : null}
+        </div>
+      ) : null}
+
+      {!result && step === 2 ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (jobTooShort || resumeTooShort || cvBusy) return;
+            start();
+          }}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
           <div className="flex flex-col gap-2">
             <label
               htmlFor="interview-job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description
+              Job description
             </label>
             <textarea
               id="interview-job-text"
@@ -90,49 +123,41 @@ export default function InterviewQuestionsGenerator() {
                 setJobText(e.target.value);
                 reset();
               }}
-              rows={10}
-              placeholder="Paste the full text of the job posting here…"
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
+              rows={12}
+              autoFocus
+              placeholder="Paste the full text of the job posting here."
+              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]"
             />
           </div>
 
-          <ResumeFileField
-            id="interview-resume-text"
-            label="Your CV"
-            value={resumeText}
-            onChange={(text) => {
-              setResumeText(text);
-              reset();
-            }}
-            onBusyChange={setCvBusy}
-          />
-        </div>
+          <ToolStepActions
+            hint={
+              jobIsLink
+                ? JOB_IS_LINK
+                : jobTooShort
+                  ? "Paste the full job posting to continue."
+                  : TOOL_PRIVACY
+            }
+          >
+            <ToolSubmitButton
+              label="Get my questions"
+              busyLabel="Reading the posting"
+              running={running}
+              disabled={jobTooShort || resumeTooShort || cvBusy}
+            />
+            <ToolStepBack label="Back to resume" onClick={() => goStep(1)} />
+          </ToolStepActions>
+        </form>
+      ) : null}
 
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Get my questions"
-            busyLabel="Reading the posting"
-            running={running}
-            disabled={jobTooShort || resumeTooShort || cvBusy}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
-              ? "Reading your CV"
-              : running
-                ? "Matching your CV to the posting"
-                : jobIsLink
-                  ? JOB_IS_LINK
-                  : jobTooShort || resumeTooShort
-                    ? "Add the job description and your CV to start."
-                    : TOOL_PRIVACY}
-          </p>
+      {!result && step === 2 && running ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ToolProgress message="Reading the posting" lines={4} />
         </div>
-      </form>
-
-      {running ? <ToolProgress message="Reading the posting" lines={4} /> : null}
+      ) : null}
 
       {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mx-auto w-full max-w-2xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -218,28 +243,18 @@ export default function InterviewQuestionsGenerator() {
             cvText={resumeText}
             track={{ gaps: gapCount }}
           />
+
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack
+              label="Try another job"
+              onClick={() => {
+                setJobText("");
+                goStep(2);
+              }}
+            />
+          </div>
         </div>
-      ) : (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-          <p className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            Questions almost every interview asks
-          </p>
-          <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Add the posting and your CV to get the ones this job will ask, with
-            the line from your CV that answers each.
-          </p>
-          <ul className="mt-5 flex flex-col gap-2">
-            {COMMON_QUESTIONS.map((q) => (
-              <li
-                key={q}
-                className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 text-sm font-semibold leading-6 text-[var(--landing-ink)]"
-              >
-                {q}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+      ) : null}
+    </ToolShell>
   );
 }

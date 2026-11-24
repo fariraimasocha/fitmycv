@@ -259,13 +259,17 @@
       "reviewHint": "Prüf den Text unten. Genau den liest der Check.",
       "fileHint": "PDF, bis 8 MB. Wird in diesem Tab gelesen, nie hochgeladen.",
       "textPlaceholder": "Hier erscheint der ausgelesene Text. Bearbeite ihn, wenn eine Zeile falsch aussieht.",
-      "paste": "Oder füge den Text ein",
+      "paste": "Oder Lebenslauf-Text einfügen",
       "errorWord": "Das ist eine Word-Datei. Exportiere sie als PDF und lade das PDF hoch.",
       "errorType": "Dieser Dateityp wird nicht unterstützt. Wähle ein PDF.",
       "errorSize": "Diese Datei ist größer als 8 MB. Wähle ein kleineres PDF.",
       "errorEmpty": "Wir konnten nicht genug Text aus dieser Datei lesen. Vielleicht ist es ein Scan. Füge den Text stattdessen unten ein.",
       "removed": "Lebenslauf entfernt",
-      "undo": "Rückgängig"
+      "undo": "Rückgängig",
+      "dropHero": "Ziehen Sie die Datei hierher, oder",
+      "chooseHero": "wählen Sie eine Datei",
+      "dropHeroEnd": "zum Hochladen",
+      "fileHintHero": "als .pdf-Datei, bis 8 MB"
     },
     "copy": {
       "copy": "Kopieren",

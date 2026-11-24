@@ -8,20 +8,18 @@ import { useMemo, useState } from "react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { CV_ONLY_STEPS } from "@/components/tools/ToolStepper";
 import {
   TOOL_PRIVACY,
-  ToolPreview,
   ToolProgress,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
-
-const PREVIEW = [
-  { title: "Weak words, counted", body: "Duty phrases, vague verbs and clichés, with how often each one appears." },
-  { title: "What to write instead", body: "One fix for each phrase, next to a line it was found in." },
-  { title: "A numbers check", body: "How many of your longer lines have a number in them." },
-];
 
 // pure-region-start
 // [phrase, kind, what to do instead]. Matched case-insensitively on word edges.
@@ -94,10 +92,12 @@ function findWeakWords(text) {
 }
 // pure-region-end
 
+const KIND_LABEL = { duty: "Duty phrase", vague: "Vague verb", cliche: "Cliché" };
+
 function WeakWordsResult({ result, cvText }) {
   const total = result.found.reduce((n, f) => n + f.count, 0);
   return (
-    <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+    <div className="landing-rise mx-auto w-full max-w-2xl">
       <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
         {total === 0 ? "No weak words found" : `${total} weak ${total === 1 ? "word" : "words"} found`}
       </p>
@@ -143,9 +143,8 @@ function WeakWordsResult({ result, cvText }) {
   );
 }
 
-const KIND_LABEL = { duty: "Duty phrase", vague: "Vague verb", cliche: "Cliché" };
-
 export default function WeakWordsChecker() {
+  const [step, setStep] = useState(1);
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun("weak_words");
@@ -153,43 +152,56 @@ export default function WeakWordsChecker() {
 
   const result = useMemo(() => (ran && !tooShort ? findWeakWords(cvText) : null), [ran, tooShort, cvText]);
 
+  const goStep = (n) => {
+    if (n < 2) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-          trackEvent("weak_words_checked");
-        }}
-        className="flex flex-col gap-5"
-      >
-        <ResumeFileField
-          id="weak-words-text"
-          value={cvText}
-          onChange={(text) => {
-            setCvText(text);
-            reset();
+    <ToolShell steps={CV_ONLY_STEPS} current={result ? 2 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (tooShort || cvBusy) return;
+            start();
+            trackEvent("weak_words_checked");
           }}
-          onBusyChange={setCvBusy}
-        />
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Find weak words"
-            busyLabel="Reading your CV"
-            running={running}
-            disabled={tooShort || cvBusy}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
+          <ResumeFileField
+            id="weak-words-text"
+            variant="hero"
+            hideLabel
+            value={cvText}
+            onChange={(text) => {
+              setCvText(text);
+              reset();
+            }}
+            onBusyChange={setCvBusy}
           />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy ? "Reading your CV" : tooShort ? "Add your CV to start." : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
+          <ToolStepActions
+            hint={cvBusy ? "Reading your CV" : tooShort ? "Add your CV to start." : TOOL_PRIVACY}
+          >
+            <ToolSubmitButton
+              label="Find weak words"
+              busyLabel="Reading your CV"
+              running={running}
+              disabled={tooShort || cvBusy}
+            />
+          </ToolStepActions>
+          {running ? <ToolProgress message="Reading your CV" lines={4} /> : null}
+        </form>
+      ) : null}
 
-      {running ? <ToolProgress message="Reading your CV" lines={4} /> : null}
-
-      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
-
-      {result ? <WeakWordsResult result={result} cvText={cvText} /> : null}
-    </div>
+      {result ? (
+        <>
+          <WeakWordsResult result={result} cvText={cvText} />
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Check another CV" onClick={() => goStep(1)} />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

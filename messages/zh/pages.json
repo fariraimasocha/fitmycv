@@ -259,13 +259,17 @@
       "reviewHint": "请检查下方文本，检测工具读取的就是这些内容。",
       "fileHint": "PDF 格式，最大 8MB。只在这个标签页中读取，不会上传。",
       "textPlaceholder": "提取出的文字会显示在这里。如果某行看起来不对，可以直接修改。",
-      "paste": "或粘贴文本",
+      "paste": "或粘贴简历文本",
       "errorWord": "这是 Word 文件。请导出为 PDF 后再上传。",
       "errorType": "不支持这种文件类型。请选择 PDF。",
       "errorSize": "这个文件超过 8MB。请选择更小的 PDF。",
       "errorEmpty": "我们没能从这个文件中读到足够的文字。它可能是扫描件。请改为在下方粘贴文本。",
       "removed": "简历已移除",
-      "undo": "撤销"
+      "undo": "撤销",
+      "dropHero": "拖放，或",
+      "chooseHero": "选择文件",
+      "dropHeroEnd": "以上传",
+      "fileHintHero": "支持 .pdf，最大 8MB"
     },
     "copy": {
       "copy": "复制",

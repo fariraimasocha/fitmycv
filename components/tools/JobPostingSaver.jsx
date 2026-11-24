@@ -13,11 +13,15 @@ import { useMutation } from "@tanstack/react-query";
 import { FilePdfIcon, WarningIcon } from "@phosphor-icons/react";
 
 import { CtaCard } from "@/components/tools/HandoffCta";
+import ToolShell, { ToolStepActions, ToolStepBack } from "@/components/tools/ToolShell";
+import { JOB_ONLY_STEPS } from "@/components/tools/ToolStepper";
 import { CopyButton, ToolPreview, ToolProgress, ToolSubmitButton } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { toUrl } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
+
+const STEPS = JOB_ONLY_STEPS;
 
 const PREVIEW = [
   { title: "The full posting", body: "The text of the page as written, with its link and today's date on top." },
@@ -56,6 +60,7 @@ export default function JobPostingSaver() {
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
+  const [step, setStep] = useState(1);
   const [value, setValue] = useState("");
   const [notALink, setNotALink] = useState(false);
   const save = useMutation({
@@ -68,6 +73,13 @@ export default function JobPostingSaver() {
     : save.isError
       ? save.error.message
       : null;
+
+  const goStep = (n) => {
+    if (n < 2) {
+      save.reset();
+      setStep(1);
+    } else if (posting) setStep(2);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -102,91 +114,98 @@ export default function JobPostingSaver() {
     router.push(authUrl);
   };
 
+  const inputClass =
+    "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]";
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form onSubmit={onSubmit} className="flex flex-col gap-2">
-        <label htmlFor="job-save-url" className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-          Job posting link
-        </label>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <input
-            id="job-save-url"
-            type="text"
-            inputMode="url"
-            value={value}
-            onChange={(event) => {
-              setValue(event.target.value);
-              setNotALink(false);
-            }}
-            placeholder="https://www.linkedin.com/jobs/view/..."
-            autoComplete="off"
-            spellCheck={false}
-            className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
-          />
-          <div className="shrink-0">
-            <ToolSubmitButton
-              label="Save posting"
-              busyLabel="Reading"
-              running={save.isPending}
-              disabled={!value.trim()}
+    <ToolShell steps={STEPS} current={posting ? 2 : step} onStepSelect={goStep}>
+      {!posting && step === 1 ? (
+        <>
+          <form onSubmit={onSubmit} className="mx-auto flex w-full max-w-xl flex-col gap-2">
+            <label htmlFor="job-save-url" className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+              Job posting link
+            </label>
+            <input
+              id="job-save-url"
+              type="text"
+              inputMode="url"
+              value={value}
+              onChange={(event) => {
+                setValue(event.target.value);
+                setNotALink(false);
+              }}
+              placeholder="https://www.linkedin.com/jobs/view/..."
+              autoComplete="off"
+              spellCheck={false}
+              className={inputClass}
             />
-          </div>
-        </div>
-        <p className="mt-2 text-xs font-semibold text-[var(--landing-ink-soft)]">
-          Paste the link from LinkedIn, a company careers page or a job board. We read the page once and store nothing.
-        </p>
-      </form>
+            <ToolStepActions hint="Paste the link from LinkedIn, a company careers page or a job board. We read the page once and store nothing.">
+              <ToolSubmitButton
+                label="Save posting"
+                busyLabel="Reading"
+                running={save.isPending}
+                disabled={!value.trim()}
+              />
+            </ToolStepActions>
+          </form>
 
-      {save.isPending ? <ToolProgress message="Reading the posting" lines={5} /> : null}
+          {save.isPending ? <ToolProgress message="Reading the posting" lines={5} /> : null}
 
-      {error && !save.isPending ? (
-        <p
-          role="alert"
-          className="mt-6 flex items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]"
-        >
-          <WarningIcon size={16} aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
-          {error}
-        </p>
-      ) : null}
-
-      {!posting && !save.isPending ? <ToolPreview items={PREVIEW} /> : null}
-
-      {posting && !save.isPending ? (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <button type="button" onClick={savePdf} className="landing-primary-btn font-outfit text-sm">
-              <FilePdfIcon size={16} aria-hidden="true" />
-              Save as PDF
-            </button>
-            <CopyButton
-              tool="job_saver"
-              text={posting.text}
-              message="Posting copied"
-              ariaLabel="Copy the posting text"
-            />
-          </div>
-          <p className="mt-3 text-xs font-semibold text-[var(--landing-ink-soft)]">
-            In the print window, set the destination to Save as PDF.
-          </p>
-
-          <article className="job-print-area mt-6 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 sm:p-7">
-            <p className="break-all text-xs font-semibold text-[var(--landing-ink-soft)]">
-              Saved from {posting.url} on{" "}
-              {posting.savedAt.toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" })}
+          {error && !save.isPending ? (
+            <p
+              role="alert"
+              className="mx-auto mt-6 flex w-full max-w-xl items-start gap-2.5 rounded-xl border border-[oklch(0.75_0.14_75_/_0.35)] bg-[oklch(0.75_0.14_75_/_0.09)] px-4 py-2.5 text-sm leading-6 text-[var(--landing-ink)]"
+            >
+              <WarningIcon size={16} aria-hidden="true" className="mt-1 shrink-0 text-[var(--landing-accent)]" />
+              {error}
             </p>
-            <div className="mt-4 max-h-125 overflow-y-auto whitespace-pre-wrap break-words text-sm leading-7 text-[var(--landing-ink)] print:max-h-none print:overflow-visible">
-              {posting.text}
-            </div>
-          </article>
+          ) : null}
 
-          <CtaCard
-            title="Saved. Now tailor your CV to it."
-            body="FitMyCV rewrites your own CV around this posting, using its words and your real experience."
-            label="Tailor my CV"
-            onClick={tailor}
-          />
-        </div>
+          {!posting && !save.isPending ? <ToolPreview items={PREVIEW} /> : null}
+        </>
       ) : null}
-    </div>
+
+      {step === 2 && posting && !save.isPending ? (
+        <>
+          <div className="landing-rise mx-auto w-full max-w-2xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <button type="button" onClick={savePdf} className="landing-primary-btn font-outfit text-sm">
+                <FilePdfIcon size={16} aria-hidden="true" />
+                Save as PDF
+              </button>
+              <CopyButton
+                tool="job_saver"
+                text={posting.text}
+                message="Posting copied"
+                ariaLabel="Copy the posting text"
+              />
+            </div>
+            <p className="mt-3 text-xs font-semibold text-[var(--landing-ink-soft)]">
+              In the print window, set the destination to Save as PDF.
+            </p>
+
+            <article className="job-print-area mt-6 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 sm:p-7">
+              <p className="break-all text-xs font-semibold text-[var(--landing-ink-soft)]">
+                Saved from {posting.url} on{" "}
+                {posting.savedAt.toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" })}
+              </p>
+              <div className="mt-4 max-h-125 overflow-y-auto whitespace-pre-wrap break-words text-sm leading-7 text-[var(--landing-ink)] print:max-h-none print:overflow-visible">
+                {posting.text}
+              </div>
+            </article>
+
+            <CtaCard
+              title="Saved. Now tailor your CV to it."
+              body="FitMyCV rewrites your own CV around this posting, using its words and your real experience."
+              label="Tailor my CV"
+              onClick={tailor}
+            />
+          </div>
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Save another posting" onClick={() => goStep(1)} />
+          </div>
+        </>
+      ) : null}
+    </ToolShell>
   );
 }

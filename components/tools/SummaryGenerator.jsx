@@ -15,10 +15,15 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { CheckIcon, SparkleIcon, XIcon } from "@phosphor-icons/react";
+import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { CV_JOB_STEPS } from "@/components/tools/ToolStepper";
 import {
   CopyButton,
   JOB_IS_LINK,
@@ -30,23 +35,6 @@ import {
 import { isLinkOnly } from "@/lib/ats-detect";
 import { notCompanyTerm } from "@/lib/keywords";
 import { generateSummaries } from "@/lib/summary-helpers";
-
-// Shown before anyone runs the tool. People searching "professional summary
-// examples" land here too, so the empty state answers that first.
-const EXAMPLE_SUMMARIES = [
-  {
-    stage: "Graduate",
-    text: "Statistics graduate aiming for a junior data analyst role. Built a final year project analysing five years of city transport data in Python and SQL.",
-  },
-  {
-    stage: "Mid-level",
-    text: "Digital marketing manager with 6+ years in B2B SaaS. Skilled in paid social, lifecycle email and HubSpot. Grew qualified leads 40% in a year on a flat budget.",
-  },
-  {
-    stage: "Senior",
-    text: "Senior backend engineer with 10+ years in payments. Led the move to event driven services that cut checkout failures by a third.",
-  },
-];
 
 function Pill({ label, present }) {
   return (
@@ -76,6 +64,7 @@ function Pill({ label, present }) {
 }
 
 export default function SummaryGenerator() {
+  const [step, setStep] = useState(1);
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
@@ -99,22 +88,59 @@ export default function SummaryGenerator() {
     };
   }, [ran, jobText, resumeText, jobTooShort, resumeTooShort, currentYear]);
 
+  const goStep = (n) => {
+    if (n < 3) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="grid gap-5 md:grid-cols-2">
+    <ToolShell steps={CV_JOB_STEPS} current={result ? 3 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ResumeFileField
+            id="summary-resume-text"
+            variant="hero"
+            hideLabel
+            value={resumeText}
+            onChange={(text) => {
+              setResumeText(text);
+              reset();
+            }}
+            onBusyChange={setCvBusy}
+            onReady={(text) => {
+              if (text.trim().length >= 40) setStep(2);
+            }}
+          />
+          {!resumeTooShort && !cvBusy ? (
+            <ToolStepActions hint={TOOL_PRIVACY}>
+              <ToolSubmitButton
+                label="Continue"
+                busyLabel="Reading your CV"
+                running={false}
+                disabled={false}
+                onClick={() => setStep(2)}
+                type="button"
+              />
+            </ToolStepActions>
+          ) : null}
+        </div>
+      ) : null}
+
+      {!result && step === 2 ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (jobTooShort || resumeTooShort || cvBusy) return;
+            start();
+          }}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
           <div className="flex flex-col gap-2">
             <label
               htmlFor="summary-job-text"
               className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
             >
-              Paste the job description
+              Job description
             </label>
             <textarea
               id="summary-job-text"
@@ -123,49 +149,41 @@ export default function SummaryGenerator() {
                 setJobText(e.target.value);
                 reset();
               }}
-              rows={10}
-              placeholder="Paste the full text of the job posting here…"
-              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
+              rows={12}
+              autoFocus
+              placeholder="Paste the full text of the job posting here."
+              className="w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]"
             />
           </div>
 
-          <ResumeFileField
-            id="summary-resume-text"
-            label="Your CV"
-            value={resumeText}
-            onChange={(text) => {
-              setResumeText(text);
-              reset();
-            }}
-            onBusyChange={setCvBusy}
-          />
-        </div>
+          <ToolStepActions
+            hint={
+              jobIsLink
+                ? JOB_IS_LINK
+                : jobTooShort
+                  ? "Paste the full job posting to continue."
+                  : TOOL_PRIVACY
+            }
+          >
+            <ToolSubmitButton
+              label="Write my summary"
+              busyLabel="Writing your summaries"
+              running={running}
+              disabled={jobTooShort || resumeTooShort || cvBusy}
+            />
+            <ToolStepBack label="Back to resume" onClick={() => goStep(1)} />
+          </ToolStepActions>
+        </form>
+      ) : null}
 
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Write my summary"
-            busyLabel="Writing your summaries"
-            running={running}
-            disabled={jobTooShort || resumeTooShort || cvBusy}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy
-              ? "Reading your CV"
-              : running
-                ? "Matching your CV to the posting"
-                : jobIsLink
-                  ? JOB_IS_LINK
-                  : jobTooShort || resumeTooShort
-                    ? "Add the job description and your CV to start."
-                    : TOOL_PRIVACY}
-          </p>
+      {!result && step === 2 && running ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ToolProgress message="Writing your summaries" lines={3} />
         </div>
-      </form>
-
-      {running ? <ToolProgress message="Writing your summaries" lines={3} /> : null}
+      ) : null}
 
       {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mx-auto w-full max-w-2xl">
           {result.summaries.length ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -278,39 +296,18 @@ export default function SummaryGenerator() {
             jobText={jobText}
             cvText={resumeText}
           />
-        </div>
-      ) : (
-        <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
-          <p className="inline-flex items-center gap-2 font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            <SparkleIcon
-              size={16}
-              weight="fill"
-              aria-hidden="true"
-              className="text-[var(--landing-accent)]"
+
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack
+              label="Write for another job"
+              onClick={() => {
+                setJobText("");
+                goStep(2);
+              }}
             />
-            Professional summary examples
-          </p>
-          <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-            Yours will be built from the posting you paste and the results your
-            CV already shows. Here is the shape they take.
-          </p>
-          <ul className="mt-5 flex flex-col gap-2">
-            {EXAMPLE_SUMMARIES.map(({ stage, text }) => (
-              <li
-                key={stage}
-                className="flex flex-col gap-1 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 sm:flex-row sm:items-start sm:gap-4"
-              >
-                <span className="font-outfit text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)] sm:w-28 sm:shrink-0 sm:pt-0.5">
-                  {stage}
-                </span>
-                <span className="text-sm font-semibold leading-6 text-[var(--landing-ink)]">
-                  {text}
-                </span>
-              </li>
-            ))}
-          </ul>
+          </div>
         </div>
-      )}
-    </div>
+      ) : null}
+    </ToolShell>
   );
 }

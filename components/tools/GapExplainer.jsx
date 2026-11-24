@@ -7,6 +7,7 @@
 import { useMemo, useState } from "react";
 
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, { ToolStepActions, ToolStepBack } from "@/components/tools/ToolShell";
 import {
   CopyButton,
   TOOL_PRIVACY,
@@ -108,6 +109,8 @@ function explainGap({ reason, from, to, did = "" }) {
 }
 // pure-region-end
 
+const STEPS = ["Describe the gap", "View results"];
+
 function CopyBlock({ title, text }) {
   return (
     <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
@@ -121,6 +124,7 @@ function CopyBlock({ title, text }) {
 }
 
 export default function GapExplainer() {
+  const [step, setStep] = useState(1);
   const [reason, setReason] = useState("caregiving");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -133,91 +137,105 @@ export default function GapExplainer() {
     [ran, reason, from, to, did]
   );
 
+  const goStep = (n) => {
+    if (n < 2) reset();
+    setStep(n);
+  };
+
   const field =
-    "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)]";
+    "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)] outline-none focus:border-[var(--landing-accent)]";
   const fieldLabel = "font-outfit text-sm font-extrabold text-[var(--landing-ink)]";
   const change = (set) => (e) => {
     set(e.target.value);
     reset();
   };
 
+  const hint =
+    from && to && months === null
+      ? "The end month must come after the start month."
+      : months === null
+        ? "Pick the month the gap started and the month it ended."
+        : TOOL_PRIVACY;
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-          trackEvent("gap_explained", { reason, months });
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="flex flex-col gap-2">
-          <label htmlFor="gap-reason" className={fieldLabel}>Why were you away?</label>
-          <select id="gap-reason" value={reason} onChange={change(setReason)} className={field}>
-            {Object.entries(REASONS).map(([key, r]) => (
-              <option key={key} value={key}>{r.label}</option>
-            ))}
-          </select>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="gap-from" className={fieldLabel}>Gap started</label>
-            <input id="gap-from" type="month" value={from} onChange={change(setFrom)} className={field} />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="gap-to" className={fieldLabel}>Gap ended</label>
-            <input id="gap-to" type="month" value={to} onChange={change(setTo)} className={field} />
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="gap-did" className={fieldLabel}>Anything you did during it (optional)</label>
-          <input
-            id="gap-did"
-            value={did}
-            onChange={change(setDid)}
-            placeholder="Completed a Google Data Analytics certificate"
-            className={field}
-          />
-        </div>
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Explain my gap"
-            busyLabel="Writing your lines"
-            running={running}
-            disabled={months === null}
-          />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {from && to && months === null
-              ? "The end month must come after the start month."
-              : months === null
-                ? "Pick the month the gap started and the month it ended."
-                : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
+    <ToolShell steps={STEPS} current={result ? 2 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              start();
+              trackEvent("gap_explained", { reason, months });
+            }}
+            className="mx-auto flex w-full max-w-xl flex-col gap-5"
+          >
+            <div className="flex flex-col gap-2">
+              <label htmlFor="gap-reason" className={fieldLabel}>Why were you away?</label>
+              <select id="gap-reason" value={reason} onChange={change(setReason)} className={field}>
+                {Object.entries(REASONS).map(([key, r]) => (
+                  <option key={key} value={key}>{r.label}</option>
+                ))}
+              </select>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="gap-from" className={fieldLabel}>Gap started</label>
+                <input id="gap-from" type="month" value={from} onChange={change(setFrom)} className={field} />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="gap-to" className={fieldLabel}>Gap ended</label>
+                <input id="gap-to" type="month" value={to} onChange={change(setTo)} className={field} />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="gap-did" className={fieldLabel}>Anything you did during it (optional)</label>
+              <input
+                id="gap-did"
+                value={did}
+                onChange={change(setDid)}
+                placeholder="Completed a Google Data Analytics certificate"
+                className={field}
+              />
+            </div>
+            <ToolStepActions hint={hint}>
+              <ToolSubmitButton
+                label="Explain my gap"
+                busyLabel="Writing your lines"
+                running={running}
+                disabled={months === null}
+              />
+            </ToolStepActions>
+          </form>
 
-      {running ? <ToolProgress message="Writing your lines" lines={3} /> : null}
+          {running ? <ToolProgress message="Writing your lines" lines={3} /> : null}
 
-      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+          {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+        </>
+      ) : null}
 
       {result ? (
-        <div className="landing-rise mt-8 flex flex-col gap-3 border-t border-[var(--landing-line)] pt-8">
-          {result.short ? (
-            <p className="text-sm leading-6 text-[var(--landing-ink)]">
-              <strong className="font-extrabold">You may not need this.</strong> A gap under 3 months rarely needs explaining. Show years only on your CV dates and it disappears.
-            </p>
-          ) : null}
-          <CopyBlock title="On your CV" text={result.cv} />
-          <CopyBlock title="In your cover letter" text={result.letter} />
-          <CopyBlock title="In the interview" text={result.answer} />
-          <HandoffCta
-            title="Gap handled. Now fit the rest of your CV."
-            body="FitMyCV rewrites your CV and cover letter for a specific job posting, so the gap is one line and your experience does the talking."
-            label="Tailor my CV to a job"
-            source="gap_explainer"
-          />
-        </div>
+        <>
+          <div className="landing-rise mx-auto flex w-full max-w-2xl flex-col gap-3">
+            {result.short ? (
+              <p className="text-sm leading-6 text-[var(--landing-ink)]">
+                <strong className="font-extrabold">You may not need this.</strong> A gap under 3 months rarely needs explaining. Show years only on your CV dates and it disappears.
+              </p>
+            ) : null}
+            <CopyBlock title="On your CV" text={result.cv} />
+            <CopyBlock title="In your cover letter" text={result.letter} />
+            <CopyBlock title="In the interview" text={result.answer} />
+            <HandoffCta
+              title="Gap handled. Now fit the rest of your CV."
+              body="FitMyCV rewrites your CV and cover letter for a specific job posting, so the gap is one line and your experience does the talking."
+              label="Tailor my CV to a job"
+              source="gap_explainer"
+            />
+          </div>
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Edit gap details" onClick={() => goStep(1)} />
+          </div>
+        </>
       ) : null}
-    </div>
+    </ToolShell>
   );
 }

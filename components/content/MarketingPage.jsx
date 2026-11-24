@@ -158,7 +158,13 @@ export default function MarketingPage({ page, children, hideHero = false, locale
             )}
 
             {hideHero ? null : (
-              <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-[var(--landing-ink-soft)] sm:mt-7 sm:text-xl sm:leading-8">
+              <p
+                className={`mt-5 max-w-2xl text-base font-semibold leading-7 sm:mt-7 sm:text-xl sm:leading-8 ${
+                  tool
+                    ? "text-[var(--landing-accent)]"
+                    : "text-[var(--landing-ink-soft)]"
+                }`}
+              >
                 {lede}
               </p>
             )}
@@ -194,7 +200,7 @@ export default function MarketingPage({ page, children, hideHero = false, locale
 
         {/* Interactive tool */}
         {tool ? (
-          <section id="tool" className="scroll-mt-24 px-5 pb-4 sm:px-10 lg:px-16 xl:px-24">
+          <section id="tool" className="scroll-mt-24 px-5 pb-8 sm:px-10 sm:pb-12 lg:px-16 xl:px-24">
             <div className="mx-auto w-full max-w-3xl">
               {ToolComponent ? (
                 <ToolComponent {...toolProps} />

@@ -10,6 +10,7 @@
 import { useMemo, useState } from "react";
 import { WarningIcon } from "@phosphor-icons/react";
 
+import ToolShell from "@/components/tools/ToolShell";
 import { CopyButton } from "@/components/tools/tool-run";
 import { buildFileName, exceedsLimit } from "@/utils/pdf-filename";
 
@@ -66,6 +67,11 @@ const FIELDS = [
   { key: "company", label: "Company (optional)", placeholder: "Northwind" },
 ];
 
+const STEPS = ["Enter details", "View results"];
+
+const inputClass =
+  "w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)]";
+
 export default function FileNameGenerator() {
   const [values, setValues] = useState({ name: "", role: "", company: "" });
 
@@ -108,40 +114,14 @@ export default function FileNameGenerator() {
     };
   }, [values]);
 
+  const current = isExample ? 1 : 2;
+
   const update = (key) => (event) => {
     setValues((current) => ({ ...current, [key]: event.target.value }));
   };
 
-  return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <div className="grid gap-5 md:grid-cols-3">
-        {FIELDS.map((field) => (
-          <div key={field.key} className="flex flex-col gap-2">
-            <label
-              htmlFor={`filename-${field.key}`}
-              className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
-            >
-              {field.label}
-            </label>
-            <input
-              id={`filename-${field.key}`}
-              type="text"
-              value={values[field.key]}
-              onChange={update(field.key)}
-              placeholder={field.placeholder}
-              autoComplete="off"
-              spellCheck={false}
-              className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3 font-sans text-sm leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)]"
-            />
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
-        Names build as you type. Nothing is uploaded.
-      </p>
-
-      <div className="mt-8 border-t border-[var(--landing-line)] pt-8">
+  const results = (
+    <div className="landing-rise mx-auto w-full max-w-2xl">
         <div className="flex flex-wrap items-baseline gap-3">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             {isExample ? "Here is what you get" : "Your file names"}
@@ -220,7 +200,50 @@ export default function FileNameGenerator() {
             </ul>
           </div>
         ) : null}
-      </div>
     </div>
+  );
+
+  return (
+    <ToolShell
+      steps={STEPS}
+      current={current}
+      onStepSelect={(n) => {
+        if (n < 2) setValues({ name: "", role: "", company: "" });
+      }}
+    >
+      <div className="mx-auto w-full max-w-2xl">
+        <div className="grid gap-5 md:grid-cols-3">
+          {FIELDS.map((field) => (
+            <div key={field.key} className="flex flex-col gap-2">
+              <label
+                htmlFor={`filename-${field.key}`}
+                className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]"
+              >
+                {field.label}
+              </label>
+              <input
+                id={`filename-${field.key}`}
+                type="text"
+                value={values[field.key]}
+                onChange={update(field.key)}
+                placeholder={field.placeholder}
+                autoComplete="off"
+                spellCheck={false}
+                className={inputClass}
+              />
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-xs font-semibold text-[var(--landing-ink-soft)]">
+          Names build as you type. Nothing is uploaded.
+        </p>
+      </div>
+
+      {current === 2 ? (
+        <div className="mt-8">
+          {results}
+        </div>
+      ) : null}
+    </ToolShell>
   );
 }

@@ -18,9 +18,23 @@ import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import {
+  CV_JOB_STEPS,
+  JOB_ONLY_STEPS,
+} from "@/components/tools/ToolStepper";
 import { ArcGauge } from "@/components/charts/ArcGauge";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
-import { CopyButton, ToolPreview, ToolProgress, ToolSubmitButton, useToolRun } from "@/components/tools/tool-run";
+import {
+  CopyButton,
+  TOOL_PRIVACY,
+  ToolProgress,
+  ToolSubmitButton,
+  useToolRun,
+} from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib/ats-handoff";
 import { isLinkOnly } from "@/lib/ats-detect";
@@ -76,11 +90,14 @@ export default function KeywordChecker({ mode = "match" }) {
   const router = useRouter();
   const { data: session } = useSession();
   const gate = useWebviewGate();
+  const [step, setStep] = useState(1);
   const [jobText, setJobText] = useState("");
   const [cvText, setCvText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const tool = `ats_checker_${mode}`;
   const { running, ran, start, reset } = useToolRun(tool);
+  const steps = needsCv ? CV_JOB_STEPS : JOB_ONLY_STEPS;
+  const resultsStep = needsCv ? 3 : 2;
   // Shown under the button, not as a toast. Toasts in the corner were missed
   // and the button looked like it did nothing.
   const [formError, setFormError] = useState("");
@@ -175,6 +192,24 @@ export default function KeywordChecker({ mode = "match" }) {
 
   const jobChars = jobText.trim().length;
   const tooShort = jobChars < MIN_JOB_CHARS;
+  const cvTooShort = needsCv && cvText.trim().length < 40;
+
+  const goStep = (n) => {
+    if (n < resultsStep) reset();
+    setFormError("");
+    setStep(n);
+  };
+
+  const submitLabel = gapsMode
+    ? t("submitGaps")
+    : matchMode
+      ? t("submitMatch")
+      : t("submitKeywords");
+  const busyLabel = gapsMode
+    ? t("busyGaps")
+    : matchMode
+      ? t("busyMatch")
+      : t("busyKeywords");
 
   const ctaKey = handoffKey({
     gapsMode,
@@ -239,36 +274,70 @@ export default function KeywordChecker({ mode = "match" }) {
       </div>
     ) : null;
 
+  const runCheck = () => {
+    if (isLinkOnly(jobText)) {
+      setFormError(t("errorLink"));
+      return;
+    }
+    if (tooShort || cvTooShort) {
+      setFormError(
+        tooShort && cvTooShort
+          ? t("errorBoth")
+          : tooShort
+            ? t("errorJob")
+            : t("errorCv")
+      );
+      return;
+    }
+    setFormError("");
+    setRuns((n) => n + 1);
+    start();
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        noValidate
-        onSubmit={(e) => {
-          e.preventDefault();
-          // A pasted link is long enough to pass the length check, and would
-          // be scored as if "https" and "refid" were the posting's keywords.
-          if (isLinkOnly(jobText)) {
-            setFormError(t("errorLink"));
-            return;
-          }
-          const cvMissing = needsCv && cvText.trim().length < 40;
-          if (tooShort || cvMissing) {
-            setFormError(
-              tooShort && cvMissing
-                ? t("errorBoth")
-                : tooShort
-                  ? t("errorJob")
-                  : t("errorCv")
-            );
-            return;
-          }
-          setFormError("");
-          setRuns((n) => n + 1);
-          start();
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className={needsCv ? "grid gap-5 md:grid-cols-2" : ""}>
+    <ToolShell steps={steps} current={result ? resultsStep : step} onStepSelect={goStep}>
+      {needsCv && !result && step === 1 ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ResumeFileField
+            id="cv-text"
+            variant="hero"
+            hideLabel
+            label={t("cvLabel")}
+            value={cvText}
+            onChange={(text) => {
+              setCvText(text);
+              setFormError("");
+              reset();
+            }}
+            onBusyChange={setCvBusy}
+            onReady={(text) => {
+              if (text.trim().length >= 40) setStep(2);
+            }}
+          />
+          {!cvTooShort && !cvBusy ? (
+            <ToolStepActions hint={TOOL_PRIVACY}>
+              <ToolSubmitButton
+                type="button"
+                label="Continue"
+                busyLabel={t("readingCv")}
+                running={false}
+                disabled={false}
+                onClick={() => setStep(2)}
+              />
+            </ToolStepActions>
+          ) : null}
+        </div>
+      ) : null}
+
+      {((needsCv && !result && step === 2) || (!needsCv && step === 1)) && !running ? (
+        <form
+          noValidate
+          onSubmit={(e) => {
+            e.preventDefault();
+            runCheck();
+          }}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
           <div className="flex min-w-0 flex-col gap-2">
             <label
               htmlFor="job-text"
@@ -287,12 +356,13 @@ export default function KeywordChecker({ mode = "match" }) {
                 saveJobDraft(e.target.value);
                 setFormError("");
               }}
-              rows={needsCv ? 10 : 12}
+              rows={12}
+              autoFocus={needsCv}
               required
               minLength={MIN_JOB_CHARS}
               aria-describedby="job-text-count"
               placeholder={t("jobPlaceholder")}
-              className="min-w-0 w-full max-w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-base leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-primary)] sm:text-sm"
+              className="min-w-0 w-full max-w-full resize-y rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 font-sans text-base leading-6 text-[var(--landing-ink)] outline-none transition-colors placeholder:text-[var(--landing-ink-soft)] focus:border-[var(--landing-accent)] sm:text-sm"
             />
             <p
               id="job-text-count"
@@ -300,7 +370,7 @@ export default function KeywordChecker({ mode = "match" }) {
               className={`text-xs font-semibold tabular-nums ${
                 tooShort
                   ? "text-[var(--landing-ink-soft)]"
-                  : "text-[var(--landing-primary-dark)]"
+                  : "text-[var(--landing-accent)]"
               }`}
             >
               {tooShort
@@ -309,87 +379,41 @@ export default function KeywordChecker({ mode = "match" }) {
             </p>
           </div>
 
-          {needsCv ? (
-            <ResumeFileField
-              id="cv-text"
-              label={t("cvLabel")}
-              value={cvText}
-              onChange={(text) => {
-                setCvText(text);
-                setFormError("");
-                reset();
-              }}
-              onBusyChange={setCvBusy}
-            />
-          ) : null}
-        </div>
-
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label={
-              gapsMode
-                ? t("submitGaps")
-                : matchMode
-                  ? t("submitMatch")
-                  : t("submitKeywords")
+          <ToolStepActions
+            hint={
+              formError
+                ? formError
+                : cvBusy
+                  ? t("readingCv")
+                  : t("privacy")
             }
-            busyLabel={
-              gapsMode
-                ? t("busyGaps")
-                : matchMode
-                  ? t("busyMatch")
-                  : t("busyKeywords")
-            }
-            running={running}
-            disabled={cvBusy}
-          />
-          <p
-            role={formError ? "alert" : undefined}
-            className={`text-xs font-semibold ${
-              formError ? "text-[var(--landing-coral)]" : "text-[var(--landing-ink-soft)]"
-            }`}
           >
-            {formError
-              ? formError
-              : cvBusy
-              ? t("readingCv")
-              : running
-                ? t("working")
-                : t("privacy")}
-          </p>
-        </div>
-      </form>
-
-      {running ? (
-        <ToolProgress
-          message={
-            gapsMode
-              ? t("busyGaps")
-              : matchMode
-                ? t("busyMatch")
-                : t("busyKeywords")
-          }
-          lines={5}
-        />
+            <ToolSubmitButton
+              label={submitLabel}
+              busyLabel={busyLabel}
+              running={running}
+              disabled={cvBusy}
+            />
+            {needsCv ? (
+              <ToolStepBack label="Back to resume" onClick={() => goStep(1)} />
+            ) : null}
+          </ToolStepActions>
+          {formError ? (
+            <p role="alert" className="text-center text-xs font-semibold text-[var(--landing-coral)]">
+              {formError}
+            </p>
+          ) : null}
+        </form>
       ) : null}
 
-      {!running && !result ? (
-        <ToolPreview
-          heading={t("previewHeading")}
-          items={(gapsMode
-            ? ["Missing", "Covered"]
-            : matchMode
-              ? ["Score", "Missing", "Covered"]
-              : ["Ranked"]
-          ).map((key) => ({
-            title: t(`preview${key}Title`),
-            body: t(`preview${key}Body`),
-          }))}
-        />
+      {((needsCv && !result && step === 2) || (!needsCv && step === 1)) && running ? (
+        <div className="mx-auto w-full max-w-xl">
+          <ToolProgress message={busyLabel} lines={5} />
+        </div>
       ) : null}
 
       {result ? (
-        <div ref={resultRef} className="landing-rise mt-8 scroll-mt-24 border-t border-[var(--landing-line)] pt-8">
+        <div ref={resultRef} className="landing-rise mx-auto w-full max-w-2xl scroll-mt-24">
           {gapsMode ? (
             <>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
@@ -595,8 +619,17 @@ export default function KeywordChecker({ mode = "match" }) {
               missingKeywordCount={result.missing.length}
             />
           ) : null}
+
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack
+              label={needsCv ? "Check another job" : "Try another posting"}
+              onClick={() => {
+                goStep(needsCv ? 2 : 1);
+              }}
+            />
+          </div>
         </div>
       ) : null}
-    </div>
+    </ToolShell>
   );
 }

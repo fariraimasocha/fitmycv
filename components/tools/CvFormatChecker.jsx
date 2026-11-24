@@ -9,20 +9,18 @@ import { CheckIcon, WarningIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolShell, {
+  ToolStepActions,
+  ToolStepBack,
+} from "@/components/tools/ToolShell";
+import { CV_ONLY_STEPS } from "@/components/tools/ToolStepper";
 import {
   TOOL_PRIVACY,
-  ToolPreview,
   ToolProgress,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
-
-const PREVIEW = [
-  { title: "Length", body: "A page estimate from your word count, against what employers in that country expect." },
-  { title: "Personal details", body: "Which details to remove for that country, like marital status or date of birth." },
-  { title: "Filler lines", body: "A career objective or a \"references on request\" line, each with what to do instead." },
-];
 
 // pure-region-start
 const COUNTRIES = {
@@ -184,6 +182,7 @@ function checkCvFormat(text, country) {
 // pure-region-end
 
 export default function CvFormatChecker() {
+  const [step, setStep] = useState(1);
   const [cvText, setCvText] = useState("");
   const [country, setCountry] = useState("za");
   const [cvBusy, setCvBusy] = useState(false);
@@ -195,68 +194,74 @@ export default function CvFormatChecker() {
     [ran, tooShort, cvText, country]
   );
 
+  const goStep = (n) => {
+    if (n < 2) reset();
+    setStep(n);
+  };
+
   return (
-    <div className="landing-card rounded-3xl p-4 sm:p-8">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          start();
-          trackEvent("cv_format_checked", { country });
-        }}
-        className="flex flex-col gap-5"
-      >
-        <div className="flex flex-col gap-2">
-          <label htmlFor="cv-country" className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-            Country you are applying in
-          </label>
-          <select
-            id="cv-country"
-            value={country}
-            onChange={(e) => {
-              setCountry(e.target.value);
+    <ToolShell steps={CV_ONLY_STEPS} current={result ? 2 : step} onStepSelect={goStep}>
+      {!result && step === 1 ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (tooShort || cvBusy) return;
+            start();
+            trackEvent("cv_format_checked", { country });
+          }}
+          className="mx-auto flex w-full max-w-xl flex-col gap-5"
+        >
+          <div className="flex flex-col items-center gap-2">
+            <label htmlFor="cv-country" className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+              Country you are applying in
+            </label>
+            <select
+              id="cv-country"
+              value={country}
+              onChange={(e) => {
+                setCountry(e.target.value);
+                reset();
+              }}
+              className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)] focus:border-[var(--landing-accent)] focus:outline-none sm:w-72"
+            >
+              <option value="za">South Africa</option>
+              <option value="ng">Nigeria</option>
+              <option value="ke">Kenya</option>
+              <option value="in">India</option>
+              <option value="uk">United Kingdom</option>
+              <option value="us">United States</option>
+              <option value="other">Another country</option>
+            </select>
+          </div>
+
+          <ResumeFileField
+            id="cv-format-text"
+            variant="hero"
+            hideLabel
+            value={cvText}
+            onChange={(text) => {
+              setCvText(text);
               reset();
             }}
-            className="w-full rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-3 text-sm text-[var(--landing-ink)] sm:w-72"
-          >
-            <option value="za">South Africa</option>
-            <option value="ng">Nigeria</option>
-            <option value="ke">Kenya</option>
-            <option value="in">India</option>
-            <option value="uk">United Kingdom</option>
-            <option value="us">United States</option>
-            <option value="other">Another country</option>
-          </select>
-        </div>
-
-        <ResumeFileField
-          id="cv-format-text"
-          value={cvText}
-          onChange={(text) => {
-            setCvText(text);
-            reset();
-          }}
-          onBusyChange={setCvBusy}
-        />
-
-        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ToolSubmitButton
-            label="Check my CV format"
-            busyLabel="Checking your CV"
-            running={running}
-            disabled={tooShort || cvBusy}
+            onBusyChange={setCvBusy}
           />
-          <p className="text-xs font-semibold text-[var(--landing-ink-soft)]">
-            {cvBusy ? "Reading your CV" : tooShort ? "Add your CV to start." : TOOL_PRIVACY}
-          </p>
-        </div>
-      </form>
 
-      {running ? <ToolProgress message="Checking your CV" lines={5} /> : null}
-
-      {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
+          <ToolStepActions
+            hint={cvBusy ? "Reading your CV" : tooShort ? "Add your CV to start." : TOOL_PRIVACY}
+          >
+            <ToolSubmitButton
+              label="Check my CV format"
+              busyLabel="Checking your CV"
+              running={running}
+              disabled={tooShort || cvBusy}
+            />
+          </ToolStepActions>
+          {running ? <ToolProgress message="Checking your CV" lines={5} /> : null}
+        </form>
+      ) : null}
 
       {result ? (
-        <div className="landing-rise mt-8 border-t border-[var(--landing-line)] pt-8">
+        <div className="landing-rise mx-auto w-full max-w-2xl">
           <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             {result.issues === 0
               ? `Your CV fits ${COUNTRIES[country].name}`
@@ -292,8 +297,11 @@ export default function CvFormatChecker() {
             source="cv_format"
             cvText={cvText}
           />
+          <div className="mt-6 flex justify-center">
+            <ToolStepBack label="Check another CV" onClick={() => goStep(1)} />
+          </div>
         </div>
       ) : null}
-    </div>
+    </ToolShell>
   );
 }

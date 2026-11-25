@@ -3,6 +3,7 @@
 import { CopyIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { Link } from "@/i18n/navigation";
+import BlackFridayCountdown from "@/components/black-friday/BlackFridayCountdown";
 import { trackEvent } from "@/lib/analytics";
 import { copyText } from "@/lib/webview";
 import { BLACK_FRIDAY_CODE, BLACK_FRIDAY_PERCENT } from "@/lib/black-friday";
@@ -27,7 +28,7 @@ export default function BlackFridayBanner() {
 
   return (
     <div className="bg-black text-center text-white">
-      <p className="inline-flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 px-3 py-2 text-sm leading-snug sm:text-[0.9375rem]">
+      <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-3 py-2 text-sm leading-snug sm:text-[0.9375rem]">
         <span>
           Black Friday: {BLACK_FRIDAY_PERCENT}% off Lifetime. Code
         </span>
@@ -40,7 +41,13 @@ export default function BlackFridayBanner() {
           {BLACK_FRIDAY_CODE}
           <CopyIcon className="size-3.5" aria-hidden="true" />
         </button>
-        <span>.</span>
+        <span className="hidden text-white/30 sm:inline" aria-hidden="true">
+          ·
+        </span>
+        <BlackFridayCountdown variant="banner" />
+        <span className="hidden text-white/30 sm:inline" aria-hidden="true">
+          ·
+        </span>
         <Link
           href="/pricing"
           onClick={handleClaimClick}

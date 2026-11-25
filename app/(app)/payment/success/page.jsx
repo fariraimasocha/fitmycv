@@ -5,9 +5,23 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "motion/react";
+import {
+  CheckCircleIcon,
+  CheckIcon,
+  SpinnerGapIcon,
+} from "@phosphor-icons/react";
+import BrandLogo from "@/components/BrandLogo";
 import { openSupport } from "@/lib/open-support";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
+
+// Honest unlocks only. Each line maps to a paywalled route in lib/pro-features.js.
+const JUST_UNLOCKED = [
+  "PDF downloads for tailored CVs and cover letters",
+  "Job match scores on every job you add",
+  "Company research briefs before you apply",
+  "Interview prep questions for the role",
+];
 
 export default function PaymentSuccessPage() {
   const { update } = useSession();
@@ -53,95 +67,185 @@ export default function PaymentSuccessPage() {
     });
   }, [isPremiumConfirmed, update, router]);
 
+  const enter = reduceMotion
+    ? false
+    : { opacity: 0, y: 12 };
+  const settle = { opacity: 1, y: 0 };
+  const spring = { type: "spring", stiffness: 280, damping: 22 };
+
   return (
-    <div dir="ltr" className="min-h-screen flex items-center justify-center bg-[var(--landing-bg)] px-4">
-      <div className="max-w-md w-full bg-[var(--landing-surface)] rounded-lg shadow-sm border border-[var(--landing-line)] p-5 sm:p-8 text-center">
-        <div className="w-16 h-16 bg-[var(--landing-success-soft)] rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg
-            className="w-8 h-8 text-[var(--landing-success)]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
+    <div
+      dir="ltr"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--landing-bg)] px-4 py-10"
+    >
+      {/* Atmosphere only. Soft paper wash so the page is not a flat grey slab. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 50% 0%, color-mix(in oklch, var(--landing-success-soft) 85%, transparent), transparent 70%), radial-gradient(ellipse 55% 45% at 80% 100%, color-mix(in oklch, var(--landing-accent-soft) 70%, transparent), transparent 65%)",
+        }}
+      />
 
-        <h1 className="mb-2 font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)]">
-          Payment successful
-        </h1>
+      <motion.div
+        initial={enter}
+        animate={settle}
+        transition={
+          reduceMotion
+            ? { duration: 0 }
+            : { duration: 0.35, ease: [0.165, 0.84, 0.44, 1] }
+        }
+        className="relative w-full max-w-md overflow-hidden rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 shadow-[var(--landing-shadow)] sm:p-8"
+      >
+        <div className="flex flex-col items-center text-center">
+          <BrandLogo size="sm" showWordmark={false} className="mb-5" alt="" />
 
-        <p className="text-lg font-medium text-[var(--landing-ink)] mb-4">
-          Thanks for upgrading to Pro
-        </p>
-
-        <p className="text-[var(--landing-ink-soft)] mb-6">
-          Pro unlocks PDF downloads, job match scores, company research,
-          interview prep and more.
-        </p>
-
-        {isPremiumConfirmed ? (
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            role="status"
-            className="rounded-lg bg-[var(--landing-success-soft)] px-4 py-3"
+            initial={reduceMotion ? false : { scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={reduceMotion ? { duration: 0 } : spring}
+            className="relative mb-5 flex size-18 items-center justify-center"
           >
-            <p className="font-semibold text-[var(--landing-success)]">Pro is on</p>
-            <p className="mt-1 text-sm text-[var(--landing-ink-soft)]">
-              {sessionUpdating ? "Taking you to your dashboard…" : "Loading your account…"}
-            </p>
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 rounded-full bg-[var(--landing-success-soft)]"
+            />
+            {!reduceMotion && isPremiumConfirmed ? (
+              <motion.span
+                aria-hidden="true"
+                className="absolute -inset-1 rounded-full border border-[var(--landing-success)]/25"
+                initial={{ scale: 0.85, opacity: 0.6 }}
+                animate={{ scale: 1.15, opacity: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              />
+            ) : null}
+            <CheckCircleIcon
+              weight="fill"
+              className="relative size-11 text-[var(--landing-success)]"
+              aria-hidden="true"
+            />
           </motion.div>
-        ) : gaveUp ? (
-          <div role="alert">
-            <p className="text-sm text-[var(--landing-ink-soft)] mb-4">
-              Your payment went through. Pro is taking longer than usual to
-              switch on. Check again in a minute, or message us and we will
-              sort it out.
-            </p>
-            <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
-              <button
-                type="button"
-                onClick={() => refetch()}
-                disabled={isFetching}
-                className="dashboard-primary-btn"
-              >
-                {isFetching ? "Checking…" : "Check again"}
-              </button>
-              <button type="button" onClick={openSupport} className="dashboard-secondary-btn">
-                Contact support
-              </button>
-            </div>
-            <button
-              type="button"
-              onClick={() => router.push("/dashboard")}
-              className="dashboard-secondary-btn mt-4"
-            >
-              Go to dashboard
-            </button>
-          </div>
-        ) : (
-          <div>
-            <p className="text-sm text-[var(--landing-ink-soft)] mb-4">
-              Activating Pro…
-            </p>
-            <button
-              onClick={() => router.push("/dashboard")}
-              type="button"
-              className="dashboard-secondary-btn"
-            >
-              Skip to dashboard
-            </button>
-          </div>
-        )}
 
-      </div>
+          <h1 className="font-outfit text-2xl font-semibold leading-tight tracking-tight text-[var(--landing-ink)] sm:text-3xl">
+            Payment successful
+          </h1>
+
+          <p className="mt-2 font-outfit text-lg font-medium text-[var(--landing-ink)]">
+            You are on Pro
+          </p>
+
+          <p className="mt-3 max-w-sm text-sm leading-6 text-[var(--landing-ink-soft)]">
+            These are unlocked on your account now.
+          </p>
+
+          <ul className="mt-5 w-full space-y-2.5 text-start">
+            {JUST_UNLOCKED.map((line, i) => (
+              <motion.li
+                key={line}
+                initial={reduceMotion ? false : { opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={
+                  reduceMotion
+                    ? { duration: 0 }
+                    : { delay: 0.08 + i * 0.05, duration: 0.28, ease: [0.165, 0.84, 0.44, 1] }
+                }
+                className="flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-bg)] px-3.5 py-2.5"
+              >
+                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)] text-[var(--landing-success)]">
+                  <CheckIcon size={12} weight="bold" aria-hidden="true" />
+                </span>
+                <span className="text-sm leading-5 text-[var(--landing-ink)]">
+                  {line}
+                </span>
+              </motion.li>
+            ))}
+          </ul>
+
+          <div className="mt-6 w-full">
+            {isPremiumConfirmed ? (
+              <motion.div
+                initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={reduceMotion ? { duration: 0 } : spring}
+                role="status"
+                className="rounded-xl bg-[var(--landing-ink)] px-4 py-4 text-[var(--landing-on-primary)]"
+              >
+                <p className="font-outfit text-base font-semibold tracking-tight">
+                  Pro is on
+                </p>
+                <p className="mt-1 text-sm text-[var(--landing-ink-inverse-soft)]">
+                  {sessionUpdating
+                    ? "Taking you to your dashboard…"
+                    : "Loading your account…"}
+                </p>
+              </motion.div>
+            ) : gaveUp ? (
+              <div
+                role="alert"
+                className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-bg)] px-4 py-4 text-start"
+              >
+                <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
+                  Your payment went through. Pro is taking longer than usual to
+                  switch on. Check again in a minute, or message us and we will
+                  sort it out.
+                </p>
+                <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={() => refetch()}
+                    disabled={isFetching}
+                    className="dashboard-primary-btn"
+                  >
+                    {isFetching ? "Checking…" : "Check again"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={openSupport}
+                    className="dashboard-secondary-btn"
+                  >
+                    Contact support
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => router.push("/dashboard")}
+                  className="dashboard-secondary-btn mt-2 w-full sm:w-auto"
+                >
+                  Go to dashboard
+                </button>
+              </div>
+            ) : (
+              <div
+                role="status"
+                aria-live="polite"
+                className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-bg)] px-4 py-4"
+              >
+                <div className="flex items-center justify-center gap-2.5">
+                  <SpinnerGapIcon
+                    size={18}
+                    className="animate-spin text-[var(--landing-accent)]"
+                    aria-hidden="true"
+                  />
+                  <p className="font-outfit text-sm font-semibold text-[var(--landing-ink)]">
+                    Switching Pro on…
+                  </p>
+                </div>
+                <p className="mt-1.5 text-sm text-[var(--landing-ink-soft)]">
+                  This usually takes a few seconds.
+                </p>
+                <button
+                  onClick={() => router.push("/dashboard")}
+                  type="button"
+                  className="dashboard-secondary-btn mt-4 w-full"
+                >
+                  Skip to dashboard
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 }

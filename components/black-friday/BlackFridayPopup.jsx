@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useReducedMotion } from "motion/react";
+import { useEffect } from "react";
 import { CopyIcon, XIcon } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import { useRouter as useLocaleRouter } from "@/i18n/navigation";
 import BrandLogo from "@/components/BrandLogo";
+import BlackFridayCountdown from "@/components/black-friday/BlackFridayCountdown";
 import { useClientPricingWithCountry } from "@/components/pricing/PricingCards";
 import { useBlackFridayStore } from "@/stores/black-friday-store";
 import { trackEvent } from "@/lib/analytics";
@@ -14,55 +14,7 @@ import {
   applyPercentOff,
   BLACK_FRIDAY_CODE,
   BLACK_FRIDAY_PERCENT,
-  blackFridayCountdownParts,
-  isBlackFridayActive,
-  msUntilBlackFridayEnds,
 } from "@/lib/black-friday";
-
-function pad(n) {
-  return String(n).padStart(2, "0");
-}
-
-function Countdown() {
-  const [ms, setMs] = useState(() => msUntilBlackFridayEnds());
-  const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (!isBlackFridayActive()) return undefined;
-    const tick = () => setMs(msUntilBlackFridayEnds());
-    tick();
-    const id = setInterval(tick, reduceMotion ? 1000 : 250);
-    return () => clearInterval(id);
-  }, [reduceMotion]);
-
-  const { days, hours, minutes, seconds, ended } = blackFridayCountdownParts(ms);
-  if (ended) return null;
-
-  const cells = [
-    { label: "Days", value: pad(days) },
-    { label: "Hrs", value: pad(hours) },
-    { label: "Min", value: pad(minutes) },
-    { label: "Sec", value: pad(seconds) },
-  ];
-
-  return (
-    <div className="grid grid-cols-4 gap-2" aria-live="polite" aria-atomic="true">
-      {cells.map((cell) => (
-        <div
-          key={cell.label}
-          className="rounded-lg border border-white/20 px-1 py-2 text-center"
-        >
-          <div className="font-outfit text-xl font-bold tabular-nums text-white sm:text-2xl">
-            {cell.value}
-          </div>
-          <div className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-wider text-[var(--landing-accent)]">
-            {cell.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default function BlackFridayPopup() {
   const open = useBlackFridayStore((s) => s.popupOpen);
@@ -164,7 +116,7 @@ export default function BlackFridayPopup() {
           )}
 
           <div className="mt-5 w-full">
-            <Countdown />
+            <BlackFridayCountdown variant="popup" />
           </div>
 
           <p className="mt-5 w-full rounded-lg border border-white/15 bg-white/5 px-3 py-2.5 font-mono text-sm tracking-widest text-white">

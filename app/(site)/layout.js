@@ -1,5 +1,6 @@
 import { getMessages, setRequestLocale } from "next-intl/server";
 import RootShell from "@/components/RootShell";
+import BlackFridayPromo from "@/components/black-friday/BlackFridayPromo";
 import { rootMetadata } from "@/lib/root-metadata";
 
 export const metadata = rootMetadata;
@@ -13,7 +14,7 @@ export default async function SiteLayout({ children }) {
   const messages = await getMessages();
   return (
     <RootShell locale="en" messages={messages}>
-      {children}
+      <BlackFridayPromo>{children}</BlackFridayPromo>
     </RootShell>
   );
 }

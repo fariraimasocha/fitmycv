@@ -3,7 +3,7 @@
     "title": "Adapte seu currículo a qualquer link de vaga | FitMyCV",
     "description": "Adapte seu currículo e sua carta a qualquer vaga: palavras-chave com IA, verificador ATS grátis, 24 modelos compatíveis com ATS e exportação em PDF.",
     "ogTitle": "FitMyCV: adapte seu currículo a qualquer link de vaga em segundos",
-    "ogAlt": "FitMyCV: consiga mais entrevistas com um currículo que combina com a vaga",
+    "ogAlt": "FitMyCV: adapte seu currículo a qualquer link de vaga",
     "schemaName": "Adapte seu currículo a qualquer link de vaga",
     "howToName": "Como adaptar seu currículo a um link de vaga",
     "howToDescription": "Cole um link de vaga, deixe o FitMyCV reescrever seu currículo com base nos requisitos da vaga e baixe o currículo e a carta de apresentação em PDF."
@@ -19,7 +19,6 @@
     "checkerCta": "Analisar meu currículo grátis",
     "titleMain": "cole qualquer link de vaga. receba um currículo <accent>feito</accent> para essa vaga.",
     "body": "Envie seu currículo uma vez. O FitMyCV lê o anúncio e reescreve seu currículo com as palavras que a vaga pede. São as palavras que o software de triagem procura.",
-    "tryFree": "Teste grátis",
     "previewFree": "Veja seu currículo adaptado grátis",
     "priceNote": "${price} uma vez para baixar os PDFs e se candidatar.",
     "lifetimeTag": "Vitalício",
@@ -27,9 +26,18 @@
     "soundOn": "Ativar som",
     "soundOff": "Silenciar",
     "previewLoading": "Lendo a vaga…",
+    "previewLoadingHint": "Extraindo palavras-chave da vaga. Costuma levar alguns segundos.",
     "previewTitle": "A vaga em {host} pede estes termos",
     "previewBody": "Entre para adaptar seu currículo a esta vaga. Seu link está salvo.",
-    "previewCta": "Entrar e adaptar meu currículo"
+    "previewCta": "Entrar e adaptar meu currículo",
+    "previewFailTitle": "Não foi possível ler a vaga em {host}",
+    "previewFailBody": "Seu link continua salvo. Muitos sites de emprego bloqueiam a leitura. Cole abaixo a descrição completa da vaga e usaremos ela no lugar.",
+    "previewFailLabel": "Descrição da vaga",
+    "previewFailPlaceholder": "Cole aqui a descrição completa da vaga",
+    "previewFailRetry": "Usar esta descrição",
+    "previewFailTooShort": "{count} de {min} caracteres. Cole o anúncio inteiro, não só o título.",
+    "previewFailContinue": "Continuar para entrar sem a descrição",
+    "previewFailChecker": "Analisar meu currículo grátis"
   },
   "stats": {
     "heading": "FitMyCV até agora",
@@ -59,10 +67,10 @@
     "jobListing": "Anúncio da vaga",
     "paste": "Colar",
     "cvPreview": "Prévia do currículo",
-    "tailor": "Adaptar meu currículo",
+    "tailor": "Adaptar meu currículo grátis",
     "export": "Exportar",
     "download": "Baixar PDF",
-    "priceNote": "Veja a prévia na tela grátis. ${price} uma vez para baixar os PDFs."
+    "priceNote": "Veja seu currículo adaptado grátis. ${price} uma vez para baixar os PDFs."
   },
   "templates": {
     "eyebrow": "Modelos",
@@ -113,7 +121,7 @@
     "title": "Respostas sinceras."
   },
   "cta": {
-    "title": "Pronto para deixar de ser ignorado?",
+    "title": "Pronto para deixar de ser filtrado?",
     "body": "Cole o link de uma vaga e veja grátis seu currículo adaptado. Acesso vitalício por ${price}.",
     "pricing": "Ver preços"
   },
@@ -234,7 +242,7 @@
         "label": "Currículo adaptado",
         "title": "Seu currículo, reescrito para a vaga",
         "body": "Cada linha vem do currículo que você enviou, reescrita com as palavras da vaga. As verificações rodam enquanto você edita e mostram se o software de triagem consegue lê-lo.",
-        "cta": "Verifique seu currículo grátis",
+        "cta": "Analisar meu currículo grátis",
         "alt": "Um currículo adaptado no editor, com verificações e prévia ao vivo"
       },
       "letter": {

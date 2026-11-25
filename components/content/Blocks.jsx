@@ -272,12 +272,22 @@ function Block({ block }) {
   }
 
   if (block.cta) {
-    const { title, body, href, label } = block.cta;
+    const { title, body, href, label, secondary } = block.cta;
     return (
       <div className="mt-12 flex flex-col gap-5 rounded-2xl bg-[var(--landing-ink)] p-7 text-[var(--landing-on-primary)] sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-lg font-semibold">{title}</p>
           <p className="mt-2 max-w-xl text-base leading-7 text-[color-mix(in_oklch,var(--landing-on-primary)_72%,transparent)]">{body}</p>
+          {secondary?.href && secondary?.label ? (
+            <p className="mt-3 text-sm leading-6 text-[color-mix(in_oklch,var(--landing-on-primary)_72%,transparent)]">
+              <Link
+                href={secondary.href}
+                className="font-semibold text-[var(--landing-on-primary)] underline underline-offset-4 hover:opacity-90"
+              >
+                {secondary.label}
+              </Link>
+            </p>
+          ) : null}
         </div>
         <Link
           href={href}

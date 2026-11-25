@@ -173,14 +173,18 @@ export const blocks = [
     },
   },
   {
-    p: "Not sure what your current CV carries? The free [CV format checker](/cv-format-checker) flags it. Pick Kenya, upload or paste your CV, and it lists the format issues it finds, including an ID number left on the page. It runs in your browser with no sign-in, and your CV is not uploaded or stored.",
+    p: "Not sure what your current CV carries? The free [CV format checker](/cv-format-checker?country=ke) flags it. Pick Kenya, upload or paste your CV, and it lists the format issues it finds, including an ID number left on the page. It runs in your browser with no sign-in, and your CV is not uploaded or stored.",
   },
   {
     cta: {
       title: "Check your CV against the Kenyan format",
       body: "Upload or paste your CV, pick Kenya, and see which personal details, length or layout issues to fix. Free, in your browser, no sign-in.",
-      href: "/cv-format-checker",
+      href: "/cv-format-checker?country=ke",
       label: "Check my CV format",
+      secondary: {
+        href: "/ats-resume-checker",
+        label: "Then scan for ATS keywords",
+      },
     },
   },
 
@@ -274,8 +278,12 @@ export const blocks = [
     cta: {
       title: "See what to fix before you apply",
       body: "Pick Kenya, upload or paste your CV, and get a list of format issues to fix. It runs in your browser, needs no sign-in, and does not store your CV.",
-      href: "/cv-format-checker",
+      href: "/cv-format-checker?country=ke",
       label: "Check my CV format",
+      secondary: {
+        href: "/ats-resume-checker",
+        label: "Then scan for ATS keywords",
+      },
     },
   },
 ];

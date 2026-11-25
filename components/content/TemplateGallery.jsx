@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   ArrowsOutIcon,
@@ -23,6 +24,10 @@ import {
 } from "@/components/ui/dialog";
 import TemplateStyleToolbar from "@/components/cv/TemplateStyleToolbar";
 import { ResumeTemplate } from "@/components/ResumePreview";
+import { JobLinkForm } from "@/components/landing/Hero";
+import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
+import { saveTemplateHandoff } from "@/lib/ats-handoff";
+import { trackEvent } from "@/lib/analytics";
 import {
   TEMPLATE_CATEGORIES,
   TEMPLATE_METADATA,
@@ -82,7 +87,15 @@ function ScaledDocument({ template, style, scaleClass, width = DOC_WIDTH_CLASS }
   );
 }
 
-function TemplateCard({ template, style, selected, onSelect, onOpen, onDownload }) {
+function TemplateCard({
+  template,
+  style,
+  selected,
+  onSelect,
+  onOpen,
+  onDownload,
+  onUse,
+}) {
   return (
     <div
       className={`group template-slide landing-card-deferred relative flex flex-col overflow-hidden rounded-2xl border bg-[var(--landing-surface)] landing-lift landing-shadow-lift ${
@@ -105,12 +118,13 @@ function TemplateCard({ template, style, selected, onSelect, onOpen, onDownload 
         <div className="landing-scrim pointer-events-none absolute inset-0 z-20" />
 
         <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-2 p-4">
-          <Link
-            href={`/auth?template=${template.id}`}
-            className="landing-scrim-item landing-pill-btn landing-pill-solid pointer-events-auto"
+          <button
+            type="button"
+            onClick={() => onUse(template.id)}
+            className="landing-scrim-item landing-pill-btn landing-pill-solid pointer-events-auto cursor-pointer"
           >
             Use this template
-          </Link>
+          </button>
           <button
             type="button"
             onClick={() => onDownload(template)}
@@ -157,6 +171,9 @@ function TemplateCard({ template, style, selected, onSelect, onOpen, onDownload 
 }
 
 export default function TemplateGallery({ asPageHeading = false, title, lede }) {
+  const router = useRouter();
+  const gate = useWebviewGate();
+  const { data: session } = useSession();
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState(TEMPLATE_METADATA[0].id);
   const [openTemplate, setOpenTemplate] = useState(null);
@@ -184,7 +201,37 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
   // moves the highlight, it never rewrites the style the visitor has set.
   const handleSelect = (id) => setSelected(id);
 
+  const persistPick = (templateId) => {
+    saveTemplateHandoff({
+      template: templateId,
+      templateStyle: style,
+      source: "cv_templates",
+    });
+  };
+
+  // Save layout, then send them to upload/tailor (signed in) or auth with next.
+  const handleUse = (templateId) => {
+    handleSelect(templateId);
+    persistPick(templateId);
+    trackEvent("template_use_clicked", {
+      template: templateId,
+      source: "cv_templates",
+    });
+    const next = `/dashboard/resume?template=${encodeURIComponent(templateId)}`;
+    if (session?.user) {
+      router.push(next);
+      return;
+    }
+    const authHref = `/auth?next=${encodeURIComponent(next)}`;
+    if (gate?.interceptAuth(null, authHref)) return;
+    router.push(authHref);
+  };
+
   const handleDownload = (template) => {
+    trackEvent("template_download_clicked", {
+      template: template.id,
+      source: "cv_templates",
+    });
     const printed = printDocument({
       kind: "cv",
       filename: `FitMyCV - ${template.name} template.pdf`,
@@ -202,6 +249,15 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
     }
     toast.success("Opening the print dialog", {
       description: "Choose Save as PDF. The sample text is there for you to replace.",
+    });
+  };
+
+  const handleOpen = (id) => {
+    handleSelect(id);
+    setOpenTemplate(id);
+    trackEvent("template_customize_opened", {
+      template: id,
+      source: "cv_templates",
     });
   };
 
@@ -228,12 +284,13 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
                 "Change the colour, the font and the spacing and watch every template update as you go. Download one with the sample text to edit offline, or sign in and fill it with your own."}
             </p>
           </div>
-          <Link
-            href="/auth"
-            className="landing-primary-btn font-outfit shrink-0 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+          <button
+            type="button"
+            onClick={() => handleUse(selected)}
+            className="landing-primary-btn font-outfit shrink-0 cursor-pointer text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
           >
             Build my CV
-          </Link>
+          </button>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
@@ -301,11 +358,9 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
                 style={style}
                 selected={selected === template.id}
                 onSelect={handleSelect}
-                onOpen={(id) => {
-                  handleSelect(id);
-                  setOpenTemplate(id);
-                }}
+                onOpen={handleOpen}
                 onDownload={handleDownload}
+                onUse={handleUse}
               />
             ))}
           </div>
@@ -317,6 +372,23 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
           exceptions, and they are labelled: two columns read well to a person
           and badly to a parser.
         </p>
+
+        {/* One mid-page job action. Saves the highlighted layout before paste. */}
+        <div className="mt-12 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-6 sm:p-8">
+          <h2 className="font-outfit text-xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-2xl">
+            Fill that layout with a real job
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--landing-ink-soft)] sm:text-base">
+            Paste a job link. We keep the template you picked, then rewrite your
+            CV in the words that role asks for.
+          </p>
+          <JobLinkForm
+            id="templates-job-link"
+            className="mt-6"
+            source="cv_templates"
+            onBeforeSubmit={() => persistPick(selected)}
+          />
+        </div>
       </div>
 
       <Dialog open={Boolean(openTemplate)} onOpenChange={(next) => !next && setOpenTemplate(null)}>
@@ -335,16 +407,17 @@ export default function TemplateGallery({ asPageHeading = false, title, lede }) 
               <TemplateStyleToolbar menuClassName="landing-dark" value={style} onChange={setStyle} />
 
               <div className="flex flex-wrap items-center gap-3">
-                <Link
-                  href={`/auth?template=${openMeta.id}`}
-                  className="landing-primary-btn landing-primary-btn-sm font-outfit"
+                <button
+                  type="button"
+                  onClick={() => handleUse(openMeta.id)}
+                  className="landing-primary-btn landing-primary-btn-sm cursor-pointer font-outfit"
                 >
                   Use this template
-                </Link>
+                </button>
                 <button
                   type="button"
                   onClick={() => handleDownload(openMeta)}
-                  className="landing-secondary-btn landing-secondary-btn-sm font-outfit cursor-pointer"
+                  className="landing-secondary-btn landing-secondary-btn-sm cursor-pointer font-outfit"
                 >
                   <DownloadSimpleIcon size={15} aria-hidden="true" />
                   Download PDF

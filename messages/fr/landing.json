@@ -3,7 +3,7 @@
     "title": "FitMyCV : adaptez votre CV à chaque offre d'emploi",
     "description": "FitMyCV adapte votre CV et votre lettre à chaque offre : mots-clés par IA, vérificateur ATS gratuit, 24 modèles compatibles ATS, export PDF.",
     "ogTitle": "FitMyCV : adaptez votre CV à n'importe quelle offre en quelques secondes",
-    "ogAlt": "FitMyCV : décrochez plus d'entretiens avec un CV qui correspond",
+    "ogAlt": "FitMyCV : adaptez votre CV à n'importe quel lien d'offre",
     "schemaName": "Adaptez votre CV à n'importe quelle offre d'emploi",
     "howToName": "Comment adapter votre CV à une offre d'emploi",
     "howToDescription": "Collez le lien d'une offre, laissez FitMyCV réécrire votre CV selon les exigences du poste, puis téléchargez le CV et la lettre de motivation en PDF."
@@ -19,7 +19,6 @@
     "checkerCta": "Analyser mon CV gratuitement",
     "titleMain": "collez le lien d'une offre. obtenez un CV <accent>conçu</accent> pour ce poste.",
     "body": "Importez votre CV une seule fois. FitMyCV lit l'offre et réécrit votre CV avec les mots que ce poste demande. Ce sont les mots que les logiciels de tri recherchent.",
-    "tryFree": "Essayer gratuitement",
     "previewFree": "Aperçu gratuit de votre CV adapté",
     "priceNote": "${price} une seule fois pour télécharger les PDF et postuler.",
     "lifetimeTag": "À vie",
@@ -27,9 +26,18 @@
     "soundOn": "Activer le son",
     "soundOff": "Couper le son",
     "previewLoading": "Lecture de l’offre…",
+    "previewLoadingHint": "Extraction des mots-clés de l’offre. Cela prend en général quelques secondes.",
     "previewTitle": "L’offre sur {host} demande ces termes",
     "previewBody": "Connectez-vous pour adapter votre CV à cette offre. Votre lien est enregistré.",
-    "previewCta": "Me connecter et adapter mon CV"
+    "previewCta": "Me connecter et adapter mon CV",
+    "previewFailTitle": "Impossible de lire l’offre sur {host}",
+    "previewFailBody": "Votre lien est toujours enregistré. Beaucoup de sites d’emploi bloquent la lecture. Collez la description complète de l’offre ci-dessous et nous l’utiliserons à la place.",
+    "previewFailLabel": "Description de l’offre",
+    "previewFailPlaceholder": "Collez ici la description complète de l’offre",
+    "previewFailRetry": "Utiliser cette description",
+    "previewFailTooShort": "{count} caractères sur {min}. Collez l’annonce entière, pas seulement le titre.",
+    "previewFailContinue": "Continuer vers la connexion sans description",
+    "previewFailChecker": "Scanner mon CV gratuitement"
   },
   "stats": {
     "heading": "FitMyCV jusqu'ici",
@@ -59,10 +67,10 @@
     "jobListing": "Offre d'emploi",
     "paste": "Coller",
     "cvPreview": "Aperçu du CV",
-    "tailor": "Adapter mon CV",
+    "tailor": "Adapter mon CV gratuitement",
     "export": "Export",
     "download": "Télécharger le PDF",
-    "priceNote": "Aperçu gratuit à l'écran. ${price} une seule fois pour télécharger les PDF."
+    "priceNote": "Aperçu gratuit de votre CV adapté. ${price} une seule fois pour télécharger les PDF."
   },
   "templates": {
     "eyebrow": "Modèles",
@@ -113,7 +121,7 @@
     "title": "Des réponses franches."
   },
   "cta": {
-    "title": "Prêt à ne plus être ignoré ?",
+    "title": "Prêt à ne plus être filtré ?",
     "body": "Collez le lien d'une offre et prévisualisez gratuitement votre CV adapté. Accès à vie pour ${price}.",
     "pricing": "Voir les tarifs"
   },
@@ -234,7 +242,7 @@
         "label": "CV adapté",
         "title": "Votre CV, réécrit pour ce poste",
         "body": "Chaque ligne vient du CV que vous avez importé, reformulée avec les mots de l'offre. Les vérifications du CV tournent pendant que vous modifiez et indiquent si les logiciels de tri peuvent le lire.",
-        "cta": "Vérifiez votre CV gratuitement",
+        "cta": "Analyser mon CV gratuitement",
         "alt": "Un CV adapté dans l'éditeur, avec les vérifications et un aperçu en direct"
       },
       "letter": {

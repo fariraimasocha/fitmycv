@@ -3,7 +3,7 @@
     "title": "根据任意职位链接定制你的简历 | FitMyCV",
     "description": "根据任意职位链接定制你的简历和求职信：AI 关键词匹配、免费 ATS 简历检查器、24 款适配 ATS 的模板，以及一键导出 PDF。",
     "ogTitle": "FitMyCV：几秒内根据任意职位链接定制你的简历",
-    "ogAlt": "FitMyCV：用一份契合职位的简历获得更多面试机会",
+    "ogAlt": "FitMyCV：根据任意职位链接定制你的简历",
     "schemaName": "根据任意职位链接定制你的简历",
     "howToName": "如何根据职位链接定制你的简历",
     "howToDescription": "粘贴职位链接，让 FitMyCV 按照职位要求改写你的简历，然后将简历和求职信下载为 PDF。"
@@ -19,7 +19,6 @@
     "checkerCta": "免费扫描我的简历",
     "titleMain": "粘贴任意职位链接，获得一份<accent>为该职位打造</accent>的简历。",
     "body": "只需上传一次简历。FitMyCV 会读取职位信息，并用该职位要求的措辞改写你的简历。这些正是筛选软件要找的词。",
-    "tryFree": "免费试用",
     "previewFree": "免费预览你的定制简历",
     "priceNote": "一次性支付 ${price}，即可下载 PDF 并投递。",
     "lifetimeTag": "终身",
@@ -27,9 +26,18 @@
     "soundOn": "打开声音",
     "soundOff": "静音",
     "previewLoading": "正在读取职位…",
+    "previewLoadingHint": "正在从职位中提取关键词，通常只需几秒。",
     "previewTitle": "{host} 上的这个职位要求这些关键词",
     "previewBody": "登录即可根据此职位定制你的简历。你的链接已保存。",
-    "previewCta": "登录并定制我的简历"
+    "previewCta": "登录并定制我的简历",
+    "previewFailTitle": "无法读取 {host} 上的职位",
+    "previewFailBody": "你的链接仍已保存。许多招聘网站会屏蔽抓取。请在下方粘贴完整职位描述，我们改用这段文字。",
+    "previewFailLabel": "职位描述",
+    "previewFailPlaceholder": "在此粘贴完整职位描述",
+    "previewFailRetry": "使用这段描述",
+    "previewFailTooShort": "已有 {count} 字，至少需要 {min} 字。请粘贴整段职位，不要只贴标题。",
+    "previewFailContinue": "不粘贴描述，继续登录",
+    "previewFailChecker": "免费扫描我的简历"
   },
   "stats": {
     "heading": "FitMyCV 至今",
@@ -59,10 +67,10 @@
     "jobListing": "职位信息",
     "paste": "粘贴",
     "cvPreview": "简历预览",
-    "tailor": "定制我的简历",
+    "tailor": "免费定制我的简历",
     "export": "导出",
     "download": "下载 PDF",
-    "priceNote": "在屏幕上免费预览。一次性支付 ${price} 即可下载 PDF。"
+    "priceNote": "免费预览你的定制简历。一次性支付 ${price} 即可下载 PDF。"
   },
   "templates": {
     "eyebrow": "模板",
@@ -113,7 +121,7 @@
     "title": "坦诚的回答。"
   },
   "cta": {
-    "title": "不想再被忽视了吗？",
+    "title": "不想再被筛掉了吗？",
     "body": "粘贴职位链接，免费预览定制后的简历。终身使用仅需 ${price}。",
     "pricing": "查看价格"
   },
@@ -234,7 +242,7 @@
         "label": "定制简历",
         "title": "为该职位改写的简历",
         "body": "每一行都来自你上传的简历，用职位的语言重新表述。编辑时简历检查会自动运行，告诉你筛选软件能否读取它。",
-        "cta": "免费检查你的简历",
+        "cta": "免费扫描我的简历",
         "alt": "编辑器中的定制简历，附带简历检查和实时预览"
       },
       "letter": {

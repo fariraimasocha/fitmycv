@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { peekAtsHandoff } from "@/lib/ats-handoff";
+import { useRouter, useSearchParams } from "next/navigation";
+import { peekAtsHandoff, takeTemplateHandoff } from "@/lib/ats-handoff";
 import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
+import { trackEvent } from "@/lib/analytics";
 import {
   ArrowLeftIcon,
   ArrowCounterClockwiseIcon,
@@ -40,12 +41,31 @@ import { printDocument } from "@/utils/print-document";
 import { buildPdfFilename } from "@/utils/pdf-filename";
 import {
   DEFAULT_TEMPLATE,
+  TEMPLATE_IDS,
   TEMPLATE_METADATA,
   getTemplateDefaultStyle,
 } from "@/utils/cv-templates/metadata";
 import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 import { cn } from "@/lib/utils";
 import { dateLocale } from "@/i18n/routing";
+
+function resolveTemplatePick(urlTemplate, handoff) {
+  if (urlTemplate && TEMPLATE_IDS.includes(urlTemplate)) {
+    return {
+      template: urlTemplate,
+      templateStyle: handoff?.template === urlTemplate ? handoff.templateStyle : null,
+      source: handoff?.template === urlTemplate ? handoff.source : "url_param",
+    };
+  }
+  if (handoff?.template && TEMPLATE_IDS.includes(handoff.template)) {
+    return {
+      template: handoff.template,
+      templateStyle: handoff.templateStyle,
+      source: handoff.source ?? null,
+    };
+  }
+  return null;
+}
 
 function buildResumeData(source) {
   return {
@@ -131,9 +151,10 @@ function UploadPanel({ onParsed, replacing }) {
   );
 }
 
-export default function MyResumePage() {
+function MyResumePageInner() {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [parsedData, setParsedData] = useState(null);
   const [showUploadForm, setShowUploadForm] = useState(false);
   const [mobileTab, setMobileTab] = useState("edit");
@@ -142,6 +163,7 @@ export default function MyResumePage() {
   const [liveValues, setLiveValues] = useState(null);
   const [liveReport, setLiveReport] = useState(null);
   const [now] = useState(() => Date.now());
+  const templateHandoffApplied = useRef(false);
   const t = useTranslations("tailor.resume");
   const locale = useLocale();
   const mobileTabs = MOBILE_TABS.map((tab) => ({
@@ -192,6 +214,36 @@ export default function MyResumePage() {
       });
     },
   });
+
+  // Gallery "Use this template" lands here with ?template= and/or a handoff.
+  useEffect(() => {
+    if (templateHandoffApplied.current || isLoading) return;
+    const pick = resolveTemplatePick(
+      searchParams.get("template"),
+      takeTemplateHandoff(),
+    );
+    if (!pick) return;
+    templateHandoffApplied.current = true;
+    const nextStyle = normalizeTemplateStyle(
+      pick.templateStyle ?? getTemplateDefaultStyle(pick.template),
+    );
+    /* eslint-disable react-hooks/set-state-in-effect -- one-time gallery handoff after mount */
+    setTemplateOverride(pick.template);
+    setStyleOverride(nextStyle);
+    /* eslint-enable react-hooks/set-state-in-effect */
+    trackEvent("template_handoff_consumed", {
+      template: pick.template,
+      source: pick.source ?? null,
+    });
+    if (savedCV) {
+      templateMutation.mutate({
+        template: pick.template,
+        templateStyle: nextStyle,
+      });
+    }
+    // templateMutation is stable enough for this one-shot; listing it retriggers.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- apply once when resume query settles
+  }, [isLoading, savedCV, searchParams]);
 
   // Switching template adopts that layout's own look, the same as the tailor
   // page. The style toolbar is in the same dialog to re-adjust from there.
@@ -395,6 +447,14 @@ export default function MyResumePage() {
             onSaved={() => {
               setParsedData(null);
               setMobileTab("edit");
+              // First PUT does not carry a template. Persist the gallery pick
+              // now that a CV row exists.
+              if (templateOverride) {
+                templateMutation.mutate({
+                  template: selectedTemplate,
+                  templateStyle: selectedStyle,
+                });
+              }
               // A job from the homepage or a free checker is still waiting.
               // Take them to the tailor, where it is prefilled, now that the
               // CV exists.
@@ -437,5 +497,13 @@ export default function MyResumePage() {
         </div>
       </div>
     </DashboardPageShell>
+  );
+}
+
+export default function MyResumePage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <MyResumePageInner />
+    </Suspense>
   );
 }

@@ -177,14 +177,18 @@ export const blocks = [
     p: "Government applications are the main exception. Federal and state jobs often ask for state of origin and LGA, partly because Section 14(3) of the 1999 Constitution sets the federal character principle for public appointments. When a form asks, answer on the form. Add it to the CV only when the advert says to.",
   },
   {
-    p: "Not sure what your current CV carries? The free [CV format checker](/cv-format-checker) flags it. Pick Nigeria, upload or paste your CV, and it lists the format issues it finds. It runs in your browser with no sign-in, and your CV is not uploaded or stored.",
+    p: "Not sure what your current CV carries? The free [CV format checker](/cv-format-checker?country=ng) flags it. Pick Nigeria, upload or paste your CV, and it lists the format issues it finds. It runs in your browser with no sign-in, and your CV is not uploaded or stored.",
   },
   {
     cta: {
       title: "Check your CV against the Nigerian format",
       body: "Upload or paste your CV, pick Nigeria, and see which personal details, length or layout issues to fix. Free, in your browser, no sign-in.",
-      href: "/cv-format-checker",
+      href: "/cv-format-checker?country=ng",
       label: "Check my CV format",
+      secondary: {
+        href: "/ats-resume-checker",
+        label: "Then scan for ATS keywords",
+      },
     },
   },
 
@@ -269,8 +273,12 @@ export const blocks = [
     cta: {
       title: "See what to fix before you apply",
       body: "Pick Nigeria, upload or paste your CV, and get a list of format issues to fix. It runs in your browser, needs no sign-in, and does not store your CV.",
-      href: "/cv-format-checker",
+      href: "/cv-format-checker?country=ng",
       label: "Check my CV format",
+      secondary: {
+        href: "/ats-resume-checker",
+        label: "Then scan for ATS keywords",
+      },
     },
   },
 ];

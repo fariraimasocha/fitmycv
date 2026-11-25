@@ -161,17 +161,39 @@ export default async function AtsCompanyPage({ params }) {
               />
             </div>
 
-            <div className="flex flex-col gap-4 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-7 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-                  Applying to {company.name}?
+                  Check your CV for {vendor.name}
                 </p>
                 <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--landing-ink-soft)]">
-                  Paste the job link and FitMyCV rewrites your own CV in one column, using that posting&apos;s words.
+                  Paste a {company.name} job posting and your CV. See which required terms you are missing before you apply.
+                </p>
+                <p className="mt-3 text-sm font-semibold text-[var(--landing-ink-soft)]">
+                  {vendor.guide !== "/blog/ats-resume-guide" ? (
+                    <>
+                      <Link
+                        href={vendor.guide}
+                        className="underline underline-offset-4 hover:text-[var(--landing-accent)]"
+                      >
+                        {vendor.name} CV format guide
+                      </Link>
+                      {" · "}
+                    </>
+                  ) : null}
+                  <Link
+                    href="/tailor-cv-from-job-link"
+                    className="underline underline-offset-4 hover:text-[var(--landing-accent)]"
+                  >
+                    Or tailor your CV to the job
+                  </Link>
                 </p>
               </div>
-              <Link href="/tailor-cv-from-job-link" className="landing-primary-btn shrink-0 font-outfit text-sm">
-                Tailor my CV
+              <Link
+                href="/ats-resume-checker"
+                className="landing-primary-btn shrink-0 font-outfit text-sm"
+              >
+                Check your CV for this ATS
               </Link>
             </div>
           </div>

@@ -19,6 +19,7 @@ import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
+import ToolSiblingLink from "@/components/tools/ToolSiblingLink";
 import ToolShell, {
   ToolStepActions,
   ToolStepBack,
@@ -286,6 +287,16 @@ export default function KeywordChecker({ mode = "match" }) {
             className="transition-transform duration-200 group-hover:translate-x-0.5"
           />
         </button>
+        {matchMode ? (
+          <ToolSiblingLink
+            href="/resume-job-match-checker"
+            label={t("feederMatch")}
+            source="ats_to_job_match"
+            cvText={cvText}
+            jobText={jobText}
+            className="mt-3 text-center text-sm font-semibold text-[var(--landing-ink-soft)]"
+          />
+        ) : null}
       </div>
     ) : null;
 
@@ -634,6 +645,16 @@ export default function KeywordChecker({ mode = "match" }) {
             <LeadEmailCapture
               score={result.score}
               missingKeywordCount={result.missing.length}
+            />
+          ) : null}
+
+          {matchMode ? (
+            <ToolSiblingLink
+              href="/resume-job-match-checker"
+              label={t("feederMatch")}
+              source="ats_to_job_match"
+              cvText={cvText}
+              jobText={jobText}
             />
           ) : null}
 

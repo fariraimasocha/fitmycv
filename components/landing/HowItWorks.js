@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import AuthLink from "@/components/landing/AuthLink";
 import RevealWords from "@/components/landing/RevealWords";
+import { JobLinkForm } from "@/components/landing/Hero";
 
 import { getHomeSteps } from "@/content/pages/home";
 import {
-  ArrowUpRightIcon,
   ClipboardTextIcon,
   LinkIcon,
   SparkleIcon,
@@ -169,12 +168,10 @@ export default function HowItWorks({ lifetimePrice = "29.99" }) {
             })}
           </ul>
 
-          <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <AuthLink href="/auth" className="landing-primary-btn shrink-0 whitespace-nowrap rounded-xl px-6 py-3 font-outfit text-sm">
-              {t("tailor")}
-              <ArrowUpRightIcon size={16} aria-hidden="true" />
-            </AuthLink>
-            <p className="text-sm text-[var(--landing-ink-soft)]">
+          {/* Same paste-first form as the hero. Auth without a link was a dead start. */}
+          <div className="mt-10 w-full max-w-xl">
+            <JobLinkForm id="how-job-link" className="" source="how_it_works" />
+            <p className="mt-3 text-sm text-[var(--landing-ink-soft)]">
               {t("priceNote", { price: lifetimePrice })}
             </p>
           </div>

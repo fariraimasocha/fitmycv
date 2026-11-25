@@ -3,7 +3,7 @@
     "title": "Passe deinen Lebenslauf an jede Stellenanzeige an | FitMyCV",
     "description": "Passe Lebenslauf und Anschreiben an jeden Stellenlink an: KI-Schlüsselwörter, kostenloser ATS-Check, 24 ATS-sichere Vorlagen und PDF-Export.",
     "ogTitle": "FitMyCV: Passe deinen Lebenslauf in Sekunden an jede Stellenanzeige an",
-    "ogAlt": "FitMyCV: Mehr Vorstellungsgespräche mit einem Lebenslauf, der passt",
+    "ogAlt": "FitMyCV: Passe deinen Lebenslauf an jeden Stellenlink an",
     "schemaName": "Passe deinen Lebenslauf an jede Stellenanzeige an",
     "howToName": "So passt du deinen Lebenslauf an eine Stellenanzeige an",
     "howToDescription": "Füge einen Stellenlink ein, lass FitMyCV deinen Lebenslauf passend zu den Anforderungen der Stelle umschreiben und lade dann Lebenslauf und Anschreiben als PDF herunter."
@@ -19,7 +19,6 @@
     "checkerCta": "Lebenslauf kostenlos prüfen",
     "titleMain": "Füge einen beliebigen Stellenlink ein. Erhalte einen Lebenslauf, der <accent>genau</accent> zu dieser Stelle passt.",
     "body": "Lade deinen Lebenslauf einmal hoch. FitMyCV liest die Anzeige und schreibt deinen Lebenslauf in den Worten um, die diese Stelle verlangt. Genau nach diesen Worten sucht die Bewerbungssoftware.",
-    "tryFree": "Kostenlos testen",
     "previewFree": "Vorschau deines angepassten Lebenslaufs kostenlos",
     "priceNote": "Einmalig ${price}, um PDFs herunterzuladen und dich zu bewerben.",
     "lifetimeTag": "Lebenslang",
@@ -27,9 +26,18 @@
     "soundOn": "Ton einschalten",
     "soundOff": "Stumm schalten",
     "previewLoading": "Stelle wird gelesen…",
+    "previewLoadingHint": "Schlagwörter aus der Anzeige werden gelesen. Das dauert meist ein paar Sekunden.",
     "previewTitle": "Die Stelle auf {host} verlangt diese Begriffe",
     "previewBody": "Melde dich an, um deinen Lebenslauf an diese Stelle anzupassen. Dein Link ist gespeichert.",
-    "previewCta": "Anmelden und Lebenslauf anpassen"
+    "previewCta": "Anmelden und Lebenslauf anpassen",
+    "previewFailTitle": "Die Stelle auf {host} konnte nicht gelesen werden",
+    "previewFailBody": "Dein Link ist weiterhin gespeichert. Viele Jobbörsen blockieren das Auslesen. Füge unten die vollständige Stellenbeschreibung ein, dann nutzen wir die.",
+    "previewFailLabel": "Stellenbeschreibung",
+    "previewFailPlaceholder": "Vollständige Stellenbeschreibung hier einfügen",
+    "previewFailRetry": "Diese Beschreibung verwenden",
+    "previewFailTooShort": "{count} von {min} Zeichen. Füge die ganze Anzeige ein, nicht nur den Titel.",
+    "previewFailContinue": "Ohne Beschreibung zur Anmeldung",
+    "previewFailChecker": "Lebenslauf kostenlos prüfen"
   },
   "stats": {
     "heading": "FitMyCV bisher",
@@ -59,10 +67,10 @@
     "jobListing": "Stellenanzeige",
     "paste": "Einfügen",
     "cvPreview": "Lebenslauf-Vorschau",
-    "tailor": "Lebenslauf anpassen",
+    "tailor": "Lebenslauf kostenlos anpassen",
     "export": "Export",
     "download": "PDF herunterladen",
-    "priceNote": "Vorschau am Bildschirm kostenlos. Einmalig ${price}, um PDFs herunterzuladen."
+    "priceNote": "Vorschau deines angepassten Lebenslaufs kostenlos. Einmalig ${price}, um PDFs herunterzuladen."
   },
   "templates": {
     "eyebrow": "Vorlagen",
@@ -113,7 +121,7 @@
     "title": "Ehrliche Antworten."
   },
   "cta": {
-    "title": "Bereit, nicht mehr übersehen zu werden?",
+    "title": "Bereit, nicht mehr herausgefiltert zu werden?",
     "body": "Füge einen Stellenlink ein und sieh dir deinen angepassten Lebenslauf kostenlos an. Lebenslanger Zugang für ${price}.",
     "pricing": "Preise ansehen"
   },

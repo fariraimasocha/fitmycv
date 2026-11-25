@@ -9,6 +9,7 @@ import { CheckIcon, WarningIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolSiblingLink from "@/components/tools/ToolSiblingLink";
 import ToolShell, {
   ToolStepActions,
   ToolStepBack,
@@ -181,10 +182,17 @@ function checkCvFormat(text, country) {
 }
 // pure-region-end
 
+const COUNTRY_CODES = new Set(Object.keys(COUNTRIES));
+
 export default function CvFormatChecker() {
   const [step, setStep] = useState(1);
   const [cvText, setCvText] = useState("");
-  const [country, setCountry] = useState("za");
+  // Blog CTAs can deep-link with ?country=ng|za|ke|…
+  const [country, setCountry] = useState(() => {
+    if (typeof window === "undefined") return "za";
+    const code = new URLSearchParams(window.location.search).get("country");
+    return code && COUNTRY_CODES.has(code) ? code : "za";
+  });
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun("cv_format");
   const tooShort = cvText.trim().length < 40;
@@ -295,6 +303,12 @@ export default function CvFormatChecker() {
             body="FitMyCV takes this CV and a job link, then rewrites your summary and top bullets for that posting, with a matching cover letter."
             label="Tailor my CV to a job"
             source="cv_format"
+            cvText={cvText}
+          />
+          <ToolSiblingLink
+            href="/ats-resume-checker"
+            label="Next: see which keywords this job asks for"
+            source="cv_format_to_ats"
             cvText={cvText}
           />
           <div className="mt-6 flex justify-center">

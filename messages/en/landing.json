@@ -3,7 +3,7 @@
     "title": "Tailor Your CV to Any Job Link | FitMyCV",
     "description": "Tailor your CV and cover letter to any job link: AI keyword matching, a free ATS resume checker, 24 ATS-safe templates, and one-click PDF export.",
     "ogTitle": "FitMyCV: Tailor Your CV to Any Job Link in Seconds",
-    "ogAlt": "FitMyCV: Land more interviews with a CV that fits",
+    "ogAlt": "FitMyCV: Tailor your CV to any job link",
     "schemaName": "Tailor Your CV to Any Job Link",
     "howToName": "How to tailor your CV to a job link",
     "howToDescription": "Paste a job link, let FitMyCV rewrite your CV against the role's requirements, then download the CV and cover letter as PDFs."
@@ -19,7 +19,6 @@
     "checkerCta": "Scan my CV for free",
     "titleMain": "paste any job link. get a CV <accent>made</accent> for that role.",
     "body": "Upload your CV once. FitMyCV reads the listing and rewrites your CV in the words that role asks for. Those are the words screening software looks for.",
-    "tryFree": "Try for free",
     "previewFree": "Preview your tailored CV free",
     "priceNote": "${price} once to download PDFs and apply.",
     "lifetimeTag": "Lifetime",
@@ -27,9 +26,18 @@
     "soundOn": "Turn sound on",
     "soundOff": "Mute",
     "previewLoading": "Reading the job…",
+    "previewLoadingHint": "Pulling keywords from the posting. This usually takes a few seconds.",
     "previewTitle": "The job on {host} asks for these",
     "previewBody": "Sign in to tailor your CV to this job. Your link is saved.",
-    "previewCta": "Sign in to tailor my CV"
+    "previewCta": "Sign in to tailor my CV",
+    "previewFailTitle": "Could not read the job on {host}",
+    "previewFailBody": "Your link is still saved. Many job boards block readers. Paste the full job description below and we will use that instead.",
+    "previewFailLabel": "Job description",
+    "previewFailPlaceholder": "Paste the full job description here",
+    "previewFailRetry": "Use this description",
+    "previewFailTooShort": "{count} of {min} characters. Paste the whole posting, not just the title.",
+    "previewFailContinue": "Continue to sign in without it",
+    "previewFailChecker": "Scan my CV for free"
   },
   "stats": {
     "heading": "FitMyCV so far",
@@ -59,10 +67,10 @@
     "jobListing": "Job listing",
     "paste": "Paste",
     "cvPreview": "CV preview",
-    "tailor": "Tailor my CV",
+    "tailor": "Tailor my CV free",
     "export": "Export",
     "download": "Download PDF",
-    "priceNote": "Preview on screen free. ${price} once to download PDFs."
+    "priceNote": "Preview your tailored CV free. ${price} once to download PDFs."
   },
   "templates": {
     "eyebrow": "Templates",
@@ -113,7 +121,7 @@
     "title": "Honest answers."
   },
   "cta": {
-    "title": "Ready to stop being ignored?",
+    "title": "Ready to stop being filtered out?",
     "body": "Paste a job link and preview your tailored CV free. Lifetime access for ${price}.",
     "pricing": "View pricing"
   },
@@ -234,7 +242,7 @@
         "label": "Tailored CV",
         "title": "Your CV, rewritten for that role",
         "body": "Every line comes from the CV you uploaded, reworded in the job's language. CV checks run as you edit and show whether screening software can read it.",
-        "cta": "Check your CV free",
+        "cta": "Scan my CV for free",
         "alt": "A tailored CV in the editor, with CV checks and a live preview"
       },
       "letter": {

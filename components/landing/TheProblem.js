@@ -1,6 +1,10 @@
-import { XCircleIcon, CheckCircleIcon, FileTextIcon } from "@phosphor-icons/react/dist/ssr";
+"use client";
+
+import { XCircleIcon, CheckCircleIcon, FileTextIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import RevealWords from "@/components/landing/RevealWords";
+import { trackEvent } from "@/lib/analytics";
 
 // ponytail: the dashboard's ArcGauge and PillTrack animate on mount, which is
 // right where they are used (they mount in view when data lands) and wrong
@@ -91,6 +95,7 @@ function Term({ label, found }) {
  */
 export default function TheProblem() {
   const t = useTranslations("landing.problem");
+  const tHero = useTranslations("landing.hero");
   const score = 47;
 
   return (
@@ -174,6 +179,28 @@ export default function TheProblem() {
         <p className="mt-8 max-w-2xl text-base text-[var(--landing-ink-soft)]">
           {t("footer")}
         </p>
+
+        {/* Peak without a next step was a dead end. Same verbs as the hero. */}
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button
+            type="button"
+            onClick={() => {
+              trackEvent("problem_cta_hero");
+              document.getElementById("hero-job-link")?.focus();
+            }}
+            className="landing-primary-btn inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl px-6 font-outfit text-base font-bold sm:w-auto"
+          >
+            {tHero("tailorCta")}
+            <ArrowRightIcon size={18} aria-hidden="true" className="rtl:-scale-x-100" />
+          </button>
+          <Link
+            href="/ats-resume-checker"
+            onClick={() => trackEvent("problem_cta_checker")}
+            className="inline-flex min-h-12 items-center justify-center px-2 font-outfit text-sm font-semibold text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)]"
+          >
+            {tHero("checkerCta")}
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -12,6 +12,7 @@ import { CheckIcon, XIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
+import ToolSiblingLink from "@/components/tools/ToolSiblingLink";
 import ToolShell, {
   ToolStepActions,
   ToolStepBack,
@@ -135,13 +136,16 @@ export default function JobMatchChecker() {
 
   const highMatch =
     typeof result?.overall === "number" && result.overall >= HIGH_MATCH_SCORE;
+  // Same voice as the ATS checker ending so the two tools feel like one product.
   const ctaTitle = highMatch
     ? "Lock this match into a tailored CV"
-    : "Close these gaps";
+    : "Close these gaps in a rewrite";
   const ctaBody = highMatch
     ? "Your match is strong. Keep this posting and rewrite your CV against it, using the experience you already have."
-    : "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have.";
-  const ctaLabel = highMatch ? "Tailor my CV" : "Close these gaps";
+    : "Keep this posting and FitMyCV works the missing terms into your bullets, using the experience you already have.";
+  const ctaLabel = highMatch
+    ? "Tailor my CV to this job"
+    : "Rewrite my CV for this job";
 
   const goStep = (n) => {
     if (n < 3) reset();
@@ -327,6 +331,14 @@ export default function JobMatchChecker() {
             jobText={jobText}
             cvText={cvText}
             score={result.overall}
+          />
+
+          <ToolSiblingLink
+            href="/ats-resume-checker"
+            label="Or check ATS keywords for this posting"
+            source="job_match_to_ats"
+            cvText={cvText}
+            jobText={jobText}
           />
 
           <div className="mt-6 flex justify-center">

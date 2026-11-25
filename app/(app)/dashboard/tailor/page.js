@@ -57,7 +57,11 @@ import { ScaledDocument } from "@/components/cv/ScaledDocument";
 import { printDocument } from "@/utils/print-document";
 import { openSupport } from "@/lib/open-support";
 import { buildPdfFilename } from "@/utils/pdf-filename";
-import { DEFAULT_TEMPLATE, getTemplateDefaultStyle } from "@/utils/cv-templates/metadata";
+import {
+  DEFAULT_TEMPLATE,
+  TEMPLATE_IDS,
+  getTemplateDefaultStyle,
+} from "@/utils/cv-templates/metadata";
 import { getTemplateFontOption, normalizeTemplateStyle } from "@/utils/cv-templates/style";
 import {
   DashboardPageShell,
@@ -74,7 +78,7 @@ import {
   rememberJobUrl,
   subscribeRecentJobUrls,
 } from "@/lib/recent-job-urls";
-import { takeAtsHandoff } from "@/lib/ats-handoff";
+import { takeAtsHandoff, takeTemplateHandoff } from "@/lib/ats-handoff";
 import { textAfterLink } from "@/lib/ats-detect";
 import Loader from "@/components/Loader";
 import NextMatchCard, {
@@ -313,6 +317,34 @@ function Tailor() {
       if (json.data) queryClient.setQueryData(["resume"], json.data);
     },
   });
+
+  // Gallery pick can land on tailor when the user already has a CV. Apply once.
+  const templateHandoffApplied = useRef(false);
+  useEffect(() => {
+    if (templateHandoffApplied.current || !referenceCVRecord) return;
+    const urlTemplate = searchParams.get("template");
+    const handoff = takeTemplateHandoff();
+    const templateId =
+      (urlTemplate && TEMPLATE_IDS.includes(urlTemplate) && urlTemplate) ||
+      (handoff?.template && TEMPLATE_IDS.includes(handoff.template) && handoff.template) ||
+      null;
+    if (!templateId) return;
+    templateHandoffApplied.current = true;
+    const nextStyle = normalizeTemplateStyle(
+      (handoff?.template === templateId && handoff.templateStyle) ||
+        getTemplateDefaultStyle(templateId),
+    );
+    /* eslint-disable react-hooks/set-state-in-effect -- one-time gallery handoff */
+    setTemplateOverride(templateId);
+    setTemplateStyleOverride(nextStyle);
+    /* eslint-enable react-hooks/set-state-in-effect */
+    trackEvent("template_handoff_consumed", {
+      template: templateId,
+      source: handoff?.source ?? (urlTemplate ? "url_param" : null),
+    });
+    templateMutation.mutate({ template: templateId, templateStyle: nextStyle });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot after resume loads
+  }, [referenceCVRecord, searchParams]);
 
   // Switching template adopts that layout's own look. Carrying the previous
   // style across instead would mean picking "Technical" and not getting the

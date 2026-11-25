@@ -5,9 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpIcon } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 
-// Ids of the on-page job link forms. While either is on screen the bar would
-// only repeat it, so the bar steps aside.
-const FORM_TARGETS = ["hero", "cta-job-link"];
+// Ids of the on-page job link forms / sections. While any is on screen the bar
+// would only repeat it, so the bar steps aside.
+const FORM_TARGETS = ["hero", "how-job-link", "cta-job-link"];
 
 export default function StickyCtaBar() {
   const t = useTranslations("landing.sticky");

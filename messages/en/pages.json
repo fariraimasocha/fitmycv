@@ -201,6 +201,7 @@
       "topStrong": "Coverage looks strong. Next: turn it into a CV written for this posting.",
       "topCtaRepeat": "Rewrite my CV for this job",
       "topCta": "Tailor my CV to this job",
+      "feederMatch": "Or score full job match first",
       "errorBoth": "Add your CV and the job description first.",
       "errorJob": "Paste the full job description first.",
       "errorCv": "Add your CV first.",

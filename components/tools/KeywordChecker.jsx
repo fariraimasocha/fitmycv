@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { ArrowRightIcon, CheckIcon, XIcon } from "@phosphor-icons/react";
+import { toast } from "sonner";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import LeadEmailCapture from "@/components/tools/LeadEmailCapture";
@@ -221,50 +222,64 @@ export default function KeywordChecker({ mode = "match" }) {
     if (!text) return;
     const score =
       typeof result?.score === "number" ? result.score : null;
+    const signedIn = Boolean(session?.user);
     saveAtsHandoff({
       jobText: text,
       score,
       source: gapsMode ? "gaps" : matchMode ? "match" : "keywords",
     });
+    // New users skip the PDF upload: onboarding's paste box gets this CV.
+    if (!signedIn && cvText.trim()) saveCvHandoff(cvText, "ats_checker");
     trackEvent("ats_handoff_cta", {
       score,
       source: gapsMode ? "gaps" : matchMode ? "match" : "keywords",
-      signed_in: Boolean(session?.user),
+      signed_in: signedIn,
       placement,
       check_count: runs,
     });
     const dest = "/dashboard/tailor";
-    if (session?.user) {
+    if (signedIn) {
       router.push(dest);
       return;
     }
-    // New users skip the PDF upload: onboarding's paste box gets this CV.
-    if (cvText.trim()) saveCvHandoff(cvText, "ats_checker");
+    // Ceiling: worst moment is auth mid-handoff. Say the work is safe before
+    // they leave the score.
+    toast.message(t("handoffToast"));
     const authUrl = `/auth?next=${encodeURIComponent(dest)}`;
     if (gate?.interceptAuth(null, authUrl)) return;
     router.push(authUrl);
   };
 
-  // The next step sits beside the score, not only at the bottom of the
-  // results. People checking again and again never scrolled down to it.
+  // Peak = the score. End = one rewrite step, full width, right under it.
+  // Top placement already beats bottom in PostHog; make that ending loud.
   const missingCount = result?.missing?.length ?? 0;
   const repeatCheck = runs >= 2;
+  const nextHeadline = repeatCheck
+    ? t("topRepeat", { count: runs })
+    : missingCount
+      ? t("topMissing", { count: missingCount })
+      : t("topStrong");
+  const nextCtaLabel = repeatCheck ? t("topCtaRepeat") : t("topCta");
   const topCta =
     needsCv && result ? (
-      <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-md text-sm font-semibold leading-6 text-[var(--landing-ink)]">
-          {repeatCheck
-            ? t("topRepeat", { count: runs })
-            : missingCount
-              ? t("topMissing", { count: missingCount })
-              : t("topStrong")}
+      <div className="mt-6 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-5 sm:p-6">
+        <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-accent)]">
+          {t("endProgress")}
         </p>
+        <p className="mt-2 font-outfit text-base font-extrabold leading-snug text-[var(--landing-ink)] sm:text-lg">
+          {nextHeadline}
+        </p>
+        {!session?.user ? (
+          <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink-soft)]">
+            {t("endSafe")}
+          </p>
+        ) : null}
         <button
           type="button"
           onClick={() => handleTailorHandoff("top")}
-          className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+          className="landing-primary-btn group mt-4 w-full min-h-11 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
         >
-          {repeatCheck ? t("topCtaRepeat") : t("topCta")}
+          {nextCtaLabel}
           <ArrowRightIcon
             size={16}
             aria-hidden="true"
@@ -588,6 +603,8 @@ export default function KeywordChecker({ mode = "match" }) {
             </>
           )}
 
+          {/* Same next step as the score ending. Catches people who scrolled
+              the keyword lists before deciding. One label everywhere. */}
           <div className="mt-9 flex flex-col gap-4 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-outfit text-base font-extrabold text-[var(--landing-ink)]">
@@ -600,9 +617,9 @@ export default function KeywordChecker({ mode = "match" }) {
             <button
               type="button"
               onClick={() => handleTailorHandoff("bottom")}
-              className="landing-primary-btn group shrink-0 font-outfit text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
+              className="landing-primary-btn group w-full min-h-11 shrink-0 font-outfit text-sm sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
             >
-              {t(`${ctaKey}.cta`)}
+              {nextCtaLabel}
               <ArrowRightIcon
                 size={16}
                 aria-hidden="true"

@@ -26,8 +26,10 @@ export default function BlackFridayBanner() {
     }
   };
 
+  // Renders above .landing-root, so :root --landing-primary is still black.
+  // Opt into .landing-dark so cream primary matches the hero CTA button.
   return (
-    <div className="bg-black text-center text-white">
+    <div className="landing-dark bg-[var(--landing-primary)] text-center text-[var(--landing-on-primary)]">
       <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-3 py-2 text-sm leading-snug sm:text-[0.9375rem]">
         <span>
           Black Friday: {BLACK_FRIDAY_PERCENT}% off Lifetime. Code
@@ -35,17 +37,17 @@ export default function BlackFridayBanner() {
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-1 rounded-sm font-semibold tracking-wide underline decoration-white/40 underline-offset-2 transition-colors hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="inline-flex items-center gap-1 rounded-sm font-semibold tracking-wide text-[var(--landing-on-primary)] underline decoration-[var(--landing-on-primary)]/40 underline-offset-2 transition-colors hover:decoration-[var(--landing-on-primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--landing-on-primary)]"
           aria-label={`Copy discount code ${BLACK_FRIDAY_CODE}`}
         >
           {BLACK_FRIDAY_CODE}
           <CopyIcon className="size-3.5" aria-hidden="true" />
         </button>
-        <span className="hidden text-white/30 sm:inline" aria-hidden="true">
+        <span className="hidden text-[var(--landing-on-primary)]/30 sm:inline" aria-hidden="true">
           ·
         </span>
         <BlackFridayCountdown variant="banner" />
-        <span className="hidden text-white/30 sm:inline" aria-hidden="true">
+        <span className="hidden text-[var(--landing-on-primary)]/30 sm:inline" aria-hidden="true">
           ·
         </span>
         <Link

@@ -15,7 +15,7 @@ function pad(n) {
 /**
  * @param {{ variant?: "banner" | "popup" }} props
  */
-export default function BlackFridayCountdown({ variant = "popup" }) {
+export default function BlackFridayCountdown({ variant = "banner" }) {
   const [ms, setMs] = useState(() => msUntilBlackFridayEnds());
   const reduceMotion = useReducedMotion();
 
@@ -44,12 +44,18 @@ export default function BlackFridayCountdown({ variant = "popup" }) {
         aria-live="polite"
         aria-atomic="true"
       >
-        <span className="font-medium text-white/70">Ends in</span>
+        <span className="font-medium text-[var(--landing-on-primary)]/70">Ends in</span>
         {cells.map((cell, i) => (
           <span key={cell.label} className="inline-flex items-baseline gap-0.5">
-            {i > 0 ? <span className="px-0.5 text-white/35" aria-hidden="true">:</span> : null}
-            <span className="text-white">{cell.value}</span>
-            <span className="text-[0.65em] uppercase text-white/50">{cell.short}</span>
+            {i > 0 ? (
+              <span className="px-0.5 text-[var(--landing-on-primary)]/35" aria-hidden="true">
+                :
+              </span>
+            ) : null}
+            <span className="text-[var(--landing-on-primary)]">{cell.value}</span>
+            <span className="text-[0.65em] uppercase text-[var(--landing-on-primary)]/50">
+              {cell.short}
+            </span>
           </span>
         ))}
       </span>

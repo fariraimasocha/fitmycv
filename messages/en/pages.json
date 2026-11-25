@@ -181,21 +181,24 @@
       "handoffHigh": {
         "title": "Lock this match into a tailored CV",
         "body": "Your keyword coverage is strong. Keep this posting and rewrite your CV against it, using the experience you already have.",
-        "cta": "Tailor my CV"
+        "cta": "Tailor my CV to this job"
       },
       "handoffGaps": {
-        "title": "Close these gaps",
+        "title": "Close these gaps in a rewrite",
         "body": "Keep this posting and FitMyCV works the missing terms into your bullets, using the experience you already have.",
-        "cta": "Close these gaps"
+        "cta": "Rewrite my CV for this job"
       },
       "handoffMatch": {
-        "title": "Close these gaps",
-        "body": "Keep this posting and FitMyCV rewrites your CV and cover letter against it, using the experience you already have. You can review the draft before paying to download PDFs.",
-        "cta": "Close these gaps"
+        "title": "Rewrite this CV for the job",
+        "body": "Keep this posting and FitMyCV rewrites your CV against it, using the experience you already have. Review the draft before you pay to download.",
+        "cta": "Tailor my CV to this job"
       },
-      "topRepeat": "That is {count, plural, one {# check} other {# checks}} on this page. Let FitMyCV rewrite your CV for this job instead, using only the experience you already have.",
-      "topMissing": "{count, plural, one {# keyword} other {# keywords}} missing. Tailor this CV to the job, review the draft, then choose whether to pay for the PDF.",
-      "topStrong": "Your coverage is strong. Turn it into a CV written for this posting.",
+      "endProgress": "1 of 2 done",
+      "endSafe": "This job and your CV stay ready through sign-in.",
+      "handoffToast": "Job and CV saved. Sign in to rewrite.",
+      "topRepeat": "That is {count, plural, one {# check} other {# checks}} on this page. Next: rewrite your CV for this job, using only the experience you already have.",
+      "topMissing": "{count, plural, one {# keyword} other {# keywords}} missing. Next: rewrite this CV for the job so those terms show up where they belong.",
+      "topStrong": "Coverage looks strong. Next: turn it into a CV written for this posting.",
       "topCtaRepeat": "Rewrite my CV for this job",
       "topCta": "Tailor my CV to this job",
       "errorBoth": "Add your CV and the job description first.",

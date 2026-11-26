@@ -490,6 +490,12 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.equal(checkCvFormat("Tendai Moyo\ntendai@example.com\n+263 77 123 4567", "zw").checks.find((c) => c.id === "id").ok, true);
   });
 
+  check("asks Polish CVs for a RODO clause", () => {
+    assert.equal(checkCvFormat("Anna Nowak\nanna@example.com", "pl").checks.find((c) => c.id === "rodo").ok, false);
+    assert.equal(checkCvFormat("Anna Nowak\nanna@example.com\nWyrażam zgodę na przetwarzanie moich danych osobowych (RODO).", "pl").checks.find((c) => c.id === "rodo").ok, true);
+    assert.ok(!checkCvFormat(cv, "za").checks.some((c) => c.id === "rodo"));
+  });
+
   check("flags long CVs by page estimate", () => {
     const long = "word ".repeat(1400);
     assert.equal(checkCvFormat(long, "us").checks.find((c) => c.id === "length").ok, false);

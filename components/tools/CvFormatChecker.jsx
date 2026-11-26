@@ -29,6 +29,7 @@ const COUNTRIES = {
   ng: { name: "Nigeria", maxPages: 2, personal: "ifAsked" },
   ke: { name: "Kenya", maxPages: 2, personal: "ifAsked" },
   zw: { name: "Zimbabwe", maxPages: 2, personal: "ifAsked" },
+  pl: { name: "Poland", maxPages: 2, personal: "general" },
   in: { name: "India", maxPages: 2, personal: "ifAsked" },
   uk: { name: "the UK", maxPages: 2, personal: "drop" },
   us: { name: "the US", maxPages: 2, personal: "drop" },
@@ -160,6 +161,19 @@ function checkCvFormat(text, country) {
     );
   }
 
+  if (country === "pl") {
+    // Polish recruiters still look for the data processing consent line.
+    const rodo = has(text, /\brodo\b|przetwarzanie moich danych|processing of my personal data|\bgdpr\b|2016\/679/i);
+    add(
+      "rodo",
+      rodo,
+      "RODO clause",
+      rodo
+        ? "Found. Check it matches the wording the advert asks for, if it gives one."
+        : "Add a RODO clause at the bottom of the CV. Many Polish adverts ask for one, and some recruiters set CVs without it aside."
+    );
+  }
+
   const objective = has(text, /career objective|\bobjective\s*:|^\s*objective\s*$/im);
   add(
     "objective",
@@ -250,6 +264,7 @@ export default function CvFormatChecker() {
               <option value="ng">Nigeria</option>
               <option value="ke">Kenya</option>
               <option value="zw">Zimbabwe</option>
+              <option value="pl">Poland</option>
               <option value="in">India</option>
               <option value="uk">United Kingdom</option>
               <option value="us">United States</option>

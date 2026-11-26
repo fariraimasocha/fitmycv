@@ -1,14 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
-import {
-  ArrowRightIcon,
-  LinkIcon,
-  SealCheckIcon,
-  LightningIcon,
-} from "@phosphor-icons/react/dist/ssr";
-
+import ProductActionLink from "@/components/landing/ProductActionLink";
+import { ProductImage } from "@/components/landing/ProductPreview";
+import { ProductStories } from "@/components/landing/PublicProductSections";
 import Header from "@/components/Header";
-import HowItWorks from "@/components/landing/HowItWorks";
+import PublicHowItWorks from "@/components/landing/PublicHowItWorks";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
 import TrustSignals from "@/components/landing/TrustSignals";
@@ -68,14 +63,6 @@ export async function generateMetadata({ params }) {
   return { ...base, alternates };
 }
 
-const BENEFITS = [
-  { key: "link", icon: LinkIcon },
-  { key: "ats", icon: SealCheckIcon },
-  { key: "speed", icon: LightningIcon },
-];
-
-const SUPPORTED_BOARDS = ["LinkedIn", "Indeed", "Glassdoor"];
-
 export default async function TailorCvFromJobLinkPage({ params }) {
   const { locale } = await params;
   const t = await getTranslations({
@@ -83,108 +70,28 @@ export default async function TailorCvFromJobLinkPage({ params }) {
     namespace: "pages.tailorCvFromJobLink",
   });
   const content = await getContent(locale);
-  const boards = [...SUPPORTED_BOARDS, t("companySites")];
   const homePath = locale === "en" ? "/" : `/${locale}`;
   const pagePath = locale === "en" ? PATH : `/${locale}${PATH}`;
 
   return (
-    <div className="landing-root min-h-screen">
+    <div className="landing-root public-redesign min-h-screen">
       <Header />
-      <main>
-        {/* Hero */}
-        <section className="relative isolate overflow-hidden px-5 pb-20 pt-32 sm:px-10 lg:px-16 xl:px-24">
-          <div className="landing-container flex flex-col items-center text-center">
-            <div className="landing-eyebrow">
-              <div className="h-2 w-2 shrink-0 rounded-full bg-[var(--landing-primary)]" />
-              {t("eyebrow")}
+      <main id="main-content">
+        <section className="public-section public-product-hero">
+          <div className="public-container public-story">
+            <div className="public-story-copy">
+              <p className="public-eyebrow">{t("eyebrow")}</p>
+              <h1 className="public-product-title">{t("titleStart")} <em>{t("titleHighlight")}</em></h1>
+              <p className="public-copy">{t("intro")}</p>
+              <ul className="public-benefits">{["link", "ats", "speed"].map((key) => <li key={key}>{t(`benefits.${key}.title`)}</li>)}</ul>
+              <ProductActionLink product="tailor">{t("ctaPrimary")}</ProductActionLink>
             </div>
-
-            <h1
-              className="font-serif-display mt-6 max-w-5xl font-normal leading-[0.98] tracking-normal text-[var(--landing-ink)]"
-              style={{ fontSize: "clamp(38px, 6vw, 78px)" }}
-            >
-              {t("titleStart")}{" "}
-              <span className="relative inline-block px-2">
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 bottom-[0.07em] -z-10 h-[0.32em] -rotate-1 bg-[oklch(0.9_0.04_45_/_0.45)]"
-                />
-                {t("titleHighlight")}
-              </span>
-            </h1>
-
-            <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-[var(--landing-ink-soft)] sm:text-xl">
-              {t("intro")}
-            </p>
-
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href="/auth"
-                className="landing-primary-btn group min-w-[210px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-              >
-                {t("ctaPrimary")}
-                <ArrowRightIcon
-                  size={17}
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-0.5"
-                />
-              </Link>
-              <Link
-                href="/ats-resume-checker"
-                className="landing-secondary-btn min-w-[190px] font-outfit text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-              >
-                {t("ctaSecondary")}
-              </Link>
-            </div>
-
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--landing-ink-soft)]">
-                {t("worksWith")}
-              </span>
-              {boards.map((board) => (
-                <span
-                  key={board}
-                  className="rounded-full border border-[var(--landing-line)] bg-[oklch(0.985_0.012_84)] px-3 py-1 text-xs font-bold text-[var(--landing-ink-soft)]"
-                >
-                  {board}
-                </span>
-              ))}
-            </div>
+            <ProductImage priority />
           </div>
         </section>
+        <ProductStories tailorOnly />
 
-        {/* Benefits */}
-        <section className="landing-section">
-          <div className="landing-container flex flex-col items-center gap-4">
-            <h2 className="landing-heading text-center font-outfit text-3xl font-extrabold sm:text-4xl">
-              {t("benefitsTitle")}
-            </h2>
-            <p className="landing-copy text-center text-base">
-              {t("benefitsIntro")}
-            </p>
-          </div>
-
-          <div className="landing-container mt-12 grid gap-6 md:grid-cols-3">
-            {BENEFITS.map(({ key, icon: Icon }) => (
-              <div
-                key={key}
-                className="landing-card flex flex-col gap-4 rounded-2xl p-7"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--landing-primary-soft)] text-[var(--landing-primary-dark)]">
-                  <Icon size={24} aria-hidden="true" weight="bold" />
-                </div>
-                <h3 className="font-outfit text-xl font-extrabold text-[var(--landing-ink)]">
-                  {t(`benefits.${key}.title`)}
-                </h3>
-                <p className="landing-copy text-sm leading-7">
-                  {t(`benefits.${key}.body`)}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <HowItWorks />
+        <PublicHowItWorks />
 
         {/* Long-form body */}
         <section className="px-5 pb-10 pt-6 sm:px-10 lg:px-16 xl:px-24">

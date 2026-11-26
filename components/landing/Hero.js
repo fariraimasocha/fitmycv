@@ -2,137 +2,53 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Link } from "@/i18n/navigation";
 import {
   ArrowRightIcon,
-  SpeakerHighIcon,
-  SpeakerSlashIcon,
 } from "@phosphor-icons/react";
 import { PRICING } from "@/lib/pricing";
-import RevealWords from "@/components/landing/RevealWords";
+import ProductPreview from "@/components/landing/ProductPreview";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { textAfterLink, toUrl } from "@/lib/ats-detect";
 import { extractTerms } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";
-import { HOME_TESTIMONIALS } from "@/content/pages/home";
 
-const TRUST_FACES = [
-  "/trusted/jane.jpeg",
-  "/trusted/portia.jpeg",
-  "/trusted/jack.jpeg",
-  "/trusted/winnie.jpeg",
-  "/trusted/vitus.jpg",
-];
-
-// Same floor as /api/job/extract for a pasted description.
 const MIN_JOB_TEXT_CHARS = 150;
-
-// One real quote with a concrete outcome, right under the CTA.
-const HERO_PROOF = HOME_TESTIMONIALS.find((item) => item.author === "Vitus");
-// Break after the first sentence so the quote always sits on two lines.
-const HERO_PROOF_LINES = HERO_PROOF?.quote.split(/(?<=\.) /, 2) ?? [];
-
-function DemoPreview() {
-  const t = useTranslations("landing.hero");
-  const videoRef = useRef(null);
-  // Autoplay only works muted. The first unmute restarts the video so
-  // people hear the walkthrough from the start.
-  const [muted, setMuted] = useState(true);
-  const [heardSound, setHeardSound] = useState(false);
-
-  const toggleSound = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (muted && !heardSound) {
-      video.currentTime = 0;
-      setHeardSound(true);
-    }
-    video.muted = !muted;
-    if (muted) video.play().catch(() => {});
-    setMuted(!muted);
-  };
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const apply = () => {
-      const video = videoRef.current;
-      if (!video) return;
-      if (query.matches) video.pause();
-      else video.play().catch(() => {});
-    };
-
-    apply();
-    query.addEventListener("change", apply);
-    return () => query.removeEventListener("change", apply);
-  }, []);
-
-  return (
-    <div className="zen-frame landing-rise-4 relative mx-auto w-full max-w-5xl rounded-4xl p-2 shadow-2xl sm:rounded-[48px] sm:p-4">
-      <div className="overflow-hidden rounded-3xl border border-[oklch(1_0_0_/_0.1)] bg-[var(--landing-surface)] sm:rounded-[36px]">
-        <div className="landing-browser-bar">
-          <span className="landing-browser-dot bg-[oklch(0.62_0.19_24)]" aria-hidden="true" />
-          <span className="landing-browser-dot bg-[oklch(0.73_0.135_68)]" aria-hidden="true" />
-          <span className="landing-browser-dot bg-[oklch(0.56_0.13_150)]" aria-hidden="true" />
-          <span className="ms-3 flex-1 rounded-md bg-[var(--landing-paper-soft)] px-3 py-1 text-center font-sans text-xs font-medium text-[var(--landing-ink-soft)]">
-            www.fitmycv.link
-          </span>
-        </div>
-        <div className="relative overflow-hidden">
-          <video
-            ref={videoRef}
-            src="/new-fitmycv-demo.mp4"
-            poster="/hero-new.png"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-label={t("videoLabel")}
-            className="h-auto w-full"
-          />
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-pressed={!muted}
-            className="absolute bottom-3 start-3 inline-flex min-h-9 items-center gap-1.5 rounded-full bg-[var(--landing-ink)]/80 px-3 py-1.5 text-xs font-semibold text-[var(--landing-on-primary)] backdrop-blur transition hover:bg-[var(--landing-ink)]"
-          >
-            {muted ? (
-              <SpeakerSlashIcon size={14} aria-hidden="true" />
-            ) : (
-              <SpeakerHighIcon size={14} aria-hidden="true" />
-            )}
-            {muted ? t("soundOn") : t("soundOff")}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // Scrapes the posting through the public job saver (Exa, rate limited per IP,
 // no model call) and ranks its terms in the browser. Returns [] on any
 // failure so the caller can fall back to sign-in.
-async function fetchJobTerms(jobUrl) {
+async function fetchJobTerms(jobUrl, controller, source) {
+  const timeout = setTimeout(() => {
+    controller.abort(new DOMException("", "TimeoutError"));
+  }, 20_000);
   try {
     const res = await fetch("/api/tools/job-save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: jobUrl }),
+      signal: controller.signal,
     });
     if (!res.ok) {
-      trackEvent("hero_preview_failed", { status: res.status });
+      trackEvent("hero_preview_failed", { status: res.status, source });
       return [];
     }
     const { text } = await res.json();
     return extractTerms(text || "", 8).map((item) => item.term);
   } catch {
-    trackEvent("hero_preview_failed", { status: 0 });
+    if (!controller.signal.aborted || controller.signal.reason?.name === "TimeoutError") {
+      trackEvent("hero_preview_failed", {
+        status: 0,
+        source,
+        reason: controller.signal.aborted ? "timeout" : "network",
+      });
+    }
     return [];
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -152,6 +68,11 @@ export function JobLinkForm({
   const [link, setLink] = useState("");
   const [invalid, setInvalid] = useState(false);
   const [loading, setLoading] = useState(false);
+  const activeRequest = useRef(null);
+  useEffect(() => () => {
+    activeRequest.current?.abort();
+    activeRequest.current = null;
+  }, []);
   const [preview, setPreview] = useState(null);
   // Ceiling: scrape fail used to dump straight to /auth with no recovery.
   // Keep the saved link, say the work is safe, and put paste-description
@@ -162,6 +83,7 @@ export function JobLinkForm({
   const failTextId = `${id}-fail-text`;
 
   const goToAuth = (authUrl) => {
+    trackEvent("hero_preview_continued", { source, recovery: Boolean(fail) });
     if (gate?.interceptAuth(null, authUrl)) return;
     router.push(authUrl);
   };
@@ -210,9 +132,14 @@ export function JobLinkForm({
     setFailText("");
     setFailShort(false);
     setPreview(null);
+    const controller = new AbortController();
+    activeRequest.current = controller;
     const terms = hasText
       ? extractTerms(jobText, 8).map((item) => item.term)
-      : await fetchJobTerms(url.href);
+      : await fetchJobTerms(url.href, controller, source);
+    // Editing the input starts a new attempt. Never show the old job's result.
+    if (activeRequest.current !== controller) return;
+    activeRequest.current = null;
     setLoading(false);
     if (!terms.length) {
       setFail({
@@ -268,6 +195,9 @@ export function JobLinkForm({
           autoComplete="off"
           value={link}
           onChange={(e) => {
+            activeRequest.current?.abort();
+            activeRequest.current = null;
+            setLoading(false);
             setLink(e.target.value);
             setInvalid(false);
             setPreview(null);
@@ -312,7 +242,7 @@ export function JobLinkForm({
         </p>
       ) : null}
       {preview ? (
-        <div role="status" className="mt-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 text-left">
+        <div role="status" className="mt-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-4 text-start">
           <p className="font-outfit text-base font-bold text-[var(--landing-ink)]">
             {t("previewTitle", { host: preview.host })}
           </p>
@@ -340,7 +270,7 @@ export function JobLinkForm({
       {fail ? (
         <div
           role="alert"
-          className="mt-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 text-left"
+          className="mt-3 rounded-2xl border border-[var(--landing-accent-line)] bg-[var(--landing-accent-soft)] p-4 text-start"
         >
           <p className="font-outfit text-base font-bold text-[var(--landing-ink)]">
             {t("previewFailTitle", { host: fail.host })}
@@ -367,6 +297,7 @@ export function JobLinkForm({
           {failShort ? (
             <p
               id={`${failTextId}-error`}
+              role="alert"
               className="mt-2 text-sm font-semibold text-[var(--landing-accent)]"
             >
               {t("previewFailTooShort", {
@@ -407,87 +338,21 @@ export function JobLinkForm({
   );
 }
 
-export default function Hero({ lifetimePrice = PRICING.lifetime.price, userCount = null }) {
+export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
   const t = useTranslations("landing.hero");
-  return (
-    <section id="hero" className="relative px-5 pb-16 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container flex flex-col items-center pt-20 text-center sm:pt-32">
-        <Link
-          href="/pricing"
-          className="landing-rise-1 -mt-8 mb-6 inline-flex sm:-mt-12 items-center gap-2 rounded-full border border-[var(--landing-line)] bg-[var(--landing-surface)] py-1 ps-1 pe-3 text-xs text-[var(--landing-ink)] shadow-sm transition-colors hover:border-[var(--landing-ink-soft)] sm:text-sm"
-        >
-          <span className="rounded-full bg-[var(--landing-accent-soft)] px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-[var(--landing-accent)]">
-            {t("lifetimeTag")}
-          </span>
-          <span className="tabular-nums">{t("lifetimeBadge", { price: lifetimePrice })}</span>
-        </Link>
-        <RevealWords
-          as="h1"
-          onLoad
-          text={t.raw("titleMain")}
-          className="max-w-5xl font-serif-display text-[var(--landing-ink)]"
-          style={{
-            fontSize: "clamp(3rem, 6.75vw, 6.75rem)",
-            lineHeight: 0.95,
-            letterSpacing: "-0.01em",
-          }}
-        />
-
-        {/* No entrance fade. On phones this is the largest paint, and Chrome
-            counts a fade from opacity 0 late. */}
-        <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--landing-ink-soft)]">
-          {t("body")}
-        </p>
-
-        <JobLinkForm />
-        <p className="landing-rise-3 mt-3 text-xs text-[var(--landing-ink-soft)]">
-          {t("previewFree")}. {t("priceNote", { price: lifetimePrice })} {t("notReady")}{" "}
-          <Link
-            href="/ats-resume-checker"
-            className="font-semibold text-[var(--landing-ink)] underline underline-offset-4 hover:text-[var(--landing-accent)]"
-          >
-            {t("checkerCta")}
-          </Link>
-        </p>
-
-        {/* One proof row: the faces, one real quote, and a real, rounded-down
-            account count (or no number at all). */}
-        <div className="landing-rise-3 mt-6 flex max-w-2xl flex-col items-center gap-4 sm:flex-row sm:text-start">
-          <div className="flex shrink-0 -space-x-2 rtl:space-x-reverse">
-            {TRUST_FACES.map((src) => (
-              <Image
-                key={src}
-                src={src}
-                alt=""
-                width={48}
-                height={48}
-                className="size-12 rounded-full object-cover ring-2 ring-[var(--landing-bg)]"
-              />
-            ))}
-          </div>
-          <div className="text-xs leading-4">
-            {HERO_PROOF ? (
-              <figure className="text-[var(--landing-ink)] sm:whitespace-nowrap">
-                <blockquote className="inline">
-                  <span className="block">“{HERO_PROOF_LINES[0]}</span>
-                  {HERO_PROOF_LINES[1]}”
-                </blockquote>{" "}
-                <figcaption className="inline font-semibold">{HERO_PROOF.author}</figcaption>
-              </figure>
-            ) : null}
-            {userCount ? (
-              <p className="text-xs leading-4 text-[var(--landing-ink-soft)]">{t("usedBy", { count: userCount })}</p>
-            ) : null}
-          </div>
+  return <section id="hero" className="public-hero">
+    <div className="public-container">
+      <div className="public-hero-copy">
+        <h1 className="public-hero-title">{t.rich("titleMain", { accent: (chunks) => <em>{chunks}</em> })}</h1>
+        <p className="public-hero-description">{t("body")}</p>
+        {/* The headline asks for a job link, so the hero takes one. The id
+            keeps old /#start-tailoring links landing on the form. */}
+        <div id="start-tailoring" className="public-hero-form">
+          <JobLinkForm className="mx-auto mt-8" />
         </div>
-
-        {/* The demo shows the real output: one action and the result above
-            the fold. The product sections below carry the feature list. */}
-        <div className="mt-10 w-full sm:mt-12">
-          <DemoPreview />
-        </div>
-
+        <p className="public-hero-note">{t("previewFree")}. {t("priceNote", { price: lifetimePrice })}</p>
       </div>
-    </section>
-  );
+      <ProductPreview />
+    </div>
+  </section>;
 }

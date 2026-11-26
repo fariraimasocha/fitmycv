@@ -1,17 +1,14 @@
+import { ProductStories } from "@/components/landing/PublicProductSections";
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
 import StatsStrip from "@/components/landing/StatsStrip";
-import ProductSuite from "@/components/landing/ProductSuite";
-import TheProblem from "@/components/landing/TheProblem";
-import HowItWorks from "@/components/landing/HowItWorks";
-import UseCases from "@/components/landing/UseCases";
+import PublicHowItWorks from "@/components/landing/PublicHowItWorks";
 import TemplateStrip from "@/components/landing/TemplateStrip";
 import Testimonial from "@/components/landing/Testimonial";
 import TrustSignals from "@/components/landing/TrustSignals";
 import Pricing from "@/components/landing/Pricing";
 import CTABand from "@/components/landing/CTABand";
 import Footer from "@/components/landing/Footer";
-import StickyCtaBar from "@/components/landing/StickyCtaBar";
 import FounderFaqSection from "@/components/landing/FounderFaqSection";
 import JsonLd from "@/components/JsonLd";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -68,24 +65,20 @@ export default async function Home({ params }) {
   ]);
 
   return (
-    <div className="landing-root min-h-screen">
+    <div className="landing-root public-redesign min-h-screen">
       <Header />
-      <main>
-        <Hero lifetimePrice={pricing.lifetime.price} userCount={stats.users} />
-        {/* Proof straight under the hero, then problem, method, product. */}
+      <main id="main-content">
+        <Hero lifetimePrice={pricing.lifetime.price} />
         <StatsStrip users={stats.users} tailored={stats.tailored} />
-        <TheProblem />
-        <HowItWorks lifetimePrice={pricing.lifetime.price} />
-        <ProductSuite />
-        <UseCases />
-        <Testimonial />
+        <ProductStories />
+        <PublicHowItWorks />
         <TemplateStrip />
+        <Testimonial />
         <TrustSignals />
         <Pricing />
         <FounderFaqSection />
         <CTABand lifetimePrice={pricing.lifetime.price} />
       </main>
-      <StickyCtaBar />
       <Footer />
       <JsonLd
         data={{

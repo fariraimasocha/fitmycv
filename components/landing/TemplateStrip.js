@@ -85,7 +85,7 @@ export default function TemplateStrip() {
             <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
             <RevealWords
               text={t("title")}
-              className="mt-3 font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl"
+              className="mt-3 public-section-title"
             />
             <p className="landing-copy mt-4 text-base">{t("body")}</p>
           </div>

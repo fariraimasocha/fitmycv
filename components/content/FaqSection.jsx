@@ -47,7 +47,7 @@ export default function FaqSection({
       className={`landing-section ${muted ? "landing-muted-band" : ""}`}
     >
       <div className="landing-container flex flex-col items-center gap-4">
-        <h2 className="landing-section-title text-center text-3xl sm:text-4xl">
+        <h2 className="public-section-title text-center">
           {heading}
         </h2>
         {intro ? (
@@ -61,7 +61,7 @@ export default function FaqSection({
             key={q}
             className="landing-card group rounded-2xl [&_summary::-webkit-details-marker]:hidden"
           >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 font-outfit sm:px-6 text-base font-extrabold text-[var(--landing-ink)]">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 font-outfit sm:px-6 text-base font-semibold text-[var(--landing-ink)]">
               {q}
               <PlusIcon
                 size={18}

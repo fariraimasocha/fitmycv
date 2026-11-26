@@ -4,27 +4,27 @@ import { getTranslations } from "next-intl/server";
 import { getServerPricing } from "@/lib/server-pricing";
 import { SHOW_MONTHLY } from "@/lib/pricing";
 
-export default async function Pricing() {
+export default async function Pricing({ showIntro = true }) {
   const { pricing, tier, country } = await getServerPricing();
   const t = await getTranslations("pages.pricing");
 
   return (
     <section
       id="pricing"
-      className="landing-section landing-muted-band flex flex-col gap-10"
+      className={showIntro ? "landing-section landing-muted-band flex flex-col gap-10" : "public-container public-pricing-plans"}
     >
-      <div
+      {showIntro && <div
         className={`landing-container flex flex-col gap-4 ${SHOW_MONTHLY ? "" : "items-center text-center"}`}
       >
         <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
         <RevealWords
           text={`${t("titleLine1")} <accent>${t("titleLine2")}</accent>`}
-          className="max-w-3xl font-outfit text-4xl font-bold tracking-tight text-[var(--landing-ink)] sm:text-5xl"
+          className="public-section-title max-w-3xl"
         />
         <p className="landing-copy max-w-xl text-lg">
           {t(SHOW_MONTHLY ? "intro" : "introOnce")}
         </p>
-      </div>
+      </div>}
 
       <div className="landing-container w-full">
         <PricingCards pricing={pricing} tier={tier} country={country} />

@@ -112,12 +112,13 @@ function FooterColumn({ heading, links }) {
 
 export default function Footer() {
   const t = useTranslations("landing.footer");
+  const r = useTranslations("landing.redesign");
 
   return (
-    <footer className="zen-footer landing-muted-band px-5 py-16 sm:px-10 lg:px-16 xl:px-24">
-      <div className="landing-container flex flex-col gap-12">
+    <footer className="public-footer">
+      <div className="public-container flex flex-col gap-12">
         {/* Top row */}
-        <div className="flex flex-col sm:flex-row sm:justify-between w-full gap-10">
+        <div className="public-footer-grid">
           {/* Brand col */}
           <div className="flex flex-col gap-4 max-w-[280px]">
             <div className="flex flex-row items-center">
@@ -126,10 +127,8 @@ export default function Footer() {
             <p className="font-sans text-sm text-[var(--landing-ink-soft)] leading-relaxed max-w-[260px]">
               {t("tagline")}
             </p>
-            <div className="flex flex-col gap-3 pt-2">
-              <h3 className="font-outfit font-bold text-sm text-[var(--landing-ink)]">
-                {t("headings.featuredOn")}
-              </h3>
+            <details className="public-footer-badges">
+              <summary>{t("headings.featuredOn")}</summary>
               {/* eslint-disable @next/next/no-img-element -- external badge images */}
               <div className="flex flex-wrap items-center gap-3">
                 <a href="https://launchfriday.xyz/launch/fitmycv-6074cc" target="_blank" rel="noopener">
@@ -227,22 +226,19 @@ export default function Footer() {
                 </a>
               </div>
               {/* eslint-enable @next/next/no-img-element */}
-            </div>
+            </details>
           </div>
 
-          {/* ponytail: CSS columns, not a grid. Free tools is three times longer
-              than the rest, so a grid row was as tall as it with gaps beside.
-              Columns stack the short groups under each other instead. */}
-          <div className="flex-1 columns-2 gap-x-8 sm:columns-3 lg:columns-4">
-            {columns.map((column) => (
-              <FooterColumn
-                key={column.key}
-                heading={t(`headings.${column.key}`)}
-                links={column.links}
-              />
+          <div className="public-footer-links">
+            {columns.filter((column) => ["product", "freeTools", "resources", "company"].includes(column.key)).map((column) => (
+              <div key={column.key}>
+                <FooterColumn heading={t(`headings.${column.key}`)} links={column.key === "product" ? [{ label: r("tracker"), href: "/job-tracker" }, ...column.links] : column.links} />
+              </div>
             ))}
           </div>
         </div>
+
+        <details className="public-footer-more"><summary>{r("resources")}</summary><div className="grid gap-8 pt-6 sm:grid-cols-3">{columns.filter((column) => ["compare", "atsGuides", "otherApps"].includes(column.key)).map((column) => <FooterColumn key={column.key} heading={t(`headings.${column.key}`)} links={column.links} />)}</div></details>
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center w-full border-t border-[var(--landing-line)] gap-4 pt-6">

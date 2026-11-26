@@ -145,26 +145,13 @@ export default function MarketingPage({ page, children, hideHero = false, locale
             ) : null}
 
             {hideHero ? null : (
-              <h1
-                className="font-outfit mt-6 max-w-4xl font-medium text-[var(--landing-ink)]"
-                style={{
-                  fontSize: "clamp(1.875rem, 4.4vw, 3.4rem)",
-                  lineHeight: 1.15,
-                  letterSpacing: "-0.01em",
-                }}
-              >
+              <h1 className="public-product-title mt-6 max-w-4xl">
                 {h1}
               </h1>
             )}
 
             {hideHero ? null : (
-              <p
-                className={`mt-5 max-w-2xl text-base font-semibold leading-7 sm:mt-7 sm:text-xl sm:leading-8 ${
-                  tool
-                    ? "text-[var(--landing-accent)]"
-                    : "text-[var(--landing-ink-soft)]"
-                }`}
-              >
+              <p className="public-hero-description">
                 {lede}
               </p>
             )}

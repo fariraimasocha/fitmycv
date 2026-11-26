@@ -1,28 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import {
-  CalendarXIcon,
-  CaretDownIcon,
-  GlobeHemisphereEastIcon,
-  FileTextIcon,
-  LayoutIcon,
-  LinkedinLogoIcon,
-  IdentificationCardIcon,
-  ListChecksIcon,
-  ListIcon,
-  ListMagnifyingGlassIcon,
-  MagnifyingGlassIcon,
-  PencilLineIcon,
-  ShieldCheckIcon,
-  SignOutIcon,
-  SparkleIcon,
-  TargetIcon,
-  TextAlignLeftIcon,
-  TextHOneIcon,
-  TextStrikethroughIcon,
-  XIcon,
-} from "@phosphor-icons/react";
+import { FileTextIcon, LayoutIcon, ListIcon, ShieldCheckIcon, SignOutIcon, XIcon } from "@phosphor-icons/react";
+import PublicNavGroups from "@/components/landing/PublicNavGroups";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import LanguagePicker from "@/components/LanguagePicker";
@@ -38,63 +18,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { FREE_TOOLS } from "@/lib/free-tools";
-
 const navLinks = [
-  { key: "jobs", href: "/jobs" },
-  { key: "howItWorks", href: "/#how-it-works" },
-  { key: "templates", href: "/cv-templates" },
-  { key: "pricing", href: "/#pricing" },
-  { key: "blog", href: "/blog" },
+  { key: "tailor", href: "/tailor-cv-from-job-link", icon: FileTextIcon },
+  { key: "atsChecker", href: "/ats-resume-checker", icon: ShieldCheckIcon },
 ];
-
-// Icons live here, not in lib/free-tools.js, so the footer and any server code
-// that reads the catalog never pull in the icon set.
-const TOOL_ICONS = {
-  "/resume-job-match-checker": TargetIcon,
-  "/ats-resume-checker": ShieldCheckIcon,
-  "/free-ats-keyword-checker": MagnifyingGlassIcon,
-  "/missing-resume-keywords": ListMagnifyingGlassIcon,
-  "/resume-bullet-rewriter": PencilLineIcon,
-  "/resume-headline-generator": TextHOneIcon,
-  "/professional-summary-generator": TextAlignLeftIcon,
-  "/job-description-to-resume-bullets": ListChecksIcon,
-  "/resume-file-name-generator": FileTextIcon,
-  "/linkedin-url-for-resume": LinkedinLogoIcon,
-  "/linkedin-profile-checker": IdentificationCardIcon,
-  "/cv-format-checker": GlobeHemisphereEastIcon,
-  "/resume-weak-words-checker": TextStrikethroughIcon,
-  "/employment-gap-explanation-generator": CalendarXIcon,
-};
-
-function ToolIcon({ href, size }) {
-  const Icon = TOOL_ICONS[href] ?? SparkleIcon;
-  return (
-    <Icon
-      size={size}
-      aria-hidden="true"
-      className="shrink-0 text-[var(--landing-accent)]"
-    />
-  );
-}
 
 const Navbar1 = () => {
   const t = useTranslations("header");
+  const r = useTranslations("landing.redesign");
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const pathname = usePathname();
-
-  const handleSmoothScroll = (e, href) => {
-    const hash = href.startsWith("/#") ? href.slice(1) : href;
-    if (hash.startsWith("#") && (pathname === "/" || href.startsWith("#"))) {
-      const el = document.querySelector(hash);
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-    if (isOpen) setIsOpen(false);
-  };
 
   const getInitials = (name) => {
     if (!name) return "U";
@@ -108,74 +42,26 @@ const Navbar1 = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[var(--landing-bg)]/95 backdrop-blur-sm">
-      {/* Mirrors the hero exactly: outer section padding, then the shared
-          container with its own inset. That puts the logo and the auth buttons
-          on the same left and right edges as the hero's grid rules. */}
-      <div className="px-5 sm:px-10 lg:px-16 xl:px-24">
-        {/* Same rules as the hero, so the verticals run from the very top of the
-            screen, down past the nav, and into the hero without a break. The
-            pseudo-elements are absolutely positioned, so they are out of flow
-            and never become flex items of this row. */}
-        <div className="landing-container flex h-16 items-center justify-between gap-6 px-4 sm:px-8">
-        <Link href="/" className="tap-target flex flex-row items-center">
+    <header className="public-header">
+      <div className="public-nav-container">
+        <Link href="/" onClick={() => setIsOpen(false)} className="tap-target public-nav-brand flex flex-row items-center">
           <BrandLogo size="md" priority wordmarkClassName="text-xl" />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav aria-label={r("resources")} className="public-nav-primary hidden items-center xl:flex">
           {navLinks.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              onClick={(e) => handleSmoothScroll(e, item.href)}
-              className="tap-target text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)]"
-            >
-              {t(item.key)}
-            </Link>
+            <Link key={item.key} href={item.href} aria-current={pathname === item.href ? "page" : undefined} className="public-nav-link">{r(item.key)}</Link>
           ))}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                type="button"
-                className="tap-target inline-flex items-center gap-1 text-sm font-medium text-[var(--landing-ink-soft)] transition-colors hover:text-[var(--landing-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--landing-primary-dark)] focus-visible:ring-offset-2"
-              >
-                {t("freeTools")}
-                <CaretDownIcon size={12} weight="bold" aria-hidden="true" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="center"
-              sideOffset={10}
-              className="landing-dark grid w-176 max-w-[calc(100vw-2rem)] grid-cols-2 gap-1 rounded-xl border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-[var(--landing-ink)] shadow-[var(--landing-shadow)]"
-            >
-              {FREE_TOOLS.map((tool) => (
-                <DropdownMenuItem key={tool.href} asChild>
-                  <Link
-                    href={tool.href}
-                    className="flex cursor-pointer items-start gap-3 rounded-lg px-3 py-2.5"
-                  >
-                    <span className="mt-0.5">
-                      <ToolIcon href={tool.href} size={20} />
-                    </span>
-                    <span className="flex min-w-0 flex-col gap-0.5">
-                      <span className="text-sm font-semibold">{tool.label}</span>
-                      <span className="text-xs leading-5 text-[var(--landing-ink-soft)]">
-                        {tool.body}
-                      </span>
-                    </span>
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <PublicNavGroups />
+          <Link href="/pricing" aria-current={pathname === "/pricing" ? "page" : undefined} className="public-nav-link">{t("pricing")}</Link>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="public-nav-actions hidden items-center gap-3 xl:flex">
           <LanguagePicker menuClassName="landing-dark" />
           {session ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button type="button" className="focus:outline-none">
+                <button type="button" aria-label={t("dashboard")} className="public-account-button">
                   <Avatar className="h-8 w-8 cursor-pointer">
                     <AvatarImage src={session.user?.image} alt={session.user?.name} />
                     <AvatarFallback className="bg-[var(--landing-primary)] text-xs font-semibold text-[var(--landing-on-primary)]">
@@ -212,71 +98,42 @@ const Navbar1 = () => {
             </DropdownMenu>
           ) : (
             <>
-              <AuthLink
-                href="/auth"
-                className="tap-target text-sm font-semibold text-[var(--landing-ink)] transition-colors duration-300 hover:text-[var(--landing-accent-dark)]"
-              >
-                {t("login")}
-              </AuthLink>
-              {/* Secondary on purpose: the hero's job link form is the one
-                  primary action above the fold. */}
-              <AuthLink
-                href="/auth"
-                className="tap-target landing-secondary-btn landing-secondary-btn-sm font-outfit"
-              >
-                {t("signUp")}
-              </AuthLink>
+              <AuthLink href="/auth" className="landing-primary-btn landing-primary-btn-sm">{t("signUp")}</AuthLink>
+              <AuthLink href="/auth" className="landing-secondary-btn landing-secondary-btn-sm">{t("login")}</AuthLink>
             </>
           )}
         </div>
 
         <button
           type="button"
-          className="inline-flex size-control items-center justify-center rounded-lg text-[var(--landing-ink)] lg:hidden"
+          id="public-menu-button" aria-expanded={isOpen} aria-controls="public-mobile-menu" className="inline-flex size-control items-center justify-center rounded-lg text-[var(--landing-ink)] xl:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? t("closeMenu") : t("openMenu")}
         >
           {isOpen ? <XIcon size={22} /> : <ListIcon size={22} />}
         </button>
-        </div>
       </div>
 
-      {/* Rendered only while open so its links stay out of the tab order when
-          closed. The open state fades in with CSS; dropping framer-motion here
-          takes ~44KB of JavaScript off every page that shows the header. */}
+      {/* Unmount the mobile links when closed to keep them out of the tab order. */}
       {isOpen && (
-        <div className="landing-rise max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-[var(--landing-line)] bg-[var(--landing-bg)] px-5 py-6 lg:hidden">
+        <nav id="public-mobile-menu" aria-label={r("resources")} className="public-mobile-menu xl:hidden" onKeyDown={(event) => {
+          if (event.key === "Escape") { setIsOpen(false); document.getElementById("public-menu-button")?.focus(); }
+        }}>
           <div className="flex flex-col gap-4">
             {navLinks.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
-                className="text-base font-medium text-[var(--landing-ink)]"
-                onClick={(e) => handleSmoothScroll(e, item.href)}
+                aria-current={pathname === item.href ? "page" : undefined}
+                className="public-mobile-primary-link"
+                onClick={() => setIsOpen(false)}
               >
-                {t(item.key)}
+                <item.icon size={20} aria-hidden="true" />
+                {r(item.key)}
               </Link>
             ))}
-            <div className="flex flex-col gap-3">
-              <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--landing-ink-soft)]">
-                {t("freeTools")}
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                {FREE_TOOLS.map((tool) => (
-                  <Link
-                    key={tool.href}
-                    href={tool.href}
-                    className="flex min-h-11 items-start gap-2 rounded-lg border border-[var(--landing-line)] bg-[var(--landing-surface)] p-3 text-sm font-medium leading-5 text-[var(--landing-ink)] transition-colors active:bg-[var(--landing-bg)]"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <span className="mt-0.5">
-                      <ToolIcon href={tool.href} size={16} />
-                    </span>
-                    <span className="min-w-0">{tool.label}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <PublicNavGroups mobile onNavigate={() => setIsOpen(false)} />
+            <Link href="/pricing" onClick={() => setIsOpen(false)} aria-current={pathname === "/pricing" ? "page" : undefined} className="public-nav-link">{t("pricing")}</Link>
             <LanguagePicker align="start" className="self-start" menuClassName="landing-dark" />
             {session ? (
               <Link href="/dashboard" className="landing-primary-btn landing-primary-btn-sm w-full" onClick={() => setIsOpen(false)}>
@@ -301,7 +158,7 @@ const Navbar1 = () => {
               </>
             )}
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );

@@ -38,6 +38,7 @@ import cvFormatNigeria from "./cv-format-nigeria";
 import cvFormatKenya from "./cv-format-kenya";
 import cvFormatZimbabwe from "./cv-format-zimbabwe";
 import cvFormatPoland from "./cv-format-poland";
+import cvFormatGermany from "./cv-format-germany";
 import jobscanAlternative from "./jobscan-alternative";
 import howAtsWorks from "./how-ats-works";
 import howToApplyFaster from "./how-to-apply-to-jobs-faster";
@@ -54,6 +55,7 @@ export const POSTS = [
   cvFormatKenya,
   cvFormatZimbabwe,
   cvFormatPoland,
+  cvFormatGermany,
   jobApplicationLetter,
   howToEmailApplication,
   doesTailoringWork,

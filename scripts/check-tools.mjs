@@ -496,6 +496,13 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.ok(!checkCvFormat(cv, "za").checks.some((c) => c.id === "rodo"));
   });
 
+  check("asks German CVs for month and year dates", () => {
+    assert.equal(checkCvFormat("Jonas Weber\njonas@example.com\nAnalyst, 2019 to 2023", "de").checks.find((c) => c.id === "dates").ok, false);
+    assert.equal(checkCvFormat("Jonas Weber\njonas@example.com\n03/2019 to 08/2023 Analyst", "de").checks.find((c) => c.id === "dates").ok, true);
+    assert.equal(checkCvFormat("Jonas Weber\njonas@example.com\nMärz 2019 bis August 2023", "de").checks.find((c) => c.id === "dates").ok, true);
+    assert.ok(!checkCvFormat(cv, "za").checks.some((c) => c.id === "dates"));
+  });
+
   check("flags long CVs by page estimate", () => {
     const long = "word ".repeat(1400);
     assert.equal(checkCvFormat(long, "us").checks.find((c) => c.id === "length").ok, false);

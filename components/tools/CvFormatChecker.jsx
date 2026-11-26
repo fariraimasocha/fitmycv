@@ -30,6 +30,7 @@ const COUNTRIES = {
   ke: { name: "Kenya", maxPages: 2, personal: "ifAsked" },
   zw: { name: "Zimbabwe", maxPages: 2, personal: "ifAsked" },
   pl: { name: "Poland", maxPages: 2, personal: "general" },
+  de: { name: "Germany", maxPages: 2, personal: "general" },
   in: { name: "India", maxPages: 2, personal: "ifAsked" },
   uk: { name: "the UK", maxPages: 2, personal: "drop" },
   us: { name: "the US", maxPages: 2, personal: "drop" },
@@ -174,6 +175,19 @@ function checkCvFormat(text, country) {
     );
   }
 
+  if (country === "de") {
+    // German recruiters read the dates for gaps, so they expect month and year.
+    const monthYear = has(text, /\b(0?[1-9]|1[0-2])[/.](19|20)\d{2}\b|\b(jan|feb|m(ä|a)r|apr|ma[iy]|jun|jul|aug|sep|o[ck]t|nov|de[cz])[a-zä]*\.?\s+(19|20)\d{2}\b/i);
+    add(
+      "dates",
+      monthYear,
+      "Month and year dates",
+      monthYear
+        ? "Found. Keep every role in the same format, such as 03/2021 to 08/2024."
+        : "Give start and end dates as month and year, such as 03/2021 to 08/2024. German recruiters read them for gaps."
+    );
+  }
+
   const objective = has(text, /career objective|\bobjective\s*:|^\s*objective\s*$/im);
   add(
     "objective",
@@ -265,6 +279,7 @@ export default function CvFormatChecker() {
               <option value="ke">Kenya</option>
               <option value="zw">Zimbabwe</option>
               <option value="pl">Poland</option>
+              <option value="de">Germany</option>
               <option value="in">India</option>
               <option value="uk">United Kingdom</option>
               <option value="us">United States</option>

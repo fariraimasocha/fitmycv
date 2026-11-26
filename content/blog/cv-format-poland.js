@@ -172,7 +172,7 @@ export const blocks = [
     p: "Use the language of the advert. A Polish advert gets a Polish CV, even at a company that works in English day to day. An English advert gets an English CV. That is common at international companies, shared service centres and in IT, where many teams work in English.",
   },
   {
-    p: "If you send an English CV to a Polish company, state your Polish level plainly, even if it is A2. Recruiters will find out at interview, and a level that matches what they hear builds trust. If you are applying from abroad, our guide to the [difference between a CV and a resume](/blog/cv-vs-resume-difference) explains why a Polish employer expects a CV, not a US style resume.",
+    p: "If you send an English CV to a Polish company, state your Polish level plainly, even if it is A2. Recruiters will find out at interview, and a level that matches what they hear builds trust. If you are applying from abroad, our guide to the [difference between a CV and a resume](/blog/cv-vs-resume-difference) explains why a Polish employer expects a CV, not a US style resume. Applying in Germany too? The [CV format for Germany](/blog/cv-format-germany) covers the tabular Lebenslauf and the certificates that go with it.",
   },
 
   { h2: "File type and job portals" },

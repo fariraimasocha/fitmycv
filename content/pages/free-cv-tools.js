@@ -66,14 +66,14 @@ export const cvFormatChecker = {
       ul: [
         "**Length** against what employers in that country expect.",
         "**Personal details** such as date of birth, marital status and religion, which help in some countries and hurt in others.",
-        "**ID number** for South Africa, Kenya and Zimbabwe, **NYSC status** for Nigeria, and the **RODO clause** for Poland.",
+        "**ID number** for South Africa, Kenya and Zimbabwe, **NYSC status** for Nigeria, the **RODO clause** for Poland, and **month and year dates** for Germany.",
         "**A career objective** where a professional summary works better.",
         "**Filler lines** like \"references available on request\" and the Indian \"I hereby declare\" line.",
       ],
     },
     { h2: "Country guides" },
     {
-      p: "For the full picture, read [CV format in South Africa](/blog/cv-format-south-africa), [CV format in Nigeria](/blog/cv-format-nigeria), [CV format in Kenya](/blog/cv-format-kenya), [CV format in Zimbabwe](/blog/cv-format-zimbabwe) and [CV format in Poland](/blog/cv-format-poland).",
+      p: "For the full picture, read [CV format in South Africa](/blog/cv-format-south-africa), [CV format in Nigeria](/blog/cv-format-nigeria), [CV format in Kenya](/blog/cv-format-kenya), [CV format in Zimbabwe](/blog/cv-format-zimbabwe), [CV format in Poland](/blog/cv-format-poland) and [CV format in Germany](/blog/cv-format-germany).",
     },
     {
       cta: {

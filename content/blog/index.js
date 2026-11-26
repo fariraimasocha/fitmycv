@@ -16,11 +16,8 @@ import verbsHealthcare from "./cv-action-verbs-healthcare";
 import verbsSales from "./cv-action-verbs-sales";
 import whyNotGettingInterviews from "./why-am-i-not-getting-interviews";
 import howManyJobsToApply from "./how-many-jobs-should-i-apply-to";
-import howToFollowUp from "./how-to-follow-up-on-a-job-application";
-import coverLetterNoExperience from "./cover-letter-with-no-experience";
 import cvNoExperience from "./cv-with-no-experience";
 import employmentGap from "./how-to-explain-employment-gap-on-cv";
-import careerChangeCv from "./career-change-cv";
 import howLongShouldCvBe from "./how-long-should-a-cv-be";
 import howToGetRemoteJob from "./how-to-get-a-remote-job";
 import cvProfessionalSummary from "./cv-professional-summary-examples";
@@ -32,7 +29,6 @@ import whatIsMatchScore from "./what-is-a-resume-match-score";
 import doesTailoringWork from "./does-tailoring-your-resume-actually-work";
 import howMuchToTailor from "./how-much-should-you-tailor-your-resume";
 import cvVsResume from "./cv-vs-resume-difference";
-import skillsToPutOnResume from "./skills-to-put-on-a-resume";
 import jobApplicationLetter from "./job-application-letter";
 import howToEmailApplication from "./how-to-email-a-job-application";
 
@@ -54,7 +50,6 @@ export const POSTS = [
   cvFormatSouthAfrica,
   cvFormatNigeria,
   cvFormatKenya,
-  skillsToPutOnResume,
   jobApplicationLetter,
   howToEmailApplication,
   doesTailoringWork,
@@ -80,11 +75,8 @@ export const POSTS = [
   verbsSales,
   whyNotGettingInterviews,
   howManyJobsToApply,
-  howToFollowUp,
-  coverLetterNoExperience,
   cvNoExperience,
   employmentGap,
-  careerChangeCv,
   howLongShouldCvBe,
   howToGetRemoteJob,
   cvProfessionalSummary,

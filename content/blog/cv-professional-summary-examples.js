@@ -1,5 +1,7 @@
 export const meta = {
   slug: "cv-professional-summary-examples",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (81 impressions, avg position 22.1).
+  noindex: true,
   title: "How to Write a CV Professional Summary (With Examples)",
   seoTitle: "CV Professional Summary Examples",
   description:

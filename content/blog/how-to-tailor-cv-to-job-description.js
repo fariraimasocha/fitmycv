@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-to-tailor-cv-to-job-description",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (25 impressions, avg position 7.0).
+  noindex: true,
   title: "How to Tailor Your CV to a Job Description (Step-by-Step)",
   seoTitle: "How to Tailor Your CV to a Job Description",
   description:

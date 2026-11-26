@@ -1,5 +1,7 @@
 export const meta = {
   slug: "best-ai-resume-builders-2026",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (237 impressions, avg position 5.8).
+  noindex: true,
   title: "Best AI Resume Builders in 2026, Compared",
   seoTitle: "Best AI Resume Builders in 2026, Compared",
   description:

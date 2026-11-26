@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-to-explain-employment-gap-on-cv",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (14 impressions, avg position 19.1).
+  noindex: true,
   title: "How to Explain an Employment Gap on Your CV",
   seoTitle: "How to Explain an Employment Gap on a Resume or CV",
   description:

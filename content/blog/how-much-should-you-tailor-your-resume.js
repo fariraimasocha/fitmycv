@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-much-should-you-tailor-your-resume",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (94 impressions, avg position 5.2).
+  noindex: true,
   title: "How Much Should You Tailor Your Resume for Each Job?",
   seoTitle: "How Much Should You Tailor Your Resume?",
   description:

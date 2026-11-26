@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-long-should-a-cv-be",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (88 impressions, avg position 30.2).
+  noindex: true,
   title: "How Long Should a CV Be? The Honest Answer by Experience",
   seoTitle: "How Long Should a CV Be?",
   description:

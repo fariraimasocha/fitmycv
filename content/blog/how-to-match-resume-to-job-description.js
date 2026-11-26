@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-to-match-resume-to-job-description",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (154 impressions, avg position 22.6).
+  noindex: true,
   title: "How to Match Your Resume to a Job Description",
   seoTitle: "How to Match Your Resume to a Job Description",
   description:

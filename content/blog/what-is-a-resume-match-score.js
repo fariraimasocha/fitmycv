@@ -1,5 +1,7 @@
 export const meta = {
   slug: "what-is-a-resume-match-score",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (160 impressions, avg position 11.2).
+  noindex: true,
   title: "What Is a Resume Match Score, and Should You Trust It?",
   seoTitle: "What Is a Resume Match Score?",
   description:

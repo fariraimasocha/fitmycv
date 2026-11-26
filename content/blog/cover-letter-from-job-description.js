@@ -1,5 +1,7 @@
 export const meta = {
   slug: "cover-letter-from-job-description",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (58 impressions, avg position 6.0).
+  noindex: true,
   title: "How to Write a Cover Letter From a Job Description",
   seoTitle: "Cover Letter From a Resume and Job Description",
   description:
@@ -150,7 +152,7 @@ export const blocks = [
     p: "FitMyCV [reads the job link](/ai-cover-letter-generator), matches the posting against your uploaded CV, and drafts the three paragraphs from that overlap. Same honesty rule as above: it does not add tools or metrics you did not supply. You edit the draft, then export a PDF.",
   },
   {
-    p: "Use the generator when volume is the bottleneck. Use the worked letter when you want to control one application by hand. If you have no paid experience, the [no-experience cover letter](/blog/cover-letter-with-no-experience) is the version of this method that starts from projects and coursework.",
+    p: "Use the generator when volume is the bottleneck. Use the worked letter when you want to control one application by hand.",
   },
   {
     cta: {

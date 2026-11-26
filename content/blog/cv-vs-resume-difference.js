@@ -1,5 +1,7 @@
 export const meta = {
   slug: "cv-vs-resume-difference",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (115 impressions, avg position 47.4).
+  noindex: true,
   title: "CV vs Resume: What Is the Difference?",
   seoTitle: "CV vs Resume: What Is the Difference?",
   description:

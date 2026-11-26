@@ -159,7 +159,7 @@ export const blocks = [
     p: "Then log every application in one place: the company, the role, the link, the date, the CV version you sent, and a follow up date. Postings get taken down. If you get an interview three weeks later, you want the exact CV and job description you applied with.",
   },
   {
-    p: "A pace of 10 to 20 tailored applications a week works for most people. Our post on [how many jobs to apply to](/blog/how-many-jobs-should-i-apply-to) explains why more is usually worse. And when a week passes with no reply, here is [how to follow up](/blog/how-to-follow-up-on-a-job-application).",
+    p: "A pace of 10 to 20 tailored applications a week works for most people. Our post on [how many jobs to apply to](/blog/how-many-jobs-should-i-apply-to) explains why more is usually worse.",
   },
 
   { h2: "How can you apply to more jobs without lowering quality?" },

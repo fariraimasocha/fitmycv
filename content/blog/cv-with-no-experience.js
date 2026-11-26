@@ -1,5 +1,7 @@
 export const meta = {
   slug: "cv-with-no-experience",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (253 impressions, avg position 12.9).
+  noindex: true,
   title: "How to Write a CV With No Experience (Template and Example)",
   seoTitle: "CV or Resume With No Work Experience",
   description:

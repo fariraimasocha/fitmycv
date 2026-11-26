@@ -1,5 +1,7 @@
 export const meta = {
   slug: "how-many-jobs-should-i-apply-to",
+  // Out of Google, Nov 26 2026 triage: 0 clicks in 90 days (142 impressions, avg position 9.3).
+  noindex: true,
   title: "How Many Jobs Should I Apply To? An Honest Answer",
   seoTitle: "How Many Jobs Should I Apply To Per Day?",
   description:

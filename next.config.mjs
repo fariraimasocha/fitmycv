@@ -45,6 +45,13 @@ const nextConfig = {
         destination: "/blog/tired-of-tailoring-resume-for-every-job",
         permanent: true,
       })),
+      // Zero-click posts removed, Nov 26 2026. Each goes to its closest live page.
+      ...[
+        ["career-change-cv", "/tailor-cv-from-job-link"],
+        ["how-to-follow-up-on-a-job-application", "/blog/how-to-email-a-job-application"],
+        ["cover-letter-with-no-experience", "/ai-cover-letter-generator"],
+        ["skills-to-put-on-a-resume", "/resume-skills-generator"],
+      ].map(([slug, destination]) => ({ source: `/blog/${slug}`, destination, permanent: true })),
     ];
   },
   async rewrites() {

@@ -3,7 +3,6 @@ import { hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import RootShell from "@/components/RootShell";
-import BlackFridayPromo from "@/components/black-friday/BlackFridayPromo";
 import { rootMetadata } from "@/lib/root-metadata";
 
 export const metadata = rootMetadata;
@@ -22,7 +21,7 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages();
   return (
     <RootShell locale={locale} messages={messages}>
-      <BlackFridayPromo>{children}</BlackFridayPromo>
+      {children}
     </RootShell>
   );
 }

@@ -36,6 +36,7 @@ import tiredOfTailoring from "./tired-of-tailoring-resume-for-every-job";
 import cvFormatSouthAfrica from "./cv-format-south-africa";
 import cvFormatNigeria from "./cv-format-nigeria";
 import cvFormatKenya from "./cv-format-kenya";
+import cvFormatZimbabwe from "./cv-format-zimbabwe";
 import jobscanAlternative from "./jobscan-alternative";
 import howAtsWorks from "./how-ats-works";
 import howToApplyFaster from "./how-to-apply-to-jobs-faster";
@@ -50,6 +51,7 @@ export const POSTS = [
   cvFormatSouthAfrica,
   cvFormatNigeria,
   cvFormatKenya,
+  cvFormatZimbabwe,
   jobApplicationLetter,
   howToEmailApplication,
   doesTailoringWork,

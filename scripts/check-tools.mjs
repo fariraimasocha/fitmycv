@@ -485,6 +485,11 @@ Email jane@example.com, phone +44 7700 900123`;
     assert.ok(!checkCvFormat(cv, "ke").checks.find((c) => c.id === "personal").fix.includes("state of origin"));
   });
 
+  check("flags the Zimbabwean national ID number", () => {
+    assert.equal(checkCvFormat("Tendai Moyo\ntendai@example.com\n63-123456A42", "zw").checks.find((c) => c.id === "id").ok, false);
+    assert.equal(checkCvFormat("Tendai Moyo\ntendai@example.com\n+263 77 123 4567", "zw").checks.find((c) => c.id === "id").ok, true);
+  });
+
   check("flags long CVs by page estimate", () => {
     const long = "word ".repeat(1400);
     assert.equal(checkCvFormat(long, "us").checks.find((c) => c.id === "length").ok, false);

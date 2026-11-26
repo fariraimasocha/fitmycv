@@ -28,6 +28,7 @@ const COUNTRIES = {
   za: { name: "South Africa", maxPages: 2, personal: "keep" },
   ng: { name: "Nigeria", maxPages: 2, personal: "ifAsked" },
   ke: { name: "Kenya", maxPages: 2, personal: "ifAsked" },
+  zw: { name: "Zimbabwe", maxPages: 2, personal: "ifAsked" },
   in: { name: "India", maxPages: 2, personal: "ifAsked" },
   uk: { name: "the UK", maxPages: 2, personal: "drop" },
   us: { name: "the US", maxPages: 2, personal: "drop" },
@@ -146,6 +147,19 @@ function checkCvFormat(text, country) {
     );
   }
 
+  if (country === "zw") {
+    // National ID format: 63-123456A42, often written with spaces or dashes.
+    const idNumber = has(text, /\b\d{2}[- ]?\d{6,7}[- ]?[a-z][- ]?\d{2}\b|\b(national )?id (number|no\.?)\b/i);
+    add(
+      "id",
+      !idNumber,
+      "ID number",
+      idNumber
+        ? "Remove your national ID number. Give it when an employer asks, usually at offer stage. It is personal information under the Cyber and Data Protection Act."
+        : "Not on your CV. Give it only when an employer asks."
+    );
+  }
+
   const objective = has(text, /career objective|\bobjective\s*:|^\s*objective\s*$/im);
   add(
     "objective",
@@ -162,7 +176,7 @@ function checkCvFormat(text, country) {
     !onRequest,
     "References line",
     onRequest
-      ? `Delete "references available on request". Employers assume it.${["za", "ng", "ke"].includes(country) ? " Or list two referees with phone numbers, which is common here." : ""}`
+      ? `Delete "references available on request". Employers assume it.${["za", "ng", "ke", "zw"].includes(country) ? " Or list two referees with phone numbers, which is common here." : ""}`
       : "No filler references line."
   );
 
@@ -235,6 +249,7 @@ export default function CvFormatChecker() {
               <option value="za">South Africa</option>
               <option value="ng">Nigeria</option>
               <option value="ke">Kenya</option>
+              <option value="zw">Zimbabwe</option>
               <option value="in">India</option>
               <option value="uk">United Kingdom</option>
               <option value="us">United States</option>

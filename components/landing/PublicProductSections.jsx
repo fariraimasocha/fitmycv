@@ -13,7 +13,9 @@ export function ProductStories({ tailorOnly = false }) {
     { key: "cv", image: "/landing/tailored-cv.png", href: "/ats-resume-checker" },
     { key: "letter", image: "/landing/cover-letter.png", href: "/ai-cover-letter-generator" },
   ] : [
-    { key: "cv", image: "/landing/tailored-cv.png", href: "/ats-resume-checker" },
+    // The hero preview already shows the tailored CV, so the stories start
+    // at the paste step instead of repeating that screenshot.
+    { key: "link", image: "/landing/job-link.png", href: "/tailor-cv-from-job-link" },
     { key: "tracker", image: "/landing/applications.png", href: "/job-tracker", cta: r("tracker") },
     { key: "letter", image: "/landing/cover-letter.png", href: "/ai-cover-letter-generator" },
   ];
@@ -22,6 +24,6 @@ export function ProductStories({ tailorOnly = false }) {
       <div className="public-story-copy"><p className="public-eyebrow">{t(`rows.${row.key}.label`)}</p><h2 className="public-section-title">{t(`rows.${row.key}.title`)}</h2><p className="public-copy">{t(`rows.${row.key}.body`)}</p><Link href={row.href} className="public-text-link">{row.cta ?? t(`rows.${row.key}.cta`)}<ArrowRightIcon size={18} aria-hidden="true" className="rtl:-scale-x-100" /></Link></div>
       <ProductImage image={row.image} alt={t(`rows.${row.key}.alt`)} tracker={row.key === "tracker"} />
     </article>)}
-    {!tailorOnly && <div className="public-tools-links"><div><p className="public-eyebrow">{r("tools")}</p><h2 className="public-section-title">{t("freeTitle")}</h2><p className="public-copy">{t("freeBody")}</p></div><div>{[{ key:"ats", href:"/ats-resume-checker" },{ key:"match", href:"/resume-job-match-checker" },{ key:"linkedin", href:"/linkedin-profile-checker" },{ key:"jobs", href:"/jobs" }].map(({key,href}) => <Link key={key} href={href} className="public-text-link">{t(`free.${key}.title`)}<ArrowRightIcon size={16} aria-hidden="true" className="rtl:-scale-x-100" /></Link>)}</div></div>}
+    {!tailorOnly && <div className="public-tools-links"><div><h2 className="public-section-title">{t("freeTitle")}</h2><p className="public-copy">{t("freeBody")}</p></div><div>{[{ key:"ats", href:"/ats-resume-checker" },{ key:"match", href:"/resume-job-match-checker" },{ key:"linkedin", href:"/linkedin-profile-checker" },{ key:"jobs", href:"/jobs" }].map(({key,href}) => <Link key={key} href={href} className="public-text-link">{t(`free.${key}.title`)}<ArrowRightIcon size={16} aria-hidden="true" className="rtl:-scale-x-100" /></Link>)}</div></div>}
   </div></section>;
 }

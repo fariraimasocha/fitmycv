@@ -42,7 +42,7 @@ export const TEMPLATE_METADATA = [
   {
     id: "classic",
     name: "Classic",
-    badge: "ATS 98%",
+    badge: "ATS-safe",
     description: "Harvard-style serif single column. Corporate, finance, law.",
   },
   {

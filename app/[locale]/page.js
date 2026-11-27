@@ -2,7 +2,6 @@ import { ProductStories } from "@/components/landing/PublicProductSections";
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
 import StatsStrip from "@/components/landing/StatsStrip";
-import PublicHowItWorks from "@/components/landing/PublicHowItWorks";
 import TemplateStrip from "@/components/landing/TemplateStrip";
 import Testimonial from "@/components/landing/Testimonial";
 import TrustSignals from "@/components/landing/TrustSignals";
@@ -71,7 +70,6 @@ export default async function Home({ params }) {
         <Hero lifetimePrice={pricing.lifetime.price} />
         <StatsStrip users={stats.users} tailored={stats.tailored} />
         <ProductStories />
-        <PublicHowItWorks />
         <TemplateStrip />
         <Testimonial />
         <TrustSignals />

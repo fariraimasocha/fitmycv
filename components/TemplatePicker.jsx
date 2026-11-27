@@ -24,7 +24,7 @@ import {
 import { normalizeTemplateStyle } from "@/utils/cv-templates/style";
 
 // Badge text lives in metadata as English. Known labels map to message keys;
-// anything else (like "ATS 98%") renders as written.
+// anything else renders as written.
 const BADGE_KEYS = {
   "ATS-safe": "atsSafe",
   "Skills-first": "skillsFirst",

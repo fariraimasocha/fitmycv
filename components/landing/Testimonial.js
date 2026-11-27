@@ -15,7 +15,7 @@ export default function Testimonial() {
       aria-labelledby="testimonials-heading"
       className="landing-section-tight landing-muted-band flex scroll-mt-24 flex-col items-center gap-8 overflow-hidden"
     >
-      <h2 id="testimonials-heading" className="landing-eyebrow-plain text-center">
+      <h2 id="testimonials-heading" className="public-eyebrow text-center">
         {t("heading")}
       </h2>
 

@@ -82,7 +82,6 @@ export default function TemplateStrip() {
       <div className="landing-reveal landing-container">
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="max-w-2xl">
-            <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
             <RevealWords
               text={t("title")}
               className="mt-3 public-section-title"

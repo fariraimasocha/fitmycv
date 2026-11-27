@@ -1,5 +1,4 @@
 import { useTranslations, useFormatter } from "next-intl";
-import { TEMPLATE_METADATA } from "@/utils/cv-templates/metadata";
 import { ATS_COMPANIES } from "@/content/ats-companies";
 import { FREE_TOOLS } from "@/lib/free-tools";
 
@@ -14,10 +13,6 @@ function buildItems({ tailored, users, format, t }) {
   if (users != null) {
     pool.push({ value: `${format.number(users)}+`, label: t("people") });
   }
-  pool.push({
-    value: String(TEMPLATE_METADATA.length),
-    label: t("templates"),
-  });
   pool.push({
     value: `${ATS_COMPANIES.length}+`,
     label: t("atsGuides"),
@@ -45,11 +40,8 @@ export default function StatsStrip({ users = null, tailored = null }) {
       className="landing-dark-band landing-section-tight px-5 sm:px-10 lg:px-16 xl:px-24"
     >
       <div className="landing-reveal landing-container">
-        {/* Same label as the sections around it, in the band's light grey. */}
-        <h2
-          id="stats-heading"
-          className="landing-eyebrow-plain mb-10 block text-center text-[var(--landing-ink-inverse-soft)]"
-        >
+        {/* Same label style as the sections around it. */}
+        <h2 id="stats-heading" className="public-eyebrow mb-10 block text-center">
           {t("heading")}
         </h2>
         <ul className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">

@@ -57,8 +57,8 @@ export default function FounderFaqAccordion({ faqs }) {
 
   return (
     <div>
-      <p className="landing-eyebrow-plain">{t("eyebrow")}</p>
-      <h2 className="mt-3 font-outfit text-3xl font-extrabold leading-tight text-[var(--landing-ink)] sm:text-4xl lg:text-5xl">
+      <p className="public-eyebrow">{t("eyebrow")}</p>
+      <h2 className="public-section-title mt-3">
         {t("title")}
       </h2>
       <div className="mt-8">

@@ -72,7 +72,7 @@
     "includesTitleOne": "Everything included",
     "secureCheckout": "Secure checkout via Polar.",
     "lifetimeVsMonthly": "About {months} months of Monthly.",
-    "regionalOff": "{percent}% off for your region",
+    "regionalOff": "{percent}% off",
     "standardPrice": "Standard price",
     "spotsLeft": "<accent>{left} of {total}</accent> lifetime spots left at this price",
     "features": [

@@ -43,6 +43,7 @@
     "heading": "FitMyCV bisher",
     "tailored": "Angepasste CVs",
     "people": "Registrierte Nutzer",
+    "tracked": "Stellen verfolgt",
     "templates": "ATS-sichere Vorlagen",
     "atsGuides": "Unternehmens-ATS-Guides",
     "freeTools": "Kostenlose Tools"
@@ -263,6 +264,7 @@
     "freeTitle": "Kostenlose Tools, ohne Anmeldung",
     "freeBody": "Probiere sie aus, bevor du ein Konto anlegst.",
     "free": {
+      "example": "Beispiel",
       "ats": {
         "title": "ATS-Lebenslauf-Check",
         "body": "Sieh, welche geforderten Begriffe deinem Lebenslauf fehlen."

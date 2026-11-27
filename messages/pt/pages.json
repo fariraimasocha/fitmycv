@@ -72,7 +72,7 @@
     "includesTitleOne": "Tudo incluído",
     "secureCheckout": "Pagamento seguro via Polar.",
     "lifetimeVsMonthly": "O preço de cerca de {months} meses do plano mensal.",
-    "regionalOff": "{percent}% de desconto na sua região",
+    "regionalOff": "{percent}% de desconto",
     "standardPrice": "Preço padrão",
     "spotsLeft": "Restam <accent>{left} de {total}</accent> vagas vitalícias por este preço",
     "features": [

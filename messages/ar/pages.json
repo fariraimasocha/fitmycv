@@ -72,7 +72,7 @@
     "includesTitleOne": "كل شيء مشمول",
     "secureCheckout": "دفع آمن عبر Polar.",
     "lifetimeVsMonthly": "بسعر نحو {months} أشهر من الاشتراك الشهري.",
-    "regionalOff": "خصم {percent}% لمنطقتك",
+    "regionalOff": "خصم {percent}%",
     "standardPrice": "السعر العادي",
     "spotsLeft": "تبقّى <accent>{left} من {total}</accent> من أماكن الاشتراك مدى الحياة بهذا السعر",
     "features": [

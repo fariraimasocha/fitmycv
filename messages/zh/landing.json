@@ -43,6 +43,7 @@
     "heading": "FitMyCV 至今",
     "tailored": "已定制简历",
     "people": "已注册用户",
+    "tracked": "已跟踪的职位",
     "templates": "ATS 安全模板",
     "atsGuides": "企业 ATS 指南",
     "freeTools": "免费工具"
@@ -263,6 +264,7 @@
     "freeTitle": "免费工具，无需注册",
     "freeBody": "创建账户前先试试这些。",
     "free": {
+      "example": "示例",
       "ats": {
         "title": "ATS 简历检查",
         "body": "查看你的简历缺少哪些必需词。"

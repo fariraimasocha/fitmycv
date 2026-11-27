@@ -43,6 +43,7 @@
     "heading": "FitMyCV so far",
     "tailored": "CVs tailored",
     "people": "People signed up",
+    "tracked": "Jobs tracked",
     "templates": "ATS-safe templates",
     "atsGuides": "Company ATS guides",
     "freeTools": "Free tools"
@@ -263,6 +264,7 @@
     "freeTitle": "Free tools, no sign-in",
     "freeBody": "Try these before you make an account.",
     "free": {
+      "example": "Example",
       "ats": {
         "title": "ATS resume checker",
         "body": "See which required terms your CV is missing."

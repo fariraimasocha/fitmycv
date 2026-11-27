@@ -17,7 +17,7 @@ export default function CTABand({ lifetimePrice = PRICING.lifetime.price }) {
         <p className="max-w-xl text-center text-base leading-relaxed text-[var(--landing-ink-inverse-soft)]">
           {t("body", { price: lifetimePrice })}
         </p>
-        <JobLinkForm id="cta-job-link" className="" source="cta_band" />
+        <JobLinkForm id="cta-job-link" className="" source="cta_band" pill />
         <Link
           href="/pricing"
           className="font-outfit text-sm font-semibold text-[var(--landing-ink)] underline underline-offset-4"

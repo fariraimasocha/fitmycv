@@ -72,7 +72,7 @@
     "includesTitleOne": "全部功能",
     "secureCheckout": "通过 Polar 安全支付。",
     "lifetimeVsMonthly": "约等于 {months} 个月的月付价格。",
-    "regionalOff": "你所在地区优惠 {percent}%",
+    "regionalOff": "优惠 {percent}%",
     "standardPrice": "标准价格",
     "spotsLeft": "此价格的终身名额还剩 <accent>{left}/{total}</accent> 个",
     "features": [

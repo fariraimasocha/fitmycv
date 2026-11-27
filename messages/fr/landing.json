@@ -43,6 +43,7 @@
     "heading": "FitMyCV jusqu'ici",
     "tailored": "CV adaptés",
     "people": "Personnes inscrites",
+    "tracked": "Offres suivies",
     "templates": "Modèles compatibles ATS",
     "atsGuides": "Guides ATS par entreprise",
     "freeTools": "Outils gratuits"
@@ -263,6 +264,7 @@
     "freeTitle": "Outils gratuits, sans inscription",
     "freeBody": "Essayez-les avant de créer un compte.",
     "free": {
+      "example": "Exemple",
       "ats": {
         "title": "Vérificateur de CV ATS",
         "body": "Voyez quels termes requis manquent à votre CV."

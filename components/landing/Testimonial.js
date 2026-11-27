@@ -3,39 +3,28 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { getHomeTestimonials } from "@/content/pages/home";
 
-// ponytail: CSS marquee (the landing-marquee track), no carousel lib. The
-// list renders twice so the loop is seamless; the copy is hidden from readers.
+// Real quotes from people who agreed to be published (content/pages/home.js).
+// A grid instead of a marquee: readable at your own pace and nothing moves.
+// ponytail: first six only, the rest stay in the source for the Review schema
+// and other pages.
 export default function Testimonial() {
   const t = useTranslations("landing.testimonial");
-  const items = getHomeTestimonials(useLocale());
+  const items = getHomeTestimonials(useLocale()).slice(0, 6);
 
   return (
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="landing-section-tight landing-muted-band flex scroll-mt-24 flex-col items-center gap-8 overflow-hidden"
+      className="public-section scroll-mt-24"
     >
-      <h2 id="testimonials-heading" className="public-eyebrow text-center">
-        {t("heading")}
-      </h2>
-
-      <div
-        className="relative w-full"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
-        }}
-      >
-        <ul className="landing-marquee-track landing-marquee-slow flex w-max gap-4 px-4 md:gap-6">
-          {[0, 1].flatMap((copy) => items.map((item) => (
-            <li
-              key={`${copy}-${item.author}`}
-              aria-hidden={copy === 1 || undefined}
-              className="w-72 shrink-0 sm:w-80"
-            >
-              <figure className="landing-card flex h-full flex-col justify-between gap-6 rounded-2xl p-6">
+      <div className="public-container flex flex-col gap-12">
+        <h2 id="testimonials-heading" className="public-section-title text-center">
+          {t("heading")}
+        </h2>
+        <ul className="quote-grid">
+          {items.map((item) => (
+            <li key={item.author}>
+              <figure className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-8">
                 <blockquote className="font-sans text-base leading-relaxed text-[var(--landing-ink)]">
                   {item.quote}
                 </blockquote>
@@ -48,11 +37,11 @@ export default function Testimonial() {
                     className="landing-inset-edge size-10 rounded-full object-cover"
                   />
                   <div className="flex flex-col">
-                    <span className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+                    <span className="font-outfit text-sm font-semibold text-[var(--landing-ink)]">
                       {item.author}
                     </span>
                     {item.role && (
-                      <span className="font-sans text-xs font-semibold text-[var(--landing-ink-soft)]">
+                      <span className="font-sans text-xs text-[var(--landing-ink-soft)]">
                         {item.role}
                       </span>
                     )}
@@ -60,7 +49,7 @@ export default function Testimonial() {
                 </figcaption>
               </figure>
             </li>
-          )))}
+          ))}
         </ul>
       </div>
     </section>

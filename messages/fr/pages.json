@@ -72,7 +72,7 @@
     "includesTitleOne": "Tout est inclus",
     "secureCheckout": "Paiement sécurisé via Polar.",
     "lifetimeVsMonthly": "Environ {months} mois d'abonnement mensuel.",
-    "regionalOff": "{percent} % de réduction dans votre région",
+    "regionalOff": "{percent} % de réduction",
     "standardPrice": "Prix standard",
     "spotsLeft": "<accent>{left} sur {total}</accent> places à vie restantes à ce prix",
     "features": [

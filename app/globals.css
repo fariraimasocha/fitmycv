@@ -457,18 +457,9 @@
     color: var(--landing-ink-inverse-soft);
   }
 
-
   .landing-dark-rule {
     border-color: oklch(1 0 0 / 0.12);
   }
-
-
-
-
-
-
-
-
 
   /* Third ground. The page alternates cream, muted and tinted so no two
      neighbouring sections share a background, which is what made the lower
@@ -1998,3 +1989,95 @@ body:has(.dashboard-shell) [data-slot="dialog-content"] :is(.font-extrabold, .fo
   .public-hero-description, .public-product-hero .public-copy { font-size: 16px; }
 }
 .public-product-title + .public-hero-description { margin-top: 0; }
+
+/* Home page, Teal pattern (Nov 27 2026): one large centered headline and the
+   job link as a pill. Scoped to .public-home so the pricing and product pages
+   keep their own scale. The feature tabs, steps and quote grid follow. */
+.public-home .public-hero { padding-block: clamp(64px,8vw,120px) 24px; }
+.public-home .public-hero-title { max-width: 16ch; font-size: clamp(44px,6.6vw,92px); line-height: 1.02; letter-spacing: -.03em; }
+.public-home .public-hero-description { max-width: 640px; font-size: clamp(17px,1.6vw,21px); }
+
+/* The job link pill. Used by the hero and the closing band. */
+.job-link-pill { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 20px; border: 1px solid var(--landing-line); border-radius: 999px; background: var(--landing-bg); box-shadow: 0 0 0 8px oklch(1 0 0 / .03); transition: border-color var(--dur-fast), box-shadow var(--dur-fast); }
+.job-link-pill:focus-within { border-color: var(--landing-accent-line); box-shadow: 0 0 0 8px var(--landing-accent-soft); }
+.job-link-pill > svg { flex-shrink: 0; color: var(--landing-ink-soft); }
+.job-link-pill input { min-height: 48px; padding-inline: 4px; }
+.job-link-pill button { border-radius: 999px; }
+@media (max-width: 600px) {
+  .job-link-pill { flex-direction: column; align-items: stretch; padding: 8px; border-radius: 24px; }
+  .job-link-pill > svg { display: none; }
+  .job-link-pill input { padding-inline: 12px; }
+}
+
+/* Quote grid. */
+.quote-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+@media (max-width: 1024px) { .quote-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 640px) { .quote-grid { grid-template-columns: minmax(0,1fr); } }
+
+/* Feature rows below the hero (Teal pattern, stacked): copy on one side, the
+   real screen on an accent panel that runs off the page edge. Rows zigzag. */
+.feature-section { overflow: hidden; padding-block: clamp(48px,6vw,96px); }
+.feature-panel { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); align-items: center; gap: clamp(32px,5vw,72px); }
+.feature-panel + .feature-panel { margin-top: clamp(56px,8vw,128px); }
+.feature-panel-flip { grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); }
+.feature-panel-flip .feature-copy { order: 2; }
+.feature-panel-flip .feature-media::before { inset: 0 22% 0 -100vw; border-top-left-radius: 0; border-top-right-radius: 160px; }
+.feature-label { font-family: var(--font-outfit); font-size: 20px; font-weight: 600; color: var(--landing-ink); }
+.feature-title { margin-top: 12px; font-family: var(--font-serif), Georgia, serif; font-size: clamp(36px,4.4vw,60px); font-weight: 400; line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; color: var(--landing-ink); }
+.feature-body { margin-top: 20px; max-width: 46ch; font-size: 18px; line-height: 1.6; color: var(--landing-ink-soft); }
+.feature-cta { display: inline-flex; align-items: center; gap: 8px; min-height: 52px; margin-top: 32px; padding-inline: 28px; border-radius: 999px; font-family: var(--font-outfit); font-size: 16px; font-weight: 700; }
+.feature-media { position: relative; padding-block: clamp(40px,6vw,88px); }
+.feature-media::before { content: ""; position: absolute; inset: 0 -100vw 0 22%; border-top-left-radius: 160px; background: var(--landing-accent); }
+.feature-media .product-preview-frame { position: relative; box-shadow: none; }
+@media (max-width: 900px) {
+  .feature-panel { grid-template-columns: minmax(0,1fr); }
+  .feature-media { padding: 24px 0 24px 24px; }
+  .feature-panel-flip { grid-template-columns: minmax(0,1fr); }
+  .feature-panel-flip .feature-copy { order: 0; }
+  .feature-media::before, .feature-panel-flip .feature-media::before { inset: 0 -100vw 0 0; border-radius: 48px 0 0 0; }
+}
+
+/* How it works (Teal pattern): the step's screen and copy, numbered tabs
+   under it. No accent slab, the feature rows above already carry the coral. */
+.steps-panel { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); align-items: center; gap: clamp(28px,4vw,56px); margin-top: 48px; }
+.steps-shot .product-preview-frame { box-shadow: none; }
+.steps-copy h3 { color: var(--landing-ink); font-family: var(--font-serif), Georgia, serif; font-size: clamp(30px,3.2vw,44px); font-weight: 400; line-height: 1.1; text-wrap: balance; }
+.steps-copy p { margin-top: 18px; max-width: 38ch; font-size: 18px; line-height: 1.6; color: var(--landing-ink-soft); }
+.steps-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin-top: 24px; }
+.steps-tabs button { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 8px 18px; border-bottom: 2px solid var(--landing-line); font-family: var(--font-outfit); font-size: clamp(16px,1.6vw,22px); font-weight: 600; color: var(--landing-ink-soft); transition: color var(--dur-fast), border-color var(--dur-fast); }
+.steps-tabs button:hover { color: var(--landing-ink); }
+.steps-tabs button[aria-selected="true"] { color: var(--landing-ink); border-bottom-color: var(--landing-ink); }
+.steps-tabs button:focus-visible { outline: 2px solid var(--landing-ink); outline-offset: 2px; }
+.steps-tab-number { display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--landing-ink); color: var(--landing-bg); font-size: 15px; }
+.steps-tabs button:not([aria-selected="true"]) .steps-tab-number { background: var(--landing-ink-faint); }
+@media (max-width: 768px) {
+  .steps-panel { grid-template-columns: minmax(0,1fr); }
+  .steps-tabs button { flex-direction: column; gap: 8px; font-size: 14px; }
+}
+
+/* Free tools bento: a 4 by 2 grid. The ATS tile takes a 2 by 2 block and
+   shows sample output; the match tile runs wide; two small tiles finish it.
+   Raised surface plus a thin line, coral only for missing terms and hover. */
+.bento-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-auto-rows: minmax(200px,auto); gap: 16px; margin-top: 48px; }
+.bento-tile { display: flex; flex-direction: column; gap: 20px; padding: 28px; border: 1px solid var(--landing-line); border-radius: 24px; background: var(--landing-surface); transition: border-color var(--dur-fast); }
+.bento-tile:hover { border-color: var(--landing-accent-line); }
+.bento-tile:focus-visible { outline: 2px solid var(--landing-accent); outline-offset: 2px; }
+.bento-lead { grid-column: span 2; grid-row: span 2; }
+.bento-wide { grid-column: span 2; }
+.bento-head { display: flex; align-items: center; justify-content: space-between; }
+.bento-icon { color: var(--landing-ink); }
+.bento-arrow { color: var(--landing-ink-soft); transition: color var(--dur-fast), translate var(--dur-fast); }
+.bento-tile:hover .bento-arrow { color: var(--landing-accent); translate: 4px 0; }
+.bento-copy { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+.bento-title { font-family: var(--font-outfit); font-size: 20px; font-weight: 600; color: var(--landing-ink); }
+.bento-lead .bento-title { font-family: var(--font-serif), Georgia, serif; font-size: clamp(30px,3vw,40px); font-weight: 400; line-height: 1.1; }
+.bento-body { max-width: 40ch; font-size: 15px; line-height: 1.5; color: var(--landing-ink-soft); }
+.bento-lead .bento-body { font-size: 17px; }
+.bento-sample { display: flex; flex: 1; flex-direction: column; justify-content: center; gap: 14px; padding: 24px; border: 1px dashed var(--landing-line); border-radius: 16px; }
+.bento-sample-tag { align-self: flex-start; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--landing-ink-faint); }
+.bento-terms { display: flex; flex-wrap: wrap; gap: 8px; }
+.bento-term { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--landing-line); border-radius: 999px; font-size: 14px; color: var(--landing-ink-soft); }
+.bento-term-missing { border-color: var(--landing-accent-line); background: var(--landing-accent-soft); color: var(--landing-accent); }
+@media (prefers-reduced-motion: reduce) { .bento-tile:hover .bento-arrow { translate: none; } }
+@media (max-width: 1024px) { .bento-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .bento-lead { grid-row: auto; } }
+@media (max-width: 560px) { .bento-grid { grid-template-columns: minmax(0,1fr); grid-auto-rows: auto; } .bento-lead, .bento-wide { grid-column: auto; } .bento-tile { padding: 24px; } }

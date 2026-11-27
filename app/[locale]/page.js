@@ -1,6 +1,8 @@
-import { ProductStories } from "@/components/landing/PublicProductSections";
+import { FreeToolsLinks } from "@/components/landing/PublicProductSections";
+import PublicHowItWorks from "@/components/landing/PublicHowItWorks";
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
+import ProductPreview from "@/components/landing/ProductPreview";
 import StatsStrip from "@/components/landing/StatsStrip";
 import TemplateStrip from "@/components/landing/TemplateStrip";
 import Testimonial from "@/components/landing/Testimonial";
@@ -64,12 +66,14 @@ export default async function Home({ params }) {
   ]);
 
   return (
-    <div className="landing-root public-redesign min-h-screen">
+    <div className="landing-root public-redesign public-home min-h-screen">
       <Header />
       <main id="main-content">
-        <Hero lifetimePrice={pricing.lifetime.price} />
-        <StatsStrip users={stats.users} tailored={stats.tailored} />
-        <ProductStories />
+        <Hero />
+        <ProductPreview />
+        <StatsStrip users={stats.users} tailored={stats.tailored} tracked={stats.tracked} />
+        <PublicHowItWorks />
+        <FreeToolsLinks />
         <TemplateStrip />
         <Testimonial />
         <TrustSignals />

@@ -72,7 +72,7 @@
     "includesTitleOne": "Todo incluido",
     "secureCheckout": "Pago seguro con Polar.",
     "lifetimeVsMonthly": "Lo que cuestan unos {months} meses del plan mensual.",
-    "regionalOff": "{percent} % menos en tu región",
+    "regionalOff": "{percent} % de descuento",
     "standardPrice": "Precio estándar",
     "spotsLeft": "Quedan <accent>{left} de {total}</accent> plazas de por vida a este precio",
     "features": [

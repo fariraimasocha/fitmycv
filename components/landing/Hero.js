@@ -7,9 +7,8 @@ import { useSession } from "next-auth/react";
 import { Link } from "@/i18n/navigation";
 import {
   ArrowRightIcon,
+  LinkIcon,
 } from "@phosphor-icons/react";
-import { PRICING } from "@/lib/pricing";
-import ProductPreview from "@/components/landing/ProductPreview";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { saveAtsHandoff } from "@/lib/ats-handoff";
 import { textAfterLink, toUrl } from "@/lib/ats-detect";
@@ -60,6 +59,7 @@ export function JobLinkForm({
   className = "landing-rise-3 mt-8",
   source = "hero",
   onBeforeSubmit,
+  pill = false,
 }) {
   const t = useTranslations("landing.hero");
   const router = useRouter();
@@ -187,7 +187,8 @@ export function JobLinkForm({
       <label htmlFor={id} className="sr-only">
         {t("linkLabel")}
       </label>
-      <div className="flex flex-col gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-2 sm:flex-row">
+      <div className={pill ? "job-link-pill" : "flex flex-col gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-surface)] p-2 sm:flex-row"}>
+        {pill ? <LinkIcon size={20} aria-hidden="true" /> : null}
         <input
           id={id}
           type="text"
@@ -338,7 +339,7 @@ export function JobLinkForm({
   );
 }
 
-export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
+export default function Hero() {
   const t = useTranslations("landing.hero");
   return <section id="hero" className="public-hero">
     <div className="public-container">
@@ -348,11 +349,9 @@ export default function Hero({ lifetimePrice = PRICING.lifetime.price }) {
         {/* The headline asks for a job link, so the hero takes one. The id
             keeps old /#start-tailoring links landing on the form. */}
         <div id="start-tailoring" className="public-hero-form">
-          <JobLinkForm className="mx-auto mt-8" />
+          <JobLinkForm className="mx-auto mt-10 max-w-2xl" pill />
         </div>
-        <p className="public-hero-note">{t("previewFree")}. {t("priceNote", { price: lifetimePrice })}</p>
       </div>
-      <ProductPreview />
     </div>
   </section>;
 }

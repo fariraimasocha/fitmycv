@@ -1,8 +1,11 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
 import { useTranslations, useFormatter } from "next-intl";
 import { ATS_COMPANIES } from "@/content/ats-companies";
 import { FREE_TOOLS } from "@/lib/free-tools";
 
-function buildItems({ tailored, users, format, t }) {
+function buildItems({ tailored, users, tracked, format, t }) {
   // Prefer live traction, then fill with product facts so the strip always
   // shows three distinct, verifiable numbers.
   const pool = [];
@@ -12,6 +15,9 @@ function buildItems({ tailored, users, format, t }) {
   }
   if (users != null) {
     pool.push({ value: `${format.number(users)}+`, label: t("people") });
+  }
+  if (tracked != null) {
+    pool.push({ value: `${format.number(tracked)}+`, label: t("tracked") });
   }
   pool.push({
     value: `${ATS_COMPANIES.length}+`,
@@ -29,10 +35,18 @@ function buildItems({ tailored, users, format, t }) {
  * strip. Every number is either a live DB count (rounded down) or a product
  * fact from the repo. No interview rates or "companies hired at" claims.
  */
-export default function StatsStrip({ users = null, tailored = null }) {
+export default function StatsStrip({ users = null, tailored = null, tracked = null }) {
   const t = useTranslations("landing.stats");
   const format = useFormatter();
-  const items = buildItems({ tailored, users, format, t });
+  // The server passes whatever its worker had cached (often nothing on a fresh
+  // Workers isolate). The live counts come from the edge-cached API route.
+  const { data } = useQuery({
+    queryKey: ["landing-stats"],
+    queryFn: () => fetch("/api/landing-stats").then((r) => (r.ok ? r.json() : null)),
+    staleTime: 60 * 60 * 1000,
+  });
+  const live = data ?? { users, tailored, tracked };
+  const items = buildItems({ ...live, format, t });
 
   return (
     <section

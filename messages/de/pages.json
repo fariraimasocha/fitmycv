@@ -9,11 +9,11 @@
       "imageAlt": "FitMyCV Preise: Passe deinen Lebenslauf an jeden Joblink an"
     },
     "eyebrow": "Preise",
-    "title": "Einmal zahlen oder monatlich. Unbegrenzt angepasste Bewerbungen.",
+    "title": "Einmal zahlen. Jeden angepassten Lebenslauf herunterladen.",
     "priceOnce": "${price} einmalig",
     "or": "oder",
     "priceMonthly": "${price}/Monat",
-    "intro": "Passe deinen Lebenslauf und dein Anschreiben an jeden Joblink an, den du einfügst, lade sie als saubere PDFs herunter und behalte deinen Match- und ATS-Score im Blick, alles zu einem einfachen Preis.",
+    "intro": "Passe deinen Lebenslauf und dein Anschreiben an jeden Joblink an, den du einfügst, lade sie als saubere PDFs herunter und behalte deinen Match- und ATS-Score im Blick.",
     "faqTitle": "Fragen zu den Preisen",
     "faqIntro": "Alles, was du über FitMyCV Premium wissen musst.",
     "faqs": {
@@ -31,7 +31,7 @@
       },
       "payment": {
         "q": "Welche Zahlungsmethoden werden akzeptiert?",
-        "a": "Zahlungen werden sicher über Polar abgewickelt. Polar akzeptiert alle gängigen Kredit- und Debitkarten."
+        "a": "Kartenzahlungen laufen über Polar, das alle gängigen Kredit- und Debitkarten akzeptiert. In Simbabwe kannst du Lifetime auch mit EcoCash bezahlen."
       },
       "regional": {
         "q": "Gibt es regionale Preise?",
@@ -41,8 +41,8 @@
   },
   "pricing": {
     "eyebrow": "Preise",
-    "titleLine1": "Weniger als eine Stunde bei einem Freelancer.",
-    "titleLine2": "Und es gehört dir.",
+    "titleLine1": "Einmal zahlen.",
+    "titleLine2": "Jeden angepassten Lebenslauf herunterladen.",
     "intro": "Einmal zahlen für lebenslangen Zugang, oder monatlich, jederzeit kündbar.",
     "introOnce": "Eine Zahlung. Alle Funktionen, für immer.",
     "footnote": "Etwa {months} Monate im Monatsabo, und danach gehört es dir für jede weitere Jobsuche. Sichere Bezahlung über Polar.",
@@ -71,13 +71,16 @@
     "includesTitle": "Beide Pläne enthalten alles",
     "includesTitleOne": "Alles inklusive",
     "secureCheckout": "Sichere Zahlung über Polar.",
+    "lifetimeVsMonthly": "So viel wie etwa {months} Monate im Monatsabo.",
+    "regionalOff": "{percent} % günstiger in deiner Region",
+    "standardPrice": "Normalpreis",
+    "spotsLeft": "<accent>{left} von {total}</accent> Lifetime-Plätzen zu diesem Preis übrig",
     "features": [
       "Jeden angepassten Lebenslauf als PDF herunterladen",
       "Match-Score für jeden Job, den du hinzufügst",
       "Jedes Anschreiben als PDF herunterladen",
       "Unternehmensrecherche, bevor du dich bewirbst",
       "Fragen zur Interviewvorbereitung für die Stelle",
-      "Story-Sammlung: wiederverwendbare Interviewantworten im STAR-Format (Situation, Aufgabe, Aktion, Ergebnis)",
       "Bewerbungen, gespeicherte Jobs und Angebote verfolgen",
       "Tägliche passende Jobs per E-Mail",
       "Jede ATS-Empfehlung auf deinen Lebenslauf anwenden",
@@ -91,6 +94,7 @@
       "payLifetime": "Lebenslang für ${price} mit EcoCash",
       "phoneLabel": "EcoCash-Nummer",
       "note": "Wir senden eine Zahlungsanfrage an diese Nummer. Bestätige sie mit deiner EcoCash-PIN.",
+      "noteSignedOut": "Melde dich an und bestätige dann die Zahlung auf deinem Handy.",
       "cardInstead": "Stattdessen mit Karte zahlen",
       "waitingTitle": "Schau auf dein Handy",
       "waitingBody": "Gib auf {phone} deine EcoCash-PIN ein, um ${price} zu bestätigen.",

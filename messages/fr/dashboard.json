@@ -884,12 +884,11 @@
       "f3": "Téléchargez chaque lettre de motivation en PDF",
       "f4": "Fiches de recherche sur l'entreprise avant de postuler",
       "f5": "Questions de préparation à l'entretien pour le poste",
-      "f6": "Banque d'histoires : des réponses d'entretien réutilisables, au format STAR (situation, tâche, action, résultat)",
-      "f7": "Suivez vos candidatures, offres enregistrées et propositions",
-      "f8": "Offres quotidiennes par e-mail",
-      "f9": "Appliquez chaque recommandation ATS à votre CV",
-      "f10": "Brouillons de réponses aux questions des formulaires de candidature",
-      "f11": "Messages de connexion LinkedIn, et à qui les envoyer"
+      "f6": "Suivez vos candidatures, offres enregistrées et propositions",
+      "f7": "Offres quotidiennes par e-mail",
+      "f8": "Appliquez chaque recommandation ATS à votre CV",
+      "f9": "Brouillons de réponses aux questions des formulaires de candidature",
+      "f10": "Messages de connexion LinkedIn, et à qui les envoyer"
     },
     "checkoutFailedTitle": "Le paiement n'a pas démarré",
     "checkoutFailedDescription": "Rien n'a été débité. Choisissez une offre ci-dessous pour réessayer.",

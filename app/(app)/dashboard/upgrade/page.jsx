@@ -17,6 +17,7 @@ import {
 import PricingCards from "@/components/pricing/PricingCards";
 import { openSupport } from "@/lib/open-support";
 import { PRO_FEATURES } from "@/lib/pro-features";
+import { SHOW_MONTHLY_LINE } from "@/lib/pricing";
 
 const PREMIUM_STATUS_ENDPOINT = "/api/user/premium-status";
 
@@ -90,7 +91,7 @@ export default function UpgradePage() {
         transition={{ duration: 0.3, delay: 0.05 }}
       >
         {/* compact: the "Everything in Pro" list below already covers PRO_FEATURES */}
-        <PricingCards compact primaryPlan="month" />
+        <PricingCards compact showMonthly={SHOW_MONTHLY_LINE} />
       </motion.div>
 
       <section className="flex flex-col gap-3">

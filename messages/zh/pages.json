@@ -9,11 +9,11 @@
       "imageAlt": "FitMyCV 价格：从任意职位链接定制你的简历"
     },
     "eyebrow": "价格",
-    "title": "一次付清或按月付费，不限数量的定制求职材料。",
+    "title": "一次付款，下载你定制的每一份简历。",
     "priceOnce": "一次性 ${price}",
     "or": "或",
     "priceMonthly": "${price}/月",
-    "intro": "根据你粘贴的每个职位链接定制简历和求职信，下载为整洁的 PDF，并查看匹配度和 ATS 评分，一个简单的价格全部包含。",
+    "intro": "根据你粘贴的每个职位链接定制简历和求职信，下载为整洁的 PDF，并查看匹配度和 ATS 评分。",
     "faqTitle": "价格常见问题",
     "faqIntro": "关于 FitMyCV Premium 你需要了解的一切。",
     "faqs": {
@@ -31,7 +31,7 @@
       },
       "payment": {
         "q": "支持哪些付款方式？",
-        "a": "付款通过 Polar 安全处理，支持所有主流信用卡和借记卡。"
+        "a": "银行卡付款通过 Polar 处理，支持所有主流信用卡和借记卡。在津巴布韦，你也可以用 EcoCash 购买终身版。"
       },
       "regional": {
         "q": "有地区定价吗？",
@@ -41,8 +41,8 @@
   },
   "pricing": {
     "eyebrow": "价格",
-    "titleLine1": "不到请自由职业者一小时的费用。",
-    "titleLine2": "永久归你所有。",
+    "titleLine1": "一次付款，",
+    "titleLine2": "下载你定制的每一份简历。",
     "intro": "一次付款获得终身访问，或选择月付，随时可取消。",
     "introOnce": "一次付费，所有功能永久可用。",
     "footnote": "约等于 {months} 个月的月费，之后的每次求职都能使用。通过 Polar 安全结账。",
@@ -71,13 +71,16 @@
     "includesTitle": "两个方案都包含全部功能",
     "includesTitleOne": "全部功能",
     "secureCheckout": "通过 Polar 安全支付。",
+    "lifetimeVsMonthly": "约等于 {months} 个月的月付价格。",
+    "regionalOff": "你所在地区优惠 {percent}%",
+    "standardPrice": "标准价格",
+    "spotsLeft": "此价格的终身名额还剩 <accent>{left}/{total}</accent> 个",
     "features": [
       "将每份定制简历下载为 PDF",
       "为你添加的每个职位提供匹配度评分",
       "将每封求职信下载为 PDF",
       "申请前提供公司调研简报",
       "针对该职位的面试准备问题",
-      "故事库：可重复使用的面试回答，采用 STAR 格式（情境、任务、行动、结果）",
       "跟踪求职申请、已保存的职位和录用通知",
       "每日邮件职位推荐",
       "将每条 ATS 建议应用到你的简历",
@@ -91,6 +94,7 @@
       "payLifetime": "使用 EcoCash 以 ${price} 获取终身版",
       "phoneLabel": "EcoCash 号码",
       "note": "我们会向此号码发送付款请求。请用你的 EcoCash PIN 确认。",
+      "noteSignedOut": "先登录，然后在手机上确认付款。",
       "cardInstead": "改用银行卡支付",
       "waitingTitle": "请查看手机",
       "waitingBody": "在 {phone} 上输入 EcoCash PIN 以确认支付 ${price}。",

@@ -9,11 +9,11 @@
       "imageAlt": "Tarifs FitMyCV : adaptez votre CV à partir de n'importe quelle offre d'emploi"
     },
     "eyebrow": "Tarifs",
-    "title": "Payez une fois ou chaque mois. Des candidatures adaptées en illimité.",
+    "title": "Payez une fois. Téléchargez chaque CV que vous adaptez.",
     "priceOnce": "${price} en une fois",
     "or": "ou",
     "priceMonthly": "${price}/mois",
-    "intro": "Adaptez votre CV et votre lettre de motivation à chaque offre que vous collez, téléchargez-les en PDF soignés et suivez vos scores de correspondance et ATS, le tout pour un prix unique.",
+    "intro": "Adaptez votre CV et votre lettre de motivation à chaque offre que vous collez, téléchargez-les en PDF soignés et suivez vos scores de correspondance et ATS.",
     "faqTitle": "FAQ sur les tarifs",
     "faqIntro": "Tout ce qu'il faut savoir sur FitMyCV Premium.",
     "faqs": {
@@ -31,7 +31,7 @@
       },
       "payment": {
         "q": "Quels moyens de paiement acceptez-vous ?",
-        "a": "Les paiements sont traités de façon sécurisée par Polar, qui accepte toutes les principales cartes de crédit et de débit."
+        "a": "Les paiements par carte passent par Polar, qui accepte toutes les principales cartes de crédit et de débit. Au Zimbabwe, vous pouvez aussi payer l'accès à vie avec EcoCash."
       },
       "regional": {
         "q": "Proposez-vous des tarifs régionaux ?",
@@ -41,8 +41,8 @@
   },
   "pricing": {
     "eyebrow": "Tarifs",
-    "titleLine1": "Moins d'une heure de freelance.",
-    "titleLine2": "À vous pour de bon.",
+    "titleLine1": "Payez une fois.",
+    "titleLine2": "Téléchargez chaque CV que vous adaptez.",
     "intro": "Un seul paiement pour un accès à vie, ou passez au mensuel, résiliable à tout moment.",
     "introOnce": "Un seul paiement. Toutes les fonctionnalités, pour de bon.",
     "footnote": "Environ {months} mois d'abonnement mensuel, et c'est à vous pour toutes vos recherches suivantes. Paiement sécurisé via Polar.",
@@ -71,13 +71,16 @@
     "includesTitle": "Les deux formules incluent tout",
     "includesTitleOne": "Tout est inclus",
     "secureCheckout": "Paiement sécurisé via Polar.",
+    "lifetimeVsMonthly": "Environ {months} mois d'abonnement mensuel.",
+    "regionalOff": "{percent} % de réduction dans votre région",
+    "standardPrice": "Prix standard",
+    "spotsLeft": "<accent>{left} sur {total}</accent> places à vie restantes à ce prix",
     "features": [
       "Téléchargez chaque CV adapté en PDF",
       "Score de correspondance pour chaque offre ajoutée",
       "Téléchargez chaque lettre de motivation en PDF",
       "Fiches de recherche sur l'entreprise avant de postuler",
       "Questions de préparation à l'entretien pour le poste",
-      "Banque d'histoires : des réponses d'entretien réutilisables, au format STAR (situation, tâche, action, résultat)",
       "Suivi des candidatures, offres enregistrées et propositions",
       "Des offres qui vous correspondent chaque jour par e-mail",
       "Appliquez chaque recommandation ATS à votre CV",
@@ -91,6 +94,7 @@
       "payLifetime": "Accès à vie pour ${price} avec EcoCash",
       "phoneLabel": "Numéro EcoCash",
       "note": "Nous envoyons une demande de paiement à ce numéro. Validez-la avec votre code PIN EcoCash.",
+      "noteSignedOut": "Connectez-vous, puis validez le paiement sur votre téléphone.",
       "cardInstead": "Payer par carte",
       "waitingTitle": "Regardez votre téléphone",
       "waitingBody": "Saisissez votre code PIN EcoCash sur le {phone} pour valider ${price}.",

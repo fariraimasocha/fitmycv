@@ -9,11 +9,11 @@
       "imageAlt": "FitMyCV pricing: tailor your CV from any job link"
     },
     "eyebrow": "Pricing",
-    "title": "Pay once or monthly. Unlimited tailored applications.",
+    "title": "Pay once. Download every CV you tailor.",
     "priceOnce": "${price} once",
     "or": "or",
     "priceMonthly": "${price}/mo",
-    "intro": "Tailor your CV and cover letter to every job link you paste, download them as clean PDFs, and track your match and ATS scores, all for one simple price.",
+    "intro": "Tailor your CV and cover letter to every job link you paste, download them as clean PDFs, and track your match and ATS scores.",
     "faqTitle": "Pricing FAQ",
     "faqIntro": "Everything you need to know about FitMyCV Premium.",
     "faqs": {
@@ -31,7 +31,7 @@
       },
       "payment": {
         "q": "Which payment methods do you accept?",
-        "a": "Payments are processed securely through Polar, which accepts all major credit and debit cards."
+        "a": "Card payments go through Polar, which accepts all major credit and debit cards. In Zimbabwe you can also pay for Lifetime with EcoCash."
       },
       "regional": {
         "q": "Is regional pricing available?",
@@ -41,8 +41,8 @@
   },
   "pricing": {
     "eyebrow": "Pricing",
-    "titleLine1": "Less than an hour of a freelancer.",
-    "titleLine2": "Yours for good.",
+    "titleLine1": "Pay once.",
+    "titleLine2": "Download every CV you tailor.",
     "intro": "One payment for lifetime access, or go monthly, cancel anytime.",
     "introOnce": "One payment. Every feature, for good.",
     "footnote": "About {months} months of monthly, and yours for every search after. Secure checkout via Polar.",
@@ -71,13 +71,16 @@
     "includesTitle": "Both plans include everything",
     "includesTitleOne": "Everything included",
     "secureCheckout": "Secure checkout via Polar.",
+    "lifetimeVsMonthly": "About {months} months of Monthly.",
+    "regionalOff": "{percent}% off for your region",
+    "standardPrice": "Standard price",
+    "spotsLeft": "<accent>{left} of {total}</accent> lifetime spots left at this price",
     "features": [
       "Download every tailored CV as a PDF",
       "Job match score for every job you add",
       "Download every cover letter as a PDF",
       "Company research briefs before you apply",
       "Interview prep questions for the role",
-      "Story bank: interview answers you can reuse, in the STAR format (situation, task, action, result)",
       "Track applications, saved jobs and offers",
       "Daily job matches by email",
       "Apply each ATS recommendation to your CV",
@@ -91,6 +94,7 @@
       "payLifetime": "Get lifetime for ${price} with EcoCash",
       "phoneLabel": "EcoCash number",
       "note": "We send a payment prompt to this number. Approve it with your EcoCash PIN.",
+      "noteSignedOut": "Sign in, then approve the payment on your phone.",
       "cardInstead": "Pay with card instead",
       "waitingTitle": "Check your phone",
       "waitingBody": "Enter your EcoCash PIN on {phone} to approve ${price}.",

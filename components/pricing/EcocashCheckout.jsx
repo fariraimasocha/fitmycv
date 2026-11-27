@@ -189,7 +189,7 @@ export default function EcocashCheckout({ options, cvId = null, variant = "landi
           {option.label}
         </button>
       ))}
-      <p className="text-center text-xs text-[var(--landing-ink-soft)]">{t("note")}</p>
+      <p className="text-center text-xs text-[var(--landing-ink-soft)]">{t(session?.user ? "note" : "noteSignedOut")}</p>
     </form>
   );
 }

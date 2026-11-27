@@ -2,7 +2,7 @@ import PricingCards from "@/components/pricing/PricingCards";
 import RevealWords from "@/components/landing/RevealWords";
 import { getTranslations } from "next-intl/server";
 import { getServerPricing } from "@/lib/server-pricing";
-import { SHOW_MONTHLY } from "@/lib/pricing";
+import { SHOW_MONTHLY_LINE } from "@/lib/pricing";
 
 export default async function Pricing({ showIntro = true }) {
   const { pricing, tier, country } = await getServerPricing();
@@ -14,34 +14,24 @@ export default async function Pricing({ showIntro = true }) {
       className={showIntro ? "landing-section landing-muted-band flex flex-col gap-10" : "public-container public-pricing-plans"}
     >
       {showIntro && <div
-        className={`landing-container flex flex-col gap-4 ${SHOW_MONTHLY ? "" : "items-center text-center"}`}
+        className="landing-container flex flex-col items-center gap-4 text-center"
       >
-        <span className="landing-eyebrow-plain">{t("eyebrow")}</span>
         <RevealWords
           text={`${t("titleLine1")} <accent>${t("titleLine2")}</accent>`}
           className="public-section-title max-w-3xl"
         />
         <p className="landing-copy max-w-xl text-lg">
-          {t(SHOW_MONTHLY ? "intro" : "introOnce")}
+          {t(SHOW_MONTHLY_LINE ? "intro" : "introOnce")}
         </p>
       </div>}
 
       <div className="landing-container w-full">
-        <PricingCards pricing={pricing} tier={tier} country={country} />
-        {SHOW_MONTHLY ? (
-        <p className="mt-6 max-w-lg text-xs text-[var(--landing-ink-soft)]">
-          {/* Worked out from the real prices, so it holds for every tier:
-              3 months on standard, 2 on regional. */}
-          {t("footnote", {
-            months: Math.round(Number(pricing.lifetime.price) / Number(pricing.month.price)),
-          })}
-        </p>
-        ) : null}
-        <p className={`mt-2 max-w-lg text-xs text-[var(--landing-ink-soft)] ${SHOW_MONTHLY ? "" : "mx-auto text-center"}`}>
+        <PricingCards pricing={pricing} tier={tier} country={country} showMonthly={SHOW_MONTHLY_LINE} />
+        <p className="mx-auto mt-8 max-w-lg text-center text-xs text-[var(--landing-ink-soft)]">
           {t("jobscanCompare")}
         </p>
         {tier === "standard" ? (
-          <p className={`mt-2 max-w-lg text-xs text-[var(--landing-ink-soft)] ${SHOW_MONTHLY ? "" : "mx-auto text-center"}`}>
+          <p className="mx-auto mt-2 max-w-lg text-center text-xs text-[var(--landing-ink-soft)]">
             {t("regionalAvailable")}
           </p>
         ) : null}

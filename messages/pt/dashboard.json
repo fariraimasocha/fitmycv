@@ -884,12 +884,11 @@
       "f3": "Baixe cada carta de apresentação em PDF",
       "f4": "Resumos de pesquisa da empresa antes de você se candidatar",
       "f5": "Perguntas de preparação para a entrevista da vaga",
-      "f6": "Banco de histórias: respostas de entrevista que você pode reutilizar, no formato STAR (situação, tarefa, ação, resultado)",
-      "f7": "Acompanhe candidaturas, vagas salvas e ofertas",
-      "f8": "Vagas compatíveis por e-mail todos os dias",
-      "f9": "Aplique cada recomendação de ATS ao seu currículo",
-      "f10": "Rascunhos de respostas para perguntas de formulários de candidatura",
-      "f11": "Mensagens de conexão no LinkedIn e para quem enviá-las"
+      "f6": "Acompanhe candidaturas, vagas salvas e ofertas",
+      "f7": "Vagas compatíveis por e-mail todos os dias",
+      "f8": "Aplique cada recomendação de ATS ao seu currículo",
+      "f9": "Rascunhos de respostas para perguntas de formulários de candidatura",
+      "f10": "Mensagens de conexão no LinkedIn e para quem enviá-las"
     },
     "checkoutFailedTitle": "O checkout não começou",
     "checkoutFailedDescription": "Nada foi cobrado. Escolha um plano abaixo para tentar de novo.",

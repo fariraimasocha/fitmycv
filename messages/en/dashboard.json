@@ -884,12 +884,11 @@
       "f3": "Download every cover letter as a PDF",
       "f4": "Company research briefs before you apply",
       "f5": "Interview prep questions for the role",
-      "f6": "Story bank: interview answers you can reuse, in the STAR format (situation, task, action, result)",
-      "f7": "Track applications, saved jobs and offers",
-      "f8": "Daily job matches by email",
-      "f9": "Apply each ATS recommendation to your CV",
-      "f10": "Draft answers for application form questions",
-      "f11": "LinkedIn connection messages, and who to send them to"
+      "f6": "Track applications, saved jobs and offers",
+      "f7": "Daily job matches by email",
+      "f8": "Apply each ATS recommendation to your CV",
+      "f9": "Draft answers for application form questions",
+      "f10": "LinkedIn connection messages, and who to send them to"
     },
     "checkoutFailedTitle": "Checkout didn't start",
     "checkoutFailedDescription": "Nothing was charged. Pick a plan below to try again.",

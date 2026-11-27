@@ -13,10 +13,10 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { useClientPricingWithCountry } from "@/components/pricing/PricingCards";
+import { MonthlyLine, useClientPricingWithCountry } from "@/components/pricing/PricingCards";
 import EcocashCheckout from "@/components/pricing/EcocashCheckout";
 import { trackEvent } from "@/lib/analytics";
-import { SHOW_MONTHLY, SHOW_SINGLE } from "@/lib/pricing";
+import { SHOW_MONTHLY, SHOW_MONTHLY_LINE, SHOW_SINGLE } from "@/lib/pricing";
 import LifetimeSpots from "@/components/pricing/LifetimeSpots";
 
 // Keys in messages/<locale>/pages.json under upgradeModal.
@@ -43,6 +43,7 @@ export default function UpgradePromptModal({
 }) {
   const t = useTranslations("pages.upgradeModal");
   const tEco = useTranslations("pages.pricingCards.ecocash");
+  const tCards = useTranslations("pages.pricingCards");
   // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
   const localeRouter = useLocaleRouter();
   const { data: session } = useSession();
@@ -53,6 +54,16 @@ export default function UpgradePromptModal({
   const ecocash = country === "zw" && !cardInstead;
   const offerSingle = Boolean(SHOW_SINGLE && cvId && session?.user && pricing.single);
   const primaryPlan = SHOW_MONTHLY ? "month" : offerSingle ? "single" : "lifetime";
+  // Same quiet Monthly line as /pricing, under the Lifetime button.
+  const monthly = SHOW_MONTHLY_LINE && !SHOW_MONTHLY
+    ? {
+        id: "month",
+        price: pricing.month.price,
+        suffix: tCards("plans.month.suffix"),
+        subline: tCards("plans.month.subline"),
+        cta: tCards("plans.month.cta"),
+      }
+    : null;
 
   useEffect(() => {
     if (open) {
@@ -118,9 +129,10 @@ export default function UpgradePromptModal({
     onClose();
   };
 
-  // Monthly leads: in October every purchase was monthly and lifetime sold
-  // none. This one CV sits second, for the visitor who needs one application
-  // today and would otherwise close the modal. Lifetime stays a text link.
+  // Lifetime leads, with Monthly as one quiet line under it, the same offer
+  // as /pricing. In October, with Monthly first, every purchase was monthly.
+  // The one CV option (SHOW_SINGLE, off for now) would sit above Lifetime.
+  // The SHOW_MONTHLY branch at the bottom is the old Monthly-first layout.
   return (
     <Dialog open={open} onOpenChange={(v) => !v && dismissPaywall()}>
       <DialogContent className="rounded-lg border-[var(--landing-line)] bg-[var(--landing-surface)] sm:max-w-md">
@@ -176,6 +188,17 @@ export default function UpgradePromptModal({
               <p className="text-xs text-[var(--landing-ink-soft)]">{t("singleNote")}</p>
             ) : null}
             <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
+            {monthly ? (
+              <MonthlyLine
+                plan={monthly}
+                onClick={() => startCheckout("month", "paywall_monthly")}
+                pending={pendingPlan === "month"}
+                disabled={Boolean(pendingPlan)}
+                openingLabel={t("opening")}
+                buttonClassName="dashboard-secondary-btn"
+                className="mt-2 w-full pt-3"
+              />
+            ) : null}
             <button
               type="button"
               onClick={() => setCardInstead(true)}
@@ -217,6 +240,17 @@ export default function UpgradePromptModal({
               {pendingPlan === "lifetime" ? t("opening") : t("getLifetime", { price: pricing.lifetime.price })}
             </button>
             <p className="text-xs text-[var(--landing-ink-soft)]">{t("lifetimeNote")}</p>
+            {monthly ? (
+              <MonthlyLine
+                plan={monthly}
+                onClick={() => startCheckout("month", "paywall_monthly")}
+                pending={pendingPlan === "month"}
+                disabled={Boolean(pendingPlan)}
+                openingLabel={t("opening")}
+                buttonClassName="dashboard-secondary-btn"
+                className="mt-2 w-full pt-3"
+              />
+            ) : null}
             <button
               type="button"
               onClick={dismissPaywall}

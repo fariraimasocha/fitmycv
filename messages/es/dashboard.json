@@ -884,12 +884,11 @@
       "f3": "Descarga cada carta de presentación en PDF",
       "f4": "Informes sobre la empresa antes de postularte",
       "f5": "Preguntas de preparación de entrevista para el puesto",
-      "f6": "Banco de historias: respuestas de entrevista reutilizables, en formato STAR (situación, tarea, acción, resultado)",
-      "f7": "Sigue tus candidaturas, empleos guardados y ofertas",
-      "f8": "Ofertas diarias por correo",
-      "f9": "Aplica cada recomendación ATS a tu CV",
-      "f10": "Borradores de respuestas para las preguntas de los formularios de candidatura",
-      "f11": "Mensajes de conexión de LinkedIn, y a quién enviarlos"
+      "f6": "Sigue tus candidaturas, empleos guardados y ofertas",
+      "f7": "Ofertas diarias por correo",
+      "f8": "Aplica cada recomendación ATS a tu CV",
+      "f9": "Borradores de respuestas para las preguntas de los formularios de candidatura",
+      "f10": "Mensajes de conexión de LinkedIn, y a quién enviarlos"
     },
     "checkoutFailedTitle": "El pago no se inició",
     "checkoutFailedDescription": "No se cobró nada. Elige un plan abajo para intentarlo de nuevo.",

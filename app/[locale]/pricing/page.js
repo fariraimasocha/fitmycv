@@ -4,7 +4,7 @@ import FaqSection from "@/components/content/FaqSection";
 import Footer from "@/components/landing/Footer";
 import JsonLd from "@/components/JsonLd";
 import { getServerPricing } from "@/lib/server-pricing";
-import { SHOW_MONTHLY } from "@/lib/pricing";
+import { SHOW_MONTHLY_LINE } from "@/lib/pricing";
 import { getTranslations } from "next-intl/server";
 import { localeAlternates } from "@/lib/seo";
 
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
     month: pricing.month.price,
   };
   const pageCopy = await getTranslations({ locale, namespace: "pages.pricingPage" });
-  const description = SHOW_MONTHLY
+  const description = SHOW_MONTHLY_LINE
     ? t("description", prices)
     : `${pageCopy("intro")} ${pageCopy("priceOnce", { price: pricing.lifetime.price })}.`;
   const alternates = localeAlternates(locale, "/pricing");
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
       url: alternates.canonical,
       siteName: "FitMyCV",
       title: t("socialTitle"),
-      description: SHOW_MONTHLY ? t("ogDescription", prices) : description,
+      description: SHOW_MONTHLY_LINE ? t("ogDescription", prices) : description,
       images: [
         {
           url: "/hero-new.png",
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: t("socialTitle"),
-      description: SHOW_MONTHLY ? t("twitterDescription", prices) : description,
+      description: SHOW_MONTHLY_LINE ? t("twitterDescription", prices) : description,
       images: ["/hero-new.png"],
     },
   };
@@ -66,9 +66,9 @@ function buildFaqs(t, pricing, cancelAnswer) {
   };
   return FAQ_KEYS.map((key) => ({
     q: t(`faqs.${key}.q`),
-    a: !SHOW_MONTHLY && key === "cost"
+    a: !SHOW_MONTHLY_LINE && key === "cost"
       ? t("priceOnce", { price: pricing.lifetime.price })
-      : !SHOW_MONTHLY && key === "cancel"
+      : !SHOW_MONTHLY_LINE && key === "cancel"
         ? cancelAnswer
         : t(`faqs.${key}.a`, prices),
   }));
@@ -98,8 +98,7 @@ export default async function PricingPage({ params }) {
       <main id="main-content">
         <section className="public-pricing-hero">
           <div className="public-container public-hero-copy">
-            <p className="public-eyebrow">{t("eyebrow")}</p>
-            <h1 className="public-hero-title">{SHOW_MONTHLY ? t("title") : pricingCopy("introOnce")}</h1>
+            <h1 className="public-hero-title">{SHOW_MONTHLY_LINE ? t("title") : pricingCopy("introOnce")}</h1>
             <p className="public-hero-description">{t("intro")}</p>
           </div>
         </section>

@@ -884,12 +884,11 @@
       "f3": "Jedes Anschreiben als PDF herunterladen",
       "f4": "Unternehmensrecherchen, bevor du dich bewirbst",
       "f5": "Fragen zur Interviewvorbereitung für die Stelle",
-      "f6": "Story-Sammlung: wiederverwendbare Interviewantworten im STAR-Format (Situation, Aufgabe, Handlung, Ergebnis)",
-      "f7": "Bewerbungen, gespeicherte Jobs und Angebote verfolgen",
-      "f8": "Täglich passende Jobs per E-Mail",
-      "f9": "Jede ATS-Empfehlung auf deinen Lebenslauf anwenden",
-      "f10": "Antwortentwürfe für Fragen in Bewerbungsformularen",
-      "f11": "LinkedIn-Kontaktnachrichten und an wen du sie schickst"
+      "f6": "Bewerbungen, gespeicherte Jobs und Angebote verfolgen",
+      "f7": "Täglich passende Jobs per E-Mail",
+      "f8": "Jede ATS-Empfehlung auf deinen Lebenslauf anwenden",
+      "f9": "Antwortentwürfe für Fragen in Bewerbungsformularen",
+      "f10": "LinkedIn-Kontaktnachrichten und an wen du sie schickst"
     },
     "checkoutFailedTitle": "Der Checkout ist nicht gestartet",
     "checkoutFailedDescription": "Es wurde nichts berechnet. Wähle unten einen Plan, um es erneut zu versuchen.",

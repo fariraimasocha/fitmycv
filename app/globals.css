@@ -1200,7 +1200,9 @@
   }
 
   .dashboard-primary-btn:focus-visible,
-  .dashboard-secondary-btn:focus-visible {
+  .dashboard-secondary-btn:focus-visible,
+  .landing-primary-btn:focus-visible,
+  .landing-secondary-btn:focus-visible {
     outline: 2px solid var(--landing-ink);
     outline-offset: 2px;
   }

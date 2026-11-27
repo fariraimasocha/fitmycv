@@ -169,6 +169,11 @@ export default function RootShell({ locale, messages, session, children }) {
           data-domain="fitmycv.link"
           strategy="lazyOnload"
         />
+        <Script
+          src="https://open-analytics.farirai.workers.dev/js/script.js"
+          data-website-id="452d6c6u3l4s1c39"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

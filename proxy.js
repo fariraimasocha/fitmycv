@@ -103,6 +103,18 @@ const handler = auth(async (authRequest) => {
     signInUrl.searchParams.set("next", request.nextUrl.pathname + request.nextUrl.search);
     return applyGeoCookies(request, NextResponse.redirect(signInUrl));
   }
+  // Sign-up from a pricing card lands on /dashboard?checkout=pending. The
+  // redirect in dashboard/page.js lost the race to OnboardingGuard's client
+  // redirect for new users, so they reached onboarding and never saw checkout.
+  // Redirecting here runs before any page renders.
+  const { pathname: path, searchParams } = request.nextUrl;
+  if (authRequest.auth?.user && path === "/dashboard" && searchParams.get("checkout") === "pending") {
+    const plan = searchParams.get("plan") ?? "lifetime";
+    const target = plan === "ecocash"
+      ? "/dashboard/upgrade"
+      : `/api/polar/checkout?plan=${encodeURIComponent(plan)}`;
+    return applyGeoCookies(request, NextResponse.redirect(new URL(target, request.nextUrl)));
+  }
   const response = UNTRANSLATED.test(request.nextUrl.pathname)
     ? NextResponse.next()
     : intlMiddleware(request);

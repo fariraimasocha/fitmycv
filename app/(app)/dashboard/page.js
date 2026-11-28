@@ -20,6 +20,7 @@ const asJson = (value) => JSON.parse(JSON.stringify(value));
 // the browser after a spinner. Keys and shapes match DashboardHome's queries.
 export default async function DashboardPage({ searchParams }) {
   // Sign-up from a pricing page lands here first, then goes on to checkout.
+  // proxy.js does this redirect first; this stays as the fallback.
   const { checkout, plan } = await searchParams;
   // EcoCash needs a phone number, so it goes to the upgrade card instead.
   if (checkout === "pending" && plan === "ecocash") redirect("/dashboard/upgrade");

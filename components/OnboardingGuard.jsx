@@ -51,6 +51,8 @@ export default function OnboardingGuard({ children }) {
     status === "authenticated" &&
     session?.user?.onboardingCompleted === false &&
     pathname !== ONBOARDING_PATH &&
+    // A new user sent here to pay (EcoCash sign-up) must not lose checkout.
+    pathname !== "/dashboard/upgrade" &&
     !justCompleted;
 
   useEffect(() => {

@@ -25,6 +25,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  cvJobDetail,
+  pickedCard,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { isLinkOnly } from "@/lib/ats-detect";
@@ -170,6 +173,8 @@ function readLetter(jobText, cvText, company, name, currentYear) {
 
 function LetterResult({ result, jobText, cvText }) {
   const missingCount = result.missing.length;
+  // The letter the user copied. Lives here, so a new result starts clean.
+  const [picked, setPicked] = useState("");
   return (
     <div className="landing-rise mx-auto w-full max-w-2xl">
       {result.letters.length ? (
@@ -192,10 +197,11 @@ function LetterResult({ result, jobText, cvText }) {
           </p>
 
           <ul className="mt-6 flex flex-col gap-3">
-            {result.letters.map((letter) => (
+            {result.letters.map((letter, i) => (
               <li
                 key={letter.id}
-                className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5"
+                style={revealDelay(i, 150)}
+                className={`tool-reveal flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${pickedCard(picked === letter.text)}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -211,9 +217,10 @@ function LetterResult({ result, jobText, cvText }) {
                     text={letter.text}
                     message="Letter copied"
                     ariaLabel={`Copy the ${letter.shape.toLowerCase()}`}
-                    onCopied={() =>
-                      trackEvent("application_letter_copied", { shape: letter.id })
-                    }
+                    onCopied={() => {
+                      setPicked(letter.text);
+                      trackEvent("application_letter_copied", { shape: letter.id });
+                    }}
                   />
                 </div>
                 <p className="whitespace-pre-line break-words text-sm font-semibold leading-7 text-[var(--landing-ink)]">
@@ -342,7 +349,7 @@ export default function LetterFromCvGenerator() {
         </div>
       ) : null}
 
-      {!result && step === 2 ? (
+      {!result && step === 2 && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -432,7 +439,11 @@ export default function LetterFromCvGenerator() {
 
       {!result && step === 2 && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Writing your letter" lines={4} />
+          <ToolProgress
+            message="Writing your letter"
+            detail={cvJobDetail(cvText, jobText)}
+            lines={4}
+          />
         </div>
       ) : null}
 

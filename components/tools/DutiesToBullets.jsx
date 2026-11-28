@@ -25,6 +25,8 @@ import {
   ToolPreview,
   ToolProgress,
   ToolSubmitButton,
+  pickedCard,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 
@@ -472,6 +474,9 @@ export default function DutiesToBullets() {
   const [step, setStep] = useState(1);
   const [duties, setDuties] = useState("");
   const { running, ran, start, reset } = useToolRun("duties_to_bullets");
+  // Bullets the user copied, by text, so a rerun starts clean.
+  const [copied, setCopied] = useState(() => new Set());
+  const markCopied = (...texts) => setCopied((prev) => new Set([...prev, ...texts]));
 
   const bullets = useMemo(() => (ran ? dutiesToBullets(duties) : []), [ran, duties]);
   const tooShort = splitDuties(duties).length === 0;
@@ -506,6 +511,7 @@ export default function DutiesToBullets() {
               label="Copy all"
               message="All bullets copied"
               ariaLabel="Copy all bullets"
+              onCopied={() => markCopied(...bullets.map((b) => b.bullet))}
             />
           </div>
 
@@ -513,7 +519,8 @@ export default function DutiesToBullets() {
             {bullets.map((item, i) => (
               <li
                 key={`${item.original}-${i}`}
-                className="flex flex-col gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-4"
+                style={revealDelay(i, 120)}
+                className={`tool-reveal flex flex-col gap-2 rounded-2xl border px-4 py-4 transition-colors ${pickedCard(copied.has(item.bullet))}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
@@ -534,6 +541,7 @@ export default function DutiesToBullets() {
                     text={item.bullet}
                     message="Bullet copied"
                     ariaLabel={`Copy bullet: ${item.bullet}`}
+                    onCopied={() => markCopied(item.bullet)}
                   />
                 </div>
                 <p className="ps-8 text-xs leading-6 text-[var(--landing-ink-soft)]">{item.note}</p>
@@ -606,7 +614,16 @@ export default function DutiesToBullets() {
             </ToolStepActions>
           </form>
 
-          {running ? <ToolProgress message="Rewriting your duties" lines={4} /> : null}
+          {running ? (
+            <ToolProgress
+              message="Rewriting your duties"
+              detail={(() => {
+                const n = splitDuties(duties).length;
+                return `Turning ${n} ${n === 1 ? "duty" : "duties"} into bullets that open with an action verb.`;
+              })()}
+              lines={4}
+            />
+          ) : null}
 
           {!running && !bullets.length ? <ToolPreview items={PREVIEW} /> : null}
         </>

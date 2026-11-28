@@ -14,6 +14,8 @@ import {
   ToolPreview,
   ToolProgress,
   ToolSubmitButton,
+  pickedCard,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
@@ -113,6 +115,8 @@ const FIELDS = [
 export default function ApplicationLetterGenerator() {
   const [form, setForm] = useState({});
   const { running, ran, start, reset } = useToolRun("application_letter");
+  // The letter text last copied. Any edit to the form makes a new letter, so it clears itself.
+  const [copiedLetter, setCopiedLetter] = useState("");
   const ready = REQUIRED.every((k) => form[k]?.trim());
   const letter = useMemo(() => (ran ? buildLetter(form) : null), [ran, form]);
 
@@ -155,13 +159,19 @@ export default function ApplicationLetterGenerator() {
         </div>
       </form>
 
-      {running ? <ToolProgress message="Writing your letter" lines={5} /> : null}
+      {running ? (
+        <ToolProgress
+          message="Writing your letter"
+          detail={`Writing to ${form.company?.trim()} for the ${form.role?.trim()} role.`}
+          lines={5}
+        />
+      ) : null}
 
       {!running && !letter ? <ToolPreview items={PREVIEW} /> : null}
 
       {letter ? (
         <div className="landing-rise mt-8 flex flex-col gap-3 border-t border-[var(--landing-line)] pt-8">
-          <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
+          <div className={`rounded-xl border px-4 py-3 transition-colors ${pickedCard(copiedLetter === letter)}`}>
             <div className="flex items-center justify-between gap-3">
               <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">Your application letter</p>
               <CopyButton
@@ -169,9 +179,21 @@ export default function ApplicationLetterGenerator() {
                 text={letter}
                 message="Letter copied"
                 ariaLabel="Copy your application letter"
+                onCopied={() => setCopiedLetter(letter)}
               />
             </div>
-            <p className="mt-1.5 whitespace-pre-line break-words text-sm leading-6 text-[var(--landing-ink)]">{letter}</p>
+            {/* The letter lands paragraph by paragraph, the way it will be read. */}
+            <div className="mt-1.5 flex flex-col gap-6">
+              {letter.split("\n\n").map((para, i) => (
+                <p
+                  key={`${i}-${para.slice(0, 24)}`}
+                  style={revealDelay(i, 150)}
+                  className="tool-reveal whitespace-pre-line break-words text-sm leading-6 text-[var(--landing-ink)]"
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
           </div>
           <p className="text-sm leading-6 text-[var(--landing-ink-soft)]">
             Read it out loud once and change anything that does not sound like you.

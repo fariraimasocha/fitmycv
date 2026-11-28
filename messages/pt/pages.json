@@ -222,6 +222,8 @@
       "busyGaps": "Procurando suas lacunas",
       "busyMatch": "Avaliando seu currículo",
       "busyKeywords": "Lendo a vaga",
+      "runDetailCv": "Comparando {cv} palavras do seu currículo com {job} palavras da vaga.",
+      "runDetailJob": "Lendo {job} palavras da vaga.",
       "readingCv": "Lendo seu currículo",
       "working": "Analisando a vaga",
       "privacy": "Lido nesta aba. Nada é enviado.",

@@ -19,7 +19,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  revealDelay,
   useToolRun,
+  wordCount,
 } from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
 
@@ -309,13 +311,30 @@ export default function CvFormatChecker() {
               disabled={tooShort || cvBusy}
             />
           </ToolStepActions>
-          {running ? <ToolProgress message="Checking your CV" lines={5} /> : null}
+          {running ? (
+            <ToolProgress
+              message="Checking your CV"
+              detail={`Reading ${wordCount(cvText)} words against CV norms for ${COUNTRIES[country].name}.`}
+              lines={5}
+            />
+          ) : null}
         </form>
       ) : null}
 
       {result ? (
         <div className="landing-rise mx-auto w-full max-w-2xl">
-          <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+          {/* Peak: the tally first, then each check lands on its own beat. A
+              clean CV gets the one glow. */}
+          <p
+            className={`inline-flex rounded-full px-3 py-1 font-outfit text-xs font-extrabold tabular-nums ${
+              result.issues === 0
+                ? "peak-glow bg-[var(--landing-success-soft)] text-[var(--landing-success)]"
+                : "bg-[var(--landing-paper-strong)] text-[var(--landing-ink-soft)]"
+            }`}
+          >
+            {result.checks.length - result.issues} of {result.checks.length} checks pass
+          </p>
+          <p className="mt-3 font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
             {result.issues === 0
               ? `Your CV fits ${COUNTRIES[country].name}`
               : `${result.issues} ${result.issues === 1 ? "thing" : "things"} to fix for ${COUNTRIES[country].name}`}
@@ -327,10 +346,11 @@ export default function CvFormatChecker() {
             This checks the text only. It cannot see a photo, columns or fonts. Leave the photo off unless the posting asks for one.
           </p>
           <ul className="mt-6 flex flex-col gap-3">
-            {result.checks.map((ch) => (
+            {result.checks.map((ch, i) => (
               <li
                 key={ch.id}
-                className="flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
+                style={revealDelay(i)}
+                className="tool-reveal flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
               >
                 {ch.ok ? (
                   <CheckIcon size={16} aria-label="Pass" className="mt-1 shrink-0 text-[var(--landing-success)]" />
@@ -344,7 +364,11 @@ export default function CvFormatChecker() {
             ))}
           </ul>
           <HandoffCta
-            title="Format fixed. Now fit it to the job."
+            title={
+              result.issues === 0
+                ? "Format looks right. Now fit it to the job."
+                : "Fix these, then fit it to the job."
+            }
             body="FitMyCV takes this CV and a job link, then rewrites your summary and top bullets for that posting, with a matching cover letter."
             label="Tailor my CV to a job"
             source="cv_format"

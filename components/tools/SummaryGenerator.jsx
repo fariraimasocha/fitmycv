@@ -30,6 +30,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  cvJobDetail,
+  pickedCard,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { isLinkOnly } from "@/lib/ats-detect";
@@ -69,6 +72,8 @@ export default function SummaryGenerator() {
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun("summary");
+  // The summary the user copied. Text, not id, so a rerun clears it.
+  const [picked, setPicked] = useState("");
   // Captured once so the render body stays pure. Years read from date ranges
   // need a "today" to count up to.
   const [currentYear] = useState(() => new Date().getFullYear());
@@ -126,7 +131,7 @@ export default function SummaryGenerator() {
         </div>
       ) : null}
 
-      {!result && step === 2 ? (
+      {!result && step === 2 && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -178,7 +183,11 @@ export default function SummaryGenerator() {
 
       {!result && step === 2 && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Writing your summaries" lines={3} />
+          <ToolProgress
+            message="Writing your summaries"
+            detail={cvJobDetail(resumeText, jobText)}
+            lines={3}
+          />
         </div>
       ) : null}
 
@@ -203,10 +212,11 @@ export default function SummaryGenerator() {
               </p>
 
               <ul className="mt-6 flex flex-col gap-3">
-                {result.summaries.map((summary) => (
+                {result.summaries.map((summary, i) => (
                   <li
                     key={summary.id}
-                    className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5"
+                    style={revealDelay(i, 150)}
+                    className={`tool-reveal flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${pickedCard(picked === summary.text)}`}
                   >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0">
@@ -222,6 +232,7 @@ export default function SummaryGenerator() {
                         text={summary.text}
                         message="Summary copied"
                         ariaLabel={`Copy summary: ${summary.shape}`}
+                        onCopied={() => setPicked(summary.text)}
                       />
                     </div>
                     <p className="text-xs leading-6 text-[var(--landing-ink-soft)]">

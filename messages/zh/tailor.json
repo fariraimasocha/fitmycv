@@ -678,6 +678,8 @@
       "linkedin": "撰写 LinkedIn 消息",
       "peakKeywords": "已加入职位描述中的 {count} 个关键词。",
       "peakScore": "ATS 分数从 {preScore} 提升到 <score></score>。",
+      "peakBefore": "你的简历目前在这个职位上得分 {score}。完成后会显示新分数。",
+      "peakLabel": "此职位的 ATS 分数",
       "nextLetter": "这个职位的求职信也已准备好。",
       "viewLetter": "查看求职信",
       "nextApplications": "这个职位已在求职申请中。收到回复后更新它的阶段。",

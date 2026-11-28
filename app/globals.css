@@ -527,6 +527,36 @@
     animation: landing-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
   }
 
+  /* Result items on the free tools: one beat each, see revealDelay(). */
+  .tool-reveal {
+    animation: landing-rise 0.4s var(--ease-out-quart) both;
+  }
+
+  /* Score bars on the free tools fill from empty instead of appearing full. */
+  @keyframes tool-bar-grow {
+    from { transform: scaleX(0); }
+  }
+
+  .tool-bar-fill {
+    transform-origin: left;
+    animation: tool-bar-grow 0.7s var(--ease-out-quart) both;
+  }
+
+  .tool-bar-fill:dir(rtl) {
+    transform-origin: right;
+  }
+
+  /* One soft ring when a score lands well: the tailored score rising, or a
+     strong result on a free tool. Plays once. */
+  @keyframes peak-glow {
+    0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--landing-success) 35%, transparent); }
+    100% { box-shadow: 0 0 0 12px color-mix(in oklch, var(--landing-success) 0%, transparent); }
+  }
+
+  .peak-glow {
+    animation: peak-glow 0.6s ease-out 0.5s both;
+  }
+
   /* Stagger steps for the hero. Each block enters just behind the one above
      it, so the eye is walked down the page instead of everything landing at
      once. CSS keyframes rather than a JS library: these run on first paint,
@@ -610,7 +640,10 @@
     .landing-rise-1,
     .landing-rise-2,
     .landing-rise-3,
-    .landing-rise-4 {
+    .landing-rise-4,
+    .tool-reveal,
+    .tool-bar-fill,
+    .peak-glow {
       animation: none;
     }
 

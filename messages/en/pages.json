@@ -222,6 +222,8 @@
       "busyGaps": "Finding your gaps",
       "busyMatch": "Scoring your CV",
       "busyKeywords": "Reading the posting",
+      "runDetailCv": "Checking {cv} words of your CV against {job} words of the posting.",
+      "runDetailJob": "Reading {job} words of the posting.",
       "readingCv": "Reading your CV",
       "working": "Working through the posting",
       "privacy": "Read in this tab. Nothing is uploaded.",

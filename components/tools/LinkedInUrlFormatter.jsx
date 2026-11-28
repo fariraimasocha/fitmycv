@@ -11,7 +11,7 @@ import { useMemo, useState } from "react";
 import { WarningIcon } from "@phosphor-icons/react";
 
 import ToolShell, { ToolStepBack } from "@/components/tools/ToolShell";
-import { CopyButton } from "@/components/tools/tool-run";
+import { CopyButton, pickedCard, revealDelay } from "@/components/tools/tool-run";
 
 // pure-helpers:start
 
@@ -129,6 +129,9 @@ const inputClass =
 
 export default function LinkedInUrlFormatter() {
   const [value, setValue] = useState("");
+  // ponytail: live as you type, so no anticipation stage. Reveal and the copy
+  // afterglow only.
+  const [picked, setPicked] = useState("");
 
   const result = useMemo(() => {
     const isExample = !value.trim();
@@ -227,10 +230,13 @@ export default function LinkedInUrlFormatter() {
             </p>
 
             <ul className="mt-6 flex flex-col gap-3">
-              {options.map((option) => (
+              {options.map((option, i) => (
                 <li
                   key={option.key}
-                  className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                  style={revealDelay(i, 120)}
+                  className={`tool-reveal flex flex-col gap-3 rounded-2xl border p-4 transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-6 ${pickedCard(
+                    !result.isExample && picked === option.text
+                  )}`}
                 >
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
@@ -254,6 +260,7 @@ export default function LinkedInUrlFormatter() {
                       text={option.text}
                       message="Link copied"
                       ariaLabel={`Copy link ${option.text}`}
+                      onCopied={() => setPicked(option.text)}
                     />
                   ) : null}
                 </li>

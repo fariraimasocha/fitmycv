@@ -5,6 +5,7 @@
 // browser.
 
 import { useMemo, useState } from "react";
+import { CheckIcon } from "@phosphor-icons/react";
 
 import ResumeFileField from "@/components/tools/ResumeFileField";
 import HandoffCta from "@/components/tools/HandoffCta";
@@ -17,7 +18,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  revealDelay,
   useToolRun,
+  wordCount,
 } from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
 
@@ -98,7 +101,13 @@ function WeakWordsResult({ result, cvText }) {
   const total = result.found.reduce((n, f) => n + f.count, 0);
   return (
     <div className="landing-rise mx-auto w-full max-w-2xl">
-      <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+      {/* A clean CV is the rare pull here, so it gets the one glow. */}
+      <p className="flex items-center gap-3 font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+        {total === 0 ? (
+          <span className="peak-glow inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-[var(--landing-success-soft)]">
+            <CheckIcon size={16} weight="bold" aria-hidden="true" className="text-[var(--landing-success)]" />
+          </span>
+        ) : null}
         {total === 0 ? "No weak words found" : `${total} weak ${total === 1 ? "word" : "words"} found`}
       </p>
       {result.lines > 0 ? (
@@ -112,10 +121,11 @@ function WeakWordsResult({ result, cvText }) {
 
       {result.found.length ? (
         <ul className="mt-6 flex flex-col gap-3">
-          {result.found.map((f) => (
+          {result.found.map((f, i) => (
             <li
               key={f.phrase}
-              className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
+              style={revealDelay(i)}
+              className="tool-reveal rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
             >
               <p className="text-sm text-[var(--landing-ink)]">
                 <strong className="font-extrabold">&ldquo;{f.phrase}&rdquo;</strong>
@@ -190,7 +200,13 @@ export default function WeakWordsChecker() {
               disabled={tooShort || cvBusy}
             />
           </ToolStepActions>
-          {running ? <ToolProgress message="Reading your CV" lines={4} /> : null}
+          {running ? (
+            <ToolProgress
+              message="Reading your CV"
+              detail={`Checking ${wordCount(cvText)} words against ${WEAK_PHRASES.length} weak phrases.`}
+              lines={4}
+            />
+          ) : null}
         </form>
       ) : null}
 

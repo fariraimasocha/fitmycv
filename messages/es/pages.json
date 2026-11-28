@@ -222,6 +222,8 @@
       "busyGaps": "Buscando lo que falta",
       "busyMatch": "Puntuando tu CV",
       "busyKeywords": "Leyendo la oferta",
+      "runDetailCv": "Comparando {cv} palabras de tu CV con {job} palabras de la oferta.",
+      "runDetailJob": "Leyendo {job} palabras de la oferta.",
       "readingCv": "Leyendo tu CV",
       "working": "Analizando la oferta",
       "privacy": "Se lee en esta pestaña. No se sube nada.",

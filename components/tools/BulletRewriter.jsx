@@ -25,6 +25,9 @@ import {
   TOOL_PRIVACY,
   ToolPreview,
   ToolProgress,
+  pickedCard,
+  revealDelay,
+  wordCount,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
@@ -550,6 +553,8 @@ export default function BulletRewriter() {
   const [bullet, setBullet] = useState("");
   const [jobText, setJobText] = useState("");
   const { running, ran, start, reset } = useToolRun("bullet_rewriter");
+  // The rewrite the user copied. Text, not index, so a rerun clears it.
+  const [picked, setPicked] = useState("");
 
   // A pasted link is not a posting. Its terms would be pieces of the address.
   const jobIsLink = isLinkOnly(jobText);
@@ -600,7 +605,8 @@ export default function BulletRewriter() {
             {result.variants.map((variant, i) => (
               <li
                 key={variant}
-                className="flex items-start gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-4"
+                style={revealDelay(i, 150)}
+                className={`tool-reveal flex items-start gap-3 rounded-2xl border px-4 py-4 transition-colors ${pickedCard(picked === variant)}`}
               >
                 <span className="mt-0.5 font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)]">
                   {String(i + 1).padStart(2, "0")}
@@ -613,6 +619,7 @@ export default function BulletRewriter() {
                   text={variant}
                   message="Bullet copied"
                   ariaLabel={`Copy rewrite ${i + 1}`}
+                  onCopied={() => setPicked(variant)}
                 />
               </li>
             ))}
@@ -773,7 +780,15 @@ export default function BulletRewriter() {
             </ToolStepActions>
           </form>
 
-          {running ? <ToolProgress message="Rewriting your bullet" lines={3} /> : null}
+          {running ? (
+            <ToolProgress
+              message="Rewriting your bullet"
+              detail={`Trying three openings for your ${wordCount(bullet)} word bullet${
+                posting.trim() ? `, then checking it against ${wordCount(posting)} words of the posting` : ""
+              }.`}
+              lines={3}
+            />
+          ) : null}
 
           {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
         </>

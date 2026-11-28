@@ -24,20 +24,24 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  revealDelay,
   useToolRun,
+  wordCount,
 } from "@/components/tools/tool-run";
+import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { stem, tokenize } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";
 
 const labelClass =
   "font-outfit text-sm font-extrabold text-[var(--landing-ink)]";
 
-function Pill({ label, present }) {
+function Pill({ label, present, index = 0 }) {
   const base =
-    "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]";
+    "tool-reveal inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]";
   if (present === undefined) {
     return (
       <li
+        style={revealDelay(index)}
         className={`${base} border-[var(--landing-line)] bg-[var(--landing-paper)]`}
       >
         {label}
@@ -47,6 +51,7 @@ function Pill({ label, present }) {
   const Icon = present ? CheckIcon : XIcon;
   return (
     <li
+      style={revealDelay(index)}
       className={`${base} ${
         present
           ? "border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)]"
@@ -168,7 +173,7 @@ export default function KeywordsGenerator({ roles = [] }) {
         </div>
       ) : null}
 
-      {step === 2 && role ? (
+      {!covered && step === 2 && role && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -207,13 +212,17 @@ export default function KeywordsGenerator({ roles = [] }) {
         </form>
       ) : null}
 
-      {step === 2 && running ? (
+      {!covered && step === 2 && role && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Checking your CV" lines={2} />
+          <ToolProgress
+            message="Checking your CV"
+            detail={`Checking ${wordCount(cvText)} words of your CV for ${allTerms.length} ${role.role} keywords.`}
+            lines={2}
+          />
         </div>
       ) : null}
 
-      {step === 3 && covered && role ? (
+      {covered && role ? (
         <div className="landing-rise mx-auto w-full max-w-2xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
@@ -244,34 +253,48 @@ export default function KeywordsGenerator({ roles = [] }) {
             />
           </div>
 
-          {role.groups.map((group) => (
+          {/* Peak: the tally counts up first, then the pills land. A full
+              house gets the one glow. */}
+          <p
+            role="status"
+            className={`mt-6 inline-flex flex-wrap items-baseline gap-x-1.5 rounded-2xl px-4 py-3 font-outfit text-base font-extrabold text-[var(--landing-ink)] ${
+              missingCount
+                ? "bg-[var(--landing-paper-strong)]"
+                : "peak-glow bg-[var(--landing-success-soft)]"
+            }`}
+          >
+            <span>
+              Your CV covers{" "}
+              {/* The live region reads the final number, not every frame of the count. */}
+              <span aria-hidden="true"><AnimatedNumber value={covered.size} /></span>
+              <span className="sr-only">{covered.size}</span> of {allTerms.length}.
+            </span>
+            <span>
+              {missingCount === 1
+                ? "1 is marked in red below."
+                : missingCount
+                  ? `${missingCount} are marked in red below.`
+                  : "Every term on the list is there."}
+            </span>
+          </p>
+
+          {role.groups.map((group, g) => (
             <div key={group.title} className="mt-6">
               <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
                 {group.title}
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
-                {group.terms.map((term) => (
+                {group.terms.map((term, i) => (
                   <Pill
                     key={term}
                     label={term}
                     present={covered.has(term)}
+                    index={g + i}
                   />
                 ))}
               </ul>
             </div>
           ))}
-
-          <p
-            role="status"
-            className="mt-6 font-outfit text-base font-extrabold text-[var(--landing-ink)]"
-          >
-            Your CV covers {covered.size} of {allTerms.length}.{" "}
-            {missingCount === 1
-              ? "1 is marked in red above."
-              : missingCount
-                ? `${missingCount} are marked in red above.`
-                : "Every term on the list is there."}
-          </p>
 
           <HandoffCta
             title={missingCount ? "Close these gaps" : "Now match it to one job"}

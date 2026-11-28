@@ -678,6 +678,8 @@
       "linkedin": "Write LinkedIn message",
       "peakKeywords": "{count, plural, one {# keyword} other {# keywords}} from the posting added.",
       "peakScore": "ATS score went from {preScore} to <score></score>.",
+      "peakBefore": "Your CV scores {score} for this job now. The new score shows when this finishes.",
+      "peakLabel": "ATS score for this job",
       "nextLetter": "Your cover letter for this role is ready too.",
       "viewLetter": "View cover letter",
       "nextApplications": "This role is in Applications. Move it along as you hear back.",

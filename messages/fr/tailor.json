@@ -682,6 +682,8 @@
       "linkedin": "Rédiger un message LinkedIn",
       "peakKeywords": "{count, plural, one {# mot-clé} other {# mots-clés}} de l'offre ajoutés.",
       "peakScore": "Le score ATS est passé de {preScore} à <score></score>.",
+      "peakBefore": "Votre CV obtient {score} pour ce poste en ce moment. Le nouveau score s’affiche à la fin.",
+      "peakLabel": "Score ATS pour ce poste",
       "nextLetter": "Votre lettre de motivation pour ce poste est prête aussi.",
       "viewLetter": "Voir la lettre",
       "nextApplications": "Ce poste est dans vos candidatures. Faites-le avancer quand vous avez des nouvelles.",

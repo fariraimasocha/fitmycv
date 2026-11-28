@@ -682,6 +682,8 @@
       "linkedin": "LinkedIn-Nachricht schreiben",
       "peakKeywords": "{count, plural, one {# Schlüsselwort} other {# Schlüsselwörter}} aus der Anzeige ergänzt.",
       "peakScore": "ATS-Score von {preScore} auf <score></score> gestiegen.",
+      "peakBefore": "Dein Lebenslauf erreicht für diese Stelle gerade {score}. Der neue Score erscheint, sobald das fertig ist.",
+      "peakLabel": "ATS-Score für diese Stelle",
       "nextLetter": "Dein Anschreiben für diese Stelle ist auch fertig.",
       "viewLetter": "Anschreiben ansehen",
       "nextApplications": "Diese Stelle ist in deinen Bewerbungen. Verschiebe sie, sobald du etwas hörst.",

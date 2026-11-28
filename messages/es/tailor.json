@@ -682,6 +682,8 @@
       "linkedin": "Redactar mensaje de LinkedIn",
       "peakKeywords": "{count, plural, one {# palabra clave} other {# palabras clave}} de la oferta añadidas.",
       "peakScore": "La puntuación ATS pasó de {preScore} a <score></score>.",
+      "peakBefore": "Tu CV tiene una puntuación de {score} para este puesto ahora. La nueva puntuación aparece al terminar.",
+      "peakLabel": "Puntuación ATS para este puesto",
       "nextLetter": "Tu carta de presentación para este puesto también está lista.",
       "viewLetter": "Ver carta",
       "nextApplications": "Este puesto está en Candidaturas. Muévelo cuando tengas noticias.",

@@ -28,6 +28,9 @@ import {
   JOB_IS_LINK,
   TOOL_PRIVACY,
   ToolProgress,
+  cvJobDetail,
+  pickedCard,
+  revealDelay,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
@@ -554,6 +557,8 @@ export default function HeadlineGenerator() {
   const [resumeText, setResumeText] = useState("");
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun("headline");
+  // The headline the user copied. Text, not id, so a rerun clears it.
+  const [picked, setPicked] = useState("");
   // Captured once so the render body stays pure. Years of experience read from
   // date ranges need a "today" to count up to.
   const [currentYear] = useState(() => new Date().getFullYear());
@@ -611,7 +616,7 @@ export default function HeadlineGenerator() {
         </div>
       ) : null}
 
-      {!result && step === 2 ? (
+      {!result && step === 2 && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -663,7 +668,11 @@ export default function HeadlineGenerator() {
 
       {!result && step === 2 && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Writing your headlines" lines={5} />
+          <ToolProgress
+            message="Writing your headlines"
+            detail={cvJobDetail(resumeText, jobText)}
+            lines={5}
+          />
         </div>
       ) : null}
 
@@ -685,10 +694,11 @@ export default function HeadlineGenerator() {
               </p>
 
               <ul className="mt-6 flex flex-col gap-3">
-                {result.headlines.map((headline) => (
+                {result.headlines.map((headline, i) => (
                   <li
                     key={headline.id}
-                    className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5"
+                    style={revealDelay(i, 150)}
+                    className={`tool-reveal flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${pickedCard(picked === headline.text)}`}
                   >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div className="min-w-0">
@@ -704,6 +714,7 @@ export default function HeadlineGenerator() {
                         text={headline.text}
                         message="Headline copied"
                         ariaLabel={`Copy headline: ${headline.text}`}
+                        onCopied={() => setPicked(headline.text)}
                       />
                     </div>
                     <p className="text-xs leading-6 text-[var(--landing-ink-soft)]">

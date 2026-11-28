@@ -14,6 +14,8 @@ import {
   ToolPreview,
   ToolProgress,
   ToolSubmitButton,
+  pickedCard,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { trackEvent } from "@/lib/analytics";
@@ -111,12 +113,21 @@ function explainGap({ reason, from, to, did = "" }) {
 
 const STEPS = ["Describe the gap", "View results"];
 
-function CopyBlock({ title, text }) {
+// Each version lands on its own beat (`index`) and turns green once copied.
+function CopyBlock({ title, text, index, copied, onCopied }) {
   return (
-    <div className="rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3">
+    <div
+      style={revealDelay(index, 150)}
+      className={`tool-reveal rounded-xl border px-4 py-3 transition-colors ${pickedCard(copied)}`}
+    >
       <div className="flex items-center justify-between gap-3">
         <p className="font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">{title}</p>
-        <CopyButton tool="gap_explainer" text={text} ariaLabel={`Copy ${title.toLowerCase()}`} />
+        <CopyButton
+          tool="gap_explainer"
+          text={text}
+          ariaLabel={`Copy ${title.toLowerCase()}`}
+          onCopied={onCopied}
+        />
       </div>
       <p className="mt-1.5 text-sm leading-6 text-[var(--landing-ink)]">{text}</p>
     </div>
@@ -130,6 +141,9 @@ export default function GapExplainer() {
   const [to, setTo] = useState("");
   const [did, setDid] = useState("");
   const { running, ran, start, reset } = useToolRun("gap_explainer");
+  // Versions the user copied, by text, so edited details start clean.
+  const [copied, setCopied] = useState(() => new Set());
+  const markCopied = (text) => () => setCopied((prev) => new Set(prev).add(text));
   const months = monthsBetween(from, to);
 
   const result = useMemo(
@@ -207,7 +221,13 @@ export default function GapExplainer() {
             </ToolStepActions>
           </form>
 
-          {running ? <ToolProgress message="Writing your lines" lines={3} /> : null}
+          {running ? (
+            <ToolProgress
+              message="Writing your lines"
+              detail={`Writing a CV line, a cover letter line and an interview answer for your ${months > 0 ? `${months}-month ` : ""}gap.`}
+              lines={3}
+            />
+          ) : null}
 
           {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
         </>
@@ -221,9 +241,20 @@ export default function GapExplainer() {
                 <strong className="font-extrabold">You may not need this.</strong> A gap under 3 months rarely needs explaining. Show years only on your CV dates and it disappears.
               </p>
             ) : null}
-            <CopyBlock title="On your CV" text={result.cv} />
-            <CopyBlock title="In your cover letter" text={result.letter} />
-            <CopyBlock title="In the interview" text={result.answer} />
+            {[
+              ["On your CV", result.cv],
+              ["In your cover letter", result.letter],
+              ["In the interview", result.answer],
+            ].map(([title, text], i) => (
+              <CopyBlock
+                key={title}
+                title={title}
+                text={text}
+                index={i}
+                copied={copied.has(text)}
+                onCopied={markCopied(text)}
+              />
+            ))}
             <HandoffCta
               title="Gap handled. Now fit the rest of your CV."
               body="FitMyCV rewrites your CV and cover letter for a specific job posting, so the gap is one line and your experience does the talking."

@@ -24,6 +24,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  cvJobDetail,
+  pickedCard,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { evidenceFor, postingSkills } from "@/lib/interview-questions";
@@ -39,6 +42,8 @@ export default function SkillsSectionGenerator() {
   const [cvBusy, setCvBusy] = useState(false);
   const { running, ran, start, reset } = useToolRun("skills_section");
   const [currentYear] = useState(() => new Date().getFullYear());
+  // The skills line the user copied. Text, so a rerun clears it.
+  const [picked, setPicked] = useState("");
 
   const jobIsLink = isLinkOnly(jobText);
   const jobTooShort = jobText.trim().length < 40 || jobIsLink;
@@ -99,7 +104,7 @@ export default function SkillsSectionGenerator() {
         </div>
       ) : null}
 
-      {!result && step === 2 ? (
+      {!result && step === 2 && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -151,7 +156,11 @@ export default function SkillsSectionGenerator() {
 
       {!result && step === 2 && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Reading the posting" lines={3} />
+          <ToolProgress
+            message="Reading the posting"
+            detail={cvJobDetail(resumeText, jobText)}
+            lines={3}
+          />
         </div>
       ) : null}
 
@@ -167,7 +176,9 @@ export default function SkillsSectionGenerator() {
                 Only skills that appear in both your CV and the posting, in the
                 order the posting stresses them.
               </p>
-              <div className="mt-5 flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5 sm:flex-row sm:items-start sm:justify-between">
+              <div
+                className={`mt-5 flex flex-col gap-3 rounded-2xl border p-5 transition-colors sm:flex-row sm:items-start sm:justify-between ${pickedCard(picked === result.line)}`}
+              >
                 <p className="text-base font-semibold leading-7 text-[var(--landing-ink)]">
                   <span className="font-extrabold">Skills: </span>
                   {result.line}
@@ -177,6 +188,7 @@ export default function SkillsSectionGenerator() {
                   text={result.line}
                   message="Skills copied"
                   ariaLabel="Copy your skills section"
+                  onCopied={() => setPicked(result.line)}
                 />
               </div>
 
@@ -184,10 +196,11 @@ export default function SkillsSectionGenerator() {
                 Where your CV proves each one
               </p>
               <ul className="mt-3 flex flex-col gap-2">
-                {result.listed.map((item) => (
+                {result.listed.map((item, i) => (
                   <li
                     key={item.term}
-                    className="flex flex-col gap-1 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
+                    style={revealDelay(i)}
+                    className="tool-reveal flex flex-col gap-1 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
                   >
                     <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[var(--landing-ink)]">
                       <CheckIcon size={12} aria-hidden="true" className="text-[var(--landing-success)]" />
@@ -227,10 +240,11 @@ export default function SkillsSectionGenerator() {
                 The job wants these, your CV does not show them
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
-                {result.missing.map((item) => (
+                {result.missing.map((item, i) => (
                   <li
                     key={item.term}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
+                    style={revealDelay(i)}
+                    className="tool-reveal inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
                   >
                     <XIcon size={12} aria-hidden="true" className="text-[var(--landing-coral)]" />
                     {item.label}

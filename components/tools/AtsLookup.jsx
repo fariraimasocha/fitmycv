@@ -64,7 +64,8 @@ export default function AtsLookup() {
             {!url ? (
               <Notice>That does not look like a link. Copy the full address from your browser.</Notice>
             ) : vendor ? (
-              <div className="rounded-2xl border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.07)] p-5">
+              // A known vendor is the answer they came for, so it gets the one glow.
+              <div className="peak-glow rounded-2xl border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.07)] p-5">
                 <p className="flex items-center gap-2 font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                   <CheckCircleIcon size={20} weight="fill" aria-hidden="true" className="text-[var(--landing-success)]" />
                   This job is on {vendor.name}

@@ -28,14 +28,15 @@ import {
   CV_JOB_STEPS,
   JOB_ONLY_STEPS,
 } from "@/components/tools/ToolStepper";
-import { ArcGauge } from "@/components/charts/ArcGauge";
-import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import {
   CopyButton,
   TOOL_PRIVACY,
   ToolProgress,
+  ToolScoreRing,
   ToolSubmitButton,
+  revealDelay,
   useToolRun,
+  wordCount,
 } from "@/components/tools/tool-run";
 import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib/ats-handoff";
@@ -43,37 +44,8 @@ import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
 import { extractTerms, stem, tokenize } from "@/lib/keywords";
 
-// The score is the peak of this tool, so it fills and counts up instead of
-// appearing static. ArcGauge and AnimatedNumber both fall back to the final
-// value under reduced motion.
-function ScoreRing({ value }) {
-  const t = useTranslations("pages.tools.keywordChecker");
-  const tone =
-    value >= 75
-      ? "var(--landing-success)"
-      : value >= 50
-        ? "var(--landing-accent)"
-        : "var(--landing-coral)";
-
-  return (
-    <ArcGauge
-      value={value}
-      size={112}
-      strokeWidth={9}
-      color={tone}
-      label={t("scoreLabel", { value })}
-      trackClassName="text-[var(--landing-line)]"
-    >
-      <span className="font-outfit text-2xl font-extrabold text-[var(--landing-ink)]">
-        <AnimatedNumber value={value} />%
-      </span>
-      <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
-        {t("scoreUnit")}
-      </span>
-    </ArcGauge>
-  );
-}
-
+// The score is the peak of this tool: ToolScoreRing fills, counts up, and
+// glows once on a strong match.
 const HIGH_MATCH_SCORE = 75;
 const MIN_JOB_CHARS = 40;
 
@@ -434,7 +406,15 @@ export default function KeywordChecker({ mode = "match" }) {
 
       {((needsCv && !result && step === 2) || (!needsCv && step === 1)) && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message={busyLabel} lines={5} />
+          <ToolProgress
+            message={busyLabel}
+            detail={
+              needsCv
+                ? t("runDetailCv", { cv: wordCount(cvText), job: wordCount(jobText) })
+                : t("runDetailJob", { job: wordCount(jobText) })
+            }
+            lines={5}
+          />
         </div>
       ) : null}
 
@@ -465,10 +445,11 @@ export default function KeywordChecker({ mode = "match" }) {
 
               {result.missing.length ? (
                 <ol className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {result.missing.map(({ term, count }) => (
+                  {result.missing.map(({ term, count }, i) => (
                     <li
                       key={term}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.06)] px-4 py-3"
+                      style={revealDelay(i)}
+                      className="tool-reveal flex items-center justify-between gap-3 rounded-xl border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.06)] px-4 py-3"
                     >
                       <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-[var(--landing-ink)]">
                         <XIcon
@@ -517,7 +498,11 @@ export default function KeywordChecker({ mode = "match" }) {
           ) : matchMode ? (
             <>
               <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-                <ScoreRing value={result.score} />
+                <ToolScoreRing
+                  value={result.score}
+                  label={t("scoreLabel", { value: result.score })}
+                  unit={t("scoreUnit")}
+                />
                 <div>
                   <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                     {result.score >= 75
@@ -544,10 +529,11 @@ export default function KeywordChecker({ mode = "match" }) {
                     <CopyButton tool={tool} text={result.missing.map(({ term }) => term).join(", ")} />
                   </div>
                   <ul className="mt-3 flex flex-wrap gap-2">
-                    {result.missing.map(({ term }) => (
+                    {result.missing.map(({ term }, i) => (
                       <li
                         key={term}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
+                        style={revealDelay(i)}
+                        className="tool-reveal inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
                       >
                         <XIcon
                           size={12}
@@ -567,10 +553,11 @@ export default function KeywordChecker({ mode = "match" }) {
               <ul className="mt-3 flex flex-wrap gap-2">
                 {result.terms
                   .filter((item) => item.present)
-                  .map(({ term }) => (
+                  .map(({ term }, i) => (
                     <li
                       key={term}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
+                      style={revealDelay(i)}
+                      className="tool-reveal inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
                     >
                       <CheckIcon
                         size={12}
@@ -600,7 +587,8 @@ export default function KeywordChecker({ mode = "match" }) {
                 {result.terms.map(({ term }, i) => (
                   <li
                     key={term}
-                    className="flex items-center gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-2.5"
+                    style={revealDelay(i)}
+                    className="tool-reveal flex items-center gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-2.5"
                   >
                     <span className="font-outfit text-xs font-extrabold tabular-nums text-[var(--landing-ink-soft)]">
                       {String(i + 1).padStart(2, "0")}

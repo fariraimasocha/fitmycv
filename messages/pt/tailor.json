@@ -678,6 +678,8 @@
       "linkedin": "Escrever mensagem para o LinkedIn",
       "peakKeywords": "{count, plural, one {# palavra-chave} other {# palavras-chave}} da vaga adicionadas.",
       "peakScore": "A pontuação ATS foi de {preScore} para <score></score>.",
+      "peakBefore": "Seu currículo tem pontuação {score} para esta vaga agora. A nova pontuação aparece quando isto terminar.",
+      "peakLabel": "Pontuação ATS para esta vaga",
       "nextLetter": "Sua carta de apresentação para esta vaga também está pronta.",
       "viewLetter": "Ver carta",
       "nextApplications": "Esta vaga está em Candidaturas. Avance-a quando tiver retorno.",

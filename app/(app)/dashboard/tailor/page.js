@@ -1256,6 +1256,12 @@ function Tailor() {
                         className="mx-auto mt-4 w-full max-w-56 [--hairline-plate:var(--landing-surface)]"
                       />
                     )}
+                    {/* Anticipation: the real starting score, so the result answers a question. */}
+                    {tailorMutation.isPending && typeof preAtsScore?.score === "number" && (
+                      <p className="mt-3 text-center text-sm text-muted-foreground">
+                        {t("result.peakBefore", { score: preAtsScore.score })}
+                      </p>
+                    )}
                     <button
                       type="button"
                       onClick={handleTailor}
@@ -1298,23 +1304,40 @@ function Tailor() {
         <Rise className="flex flex-col gap-3">
           {/* The peak of this flow: what tailoring actually changed, in real
               numbers from the tailor response and the two ATS runs. */}
-          {(tailorResult.keywordsInjected?.length > 0 ||
-            (typeof preAtsScore?.score === "number" && atsScore?.score > preAtsScore.score)) && (
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-medium text-[var(--landing-ink)]">
-              <CheckCircleIcon size={20} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
-              {tailorResult.keywordsInjected?.length > 0 && (
-                <span>{t("result.peakKeywords", { count: tailorResult.keywordsInjected.length })}</span>
-              )}
-              {typeof preAtsScore?.score === "number" && atsScore?.score > preAtsScore.score && (
-                <span>
-                  {t.rich("result.peakScore", {
-                    preScore: preAtsScore.score,
-                    score: () => <AnimatedNumber value={atsScore.score} className="font-bold text-[var(--landing-success)]" />,
-                  })}
-                </span>
-              )}
-            </p>
-          )}
+          {(() => {
+            // Reveal in sequence: the score climbs from where it was, then the keywords land.
+            const gained = typeof preAtsScore?.score === "number" && atsScore?.score > preAtsScore.score;
+            const keywords = tailorResult.keywordsInjected?.length ?? 0;
+            if (!gained && !keywords) return null;
+            return (
+              <div className={cn("flex flex-col gap-1 rounded-xl", gained && "peak-glow")}>
+                {gained && (
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="text-xs font-medium text-muted-foreground">{t("result.peakLabel")}</span>
+                    <span className="sr-only">
+                      {t.rich("result.peakScore", { preScore: preAtsScore.score, score: () => atsScore.score })}
+                    </span>
+                    <span aria-hidden="true" className="flex items-baseline gap-2 text-2xl font-bold text-[var(--landing-ink)]">
+                      <span className="text-muted-foreground">{preAtsScore.score}</span>
+                      <ArrowRightIcon size={18} className="self-center text-muted-foreground rtl:-scale-x-100" />
+                      <AnimatedNumber from={preAtsScore.score} value={atsScore.score} className="text-[var(--landing-success)]" />
+                      <span className="landing-rise-delayed rounded-full bg-[var(--landing-success)]/10 px-2 py-0.5 text-xs font-semibold text-[var(--landing-success)]">
+                        +{atsScore.score - preAtsScore.score}
+                      </span>
+                    </span>
+                  </div>
+                )}
+                {keywords > 0 && (
+                  <Rise delay={gained ? 0.35 : 0}>
+                    <p className="flex items-center gap-2 text-sm font-medium text-[var(--landing-ink)]">
+                      <CheckCircleIcon size={20} weight="fill" className="text-[var(--landing-success)]" aria-hidden="true" />
+                      {t("result.peakKeywords", { count: keywords })}
+                    </p>
+                  </Rise>
+                )}
+              </div>
+            );
+          })()}
           {/* The end: one step to apply, one job to do next. Secondary buttons,
               so Download stays the one primary action on this screen. */}
           <section aria-labelledby="what-next-title" className="flex flex-col gap-2">

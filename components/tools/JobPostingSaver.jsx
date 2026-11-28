@@ -149,7 +149,21 @@ export default function JobPostingSaver() {
             </ToolStepActions>
           </form>
 
-          {save.isPending ? <ToolProgress message="Reading the posting" lines={5} /> : null}
+          {save.isPending ? (
+            <ToolProgress
+              message="Reading the posting"
+              detail={(() => {
+                try {
+                  const raw = value.trim();
+                  const host = new URL(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`).hostname.replace(/^www\./, "");
+                  return `Fetching the page at ${host}.`;
+                } catch {
+                  return null;
+                }
+              })()}
+              lines={5}
+            />
+          ) : null}
 
           {error && !save.isPending ? (
             <p

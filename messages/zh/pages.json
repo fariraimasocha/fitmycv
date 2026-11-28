@@ -222,6 +222,8 @@
       "busyGaps": "正在查找差距",
       "busyMatch": "正在为你的简历打分",
       "busyKeywords": "正在读取职位信息",
+      "runDetailCv": "正在用职位描述中的 {job} 个词对照你简历中的 {cv} 个词。",
+      "runDetailJob": "正在读取职位描述中的 {job} 个词。",
       "readingCv": "正在读取你的简历",
       "working": "正在分析职位信息",
       "privacy": "只在这个标签页中读取，不会上传任何内容。",

@@ -15,8 +15,11 @@ import {
   TOOL_PRIVACY,
   ToolPreview,
   ToolProgress,
+  ToolScoreRing,
   ToolSubmitButton,
+  revealDelay,
   useToolRun,
+  wordCount,
 } from "@/components/tools/tool-run";
 import { checkProfile, SECTIONS } from "@/lib/linkedin-check";
 import { isLinkOnly } from "@/lib/ats-detect";
@@ -42,11 +45,19 @@ const SECTION_LABEL = { headline: "Headline", about: "About", skills: "Skills" }
 function Result({ result, job }) {
   return (
     <div className="landing-rise mx-auto w-full max-w-2xl">
-      <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
-        Your profile covers {result.score}% of the terms this posting leans on
-      </p>
+      {/* Peak: the coverage ring fills, then the terms land row by row. */}
+      <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+        <ToolScoreRing
+          value={result.score}
+          label={`Profile coverage: ${result.score} percent`}
+          unit="Covered"
+        />
+        <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
+          Your profile covers {result.score}% of the terms this posting leans on
+        </p>
+      </div>
       {result.forHeadline.length ? (
-        <p className="mt-2 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
+        <p className="mt-4 max-w-lg text-sm leading-6 text-[var(--landing-ink-soft)]">
           Your headline is the line recruiters see under your name in search. These are already on
           your profile but not in it: <strong className="text-[var(--landing-ink)]">{result.forHeadline.join(", ")}</strong>.
         </p>
@@ -69,8 +80,8 @@ function Result({ result, job }) {
             </tr>
           </thead>
           <tbody>
-            {result.terms.map((t) => (
-              <tr key={t.term} className="border-t border-[var(--landing-line)]">
+            {result.terms.map((t, i) => (
+              <tr key={t.term} style={revealDelay(i)} className="tool-reveal border-t border-[var(--landing-line)]">
                 <td className="py-2 font-semibold text-[var(--landing-ink)]">{t.term}</td>
                 {SECTIONS.map((s) => (
                   <td key={s} className="px-2 py-2 text-center">
@@ -193,7 +204,13 @@ export default function LinkedInProfileChecker() {
             </ToolStepActions>
           </form>
 
-          {running ? <ToolProgress message="Comparing your profile" lines={4} /> : null}
+          {running ? (
+            <ToolProgress
+              message="Comparing your profile"
+              detail={`Checking your headline, About and skills against ${wordCount(job)} words of the posting.`}
+              lines={4}
+            />
+          ) : null}
 
           {!running && !result ? <ToolPreview items={PREVIEW} /> : null}
         </>

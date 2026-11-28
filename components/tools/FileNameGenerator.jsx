@@ -11,7 +11,7 @@ import { useMemo, useState } from "react";
 import { WarningIcon } from "@phosphor-icons/react";
 
 import ToolShell from "@/components/tools/ToolShell";
-import { CopyButton } from "@/components/tools/tool-run";
+import { CopyButton, pickedCard, revealDelay } from "@/components/tools/tool-run";
 import { buildFileName, exceedsLimit } from "@/utils/pdf-filename";
 
 // Characters that Windows, macOS or Linux refuse inside a file name.
@@ -74,6 +74,9 @@ const inputClass =
 
 export default function FileNameGenerator() {
   const [values, setValues] = useState({ name: "", role: "", company: "" });
+  // ponytail: no anticipation stage. Names build live as you type, and a fake
+  // wait would only slow that down. The reveal and the copy afterglow still apply.
+  const [picked, setPicked] = useState("");
 
   const { options, issues, isExample } = useMemo(() => {
     const empty = !values.name.trim() && !values.role.trim() && !values.company.trim();
@@ -139,10 +142,13 @@ export default function FileNameGenerator() {
         </p>
 
         <ul className="mt-6 flex flex-col gap-3">
-          {options.map((option) => (
+          {options.map((option, i) => (
             <li
               key={option.key}
-              className="flex flex-col gap-3 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+              style={revealDelay(i, 120)}
+              className={`tool-reveal flex flex-col gap-3 rounded-2xl border p-4 transition-colors ${pickedCard(
+                Boolean(option.fileName) && picked === option.fileName
+              )} sm:flex-row sm:items-center sm:justify-between sm:gap-6`}
             >
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
@@ -172,6 +178,7 @@ export default function FileNameGenerator() {
                   text={option.fileName}
                   message="File name copied"
                   ariaLabel={`Copy file name ${option.fileName}`}
+                  onCopied={() => setPicked(option.fileName)}
                 />
               ) : null}
             </li>

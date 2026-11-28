@@ -222,6 +222,8 @@
       "busyGaps": "Recherche de vos manques",
       "busyMatch": "Évaluation de votre CV",
       "busyKeywords": "Lecture de l'offre",
+      "runDetailCv": "Comparaison de {cv} mots de votre CV avec {job} mots de l’offre.",
+      "runDetailJob": "Lecture de {job} mots de l’offre.",
       "readingCv": "Lecture de votre CV",
       "working": "Analyse de l'offre en cours",
       "privacy": "Lu dans cet onglet. Rien n'est envoyé.",

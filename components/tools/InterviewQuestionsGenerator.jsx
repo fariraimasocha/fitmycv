@@ -23,6 +23,8 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
+  cvJobDetail,
+  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { generateInterviewQuestions } from "@/lib/interview-questions";
@@ -100,7 +102,7 @@ export default function InterviewQuestionsGenerator() {
         </div>
       ) : null}
 
-      {!result && step === 2 ? (
+      {!result && step === 2 && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -152,7 +154,11 @@ export default function InterviewQuestionsGenerator() {
 
       {!result && step === 2 && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Reading the posting" lines={4} />
+          <ToolProgress
+            message="Reading the posting"
+            detail={cvJobDetail(resumeText, jobText)}
+            lines={4}
+          />
         </div>
       ) : null}
 
@@ -184,14 +190,31 @@ export default function InterviewQuestionsGenerator() {
             />
           </div>
 
+          {/* Peak: the tally, then each question dealt on its own beat. No gaps
+              gets the one glow. */}
+          {result.questions.length ? (
+            <p
+              className={`mt-5 inline-flex rounded-full px-3 py-1 font-outfit text-xs font-extrabold tabular-nums ${
+                gapCount
+                  ? "bg-[var(--landing-paper-strong)] text-[var(--landing-ink-soft)]"
+                  : "peak-glow bg-[var(--landing-success-soft)] text-[var(--landing-success)]"
+              }`}
+            >
+              {gapCount
+                ? `${gapCount} ${gapCount === 1 ? "gap" : "gaps"} to prepare for`
+                : "No skill gaps found"}
+            </p>
+          ) : null}
+
           <ol className="mt-6 flex flex-col gap-3">
-            {result.questions.map((q) => (
+            {result.questions.map((q, i) => (
               <li
                 key={q.id}
+                style={revealDelay(i, 150)}
                 className={
                   q.kind === "gap"
-                    ? "flex flex-col gap-2 rounded-2xl border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.05)] p-5"
-                    : "flex flex-col gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5"
+                    ? "tool-reveal flex flex-col gap-2 rounded-2xl border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.05)] p-5"
+                    : "tool-reveal flex flex-col gap-2 rounded-2xl border border-[var(--landing-line)] bg-[var(--landing-paper)] p-5"
                 }
               >
                 <p className="inline-flex items-center gap-1.5 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">

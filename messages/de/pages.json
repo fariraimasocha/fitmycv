@@ -222,6 +222,8 @@
       "busyGaps": "Lücken werden gesucht",
       "busyMatch": "Lebenslauf wird bewertet",
       "busyKeywords": "Anzeige wird gelesen",
+      "runDetailCv": "{cv} Wörter deines Lebenslaufs werden mit {job} Wörtern der Anzeige abgeglichen.",
+      "runDetailJob": "{job} Wörter der Anzeige werden gelesen.",
       "readingCv": "Lebenslauf wird gelesen",
       "working": "Anzeige wird ausgewertet",
       "privacy": "Wird in diesem Tab gelesen. Nichts wird hochgeladen.",

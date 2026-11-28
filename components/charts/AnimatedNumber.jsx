@@ -12,13 +12,14 @@ function formatNumber(value, decimals) {
 
 export function AnimatedNumber({
   value,
+  from = 0,
   decimals = 0,
   minDigits,
   className,
 }) {
   const reduce = useReducedMotion();
   const ref = useRef(null);
-  const current = useRef(reduce ? Number(value) || 0 : 0);
+  const current = useRef(reduce ? Number(value) || 0 : from);
   const numeric = Number(value) || 0;
   const formatted = formatNumber(numeric, decimals);
   const reserved = Math.max(

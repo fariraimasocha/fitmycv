@@ -20,46 +20,23 @@ import ToolShell, {
 import { CV_JOB_STEPS } from "@/components/tools/ToolStepper";
 import {
   JOB_IS_LINK,
+  STRONG_SCORE,
   TOOL_PRIVACY,
   ToolProgress,
+  ToolScoreRing,
   ToolSubmitButton,
+  revealDelay,
   useToolRun,
+  cvJobDetail,
 } from "@/components/tools/tool-run";
+import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
-const HIGH_MATCH_SCORE = 75;
+const HIGH_MATCH_SCORE = STRONG_SCORE;
 
-function ScoreRing({ value }) {
-  const tone =
-    value >= 75
-      ? "var(--landing-success)"
-      : value >= 50
-        ? "var(--landing-accent)"
-        : "var(--landing-coral)";
-
-  return (
-    <div
-      className="relative flex h-32 w-32 shrink-0 items-center justify-center rounded-full"
-      style={{
-        background: `conic-gradient(${tone} ${value * 3.6}deg, oklch(0.905 0.02 83) 0deg)`,
-      }}
-      role="img"
-      aria-label={`Match score: ${value} percent`}
-    >
-      <div className="flex h-24 w-24 flex-col items-center justify-center rounded-full bg-[var(--landing-paper-soft)]">
-        <span className="font-outfit text-3xl font-extrabold text-[var(--landing-ink)]">
-          {value}%
-        </span>
-        <span className="font-outfit text-xs font-extrabold uppercase tracking-widest text-[var(--landing-ink-soft)]">
-          Match
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function MatchBar({ label, value }) {
+// The three part scores fill one after another under the ring (`index`).
+function MatchBar({ label, value, index }) {
   const tone =
     value >= 75
       ? "bg-[var(--landing-success)]"
@@ -74,7 +51,7 @@ function MatchBar({ label, value }) {
           {label}
         </span>
         <span className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-          {value}%
+          <AnimatedNumber value={value} />%
         </span>
       </div>
       <div
@@ -85,19 +62,23 @@ function MatchBar({ label, value }) {
         aria-valuemax={100}
         aria-valuenow={value}
       >
-        <div className={`h-full rounded-full ${tone}`} style={{ width: `${value}%` }} />
+        <div
+          className={`tool-bar-fill h-full rounded-full ${tone}`}
+          style={{ width: `${value}%`, animationDelay: `${300 + index * 120}ms` }}
+        />
       </div>
     </div>
   );
 }
 
-function SkillChip({ term, present }) {
+function SkillChip({ term, present, index }) {
   return (
     <li
+      style={revealDelay(index)}
       className={
         present
-          ? "inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
-          : "inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
+          ? "tool-reveal inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.56_0.13_150_/_0.32)] bg-[oklch(0.56_0.13_150_/_0.08)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
+          : "tool-reveal inline-flex items-center gap-1.5 rounded-full border border-[oklch(0.62_0.19_24_/_0.3)] bg-[oklch(0.62_0.19_24_/_0.07)] px-3 py-1.5 text-xs font-bold text-[var(--landing-ink)]"
       }
     >
       {present ? (
@@ -185,7 +166,7 @@ export default function JobMatchChecker() {
         </div>
       ) : null}
 
-      {!result && step === 2 ? (
+      {!result && step === 2 && !running ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -237,14 +218,23 @@ export default function JobMatchChecker() {
 
       {!result && step === 2 && running ? (
         <div className="mx-auto w-full max-w-xl">
-          <ToolProgress message="Checking your match" lines={4} />
+          <ToolProgress
+            message="Checking your match"
+            detail={cvJobDetail(cvText, jobText)}
+            lines={4}
+          />
         </div>
       ) : null}
 
       {result ? (
         <div className="landing-rise mx-auto w-full max-w-2xl">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <ScoreRing value={result.overall} />
+            <ToolScoreRing
+              value={result.overall}
+              size={128}
+              label={`Match score: ${result.overall} percent`}
+              unit="Match"
+            />
             <div>
               <p className="font-outfit text-lg font-extrabold text-[var(--landing-ink)]">
                 {result.overall >= 75
@@ -268,8 +258,8 @@ export default function JobMatchChecker() {
               </p>
               {result.skills.strong.length ? (
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {result.skills.strong.map((term) => (
-                    <SkillChip key={term} term={term} present />
+                  {result.skills.strong.map((term, i) => (
+                    <SkillChip key={term} term={term} present index={i} />
                   ))}
                 </ul>
               ) : (
@@ -285,8 +275,8 @@ export default function JobMatchChecker() {
               </p>
               {result.skills.missing.length ? (
                 <ul className="mt-3 flex flex-wrap gap-2">
-                  {result.skills.missing.map((term) => (
-                    <SkillChip key={term} term={term} present={false} />
+                  {result.skills.missing.map((term, i) => (
+                    <SkillChip key={term} term={term} present={false} index={i} />
                   ))}
                 </ul>
               ) : (
@@ -299,9 +289,9 @@ export default function JobMatchChecker() {
           </div>
 
           <div className="mt-8 grid gap-5">
-            <MatchBar label="Experience match" value={result.experience.score} />
-            <MatchBar label="Skills match" value={result.skills.score} />
-            <MatchBar label="Keyword match" value={result.keywords.score} />
+            <MatchBar label="Experience match" value={result.experience.score} index={0} />
+            <MatchBar label="Skills match" value={result.skills.score} index={1} />
+            <MatchBar label="Keyword match" value={result.keywords.score} index={2} />
           </div>
 
           <div className="mt-8">
@@ -312,7 +302,8 @@ export default function JobMatchChecker() {
               {result.improvements.map((item, i) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
+                  style={revealDelay(i)}
+                  className="tool-reveal flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
                 >
                   <span className="font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)]">
                     {String(i + 1).padStart(2, "0")}

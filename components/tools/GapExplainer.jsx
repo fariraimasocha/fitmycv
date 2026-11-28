@@ -14,10 +14,9 @@ import {
   ToolPreview,
   ToolProgress,
   ToolSubmitButton,
-  pickedCard,
-  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { pickedCard, revealDelay } from "@/components/tools/reveal";
 import { trackEvent } from "@/lib/analytics";
 
 const PREVIEW = [
@@ -134,6 +133,12 @@ function CopyBlock({ title, text, index, copied, onCopied }) {
   );
 }
 
+// The anticipation line, kept out of the component to keep its branches down.
+function gapDetail(months) {
+  const length = months > 0 ? `${months}-month ` : "";
+  return `Writing a CV line, a cover letter line and an interview answer for your ${length}gap.`;
+}
+
 export default function GapExplainer() {
   const [step, setStep] = useState(1);
   const [reason, setReason] = useState("caregiving");
@@ -224,7 +229,7 @@ export default function GapExplainer() {
           {running ? (
             <ToolProgress
               message="Writing your lines"
-              detail={`Writing a CV line, a cover letter line and an interview answer for your ${months > 0 ? `${months}-month ` : ""}gap.`}
+              detail={gapDetail(months)}
               lines={3}
             />
           ) : null}

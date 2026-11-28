@@ -17,10 +17,9 @@ import {
   ToolProgress,
   ToolScoreRing,
   ToolSubmitButton,
-  revealDelay,
   useToolRun,
-  wordCount,
 } from "@/components/tools/tool-run";
+import { revealDelay, wordCount } from "@/components/tools/reveal";
 import { checkProfile, SECTIONS } from "@/lib/linkedin-check";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";

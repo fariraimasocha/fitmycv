@@ -24,11 +24,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
-  cvJobDetail,
-  pickedCard,
-  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { cvJobDetail, pickedCard, revealDelay } from "@/components/tools/reveal";
 import { evidenceFor, postingSkills } from "@/lib/interview-questions";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";

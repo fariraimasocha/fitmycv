@@ -25,12 +25,10 @@ import {
   TOOL_PRIVACY,
   ToolPreview,
   ToolProgress,
-  pickedCard,
-  revealDelay,
-  wordCount,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { pickedCard, revealDelay, wordCount } from "@/components/tools/reveal";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { notCompanyTerm } from "@/lib/keywords";
 

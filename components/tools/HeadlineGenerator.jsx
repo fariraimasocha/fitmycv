@@ -28,12 +28,10 @@ import {
   JOB_IS_LINK,
   TOOL_PRIVACY,
   ToolProgress,
-  cvJobDetail,
-  pickedCard,
-  revealDelay,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { cvJobDetail, pickedCard, revealDelay } from "@/components/tools/reveal";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { notCompanyTerm } from "@/lib/keywords";
 

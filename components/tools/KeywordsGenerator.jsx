@@ -24,10 +24,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
-  revealDelay,
   useToolRun,
-  wordCount,
 } from "@/components/tools/tool-run";
+import { revealDelay, wordCount } from "@/components/tools/reveal";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { stem, tokenize } from "@/lib/keywords";
 import { trackEvent } from "@/lib/analytics";

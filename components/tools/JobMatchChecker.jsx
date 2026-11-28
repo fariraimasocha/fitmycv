@@ -20,15 +20,13 @@ import ToolShell, {
 import { CV_JOB_STEPS } from "@/components/tools/ToolStepper";
 import {
   JOB_IS_LINK,
-  STRONG_SCORE,
   TOOL_PRIVACY,
   ToolProgress,
   ToolScoreRing,
   ToolSubmitButton,
-  revealDelay,
   useToolRun,
-  cvJobDetail,
 } from "@/components/tools/tool-run";
+import { STRONG_SCORE, cvJobDetail, revealDelay } from "@/components/tools/reveal";
 import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";

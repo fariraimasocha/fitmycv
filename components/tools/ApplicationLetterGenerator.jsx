@@ -14,10 +14,9 @@ import {
   ToolPreview,
   ToolProgress,
   ToolSubmitButton,
-  pickedCard,
-  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { pickedCard, revealDelay } from "@/components/tools/reveal";
 import { trackEvent } from "@/lib/analytics";
 
 const PREVIEW = [
@@ -186,7 +185,7 @@ export default function ApplicationLetterGenerator() {
             <div className="mt-1.5 flex flex-col gap-6">
               {letter.split("\n\n").map((para, i) => (
                 <p
-                  key={`${i}-${para.slice(0, 24)}`}
+                  key={para}
                   style={revealDelay(i, 150)}
                   className="tool-reveal whitespace-pre-line break-words text-sm leading-6 text-[var(--landing-ink)]"
                 >

@@ -11,7 +11,10 @@ import { useMemo, useState } from "react";
 import { WarningIcon } from "@phosphor-icons/react";
 
 import ToolShell, { ToolStepBack } from "@/components/tools/ToolShell";
-import { CopyButton, pickedCard, revealDelay } from "@/components/tools/tool-run";
+import {
+  CopyButton,
+} from "@/components/tools/tool-run";
+import { pickedCard, revealDelay } from "@/components/tools/reveal";
 
 // pure-helpers:start
 

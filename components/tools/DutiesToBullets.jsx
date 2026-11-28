@@ -25,10 +25,9 @@ import {
   ToolPreview,
   ToolProgress,
   ToolSubmitButton,
-  pickedCard,
-  revealDelay,
   useToolRun,
 } from "@/components/tools/tool-run";
+import { pickedCard, revealDelay } from "@/components/tools/reveal";
 
 // pure-helpers:start
 

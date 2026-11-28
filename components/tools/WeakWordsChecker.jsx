@@ -18,10 +18,9 @@ import {
   TOOL_PRIVACY,
   ToolProgress,
   ToolSubmitButton,
-  revealDelay,
   useToolRun,
-  wordCount,
 } from "@/components/tools/tool-run";
+import { revealDelay, wordCount } from "@/components/tools/reveal";
 import { trackEvent } from "@/lib/analytics";
 
 // pure-region-start

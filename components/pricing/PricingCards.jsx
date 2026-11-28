@@ -4,14 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { useRouter as useLocaleRouter } from "@/i18n/navigation";
-import { useCheckoutStore } from "@/stores/checkout-store";
 import { PRO_FEATURES } from "@/lib/pro-features";
 import { PRICING, SHOW_MONTHLY } from "@/lib/pricing";
 import LifetimeSpots from "@/components/pricing/LifetimeSpots";
 import EcocashCheckout from "@/components/pricing/EcocashCheckout";
 import { trackEvent } from "@/lib/analytics";
-import { useWebviewGate } from "@/components/landing/WebviewGateProvider";
 
 export default function PricingCards({
   defaultPlan = "lifetime",
@@ -27,10 +24,6 @@ export default function PricingCards({
   const t = useTranslations("pages.pricingCards");
   const tModal = useTranslations("pages.upgradeModal");
   const { data: session } = useSession();
-  // Adds /fr etc. to /auth. Checkout and dashboard URLs have no locale prefix.
-  const localeRouter = useLocaleRouter();
-  const setPendingCheckout = useCheckoutStore((s) => s.setPendingCheckout);
-  const gate = useWebviewGate();
   // Server-rendered pages pass the regional pricing in. Without it, fetch it.
   const [fetched, setFetched] = useState(null);
   const pricing = pricingProp ?? fetched?.pricing ?? PRICING;
@@ -86,15 +79,12 @@ export default function PricingCards({
 
   const handleCheckout = (plan) => {
     if (pendingPlan) return;
-    trackEvent("checkout_start", { tier, plan, source: "pricing_cards" });
-    if (session?.user) {
-      setPendingPlan(plan);
-      window.location.assign(`/api/polar/checkout?plan=${plan}&source=pricing_cards`);
-    } else {
-      setPendingCheckout(true, plan);
-      if (gate?.interceptAuth(null, "/auth")) return;
-      localeRouter.push("/auth");
-    }
+    trackEvent("checkout_start", { tier, plan, source: "pricing_cards", signed_in: Boolean(session?.user) });
+    // Signed-out buyers go straight to Polar too. Sending them to sign in
+    // first lost 33 of 38 in November. The webhook makes the account from the
+    // email they pay with.
+    setPendingPlan(plan);
+    window.location.assign(`/api/polar/checkout?plan=${plan}&source=pricing_cards`);
   };
 
   // Callers can pick which plan leads. Lifetime is the default everywhere.

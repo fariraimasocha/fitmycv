@@ -22,6 +22,28 @@ async function resolveUser(data) {
     user = await User.findOne({ email: customerEmail });
   }
 
+  // A guest paid before signing up. Make the account from the email they paid
+  // with; signing in with that email later lands on it, with Pro already on.
+  // nurtureStep 0 lets the nurture cron send the welcome email.
+  const guestEmail = customerEmail?.trim().toLowerCase();
+  if (!user && guestEmail && data.metadata?.guest === "1") {
+    user = await User.findOne({ email: guestEmail });
+  }
+  if (!user && guestEmail && data.metadata?.guest === "1") {
+    try {
+      user = await User.create({
+        name: data.customer?.name || guestEmail.split("@")[0],
+        email: guestEmail,
+        nurtureStep: 0,
+      });
+      console.log(`Webhook: created account for guest buyer ${guestEmail}`);
+    } catch (error) {
+      // order.paid and subscription.active can race to create the same user.
+      if (error?.code !== 11000) throw error;
+      user = await User.findOne({ email: guestEmail });
+    }
+  }
+
   if (!user) {
     console.error(
       `Webhook: could not resolve user (userId=${userId}, email=${customerEmail})`,

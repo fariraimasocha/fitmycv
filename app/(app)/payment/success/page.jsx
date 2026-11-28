@@ -24,7 +24,10 @@ const JUST_UNLOCKED = [
 ];
 
 export default function PaymentSuccessPage() {
-  const { update } = useSession();
+  const { update, status } = useSession();
+  // A guest paid before signing up. The webhook made their account from the
+  // email they paid with, so they sign in with that email to use Pro.
+  const isGuest = status === "unauthenticated";
   const router = useRouter();
   const redirected = useRef(false);
   const redirectTimer = useRef(null);
@@ -47,6 +50,7 @@ export default function PaymentSuccessPage() {
     },
     refetchIntervalInBackground: false,
     staleTime: 0,
+    enabled: status === "authenticated",
   });
 
   const isPremiumConfirmed = !!data?.isPremium;
@@ -163,7 +167,26 @@ export default function PaymentSuccessPage() {
           </ul>
 
           <div className="mt-6 w-full">
-            {isPremiumConfirmed ? (
+            {isGuest ? (
+              <div
+                role="status"
+                className="rounded-xl bg-[var(--landing-ink)] px-4 py-4 text-[var(--landing-on-primary)]"
+              >
+                <p className="font-outfit text-base font-semibold tracking-tight">
+                  Sign in to start using Pro
+                </p>
+                <p className="mt-1 text-sm text-[var(--landing-ink-inverse-soft)]">
+                  Use the email you paid with. Your account is ready under that email with Pro on.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => router.push("/auth")}
+                  className="dashboard-secondary-btn mt-4 w-full"
+                >
+                  Sign in
+                </button>
+              </div>
+            ) : isPremiumConfirmed ? (
               <motion.div
                 initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}

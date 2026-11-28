@@ -36,24 +36,27 @@ export async function GET(request) {
   let failPath = "/dashboard/upgrade";
   try {
     const session = await auth();
+    const { searchParams } = new URL(request.url);
+    const planParam = searchParams.get("plan");
+    const plan = CHECKOUT_PLANS.includes(planParam) ? planParam : "lifetime";
 
-    if (!session?.user?.email) {
+    // Signed-out buyers pay first. Polar asks for their email and the webhook
+    // makes the account from it. A single purchase unlocks one saved CV, so
+    // it still needs an account.
+    const guest = !session?.user?.email;
+    if (guest && plan === "single") {
       return NextResponse.redirect(localAppUrl("/auth", request));
     }
 
-    if (session.user.isPremium) {
+    if (session?.user?.isPremium) {
       return NextResponse.redirect(localAppUrl("/api/polar/portal", request));
     }
 
     await connectDB();
-    const dbUser = await User.findOne({ _id: session.user.id }).select("isPremium");
+    const dbUser = guest ? null : await User.findOne({ _id: session.user.id }).select("isPremium");
     if (dbUser?.isPremium) {
       return NextResponse.redirect(localAppUrl("/api/polar/portal", request));
     }
-
-    const { searchParams } = new URL(request.url);
-    const planParam = searchParams.get("plan");
-    const plan = CHECKOUT_PLANS.includes(planParam) ? planParam : "lifetime";
     const sourceParam = searchParams.get("source");
     const checkoutSource = CHECKOUT_SOURCES.has(sourceParam) ? sourceParam : null;
     const contextParam = searchParams.get("context");
@@ -65,7 +68,7 @@ export async function GET(request) {
     // it, for any plan. A single purchase also unlocks it, so it must exist
     // and still be locked.
     const cvId = searchParams.get("cv");
-    const cv = mongoose.isValidObjectId(cvId)
+    const cv = !guest && mongoose.isValidObjectId(cvId)
       ? await TailoredCV.findOne({ _id: cvId, userId: session.user.id })
           .select("unlockedAt")
           .lean()
@@ -80,7 +83,7 @@ export async function GET(request) {
       }
       tailoredCvId = String(cv._id);
     }
-    const returnPath = cv ? `/dashboard/tailored/${cv._id}` : "/dashboard/upgrade";
+    const returnPath = cv ? `/dashboard/tailored/${cv._id}` : guest ? "/pricing" : "/dashboard/upgrade";
     failPath = returnPath;
 
     const tier = await resolveCheckoutTier();
@@ -106,24 +109,30 @@ export async function GET(request) {
         : process.env.POLAR_SUCCESS_URL ||
           localAppUrl(`/payment/success?plan=${plan}`, request).toString();
 
-    await User.updateOne(
-      { _id: session.user.id },
-      {
-        $set: { checkoutStartedAt: new Date(), checkoutPlan: plan, checkoutCvId: tailoredCvId },
-        $unset: { checkoutReminderSentAt: 1 },
-      },
-    );
+    if (!guest) {
+      await User.updateOne(
+        { _id: session.user.id },
+        {
+          $set: { checkoutStartedAt: new Date(), checkoutPlan: plan, checkoutCvId: tailoredCvId },
+          $unset: { checkoutReminderSentAt: 1 },
+        },
+      );
+    }
 
     const checkout = await polar.checkouts.create({
       products: [productId],
       successUrl,
       returnUrl: localAppUrl(returnPath, request).toString(),
-      externalCustomerId: String(session.user.id),
-      customerName: session.user.name || undefined,
-      customerEmail: session.user.email,
+      ...(guest
+        ? {}
+        : {
+            externalCustomerId: String(session.user.id),
+            customerName: session.user.name || undefined,
+            customerEmail: session.user.email,
+          }),
       ...(customerIp ? { customerIpAddress: customerIp } : {}),
       metadata: {
-        userId: String(session.user.id),
+        ...(guest ? { guest: "1" } : { userId: String(session.user.id) }),
         pricingTier: tier,
         plan,
         ...(checkoutSource ? { checkoutSource } : {}),
@@ -140,8 +149,11 @@ export async function GET(request) {
 
     // Counts a checkout that Polar actually created, distinct from a button
     // click that may have sent a signed-out visitor through authentication.
-    await captureServerEvent(session.user.id, "checkout_created", {
+    // ponytail: guests are counted under the checkout id, so they don't join
+    // their PostHog visitor. Read the ph_ cookie if that attribution matters.
+    await captureServerEvent(guest ? `guest_${checkout.id}` : session.user.id, "checkout_created", {
       plan,
+      guest,
       tier,
       checkout_source: checkoutSource,
       paywall_context: paywallContext,

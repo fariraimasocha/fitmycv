@@ -31,6 +31,7 @@ import {
 import {
   CopyButton,
   TOOL_PRIVACY,
+  ToolMatchBar,
   ToolProgress,
   ToolScoreRing,
   ToolSubmitButton,
@@ -42,11 +43,36 @@ import { readJobDraft, saveAtsHandoff, saveCvHandoff, saveJobDraft } from "@/lib
 import { isLinkOnly } from "@/lib/ats-detect";
 import { trackEvent } from "@/lib/analytics";
 import { extractTerms, stem, tokenize } from "@/lib/keywords";
+import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
 // The score is the peak of this tool: ToolScoreRing fills, counts up, and
 // glows once on a strong match.
 const HIGH_MATCH_SCORE = 75;
 const MIN_JOB_CHARS = 40;
+
+// The fixes worth making, built from the job match detail so each line is
+// translated and every one traces to a number in the result.
+// ponytail: seniority is left out because its labels are English words. Add
+// it once those labels have translations.
+function improvementLines(detail, t) {
+  const { skills, keywords, experience } = detail;
+  const lines = skills.missing.slice(0, 3).map((skill) => t("improveSkill", { skill }));
+  if (keywords.stuffed.length) {
+    lines.push(t("improveStuffed", { terms: keywords.stuffed.slice(0, 3).join(", ") }));
+  }
+  const required = experience.requiredYears;
+  if (required && (experience.cvYears === null || experience.cvYears < required)) {
+    lines.push(
+      experience.cvYears === null
+        ? t("improveYearsNone", { required })
+        : t("improveYears", { required, have: experience.cvYears })
+    );
+  }
+  if (lines.length < 4 && skills.strong.length) {
+    lines.push(t("improveProof", { skill: skills.strong[0] }));
+  }
+  return lines.slice(0, 4);
+}
 
 // Returns the message key of the bottom handoff card.
 function handoffKey({ gapsMode, score }) {
@@ -124,6 +150,10 @@ export default function KeywordChecker({ mode = "match" }) {
       terms: scored,
       score: weightTotal ? Math.round((weightHit / weightTotal) * 100) : 0,
       missing,
+      // Named skills, experience and stuffing come from the job match scorer,
+      // so both tools read a posting the same way. The headline stays this
+      // tool's keyword score.
+      detail: scoreResumeJobMatch(jobText, cvText),
     };
   }, [ran, jobText, cvText, mode]);
 
@@ -151,6 +181,13 @@ export default function KeywordChecker({ mode = "match" }) {
       term_count: result.terms.length,
       ...(typeof result.score === "number" ? { score: result.score } : {}),
       ...(result.missing ? { missing_count: result.missing.length } : {}),
+      ...(result.detail
+        ? {
+            skills_score: result.detail.skills.score,
+            experience_score: result.detail.experience.score,
+            stuffed_count: result.detail.keywords.stuffed.length,
+          }
+        : {}),
     });
   }, [ran, result, mode]);
 
@@ -543,6 +580,44 @@ export default function KeywordChecker({ mode = "match" }) {
                       </li>
                     ))}
                   </ul>
+                </>
+              ) : null}
+
+              {/* The same breakdown as the job match checker. Skills and
+                  experience only show when the posting gives something to
+                  read, so a 0 never stands in for "not mentioned". */}
+              <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+                {t("breakdownHeading")}
+              </p>
+              <div className="mt-3 grid gap-5">
+                <ToolMatchBar label={t("barKeywords")} value={result.score} index={0} />
+                {result.detail.skills.strong.length + result.detail.skills.missing.length ? (
+                  <ToolMatchBar label={t("barSkills")} value={result.detail.skills.score} index={1} />
+                ) : null}
+                {result.detail.experience.requiredYears || result.detail.experience.jobLevel ? (
+                  <ToolMatchBar label={t("barExperience")} value={result.detail.experience.score} index={2} />
+                ) : null}
+              </div>
+
+              {improvementLines(result.detail, t).length ? (
+                <>
+                  <p className="mt-8 font-outfit text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--landing-ink-soft)]">
+                    {t("improveHeading")}
+                  </p>
+                  <ol className="mt-3 flex flex-col gap-2">
+                    {improvementLines(result.detail, t).map((line, i) => (
+                      <li
+                        key={line}
+                        style={revealDelay(i)}
+                        className="tool-reveal flex items-start gap-3 rounded-xl border border-[var(--landing-line)] bg-[var(--landing-paper)] px-4 py-3"
+                      >
+                        <span className="font-outfit text-xs font-extrabold text-[var(--landing-ink-soft)]">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-sm leading-6 text-[var(--landing-ink)]">{line}</span>
+                      </li>
+                    ))}
+                  </ol>
                 </>
               ) : null}
 

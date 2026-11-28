@@ -142,6 +142,42 @@ export function ToolScoreRing({ value, label, unit, size = 112 }) {
   );
 }
 
+// A part score under a ring. Bars fill one after another (`index`).
+export function ToolMatchBar({ label, value, index = 0 }) {
+  const tone =
+    value >= 75
+      ? "bg-[var(--landing-success)]"
+      : value >= 50
+        ? "bg-[var(--landing-accent)]"
+        : "bg-[var(--landing-coral)]";
+
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between gap-3">
+        <span className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+          {label}
+        </span>
+        <span className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
+          <AnimatedNumber value={value} />%
+        </span>
+      </div>
+      <div
+        className="h-2 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]"
+        role="meter"
+        aria-label={label}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={value}
+      >
+        <div
+          className={`tool-bar-fill h-full rounded-full ${tone}`}
+          style={{ width: `${value}%`, animationDelay: `${300 + index * 120}ms` }}
+        />
+      </div>
+    </div>
+  );
+}
+
 /** Copies `text`. Says "Copied" only once the clipboard has taken it. */
 export function CopyButton({ text, tool, label, message, ariaLabel, onCopied }) {
   const t = useTranslations("pages.tools.copy");

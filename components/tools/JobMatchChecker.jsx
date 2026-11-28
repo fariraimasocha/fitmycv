@@ -22,52 +22,16 @@ import {
   JOB_IS_LINK,
   TOOL_PRIVACY,
   ToolProgress,
+  ToolMatchBar,
   ToolScoreRing,
   ToolSubmitButton,
   useToolRun,
 } from "@/components/tools/tool-run";
 import { STRONG_SCORE, cvJobDetail, revealDelay } from "@/components/tools/reveal";
-import { AnimatedNumber } from "@/components/charts/AnimatedNumber";
 import { isLinkOnly } from "@/lib/ats-detect";
 import { scoreResumeJobMatch } from "@/lib/resume-job-match";
 
 const HIGH_MATCH_SCORE = STRONG_SCORE;
-
-// The three part scores fill one after another under the ring (`index`).
-function MatchBar({ label, value, index }) {
-  const tone =
-    value >= 75
-      ? "bg-[var(--landing-success)]"
-      : value >= 50
-        ? "bg-[var(--landing-accent)]"
-        : "bg-[var(--landing-coral)]";
-
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between gap-3">
-        <span className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-          {label}
-        </span>
-        <span className="font-outfit text-sm font-extrabold text-[var(--landing-ink)]">
-          <AnimatedNumber value={value} />%
-        </span>
-      </div>
-      <div
-        className="h-2 overflow-hidden rounded-full bg-[var(--landing-paper-strong)]"
-        role="meter"
-        aria-label={label}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={value}
-      >
-        <div
-          className={`tool-bar-fill h-full rounded-full ${tone}`}
-          style={{ width: `${value}%`, animationDelay: `${300 + index * 120}ms` }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function SkillChip({ term, present, index }) {
   return (
@@ -287,9 +251,9 @@ export default function JobMatchChecker() {
           </div>
 
           <div className="mt-8 grid gap-5">
-            <MatchBar label="Experience match" value={result.experience.score} index={0} />
-            <MatchBar label="Skills match" value={result.skills.score} index={1} />
-            <MatchBar label="Keyword match" value={result.keywords.score} index={2} />
+            <ToolMatchBar label="Experience match" value={result.experience.score} index={0} />
+            <ToolMatchBar label="Skills match" value={result.skills.score} index={1} />
+            <ToolMatchBar label="Keyword match" value={result.keywords.score} index={2} />
           </div>
 
           <div className="mt-8">

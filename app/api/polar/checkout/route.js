@@ -98,6 +98,9 @@ export async function GET(request) {
     const cookieStore = await cookies();
     const datafastVisitorId = cookieStore.get("datafast_visitor_id")?.value;
     const datafastSessionId = cookieStore.get("datafast_session_id")?.value;
+    // Analytika credits the payment to the visit that brought the buyer.
+    const analytikaVisitorId = cookieStore.get("ml_vid")?.value;
+    const analytikaSessionId = cookieStore.get("ml_sid")?.value;
 
     // A single purchase goes back to its CV, which waits for the webhook and
     // then opens. Plans go through /payment/success, which waits for Pro.
@@ -144,6 +147,8 @@ export async function GET(request) {
         ...(datafastSessionId
           ? { datafast_session_id: datafastSessionId }
           : {}),
+        ...(analytikaVisitorId ? { ml_visitor_id: analytikaVisitorId } : {}),
+        ...(analytikaSessionId ? { ml_session_id: analytikaSessionId } : {}),
       },
     });
 
